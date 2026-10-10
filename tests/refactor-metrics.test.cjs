@@ -126,8 +126,14 @@ function fixture(candidate = false, variant = 'base') {
         rawCPUProfile: structuredClone(rawCPUProfile),
         hotspots: metrics.cpuHotspots(rawCPUProfile),
         diagnostics: rooms(),
-        ribbons: { sceneHook: 'undefined', dataset: {} },
-        paint: { completed: 1, ordinaryShapes: 10, customShapes: 0 },
+        ribbons: {
+          sceneHook: 'undefined',
+          ribbonHook: 'undefined',
+          submissions: 0,
+          shapes: 0,
+          dataset: {},
+        },
+        paint: { completed: 1, ordinaryShapes: 10, customShapes: 0, embeddedShapes: 0 },
         qualityTrace: [{ time: 0, quality: 'full', cadence: '60' }],
         runtime: {
           variant,
@@ -513,7 +519,7 @@ test('active composition and actual retired ribbon absence must match ordinary C
     (value) => delete value.identity.variant.effects,
     (value) => (value.identity.variant.effects = ['ribbons', 'travel']),
     (value) => (value.identity.variant.effects = []),
-    (value) => (value.rows[0].ribbons.sceneHook = 'function'),
+    (value) => (value.rows[0].ribbons.ribbonHook = 'function'),
     (value) => delete value.rows[0].ribbons,
     (value) => delete value.rows[0].ribbons.dataset,
     (value) => (value.rows[0].ribbons.dataset = { ribbonFaces: '1' }),
@@ -550,7 +556,7 @@ test('serialized collector forwards existing motion events and actual ordinary p
   sandbox.window = sandbox;
   vm.runInNewContext(metrics.measurementProbeScript(), sandbox);
   const model = { kind: 'model', time: 3, start: 2, duration: 1 };
-  const painted = { kind: 'paint', ordinaryShapes: 17, customShapes: 0 };
+  const painted = { kind: 'paint', ordinaryShapes: 17, customShapes: 0, embeddedShapes: 0 };
   sandbox.SiteEngineProbe(model);
   sandbox.SiteEngineProbe(painted);
   assert.deepEqual(Array.from(sandbox.__qualityMotion.events), [model, painted]);
@@ -560,6 +566,7 @@ test('serialized collector forwards existing motion events and actual ordinary p
       completed: 1,
       ordinaryShapes: 17,
       customShapes: 0,
+      embeddedShapes: 0,
     }
   );
   assert.deepEqual(stored, [

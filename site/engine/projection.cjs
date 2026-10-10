@@ -14,7 +14,7 @@ module.exports = function (math, definitions) {
     clipPolygon,
     cameraView,
   } = math;
-  const { poses, routeOrder, roomSpacing } = definitions;
+  const { poses, initialPoses, routeOrder, roomSpacing } = definitions;
   // Authored spline waypoints pass through the open centres of successive structures.
   function journeyPose(ids, progress) {
     const path = ids.map((id) => poses[id]);
@@ -397,6 +397,18 @@ module.exports = function (math, definitions) {
     target: add(pose.target, [0, 0, z]),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
+  function routeDirection(from, to, paintedPose = null) {
+    const sourceIndex = routeOrder.indexOf(from),
+      targetIndex = routeOrder.indexOf(to);
+    if (sourceIndex < 0 || targetIndex < 0) return null;
+    const sourceDepth = paintedPose?.position?.[2],
+      targetDepth = routePose(to, poses[initialPoses[to]]).position[2];
+    // Retargets start at the last real paint, which may still be between rooms.
+    // Equal depth uses the same ordered route contract as ordinary navigation.
+    if (Number.isFinite(sourceDepth) && sourceDepth !== targetDepth)
+      return targetDepth < sourceDepth ? 'forward' : 'backward';
+    return targetIndex > sourceIndex ? 'forward' : 'backward';
+  }
   return {
     loopTransform,
     cameraVertices,
@@ -408,6 +420,7 @@ module.exports = function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    routeDirection,
     roomOffset,
     translatePose,
   };

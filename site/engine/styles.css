@@ -312,6 +312,11 @@ select,
   );
   pointer-events: none;
 }
+@media screen and (max-width: 640px) {
+  :root:has(meta[name='site-variant'][content='color']) .space-scene::after {
+    opacity: 0.25;
+  }
+}
 .space-scene svg,
 .space-scene canvas {
   position: absolute;
@@ -973,7 +978,9 @@ h2 {
   .archive-intro > .hero-description {
     max-width: 640px;
   }
-  body[data-page='credits'] .credits-page {
+  body[data-page='credits'] :where(#site-content) .credits-page,
+  body[data-page='credits'] > .credits-page,
+  .embedded-stage[data-embedded-route='credits'] .credits-page {
     max-width: 1160px;
   }
   .credits-page > p {
@@ -1118,7 +1125,9 @@ h2 {
 .credits-page h2 {
   width: fit-content;
 }
-body[data-page='writing'] #archive-results {
+body[data-page='writing'] :where(#site-content) #archive-results,
+body[data-page='writing'] > :where(main) #archive-results,
+.embedded-stage[data-embedded-route='writing'] #archive-results {
   width: min(1010px, calc(100% - 80px));
   margin-inline: auto;
 }
@@ -1141,7 +1150,9 @@ body[data-page='writing'] #archive-results {
     max-width: calc(100% - 48px);
     margin-left: 24px;
   }
-  body[data-page='writing'] #archive-results {
+  body[data-page='writing'] :where(#site-content) #archive-results,
+  body[data-page='writing'] > :where(main) #archive-results,
+  .embedded-stage[data-embedded-route='writing'] #archive-results {
     width: calc(100% - 48px);
   }
   .hero {
@@ -1181,7 +1192,9 @@ body[data-page='writing'] #archive-results {
     max-width: calc(100% - 40px);
     margin-left: 20px;
   }
-  body[data-page='writing'] #archive-results {
+  body[data-page='writing'] :where(#site-content) #archive-results,
+  body[data-page='writing'] > :where(main) #archive-results,
+  .embedded-stage[data-embedded-route='writing'] #archive-results {
     width: calc(100% - 40px);
   }
   .site-header {

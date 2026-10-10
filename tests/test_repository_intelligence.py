@@ -304,6 +304,58 @@ class NavigationSafetyTests(unittest.TestCase):
             {"path": "deck.pdf", "identity_mode": "content", "sha256": ri.digest(b"version one")},
         )
 
+    def test_exact_checksum_ledger_is_hash_only_without_losing_inventory_or_freshness(self):
+        ledger = "tools/quality/secrets-reviewed.json"
+        payload = json.dumps({"reviewed": "a" * (ri.MAX_FILE_BYTES + 1)})
+        self.write(ledger, payload)
+        first = self.materialize()
+        records, texts = ri.scan(self.root, [self.config["output"], self.config["map_output"]])
+        self.assertNotIn(ledger, texts, "raw checksum evidence is not navigation prose")
+        self.assertIn(self.cfg, texts, "ordinary JSON remains a bounded text input")
+        record = next(item for item in records if item["path"] == ledger)
+        self.assertEqual(
+            record,
+            {
+                "path": ledger,
+                "identity_mode": "content",
+                "sha256": ri.digest(payload.encode("utf-8")),
+            },
+        )
+        self.assertIn(record, first["source_identity"]["inputs"])
+        artifact = next(item for item in first["artifacts"] if item["path"] == ledger)
+        self.assertEqual(artifact["owner"], "AGENTS.md")
+        self.assertEqual(artifact["instructions"], ["AGENTS.md"])
+        self.assertEqual(ri.verify(self.root, self.cfg), first)
+        self.write(ledger, payload + " ")
+        with self.assertRaisesRegex(ValueError, "Stale or altered"):
+            ri.verify(self.root, self.cfg)
+
+    def test_checksum_ledger_disposition_does_not_cover_json_lookalikes(self):
+        payload = json.dumps({"reviewed": "a" * (ri.MAX_FILE_BYTES + 1)})
+        for path in [
+            "large.json",
+            "tools/quality/secrets-reviewed-copy.json",
+            "other/secrets-reviewed.json",
+        ]:
+            with self.subTest(path=path):
+                self.write(path, payload)
+                with self.assertRaisesRegex(ValueError, "RI text bound exceeded"):
+                    ri.build(self.root, self.cfg)
+                (self.root / path).unlink()
+
+    def test_checksum_ledger_still_obeys_hash_bounds_and_cannot_be_a_text_owner(self):
+        ledger = "tools/quality/secrets-reviewed.json"
+        self.write(ledger, "{}")
+        with (self.root / ledger).open("wb") as stream:
+            stream.truncate(ri.MAX_HASH_FILE_BYTES + 1)
+        with self.assertRaisesRegex(ValueError, "RI content hash bound exceeded"):
+            ri.build(self.root, self.cfg)
+        self.write(ledger, "{}")
+        self.config["owners"][0]["path"] = ledger
+        self.save_config()
+        with self.assertRaisesRegex(ValueError, "Missing represented owner/input"):
+            ri.build(self.root, self.cfg)
+
     def test_code_css_html_and_assets_are_all_indexed_and_hashed(self):
         for path in ["engine.js", "helper.cjs", "style.css", "block.html", "portrait.webp"]:
             self.write(path, "version one")

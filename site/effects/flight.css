@@ -1,6 +1,50 @@
 #site-content-frame {
   overflow: clip;
 }
+.embedded-stage {
+  position: fixed;
+  top: var(--embedded-stage-top);
+  left: 0;
+  width: var(--embedded-stage-width);
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout style;
+}
+.fragment-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: clip;
+  contain: strict;
+}
+.fragment-piece {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: clip;
+  transform-origin: 0 0;
+  pointer-events: none;
+  contain: paint;
+}
+.fragment-volume {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.fragment-facet-light {
+  fill: color-mix(in srgb, var(--accent) 48%, var(--paper));
+}
+.fragment-facet-dark {
+  fill: color-mix(in srgb, var(--accent) 32%, var(--ink));
+}
+.fragment-paint {
+  position: absolute;
+  margin: 0;
+  max-width: none;
+  pointer-events: none;
+}
 .end-scroll-control input {
   width: 16px;
   height: 16px;
@@ -20,16 +64,17 @@
   position: absolute;
   bottom: 2px;
   left: 0;
-  right: 0;
+  width: calc(100% * var(--scroll-intent, 0));
   height: 2px;
   background: var(--accent);
-  transform: scaleX(var(--scroll-intent, 0));
-  transform-origin: left;
 }
 .scroll-continue[hidden] {
   display: none;
 }
 @media print {
+  .fragment-layer {
+    display: none;
+  }
   #site-content-frame {
     overflow: visible;
   }

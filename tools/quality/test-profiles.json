@@ -76,6 +76,31 @@
       "modes": ["normal", "no-canvas"],
       "full_gate": false
     },
+    "tablet_preview": {
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "trigger": "same-repository PR 53 Color preview updates",
+      "job_budget_minutes": 10,
+      "report_kinds": ["color-tablet-webkit"],
+      "engines": ["webkit"],
+      "viewports": [
+        { "width": 1024, "height": 1366 },
+        { "width": 1366, "height": 1024 }
+      ],
+      "device_scale_factor": 2,
+      "touch": true,
+      "mobile": true,
+      "modes": ["normal"],
+      "first_load_rows": 2,
+      "journeys_per_viewport": [
+        { "theme": "light", "from": "index", "to": "research" },
+        { "theme": "light", "from": "research", "to": "index" },
+        { "theme": "light", "from": "index", "to": "writing", "corridor": true },
+        { "theme": "dark", "from": "index", "to": "research" },
+        { "theme": "dark", "from": "research", "to": "index" }
+      ],
+      "full_gate": false,
+      "native_device_proof": false
+    },
     "staging": {
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "job_budget_minutes": 15,
@@ -278,7 +303,13 @@
       "profiles": ["pr-smoke", "pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
-      "inputs": ["tests/archive.test.cjs", "site/content/**", "site/templates/**"]
+      "inputs": [
+        "tests/archive.test.cjs",
+        "site/content/**",
+        "site/templates/**",
+        "site/engine/archive.js",
+        "site/effects/embedded-scene.cjs"
+      ]
     },
     {
       "path": "tests/browser-gate-diagnostics.test.cjs",
@@ -397,7 +428,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite",
+      "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/content.test.cjs",
@@ -440,7 +471,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite",
+      "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -551,7 +582,11 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/navigation-motion-fixtures.test.cjs", "tools/quality/navigation.cjs"]
+      "inputs": [
+        "tests/navigation-motion-fixtures.test.cjs",
+        "tools/quality/navigation.cjs",
+        "tools/quality/color-browser.cjs"
+      ]
     },
     {
       "path": "tests/navigation.test.cjs",
@@ -825,6 +860,7 @@
       "inputs": [
         "tests/staging-regression.test.cjs",
         "tools/quality/staging-regression.cjs",
+        "tools/quality/color-browser.cjs",
         "site/engine/critical-media.css",
         "tools/quality/functional.cjs",
         "tools/quality/common.cjs",
@@ -1033,13 +1069,17 @@
     {
       "path": "tests/writing-diagnosis.test.cjs",
       "language": "javascript",
-      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures and sample counts",
+      "purpose": "Dated balanced paired cold boot/flight matrix, raw preparation/tail accounting, honest failures/sample counts and current stationary/native reading observations; historical camera observations never become current acceptance",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-diagnosis.test.cjs", "tools/quality/writing-diagnosis.cjs"]
+      "inputs": [
+        "tests/writing-diagnosis.test.cjs",
+        "tools/quality/writing-diagnosis.cjs",
+        "tools/quality/writing-probe.cjs"
+      ]
     },
     {
       "path": "tests/writing-geometry.test.cjs",
@@ -1147,11 +1187,11 @@
     {
       "path": "tests/test_issue41_acceptance.py",
       "language": "python",
-      "purpose": "Issue41 source/input/edition invariants and dated practical-positioning continuation, existing catalog-derived count mutations, source-bound semantic amendments and unchanged current-main runtime/hosting; historical evidence remains pinned. Same-issue compact sitecase verifies exact fragments and immutable public proof destinations; source truth remains separately reviewed.",
+      "purpose": "Issue41 exact source/snapshot accounting, admitted and deferred edition identities, generated advisor/discussion/catalog/schema checks, reversible SEO delta and exact approved #36 runtime companion and unchanged hosting. Preparation evidence stays pinned at d7ce5d3; implementation phase explicitly supersedes its byte-only check.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning implementation policy only; enduring renderer/archive/SEO and normal preview smoke are extended in their current owners; no duplicate full regression or new browser suite; joint #36/#41 integration maps the same tests once through the #36 policy",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1415,6 +1455,129 @@
         "tools/quality/refactor-metrics.cjs",
         "tools/quality/motion.cjs",
         "tools/quality/budgets.json"
+      ]
+    },
+    {
+      "path": "tests/fragment-plan.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue49 pure fragment partition/shared-resource admission, staggered incoming schedule, native/world projection/near-plane and serialized-factory negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain current opt-in prototype geometry/resource rejection contracts; actual depth/fidelity/browser cost stay external admission gates, without a duplicate hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/fragment-plan.test.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/engine/math.cjs",
+        "site/engine/lifecycle.cjs",
+        "site/effects/flight.cjs",
+        "tools/site/effects.cjs"
+      ]
+    },
+    {
+      "path": "tests/fragment-dom.test.cjs",
+      "language": "javascript",
+      "purpose": "Issue49 opt-in native-paint owner/copy/handoff, 1.8-second staggered assembly, cancellation/cleanup and malformed/over-budget rejection contracts; atomic whole painted blocks, resolved pseudo material/gutter bounds and mobile display-contents acquisition",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain bounded real-source prototype fixtures and failure surfaces; DOM fixtures do not establish browser depth/fidelity/performance admission or default rollout",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/fragment-dom.test.cjs",
+        "site/effects/fragment-dom.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/effects/flight.cjs",
+        "site/effects/flight.css",
+        "site/engine/navigation.js",
+        "site/engine/lifecycle.cjs",
+        "tools/site/effects.cjs",
+        "site/engine/reading-surfaces.css"
+      ]
+    },
+    {
+      "path": "tests/test_issue49_acceptance.py",
+      "language": "python",
+      "purpose": "Consolidated issue49 fifteen-criterion policy-only fragment/stationary/embedded source selectors with fail-closed test accounting",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue49 selector only; meaningful underlying JS suites remain permanent current-source contracts, inherited48 whole policy and unrelated frozen snapshots stay historical",
+      "surviving_route": ".github/acceptance/issue-49.json",
+      "inputs": [
+        "tests/test_issue49_acceptance.py",
+        ".github/acceptance/issue-49.json",
+        "review/issue-49/2026-10-08-analysis.md",
+        "tests/fragment-plan.test.cjs",
+        "tests/fragment-dom.test.cjs",
+        "tests/space.test.cjs",
+        "tests/navigation.test.cjs",
+        "tests/embedded-plan.test.cjs",
+        "tests/embedded-texture.test.cjs",
+        "tests/embedded-scene.test.cjs",
+        "tests/effects.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/embedded-plan.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent issue49 persistent identity, closed volume, finite depth/native endpoint, bounded prism projection and serialized geometry rejection contracts; visual depth remains pending.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain scoped one-block same-scene prototype and meaningful failure contracts; native texture/depth/fidelity/device and paired-cost admission remain human gates without another hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/embedded-plan.test.cjs",
+        "site/effects/embedded-plan.cjs",
+        "tools/site/effects.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/engine/math.cjs",
+        "site/engine/lifecycle.cjs"
+      ]
+    },
+    {
+      "path": "tests/embedded-texture.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent issue49 native paragraph/backdrop serialization, pixel/font/decode/capability/taint rejection and cancellation/disposal contracts; native visual fidelity remains pending.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain scoped one-block same-scene prototype and meaningful failure contracts; native texture/depth/fidelity/device and paired-cost admission remain human gates without another hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/embedded-texture.test.cjs",
+        "site/effects/embedded-texture.cjs",
+        "tools/site/effects.cjs",
+        "site/engine/reading-surfaces.css",
+        "site/content/pages/research/**",
+        "site/templates/pages/research/**",
+        "site/engine/archive.js"
+      ]
+    },
+    {
+      "path": "tests/embedded-scene.test.cjs",
+      "language": "javascript",
+      "purpose": "Permanent issue49 one-block shared-scene prewarm, same-object arrival, native-owner handoff, reservation/cancellation/lifecycle and capability fallback contracts; browser admission remains pending.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain scoped one-block same-scene prototype and meaningful failure contracts; native texture/depth/fidelity/device and paired-cost admission remain human gates without another hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/embedded-scene.test.cjs",
+        "site/effects/embedded-scene.cjs",
+        "tools/site/effects.cjs",
+        "site/effects/embedded-plan.cjs",
+        "site/effects/embedded-texture.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/effects/fragment-dom.cjs",
+        "site/effects/flight.cjs",
+        "site/effects/flight.css",
+        "site/engine/navigation.js",
+        "site/engine/lifecycle.cjs",
+        "site/engine/renderer.cjs"
       ]
     },
     {

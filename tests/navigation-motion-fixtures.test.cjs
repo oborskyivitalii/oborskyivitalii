@@ -261,3 +261,115 @@ test('an already On stall keeps the bounded deadline and raw failure samples wit
     )
   );
 });
+
+function nativeFadeFixture() {
+  const camera = (z) => JSON.stringify({ position: [0, 0, z], target: [0, 0, z - 1] }),
+    samples = [
+      ['index', 'depart', 0.8, 400],
+      ['index', 'depart', 0.2, 900],
+      ['index', 'depart', 0, 1050],
+      ['research', 'arrive', 0.2, -3500],
+      ['research', 'arrive', 0.8, -800],
+      ['research', null, 1, 0],
+    ].map(([page, stage, opacity, z], index) => ({
+      timeMs: index * 200,
+      page,
+      direction: 'forward',
+      camera: camera(index === 5 ? -10 : 0),
+      flightMode: stage ? 'fade' : null,
+      flightStage: stage,
+      flightDepth: z,
+      nativeTransform: stage ? 'perspective(1200px) translateZ(' + z + 'px)' : '',
+      nativeOpacity: opacity,
+      busy: index !== 5,
+      inert: index !== 5,
+      pieces: 0,
+      layers: 0,
+      phase: null,
+      nativeHidden: 0,
+      fragmentFields: [],
+    }));
+  return {
+    observation: { samples },
+    measured: {
+      paints: 8,
+      paintCallbackMs: { p95: 10, max: 20 },
+      paintIntervalsMs: { max: 40 },
+      readyMs: 1200,
+    },
+    expected: { from: 'index', to: 'research', direction: 'forward' },
+  };
+}
+
+test('native fallback validates both smooth fade legs, native coverage and unchanged timing budgets', () => {
+  const {
+      validateNativeFade,
+      validateFragmentRoute,
+    } = require('../tools/quality/color-browser.cjs'),
+    { observation, measured, expected } = nativeFadeFixture();
+  const result = validateNativeFade(observation, measured, expected);
+  assert.equal(result.departureSamples, 3);
+  assert.equal(result.arrivalSamples, 2);
+  assert.deepEqual(validateFragmentRoute(observation, measured, expected).fade, result);
+});
+
+test('native fallback validator rejects scattered, missing, stale or mistimed native paint', () => {
+  const { validateNativeFade } = require('../tools/quality/color-browser.cjs');
+  for (const mutate of [
+    (fixture) => {
+      fixture.observation.samples[0].pieces = 1;
+    },
+    (fixture) => {
+      fixture.observation.samples[0].layers = 1;
+    },
+    (fixture) => {
+      fixture.observation.samples[1].nativeHidden = 1;
+    },
+    (fixture) => {
+      fixture.observation.samples[1].fragmentFields = ['fragmentPhase'];
+    },
+    (fixture) => {
+      fixture.observation.samples[3].page = 'writing';
+    },
+    (fixture) => {
+      fixture.observation.samples[3].direction = 'backward';
+    },
+    (fixture) => {
+      fixture.observation.samples[3].nativeOpacity = NaN;
+    },
+    (fixture) => {
+      fixture.observation.samples.at(-1).nativeOpacity = 0.5;
+    },
+    (fixture) => {
+      fixture.observation.samples.at(-1).nativeTransform = 'translateZ(1px)';
+    },
+    (fixture) => {
+      fixture.observation.samples.at(-1).busy = true;
+    },
+    (fixture) => {
+      fixture.measured.paintCallbackMs.p95 = 81;
+    },
+  ]) {
+    const fixture = nativeFadeFixture();
+    mutate(fixture);
+    assert.throws(() =>
+      validateNativeFade(fixture.observation, fixture.measured, fixture.expected)
+    );
+  }
+});
+
+test('native fade cannot satisfy a journey requiring complete world texture coverage', () => {
+  const {
+      validateFragmentAssembly,
+      validateFragmentRoute,
+    } = require('../tools/quality/color-browser.cjs'),
+    { observation, measured, expected } = nativeFadeFixture();
+  assert.throws(
+    () => validateFragmentAssembly(observation, measured, { requireEmbedded: true }),
+    /required world assembly/
+  );
+  assert.throws(
+    () => validateFragmentRoute(observation, measured, { ...expected, requireEmbedded: true }),
+    /required world route/
+  );
+});

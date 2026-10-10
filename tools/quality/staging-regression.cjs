@@ -307,21 +307,8 @@ function validateNavigation(row) {
     row.scrollArrivals?.map((s) => s.route),
     routes.slice(1)
   );
-  for (const arrival of row.scrollArrivals) {
-    assert.ok(Number.isFinite(arrival.end) && arrival.end >= 0);
-    assert.deepEqual(
-      arrival.samples.map((s) => s.fraction),
-      [0.9, 0.95, 0.99, 1]
-    );
-    assert.equal(arrival.samples.at(-1).y, arrival.end);
-    if (arrival.end > 100)
-      for (let i = 1; i < arrival.samples.length; i++)
-        assert.notEqual(
-          arrival.samples[i].camera,
-          arrival.samples[i - 1].camera,
-          'post-arrival scroll plateau'
-        );
-  }
+  for (const arrival of row.scrollArrivals)
+    require('./scroll-browser.cjs').validateProbe(arrival, arrival.route);
 }
 function validateAnalytics(row) {
   const analytics = require('./analytics-browser.cjs');
@@ -998,10 +985,7 @@ async function main() {
   if (common.variant(manifest).id === 'color') {
     try {
       await require('./color-browser.cjs').main({ smoke: true });
-      validateColor(
-        JSON.parse(fs.readFileSync(path.join(common.out, 'color-preview-smoke.json'))),
-        manifest
-      );
+      validateColor(common.readJson(path.join(common.out, 'color-preview-smoke.json')), manifest);
     } catch (error) {
       failed = true;
       console.error('Color staging smoke: ' + error.stack);

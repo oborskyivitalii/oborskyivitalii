@@ -5,7 +5,14 @@ const assert = require('node:assert/strict'),
   path = require('node:path');
 const artifact = require('./artifact.cjs'),
   { environment, variant } = require('./common.cjs');
-const { serve, open, ready, reset } = require('./writing-probe.cjs');
+const {
+  serve,
+  open,
+  ready,
+  reset,
+  readingScroll,
+  readingCameraPolicy,
+} = require('./writing-probe.cjs');
 const { summarize } = require('./motion.cjs'),
   { transition } = require('./validate.cjs');
 const beforeCommit = 'ba2ac7f257f2937ab8805ad106cb4ce1a801382e';
@@ -365,15 +372,13 @@ async function boot(url, profile, options) {
       window.__writingStates = [];
       return document.querySelector('.space-scene').dataset.camera;
     });
-    await page.evaluate(() => scrollTo({ top: 100, behavior: 'instant' }));
-    await page.waitForTimeout(450);
-    const firstCamera = await page.locator('.space-scene').getAttribute('data-camera');
-    assert.notEqual(firstCamera, before, 'first Writing scroll does not move camera');
-    await page.evaluate(() => scrollTo({ top: 200, behavior: 'instant' }));
-    await page.waitForTimeout(450);
+    const reading = [
+      await readingScroll(page, before, 100, readingCameraPolicy(options.label)),
+      await readingScroll(page, before, 200, readingCameraPolicy(options.label)),
+    ];
     const rawScroll = await snapshot(page),
       firstScroll = windowSummary(rawScroll, 'first-scroll', rawScroll.start, rawScroll.end);
-    Object.assign(partial, { timing, rawScroll, firstScroll });
+    Object.assign(partial, { timing, rawScroll, firstScroll, reading });
     assert.deepEqual(errors, []);
     const layoutAudit = options.layoutConfiguration
       ? await page.evaluate(() => window.__writingLayout.audit())
@@ -394,6 +399,7 @@ async function boot(url, profile, options) {
       timing,
       startup,
       firstScroll,
+      reading,
       rawBoot,
       rawScroll,
       resources,

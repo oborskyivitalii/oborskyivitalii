@@ -256,6 +256,53 @@ jobs:
           name: site-preview-smoke-${{ github.run_id }}-${{ github.run_attempt }}
           path: staging-reports/
           retention-days: 30
+  tablet-webkit:
+    if: >-
+      github.event_name == 'pull_request' && needs.target.outputs.number == '53' &&
+      needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true' &&
+      needs.build.outputs.variant == 'color'
+    needs: [target, build, publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
+      SITE_TEST_BASE_URL: ${{ needs.publish.outputs.url }}
+      SITE_TEST_PROFILE: staging
+      SITE_PUBLIC_VARIANT: ${{ needs.build.outputs.variant }}
+      SITE_PUBLIC_DIR: ${{ github.workspace }}/color-artifact/public
+      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/color-artifact/artifact.json
+      SITE_REPORT_DIR: ${{ github.workspace }}/tablet-reports
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ needs.target.outputs.source }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.public_artifact }}
+          path: color-artifact
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.package_artifact }}
+          path: staging-package
+      - name: Verify exact tablet preview routes, revision and runtime
+        run: node tools/staging/review-flow.cjs http staging-package "$SITE_TEST_BASE_URL" tablet-reports/http.json
+      - name: Install locked WebKit tablet tools
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps webkit
+      - name: Bounded tablet textures and native handoff
+        run: node tools/quality/color-browser.cjs --tablet-webkit
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-tablet-webkit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: tablet-reports/
+          retention-days: 30
   stage-evidence:
     needs: [target, build, publish]
     if: >-
@@ -448,7 +495,18 @@ jobs:
         if: always() && (steps.deploy.outcome != 'success' || steps.stable-check.outcome != 'success')
         run: exit 1
   status-comment:
-    needs: [target, build, publish, published-comment, smoke, stage-evidence, full, promote]
+    needs:
+      [
+        target,
+        build,
+        publish,
+        published-comment,
+        smoke,
+        tablet-webkit,
+        stage-evidence,
+        full,
+        promote,
+      ]
     if: always() && needs.target.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -476,6 +534,8 @@ jobs:
               if(n.build.result!=='success'||n.publish.result!=='success')status='Build/deployment failed; no accepted update.';
               else if(evidence)status=n['stage-evidence'].result==='success'?'Bounded staging regression passed for these preview bytes; stable staging was not promoted.':'Bounded staging evidence failed or is incomplete; stable staging was not changed.';
               else if(preview&&n.smoke.result!=='success')status='Hosted smoke failed; no accepted update.';
+              else if(preview&&n['tablet-webkit'].result!=='skipped'&&n['tablet-webkit'].result!=='success')status='Hosted smoke passed, but bounded tablet WebKit smoke failed; no accepted update.';
+              else if(preview&&n['tablet-webkit'].result==='success')status='Minimal hosted and bounded tablet WebKit smoke passed. Native device and staging regression gates remain open.';
               else if(preview)status='Minimal hosted smoke passed. Staging regression has not run.';
               else if(n.full.result!=='success')status='Bounded staging regression failed or is incomplete; staging was not promoted.';
               else if(n.promote.result==='success')status='Bounded staging regression and stable verification passed; staging promoted.';

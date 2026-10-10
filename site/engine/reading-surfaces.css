@@ -12,6 +12,21 @@
   --reading-title-outset: 0.16em;
   --surface-gutter: 12px;
 }
+/* Compact Color keeps the neighboring textured structure visible through the
+   same native paper material. Root metadata also covers inert capture stages. */
+@media screen and (max-width: 640px) {
+  :where(:root:has(meta[name='site-variant'][content='color'])) {
+    --reading-surface-alpha: 72%;
+  }
+  :where(:root[data-theme='dark']:has(meta[name='site-variant'][content='color'])) {
+    --reading-surface-alpha: 78%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root:not([data-theme]):has(meta[name='site-variant'][content='color'])) {
+      --reading-surface-alpha: 78%;
+    }
+  }
+}
 .section,
 .archive-intro,
 .credits-page,
@@ -226,4 +241,50 @@
     background: transparent;
     box-shadow: none;
   }
+}
+/* Decorative flight copies replay resolved native paint, including inactive
+   pseudos. They do not acquire a new surface from a detached ancestor selector.
+   Geometry clips the complete measured paper envelope with the same shards as
+   its text and images; these values are snapshots, not a second palette. */
+.fragment-layer .fragment-frozen-paint::before {
+  content: var(--fragment-before-content, none);
+  position: var(--fragment-before-position, initial);
+  display: var(--fragment-before-display, initial);
+  top: var(--fragment-before-top, initial);
+  right: var(--fragment-before-right, initial);
+  bottom: var(--fragment-before-bottom, initial);
+  left: var(--fragment-before-left, initial);
+  width: var(--fragment-before-width, initial);
+  height: var(--fragment-before-height, initial);
+  box-sizing: var(--fragment-before-box-sizing, initial);
+  padding: var(--fragment-before-padding, initial);
+  background: var(--fragment-before-background, initial);
+  border: var(--fragment-before-border, initial);
+  border-radius: var(--fragment-before-border-radius, initial);
+  box-shadow: var(--fragment-before-box-shadow, initial);
+  opacity: var(--fragment-before-opacity, initial);
+  z-index: var(--fragment-before-z-index, initial);
+  transform: var(--fragment-before-transform, initial);
+  pointer-events: none;
+}
+.fragment-layer .fragment-frozen-paint::after {
+  content: var(--fragment-after-content, none);
+  position: var(--fragment-after-position, initial);
+  display: var(--fragment-after-display, initial);
+  top: var(--fragment-after-top, initial);
+  right: var(--fragment-after-right, initial);
+  bottom: var(--fragment-after-bottom, initial);
+  left: var(--fragment-after-left, initial);
+  width: var(--fragment-after-width, initial);
+  height: var(--fragment-after-height, initial);
+  box-sizing: var(--fragment-after-box-sizing, initial);
+  padding: var(--fragment-after-padding, initial);
+  background: var(--fragment-after-background, initial);
+  border: var(--fragment-after-border, initial);
+  border-radius: var(--fragment-after-border-radius, initial);
+  box-shadow: var(--fragment-after-box-shadow, initial);
+  opacity: var(--fragment-after-opacity, initial);
+  z-index: var(--fragment-after-z-index, initial);
+  transform: var(--fragment-after-transform, initial);
+  pointer-events: none;
 }

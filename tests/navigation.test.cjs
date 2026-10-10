@@ -35,6 +35,7 @@ function harness(options = {}) {
         canTravel: () => true,
         present(progress, direction) {
           presented.push({ progress, direction, route });
+          if (progress === 1 && options.tail) return options.tail();
         },
       };
   const window = {
@@ -73,10 +74,11 @@ function harness(options = {}) {
     },
     releaseEndpoint() {},
     releaseTail() {},
+    prepareNeighbor() {},
     Promise,
   };
   vm.runInNewContext(
-    `let serial=1,transition=null,request={abort(){}};${interruptSource}${flightSource}${finishSource}
+    `let serial=1,transition=null,request={abort(){}},warmRequest=null,warmAgain=false;${interruptSource}${flightSource}${finishSource}
     globalThis.api={start(next='writing',animate=true,landing=null){return flight(next,animate,()=>{commitHook(next);},serial,presentation?{opacity:1,z:0}:1,landing);},interrupt(){serial++;return interrupt();},finishText,transition:()=>transition,serial:()=>serial};`,
     context
   );
@@ -93,7 +95,7 @@ function harness(options = {}) {
     commits,
     probes,
     sceneCalls,
-    progress: (progress) => callback(progress),
+    progress: (progress, snapshot = null) => callback(progress, snapshot),
     task() {
       const [id, fn] = tasks.entries().next().value || [];
       assert.ok(fn, 'expected queued mount');
@@ -256,6 +258,510 @@ test('ordinary visitor has no diagnostic task clock/event work', async () => {
   await promise;
   assert.deepEqual(h.probes, []);
 });
+
+test('finite fragment assembly keeps one painted callback after camera arrival and then resolves once', async () => {
+  let ready = false;
+  const h = harness({ tail: () => ready });
+  let resolved = false;
+  const promise = h.api.start().then(() => {
+    resolved = true;
+  });
+  h.progress(0.5, { painted: true });
+  h.task();
+  assert.equal(h.progress(1, { painted: true, capturedAt: 1300 }), false);
+  await Promise.resolve();
+  assert.equal(resolved, false);
+  assert.equal(h.tasks.size, 0, 'assembly uses the scene callback without a second mount or timer');
+  assert.equal(h.content.inert, true);
+  assert.equal(h.progress(1, { painted: true, capturedAt: 2000 }), false);
+  ready = true;
+  h.progress(1, { painted: true, capturedAt: 2600 });
+  await promise;
+  assert.equal(resolved, true);
+  assert.equal(h.content.inert, false);
+  assert.equal(h.api.transition(), null);
+  assert.deepEqual(h.commits, ['writing']);
+});
+
+test('forced completion and retarget cannot leave a retained fragment tail inert or pending', async () => {
+  for (const stop of ['finishText', 'interrupt']) {
+    const h = harness({ tail: () => false });
+    const promise = h.api.start();
+    h.progress(0.5, { painted: true });
+    h.task();
+    assert.equal(h.progress(1, { painted: true }), false);
+    h.api[stop]();
+    await promise;
+    assert.equal(h.api.transition(), null);
+    assert.equal(h.content.inert, false);
+    assert.equal(h.tasks.size, 0);
+    assert.deepEqual(h.commits, ['writing']);
+  }
+});
+function routeNavigationHarness(options = {}) {
+  const routes = require('../site/routes.json').routes.map((route) => route.id),
+    reads = [],
+    timers = new Map(),
+    flights = [],
+    mounts = [],
+    historyEntries = [],
+    beginnings = [],
+    warmed = [],
+    events = new Map();
+  let timer = 0,
+    callback = null;
+  const attributes = new Set(),
+    style = {
+      removeProperty(name) {
+        delete this[name];
+      },
+    },
+    content = {
+      style,
+      inert: false,
+      setAttribute(name) {
+        attributes.add(name);
+      },
+      removeAttribute(name) {
+        attributes.delete(name);
+      },
+      querySelector: () => ({ focus() {} }),
+    };
+  const document = { hidden: false, body: { dataset: { page: 'index' } } },
+    window = {
+      SiteRoutes: {
+        order: routes,
+        direction: (from, to) =>
+          routes.indexOf(to) > routes.indexOf(from) ? 'forward' : 'backward',
+      },
+      location: { href: 'https://site.test/', assign: assert.fail },
+      SiteScene: {
+        canTravel: () => options.motion !== false,
+        direction: (next) =>
+          options.direction || window.SiteRoutes.direction(document.body.dataset.page, next),
+        navigate(next, animate, update, landing) {
+          callback = update;
+          flights.push({ next, animate, landing });
+          update(animate ? 0 : 1);
+        },
+        detachTravel() {
+          callback = null;
+        },
+        refresh() {},
+      },
+      setTimeout(fn, delay) {
+        const id = ++timer;
+        timers.set(id, { fn, delay });
+        return id;
+      },
+      clearTimeout(id) {
+        timers.delete(id);
+      },
+      addEventListener(name, fn) {
+        events.set(name, fn);
+      },
+      dispatchEvent(event) {
+        events.get(event.type)?.(event);
+      },
+    };
+  document.querySelector = () => ({ dataset: { direction: options.direction || 'forward' } });
+  document.addEventListener = window.addEventListener;
+  const presentation = {
+    mountAt: 0.5,
+    canTravel: () => true,
+    departure: () => ({ opacity: 1 }),
+    restoreDeparture() {},
+    begin(animate, itinerary) {
+      beginnings.push({ animate, itinerary });
+    },
+    present() {},
+  };
+  if (options.warm) presentation.prepareNext = (data) => warmed.push(data.page);
+  if (options.canPrepareNeighbor)
+    presentation.canPrepareNeighbor = (neighbor) =>
+      options.canPrepareNeighbor(document.body.dataset.page, neighbor);
+  if (options.prepareTransition) presentation.prepareTransition = options.prepareTransition;
+  const context = {
+    window,
+    document,
+    content,
+    presentation,
+    routes,
+    primaryRoutes: routes,
+    embedded: null,
+    directory: new URL('https://site.test/'),
+    performance: { now: () => 0 },
+    AbortController,
+    URL,
+    PopStateEvent: class PopStateEvent {
+      constructor(type, values) {
+        this.type = type;
+        Object.assign(this, values);
+      }
+    },
+    history: {
+      pushState(state, _, url) {
+        historyEntries.push({ state, url: url.href });
+        window.location.href = url.href;
+      },
+    },
+    announcement: {},
+    routeFor: (url) =>
+      url.pathname === '/' ? 'index' : url.pathname.slice(1).replace('.html', ''),
+    read(next, signal) {
+      return new Promise((resolve) => reads.push({ next, signal, resolve }));
+    },
+    prepare: (data) => data,
+    address: (url) => url,
+    clearText() {
+      content.inert = false;
+    },
+    releaseEndpoint() {},
+    releaseTail() {},
+    arriveEndpoint() {},
+    save() {},
+    push() {},
+    reconcileEndpoint() {},
+    restoreScroll() {},
+  };
+  const navigateSource = source.slice(
+      source.indexOf('  async function navigate('),
+      source.indexOf('  document.body.dataset.entryPage')
+    ),
+    apiSource = source.slice(
+      source.indexOf('  window.SiteNavigation = {'),
+      source.indexOf('  const first =')
+    ),
+    eventSource = source.slice(
+      source.indexOf("  document.addEventListener('click'"),
+      source.indexOf('  function finishText(')
+    ),
+    neighborSource = source.slice(
+      source.indexOf('  async function prepareNeighbor('),
+      source.indexOf('  async function navigate(')
+    );
+  vm.runInNewContext(
+    `let page='index',serial=0,request=null,requestedPage=null,transition=null,endpoint=null,inputTail=null,lastKey=null,warmRequest=null,warmAgain=false;
+    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}${neighborSource}${navigateSource}${apiSource}${eventSource}
+    globalThis.readPage=()=>page;globalThis.mountRoute=(next)=>{page=next;document.body.dataset.page=next;};globalThis.prepareNeighbor=prepareNeighbor;`,
+    context
+  );
+  context.mount = (data, url, position) => {
+    context.mountRoute(data.page);
+    mounts.push({ page: data.page, url: url.href, position });
+  };
+  return {
+    api: window.SiteNavigation,
+    content,
+    attributes,
+    reads,
+    flights,
+    beginnings,
+    mounts,
+    historyEntries,
+    warmed,
+    warm: context.prepareNeighbor,
+    emit(name) {
+      window.dispatchEvent({ type: name });
+    },
+    click(next) {
+      let prevented = false;
+      const link = {
+        href: 'https://site.test/' + (next === 'index' ? '' : next + '.html'),
+        getAttribute: () => next + '.html',
+        hasAttribute: () => false,
+      };
+      events.get('click')({
+        button: 0,
+        target: { closest: () => link },
+        preventDefault: () => (prevented = true),
+      });
+      return prevented;
+    },
+    pop(next, scroll) {
+      window.location.href = 'https://site.test/' + (next === 'index' ? '' : next + '.html');
+      events.get('popstate')({ state: { site: { page: next, scroll } } });
+    },
+    page: context.readPage,
+    async resolve(next) {
+      const read = reads.find((entry) => entry.next === next && !entry.resolved);
+      assert.ok(read, 'expected route read ' + next);
+      read.resolved = true;
+      read.resolve({ page: next, title: next });
+      await Promise.resolve();
+      await Promise.resolve();
+    },
+    async arrive() {
+      callback(1);
+      await Promise.resolve();
+      await Promise.resolve();
+    },
+    midpoint() {
+      callback(0.5, { painted: true });
+      const [id, task] = [...timers].find(([, entry]) => entry.delay === 0);
+      timers.delete(id);
+      task.fn();
+    },
+  };
+}
+test('all five authored routes animate through one itinerary, including Credits and Home reversals', async () => {
+  const h = routeNavigationHarness();
+  assert.deepEqual(h.api.primaryRoutes, ['index', 'research', 'writing', 'talks', 'credits']);
+  for (const next of ['research', 'writing', 'talks', 'credits', 'talks', 'index']) {
+    const from = h.page();
+    assert.equal(h.api.go(next), true);
+    assert.equal(h.api.pendingRoute(), next);
+    await h.resolve(next);
+    assert.equal(h.flights.at(-1).animate, true);
+    assert.deepEqual(JSON.parse(JSON.stringify(h.beginnings.at(-1).itinerary)), {
+      from,
+      to: next,
+      landing: { position: null, hash: '', search: '' },
+      direction:
+        h.api.primaryRoutes.indexOf(next) > h.api.primaryRoutes.indexOf(from)
+          ? 'forward'
+          : 'backward',
+    });
+    await h.arrive();
+    assert.equal(h.page(), next);
+    assert.equal(h.api.pendingRoute(), null);
+    assert.equal(h.attributes.has('aria-busy'), false);
+    assert.equal(h.content.inert, false);
+  }
+});
+test('API travel accepts fresh fetch, departure and incoming reversals while rejecting duplicate destinations', async () => {
+  const h = routeNavigationHarness({ direction: 'backward' });
+  assert.equal(h.api.go('credits'), true);
+  assert.equal(h.api.go('credits'), false);
+  const stale = h.reads[0];
+  assert.equal(
+    h.api.go('index'),
+    true,
+    'return to mounted source before the first destination mounts'
+  );
+  assert.equal(stale.signal.aborted, true);
+  await h.resolve('credits');
+  assert.equal(h.flights.length, 0, 'a stale fetch cannot start the old flight');
+  await h.resolve('index');
+  assert.equal(h.beginnings.at(-1).itinerary.direction, 'backward');
+  assert.equal(h.api.go('research'), true, 'a fresh route replaces an active departure');
+  await h.resolve('research');
+  h.midpoint();
+  assert.equal(h.page(), 'research');
+  assert.equal(h.api.go('credits', { atEnd: true, input: 'wheel' }), true);
+  await h.resolve('credits');
+  assert.equal(h.flights.at(-1).landing.position, 'end');
+  await h.arrive();
+  assert.deepEqual(
+    h.mounts.map((entry) => entry.page),
+    ['research', 'credits']
+  );
+  assert.equal(h.api.go('unknown'), false);
+  assert.equal(h.api.go('credits'), false);
+  assert.equal(h.api.pendingRoute(), null);
+  assert.equal(h.attributes.has('aria-busy'), false);
+  assert.equal(h.content.inert, false);
+});
+test('all-five native routes retain instant completion when motion cannot travel', async () => {
+  const h = routeNavigationHarness({ motion: false });
+  assert.equal(h.api.go('credits'), true);
+  await h.resolve('credits');
+  await Promise.resolve();
+  assert.equal(h.flights[0].animate, false);
+  assert.equal(h.page(), 'credits');
+  assert.equal(h.api.pendingRoute(), null);
+  assert.equal(h.content.inert, false);
+});
+test('VO Home click reverses a pending departure and Credits arrival through the shared transaction', async () => {
+  const h = routeNavigationHarness({ direction: 'backward' });
+  assert.equal(h.click('research'), true);
+  await h.resolve('research');
+  assert.equal(h.page(), 'index', 'source Home can still be mounted at any native scroll position');
+  assert.equal(
+    h.click('index'),
+    true,
+    'VO Home does not take the idle same-page branch while busy'
+  );
+  await h.resolve('index');
+  await h.arrive();
+  assert.deepEqual(
+    h.mounts.map((entry) => entry.page),
+    ['index']
+  );
+  assert.equal(h.click('credits'), true);
+  await h.resolve('credits');
+  await h.arrive();
+  assert.equal(h.click('index'), true);
+  await h.resolve('index');
+  assert.equal(h.flights.at(-1).animate, true);
+  assert.equal(h.beginnings.at(-1).itinerary.direction, 'backward');
+  await h.arrive();
+  assert.equal(h.page(), 'index');
+  assert.equal(h.api.pendingRoute(), null);
+});
+test('history retargets an active incoming flight and preserves its native stored scroll landing', async () => {
+  const h = routeNavigationHarness({ direction: 'backward' });
+  h.click('writing');
+  await h.resolve('writing');
+  h.midpoint();
+  h.pop('credits', [0, 7190]);
+  await h.resolve('credits');
+  await h.arrive();
+  assert.equal(h.page(), 'credits');
+  assert.deepEqual(h.mounts.at(-1).position, [0, 7190]);
+  assert.equal(h.historyEntries.length, 1, 'popstate does not push a replacement history entry');
+  assert.equal(h.flights.at(-1).animate, true);
+  assert.equal(h.api.pendingRoute(), null);
+});
+
+test('neighbor warming coalesces page, theme and resize triggers into one pending read and one follow-up', async () => {
+  const h = routeNavigationHarness({ warm: true });
+  const first = h.warm();
+  assert.equal(h.reads.length, 1);
+  for (let index = 0; index < 5; index++) {
+    h.emit('site:page-ready');
+    h.emit('site:embedded-invalidated');
+    h.emit('resize');
+  }
+  assert.equal(h.reads.length, 1, 'only one speculative route acquisition may remain pending');
+  assert.equal(h.reads[0].signal.aborted, false);
+  await h.resolve('research');
+  await first;
+  assert.equal(h.reads.length, 2, 'all pending invalidations coalesce into one fresh preparation');
+  await h.resolve('research');
+  await new Promise(setImmediate);
+  assert.deepEqual(h.warmed, ['research', 'research']);
+  assert.equal(h.reads.length, 2);
+  assert.equal(h.api.pendingRoute(), null);
+  assert.deepEqual(h.mounts, [], 'speculative warming never mounts content or changes history');
+  assert.deepEqual(h.historyEntries, []);
+});
+
+test('Research warms Writing through the same verified route cache after arrival', async () => {
+  const h = routeNavigationHarness({ warm: true });
+  h.api.go('research');
+  await h.resolve('research');
+  await h.arrive();
+  await new Promise(setImmediate);
+  const read = h.reads.find((entry) => entry.next === 'writing' && !entry.resolved);
+  assert.ok(read, 'the next room content is prepared while Research is settled');
+  assert.equal(read.signal.aborted, false);
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, ['writing']);
+  assert.equal(h.page(), 'research', 'prewarming never mounts the destination');
+});
+
+test('a mounted destination warms its successor before arrival only with explicit slot admission', async () => {
+  const h = routeNavigationHarness({
+    warm: true,
+    canPrepareNeighbor: (page, neighbor) => page === 'research' && neighbor === 'writing',
+  });
+  h.api.go('research');
+  await h.resolve('research');
+  await h.warm();
+  assert.equal(h.reads.length, 1, 'the old native source cannot warm during departure');
+  h.midpoint();
+  const successor = h.reads.find((entry) => entry.next === 'writing');
+  assert.ok(successor, 'the mounted destination starts its verified successor read during travel');
+  assert.equal(h.api.pendingRoute(), 'research');
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, ['writing']);
+  assert.equal(h.api.pendingRoute(), 'research', 'warming never completes the active journey');
+  assert.deepEqual(
+    h.mounts.map((entry) => entry.page),
+    ['research']
+  );
+  await h.arrive();
+});
+
+test('successor slot admission is rechecked after an asynchronous read and after retargeting', async () => {
+  let admitted = true;
+  const h = routeNavigationHarness({
+    warm: true,
+    canPrepareNeighbor: (page, neighbor) =>
+      admitted && page === 'research' && neighbor === 'writing',
+  });
+  h.api.go('research');
+  await h.resolve('research');
+  h.midpoint();
+  admitted = false;
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, [], 'a full resident bank cannot accept the completed read');
+  admitted = true;
+  void h.warm();
+  const successor = h.reads.find((entry) => entry.next === 'writing' && !entry.resolved);
+  assert.ok(successor);
+  h.api.go('index');
+  assert.equal(successor.signal.aborted, true);
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, [], 'stale successor preparation cannot affect a replacement flight');
+  await h.resolve('index');
+  await h.arrive();
+});
+
+test('retarget during asynchronous solid capture cannot start a stale flight', async () => {
+  const preparations = [];
+  const h = routeNavigationHarness({
+    prepareTransition(data, itinerary, signal) {
+      return new Promise((resolve) => preparations.push({ data, itinerary, signal, resolve }));
+    },
+  });
+  h.api.go('research');
+  await h.resolve('research');
+  await new Promise(setImmediate);
+  assert.equal(preparations.length, 1);
+  assert.equal(h.flights.length, 0);
+  h.api.go('writing');
+  assert.equal(preparations[0].signal.aborted, true);
+  preparations[0].resolve();
+  await new Promise(setImmediate);
+  assert.equal(h.flights.length, 0, 'cancelled capture cannot mount or animate Research');
+  await h.resolve('writing');
+  await h.resolve('research');
+  await new Promise(setImmediate);
+  assert.deepEqual(
+    Array.from(preparations[1].itinerary.corridor, (data) => data.page),
+    ['research']
+  );
+  preparations[1].resolve();
+  await new Promise(setImmediate);
+  assert.equal(h.flights.length, 1);
+  assert.equal(h.flights[0].next, 'writing');
+  await h.arrive();
+  assert.equal(h.page(), 'writing');
+});
+
+test('navigation aborts stale neighbor warming and each successful Home return warms again', async () => {
+  const h = routeNavigationHarness({ warm: true });
+  const stale = h.warm();
+  const oldRead = h.reads[0];
+  assert.equal(h.api.go('writing'), true);
+  assert.equal(oldRead.signal.aborted, true);
+  await h.resolve('research');
+  await stale;
+  assert.deepEqual(h.warmed, [], 'an aborted warm read cannot prepare after navigation starts');
+  await h.resolve('writing');
+  await h.arrive();
+  for (let turn = 0; turn < 2; turn++) {
+    assert.equal(h.api.go('index'), true);
+    await h.resolve('index');
+    await h.arrive();
+    await new Promise(setImmediate);
+    const warmRead = h.reads.find((read) => read.next === 'research' && !read.resolved);
+    assert.ok(warmRead, 'a successful Home return must acquire its visible destination again');
+    assert.equal(warmRead.signal.aborted, false);
+    await h.resolve('research');
+    await new Promise(setImmediate);
+    assert.equal(h.warmed.length, turn + 1);
+    assert.equal(h.page(), 'index');
+    assert.equal(h.api.pendingRoute(), null);
+    assert.equal(h.api.go('writing'), true);
+    await h.resolve('writing');
+    await h.arrive();
+  }
+  assert.deepEqual(h.warmed, ['research', 'research']);
+});
+
 function routeHeadHarness(candidate = source) {
   const css =
     '\n' + fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8');

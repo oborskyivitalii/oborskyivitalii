@@ -182,11 +182,23 @@ function navigationRow(selected) {
     scrollArrivals: budgets.routes.slice(1).map((route) => ({
       route,
       end: 1000,
-      samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
+      start: JSON.stringify(require('../../tools/quality/scroll-browser.cjs').routeCamera(route)),
+      startPaints: 1,
+      samples: [0.9, 0.95, 0.99, 1].map((fraction, i) => ({
         fraction,
         y: 1000 * fraction,
-        camera: 'camera-' + fraction,
+        camera: JSON.stringify(
+          require('../../tools/quality/scroll-browser.cjs').routeCamera(route)
+        ),
+        paints: i + 2,
       })),
+      reverse: {
+        y: 0,
+        camera: JSON.stringify(
+          require('../../tools/quality/scroll-browser.cjs').routeCamera(route)
+        ),
+        paints: 6,
+      },
     })),
   };
 }
@@ -374,8 +386,14 @@ function colorReport(manifest) {
       theme: 'light',
       pass: true,
       identity: { id: 'color', engine: common.variant(manifest).fingerprint },
-      ribbons: { sceneHook: 'undefined', dataset: {} },
-      paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+      ribbons: {
+        sceneHook: 'undefined',
+        ribbonHook: 'undefined',
+        submissions: 0,
+        shapes: 0,
+        dataset: {},
+      },
+      paint: { completed: 2, ordinaryShapes: 12, customShapes: 0, embeddedShapes: 0 },
       checks: Object.fromEntries(
         [
           'shortenedHomeRange',

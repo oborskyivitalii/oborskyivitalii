@@ -299,24 +299,22 @@ function scrollSyncEvidence(sync, route) {
       route !== 'writing' && key === 'filtered' ? 'not applicable' : true,
       'missing scroll synchronization ' + key
     );
-  for (const row of [...sync.fixtures, ...sync.filtered]) {
-    assert.ok(Number.isFinite(row.end) && row.end >= 0);
-    assert.deepEqual(
-      row.samples.map((s) => s.fraction),
-      [0.9, 0.95, 0.99, 1]
-    );
-    assert.equal(row.samples.at(-1).y, row.end, 'reported scroll never reaches bottom');
-    if (row.end > 100)
-      for (let i = 1; i < row.samples.length; i++)
-        assert.notEqual(
-          row.samples[i].camera,
-          row.samples[i - 1].camera,
-          'reported final-scroll plateau'
-        );
-  }
+  for (const row of [...sync.fixtures, ...sync.filtered]) contract.validateProbe(row, route);
   assert.equal(sync.filtered.length, route === 'writing' ? 1 : 0, 'missing filtered scroll case');
   const waypoint = sync.waypoint;
   assert.ok(waypoint?.id && Number.isFinite(waypoint.y), 'missing reordered semantic waypoint');
+  assert.ok(
+    Number.isFinite(waypoint.end) &&
+      Number.isFinite(waypoint.targetY) &&
+      Math.abs(waypoint.y - Math.max(0, Math.min(waypoint.end, waypoint.targetY))) <= 1,
+    'reordered native waypoint missed its target'
+  );
+  assert.ok(waypoint.paints > 0, 'missing reordered ambient paint');
+  assert.deepEqual(
+    waypoint.expected,
+    contract.routeCamera(route),
+    'incorrect settled route camera'
+  );
   const distance = Math.hypot(
     ...['position', 'target'].flatMap((key) =>
       waypoint.actual[key].map((v, i) => v - waypoint.expected[key][i])
@@ -339,7 +337,7 @@ function functionalChecks(mode, route, checks) {
     ])
       assert.equal(checks[key], true, 'missing ' + key);
     assert.ok(checks.axePasses > 0);
-    assert.ok(['camera changed', 'short page'].includes(checks.forward));
+    assert.ok(['camera fixed', 'short page'].includes(checks.forward));
     assert.equal(checks.archive, route === 'writing' ? true : 'not applicable');
     scrollSyncEvidence(checks.scrollSync, route);
   } else if (['no-js', 'no-canvas', 'no-raf', 'no-match-media', 'css-blocked'].includes(mode))
@@ -455,16 +453,8 @@ function navigation(r, engines) {
           ['research', 'writing', 'talks', 'credits'],
           'missing post-arrival scroll endpoint evidence'
         );
-        for (const arrival of row.scrollArrivals) {
-          assert.equal(arrival.samples.at(-1).y, arrival.end);
-          if (arrival.end > 100)
-            for (let i = 1; i < arrival.samples.length; i++)
-              assert.notEqual(
-                arrival.samples[i].camera,
-                arrival.samples[i - 1].camera,
-                'post-arrival scroll plateau'
-              );
-        }
+        for (const arrival of row.scrollArrivals)
+          require('./scroll-browser.cjs').validateProbe(arrival, arrival.route);
       }
   return true;
 }
@@ -672,7 +662,13 @@ function aggregate({
   };
 }
 function colorPaint(row) {
-  assert.equal(row.ribbons?.sceneHook, 'undefined', 'retired ribbon scene hook is active');
+  assert.ok(
+    ['undefined', 'function'].includes(row.ribbons?.sceneHook),
+    'missing actual shared scene hook observation'
+  );
+  assert.equal(row.ribbons?.ribbonHook, 'undefined', 'retired ribbon-specific hook is active');
+  assert.equal(row.ribbons?.submissions, 0, 'retired ribbon collector was invoked');
+  assert.equal(row.ribbons?.shapes, 0, 'retired ribbon shapes were submitted');
   const dataset = row.ribbons.dataset;
   assert.ok(
     dataset && typeof dataset === 'object' && !Array.isArray(dataset),
@@ -683,7 +679,7 @@ function colorPaint(row) {
     assert.notEqual(key, 'ribbonMaterial', 'retired ribbon material is present');
     assert.equal(value, '0', 'retired ribbon dataset is nonzero');
   }
-  for (const key of ['completed', 'ordinaryShapes', 'customShapes']) {
+  for (const key of ['completed', 'ordinaryShapes', 'customShapes', 'embeddedShapes']) {
     assert.ok(
       Number.isInteger(row.paint?.[key]) && row.paint[key] >= 0,
       'missing actual Color paint ' + key
@@ -691,7 +687,11 @@ function colorPaint(row) {
   }
   assert.ok(row.paint.completed > 0, 'Color Canvas did not complete a paint');
   assert.ok(row.paint.ordinaryShapes > 0, 'ordinary scene geometry was not painted');
-  assert.equal(row.paint.customShapes, 0, 'Color still submits custom ribbon geometry');
+  assert.equal(
+    row.paint.customShapes,
+    row.paint.embeddedShapes,
+    'Color submits unrecognized custom geometry outside the embedded prototype'
+  );
 }
 function colorReports(reports, manifest) {
   const found = reports.filter((report) => report.kind === 'color-functional');

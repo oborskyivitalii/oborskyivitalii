@@ -11,6 +11,7 @@ belong to source-bound results in the live issue/PR, not the profile name.
 | --- | --- | --- |
 | PR source | PR updates | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
 | PR hosted smoke | Same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
+| PR53 tablet WebKit smoke | Same-repository Color PR53 preview updates | Exact artifact/HTTP identity; WebKit touch/mobile at 1024×1366 and 1366×1024, DPR2; cold resting textures, Day/Night Home–Research in both directions and Day Home–Writing corridor, closed shards, original caps and native cleanup. |
 | Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
 | Production regression | Explicit full candidate validation before an authorized release | Complete source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix. Independent/device/rights and live production-origin requirements remain separate required release gates. |
 | Diagnostics | Manual dispatch or a relevant changed-path selection | Historical export/configuration probes and experimental comparison suites. Preserve useful fault coverage; dated edition assertions do not run as every candidate's universal regression. |
@@ -31,6 +32,24 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
+
+Issue49's observed iPad fallback adds the separate `tablet-webkit` preview job in
+`site-color-review.yml`, bounded to ten minutes and PR53's Color preview. Run its
+existing owner with `node tools/quality/color-browser.cjs --tablet-webkit` against
+the declared artifact and immutable preview origin. Two fresh WebKit contexts use
+portrait 1024×1366 and landscape 1366×1024, DPR2, touch and mobile viewport behavior.
+Each requires the existing cold-first-load texture check, Day Home→Research and
+Research→Home, Day Home→Writing through the Research room, then Night
+Home→Research and Research→Home. Existing embedded validators require actual
+native-bound textures, closed fronts/rears/sides, original resource caps and
+native handoff; a plane or native fallback cannot pass. Original failure states,
+partial observations and PNGs are retained with the source/tree/public/host
+identity in `color-tablet-webkit`; both orientations run even if one fails.
+This Linux WebKit probe is focused compatibility feedback. Its report explicitly
+sets `nativeDeviceProof: false`, `fullGate: false` and
+`deploymentAuthorized: false`; it cannot establish physical iPad acceptance,
+paired added cost, the full Color12 matrix or stable promotion. The ordinary
+Chromium smoke and production/native-device requirements retain their owners.
 
 Issue #36 adds a scoped diagnostic on existing `site-writing-probe.yml`:
 the exact `site-writing-paradigm-evidence` label event on same-repository PR #38
@@ -124,6 +143,91 @@ retained recovery. Production activation remains outside routine staging.
 
 ## Registry and issue completion
 
+Issue49 consolidates issue48's six criteria as AC09-AC14 while preserving the
+original issue-qualified IDs and historical PR51 delivery. Its single policy
+selects current fragment/stationary contracts and meaningful inherited source
+checks individually; the old whole issue48 policy is not a second execution owner.
+The transferred theory/formula narrow Day/Night visual gates remain open, and
+accepted historical content/surface criteria do not admit the new animation.
+
+`fragment-plan.test.cjs` and `fragment-dom.test.cjs` are permanent source contracts
+selected for relevant PR changes, staging and production. Their canonical helpers
+are `site/effects/fragment-plan.cjs` and `site/effects/fragment-dom.cjs`; the numeric
+`test_issue49_acceptance.py` selector is owning-policy-only. Existing scene/router
+and browser-fixture module IDs stay active: replace conflicting scroll-driven
+camera assertions with fixed reading-pose observations while retaining native
+scroll/filter/history/edge intent, ambient motion, freeze and original limits.
+The initial opt-in prototype remains historical. The next9October user amendment
+explicitly enables the shared fragment effect across all five Color preview routes,
+including Credits, in both itinerary directions. Stored Off preferences and reduced,
+hidden/print/no-Canvas fallback remain. Depth/fidelity/device and same-source
+paired added-cost acceptance stay separate from this authorized preview scope.
+
+The same permanent fragment-plan/DOM and scene/router suites cover shared settings,
+small variable convex shards, native viewport owners,20 ordered route pairs and
+arbitrary-scroll or in-flight retargets. The owning policy also selects the existing
+flight-controller suite for locked direction, phase-local fallback/admission and
+finite painted-clock completion. No second transition clock or suite is introduced.
+The existing two-width Color smoke observes13 focused two-sided trips plus one
+interruption at each width: forward/reverse chains, Credits, native mid/bottom
+header clicks, edge landing, footer/cross-links, history and VO. It retains original
+timing/resource limits, exact heading line handoff and Off cleanup. These targeted
+observations do not replace the full release/device matrix or paired-cost gate.
+
+The initial AC15 prototype embedded one Home-to-Research introductory paragraph.
+The 9 October maintainer amendment and subsequent rejected-preview correction
+extend that owner to persistent neighboring-page content structures: Research in
+Home and Writing in Research, breathing with the exact shared branch transform.
+The same captured identities converge during forward camera travel and remain
+in their host after reverse detachment. Forward incoming geometry aligns
+laterally while distant, retains seeded longitudinal spread and approaches
+through depth on fixed target-world axes; camera proximity cannot advance its
+requested assembly phase. Branch contact, native endpoints and reverse paths
+remain covered by the same geometry suite. Home-to-Writing also passes through the
+intermediate Research content and room without mounting a Research DOM. Shared
+caps include retained fields and temporary capture, with one bounded native
+viewport texture per page and independently verified subowner paint coverage.
+The single SVG raster preserves each owner's isolated native clip; exclusive
+alpha regions reject paint borrowed from another owner. Physical accounting
+includes decode, atlas, readback and inlined-media surfaces. Textured fronts and
+rears retain opaque content material before near-plane fading; closed sides
+retain canonical fog. Broken material fills transparent atlas pixels with a
+substrate that disappears at the native endpoint. Tilted faces use actual
+perspective midpoints with at most eight bounded source triangle submissions,
+without new textures or a second renderer.
+Permanent
+`embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
+`embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
+native text/paper/link/list/control and decoded-media capture plus the shared
+retained-bank, room/prewarm/departure/handoff lifecycle.
+The same permanent lifecycle suite checks successor preparation only after
+native destination mount, resident-only ownership, protection of every live
+field and rejection of a fourth corridor field. It checks 420ms continuous
+speculative reveal on the existing ambient clock, frozen/wrapped clock behavior,
+completion without cancelling a separately signalled warm task, and interruption
+cleanup. The existing geometry suite checks opaque material and its native
+endpoint, perspective subdivision bounds and glyph coverage; these deterministic
+observations do not establish perceived fidelity or device cost.
+Recorded reverse-camera regressions also require visible partial geometry along
+real destination-room branches before native handoff, with exact source contact
+and endpoints; a behind-camera path cannot pass by first appearing fully assembled.
+Existing archive tests
+also verify inert preview and native filter normalization use the same scoped
+renderer, without detaching the live archive or creating listeners in a stage.
+They are selected for relevant PR changes, staging and production; the owning
+issue49 policy selects them with existing fragment, scene/router and effect
+delivery guards. Their canonical owners are the three corresponding
+`site/effects/embedded-*.cjs` modules within the same travel descriptor.
+The existing two-width Day/Night smoke observes the paired direction and skipped
+room behavior, actual resting textures/motion and native handoff. No second
+effect runtime or transition clock is introduced. The scoped tablet WebKit
+compatibility job above adds two orientation rows without changing that smoke
+or the full device/release matrix.
+The pending `G-EMBEDDED` human gate requires actual persistent-shard depth,
+fractal occlusion, faithful native texture and native handoff evidence. A source
+pass cannot tick AC15 or replace original resource, fidelity, paired-cost,
+native-device and release requirements; all profile caps and budgets remain.
+
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
 source suites instead of a wildcard that revives every historical snapshot.
@@ -143,3 +247,10 @@ tooling findings to exact source/line bytes, rules, owners and a review deadline
 Raw findings remain in the report; new/source-changed/expired findings fail.
 Secrets admission for generated RI/coupling checksum fields requires actual
 verification; other public metadata hashes use exact reviewed baseline entries.
+
+The canonical report writer/reader in `tools/quality/common.cjs` retains complete
+Color JSON evidence, including every repeated frame and source binding, without
+requiring one document-sized JavaScript string. Selected staging validation reads
+the same schema and hashes the same compact native JSON bytes incrementally.
+Serialization failures preserve the prior complete report; this changes neither
+profile coverage nor budgets or required acceptance evidence.

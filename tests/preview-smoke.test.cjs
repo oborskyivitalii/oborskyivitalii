@@ -5,10 +5,93 @@ const test = require('node:test'),
 const {
   artifactFile,
   verifyResponse,
+  navigateDocument,
+  trackResponses,
+  drainResponses,
+  responseAction,
   identity,
   verifyRuntimeIdentity,
+  state,
+  routeSelector,
+  researchControls,
+  responseNames,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('preview heading measurements count the native page while a separate warm stage is present', async () => {
+  const vm = require('node:vm');
+  let nativeHeadings = 1;
+  const page = {
+    evaluate: async (callback) =>
+      vm.runInNewContext('(' + callback.toString() + ')()', {
+        document: {
+          body: { dataset: { page: 'research' } },
+          documentElement: { scrollWidth: 1440 },
+          getElementById: () => ({ hidden: false, disabled: false, textContent: 'Motion: on' }),
+          querySelectorAll: (selector) =>
+            Array.from({
+              length: selector === '#site-content h1' ? nativeHeadings : nativeHeadings + 1,
+            }),
+          querySelector: (selector) => ({
+            dataset: { ready: 'true', travel: 'settled', phase: '0.5' },
+            content: selector.includes('site-variant') ? 'color' : 'a'.repeat(64),
+          }),
+        },
+        innerWidth: 1440,
+        getComputedStyle: () => ({ visibility: 'hidden' }),
+      }),
+  };
+  assert.equal((await state(page)).h1, 1, 'warm heading is outside the current native page');
+  nativeHeadings = 2;
+  assert.equal((await state(page)).h1, 2, 'duplicate native headings remain a failed measurement');
+});
+test('preview native cards, footer and Credits link stay strict when a warm page duplicates them', async () => {
+  const catalog = require('../site/content/catalog.json');
+  let nativeFooters = 1;
+  const warmFooters = 1;
+  const selected = ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'];
+  const resolve = (selector) => {
+    const native = selector.startsWith('#site-content ');
+    const bare = selector.replace(/^#site-content /, '');
+    if (bare === '.site-footer')
+      return Array(native ? nativeFooters : nativeFooters + warmFooters).fill({
+        y: 800,
+        height: 80,
+      });
+    if (bare === 'footer a[href="credits.html"]')
+      return Array(native ? 1 : 2).fill({ href: 'credits.html' });
+    if (bare === '.discussion-row')
+      return Array(Object.keys(catalog.discussions).length * (native ? 1 : 2)).fill({});
+    if (bare === '.advisor-role') return Array(native ? 2 : 4).fill({});
+    if (bare === '#acknowledgements .ack-leads article h3 a')
+      return native ? selected : [...selected, 'Warm stage response'];
+    if (bare === '#acknowledgements article')
+      return Array(native ? selected.length : selected.length + 1).fill({});
+    assert.fail('unexpected preview selector ' + selector);
+  };
+  const page = {
+    evaluate: async () => {},
+    viewportSize: () => ({ width: 1440, height: 900 }),
+    locator: (selector) => ({
+      count: async () => resolve(selector).length,
+      allTextContents: async () => resolve(selector),
+      boundingBox: async () => {
+        const matches = resolve(selector);
+        assert.equal(matches.length, 1, 'strict native footer resolution');
+        return matches[0];
+      },
+      getAttribute: async (name) => {
+        const matches = resolve(selector);
+        assert.equal(matches.length, 1, 'strict native navigation resolution');
+        return matches[0][name];
+      },
+    }),
+  };
+  await researchControls(page, 'no-canvas', 1440);
+  assert.deepEqual(await responseNames(page, 'index'), selected);
+  assert.equal(await page.locator(routeSelector('credits')).getAttribute('href'), 'credits.html');
+  nativeFooters = 2;
+  await assert.rejects(researchControls(page, 'no-canvas', 1440), /strict native footer/);
+});
 test('preview identity preserves real base descriptor and Color runtime fingerprints with exact bindings', (t) => {
   const fs = require('node:fs'),
     path = require('node:path'),
@@ -225,6 +308,191 @@ test('final canonical responses hash exact artifact bytes and mark the correspon
     assert.deepEqual([...checked], [file]);
     assert.equal(result.sha256, manifest.files[file].sha256);
   }
+});
+test('document navigation waits for delayed and newly observed exact-byte checks', async () => {
+  let releaseBody;
+  let releaseLateBody;
+  let navigated = false;
+  const checked = new Set();
+  const pendingBody = new Promise((resolve) => {
+    releaseBody = resolve;
+  });
+  const lateBody = new Promise((resolve) => {
+    releaseLateBody = resolve;
+  });
+  function delayed(pathname, body) {
+    return {
+      ...response(pathname),
+      body: async () => {
+        await body;
+        assert.equal(navigated, false, 'old-document body was discarded by navigation');
+        return Buffer.from(content[artifactFile(base + pathname, base, manifest)]);
+      },
+    };
+  }
+  const responseChecks = [
+    verifyResponse(delayed('/research', pendingBody), base, manifest, checked),
+  ];
+  const page = {
+    goto: async (url, options) => {
+      assert.deepEqual([...checked].sort(), ['index.html', 'research.html']);
+      assert.equal(url, base + '/research#acknowledgements');
+      assert.deepEqual(options, { waitUntil: 'load' });
+      navigated = true;
+    },
+  };
+  const navigation = navigateDocument(page, base + '/research#acknowledgements', responseChecks);
+  responseChecks.push(verifyResponse(delayed('/', lateBody), base, manifest, checked));
+  releaseBody();
+  await responseChecks[0];
+  assert.equal(navigated, false, 'newly observed body check must finish too');
+  releaseLateBody();
+  await navigation;
+  assert.equal(navigated, true);
+});
+test('document navigation keeps failed exact-byte checks as failures', async () => {
+  let navigated = false;
+  const page = {
+    goto: async () => {
+      navigated = true;
+    },
+  };
+  const checked = new Set();
+  const responseChecks = [
+    verifyResponse(
+      response('/research', { body: '<h1>Stale research</h1>' }),
+      base,
+      manifest,
+      checked
+    ),
+  ];
+  await assert.rejects(
+    navigateDocument(page, base + '/research#acknowledgements', responseChecks),
+    /served bytes research\.html/
+  );
+  assert.equal(navigated, false);
+  assert.equal(checked.size, 0, 'failed body never qualifies as verified');
+});
+test('preview actions drain original requests with late headers and bodies before invalidation', async () => {
+  const { EventEmitter } = require('node:events');
+  for (const action of [
+    'goto',
+    'route click',
+    'back',
+    'forward',
+    'theme',
+    'motion',
+    'completion',
+  ]) {
+    const page = new EventEmitter(),
+      checked = new Set(),
+      errors = [],
+      checks = trackResponses(page, base, manifest, checked, errors);
+    let invalidated = false,
+      releaseBody;
+    const body = new Promise((resolve) => {
+      releaseBody = resolve;
+    });
+    function request(pathname) {
+      const original = { url: () => base + pathname };
+      page.emit('request', original);
+      return original;
+    }
+    function headers(original, pendingBody) {
+      const pathname = new URL(original.url()).pathname;
+      page.emit('response', {
+        ...response(pathname),
+        request: () => original,
+        body: async () => {
+          await pendingBody;
+          assert.equal(invalidated, false, action + ' discarded original response bytes');
+          return Buffer.from(content[artifactFile(original.url(), base, manifest)]);
+        },
+      });
+    }
+    const first = request('/research');
+    page.goto = async () => {
+      invalidated = true;
+    };
+    const changing =
+      action === 'goto'
+        ? navigateDocument(page, base + '/', checks)
+        : responseAction(checks, () => {
+            invalidated = true;
+          });
+    assert.equal(invalidated, false, action + ' must await requests before headers');
+    const late = request('/');
+    headers(first, body);
+    releaseBody();
+    await checks[0];
+    assert.equal(invalidated, false, action + ' must await newly observed request headers');
+    headers(late, Promise.resolve());
+    await changing;
+    await drainResponses(checks);
+    assert.equal(invalidated, true);
+    assert.deepEqual([...checked].sort(), ['index.html', 'research.html']);
+    assert.deepEqual(errors, []);
+  }
+});
+test('tracked corrupt original bodies fail before preview actions and never qualify as verified', async () => {
+  const { EventEmitter } = require('node:events');
+  const page = new EventEmitter(),
+    checked = new Set(),
+    errors = [],
+    checks = trackResponses(page, base, manifest, checked, errors),
+    original = { url: () => base + '/research' };
+  let changed = false;
+  page.emit('request', original);
+  const changing = responseAction(checks, () => {
+    changed = true;
+  });
+  page.emit('response', {
+    ...response('/research', { body: '<h1>Corrupt research</h1>' }),
+    request: () => original,
+  });
+  await assert.rejects(changing, /served bytes research\.html/);
+  assert.equal(changed, false);
+  assert.equal(checked.size, 0);
+  assert.match(errors[0], /served bytes research\.html/);
+});
+test('request failures remain failures while every other original body is drained', async () => {
+  const { EventEmitter } = require('node:events');
+  const page = new EventEmitter(),
+    checked = new Set(),
+    errors = [],
+    checks = trackResponses(page, base, manifest, checked, errors),
+    failed = {
+      url: () => base + '/research',
+      failure: () => ({ errorText: 'net::ERR_FAILED' }),
+    },
+    valid = { url: () => base + '/' };
+  let releaseBody,
+    changed = false;
+  const pendingBody = new Promise((resolve) => {
+    releaseBody = resolve;
+  });
+  page.emit('request', failed);
+  page.emit('request', valid);
+  page.emit('response', {
+    ...response('/'),
+    request: () => valid,
+    body: async () => {
+      await pendingBody;
+      return Buffer.from(content['index.html']);
+    },
+  });
+  const changing = responseAction(checks, () => {
+    changed = true;
+  });
+  const rejected = assert.rejects(changing, /net::ERR_FAILED/);
+  page.emit('requestfailed', failed);
+  await checks[0].catch(() => {});
+  assert.equal(changed, false);
+  releaseBody();
+  await rejected;
+  assert.deepEqual([...checked], ['index.html']);
+  assert.equal(changed, false);
+  assert.match(errors[0], /net::ERR_FAILED/);
 });
 test('redirect and final-response chain keeps the full hash requirement', async () => {
   const checked = new Set(),

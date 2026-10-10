@@ -1,0 +1,1103 @@
+'use strict';
+// Persistent page fields attach to the existing recursive world and painted clock.
+module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture }) {
+  const geometry = fragmentPlan({ cameraView: api.cameraView });
+  const solids = embeddedPlan({
+    cameraView: api.cameraView,
+    depthVisibility: api.depthVisibility,
+    loopTransform: api.loopTransform,
+  });
+  const textures = embeddedTexture();
+  const statusOwner = document.getElementById?.('space-canvas')?.parentElement;
+  const bank = new Map();
+  const surfaces = new Map();
+  const settings = Object.freeze({
+    entries: 3,
+    arrivalStart: 0.12,
+    skippedHostSpan: 0.7,
+    stagger: 0.2,
+    handoffMs: 180,
+    residentRevealMs: 420,
+  });
+  let generation = 0;
+  let state = null;
+  let incoming = null;
+  let outgoing = null;
+  let phase = null;
+  let context = null;
+  let travelProgress = 0;
+  let progress = 0;
+  let handoff = 0;
+  let tailStarted = null;
+  let pending = null;
+  let pendingRoute = null;
+  let queuedPrime = null;
+  let hidden = [];
+  let faces = [];
+  let departureFaces = [];
+  let paintedEntries = [];
+  let lastFailure = null;
+  let lastCaptureTimings = null;
+  let publishedStatus = null;
+  const clamp = (amount) => Math.max(0, Math.min(1, amount));
+  const validRoute = (route) => api.routeOrder.includes(route);
+  const caps = () => geometry.settings.caps[state?.compact ? 'compact' : 'full'];
+  const rectangle = (rect) => ({
+    x: rect.left,
+    y: rect.top,
+    width: rect.width,
+    height: rect.height,
+  });
+  function reject(stage, route, detail) {
+    if (lastFailure) return;
+    const token = (value) =>
+      typeof value === 'string' && /^[a-zA-Z0-9-]{1,64}$/.test(value) ? value : null;
+    const report = typeof detail === 'string' ? { reason: detail } : detail || {};
+    lastFailure = {
+      stage,
+      route: validRoute(route) ? route : null,
+      reason: token(report.reason) || 'adapter-rejected',
+    };
+    for (const key of ['tag', 'limit', 'property']) {
+      const value = token(report[key]);
+      if (value) lastFailure[key] = value;
+    }
+    if (
+      Array.isArray(report.path) &&
+      report.path.length <= 32 &&
+      report.path.every((index) => Number.isInteger(index) && index >= 0 && index <= 4096)
+    )
+      lastFailure.path = [...report.path];
+  }
+  function restore() {
+    for (const { owner, visibility, opacity } of hidden) {
+      if (visibility) owner.style.visibility = visibility;
+      else owner.style.removeProperty('visibility');
+      if (opacity) owner.style.opacity = opacity;
+      else owner.style.removeProperty('opacity');
+    }
+    hidden = [];
+    for (const entry of bank.values()) for (const group of entry.groups) group.native = null;
+  }
+  function dispose(entry) {
+    if (!entry || entry.disposed) return;
+    entry.disposed = true;
+    for (const group of entry.groups) {
+      group.asset.dispose();
+      surfaces.delete(group.key);
+    }
+  }
+  function releaseSession() {
+    restore();
+    phase = null;
+    context = null;
+    incoming = null;
+    outgoing = null;
+    travelProgress = 0;
+    progress = 0;
+    handoff = 0;
+    tailStarted = null;
+    faces = [];
+    departureFaces = [];
+    paintedEntries = [];
+  }
+  function cancel() {
+    generation++;
+    pending?.abort();
+    pending = null;
+    pendingRoute = null;
+    queuedPrime = null;
+    releaseSession();
+  }
+  function invalidate() {
+    cancel();
+    for (const entry of bank.values()) dispose(entry);
+    bank.clear();
+  }
+  function usage(entry) {
+    const result = Object.fromEntries(Object.keys(caps()).map((key) => [key, 0]));
+    for (const { asset, model, sources } of entry?.groups || []) {
+      result.pieces += model.shards.length;
+      result.owners++;
+      result.descendants += asset.descendants || 0;
+      result.textBytes +=
+        asset.textBytes ||
+        sources.reduce((total, owner) => total + owner.textContent.length * 3, 0);
+      result.layerPixels += asset.pixelCount;
+    }
+    return result;
+  }
+  function totalUsage(entries) {
+    const total = Object.fromEntries(Object.keys(caps()).map((key) => [key, 0]));
+    let count = 0;
+    for (const entry of entries) {
+      count++;
+      const own = entry.paintedUsage || usage(entry);
+      for (const key of Object.keys(total)) total[key] += own[key];
+    }
+    return count ? total : null;
+  }
+  function reservation() {
+    return totalUsage(bank.values());
+  }
+  function resident(entry) {
+    return !!entry && !entry.disposed && bank.get(entry.route) === entry;
+  }
+  function touch(entry) {
+    bank.delete(entry.route);
+    bank.set(entry.route, entry);
+  }
+  function remove(route) {
+    const entry = bank.get(route);
+    if (entry) {
+      // An evicted field still owns pixels in the last Canvas paint. Preserve
+      // only its diagnostic record, releasing its full model and bitmap now.
+      paintedEntries = paintedEntries.map((painted) =>
+        painted === entry
+          ? {
+              paintedBank: {
+                route: entry.route,
+                host: entry.host,
+                groups: groupDiagnostics(entry),
+              },
+              paintedUsage: usage(entry),
+            }
+          : painted
+      );
+      dispose(entry);
+    }
+    bank.delete(route);
+    if (incoming === entry) incoming = null;
+    if (outgoing === entry) outgoing = null;
+  }
+  function makeRoom(route, protectedRoutes) {
+    // A replacement temporarily shares capacity with its resident predecessor.
+    // Failed acquisition must never erase an already painted native field.
+    const protectedFields = new Set([
+      route,
+      document.body.dataset.page,
+      ...(phase ? [incoming?.route, outgoing?.route] : []),
+      ...protectedRoutes,
+    ]);
+    while (bank.size >= settings.entries) {
+      const oldest = [...bank.keys()].find((name) => !protectedFields.has(name));
+      if (!oldest) return false;
+      remove(oldest);
+    }
+    return true;
+  }
+  function commit(entry) {
+    const previous = bank.get(entry.route);
+    const wasIncoming = incoming === previous;
+    const wasOutgoing = outgoing === previous;
+    // Surface keys are route-owned. Release old keys before installing their
+    // replacement, and retain its last-painted diagnostic record until repaint.
+    remove(entry.route);
+    for (const group of entry.groups) {
+      surfaces.set(group.key, group.asset.canvas);
+      group.asset.owner = null;
+    }
+    bank.set(entry.route, entry);
+    if (wasIncoming) incoming = entry;
+    if (wasOutgoing) outgoing = entry;
+  }
+  function remainingBudget() {
+    const retained = reservation() || {};
+    return Object.fromEntries(
+      Object.entries(caps()).map(([key, value]) => [key, Math.max(0, value - (retained[key] || 0))])
+    );
+  }
+  function targetPose(route) {
+    const pose = api.poses[api.initialPoses[route]];
+    if (!pose) return null;
+    return api.routePose
+      ? api.routePose(route, pose)
+      : {
+          position: pose.position.map(
+            (value, index) =>
+              value + (index === 2 ? -api.roomSpacing * api.routeOrder.indexOf(route) : 0)
+          ),
+          target: pose.target.map(
+            (value, index) =>
+              value + (index === 2 ? -api.roomSpacing * api.routeOrder.indexOf(route) : 0)
+          ),
+        };
+  }
+  function hostFor(route) {
+    return api.routeOrder[Math.max(0, api.routeOrder.indexOf(route) - 1)];
+  }
+  function branchSurface(branch, world, position) {
+    if (!Number.isFinite(branch.radius) || branch.radius <= 0 || !branch.faceCount) return null;
+    let best = null;
+    for (const face of world.faces.slice(branch.firstFace, branch.firstFace + branch.faceCount)) {
+      const points = face.points;
+      if (
+        face.object !== branch.name ||
+        points.length < 3 ||
+        !points.every(
+          (point) => Array.isArray(point) && point.length === 3 && point.every(Number.isFinite)
+        )
+      )
+        continue;
+      const plane = api.facePlane(points).slice(0, 3);
+      if (Math.hypot(...plane) < 1e-9) continue;
+      let normal = api.normalize(plane);
+      const center = points[0].map((_, axis) =>
+        points.reduce((sum, point) => sum + point[axis] / points.length, 0)
+      );
+      const facing = api.dot(normal, api.normalize(api.sub(position, center)));
+      if (best && facing <= best.facing) continue;
+      let tangent = null;
+      let longest = 0;
+      for (let index = 0; index < points.length; index++) {
+        const edge = api.sub(points[(index + 1) % points.length], points[index]);
+        const alongNormal = api.dot(edge, normal);
+        const projected = edge.map((value, axis) => value - normal[axis] * alongNormal);
+        const length = Math.hypot(...projected);
+        if (length > longest) {
+          longest = length;
+          tangent = projected;
+        }
+      }
+      if (longest < 1e-9) continue;
+      tangent = api.normalize(tangent);
+      // The actual facet owns the orientation. Only its front/back choice
+      // follows the host view; no camera-facing or seeded substitute plane.
+      if (facing < 0) normal = normal.map((value) => -value);
+      best = {
+        points,
+        facing,
+        axes: [tangent, api.normalize(api.cross(normal, tangent)), normal],
+      };
+    }
+    return best;
+  }
+  function branchMembers(host, cells, seed, root = null) {
+    const world = api.worldForRoom?.(host);
+    const objects = world?.objects || [];
+    const position = api.poses[api.initialPoses[host]]?.position;
+    if (!position || !world?.faces) return null;
+    const candidates = objects.filter(
+      (object) =>
+        (object.depth === 1 || object.depth === 2) &&
+        (root === null ? object.root <= 2 : object.root === root) &&
+        object.points?.length &&
+        object.faceCount
+    );
+    const pools = new Map();
+    for (const branch of candidates) {
+      const surface = branchSurface(branch, world, position);
+      if (!surface) continue;
+      const key = `${branch.depth}:${branch.root}`;
+      if (!pools.has(key)) pools.set(key, { members: [], used: 0 });
+      pools.get(key).members.push({ branch, surface });
+    }
+    const divisor = (a, b) => {
+      while (b) [a, b] = [b, a % b];
+      return a;
+    };
+    for (const pool of pools.values()) {
+      let stride = Math.max(1, Math.floor(pool.members.length * 0.618));
+      while (divisor(stride, pool.members.length) !== 1) stride++;
+      pool.stride = stride;
+    }
+    const members = [];
+    for (let index = 0; index < cells.length; index++) {
+      // Repeated branches at three actual tunnel depths form the content
+      // structure. Every fourth chip uses its actual larger parent level;
+      // a coprime stride spreads each pool without duplicating attachments.
+      const level = root === null ? index % 3 : root;
+      const depth = index % 4 === 3 ? 1 : 2;
+      const pool = pools.get(`${depth}:${level}`);
+      if (!pool || pool.used >= pool.members.length) return null;
+      const { branch, surface } =
+        pool.members[
+          (seed + level * 11 + depth * 17 + pool.used++ * pool.stride) % pool.members.length
+        ];
+      const attachment = surface.points[(seed + index * 11) % surface.points.length];
+      members.push({
+        name: branch.name,
+        parent: branch.parent || null,
+        center: [...branch.center],
+        rootCenter: [...branch.rootCenter],
+        root: branch.root,
+        phase: branch.phase,
+        attachment: [...attachment],
+        radius: branch.radius,
+        surfaceAxes: surface.axes.map((axis) => [...axis]),
+      });
+    }
+    return members;
+  }
+  function sourceMetadata(asset) {
+    return (
+      asset.sourceOwners || [
+        {
+          ownerPath: asset.ownerPath || [],
+          rect: asset.rect,
+          lines: asset.lines || [],
+          envelope: asset.envelope,
+          textContent: asset.owner?.textContent || '',
+        },
+      ]
+    ).map((owner) => ({
+      ownerPath: [...owner.ownerPath],
+      rect: { ...owner.rect },
+      envelope: { ...owner.envelope },
+      lines: owner.lines.map((line) => ({ ...line })),
+      textContent: owner.textContent,
+      paintFingerprint: owner.paintFingerprint,
+      controls: (owner.controls || []).map((control) => ({
+        ...control,
+        ownerPath: [...control.ownerPath],
+      })),
+    }));
+  }
+  function build(assets, route, limits, stage) {
+    const pose = targetPose(route);
+    const host = hostFor(route);
+    const maximum = Math.min(Math.floor(caps().pieces / settings.entries), limits.pieces);
+    if (!assets?.length || !pose || assets.length > maximum) {
+      reject(stage, route, 'capture-unavailable');
+      return null;
+    }
+    const counts = assets.map(() => 1);
+    for (let extra = maximum - assets.length; extra > 0; extra--) {
+      const index = counts.reduce(
+        (best, count, candidate) =>
+          count < (solids.settings?.maxPieces || 32) && count < counts[best] ? candidate : best,
+        0
+      );
+      if (counts[index] >= (solids.settings?.maxPieces || 32)) break;
+      counts[index]++;
+    }
+    const groups = [];
+    for (const [index, asset] of assets.entries()) {
+      const rect = rectangle(asset.envelope);
+      const cells = geometry.partition(
+        rect,
+        { count: counts[index], seed: 49 + index * 997 },
+        { maxPieces: counts[index] }
+      );
+      const members = branchMembers(host, cells, index * 19 + api.routeOrder.indexOf(route) * 37);
+      if (!members) {
+        reject(stage, route, 'world-membership-unavailable');
+        return null;
+      }
+      const key = `${route}:${textures.captureField ? 'field' : asset.ownerPath?.join('.') || index}`;
+      const model = solids.prepare({
+        id: key,
+        rect,
+        cells,
+        pose,
+        width: state.width,
+        height: state.height,
+        members,
+        returnMembers:
+          host !== route
+            ? branchMembers(route, cells, index * 19 + api.routeOrder.indexOf(route) * 37, 3)
+            : null,
+        returnOffset: api.roomOffset
+          ? api.roomOffset(route)
+          : -api.roomSpacing * api.routeOrder.indexOf(route),
+        hostOffset: api.roomOffset
+          ? api.roomOffset(host)
+          : -api.roomSpacing * api.routeOrder.indexOf(host),
+      });
+      if (!model) {
+        reject(stage, route, 'model-geometry');
+        return null;
+      }
+      groups.push({ key, asset, model, cells, sources: sourceMetadata(asset), native: null });
+    }
+    const entry = { route, host, groups, pose, disposed: false, landingKey: null };
+    const allocated = usage(entry);
+    if (!geometry.admit(allocated, limits)) {
+      reject(stage, route, {
+        reason: 'model-capacity',
+        limit: Object.keys(limits).find((key) => allocated[key] > limits[key]),
+      });
+      return null;
+    }
+    return entry;
+  }
+  const landingKey = (landing) =>
+    JSON.stringify([landing?.position || [0, 0], landing?.hash || '', landing?.search || '']);
+  const nativeLandingKey = () =>
+    landingKey({
+      position: [window.scrollX || 0, window.scrollY || 0],
+      search: window.location?.search || '',
+      hash: window.location?.hash || '',
+    });
+  function scrollInset(node, property) {
+    const value = window.getComputedStyle?.(node)?.getPropertyValue(property) || '0px';
+    if (value === 'auto') return 0;
+    if (!/^-?(?:\d+\.?\d*|\.\d+)px$/.test(value)) return null;
+    const amount = Number.parseFloat(value);
+    return Number.isFinite(amount) ? amount : null;
+  }
+  function place(stage, top, landing) {
+    const extent = Math.max(stage.getBoundingClientRect().height, stage.scrollHeight || 0);
+    const maximum = Math.max(0, top + extent - state.height);
+    let scroll = Array.isArray(landing?.position) ? landing.position[1] : 0;
+    if (landing?.position === 'end') scroll = maximum;
+    else if (!landing?.position && landing?.hash) {
+      let id;
+      try {
+        id = decodeURIComponent(landing.hash.slice(1));
+      } catch {
+        return false;
+      }
+      const target = [...stage.querySelectorAll('[id]')].find((node) => node.id === id);
+      if (!target) return false;
+      const padding = scrollInset(document.documentElement, 'scroll-padding-top');
+      const margin = scrollInset(target, 'scroll-margin-top');
+      if (padding === null || margin === null) return false;
+      scroll = Math.min(
+        maximum,
+        Math.max(0, target.getBoundingClientRect().top - padding - margin)
+      );
+    }
+    if (!Number.isFinite(scroll) || scroll < 0) return false;
+    scroll = Math.min(maximum, scroll);
+    stage.style.setProperty('--embedded-stage-top', top - scroll + 'px');
+    return true;
+  }
+  function captureOptions(controller, limits, stage, route, own) {
+    const timings = { stage, route };
+    lastCaptureTimings = timings;
+    return {
+      width: state.width,
+      height: state.height,
+      dpr: state.compact ? 1 : Math.min(1.5, window.devicePixelRatio || 1),
+      signal: controller.signal,
+      caps: limits,
+      preparationMs: geometry.settings.preparationMs,
+      acquisitionMs: geometry.settings.acquisitionMs,
+      onTiming(detail) {
+        if (
+          own !== generation ||
+          timings !== lastCaptureTimings ||
+          pending !== controller ||
+          controller.signal.aborted ||
+          !['measure', 'serialize', 'decode', 'readback', 'proof', 'total'].includes(
+            detail?.stage
+          ) ||
+          !Number.isFinite(detail.milliseconds) ||
+          detail.milliseconds < 0
+        )
+          return;
+        const key = detail.stage + 'Ms';
+        const amount =
+          detail.stage === 'total'
+            ? detail.milliseconds
+            : (timings[key] || 0) + detail.milliseconds;
+        if (!Number.isFinite(amount)) return;
+        timings[key] = amount;
+        if (Number.isInteger(detail.owners) && detail.owners >= 0 && detail.owners <= caps().owners)
+          timings[detail.stage + 'Owners'] = detail.owners;
+      },
+      onReject(detail) {
+        if (own === generation) reject(stage, route, detail);
+      },
+    };
+  }
+  async function acquire(root, options) {
+    if (textures.captureField) {
+      const asset = await textures.captureField(root, options);
+      return asset ? [asset] : null;
+    }
+    if (textures.captureAll) return textures.captureAll(root, options);
+    const asset = await textures.capture(root, options);
+    return asset ? [asset] : null;
+  }
+  async function prime(data, top, landing = null, options = {}) {
+    const from = document.body.dataset.page;
+    const residentOnly = options.residentOnly === true;
+    const neighbor = api.routeOrder[api.routeOrder.indexOf(from) + 1];
+    if (
+      !validRoute(from) ||
+      !validRoute(data.page) ||
+      from === data.page ||
+      options.signal?.aborted ||
+      (residentOnly && data.page !== neighbor) ||
+      (phase && (!residentOnly || !canPrepareNeighbor(data.page)))
+    )
+      return false;
+    if (
+      !state ||
+      state.width !== (window.innerWidth || state.width) ||
+      state.height !== (window.innerHeight || state.height)
+    ) {
+      queuedPrime = { data, top, landing, options };
+      return false;
+    }
+    const key = landingKey(landing);
+    const cached = bank.get(data.page);
+    // A returned field must keep its actual captured scroll/content. Only real
+    // navigation may replace it to satisfy a different destination landing.
+    if (cached && (options.reuseResident || cached.landingKey === key)) {
+      if (!residentOnly) incoming = cached;
+      touch(cached);
+      return true;
+    }
+    if (pending || !window.SiteScene?.canTravel() || options.signal?.aborted) return false;
+    // Speculative work during a flight may use its empty third slot, but cannot
+    // evict source, destination or an intermediate corridor's painted field.
+    if (!makeRoom(data.page, phase ? [...bank.keys()] : [from])) return false;
+    const own = ++generation;
+    lastFailure = null;
+    const controller = new AbortController();
+    const abort = () => controller.abort();
+    options.signal?.addEventListener('abort', abort, { once: true });
+    pending = controller;
+    pendingRoute = data.page;
+    const stage = document.createElement('div');
+    stage.className = 'embedded-stage';
+    stage.inert = true;
+    stage.setAttribute('aria-hidden', 'true');
+    stage.setAttribute('data-embedded-route', data.page);
+    stage.style.setProperty('--embedded-stage-width', document.documentElement.clientWidth + 'px');
+    stage.style.setProperty('--embedded-stage-top', top + 'px');
+    stage.append(document.importNode(data.main, true));
+    if (data.footer) stage.append(document.importNode(data.footer, true));
+    document.body.append(stage);
+    let assets = null;
+    try {
+      window.SiteArchive?.preparePreview?.(stage, {
+        search: landing?.search || '',
+        hash: landing?.hash || '',
+      });
+      window.SiteEffects.preparePreview?.(stage, data.page);
+      if (!place(stage, top, landing)) {
+        reject('incoming', data.page, 'landing-unavailable');
+        return false;
+      }
+      const limits = remainingBudget();
+      assets = await acquire(stage, captureOptions(controller, limits, 'incoming', data.page, own));
+      if (own !== generation || controller.signal.aborted || document.body.dataset.page !== from)
+        return false;
+      const entry = build(assets, data.page, limits, 'incoming');
+      if (!entry) return false;
+      entry.landingKey = key;
+      entry.residentReveal = options.revealResident && !cached ? { startedAt: null } : null;
+      entry.residentVisibility = entry.residentReveal ? 0 : 1;
+      commit(entry);
+      if (!residentOnly) incoming = entry;
+      assets = null;
+      return true;
+    } catch {
+      if (own === generation) reject('incoming', data.page, 'capture-exception');
+      return false;
+    } finally {
+      for (const asset of assets || []) asset.dispose();
+      stage.remove();
+      options.signal?.removeEventListener('abort', abort);
+      if (own === generation) {
+        pending = null;
+        pendingRoute = null;
+      }
+    }
+  }
+  function resolve(content, path) {
+    let owner = content;
+    for (const index of path) owner = owner?.children?.[index];
+    return owner || null;
+  }
+  const sameRect = (rect, original) =>
+    ['left', 'top', 'width', 'height'].every((key) => Math.abs(rect[key] - original[key]) <= 0.75);
+  function matching(entry, content) {
+    if (!content) return false;
+    const managed = hidden.find(({ owner }) => owner === content);
+    const current = managed && {
+      visibility: content.style.visibility,
+      opacity: content.style.opacity,
+    };
+    function appearance(snapshot) {
+      for (const key of ['visibility', 'opacity']) {
+        if (snapshot[key]) content.style[key] = snapshot[key];
+        else content.style.removeProperty(key);
+      }
+    }
+    // The native oracle sees ordinary layout during this synchronous read.
+    // A lifecycle-owned crossfade must not invalidate its own captured paint.
+    if (managed) appearance(managed);
+    try {
+      if (typeof textures.matchesField === 'function') {
+        // The complete native oracle already proves source text, geometry,
+        // wrapping, controls and paint. A second per-owner pass repeats layout
+        // reads without adding coverage; older adapters retain the narrow path.
+        return entry.groups.every((group) =>
+          textures.matchesField(content, group.sources, {
+            width: state.width,
+            height: state.height,
+            dpr: state.compact ? 1 : Math.min(1.5, window.devicePixelRatio || 1),
+            caps: caps(),
+            acquisitionMs: geometry.settings.acquisitionMs,
+            decorations: group.asset.decorations,
+          })
+        );
+      }
+      return entry.groups.every((group) =>
+        group.sources.every((source) => {
+          const owner = resolve(content, source.ownerPath);
+          return (
+            owner &&
+            owner.textContent === source.textContent &&
+            sameRect(owner.getBoundingClientRect(), source.rect) &&
+            source.controls.every((control) => {
+              const node = resolve(content, control.ownerPath);
+              return (
+                node &&
+                node.selectedIndex === control.selectedIndex &&
+                (!control.text || node.selectedOptions?.[0]?.textContent === control.text)
+              );
+            })
+          );
+        })
+      );
+    } finally {
+      if (current) appearance(current);
+    }
+  }
+  async function prepareDeparture(content, options = {}) {
+    const route = document.body.dataset.page;
+    // A failed revalidation may retain old pixels, but cannot authorize hiding
+    // changed native content for a new departure.
+    if (!options.cacheOnly) outgoing = null;
+    if (!resident(incoming) || phase || pending || options.signal?.aborted) {
+      reject('departure', route, 'source-not-ready');
+      return false;
+    }
+    if (
+      (content.style?.transform && content.style.transform !== 'none') ||
+      (content.style?.opacity && Number(content.style.opacity) !== 1)
+    ) {
+      reject('departure', route, 'source-plane-interrupted');
+      return false;
+    }
+    const cached = bank.get(route);
+    const nativeLanding = nativeLandingKey();
+    const sourceViewport = { width: state.width, height: state.height };
+    // A changed viewport cannot match its previous native atlas. Skip that
+    // guaranteed-failing style/layout scan, then capture under the same limits.
+    if (cached?.landingKey === nativeLanding && matching(cached, content)) {
+      if (!options.cacheOnly) {
+        outgoing = cached;
+        for (const group of cached.groups) group.native = content;
+      }
+      touch(cached);
+      return true;
+    }
+    if (!makeRoom(route, [incoming.route])) return false;
+    const own = generation;
+    lastFailure = null;
+    const controller = new AbortController();
+    const abort = () => controller.abort();
+    options.signal?.addEventListener('abort', abort, { once: true });
+    pending = controller;
+    let assets = null;
+    try {
+      const limits = remainingBudget();
+      assets = await acquire(content, captureOptions(controller, limits, 'departure', route, own));
+      if (own !== generation || controller.signal.aborted) return false;
+      if (
+        document.body.dataset.page !== route ||
+        state.width !== sourceViewport.width ||
+        state.height !== sourceViewport.height ||
+        (window.innerWidth || state.width) !== sourceViewport.width ||
+        (window.innerHeight || state.height) !== sourceViewport.height ||
+        nativeLandingKey() !== nativeLanding
+      ) {
+        reject('departure', route, 'source-landing-changed');
+        return false;
+      }
+      const entry = build(assets, route, limits, 'departure');
+      if (!entry) return false;
+      entry.landingKey = nativeLanding;
+      commit(entry);
+      if (!options.cacheOnly) {
+        for (const group of entry.groups) group.native = content;
+        outgoing = entry;
+      }
+      assets = null;
+      return true;
+    } catch {
+      if (own === generation) reject('departure', route, 'capture-exception');
+      return false;
+    } finally {
+      for (const asset of assets || []) asset.dispose();
+      options.signal?.removeEventListener('abort', abort);
+      if (own === generation) pending = null;
+    }
+  }
+  function hide(owner) {
+    hidden.push({ owner, visibility: owner.style.visibility, opacity: owner.style.opacity });
+    owner.style.visibility = 'hidden';
+  }
+  function begin(next) {
+    if (
+      pending ||
+      !resident(incoming) ||
+      !resident(outgoing) ||
+      incoming.route !== next.to ||
+      outgoing.route !== next.from ||
+      next.from === next.to ||
+      incoming.landingKey !== landingKey(next.landing)
+    ) {
+      reject('begin', next.to, 'paired-session-unavailable');
+      cancel();
+      return false;
+    }
+    context = next;
+    phase = 'departing';
+    travelProgress = 0;
+    progress = 0;
+    handoff = 0;
+    tailStarted = null;
+    for (const entry of [incoming, outgoing]) {
+      entry.residentReveal = null;
+      entry.residentVisibility = 1;
+    }
+    hide(outgoing.groups[0].native);
+    return true;
+  }
+  function land(content) {
+    if (phase !== 'departing') return;
+    restore();
+    if (!matching(incoming, content)) {
+      reject('landing', incoming.route, 'native-geometry-mismatch');
+      cancel();
+      return;
+    }
+    for (const group of incoming.groups) group.native = content;
+    hide(content);
+    phase = 'assembling';
+  }
+  function present(amount) {
+    if (phase && Number.isFinite(amount)) travelProgress = clamp(amount);
+  }
+  function groupDiagnostics(entry) {
+    return (entry?.groups || []).map(({ key, asset, model, cells, sources }) => ({
+      key,
+      route: entry.route,
+      host: entry.host,
+      ownerPath: [],
+      sourceOwners: sources,
+      rect: asset.rect,
+      lines: asset.lines || [],
+      envelope: asset.envelope,
+      ids: model.shards.map(({ id }) => id),
+      pieces: model.shards.length,
+      pixels: asset.pixelCount,
+      descendants: asset.descendants || 0,
+      textBytes: asset.textBytes || 0,
+      members: model.shards.map((shard) => ({
+        id: shard.id,
+        name: shard.member?.name,
+        parent: shard.member?.parent,
+        root: shard.member?.root,
+        rootCenter: shard.member?.rootCenter,
+        attachment: shard.member?.attachment,
+        radius: shard.member?.radius,
+        surfaceAxes: shard.member?.surfaceAxes,
+        hostOffset: shard.hostOffset,
+        worldCenter: shard.member
+          ? api
+              .loopTransform(
+                shard.member,
+                state?.ambientTime || 0
+              )(shard.restCenter)
+              .map((value, index) => value + (index === 2 ? shard.hostOffset : 0))
+          : shard.restCenter,
+      })),
+      topology: {
+        closed: true,
+        fronts: cells.length,
+        rears: cells.length,
+        sides: cells.reduce((sum, cell) => sum + cell.polygon.length, 0),
+      },
+    }));
+  }
+  const faceDiagnostics = (items) =>
+    items.map(({ id, face, points, alpha, textureMix, progress: amount }) => ({
+      id,
+      face,
+      points,
+      alpha,
+      textureMix,
+      progress: amount,
+    }));
+  function refresh() {
+    invalidate();
+    if (window.CustomEvent)
+      window.dispatchEvent(new window.CustomEvent('site:embedded-invalidated'));
+  }
+  function canPrepareNeighbor(route) {
+    const native = document.body.dataset.page;
+    const neighbor = api.routeOrder[api.routeOrder.indexOf(native) + 1];
+    return (
+      !!phase &&
+      native === context?.to &&
+      validRoute(neighbor) &&
+      (route === undefined || route === neighbor) &&
+      bank.size < settings.entries &&
+      !pending &&
+      window.SiteScene?.canTravel() === true
+    );
+  }
+  const bridge = {
+    prime,
+    prepareDeparture,
+    begin,
+    land,
+    present,
+    cancel,
+    invalidate,
+    refresh,
+    canPrepareNeighbor,
+    active: () => phase !== null,
+    nativeOpacity: () => (phase === 'assembling' ? handoff : 1),
+    owner: () => hidden[0]?.owner || null,
+    owners: () => hidden.map(({ owner }) => owner),
+    complete() {
+      if (!phase) return true;
+      if (phase !== 'assembling' || travelProgress < 1 || handoff < 1) return false;
+      const arrival = incoming;
+      // A separately owned successor capture may outlast the native handoff.
+      // Finishing this session must not abort or invalidate that bounded task.
+      releaseSession();
+      incoming = arrival;
+      touch(arrival);
+      const crossed = bank.get(arrival.host);
+      if (crossed && crossed !== arrival) touch(crossed);
+      return true;
+    },
+    reservation,
+    diagnostics: () => ({
+      ready: !!incoming,
+      pendingRoute,
+      lastFailure,
+      captureTimings: lastCaptureTimings && { ...lastCaptureTimings },
+      route: incoming?.route || null,
+      phase,
+      progress,
+      physicalProgress: faces
+        .filter((face) => face.ownerKey === incoming?.groups[0]?.key && face.face === 'front')
+        .reduce((maximum, face) => Math.max(maximum, face.progress), 0),
+      travelProgress,
+      arrivalStart: arrivalStart(),
+      handoff,
+      clock: state?.ambientTime || 0,
+      // These faces describe the last Canvas paint. An asynchronous acquisition
+      // may already have evicted a bitmap; its painted ownership remains until
+      // the existing scene clock replaces those pixels. Admission stays live.
+      texturePixels: totalUsage(faces.length ? paintedEntries : bank.values())?.layerPixels || 0,
+      residentUsage: reservation(),
+      residentRoutes: [...bank.keys()],
+      residentRevealMs: settings.residentRevealMs,
+      residentReveals: [...bank.values()].map((entry) => ({
+        route: entry.route,
+        progress: entry.residentVisibility ?? 1,
+      })),
+      nativeRect: incoming?.groups[0]?.asset.rect || null,
+      nativeLines: incoming?.groups[0]?.asset.lines || [],
+      envelope: incoming?.groups[0]?.asset.envelope || null,
+      ids: incoming?.groups.flatMap(({ model }) => model.shards.map(({ id }) => id)) || [],
+      groups: groupDiagnostics(incoming),
+      bank: (faces.length ? paintedEntries : [...bank.values()]).map(
+        (entry) =>
+          entry.paintedBank || {
+            route: entry.route,
+            host: entry.host,
+            groups: groupDiagnostics(entry),
+          }
+      ),
+      coverage: {
+        expected: incoming?.groups.reduce((sum, group) => sum + group.sources.length, 0) || 0,
+        selected: incoming?.groups.reduce((sum, group) => sum + group.sources.length, 0) || 0,
+        complete: !!incoming,
+      },
+      caps: caps(),
+      faces: faceDiagnostics(faces),
+      departure: {
+        ready: !!outgoing,
+        progress: travelProgress,
+        groups: groupDiagnostics(outgoing),
+        faces: faceDiagnostics(departureFaces),
+      },
+    }),
+  };
+  window.SiteEffects.embedded = bridge;
+  for (const name of ['resize', 'beforeprint', 'pagehide'])
+    window.addEventListener(name, invalidate);
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (phase === 'assembling' && incoming && !matching(incoming, hidden[0]?.owner)) cancel();
+    },
+    { passive: true }
+  );
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) invalidate();
+    else refresh();
+  });
+  window.addEventListener('afterprint', refresh);
+  window
+    .matchMedia?.('(prefers-reduced-transparency: reduce)')
+    .addEventListener?.('change', refresh);
+  document.fonts?.addEventListener?.('loadingdone', refresh);
+  window.addEventListener('site:motion-preference', () => {
+    if (!window.SiteScene?.canTravel()) invalidate();
+    else refresh();
+  });
+  new window.MutationObserver(refresh).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+  function arrivalAmount() {
+    const start = arrivalStart();
+    return clamp((travelProgress - start) / (1 - start));
+  }
+  function arrivalStart() {
+    if (!context || !incoming) return settings.arrivalStart;
+    const from = api.routeOrder.indexOf(context.from);
+    const to = api.routeOrder.indexOf(context.to);
+    const host = api.routeOrder.indexOf(incoming.host);
+    const hostFraction = to > from ? clamp((host - from) / (to - from)) : 0;
+    // Start before the camera crosses the field's last host. A skipped room
+    // remains in its own world instead of following the departing camera.
+    return settings.arrivalStart + settings.skippedHostSpan * hostFraction;
+  }
+  function sample(entry, frame, amount) {
+    const produced = [];
+    for (const group of entry.groups) {
+      const progresses = group.model.shards.map((_, index) => {
+        if (amount <= 0 || amount >= 1) return amount;
+        const delay = (settings.stagger * index) / Math.max(1, group.model.shards.length - 1);
+        return clamp((amount - delay) / (1 - delay));
+      });
+      const shapes = solids.sample(group.model, {
+        pose: frame.current,
+        width: frame.width,
+        height: frame.height,
+        progress: amount,
+        progresses,
+        time: frame.ambientTime,
+        clearance: phase && (entry === incoming || entry === outgoing),
+        returnPath:
+          phase &&
+          entry === incoming &&
+          context?.direction === 'backward' &&
+          entry.host !== entry.route,
+        forwardPath: phase && entry === incoming && context?.direction === 'forward',
+        departing: phase && entry === outgoing && context?.direction === 'forward',
+      });
+      for (const shape of shapes) {
+        shape.ownerKey = group.key;
+        produced.push(shape);
+      }
+    }
+    return produced;
+  }
+  function advanceHandoff(frame) {
+    if (phase !== 'assembling' || travelProgress !== 1 || !incoming) return;
+    const aligned =
+      incoming.pose.position.every((value, index) => value === frame.current.position[index]) &&
+      incoming.pose.target.every((value, index) => value === frame.current.target[index]);
+    if (!aligned) return;
+    if (tailStarted === null) tailStarted = frame.ambientTime;
+    handoff = clamp(
+      ((frame.ambientTime - tailStarted + api.LOOP_MS) % api.LOOP_MS) / settings.handoffMs
+    );
+    for (const entry of hidden) {
+      entry.owner.style.visibility = handoff > 0 ? entry.visibility || 'visible' : 'hidden';
+      entry.owner.style.opacity = String(handoff);
+    }
+  }
+  function residentVisibility(entry, frame) {
+    if (!entry.residentReveal) return 1;
+    const reveal = entry.residentReveal;
+    if (reveal.startedAt === null) reveal.startedAt = frame.ambientTime;
+    const elapsed = (frame.ambientTime - reveal.startedAt + api.LOOP_MS) % api.LOOP_MS;
+    const amount = clamp(elapsed / settings.residentRevealMs);
+    if (amount === 1) entry.residentReveal = null;
+    return amount * amount * (3 - 2 * amount);
+  }
+  function applyFieldVisibility(entry, shapes) {
+    if (entry.residentVisibility < 1)
+      for (const shape of shapes) shape.alpha *= entry.residentVisibility;
+    if (phase && entry === incoming && handoff > 0)
+      for (const shape of shapes) shape.alpha *= 1 - handoff;
+    else if (phase === 'assembling' && entry !== incoming && entry.host !== context.to)
+      for (const shape of shapes) shape.alpha *= 1 - handoff;
+  }
+  function publishStatus() {
+    if (!statusOwner?.dataset) return;
+    const routes = [...bank.keys()].join(' ');
+    const failure = lastFailure || {};
+    const signature = [
+      routes,
+      phase,
+      pendingRoute,
+      failure.stage,
+      failure.route,
+      failure.reason,
+      failure.tag,
+      failure.limit,
+    ].join('|');
+    if (signature === publishedStatus) return;
+    publishedStatus = signature;
+    const values = {
+      embeddedBank: routes,
+      embeddedPhase: phase || 'idle',
+      embeddedPending: pendingRoute,
+      embeddedFailureStage: failure.stage,
+      embeddedFailureRoute: failure.route,
+      embeddedFailureReason: failure.reason,
+      embeddedFailureTag: failure.tag,
+      embeddedFailureLimit: failure.limit,
+    };
+    for (const [key, value] of Object.entries(values)) {
+      if (value) statusOwner.dataset[key] = value;
+      else delete statusOwner.dataset[key];
+    }
+  }
+  return {
+    preparing: () => !!pending && !phase,
+    collect(frame) {
+      state = frame;
+      if (queuedPrime) {
+        const queued = queuedPrime;
+        queuedPrime = null;
+        Promise.resolve().then(() =>
+          prime(queued.data, queued.top, queued.landing, queued.options)
+        );
+      }
+      faces = [];
+      departureFaces = [];
+      paintedEntries = [...bank.values()];
+      if (phase) progress = arrivalAmount();
+      advanceHandoff(frame);
+      const native = document.body.dataset.page;
+      for (const entry of paintedEntries) {
+        // Settled chips belong to the fractal room that is actually painted.
+        // Retention still serves reverse flights without painting a distant
+        // page field over a host that is absent from the current reading room.
+        if (!phase && entry.host !== frame.page) continue;
+        let amount = 0;
+        if (phase && entry === incoming) amount = progress;
+        else if (phase && entry === outgoing) amount = 1 - travelProgress;
+        else if (entry.route === native) continue;
+        const shapes = sample(entry, frame, amount);
+        entry.residentVisibility = residentVisibility(entry, frame);
+        applyFieldVisibility(entry, shapes);
+        if (phase && entry === outgoing) departureFaces = shapes;
+        faces.push(...shapes);
+      }
+      publishStatus();
+      return faces;
+    },
+    paint: (ctx, shape) => solids.paint(ctx, shape, surfaces.get(shape.ownerKey), state?.colors),
+  };
+};

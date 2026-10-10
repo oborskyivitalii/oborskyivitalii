@@ -7,7 +7,9 @@ const test = require('node:test'),
   vm = require('node:vm');
 const color = require('../tools/staging/color.cjs'),
   artifact = require('../tools/quality/artifact.cjs'),
-  snapshot = require('../tools/site/snapshot.cjs');
+  snapshot = require('../tools/site/snapshot.cjs'),
+  flight = require('../site/effects/flight.cjs'),
+  math = require('../site/engine/math.cjs');
 test('collecting other hosted checks cannot accept a failed source-regression stage', () => {
   assert.throws(
     () => require('../tools/quality/validate.cjs').aggregate({ sourceChecks: 'failure' }),
@@ -47,7 +49,45 @@ test('Color keeps the native route inventory and packages all requested authored
     const styles = fs.readFileSync(path.join(first, 'styles.css'), 'utf8');
     assert.match(space, /SiteEffects\.navigation/);
     assert.match(space, /SiteEffects\.measure/);
-    assert.doesNotMatch(space, /SiteEffects\.scene\s*=/);
+    const parts = color.authoredEffects();
+    assert.equal(parts[0].code, flight.descriptor().code, 'Color retains canonical travel code');
+    const runtime = color.runtime(parts);
+    const effectPrefix = "'use strict';\n" + runtime.code + '\n';
+    assert.ok(space.startsWith(effectPrefix), 'served space embeds canonical effect serialization');
+    assert.ok(
+      nav.includes(parts[0].controls),
+      'served navigation embeds canonical travel controls'
+    );
+    const window = {
+      addEventListener() {},
+      MutationObserver: class {
+        observe() {}
+      },
+    };
+    const document = {
+      body: { dataset: { page: 'index' } },
+      documentElement: {},
+      addEventListener() {},
+    };
+    vm.runInNewContext(space.slice(0, effectPrefix.length), { window, document });
+    assert.equal(window.SiteEffects.contract, 1);
+    assert.equal(typeof window.SiteEffects.scene, 'function');
+    const scene = window.SiteEffects.scene(math());
+    assert.equal(typeof scene.collect, 'function');
+    assert.equal(typeof scene.paint, 'function');
+    assert.deepEqual(Array.from(scene.collect({ page: 'index' })), []);
+    const untouchedContext = new Proxy(
+      {},
+      {
+        get() {
+          throw Error('unrelated shape changed the shared paint context');
+        },
+        set() {
+          throw Error('unrelated shape changed the shared paint context');
+        },
+      }
+    );
+    assert.equal(scene.paint(untouchedContext, { kind: 'face' }), false);
     assert.doesNotMatch(
       space,
       /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/

@@ -131,7 +131,57 @@ async function measure(page, kind) {
   assert.equal(row.state, 'active');
   return { ...row, events: raw.events };
 }
-async function boot(url) {
+function readingCameraPolicy(label) {
+  return ['pr23-base', 'before-color'].includes(label) ? 'historical-observation' : 'stationary';
+}
+function validateReadingScroll(row) {
+  assert.ok(
+    ['stationary', 'historical-observation'].includes(row.policy),
+    'unknown reading camera policy'
+  );
+  assert.ok(Number.isFinite(row.end) && row.end >= 0, 'invalid reading range');
+  assert.ok(Number.isFinite(row.requestedY) && row.requestedY >= 0, 'invalid native gesture');
+  assert.ok(
+    Number.isFinite(row.y) && Math.abs(row.y - Math.min(row.end, row.requestedY)) <= 1,
+    'native Writing gesture missed its target'
+  );
+  assert.ok(
+    Number.isFinite(row.beforePaints) &&
+      Number.isFinite(row.paints) &&
+      row.paints > row.beforePaints,
+    'first Writing gesture retains actual Canvas paints'
+  );
+  assert.ok(
+    typeof row.before === 'string' && typeof row.camera === 'string',
+    'missing Writing camera observation'
+  );
+  if (row.policy === 'stationary') {
+    assert.deepEqual(
+      JSON.parse(row.before),
+      require('./scroll-browser.cjs').routeCamera('writing'),
+      'current Writing canonical camera'
+    );
+    assert.equal(row.camera, row.before, 'current Writing gesture preserves the settled camera');
+  }
+  return true;
+}
+async function readingScroll(page, before, requestedY, policy) {
+  const beforePaints = await page.evaluate(
+    () => window.__qualityMotion.frames.filter((frame) => frame.painted).length
+  );
+  await page.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), requestedY);
+  await page.waitForTimeout(450);
+  const row = await page.evaluate(() => ({
+    y: scrollY,
+    end: Math.max(0, document.documentElement.scrollHeight - innerHeight),
+    camera: document.querySelector('.space-scene').dataset.camera,
+    paints: window.__qualityMotion.frames.filter((frame) => frame.painted).length,
+  }));
+  Object.assign(row, { before, requestedY, beforePaints, policy });
+  validateReadingScroll(row);
+  return row;
+}
+async function boot(url, policy) {
   const { browser, page, errors } = await open();
   try {
     await page.goto(url + '/writing.html', { waitUntil: 'domcontentloaded' });
@@ -153,15 +203,20 @@ async function boot(url) {
     assert.ok(Number.isFinite(timing.sceneReadyMs));
     await reset(page);
     const before = await page.locator('.space-scene').getAttribute('data-camera');
-    await page.evaluate(() => scrollTo({ top: 100, behavior: 'instant' }));
-    await page.waitForTimeout(450);
-    const after = await page.locator('.space-scene').getAttribute('data-camera');
-    assert.notEqual(after, before, 'first Writing gesture moves the camera');
-    await page.evaluate(() => scrollTo({ top: 200, behavior: 'instant' }));
-    await page.waitForTimeout(450);
+    const reading = [
+      await readingScroll(page, before, 100, policy),
+      await readingScroll(page, before, 200, policy),
+    ];
     const firstScroll = await measure(page, 'first-scroll');
     assert.deepEqual(errors, []);
-    return { timing, startup, firstScroll, errors, browser: browser.version() };
+    return {
+      timing,
+      startup,
+      firstScroll,
+      reading,
+      errors,
+      browser: browser.version(),
+    };
   } finally {
     await browser.close();
   }
@@ -280,7 +335,7 @@ async function main(inputRoot, output) {
         const row = { round, label };
         record.rows.push(row);
         try {
-          row.boot = await boot(url + '/' + label);
+          row.boot = await boot(url + '/' + label, readingCameraPolicy(label));
           row.navigation = await flights(url + '/' + label);
         } catch (error) {
           row.error = error.stack;
@@ -308,4 +363,15 @@ if (require.main === module)
     console.error(error.stack);
     process.exitCode = 1;
   });
-module.exports = { aggregate, orders, serve, open, ready, reset, measure };
+module.exports = {
+  aggregate,
+  orders,
+  serve,
+  open,
+  ready,
+  reset,
+  measure,
+  readingCameraPolicy,
+  validateReadingScroll,
+  readingScroll,
+};

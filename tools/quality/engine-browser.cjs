@@ -5,6 +5,21 @@ const assert = require('node:assert/strict'),
   { pathToFileURL } = require('node:url');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const { matchesRoute } = require('./fallback-url.cjs');
+function paintProbe() {
+  const stats = { paints: 0, callbacks: 0 };
+  window.__quality = stats;
+  const raf = window.requestAnimationFrame,
+    clear = CanvasRenderingContext2D.prototype.clearRect;
+  CanvasRenderingContext2D.prototype.clearRect = function (...args) {
+    stats.paints++;
+    return clear.apply(this, args);
+  };
+  window.requestAnimationFrame = (fn) =>
+    raf((time) => {
+      stats.callbacks++;
+      fn(time);
+    });
+}
 async function ready(page, id) {
   await page.waitForFunction(
     (id) =>
@@ -198,41 +213,31 @@ async function writingGestures(page) {
     return [...groups].find(([, count]) => count === 1)?.[0].split('/');
   });
   assert.ok(single, 'one-record filter fixture');
-  const observations = [];
+  const { readingState, routeCamera } = require('./scroll-browser.cjs'),
+    baseline = await settledCamera(page),
+    observations = [];
+  assert.deepEqual(JSON.parse(baseline), routeCamera('writing'), 'Writing canonical route camera');
   for (const filter of [null, single]) {
     if (filter)
       for (const [i, key] of ['topic', 'year', 'language'].entries())
         await page.locator('#archive-' + key).selectOption(filter[i]);
     if (filter) assert.equal(await page.locator('li.publication:visible').count(), 1);
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-    // Capture a real settled endpoint after distinct paints, including slower
-    // WebKit layout/scroll delivery. A fixed 260ms could retain a transient pose.
-    const start = await settledCamera(page),
-      phase = await page.locator('.space-scene').getAttribute('data-phase');
-    let previous = start;
+    await readingState(page, baseline, 0);
+    const end = await page.evaluate(() =>
+      Math.max(0, document.documentElement.scrollHeight - innerHeight)
+    );
     for (const y of [100, 200, 400]) {
       await page.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), y);
-      await page.waitForFunction(
-        (previous) => document.querySelector('.space-scene').dataset.camera !== previous,
-        previous,
-        { polling: 50, timeout: 2000 }
-      );
-      const next = await camera(page);
-      previous = next;
-      assert.notEqual(next, start, 'Writing first gesture ' + y);
-      observations.push({ filter: filter ? 'single' : 'all', y, camera: next });
+      observations.push({
+        filter: filter ? 'single' : 'all',
+        requestedY: y,
+        end,
+        ...(await readingState(page, baseline, Math.min(y, end))),
+      });
     }
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-    await page.waitForFunction(
-      (start) => document.querySelector('.space-scene').dataset.camera === start,
-      start,
-      { polling: 50, timeout: 2000 }
-    );
-    assert.notEqual(
-      await page.locator('.space-scene').getAttribute('data-phase'),
-      phase,
-      'ambient advances during first gestures'
-    );
+    await readingState(page, baseline, 0);
   }
   await page.locator('.filter-reset').evaluate((el) => el.click());
   for (const [key, value] of [
@@ -242,15 +247,10 @@ async function writingGestures(page) {
   ])
     await page.locator('#archive-' + key).selectOption(value);
   assert.equal(await page.locator('li.publication:visible').count(), 0);
-  const empty = await settledCamera(page),
-    phase = await page.locator('.space-scene').getAttribute('data-phase');
-  await page.waitForFunction(
-    (phase) => document.querySelector('.space-scene').dataset.phase !== phase,
-    phase,
-    { polling: 50, timeout: 1500 }
-  );
-  assert.equal(await camera(page), empty, 'empty archive keeps camera and breathes');
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  await readingState(page, baseline, 0);
   await page.locator('.filter-reset').evaluate((el) => el.click());
+  await readingState(page, baseline, 0);
   return observations;
 }
 async function snapshotPin(page, url) {
@@ -357,6 +357,7 @@ async function offline(browser, scenario) {
     requests = [];
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('request', (r) => requests.push(r.url()));
+  await ctx.addInitScript(paintProbe);
   page.setDefaultTimeout(6000);
   const producer = require('../build_site_previews.cjs'),
     root = path.resolve(__dirname, '../..');
@@ -416,6 +417,7 @@ async function offline(browser, scenario) {
   }
 }
 module.exports = {
+  paintProbe,
   writingGestures,
   settledCamera,
   cameraSettlingSample,

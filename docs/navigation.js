@@ -1,7 +1,8 @@
 /* One document, one header and one canvas. Every route remains ordinary HTML. */
 (() => {
   'use strict';
-  const routes = ['index', 'research', 'writing', 'talks', 'credits'];
+  const routes = window.SiteRoutes?.order;
+  if (!routes) return;
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
   const entry = new URL(window.location.href);
@@ -13,8 +14,11 @@
   let page = document.body.dataset.page,
     serial = 0,
     request = null,
+    requestedPage = null,
     transition = null,
-    scrollSave = null;
+    scrollSave = null,
+    warmRequest = null,
+    warmAgain = false;
   let endpoint = null,
     endpointTimer = null,
     endpointObserver = null,
@@ -103,17 +107,16 @@
     result.searchParams.set('view', next);
     return result;
   }
-  // The scroll/flight itinerary follows the header; utility links stay accessible.
-  const primaryRoutes = Object.freeze(
-    [...document.querySelectorAll('.site-header nav a[href]')]
-      .map((link) => routeFor(new URL(link.href, entry)))
-      .filter((route, index, list) => route && list.indexOf(route) === index)
-  );
+  // All five rooms share one order for links, history and end-scroll travel.
+  const primaryRoutes = routes;
   function save() {
     if (routeFor(new URL(window.location.href)) !== page) return;
     try {
       history.replaceState(
-        { ...history.state, site: { page, scroll: [window.scrollX, window.scrollY] } },
+        {
+          ...history.state,
+          site: { page, scroll: [window.scrollX, window.scrollY] },
+        },
         '',
         window.location.href
       );
@@ -217,6 +220,9 @@
     releaseTail();
     request?.abort();
     request = null;
+    warmRequest?.abort();
+    warmRequest = null;
+    warmAgain = false;
     transition?.cancel?.();
     window.SiteScene?.detachTravel();
     transition?.(1);
@@ -401,12 +407,13 @@
   document.fonts?.addEventListener?.('loadingdone', () => {
     if (!window.SiteScene?.managesLayout) reconcileEndpoint();
   });
-  function flight(next, animate, commit, own, departure, landing = null) {
+  function flight(next, animate, commit, own, departure, landing = null, itinerary = null) {
     return new Promise((resolve, reject) => {
       let mounted = false,
         mountTimer = null,
         settled = false,
-        lastProgress = 0;
+        lastProgress = 0,
+        lastView = null;
       const mountAt = presentation?.mountAt ?? 0.18;
       const cancelTask = () => {
         if (mountTimer !== null) window.clearTimeout(mountTimer);
@@ -440,6 +447,10 @@
         try {
           mounted = true;
           commit();
+          presentation?.mounted?.(lastView);
+          // The mounted destination can warm its successor in an unused
+          // resident slot while this same camera journey is still painting.
+          void prepareNeighbor();
         } finally {
           if (start) {
             const time = performance.now();
@@ -467,7 +478,7 @@
           }
           try {
             mountNow(true);
-            if (!settled) update(lastProgress);
+            if (!settled) update(lastProgress, lastView);
           } catch (error) {
             fail(error);
           }
@@ -480,7 +491,25 @@
         if (transition === update) transition = null;
         resolve();
       }
-      const update = (progress) => {
+      function presentFrame(progress, paintedView) {
+        // A finite fragment arrival can finish after the unchanged camera
+        // flight, on this same painted callback. Forced completion has no
+        // new paint and must resolve Off/print/hidden/failure immediately.
+        const completed =
+          progress === 1 && !paintedView
+            ? true
+            : presentation.present(
+                progress,
+                document.querySelector('.space-scene')?.dataset.direction || 'forward',
+                departure,
+                lastView
+              );
+        if (progress === 1) {
+          if (completed === false) return false;
+          finish();
+        }
+      }
+      const update = (progress, paintedView = null) => {
         if (settled) return;
         if (own !== serial) {
           cancel();
@@ -488,6 +517,7 @@
         }
         try {
           lastProgress = progress;
+          if (paintedView) lastView = paintedView;
           if (progress >= mountAt && !mounted) {
             if (animate && presentation?.mountAt === 0.5 && progress < 1) queueMount();
             else mountNow(mountTimer !== null);
@@ -499,16 +529,7 @@
           // Do not reveal the old DOM if a painted progress jumps past the
           // midpoint before its queued native mount has completed.
           if (!mounted && mountTimer !== null) progress = mountAt;
-          if (presentation) {
-            if (progress === 1) finish();
-            else
-              presentation.present(
-                progress,
-                document.querySelector('.space-scene')?.dataset.direction || 'forward',
-                departure
-              );
-            return;
-          }
+          if (presentation) return presentFrame(progress, paintedView);
           // Smooth exit, empty tunnel, then arrival. No independent clock/RAF.
           const t = progress < 0.18 ? progress / 0.18 : Math.max(0, (progress - 0.72) / 0.28);
           const eased = t * t * (3 - 2 * t);
@@ -527,6 +548,7 @@
       update.cancel = cancel;
       transition = update;
       content.inert = true;
+      presentation?.begin?.(animate, itinerary);
       if (window.SiteScene) window.SiteScene.navigate(next, animate, transition, landing);
       else transition(1);
     });
@@ -618,6 +640,54 @@
       });
     return result;
   }
+  async function prepareNeighbor() {
+    const neighbor = routes[routes.indexOf(page) + 1];
+    if (!neighbor || !presentation?.prepareNext) return;
+    if (request && presentation.canPrepareNeighbor?.(neighbor) !== true) return;
+    if (presentation.canPrepareNext?.() === false) return;
+    if (warmRequest) {
+      warmAgain = true;
+      return;
+    }
+    const own = serial;
+    const controller = new AbortController();
+    warmRequest = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
+    try {
+      const data = await read(neighbor, controller.signal);
+      if (
+        !controller.signal.aborted &&
+        own === serial &&
+        (!request || presentation.canPrepareNeighbor?.(neighbor) === true)
+      )
+        await presentation.prepareNext(data, controller.signal);
+    } catch {
+      // Speculative decoration never blocks verified ordinary navigation.
+    } finally {
+      window.clearTimeout(timeout);
+      if (warmRequest === controller) {
+        warmRequest = null;
+        if (warmAgain) {
+          warmAgain = false;
+          if (own === serial) void prepareNeighbor();
+        }
+      }
+    }
+  }
+  window.addEventListener?.('site:page-ready', prepareNeighbor);
+  window.addEventListener?.('site:embedded-invalidated', prepareNeighbor);
+  window.addEventListener?.('resize', prepareNeighbor, { passive: true });
+  async function prepareCorridor(from, to, signal, own) {
+    const sourceIndex = routes.indexOf(from);
+    const targetIndex = routes.indexOf(to);
+    if (targetIndex <= sourceIndex + 1) return;
+    const corridor = [];
+    for (const route of routes.slice(sourceIndex + 1, targetIndex)) {
+      corridor.push(await read(route, signal));
+      if (own !== serial || signal.aborted) throw Error('World corridor interrupted');
+    }
+    return corridor;
+  }
   async function navigate(
     url,
     { pop = false, position = null, initial = false, input = null } = {}
@@ -627,6 +697,7 @@
     const departure = presentation?.departure?.() ?? Number(content.style.opacity || 1);
     const own = ++serial;
     interrupt();
+    requestedPage = next;
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
     if (input === 'wheel' || input === 'key') {
       inputTail = { own, type: input, key: lastKey };
@@ -645,6 +716,7 @@
     const controller = new AbortController();
     request = controller;
     const timeout = window.setTimeout(() => controller.abort(), 8000);
+    let succeeded = false;
     content.setAttribute('aria-busy', 'true');
     try {
       const data = await read(next, controller.signal);
@@ -652,6 +724,20 @@
       const prepared = prepare(data);
       const animate =
         !initial && primaryRoutes.includes(page) && primaryRoutes.includes(next) && motionAllowed();
+      const itinerary = {
+        from: page,
+        to: next,
+        landing: { position, hash: url.hash, search: url.search },
+        direction: window.SiteScene?.direction?.(next) ?? window.SiteRoutes.direction(page, next),
+      };
+      if (animate && presentation?.prepareTransition) {
+        // The native destination mounts once. Intermediate room content is
+        // acquired only through the same verified finite route cache.
+        itinerary.corridor = await prepareCorridor(page, next, controller.signal, own);
+        await presentation.prepareTransition(data, itinerary, controller.signal);
+        if (own !== serial) return;
+        if (controller.signal.aborted) throw Error('Route preparation deadline');
+      }
       await flight(
         next,
         animate,
@@ -678,7 +764,8 @@
         },
         own,
         departure,
-        { position, hash: url.hash, search: url.search }
+        { position, hash: url.hash, search: url.search },
+        itinerary
       );
       // Arrival removes the content transform. Its temporary overflow/offset
       // must not remain the page's scroll range or semantic waypoint geometry.
@@ -689,7 +776,12 @@
         content.querySelector('main').focus({ preventScroll: true });
         announcement.textContent = data.title;
         save();
-        window.SiteEngineProbe?.({ kind: 'navigation-ready', time: performance.now(), page: next });
+        succeeded = true;
+        window.SiteEngineProbe?.({
+          kind: 'navigation-ready',
+          time: performance.now(),
+          page: next,
+        });
       }
     } catch {
       if (own === serial) {
@@ -702,7 +794,9 @@
       if (own === serial) {
         content.removeAttribute('aria-busy');
         request = null;
+        requestedPage = null;
         clearText();
+        if (succeeded) void prepareNeighbor();
       }
     }
   }
@@ -733,7 +827,10 @@
     if (next === page) {
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
-      if (link.getAttribute('href').startsWith('#')) return;
+      if (link.getAttribute('href').startsWith('#')) {
+        void prepareNeighbor();
+        return;
+      }
       event.preventDefault();
       const dest = address(url, next);
       if (dest.href !== window.location.href) push(dest);
@@ -756,6 +853,7 @@
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
       if (event.state?.site?.scroll)
         restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
+      void prepareNeighbor();
     }
   });
   function finishText() {
@@ -797,17 +895,19 @@
   window.SiteNavigation = {
     push,
     primaryRoutes,
+    pendingRoute: () => requestedPage,
     reconcileEndpoint,
     contentFlight(value) {
       return presentation?.contentFlight?.(value) ?? false;
     },
+    fragmentPreview(value) {
+      return presentation?.fragmentPreview?.(value) ?? false;
+    },
     go(next, { atEnd = false, input = null } = {}) {
       if (
-        next === page ||
+        next === (requestedPage || page) ||
         !primaryRoutes.includes(page) ||
-        !primaryRoutes.includes(next) ||
-        request ||
-        transition
+        !primaryRoutes.includes(next)
       )
         return false;
       navigate(
@@ -819,5 +919,8 @@
   };
   const first = embedded ? routeFor(new URL(window.location.href)) : page;
   if (first !== page) navigate(new URL(window.location.href), { initial: true });
-  else save();
+  else {
+    save();
+    if (presentation?.prepareNext) window.setTimeout(prepareNeighbor, 0);
+  }
 })();

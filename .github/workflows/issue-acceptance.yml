@@ -35,6 +35,7 @@ jobs:
         run: python3 tools/issue_acceptance.py select --event "$GITHUB_EVENT_PATH" --event-name "$GITHUB_EVENT_NAME" --github-env "$GITHUB_ENV" --report "$RUNNER_TEMP/issue-acceptance.json"
       - name: Install pinned tools for selected acceptance policies
         if: >-
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-49.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json'
         run: |

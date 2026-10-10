@@ -130,6 +130,14 @@ test('PR selection targets affected current contracts, diagnostic helper changes
     changedPaths: ['tools/quality/writing-geometry.cjs'],
   });
   assert.ok(helper.modules.includes('tests/writing-geometry.test.cjs'));
+  const color = runner.select(root, 'pr', {
+    changedPaths: ['tools/quality/color-browser.cjs'],
+  });
+  assert.deepEqual(color.modules, [
+    'tests/navigation-motion-fixtures.test.cjs',
+    'tests/staging-regression.test.cjs',
+  ]);
+  assert.deepEqual(color.conservativeFallback, []);
   const python = runner.select(root, 'pr', {
     changedPaths: [
       'tests/test_root_layout.py',

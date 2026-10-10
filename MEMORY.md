@@ -1,63 +1,74 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-09**.
+Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 ## Snapshot
 
-- Main inspected at `338e3ff341dc35b64cba7854289e1385cbaf1562`; revalidate live state.
-- [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) is closed and
-  [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) merged; detailed
-  checkpoints remain in [its handoff](review/issue-58/2026-10-08-handoff.md).
-- PMDay update [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61)
-  was delivered through [PR #63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63).
+- Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
+- Issue49 / Draft PR53 remains the sole fragment-flight execution route on
+  `docs/fractal-content-flight-plan-20261008`. Motion source inspected at clean
+  `50eb63d31466c6975a533f45671419ce6b824a4b`; fetch the live head/checks.
+- WebKit26.6 exposes no requestIdleCallback. Startup warming now uses the same
+  cancellable500ms idle timeout as a fallback instead of competing immediately
+  with first layout. Foreground/travel scheduling and capture caps are unchanged.
+- Native snapshots also reuse complete identical paint declarations locally.
+  Six warm same-DOM WebKit cases retain identical native pixels. Research SVG
+  URI shrinks a further6%; this is raster parity, not whole-effect cost admission.
+- Final local existing tablet profile passes both first-load neighbor checks and
+  all10 Day/Night journeys/343 observed frames, with0px rectangle/line handoff deltas.
+  Optional Home departure-cache captures still fail169/189ms against160ms;
+  subsequent navigation preflight passes. Original failed revisions remain failed.
+- Prepared Color public digest is
+  `054fde357fa04044f51b3942cc8038904b27e688bc481fd35d047c73866fe2fe`.
+  Clean hosted source50eb passes the scoped tablet profile, with optional Home
+  capture167ms landscape still failed against160ms. Read
+  [the startup result](review/issue-49/2026-10-08-analysis.md#webkit-startup-idle-compatibility)
+  and its inert evidence archive; exact published checks/preview belong to issue/PR.
+- Assembly jerk investigation confirms one-paint progress lag: camera is already
+  stationary while assembly remains94.76%; next WebKit paint moves visible corners
+  85.39/104.89px. Temporary synchronized fixture removes this remaining movement
+  (0/0px), without admitting the whole motion or cost. Production runtime is
+  unchanged. See [motion investigation](review/issue-49/2026-10-08-analysis.md#assembly-jerk-investigation)
+  and its inert evidence; implement through authored owners and original checks.
 
 ## Decisions
 
-- [#65](https://github.com/oborskyivitalii/oborskyivitalii/issues/65) owns harness
-  verification/compaction is merged through PR66 and closed; retain its evidence.
-  [Analysis](review/issue-65/2026-10-09-analysis.md).
-- [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) now also owns
-  the maintainer's practical-positioning brief, implemented in
-  [PR #67](https://github.com/oborskyivitalii/oborskyivitalii/pull/67).
-  [Current source review](review/issue-41/2026-10-09-positioning.md) and
-  [CI follow-up](review/issue-41/2026-10-09-ci-followup.md) record separate evidence.
-  No invented management case; record missing facts in the issue. Keep graphics,
-  runtime, routes and production outside the content continuation.
-  The same issue/PR also owns the compact AI-assisted delivery case, AC17–26:
-  [source/history analysis](review/issue-41/2026-10-09-sitecase.md), About→Credits
-  evidence links, explicit human/AI/enterprise boundaries. Its
-  [independent review](review/issue-41/2026-10-09-sitecase-review.md) and
-  [focused preview observations](review/issue-41/2026-10-09-sitecase-browser.md)
-  retain exact source/public-byte identities and observation limits; current-head
-  CI and whole-AC reconciliation live in the issue/PR. The maintainer authorized
-  merge and stable staging on 9 October. The first stage failed on untriaged
-  checksum candidates; its browser profile passed. The exact follow-up is in
-  [staging security review](review/issue-41/2026-10-09-staging-security.md).
-  Revalidate its final source, current gate, stable alias and merge in the live
-  issue/PR; original issue/release obligations remain open.
-- A user-supplied issue stays bound across phases/model handoffs; consolidation
-  transfers original ACs, evidence and open gates before superseding an owner.
+- Continue issue49/PR53; do not create another owner, execution PR or matrix.
+- Keep textured closed chips on the actual fractal branches, one camera/clock,
+  reverse retention and Home-to-Writing's intermediate Research corridor.
+- Reading scroll, filters, hashes and history keep the settled camera stationary;
+  inter-page travel/fade and ambient motion remain.
+- Keep80ms acquisition,160ms preparation,100ms draw pause,96/40 pieces,
+  8M/3M combined pixels,1M per texture and three resident fields.
+  Unsupported acquisition retains the native flightPose fade without DOM scatter.
+- Snapshot CSS sharing is acquisition-local, including exact measured sizes.
+  Owner clips/pseudo content, media/ink proof and cancellation remain strict.
+- AC01 and historicalAC11–AC14 retain accepted scope. AC02–AC10/AC15 and all11
+  human gates remain open. Preview publication does not admit stable/production.
+- Rejected readiness polling/connected-image experiments are absent from delivery.
+  Earlier24-trial added-cost failures and missing native RunTask p95 remain unadmitted.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #41 / PR #67 | Authorized merge/staging: verify the security follow-up, exact current CI, successful staging promotion and actual merge; keep original full-intent work distinct. |
-| #49 / Draft PR #53 | Consolidated fragment-flight work; revalidate its current head and visual acceptance. |
-| #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
-| #45 / #36 | Check original visual/editorial/device/release gates in the live owners. |
-| #1 / #13 / #8 | First release, devices, recovery, URL/indexability and analytics activation. |
-| #7 / #5 / #6 / #2 / #11 | Rights, accepted editions, cross-repository adapter and post-launch guides. |
+| #49 / Draft PR53 | Reconcile exact current hosted bytes/checks; cold optional Home capture, paired idle added cost and physical iPad blink/smoothness/fidelity/accessibility remain open. |
+| #41 | Revalidate current editorial PR/main and remaining content gates. |
+| #39 / Draft PR40 | Pages/domain preparation and production decisions. |
+| #45 / #36 | Original visual/editorial/device/release gates. |
+| #1 / #13 / #8 | First release, native devices, recovery, URL/indexability and analytics. |
+| #7 / #5 / #6 / #2 / #11 | Rights, editions, adapters and post-launch guides. |
 
 ## Next session
 
-1. Fetch main and live #41/#49/#39 issues and linked PRs; reconcile heads/ACs.
-2. Read #41's current source review and exact PR/issue evidence before continuing.
-3. Use required current-source checks and honest review/gate evidence; update AC boxes.
-4. Refresh this handoff after a material state change; merge/release only by maintainer decision.
+1. Fetch live main, issue49/PR53 head and exact preview/check identities.
+2. Read assembly-jerk investigation, startup-idle compatibility and the hierarchy/cost predecessor.
+3. Preserve all failed cold captures; distinguish destination readiness and warm
+   bitmap parity from whole paired cost and physical-device playback acceptance.
+4. Use current issue AC mapping and existing source/browser profiles. Rebuild RI
+   after source/memory edits. Merge/promotion needs its separate maintainer decision.
 
 ## Maintenance
 
-Keep five sections within 120 lines; rebuild RI after changes. Detailed logs,
-measurements and historical checkpoints belong in their owning issue/PR/review.
-Never store private correspondence, credentials or inferred approvals.
+Keep five sections within120 lines; rebuild RI after changes. Detailed evidence
+belongs in its owning issue/PR/review. Never store private data or credentials.
