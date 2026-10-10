@@ -157,6 +157,10 @@ module.exports = function () {
       if (cache) cache.facesEligible = eligible;
     }
     if (!eligible) return false;
+    // With no registered faces, this validated system-font list cannot trigger
+    // a font load. FontFaceSet.check has the same true result without repeating
+    // native font matching for every text run in this synchronous acquisition.
+    if (cache && document.fonts.size === 0) return true;
     return document.fonts.check(value(style, 'font-size') + ' ' + families, text);
   }
   function measure(root, options) {
@@ -1203,22 +1207,31 @@ module.exports = function () {
   function nativeSVG(measured, markup) {
     const { envelope, pixelWidth, pixelHeight } = measured;
     const { content, css } = markup;
-    // Rounded pixel dimensions have independent X/Y sampling. The SVG must
-    // use those same axes rather than introduce default centered letterboxing.
+    // Keep the SVG viewport at bitmap size. WebKit can leave positioned HTML
+    // unscaled by an SVG viewBox; scale its native CSS plane instead, using the
+    // same independent rounded axes as Canvas readback and owner exclusion.
     return (
       '<svg xmlns="http://www.w3.org/2000/svg" width="' +
       pixelWidth +
       '" height="' +
       pixelHeight +
       '" preserveAspectRatio="none" viewBox="0 0 ' +
-      envelope.width +
+      pixelWidth +
       ' ' +
-      envelope.height +
+      pixelHeight +
       '"><foreignObject width="' +
-      envelope.width +
+      pixelWidth +
       '" height="' +
+      pixelHeight +
+      '"><div xmlns="http://www.w3.org/1999/xhtml" style="position:relative;width:' +
+      envelope.width +
+      'px;height:' +
       envelope.height +
-      '"><div xmlns="http://www.w3.org/1999/xhtml" style="position:relative;width:100%;height:100%">' +
+      'px;transform-origin:0 0;transform:scale(' +
+      pixelWidth / envelope.width +
+      ',' +
+      pixelHeight / envelope.height +
+      ')">' +
       '<style>' +
       escapeXML(css.join('')) +
       '</style>' +
@@ -1990,7 +2003,9 @@ module.exports = function () {
       canvas = measured.document.createElement('canvas');
       canvas.width = measured.pixelWidth;
       canvas.height = measured.pixelHeight;
-      context = canvas.getContext('2d');
+      // This temporary atlas is read back for native ownership before use.
+      // Keep the scene's drawing context separate from this CPU-read preference.
+      context = canvas.getContext('2d', { willReadFrequently: true });
       source = context && serializer(measured, context);
       if (source) image = new measured.view.Image();
       if (source && measured.fieldOwners) proofController = new measured.view.AbortController();

@@ -76,6 +76,31 @@
       "modes": ["normal", "no-canvas"],
       "full_gate": false
     },
+    "tablet_preview": {
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "trigger": "same-repository PR 53 Color preview updates",
+      "job_budget_minutes": 10,
+      "report_kinds": ["color-tablet-webkit"],
+      "engines": ["webkit"],
+      "viewports": [
+        { "width": 1024, "height": 1366 },
+        { "width": 1366, "height": 1024 }
+      ],
+      "device_scale_factor": 2,
+      "touch": true,
+      "mobile": true,
+      "modes": ["normal"],
+      "first_load_rows": 2,
+      "journeys_per_viewport": [
+        { "theme": "light", "from": "index", "to": "research" },
+        { "theme": "light", "from": "research", "to": "index" },
+        { "theme": "light", "from": "index", "to": "writing", "corridor": true },
+        { "theme": "dark", "from": "index", "to": "research" },
+        { "theme": "dark", "from": "research", "to": "index" }
+      ],
+      "full_gate": false,
+      "native_device_proof": false
+    },
     "staging": {
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "job_budget_minutes": 15,

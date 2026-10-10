@@ -1057,3 +1057,34 @@ test('workflow publishes through the official action, excludes full tests from P
     if (!match[1].startsWith('./'))
       assert.match(match[1], /@[a-f0-9]{40}$/, 'pin third-party actions');
 });
+test('PR53 tablet WebKit is bounded exact-preview feedback and cannot promote stable staging', () => {
+  const text = fs.readFileSync(
+    path.join(__dirname, '../.github/workflows/site-color-review.yml'),
+    'utf8'
+  );
+  const tablet = text.split('\n  tablet-webkit:\n')[1].split('\n  stage-evidence:\n')[0];
+  assert.match(tablet, /github.event_name == 'pull_request'/);
+  assert.match(tablet, /needs.target.outputs.number == '53'/);
+  assert.match(tablet, /needs.target.outputs.mode == 'preview'/);
+  assert.match(tablet, /needs.target.outputs.evidence != 'true'/);
+  assert.match(tablet, /needs.build.outputs.variant == 'color'/);
+  assert.match(tablet, /needs: \[target, build, publish\]/);
+  assert.match(tablet, /timeout-minutes: 10/);
+  assert.match(tablet, /ref: \$\{\{ needs.target.outputs.source \}\}/);
+  assert.match(
+    tablet,
+    /SITE_EXPECTED_PUBLIC_DIGEST: \$\{\{ needs.build.outputs.public_digest \}\}/
+  );
+  assert.match(tablet, /SITE_TEST_BASE_URL: \$\{\{ needs.publish.outputs.url \}\}/);
+  assert.match(tablet, /review-flow.cjs http staging-package/);
+  assert.match(tablet, /artifact-ids: \$\{\{ needs.build.outputs.public_artifact \}\}/);
+  assert.match(tablet, /artifact-ids: \$\{\{ needs.build.outputs.package_artifact \}\}/);
+  assert.match(tablet, /playwright install --with-deps webkit/);
+  assert.match(tablet, /color-browser.cjs --tablet-webkit/);
+  assert.match(tablet, /if: always\(\)/);
+  assert.match(tablet, /retention-days: 30/);
+  assert.doesNotMatch(tablet, /continue-on-error|site-release-checks|--branch=staging|cloudflare/);
+  const full = text.split('\n  full:\n')[1].split('\n  promote:\n')[0];
+  const promote = text.split('\n  promote:\n')[1].split('\n  status-comment:\n')[0];
+  assert.doesNotMatch(full + promote, /tablet-webkit/);
+});

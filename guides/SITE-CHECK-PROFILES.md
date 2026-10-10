@@ -11,6 +11,7 @@ belong to source-bound results in the live issue/PR, not the profile name.
 | --- | --- | --- |
 | PR source | PR updates | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
 | PR hosted smoke | Same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
+| PR53 tablet WebKit smoke | Same-repository Color PR53 preview updates | Exact artifact/HTTP identity; WebKit touch/mobile at 1024×1366 and 1366×1024, DPR2; cold resting textures, Day/Night Home–Research in both directions and Day Home–Writing corridor, closed shards, original caps and native cleanup. |
 | Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
 | Production regression | Explicit full candidate validation before an authorized release | Complete source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix. Independent/device/rights and live production-origin requirements remain separate required release gates. |
 | Diagnostics | Manual dispatch or a relevant changed-path selection | Historical export/configuration probes and experimental comparison suites. Preserve useful fault coverage; dated edition assertions do not run as every candidate's universal regression. |
@@ -31,6 +32,24 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
+
+Issue49's observed iPad fallback adds the separate `tablet-webkit` preview job in
+`site-color-review.yml`, bounded to ten minutes and PR53's Color preview. Run its
+existing owner with `node tools/quality/color-browser.cjs --tablet-webkit` against
+the declared artifact and immutable preview origin. Two fresh WebKit contexts use
+portrait 1024×1366 and landscape 1366×1024, DPR2, touch and mobile viewport behavior.
+Each requires the existing cold-first-load texture check, Day Home→Research and
+Research→Home, Day Home→Writing through the Research room, then Night
+Home→Research and Research→Home. Existing embedded validators require actual
+native-bound textures, closed fronts/rears/sides, original resource caps and
+native handoff; a plane or native fallback cannot pass. Original failure states,
+partial observations and PNGs are retained with the source/tree/public/host
+identity in `color-tablet-webkit`; both orientations run even if one fails.
+This Linux WebKit probe is focused compatibility feedback. Its report explicitly
+sets `nativeDeviceProof: false`, `fullGate: false` and
+`deploymentAuthorized: false`; it cannot establish physical iPad acceptance,
+paired added cost, the full Color12 matrix or stable promotion. The ordinary
+Chromium smoke and production/native-device requirements retain their owners.
 
 Issue #36 adds a scoped diagnostic on existing `site-writing-probe.yml`:
 the exact `site-writing-paradigm-evidence` label event on same-repository PR #38
@@ -185,7 +204,9 @@ delivery guards. Their canonical owners are the three corresponding
 `site/effects/embedded-*.cjs` modules within the same travel descriptor.
 The existing two-width Day/Night smoke observes the paired direction and skipped
 room behavior, actual resting textures/motion and native handoff. No second
-effect runtime, transition clock or hosted matrix is introduced.
+effect runtime or transition clock is introduced. The scoped tablet WebKit
+compatibility job above adds two orientation rows without changing that smoke
+or the full device/release matrix.
 The pending `G-EMBEDDED` human gate requires actual persistent-shard depth,
 fractal occlusion, faithful native texture and native handoff evidence. A source
 pass cannot tick AC15 or replace original resource, fidelity, paired-cost,

@@ -149,6 +149,11 @@ by the opaque full-width header, revalidating physical coverage after decode.
 Unknown stacking, effects or shape keep the complete viewport and native ink gates.
 SVG decode readiness and onload share one draw/proof under the same absolute
 deadline, with ordinary onload retained when decode is unavailable.
+The temporary atlas requests CPU readback preference; the scene context remains
+separate. Its SVG viewport matches bitmap pixels, while the inner native CSS
+plane applies the exact independent sampling scales, including positioned paint
+on WebKit. An empty loaded FontFaceSet with validated system families needs no
+repeated native font matching; registered faces retain per-text checks.
 Temporary captures, retained textures and solid geometry share the
 original piece, pixel, owner, descendant and text limits; unsupported capture or
 an unadmittable landing uses the existing native `flightPose` fade, with no DOM

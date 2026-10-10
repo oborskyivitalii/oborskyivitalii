@@ -5,7 +5,7 @@
   "owner": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
   "fullGate": false,
   "browserPerformanceAcceptance": false,
-  "limitations": "Original samples are synthetic native-paint/SVG fixtures and pure Node geometry timings. The svgReadiness subsection adds isolated Chromium foreignObject/Canvas readiness probes, not source-bound site performance. Neither supplies GPU, native-device, FPS or paired browser acceptance. Original deadlines and shared caps remain unchanged; paired browser gate remains open.",
+  "limitations": "Original texture/geometry samples are synthetic fixtures and pure Node timings. SVG readiness probes are isolated Chromium bitmap diagnostics. The ipadWebKit subsection records actual local WebKit/Chromium native captures and controlled readback trials; loopback emulation is not physical iPad, hosted, FPS or whole paired performance acceptance. Original deadlines and shared caps remain unchanged.",
   "texture": {
     "workload": "32 disjoint 400x20 native text owners, 100 unrelated FontFaces; original caps, one full field readback, synthetic SVG decoder",
     "pairedRuns": 25,
@@ -1110,5 +1110,1192 @@
         ]
       }
     ]
+  },
+  "ipadWebKit": {
+    "baselineCommit": "de3c41fe9530dad2179544de40edbce1651e82a0",
+    "scope": "Actual Linux WebKit26.6 and local Chromium138 tablet/native bitmap diagnostics; sourceDirty candidate, not physical-device or release admission",
+    "textureSourceSha256": "1af1ce23c932092b7eb8d6311107cde18e6f61b831c3bc90fb704e54259ce952",
+    "candidatePublicDigest": "6070b82fe881a62c650360a5a14ac96122e6c4db212e52ef61a3eeeec727ac33",
+    "nativeCaptures": {
+      "scope": "canonical factory native capture; full/compact shared caps and original80/160 deadlines; no scene CPU; not hosted/device acceptance",
+      "rows": [
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "research",
+          "width": 1024,
+          "height": 1366,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 19,
+              "owners": 14
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 2
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 30
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 24
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 4,
+              "owners": 1
+            },
+            {
+              "stage": "total",
+              "milliseconds": 81
+            }
+          ],
+          "rejects": [],
+          "size": [
+            892,
+            1120
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "writing",
+          "width": 1024,
+          "height": 1366,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 30,
+              "owners": 22
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 4
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 41
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 23
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 1,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 102
+            }
+          ],
+          "rejects": [],
+          "size": [
+            886,
+            1128
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "research",
+          "width": 1366,
+          "height": 1024,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 24,
+              "owners": 13
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 5
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 31
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 28
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 5,
+              "owners": 1
+            },
+            {
+              "stage": "total",
+              "milliseconds": 94
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1158,
+            862
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "writing",
+          "width": 1366,
+          "height": 1024,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 26,
+              "owners": 18
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 3
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 33
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 22
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 2,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 88
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1165,
+            858
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "research",
+          "width": 1440,
+          "height": 900,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 22,
+              "owners": 13
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 3
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 28
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 19
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 2,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 77
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1248,
+            800
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "writing",
+          "width": 1440,
+          "height": 900,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 25,
+              "owners": 16
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 2
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 21
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 24
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 1,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 76
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1241,
+            805
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "research",
+          "width": 390,
+          "height": 844,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 22,
+              "owners": 11
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 1
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 17
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 5
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 1,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 48
+            }
+          ],
+          "rejects": [],
+          "size": [
+            382,
+            708
+          ]
+        },
+        {
+          "engine": "webkit",
+          "version": "26.6",
+          "route": "writing",
+          "width": 390,
+          "height": 844,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 24,
+              "owners": 7
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 1
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 15
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 7
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 1,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 51
+            }
+          ],
+          "rejects": [],
+          "size": [
+            382,
+            698
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "research",
+          "width": 1024,
+          "height": 1366,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 22.099999997764826,
+              "owners": 14
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 6.800000000745058
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 27
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 15.5
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 3.600000001490116,
+              "owners": 1
+            },
+            {
+              "stage": "total",
+              "milliseconds": 76.40000000223517
+            }
+          ],
+          "rejects": [],
+          "size": [
+            892,
+            1120
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "writing",
+          "width": 1024,
+          "height": 1366,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 25.699999999254942,
+              "owners": 22
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 2.899999998509884
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 24.199999999254942
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 17.300000000745058
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 1.3999999985098839,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 72.90000000223517
+            }
+          ],
+          "rejects": [],
+          "size": [
+            886,
+            1128
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "research",
+          "width": 1366,
+          "height": 1024,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 17.300000000745058,
+              "owners": 13
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 2.5
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 50.399999998509884
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 10.800000000745058
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 3.399999998509884,
+              "owners": 1
+            },
+            {
+              "stage": "total",
+              "milliseconds": 85.59999999776483
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1158,
+            862
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "writing",
+          "width": 1366,
+          "height": 1024,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 27.599999997764826,
+              "owners": 18
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 3.2000000029802322
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 16.100000001490116
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 12.699999999254942
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 0.7999999970197678,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 62.099999997764826
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1165,
+            858
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "research",
+          "width": 1440,
+          "height": 900,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 20.199999999254942,
+              "owners": 13
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 2.699999999254942
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 31.300000000745058
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 10.199999999254942
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 0.8000000007450581,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 66.80000000074506
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1248,
+            800
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "writing",
+          "width": 1440,
+          "height": 900,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 17.900000002235174,
+              "owners": 16
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 2.400000002235174
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 12
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 10.899999998509884
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 0.8000000007450581,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 45.399999998509884
+            }
+          ],
+          "rejects": [],
+          "size": [
+            1241,
+            805
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "research",
+          "width": 390,
+          "height": 844,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 19.800000000745058,
+              "owners": 11
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 1.699999999254942
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 10.199999999254942
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 5.099999997764826
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 0.7000000029802322,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 39.100000001490116
+            }
+          ],
+          "rejects": [],
+          "size": [
+            382,
+            708
+          ]
+        },
+        {
+          "engine": "chromium",
+          "version": "138.0.7204.0",
+          "route": "writing",
+          "width": 390,
+          "height": 844,
+          "ready": true,
+          "timings": [
+            {
+              "stage": "measure",
+              "milliseconds": 19.5,
+              "owners": 7
+            },
+            {
+              "stage": "serialize",
+              "milliseconds": 1.1000000014901161
+            },
+            {
+              "stage": "decode",
+              "milliseconds": 8
+            },
+            {
+              "stage": "readback",
+              "milliseconds": 5.199999999254942
+            },
+            {
+              "stage": "proof",
+              "milliseconds": 0.6000000014901161,
+              "owners": 0
+            },
+            {
+              "stage": "total",
+              "milliseconds": 36
+            }
+          ],
+          "rejects": [],
+          "size": [
+            382,
+            698
+          ]
+        }
+      ]
+    },
+    "canonicalBorderAlignment": {
+      "plane": {
+        "left": 12,
+        "top": 129,
+        "right": 984,
+        "bottom": 1366,
+        "width": 972,
+        "height": 1237
+      },
+      "bitmap": [
+        886,
+        1128
+      ],
+      "mappedNativeBorder": {
+        "left": 61.983539094650205,
+        "right": 849.5390946502058,
+        "top": 786.585084882781,
+        "bottom": 787.49696847211
+      },
+      "ownershipPixelBox": {
+        "left": 61,
+        "right": 850,
+        "top": 786,
+        "bottom": 788
+      },
+      "actualIsolated": {
+        "label": "isolated",
+        "alphaCount": 788,
+        "rows": [
+          {
+            "y": 787,
+            "count": 788,
+            "left": 62,
+            "right": 849
+          }
+        ],
+        "rowsCount": 1,
+        "size": [
+          886,
+          1128
+        ],
+        "ms": 33
+      }
+    },
+    "readbackABBA": {
+      "baselineMs": [
+        73,
+        67
+      ],
+      "willReadFrequentlyMs": [
+        20,
+        22
+      ],
+      "baselineTotalMs": [
+        135,
+        125
+      ],
+      "preferredTotalMs": [
+        79,
+        88
+      ],
+      "allOriginalSamplesRejectBlankNav": true
+    },
+    "chromiumTablet": {
+      "viewports": [
+        [
+          1024,
+          1366
+        ],
+        [
+          1366,
+          1024
+        ]
+      ],
+      "dpr": 2,
+      "beforeSolids": 0,
+      "beforeJourneys": 10,
+      "afterSolids": 10,
+      "afterJourneys": 10,
+      "paintObservations": 237,
+      "coldMeasureMs": [
+        11.9,
+        7.4
+      ],
+      "coldTotalMs": [
+        139.2,
+        138.9
+      ],
+      "maximumResidentPixels": 2996752,
+      "maximumPieces": 96,
+      "pageErrors": 0
+    },
+    "webkitRemainingColdPortrait": {
+      "quietRepeatPass": false,
+      "failure": "preparation-deadline",
+      "measureMs": 17,
+      "serializeMs": 4,
+      "decodeMs": 219,
+      "totalMs": 241,
+      "disposition": "Investigate first-load scheduling separately; retain failed observation without raising capture limits"
+    },
+    "rawBindings": [
+      {
+        "filename": "issue49-css-scale-full.json",
+        "sha256": "3c4763e11db08a9b3fb90207610398cd7c54e523c23f0e7f622da4ab0b0d12d6"
+      },
+      {
+        "filename": "issue49-webkit-border-canonical.json",
+        "sha256": "1396dc3dee85010f578dd03b3cfc5647c900a8e0f546c4cdd560ff8c4a077e39"
+      },
+      {
+        "filename": "issue49-tablet-final-candidate-probe.json",
+        "sha256": "4b040583cc70efae1a9c795750ecbe4fccd7b963a2f827067b5c1ee60342d58f"
+      },
+      {
+        "filename": "readback-preference.json",
+        "sha256": "8f4259d1cfe847cdcc4d467865c9fe42292641f5965b2237238609a70986832d"
+      },
+      {
+        "filename": "result.json",
+        "sha256": "9b5d421648327795c317c62087d4fe562be7b4dfed553178369721c7f4ae062c"
+      }
+    ],
+    "fullGate": false,
+    "nativeDeviceProof": false,
+    "performanceAcceptance": false,
+    "userReportedPreview": "https://c91f3438.oborskyi-author-ci-staging.pages.dev/research",
+    "historicalPreviewSourceVerified": false,
+    "maintainedLocalWebKitTablet": {
+      "kind": "color-tablet-webkit",
+      "pass": false,
+      "sourceCommit": "de3c41fe9530dad2179544de40edbce1651e82a0",
+      "sourceTree": "2c6946ced983e2db4fe613cfde80592436ee00cf",
+      "artifactDigest": "6070b82fe881a62c650360a5a14ac96122e6c4db212e52ef61a3eeeec727ac33",
+      "variant": {
+        "id": "color",
+        "contract": 1,
+        "fingerprint": "961a0d728e41585bf6e4fd7ed3e73a37dff033edf977929ea3508982dfa3a862",
+        "baseEngine": "8c5d4b553d0e123d31164e214478ee28e66b341d949b34a070d2d3d3820db085",
+        "effects": [
+          "travel"
+        ]
+      },
+      "profile": "tablet-preview",
+      "browsers": [
+        {
+          "engine": "webkit",
+          "version": "26.6"
+        }
+      ],
+      "fullGate": false,
+      "nativeDeviceProof": false,
+      "rows": [
+        {
+          "width": 1024,
+          "height": 1366,
+          "pass": false,
+          "error": "page.waitForFunction: Timeout 5000ms exceeded.",
+          "failureScreenshot": "screenshots/1024x1366-tablet-failure.png",
+          "responseError": null,
+          "lastFailure": {
+            "stage": "incoming",
+            "route": "research",
+            "reason": "preparation-deadline",
+            "tag": "div",
+            "path": []
+          },
+          "captureTimings": {
+            "stage": "incoming",
+            "route": "research",
+            "measureMs": 16,
+            "measureOwners": 14,
+            "serializeMs": 3,
+            "decodeMs": 199,
+            "totalMs": 219
+          },
+          "firstLoadPassed": false,
+          "observedJourneys": 0,
+          "journeys": [],
+          "residentMax": {},
+          "captures": []
+        },
+        {
+          "width": 1366,
+          "height": 1024,
+          "pass": true,
+          "error": null,
+          "failureScreenshot": null,
+          "responseError": null,
+          "lastFailure": null,
+          "captureTimings": null,
+          "firstLoadPassed": true,
+          "observedJourneys": 5,
+          "journeys": [
+            {
+              "from": "index",
+              "to": "research",
+              "theme": "light",
+              "frames": 35,
+              "corridor": false,
+              "rectDeltaPx": 0,
+              "lineDeltaPx": 0
+            },
+            {
+              "from": "research",
+              "to": "index",
+              "theme": "light",
+              "frames": 32,
+              "corridor": false,
+              "rectDeltaPx": 0,
+              "lineDeltaPx": 0
+            },
+            {
+              "from": "index",
+              "to": "writing",
+              "theme": "light",
+              "frames": 35,
+              "corridor": true,
+              "rectDeltaPx": 0,
+              "lineDeltaPx": 0
+            },
+            {
+              "from": "index",
+              "to": "research",
+              "theme": "dark",
+              "frames": 35,
+              "corridor": false,
+              "rectDeltaPx": 0,
+              "lineDeltaPx": 0
+            },
+            {
+              "from": "research",
+              "to": "index",
+              "theme": "dark",
+              "frames": 33,
+              "corridor": false,
+              "rectDeltaPx": 0,
+              "lineDeltaPx": 0
+            }
+          ],
+          "residentMax": {
+            "pieces": 96,
+            "owners": 3,
+            "descendants": 72,
+            "textBytes": 11589,
+            "layerPixels": 2996086
+          },
+          "captures": [
+            {
+              "stage": "departure",
+              "route": "index",
+              "measureMs": 8,
+              "measureOwners": 9,
+              "serializeMs": 50,
+              "decodeMs": 131,
+              "totalMs": 190
+            },
+            {
+              "stage": "incoming",
+              "route": "writing",
+              "measureMs": 7,
+              "measureOwners": 10,
+              "serializeMs": 0,
+              "decodeMs": 22,
+              "readbackMs": 8,
+              "proofMs": 7,
+              "proofOwners": 0,
+              "totalMs": 46
+            },
+            {
+              "stage": "departure",
+              "route": "index",
+              "measureMs": 9,
+              "measureOwners": 9,
+              "serializeMs": 30,
+              "decodeMs": 3,
+              "readbackMs": 10,
+              "proofMs": 0,
+              "proofOwners": 0,
+              "totalMs": 52
+            },
+            {
+              "stage": "departure",
+              "route": "research",
+              "measureMs": 9,
+              "measureOwners": 13,
+              "serializeMs": 2,
+              "decodeMs": 20,
+              "readbackMs": 12,
+              "proofMs": 21,
+              "proofOwners": 1,
+              "totalMs": 64
+            },
+            {
+              "stage": "incoming",
+              "route": "index",
+              "measureMs": 13,
+              "measureOwners": 9,
+              "serializeMs": 40,
+              "decodeMs": 21,
+              "readbackMs": 12,
+              "proofMs": 3,
+              "proofOwners": 0,
+              "totalMs": 93
+            },
+            {
+              "stage": "departure",
+              "route": "index",
+              "measureMs": 7,
+              "measureOwners": 9,
+              "serializeMs": 25,
+              "decodeMs": 72,
+              "readbackMs": 10,
+              "proofMs": 0,
+              "proofOwners": 0,
+              "totalMs": 118
+            },
+            {
+              "stage": "incoming",
+              "route": "talks",
+              "measureMs": 23,
+              "measureOwners": 9,
+              "serializeMs": 2,
+              "decodeMs": 30,
+              "readbackMs": 10,
+              "proofMs": 1,
+              "proofOwners": 0,
+              "totalMs": 75
+            },
+            {
+              "stage": "incoming",
+              "route": "writing",
+              "measureMs": 10,
+              "measureOwners": 10,
+              "serializeMs": 1,
+              "decodeMs": 13,
+              "readbackMs": 11,
+              "proofMs": 0,
+              "proofOwners": 0,
+              "totalMs": 37
+            },
+            {
+              "stage": "departure",
+              "route": "index",
+              "measureMs": 18,
+              "measureOwners": 9,
+              "serializeMs": 88,
+              "decodeMs": 23,
+              "readbackMs": 12,
+              "proofMs": 1,
+              "proofOwners": 0,
+              "totalMs": 147
+            },
+            {
+              "stage": "incoming",
+              "route": "writing",
+              "measureMs": 9,
+              "measureOwners": 10,
+              "serializeMs": 2,
+              "decodeMs": 75,
+              "readbackMs": 16,
+              "proofMs": 2,
+              "proofOwners": 0,
+              "totalMs": 105
+            },
+            {
+              "stage": "departure",
+              "route": "research",
+              "measureMs": 8,
+              "measureOwners": 13,
+              "serializeMs": 2,
+              "decodeMs": 14,
+              "readbackMs": 7,
+              "proofMs": 22,
+              "proofOwners": 1,
+              "totalMs": 54
+            },
+            {
+              "stage": "incoming",
+              "route": "index",
+              "measureMs": 17,
+              "measureOwners": 9,
+              "serializeMs": 49,
+              "decodeMs": 22,
+              "readbackMs": 13,
+              "proofMs": 1,
+              "proofOwners": 0,
+              "totalMs": 104
+            }
+          ],
+          "latestCaptureAtFirstLoad": {
+            "stage": "departure",
+            "route": "index",
+            "measureMs": 11,
+            "measureOwners": 9,
+            "serializeMs": 31,
+            "decodeMs": 31,
+            "readbackMs": 10,
+            "proofMs": 0,
+            "proofOwners": 0,
+            "totalMs": 84
+          }
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "screenshots/1366-light-index-research-idle-research.png",
+          "bytes": 2040797
+        },
+        {
+          "file": "screenshots/1366-dark-index-research-idle-research.png",
+          "bytes": 1645199
+        },
+        {
+          "file": "screenshots/1366-light-index-writing-native-writing.png",
+          "bytes": 1623089
+        },
+        {
+          "file": "screenshots/1366-dark-index-research-first-load-research.png",
+          "bytes": 1757482
+        },
+        {
+          "file": "screenshots/1366-light-research-index-reverse-idle-research.png",
+          "bytes": 1909916
+        },
+        {
+          "file": "screenshots/1366-light-index-research-during-assembly.png",
+          "bytes": 2188493
+        },
+        {
+          "file": "screenshots/1366-light-index-research-mid-forward.png",
+          "bytes": 2183167
+        },
+        {
+          "file": "screenshots/1366-light-index-research-idle-writing.png",
+          "bytes": 1877005
+        },
+        {
+          "file": "screenshots/1366-light-index-writing-idle-research.png",
+          "bytes": 1885414
+        },
+        {
+          "file": "screenshots/1366-dark-research-index-reverse-idle-research.png",
+          "bytes": 1645984
+        },
+        {
+          "file": "screenshots/1024x1366-tablet-failure.png",
+          "bytes": 1497010
+        },
+        {
+          "file": "screenshots/1366-dark-index-research-idle-writing.png",
+          "bytes": 1571396
+        },
+        {
+          "file": "screenshots/1366-dark-index-research-during-assembly.png",
+          "bytes": 1965952
+        },
+        {
+          "file": "screenshots/1366-light-index-writing-corridor-research.png",
+          "bytes": 2116324
+        },
+        {
+          "file": "screenshots/1366-dark-index-research-mid-forward.png",
+          "bytes": 1283111
+        },
+        {
+          "file": "screenshots/1366-light-index-writing-during-assembly.png",
+          "bytes": 1936341
+        }
+      ],
+      "rawReport": {
+        "file": "color-tablet-webkit.json",
+        "bytes": 65257149,
+        "sha256": "e2414880f435382d0ff5076b682e2fba11d97ee1aef03894e801ba49d75c3bb0"
+      }
+    },
+    "idleTimerControl": {
+      "scope": "Exactly2freshportraitcontexts A→B, quiet controlled localWebKit26.6; existing budgets unchanged; native viewport1024×1366 DPR2 mobile+touch; no physicaliPad admission",
+      "proven": false,
+      "disposition": "Provisional flight.cjs timer fallback discarded; exactly2contexts bothcoldpreloadpassed, so causal benefit unproved. No retries.",
+      "transportCaveat": "A/Bused one shared plain(uncompressed) Node staticserver with baseline/fallback URL prefixes. Earlierfailed strict maintained runs used tools/quality/serve.cjs with gzip, no-store, artifactbinding. The A/Bproves delay/cancellationmechanism compatibility, not resolutionof maintained coldportrait failure.",
+      "userReportedPreview": "https://c91f3438.oborskyi-author-ci-staging.pages.dev/research",
+      "rows": [
+        {
+          "name": "baseline",
+          "firstLoadPass": true,
+          "artifactDigest": "6070b82fe881a62c650360a5a14ac96122e6c4db212e52ef61a3eeeec727ac33",
+          "engineIdentity": "961a0d728e41585bf6e4fd7ed3e73a37dff033edf977929ea3508982dfa3a862"
+        },
+        {
+          "name": "fallback500",
+          "firstLoadPass": true,
+          "artifactDigest": "eadb0177d7b61ad2549909266c3a0b53fbf7ba3a77405a738e4658e0ec94c4c3",
+          "engineIdentity": "16a163576269b3c5c1fae01614a331f106f993fd709eb0eb812de45c7c93abaf"
+        }
+      ],
+      "rawSha256": "f82829cd4824e10a06301091b13519e1aac278727486c02479954eaacd31c102"
+    },
+    "sourceValidation": {
+      "integrated": {
+        "tests": 174,
+        "passed": 174,
+        "failed": 0,
+        "skipped": 0
+      },
+      "focusedHarness": {
+        "tests": 66,
+        "passed": 66,
+        "failed": 0
+      },
+      "independentHarness": {
+        "tests": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "nativeSourceIndependentReview": "no blocker",
+      "maintainedHarnessIndependentReview": "no blocker",
+      "samplingNegative": "removing CSS-plane scaling fails the positioned native ink regression",
+      "physicalIPadVerified": false
+    }
   }
 }

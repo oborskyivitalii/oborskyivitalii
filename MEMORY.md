@@ -4,79 +4,72 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 ## Snapshot
 
-- Main revalidated at `93a818d`: PR67 merged and stable staging accepted in
-  issue41. Authored positioning/sitecase content and templates match main.
-  Issue41 stays open for its original AC02–AC06; revalidate live state.
-- Issue49 / Draft PR53 remains the sole content-world execution route.
-  Its original remote source was `7b1a796`; a true `--rebase-merges` onto
-  main93a818d preserved history. Rebased checkpoint: `0cfa999`.
-  Canonical source owners retained main content; generated artifacts were rebuilt.
-- Current continuation fixes transactional field replacement, shares bounded
-  texture ownership/font admission work, caches solid geometry/branch work and
-  returns unavailable presentation to existing native fade. Legacy DOM scatter
-  is absent from the active serialized travel descriptor.
+- Main revalidated at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
+  Issue41 positioning/sitecase work remains distinct; revalidate its live route.
+- Issue49 / Draft PR53 is the sole persistent content-world execution route.
+  Published baseline `de3c41f`, tree `2c6946c`, preserves rebased history and
+  concurrent23622 complete opaque-header proof. Earlier Chromium hosted smoke
+  passes13 trips per width1440/390, but never establishes Safari/iPad readiness.
+- The maintainer reports native fallback on iPad Pro M2 12.9 at preview
+  `c91f3438` /research. Actual Linux
+  WebKit26.6 reproduces missing nav/section border ink; positioned HTML ignores
+  SVG viewBox scaling. The current continuation keeps SVG bitmap dimensions
+  and scales its native CSS plane on the same rounded X/Y pixel axes. Original
+  clips, exclusive ink proof, clocks, caps and texture surfaces remain.
+- Local Chromium138 font matching consumed71/83ms of native acquisition. A
+  loaded empty FontFaceSet with validated system families now uses its exact
+  nonloading result; registered/unknown-size sets retain actual per-text checks.
+  Temporary atlas CPU-read preference reduces WebKit readback cost; the scene
+  context remains unchanged. Canonical16 actual native captures pass across
+  both engines/four viewports. Full cold/route/hosted evidence is separately
+  recorded; initial decode-deadline misses remain failed observations.
 - Read the same [issue49 handoff](review/issue-49/2026-10-08-analysis.md) and
-  [raw synthetic diagnostics](review/issue-49/2026-10-10-performance.json).
-  Pure geometry snapshots remain bit-exact; synthetic timings are not browser
-  performance acceptance. Exactb9c9 Basic/Navigation/owning CI pass; compact
-  hosted smoke passes all13 world trips and six Day/Night core checkpoints.
-  Bounded idle scene capture pause reduces the failed wide Writing capture
-  from184 to35.1ms in one run. Strict ink proof now rejects a paper stripe fully
-  hidden behind the opaque sticky header. Current correction clips proven native
-  visibility inside original clocks; independent122-case review passes. Exact
-  published-head hosted proof is still required; no whole-browser pass is claimed.
-  Parallel source23622 preserves a complete physical header proof; Basic,
-  Navigation and acceptance pass. The interrupted-session append preserves it
-  and adds one guarded Image.decode/onload readiness path with original limits.
-- Prior failed preview37985227296 remains failed evidence: desktop cold
-  preparation timed out; mobile warming lost current Home. Its raw ZIP was
-  inspected during this continuation; no old result is reclassified as passing.
-- Issue58/PR60 refactoring and issue61/PR63 PMDay/ribbon removal are merged.
-  Harness issue65/PR66 is merged and closed; source and scanner rules remain.
+  [bounded diagnostics](review/issue-49/2026-10-10-performance.json). A scoped
+  WebKit tablet preview profile requires actual default textures, forward/reverse
+  and Home→Writing corridor at both DPR2 orientations, without allowing fallback
+  to count as required textured success. It is not physical iPad acceptance.
+- Earlier failed previews/cold probes retain their failed status. Source/CI/
+  artifact identities must be revalidated live; green Chromium cannot admit Safari.
 
 ## Decisions
 
-- The maintainer requests rebase, preservation of the moving textured closed
-  3D fractal world, better performance/stability and removal of scatter fallback.
-  Continue issue49/PR53; do not create another owner.
-- Successful embedded presentation retains one scene/camera/clock, existing
-  branching, front/rear/side volume and native landing. Unavailable capture or
-  paired admission uses the existing native flightPose fade.
-- Original80/160ms deadlines, combined temporary/resident caps and three-field
-  limit remain. Failed replacement retains the current field without allowing
-  mismatched/stale paint to hide native content.
-- Capture pause retains the painted scene and visible native page on the same
-  RAF; initial paint and active journeys stay live. Exact-head hosted proof is
-  required. Owning acceptance has17 checks,15 automated criteria and11 human gates.
-- Header occlusion may exclude only paint proven invisible beneath a full-width
-  opaque header above the isolated capture plane. Preserve native coordinates,
-  inspect outsets first and revalidate coverage after decode; uncertain proof
-  keeps original viewport and visible-owner ink gates.
-- Independent settled-camera audit passes128 source cases: native reading scroll
-  cannot fly the active camera; inter-route travel/fade and ambient motion remain.
-- AC01 and accepted historicalAC11–AC14 retain their original scope. AC02–AC10
-  andAC15 remain open for whole visual/device/accessibility/paired-cost/delivery
-  gates. Preview authorization does not authorize stable promotion or merge.
-- Three fields cover the requested Home→Writing corridor; longer skips cannot
-  retain every intermediate field under the same cap. Keep broader gates open.
+- Continue issue49/PR53 across corrections; no new issue or execution PR.
+  Preserve moving actual textured closed3D fractal content, one scene/camera/clock,
+  reverse retention and the Home→Writing intermediate Research corridor.
+- Native reading scroll, filters, hashes and position history keep the settled
+  camera stationary. Inter-page flight/fade and ambient scene motion remain.
+- Unavailable embedded capture uses the existing native flightPose fade; no
+  legacy DOM scatter. Original80/160ms clocks, shared temporary/resident caps
+  and three-field limit stay. Failed replacement retains valid current pixels,
+  but stale/mismatched paint can never hide native content.
+- Header exclusion requires opaque rectangular shape, above-source stacking,
+  actual full-width physical coverage and a fresh post-decode proof. Unknown
+  cases retain the original viewport/ink gates.
+- Three fields cover Home→Writing; longer skips cannot retain all intermediate
+  pages within the same cap. Whole visual/device/paired-cost gates stay open.
+- AC01 and accepted historicalAC11–AC14 preserve original scope. AC02–AC10
+  andAC15 stay open. Preview is authorized; stable promotion/merge/production
+  and whole physical-device acceptance require their separate decisions.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #49 / Draft PR53 | Verify final source/CI/preview and cold/forward/reverse/skip/fallback outcomes; record exact evidence and remaining physical-device/paired-cost gates. |
-| #41 / merged PR67 | Original AC02–AC06 remain open; preserve accepted new positioning/sitecase and verified stable staging. |
-| #39 / Draft PR40 | GitHub Pages/domain preparation; retain production/domain decisions. |
-| #45 / #36 | Check original visual/editorial/device/release gates live. |
+| #49 / Draft PR53 | Verify corrected exact source, WebKit tablet/Chromium hosted reports and immutable preview; retain cold misses; complete physical iPad, visual/accessibility and paired-cost gates. |
+| #41 | Revalidate current editorial PR/main and original AC02–AC06; preserve accepted positioning/sitecase. |
+| #39 / Draft PR40 | Pages/domain preparation; preserve production/domain decisions. |
+| #45 / #36 | Original visual/editorial/device/release gates remain separate. |
 | #1 / #13 / #8 | First release, native devices, recovery, URL/indexability and analytics activation. |
 | #7 / #5 / #6 / #2 / #11 | Rights, editions, cross-repo adapter and post-launch guides. |
 
 ## Next session
 
-1. Fetch live main, issue49 and PR53; verify head/checks and preview identities.
-2. Read current continuation in the same issue49 handoff; retain failed reports.
-3. Complete source-bound browser/cost evidence before claiming whole acceptance.
-4. Refresh actual issue boxes and this memory; merge/release needs its decision.
+1. Fetch live main, issue49/PR53 head, checks and exact preview identities.
+2. Read the iPad fallback/WebKit correction in the same issue49 handoff.
+3. Check actual default textured readiness on the reported iPad/URL; native
+   device and whole visual/paired-cost admission cannot come from Linux emulation.
+4. Refresh source-bound evidence, actual issue boxes and this handoff; do not
+   merge/promote without the applicable decision.
 
 ## Maintenance
 

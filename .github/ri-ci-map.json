@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
-    "date": "2026-10-09",
-    "summary": "Issue49 retains Draft PR53,15 criteria and17 shared owning checks. The continuation preserves concurrent23622 physical header occlusion and independent Color coverage, adding guarded decoded SVG readiness with the original80/160ms clocks, exclusive alpha and shared caps. Stationary reading camera, inter-route travel, persistent textured solids and native fade remain. Exact-head hosted, visual/device/paired-cost and merge gates stay separate."
+    "date": "2026-10-10",
+    "summary": "Issue49 retains Draft PR53,15 criteria and17 owning checks. The iPad continuation corrects native CSS-plane sampling in WebKit, empty loaded system-font matching and temporary atlas readback without changing80/160ms clocks, exclusive ink proof, scene budgets or the stationary reading camera. A scoped artifact-bound WebKit tablet preview checks both DPR2 touch orientations and required textured journeys; local cold portrait misses remain failed observations. Whole native-device, visual/paired-cost and merge gates stay separate."
   },
   "layers": [
     {
@@ -426,7 +426,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "009de01d90b7e74fafb510194347a0ed29b4eb9033eaa72a5786d7d3c8ae3089",
+    "digest": "311bd0b80324f12a691f3d033e91c63b4b25cce4af94e10f67c4ad571db132c9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -550,7 +550,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "1380817817ed73ccf18359afcc32d366bf8d96b0a4e46f062a2a2491a80e2752"
+        "sha256": "603df71c601f2ff919b65c420205a9ec16c291391096c80994a917757962fcb5"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -598,7 +598,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "727ec6d4cee66aee986d1fa8d4184ba9b8d556c0a0031690d62d78eb206ec5f6"
+        "sha256": "83d9106ac99f16d3e9f6369b3fb2ded0f1ad3ef4842cbdf9fd7e37aaf1b5fa61"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -614,7 +614,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "54ce5a773a65525e9a109d4194f35173d9bb381a6825eb20be8c15a8d0a9d8c5"
+        "sha256": "86bf89905fbd32bff04e28dad39f7c805e179c916254adbae9fd1da97eba95fa"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -726,7 +726,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "097ec9cab9f6e9299819f85366a17a0a7966b1f8bca946fead2c9e411ee654db"
+        "sha256": "a87510c4547947aadaf6faaba5697c502f6424ad85e4737249f74609057c9ad1"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -1244,13 +1244,13 @@ async function embeddedPrototype(page, theme, expected = { from: 'index', to: 'r
     await embeddedRest(page, order[order.indexOf(expected.from) + 1], expected.from);
     evidence.initial = await page.evaluate(() => window.__snapshotEmbeddedPrototype());
     if (expected.from === 'index') await embeddedScreenshot(page, evidence, 'idle-research');
-    await page
-      .locator(
-        'body > .site-header nav a[href="' +
-          (expected.to === 'index' ? './' : expected.to + '.html') +
-          '"]'
-      )
-      .click();
+    const destination = page.locator(
+      'body > .site-header nav a[href="' +
+        (expected.to === 'index' ? './' : expected.to + '.html') +
+        '"]'
+    );
+    if (expected.touch) await destination.tap();
+    else await destination.click();
     if (expected.from === 'index') {
       await page.waitForFunction(
         () => {
@@ -3045,47 +3045,252 @@ function failedScenario(error, engine, width, theme) {
   if (error.embeddedCheckpoints) row.embeddedCheckpoints = error.embeddedCheckpoints;
   return row;
 }
+function tabletCases() {
+  return [
+    { width: 1024, height: 1366 },
+    { width: 1366, height: 1024 },
+  ];
+}
+async function tabletScenario(browser, url, artifact, viewport, helpers = {}) {
+  const context = await browser.newContext({
+    viewport,
+    deviceScaleFactor: 2,
+    isMobile: true,
+    hasTouch: true,
+    reducedMotion: 'no-preference',
+  });
+  const steps = {
+    firstLoad: embeddedFirstLoad,
+    prototype: embeddedPrototype,
+    settled,
+    preferences,
+    travel,
+    ...helpers,
+  };
+  const embeddedCheckpoints = { firstLoad: null, journeys: [] },
+    errors = [],
+    checkedFiles = new Set(),
+    { trackResponses, drainResponses } = require('./local-browser.cjs');
+  let page, responseChecks;
+  try {
+    await context.addInitScript(canvasPaintProbe);
+    await context.addInitScript(paintProbe);
+    page = await context.newPage();
+    page.on('pageerror', (error) => errors.push(error.message));
+    responseChecks = trackResponses(page, url, artifact, checkedFiles, errors);
+    await page.goto(url + '/index.html');
+    await steps.settled(page, 'index');
+    const identity = await page.evaluate(() => ({
+      id: document.querySelector('meta[name="site-variant"]').content,
+      engine: document.querySelector('meta[name="site-engine"]').content,
+      flight: document.getElementById('content-flight')?.checked,
+      edge: document.getElementById('end-scroll')?.checked,
+      fragments: document.getElementById('fragment-flight-preview')?.checked,
+      viewport: [innerWidth, innerHeight],
+      deviceScaleFactor: devicePixelRatio,
+      touch: 'ontouchstart' in window && matchMedia('(pointer:coarse)').matches,
+      maxTouchPoints: navigator.maxTouchPoints,
+    }));
+    assert.equal(identity.id, 'color');
+    assert.equal(identity.engine, artifact.variant.fingerprint);
+    for (const key of ['flight', 'edge', 'fragments', 'touch'])
+      assert.equal(identity[key], true, 'tablet default ' + key);
+    assert.deepEqual(identity.viewport, [viewport.width, viewport.height]);
+    assert.equal(identity.deviceScaleFactor, 2);
+    embeddedCheckpoints.firstLoad = await steps.firstLoad(page);
+    const journeys = embeddedCheckpoints.journeys;
+    const forward = await steps.prototype(page, 'light', {
+      from: 'index',
+      to: 'research',
+      touch: true,
+    });
+    journeys.push(forward);
+    journeys.push(
+      await steps.prototype(page, 'light', { from: 'research', to: 'index', touch: true })
+    );
+    journeys.push(
+      await steps.prototype(page, 'light', {
+        from: 'index',
+        to: 'writing',
+        rest: false,
+        corridor: true,
+        touch: true,
+        researchCamera: forward.nativeHandoff.camera,
+      })
+    );
+    await steps.preferences(page, 'fragment-flight-preview', false);
+    await steps.travel(page, 'index');
+    journeys.push(
+      await steps.prototype(page, 'dark', { from: 'index', to: 'research', touch: true })
+    );
+    journeys.push(
+      await steps.prototype(page, 'dark', { from: 'research', to: 'index', touch: true })
+    );
+    const cleanup = await page.evaluate(fragmentCleanupState);
+    assert.equal(cleanup.nativeOpacity, 1, 'tablet native content remains opaque');
+    assert.equal(cleanup.nativeHidden, 0, 'tablet handoff restores every native owner');
+    assert.equal(cleanup.pieces, 0, 'tablet handoff leaves no detached DOM shards');
+    assert.equal(cleanup.layers, 0, 'tablet handoff leaves no detached fragment layers');
+    assert.deepEqual(cleanup.fragmentFields, [], 'tablet handoff clears transition fields');
+    assert.equal(cleanup.motion, 'Motion: on');
+    await drainResponses(responseChecks);
+    assert.deepEqual(errors, []);
+    return {
+      engine: 'webkit',
+      ...viewport,
+      deviceScaleFactor: 2,
+      touch: true,
+      mode: 'normal',
+      pass: true,
+      identity,
+      checkedFiles: [...checkedFiles].sort(),
+      firstLoad: embeddedCheckpoints.firstLoad,
+      embedded: journeys,
+      cleanup,
+    };
+  } catch (error) {
+    error.embeddedCheckpoints = embeddedCheckpoints;
+    if (page) {
+      error.tabletFailureState = await page.evaluate(embeddedPrototypeState).catch(() => null);
+      const name = viewport.width + 'x' + viewport.height + '-tablet-failure.png';
+      fs.mkdirSync(path.join(out, 'screenshots'), { recursive: true });
+      error.tabletFailureScreenshot = await page
+        .screenshot({ path: path.join(out, 'screenshots', name) })
+        .then(
+          () => 'screenshots/' + name,
+          () => null
+        );
+    }
+    if (responseChecks)
+      await drainResponses(responseChecks).catch((failure) => {
+        error.tabletResponseError = failure.message;
+      });
+    throw error;
+  } finally {
+    await context.close();
+  }
+}
+async function collectTablet(browser, url, artifact, scenario = tabletScenario) {
+  const rows = [];
+  for (const viewport of tabletCases()) {
+    try {
+      rows.push(await scenario(browser, url, artifact, viewport));
+    } catch (error) {
+      rows.push({
+        ...failedScenario(error, 'webkit', viewport.width, 'light/dark'),
+        ...viewport,
+        deviceScaleFactor: 2,
+        touch: true,
+        mode: 'normal',
+        failureState: error.tabletFailureState || null,
+        failureScreenshot: error.tabletFailureScreenshot || null,
+        responseError: error.tabletResponseError || null,
+      });
+    }
+  }
+  return rows;
+}
+async function collectTabletPreview(url, artifact, launch) {
+  let browser;
+  try {
+    browser = await launch('webkit');
+  } catch (error) {
+    return {
+      pass: false,
+      browsers: [],
+      rows: tabletCases().map((viewport) => ({
+        engine: 'webkit',
+        ...viewport,
+        pass: false,
+        startupFailure: error.message,
+      })),
+    };
+  }
+  try {
+    const rows = await collectTablet(browser, url, artifact);
+    return {
+      pass: rows.every((row) => row.pass),
+      browsers: [{ engine: 'webkit', version: browser.version() }],
+      rows,
+    };
+  } finally {
+    await browser.close();
+  }
+}
+function colorReportProfile(smoke, tablet) {
+  if (tablet)
+    return {
+      kind: 'color-tablet-webkit',
+      detail: {
+        profile: 'tablet-preview',
+        fullGate: false,
+        deploymentAuthorized: false,
+        nativeDeviceProof: false,
+      },
+    };
+  if (smoke)
+    return {
+      kind: 'color-preview-smoke',
+      detail: { profile: 'preview', fullGate: false, deploymentAuthorized: false },
+    };
+  return { kind: 'color-functional', detail: {} };
+}
 async function main(options = {}) {
   const artifact = JSON.parse(fs.readFileSync(process.env.SITE_ARTIFACT_MANIFEST)),
     pw = toolRequire('playwright'),
-    smoke = options.smoke ?? process.argv.includes('--smoke');
+    smoke = options.smoke ?? process.argv.includes('--smoke'),
+    tablet = options.tablet ?? process.argv.includes('--tablet-webkit');
+  assert.ok(!(smoke && tablet), 'select one bounded Color smoke profile');
   assert.equal(artifact.variant?.id, 'color', 'Color behavior requires a declared Color artifact');
   assert.deepEqual(artifact.variant.effects, ['travel'], 'current Color effect composition');
   assert.equal(artifact.variant.fingerprint, artifact.components.engine);
   assert.deepEqual(artifact.variant, artifact.components.variant);
+  if (tablet) {
+    require('./local-browser.cjs').identity(artifact);
+    require('./artifact.cjs').verify(path.resolve(process.env.SITE_PUBLIC_DIR), artifact);
+  }
   const { server, url } = await start(),
     rows = [],
-    browsers = [];
+    browsers = [],
+    profile = colorReportProfile(smoke, tablet),
+    launch = options.launch || ((engine) => pw[engine].launch(launchOptions(engine)));
   let pass = true;
   try {
-    for (const engine of smoke ? ['chromium'] : ['chromium', 'firefox', 'webkit']) {
-      const browser = await pw[engine].launch(launchOptions(engine));
-      browsers.push({ engine, version: browser.version() });
-      try {
-        for (const width of [1440, 390])
-          for (const theme of smoke ? ['light'] : ['light', 'dark']) {
-            try {
-              rows.push(await scenario(browser, url, artifact, engine, width, theme));
-            } catch (error) {
-              pass = false;
-              rows.push(failedScenario(error, engine, width, theme));
+    if (tablet) {
+      const collected = await collectTabletPreview(url, artifact, launch);
+      rows.push(...collected.rows);
+      browsers.push(...collected.browsers);
+      pass = collected.pass;
+    } else {
+      for (const engine of smoke ? ['chromium'] : ['chromium', 'firefox', 'webkit']) {
+        const browser = await launch(engine);
+        browsers.push({ engine, version: browser.version() });
+        try {
+          for (const width of [1440, 390])
+            for (const theme of smoke ? ['light'] : ['light', 'dark']) {
+              try {
+                rows.push(await scenario(browser, url, artifact, engine, width, theme));
+              } catch (error) {
+                pass = false;
+                rows.push(failedScenario(error, engine, width, theme));
+              }
             }
-          }
-      } finally {
-        await browser.close();
+        } finally {
+          await browser.close();
+        }
       }
     }
   } finally {
     server.close();
   }
   report(
-    smoke ? 'color-preview-smoke' : 'color-functional',
+    profile.kind,
     {
       smoke,
       variant: artifact.variant,
       browsers,
       rows,
-      ...(smoke ? { profile: 'preview', fullGate: false, deploymentAuthorized: false } : {}),
+      ...profile.detail,
     },
     pass
   );
@@ -3099,6 +3304,10 @@ if (require.main === module)
 module.exports = {
   main,
   scenario,
+  tabletCases,
+  tabletScenario,
+  collectTablet,
+  collectTabletPreview,
   settled,
   paintProbe,
   observeFragmentFlight,

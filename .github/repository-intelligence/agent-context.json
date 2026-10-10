@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "162c6b83104d6e013ed1ec19dc0bf4dab29b9329a2f9fa3b32cecbe457e8038e",
+    "digest": "56655bc2a50bcb22fae0290bdca744c34849a8ba7ce824d02030b39a2513acfe",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7e7b4ffa7f63ffb22588cee0cf57cd91503c05928bf4d58bf3bdea2b0a2d10b6"
+        "sha256": "183736c64f0984e299fa880b8240ef2547b6c2a1695f743d036b74b7b72c5a93"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -186,7 +186,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "1380817817ed73ccf18359afcc32d366bf8d96b0a4e46f062a2a2491a80e2752"
+        "sha256": "603df71c601f2ff919b65c420205a9ec16c291391096c80994a917757962fcb5"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a05ba1e103227e10dda497320b5adb47a830d255f6d599da7be09aca7e921693"
+        "sha256": "28a52e1c0d11a00965052b7443b0e7281f60b570c0453d8fb0dd5ae2e7e462de"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -485,7 +485,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "727ec6d4cee66aee986d1fa8d4184ba9b8d556c0a0031690d62d78eb206ec5f6"
+        "sha256": "83d9106ac99f16d3e9f6369b3fb2ded0f1ad3ef4842cbdf9fd7e37aaf1b5fa61"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -755,12 +755,12 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "dfb5ca53997bb099046dca3ff6158a485e1ab27f5f40c2e89b175e0ad5157da6"
+        "sha256": "5cf4419137e3060773c636eece874939ec983aefadb17c40b36b656b6267870d"
       },
       {
         "path": "review/issue-49/2026-10-10-performance.json",
         "identity_mode": "content",
-        "sha256": "4aa5c353d57189f2c0db6082db3467b99b15c9bb4805a7a329d3fd40824afcf9"
+        "sha256": "f560b1481ac7e70609c5809861c259e0a786002c54ad1d503152d66c63547640"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4460,7 +4460,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "4758ba2070613c49ad393dfa4627a7848b7809c7477a6b47b5b08efd411c6ae4"
+        "sha256": "90f238c540dcccca869aa83846d0204e2dce2904496605fdcc0aea7d2bdff368"
       },
       {
         "path": "site/analytics.json",
@@ -4655,7 +4655,7 @@
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "7730c8e550bda983b9fa1c027d84cb833eaeb4b0c62ff9c766036af362c14076"
+        "sha256": "1af1ce23c932092b7eb8d6311107cde18e6f61b831c3bc90fb704e54259ce952"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5100,7 +5100,7 @@
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "7dc9098f76a71f04bf50c7383944cb892c1776604244b25d76b4dd5ac919219a"
+        "sha256": "88b24261752eb9a862aabf3789a7dc00188ef4edaad0340c0a9bae385fc43910"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5220,7 +5220,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "0803548ce231339ae09ae3fe850396168df9c8dfc733ad2b5291669ad582a436"
+        "sha256": "a775d98a5f1b6f00d4532a8bfc5d4ea366b0101f9f5f483c94bbd8f3f4669565"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -5255,7 +5255,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "54ce5a773a65525e9a109d4194f35173d9bb381a6825eb20be8c15a8d0a9d8c5"
+        "sha256": "86bf89905fbd32bff04e28dad39f7c805e179c916254adbae9fd1da97eba95fa"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5560,7 +5560,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "4db44545297beb908c8581239fe314e0e5dc75307eca7c860386f54b0e68bea3"
+        "sha256": "eaae0cdcaea865272507ce0ae2a557ec752a8173b2059c7d470f8cf747878981"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -5785,7 +5785,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "097ec9cab9f6e9299819f85366a17a0a7966b1f8bca946fead2c9e411ee654db"
+        "sha256": "a87510c4547947aadaf6faaba5697c502f6424ad85e4737249f74609057c9ad1"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

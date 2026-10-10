@@ -2942,3 +2942,137 @@ test('native coverage retains behind-header owners whenever header occlusion is 
     assert.deepEqual(Array.from(coverage.uncovered), ['H2:Covered heading'], name);
   }
 });
+test('tablet WebKit selector retains both orientations after a source-bound failure', async () => {
+  const { collectTablet, tabletCases } = require('../tools/quality/color-browser.cjs');
+  const profile = require('../tools/quality/test-profiles.json').hosted_profiles.tablet_preview;
+  assert.deepEqual(tabletCases(), profile.viewports);
+  assert.equal(profile.job_budget_minutes, 10);
+  assert.equal(profile.device_scale_factor, 2);
+  assert.equal(profile.native_device_proof, false);
+  const calls = [],
+    raw = { diagnostics: { lastFailure: { reason: 'native-owner-raster-blank' } } },
+    original = Error('Research has no resting native textures');
+  original.embeddedObservation = { failureState: raw };
+  original.embeddedCheckpoints = { firstLoad: null, journeys: [] };
+  original.tabletFailureState = raw;
+  original.tabletFailureScreenshot = 'screenshots/1024x1366-tablet-failure.png';
+  const rows = await collectTablet(
+    {},
+    'https://preview.example',
+    fixture.manifest(),
+    async (browser, url, manifest, viewport) => {
+      calls.push(viewport);
+      if (viewport.width === 1024) throw original;
+      return { ...viewport, pass: true };
+    }
+  );
+  assert.deepEqual(calls, profile.viewports);
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].pass, false, 'fallback cannot become a passed orientation');
+  assert.equal(rows[0].embedded.failureState, raw, 'original native pixel failure is preserved');
+  assert.equal(rows[0].failureState, raw);
+  assert.equal(rows[0].failureScreenshot, original.tabletFailureScreenshot);
+  assert.equal(rows[1].pass, true, 'a failed portrait does not suppress the landscape observation');
+});
+test('tablet driver requires cold texture readiness, both directions, corridor and opaque native cleanup', async () => {
+  const { tabletScenario } = require('../tools/quality/color-browser.cjs');
+  const profile = require('../tools/quality/test-profiles.json').hosted_profiles.tablet_preview;
+  const fingerprint = 'a'.repeat(64),
+    artifact = { variant: { fingerprint } },
+    viewport = profile.viewports[0],
+    calls = [],
+    researchCamera = [1, 2, 3];
+  let options,
+    closes = 0,
+    nativeHidden = 0;
+  const page = {
+    on: () => {},
+    goto: async () => {},
+    screenshot: async () => {},
+    evaluate: async (fn) =>
+      fn.name === 'fragmentCleanupState'
+        ? {
+            nativeOpacity: 1,
+            nativeHidden,
+            pieces: 0,
+            layers: 0,
+            fragmentFields: [],
+            motion: 'Motion: on',
+          }
+        : fn.name === 'embeddedPrototypeState'
+          ? { diagnostics: { lastFailure: 'native-not-restored' } }
+          : {
+              id: 'color',
+              engine: fingerprint,
+              flight: true,
+              edge: true,
+              fragments: true,
+              viewport: [viewport.width, viewport.height],
+              deviceScaleFactor: 2,
+              touch: true,
+            },
+  };
+  const browser = {
+    newContext: async (value) => {
+      options = value;
+      return {
+        addInitScript: async () => {},
+        newPage: async () => page,
+        close: async () => closes++,
+      };
+    },
+  };
+  const helpers = {
+    settled: async () => {},
+    firstLoad: async () => {
+      calls.push('cold');
+      return { firstLoad: true };
+    },
+    prototype: async (target, theme, expected = { from: 'index', to: 'research' }) => {
+      assert.equal(expected.touch, true, 'tablet route navigation dispatches actual touch taps');
+      calls.push({
+        theme,
+        from: expected.from,
+        to: expected.to,
+        ...(expected.corridor ? { corridor: true } : {}),
+      });
+      if (expected.corridor) assert.equal(expected.researchCamera, researchCamera);
+      return { nativeHandoff: { camera: researchCamera } };
+    },
+    preferences: async () => {},
+    travel: async () => {},
+  };
+  const row = await tabletScenario(browser, 'https://preview.example', artifact, viewport, helpers);
+  assert.deepEqual(options, {
+    viewport,
+    deviceScaleFactor: 2,
+    isMobile: true,
+    hasTouch: true,
+    reducedMotion: 'no-preference',
+  });
+  assert.deepEqual(calls, ['cold', ...profile.journeys_per_viewport]);
+  assert.equal(row.embedded.length, profile.journeys_per_viewport.length);
+  assert.equal(row.pass, true);
+  assert.equal(closes, 1);
+  nativeHidden = 1;
+  await assert.rejects(
+    tabletScenario(browser, 'https://preview.example', artifact, viewport, helpers),
+    (error) => {
+      assert.match(error.message, /restores every native owner/);
+      assert.equal(error.embeddedCheckpoints.journeys.length, 5);
+      assert.equal(error.tabletFailureState.diagnostics.lastFailure, 'native-not-restored');
+      return true;
+    }
+  );
+  assert.equal(closes, 2, 'failed handoff also disposes its context');
+  helpers.firstLoad = async () => {
+    throw Error('cold native texture fallback');
+  };
+  const before = calls.length;
+  await assert.rejects(
+    tabletScenario(browser, 'https://preview.example', artifact, viewport, helpers),
+    /cold native texture fallback/
+  );
+  assert.equal(calls.length, before, 'a cold fallback does not enter the route validator');
+  assert.equal(closes, 3);
+});

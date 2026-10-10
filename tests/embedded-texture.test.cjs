@@ -2021,6 +2021,48 @@ test('rounded SVG dimensions use the same paint axes as fractional peer exclusio
   assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
 });
 
+test('positioned HTML retains native ink when its engine does not scale it through SVG viewBox', async () => {
+  for (const dpr of [1, 1.5, 2]) {
+    const f = pageFixture();
+    f.main.append(
+      new f.Node('p', 'Native upper ink', {}, { left: 0, top: 0, width: 1440, height: 500 }),
+      new f.Node(
+        'section',
+        '',
+        {
+          'border-top-width': '1px',
+          'border-top-style': 'solid',
+          'border-top': '1px solid rgb(51, 70, 76)',
+        },
+        { left: 0, top: 880.25, width: 1440, height: 600 }
+      )
+    );
+    f.context.getImageData = (x, y, width, height) => {
+      const data = new Uint8ClampedArray(width * height * 4);
+      const source = f.sources[0];
+      const scale = source.match(/transform-origin:0 0;transform:scale\(([^,]+),([^)]+)\)/);
+      // Model the observed WebKit behavior: SVG viewport scaling does not reach
+      // positioned HTML, while its containing CSS plane's transform does.
+      const scaleX = scale ? Number(scale[1]) : 1;
+      const scaleY = scale ? Number(scale[2]) : 1;
+      for (let row = 0; row < height; row++) {
+        const upper = row < 500 * scaleY;
+        const border = row < 881.25 * scaleY && row + 1 > 880.25 * scaleY;
+        if (!upper && !border) continue;
+        for (let column = 0; column < Math.min(width, 1440 * scaleX); column++)
+          data[(row * width + column) * 4 + 3] = 255;
+      }
+      return { data };
+    };
+    const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr });
+    assert.ok(field, `native positioned border at DPR ${dpr}`);
+    assert.equal(field.decorations.length, 1);
+    assert.ok(field.pixelCount <= 1000000);
+    assert.equal(f.images.length, 1);
+    field.dispose();
+  }
+});
+
 test('fractional adjoining borders require isolated native proof within the same pixel and time caps', async () => {
   for (const blankProof of [false, true]) {
     const f = pageFixture();
@@ -2341,6 +2383,58 @@ test('a zero-area pseudo cannot bypass unresolved geometry, generated ink or out
     assert.equal(f.images.length, 0);
     assert.equal(f.canvases.length, 0);
   }
+});
+
+test('an empty loaded font set admits system text without repeating native font matching', async () => {
+  const f = pageFixture();
+  f.document.fonts.size = 0;
+  f.document.fonts.check = () => {
+    throw new Error('An empty registered set cannot trigger a font load');
+  };
+  const paragraph = new f.Node('p', 'Native Український text');
+  paragraph.pseudos['::before'] = {
+    content: '"Generated separator"',
+    display: 'inline',
+    'font-family': 'system-ui, sans-serif',
+    'font-size': '16px',
+  };
+  f.main.append(paragraph, new f.Node('h2', 'Distinct heading', {}, { top: 200 }));
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, pageOptions);
+  assert.ok(field);
+  assert.match(f.sources[0], /Native Український text/);
+  assert.match(f.sources[0], /Generated separator/);
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), true);
+  f.document.fonts.status = 'loading';
+  assert.equal(await textures.captureField(f.root, pageOptions), null);
+  f.document.fonts.status = 'loaded';
+  paragraph.computed['font-family'] = 'Uncaptured Web Font';
+  assert.equal(await textures.captureField(f.root, pageOptions), null);
+  field.dispose();
+});
+
+test('a newly registered face restores per-text checks and fresh native admission', async () => {
+  const f = pageFixture();
+  const faces = [];
+  f.document.fonts.size = 0;
+  f.document.fonts[Symbol.iterator] = function* () {
+    yield* faces;
+  };
+  f.main.append(new f.Node('p', 'Current native text'));
+  const checked = [];
+  f.document.fonts.check = (query, text) => {
+    checked.push(text);
+    return false;
+  };
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, pageOptions);
+  assert.ok(field);
+  faces.push({ family: 'Unrelated face' });
+  f.document.fonts.size = 1;
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), false);
+  assert.equal(await textures.captureField(f.root, pageOptions), null);
+  assert.deepEqual(checked, ['Current native text', 'Current native text']);
+  field.dispose();
 });
 
 test('native font eligibility scans once per acquisition while every real text keeps its own browser check', async () => {
