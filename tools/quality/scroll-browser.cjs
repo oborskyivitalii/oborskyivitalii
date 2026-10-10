@@ -24,9 +24,60 @@ const checks = [
 async function range(page) {
   return page.evaluate(() => Math.max(0, document.documentElement.scrollHeight - innerHeight));
 }
+function routeCamera(route) {
+  const model = require('../../docs/space.js');
+  return model.routePose(route, model.poses[model.initialPoses[route]]);
+}
+async function readingState(page, baseline, target) {
+  const paints = await page.evaluate(() => window.__quality?.paints);
+  assert.ok(Number.isFinite(paints), 'reading probe observes actual Canvas paints');
+  assert.equal(await settledCamera(page), baseline, 'reading keeps the settled route camera');
+  const row = await page.evaluate(() => ({
+    y: scrollY,
+    camera: document.querySelector('.space-scene').dataset.camera,
+    phase: document.querySelector('.space-scene').dataset.phase,
+    paints: window.__quality?.paints,
+    settling: window.__engineCameraSettling,
+  }));
+  assert.equal(row.settling.policy, 'live', 'reading keeps live ambient motion');
+  for (const sample of row.settling.samples)
+    assert.equal(sample.camera, baseline, 'reading does not transiently retarget the camera');
+  assert.ok(Math.abs(row.y - target) <= 1, 'reading reaches the actual native target');
+  assert.ok(row.paints > paints, 'ambient paints advance during native reading');
+  delete row.settling;
+  return row;
+}
+function validateProbe(row, route) {
+  assert.ok(Number.isFinite(row.end) && row.end >= 0, 'invalid native reading range');
+  assert.ok(typeof row.start === 'string' && row.start.length > 0, 'missing settled camera');
+  if (route) assert.deepEqual(JSON.parse(row.start), routeCamera(route), 'incorrect route camera');
+  assert.ok(Number.isFinite(row.startPaints) && row.startPaints > 0, 'missing initial paint');
+  assert.deepEqual(
+    row.samples?.map((s) => s.fraction),
+    [0.9, 0.95, 0.99, 1]
+  );
+  let paints = row.startPaints;
+  for (const sample of row.samples) {
+    assert.ok(
+      Number.isFinite(sample.y) && Math.abs(sample.y - Math.round(row.end * sample.fraction)) <= 1,
+      'reported native gesture missed its target'
+    );
+    assert.equal(sample.camera, row.start, 'reported reading camera drift');
+    assert.ok(Number.isFinite(sample.paints) && sample.paints > paints, 'missing ambient paint');
+    paints = sample.paints;
+  }
+  assert.equal(row.samples.at(-1).y, row.end, 'reported scroll never reaches bottom');
+  assert.equal(row.reverse?.y, 0, 'reported reading never reverses to the top');
+  assert.equal(row.reverse.camera, row.start, 'reported reverse camera drift');
+  assert.ok(
+    Number.isFinite(row.reverse.paints) && row.reverse.paints > paints,
+    'missing reverse ambient paint'
+  );
+  return true;
+}
 async function semanticWaypoint(page, route) {
-  const model = require('../../docs/space.js'),
-    config = require('../../site/routes.json').routes.find((r) => r.id === route);
+  const config = require('../../site/routes.json').routes.find((r) => r.id === route),
+    baseline = await settledCamera(page);
   const goal = await page.evaluate((config) => {
     const end = document.documentElement.scrollHeight - innerHeight;
     if (config.id === 'writing') {
@@ -35,8 +86,6 @@ async function semanticWaypoint(page, route) {
       return {
         id: 'archive-introduction',
         y: Math.min(y, end * 0.5),
-        progress: y < end - 0.5 ? 0.12 : Math.min(y, end * 0.5) / end,
-        topic: document.querySelector('#archive-topic').value,
       };
     }
     const ids = Object.values(config.stops),
@@ -50,79 +99,41 @@ async function semanticWaypoint(page, route) {
       y: el.getBoundingClientRect().top + scrollY - innerHeight * 0.22,
     };
   }, config);
-  if (route === 'writing') {
-    const firstY = await page
-      .locator('li.publication:visible')
-      .first()
-      .evaluate((el) => Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight * 0.22));
-    const end = await range(page);
-    goal.progress =
-      firstY < end - 0.5 ? (goal.y < firstY ? (0.12 * goal.y) / firstY : 0.12) : goal.y / end;
-  }
   await page.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), goal.y);
-  // Native offsets are pixel-rounded. Evaluate the contract at the actual
-  // offset instead of allowing an arbitrary world-distance tolerance.
-  const layout = await page.evaluate(
-    (config) => ({
-      y: scrollY,
-      end: document.documentElement.scrollHeight - innerHeight,
-      markers: [...document.querySelectorAll('[data-space-stop]')]
-        .filter(
-          (el) => !el.hidden && el.getClientRects().length && config.stops[el.dataset.spaceStop]
-        )
-        .map((el) => ({
-          id: config.stops[el.dataset.spaceStop],
-          y: Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight * 0.22),
-        })),
-    }),
-    config
-  );
-  let expected;
-  if (route === 'writing') {
-    const firstY = await page
-      .locator('li.publication:visible')
-      .first()
-      .evaluate((el) => Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight * 0.22));
-    expected = model.routePose(
-      route,
-      model.journeyPose(
-        model.topicPaths[goal.topic],
-        model.writingProgress(layout.y, {
-          start: firstY < layout.end - 0.5 ? firstY : 0,
-          end: layout.end,
-        })
-      )
-    );
-  } else {
-    const stops = model.fitScrollStops(layout.markers, layout.end);
-    let i = 0;
-    while (i < stops.length - 2 && layout.y >= stops[i + 1].y) i++;
-    const t = model.clamp((layout.y - stops[i].y) / (stops[i + 1].y - stops[i].y));
-    expected = model.routePose(
-      route,
-      model.journeyPose(
-        stops.map((s) => s.id),
-        (i + t) / (stops.length - 1)
-      )
-    );
-  }
-  const actual = JSON.parse(await settledCamera(page));
+  const state = await readingState(
+      page,
+      baseline,
+      Math.max(0, Math.min(await range(page), goal.y))
+    ),
+    expected = routeCamera(route),
+    actual = JSON.parse(state.camera);
   const distance = Math.hypot(
     ...['position', 'target'].flatMap((key) => actual[key].map((v, i) => v - expected[key][i]))
   );
   assert.ok(
     distance < 1e-4,
-    'semantic waypoint follows reordered content: ' + JSON.stringify({ route, goal, distance })
+    'reordered content preserves the route camera: ' + JSON.stringify({ route, goal, distance })
   );
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await settledCamera(page);
-  return { ...goal, actual, expected, distance };
+  await readingState(page, baseline, 0);
+  return {
+    ...goal,
+    y: state.y,
+    targetY: goal.y,
+    end: await range(page),
+    paints: state.paints,
+    actual,
+    expected,
+    distance,
+  };
 }
 async function probe(page, label, route) {
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   const start = await settledCamera(page),
     end = await range(page),
+    startPaints = await page.evaluate(() => window.__quality?.paints),
     samples = [];
+  assert.deepEqual(JSON.parse(start), routeCamera(route), label + ' canonical route camera');
   for (const fraction of [0.9, 0.95, 0.99, 1]) {
     await page.evaluate(
       (y) => scrollTo({ top: y, behavior: 'instant' }),
@@ -130,40 +141,14 @@ async function probe(page, label, route) {
     );
     samples.push({
       fraction,
-      y: await page.evaluate(() => scrollY),
-      camera: await settledCamera(page),
+      ...(await readingState(page, start, Math.round(end * fraction))),
     });
   }
-  if (end > 100) {
-    assert.notEqual(samples[0].camera, start, label + ' leaves the opening pose');
-    for (let i = 1; i < samples.length; i++)
-      assert.notEqual(
-        samples[i].camera,
-        samples[i - 1].camera,
-        label + ' moves through the final ' + samples[i].fraction + ' gesture'
-      );
-    const config = require('../../site/routes.json'),
-      paths = require('../../site/scenes/paths.json');
-    const descriptor = config.routes.find((r) => r.id === route),
-      topic = route === 'writing' ? await page.locator('#archive-topic').inputValue() : null;
-    const final =
-      route === 'writing' ? paths.topicPaths[topic].at(-1) : Object.values(descriptor.stops).at(-1);
-    const expected = paths.poses[final],
-      actual = JSON.parse(samples.at(-1).camera),
-      offset = config.routes.findIndex((r) => r.id === route) * paths.roomSpacing;
-    assert.deepEqual(
-      actual,
-      {
-        position: expected.position.map((v, i) => (i === 2 ? v - offset : v)),
-        target: expected.target.map((v, i) => (i === 2 ? v - offset : v)),
-      },
-      label + ' exact bottom camera endpoint'
-    );
-    assert.equal(samples.at(-1).y, end, label + ' native scroll reaches bottom');
-  }
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  assert.equal(await settledCamera(page), start, label + ' exact reverse endpoint');
-  return { label, end, start, samples };
+  const reverse = await readingState(page, start, 0),
+    row = { label, end, start, startPaints, samples, reverse };
+  validateProbe(row, route);
+  return row;
 }
 async function scenario(page, route) {
   const rows = [];
@@ -231,7 +216,7 @@ async function scenario(page, route) {
     shortStart = await settledCamera(page);
   assert.equal(shortRange, 0, 'short fixture does not manufacture scroll space');
   await page.evaluate(() => scrollTo({ top: 10000, behavior: 'instant' }));
-  assert.equal(await settledCamera(page), shortStart, 'short content does not invent a journey');
+  await readingState(page, shortStart, 0);
   await page.evaluate(() => {
     document.querySelector('main').innerHTML = window.__scrollFixture;
     delete window.__scrollFixture;
@@ -255,4 +240,13 @@ async function scenario(page, route) {
     ),
   };
 }
-module.exports = { scenario, probe, semanticWaypoint, fixtures, checks };
+module.exports = {
+  scenario,
+  probe,
+  semanticWaypoint,
+  readingState,
+  validateProbe,
+  routeCamera,
+  fixtures,
+  checks,
+};

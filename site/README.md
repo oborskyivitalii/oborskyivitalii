@@ -1,9 +1,10 @@
 # Static site source and engine contract
 
 The [current check profiles](../guides/SITE-CHECK-PROFILES.md) supersede older full-local
-and always-full PR requirements below. Native-scroll mapping and all release
-budgets remain. Primary flights follow the four header links; Credits is a footer
-utility route with instant navigation.
+and always-full PR requirements below. Native scroll and all release budgets
+remain. The issue49 amendment uses one five-route depth itinerary:
+Home, Research, Writing, Talks, Credits. Credits participates in the same flight
+policy as every header, footer, cross-link, VO and history route change.
 
 The original engine work is recorded in completed
 [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) and
@@ -13,13 +14,12 @@ staging and release state; dated implementation plans are historical evidence.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
 
-Native-scroll camera endpoints follow 0/the actual current page bottom on every
-route, including added unmarked blocks and the footer. Semantic markers define
-interior stops; repeated closing poses are coalesced. Main/body content reflow,
-font loading, viewport resize and route mounts recalculate the mapping. Writing
-retains its topic path, early-scroll response and valid anchored filter reflow.
-Every content edit still runs the normal all-route browser synchronization fixtures
-and strict aggregate under #13; generation freshness alone is insufficient.
+Issue49 keeps each settled route camera stationary while ordinary native scroll,
+filters, hashes and history positions remain active. The actual painted camera
+starts every route flight, including retargets from arbitrary native scroll or
+another unfinished journey. Semantic markers and topic paths remain authored
+scene data, without driving the settled reading camera. Current check profiles
+own source/hosted coverage; generation freshness alone is insufficient.
 
 ## Authoritative sources and dependencies
 
@@ -36,6 +36,8 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
+| `effects/fragment-plan.cjs`, `fragment-dom.cjs` | Shared shard settings/geometry, visible native paint acquisition and staggered 1.8-second assembly | Issue49 all-route bidirectional Color preview; finite painted-clock tail preserves camera duration and resource caps |
+| `effects/embedded-plan.cjs`, `embedded-texture.cjs`, `embedded-scene.cjs` | Scoped persistent closed shards, capability-gated native block texture and shared-scene prewarm/handoff | Issue49 viewport-bounded Home/Research solids in both directions within the same Color travel descriptor and scene clock |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
@@ -81,8 +83,10 @@ owners fail before output changes; authored templates contain no CSS declaration
 Native links, anchors, language badges, full text and JSON-LD remain available
 without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
 `SiteArchive.mount/destroy` and `SiteNavigation`. The router owns mount/unmount and
-history; the scene owns route progress and its actual arrival paint. Ambient phase,
-scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
+history; the scene owns route progress and its actual arrival paint. Frozen
+`SiteRoutes.order` and its direction helper are shared with navigation even when
+Canvas is unavailable. Ambient phase, native reading scroll and route flight
+remain separate. Off/reduced, visibility, print,
 failure, reflow and device-cost adaptation preserve the existing bounded behavior.
 Runtime projection omits subpixel facets; static SVG/model output keeps the complete
 geometry. Flights prepare each room at its settled adaptive detail before the
@@ -96,10 +100,148 @@ while keeping the thematic scene, Writing formula, shared reading/control CSS
 and the existing navigation/clock/freeze behavior. Both hosted and standalone
 Color identities declare `effects: ["travel"]`; optional ribbon adapters remain
 only for explicit historical comparisons, with their source still scanned.
+Issue49's Color preview enables fragments by default unless the user has stored
+Content flight Off. `fragment-plan.cjs` owns the single settings object, convex
+shard generator and both directional geometry functions; `fragment-dom.cjs` owns
+bounded visible paint acquisition and cleanup; `flight.cjs` owns phase orchestration.
+Acquisition selects the first actual painted block, including its measured
+before/after backdrop, decoded images, controls and text. A surface's children
+cannot fly independently over its native paper. Detached decorative copies replay
+resolved pseudo paint from the canonical reading-surface owner, including inactive
+pseudos, grid layout and the full backdrop gutter envelope. Mobile `display: contents`
+wrappers descend to their actual painted children. Unsupported or unadmittable
+surfaces retain a whole-block local fallback under the existing caps.
+Media figures acquire decoded images with supported static primitive SVG
+backdrops as one owner. Resolved vector colors/geometry and viewport outsets are
+preserved; executable, animated, referenced or unsupported SVG falls back as a
+whole figure. Vector attribute bytes share the existing cloned-text allowance.
+Forward travel releases outgoing pieces behind the advancing camera and brings
+incoming pieces from the destination fractal. Reverse travel sends outgoing paint
+into the source fractal and assembles incoming paint from behind the retreating
+camera. Native-scroll/reflow invalidation uses ordinary cleanup and fallback.
 An optional `SiteEngineProbe` paint event observes successful ordinary native
 paints for camera/journey diagnostics. It uses the existing clock and constructs
 no frame evidence when the probe is absent; no independent loop is added.
 Historical ribbon material/phase evidence remains attached to its prior edition.
+
+Issue49's embedded extension carries actual neighboring-page content in persistent
+moving fractal structures. Research belongs to Home's world, Writing to Research's,
+and subsequent pages follow the existing route order. The router prewarms the next
+pinned page through its verified finite cache. An inert, inaccessible staging copy
+measures the target viewport, with Writing's controls normalized by the same scoped
+archive preparation as native mount. The inert footer uses the same
+route/preference normalizer as native mount.
+Staged hash landings apply computed root scroll padding and target scroll margin,
+then clamp to the destination scroll range before capturing its visible paint.
+`embedded-texture.cjs` validates visible native headings, text, reading paper,
+links, lists, controls, decoded local images and
+supported static SVG before rasterizing one page-owned viewport texture. Each
+admitted owner retains its exact native envelope clip and isolated paint order
+inside one SVG image; owner-specific pseudo selectors stay unique. One bounded
+alpha readback observes each owner's ink only outside other owners' paint bounds,
+so a neighboring owner cannot supply a missing owner's proof. Fully covered or
+blank owners fail closed. The temporary peak includes decoded SVG, atlas canvas,
+readback and sampled PNG decode/encoding surfaces within the original limits.
+Recorded subowner paths, geometry and text remain the native coverage and landing oracle.
+Capture follows the visible viewport rather than allocating the full scrollable
+document. The shared native measurement owner clips only paint proven hidden
+by the opaque full-width header, revalidating physical coverage after decode.
+Unknown stacking, effects or shape keep the complete viewport and native ink gates.
+SVG decode readiness and onload share one draw/proof under the same absolute
+deadline, with ordinary onload retained when decode is unavailable.
+The temporary atlas requests CPU readback preference; the scene context remains
+separate. Its SVG viewport matches bitmap pixels, while the inner native CSS
+plane applies the exact independent sampling scales, including positioned paint
+on WebKit. An empty loaded FontFaceSet with validated system families needs no
+repeated native font matching; registered faces retain per-text checks.
+Temporary captures, retained textures and solid geometry share the
+original piece, pixel, owner, descendant and text limits; unsupported capture or
+an unadmittable landing uses the existing native `flightPose` fade, with no DOM
+fragment acquisition or scatter. Motion Off/reduced and unsupported scene travel
+retain ordinary native navigation.
+
+`embedded-plan.cjs` gives those same identified shards closed front, rear and
+side faces, target-camera endpoints and immutable membership in existing fractal
+branches. Their resting geometry uses the exact shared `loopTransform` and room
+offset under the existing ambient clock; real content textures remain visible.
+The actual branch radius and selected facet normal/edge tangent own chip scale
+and orientation. Each fourth chip selects a real depth-one branch; the others
+select depth-two branches, distributed across the same three roots without
+duplicate membership. Prepared resting radius is bounded by0.85 of its branch
+and0.9 world units before the existing shared breathing pulse. UV cells retain
+their native partition and uniformly shrink into
+these solids; they do not derive their resting size from the page plane.
+Textured fronts and rears remain opaque before near-plane fading; closed sides
+keep canonical depth fog. Broken fragments have a palette substrate beneath
+transparent native atlas pixels, so captured paper and ink remain on solid
+material. That added substrate disappears at the exact native endpoint.
+Tilted texture faces refine actual projected midpoints when their affine error
+exceeds one CSS pixel, up to eight triangle submissions per face, using bounded
+source rectangles and existing triangle clips. This bounded approximation
+reduces affine bending of glyphs; it adds no bitmap, decode or scene clock.
+Adaptive refinement caches unchanged edge errors only within that paint. Every
+face shares the whole solid's nearest-depth fade before its existing near cull,
+and zero-alpha faces submit no texture work.
+Reverse collection can traverse a second genuine branch in the destination room
+before reaching its native plane, so a retreating camera sees partial geometry
+while both resting contact and the final endpoint remain exact. This world path
+uses the existing cached room descriptors and shared transform.
+The reconciled visual rework distributes stable content-field identities across
+three successive actual fractal roots with their canonical branch loop. Closed
+shards have beveled sides and captured paint on both faces. Forward breakup
+begins on the native reading plane, then leaves detached pieces at fixed source-world
+positions for the camera to cross; reverse departure retains the canonical host
+trajectory. Incoming pieces converge at staggered phases during that flight.
+Forward assembly separates lateral alignment from longitudinal approach using
+the fixed destination-camera world axes. Pieces align laterally while distant,
+retain seeded depth spread, finish their rotation early and approach the native
+plane chiefly through depth. The live camera cannot advance their assembly
+phase or carry that corridor along its near plane. Resting branch contact,
+native endpoints and reverse paths retain their original geometry.
+Forward width, height and thickness grow together from phase0.35 toward the
+exact native plane. Outgoing breakup shrinks the same solid toward its branch
+scale as the camera crosses it.
+Neighbor preparation also captures the settled current viewport before a click,
+within the same abort, matching, retention, pixel and absolute deadline rules.
+`embedded-scene.cjs` attaches collection/paint to the current travel effect;
+the existing scene composition sorts its faces with the fractal. It owns no
+runtime dependency, second renderer or animation clock. Preparation, native
+owner hiding, texture lifetime, cancellation and disposal remain bounded and
+reserve resources against the shared departure/arrival caps across at most three
+retained page fields. Same-route replacement keeps the prior field and charges its
+resident resources until a successful atomic swap; failed warming cannot erase
+the current native field. Static face topology and UV offsets are reused, while
+branch transforms remain scoped to one sampled frame. Native ownership pixel
+bounds and font-family eligibility are shared only inside one bounded acquisition;
+per-text font checks and owner raster proof remain strict. Forward convergence starts during camera travel. A skipped
+Research native page remains a pass-through content structure on Home-to-Writing
+travel; the router mounts only Writing. Reverse travel detaches the same Research
+objects into their Home host, preserving them there after arrival. Native mount
+binds the measured subowners without restarting convergence. Arrival returns
+ordinary semantic HTML for reading, selection and interaction. The final
+180ms of the shared painted arrival may blend the native page in
+as the corresponding Canvas faces fade out, only after the shared camera reaches
+its exact target pose. This preserves the ordinary scene atmosphere overlay
+without a hard color seam between Canvas texture and foreground HTML; it adds
+no independent clock or generic content-plane fade. Source
+fixtures do not establish native texture fidelity or perceived depth: the
+explicit AC15 embedded visual gate and existing fidelity/performance/device
+gates remain pending before visual acceptance or release admission.
+
+After the destination mounts during travel, speculative preparation may capture
+its logical successor into an empty third resident slot. Every live field remains
+protected, including a skipped-room corridor; a full bank defers successor work
+until the existing handoff completes. This resident-only task cannot select the
+incoming or outgoing owner, recapture the departure plane or pause the painted
+flight. New speculative fields reveal smoothly over 420ms on the shared ambient
+clock, including first-load or deferred post-handoff captures. Actual navigation
+uses its admitted field at full visibility. Cancellation aborts the separately
+signalled warm task; ordinary completed handoff may let it finish within the same
+capture deadlines and shared resource caps.
+Settled fields paint only with their actual host room. Other cached fields keep
+their identities and textures for reverse travel, fading over the existing180ms
+handoff before their absent-host contribution stops; this includes skipped
+reverse departures. Host-matched Research remains continuous after Home arrival.
 
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the
@@ -171,13 +313,18 @@ No claim is made that this filesystem operation publishes an atomic CDN update.
 to `runtime/<digest>/` and `media/<digest>/`; fetchable HTML lives in
 `snapshots/<route-digest>/<route>.html`. Root aliases remain identical for existing
 tooling and the offline exporter. The revision and root HTML revalidate; immutable
-paths use the prepared host policy. No idle revision fetch, remote CMS or automatic
+paths use the prepared host policy. No periodic revision fetch, remote CMS or automatic
 refresh is added. Default output has no telemetry; [SITE-ANALYTICS](../guides/SITE-ANALYTICS.md)
 owns the optional exact-origin adapter and tracking-free standalone exports.
 
-On the first user route navigation, the router pins a descriptor compatible with
-the initial shell/route. It fetches only the named immutable route and checks its
-bytes and version before caching/mounting. Later navigation uses that pinned set.
+The router pins a descriptor compatible with the initial shell/route on its first
+verified route read. Base delivery first reads it on user navigation. The scoped
+Color embedded preview may make that read earlier on Home or Research to prewarm
+the other route's visible native owners. This speculative read shares the existing
+finite route cache and exact descriptor/byte/version checks; failure cannot block
+ordinary navigation. It does not poll for revisions or refresh the pinned edition.
+The router fetches only the named immutable route and checks its bytes and version
+before caching/mounting. Later navigation uses that pinned set.
 A changed descriptor, bad MIME, missing route, mismatched engine or corrupted bytes
 falls back once to the ordinary destination document. The next fresh document
 chooses its own version; there is no reload loop. Standalone files embed the finite
@@ -241,7 +388,20 @@ effect fails generation. Hosted evidence is bound to the producer's base variant
 selecting Color for production remains a separate decision requiring its complete
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
 
-Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes, Color and the Appearance popup share theme-paper paint at 87% background alpha (13% transparency), crisp edges and a 12px visible radius at all four outer corners; title spread adjusts its inner radius and preserves ink stacking. Element opacity stays one so text and controls do not fade. The same owner restores fully opaque paper for `prefers-reduced-transparency: reduce`. Component spacing and semantic control/CTA paint remain ordinary layout CSS.
+Reading backdrop paint is authored only in `engine/reading-surfaces.css` and
+concatenated into the existing stylesheet by the producer. Base and desktop Color
+use theme-paper paint at 87% background alpha (13% transparency). Compact Color
+screens at or below 640px use 72% in Day and 78% in Night, so the neighboring
+content structures remain visible through the native paper. Live content, inert
+capture stages and native fallback share this metadata-gated material.
+
+All surfaces retain crisp edges and a 12px visible radius at all four outer
+corners; title spread adjusts its inner radius and preserves ink stacking.
+Element opacity stays one so text and controls do not fade. The same owner
+restores fully opaque paper for `prefers-reduced-transparency: reduce`. The compact
+Color atmosphere veil uses 25% element opacity in `engine/styles.css`; Canvas,
+text and control opacity stay unchanged. Component spacing and semantic
+control/CTA paint remain ordinary layout CSS.
 
 Writing and Talks publication cards use one backdrop on the complete row, with
 the same shared 12px gutter and content-driven height. Metadata and copy do not

@@ -102,7 +102,7 @@ async function ready(page, id) {
 }
 function routeSelector(id) {
   return id === 'credits'
-    ? 'footer a[href="credits.html"]'
+    ? '#site-content footer a[href="credits.html"]'
     : '.site-header nav a[href="' + (id === 'index' ? './' : id + '.html') + '"]';
 }
 async function state(page) {
@@ -116,7 +116,7 @@ async function state(page) {
       travel: scene.dataset.travel || null,
       phase: scene.dataset.phase,
       fallback: getComputedStyle(fallback).visibility !== 'hidden',
-      h1: document.querySelectorAll('h1').length,
+      h1: document.querySelectorAll('#site-content h1').length,
       overflow: document.documentElement.scrollWidth > innerWidth + 1,
       motion: { hidden: button.hidden, disabled: button.disabled, label: button.textContent },
       engine: document.querySelector('meta[name="site-engine"]').content,
@@ -135,11 +135,63 @@ async function routeBytes(context, url, manifest) {
     })
   );
 }
+function trackResponses(page, base, manifest, checkedFiles, errors) {
+  const responseChecks = [],
+    requests = new Map(),
+    scope = new URL(base.replace(/\/$/, '') + '/');
+  function track(request) {
+    const source = new URL(request.url());
+    if (source.origin !== scope.origin || !source.pathname.startsWith(scope.pathname)) return;
+    let resolve, reject;
+    const check = new Promise((done, fail) => {
+      resolve = done;
+      reject = fail;
+    });
+    check.catch((error) => errors.push(error.message));
+    responseChecks.push(check);
+    const pending = { resolve, reject };
+    requests.set(request, pending);
+    return pending;
+  }
+  // Track before headers arrive: a later navigation or settings change can
+  // abort warm fetches and discard the original Chromium response bodies.
+  page.on('request', track);
+  page.on('response', (response) => {
+    const request = response.request(),
+      pending = requests.get(request);
+    if (!pending) return;
+    verifyResponse(response, base, manifest, checkedFiles).then(pending.resolve, pending.reject);
+  });
+  page.on('requestfailed', (request) => {
+    requests
+      .get(request)
+      ?.reject(Error('request failed ' + request.url() + ': ' + request.failure()?.errorText));
+  });
+  return responseChecks;
+}
+async function drainResponses(responseChecks) {
+  const failures = [];
+  let checked = 0;
+  while (checked < responseChecks.length) {
+    const current = responseChecks.slice(checked);
+    checked += current.length;
+    const results = await Promise.allSettled(current);
+    for (const result of results) if (result.status === 'rejected') failures.push(result.reason);
+  }
+  if (failures.length) throw failures[0];
+}
+async function responseAction(responseChecks, action) {
+  await drainResponses(responseChecks);
+  return action();
+}
+async function navigateDocument(page, url, responseChecks) {
+  return responseAction(responseChecks, () => page.goto(url, { waitUntil: 'load' }));
+}
 async function responseNames(page, route) {
   const selector =
     route === 'index'
-      ? '#acknowledgements .ack-leads article h3 a'
-      : '#acknowledgements .ack-grid article h3 a';
+      ? '#site-content #acknowledgements .ack-leads article h3 a'
+      : '#site-content #acknowledgements .ack-grid article h3 a';
   const names = await page.locator(selector).allTextContents();
   assert.deepEqual(
     names,
@@ -147,7 +199,7 @@ async function responseNames(page, route) {
     route + ' public-response names and order'
   );
   assert.equal(
-    await page.locator('#acknowledgements article').count(),
+    await page.locator('#site-content #acknowledgements article').count(),
     names.length,
     route + ' no additional discussion cards'
   );
@@ -161,7 +213,7 @@ async function discussionAnchor(page) {
   );
   await page.waitForFunction(
     () => {
-      const heading = document.querySelector('#acknowledgements .section-heading'),
+      const heading = document.querySelector('#site-content #acknowledgements .section-heading'),
         rect = heading.getBoundingClientRect();
       return rect.top >= -1 && rect.top < innerHeight;
     },
@@ -169,99 +221,121 @@ async function discussionAnchor(page) {
     { polling: 40, timeout: 3000 }
   );
 }
-async function discussionNavigation(page, url) {
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+async function discussionNavigation(page, url, responseChecks) {
+  await responseAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
-    cta = page.locator('#acknowledgements > a.text-link');
+    cta = page.locator('#site-content #acknowledgements > a.text-link');
   assert.equal(await cta.getAttribute('href'), 'research.html#acknowledgements');
   assert.equal(await cta.textContent(), 'Full discussion & source context ↗');
-  await cta.evaluate((el) => el.click());
+  await responseAction(responseChecks, () => cta.evaluate((el) => el.click()));
   await ready(page, 'research');
   await discussionAnchor(page);
   const research = await responseNames(page, 'research');
-  await page.goBack();
+  await responseAction(responseChecks, () => page.goBack());
   await ready(page, 'index');
   await responseNames(page, 'index');
-  await page.goForward();
+  await responseAction(responseChecks, () => page.goForward());
   await ready(page, 'research');
   await discussionAnchor(page);
-  const nav = page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
+  const nav = page.locator(
+    '#site-content nav[aria-label="Research sections"] a[href="#acknowledgements"]'
+  );
   assert.equal(await nav.textContent(), 'Advisors & responses');
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+  await responseAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
-  await page
-    .locator('#acknowledgements a[href="research.html#ua-advisors"]')
-    .evaluate((el) => el.click());
+  await responseAction(responseChecks, () =>
+    page
+      .locator('#site-content #acknowledgements a[href="research.html#ua-advisors"]')
+      .evaluate((el) => el.click())
+  );
   await ready(page, 'research');
   assert.equal(new URL(page.url()).hash, '#ua-advisors');
   await page.waitForFunction(
     () => {
-      const r = document.getElementById('ua-advisors').getBoundingClientRect();
+      const r = document.querySelector('#site-content #ua-advisors').getBoundingClientRect();
       return r.top >= -1 && r.top < innerHeight;
     },
     null,
     { polling: 40, timeout: 3000 }
   );
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  await nav.click();
+  await responseAction(responseChecks, () => nav.click());
   await discussionAnchor(page);
-  await page.goto(url + '/research.html#acknowledgements', { waitUntil: 'load' });
+  await navigateDocument(page, url + '/research.html#acknowledgements', responseChecks);
   await ready(page, 'research');
   await discussionAnchor(page);
   await responseNames(page, 'research');
   return { home, research, cta: true, localNavigation: true, history: true, directAnchor: true };
 }
-async function writingControls(page) {
-  await page.locator('#archive-topic').selectOption('systems');
+async function writingControls(page, responseChecks = []) {
+  await responseAction(responseChecks, () =>
+    page.locator('#site-content #archive-topic').selectOption('systems')
+  );
   assert.ok(
-    (await page.locator('li.publication:visible').count()) > 0,
+    (await page.locator('#site-content li.publication:visible').count()) > 0,
     'Writing filter has results'
   );
-  await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
-  await page.emulateMedia({ media: 'print' });
+  await responseAction(responseChecks, () =>
+    page.evaluate(() => window.dispatchEvent(new Event('beforeprint')))
+  );
+  await responseAction(responseChecks, () => page.emulateMedia({ media: 'print' }));
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#site-content li.publication:visible').count(),
     primaryCount,
     'print shows all primary records and their edition links'
   );
   assert.match(
-    await page.locator('#archive-count').textContent(),
+    await page.locator('#site-content #archive-count').textContent(),
     /their linked platform editions shown for printing/
   );
-  await page.emulateMedia({ media: 'screen' });
-  await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
-  await page.locator('.filter-reset').evaluate((el) => el.click());
+  await responseAction(responseChecks, () => page.emulateMedia({ media: 'screen' }));
+  await responseAction(responseChecks, () =>
+    page.evaluate(() => window.dispatchEvent(new Event('afterprint')))
+  );
+  await responseAction(responseChecks, () =>
+    page.locator('#site-content .filter-reset').evaluate((el) => el.click())
+  );
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#site-content li.publication:visible').count(),
     primaryCount,
     'Writing Reset retains every primary record'
   );
 }
-async function researchControls(page, mode, width) {
+async function researchControls(page, mode, width, responseChecks = []) {
   assert.equal(
-    await page.locator('.discussion-row').count(),
+    await page.locator('#site-content .discussion-row').count(),
     Object.keys(catalog.discussions).length,
     'discussion rows match the canonical catalog'
   );
-  assert.equal(await page.locator('.advisor-role').count(), 2, 'two project advisors');
+  assert.equal(
+    await page.locator('#site-content .advisor-role').count(),
+    2,
+    'two project advisors'
+  );
   if (mode === 'normal' && width === 390) {
     await page.locator('.appearance summary').click();
-    await page.locator('#space-motion').click();
+    await responseAction(responseChecks, () => page.locator('#space-motion').click());
     assert.match(await page.locator('#space-motion').textContent(), /off/);
-    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await responseAction(responseChecks, () => page.emulateMedia({ reducedMotion: 'reduce' }));
   }
   await page.evaluate(() =>
     scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
   );
-  const footer = await page.locator('.site-footer').boundingBox();
+  const footer = await page.locator('#site-content .site-footer').boundingBox();
   assert.ok(
     footer && footer.y < page.viewportSize().height && footer.y + footer.height > 0,
     'Research bottom remains reachable'
   );
   if (mode === 'normal' && width === 390) {
-    await page.emulateMedia({ reducedMotion: 'no-preference' });
-    await page.locator('#space-motion').click();
+    await responseAction(responseChecks, () =>
+      page.emulateMedia({ reducedMotion: 'no-preference' })
+    );
+    await responseAction(responseChecks, () => page.locator('#space-motion').click());
     await page.locator('.appearance summary').click();
   }
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
@@ -288,8 +362,8 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     page = await context.newPage();
   const errors = [],
     external = [],
-    responseChecks = [],
     checkedFiles = new Set(),
+    responseChecks = trackResponses(page, url, manifest, checkedFiles, errors),
     rows = [];
   page.setDefaultTimeout(8000);
   await context.addInitScript((mode) => {
@@ -305,16 +379,9 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   page.on('request', (request) => {
     if (!request.url().startsWith(url + '/')) external.push(request.url());
   });
-  page.on('response', (response) => {
-    responseChecks.push(
-      verifyResponse(response, url, manifest, checkedFiles).catch((error) => {
-        errors.push(error.message);
-      })
-    );
-  });
   try {
     const served = await routeBytes(context, url, manifest);
-    await page.goto(url + '/index.html', { waitUntil: 'load' });
+    await navigateDocument(page, url + '/index.html', responseChecks);
     await ready(page, 'index');
     if (mode === 'normal')
       await page.waitForFunction(
@@ -324,15 +391,17 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       );
     await page.evaluate(() => {
       window.__previewShell = {
-        header: document.querySelector('header'),
-        canvas: document.querySelector('canvas'),
+        header: document.querySelector('body > .site-header'),
+        canvas: document.getElementById('space-canvas'),
       };
     });
     for (const id of routes) {
       const checkDetail = mode === 'normal' && id === 'writing';
       if (checkDetail) await flightDetail.begin(page);
       if (id !== 'index') {
-        await page.locator(routeSelector(id)).evaluate((el) => el.click());
+        await responseAction(responseChecks, () =>
+          page.locator(routeSelector(id)).evaluate((el) => el.click())
+        );
         await ready(page, id);
       }
       const detail = checkDetail ? await flightDetail.finish(page) : null;
@@ -343,8 +412,8 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       assert.equal(
         await page.evaluate(
           () =>
-            window.__previewShell.header === document.querySelector('header') &&
-            window.__previewShell.canvas === document.querySelector('canvas')
+            window.__previewShell.header === document.querySelector('body > .site-header') &&
+            window.__previewShell.canvas === document.getElementById('space-canvas')
         ),
         true,
         id + ' persistent header and canvas'
@@ -352,28 +421,28 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       assertRenderedMode(observed, id, mode);
       await page.locator('.appearance summary').click();
       const theme = id === 'research' || id === 'talks' ? 'dark' : 'light';
-      await page.locator('#theme-mode').selectOption(theme);
+      await responseAction(responseChecks, () => page.locator('#theme-mode').selectOption(theme));
       assert.equal(
         await page.locator('html').getAttribute('data-theme'),
         theme,
         id + ' theme control'
       );
       if (mode === 'normal' && id === 'index') {
-        await page.locator('#space-motion').click();
+        await responseAction(responseChecks, () => page.locator('#space-motion').click());
         await page.waitForTimeout(150);
-        const frozen = await page.locator('canvas').evaluate((el) => el.toDataURL());
+        const frozen = await page.locator('#space-canvas').evaluate((el) => el.toDataURL());
         await page.waitForTimeout(150);
         assert.equal(
-          await page.locator('canvas').evaluate((el) => el.toDataURL()),
+          await page.locator('#space-canvas').evaluate((el) => el.toDataURL()),
           frozen,
           'Motion Off freezes the rendered bitmap'
         );
         assert.match(await page.locator('#space-motion').textContent(), /off/);
-        await page.locator('#space-motion').click();
+        await responseAction(responseChecks, () => page.locator('#space-motion').click());
       }
       await page.locator('.appearance summary').click();
-      if (id === 'writing') await writingControls(page);
-      if (id === 'research') await researchControls(page, mode, width);
+      if (id === 'writing') await writingControls(page, responseChecks);
+      if (id === 'research') await researchControls(page, mode, width, responseChecks);
       if (id === 'index' || id === 'research') await responseNames(page, id);
       rows.push({
         route: id,
@@ -390,12 +459,12 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         ],
       });
     }
-    await page.goBack();
+    await responseAction(responseChecks, () => page.goBack());
     await ready(page, 'talks');
-    await page.goForward();
+    await responseAction(responseChecks, () => page.goForward());
     await ready(page, 'credits');
-    const discussion = await discussionNavigation(page, url);
-    await Promise.all(responseChecks);
+    const discussion = await discussionNavigation(page, url, responseChecks);
+    await drainResponses(responseChecks);
     assert.deepEqual(errors, [], 'runtime and served-byte errors');
     assert.deepEqual(external, [], 'unexpected external requests');
     return {
@@ -416,7 +485,9 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     await page
       .screenshot({ path: path.join(out, 'preview-' + width + '-' + mode + '.png') })
       .catch(() => {});
-    await Promise.all(responseChecks);
+    await drainResponses(responseChecks).catch((failure) => {
+      if (!errors.includes(failure.message)) errors.push(failure.message);
+    });
     return {
       width,
       mode,
@@ -502,6 +573,13 @@ module.exports = {
   scenario,
   ready,
   state,
+  routeSelector,
+  researchControls,
+  responseNames,
   artifactFile,
   verifyResponse,
+  navigateDocument,
+  trackResponses,
+  drainResponses,
+  responseAction,
 };

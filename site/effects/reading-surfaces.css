@@ -1,5 +1,18 @@
 /* Color-only ink and controls. Reading backdrop paint stays in engine/reading-surfaces.css. */
-:root[data-theme='dark'] body[data-page='writing'] .archive-intro > .hero-description {
+:root[data-theme='dark']
+  body[data-page='writing']
+  :where(#site-content)
+  .archive-intro
+  > .hero-description,
+:root[data-theme='dark']
+  body[data-page='writing']
+  > :where(main)
+  .archive-intro
+  > .hero-description,
+:root[data-theme='dark']
+  .embedded-stage[data-embedded-route='writing']
+  .archive-intro
+  > .hero-description {
   color: var(--ink);
 }
 .appearance[open] .display-controls {

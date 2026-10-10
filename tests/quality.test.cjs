@@ -17,15 +17,19 @@ function scan(kind, detail) {
 }
 function checks(mode, route) {
   const contract = require('../tools/quality/scroll-browser.cjs'),
+    baseline = JSON.stringify(contract.routeCamera(route)),
     syncFixture = (label) => ({
       label,
       end: 1000,
-      start: 'opening',
-      samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
+      start: baseline,
+      startPaints: 1,
+      samples: [0.9, 0.95, 0.99, 1].map((fraction, i) => ({
         fraction,
         y: fraction * 1000,
-        camera: 'camera-' + fraction,
+        camera: baseline,
+        paints: i + 2,
       })),
+      reverse: { y: 0, camera: baseline, paints: 6 },
     });
   if (mode === 'normal')
     return {
@@ -35,7 +39,7 @@ function checks(mode, route) {
       syntheticVisibility: true,
       keyboard: true,
       reverse: true,
-      forward: 'camera changed',
+      forward: 'camera fixed',
       archive: route === 'writing' ? true : 'not applicable',
       zoom: true,
       axePasses: 1,
@@ -46,9 +50,12 @@ function checks(mode, route) {
         waypoint: {
           id: 'semantic-stop',
           y: 100,
+          targetY: 100,
+          end: 1000,
+          paints: 1,
           distance: 0,
-          actual: { position: [0, 0, 0], target: [0, 0, -1] },
-          expected: { position: [0, 0, 0], target: [0, 0, -1] },
+          actual: contract.routeCamera(route),
+          expected: contract.routeCamera(route),
         },
         checks: Object.fromEntries(
           contract.checks.map((k) => [
@@ -121,12 +128,7 @@ function fixture() {
         errors: [],
         scrollArrivals: ['research', 'writing', 'talks', 'credits'].map((route) => ({
           route,
-          end: 1000,
-          samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
-            fraction,
-            y: fraction * 1000,
-            camera: 'arrival-' + fraction,
-          })),
+          ...checks('normal', route).scrollSync.fixtures[0],
         })),
         checks: Object.fromEntries(
           require('../tools/quality/navigation.cjs').checks.map((k) => [k, true])
@@ -213,9 +215,13 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     (x) => delete x.reports[3].rows[0].checks.scrollSync.checks.contentGrowth,
     (x) => delete x.reports[3].rows[0].checks.scrollSync.waypoint,
     (x) => (x.reports[3].rows[0].checks.scrollSync.waypoint.actual.position[0] = 1),
-    (x) =>
-      (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera =
-        x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].camera),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera = 'drift'),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[1].y = 900),
+    (x) => delete x.reports[3].rows[0].checks.scrollSync.fixtures[0].start,
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].paints = 3),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].reverse.y = 10),
+    (x) => (x.reports[3].navigation[0].scrollArrivals[0].samples[2].camera = 'drift'),
+    (x) => (x.reports[3].rows[0].checks.forward = 'camera changed'),
     (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].y = 990),
     (x) =>
       x.reports[3].rows
@@ -721,8 +727,14 @@ function colorFixture() {
         theme,
         pass: true,
         identity: { id: 'color', engine: color.fingerprint },
-        ribbons: { sceneHook: 'undefined', dataset: {} },
-        paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+        ribbons: {
+          sceneHook: 'undefined',
+          ribbonHook: 'undefined',
+          submissions: 0,
+          shapes: 0,
+          dataset: {},
+        },
+        paint: { completed: 2, ordinaryShapes: 12, customShapes: 0, embeddedShapes: 0 },
         checks: Object.fromEntries(
           [
             'spatialFlight',
@@ -755,7 +767,7 @@ test('full macOS policy keeps twelve travel Color cells with ordinary paint incl
     (report) => (report.rows = report.rows.filter((row) => row.engine !== 'webkit')),
     (report) => (report.rows[0].checks.spatialFlight = false),
     (report) => (report.rows[0] = structuredClone(report.rows[1])),
-    (report) => (report.rows[0].ribbons.sceneHook = 'function'),
+    (report) => (report.rows[0].ribbons.ribbonHook = 'function'),
     (report) => (report.rows[0].ribbons.dataset = { ribbons: '3' }),
     (report) => (report.rows[0].ribbons.dataset = { ribbonFaces: '1' }),
     (report) => (report.rows[0].ribbons.dataset = { ribbonSignals: '1' }),
@@ -1088,5 +1100,39 @@ test('Color navigation requires both depth planes and a clear handover without c
     const changed = structuredClone(samples);
     mutate(changed);
     assert.throws(() => checkTiming(changed, 'color'));
+  }
+});
+
+test('shared embedded scene capability does not stand in for retired ribbon activity', () => {
+  const vm = require('node:vm');
+  const { paintProbe } = require('../tools/quality/color-browser.cjs');
+  const { colorPaint } = require('../tools/quality/validate.cjs');
+  const window = {
+    requestAnimationFrame() {},
+    SiteEffects: { scene() {}, embedded: { diagnostics: () => ({ faces: [{}, {}] }) } },
+  };
+  const document = { querySelector: () => ({ dataset: {} }) };
+  vm.runInNewContext('(' + paintProbe.toString() + ')()', { window, document });
+  window.SiteEngineProbe({ kind: 'paint', ordinaryShapes: 12, customShapes: 2 });
+  const row = { ribbons: window.__ribbonObservation(), paint: { ...window.__colorPaint } };
+  assert.equal(row.ribbons.sceneHook, 'function');
+  assert.equal(row.ribbons.ribbonHook, 'undefined');
+  assert.equal(row.paint.embeddedShapes, 2);
+  assert.doesNotThrow(() => colorPaint(row));
+  assert.throws(() => colorPaint({ ...row, paint: { ...row.paint, customShapes: 3 } }));
+  window.SiteRibbonProbe({ shapes: [{ kind: 'ribbon' }] });
+  assert.equal(window.__ribbonObservation().submissions, 1);
+  assert.equal(window.__ribbonObservation().shapes, 1);
+  assert.throws(() => colorPaint({ ...row, ribbons: window.__ribbonObservation() }));
+  for (const mutate of [
+    (value) => (value.ribbons.ribbonHook = 'function'),
+    (value) => (value.ribbons.submissions = 1),
+    (value) => (value.ribbons.shapes = 1),
+    (value) => delete value.paint.embeddedShapes,
+    (value) => (value.paint.embeddedShapes = 3),
+  ]) {
+    const changed = structuredClone(row);
+    mutate(changed);
+    assert.throws(() => colorPaint(changed));
   }
 });

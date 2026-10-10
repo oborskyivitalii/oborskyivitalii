@@ -3,6 +3,41 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const gate = require('../tools/quality/staging-gate.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+test('incrementally read complete reports retain exact staging hashes and reject wrong-source or truncated evidence', (t) => {
+  const fs = require('node:fs'),
+    os = require('node:os'),
+    path = require('node:path'),
+    crypto = require('node:crypto');
+  const { writeJson } = require('../tools/quality/common.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'staging-report-reader-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const evidence = fixture.aggregateFixture(true);
+  for (const report of evidence.reports)
+    writeJson(path.join(directory, report.kind + '.json'), report);
+  const reports = gate.readReports(directory);
+  assert.deepEqual(
+    reports,
+    JSON.parse(JSON.stringify([...evidence.reports].sort((a, b) => a.kind.localeCompare(b.kind))))
+  );
+  const result = gate.aggregate({ ...evidence, reports });
+  for (const checked of result.checkedReports) {
+    const report = reports.find((item) => item.kind === checked.kind);
+    assert.equal(
+      checked.sha256,
+      crypto.createHash('sha256').update(JSON.stringify(report)).digest('hex')
+    );
+  }
+  const wrongSource = structuredClone(evidence.reports.at(-1));
+  wrongSource.sourceCommit = 'f'.repeat(40);
+  const colorFile = path.join(directory, 'color-preview-smoke.json');
+  writeJson(colorFile, wrongSource);
+  assert.throws(
+    () => gate.aggregate({ ...evidence, reports: gate.readReports(directory) }),
+    /sourceCommit/
+  );
+  fs.writeFileSync(colorFile, '{"kind":"color-preview-smoke","rows":[');
+  assert.throws(() => gate.readReports(directory), SyntaxError);
+});
 test('complete selected hosted automation creates only an explicitly staging gate', () => {
   for (const color of [false, true]) {
     const f = fixture.aggregateFixture(color),

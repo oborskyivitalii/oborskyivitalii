@@ -22,21 +22,7 @@ const modes = [
   'draw-fault',
   'context-loss',
 ];
-function probe() {
-  const stats = { paints: 0, callbacks: 0 };
-  window.__quality = stats;
-  const raf = window.requestAnimationFrame,
-    clear = CanvasRenderingContext2D.prototype.clearRect;
-  CanvasRenderingContext2D.prototype.clearRect = function (...args) {
-    stats.paints++;
-    return clear.apply(this, args);
-  };
-  window.requestAnimationFrame = (fn) =>
-    raf((time) => {
-      stats.callbacks++;
-      fn(time);
-    });
-}
+const { paintProbe: probe } = require('./engine-browser.cjs');
 function capability(mode) {
   if (mode === 'no-canvas') HTMLCanvasElement.prototype.getContext = () => null;
   if (mode === 'no-raf') window.requestAnimationFrame = undefined;
@@ -148,8 +134,12 @@ function forwardCameraResponded(expected) {
     hidden: document.hidden,
   };
   probe.samples.push(sample);
+  if (scene.dataset.camera !== expected.baseline) probe.cameraDrift = true;
   const responded =
-    Math.abs(scrollY - expected.target) <= 1 && scene.dataset.camera !== expected.baseline;
+    !probe.cameraDrift &&
+    Math.abs(scrollY - expected.target) <= 1 &&
+    Number.isFinite(sample.paints) &&
+    sample.paints > probe.startPaints;
   if (responded) {
     probe.status = 'responded';
     probe.elapsedMs = sample.time;
@@ -165,6 +155,7 @@ async function forwardCamera(page, baseline, travel) {
         travel,
         start: performance.now(),
         timeoutMs: 2000,
+        startPaints: window.__quality?.paints,
         status: 'waiting',
         samples: [],
       }),
@@ -336,9 +327,20 @@ async function archive(page) {
   await page.goBack();
   await archiveHistoryReady(page, backURL, { topic: 'systems', language: 'all' });
   assert.equal(await page.locator('#archive-language').inputValue(), 'all');
+  const routeCamera = require('./scroll-browser.cjs').routeCamera('writing');
+  assert.deepEqual(
+    JSON.parse((await state(page)).camera),
+    routeCamera,
+    'archive Back preserves camera'
+  );
   await page.goForward();
   await archiveHistoryReady(page, forwardURL, { topic: 'systems', language: 'uk' });
   assert.equal(await page.locator('#archive-language').inputValue(), 'uk');
+  assert.deepEqual(
+    JSON.parse((await state(page)).camera),
+    routeCamera,
+    'archive Forward preserves camera'
+  );
 }
 async function ctaStates(page) {
   const rows = [],
@@ -426,7 +428,7 @@ async function normal(page, scenario) {
   const travel = await page.evaluate(() => {
     const range = document.documentElement.scrollHeight - innerHeight,
       rows = [...document.querySelectorAll('li.publication')].filter((el) => !el.hidden);
-    // Writing's camera starts at the visible publication span, below its introduction.
+    // Choose a real native reading position within the visible publication span.
     const target = rows.length
       ? rows[0].getBoundingClientRect().top +
         scrollY -
@@ -439,7 +441,7 @@ async function normal(page, scenario) {
   const forward = await forwardCamera(page, a.camera, travel);
   if (travel.range > 1 && travel.target > 1) {
     assert.ok(forward.scrollY > 0, 'native scroll reaches the visible journey');
-    assert.notEqual(forward.camera, a.camera, 'native forward scroll moves camera');
+    assert.equal(forward.camera, a.camera, 'native forward scroll keeps the route camera');
   } else assert.equal(forward.camera, a.camera, 'short page keeps camera');
   assert.equal((await atStart(page, a.camera)).camera, a.camera, 'midflight reverse endpoint');
   await freezeControls(page);
@@ -460,8 +462,11 @@ async function normal(page, scenario) {
     await page.evaluate(() => Number(getComputedStyle(document.documentElement).zoom)),
     2
   );
-  readable(await settled(page));
+  const zoomed = await settled(page);
+  readable(zoomed);
+  assert.equal(zoomed.camera, a.camera, 'CSS zoom changes layout without retargeting camera');
   await page.evaluate(() => (document.documentElement.style.zoom = ''));
+  assert.equal((await settled(page)).camera, a.camera, 'restored layout keeps the route camera');
   const scrollMotionPrecondition =
     await require('./engine-browser.cjs').liveScrollPrecondition(page);
   const scrollSync = await require('./scroll-browser.cjs').scenario(page, scenario.route);
@@ -480,7 +485,7 @@ async function normal(page, scenario) {
     keyboard: true,
     keyboardShortcut,
     reverse: true,
-    forward: travel.range > 1 && travel.target > 1 ? 'camera changed' : 'short page',
+    forward: travel.range > 1 && travel.target > 1 ? 'camera fixed' : 'short page',
     travel: { ...travel, settledY: forward.scrollY },
     archive: scenario.route === 'writing' ? true : 'not applicable',
     scrollSync,

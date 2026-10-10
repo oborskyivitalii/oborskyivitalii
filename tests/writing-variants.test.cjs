@@ -77,6 +77,9 @@ function browser(source) {
     },
     cancelAnimationFrame() {},
     addEventListener() {},
+    MutationObserver: class {
+      observe() {}
+    },
     getComputedStyle: () => ({
       getPropertyValue: (key) =>
         ({
@@ -321,7 +324,12 @@ test('no-canvas retains actual diagnostic frames/geometry/effects; prewarm expli
     assert.equal(frame.calls.stroke, 0);
     assert.equal(frame.dataset.ready, 'true');
     assert.equal(frame.dataset.ribbonFaces, undefined);
-    assert.equal(frame.window.SiteEffects.scene, undefined);
+    assert.equal(typeof frame.window.SiteEffects.scene, 'function');
+    assert.equal(frame.window.SiteEffects.embedded.diagnostics().ready, false);
+    assert.doesNotMatch(
+      read('no-canvas-draw'),
+      /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/
+    );
     assert.ok(frame.events.some((event) => event.kind === 'model' && event.route === 'research'));
     const prewarm = browser(read('model-prewarm'));
     const timing = prewarm.window.__writingDiagnostic.prepareWriting();
@@ -370,6 +378,7 @@ test('edge bypass retains serialized controls but does not register their hooks;
   const load = (source) => {
     const callbacks = [];
     vm.runInNewContext(source, {
+      window: { SiteEffects: {} },
       document: {
         readyState: 'loading',
         addEventListener: (name, fn) => {
@@ -382,6 +391,19 @@ test('edge bypass retains serialized controls but does not register their hooks;
   };
   assert.equal(load(nav), 2);
   assert.equal(load(patched), 1, 'content preference still initializes, edge hooks do not');
+  const footer = require('../site/effects/flight.cjs').prepareEndScrollFooter.toString(),
+    withoutFooter = nav.replace(',' + footer, '');
+  assert.notEqual(withoutFooter, nav, 'the drift fixture removes the serialized footer argument');
+  for (const changed of [
+    withoutFooter,
+    nav.replace('function prepareEndScrollFooter(', 'function driftedFooter('),
+    nav + '\n' + nav,
+  ])
+    assert.throws(
+      () => diagnostic.patchRuntime({ 'navigation.js': changed }, 'edge-bypass'),
+      /exactly once/,
+      'a missing, drifted or duplicated edge-scroll invocation fails closed'
+    );
   assert.throws(
     () => diagnostic.patchRuntime({ 'space.js': 'no matching source' }, 'no-ribbons'),
     /exactly once/
@@ -412,4 +434,49 @@ test('edge bypass retains serialized controls but does not register their hooks;
         /exactly once/,
         'a missing or duplicated formula-aware world contract fails closed'
       );
+});
+test('no-ribbons preserves the canonical room cache API and rejects ambiguous or drifted scene initializers', () => {
+  const initializer = `const sceneEffects = effects?.scene?.({
+    ...api,
+    // Shared room cache must remain available to unrelated effects.
+    worldForRoom: (route) => roomFor(route).world,
+  });`;
+  const run = (source) => {
+    const received = [];
+    const context = {
+      api: { contract: 1 },
+      roomFor: (route) => ({ world: { route, cached: true } }),
+      effects: {
+        scene: (value) => {
+          received.push(value);
+          return { retained: true };
+        },
+      },
+    };
+    vm.runInNewContext(source, context);
+    return received;
+  };
+  const control = run(initializer);
+  const patched = diagnostic.patchRuntime({ 'space.js': initializer }, 'no-ribbons');
+  assert.equal(patched.patches.length, 1);
+  assert.equal(patched.patches[0].matches, 1);
+  const retained = run(patched.scripts['space.js']);
+  assert.equal(retained.length, 1, 'unrelated scene factory remains active');
+  assert.equal(retained[0].contract, control[0].contract);
+  assert.deepEqual(retained[0].worldForRoom('writing'), control[0].worldForRoom('writing'));
+  const historical = 'const ribbonGeometry=null;const createRibbonMaterials=null;\n' + initializer;
+  assert.equal(
+    run(diagnostic.patchRuntime({ 'space.js': historical }, 'no-ribbons').scripts['space.js'])
+      .length,
+    0
+  );
+  for (const changed of [
+    initializer + '\n' + initializer,
+    initializer + '\nconst sceneEffects=effects?.scene?.(api);',
+    initializer.replace('worldForRoom', 'uncachedWorld'),
+  ])
+    assert.throws(
+      () => diagnostic.patchRuntime({ 'space.js': changed }, 'no-ribbons'),
+      /exactly once/
+    );
 });

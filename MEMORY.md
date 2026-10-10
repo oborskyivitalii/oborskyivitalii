@@ -1,63 +1,67 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-09**.
+Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 ## Snapshot
 
-- Main inspected at `338e3ff341dc35b64cba7854289e1385cbaf1562`; revalidate live state.
-- [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) is closed and
-  [PR #60](https://github.com/oborskyivitalii/oborskyivitalii/pull/60) merged; detailed
-  checkpoints remain in [its handoff](review/issue-58/2026-10-08-handoff.md).
-- PMDay update [#61](https://github.com/oborskyivitalii/oborskyivitalii/issues/61)
-  was delivered through [PR #63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63).
+- Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
+- Issue49 / Draft PR53 remains the sole fragment-flight execution route on
+  `docs/fractal-content-flight-plan-20261008`. This checkpoint follows inspected
+  `c920674eb95fb1da106eb69997cd3239a839e57b`; revalidate the live PR head and CI.
+- Canonical capture now shares identical resolved node/pseudo declarations inside
+  each SVG. Geometry, chips, native paint, original caps and fallback remain.
+  Read [the result](review/issue-49/2026-10-08-analysis.md#native-raster-result-and-remaining-cold-failure)
+  and its inert source-bound evidence archive.
+- Six warm same-DOM WebKit cases have identical native bitmap pixels. Research
+  SVG URI size drops about48%; Writing about42%. This proves scoped raster parity,
+  not playback smoothness or a whole performance pass.
+- Existing local tablet profiles preserve first cold portrait failures:
+  baseline258ms, node-only197ms, pre-refactor node/pseudo212ms against160ms. Landscape
+  first load plus5/5 journeys passes for each revision. Samples are descriptive;
+  no failing revision is retried into acceptance. The final helper refactor passes
+  both orientations/10 journeys locally; initial setup overlapped static checks,
+  so it cannot isolate a timing effect. Native iPad and cold reliability remain unproved.
+- Final owner suites277/277 and texture88/88 pass. Final published-source checks
+  and exact hosted preview evidence must be fetched; do not inherit an old green run.
 
 ## Decisions
 
-- [#65](https://github.com/oborskyivitalii/oborskyivitalii/issues/65) owns harness
-  verification/compaction is merged through PR66 and closed; retain its evidence.
-  [Analysis](review/issue-65/2026-10-09-analysis.md).
-- [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) now also owns
-  the maintainer's practical-positioning brief, implemented in
-  [PR #67](https://github.com/oborskyivitalii/oborskyivitalii/pull/67).
-  [Current source review](review/issue-41/2026-10-09-positioning.md) and
-  [CI follow-up](review/issue-41/2026-10-09-ci-followup.md) record separate evidence.
-  No invented management case; record missing facts in the issue. Keep graphics,
-  runtime, routes and production outside the content continuation.
-  The same issue/PR also owns the compact AI-assisted delivery case, AC17–26:
-  [source/history analysis](review/issue-41/2026-10-09-sitecase.md), About→Credits
-  evidence links, explicit human/AI/enterprise boundaries. Its
-  [independent review](review/issue-41/2026-10-09-sitecase-review.md) and
-  [focused preview observations](review/issue-41/2026-10-09-sitecase-browser.md)
-  retain exact source/public-byte identities and observation limits; current-head
-  CI and whole-AC reconciliation live in the issue/PR. The maintainer authorized
-  merge and stable staging on 9 October. The first stage failed on untriaged
-  checksum candidates; its browser profile passed. The exact follow-up is in
-  [staging security review](review/issue-41/2026-10-09-staging-security.md).
-  Revalidate its final source, current gate, stable alias and merge in the live
-  issue/PR; original issue/release obligations remain open.
-- A user-supplied issue stays bound across phases/model handoffs; consolidation
-  transfers original ACs, evidence and open gates before superseding an owner.
+- Continue issue49/PR53; do not create another owner, execution PR or matrix.
+- Keep textured closed chips on the actual fractal branches, one camera/clock,
+  reverse retention and Home-to-Writing's intermediate Research corridor.
+- Reading scroll, filters, hashes and history keep the settled camera stationary;
+  inter-page travel/fade and ambient motion remain.
+- Keep80ms acquisition,160ms preparation,100ms draw pause,96/40 pieces,
+  8M/3M combined pixels,1M per texture and three resident fields.
+  Unsupported acquisition retains the native flightPose fade without DOM scatter.
+- Snapshot CSS sharing is acquisition-local. Individual geometry/pseudo content,
+  owner clips, fonts/images/ink proof, cancellation and native handoff remain.
+- AC01 and historicalAC11–AC14 retain accepted scope. AC02–AC10/AC15 and all11
+  human gates remain open. Preview publication does not admit stable/production.
+- Earlier same-source added-cost failures, unavailable native RunTask p95 and
+  reverse picture departure remain deferred in the existing hierarchy/cost record.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #41 / PR #67 | Authorized merge/staging: verify the security follow-up, exact current CI, successful staging promotion and actual merge; keep original full-intent work distinct. |
-| #49 / Draft PR #53 | Consolidated fragment-flight work; revalidate its current head and visual acceptance. |
-| #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
-| #45 / #36 | Check original visual/editorial/device/release gates in the live owners. |
-| #1 / #13 / #8 | First release, devices, recovery, URL/indexability and analytics activation. |
-| #7 / #5 / #6 / #2 / #11 | Rights, accepted editions, cross-repository adapter and post-launch guides. |
+| #49 / Draft PR53 | Reconcile current CI/public bytes, cold native decode and idle added cost; physical iPad visual/fidelity/accessibility acceptance remains open. |
+| #41 | Revalidate current editorial PR/main and remaining content gates. |
+| #39 / Draft PR40 | Pages/domain preparation and production decisions. |
+| #45 / #36 | Original visual/editorial/device/release gates. |
+| #1 / #13 / #8 | First release, native devices, recovery, URL/indexability and analytics. |
+| #7 / #5 / #6 / #2 / #11 | Rights, editions, adapters and post-launch guides. |
 
 ## Next session
 
-1. Fetch main and live #41/#49/#39 issues and linked PRs; reconcile heads/ACs.
-2. Read #41's current source review and exact PR/issue evidence before continuing.
-3. Use required current-source checks and honest review/gate evidence; update AC boxes.
-4. Refresh this handoff after a material state change; merge/release only by maintainer decision.
+1. Fetch live main, issue49/PR53 head and exact preview/check identities.
+2. Read the native-raster result and hierarchy/cost predecessor in the same handoff.
+3. Resolve cold preparation without relaxing budgets; preserve every failure and
+   distinguish native raster equality from whole playback/device acceptance.
+4. Update current evidence and actual AC boxes; rebuild RI after source/memory edits.
+   Merge/promotion requires its separate maintainer decision.
 
 ## Maintenance
 
-Keep five sections within 120 lines; rebuild RI after changes. Detailed logs,
-measurements and historical checkpoints belong in their owning issue/PR/review.
-Never store private correspondence, credentials or inferred approvals.
+Keep five sections within120 lines; rebuild RI after changes. Detailed evidence
+belongs in its owning issue/PR/review. Never store private data or credentials.

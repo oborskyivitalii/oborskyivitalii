@@ -405,16 +405,16 @@ function cameraPage(h, change) {
     },
   };
 }
-test('native forward response waits beyond the old 180ms window for both scroll target and a changed camera', async () => {
+test('native forward response waits for the actual scroll target and a new paint at the fixed camera', async () => {
   const h = helpers(),
     travel = { range: 9000, target: 2400, y: 0 };
   const page = cameraPage(h, (time, current) => {
     current.context.scrollY = time < 200 ? 1200 : 2400;
-    if (time >= 450) current.scene.dataset.camera = 'journey';
+    if (time >= 450) current.context.window.__quality.paints++;
   });
   const result = await h.forwardCamera(page, 'opening', travel),
     probe = result.forwardResponse;
-  assert.equal(result.camera, 'journey');
+  assert.equal(result.camera, 'opening');
   assert.equal(result.scrollY, 2400);
   assert.equal(probe.status, 'responded');
   assert.equal(probe.timeoutMs, 2000);
@@ -424,15 +424,22 @@ test('native forward response waits beyond the old 180ms window for both scroll 
   assert.equal(probe.samples.length, 10);
   assert.equal(probe.samples[0].y, 1200);
   assert.equal(probe.samples[0].camera, 'opening');
-  assert.equal(probe.samples.at(-1).camera, 'journey');
+  assert.equal(probe.samples.at(-1).camera, 'opening');
+  assert.ok(probe.samples.at(-1).paints > probe.startPaints);
 });
-test('wrong native target or unchanged camera never passes, retaining every sample at the strict deadline', async () => {
-  for (const defect of ['target', 'camera']) {
+test('wrong native target, camera drift or phase and RAF activity without paint fail at the strict deadline', async () => {
+  for (const defect of ['target', 'camera', 'transient-camera', 'paint']) {
     const h = helpers(),
       page = cameraPage(h, (time, current) => {
         current.context.scrollY = defect === 'target' ? 2398 : 2400;
-        current.scene.dataset.camera = defect === 'camera' ? 'opening' : 'journey';
-        current.context.window.__quality.paints = time / 50;
+        current.scene.dataset.camera =
+          defect === 'camera' || (defect === 'transient-camera' && time === 100)
+            ? 'journey'
+            : 'opening';
+        current.context.window.__quality.paints =
+          defect === 'paint' || (defect === 'transient-camera' && time < 150) ? 0 : time / 50;
+        current.context.window.__quality.callbacks = time / 50;
+        current.scene.dataset.phase = String(time);
       });
     await assert.rejects(
       h.forwardCamera(page, 'opening', { range: 9000, target: 2400, y: 2400 }),
@@ -446,16 +453,16 @@ test('wrong native target or unchanged camera never passes, retaining every samp
     assert.equal(probe.samples.length, 41);
     assert.equal(probe.samples[0].time, 0);
     assert.equal(probe.samples.at(-1).time, 2000);
-    assert.equal(probe.samples.at(-1).paints, 40);
+    assert.equal(probe.samples.at(-1).paints, defect === 'paint' ? 0 : 40);
     assert.equal(probe.samples.at(-1).y, defect === 'target' ? 2398 : 2400);
-    assert.equal(probe.samples.at(-1).camera, defect === 'camera' ? 'opening' : 'journey');
+    assert.equal(probe.samples.at(-1).camera, defect === 'camera' ? 'journey' : 'opening');
   }
 });
 test('forward response allows native subpixel rounding but does not demand travel on a short page', async () => {
   const h = helpers(),
     page = cameraPage(h, (_time, current) => {
       current.context.scrollY = 2400.75;
-      current.scene.dataset.camera = 'journey';
+      current.context.window.__quality.paints++;
     });
   assert.equal(
     (await h.forwardCamera(page, 'opening', { range: 9000, target: 2400 })).forwardResponse.status,
@@ -563,10 +570,14 @@ test('RAF callbacks or a changed phase cannot fabricate a positive paint observa
   }
 });
 test('scenario tracing is explicit and its installation does not schedule extra RAF work', async () => {
-  const setupStart = source.indexOf('function probe('),
+  const setupStart = source.indexOf('function capability('),
     setupEnd = source.indexOf('async function state(page)');
   assert.ok(setupStart >= 0 && setupEnd > setupStart, 'actual diagnostic setup boundaries');
-  const setupSource = source.slice(setupStart, setupEnd);
+  const setupSource =
+    'const probe = ' +
+    require('../tools/quality/engine-browser.cjs').paintProbe.toString() +
+    ';\n' +
+    source.slice(setupStart, setupEnd);
   const scenarioSource = source.slice(
     source.indexOf('async function scenario('),
     source.indexOf('\nfunction scenarios(', source.indexOf('async function scenario('))

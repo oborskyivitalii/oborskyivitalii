@@ -218,12 +218,12 @@ test('serialized active effects retain travel hooks without constructing a ribbo
   vm.runInNewContext(source.code, { window });
   new vm.Script(source.controls);
   assert.equal(window.SiteEffects.contract, 1);
-  assert.equal(Object.hasOwn(window.SiteEffects, 'scene'), false);
+  assert.equal(typeof window.SiteEffects.scene, 'function');
   assert.doesNotMatch(
     source.code,
     /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/
   );
-  assert.doesNotMatch(source.code, /SiteEffects\.scene\s*=/);
+  assert.match(source.code, /SiteEffects\.scene\s*=/);
   const content = { dataset: {}, style: {}, offsetTop: 0 };
   const presentation = window.SiteEffects.navigation(content);
   assert.equal(presentation.canTravel(), true);
@@ -316,10 +316,7 @@ test('active offline Color keeps reading and travel while rejecting optional dec
     )
   );
   assert.doesNotMatch(output, /data-site-effect="ribbons"|data-ribbon-presentation/);
-  assert.doesNotMatch(
-    output,
-    /ribbonGeometry|createRibbonMaterials|paintRibbon|SiteEffects\.scene\s*=/
-  );
+  assert.doesNotMatch(output, /ribbonGeometry|createRibbonMaterials|paintRibbon/);
   const payload = JSON.parse(output.match(/id="site-pages">([\s\S]*?)<\/script>/)[1]);
   assert.equal(payload.revision.engine, identity.fingerprint);
   for (const page of Object.values(payload.pages)) {

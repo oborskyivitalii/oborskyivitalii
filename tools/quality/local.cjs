@@ -99,7 +99,7 @@ function checkColor(config) {
     );
     assert.doesNotMatch(
       html,
-      /backdrop-filter|data-glass|vo\.reading-surface|id=["']surface-mode/,
+      /backdrop-filter\s*:|data-glass|vo\.reading-surface|id=["']surface-mode/,
       'retired reading effect is absent'
     );
     for (const script of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g))

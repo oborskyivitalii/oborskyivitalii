@@ -16,7 +16,9 @@ const effects = color.runtime(color.authoredEffects());
 const ribbon = require('../site/effects/ribbons.cjs').descriptor();
 const historicalCode =
   '(()=>{window.SiteEffects={...window.SiteEffects,contract:1};\n' + ribbon.code + '\n})();';
-const scripts = { 'space.js': historicalCode + '\n' + effects.code + '\n' + baseSource };
+// The explicit historical control owns its scene hook after active travel has
+// installed the optional embedded block hook; active packages omit this override.
+const scripts = { 'space.js': effects.code + '\n' + historicalCode + '\n' + baseSource };
 const plain = (value) => JSON.parse(JSON.stringify(value));
 test('reading clarity rejects wrong landing targets and depth reversals that remain frame-continuous', () => {
   const {
@@ -184,6 +186,40 @@ test('reading clarity rejects any individual corner drift and missing Appearance
     () => validateSurfaceSamples(reduced),
     'the explicit accessibility preference retains opaque paint'
   );
+  const compactColor = plain(samples);
+  for (const sample of compactColor) {
+    sample.variant = 'color';
+    const alpha = sample.width <= 640 ? (sample.theme === 'dark' ? 0.78 : 0.72) : 0.87;
+    sample.background =
+      sample.theme === 'light' ? `rgba(243, 241, 234, ${alpha})` : `rgba(17, 28, 34, ${alpha})`;
+    sample.backgroundAlpha = alpha;
+  }
+  assert.doesNotThrow(() => validateSurfaceSamples(compactColor));
+  for (const [width, variant, theme, alpha] of [
+    [320, 'base', 'light', 0.72],
+    [320, 'ribbons', 'dark', 0.78],
+    [320, 'color', 'light', 0.87],
+    [320, 'color', 'dark', 0.72],
+    [640, 'color', 'dark', 0.87],
+    [641, 'color', 'light', 0.72],
+    [1440, 'color', 'dark', 0.78],
+  ]) {
+    const changed = plain(compactColor);
+    Object.assign(changed[0], {
+      width,
+      variant,
+      theme,
+      background: `rgba(17, 28, 34, ${alpha})`,
+      backgroundAlpha: alpha,
+    });
+    assert.throws(() => validateSurfaceSamples(changed), /shared historical paper alpha/);
+  }
+  const reducedColor = plain(reduced);
+  for (const sample of reducedColor) sample.variant = 'color';
+  assert.doesNotThrow(() => validateSurfaceSamples(reducedColor));
+  const fadedColor = plain(compactColor);
+  fadedColor[0].opacity = '0.72';
+  assert.throws(() => validateSurfaceSamples(fadedColor), /full element opacity/);
 });
 function scene(source, theme = 'dark') {
   const context = {
@@ -235,7 +271,7 @@ test('browser-gate diagnostics are explicit additions while the original Writing
     assert.ok(result.patches.every((row) => row.matches === 1));
     assert.equal(
       scripts['space.js'],
-      historicalCode + '\n' + effects.code + '\n' + baseSource,
+      effects.code + '\n' + historicalCode + '\n' + baseSource,
       'explicit historical comparison control stays unchanged'
     );
   }
@@ -341,6 +377,9 @@ function browser(source, { failPaint = false, probe = true } = {}) {
     },
     cancelAnimationFrame: (id) => pending.delete(id),
     addEventListener() {},
+    MutationObserver: class {
+      observe() {}
+    },
     getComputedStyle: () => ({
       getPropertyValue: (key) =>
         ({
@@ -390,7 +429,13 @@ test('private getter and frame events report actual post-quality state while pre
   assert.ok(paint, 'a completed native paint is observed');
   assert.ok(paint.ordinaryShapes > 0);
   assert.equal(paint.customShapes, 0);
-  assert.equal(native.window.SiteEffects.scene, undefined, 'active Color has no ribbon scene hook');
+  assert.equal(typeof native.window.SiteEffects.scene, 'function');
+  assert.equal(native.window.SiteEffects.embedded.diagnostics().ready, false);
+  assert.doesNotMatch(
+    effects.code,
+    /ribbonGeometry|ribbonSignals|createRibbonMaterials|makeProjector|paintRibbon/,
+    'the embedded block hook must not construct retired ribbons'
+  );
   assert.equal(paint.ambientTime, 0, 'initial paint uses the existing ambient clock');
   const unavailable = browser(active, { failPaint: true });
   unavailable.frame();

@@ -1,4 +1,8 @@
 'use strict';
+const fragmentPlan = require('./fragment-plan.cjs');
+const embeddedPlan = require('./embedded-plan.cjs');
+const embeddedTexture = require('./embedded-texture.cjs');
+const embeddedScene = require('./embedded-scene.cjs');
 // Optional offline navigation comparison. Authored production sources stay intact.
 function flightPose(progress, direction, departure = { z: 0, opacity: 1 }) {
   const clamp = (t) => Math.max(0, Math.min(1, t)),
@@ -116,12 +120,61 @@ function installFlightPreference() {
         /* In-tab controls remain useful. */
       }
     });
+    const preview = document.createElement('label');
+    preview.className = 'theme-control end-scroll-control';
+    preview.textContent = 'Fragment flight preview ';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'fragment-flight-preview';
+    checkbox.checked = window.SiteNavigation.fragmentPreview();
+    checkbox.setAttribute('aria-label', 'Fragment flight preview');
+    preview.append(checkbox);
+    controls.append(preview);
+    checkbox.addEventListener('change', () => {
+      window.SiteNavigation.fragmentPreview(checkbox.checked);
+    });
   }
   if (document.readyState === 'loading')
     document.addEventListener('DOMContentLoaded', mount, { once: true });
   else mount();
 }
-function installEndScroll(gateFactory, isEnd, isStart) {
+function prepareEndScrollFooter(root, page, routes, enabled) {
+  const footer = root?.querySelector?.('footer');
+  if (!footer || !Array.isArray(routes)) return null;
+  const index = routes.indexOf(page),
+    route = index >= 0 ? routes[index + 1] : null,
+    names = ['Home', 'Research', 'Writing', 'Talks', 'Credits'];
+  let hint = footer.querySelector('.scroll-continue');
+  if (!route) {
+    hint?.remove();
+    return null;
+  }
+  if (!hint) {
+    hint = footer.ownerDocument.createElement('a');
+    hint.className = 'scroll-continue';
+    footer.append(hint);
+  }
+  hint.href = '?view=' + route;
+  hint.textContent = 'Keep scrolling for ' + names[index + 1] + ' ↓';
+  hint.hidden = !enabled;
+  return hint;
+}
+function installEndScroll(gateFactory, isEnd, isStart, prepareFooter) {
+  let enabled = true;
+  try {
+    enabled = localStorage.getItem('vo.end-scroll') !== 'off';
+  } catch {
+    /* Works within this tab. */
+  }
+  // A staged footer shares the native preference and authored normalizer without
+  // mounting controls, listeners or another page's live footer.
+  window.SiteEffects.preparePreview = (root, page) =>
+    prepareFooter(
+      root,
+      page,
+      window.SiteNavigation?.primaryRoutes || window.SiteRoutes?.order,
+      enabled
+    );
   function mount() {
     const content = document.getElementById('site-content'),
       controls = document.querySelector('.display-controls');
@@ -132,19 +185,12 @@ function installEndScroll(gateFactory, isEnd, isStart) {
       document.getElementById('end-scroll')
     )
       return;
-    const routes = window.SiteNavigation.primaryRoutes,
-      names = ['Home', 'Research', 'Writing', 'Talks'];
+    const routes = window.SiteNavigation.primaryRoutes;
     const gate = gateFactory(),
       clock = () => performance.now();
-    let enabled = true,
-      printing = false,
+    let printing = false,
       touch = null,
       hint = null;
-    try {
-      enabled = localStorage.getItem('vo.end-scroll') !== 'off';
-    } catch {
-      /* Works within this tab. */
-    }
     const label = document.createElement('label');
     label.className = 'theme-control end-scroll-control';
     label.textContent = 'Scroll between pages ';
@@ -177,23 +223,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
       );
     }
     function updateHint() {
-      const footer = content.querySelector('footer'),
-        route = neighbor(1);
-      if (!footer) return;
-      hint = footer.querySelector('.scroll-continue');
-      if (!route) {
-        hint?.remove();
-        hint = null;
-        return;
-      }
-      if (!hint) {
-        hint = document.createElement('a');
-        hint.className = 'scroll-continue';
-        footer.append(hint);
-      }
-      hint.href = '?view=' + route;
-      hint.textContent = 'Keep scrolling for ' + names[routes.indexOf(route)] + ' ↓';
-      hint.hidden = !enabled;
+      hint = prepareFooter(content, document.body.dataset.page, routes, enabled);
     }
     function clear() {
       gate.reset(clock());
@@ -237,14 +267,23 @@ function installEndScroll(gateFactory, isEnd, isStart) {
         clear();
         return false;
       }
-      const accepted = gate.offer({ type, delta, deliberate, ...bounds(), now: clock() });
+      const accepted = gate.offer({
+        type,
+        delta,
+        deliberate,
+        ...bounds(),
+        now: clock(),
+      });
       hint?.style.setProperty('--scroll-intent', String(direction > 0 ? gate.progress() : 0));
       if (accepted) {
         const route = neighbor(direction);
         if (type === 'touch' && touch) touch.consumed = true;
         clear();
         return route
-          ? window.SiteNavigation.go(route, { atEnd: direction < 0, input: type })
+          ? window.SiteNavigation.go(route, {
+              atEnd: direction < 0,
+              input: type,
+            })
           : false;
       }
       return false;
@@ -418,9 +457,13 @@ function installEndScroll(gateFactory, isEnd, isStart) {
   else mount();
 }
 function createPresentation(content) {
-  let contentFlight = true;
+  let contentFlight = true,
+    fragmentPreview = true,
+    useSolids = false,
+    journeyDirection = 'forward';
   try {
     contentFlight = localStorage.getItem('vo.content-flight') !== 'off';
+    fragmentPreview = localStorage.getItem('vo.fragment-preview') !== 'off';
   } catch {
     /* In-tab preference is sufficient. */
   }
@@ -436,9 +479,15 @@ function createPresentation(content) {
     }
     content.dataset.flightStage = pose.stage;
     content.dataset.flightDepth = String(pose.z);
+    content.dataset.flightMode = 'fade';
     content.style.opacity = String(pose.opacity);
     if (contentFlight) content.style.transform = 'perspective(1200px) translateZ(' + pose.z + 'px)';
     else content.style.removeProperty('transform');
+  }
+  function nativeSolidPlane() {
+    content.dataset.flightMode = 'solids';
+    content.style.opacity = String(window.SiteEffects.embedded?.nativeOpacity?.() ?? 1);
+    content.style.transform = 'none';
   }
   return {
     mountAt: 0.5,
@@ -451,9 +500,15 @@ function createPresentation(content) {
     },
     canTravel: () => window.CSS?.supports?.('overflow', 'clip') === true,
     clear() {
+      const embedded = window.SiteEffects.embedded;
+      // A completed handoff already released native ownership. Ordinary text
+      // cleanup must not cancel its separately signalled successor warm-up.
+      if (embedded?.active?.() !== false) embedded?.cancel();
+      useSolids = false;
       content.style.removeProperty('transform-origin');
       delete content.dataset.flightStage;
       delete content.dataset.flightDepth;
+      delete content.dataset.flightMode;
     },
     departure: () => ({
       opacity: Number(content.style.opacity || 1),
@@ -470,12 +525,52 @@ function createPresentation(content) {
       content.style.removeProperty('transform-origin');
       delete content.dataset.flightStage;
     },
-    present(progress, direction, departure) {
-      setPlane(flightPose(progress, direction, departure));
+    begin(animate, context = {}) {
+      journeyDirection = context?.direction || 'forward';
+      const enabled = animate && contentFlight && fragmentPreview;
+      useSolids =
+        enabled &&
+        window.SiteEffects.embedded?.begin({ ...context, direction: journeyDirection }) === true;
+      if (!enabled) window.SiteEffects.embedded?.invalidate();
+      // Only a fully admitted world session owns native paint. A failed or
+      // unsupported capture uses the existing plane fade, with no DOM shards
+      // or second capture attempt while the camera is travelling.
+      if (useSolids) nativeSolidPlane();
+      else content.dataset.flightMode = 'fade';
+    },
+    mounted() {
+      if (!useSolids) return;
+      window.SiteEffects.embedded?.land(content);
+      if (window.SiteEffects.embedded?.active?.() !== false) {
+        nativeSolidPlane();
+        return;
+      }
+      useSolids = false;
+      content.dataset.flightMode = 'fade';
+    },
+    present(progress, direction, departure, snapshot) {
+      const painted = snapshot && { ...snapshot, direction: journeyDirection };
+      window.SiteEffects.embedded?.present?.(progress, painted);
+      const lastPose = flightPose(progress, journeyDirection, departure);
+      if (snapshot?.active === false) {
+        window.SiteEffects.embedded?.invalidate();
+        useSolids = false;
+      }
+      if (useSolids && window.SiteEffects.embedded?.active?.() === false) useSolids = false;
+      if (useSolids) {
+        nativeSolidPlane();
+        if (progress === 1) return window.SiteEffects.embedded?.complete() !== false;
+        return;
+      }
+      setPlane(lastPose);
     },
     contentFlight(value) {
       if (typeof value === 'boolean') {
         contentFlight = value;
+        if (!value) {
+          window.SiteEffects.embedded?.invalidate();
+          useSolids = false;
+        } else window.SiteEffects.embedded?.refresh();
         if (content.dataset.flightStage)
           setPlane({
             stage: content.dataset.flightStage,
@@ -484,6 +579,79 @@ function createPresentation(content) {
           });
       }
       return contentFlight;
+    },
+    fragmentPreview(value) {
+      if (typeof value === 'boolean') {
+        fragmentPreview = value;
+        if (!value) {
+          window.SiteEffects.embedded?.invalidate();
+          useSolids = false;
+        } else window.SiteEffects.embedded?.refresh();
+        try {
+          localStorage.setItem('vo.fragment-preview', value ? 'on' : 'off');
+        } catch {
+          /* In-tab preference is sufficient. */
+        }
+      }
+      return fragmentPreview;
+    },
+    canPrepareNext: () => contentFlight && fragmentPreview,
+    canPrepareNeighbor: (route) =>
+      contentFlight &&
+      fragmentPreview &&
+      useSolids &&
+      window.SiteEffects.embedded?.canPrepareNeighbor?.(route) === true,
+    async prepareTransition(data, context, signal) {
+      if (!contentFlight || !fragmentPreview) return;
+      const embedded = window.SiteEffects.embedded;
+      if (!embedded) return;
+      try {
+        for (const neighbor of context.corridor || []) {
+          await embedded.prime(neighbor, content.offsetTop, null, { signal });
+          if (signal?.aborted) return;
+        }
+        const ready = await embedded.prime(data, content.offsetTop, context.landing, { signal });
+        // A missing destination cannot admit the pair. Avoid decoding a source
+        // that the settled native fade will never consume.
+        if (!ready || signal?.aborted) return;
+        await embedded.prepareDeparture?.(content, { signal });
+      } catch {
+        embedded.invalidate();
+      }
+    },
+    async prepareNext(data, signal) {
+      if (!contentFlight || !fragmentPreview) return;
+      const embedded = window.SiteEffects.embedded;
+      const residentOnly = embedded?.active?.() === true;
+      if (residentOnly && embedded.canPrepareNeighbor?.(data.page) !== true) return;
+      // First-load capture must not compete with the initial layout and scene
+      // build. This is one cancellable idle task, not another animation clock;
+      // the adapter still owns its unchanged acquisition/decode deadlines.
+      if (!residentOnly && window.requestIdleCallback) {
+        await new Promise((resolve) => {
+          let ticket;
+          const finish = () => {
+            window.cancelIdleCallback?.(ticket);
+            signal?.removeEventListener('abort', finish);
+            resolve();
+          };
+          ticket = window.requestIdleCallback(finish, { timeout: 500 });
+          signal?.addEventListener('abort', finish, { once: true });
+          if (signal?.aborted) finish();
+        });
+      }
+      if (signal?.aborted || !contentFlight || !fragmentPreview) return;
+      if (
+        await embedded?.prime(data, content.offsetTop, null, {
+          signal,
+          reuseResident: true,
+          residentOnly,
+          revealResident: true,
+        })
+      ) {
+        if (!signal?.aborted && !residentOnly && embedded.active?.() !== true)
+          await embedded.prepareDeparture?.(content, { signal, cacheOnly: true });
+      }
     },
   };
 }
@@ -502,7 +670,7 @@ function measurePlane(read) {
   }
 }
 function descriptor() {
-  const code = `const flightPose=${flightPose.toString()};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
+  const code = `const flightPose=${flightPose.toString()};\nconst fragmentPlan=${fragmentPlan.toString()};\nconst embeddedPlan=${embeddedPlan.toString()};\nconst embeddedTexture=${embeddedTexture.toString()};\nconst embeddedScene=${embeddedScene.toString()};\nwindow.SiteEffects.scene=(api)=>embeddedScene(api,{fragmentPlan,embeddedPlan,embeddedTexture});\nwindow.SiteEffects.registerView=(view)=>{window.SiteEffects.cameraView=view;};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
   const controls =
     '(' +
     installFlightPreference.toString() +
@@ -514,6 +682,8 @@ function descriptor() {
     atPageEnd.toString() +
     ',' +
     atPageStart.toString() +
+    ',' +
+    prepareEndScrollFooter.toString() +
     ');';
   return {
     effect: 'travel',
@@ -528,6 +698,7 @@ module.exports = {
   endScrollGate,
   atPageEnd,
   atPageStart,
+  prepareEndScrollFooter,
   installEndScroll,
   installFlightPreference,
   createPresentation,

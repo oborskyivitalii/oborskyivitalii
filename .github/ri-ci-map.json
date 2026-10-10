@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
-    "date": "2026-10-09",
-    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence. Same-issue AI-assisted sitecase appends AC17–AC26, one exact-fragment/public-destination check and existing semantic negatives; preserves original gates/runtime controls and distinguishes implementation/history review from automated link structure. Same-issue staging follow-up admits only independently proved exact checksum false positives and canonical offline manifest regeneration; scanner controls and public runtime bytes remain unchanged."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
+    "date": "2026-10-10",
+    "summary": "Issue49 retains Draft PR53,15 criteria and17 owning checks. The iPad continuation corrects native CSS-plane sampling in WebKit, empty loaded system-font matching and temporary atlas readback without changing80/160ms clocks, exclusive ink proof, scene budgets or the stationary reading camera. A scoped artifact-bound WebKit tablet preview checks both DPR2 touch orientations and required textured journeys; local cold portrait misses remain failed observations. Whole native-device, visual/paired-cost and merge gates stay separate."
   },
   "layers": [
     {
@@ -61,6 +61,9 @@
         ".github/acceptance/issue-59.json",
         "review/issue-58/2026-10-08-handoff.md",
         ".github/acceptance/issue-58.json",
+        ".github/acceptance/issue-49.json",
+        "review/issue-49/2026-10-08-analysis.md",
+        "tests/test_issue49_acceptance.py",
         ".github/acceptance/issue-65.json",
         "tests/test_issue65_acceptance.py",
         "review/issue-65/2026-10-09-dispositions.json",
@@ -230,7 +233,7 @@
     },
     {
       "id": "refactoring-contracts",
-      "purpose": "Content/template and canonical CSS ownership, pure camera/build seams, authored dependency/cycle negatives and comparable original-budget measurements under issue58.",
+      "purpose": "Permanent content/template/CSS/cohesion controls, authored dependency negatives and current bounded stationary-camera/fragment and bounded embedded-native-texture source contracts. Issue58 measurements remain source-bound history; issue49 visual/depth/resource admission remains separately evidenced.",
       "paths": [
         "tools/quality/architecture.cjs",
         "tools/quality/refactor-metrics.cjs",
@@ -246,7 +249,17 @@
         "tests/build-cohesion.test.cjs",
         "tests/camera-view.test.cjs",
         "tests/architecture.test.cjs",
-        "tests/refactor-metrics.test.cjs"
+        "tests/refactor-metrics.test.cjs",
+        "site/effects/fragment-plan.cjs",
+        "site/effects/fragment-dom.cjs",
+        "tests/fragment-plan.test.cjs",
+        "tests/fragment-dom.test.cjs",
+        "site/effects/embedded-plan.cjs",
+        "tests/embedded-plan.test.cjs",
+        "site/effects/embedded-texture.cjs",
+        "tests/embedded-texture.test.cjs",
+        "site/effects/embedded-scene.cjs",
+        "tests/embedded-scene.test.cjs"
       ],
       "checks": [
         "authored-dependencies",
@@ -413,7 +426,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "52d008fccaa24af18c275a3e5176546c6cb5b1e069d81d41309aeb819c48e1cd",
+    "digest": "072d15b7b9a1bfc1ef02fa04e09921baa4dc610d37b031f1a18da83067043f41",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -429,7 +442,7 @@
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "397878fce81257274efb815587e2fa6923e3368c8da242e538c2fd3144a823f5"
+        "sha256": "19617db13bec6bb951a87b24404b32ca9cfd33aec33b0033d1771e6c1693540a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -458,6 +471,10 @@
       {
         "path": ".github/acceptance/issue-48.json",
         "sha256": "396f294f03202b08853cb1257aaab5a33e98595a110476512b72abef023936d8"
+      },
+      {
+        "path": ".github/acceptance/issue-49.json",
+        "sha256": "317916aa98ae280f1c288a06d17a1f236f5152337446b9e4698c6dd44fda5843"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -501,11 +518,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "dc82008feaad83ea4936f249aa48d18e673a8affa33411b4bf66f1f6d5e6e950"
+        "sha256": "e4432a753c930f2f803b0dfa2cb55f1fe85bd4b5a99c75ccae7d73d855dd9c0c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "c25fff96e085686ba944766c41500b9391f34339cd0f30fcaf7ddaf8df757b0a"
+        "sha256": "05f3723922a1247df343a1f17207bc5df1e59729d91207a1e44f551e3c966573"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -533,7 +550,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "1380817817ed73ccf18359afcc32d366bf8d96b0a4e46f062a2a2491a80e2752"
+        "sha256": "603df71c601f2ff919b65c420205a9ec16c291391096c80994a917757962fcb5"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -581,7 +598,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
+        "sha256": "02ca36b684e32a6713989f4ee4a4dd1fbeee402913a46d667da0f9d2ed6be173"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -589,19 +606,19 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "bd0c1565f657a7a0944f74ceecc755c8342ca93306315564ccb61e718d080a53"
+        "sha256": "1c5348c46e699c7b33bf6a59b411b56b466e1060ca8e4223d215c0f8a6dbad09"
       },
       {
         "path": "tests/staging-gate.test.cjs",
-        "sha256": "16b8888327b3c6784a67be677d9461b6670c783813518570e08078d097de1c8a"
+        "sha256": "5df135f0eefa385a966e7a6c4a702e64777d28d70441219b85e78b2e0121d491"
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "b32301616da5fafd4f8ed5d898a6d2cadd2c71b7d5387c4699874ef6d12b6710"
+        "sha256": "86bf89905fbd32bff04e28dad39f7c805e179c916254adbae9fd1da97eba95fa"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "57248b59a7193577fd6891f18213d8e17d105ba369131426b7c0e6d2a56d4c4a"
+        "sha256": "5b45851b95007d031363628c985952425d9f8eafc72af1573916ff3efa78041c"
       },
       {
         "path": "tests/test_code_style.py",
@@ -636,6 +653,10 @@
         "sha256": "4be8985f921ee15ede634cca75c37353ff225648ff3c4a6be02806e368185ad8"
       },
       {
+        "path": "tests/test_issue49_acceptance.py",
+        "sha256": "e01aa6fec581d8f07531725fbf37e3a71bce5ac42123bb23f1fc278f3906f67e"
+      },
+      {
         "path": "tests/test_issue56_acceptance.py",
         "sha256": "7d0e6248d8ed02f536192591dfd889d63afb5eb9c31474b8f05b623d29327380"
       },
@@ -657,7 +678,7 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "0990ed9c23f6b9955148941b3b4fbf9ef2bbda99f63c32a020540fdc0944ccc7"
+        "sha256": "13aad82008ba787e51d55eabc7e80567c6196ce6380df24e7839ed84f1cbb31e"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -689,7 +710,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "b6930efe9a36568d8be0fcf3d7f0ea431cda1146eaa1701db3182a43585f95ec"
+        "sha256": "d1c2a9c6d48a14f4f9b337234b9b61013ea3a5400dc57df7bf096b762262ffdf"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -697,19 +718,19 @@
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "2bb651840081b46212ae60071f06699ec62edbbf5463192363623739a79f9d38"
+        "sha256": "228c479155c1c4c519550b1f8264e553ef28d4266222a65e69c9d2c042c4b761"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "53fb2c18a73f99fca3a0ef71944b6a0c32b8ddd0a412610abb640d93e4b129c2"
+        "sha256": "3622ec8a732e1d24faa6593e49f935089799740eb3370672dffb17fbba52cfd6"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "dd160c8895b4f6b84f7c9ae760147afd94ca421e322b19b6fc6fa6419d63f2e4"
+        "sha256": "a87510c4547947aadaf6faaba5697c502f6424ad85e4737249f74609057c9ad1"
       },
       {
         "path": "tools/repository_intelligence.py",
-        "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792"
+        "sha256": "4f9210685ce3ff67bd8655e4b6a9a737bcccfbad34361165e75c528c59037320"
       },
       {
         "path": "tools/run_repository_tests.py",

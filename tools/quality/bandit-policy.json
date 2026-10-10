@@ -405,40 +405,40 @@
       "test_name": "blacklist",
       "severity": "LOW",
       "confidence": "HIGH",
-      "source_sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+      "source_sha256": "4f9210685ce3ff67bd8655e4b6a9a737bcccfbad34361165e75c528c59037320",
       "line_sha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Import is used only by the reviewed explicit-argv Git/Node calls in this source; no shell execution is enabled. The installed executable PATH is owned by the pinned CI/developer environment. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Import is used only by the reviewed explicit-argv Git/Node calls in this source; no shell execution is enabled. The installed executable PATH is owned by the pinned CI/developer environment. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue49: independently revalidated the unchanged subprocess import/call AST after the exact checksum-ledger text-decoding disposition; full content hashing, tracked inventory and the process trust boundary remain unchanged."
     },
     {
       "path": "tools/repository_intelligence.py",
       "rule": "B607",
-      "line": 193,
+      "line": 196,
       "test_name": "start_process_with_partial_path",
       "severity": "LOW",
       "confidence": "HIGH",
-      "source_sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+      "source_sha256": "4f9210685ce3ff67bd8655e4b6a9a737bcccfbad34361165e75c528c59037320",
       "line_sha256": "b046930eb44e1ee56bdeac43e212662bfeab01dbd2711a32a319b456959f977d",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue49: independently revalidated the unchanged subprocess import/call AST after the exact checksum-ledger text-decoding disposition; full content hashing, tracked inventory and the process trust boundary remain unchanged."
     },
     {
       "path": "tools/repository_intelligence.py",
       "rule": "B603",
-      "line": 193,
+      "line": 196,
       "test_name": "subprocess_without_shell_equals_true",
       "severity": "LOW",
       "confidence": "HIGH",
-      "source_sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
+      "source_sha256": "4f9210685ce3ff67bd8655e4b6a9a737bcccfbad34361165e75c528c59037320",
       "line_sha256": "b046930eb44e1ee56bdeac43e212662bfeab01dbd2711a32a319b456959f977d",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue49: independently revalidated the unchanged subprocess import/call AST after the exact checksum-ledger text-decoding disposition; full content hashing, tracked inventory and the process trust boundary remain unchanged."
     },
     {
       "path": "tools/run_repository_tests.py",
