@@ -372,7 +372,9 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     }
     const key = landingKey(landing);
     const cached = bank.get(data.page);
-    if (cached?.landingKey === key) {
+    // A returned field must keep its actual captured scroll/content. Only real
+    // navigation may replace it to satisfy a different destination landing.
+    if (cached && (options.reuseResident || cached.landingKey === key)) {
       incoming = cached;
       touch(cached);
       return true;

@@ -707,7 +707,7 @@ function createPresentation(content) {
       }
       if (signal?.aborted || !contentFlight || !fragmentPreview) return;
       const embedded = window.SiteEffects.embedded;
-      if (await embedded?.prime(data, content.offsetTop, null, { signal })) {
+      if (await embedded?.prime(data, content.offsetTop, null, { signal, reuseResident: true })) {
         if (!signal?.aborted)
           await embedded.prepareDeparture?.(content, { signal, cacheOnly: true });
       }

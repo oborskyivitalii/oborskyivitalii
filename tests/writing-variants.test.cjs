@@ -378,6 +378,7 @@ test('edge bypass retains serialized controls but does not register their hooks;
   const load = (source) => {
     const callbacks = [];
     vm.runInNewContext(source, {
+      window: { SiteEffects: {} },
       document: {
         readyState: 'loading',
         addEventListener: (name, fn) => {

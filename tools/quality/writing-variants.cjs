@@ -302,6 +302,8 @@ function patchRuntime(scripts, label) {
       flight.atPageEnd.toString() +
       ',' +
       flight.atPageStart.toString() +
+      ',' +
+      flight.prepareEndScrollFooter.toString() +
       ')';
     // Retain the serialized function/argument expressions without invoking them.
     patch(

@@ -1692,6 +1692,48 @@ test('actual border strips leave native child ink observable within their larger
   field.dispose();
 });
 
+test('adjacent one-pixel border owners retain exclusive native ink without a synthetic halo', async () => {
+  const f = pageFixture();
+  for (const [tag, top, side] of [
+    ['nav', 0, 'bottom'],
+    ['section', 100, 'top'],
+  ]) {
+    f.main.append(
+      new f.Node(
+        tag,
+        '',
+        {
+          ['border-' + side + '-width']: '1px',
+          ['border-' + side + '-style']: 'solid',
+          ['border-' + side]: '1px solid rgb(20, 30, 40)',
+        },
+        { left: 0, top, width: 100, height: 100 }
+      )
+    );
+  }
+  f.context.getImageData = (x, y, width, height) => {
+    const data = new Uint8ClampedArray(width * height * 4);
+    for (let row = 0; row < height; row++)
+      for (let column = 0; column < width; column++) data[(row * width + column) * 4 + 3] = 255;
+    return { data };
+  };
+  const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(field.decorations.length, 2);
+  assert.equal(field.canvas.height, 2);
+  field.dispose();
+  f.context.getImageData = (x, y, width, height) => {
+    const data = new Uint8ClampedArray(width * height * 4);
+    for (let column = 0; column < width; column++) data[column * 4 + 3] = 255;
+    return { data };
+  };
+  assert.equal(
+    await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 }),
+    null,
+    'the first border still cannot supply ink for the missing adjacent border'
+  );
+});
+
 test('single field decoding retains all native temporary-owner admission limits', async () => {
   for (const cap of ['owners', 'descendants', 'textBytes', 'layerPixels']) {
     const f = pageFixture();

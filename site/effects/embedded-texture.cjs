@@ -1531,19 +1531,19 @@ module.exports = function () {
       textBytes: owner.textBytes,
     };
   }
-  function fieldPixelBox(box, measured, expand = 0) {
+  function fieldPixelBox(box, measured) {
     const scaleX = measured.pixelWidth / measured.envelope.width;
     const scaleY = measured.pixelHeight / measured.envelope.height;
     return {
-      left: Math.max(0, Math.floor((box.left - measured.envelope.left) * scaleX) - expand),
-      top: Math.max(0, Math.floor((box.top - measured.envelope.top) * scaleY) - expand),
+      left: Math.max(0, Math.floor((box.left - measured.envelope.left) * scaleX)),
+      top: Math.max(0, Math.floor((box.top - measured.envelope.top) * scaleY)),
       right: Math.min(
         measured.pixelWidth,
-        Math.ceil((box.right - measured.envelope.left) * scaleX) + expand
+        Math.ceil((box.right - measured.envelope.left) * scaleX)
       ),
       bottom: Math.min(
         measured.pixelHeight,
-        Math.ceil((box.bottom - measured.envelope.top) * scaleY) + expand
+        Math.ceil((box.bottom - measured.envelope.top) * scaleY)
       ),
     };
   }
@@ -1566,7 +1566,9 @@ module.exports = function () {
       if (other === owner) continue;
       for (const cover of other.paintRects) {
         if (options.clock() > options.deadline) return null;
-        const pixels = fieldPixelBox(cover, measured, 1);
+        // Outward floor/ceil already includes every pixel touched by the exact
+        // owner clip. An extra halo erases adjacent one-pixel native borders.
+        const pixels = fieldPixelBox(cover, measured);
         boxes = boxes.flatMap((box) => subtractFieldBox(box, pixels));
       }
     }

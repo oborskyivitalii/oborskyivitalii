@@ -982,7 +982,23 @@ async function embeddedRest(page, route, nativePage) {
   );
 }
 async function embeddedScreenshot(page, evidence, label) {
-  const state = await page.evaluate(() => window.__snapshotEmbeddedPrototype());
+  // The full geometry is already retained by the paint observer. Export only
+  // this screenshot's metadata here; transferring the bank can outlast flight.
+  const state = await page.evaluate(() => {
+    const frame = window.__snapshotEmbeddedPrototype();
+    return {
+      viewport: frame.viewport,
+      theme: frame.theme,
+      page: frame.page,
+      camera: frame.camera,
+      diagnostics: {
+        clock: frame.diagnostics.clock,
+        phase: frame.diagnostics.phase,
+        travelProgress: frame.diagnostics.travelProgress,
+        physicalProgress: frame.diagnostics.physicalProgress,
+      },
+    };
+  });
   const filename =
     [state.viewport[0], state.theme, evidence.from, evidence.to, label].join('-') + '.png';
   const directory = path.join(out, 'screenshots');

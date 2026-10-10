@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "10cef92e151d4c2ade9cd50a3afd16e7625ccf106af25537e1599fe53246f807",
+    "digest": "65c43bc7282350018c77ad92ab4fabdccb75093347eff5b9a2f88d7efdb89f01",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cec43e60e98b21115138e5c2f24408e0d2a57d0ae2fb8f09fbd743c0fab086a7"
+        "sha256": "9bc14be0057554f5a7b2aac224a7c284339e4b7de5483af6b9f761a1f9f29ad7"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "0304019cca213d8ac28c3731aa7d7e8ef98402f20fd36da2fdfe232f45dd0547"
+        "sha256": "3cd4dbc6151a6b48621d210b0387a5cc089b1a9a8c9162a5845ee91284d177cc"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4595,17 +4595,17 @@
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "37cee6aedf95567945f923ba946689141cfaf29e71ff22261da266531fe07bc0"
+        "sha256": "e0ae0e0e806a8bc8349d456b94d3441695a4019c437decf0d0d9be7f78a5890b"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "5695153c4a9b1bad19d897a59d5da06c1236990c707f001ea473a3a8004ad8e1"
+        "sha256": "949f59be449d704a6ebcf7dfc575e5f54b14969342798bc7c42104b5e8a30032"
       },
       {
         "path": "site/effects/flight.cjs",
         "identity_mode": "content",
-        "sha256": "64a15776786c6e8524a55e84bd8db73be58f5d9619a34c5579cfe23eb805d5a0"
+        "sha256": "8eb51935f349f3a35682c4deb40214e14a1c0e41fce0d41cc4339671f4de835c"
       },
       {
         "path": "site/effects/flight.css",
@@ -5040,12 +5040,12 @@
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "e502c571309386f04ebe3ebe2e217fb2b41cb4e7214246a1df91721eae6f72b7"
+        "sha256": "ed8540ea896733ad8c65a9f865783796509e4e1e25804f301f27ee600f0861e5"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "419f06098064faed300669700bdaae6e7a8362b2933dc0a50cdfd723e0eec57e"
+        "sha256": "1680ecd295d9da54d1042b27bb069b7611d902bd01d278034d5e7b625c2769fb"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5365,7 +5365,7 @@
       {
         "path": "tests/writing-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "a4a29ebe63fb63c09d2f2a662aa3026c05cd590dfda2e66af64044988e3ef542"
+        "sha256": "4d55894c2a0535773a22bbdf0c8d9ed26c50d8cefefee344400a6872c23f104f"
       },
       {
         "path": "tools/RI-LICENSE.md",
@@ -5505,7 +5505,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "242f37b756594bc92cc44bbe3daa4e028d5fdd8fe074acbe4511ac77cf396b3e"
+        "sha256": "c1494cb91da80de0e124ede810bad8f4caaeb060f52f3cf926a6ffc1320daea0"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -5815,7 +5815,7 @@
       {
         "path": "tools/quality/writing-variants.cjs",
         "identity_mode": "content",
-        "sha256": "188bc4f2acbf90210cc93e684d310c4d5cd41b3edb47e653f2ab826e404b59d1"
+        "sha256": "166100a2cdf26f4edd791ec35b909e4bd07db21bbf1fb70b7f71eac7f6b59973"
       },
       {
         "path": "tools/repository_intelligence.py",

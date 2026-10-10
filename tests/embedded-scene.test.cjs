@@ -312,6 +312,23 @@ const plain = (value) => JSON.parse(JSON.stringify(value));
 const journeyPose = (h, from, to, amount) =>
   math.mix(h.pose(from), h.pose(to), amount * amount * (3 - 2 * amount));
 
+test('speculative warming preserves returned content until real navigation requests another landing', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78, { position: [0, 600] });
+  const retained = h.assets[0];
+  const count = h.captures.length;
+  await h.bridge.prime(h.data('research'), 78, null, { reuseResident: true });
+  assert.equal(
+    h.captures.length,
+    count,
+    'returned fragments are not discarded for speculative top capture'
+  );
+  assert.equal(retained.disposeCount, 0);
+  await h.bridge.prime(h.data('research'), 78);
+  assert.equal(h.captures.length, count + 1, 'real top navigation still acquires matching content');
+});
+
 test('warming current paint retains a reusable field without activating a departure session', async () => {
   const h = harness();
   h.collect('index', 100);
