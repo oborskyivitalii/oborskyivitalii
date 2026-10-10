@@ -7,16 +7,9 @@ relevant rule IDs to the owning issue's ACs and PR evidence. It complements the
 and [acceptance contract](../.github/ACCEPTANCE.md).
 
 Existing debt is not permission to extend it. Improve the touched concern within
-the accepted scope; put larger migrations in an owned task. The initial audit
-and ordered Sol work are in [issue 54's analysis](../review/issue-54/2026-10-08-analysis.md).
-Do not combine a feature, repository-wide formatting and architectural migration
-in one PR. Generated copies and intentionally pinned history are not duplicate
-editing authorities.
-
-The maintainer explicitly approved the ordered R2–R6 refactoring in one Draft
-PR60 under issue58 on 2026-10-08. That scoped workflow retains the immutable R2
-checkpoint, phase checks/reviews and one final merge/main gate; see its
-[current handoff](../review/issue-58/2026-10-08-handoff.md#current-continuation--same-pr-2026-10-08).
+the accepted scope; put larger migrations in an owned task. Follow CS05 for
+mechanical formatting boundaries. Generated copies and intentionally pinned
+history are not duplicate editing authorities.
 
 ## CS01 — Source ownership and dependency direction
 
@@ -33,26 +26,24 @@ checkpoint, phase checks/reviews and one final merge/main gate; see its
 | Public renditions | `docs/`, declared offline outputs | Generated; change their authored owners and regenerate |
 | Decisions, diagnostics and history | `review/`, `drafts/` | Not a home for new active runtime/build code |
 
-R1 in [issue56](https://github.com/oborskyivitalii/oborskyivitalii/issues/56) moved
-the active Color sources from `review/site-scroll-sync-20261004/` into
-`site/effects/` and the exporter into `tools/site/`. Update all consumers, catalog,
-source hashes and test/scanner inventory together; preserve real historical
-evidence. No circular dependencies, process-global monkey patches to capture
-exports, or hidden `require` side effects. Prefer explicit inputs and returned
+When moving sources, update all consumers, catalog, source hashes and test/scanner
+inventory together; preserve real historical evidence. No circular dependencies,
+process-global monkey patches to capture exports, or hidden `require` side effects.
+Prefer explicit inputs and returned
 descriptors. Existing browser factory serialization must remain closure-safe
 until deliberately replaced with its identity tests.
 
 ## CS02 — Content separate from presentation
 
 Keep repeated publication/edition/topic/route records in validated structured
-data with stable IDs. Keep prose in content files; use a bounded Markdown/rich
-text representation when R3 establishes its parser and migration contract.
+data with stable IDs. Keep prose in content files using the established bounded,
+context-typed content and migration contract.
 Templates own headings, cards, containers and links around that content.
 Do not embed new reusable layouts in prose or hardcode publication text, labels,
 topic lists and URLs in the engine. Reuse the existing catalog rather than add a
 parallel registry. A page-specific template is preferable to a universal page
-DSL with executable expressions. Existing HTML content is tracked migration
-debt: preserve text, semantics and links until its scoped conversion.
+DSL with executable expressions. Preserve existing text, semantics and links
+during scoped content conversion.
 
 Escape text and attributes for their output contexts; validate URLs and content
 schemas before rendering. Do not add `eval`, raw executable templates or an
@@ -111,14 +102,16 @@ functions with clear responsibilities. Aim for about 100 columns; long URLs,
 fixtures and unavoidable literals are exceptions. A soft length target is not
 a reason to split a coherent function into many trivial wrappers.
 
-Do not hand-minify authored code. Format touched functions consistently, but
-schedule whole-file mechanical formatting separately from behavior changes.
+Do not hand-minify authored code. Format touched functions consistently within
+their focused change. Schedule whole-file or repository-wide mechanical formatting
+in a separate PR from behavioral or structural changes, unless the owning issue
+records a dated maintainer exception and the PR cites it.
 Keep comments about intent, units and invariants; remove obsolete explanations
 when changing behavior. Use `const` unless reassigned, explicit equality and
 guarded finite numeric inputs. No blanket lint disables; scoped exceptions need
-an owning issue, reason and removal/review condition. R2 will pin a formatter
-and widen actual source lint coverage; those checks are not installed by this
-guide alone. Build-only minification is a separate measured decision.
+an owning issue, reason and removal/review condition. Use the pinned maintained
+formatter and source lint coverage; prose alone does not establish their checks.
+Build-only minification is a separate measured decision.
 
 ## CS06 — State, effects and lifecycle
 
@@ -179,8 +172,8 @@ replace those checks.
 The JS import scan is intentionally lexical, not a complete dependency graph.
 It cannot prove computed-import behavior, CSS generated by JS, arbitrary SVG
 paint, all possible token duplication, semantic content separation, formatting
-or performance. These remain review obligations and R1–R6 work. A passing guard
-must be reported as this subset, never as full guide compliance.
+or performance. These remain review obligations with applicable dedicated checks.
+A passing guard must be reported as this subset, never as full guide compliance.
 
 `.github/code-style.json` holds exact issue-54 debt occurrences, tied to immutable
 base `aa1cfa97bf42103c0547c9332b885391f0e6fe6b` by the validator. No wildcard,

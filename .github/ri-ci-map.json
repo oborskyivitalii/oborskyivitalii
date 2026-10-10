@@ -9,8 +9,16 @@
     {
       "id": "authority-instructions",
       "purpose": "Enduring agent rules, source authority and entry routes; history cannot supply current instructions.",
-      "paths": ["AGENTS.md", "CONTRIBUTING.md", "PROJECT-BOOTSTRAP.md"],
-      "checks": ["acceptance-policy", "ri-freshness", "ri-regressions"]
+      "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "PROJECT-BOOTSTRAP.md"
+      ],
+      "checks": [
+        "acceptance-policy",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "intent-acceptance",
@@ -63,15 +71,38 @@
         ".github/acceptance/issue-58.json",
         ".github/acceptance/issue-49.json",
         "review/issue-49/2026-10-08-analysis.md",
-        "tests/test_issue49_acceptance.py"
+        "tests/test_issue49_acceptance.py",
+        ".github/acceptance/issue-65.json",
+        "tests/test_issue65_acceptance.py",
+        "review/issue-65/2026-10-09-dispositions.json",
+        "review/issue-41/2026-10-09-positioning-amendment.json",
+        "review/issue-41/2026-10-09-positioning.md",
+        "review/issue-41/2026-10-09-positioning-review.md",
+        "review/issue-41/2026-10-09-ci-followup.md",
+        "review/issue-41/2026-10-09-positioning-browser.md",
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "review/issue-41/2026-10-09-sitecase.md",
+        "review/issue-41/2026-10-09-sitecase-review.md",
+        "review/issue-41/2026-10-09-sitecase-browser.md",
+        "review/issue-41/2026-10-09-staging-security.md"
       ],
-      "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
+      "checks": [
+        "acceptance-policy",
+        "acceptance-policy-selection",
+        "ri-ci-regressions"
+      ]
     },
     {
       "id": "path-catalog",
       "purpose": "Complete file/directory purposes, roles and owners; unknown or stale paths fail visibly.",
-      "paths": [".github/repository-paths.json"],
-      "checks": ["ri-ci-map", "ri-freshness", "ri-regressions"]
+      "paths": [
+        ".github/repository-paths.json"
+      ],
+      "checks": [
+        "ri-ci-map",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "entry-root-guides",
@@ -135,13 +166,23 @@
         "tests/test_repository_intelligence.py",
         "tools/repository_intelligence.py"
       ],
-      "checks": ["ri-ci-map", "ri-freshness", "ri-regressions"]
+      "checks": [
+        "ri-ci-map",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "generated-views",
       "purpose": "Readable map and agent context derive from one projection; neither is editing authority.",
-      "paths": [".github/repository-intelligence/agent-context.json", "REPOSITORY-MAP.md"],
-      "checks": ["ri-freshness", "ri-regressions"]
+      "paths": [
+        ".github/repository-intelligence/agent-context.json",
+        "REPOSITORY-MAP.md"
+      ],
+      "checks": [
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "lookup-validation-routes",
@@ -153,13 +194,23 @@
         "tests/test_ri_ci.py",
         "tools/check_ri_ci.py"
       ],
-      "checks": ["ri-ci-map", "ri-ci-regressions", "ri-regressions"]
+      "checks": [
+        "ri-ci-map",
+        "ri-ci-regressions",
+        "ri-regressions"
+      ]
     },
     {
       "id": "continuity",
       "purpose": "Bounded dated handoff, update rules and required sections; current facts need live revalidation.",
-      "paths": ["MEMORY.md"],
-      "checks": ["acceptance-policy", "ri-freshness", "ri-regressions"]
+      "paths": [
+        "MEMORY.md"
+      ],
+      "checks": [
+        "acceptance-policy",
+        "ri-freshness",
+        "ri-regressions"
+      ]
     },
     {
       "id": "github-live-overlay-ci-boundary",
@@ -180,7 +231,12 @@
         ".github/workflows/site-staging.yml",
         ".github/workflows/site-writing-probe.yml"
       ],
-      "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
+      "checks": [
+        "acceptance-policy",
+        "acceptance-policy-selection",
+        "ri-ci-map",
+        "site-basic"
+      ]
     },
     {
       "id": "code-style-architecture",
@@ -191,7 +247,12 @@
         "tools/check_code_style.py",
         "tests/test_code_style.py"
       ],
-      "checks": ["code-style-guard", "code-style-regressions", "ri-ci-regressions", "ri-freshness"]
+      "checks": [
+        "code-style-guard",
+        "code-style-regressions",
+        "ri-ci-regressions",
+        "ri-freshness"
+      ]
     },
     {
       "id": "maintained-source-quality",
@@ -272,7 +333,9 @@
         "-p",
         "test_repository_intelligence.py"
       ],
-      "test_selectors": ["test_repository_intelligence.NavigationSafetyTests"]
+      "test_selectors": [
+        "test_repository_intelligence.NavigationSafetyTests"
+      ]
     },
     {
       "id": "ri-freshness",
@@ -290,21 +353,47 @@
       "id": "ri-ci-map",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "tools/check_ri_ci.py", "verify"]
+      "argv": [
+        "python3",
+        "tools/check_ri_ci.py",
+        "verify"
+      ]
     },
     {
       "id": "ri-ci-regressions",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_ri_ci.py"],
-      "test_selectors": ["test_ri_ci.RICICouplingTests"]
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_ri_ci.py"
+      ],
+      "test_selectors": [
+        "test_ri_ci.RICICouplingTests"
+      ]
     },
     {
       "id": "root-layout-regressions",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_root_layout.py"],
-      "test_selectors": ["test_root_layout.RootLayoutTests"]
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_root_layout.py"
+      ],
+      "test_selectors": [
+        "test_root_layout.RootLayoutTests"
+      ]
     },
     {
       "id": "acceptance-policy-selection",
@@ -345,7 +434,12 @@
       "id": "site-basic",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/local.cjs", "--package", "quality-artifact"]
+      "argv": [
+        "node",
+        "tools/quality/local.cjs",
+        "--package",
+        "quality-artifact"
+      ]
     },
     {
       "id": "repository-test-selection",
@@ -361,7 +455,9 @@
         "-p",
         "test_repository_test_selection.py"
       ],
-      "test_selectors": ["test_repository_test_selection.RepositoryTestSelectionTests"]
+      "test_selectors": [
+        "test_repository_test_selection.RepositoryTestSelectionTests"
+      ]
     },
     {
       "id": "test-profile-regressions",
@@ -380,13 +476,25 @@
       "id": "code-style-guard",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "tools/check_code_style.py"]
+      "argv": [
+        "python3",
+        "tools/check_code_style.py"
+      ]
     },
     {
       "id": "code-style-regressions",
       "workflow": ".github/workflows/navigation.yml",
       "job": "navigation",
-      "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_code_style.py"],
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_code_style.py"
+      ],
       "test_selectors": [
         "test_code_style.CodeStyleTests",
         "test_code_style.CodeStyleRepositoryTests"
@@ -396,19 +504,30 @@
       "id": "maintained-format-check",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/format.cjs", "--check"]
+      "argv": [
+        "node",
+        "tools/quality/format.cjs",
+        "--check"
+      ]
     },
     {
       "id": "maintained-source-lint",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/scanners.cjs", "lint"]
+      "argv": [
+        "node",
+        "tools/quality/scanners.cjs",
+        "lint"
+      ]
     },
     {
       "id": "authored-dependencies",
       "workflow": ".github/workflows/site-checks.yml",
       "job": "checks",
-      "argv": ["node", "tools/quality/architecture.cjs"]
+      "argv": [
+        "node",
+        "tools/quality/architecture.cjs"
+      ]
     }
   ],
   "reviewed_source_identity": {
@@ -714,6 +833,14 @@
       {
         "path": "tools/run_repository_tests.py",
         "sha256": "0ef371fa128a18469f4a9e73702fe7fbcdea21cf1927c1e69d576f28fc1560c0"
+      },
+      {
+        "path": ".github/acceptance/issue-65.json",
+        "sha256": "3f7489a42a98ea85dfe6062bf96bb970a132d9e1ebd89a294475afb37c106de9"
+      },
+      {
+        "path": "tests/test_issue65_acceptance.py",
+        "sha256": "f7362fa370ed37b324803fed158b068eea53da8a961b349154422704db50089d"
       }
     ]
   }

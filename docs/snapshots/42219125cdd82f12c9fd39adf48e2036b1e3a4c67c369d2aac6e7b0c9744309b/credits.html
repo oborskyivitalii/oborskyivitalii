@@ -32,8 +32,13 @@
 <script src="../../runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/archive.js" defer></script>
 <script src="../../runtime/59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8/navigation.js" defer></script>
 
+<<<<<<<< HEAD:docs/snapshots/42219125cdd82f12c9fd39adf48e2036b1e3a4c67c369d2aac6e7b0c9744309b/credits.html
   <meta name="site-engine" content="59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8">
   <meta name="site-route" content="42219125cdd82f12c9fd39adf48e2036b1e3a4c67c369d2aac6e7b0c9744309b">
+========
+  <meta name="site-engine" content="bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9">
+  <meta name="site-route" content="032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4">
+>>>>>>>> refs/rewritten/onto:docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 </head>
@@ -62,8 +67,8 @@
   <h2>Language labels</h2>
   <p>The website interface is English. Publication-language labels use EN for English and UA for
     Ukrainian; machine-readable language codes are en and uk. UA in a project name means Uncertainty
-    Architecture. A platform edition is not automatically a translation; unconfirmed talk languages
-    are labelled explicitly.</p>
+    Architecture. A platform edition is not automatically a translation; unverified talk languages
+    are omitted.</p>
   <h2 data-space-stop="preferences">Display preferences</h2>
   <p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose
     either theme yourself. Theme and motion preferences are stored locally in your browser; no
@@ -79,6 +84,14 @@
     contributions and public discussions. These relationships do not imply institutional
     endorsement, certification or adoption by PMI, the University of Waterloo, EPAM or another
     institution.</p>
+  <h2 id="built-with-ai">Built through AI-assisted delivery</h2>
+  <p>This website is a practical experiment in AI-assisted software delivery. I direct its architecture, requirements, design decisions and acceptance; AI tools support implementation, analysis and verification.</p>
+  <p>The project explores a question central to my research: how to benefit from faster AI-assisted implementation without losing engineering control, maintainability or accountability.</p>
+  <p><strong>Architecture and fallback. </strong>Content and templates are separate from the rendering engine and visual effects. Generated HTML keeps the site readable without JavaScript; navigation and Canvas are enhancements. <a href="https://github.com/oborskyivitalii/oborskyivitalii/blob/338e3ff341dc35b64cba7854289e1385cbaf1562/tools/site/build.cjs#L365-L417">Source separation</a> · <a href="https://github.com/oborskyivitalii/oborskyivitalii/blob/338e3ff341dc35b64cba7854289e1385cbaf1562/tools/quality/functional.cjs#L548-L557">Fallback checks</a></p>
+  <p><strong>Changes and acceptance. </strong>Work starts with an issue and explicit acceptance criteria, then proceeds through a linked PR, code review and checks. Test results provide evidence; review, merge and release remain human decisions. <a href="https://github.com/oborskyivitalii/oborskyivitalii/pull/66">Reviewed change</a> · <a href="https://github.com/oborskyivitalii/oborskyivitalii/blob/338e3ff341dc35b64cba7854289e1385cbaf1562/tools/issue_acceptance.py#L348-L404">Acceptance boundary</a></p>
+  <p><strong>Checks and releases. </strong>PR smoke, bounded staging regression and full production regression have distinct profiles. Release checks bind evidence to the exact source and built artifact; staging success does not authorize production. <a href="https://github.com/oborskyivitalii/oborskyivitalii/blob/338e3ff341dc35b64cba7854289e1385cbaf1562/tools/quality/test-profiles.json#L69-L244">Check profiles</a> · <a href="https://github.com/oborskyivitalii/oborskyivitalii/blob/338e3ff341dc35b64cba7854289e1385cbaf1562/tools/quality/staging-gate.cjs#L131-L177">Source and artifact checks</a></p>
+  <p><strong>A visual tradeoff. </strong>The colored ribbons were removed while retaining the fractal scene, navigation and readable content. This scoped change passed the existing bounded staging checks without relaxing their budgets. <a href="https://github.com/oborskyivitalii/oborskyivitalii/pull/63">Decision and results</a></p>
+  <p>This is a personal engineering example of human-directed delivery, with relevance to larger programs. It does not establish enterprise-scale effectiveness, an implementation of Uncertainty Architecture or scientific validation of the research.</p>
   <h2 data-space-stop="contact">Corrections and contact</h2>
   <p>If you spot an incorrect link, date or attribution, please
     <a href="https://github.com/oborskyivitalii/oborskyivitalii/issues">open an issue</a> or

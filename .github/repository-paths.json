@@ -7842,6 +7842,204 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    ".github/acceptance/issue-65.json": {
+      "kind": "file",
+      "purpose": "Issue65 AC01-AC09 source checks with separate review, live and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/archive.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/space.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/styles.css": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9/theme.js": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot for the current content edition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e55fd3050b029c0f57e73ad50d58cf857a6f9ee3ca8318a9dbe14aa72783241b/index.html": {
+      "kind": "file",
+      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b": {
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/13cacc74bef65a345dfa1604153bce5575bd922f5fd78c4222dfab334782184b/research.html": {
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot for the current content edition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/032db9409f685170c57d33d3c8cc3593854eed74ac9286f60387d24156c88ee4/credits.html": {
+      "kind": "file",
+      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot for the current content edition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524/writing.html": {
+      "kind": "file",
+      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36": {
+      "kind": "directory",
+      "purpose": "Generated immutable route snapshot for the current content edition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/f1a98c7f2749db4eaf26f0a698e6cdb23e9941cb10a7f2ede26ac9754d158c36/talks.html": {
+      "kind": "file",
+      "purpose": "Generated exact-source public route snapshot; regenerate from canonical site content/templates.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-41/2026-10-09-ci-followup.md": {
+      "kind": "file",
+      "purpose": "Independent inspection of the bounded selected-policy dependency repair and maintained content-test fixture corrections; new CI remains separate evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-09-positioning-amendment.json": {
+      "kind": "file",
+      "purpose": "Dated issue41 practical-positioning source review or exact six-fragment content amendment, preserving historical evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-09-positioning-browser.md": {
+      "kind": "file",
+      "purpose": "Current immutable positioning-preview readability and contact observations with actual desktop/mobile coverage and explicit historical browser-gate limits.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-REVIEW.md"
+    },
+    "review/issue-41/2026-10-09-positioning-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue41 practical-positioning source/independent review or exact content amendment, preserving historical evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-09-positioning.md": {
+      "kind": "file",
+      "purpose": "Dated issue41 practical-positioning source review or exact six-fragment content amendment, preserving historical evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/2026-10-09-sitecase-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact two-fragment About/Credits AI-assisted delivery case amendment starting at the immutable prior positioning candidate; original six-fragment record remains unchanged.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-41/2026-10-09-sitecase-browser.md": {
+      "kind": "file",
+      "purpose": "Exact-preview Home-to-Credits case-anchor and public evidence-link observations with actual desktop/narrow readability and explicit access limits.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-REVIEW.md"
+    },
+    "review/issue-41/2026-10-09-sitecase-review.md": {
+      "kind": "file",
+      "purpose": "Independent current-byte source, history, editorial and scope review of the compact AI-assisted delivery case and preserved prior positioning.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-REVIEW.md"
+    },
+    "review/issue-41/2026-10-09-sitecase.md": {
+      "kind": "file",
+      "purpose": "Dated same-issue AI-assisted delivery case analysis with actual code/history support, role/enterprise boundaries and ordered content-only execution tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-65": {
+      "kind": "directory",
+      "purpose": "Harness simplification evidence and independent review under issue65.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-analysis.md": {
+      "kind": "file",
+      "purpose": "Verified findings, invariant dispositions, task walkthroughs and five-PR overhead analysis.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-dispositions.json": {
+      "kind": "file",
+      "purpose": "Pinned finding classifications and destinations for preserved or consolidated rules.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-overhead-input.json": {
+      "kind": "file",
+      "purpose": "Frozen five-PR metadata, Git line counts, classification rules and bounded workflow observations.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-65/2026-10-09-review.md": {
+      "kind": "file",
+      "purpose": "Independent implementation review of harness rules, findings and bounded acceptance.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue65_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue65 assertions for reading, disposition topology, preserved sources and pinned overhead.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-41/2026-10-09-staging-security.md": {
+      "kind": "file",
+      "purpose": "Issue41 exact staging failure, bounded public-checksum triage and offline-generation correction; current-source independent review and deployment evidence remain linked from the same PR.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md"
     }
   }
 }

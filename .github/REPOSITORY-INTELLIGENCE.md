@@ -136,6 +136,12 @@ configured; it does not invent local copies of UA/Subprime research status.
 
 ## Agent route
 
+Use the T0–T4 routes in [AGENTS](../AGENTS.md) after its common intake. Mixed
+work uses the union of applicable owners; missing or uncertain classifications
+require source inspection. Routing reduces repeated reading, never source identity,
+acceptance checks or existing bounds. Structural assertions and permanent guard
+negatives cannot establish semantic preservation or live maintainer decisions.
+
 Start with root/scoped AGENTS and an owning issue; read MEMORY as a dated hint
 and revalidate live facts. Known exact owners can be read directly. With a local
 runtime, verify before querying. Reuse that verified surface while source state
