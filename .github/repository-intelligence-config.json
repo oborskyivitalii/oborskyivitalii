@@ -204,7 +204,7 @@
     },
     {
       "concern": "current author-first Home positioning and retained public-discussion boundaries",
-      "path": "review/issue-41/2026-10-10-author-first.md",
+      "path": "guides/SITE-CONTENT-REVIEW.md",
       "queries": [
         "author-first",
         "professional contribution",

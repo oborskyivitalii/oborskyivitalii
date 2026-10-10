@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "55911c54c55879913a20d6ad16b5adde42470860375b9fe6d415d6c325ba912a",
+    "digest": "51d82279542fa149835a75b841d8cbbea41aefb096c57c5040cadc4b9f13a9d7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -122,7 +122,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "a509b616b59c961faec8dae289493edcf144298b95ae61caa7b46fe175d32d25"
+        "sha256": "e9d1e496f18d71eb19b3182e5ead47b5c6e4f82e8c2f05fc860044d2e3a9de74"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -141,7 +141,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a810aeec988c740d1577777dbdfc8a6af545233a8db40976427f5027f7c4b020"
+        "sha256": "17ac0fc00d9077319309de4ff9aefea2793cc6e66b23116bdd1fda313301ed79"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -740,7 +740,7 @@
       {
         "path": "review/issue-41/2026-10-10-author-first-review.md",
         "identity_mode": "content",
-        "sha256": "ddadc23b617189ceaae7a459b0cfc68b85ac90a52e853085cdabc96258ea8e48"
+        "sha256": "d3cc1d1a2d69771b13c66bb3008c61e1a6acf65e9b661c6747bab8785d47a7ce"
       },
       {
         "path": "review/issue-41/2026-10-10-author-first.md",
@@ -6313,7 +6313,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "a509b616b59c961faec8dae289493edcf144298b95ae61caa7b46fe175d32d25"
+    "config_sha256": "e9d1e496f18d71eb19b3182e5ead47b5c6e4f82e8c2f05fc860044d2e3a9de74"
   },
   "owners": [
     {
@@ -6544,7 +6544,7 @@
     },
     {
       "concern": "current author-first Home positioning and retained public-discussion boundaries",
-      "path": "review/issue-41/2026-10-10-author-first.md",
+      "path": "guides/SITE-CONTENT-REVIEW.md",
       "queries": [
         "author-first",
         "professional contribution",
