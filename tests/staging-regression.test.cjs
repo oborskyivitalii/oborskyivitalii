@@ -2198,3 +2198,49 @@ test('embedded native coverage ignores wholly offscreen DOM and requires every v
   assert.equal(missing.selected, 0);
   assert.equal(missing.uncovered.length, 1);
 });
+
+test('interruption clicks within the observed native departure before exporting its large record', () => {
+  const { interruptVisibleDeparture } = require('../tools/quality/color-browser.cjs');
+  const vm = require('node:vm');
+  const calls = [];
+  const body = { dataset: { page: 'index' } };
+  const scene = { dataset: { camera: JSON.stringify({ position: [0, 0, 20] }) } };
+  const initial = JSON.stringify({ position: [0, 0, 24] });
+  const diagnostics = { phase: 'departing', departure: { faces: [{ alpha: 1 }] } };
+  const record = { samples: ['retained raw paint'] };
+  const window = {
+    SiteEffects: { embedded: { diagnostics: () => diagnostics } },
+    __finishFragmentFlight() {
+      calls.push('finish');
+      delete this.__restartFragmentFlight;
+      return record;
+    },
+    __restartFragmentFlight() {
+      calls.push('restart');
+    },
+  };
+  const context = {
+    initial,
+    window,
+    document: {
+      body,
+      getElementById: () => ({ dataset: {} }),
+      querySelectorAll: () => [],
+      querySelector: (selector) =>
+        selector === '.space-scene' ? scene : { click: () => calls.push('click') },
+    },
+  };
+  const run = () => vm.runInNewContext('(' + interruptVisibleDeparture + ')(initial)', context);
+  body.dataset.page = 'research';
+  assert.equal(run(), false, 'a late observation cannot masquerade as a Home interruption');
+  body.dataset.page = 'index';
+  diagnostics.departure.faces[0].alpha = 0;
+  assert.equal(run(), false, 'wait for actually visible departure paint');
+  diagnostics.departure.faces[0].alpha = 1;
+  assert.deepEqual(calls, []);
+  assert.equal(run(), true);
+  assert.deepEqual(calls, ['finish', 'restart', 'click']);
+  assert.equal(window.__fragmentInterruption.interrupted, record);
+  assert.equal(window.__fragmentInterruption.retarget.nativePage, 'index');
+  assert.equal(window.__fragmentInterruption.retarget.before, scene.dataset.camera);
+});

@@ -10,9 +10,11 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   host retention. Shared native decode avoids per-owner bitmap copies; idle
   preparation also captures the current page. See the latest section of the
   same versioned #49 handoff. Published2706885 passed Basic/Navigation/Acceptance;
-  hosted37975975394 exposed warm-cache session cleanup after rendered first-load
-  and mid-flight frames. Follow-up separates idle cache from active departure
-  and schedules cold preparation in browser idle. New hosted admission pending.
+  hosted37975975394 exposed warm-cache cleanup;4cfe9df fixes it. Hosted37977436274
+  passed all six explicit embedded journeys at both widths (Day/Night), then
+  caught observer readiness/interruption timing failures. Follow-up fixes those
+  observations without changing the runtime. Slow manual cold capture can still
+  fall back; native-device/paired-cost/independent review remain open.
 
 - Main revalidated at `338e3ff341dc35b64cba7854289e1385cbaf1562`: approved
   harness simplification PR #66 merged; #65 is closed. Revalidate live state.

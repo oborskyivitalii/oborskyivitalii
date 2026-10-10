@@ -1510,6 +1510,7 @@ function observeFragmentFlight() {
     /* Callback timing and real Canvas observations remain available. */
   }
   window.__fragmentFlight = observation;
+  window.__restartFragmentFlight = observeFragmentFlight;
   window.__sampleFragmentFlight = () => sample('paint');
   window.__finishFragmentFlight = () => {
     sample();
@@ -1526,6 +1527,7 @@ function observeFragmentFlight() {
     window.__fragmentFlight = null;
     delete window.__sampleFragmentFlight;
     delete window.__finishFragmentFlight;
+    delete window.__restartFragmentFlight;
     return observation;
   };
   sample();
@@ -2249,10 +2251,11 @@ async function preferences(page, id, value) {
     { id, value }
   );
 }
-async function fragmentAssembly(page) {
+async function fragmentAssembly(page, requireEmbedded = false) {
   const evidence = {};
   try {
     await preferences(page, 'fragment-flight-preview', true);
+    if (requireEmbedded) await embeddedRestReady(page, 'research', 'index');
     await page.evaluate(embeddedPrototypeState, 'install');
     await page.evaluate(observeFragmentFlight);
     await travel(page, 'research');
@@ -2365,10 +2368,40 @@ async function triggerFragmentTrip(page, trip, direction) {
   else await link.click();
   await settled(page, trip.to);
 }
-async function fragmentRouteCoverage(page) {
+function interruptVisibleDeparture(initialCamera) {
+  const scene = document.querySelector('.space-scene');
+  const diagnostics = window.SiteEffects?.embedded?.diagnostics();
+  const nativePage = document.body.dataset.page;
+  const visible =
+    [...document.querySelectorAll('.fragment-piece')].some(
+      (piece) => Number(piece.style.opacity) > 0
+    ) || diagnostics?.departure?.faces.some((face) => face.alpha > 0.01);
+  const departing =
+    document.getElementById('site-content').dataset.fragmentPhase === 'depart' ||
+    diagnostics?.phase === 'departing';
+  if (
+    nativePage !== 'index' ||
+    !departing ||
+    !visible ||
+    JSON.parse(scene.dataset.camera).position[2] >= JSON.parse(initialCamera).position[2]
+  )
+    return false;
+  const restart = window.__restartFragmentFlight;
+  const interrupted = window.__finishFragmentFlight();
+  restart();
+  const before = scene.dataset.camera;
+  document.querySelector('body > .site-header .wordmark').click();
+  window.__fragmentInterruption = {
+    interrupted,
+    retarget: { before, after: scene.dataset.camera, nativePage: document.body.dataset.page },
+  };
+  return true;
+}
+async function fragmentRouteCoverage(page, requireEmbedded = false) {
   const evidence = { routes: [], interruption: null };
   try {
     await preferences(page, 'fragment-flight-preview', true);
+    if (requireEmbedded) await embeddedRestReady(page, 'research', 'index');
     const order = await page.evaluate(() => [...window.SiteRoutes.order]);
     assert.deepEqual(order, ['index', 'research', 'writing', 'talks', 'credits']);
     const cases = [
@@ -2424,35 +2457,18 @@ async function fragmentRouteCoverage(page) {
     await page.evaluate(embeddedPrototypeState, 'install');
     await page.evaluate(observeFragmentFlight);
     await page.locator('body > .site-header nav a[href="research.html"]').click();
-    await page.waitForFunction(
-      (initialCamera) =>
-        (document.getElementById('site-content').dataset.fragmentPhase === 'depart' ||
-          window.SiteEffects?.embedded?.diagnostics().phase === 'departing') &&
-        JSON.parse(document.querySelector('.space-scene').dataset.camera).position[2] <
-          JSON.parse(initialCamera).position[2] &&
-        ([...document.querySelectorAll('.fragment-piece')].some(
-          (piece) => Number(piece.style.opacity) > 0
-        ) ||
-          (window.SiteEffects?.embedded?.diagnostics().phase === 'departing' &&
-            window.SiteEffects.embedded
-              .diagnostics()
-              .departure.faces.some((face) => face.alpha > 0.01))),
-      departureStart.scene.camera,
-      { polling: 20, timeout: 5000 }
-    );
-    const interrupted = await page.evaluate(() => window.__finishFragmentFlight());
-    evidence.pending = { trigger: 'wordmark-interruption', interrupted };
-    await page.evaluate(observeFragmentFlight);
-    const retarget = await page.evaluate(() => {
-      const scene = document.querySelector('.space-scene'),
-        before = scene.dataset.camera;
-      document.querySelector('body > .site-header .wordmark').click();
-      return {
-        before,
-        after: scene.dataset.camera,
-        nativePage: document.body.dataset.page,
-      };
+    await page.waitForFunction(interruptVisibleDeparture, departureStart.scene.camera, {
+      polling: 20,
+      timeout: 5000,
     });
+    // Transfer the large raw record only after the in-page interruption. A
+    // round trip here can outlast the departure and test a different route.
+    const { interrupted, retarget } = await page.evaluate(() => {
+      const result = window.__fragmentInterruption;
+      delete window.__fragmentInterruption;
+      return result;
+    });
+    evidence.pending = { trigger: 'wordmark-interruption', interrupted, retarget };
     assert.equal(retarget.nativePage, 'index');
     assert.equal(retarget.after, retarget.before, 'VO interruption preserves the displayed camera');
     await settled(page, 'index');
@@ -2653,8 +2669,8 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     await page.waitForTimeout(350);
     assert.equal((await state(page)).page, 'index', 'Home has no preceding route');
     colorPaint(await state(page));
-    const fragments = await fragmentAssembly(page);
-    const fragmentRoutes = await fragmentRouteCoverage(page);
+    const fragments = await fragmentAssembly(page, engine === 'chromium');
+    const fragmentRoutes = await fragmentRouteCoverage(page, engine === 'chromium');
     colorPaint(await state(page));
     assert.deepEqual(errors, []);
     return {
@@ -2770,6 +2786,7 @@ module.exports = {
   validateCopyPlacement,
   fragmentTransaction,
   fragmentRouteCoverage,
+  interruptVisibleDeparture,
   embeddedPrototypeState,
   validateEmbeddedPrototype,
   embeddedFragmentObservation,
