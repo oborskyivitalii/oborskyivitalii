@@ -1976,11 +1976,38 @@ test('long offscreen archives preserve captured viewport paint inside the acquis
   assertDisposed(h);
 });
 
+function assertCompleteFallbackPaint(h, portrait, compact, caps) {
+  const { figure, vector, polygons } = portrait;
+  assert.equal(h.content.dataset.fragmentOwners, '3', 'heading, paragraph and portrait all fly');
+  assert.ok(h.tiles().length >= 3 && h.tiles().length <= caps.pieces);
+  for (const owner of [h.heading, h.paragraph, figure])
+    assert.equal(owner.style.visibility, 'hidden');
+  const portraitTiles = h.tiles().filter((tile) => tile.children[0].matches('figure'));
+  assert.ok(portraitTiles.length > 0);
+  assertPaintCoverage(portraitTiles, figure, {
+    left: 326,
+    top: 130,
+    width: compact ? 128 : 164,
+    height: 164,
+  });
+  for (const tile of portraitTiles) {
+    const copy = tile.children[0];
+    const copiedVector = copy.querySelector('svg');
+    const copiedImage = copy.querySelector('img');
+    assert.equal(copiedVector.getAttribute('viewBox'), vector.getAttribute('viewBox'));
+    assert.equal(copiedVector.namespaceURI, vector.namespaceURI);
+    assert.equal(copy.querySelectorAll('polygon').length, polygons.length);
+    assert.equal(copiedImage.complete, true);
+    assert.ok(copiedImage.naturalWidth > 0);
+    assert.equal(copiedImage.src, h.image.currentSrc);
+  }
+}
+
 test('failed world admission releases resident capacity before complete native DOM fallback', async () => {
   for (const compact of [true, false]) {
     for (const failedPhase of ['depart', 'arrive']) {
       const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
-      const { figure, vector, polygons } = portraitFigure(h);
+      const portrait = portraitFigure(h);
       const caps = fragmentPlan(math).settings.caps[compact ? 'compact' : 'full'];
       const residentPieces = compact ? caps.pieces - 1 : caps.pieces;
       let reservedPieces = residentPieces;
@@ -2063,37 +2090,11 @@ test('failed world admission releases resident capacity before complete native D
         departure,
         snapshot(failedPhase === 'depart' ? 0.1 : 0.7)
       );
-      assert.equal(
-        h.content.dataset.fragmentOwners,
-        '3',
-        'heading, paragraph and portrait all fly'
-      );
-      assert.ok(h.tiles().length >= 3 && h.tiles().length <= caps.pieces);
-      for (const owner of [h.heading, h.paragraph, figure])
-        assert.equal(owner.style.visibility, 'hidden');
-      const portraitTiles = h.tiles().filter((tile) => tile.children[0].matches('figure'));
-      assert.ok(portraitTiles.length > 0);
-      assertPaintCoverage(portraitTiles, figure, {
-        left: 326,
-        top: 130,
-        width: compact ? 128 : 164,
-        height: 164,
-      });
-      for (const tile of portraitTiles) {
-        const copy = tile.children[0];
-        const copiedVector = copy.querySelector('svg');
-        const copiedImage = copy.querySelector('img');
-        assert.equal(copiedVector.getAttribute('viewBox'), vector.getAttribute('viewBox'));
-        assert.equal(copiedVector.namespaceURI, vector.namespaceURI);
-        assert.equal(copy.querySelectorAll('polygon').length, polygons.length);
-        assert.equal(copiedImage.complete, true);
-        assert.ok(copiedImage.naturalWidth > 0);
-        assert.equal(copiedImage.src, h.image.currentSrc);
-      }
+      assertCompleteFallbackPaint(h, portrait, compact, caps);
       assert.equal(scene.dataset.camera, camera);
       presentation.clear();
       assertDisposed(h);
-      assert.notEqual(figure.style.visibility, 'hidden');
+      assert.notEqual(portrait.figure.style.visibility, 'hidden');
       await presentation.prepareNext({ page: 'research' });
       assert.ok(reservedPieces > 0, 'settled native fallback permits renewed world warming');
       assert.equal(scene.dataset.camera, camera);
