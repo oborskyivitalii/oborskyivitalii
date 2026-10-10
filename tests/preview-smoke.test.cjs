@@ -5,6 +5,7 @@ const test = require('node:test'),
 const {
   artifactFile,
   verifyResponse,
+  navigateDocument,
   identity,
   verifyRuntimeIdentity,
   state,
@@ -304,6 +305,70 @@ test('final canonical responses hash exact artifact bytes and mark the correspon
     assert.deepEqual([...checked], [file]);
     assert.equal(result.sha256, manifest.files[file].sha256);
   }
+});
+test('document navigation waits for delayed and newly observed exact-byte checks', async () => {
+  let releaseBody;
+  let releaseLateBody;
+  let navigated = false;
+  const checked = new Set();
+  const pendingBody = new Promise((resolve) => {
+    releaseBody = resolve;
+  });
+  const lateBody = new Promise((resolve) => {
+    releaseLateBody = resolve;
+  });
+  function delayed(pathname, body) {
+    return {
+      ...response(pathname),
+      body: async () => {
+        await body;
+        assert.equal(navigated, false, 'old-document body was discarded by navigation');
+        return Buffer.from(content[artifactFile(base + pathname, base, manifest)]);
+      },
+    };
+  }
+  const responseChecks = [
+    verifyResponse(delayed('/research', pendingBody), base, manifest, checked),
+  ];
+  const page = {
+    goto: async (url, options) => {
+      assert.deepEqual([...checked].sort(), ['index.html', 'research.html']);
+      assert.equal(url, base + '/research#acknowledgements');
+      assert.deepEqual(options, { waitUntil: 'load' });
+      navigated = true;
+    },
+  };
+  const navigation = navigateDocument(page, base + '/research#acknowledgements', responseChecks);
+  responseChecks.push(verifyResponse(delayed('/', lateBody), base, manifest, checked));
+  releaseBody();
+  await responseChecks[0];
+  assert.equal(navigated, false, 'newly observed body check must finish too');
+  releaseLateBody();
+  await navigation;
+  assert.equal(navigated, true);
+});
+test('document navigation keeps failed exact-byte checks as failures', async () => {
+  let navigated = false;
+  const page = {
+    goto: async () => {
+      navigated = true;
+    },
+  };
+  const checked = new Set();
+  const responseChecks = [
+    verifyResponse(
+      response('/research', { body: '<h1>Stale research</h1>' }),
+      base,
+      manifest,
+      checked
+    ),
+  ];
+  await assert.rejects(
+    navigateDocument(page, base + '/research#acknowledgements', responseChecks),
+    /served bytes research\.html/
+  );
+  assert.equal(navigated, false);
+  assert.equal(checked.size, 0, 'failed body never qualifies as verified');
 });
 test('redirect and final-response chain keeps the full hash requirement', async () => {
   const checked = new Set(),

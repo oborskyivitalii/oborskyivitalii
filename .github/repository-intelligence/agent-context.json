@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "474b6d53e54549beab994f7b7af961dca506992034c7ac729207560c9e9505ee",
+    "digest": "8f097cfbe65541b5d9f97fc4bdd48b168bed4bb6b1e79a9a118223c7bb935be0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "8188fbb629c511bcef7bcaac4224b7922e3281e8448c9154ec30b09c3b98b801"
+        "sha256": "811934a6834a8a34daa5161e4ce44c59198876f6ce792e2fb699914d8159192b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "9b369352b79a47b00be40853e1a39dc18b938e2e0aadbdc1f7348bc9a156c37a"
+        "sha256": "7269276c57c1030acc5e3e9ad57bf5bf589fdbe8a751172a7f8c8d464edc63e9"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -3765,22 +3765,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "dad696f77edecf52885cadb4d7bb259f6c71c0b93aa399ccdcd2f40247defc11"
+        "sha256": "f3fa74c55a5c82cc6a87f2d612b31c9d433b56138fff4d4349e4d0dc407c9ff6"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "e7d9238900e513de6c14355ec3e58c036dbc1462f7e1dd1e6e8371e5757ad552"
+        "sha256": "c1b6dab5c408db8ae8e4cc09c8d7fa478f51a5915d350016451db255142db3a6"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "abf4a46fde5dbbabeda9ba3dfca79bce763c209d881dee0eb8e36b4cb37d39b7"
+        "sha256": "d928a8ef75ed9042299ae70e0141e458c9ec0a1c2c72cb5879ce6eb3adae9503"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "ad7a81a44a626d2e9fdabff906a88b3ac0fb34de1ae928be9af1d0f181cf18e9"
+        "sha256": "82ceb55f0811e261eb61aaf0bca2d1b63e1c3e3c408157f46bdbf37bcf20e1cd"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -3790,57 +3790,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "a9120f49715c7269fbc3176424c3d7939ec8a58d212d29c417dc1c31238e35cb"
+        "sha256": "c23a1b04af14d4f00521acaf4ded5c4a9143d52a965e1c6a708387056e649d73"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "3f50042ea3b2cb1ed5979135e2d984dcebabe1c483ac24d3b484606cb6202b1f"
+        "sha256": "f4cb531b1a3b435ade2366688c4be2481a7215a3c1f9e4cdd568be687c5717b3"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "c026682616a7bfc944878d1a9cbcc357d805713b6a534eb8be7824822c03d850"
+        "sha256": "e39de1997285bc950bed71a7e646910ecfcd44d8247415901bf7a23f7e582258"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "e815e77879cf155ba0ad49b73e2905a467521cb29fe9d414fdb7d0bed4671093"
+        "sha256": "1e4530a33a77a5df035edb4cae89ba88366b8b52f4285894b7ac81a8ae5d79d7"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "14a9e7f3f41cd0317e6089fe7f09660929fe886e9034d116c9b61c8673fc8433"
+        "sha256": "97a941e2b9895e3b3cc07e5880a162f52e881a2b2279c3073e440d9ba41a40d8"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "f60a52cf92570ad290583966b9bb4cfe9dd179f1fa23436dd0646c3c9b4aeed5"
+        "sha256": "92d27827396a0f46df5b07f9b30f6bc3445ef4b598999f39d7fffb9f6501aaae"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "2116930a4b6497c66f312952b485fa04229d12bc0bac89da2d90f1a952ffd4f8"
+        "sha256": "d7ab3d0be290d93c766ec0a7d4fcb9948c9a3c2073bf85e422dbf3ff5e943ba9"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "4af84f79557b09d8adec6a87f79676ba8b68586227f66e145df34fae8fdb42e5"
+        "sha256": "0aef8bf156da89a29dff06801bd67865eed5da1041d787237da1772459a95966"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "321253e1515665aed392712ee9e3ce0fc70dfdf7011607097b8c133f089d04b0"
+        "sha256": "19e8f88c9b22fe1d2fef2e989e7cc0f30a48ff26699de232d72c215230d1afc2"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "3109edeae2a16c779e32f82cd60236750c81968dcfe9e3209b13b0451fcbf287"
+        "sha256": "58f51191e574e4fa62e9b8d26ef701bdc64fcb33d448c36872cc4a71b4064873"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "11253b0a3963d7d3248641b5d03d2d82ddba5dacdb12eadc972582e084033664"
+        "sha256": "eff685fee42ae9f7618ddb6c8769412e7c519a262abfff9f2306231a546a7bbd"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -3850,7 +3850,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "d3f9df642fec73c314c9e44d780133a421029ca67d8bca5a934f9e89ab6c0473"
+        "sha256": "cbb3f9fc03a81b3580ad7322a40bc7f9c1834021068f342de7c04b20a87ecbb8"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -3905,7 +3905,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "158b67fb214f19470798d28193b363d8f21efc24ba3ded52bd6c9cc398d7eb40"
+        "sha256": "2295099ffae9666077d077e5aacbed4e8b2fe4a838d1a100bdcf911433bb9393"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -4600,7 +4600,7 @@
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "4ce9d55f0f70fe19e45142a0b6c1189bd2f6c3cb1de3a45583e3332a27be06b0"
+        "sha256": "952b6757dd5a06c1c572afd17b992695837bd63476e0cee4b577da9a8de00c1b"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5045,7 +5045,7 @@
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "0d80353eb0b55cce06405f52c7b8896e905693da712789b0352d7c978b23d924"
+        "sha256": "fd890ddc6666bbfc9d4089c8049dbb2553c7b98518c10e3ee0c5db1a2fd2c3c0"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5135,7 +5135,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "7e775c89ec1735f2c9e5b0d47bf19ac48a5fd8a8d09b617b887fec3a63a3286a"
+        "sha256": "47b38fa5dc87f181e897faf381b31ce622d0e780eaede20459e9016fec617c84"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -5610,7 +5610,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "8078447570b9bf8eb6b3f47e6becd04b024b8dbae9536c3d0396a28180721491"
+        "sha256": "923c8a85baa10bf6c5f204bb833172fb3b5765d1fcb65e2c9736dab423733929"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -5685,7 +5685,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "1de41ad1eab6e60a7956315bdc09bcf2acf0a6aad61a3398346e5bc03d510a3e"
+        "sha256": "025a1a40d3df5a1ec6c976eae729e26973990843e9096144b80c2d10c6f2e6f7"
       },
       {
         "path": "tools/quality/security-rules.yml",

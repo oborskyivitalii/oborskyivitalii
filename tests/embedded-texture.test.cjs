@@ -1335,6 +1335,80 @@ test('a later capture and native field check never reuse the preceding style sna
   second.dispose();
 });
 
+test('cold unpainted wrappers leave the acquisition budget for complete native paint', async () => {
+  const f = pageFixture();
+  const section = new f.Node('section', '', {}, { height: 1600 });
+  const grid = new f.Node('div', '', { display: 'grid' }, { height: 1000 });
+  const paragraph = new f.Node('p', 'Native text remains complete after wrapper admission');
+  f.main.append(section);
+  section.append(grid);
+  grid.append(paragraph);
+  const structural = new Set([f.root, f.main, section, grid]);
+  const getComputedStyle = f.view.getComputedStyle;
+  let now = 0;
+  f.view.performance = { now: () => now };
+  f.view.getComputedStyle = (node, pseudo) => {
+    const style = getComputedStyle(node, pseudo);
+    return {
+      getPropertyValue(property) {
+        // Model a cold resolved-property read; cloning each wrapper's full
+        // paint would exhaust the unchanged 80ms acquisition allowance.
+        if (structural.has(node)) now += 0.25;
+        return style.getPropertyValue(property);
+      },
+    };
+  };
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, pageOptions);
+  assert.ok(field);
+  assert.ok(now < 80);
+  assert.match(f.sources[0], /Native text remains complete after wrapper admission/);
+  assert.deepEqual(field.sourceOwners[0].ownerPath, [0, 0, 0, 0]);
+  assert.equal(field.sourceOwners[0].textContent, paragraph.textContent);
+  section.computed.transform = 'matrix(1, 0, 0, 1, 0, 2)';
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), false);
+  field.dispose();
+});
+
+test('native geometry is read once per acquisition and refreshed for later handoff checks', async () => {
+  const f = pageFixture();
+  const paragraph = new f.Node('p', 'A painted native snapshot');
+  paragraph.pseudos['::before'] = {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    left: '-12px',
+    top: '-12px',
+    width: '424px',
+    height: '104px',
+    'box-sizing': 'border-box',
+    'background-color': 'rgba(17, 28, 34, 0.87)',
+  };
+  f.main.append(paragraph);
+  const bounds = new Map();
+  const fragments = new Map();
+  for (const node of [f.root, f.main, paragraph]) {
+    const getBoundingClientRect = node.getBoundingClientRect.bind(node);
+    node.getBoundingClientRect = () => {
+      bounds.set(node, (bounds.get(node) || 0) + 1);
+      return getBoundingClientRect();
+    };
+    node.getClientRects = () => {
+      fragments.set(node, (fragments.get(node) || 0) + 1);
+      return [getBoundingClientRect()];
+    };
+  }
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, pageOptions);
+  assert.ok(field);
+  assert.deepEqual([...bounds.values()], [1, 1, 1]);
+  assert.equal(fragments.get(paragraph), 2);
+  paragraph.rect.left += 2;
+  assert.equal(textures.matchesField(f.root, field.sourceOwners, pageOptions), false);
+  assert.deepEqual([...bounds.values()], [2, 2, 2]);
+  field.dispose();
+});
+
 test('newly generated pseudo paint receives fresh admission, geometry and a complete fingerprint', async () => {
   const f = pageFixture();
   const paragraph = new f.Node('p', 'Native generated surface');

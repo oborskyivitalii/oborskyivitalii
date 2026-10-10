@@ -135,6 +135,17 @@ async function routeBytes(context, url, manifest) {
     })
   );
 }
+async function navigateDocument(page, url, responseChecks) {
+  // Chromium releases old-document response bodies when navigation starts.
+  // Drain newly observed responses too, so their exact-byte checks stay intact.
+  let checked = 0;
+  while (checked < responseChecks.length) {
+    const current = responseChecks.slice(checked);
+    checked += current.length;
+    await Promise.all(current);
+  }
+  return page.goto(url, { waitUntil: 'load' });
+}
 async function responseNames(page, route) {
   const selector =
     route === 'index'
@@ -169,7 +180,7 @@ async function discussionAnchor(page) {
     { polling: 40, timeout: 3000 }
   );
 }
-async function discussionNavigation(page, url) {
+async function discussionNavigation(page, url, responseChecks) {
   await page.locator(routeSelector('index')).evaluate((el) => el.click());
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
@@ -208,7 +219,7 @@ async function discussionNavigation(page, url) {
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   await nav.click();
   await discussionAnchor(page);
-  await page.goto(url + '/research.html#acknowledgements', { waitUntil: 'load' });
+  await navigateDocument(page, url + '/research.html#acknowledgements', responseChecks);
   await ready(page, 'research');
   await discussionAnchor(page);
   await responseNames(page, 'research');
@@ -320,7 +331,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   });
   try {
     const served = await routeBytes(context, url, manifest);
-    await page.goto(url + '/index.html', { waitUntil: 'load' });
+    await navigateDocument(page, url + '/index.html', responseChecks);
     await ready(page, 'index');
     if (mode === 'normal')
       await page.waitForFunction(
@@ -400,7 +411,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     await ready(page, 'talks');
     await page.goForward();
     await ready(page, 'credits');
-    const discussion = await discussionNavigation(page, url);
+    const discussion = await discussionNavigation(page, url, responseChecks);
     await Promise.all(responseChecks);
     assert.deepEqual(errors, [], 'runtime and served-byte errors');
     assert.deepEqual(external, [], 'unexpected external requests');
@@ -513,4 +524,5 @@ module.exports = {
   responseNames,
   artifactFile,
   verifyResponse,
+  navigateDocument,
 };

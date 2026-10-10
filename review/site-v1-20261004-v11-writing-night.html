@@ -476,8 +476,8 @@
 
 
 
-  <meta name="site-engine" content="59c9dde1f7465d07ec317d435a8520b95150f6fe2177410a49d6cbe516b321d8">
-  <meta name="site-route" content="09e9bf8820736855cd4276666edceea2470d019546ab63175c5e21d615094549">
+  <meta name="site-engine" content="de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c">
+  <meta name="site-route" content="f990c0aa0bdf083dfe027632a697b1d46a1b34d866bf6b28c0ae9b119855cae8">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
@@ -795,6 +795,11 @@ select,
     transparent 64%
   );
   pointer-events: none;
+}
+@media screen and (max-width: 640px) {
+  :root:has(meta[name='site-variant'][content='color']) .space-scene::after {
+    opacity: 0.25;
+  }
 }
 .space-scene svg,
 .space-scene canvas {
@@ -1460,7 +1465,9 @@ h2 {
   .archive-intro > .hero-description {
     max-width: 640px;
   }
-  body[data-page='credits'] .credits-page {
+  body[data-page='credits'] :where(#site-content) .credits-page,
+  body[data-page='credits'] > .credits-page,
+  .embedded-stage[data-embedded-route='credits'] .credits-page {
     max-width: 1160px;
   }
   .credits-page > p {
@@ -1605,7 +1612,9 @@ h2 {
 .credits-page h2 {
   width: fit-content;
 }
-body[data-page='writing'] #archive-results {
+body[data-page='writing'] :where(#site-content) #archive-results,
+body[data-page='writing'] > :where(main) #archive-results,
+.embedded-stage[data-embedded-route='writing'] #archive-results {
   width: min(1010px, calc(100% - 80px));
   margin-inline: auto;
 }
@@ -1628,7 +1637,9 @@ body[data-page='writing'] #archive-results {
     max-width: calc(100% - 48px);
     margin-left: 24px;
   }
-  body[data-page='writing'] #archive-results {
+  body[data-page='writing'] :where(#site-content) #archive-results,
+  body[data-page='writing'] > :where(main) #archive-results,
+  .embedded-stage[data-embedded-route='writing'] #archive-results {
     width: calc(100% - 48px);
   }
   .hero {
@@ -1668,7 +1679,9 @@ body[data-page='writing'] #archive-results {
     max-width: calc(100% - 40px);
     margin-left: 20px;
   }
-  body[data-page='writing'] #archive-results {
+  body[data-page='writing'] :where(#site-content) #archive-results,
+  body[data-page='writing'] > :where(main) #archive-results,
+  .embedded-stage[data-embedded-route='writing'] #archive-results {
     width: calc(100% - 40px);
   }
   .site-header {
@@ -2023,6 +2036,21 @@ body[data-page='writing'] #archive-results {
   --reading-surface-radius: 12px;
   --reading-title-outset: 0.16em;
   --surface-gutter: 12px;
+}
+/* Compact Color keeps the neighboring textured structure visible through the
+   same native paper material. Root metadata also covers inert capture stages. */
+@media screen and (max-width: 640px) {
+  :where(:root:has(meta[name='site-variant'][content='color'])) {
+    --reading-surface-alpha: 72%;
+  }
+  :where(:root[data-theme='dark']:has(meta[name='site-variant'][content='color'])) {
+    --reading-surface-alpha: 78%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root:not([data-theme]):has(meta[name='site-variant'][content='color'])) {
+      --reading-surface-alpha: 78%;
+    }
+  }
 }
 .section,
 .archive-intro,

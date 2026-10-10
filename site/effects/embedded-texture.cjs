@@ -510,7 +510,7 @@ module.exports = function () {
         ))
     );
   }
-  function nativeSupported(node, style) {
+  function nativeAncestorSupported(node, style) {
     const vector = node.namespaceURI === 'http://www.w3.org/2000/svg';
     if (!(vector ? vectorTags : nativeTags).has(node.localName)) return false;
     if (node.localName === 'select' && (node.multiple || node.size > 1)) return false;
@@ -526,20 +526,23 @@ module.exports = function () {
     )
       return false;
     if (!vector && !['none', ''].includes(value(style, 'transform'))) return false;
+    return (
+      vector ||
+      (['horizontal-tb', ''].includes(value(style, 'writing-mode')) &&
+        ['ltr', ''].includes(value(style, 'direction')))
+    );
+  }
+  function nativeSupported(node, style) {
+    if (!nativeAncestorSupported(node, style)) return false;
     if (!safeCSS(nativeProperties.map((property) => value(style, property)).join(';')))
       return false;
-    if (vector) {
-      return (
-        safeCSS(vectorProperties.map((property) => value(style, property)).join(';')) &&
-        [...node.attributes].every(
-          ({ name, value: source }) =>
-            !/^(?:href|xlink:href|on.+)$/i.test(name) && !/url\s*\(/i.test(source)
-        )
-      );
-    }
+    if (node.namespaceURI !== 'http://www.w3.org/2000/svg') return true;
     return (
-      ['horizontal-tb', ''].includes(value(style, 'writing-mode')) &&
-      ['ltr', ''].includes(value(style, 'direction'))
+      safeCSS(vectorProperties.map((property) => value(style, property)).join(';')) &&
+      [...node.attributes].every(
+        ({ name, value: source }) =>
+          !/^(?:href|xlink:href|on.+)$/i.test(name) && !/url\s*\(/i.test(source)
+      )
     );
   }
   function fullyClipped(style) {
@@ -564,6 +567,11 @@ module.exports = function () {
       });
     }
     return styles.get(key);
+  }
+  function nativeRect(node, options) {
+    if (!options.rectCache.has(node))
+      options.rectCache.set(node, copyRect(node.getBoundingClientRect(), 0, 0));
+    return options.rectCache.get(node);
   }
   function invisibleNative(node, owner, view, options) {
     for (let current = node; current; current = current.parentElement) {
@@ -665,7 +673,7 @@ module.exports = function () {
   function extendNativeNodeBounds(node, owner, style, bounds, options) {
     if (options.decoration) return;
     if (node !== owner && node.localName !== 'svg' && !visiblePaper(style)) return;
-    const boxes = node.getClientRects ? [...node.getClientRects()] : [node.getBoundingClientRect()];
+    const boxes = node.getClientRects ? [...node.getClientRects()] : [nativeRect(node, options)];
     for (const original of boxes)
       extendBounds(bounds, copyRect(original, options.offsetX, options.offsetY), style);
   }
@@ -685,7 +693,7 @@ module.exports = function () {
     const after = nativeStyle(view, node, '::after', options);
     if (!nativeSupported(node, style))
       return rejectNative(options, 'unsupported-native-paint', node.localName);
-    const box = copyRect(node.getBoundingClientRect(), options.offsetX, options.offsetY);
+    const box = copyRect(nativeRect(node, options), options.offsetX, options.offsetY);
     extendNativeNodeBounds(node, owner, style, bounds, options);
     let textBytes = 0;
     for (const pseudo of [before, after]) {
@@ -725,8 +733,7 @@ module.exports = function () {
     const ownerOptions = { ...options, ownerPath, decoration };
     if (descendants.length + 1 > caps.descendants || text.length * 3 > caps.textBytes)
       return rejectNative(ownerOptions, 'native-owner-capacity', owner.localName);
-    const nativeRect = owner.getBoundingClientRect();
-    const rect = copyRect(nativeRect, options.offsetX, options.offsetY);
+    const rect = copyRect(nativeRect(owner, options), options.offsetX, options.offsetY);
     const bounds = decoration
       ? nativeBorderBounds(rect, nativeStyle(view, owner, undefined, options), options)
       : { ...rect };
@@ -1071,6 +1078,7 @@ module.exports = function () {
     // Each synchronous acquisition owns its cache; media decode finishes
     // before this snapshot, and later captures always read fresh native styles.
     normalized.styleCache = new WeakMap();
+    normalized.rectCache = new WeakMap();
     const measured = [];
     const usage = { owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 };
     const semantic = new Set([
@@ -1140,13 +1148,13 @@ module.exports = function () {
       )
         return;
       if (value(style, 'display') === 'contents') {
-        if (!nativeSupported(node, style)) fail('unsupported-native-ancestor', path, node);
+        if (!nativeAncestorSupported(node, style)) fail('unsupported-native-ancestor', path, node);
         if (normalized.fieldCapture && !fieldAncestorSupported(style))
           fail('unsupported-field-ancestor', path, node);
         [...node.children].forEach((child, index) => visit(child, [...path, index]));
         return;
       }
-      const native = node.getBoundingClientRect();
+      const native = nativeRect(node, normalized);
       if (!finiteRect(native)) return;
       const box = copyRect(native, normalized.offsetX, normalized.offsetY);
       if (
@@ -1156,7 +1164,10 @@ module.exports = function () {
         box.top >= normalized.height + 64
       )
         return;
-      if (!nativeSupported(node, style)) fail('unsupported-native-ancestor', path, node);
+      // Structural ancestors are never serialized. Validate their inherited
+      // layout effects here; complete resolved paint admission belongs to each
+      // captured owner, avoiding a full style clone for every unpainted wrapper.
+      if (!nativeAncestorSupported(node, style)) fail('unsupported-native-ancestor', path, node);
       const before = nativeStyle(view, node, '::before', normalized);
       const after = nativeStyle(view, node, '::after', normalized);
       const atomic =
