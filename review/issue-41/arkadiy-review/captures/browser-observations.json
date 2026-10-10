@@ -1,0 +1,4929 @@
+{
+  "schema": 1,
+  "kind": "scoped browser observations",
+  "pass": true,
+  "browser": "138.0.7204.0",
+  "playwright": "1.63.0",
+  "scope": "Loopback supported self-contained Color exports; actual viewport/render observations, not hosted or production regression. Chromium138 used because pinned Chromium153 CDN returned incomplete archives.",
+  "files": {
+    "Launch-safe.html": {
+      "sha256": "536bfaa0ea1d8b6a4c2e34f08a27deed1120e501731a186318deda79534c8117",
+      "bytes": 728669
+    },
+    "Arkadiy-review.html": {
+      "sha256": "933cba3ee366aca4d6a2f2fa0d403245c8033ac6790a90ad9ced5c2e4e1a8954",
+      "bytes": 732018
+    }
+  },
+  "rows": [
+    {
+      "file": "Launch-safe.html",
+      "route": "index",
+      "width": 1440,
+      "theme": "light",
+      "screenshot": "launch-safe-index-day-1440.png",
+      "extra": [],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 258.6875
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 270,
+            "clientHeight": 258
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 231.5
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 243,
+            "clientHeight": 231
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 5075,
+        "y": 5075,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "index",
+      "width": 1440,
+      "theme": "dark",
+      "screenshot": "launch-safe-index-night-1440.png",
+      "extra": [],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 258.6875
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 270,
+            "clientHeight": 258
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 231.5
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 243,
+            "clientHeight": 231
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 5075,
+        "y": 5075,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "research",
+      "width": 1440,
+      "theme": "light",
+      "screenshot": "launch-safe-research-day-1440.png",
+      "extra": [],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 365.125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 376,
+            "clientHeight": 364
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 558,
+            "height": 410.3125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 421,
+            "clientHeight": 409
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 258.6875
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 270,
+            "clientHeight": 258
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 558,
+            "height": 307.4375
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 318,
+            "clientHeight": 306
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 558,
+            "height": 425
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 436,
+            "clientHeight": 424
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 5150,
+        "y": 5150,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "research",
+      "width": 1440,
+      "theme": "dark",
+      "screenshot": "launch-safe-research-night-1440.png",
+      "extra": [],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 365.125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 376,
+            "clientHeight": 364
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 558,
+            "height": 410.3125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 421,
+            "clientHeight": 409
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 258.6875
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 270,
+            "clientHeight": 258
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 558,
+            "height": 307.4375
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 318,
+            "clientHeight": 306
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 558,
+            "height": 425
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 436,
+            "clientHeight": 424
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 5150,
+        "y": 5150,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "index",
+      "width": 390,
+      "theme": "light",
+      "screenshot": "launch-safe-index-day-390.png",
+      "extra": [],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 277.875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 289,
+            "clientHeight": 277
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 271.6875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 283,
+            "clientHeight": 271
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 9162,
+        "y": 9162,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "index",
+      "width": 390,
+      "theme": "dark",
+      "screenshot": "launch-safe-index-night-390.png",
+      "extra": [],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 277.875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 289,
+            "clientHeight": 277
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 271.6875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 283,
+            "clientHeight": 271
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 9162,
+        "y": 9162,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "research",
+      "width": 390,
+      "theme": "light",
+      "screenshot": "launch-safe-research-day-390.png",
+      "extra": [],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 455
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 466,
+            "clientHeight": 454
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 350,
+            "height": 477.6875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 489,
+            "clientHeight": 477
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 305.0625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 316,
+            "clientHeight": 304
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 350,
+            "height": 353.8125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 365,
+            "clientHeight": 353
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 329.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 341,
+            "clientHeight": 329
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 308.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 320,
+            "clientHeight": 308
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 350,
+            "height": 519.5625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 531,
+            "clientHeight": 519
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 9529,
+        "y": 9529,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Launch-safe.html",
+      "route": "research",
+      "width": 390,
+      "theme": "dark",
+      "screenshot": "launch-safe-research-night-390.png",
+      "extra": [],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 455
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 466,
+            "clientHeight": 454
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 350,
+            "height": 477.6875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 489,
+            "clientHeight": 477
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 305.0625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 316,
+            "clientHeight": 304
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 350,
+            "height": 353.8125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 365,
+            "clientHeight": 353
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 329.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 341,
+            "clientHeight": 329
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 308.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 320,
+            "clientHeight": 308
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 350,
+            "height": 519.5625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 531,
+            "clientHeight": 519
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 9529,
+        "y": 9529,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "index",
+      "width": 1440,
+      "theme": "light",
+      "screenshot": "review-index-day-1440.png",
+      "extra": [],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nIn a public response to Thinking Systems, Arkadiy recommended reading the paper and extended the discussion with two propositions: AI could expand the range of problems software can address, while domain-specific control architectures may become a lasting source of differentiation.\n\nRead the original discussion ↗",
+          "rect": {
+            "width": 365.328125,
+            "height": 372.625
+          },
+          "dimensions": {
+            "scrollWidth": 377,
+            "clientWidth": 365,
+            "scrollHeight": 384,
+            "clientHeight": 372
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original discussion ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 365.328125,
+            "height": 275.125
+          },
+          "dimensions": {
+            "scrollWidth": 377,
+            "clientWidth": 365,
+            "scrollHeight": 286,
+            "clientHeight": 274
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 365.34375,
+            "height": 270.625
+          },
+          "dimensions": {
+            "scrollWidth": 377,
+            "clientWidth": 365,
+            "scrollHeight": 282,
+            "clientHeight": 270
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 5189,
+        "y": 5189,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "index",
+      "width": 1440,
+      "theme": "dark",
+      "screenshot": "review-index-night-1440.png",
+      "extra": [],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nIn a public response to Thinking Systems, Arkadiy recommended reading the paper and extended the discussion with two propositions: AI could expand the range of problems software can address, while domain-specific control architectures may become a lasting source of differentiation.\n\nRead the original discussion ↗",
+          "rect": {
+            "width": 365.328125,
+            "height": 372.625
+          },
+          "dimensions": {
+            "scrollWidth": 377,
+            "clientWidth": 365,
+            "scrollHeight": 384,
+            "clientHeight": 372
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original discussion ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 365.328125,
+            "height": 275.125
+          },
+          "dimensions": {
+            "scrollWidth": 377,
+            "clientWidth": 365,
+            "scrollHeight": 286,
+            "clientHeight": 274
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 365.34375,
+            "height": 270.625
+          },
+          "dimensions": {
+            "scrollWidth": 377,
+            "clientWidth": 365,
+            "scrollHeight": 282,
+            "clientHeight": 270
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 5189,
+        "y": 5189,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "research",
+      "width": 1440,
+      "theme": "light",
+      "screenshot": "review-research-day-1440.png",
+      "extra": [
+        "review-research-day-1440-card.png"
+      ],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 365.125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 376,
+            "clientHeight": 364
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 558,
+            "height": 410.3125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 421,
+            "clientHeight": 409
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 258.6875
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 270,
+            "clientHeight": 258
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nPublic discussion · Thinking Systems\n\nArkadiy publicly recommended reading Thinking Systems and contributed two further perspectives to the discussion.\n\nFirst, model-mediated systems may expand the range of problems that software can address, rather than merely replace existing solutions.\n\nSecond, as foundation models and generic agent infrastructure commoditize, domain- and client-specific control architectures may remain a significant source of differentiation.\n\nThese perspectives extend the discussion beyond runtime engineering into market opportunities, enterprise capabilities, and long-term competitive advantage.\n\nRead Arkadiy’s original post ↗\n\nFormulation provenance: The terminology used in Thinking Systems was influenced by an earlier conversation with Arkadiy. His contribution to the formulation is acknowledged separately in the research record.\n\nRead the formulation provenance ↗",
+          "rect": {
+            "width": 558,
+            "height": 741.375
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 752,
+            "clientHeight": 740
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read Arkadiy’s original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Read the formulation provenance ↗",
+              "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 558,
+            "height": 307.4375
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 318,
+            "clientHeight": 306
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 558,
+            "height": 425
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 436,
+            "clientHeight": 424
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 5629,
+        "y": 5629,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "research",
+      "width": 1440,
+      "theme": "dark",
+      "screenshot": "review-research-night-1440.png",
+      "extra": [
+        "review-research-night-1440-card.png"
+      ],
+      "scrollWidth": 1440,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 365.125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 376,
+            "clientHeight": 364
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 558,
+            "height": 410.3125
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 421,
+            "clientHeight": 409
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 558,
+            "height": 258.6875
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 270,
+            "clientHeight": 258
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nPublic discussion · Thinking Systems\n\nArkadiy publicly recommended reading Thinking Systems and contributed two further perspectives to the discussion.\n\nFirst, model-mediated systems may expand the range of problems that software can address, rather than merely replace existing solutions.\n\nSecond, as foundation models and generic agent infrastructure commoditize, domain- and client-specific control architectures may remain a significant source of differentiation.\n\nThese perspectives extend the discussion beyond runtime engineering into market opportunities, enterprise capabilities, and long-term competitive advantage.\n\nRead Arkadiy’s original post ↗\n\nFormulation provenance: The terminology used in Thinking Systems was influenced by an earlier conversation with Arkadiy. His contribution to the formulation is acknowledged separately in the research record.\n\nRead the formulation provenance ↗",
+          "rect": {
+            "width": 558,
+            "height": 741.375
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 752,
+            "clientHeight": 740
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read Arkadiy’s original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Read the formulation provenance ↗",
+              "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 558,
+            "height": 307.4375
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 318,
+            "clientHeight": 306
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 558,
+            "height": 262.25
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 273,
+            "clientHeight": 261
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 558,
+            "height": 425
+          },
+          "dimensions": {
+            "scrollWidth": 570,
+            "clientWidth": 558,
+            "scrollHeight": 436,
+            "clientHeight": 424
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 5629,
+        "y": 5629,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "index",
+      "width": 390,
+      "theme": "light",
+      "screenshot": "review-index-day-390.png",
+      "extra": [],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nIn a public response to Thinking Systems, Arkadiy recommended reading the paper and extended the discussion with two propositions: AI could expand the range of problems software can address, while domain-specific control architectures may become a lasting source of differentiation.\n\nRead the original discussion ↗",
+          "rect": {
+            "width": 350,
+            "height": 390.125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 401,
+            "clientHeight": 389
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original discussion ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 267.125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 278,
+            "clientHeight": 266
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 262.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 274,
+            "clientHeight": 262
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 9561,
+        "y": 9561,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "index",
+      "width": 390,
+      "theme": "dark",
+      "screenshot": "review-index-night-390.png",
+      "extra": [],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nIn a public response to Thinking Systems, Arkadiy recommended reading the paper and extended the discussion with two propositions: AI could expand the range of problems software can address, while domain-specific control architectures may become a lasting source of differentiation.\n\nRead the original discussion ↗",
+          "rect": {
+            "width": 350,
+            "height": 390.125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 401,
+            "clientHeight": 389
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original discussion ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nCo-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 267.125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 278,
+            "clientHeight": 266
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            }
+          ]
+        },
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\n\nCPMAI Lead Coach · PMI AI Standards Core Team\n\nConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 262.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 274,
+            "clientHeight": 262
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 15,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+      "bottom": {
+        "route": "index",
+        "range": 9561,
+        "y": 9561,
+        "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "research",
+      "width": 390,
+      "theme": "light",
+      "screenshot": "review-research-day-390.png",
+      "extra": [
+        "review-research-day-390-card.png"
+      ],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 455
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 466,
+            "clientHeight": 454
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 350,
+            "height": 477.6875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 489,
+            "clientHeight": 477
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 305.0625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 316,
+            "clientHeight": 304
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nPublic discussion · Thinking Systems\n\nArkadiy publicly recommended reading Thinking Systems and contributed two further perspectives to the discussion.\n\nFirst, model-mediated systems may expand the range of problems that software can address, rather than merely replace existing solutions.\n\nSecond, as foundation models and generic agent infrastructure commoditize, domain- and client-specific control architectures may remain a significant source of differentiation.\n\nThese perspectives extend the discussion beyond runtime engineering into market opportunities, enterprise capabilities, and long-term competitive advantage.\n\nRead Arkadiy’s original post ↗\n\nFormulation provenance: The terminology used in Thinking Systems was influenced by an earlier conversation with Arkadiy. His contribution to the formulation is acknowledged separately in the research record.\n\nRead the formulation provenance ↗",
+          "rect": {
+            "width": 350,
+            "height": 1026.25
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 1037,
+            "clientHeight": 1025
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read Arkadiy’s original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Read the formulation provenance ↗",
+              "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 350,
+            "height": 353.8125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 365,
+            "clientHeight": 353
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 329.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 341,
+            "clientHeight": 329
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 308.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 320,
+            "clientHeight": 308
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 350,
+            "height": 519.5625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 531,
+            "clientHeight": 519
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 10584,
+        "y": 10584,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "route": "research",
+      "width": 390,
+      "theme": "dark",
+      "screenshot": "review-research-night-390.png",
+      "extra": [
+        "review-research-night-390-card.png"
+      ],
+      "scrollWidth": 390,
+      "cards": [
+        {
+          "name": "Markus Kopko",
+          "text": "Markus Kopko\nStrategic Advisor on Governance and Alignment\n\nCPMAI Lead Coach | PMI AI Standards Core Team\n\nFocus: project-management standards, organizational alignment, and the operationalization of AI governance.\n\nConnected the UA control-theory framing with CPMAI practices in a public discussion of constraints, sensors, roles and governance gates.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 455
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 466,
+            "clientHeight": 454
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            }
+          ]
+        },
+        {
+          "name": "Otman Basir, Ph.D.",
+          "text": "Otman Basir, Ph.D.\nAcademic Advisor\n\nProfessor of Intelligent Systems at the University of Waterloo\n\nFocus: control-theoretic research and practical engineering governance.\n\nShared his Social Responsibility Stack paper in the public discussion of UA under Michael Risch’s post, bringing a related control-theoretic perspective into the conversation.\n\nRead the public record ↗\n\nRelated paper",
+          "rect": {
+            "width": 350,
+            "height": 477.6875
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 489,
+            "clientHeight": 477
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Otman Basir, Ph.D.",
+              "href": "https://www.linkedin.com/in/otman-basir-ba1258178/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Related paper",
+              "href": "https://arxiv.org/abs/2512.16873"
+            }
+          ]
+        },
+        {
+          "name": "Maximiliano Armesto",
+          "text": "Maximiliano Armesto\n\nChief Technology Officer · Taller\n\nSupported the changed-engineering-object framing, emphasizing boundaries, evidence, authority, correction loops and the return of human judgment.\n\nPublic record ↗",
+          "rect": {
+            "width": 350,
+            "height": 305.0625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 316,
+            "clientHeight": 304
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Maximiliano Armesto",
+              "href": "https://www.linkedin.com/in/maximiliano-armesto/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/maximiliano-armesto_uncertainty-architecture-thinking-systems-activity-7498756197647441920-8REu"
+            }
+          ]
+        },
+        {
+          "name": "Arkadiy Dobkin",
+          "text": "Arkadiy Dobkin\n\nPrincipal Founder & Executive Chairman, EPAM\n\nPublic discussion · Thinking Systems\n\nArkadiy publicly recommended reading Thinking Systems and contributed two further perspectives to the discussion.\n\nFirst, model-mediated systems may expand the range of problems that software can address, rather than merely replace existing solutions.\n\nSecond, as foundation models and generic agent infrastructure commoditize, domain- and client-specific control architectures may remain a significant source of differentiation.\n\nThese perspectives extend the discussion beyond runtime engineering into market opportunities, enterprise capabilities, and long-term competitive advantage.\n\nRead Arkadiy’s original post ↗\n\nFormulation provenance: The terminology used in Thinking Systems was influenced by an earlier conversation with Arkadiy. His contribution to the formulation is acknowledged separately in the research record.\n\nRead the formulation provenance ↗",
+          "rect": {
+            "width": 350,
+            "height": 1026.25
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 1037,
+            "clientHeight": 1025
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read Arkadiy’s original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Read the formulation provenance ↗",
+              "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md"
+            }
+          ]
+        },
+        {
+          "name": "Christophe Kolb & Taller",
+          "text": "Christophe Kolb & Taller\n\nFounder & CEO · Taller\n\nChristophe cited UA in his explanation of agentic-system control. Taller’s public visual explainer also draws on UA to connect probability distributions, control signals and feedback.\n\nRead the public record ↗\n\nTaller’s public visual explainer",
+          "rect": {
+            "width": 350,
+            "height": 353.8125
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 365,
+            "clientHeight": 353
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Christophe Kolb & Taller",
+              "href": "https://www.linkedin.com/in/christophekolb/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/christophekolb_the-probability-control-theory-of-agentic-activity-7460778173597786114-rWAh"
+            },
+            {
+              "text": "Taller’s public visual explainer",
+              "href": "https://www.linkedin.com/posts/taller-technologies_llms-and-control-theory-activity-7482866825244889089-tIsK"
+            }
+          ]
+        },
+        {
+          "name": "Rod Montgomery",
+          "text": "Rod Montgomery\n\nAI Platform & Developer Acceleration · Corning\n\nHosted the Corning Learn-AI-Palooza discussion and publicly reflected on UA’s relevance to system-level risks, team behavior, ownership and governance.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 329.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 341,
+            "clientHeight": 329
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Rod Montgomery",
+              "href": "https://www.linkedin.com/in/roderickm/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4"
+            }
+          ]
+        },
+        {
+          "name": "Michael Risch",
+          "text": "Michael Risch\n\nSenior Project Manager\n\nDeveloped a public operational interpretation of UA, connecting control loops to roles such as Prompt Steward and Evaluation Owner, evaluation signals and governance practices.\n\nRead the public record ↗",
+          "rect": {
+            "width": 350,
+            "height": 308.625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 320,
+            "clientHeight": 308
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Michael Risch",
+              "href": "https://www.linkedin.com/in/michael-risch-ab8b423/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            }
+          ]
+        },
+        {
+          "name": "Matthew Skelton",
+          "text": "Matthew Skelton\n\nFounder · Conflux; co-author of Team Topologies\n\nReshared Michael Risch’s discussion of my AI governance and control-theory article, quoting its framing of governance as bringing business intent back into the system.\n\nRead the public record ↗\n\nMichael Risch’s original discussion\n\nHe also offered public encouragement for UA’s development in the project’s milestone discussion.\n\nEarlier milestone discussion",
+          "rect": {
+            "width": 350,
+            "height": 519.5625
+          },
+          "dimensions": {
+            "scrollWidth": 362,
+            "clientWidth": 350,
+            "scrollHeight": 531,
+            "clientHeight": 519
+          },
+          "overflow": false,
+          "overflowStyle": {
+            "x": "visible",
+            "y": "visible"
+          },
+          "textStyles": [
+            {
+              "fontSize": 14,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            },
+            {
+              "fontSize": 16,
+              "lineClamp": "none",
+              "overflow": "visible"
+            }
+          ],
+          "links": [
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Read the public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Michael Risch’s original discussion",
+              "href": "https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g"
+            },
+            {
+              "text": "Earlier milestone discussion",
+              "href": "https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/"
+            }
+          ]
+        }
+      ],
+      "disclaimers": [
+        "These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations."
+      ],
+      "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+      "progress": "1",
+      "bottom": {
+        "route": "research",
+        "range": 10584,
+        "y": 10584,
+        "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+        "stationary": true
+      }
+    }
+  ],
+  "journeys": [
+    {
+      "file": "Launch-safe.html",
+      "routeRows": [
+        {
+          "route": "research",
+          "range": 5150,
+          "y": 5150,
+          "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+          "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+          "stationary": true
+        },
+        {
+          "route": "writing",
+          "range": 5361,
+          "y": 5361,
+          "start": "{\"position\":[5,3,-232],\"target\":[0,0,-261]}",
+          "end": "{\"position\":[5,3,-232],\"target\":[0,0,-261]}",
+          "stationary": true
+        },
+        {
+          "route": "talks",
+          "range": 1321,
+          "y": 1321,
+          "start": "{\"position\":[5,3,-360],\"target\":[0,0,-389]}",
+          "end": "{\"position\":[5,3,-360],\"target\":[0,0,-389]}",
+          "stationary": true
+        },
+        {
+          "route": "credits",
+          "range": 2024,
+          "y": 2024,
+          "start": "{\"position\":[5,4,-488],\"target\":[0,0,-517]}",
+          "end": "{\"position\":[5,4,-488],\"target\":[0,0,-517]}",
+          "stationary": true
+        },
+        {
+          "route": "index",
+          "range": 5075,
+          "y": 5075,
+          "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "stationary": true
+        }
+      ],
+      "flight": [
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "busy": true,
+          "opacity": "1",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.98739739280189,4,22.37426367144382],\"target\":[0,0,-6.613133721358068]}",
+          "busy": true,
+          "opacity": "1",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 59.1419, 0.950715)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.942494931427593,4,16.58184615415951],\"target\":[0,0,-12.360648777268082]}",
+          "busy": true,
+          "opacity": "0.957656",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 249.311, 0.792241)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.87069826553608,4,7.320076254154319],\"target\":[0,0,-21.550622011381762]}",
+          "busy": true,
+          "opacity": "0.724248",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 508.563, 0.576197)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.77796338056611,4,-4.642723906971764],\"target\":[0,0,-33.42068728753787]}",
+          "busy": true,
+          "opacity": "0.399568",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 771.986, 0.356678)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.6705081141452816,4,-18.504453275258697],\"target\":[0,0,-47.174961389403975]}",
+          "busy": true,
+          "opacity": "0.114866",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 973.978, 0.188352)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.593701837153528,4,-28.412463007194816],\"target\":[0,0,-57.00616484434835]}",
+          "busy": true,
+          "opacity": "0.0115989",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1042.52, 0.131235)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.514664267319931,4,-38.60830951572886],\"target\":[0,0,-67.12297378304879]}",
+          "busy": true,
+          "opacity": "0",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1050, 0.125)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.415583650063249,4,-51.389709141840825],\"target\":[0,0,-79.80529279190408]}",
+          "busy": true,
+          "opacity": "0.0253269",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -4051.14, 4.37595)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.3010176622427725,4,-66.16872157068238],\"target\":[0,0,-94.46973923292515]}",
+          "busy": true,
+          "opacity": "0.164384",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3436.75, 3.86395)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.2300659046556435,4,-75.32149829942203],\"target\":[0,0,-103.55156420407768]}",
+          "busy": true,
+          "opacity": "0.302707",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -2853.93, 3.37828)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.165469167670227,4,-83.65447737054075],\"target\":[0,0,-111.81994653821097]}",
+          "busy": true,
+          "opacity": "0.459911",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -2202.13, 2.83511)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.108930267108871,4,-90.94799554295561],\"target\":[0,0,-119.05692581006448]}",
+          "busy": true,
+          "opacity": "0.6211",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -1540.19, 2.28349)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.062340033677774,4,-96.95813565556708],\"target\":[0,0,-125.02047568924485]}",
+          "busy": true,
+          "opacity": "0.770845",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -929.16, 1.7743)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.0274870821952335,4,-101.45416639681486],\"target\":[0,0,-129.4816534790101]}",
+          "busy": true,
+          "opacity": "0.893942",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -429.135, 1.35761)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.006180986071549,4,-104.20265279677014],\"target\":[0,0,-132.20883378284168]}",
+          "busy": true,
+          "opacity": "0.975106",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -100.548, 1.08379)"
+        },
+        {
+          "route": "research",
+          "travel": "settled",
+          "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+          "busy": false,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "retained": {
+        "cameraFlight": true,
+        "contentFade": true,
+        "contentMovement": true
+      }
+    },
+    {
+      "file": "Arkadiy-review.html",
+      "routeRows": [
+        {
+          "route": "research",
+          "range": 5629,
+          "y": 5629,
+          "start": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+          "end": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+          "stationary": true
+        },
+        {
+          "route": "writing",
+          "range": 5361,
+          "y": 5361,
+          "start": "{\"position\":[5,3,-232],\"target\":[0,0,-261]}",
+          "end": "{\"position\":[5,3,-232],\"target\":[0,0,-261]}",
+          "stationary": true
+        },
+        {
+          "route": "talks",
+          "range": 1321,
+          "y": 1321,
+          "start": "{\"position\":[5,3,-360],\"target\":[0,0,-389]}",
+          "end": "{\"position\":[5,3,-360],\"target\":[0,0,-389]}",
+          "stationary": true
+        },
+        {
+          "route": "credits",
+          "range": 2024,
+          "y": 2024,
+          "start": "{\"position\":[5,4,-488],\"target\":[0,0,-517]}",
+          "end": "{\"position\":[5,4,-488],\"target\":[0,0,-517]}",
+          "stationary": true
+        },
+        {
+          "route": "index",
+          "range": 5189,
+          "y": 5189,
+          "start": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "end": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "stationary": true
+        }
+      ],
+      "flight": [
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[6,4,24],\"target\":[0,0,-5]}",
+          "busy": true,
+          "opacity": "1",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.9820480088762515,4,21.684193145036506],\"target\":[0,0,-7.297854863839746]}",
+          "busy": true,
+          "opacity": "1",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 83.2293, 0.930642)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.951975432615762,4,17.80483080743327],\"target\":[0,0,-11.147144625182491]}",
+          "busy": true,
+          "opacity": "0.978482",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 211.199, 0.824001)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.884300735805804,4,9.074794918948808],\"target\":[0,0,-19.809505816856998]}",
+          "busy": true,
+          "opacity": "0.773084",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 463.236, 0.61397)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.810853622341518,4,-0.39988271794423014],\"target\":[0,0,-29.21073634028575]}",
+          "busy": true,
+          "opacity": "0.509952",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 687.68, 0.426933)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.707672368378442,4,-13.71026447918095],\"target\":[0,0,-42.41793684755939]}",
+          "busy": true,
+          "opacity": "0.197484",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 917.331, 0.235558)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.632480274773076,4,-23.41004455427324],\"target\":[0,0,-52.042524829046314]}",
+          "busy": true,
+          "opacity": "0.0513881",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1016.44, 0.152963)"
+        },
+        {
+          "route": "index",
+          "travel": "flying",
+          "camera": "{\"position\":[5.5147834582369315,4,-38.59293388743579],\"target\":[0,0,-67.10771734567273]}",
+          "busy": true,
+          "opacity": "0",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1050, 0.125)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.415819085351658,4,-51.35933798963613],\"target\":[0,0,-79.77515707498779]}",
+          "busy": true,
+          "opacity": "0.0251599",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -4051.94, 4.37662)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.338433760093183,4,-61.34204494797939],\"target\":[0,0,-89.68047870807257]}",
+          "busy": true,
+          "opacity": "0.106875",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3684.27, 4.07022)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.264965343984521,4,-70.81947062599676],\"target\":[0,0,-99.08443596998129]}",
+          "busy": true,
+          "opacity": "0.23003",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3158.58, 3.63215)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.19695898386631,4,-79.59229108124607],\"target\":[0,0,-107.78925006511238]}",
+          "busy": true,
+          "opacity": "0.379658",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -2533.9, 3.11158)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.136025486118321,4,-87.45271229073659],\"target\":[0,0,-115.58873777685491]}",
+          "busy": true,
+          "opacity": "0.541108",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -1868.05, 2.55671)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.084314762701058,4,-94.12339561156355],\"target\":[0,0,-122.20771037426461]}",
+          "busy": true,
+          "opacity": "0.698241",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -1225.02, 2.02085)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.027529658273572,4,-101.44867408270923],\"target\":[0,0,-129.47620374098278]}",
+          "busy": true,
+          "opacity": "0.893785",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -429.772, 1.35814)"
+        },
+        {
+          "route": "research",
+          "travel": "flying",
+          "camera": "{\"position\":[5.006201979080744,4,-104.19994469858395],\"target\":[0,0,-132.2061466776647]}",
+          "busy": true,
+          "opacity": "0.975023",
+          "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -100.883, 1.08407)"
+        },
+        {
+          "route": "research",
+          "travel": "settled",
+          "camera": "{\"position\":[5,4,-105],\"target\":[0,0,-133]}",
+          "busy": false,
+          "opacity": "1",
+          "transform": "none"
+        }
+      ],
+      "retained": {
+        "cameraFlight": true,
+        "contentFade": true,
+        "contentMovement": true
+      }
+    }
+  ],
+  "errors": [],
+  "captures": {
+    "review-research-day-1440-card.webp": {
+      "sha256": "24fc53133b682a92d32b6a9b9386581b5c7fac1a67230feeb4749fd2dfc6f0ea",
+      "bytes": 26410,
+      "sourceCapture": "review-research-day-1440-card.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-research-day-390.webp": {
+      "sha256": "f0146cc7c3bafdcca273f0041c8a42b708e6434c47476ed3de990a6e45acc252",
+      "bytes": 66252,
+      "sourceCapture": "launch-safe-research-day-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-research-night-390.webp": {
+      "sha256": "7293f484327d2aa6fe604ef5f92625097fa312c6c34528f3a8f56d3abdd01159",
+      "bytes": 63640,
+      "sourceCapture": "launch-safe-research-night-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-index-night-1440.webp": {
+      "sha256": "bfc5722d912098ca32afe38165a66e7cef6f4ce61624e615321294d335d6f20b",
+      "bytes": 26486,
+      "sourceCapture": "launch-safe-index-night-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-research-day-1440.webp": {
+      "sha256": "6c983ff7c2b23a4261d79cfa86117dc02f6131d4a9a3f5372ca6667912315488",
+      "bytes": 70308,
+      "sourceCapture": "launch-safe-research-day-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-index-night-1440.webp": {
+      "sha256": "9fcd4897ba32496840d385a6ca4b1910406a0973359621b03e93ae7febf0edad",
+      "bytes": 36646,
+      "sourceCapture": "review-index-night-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-index-night-390.webp": {
+      "sha256": "20cd3b944ae6e6cce5cbdefeb5ccb66dcf96439de3f6a4c5ff9844ec1e9e81c4",
+      "bytes": 25246,
+      "sourceCapture": "launch-safe-index-night-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-index-day-390.webp": {
+      "sha256": "3bb7a8964ce3d9b99c87c138f4d901d4bf4d6235231c5959b8a968c0917bb497",
+      "bytes": 27764,
+      "sourceCapture": "launch-safe-index-day-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-night-390.webp": {
+      "sha256": "61596ca6c4b277691d916bf4d5b12f25122171cf8f30d1c6a0a37320fda74d6e",
+      "bytes": 81604,
+      "sourceCapture": "review-research-night-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-index-day-1440.webp": {
+      "sha256": "7d64544a27fa5d2e1c5b7a820968a8912243b8290cb4aa661b40ee7a3ace348e",
+      "bytes": 29176,
+      "sourceCapture": "launch-safe-index-day-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-night-390-card.webp": {
+      "sha256": "6d0e5f0baa8fa7e6aea0d06c5a4f0f3bcb6c69b941eab79b48247fb8cfbeae4c",
+      "bytes": 24784,
+      "sourceCapture": "review-research-night-390-card.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-day-390-card.webp": {
+      "sha256": "513a543cc7314fdad1658451d7851d01f02cbf3c20212fdd3b50a27b04623bea",
+      "bytes": 26872,
+      "sourceCapture": "review-research-day-390-card.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-index-day-1440.webp": {
+      "sha256": "f2ab751e9f4b7547fc8cf622caa214ca6471a124e1edc3fe23e784d47fbb9b26",
+      "bytes": 40320,
+      "sourceCapture": "review-index-day-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-night-1440-card.webp": {
+      "sha256": "29302d41f5bc214d268e266357f5501fd2bdc8d94585fbaf9a28ba4400a31c3e",
+      "bytes": 24466,
+      "sourceCapture": "review-research-night-1440-card.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-index-day-390.webp": {
+      "sha256": "be9b7b810e7fbdb55411bbb365ee512e41c0f05746d5ebf87b46d9415643728c",
+      "bytes": 38402,
+      "sourceCapture": "review-index-day-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-day-390.webp": {
+      "sha256": "8c87eabbf7e07f7a8af8ce1a5089d3ebd47be2d4887b802a175e7a4e77e53afb",
+      "bytes": 86630,
+      "sourceCapture": "review-research-day-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "launch-safe-research-night-1440.webp": {
+      "sha256": "6fc10f0ba118b3d45852ed2a6a5fa29c2ba4d9b58153a40240a91d71f7eb73b9",
+      "bytes": 65598,
+      "sourceCapture": "launch-safe-research-night-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-night-1440.webp": {
+      "sha256": "45a971288e2484d990bc2c8b6227f1f891c4b7e6357292f6d2708f85f2602ed4",
+      "bytes": 89078,
+      "sourceCapture": "review-research-night-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-index-night-390.webp": {
+      "sha256": "bcb50d1ea3bbe0cd4dfe4bb9d04a617568988a404dc6378cd1028c67f7345318",
+      "bytes": 34908,
+      "sourceCapture": "review-index-night-390.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    },
+    "review-research-day-1440.webp": {
+      "sha256": "7c633b314ab10fd9b5886ef1b276c2c8085ed731313d776b48d72f2a23fab07c",
+      "bytes": 92838,
+      "sourceCapture": "review-research-day-1440.png",
+      "transformation": "Lossless WebP from a browser full-page capture cropped to the exact section or card bounding box; no text/image edits."
+    }
+  },
+  "sourceSnapshots": {
+    "site/engine/lifecycle.cjs": "0923b0b7cba590e18fdfcd2c833b2b1a476d174e98177dc9c414b5be6e232058",
+    "site/engine/navigation.js": "908f05a548dedc176825a1bed94f40dd7f6ed44164e0aab3b16eafe9c41c53ee",
+    "tools/build_site_previews.cjs": "49142c479e27a72f6dff387c2b944927e080c732706cd2ae7aa9128a5a87cfd0",
+    "tools/site/export.cjs": "c9fea3244d895fc01e253eb644a2e653684ff167a273be8f5e3822034cda3d14",
+    "site/content/pages/index/acknowledgements.json": "5f4fb431835571cbd8cc52c8051a4d9995c76107619ba82cbfce3aa71348f187",
+    "site/content/pages/research/acknowledgements.json": "920d81d4ea8046cc6d4600dee819e230fe41b0c52a7eae6c8f5e474d9e42f6a1",
+    "site/templates/pages/index/acknowledgements.html": "49c252dc0d9ecdb0698cff694376072116ed0aad97aa7da2e65e98b302672a8b",
+    "site/templates/pages/research/acknowledgements.html": "007058c065c3e8dad77e6740b4db0f6e5ac2c5c62fb0e71624ee09fcbe8b2a1d",
+    "review/issue-41/arkadiy-review/index/acknowledgements.json": "538366181a406aa726b9910526ab4583a3807ce99205810d9ab701ed42b71d83",
+    "review/issue-41/arkadiy-review/index/acknowledgements.html": "759c9ef0192668b0da7061cbb7ba3db6210b6b5d31ba2e8558fc0c62ccc715a6",
+    "review/issue-41/arkadiy-review/research/acknowledgements.json": "607d0e1e9a60eba4a75855e147955895e572f1dafecb1e48a1f30bf5632047b9",
+    "review/issue-41/arkadiy-review/research/acknowledgements.html": "d14a1bf6f6c5f15234b7716bee095e949a9b2faf9b156d6b29b67dd2fa182943"
+  },
+  "captureInspection": "All sixteen section captures checked visually in four contact sheets; Home review desktop Day, Home review mobile Day and Research review mobile Night card inspected at native width. Text fits naturally, links readable, formal advisors remain distinct. Cropped full-page captures prove content geometry; they do not record ongoing animation.",
+  "rerunCommand": "node /workspace/scratch/d73361ced7c7/qa/observe.cjs (scratch observation script; captures loopback supported exports). Browser route and native-scroll contracts are maintained in canonical scroll/browser checks; this dated report is scoped supplemental evidence.",
+  "creditsAmendment": {
+    "schema": 1,
+    "kind": "Credits scope amendment observations",
+    "pass": true,
+    "browser": "138.0.7204.0",
+    "playwright": "1.63.0",
+    "baseCommit": "dbe239307c5bd8b3c0c4b0940c2f6928d9944d97",
+    "sourceDirty": true,
+    "sourceJSON": {
+      "path": "site/content/pages/credits/main.json",
+      "sha256": "a7edc5c2f442403d8560050c71892564a3225997fc5cdaf598e7e408189dc60a"
+    },
+    "paragraphSHA256": "fc7a1bb4fa2a62140304c10a8f840a1ee61edd5feec8bacb4223844264dc0dc0",
+    "files": {
+      "Launch-safe.html": {
+        "sha256": "155656ddf5d5360f50b5f52b78aba2a85dbfad09fa389ef00e1ca152c456ab3e",
+        "bytes": 728714
+      },
+      "Arkadiy-review.html": {
+        "sha256": "d9b16478957bf4002a4f23d85de6b5c450f9f40616d18a88a3e3f6f31faab4c8",
+        "bytes": 732063
+      }
+    },
+    "rows": [
+      {
+        "file": "Launch-safe.html",
+        "width": 1440,
+        "theme": "light",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 122,
+          "y": 1097.59375,
+          "width": 730,
+          "height": 333.09375
+        },
+        "capture": "credits-launch-safe-day-1440.webp",
+        "captureSha256": "cde0cbdb64da8d9be595514a7a109aa3890226199f9548175ba88c6eca067e4e",
+        "captureBytes": 19350,
+        "pass": true
+      },
+      {
+        "file": "Launch-safe.html",
+        "width": 1440,
+        "theme": "dark",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 122,
+          "y": 1097.59375,
+          "width": 730,
+          "height": 333.09375
+        },
+        "capture": "credits-launch-safe-night-1440.webp",
+        "captureSha256": "0673ea0943d19fb85b99201aacfe308400d61d7d69501ae7419c8dd65dffba06",
+        "captureBytes": 18154,
+        "pass": true
+      },
+      {
+        "file": "Launch-safe.html",
+        "width": 390,
+        "theme": "light",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 2,
+          "y": 1523.453125,
+          "width": 350,
+          "height": 676.171875
+        },
+        "capture": "credits-launch-safe-day-390.webp",
+        "captureSha256": "2f6f84ca84686fd3493bd3ef3d77ac2787a52068945b9aa711e5bc7dfac86d38",
+        "captureBytes": 19104,
+        "pass": true
+      },
+      {
+        "file": "Launch-safe.html",
+        "width": 390,
+        "theme": "dark",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 2,
+          "y": 1523.453125,
+          "width": 350,
+          "height": 676.171875
+        },
+        "capture": "credits-launch-safe-night-390.webp",
+        "captureSha256": "52c2ccb7305a56a97d928e4e38fc382a7c48ab6773524223c59664228e75f95a",
+        "captureBytes": 18282,
+        "pass": true
+      },
+      {
+        "file": "Arkadiy-review.html",
+        "width": 1440,
+        "theme": "light",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 122,
+          "y": 1097.59375,
+          "width": 730,
+          "height": 333.09375
+        },
+        "capture": "credits-review-day-1440.webp",
+        "captureSha256": "cde0cbdb64da8d9be595514a7a109aa3890226199f9548175ba88c6eca067e4e",
+        "captureBytes": 19350,
+        "pass": true
+      },
+      {
+        "file": "Arkadiy-review.html",
+        "width": 1440,
+        "theme": "dark",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 122,
+          "y": 1097.59375,
+          "width": 730,
+          "height": 333.09375
+        },
+        "capture": "credits-review-night-1440.webp",
+        "captureSha256": "0673ea0943d19fb85b99201aacfe308400d61d7d69501ae7419c8dd65dffba06",
+        "captureBytes": 18154,
+        "pass": true
+      },
+      {
+        "file": "Arkadiy-review.html",
+        "width": 390,
+        "theme": "light",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 2,
+          "y": 1523.453125,
+          "width": 350,
+          "height": 676.171875
+        },
+        "capture": "credits-review-day-390.webp",
+        "captureSha256": "2f6f84ca84686fd3493bd3ef3d77ac2787a52068945b9aa711e5bc7dfac86d38",
+        "captureBytes": 19104,
+        "pass": true
+      },
+      {
+        "file": "Arkadiy-review.html",
+        "width": 390,
+        "theme": "dark",
+        "route": "credits",
+        "documentOverflow": false,
+        "paragraph": "<p>Auto uses your device's local time: Day from 07:00 until 19:00, Night otherwise. You can choose\n    either theme yourself. Theme and motion preferences are stored locally in your browser; no\n    location request, account or analytics is involved. Scrolling and Writing topic choices leave the camera at the page’s opening view.\n    Main-page navigation retains the camera flight and content fade. The thematic structures also move\n    gently in a repeating cycle while you read. Motion off freezes both the camera and the\n    structures; your reduced-motion preference overrides a saved On choice. Theme changes only\n    recolor that view. No measurement or scientific simulation is represented. Without JavaScript,\n    your device's light/dark preference and a static geometric background supply the fallback.</p>",
+        "fontSize": 16,
+        "lineClamp": "none",
+        "overflowStyle": "visible",
+        "rangeOutside": false,
+        "clip": {
+          "x": 2,
+          "y": 1523.453125,
+          "width": 350,
+          "height": 676.171875
+        },
+        "capture": "credits-review-night-390.webp",
+        "captureSha256": "52c2ccb7305a56a97d928e4e38fc382a7c48ab6773524223c59664228e75f95a",
+        "captureBytes": 18282,
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "scope": "Credits paragraph only; earlier Home/Research16cases/captures and route-camera journeys retained unchanged. New exports rebuild the exact Credits change through canonical isolated composition/export; no shared docs edits or full regression."
+  }
+}

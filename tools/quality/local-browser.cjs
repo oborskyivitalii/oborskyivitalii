@@ -137,9 +137,7 @@ async function routeBytes(context, url, manifest) {
 }
 async function responseNames(page, route) {
   const selector =
-    route === 'index'
-      ? '#acknowledgements .ack-leads article h3 a'
-      : '#acknowledgements .ack-grid article h3 a';
+    '#acknowledgements article > h3 > a, ' + '#acknowledgements article > .person-context > a';
   const names = await page.locator(selector).allTextContents();
   assert.deepEqual(
     names,
@@ -151,6 +149,31 @@ async function responseNames(page, route) {
     names.length,
     route + ' no additional discussion cards'
   );
+  const record = page.locator('#acknowledgements article').filter({
+    has: page.locator('.person-context > a[href="https://www.linkedin.com/in/arkadiydobkin/"]'),
+  });
+  assert.equal(await record.count(), 1, route + ' one topic-led discussion record');
+  assert.equal(
+    await record.locator('h3').textContent(),
+    route === 'index'
+      ? 'Thinking Systems — public discussion'
+      : 'Thinking Systems: runtime control and differentiation',
+    route + ' discussion topic remains the heading'
+  );
+  assert.equal(await record.locator('h3 a').count(), 0, route + ' plain topic heading');
+  assert.equal(
+    (await record.locator('.person-context').textContent()).replace(/\s+/g, ' ').trim(),
+    route === 'index'
+      ? 'Arkadiy Dobkin · EPAM founder'
+      : 'Public response by Arkadiy Dobkin · EPAM founder',
+    route + ' source author stays in an ordinary byline'
+  );
+  if (route === 'research')
+    assert.equal(
+      await record.locator('h4').textContent(),
+      'Formulation provenance',
+      'Research keeps the formulation attribution separate'
+    );
   return names;
 }
 async function discussionAnchor(page) {

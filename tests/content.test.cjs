@@ -50,11 +50,11 @@ test('selected Home responses link to the complete Research inventory with prese
   const articles = (html) => [...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map((m) => m[0]);
   const links = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
   for (const page of ['index', 'research']) {
-    const entries = [
-      ...section(page).matchAll(
-        /<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a>(?:<span class="advisor-role">[^<]+<\/span>)?<\/h3><p class="person-context">([^<]+)<\/p>/g
-      ),
-    ];
+    const entries = articles(section(page)).map((card) => {
+      const identity = card.match(/<a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a>/);
+      assert.ok(identity, 'every card retains one explicit source profile');
+      return identity;
+    });
     assert.deepEqual(
       entries.map((e) => e[2]),
       names[page]
@@ -86,19 +86,19 @@ test('selected Home responses link to the complete Research inventory with prese
     )
   );
   for (const article of articles(previous)) {
-    const profile = article.match(/<h3><a href="([^"]+)"/)[1],
-      replacement = current.find((a) => a.includes('href="' + profile + '"'));
-    assert.ok(replacement, 'all eight people survive');
+    const profile = article.match(/<h3><a href="([^"]+)"/)[1];
+    const replacement = current.find((a) => a.includes('href="' + profile + '"'));
+    assert.ok(replacement, 'all other people survive');
     assert.deepEqual(
       links(replacement),
       links(article),
       'all contribution and provenance links survive'
     );
-    if (!/markuskleinpmp|otman-basir-ba1258178/.test(profile))
+    if (!/arkadiydobkin|markuskleinpmp|otman-basir-ba1258178/.test(profile))
       assert.equal(replacement, article, 'unrelated response claims remain exact');
   }
   for (const article of articles(section('index'))) {
-    const name = article.match(/<h3><a[^>]+>([^<]+)<\/a><\/h3>/)[1];
+    const name = article.match(/<a href="https:\/\/www.linkedin.com\/in\/[^"]+">([^<]+)<\/a>/)[1];
     const complete = articles(section('research')).find((a) => a.includes('>' + name + '</a>'));
     assert.deepEqual(
       links(article),
@@ -157,6 +157,75 @@ test('selected Home responses link to the complete Research inventory with prese
       assert.match(matthew, /He also offered public encouragement/);
     }
   }
+});
+
+test('canonical topic-first public records preserve bounded copy, source bylines and separate provenance', () => {
+  const projectRoot = path.resolve(root, '..');
+  const { catalog, fragment } = require('../tools/site/content.cjs');
+  const currentCatalog = catalog(projectRoot);
+  const note =
+    'These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.';
+  const profile = 'https://www.linkedin.com/in/arkadiydobkin/';
+  const originalPost =
+    'https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H';
+  const provenance =
+    'https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md';
+  const cards = (html) => [...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map((row) => row[0]);
+  const expected = {
+    index: '<h3>Thinking Systems — public discussion</h3>',
+    research: '<h3>Thinking Systems: runtime control and differentiation</h3>',
+  };
+  const sections = {};
+  for (const page of ['index', 'research']) {
+    const sourcePath = `site/content/pages/${page}/acknowledgements.json`;
+    const html = normalizeHTML(fragment(projectRoot, sourcePath, currentCatalog).html);
+    sections[page] = html;
+    assert.equal(cards(html).length, page === 'index' ? 3 : 8);
+    assert.equal(
+      html,
+      pages[page].match(/<section[^>]*\bid="acknowledgements"[\s\S]*?<\/section>/)[0]
+    );
+    assert.equal(html.split(note).length - 1, 1, 'one section-level boundary');
+    assert.ok(cards(html).every((card) => !card.includes(note)));
+    const card = cards(html).find((row) => row.includes(profile));
+    assert.ok(card.includes(expected[page]), 'the publication/topic is the heading');
+    assert.ok(card.includes(`href="${originalPost}">Read the original post ↗</a>`));
+    assert.doesNotMatch(
+      card,
+      /<h3><a|<blockquote|<q>|<img|<svg|advisor-role|style=|endorsed|validated|backed by|partner|approved/i
+    );
+    assert.ok(card.includes(`<a href="${profile}">Arkadiy Dobkin</a> · EPAM founder`));
+    assert.ok(card.includes('<em>Thinking Systems</em>'));
+    if (page === 'research') {
+      assert.ok(card.includes('<h4>Formulation provenance</h4>'));
+      assert.ok(card.includes(`href="${provenance}">Read the formulation provenance ↗</a>`));
+      assert.ok(
+        card.indexOf('<h4>Formulation provenance') > card.indexOf('Read the original post')
+      );
+    }
+  }
+  assert.ok(
+    sections.index.includes(
+      'In his public response to <em>Thinking Systems</em>, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.'
+    )
+  );
+  const [advisors, responses] = sections.research.split(
+    '<h3 class="context-heading">Public responses</h3>'
+  );
+  assert.ok(!advisors.includes(profile));
+  assert.equal(cards(advisors).length, 2);
+  assert.equal(cards(responses).length, 6);
+  assert.ok(responses.includes('Public response by <a'));
+  assert.ok(
+    responses.includes(
+      'In a public LinkedIn post about <em>Thinking Systems</em>, Dobkin recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.'
+    )
+  );
+  assert.ok(
+    responses.includes(
+      'The published article separately credits an earlier exchange with Dobkin for helping shape the <em>Thinking Systems</em> formulation.'
+    )
+  );
 });
 
 test('research theories retain project alignment and explicit association on narrow layouts', () => {
@@ -684,10 +753,32 @@ test('Home provides the agreed reader path, precise public actions and a real co
     'contact',
   ]);
   assert.match(home, /<h1 id="author-name">AI tools everywhere\./);
-  assert.ok(home.includes('Vitalii Oborskyi · Delivery leader, researcher &amp; author.'));
-  for (const person of ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'])
+  assert.ok(
+    home.includes(
+      'Vitalii Oborskyi · Enterprise delivery leader &amp; independent research author.'
+    )
+  );
+  assert.ok(home.indexOf('class="hero-lead"') < home.indexOf('class="hero-actions"'));
+  for (const person of ['Matthew Skelton', 'Markus Kopko'])
     assert.ok(home.includes(`>${person}</a></h3>`));
-  assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
+  assert.ok(home.includes('href="#contact">Start a conversation'));
+  assert.ok(home.includes('href="#help">Where I contribute</a>'));
+  assert.ok(home.includes('Where I work<br>and contribute.'));
+  for (const domain of [
+    'AI-assisted delivery<br>transformation and verification.',
+    'Enterprise AI governance<br>and agentic operating models.',
+    'Engineering leadership,<br>organizational capability and applied research.',
+  ])
+    assert.ok(home.includes('<h3>' + domain + '</h3>'), domain);
+  const contact = home.match(/<section[^>]*\bid="contact"[\s\S]*?<\/section>/)[0];
+  assert.ok(
+    contact.indexOf('enterprise leadership opportunities') <
+      contact.indexOf('selected advisory work')
+  );
+  assert.ok(contact.includes('research collaboration'));
+  assert.ok(
+    contact.includes('selected advisory work where my experience and research may be relevant')
+  );
   assert.ok(
     home.includes('href="https://calendar.app.google/zy9rAnUcoWygSdxH7">Book a conversation')
   );
@@ -695,14 +786,15 @@ test('Home provides the agreed reader path, precise public actions and a real co
   // Generated decorative coordinates/opacity decimals are not author claims.
   assert.doesNotMatch(
     home.replace(/<svg\b[\s\S]*?<\/svg>/g, ''),
-    /href="#"|Trusted by|CPC|RankSpot|4400|4,400/
+    /href="#"|Trusted by|CPC|RankSpot|4400|4,400|established consultancy|consulting firm|service packages|guaranteed outcomes/
   );
   for (const text of [
     'human understanding, verification and ownership',
     'human roles, evidence, decision authority and corrective action',
     'hypotheses to test in context',
     'Much remains to develop and test',
-    'Potential outputs, depending on the agreed scope',
+    'Examples of work, depending on the role, organization and agreed scope',
+    'Research, publications, talks and practical engineering experiments.',
   ])
     assert.ok(home.includes(text), text);
   for (const page of Object.values(pages))

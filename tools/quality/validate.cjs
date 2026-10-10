@@ -299,24 +299,15 @@ function scrollSyncEvidence(sync, route) {
       route !== 'writing' && key === 'filtered' ? 'not applicable' : true,
       'missing scroll synchronization ' + key
     );
-  for (const row of [...sync.fixtures, ...sync.filtered]) {
-    assert.ok(Number.isFinite(row.end) && row.end >= 0);
-    assert.deepEqual(
-      row.samples.map((s) => s.fraction),
-      [0.9, 0.95, 0.99, 1]
-    );
-    assert.equal(row.samples.at(-1).y, row.end, 'reported scroll never reaches bottom');
-    if (row.end > 100)
-      for (let i = 1; i < row.samples.length; i++)
-        assert.notEqual(
-          row.samples[i].camera,
-          row.samples[i - 1].camera,
-          'reported final-scroll plateau'
-        );
-  }
+  for (const row of [...sync.fixtures, ...sync.filtered]) contract.validateProbe(row, route);
   assert.equal(sync.filtered.length, route === 'writing' ? 1 : 0, 'missing filtered scroll case');
   const waypoint = sync.waypoint;
   assert.ok(waypoint?.id && Number.isFinite(waypoint.y), 'missing reordered semantic waypoint');
+  assert.deepEqual(
+    waypoint.expected,
+    JSON.parse(contract.expectedCamera(route)),
+    'waypoint must retain the declared route view'
+  );
   const distance = Math.hypot(
     ...['position', 'target'].flatMap((key) =>
       waypoint.actual[key].map((v, i) => v - waypoint.expected[key][i])
@@ -339,7 +330,7 @@ function functionalChecks(mode, route, checks) {
     ])
       assert.equal(checks[key], true, 'missing ' + key);
     assert.ok(checks.axePasses > 0);
-    assert.ok(['camera changed', 'short page'].includes(checks.forward));
+    assert.ok(['camera fixed', 'short page'].includes(checks.forward));
     assert.equal(checks.archive, route === 'writing' ? true : 'not applicable');
     scrollSyncEvidence(checks.scrollSync, route);
   } else if (['no-js', 'no-canvas', 'no-raf', 'no-match-media', 'css-blocked'].includes(mode))
@@ -455,16 +446,8 @@ function navigation(r, engines) {
           ['research', 'writing', 'talks', 'credits'],
           'missing post-arrival scroll endpoint evidence'
         );
-        for (const arrival of row.scrollArrivals) {
-          assert.equal(arrival.samples.at(-1).y, arrival.end);
-          if (arrival.end > 100)
-            for (let i = 1; i < arrival.samples.length; i++)
-              assert.notEqual(
-                arrival.samples[i].camera,
-                arrival.samples[i - 1].camera,
-                'post-arrival scroll plateau'
-              );
-        }
+        for (const arrival of row.scrollArrivals)
+          require('./scroll-browser.cjs').validateProbe(arrival, arrival.route);
       }
   return true;
 }

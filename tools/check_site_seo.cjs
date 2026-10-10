@@ -105,6 +105,18 @@ const positioning = JSON.parse(
 const sitecase = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-sitecase-amendment.json'), 'utf8')
 );
+const arkadiy = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-41/2026-10-10-arkadiy-amendment.json'), 'utf8')
+);
+const arkadiyTopic = JSON.parse(
+  fs.readFileSync(
+    path.join(root, 'review/issue-41/2026-10-10-arkadiy-topic-amendment.json'),
+    'utf8'
+  )
+);
+const authorFirst = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-41/2026-10-10-author-first-amendment.json'), 'utf8')
+);
 function restoreContentAmendment(html, page, record = amendment) {
   for (const change of record.changes.filter((c) => c.page === page)) {
     for (const version of ['before', 'after'])
@@ -235,7 +247,11 @@ function restoreCriticalMedia(html, page, projectRoot = root) {
 }
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
+  // Reverse current Home positioning before older fragments that it contains.
+  html = restoreContentAmendment(html, page, authorFirst);
   // This successor uses current template bytes, before historical presentation reversal.
+  html = restoreContentAmendment(html, page, arkadiyTopic);
+  html = restoreContentAmendment(html, page, arkadiy);
   html = restoreContentAmendment(html, page, sitecase);
   html = restoreContentAmendment(html, page, positioning);
   html = restoreRefactorPresentation(html, page);
@@ -359,6 +375,9 @@ function verify() {
           ...issue61.changes,
           ...positioning.changes,
           ...sitecase.changes,
+          ...arkadiy.changes,
+          ...arkadiyTopic.changes,
+          ...authorFirst.changes,
         ]
           .filter((change) => change.page === page)
           .map((change) => change.intent),
@@ -389,7 +408,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after reversing the exact hashed Issue41 author-first Home successor, topic-first editorial successor and historical Arkadiy publication-state amendment, AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');

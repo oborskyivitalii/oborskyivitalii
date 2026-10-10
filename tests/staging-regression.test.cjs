@@ -207,9 +207,7 @@ test('selected browser regression requires all route observations, navigation, f
     (r) => (r.navigation[0].checks.flightTiming = false),
     (r) => r.navigation[0].scrollArrivals.pop(),
     (r) => (r.navigation[0].scrollArrivals[0].samples[3].y = 999),
-    (r) =>
-      (r.navigation[0].scrollArrivals[0].samples[3].camera =
-        r.navigation[0].scrollArrivals[0].samples[2].camera),
+    (r) => (r.navigation[0].scrollArrivals[0].samples[3].camera = 'moved-camera'),
     (r) => r.failures.pop(),
     (r) => (r.failures[0] = structuredClone(r.failures[1])),
     (r) => delete r.failures[0].checks.evidence,

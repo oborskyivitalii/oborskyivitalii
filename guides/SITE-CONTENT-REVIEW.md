@@ -56,7 +56,7 @@ Read [MEMORY](../MEMORY.md) and live GitHub records for current work.
 | Production URL and release | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8), authorized activation and actual deployed-edition/indexing evidence |
 | Automated release and physical/independent coverage | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13), [profiles](SITE-CHECK-PROFILES.md) and [release requirements](SITE-RELEASE-GATES.md) |
 
-## Issue #41 candidate review — 2026-10-07
+## Issue #41 candidate review — 2026-10-07 (historical)
 
 Review the exact implementation in [PR #42](https://github.com/oborskyivitalii/oborskyivitalii/pull/42)
 against its [same-file analysis/tasks](../review/issue-41/2026-10-07-analysis.md).
@@ -73,6 +73,58 @@ The 27 old primary identities, five featured works and all original source links
 remain acceptance invariants. Source/structure tests, readable browser observations,
 independent/editorial review, rights, merge and release remain distinct records.
 The maintainer's existing advisory consent does not need to be requested again.
+
+## Issue #41 topic-first candidate review — 2026-10-10
+
+The owner's superseding decision in [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41)
+continues in Draft [PR #68](https://github.com/oborskyivitalii/oborskyivitalii/pull/68).
+The [same-file content review](../review/issue-41/2026-10-10-arkadiy-content.md)
+records the supersession; the [topic amendment](../review/issue-41/2026-10-10-arkadiy-topic-amendment.json)
+binds the exact content delta. The earlier 10 October hidden/review-only decision
+and its snapshots remain inactive historical evidence.
+
+Verify that canonical generated Home/Research include the bounded topic-first
+records. Home's heading is `Thinking Systems — public discussion`, with ordinary
+byline `Arkadiy Dobkin · EPAM founder`. Research's heading is
+`Thinking Systems: runtime control and differentiation`, with
+`Public response by Arkadiy Dobkin · EPAM founder` and a separate
+`Formulation provenance` block. Preserve exact public post/profile/provenance
+links, published articles, other people and the two existing UA advisor roles.
+Keep the section-level no-endorsement explanation. The public response and
+earlier formulation credit establish no Dobkin advisory/project role or
+endorsement of the website, research programme, services or organization.
+
+**Public source verified; editorial inclusion instructed by owner; new personal approval of website unconfirmed.**
+
+Do not describe personal consent, legal clearance or approval by Dobkin as granted.
+Rights #7 remains open; existing external-source, editorial/device and release
+owners retain their decisions. This inclusion instruction does not add a global
+prior-permission blocker. Affected criteria are reopened; current implementation,
+checks and review require matching current-source evidence in the live owning issue. Camera/Credits
+behavior remains unchanged, and no merge or production launch is authorized.
+
+## Issue #41 author-first review — 2026-10-10
+
+The [current amendment and task](../review/issue-41/2026-10-10-author-first.md)
+continue Draft PR #68; only affected service-first positioning is superseded.
+Review the complete Home: leadership/research identity, contribution domains
+with concrete role/organization/scope-qualified examples, and leadership,
+collaboration and selected-advisory contact opportunities. Preserve factual
+career scope, Corning and the AI-assisted site case. No new business, employer,
+partnership or outcome claim; private circumstances/permission status stay off-site.
+
+Judge Home Option A on the actual corrected desktop/mobile Day/Night hierarchy.
+Research/Writing precede neutral public records; About separates them from Contact.
+If the corrected composition still suggests a commercial recommendation, record
+the reason before the authorized summary Option B. Keep exact Research discussion
+and separate provenance; public-source inclusion is not personal/institutional approval.
+
+The [five-fragment successor](../review/issue-41/2026-10-10-author-first-amendment.json)
+is reversed before earlier amendments; metadata, topic substance, links, routes,
+graphics, runtime and gate/budget owners remain protected. AP01–AP09 map to
+AC36–AC44. Reopened boxes require current-source evidence; the live issue owns
+CI, immutable preview and actual checkboxes. Original pending/rights/release
+criteria are not completed by this correction.
 
 ## Historical review evidence
 

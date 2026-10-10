@@ -405,16 +405,16 @@ function cameraPage(h, change) {
     },
   };
 }
-test('native forward response waits beyond the old 180ms window for both scroll target and a changed camera', async () => {
+test('native forward response waits for the scroll target while preserving the fixed camera', async () => {
   const h = helpers(),
     travel = { range: 9000, target: 2400, y: 0 };
   const page = cameraPage(h, (time, current) => {
     current.context.scrollY = time < 200 ? 1200 : 2400;
-    if (time >= 450) current.scene.dataset.camera = 'journey';
+    current.scene.dataset.camera = time < 450 ? 'unsettled' : 'opening';
   });
   const result = await h.forwardCamera(page, 'opening', travel),
     probe = result.forwardResponse;
-  assert.equal(result.camera, 'journey');
+  assert.equal(result.camera, 'opening');
   assert.equal(result.scrollY, 2400);
   assert.equal(probe.status, 'responded');
   assert.equal(probe.timeoutMs, 2000);
@@ -423,15 +423,15 @@ test('native forward response waits beyond the old 180ms window for both scroll 
   assert.deepEqual(probe.travel, travel);
   assert.equal(probe.samples.length, 10);
   assert.equal(probe.samples[0].y, 1200);
-  assert.equal(probe.samples[0].camera, 'opening');
-  assert.equal(probe.samples.at(-1).camera, 'journey');
+  assert.equal(probe.samples[0].camera, 'unsettled');
+  assert.equal(probe.samples.at(-1).camera, 'opening');
 });
-test('wrong native target or unchanged camera never passes, retaining every sample at the strict deadline', async () => {
+test('wrong native target or scroll-driven camera movement never passes, retaining deadline samples', async () => {
   for (const defect of ['target', 'camera']) {
     const h = helpers(),
       page = cameraPage(h, (time, current) => {
         current.context.scrollY = defect === 'target' ? 2398 : 2400;
-        current.scene.dataset.camera = defect === 'camera' ? 'opening' : 'journey';
+        current.scene.dataset.camera = defect === 'camera' ? 'journey' : 'opening';
         current.context.window.__quality.paints = time / 50;
       });
     await assert.rejects(
@@ -448,14 +448,14 @@ test('wrong native target or unchanged camera never passes, retaining every samp
     assert.equal(probe.samples.at(-1).time, 2000);
     assert.equal(probe.samples.at(-1).paints, 40);
     assert.equal(probe.samples.at(-1).y, defect === 'target' ? 2398 : 2400);
-    assert.equal(probe.samples.at(-1).camera, defect === 'camera' ? 'opening' : 'journey');
+    assert.equal(probe.samples.at(-1).camera, defect === 'camera' ? 'journey' : 'opening');
   }
 });
 test('forward response allows native subpixel rounding but does not demand travel on a short page', async () => {
   const h = helpers(),
     page = cameraPage(h, (_time, current) => {
       current.context.scrollY = 2400.75;
-      current.scene.dataset.camera = 'journey';
+      current.scene.dataset.camera = 'opening';
     });
   assert.equal(
     (await h.forwardCamera(page, 'opening', { range: 9000, target: 2400 })).forwardResponse.status,

@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Confident bounded advisory and response presentation without overcrowding.",
-      "automated_scope": "Generated three Home cards, two UA advisors and six other Research responses; unique profiles, all existing source links, exact bounded roles and declared copy delta. Automated structure is not editorial or independent acceptance.",
+      "automated_scope": "Generated three Home records, two UA advisors and six Research public responses preserve profiles, source links and unrelated roles/prose. The later exact 10 October amendment uses topic headings and ordinary public-source bylines for Dobkin, with a separate formulation-provenance paragraph and one current section-level boundary. The earlier two/seven hidden composition is superseded historical evidence. Automated structure does not establish editorial, personal-approval or independent acceptance.",
       "checks": ["ADVISORS", "SEO"],
       "gates": ["EDITORIAL"]
     },
@@ -35,7 +35,7 @@
     {
       "id": "AC05",
       "intent": "Preserve SEO, semantics, original editions and runtime behavior.",
-      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes and build architecture against the protected-main starting source 338e3ff. Workflows remain byte-exact except the single existing acceptance-tool installation step name/selector: issue41 now receives the same pinned toolchain already installed for issue58, repairing the observed format-parity Python ENOENT. Tool versions, commands, actions, triggers and gates stay unchanged. Earlier joint-staging evidence and its 73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim. The same-issue AI-assisted site case adds only its separately hashed two-fragment successor, reversed before the unchanged six-fragment positioning record; its immutable starting source is da36ccf.",
+      "automated_scope": "All five pages reconcile to the immutable SEO baseline after the exact reviewed Issue41/48/61 deltas and the explicit 9 October positioning amendment. Metadata, original edition identities and unrelated semantics remain exact. Original catalog/edition comparisons stay at c4539ad; this new content phase preserves runtime, scenes, routes and build architecture against the protected-main starting source 338e3ff. Workflows remain byte-exact except the single existing acceptance-tool installation step name/selector: issue41 now receives the same pinned toolchain already installed for issue58, repairing the observed format-parity Python ENOENT. Tool versions, commands, actions, triggers and gates stay unchanged. Earlier joint-staging evidence and its 73020e8 companion remain historical, not a claim that later accepted runtime work never occurred. Enduring SEO mutation cases and normal preview smoke complement this task snapshot; no ranking or release claim. The same-issue AI-assisted site case adds only its separately hashed two-fragment successor, reversed before the unchanged six-fragment positioning record; its immutable starting source is da36ccf. The dated 10 October maintainer instruction now admits only the exact hashed lifecycle successor removing scroll-driven camera travel; route flights, fade, passive scene motion and every other frozen runtime/build/route owner remain protected. The historical hidden-card decision and its two exact retained-snapshot withdrawals remain immutable evidence. The later 10 October owner instruction supersedes hiding with the exact hashed topic-first canonical Home/Research editorial records; no personal approval or organizational endorsement is asserted. All other retained bytes and protected runtime remain exact. The same dated amendment also corrects precisely the existing Credits display-preferences sentence made stale by removal of scroll-camera travel; its entire surrounding paragraph remains exact and historical fragments are restored before comparison.",
       "checks": ["SEO", "ADMISSIONS", "CATALOG-SCHEMA", "RUNTIME-SCOPE"],
       "gates": ["EDITORIAL", "BROWSER"]
     },
@@ -112,7 +112,7 @@
     {
       "id": "AC16",
       "intent": "Preserve graphics, animation, routes and rendering architecture with applicable source style.",
-      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build bytes remain unchanged. The workflow comparison admits only the exact existing acceptance installation-step name/selector repair for issue41; all other workflow bytes, pinned tools/actions, triggers and gates remain protected; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success.",
+      "automated_scope": "Exact protected-main engine/effects/assets/scenes/routes/build bytes remain unchanged. The workflow comparison admits only the exact existing acceptance installation-step name/selector repair for issue41; all other workflow bytes, pinned tools/actions, triggers and gates remain protected; the bounded current repository style guard is reused. New templates/content/checks follow applicable CS01/02/03/05/08/09/10. Formatter/lint/architecture CI and unautomated source/readability review remain external evidence, not inferred from guard success. The dated 10 October maintainer instruction now admits only the exact hashed lifecycle successor removing scroll-driven camera travel; route flights, fade, passive scene motion and every other frozen runtime/build/route owner remain protected. The historical hidden-card decision and its two exact retained-snapshot withdrawals remain immutable evidence. The later 10 October owner instruction supersedes hiding with the exact hashed topic-first canonical Home/Research editorial records; no personal approval or organizational endorsement is asserted. All other retained bytes and protected runtime remain exact.",
       "checks": ["RUNTIME-SCOPE", "CODE-STYLE"],
       "gates": ["POSITIONING-REVIEW"]
     },
@@ -161,14 +161,14 @@
     {
       "id": "AC23",
       "intent": "Keep Home compact and avoid duplicating Research or repository documentation.",
-      "automated_scope": "Only the exact About paragraph and existing Credits main fragment are admitted. Research and all other page semantics remain protected by the whole-page comparator. Editorial review checks the short reader-facing rationale and four evidence paragraphs.",
+      "automated_scope": "Only the exact About paragraph and existing Credits main fragment are admitted. Research and all other page semantics remain protected by the whole-page comparator. Editorial review checks the short reader-facing rationale and four evidence paragraphs. The dated 10 October acknowledgements amendment is an explicitly accepted two-section successor; all other Research semantics remain frozen. The same dated amendment also corrects precisely the existing Credits display-preferences sentence made stale by removal of scroll-camera travel; its entire surrounding paragraph remains exact and historical fragments are restored before comparison.",
       "checks": ["SITECASE-PROVENANCE", "SEO"],
       "gates": ["EDITORIAL"]
     },
     {
       "id": "AC24",
       "intent": "Preserve structure, navigation, SEO URLs and visual behavior with applicable style.",
-      "automated_scope": "Current engine/effects/assets/scenes/routes/build bytes remain protected by the unchanged runtime baseline and existing exact workflow-selector exception. Full metadata/semantic reconciliation and maintained page-link checks run; source/template/readability review assesses CS01/02/03/05/08/09/10 without inferring broad compliance from one guard.",
+      "automated_scope": "Current engine/effects/assets/scenes/routes/build bytes remain protected by the unchanged runtime baseline and existing exact workflow-selector exception. Full metadata/semantic reconciliation and maintained page-link checks run; source/template/readability review assesses CS01/02/03/05/08/09/10 without inferring broad compliance from one guard. The dated 10 October maintainer instruction now admits only the exact hashed lifecycle successor removing scroll-driven camera travel; route flights, fade, passive scene motion and every other frozen runtime/build/route owner remain protected. The historical hidden-card decision and its two exact retained-snapshot withdrawals remain immutable evidence. The later 10 October owner instruction supersedes hiding with the exact hashed topic-first canonical Home/Research editorial records; no personal approval or organizational endorsement is asserted. All other retained bytes and protected runtime remain exact. The same dated amendment also corrects precisely the existing Credits display-preferences sentence made stale by removal of scroll-camera travel; its entire surrounding paragraph remains exact and historical fragments are restored before comparison.",
       "checks": ["SEO", "RUNTIME-SCOPE", "CONTENT-LINKS", "CODE-STYLE"],
       "gates": ["POSITIONING-REVIEW"]
     },
@@ -185,6 +185,132 @@
       "automated_scope": "The new exact fragment/proof destination check and current policy retain stable AC01–AC16 and append AC17–AC26. Independent review must inspect criterion-to-evidence mapping and actual issue checkbox reconciliation after matching CI/preview observations. This content-phase gate supplies no merge decision or issue closure.",
       "checks": ["SITECASE-PROVENANCE"],
       "gates": ["POSITIONING-REVIEW"]
+    },
+    {
+      "id": "AC27",
+      "intent": "AD01 — Preserve the exact current bounded editorial Home and Research copy in canonical content.",
+      "automated_scope": "The existing bounded renderer checks every currently supplied sentence, topic heading, ordinary source byline, qualified propositions and separate formulation-provenance paragraph. Exact successor before/after fragments bind canonical authored and generated content; prior amendment/review snapshots remain byte-exact inactive history. Copy structure does not establish factual truth, personal approval or legal clearance.",
+      "checks": ["AD-COPY", "AD-AMENDMENT"],
+      "gates": ["AD-EDITORIAL"]
+    },
+    {
+      "id": "AC28",
+      "intent": "AD02 — Present topic-first public discussion with ordinary attribution and bounded claims.",
+      "automated_scope": "Thinking Systems is the heading; Dobkin is an ordinary source byline with identification-only affiliation. One exact website/programme/services boundary appears per section, outside cards. No quote/testimonial/portrait/logo/rating/badge/highlight, approval, advisory/project-role or organizational endorsement is asserted. Meaningful mutations reject missing records/notes, personal headings, approval or advisor promotion, wrong sources and unrelated edits.",
+      "checks": ["AD-COPY", "AD-NEGATIVES", "ADVISORS"],
+      "gates": ["AD-EDITORIAL"]
+    },
+    {
+      "id": "AC29",
+      "intent": "AD03 — Preserve exact public sources and earlier publication/provenance identities.",
+      "automated_scope": "Every prior profile/post/provenance destination survives in the current canonical records, and active catalog/metadata bytes match immutable starting main. No private correspondence is a publishing input; source/editorial review separately verifies rights and provenance boundaries.",
+      "checks": ["AD-COPY", "AD-AMENDMENT", "ADVISORS"],
+      "gates": ["AD-EDITORIAL"]
+    },
+    {
+      "id": "AC30",
+      "intent": "AD04 — Include the current bounded editorial records in default generated Home and Research without new approval or endorsement claims.",
+      "automated_scope": "Default authored/generated Home and Research contain the exact current bounded records, including current immutable page snapshots. The current record states: Public source verified; editorial inclusion instructed by owner; new personal approval of website unconfirmed. It claims neither consent granted/approved by Arkadiy nor legal clearance; rights issue7 remains open. Personal-approval and organizational-endorsement declarations are false. Current JSON-LD and other metadata remain exact. Historical review sources are inactive and byte-exact, the prior withdrawn page inputs remain withdrawn, and all unrelated retained bytes stay exact. Checks establish composition and declared boundaries, not source authenticity or rights clearance.",
+      "checks": ["AD-PUBLICATION", "AD-AMENDMENT", "AD-NEGATIVES"],
+      "gates": []
+    },
+    {
+      "id": "AC31",
+      "intent": "AD05 — Keep canonical topic-led records readable and scrollable in Day/Night on desktop/mobile.",
+      "automated_scope": "Existing page link/resource/anchor checks and all-route fixed-camera/reflow checks run. Actual same-source desktop/mobile Day/Night layouts, current topic-led copy, natural card height, bottom reach and routes require targeted browser evidence; source assertions do not prove readability.",
+      "checks": ["CONTENT-LINKS", "SCROLL-CAMERA"],
+      "gates": ["AD-BROWSER"]
+    },
+    {
+      "id": "AC32",
+      "intent": "AD06 — Reconcile generated outputs, checks and actual issue evidence in the existing owner.",
+      "automated_scope": "Current dated successor fragments, default editorial inclusion and explicit approval boundaries, frozen-scope comparison, SEO and bounded code-style checks execute through the owning policy. Actual current-source mandatory Basic/navigation/hosted light-profile evidence, independent review and real issue checkbox reconciliation remain explicit review obligations. No merge or production launch occurs in this task. The same dated amendment also corrects precisely the existing Credits display-preferences sentence made stale by removal of scroll-camera travel; its entire surrounding paragraph remains exact and historical fragments are restored before comparison.",
+      "checks": ["AD-AMENDMENT", "AD-PUBLICATION", "SEO", "RUNTIME-SCOPE", "CODE-STYLE"],
+      "gates": ["AD-REVIEW"]
+    },
+    {
+      "id": "AC33",
+      "intent": "SC01 — Remove camera travel caused by native scrolling on all routes.",
+      "automated_scope": "Maintained lifecycle tests exercise all five routes at desktop/narrow widths, arbitrary initial offsets, scroll/reversal and Writing filter/reflow; they require one stable per-route camera while ambient motion keeps its existing bounded clock. Native bottom/anchor/history browser fixtures still verify reading/navigation; no scroll-driven camera mapping remains active. The existing Credits display-preferences explanation describes the steady reading camera and retained navigation flight through one exact hashed sentence replacement, preserved unchanged in current canonical outputs.",
+      "checks": ["SCROLL-CAMERA", "RUNTIME-SCOPE", "AD-AMENDMENT"],
+      "gates": ["AD-BROWSER"]
+    },
+    {
+      "id": "AC34",
+      "intent": "SC02 — Preserve route-to-route camera flight, content fade/motion and passive fractal animation.",
+      "automated_scope": "Maintained current flight tests retain a single global scene/canvas, midpoint/arrival behavior, retargeting and matching completed camera paint before native mount. All effects/navigation/scenes bytes remain frozen; the only runtime admission is lifecycle scroll removal. Exact-source hosted targeted observation separately confirms the visible transition and passive motion. The existing Credits display-preferences explanation describes the steady reading camera and retained navigation flight through one exact hashed sentence replacement, preserved unchanged in current canonical outputs.",
+      "checks": ["ROUTE-FLIGHT", "SCROLL-CAMERA", "RUNTIME-SCOPE", "AD-AMENDMENT"],
+      "gates": ["AD-BROWSER"]
+    },
+    {
+      "id": "AC35",
+      "intent": "SC03 — Preserve accessibility, failure, history and bounded lifecycle behavior with applicable style.",
+      "automated_scope": "Current lifecycle tests exercise Off/reduced/hidden/print, delayed CSS, Canvas failure and rapid scroll reversal without moving the steady view or creating a new loop. Existing route-flight/history contracts and CS01/04/05/06/07/08/09/10 checks remain applicable. Human review covers unautomated architecture/readability and actual current-source profile evidence; guard success does not establish all style or release requirements.",
+      "checks": ["STEADY-LIFECYCLE", "ROUTE-FLIGHT", "CODE-STYLE"],
+      "gates": ["AD-REVIEW", "AD-BROWSER"]
+    },
+    {
+      "id": "AC36",
+      "intent": "AP01 — Author-first identity: enterprise leadership and independent research precede potential commercial engagement.",
+      "automated_scope": "Current generated Home preserves the problem-led H1, identifies enterprise delivery leadership and independent research before the contribution and contact paths, and keeps Research and Writing ahead of public responses. Exact five-fragment restoration binds current bytes to e9d273a; editorial assessment of the professional identity and hierarchy remains separate.",
+      "checks": ["AUTHOR-POSITIONING", "AP-AMENDMENT", "SEO"],
+      "gates": ["EDITORIAL", "SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC37",
+      "intent": "AP02 — Accurate career positioning without an established consultancy or final consulting decision.",
+      "automated_scope": "Current role, duration and portfolio wording is preserved, while contribution domains and possible outputs depend on role, organization and agreed scope. Meaningful negative fixtures reject consultancy packages, guarantees, unsupported endorsements and loss of organizational capability. The checks cannot authenticate biography or select a future career model; source/editorial review retains that boundary.",
+      "checks": ["AUTHOR-POSITIONING", "AP-NEGATIVES", "AP-AMENDMENT"],
+      "gates": ["SOURCE-EDITORIAL", "EDITORIAL"]
+    },
+    {
+      "id": "AC38",
+      "intent": "AP03 — Keep leadership opportunities, research collaboration and selected advisory conversations accessible.",
+      "automated_scope": "Current Contact explicitly invites enterprise leadership opportunities, research collaboration and selected advisory where experience and research are relevant, with the existing conversation label, booking, email and profile destinations. Negatives reject removed opportunity paths and substituted booking. Actual readability and navigation remain current-source browser/editorial observations.",
+      "checks": ["AUTHOR-POSITIONING", "AP-NEGATIVES", "CONTENT-LINKS"],
+      "gates": ["EDITORIAL", "POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC39",
+      "intent": "AP04 — Preserve research integrity, technical substance, original materials and evidence boundaries.",
+      "automated_scope": "The bounded successor changes only five Home copy owners; all other site sources and all non-Home page semantics remain exact to e9d273a, including research projects, publication/source/edition identities, research caveats, topic language and JSON-LD. Existing admissions, discussion and SEO checks remain unchanged. Byte preservation does not establish research validity or new scientific acceptance.",
+      "checks": ["AP-AMENDMENT", "ADMISSIONS", "DISCUSSIONS", "SEO"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC40",
+      "intent": "AP05 — Preserve Dobkin public contribution without commercial or institutional endorsement.",
+      "automated_scope": "Current Home and Research acknowledgement sources/templates remain byte-exact to e9d273a with topic headings, public-source bylines, qualified propositions, separate formulation provenance and the one section-level website/programme/services boundary. Negatives reject a contact CTA in responses and unsupported sponsor/endorsement claims. The retained Option A requires actual revised hierarchy review; source status stays public source verified, owner editorial inclusion instructed, new personal website approval unconfirmed, with no rights clearance and issue7 open.",
+      "checks": ["AD-COPY", "AD-AMENDMENT", "AD-NEGATIVES", "AP-AMENDMENT", "AP-NEGATIVES"],
+      "gates": ["AD-EDITORIAL", "AD-BROWSER"]
+    },
+    {
+      "id": "AC41",
+      "intent": "AP06 — Preserve practical credibility through the AI-assisted site case and supported experience.",
+      "automated_scope": "Current About retains the human-directed AI-assisted delivery statement and the existing Credits built-with-ai destination; career durations and portfolio responsibility survive. Credits source/page semantics and immutable proof destinations remain exact. Existing site-case evidence checks are evaluated after reversing the new Home successor. Source/editorial review distinguishes the site demonstration from an enterprise methodology or productivity validation.",
+      "checks": ["AUTHOR-POSITIONING", "AP-AMENDMENT", "SITECASE-PROVENANCE"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC42",
+      "intent": "AP07 — Preserve SEO, routes, navigation, anchors, source links and contact destinations.",
+      "automated_scope": "All five metadata owners, catalog, routes, templates and non-Home generated page semantics remain exact to e9d273a. The five Home fragments retain their IDs and href destinations; only the local help navigation label changes. Existing local resource/ARIA/fragment and SEO checks apply. Matching current-head generation/freshness and ordinary PR checks provide independent execution evidence; no ranking improvement is asserted.",
+      "checks": ["AP-AMENDMENT", "SEO", "CONTENT-LINKS"],
+      "gates": ["POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC43",
+      "intent": "AP08 — Keep the revised Home coherent and readable on desktop/mobile in Day and Night.",
+      "automated_scope": "Maintained content/link checks preserve the reader path, controls and destinations; unchanged camera/route-flight/lifecycle checks retain stationary scrolling and route motion. Automation alone cannot assess the revised hierarchy. The existing browser gates must record actual corrected-source Home desktop and narrow Day/Night observations, including hero, contribution domains, public responses, Contact, bottom reach and absence of clipping or horizontal overflow. Ordinary PR smoke remains at its existing 1440/390 normal/no-Canvas cases and budgets; no new full performance, physical-device or release claim is supplied.",
+      "checks": ["CONTENT-LINKS", "SCROLL-CAMERA", "ROUTE-FLIGHT", "STEADY-LIFECYCLE"],
+      "gates": ["EDITORIAL", "POSITIONING-BROWSER", "AD-BROWSER"]
+    },
+    {
+      "id": "AC44",
+      "intent": "AP09 — Reconcile bounded scope, exact source/evidence and the same issue/PR criterion state.",
+      "automated_scope": "AC01–AC35, their 25 named checks and all nine gate objects remain unchanged; append only AC36–AC44/AP01–AP09 and three bounded checks. Exact amendment, protected sources and meaningful negatives support the authorized five-owner copy scope. Apply CS01/CS02/CS05/CS08/CS09/CS10 to content/check ownership and focused formatting; unchanged CSS/runtime preserve CS03/CS06/CS07 boundaries, with CS04/readability and unautomated rules reviewed independently. Current mandatory CI, immutable preview/digests, rendered placement decision, file/check outcomes and actual issue checkboxes must be reconciled honestly. Historical evidence remains dated; pending original review/rights/device/merge gates retain their owners. No new performance matrix, staging, merge, production decision, rights clearance or whole-issue closure is supplied.",
+      "checks": ["AP-AMENDMENT", "AP-NEGATIVES", "RUNTIME-SCOPE", "CODE-STYLE", "SEO"],
+      "gates": ["POSITIONING-REVIEW", "AD-REVIEW"]
     }
   ],
   "checks": {
@@ -259,6 +385,46 @@
     "SITECASE-PROVENANCE": {
       "kind": "unittest",
       "test": "test_issue41_acceptance.Issue41ImplementationTests.test_site_case_amendment_binds_fragments_and_public_evidence_destinations"
+    },
+    "AD-COPY": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_canonical_copy_preserves_topics_public_sources_and_formulation_provenance"
+    },
+    "AD-AMENDMENT": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_successor_binds_canonical_fragments_and_preserves_superseded_history"
+    },
+    "AD-PUBLICATION": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_canonical_records_publish_without_unconfirmed_approval_claims"
+    },
+    "AD-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_arkadiy_missing_topic_records_approval_promotion_wrong_sources_and_other_edits_fail"
+    },
+    "SCROLL-CAMERA": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_scroll_camera_stays_fixed_on_every_route_and_after_writing_reflow"
+    },
+    "ROUTE-FLIGHT": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_route_flight_content_fade_and_passive_motion_remain_bounded"
+    },
+    "STEADY-LIFECYCLE": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_steady_camera_preserves_motion_controls_failure_and_scroll_reversal"
+    },
+    "AUTHOR-POSITIONING": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_author_first_identity_domains_opportunities_and_bounded_claims"
+    },
+    "AP-AMENDMENT": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_author_first_amendment_binds_five_fragments_and_preserves_protected_sources"
+    },
+    "AP-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_author_first_role_funnel_guarantee_endorsement_and_contact_regressions_fail"
     }
   },
   "gates": {
@@ -285,6 +451,18 @@
     "POSITIONING-BROWSER": {
       "kind": "human",
       "description": "Inspect matching exact-source ordinary PR hosted smoke at registry widths 1440/390, including normal/no-Canvas routes and existing theme/control/navigation contracts, plus actual hosted desktop/narrow readability of the changed Home/Writing/Talks/Credits copy and its existing links/contact transitions. Record actual manual viewport dimensions or named mobile preset, observed themes, browser capabilities and access limits. Manual review may use the available desktop and mobile viewports; do not invent four exact 1440/390 Day/Night manual combinations or claim native-device, physical-device or performance acceptance from these observations. Preserve source/public-digest/run binding. Historical Research/archive/physical-device/release requirements remain with the original BROWSER and separate owners; this focused content gate does not satisfy or remove them. For the current case extension, inspect the matching updated immutable preview’s About mention, About-to-Credits built-with-ai anchor, Credits evidence link destinations and compact block readability at actual desktop/narrow viewports; preserve previous unaffected content evidence as historical rather than asserting old captures show this addition."
+    },
+    "AD-EDITORIAL": {
+      "kind": "human",
+      "description": "Review the exact current topic-first public-discussion summary, qualified propositions, ordinary identification byline and separate published formulation-provenance attribution against public-source context. Keep UA advisors separate and the exact website/programme/services boundary at section level. Preserve original articles, source destinations and private-correspondence boundaries. Public source verified; editorial inclusion instructed by owner; new personal approval of website unconfirmed. The later owner instruction supersedes hiding, not source/rights review: no consent granted/approved by Arkadiy, legal clearance, personal/project role or organizational endorsement is inferred; issue7 stays open."
+    },
+    "AD-BROWSER": {
+      "kind": "human",
+      "description": "Record exact-source targeted Home and Research current canonical observations on desktop/mobile in Day/Night: natural wrapping/card height, no clipping/smaller type/internal scroll, preserved links/anchors, bottom reach and route history. Observe a steady camera while native scrolling, preserved route flight with content fade/motion and ongoing passive fractal movement; also Off/reduced/failure states. Use ordinary required PR hosted profile and scoped checks, preserving budgets; no full production regression or native-device/release claim is supplied."
+    },
+    "AD-REVIEW": {
+      "kind": "human",
+      "description": "Independently review the exact dated authorized successor, stable AC27–35 aliases to AD01–06/SC01–03, canonical fragment hashes, inactive historical amendment/review-source identities, current source contract and CS rules, canonical output regeneration, current mandatory gates and actual issue checkbox reconciliation. Verify the owner explicitly superseded hiding, only the bounded topic-led records are active, other cards/published articles/metadata/runtime remain exact, and the original two retained withdrawals plus all unrelated retained bytes remain preserved. Record current source/policy/preview identities and access limits. This task supplies no merge or production-launch decision, no original whole-issue closure and no rights clearance; issue7 remains open."
     }
   }
 }

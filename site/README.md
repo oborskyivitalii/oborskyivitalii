@@ -1,8 +1,8 @@
 # Static site source and engine contract
 
 The [current check profiles](../guides/SITE-CHECK-PROFILES.md) supersede older full-local
-and always-full PR requirements below. Native-scroll mapping and all release
-budgets remain. Primary flights follow the four header links; Credits is a footer
+and always-full PR requirements below. Native scrolling and all release budgets
+remain. Primary flights follow the four header links; Credits is a footer
 utility route with instant navigation.
 
 The original engine work is recorded in completed
@@ -13,13 +13,15 @@ staging and release state; dated implementation plans are historical evidence.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
 
-Native-scroll camera endpoints follow 0/the actual current page bottom on every
-route, including added unmarked blocks and the footer. Semantic markers define
-interior stops; repeated closing poses are coalesced. Main/body content reflow,
-font loading, viewport resize and route mounts recalculate the mapping. Writing
-retains its topic path, early-scroll response and valid anchored filter reflow.
-Every content edit still runs the normal all-route browser synchronization fixtures
-and strict aggregate under #13; generation freshness alone is insufficient.
+Each route has one steady camera view at its declared `initialPose`. Native
+scrolling, fragments, history offsets, archive filters and content reflow never
+fly the camera through the fractal. Route-to-route navigation retains the
+existing camera flight and synchronized content fade/motion; ambient fractal
+motion continues on the same bounded clock. Main/body reflow, font loading,
+viewport resize and route mounts still measure the actual native document range
+for scroll restoration and bottom-landings, without changing the route view.
+Existing all-route fixtures check native bottom reachability and the fixed camera
+through content/footer growth, reordering, viewport changes and archive filters.
 
 ## Authoritative sources and dependencies
 
@@ -34,7 +36,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
-| `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
+| `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and route views; retained pure path definitions | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
@@ -82,8 +84,9 @@ Native links, anchors, language badges, full text and JSON-LD remain available
 without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
 `SiteArchive.mount/destroy` and `SiteNavigation`. The router owns mount/unmount and
 history; the scene owns route progress and its actual arrival paint. Ambient phase,
-scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
-failure, reflow and device-cost adaptation preserve the existing bounded behavior.
+native scrolling and route flight remain separate. Only route navigation moves
+the camera; archive filtering remains a native content interaction. Off/reduced,
+visibility, print, failure, reflow and device-cost adaptation preserve the existing bounded behavior.
 Runtime projection omits subpixel facets; static SVG/model output keeps the complete
 geometry. Flights prepare each room at its settled adaptive detail before the
 first painted flight frame. Each of at most three active/pending rooms caches

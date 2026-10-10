@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
-    "date": "2026-10-09",
-    "summary": "Review issue41 practical-positioning successor policy, preserved original gates, existing catalog build tokens, permanent count/semantic negatives, new review/amendment catalog paths and unchanged workflow selection; factual/editorial decisions remain external evidence. Same-issue AI-assisted sitecase appends AC17–AC26, one exact-fragment/public-destination check and existing semantic negatives; preserves original gates/runtime controls and distinguishes implementation/history review from automated link structure. Same-issue staging follow-up admits only independently proved exact checksum false positives and canonical offline manifest regeneration; scanner controls and public runtime bytes remain unchanged."
+    "date": "2026-10-10",
+    "summary": "Issue41 topic-first editorial correction supersedes the earlier hidden/review-only decision: canonical generated Home/Research contain exact bounded article-discussion records, precise public links and separate formulation provenance without new personal approval, project role, website/programme/services or organizational endorsement. Historical snapshots remain inactive and original retained withdrawals remain exact. Fixed reading cameras, navigation flight/fade/movement, original gates and profile budgets remain protected; dependent AD/AC criteria are reevaluated."
   },
   "layers": [
     {
@@ -73,7 +73,12 @@
         "review/issue-41/2026-10-09-sitecase.md",
         "review/issue-41/2026-10-09-sitecase-review.md",
         "review/issue-41/2026-10-09-sitecase-browser.md",
-        "review/issue-41/2026-10-09-staging-security.md"
+        "review/issue-41/2026-10-09-staging-security.md",
+        "review/issue-41/2026-10-10-arkadiy-content.md",
+        "review/issue-41/2026-10-10-arkadiy-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+        "review/issue-41/2026-10-10-editorial-browser.md",
+        "review/issue-41/2026-10-10-editorial-correction-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -413,7 +418,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "52d008fccaa24af18c275a3e5176546c6cb5b1e069d81d41309aeb819c48e1cd",
+    "digest": "b6a8d9e9855d372e5fed97326440174705dcc26a3de4ebc28520d35f7b94c4ee",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -449,7 +454,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "5d79585dcd7bc927487b381769352becd9900715b3c8ca5dd9b75e06ae4ec3d5"
+        "sha256": "b9324f2caa7d481f3d9753c1e18e366f441ae19e8248916f020096cc13b524b8"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -493,7 +498,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "907327ee60a6f4bb291df18f134ce7899c904b0b3e25de1a04509bea7ec0964b"
+        "sha256": "e9d1e496f18d71eb19b3182e5ead47b5c6e4f82e8c2f05fc860044d2e3a9de74"
       },
       {
         "path": ".github/repository-layout.json",
@@ -501,7 +506,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "dc82008feaad83ea4936f249aa48d18e673a8affa33411b4bf66f1f6d5e6e950"
+        "sha256": "2ef8fae431007e388e21c39b82536c18f2c442e2d34b1d4cf86f5dc9694f404a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -589,7 +594,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "bd0c1565f657a7a0944f74ceecc755c8342ca93306315564ccb61e718d080a53"
+        "sha256": "d494615d9123f59b3665a8f47bd1a5c11a381fcafe2dc75f72e92fb15bdfa7d5"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -597,7 +602,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "b32301616da5fafd4f8ed5d898a6d2cadd2c71b7d5387c4699874ef6d12b6710"
+        "sha256": "7272c39bc694c0e3d7cec33da8967a49b55ef3be3bc5b462b83306378a92c67b"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -625,7 +630,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "809977718e2c32a2a7f62fedbd2f42f82419fbc37b0a75b6c6eb9c4a96f005ee"
+        "sha256": "b41c85574a9c5ff35e960754e5723948014de8b8936941278542cb95bd7213ce"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -701,11 +706,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "53fb2c18a73f99fca3a0ef71944b6a0c32b8ddd0a412610abb640d93e4b129c2"
+        "sha256": "bd53ed0c68a67fd4268dddeeedab2fed446fd39a99a78cadf762b4d88ae3a6c2"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "dd160c8895b4f6b84f7c9ae760147afd94ca421e322b19b6fc6fa6419d63f2e4"
+        "sha256": "547935bab6ba7ea6fe4fba97f4e1b78285ca666f45bdb8d7067630a2d5cb5412"
       },
       {
         "path": "tools/repository_intelligence.py",

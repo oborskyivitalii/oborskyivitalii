@@ -201,6 +201,18 @@
         "рефакторинг",
         "правила написання коду"
       ]
+    },
+    {
+      "concern": "current author-first Home positioning and retained public-discussion boundaries",
+      "path": "guides/SITE-CONTENT-REVIEW.md",
+      "queries": [
+        "author-first",
+        "professional contribution",
+        "public responses",
+        "Arkadiy",
+        "позиціонування автора",
+        "публічна дискусія"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",

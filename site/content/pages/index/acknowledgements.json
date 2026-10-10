@@ -6,10 +6,10 @@
     "T002": "How others have engaged",
     "T003": "with the work.",
     "T004": "A selection of public responses to Uncertainty Architecture.",
-    "T005": "Arkadiy Dobkin",
-    "T006": "EPAM · Principal Founder & Executive Chairman",
-    "T007": "Recommended reading Thinking Systems and extended its argument toward bounded architecture\n        and runtime control.",
-    "T008": "Public record ↗",
+    "T005": "Thinking Systems — public discussion",
+    "T006": "Arkadiy Dobkin",
+    "T007": " · EPAM founder",
+    "T008": "Read the original post ↗",
     "T009": "Matthew Skelton",
     "T010": "Co-author of Team Topologies",
     "T011": "Reshared Michael Risch’s discussion of my AI governance article and highlighted governance\n        as bringing business intent back into the system.",
@@ -19,7 +19,11 @@
     "T015": "Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.",
     "T016": "Public record ↗",
     "T017": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
-    "T018": "Full discussion & source context ↗"
+    "T018": "Full discussion & source context ↗",
+    "T019": "In his public response to ",
+    "T020": "Thinking Systems",
+    "T021": "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+    "T022": ", Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures."
   },
   "attributes": {},
   "urls": {

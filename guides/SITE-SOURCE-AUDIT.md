@@ -5,6 +5,31 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Author-first positioning — 2026-10-10
+
+The maintainer's [same-issue amendment](../review/issue-41/2026-10-10-author-first.md)
+continues Draft PR #68 from `e9d273a`. It supersedes only affected 9 October
+service-first Home wording; career, publication and event provenance remains.
+The [five-fragment successor](../review/issue-41/2026-10-10-author-first-amendment.json)
+and [before-edit inventory](../review/issue-41/2026-10-10-author-first-baseline-inventory.json)
+bind the correction without a whole-page or metadata exception.
+
+Enterprise delivery leadership and independent research authorship are the
+maintainer's professional positioning, not new employer verification or an
+academic credential. Career/portfolio facts, concrete technical outputs,
+Corning context and the human-directed AI-assisted site example remain intact.
+Contribution examples depend on role, organization and agreed scope. Leadership
+opportunities, collaboration and selected advisory work are invitations, not an
+established consultancy or fixed commercial offering. No employer, client,
+partnership or measured outcome is added; private circumstances stay off-site.
+
+The topic-first public records and exact post/provenance links stay distinct
+from opportunities. Evaluate Home placement on the corrected rendered hierarchy.
+Public source verified; editorial inclusion instructed by owner; new personal
+approval of website unconfirmed. No personal/organizational endorsement or
+rights clearance follows; #7 stays open. The live issue owns exact current
+checks, preview and checkbox evidence; no merge or release is authorized.
+
 ## Practical positioning — 2026-10-09
 
 [Issue #41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) continues
@@ -412,3 +437,52 @@ contribution summaries, their exact public-record links, formulation provenance,
 research statuses and publication identities are preserved. Upstream UA/Subprime
 claims and protocols are unchanged. This is the maintainer's explicitly requested
 bounded profile context, not new research evidence integration.
+
+## Arkadiy discussion presentation — 2026-10-10 (superseded decision)
+
+This paragraph records the earlier decision, superseded by the topic-first
+decision below. It is historical evidence, not the active inclusion instruction.
+
+The owner supplied revised Home/Research wording distinguishing the public
+Thinking Systems reading recommendation and two conditional propositions from
+the separately acknowledged earlier formulation influence. Original exact public
+post/profile/provenance URLs are retained in the review-only bounded source
+snapshots. The ordinary site composition omits both separate Arkadiy cards until
+a new owner confirmation of consent; old unlaunched retained Home/Research
+snapshots are withdrawn too. The article and upstream research record remain
+unchanged. A review preview or owner approval of copy is not third-party consent.
+No private messages, permission text, photographs or organizational logos are
+added. See [the task and evidence](../review/issue-41/2026-10-10-arkadiy-content.md).
+
+## Arkadiy topic-first public discussion — 2026-10-10
+
+The owner supersedes the earlier hiding requirement and instructs inclusion in
+canonical generated Home/Research. Home uses the topic heading
+`Thinking Systems — public discussion` and ordinary byline
+`Arkadiy Dobkin · EPAM founder`. Research uses
+`Thinking Systems: runtime control and differentiation` and
+`Public response by Arkadiy Dobkin · EPAM founder`, with a separate
+`Formulation provenance` block. The record describes the specific public post;
+the earlier formulation influence remains attributed to its own provenance.
+Neither is an advisory/project role or an endorsement of the website, research
+programme, services or organization.
+
+**Public source verified; editorial inclusion instructed by owner; new personal approval of website unconfirmed.**
+
+The [independent correction review](../review/issue-41/2026-10-10-editorial-correction-review.md)
+records fresh public-source inspection and its access limits. That evidence
+establishes the public discussion and identification basis; it does not supply
+new personal consent, legal clearance or production-release approval.
+The exact original post/profile/provenance URLs, published article and upstream
+record remain unchanged. Rights #7 stays open; existing external-source,
+editorial/device and release owners retain their decisions. The superseding
+decision introduces no global prior-permission blocker. The earlier review
+snapshots are inactive historical evidence, not a second active content source.
+No private messages, permission text, photographs or organizational logos are added.
+
+The [content review](../review/issue-41/2026-10-10-arkadiy-content.md) and
+[topic amendment](../review/issue-41/2026-10-10-arkadiy-topic-amendment.json) bind
+this treatment to #41. Evaluate the affected criteria with current source-bound
+checks and review; exact current-source results and preview are recorded in the
+live owning issue. Camera/Credits behavior is unchanged by this editorial decision;
+no merge or production launch is authorized.
