@@ -467,6 +467,39 @@ test('world rest contains readable content and normal-lit closed faces sorted by
   );
 });
 
+test('native content fronts retain readable contrast while closed side material keeps canonical fog', () => {
+  for (const compact of [false, true]) {
+    const current = projection.routePose('index', definitions.poses.overview);
+    const target = projection.routePose('research', definitions.poses.researchOverview);
+    const prepared = livingPlate({ compact, pose: target });
+    const shapes = plan.sample(prepared, {
+      pose: current,
+      width: prepared.width,
+      height: prepared.height,
+      time: 6000,
+    });
+    const fronts = shapes.filter((shape) => shape.face === 'front');
+    const sides = shapes.filter((shape) => shape.face === 'side');
+    assert.ok(fronts.length > 0 && sides.length > 0);
+    for (const shape of fronts) {
+      assertPoint([shape.alpha], [0.6 + 0.4 * math.depthVisibility(shape.depth)]);
+      assert.equal(shape.textureMix, 1);
+      assert.ok(shape.alpha >= 0.6 && shape.alpha < 1);
+    }
+    for (const shape of sides) {
+      assertPoint([shape.alpha], [math.depthVisibility(shape.depth)]);
+      assert.equal(shape.textureMix, 0);
+    }
+    const native = plan.sample(prepared, {
+      pose: target,
+      width: prepared.width,
+      height: prepared.height,
+      progress: 1,
+    });
+    assert.ok(native.every((shape) => shape.alpha === 1));
+  }
+});
+
 test('passing behind a content solid retains its captured paint on the rear face', () => {
   const prepared = plate();
   const rearView = { position: [0, 0, -45], target: [0, 0, -10] };
@@ -476,10 +509,44 @@ test('passing behind a content solid retains its captured paint on the rear face
   assert.ok(
     rear.every((shape) => shape.uv?.length === shape.points.length && shape.textureMix === 1)
   );
+  assert.ok(rear.every((shape) => shape.alpha >= plan.settings.contentVisibilityFloor));
   const { context, calls } = canvasContext();
   for (const shape of rear) plan.paint(context, shape, { width: 581, height: 141 }, colors);
   assert.ok(calls.filter(([kind]) => kind === 'drawImage').length >= rear.length);
   assert.equal(calls.filter(([kind]) => kind === 'fill').length, rear.length);
+});
+
+test('front and rear atlas corners keep an asymmetric glyph upright and readable from either side', () => {
+  const prepared = plate({ count: 1 });
+  prepared.shards[0].restOrientation = [0, 0, 0, 1];
+  prepared.shards[0].restCenter = [0, 0, -10];
+  const views = [
+    ['front', { position: [0, 0, 24], target: [0, 0, -10] }],
+    ['back', { position: [0, 0, -45], target: [0, 0, -10] }],
+  ];
+  for (const [face, pose] of views) {
+    const shape = plan
+      .sample(prepared, { pose, width: 1440, height: 900 })
+      .find((candidate) => candidate.face === face);
+    assert.ok(shape);
+    const corner = (u, v) =>
+      shape.points[
+        shape.uv.findIndex(([x, y]) => Math.abs(x - u) < 1e-9 && Math.abs(y - v) < 1e-9)
+      ];
+    const topLeft = corner(0, 0);
+    const topRight = corner(1, 0);
+    const bottomLeft = corner(0, 1);
+    assert.ok(topLeft[0] < topRight[0], `${face} cannot reverse the glyph's horizontal stroke`);
+    assert.ok(topLeft[1] < bottomLeft[1], `${face} cannot invert the glyph's vertical stroke`);
+    const { context, calls } = canvasContext();
+    plan.paint(context, shape, { width: 581, height: 141 }, colors);
+    const transforms = calls.filter(([kind]) => kind === 'transform');
+    assert.ok(transforms.length > 0);
+    assert.ok(
+      transforms.every(([, a, b, c, d]) => a * d - b * c > 0),
+      `${face} texture submission must preserve the asymmetric glyph's handedness`
+    );
+  }
 });
 
 test('forward departure leaves a broken volume for the camera to cross instead of following it', () => {

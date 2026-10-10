@@ -97,17 +97,15 @@ function fixture(options = {}) {
     set fillStyle(source) {
       if (/^(?:#[a-f0-9]{6}|rgba?\([\d., ]+\))$/i.test(source)) this.selectedColor = source;
     },
-    drawImage(image, ...coordinates) {
+    drawImage(image, x, y, width, height) {
       counts.draws++;
-      const [x, y, width, height] = coordinates.length === 8 ? coordinates.slice(4) : coordinates;
       this.lastDraw = { image, x, y, width, height };
-      if (coordinates.length === 8) this.lastDraw.crop = coordinates.slice(0, 4);
       draws.push(this.lastDraw);
       if (options.drawError) throw new Error('Unsupported raster');
     },
-    getImageData() {
+    getImageData(x, y, width, height) {
       if (options.tainted) throw new Error('SecurityError');
-      return { data: new Uint8ClampedArray([17, 28, 34, options.blank ? 0 : 222]) };
+      return { data: new Uint8ClampedArray(width * height * 4).fill(options.blank ? 0 : 222) };
     },
   };
   class Image {
@@ -900,7 +898,7 @@ test('an observer throwing during rejection cannot prevent bounded fallback clea
   assert.equal(f.timers.size, 0);
 });
 
-test('a page field composites visible semantic owners into one viewport atlas and releases temporaries', async () => {
+test('a page field paints admitted native owners through one SVG decode and one viewport canvas', async () => {
   const f = pageFixture();
   const first = new f.Node(
     'h1',
@@ -940,15 +938,14 @@ test('a page field composites visible semantic owners into one viewport atlas an
   assert.equal(field.sourceOwners[1].textContent, second.textContent);
   assert.deepEqual(field.sourceOwners[1].lines, [second.getBoundingClientRect()]);
   assert.equal(field.textBytes, (first.textContent.length + second.textContent.length) * 3);
-  assert.equal(f.canvases.length, 2, 'one shared decode surface and one retained viewport atlas');
-  assert.ok(f.canvases.slice(0, -1).every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.equal(f.canvases.length, 1);
+  assert.equal(f.images.length, 1);
+  assert.equal(f.sources.length, 1);
   assert.deepEqual(
-    f.draws.slice(-2).map(({ x, y, width, height }) => ({ x, y, width, height })),
-    [
-      { x: 0, y: 0, width: 300, height: 70 },
-      { x: 30, y: 120, width: 400, height: 100 },
-    ]
+    f.draws.map(({ x, y, width, height }) => ({ x, y, width, height })),
+    [{ x: 0, y: 0, width: 430, height: 220 }]
   );
+  assert.match(f.sources[0], /left:30px;top:120px;width:400px;height:100px/);
   assert.doesNotMatch(JSON.stringify(field.sourceOwners), /ownerDocument|parentElement|Offscreen/);
   field.owner = null;
   field.dispose();
@@ -956,116 +953,41 @@ test('a page field composites visible semantic owners into one viewport atlas an
   assert.equal(field.canvas.width, 0);
 });
 
-test('field raster batches overlapping owners into one clipped image with scoped pseudo paint', async () => {
-  const f = pageFixture();
-  const first = new f.Node('p', 'First overlapping native owner');
-  const second = new f.Node('p', 'Second overlapping native owner');
-  for (const [node, color] of [
-    [first, 'rgb(200, 20, 30)'],
-    [second, 'rgb(20, 30, 200)'],
-  ]) {
-    node.pseudos['::before'] = {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: '-12px',
-      top: '-12px',
-      width: '424px',
-      height: '104px',
-      'box-sizing': 'border-box',
-      'background-color': color,
-    };
-  }
-  f.main.append(first, second);
-  const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
-  assert.ok(field);
-  assert.equal(f.images.length, 1);
-  assert.equal(field.sourceOwners.length, 2);
-  assert.deepEqual(field.sourceOwners[0].rect, field.sourceOwners[1].rect);
-  assert.match(f.sources[0], /\.embedded-owner-0-node-0::before\{[^}]*rgb\(200, 20, 30\)/);
-  assert.match(f.sources[0], /\.embedded-owner-1-node-0::before\{[^}]*rgb\(20, 30, 200\)/);
-  assert.equal((f.sources[0].match(/overflow="hidden"/g) || []).length, 2);
-  const crops = f.draws.filter(({ crop }) => crop).map(({ crop }) => crop);
-  assert.equal(crops.length, 2);
-  const [a, b] = crops;
-  assert.ok(
-    a[0] + a[2] <= b[0] || b[0] + b[2] <= a[0] || a[1] + a[3] <= b[1] || b[1] + b[3] <= a[1]
-  );
-  assert.deepEqual(
-    f.draws.slice(-2).map(({ x, y }) => [x, y]),
-    [
-      [0, 0],
-      [0, 0],
-    ]
-  );
-  field.dispose();
-});
-
-test('one blank owner rejects the packed field even when a sibling has visible paint', async () => {
-  const f = pageFixture();
-  f.main.append(new f.Node('p', 'Visible source owner'), new f.Node('p', 'Omitted source owner'));
-  let proofReads = 0;
-  f.context.getImageData = (x, y) => {
-    proofReads++;
-    return { data: new Uint8ClampedArray([17, 28, 34, y >= 80 ? 0 : 222]) };
-  };
-  const failures = [];
-  assert.equal(
-    await embeddedTexture().captureField(f.root, {
-      ...pageOptions,
-      onReject: (detail) => failures.push(detail),
-    }),
-    null
-  );
-  assert.equal(proofReads, 3);
-  assert.equal(failures[0].reason, 'native-raster-blank');
-  assert.deepEqual(failures[0].path, [0, 1]);
-  assert.equal(f.timers.size, 0);
-  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
-});
-
-test('packed source padding is charged for both shared decode surfaces and retained atlas pixels', async () => {
-  const f = pageFixture();
-  const wide = new f.Node('p', 'Wide owner', {}, { width: 1000, height: 10 });
-  const tall = new f.Node('p', 'Tall owner', {}, { width: 100, height: 200 });
-  f.main.append(wide, tall);
-  const retained = 5000;
-  const failures = [];
-  assert.equal(
-    await embeddedTexture().captureField(f.root, {
-      ...pageOptions,
-      dpr: 1,
-      retainedPixels: retained,
-      caps: { ...pageCaps, layerPixels: retained + 239999 },
-      onReject: (detail) => failures.push(detail),
-    }),
-    null
-  );
-  // The decoded image and shared canvas each have the actual padded 210k size.
-  assert.equal(failures[0].reason, 'field-decode-capacity');
-  assert.equal(failures[0].usage, 420000);
-  assert.equal(f.canvases.length, 0);
-});
-
-test('abort and decode expiry release every packed owner and ignore a late load', async () => {
-  for (const action of ['abort', 'timeout']) {
+test('native capture starts its bounded snapshot synchronously when no image decode is pending', async () => {
+  for (const method of ['captureAll', 'captureField']) {
     const f = pageFixture({ autoLoad: false });
-    f.main.append(new f.Node('p', 'First owner'), new f.Node('p', 'Second owner'));
-    const controller = new AbortController();
-    const pending = embeddedTexture().captureField(f.root, {
+    const paragraph = new f.Node('p', 'Original native snapshot');
+    f.main.append(paragraph);
+    const pending = embeddedTexture()[method](f.root, pageOptions);
+    assert.equal(f.images.length, 1, method);
+    assert.match(f.sources[0], /Original native snapshot/);
+    paragraph.childNodes[0].textContent = 'Later native content';
+    f.images[0].onload();
+    const result = await pending;
+    assert.ok(result);
+    const source = method === 'captureAll' ? result[0] : result.sourceOwners[0];
+    assert.equal(source.textContent, 'Original native snapshot');
+    if (method === 'captureAll') result[0].dispose();
+    else result.dispose();
+  }
+});
+
+test('an unavailable pending native image decoder rejects synchronously without raster allocation', async () => {
+  for (const method of ['captureAll', 'captureField']) {
+    const f = pageFixture();
+    const portrait = new f.Node('img');
+    Object.assign(portrait, { complete: false, naturalWidth: 0, naturalHeight: 0 });
+    f.main.append(portrait);
+    const failures = [];
+    const pending = embeddedTexture()[method](f.root, {
       ...pageOptions,
-      signal: controller.signal,
+      onReject: (detail) => failures.push(detail),
     });
-    await Promise.resolve();
-    assert.equal(f.images.length, 1);
-    const lateLoad = f.images[0].onload;
-    if (action === 'abort') controller.abort();
-    else [...f.timers.values()][0]();
+    assert.deepEqual(failures, [{ reason: 'native-media-decode-failed', path: [], tag: 'img' }]);
     assert.equal(await pending, null);
-    lateLoad();
-    assert.equal(f.counts.draws, 0);
+    assert.equal(f.canvases.length, 0);
+    assert.equal(f.images.length, 0);
     assert.equal(f.timers.size, 0);
-    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
   }
 });
 
@@ -1087,8 +1009,8 @@ test('border-only ancestors contribute native paint without cloning offscreen de
   const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
   assert.ok(field);
   assert.match(f.sources[0], /border-top:1px solid rgb\(52, 74, 83\)/);
-  const decoration = f.sources[0].match(/<section\b[\s\S]*?<\/section>/)[0];
-  assert.doesNotMatch(decoration, /Visible section|Offscreen section/);
+  assert.match(f.sources[0], /<section[^>]*><\/section>/);
+  assert.match(f.sources[0], /Visible section content/);
   assert.doesNotMatch(f.sources[0], /Offscreen section/);
   assert.equal(field.sourceOwners.length, 1);
   assert.deepEqual(field.sourceOwners[0].ownerPath, [0, 0, 0]);
@@ -1096,11 +1018,11 @@ test('border-only ancestors contribute native paint without cloning offscreen de
   assert.equal(field.envelope.top, 100);
   assert.equal(field.envelope.width, 1000);
   assert.equal(field.envelope.bottom, 210);
-  assert.equal(f.draws.at(-2).height, 1);
+  assert.equal(f.images.length, 1);
   field.dispose();
 });
 
-test('field peak allocation charges retained pixels, native owners and the final atlas together', async () => {
+test('field peak allocation charges retained pixels, the SVG image, atlas and ownership readback', async () => {
   const f = pageFixture();
   f.main.append(new f.Node('p', 'Bounded native owner', {}, { width: 400, height: 80 }));
   const retained = 50000;
@@ -1150,6 +1072,69 @@ test('field peak allocation charges retained pixels, native owners and the final
   assert.equal(failures[0].reason, 'field-peak-capacity');
   assert.equal(failures.length, 1);
   assert.ok(rejected.canvases.every((canvas) => canvas.width === 0));
+});
+
+test('wide and tall owners retain native viewport placement and charge actual shared surfaces at display DPR', async () => {
+  const f = pageFixture();
+  const wide = new f.Node(
+    'p',
+    'Wide native owner',
+    {},
+    {
+      left: 0,
+      top: 0,
+      width: 1000,
+      height: 10,
+    }
+  );
+  const tall = new f.Node(
+    'p',
+    'Tall native owner',
+    {},
+    {
+      left: 0,
+      top: 10,
+      width: 100,
+      height: 200,
+    }
+  );
+  f.main.append(wide, tall);
+  const pixelCount = 1500 * 315;
+  const failures = [];
+  const textures = embeddedTexture();
+  assert.equal(
+    await textures.captureField(f.root, {
+      ...pageOptions,
+      dpr: 1.5,
+      caps: { ...pageCaps, layerPixels: pixelCount * 3 - 1 },
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
+  );
+  assert.equal(failures[0].reason, 'field-peak-capacity');
+  assert.equal(failures[0].usage, pixelCount * 3);
+  assert.equal(f.canvases.length, 0);
+  assert.equal(f.images.length, 0);
+  const field = await textures.captureField(f.root, {
+    ...pageOptions,
+    dpr: 1.5,
+    caps: { ...pageCaps, layerPixels: pixelCount * 3 },
+  });
+  assert.ok(field);
+  assert.equal(field.pixelCount, pixelCount);
+  assert.equal(field.canvas.width, 1500);
+  assert.equal(field.canvas.height, 315);
+  assert.deepEqual(
+    field.sourceOwners.map(({ rect }) => rect),
+    [wide.getBoundingClientRect(), tall.getBoundingClientRect()]
+  );
+  assert.equal(f.canvases.length, 1);
+  assert.equal(f.images.length, 1);
+  assert.equal(field.sourceRect, undefined);
+  assert.match(f.sources[0], /left:0px;top:10px;width:100px;height:200px/);
+  field.dispose();
+  assert.equal(field.canvas.width, 0);
+  assert.equal(field.canvas.height, 0);
 });
 
 test('native selected controls use an inert style snapshot and bounded live selection metadata', async () => {
@@ -1231,7 +1216,7 @@ test('visually empty accessibility clips stay native while partial clips still f
   assert.equal(await embeddedTexture().captureField(f.root, pageOptions), null);
 });
 
-test('atlas composition shares the original deadline and releases both allocations on expiry', async () => {
+test('the shared field decode and ownership proof keep the original deadline and release allocation on expiry', async () => {
   const f = pageFixture();
   f.main.append(
     new f.Node('p', 'First native owner'),
@@ -1242,7 +1227,7 @@ test('atlas composition shares the original deadline and releases both allocatio
   const drawImage = f.context.drawImage;
   f.context.drawImage = function (...args) {
     drawImage.apply(this, args);
-    if (args[0] === f.canvases[0]) elapsed = 161;
+    if (args[0] instanceof f.view.Image) elapsed = 161;
   };
   const failures = [];
   assert.equal(
@@ -1288,7 +1273,7 @@ test('portrait PNG sampling follows displayed pixels and frees the bounded encod
   field.dispose();
 });
 
-test('physical decode admission reserves owner images and inlined portrait surfaces before allocation', async () => {
+test('physical decode admission reserves the field readback and inlined portrait surfaces before allocation', async () => {
   const f = pageFixture();
   const portrait = new f.Node('img', '', {}, { width: 400, height: 80 });
   Object.assign(portrait, {
@@ -1308,8 +1293,8 @@ test('physical decode admission reserves owner images and inlined portrait surfa
     }),
     null
   );
-  assert.equal(failures[0].reason, 'field-decode-capacity');
-  assert.equal(failures[0].usage, 32000 * 4);
+  assert.equal(failures[0].reason, 'field-peak-capacity');
+  assert.equal(failures[0].usage, 32000 * 5);
   assert.equal(f.canvases.length, 0);
   const field = await embeddedTexture().captureField(f.root, {
     ...pageOptions,
@@ -1599,4 +1584,235 @@ test('successful rasters completed beyond the shared deadline report precise bou
   assert.deepEqual(failures, [{ reason: 'preparation-deadline', path: [], tag: 'div' }]);
   assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
   assert.equal(f.timers.size, 0);
+});
+
+test('the shared SVG isolates owner pseudo selectors and retains each original paint clip and order', async () => {
+  const f = pageFixture();
+  const colors = ['rgb(20, 30, 40)', 'rgb(40, 50, 60)'];
+  for (const [index, color] of colors.entries()) {
+    const owner = new f.Node('p', 'Native owner ' + index, {}, { top: 50 + index * 200 });
+    owner.pseudos['::before'] = {
+      content: '""',
+      position: 'absolute',
+      display: 'block',
+      opacity: '1',
+      'box-sizing': 'border-box',
+      left: '-10px',
+      top: '-10px',
+      width: '420px',
+      height: '100px',
+      'background-color': color,
+      transform: 'none',
+      filter: 'none',
+    };
+    f.main.append(owner);
+  }
+  const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(f.images.length, 1);
+  assert.equal((f.sources[0].match(/<foreignObject /g) || []).length, 1);
+  assert.match(
+    f.sources[0],
+    /\.embedded-node-0-0::before\{[^}]*background-color:rgb\(20, 30, 40\)/
+  );
+  assert.match(
+    f.sources[0],
+    /\.embedded-node-1-0::before\{[^}]*background-color:rgb\(40, 50, 60\)/
+  );
+  assert.match(
+    f.sources[0],
+    /overflow:hidden;isolation:isolate;left:0px;top:0px;width:420px;height:100px/
+  );
+  assert.match(
+    f.sources[0],
+    /overflow:hidden;isolation:isolate;left:0px;top:200px;width:420px;height:100px/
+  );
+  assert.ok(f.sources[0].indexOf('Native owner 0') < f.sources[0].indexOf('Native owner 1'));
+  field.dispose();
+});
+
+test('a neighbouring painted owner cannot supply the alpha proof for a blank owner', async () => {
+  const f = pageFixture();
+  f.main.append(
+    new f.Node('p', 'Missing first owner', {}, { left: 0, top: 0, width: 100, height: 100 }),
+    new f.Node('p', 'Visible second owner', {}, { left: 50, top: 0, width: 100, height: 100 })
+  );
+  f.context.getImageData = (x, y, width, height) => {
+    const data = new Uint8ClampedArray(width * height * 4);
+    for (let row = 0; row < height; row++)
+      for (let column = 50; column < width; column++) data[(row * width + column) * 4 + 3] = 255;
+    return { data };
+  };
+  const failures = [];
+  assert.equal(
+    await embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      dpr: 1,
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
+  );
+  assert.deepEqual(failures, [{ reason: 'native-owner-raster-blank', path: [0, 0], tag: 'p' }]);
+  assert.equal(f.images.length, 1);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+});
+
+test('actual border strips leave native child ink observable within their larger union envelope', async () => {
+  const f = pageFixture();
+  const nav = new f.Node(
+    'nav',
+    '',
+    {
+      'border-top-width': '1px',
+      'border-top-style': 'solid',
+      'border-top': '1px solid rgb(20, 30, 40)',
+      'border-bottom-width': '1px',
+      'border-bottom-style': 'solid',
+      'border-bottom': '1px solid rgb(20, 30, 40)',
+    },
+    { left: 0, top: 0, width: 100, height: 100 }
+  );
+  nav.append(
+    new f.Node('p', 'Visible native child', {}, { left: 10, top: 10, width: 80, height: 80 })
+  );
+  f.main.append(nav);
+  f.context.getImageData = (x, y, width, height) => {
+    const data = new Uint8ClampedArray(width * height * 4);
+    for (let row = 0; row < height; row++)
+      for (let column = 0; column < width; column++)
+        if (row === 0 || row === 99 || (row >= 10 && row < 90 && column >= 10 && column < 90))
+          data[(row * width + column) * 4 + 3] = 255;
+    return { data };
+  };
+  const field = await embeddedTexture().captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(field.decorations.length, 1);
+  assert.equal(field.sourceOwners.length, 1);
+  assert.deepEqual(field.sourceOwners[0].ownerPath, [0, 0, 0]);
+  field.dispose();
+});
+
+test('single field decoding retains all native temporary-owner admission limits', async () => {
+  for (const cap of ['owners', 'descendants', 'textBytes', 'layerPixels']) {
+    const f = pageFixture();
+    const paragraph = new f.Node('p', 'Native bounded oracle');
+    paragraph.append(new f.Node('strong', 'Nested ink', { display: 'inline' }));
+    f.main.append(paragraph);
+    assert.equal(
+      await embeddedTexture().captureField(f.root, {
+        ...pageOptions,
+        caps: { ...pageCaps, [cap]: 0 },
+      }),
+      null
+    );
+    assert.equal(f.canvases.length, 0, cap);
+    assert.equal(f.images.length, 0, cap);
+  }
+});
+
+test('a completely covered owner fails closed rather than borrowing another owner alpha', async () => {
+  const f = pageFixture();
+  f.main.append(
+    new f.Node('p', 'First coincident owner'),
+    new f.Node('p', 'Second coincident owner')
+  );
+  const failures = [];
+  assert.equal(
+    await embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
+  );
+  assert.equal(failures[0].reason, 'native-owner-raster-blank');
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0));
+});
+
+test('a native footer zero-area empty underline preserves visible owner ink and current paint state', async () => {
+  for (const dimensions of [
+    { width: '0px', height: '2px' },
+    { width: '120px', height: '0px' },
+  ]) {
+    const f = pageFixture();
+    const owner = new f.Node('a', 'Continue to Writing', { position: 'relative' });
+    owner.pseudos['::after'] = {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      'box-sizing': 'border-box',
+      left: '0px',
+      top: '76px',
+      ...dimensions,
+      'background-color': 'rgb(20, 30, 40)',
+      'box-shadow': 'none',
+      'outline-style': 'none',
+      transform: 'none',
+      filter: 'none',
+      'backdrop-filter': 'none',
+    };
+    f.main.append(owner);
+    const textures = embeddedTexture();
+    const field = await textures.captureField(f.root, pageOptions);
+    assert.ok(field);
+    assert.deepEqual(field.sourceOwners[0].envelope, owner.getBoundingClientRect());
+    assert.match(f.sources[0], /::after\{/);
+    assert.match(f.sources[0], new RegExp('width:' + dimensions.width));
+    assert.equal(
+      textures.matchesField(f.root, field.sourceOwners, {
+        ...pageOptions,
+        decorations: field.decorations,
+      }),
+      true
+    );
+    owner.pseudos['::after'].width = '120px';
+    owner.pseudos['::after'].height = '2px';
+    assert.equal(
+      textures.matchesField(f.root, field.sourceOwners, {
+        ...pageOptions,
+        decorations: field.decorations,
+      }),
+      false
+    );
+    field.dispose();
+  }
+});
+
+test('a zero-area pseudo cannot bypass unresolved geometry, generated ink or outward paint gates', async () => {
+  for (const override of [
+    { width: '-1px' },
+    { width: 'auto' },
+    { width: 'var(--unresolved)' },
+    { top: 'auto' },
+    { content: '"Generated ink"' },
+    { transform: 'matrix(1,0,0,1,0,0)' },
+    { filter: 'blur(2px)' },
+    { 'background-image': 'url(https://invalid.test/paper)' },
+    { 'box-shadow': '0px 0px 2px 2px rgb(20, 30, 40)' },
+    { 'outline-style': 'solid', 'outline-width': '2px', outline: '2px solid rgb(20, 30, 40)' },
+  ]) {
+    const f = pageFixture();
+    const owner = new f.Node('a', 'Visible footer control');
+    owner.pseudos['::after'] = {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      'box-sizing': 'border-box',
+      left: '0px',
+      top: '76px',
+      width: '0px',
+      height: '2px',
+      transform: 'none',
+      filter: 'none',
+      'backdrop-filter': 'none',
+      ...override,
+    };
+    f.main.append(owner);
+    assert.equal(
+      await embeddedTexture().captureField(f.root, pageOptions),
+      null,
+      JSON.stringify(override)
+    );
+    assert.equal(f.images.length, 0);
+    assert.equal(f.canvases.length, 0);
+  }
 });

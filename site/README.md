@@ -129,10 +129,20 @@ moving fractal structures. Research belongs to Home's world, Writing to Research
 and subsequent pages follow the existing route order. The router prewarms the next
 pinned page through its verified finite cache. An inert, inaccessible staging copy
 measures the target viewport, with Writing's controls normalized by the same scoped
-archive preparation as native mount. `embedded-texture.cjs` validates visible native
-headings, text, reading paper, links, lists, controls, decoded local images and
-supported static SVG before compositing one page-owned viewport texture. Recorded
-subowner paths, geometry and text remain the native coverage and landing oracle.
+archive preparation as native mount. The inert footer uses the same
+route/preference normalizer as native mount.
+Staged hash landings apply computed root scroll padding and target scroll margin,
+then clamp to the destination scroll range before capturing its visible paint.
+`embedded-texture.cjs` validates visible native headings, text, reading paper,
+links, lists, controls, decoded local images and
+supported static SVG before rasterizing one page-owned viewport texture. Each
+admitted owner retains its exact native envelope clip and isolated paint order
+inside one SVG image; owner-specific pseudo selectors stay unique. One bounded
+alpha readback observes each owner's ink only outside other owners' paint bounds,
+so a neighboring owner cannot supply a missing owner's proof. Fully covered or
+blank owners fail closed. The temporary peak includes decoded SVG, atlas canvas,
+readback and sampled PNG decode/encoding surfaces within the original limits.
+Recorded subowner paths, geometry and text remain the native coverage and landing oracle.
 Capture follows the visible viewport rather than allocating the full scrollable
 document. Temporary captures, retained textures and solid geometry share the
 original piece, pixel, owner, descendant and text limits; unsupported capture or
@@ -142,21 +152,21 @@ an unadmittable landing retains shared fragments or ordinary native navigation.
 side faces, target-camera endpoints and immutable membership in existing fractal
 branches. Their resting geometry uses the exact shared `loopTransform` and room
 offset under the existing ambient clock; real content textures remain visible.
+Textured fronts and rears retain at least60% of material visibility before
+near-plane fading; their remaining fog follows canonical depth visibility.
+Closed sides keep canonical fog, and assembled native endpoints remain fully opaque.
 Reverse collection can traverse a second genuine branch in the destination room
 before reaching its native plane, so a retreating camera sees partial geometry
 while both resting contact and the final endpoint remain exact. This world path
 uses the existing cached room descriptors and shared transform.
-The visual rework distributes the content field across three successive fractal
-roots, retaining actual branch membership and their canonical loop. Closed shards
-have deeper beveled sides and captured paint on both faces. Forward departure
-breaks at the source reading plane, then leaves the pieces at fixed source-world
-positions for the camera to cross; reverse departure retains its host trajectory.
-Incoming pieces converge at staggered phases of that same camera flight.
-Neighbor preparation also warms the current visible field before a click. Packed
-native raster owners share one decode canvas with separate source rectangles and
-per-owner nonblank checks; final atlas composition avoids per-owner bitmap copies.
-Both padded decode surfaces and retained/temporary pixels still count toward the
-original cap, and the preparation deadline is unchanged.
+The reconciled visual rework distributes stable content-field identities across
+three successive actual fractal roots with their canonical branch loop. Closed
+shards have deeper beveled sides and captured paint on both faces. Forward breakup
+begins on the native reading plane, then leaves detached pieces at fixed source-world
+positions for the camera to cross; reverse departure retains the canonical host
+trajectory. Incoming pieces converge at staggered phases during that flight.
+Neighbor preparation also captures the settled current viewport before a click,
+within the same abort, matching, retention, pixel and absolute deadline rules.
 `embedded-scene.cjs` attaches collection/paint to the current travel effect;
 the existing scene composition sorts its faces with the fractal. It owns no
 runtime dependency, second renderer or animation clock. Preparation, native

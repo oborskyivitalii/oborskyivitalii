@@ -12,6 +12,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     restExtrusion: 2.4,
     departureBreakup: 0.26,
     returnStop: 0.4,
+    contentVisibilityFloor: 0.6,
     near: 0.5,
   });
   const vector = (value, length) =>
@@ -242,6 +243,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         (x - rect.x) / rect.width,
         (y - rect.y) / rect.height,
       ]);
+      const rearAxis = Math.min(...uv.map(([u]) => u)) + Math.max(...uv.map(([u]) => u));
       const centroid = center(uv);
       const seed = (cell.seed ?? index + 1) >>> 0;
       const fraction = (shift) => ((Math.imul(seed ^ shift, 2654435761) >>> 0) % 65536) / 65536;
@@ -288,6 +290,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       return {
         id: `${id}:${index}`,
         uv,
+        rearUv: uv.map(([u, v]) => [rearAxis - u, v]),
         centroid,
         restCenter: add(restCenter, contact),
         restOrientation,
@@ -496,6 +499,16 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       nearest: Math.min(...vertices.map((point) => point[2])),
     };
   }
+  function faceVisibility(face, depth, nearest, progress) {
+    const haze = depthVisibility(depth);
+    const materialHaze =
+      face !== 'side'
+        ? settings.contentVisibilityFloor + (1 - settings.contentVisibilityFloor) * haze
+        : haze;
+    const nativeAmount = smooth(progress);
+    const nearFade = Math.min(1, (nearest - settings.near) / 2);
+    return (materialHaze + (1 - materialHaze) * nativeAmount) * nearFade;
+  }
 
   function sample(
     prepared,
@@ -556,12 +569,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         const surface = projectFace(face, projected, camera, limit);
         if (!surface) continue;
         const { points, normal, depth, nearest } = surface;
-        const haze = depthVisibility(depth);
-        const nativeAmount = smooth(amount);
-        const nearFade = Math.min(1, (nearest - settings.near) / 2);
-        const visibility = Math.sqrt(haze);
-        const alpha = (visibility + (1 - visibility) * nativeAmount) * nearFade;
+        const alpha = faceVisibility(face.face, depth, nearest, amount);
         const textured = face.face !== 'side';
+        const coordinates = face.face === 'back' ? shard.rearUv : shard.uv;
         shapes.push({
           kind: 'embedded-face',
           id: shard.id,
@@ -572,9 +582,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           tint: Math.min(0.63, 0.42 * (0.65 + 0.5 * Math.abs(dot(normal, light)))),
           color: shard.color,
           alpha,
-          textureMix: textured ? 1 : 0,
+          textureMix: Number(textured),
           progress: amount,
-          uv: textured ? face.indices.map((index) => shard.uv[index % shard.uv.length]) : null,
+          uv: textured ? face.indices.map((index) => coordinates[index % shard.uv.length]) : null,
         });
       }
     }

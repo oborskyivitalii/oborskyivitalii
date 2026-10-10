@@ -139,7 +139,43 @@ function installFlightPreference() {
     document.addEventListener('DOMContentLoaded', mount, { once: true });
   else mount();
 }
-function installEndScroll(gateFactory, isEnd, isStart) {
+function prepareEndScrollFooter(root, page, routes, enabled) {
+  const footer = root?.querySelector?.('footer');
+  if (!footer || !Array.isArray(routes)) return null;
+  const index = routes.indexOf(page),
+    route = index >= 0 ? routes[index + 1] : null,
+    names = ['Home', 'Research', 'Writing', 'Talks', 'Credits'];
+  let hint = footer.querySelector('.scroll-continue');
+  if (!route) {
+    hint?.remove();
+    return null;
+  }
+  if (!hint) {
+    hint = footer.ownerDocument.createElement('a');
+    hint.className = 'scroll-continue';
+    footer.append(hint);
+  }
+  hint.href = '?view=' + route;
+  hint.textContent = 'Keep scrolling for ' + names[index + 1] + ' ↓';
+  hint.hidden = !enabled;
+  return hint;
+}
+function installEndScroll(gateFactory, isEnd, isStart, prepareFooter) {
+  let enabled = true;
+  try {
+    enabled = localStorage.getItem('vo.end-scroll') !== 'off';
+  } catch {
+    /* Works within this tab. */
+  }
+  // A staged footer shares the native preference and authored normalizer without
+  // mounting controls, listeners or another page's live footer.
+  window.SiteEffects.preparePreview = (root, page) =>
+    prepareFooter(
+      root,
+      page,
+      window.SiteNavigation?.primaryRoutes || window.SiteRoutes?.order,
+      enabled
+    );
   function mount() {
     const content = document.getElementById('site-content'),
       controls = document.querySelector('.display-controls');
@@ -150,19 +186,12 @@ function installEndScroll(gateFactory, isEnd, isStart) {
       document.getElementById('end-scroll')
     )
       return;
-    const routes = window.SiteNavigation.primaryRoutes,
-      names = ['Home', 'Research', 'Writing', 'Talks', 'Credits'];
+    const routes = window.SiteNavigation.primaryRoutes;
     const gate = gateFactory(),
       clock = () => performance.now();
-    let enabled = true,
-      printing = false,
+    let printing = false,
       touch = null,
       hint = null;
-    try {
-      enabled = localStorage.getItem('vo.end-scroll') !== 'off';
-    } catch {
-      /* Works within this tab. */
-    }
     const label = document.createElement('label');
     label.className = 'theme-control end-scroll-control';
     label.textContent = 'Scroll between pages ';
@@ -195,23 +224,7 @@ function installEndScroll(gateFactory, isEnd, isStart) {
       );
     }
     function updateHint() {
-      const footer = content.querySelector('footer'),
-        route = neighbor(1);
-      if (!footer) return;
-      hint = footer.querySelector('.scroll-continue');
-      if (!route) {
-        hint?.remove();
-        hint = null;
-        return;
-      }
-      if (!hint) {
-        hint = document.createElement('a');
-        hint.className = 'scroll-continue';
-        footer.append(hint);
-      }
-      hint.href = '?view=' + route;
-      hint.textContent = 'Keep scrolling for ' + names[routes.indexOf(route)] + ' ↓';
-      hint.hidden = !enabled;
+      hint = prepareFooter(content, document.body.dataset.page, routes, enabled);
     }
     function clear() {
       gate.reset(clock());
@@ -728,6 +741,8 @@ function descriptor() {
     atPageEnd.toString() +
     ',' +
     atPageStart.toString() +
+    ',' +
+    prepareEndScrollFooter.toString() +
     ');';
   return {
     effect: 'travel',
@@ -742,6 +757,7 @@ module.exports = {
   endScrollGate,
   atPageEnd,
   atPageStart,
+  prepareEndScrollFooter,
   installEndScroll,
   installFlightPreference,
   createPresentation,

@@ -164,6 +164,10 @@ in their host after reverse detachment. Home-to-Writing also passes through the
 intermediate Research content and room without mounting a Research DOM. Shared
 caps include retained fields and temporary capture, with one bounded native
 viewport texture per page and independently verified subowner paint coverage.
+The single SVG raster preserves each owner's isolated native clip; exclusive
+alpha regions reject paint borrowed from another owner. Physical accounting
+includes decode, atlas, readback and inlined-media surfaces. Resting textured
+fronts retain content contrast while closed side/rear surfaces keep native fog.
 Permanent
 `embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
 `embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
@@ -206,3 +210,10 @@ tooling findings to exact source/line bytes, rules, owners and a review deadline
 Raw findings remain in the report; new/source-changed/expired findings fail.
 Secrets admission for generated RI/coupling checksum fields requires actual
 verification; other public metadata hashes use exact reviewed baseline entries.
+
+The canonical report writer/reader in `tools/quality/common.cjs` retains complete
+Color JSON evidence, including every repeated frame and source binding, without
+requiring one document-sized JavaScript string. Selected staging validation reads
+the same schema and hashes the same compact native JSON bytes incrementally.
+Serialization failures preserve the prior complete report; this changes neither
+profile coverage nor budgets or required acceptance evidence.

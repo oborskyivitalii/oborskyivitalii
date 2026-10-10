@@ -985,10 +985,7 @@ async function main() {
   if (common.variant(manifest).id === 'color') {
     try {
       await require('./color-browser.cjs').main({ smoke: true });
-      validateColor(
-        JSON.parse(fs.readFileSync(path.join(common.out, 'color-preview-smoke.json'))),
-        manifest
-      );
+      validateColor(common.readJson(path.join(common.out, 'color-preview-smoke.json')), manifest);
     } catch (error) {
       failed = true;
       console.error('Color staging smoke: ' + error.stack);

@@ -3,6 +3,287 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const stage = require('../tools/quality/staging-regression.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+test('chunked report writing preserves native JSON bytes, source binding and every shared observation', (t) => {
+  const fs = require('node:fs'),
+    os = require('node:os'),
+    path = require('node:path');
+  const { writeJson, jsonChunkChars, jsonDigest } = require('../tools/quality/common.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'color-report-parity-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const shared = embeddedPrototypeFixture();
+  const sparse = Array(4);
+  sparse[2] = Symbol('null');
+  sparse[3] = () => {};
+  const callable = () => {};
+  callable.toJSON = (key) => ({ key, text: 'callable JSON value' });
+  const shortened = new Proxy([1, 2], {
+    get: (target, key, receiver) => (key === 'length' ? 1.5 : Reflect.get(target, key, receiver)),
+  });
+  const values = [
+    {
+      schema: 1,
+      kind: 'color-preview-smoke',
+      pass: false,
+      sourceCommit: 'a'.repeat(40),
+      sourceTree: 'b'.repeat(40),
+      candidateCommit: 'a'.repeat(40),
+      artifactDigest: 'c'.repeat(64),
+      rows: [
+        { width: 1440, theme: 'light', embedded: [shared, shared] },
+        { width: 390, theme: 'light', embeddedCheckpoints: { journeys: [shared] } },
+      ],
+      special: {
+        absent: undefined,
+        symbolic: Symbol('omitted'),
+        ignoredFunction: () => {},
+        sparse,
+        numbers: [NaN, Infinity, -Infinity, -0, new Number(42)],
+        wrappers: [new String('wrapped'), new Boolean(false), Object(Symbol('empty'))],
+        date: new Date('2026-10-09T00:00:00Z'),
+        custom: { toJSON: (key) => ({ key, text: '\u0000\n"\\😀\ud800X\udfff' }) },
+        callable,
+        shortened,
+        ...(JSON.rawJSON ? { raw: JSON.rawJSON('12345678901234567890') } : {}),
+        get measured() {
+          return 'native getter result';
+        },
+      },
+    },
+    { text: 'x'.repeat(jsonChunkChars - 14) + '😀' + '\ud800X\udfff'.repeat(jsonChunkChars) },
+    undefined,
+  ];
+  for (const [index, value] of values.entries()) {
+    const file = path.join(directory, index + '.json');
+    const expected = JSON.stringify(value, null, 2) + '\n';
+    writeJson(file, value);
+    const actual = fs.readFileSync(file, 'utf8');
+    assert.equal(actual, expected, 'exact pretty JSON and UTF-8 boundary parity');
+    if (value !== undefined) {
+      assert.deepEqual(JSON.parse(actual), JSON.parse(expected));
+      assert.equal(
+        jsonDigest(value),
+        require('node:crypto').createHash('sha256').update(JSON.stringify(value)).digest('hex'),
+        'compact native report digest parity'
+      );
+    }
+  }
+  const written = JSON.parse(fs.readFileSync(path.join(directory, '0.json'), 'utf8'));
+  assert.equal(written.pass, false);
+  assert.equal(written.sourceCommit, 'a'.repeat(40));
+  assert.deepEqual(written.rows[0].embedded[0], written.rows[1].embeddedCheckpoints.journeys[0]);
+  assert.equal(written.rows[0].embedded.length, 2, 'shared references are serialized in full');
+  let calls = 0;
+  const recursiveCallable = () => {};
+  recursiveCallable.toJSON = () => (++calls === 1 ? recursiveCallable : { calls });
+  const expectedCallable = JSON.stringify(recursiveCallable, null, 2) + '\n';
+  calls = 0;
+  const callableFile = path.join(directory, 'callable.json');
+  writeJson(callableFile, recursiveCallable);
+  assert.equal(fs.readFileSync(callableFile, 'utf8'), expectedCallable);
+  assert.equal(calls, 1, 'normalized omitted root invokes toJSON only once');
+  assert.equal(
+    fs.readdirSync(directory).length,
+    values.length + 1,
+    'no temporary artifacts remain'
+  );
+});
+test('large reports write, read and digest through bounded chunks without one document string', (t) => {
+  const fs = require('node:fs'),
+    path = require('node:path'),
+    os = require('node:os'),
+    vm = require('node:vm');
+  const file = require.resolve('../tools/quality/common.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'color-report-chunks-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const originalRequire = require('node:module').createRequire(file);
+  let reads = 0;
+  const sandbox = {
+    module: { exports: {} },
+    require: (name) =>
+      name === 'node:fs'
+        ? {
+            ...fs,
+            readFileSync: () =>
+              assert.fail('reader must never materialize the whole JSON document'),
+            readSync: (descriptor, bytes, offset, length, position) => {
+              assert.ok(length <= 65536, 'input bytes remain bounded');
+              reads++;
+              return fs.readSync(descriptor, bytes, offset, length, position);
+            },
+          }
+        : originalRequire(name),
+    __dirname: path.dirname(file),
+    process,
+    Buffer,
+    JSON: {
+      parse: (value) => {
+        assert.ok(
+          !value.startsWith('{') && !value.startsWith('['),
+          'reader may only natively parse scalar tokens'
+        );
+        return JSON.parse(value);
+      },
+      stringify: (value, ...args) => {
+        assert.ok(
+          value === null || typeof value !== 'object',
+          'whole report must never become one JSON string'
+        );
+        if (typeof value === 'string')
+          assert.ok(value.length <= 10922, 'native scalar serialization remains bounded');
+        return JSON.stringify(value, ...args);
+      },
+    },
+  };
+  vm.runInNewContext(fs.readFileSync(file, 'utf8'), sandbox);
+  const { jsonChunks, jsonChunkChars, writeJson, readJson, jsonDigest } = sandbox.module.exports;
+  const shared = {
+    diagnostics: embeddedPrototypeFixture().frames[4].diagnostics,
+    textContent: '\u0000"\\Україна😀\ud800X\udfff'.repeat(20000),
+  };
+  const value = { rows: [1440, 390].map((width) => ({ width, frames: Array(6).fill(shared) })) };
+  const chunks = [...jsonChunks(value)];
+  assert.ok(chunks.length > 100, 'aggregate output spans many bounded chunks');
+  assert.ok(chunks.every((chunk) => chunk.length <= jsonChunkChars));
+  const actual = chunks.join('');
+  const expected = JSON.stringify(value, null, 2) + '\n';
+  assert.equal(actual, expected);
+  assert.deepEqual(JSON.parse(actual), JSON.parse(expected));
+  const reportFile = path.join(directory, 'color-preview-smoke.json');
+  writeJson(reportFile, value);
+  assert.equal(fs.readFileSync(reportFile, 'utf8'), expected);
+  assert.deepEqual(JSON.stringify(readJson(reportFile)), JSON.stringify(value));
+  assert.ok(reads > 100, 'full report consumed through repeated bounded reads');
+  assert.equal(
+    jsonDigest(value),
+    require('node:crypto').createHash('sha256').update(JSON.stringify(value)).digest('hex')
+  );
+  assert.equal(value.rows[0].frames.length, 6, 'observations and references remain unchanged');
+});
+test('incremental report reader matches native JSON grammar, Unicode, duplicate keys and deep containers', (t) => {
+  const fs = require('node:fs'),
+    os = require('node:os'),
+    path = require('node:path');
+  const { readJson } = require('../tools/quality/common.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'color-report-reader-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const file = path.join(directory, 'input.json');
+  const valid = [
+    'null',
+    'true',
+    'false',
+    '-0',
+    '1e400',
+    '9007199254740993',
+    ' \t\r\n{"a":[null,true,false,-0,1.2e-4],"text":"Україна😀"}\n',
+    '{"__proto__":{"bad":true},"constructor":1,"a":2,"__proto__":3,"a":4}',
+    JSON.stringify('"\\/\b\f\n\r\t\ud800X\udfff\u2028'),
+    '"literal\u2028\u2029"',
+    '{"empty":[{},[]]}',
+  ];
+  for (const text of valid) {
+    fs.writeFileSync(file, text);
+    for (const size of [1, 2, 7, 65536]) {
+      const actual = readJson(file, size),
+        expected = JSON.parse(text);
+      assert.deepEqual(actual, expected, text + ' at chunk ' + size);
+      if (actual && !Array.isArray(actual) && typeof actual === 'object')
+        assert.equal(Object.getPrototypeOf(actual), Object.prototype);
+    }
+  }
+  const invalid = [
+    '',
+    ' ',
+    '\uFEFFnull',
+    '\u00A0null',
+    '// comment\nnull',
+    'null true',
+    '01',
+    '.1',
+    '1.',
+    '+1',
+    '1e',
+    '1e+',
+    '--1',
+    'NaN',
+    'Infinity',
+    '[1,]',
+    '[,]',
+    '{"a":1,}',
+    '{"a" 1}',
+    '{"a":}',
+    '{1:2}',
+    '"unterminated',
+    '"\\u123"',
+    '"\\uGGGG"',
+    '"\\x20"',
+    '"raw\nnewline"',
+    '{',
+    '[1',
+    '{"a":[1,2]',
+    'tru',
+    'falsex',
+    '"end" garbage',
+  ];
+  for (const text of invalid) {
+    assert.throws(() => JSON.parse(text), SyntaxError);
+    fs.writeFileSync(file, text);
+    for (const size of [1, 7, 65536]) assert.throws(() => readJson(file, size), SyntaxError, text);
+  }
+  const incompleteUTF8 = Buffer.from([0x22, 0xf0, 0x9f, 0x22]);
+  fs.writeFileSync(file, incompleteUTF8);
+  assert.equal(readJson(file, 1), JSON.parse(incompleteUTF8.toString('utf8')));
+  const depth = 10000;
+  fs.writeFileSync(file, '['.repeat(depth) + '0' + ']'.repeat(depth));
+  let nested = readJson(file, 7);
+  for (let index = 0; index < depth; index++) {
+    assert.equal(nested.length, 1);
+    nested = nested[0];
+  }
+  assert.equal(nested, 0, 'reader does not impose a recursive call stack limit');
+});
+test('serialization failures preserve the previous complete report and remove temporary output', (t) => {
+  const fs = require('node:fs'),
+    os = require('node:os'),
+    path = require('node:path');
+  const { writeJson, jsonChunkChars } = require('../tools/quality/common.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'color-report-failure-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const file = path.join(directory, 'color-preview-smoke.json');
+  const previous = {
+    pass: false,
+    sourceCommit: 'a'.repeat(40),
+    rows: [{ error: 'original failure' }],
+  };
+  writeJson(file, previous);
+  const bytes = fs.readFileSync(file);
+  const cycle = {};
+  cycle.self = cycle;
+  const lateCycle = { prefix: 'x'.repeat(jsonChunkChars * 2), cycle };
+  const invalidNumber = new Number(1);
+  invalidNumber.valueOf = () => 1n;
+  for (const value of [
+    lateCycle,
+    { value: 1n },
+    { value: Object(1n) },
+    { value: invalidNumber },
+    {
+      toJSON: () => {
+        throw Error('failed diagnostic snapshot');
+      },
+    },
+  ]) {
+    assert.throws(() => writeJson(file, value), /circular|BigInt|failed diagnostic snapshot/);
+    assert.deepEqual(
+      fs.readFileSync(file),
+      bytes,
+      'failed serialization cannot replace bound evidence'
+    );
+    assert.deepEqual(fs.readdirSync(directory), ['color-preview-smoke.json']);
+  }
+  const shared = { retained: true };
+  writeJson(file, { ...previous, rows: [shared, shared] });
+  assert.deepEqual(JSON.parse(fs.readFileSync(file, 'utf8')).rows, [shared, shared]);
+});
 function embeddedPrototypeFixture(from = 'index', to = 'research') {
   const caps = {
     pieces: 96,
@@ -1494,6 +1775,7 @@ test('failed incoming Color wait preserves raw observations and the original fai
   for (const captureFails of [false, true]) {
     const original = Error('Controlled incoming wait failure');
     let evaluations = 0;
+    let waits = 0;
     const page = {
       evaluate: async () => {
         evaluations++;
@@ -1503,10 +1785,11 @@ test('failed incoming Color wait preserves raw observations and the original fai
       },
       locator: () => ({ click: async () => {} }),
       waitForFunction: async () => {
+        if (++waits === 1) return;
         throw original;
       },
     };
-    await assert.rejects(fragmentAssembly(page), (error) => {
+    await assert.rejects(fragmentAssembly(page, true), (error) => {
       assert.equal(error, original);
       if (captureFails) assert.equal(error.fragmentObservation.failureState, null);
       else {
@@ -1521,6 +1804,137 @@ test('failed incoming Color wait preserves raw observations and the original fai
       return true;
     });
   }
+});
+test('Color assembly waits for the Home Research bank before capturing its initial frame', async () => {
+  const { fragmentAssembly } = require('../tools/quality/color-browser.cjs');
+  const original = Error('Controlled navigation stop');
+  const raw = { samples: [], frames: [], events: [], longTasks: [] };
+  let ready = false;
+  let captured = false;
+  let cleaned = false;
+  const page = {
+    evaluate: async (action) => {
+      if (action.name === 'embeddedPrototypeState') {
+        assert.equal(ready, true, 'the persistent bank must precede observer installation');
+      } else if (action.name === 'observeFragmentFlight') {
+        assert.equal(ready, true, 'the initial snapshot must contain the persistent bank');
+        captured = true;
+      } else if (action.name === 'fragmentCleanupState') {
+        cleaned = true;
+        return {};
+      } else if (captured) return raw;
+    },
+    waitForFunction: async (_predicate, expected) => {
+      assert.deepEqual(expected, { route: 'research', nativePage: 'index' });
+      assert.equal(captured, false, 'warming must finish before inclusive observation begins');
+      ready = true;
+    },
+    locator: () => ({
+      click: async () => {
+        assert.equal(captured, true);
+        throw original;
+      },
+    }),
+  };
+  await assert.rejects(fragmentAssembly(page, true), (error) => {
+    assert.equal(error, original);
+    assert.equal(error.fragmentObservation.observation, raw);
+    assert.deepEqual(error.fragmentObservation.measured.rawFrames, raw.frames);
+    return true;
+  });
+  assert.equal(cleaned, true);
+});
+test('Color interruption rolls observers and clicks once while the visible source is Home', () => {
+  const { interruptFragmentDeparture } = require('../tools/quality/color-browser.cjs');
+  const vm = require('node:vm');
+  const initialCamera = JSON.stringify({ position: [6, 4, 24] });
+  const movedCamera = JSON.stringify({ position: [6, 4, 20] });
+  const raw = { samples: [{ page: 'index', phase: 'depart' }], frames: [{ painted: true }] };
+  const state = {
+    page: 'index',
+    camera: movedCamera,
+    phase: 'departing',
+    alpha: 0.5,
+    domPhase: null,
+    domOpacity: 0,
+  };
+  const actions = [];
+  const window = {
+    SiteEffects: {
+      embedded: {
+        diagnostics: () => ({
+          phase: state.phase,
+          departure: { faces: [{ alpha: state.alpha }] },
+        }),
+      },
+    },
+    __finishFragmentFlight: () => {
+      actions.push('finish');
+      return raw;
+    },
+    __observeFragmentFlight: () => actions.push('observe'),
+  };
+  const document = {
+    body: {
+      dataset: {
+        get page() {
+          return state.page;
+        },
+      },
+    },
+    getElementById: () => ({
+      dataset: {
+        get fragmentPhase() {
+          return state.domPhase;
+        },
+      },
+    }),
+    querySelectorAll: () => [
+      {
+        style: {
+          get opacity() {
+            return state.domOpacity;
+          },
+        },
+      },
+    ],
+    querySelector: (selector) =>
+      selector === '.space-scene'
+        ? {
+            dataset: {
+              get camera() {
+                return state.camera;
+              },
+            },
+          }
+        : { click: () => actions.push('click') },
+  };
+  const interrupt = vm.runInNewContext('(' + interruptFragmentDeparture.toString() + ')', {
+    window,
+    document,
+  });
+  for (const invalid of [
+    { page: 'research' },
+    { phase: 'assembling' },
+    { alpha: 0 },
+    { camera: initialCamera },
+    { camera: JSON.stringify({ position: [6, 4, 28] }) },
+  ]) {
+    const before = { ...state };
+    Object.assign(state, invalid);
+    assert.equal(interrupt(initialCamera), false);
+    assert.deepEqual(actions, []);
+    Object.assign(state, before);
+  }
+  const boundary = interrupt(initialCamera);
+  assert.equal(boundary.interrupted, raw, 'all original samples and frames remain intact');
+  assert.equal(boundary.retarget.nativePage, 'index');
+  assert.equal(boundary.retarget.before, movedCamera);
+  assert.equal(boundary.retarget.after, movedCamera);
+  assert.deepEqual(actions, ['finish', 'observe', 'click']);
+  state.page = 'research';
+  assert.equal(interrupt(initialCamera), boundary, 'another poll reuses the completed boundary');
+  assert.deepEqual(actions, ['finish', 'observe', 'click'], 'the wordmark is clicked once');
 });
 test('failed all-route Color collection retains its source trip and original partial observation', async () => {
   const { fragmentRouteCoverage } = require('../tools/quality/color-browser.cjs'),
@@ -2197,50 +2611,4 @@ test('embedded native coverage ignores wholly offscreen DOM and requires every v
   assert.equal(missing.expected, 1);
   assert.equal(missing.selected, 0);
   assert.equal(missing.uncovered.length, 1);
-});
-
-test('interruption clicks within the observed native departure before exporting its large record', () => {
-  const { interruptVisibleDeparture } = require('../tools/quality/color-browser.cjs');
-  const vm = require('node:vm');
-  const calls = [];
-  const body = { dataset: { page: 'index' } };
-  const scene = { dataset: { camera: JSON.stringify({ position: [0, 0, 20] }) } };
-  const initial = JSON.stringify({ position: [0, 0, 24] });
-  const diagnostics = { phase: 'departing', departure: { faces: [{ alpha: 1 }] } };
-  const record = { samples: ['retained raw paint'] };
-  const window = {
-    SiteEffects: { embedded: { diagnostics: () => diagnostics } },
-    __finishFragmentFlight() {
-      calls.push('finish');
-      delete this.__restartFragmentFlight;
-      return record;
-    },
-    __restartFragmentFlight() {
-      calls.push('restart');
-    },
-  };
-  const context = {
-    initial,
-    window,
-    document: {
-      body,
-      getElementById: () => ({ dataset: {} }),
-      querySelectorAll: () => [],
-      querySelector: (selector) =>
-        selector === '.space-scene' ? scene : { click: () => calls.push('click') },
-    },
-  };
-  const run = () => vm.runInNewContext('(' + interruptVisibleDeparture + ')(initial)', context);
-  body.dataset.page = 'research';
-  assert.equal(run(), false, 'a late observation cannot masquerade as a Home interruption');
-  body.dataset.page = 'index';
-  diagnostics.departure.faces[0].alpha = 0;
-  assert.equal(run(), false, 'wait for actually visible departure paint');
-  diagnostics.departure.faces[0].alpha = 1;
-  assert.deepEqual(calls, []);
-  assert.equal(run(), true);
-  assert.deepEqual(calls, ['finish', 'restart', 'click']);
-  assert.equal(window.__fragmentInterruption.interrupted, record);
-  assert.equal(window.__fragmentInterruption.retarget.nativePage, 'index');
-  assert.equal(window.__fragmentInterruption.retarget.before, scene.dataset.camera);
 });

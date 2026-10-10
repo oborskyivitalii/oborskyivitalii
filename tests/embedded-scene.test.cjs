@@ -46,9 +46,6 @@ function harness({
   deferred = false,
   wholeViewport = false,
   atlasEnvelope = null,
-  anchor = null,
-  scrollPaddingTop = '0px',
-  stageHeight = 1800,
 } = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
@@ -76,7 +73,7 @@ function harness({
     },
     fonts: eventTarget(),
     createElement() {
-      const stage = {
+      return {
         style: style(),
         children: [],
         attributes: {},
@@ -87,25 +84,24 @@ function harness({
           this.children.push(node);
         },
         querySelectorAll() {
-          return this.anchor ? [this.anchor] : [];
+          return (this.children[0]?.hashOwners || []).map((owner) =>
+            owner.offsetTop === undefined
+              ? owner
+              : {
+                  ...owner,
+                  getBoundingClientRect: () => ({
+                    top: Number.parseFloat(this.style['--embedded-stage-top']) + owner.offsetTop,
+                  }),
+                }
+          );
         },
         getBoundingClientRect() {
-          return { height: stageHeight };
+          return { height: this.height || 1800 };
         },
         remove() {
           this.connected = false;
         },
       };
-      if (anchor)
-        stage.anchor = {
-          id: anchor.id,
-          getBoundingClientRect() {
-            return {
-              top: parseFloat(stage.style['--embedded-stage-top']) + anchor.offsetTop,
-            };
-          },
-        };
-      return stage;
     },
     importNode(node) {
       return { ...node };
@@ -119,11 +115,10 @@ function harness({
     scrollX: 0,
     scrollY: 0,
     location: { search: '', hash: '' },
-    SiteEffects: {},
-    getComputedStyle(node) {
-      return node === document.documentElement
-        ? { scrollPaddingTop }
-        : { scrollMarginTop: anchor?.scrollMarginTop || '0px' };
+    SiteEffects: {
+      preparePreview(stage, route) {
+        stage.footerRoute = route;
+      },
     },
     SiteScene: { canTravel: () => canTravel },
     SiteArchive: {
@@ -146,6 +141,9 @@ function harness({
     dispatchEvent(event) {
       window.emit(event.type);
       return true;
+    },
+    getComputedStyle(node) {
+      return { getPropertyValue: (name) => node.css?.[name] || '0px' };
     },
   };
   const api = {
@@ -325,6 +323,8 @@ test('warming current paint retains a reusable field without activating a depart
   assert.equal(h.bridge.diagnostics().departure.ready, false);
   assert.equal(h.bridge.active(), false);
   assert.equal(h.bridge.owners().length, 0);
+  await h.bridge.prepareDeparture(content, { cacheOnly: true });
+  assert.equal(h.bridge.diagnostics().departure.ready, false);
   await h.bridge.prepareDeparture(content);
   assert.equal(h.captures.length, count, 'click reuses the validated captured paint');
   assert.equal(h.bridge.diagnostics().departure.ready, true);
@@ -644,39 +644,166 @@ test('a warmed Writing field canonicalizes empty archive query and hash before c
   assert.equal(h.stages[0].normalized, true);
 });
 
-test('incoming hash capture honors native header clearance and the target scroll margin', async () => {
-  const h = harness({
-    anchor: { id: 'about', offsetTop: 1100, scrollMarginTop: '14px' },
-    scrollPaddingTop: '126px',
-    stageHeight: 2400,
-  });
-  h.document.body.dataset.page = 'credits';
-  h.collect('credits', 100);
-  const landing = { hash: '#about', search: '', position: null };
-  assert.equal(await h.bridge.prime(h.data('index'), 78, landing), true);
-  assert.equal(h.stages[0].anchor.getBoundingClientRect().top, 140);
-  assert.equal(h.captures[0].root, h.stages[0]);
-  assert.equal(h.bridge.diagnostics().lastFailure, null);
+test('hash staging follows computed root padding, target margin and native scroll range', async () => {
+  for (const [targetTop, padding, margin, expected] of [
+    [850, '159px', '24px', -589],
+    [100, '159px', '24px', 78],
+    [2000, '159px', '24px', -900],
+  ]) {
+    const h = harness();
+    h.collect('credits', 100);
+    h.document.body.dataset.page = 'credits';
+    h.document.documentElement.css = { 'scroll-padding-top': padding };
+    const data = h.data('index');
+    data.main.hashOwners = [
+      {
+        id: 'about',
+        offsetTop: targetTop - 78,
+        css: { 'scroll-margin-top': margin },
+      },
+    ];
+    assert.equal(await h.bridge.prime(data, 78, { hash: '#about' }), true);
+    assert.equal(h.stages[0].style['--embedded-stage-top'], `${expected}px`);
+    assert.equal(h.stages[0].footerRoute, 'index');
+    if (targetTop === 850)
+      assert.equal(
+        h.stages[0].querySelectorAll()[0].getBoundingClientRect().top,
+        Number.parseFloat(padding) + Number.parseFloat(margin),
+        'the staged anchor must remain at the native padded viewport position after scrolling'
+      );
+  }
 });
 
-test('incoming hash capture clamps near the native bottom and preserves explicit history positions', async () => {
-  const h = harness({
-    anchor: { id: 'contact', offsetTop: 1700 },
-    scrollPaddingTop: '110px',
-  });
-  h.document.body.dataset.page = 'credits';
+test('in-range explicit history positioning takes precedence over a simultaneous hash', async () => {
+  const h = harness();
   h.collect('credits', 100);
+  h.document.body.dataset.page = 'credits';
+  h.document.documentElement.css = { 'scroll-padding-top': '159px' };
+  const data = h.data('index');
+  data.main.hashOwners = [{ id: 'about', offsetTop: 772, css: { 'scroll-margin-top': '24px' } }];
+  assert.equal(await h.bridge.prime(data, 78, { hash: '#about', position: [0, 300] }), true);
+  assert.equal(h.stages[0].style['--embedded-stage-top'], '-222px');
+  assert.equal(h.stages[0].querySelectorAll()[0].getBoundingClientRect().top, 550);
+});
+
+test('inert footer normalization precedes end-scroll staging and unsupported hash units fail closed', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  h.window.SiteEffects.preparePreview = (stage, route) => {
+    stage.footerRoute = route;
+    stage.height = 2000;
+  };
+  assert.equal(await h.bridge.prime(h.data('research'), 78, { position: 'end' }), true);
+  assert.equal(h.stages[0].style['--embedded-stage-top'], '-1100px');
+  assert.equal(await h.bridge.prime(h.data('talks'), 78, { position: [0, 5000] }), true);
   assert.equal(
-    await h.bridge.prime(h.data('index'), 78, { hash: '#contact', position: null }),
-    true
+    h.stages[1].style['--embedded-stage-top'],
+    '-1100px',
+    'native history scrolling clamps to the same prepared extent'
   );
-  assert.equal(h.stages[0].anchor.getBoundingClientRect().top, 800);
-  assert.equal(h.stages[0].style['--embedded-stage-top'], '-900px');
-  assert.equal(
-    await h.bridge.prime(h.data('index'), 78, { hash: '#contact', position: [0, 300] }),
-    true
-  );
-  assert.equal(h.stages[1].style['--embedded-stage-top'], '-222px');
+  const bad = h.data('writing');
+  bad.main.hashOwners = [
+    {
+      id: 'archive',
+      css: { 'scroll-margin-top': '10%' },
+      getBoundingClientRect: () => ({ top: 850 }),
+    },
+  ];
+  assert.equal(await h.bridge.prime(bad, 78, { hash: '#archive' }), false);
+  assert.equal(h.bridge.diagnostics().lastFailure.reason, 'landing-unavailable');
+});
+
+test('a long Credits to Home reverse trip visibly collects on the genuine Home path before native handoff', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({
+      compact,
+      atlasEnvelope: {
+        left: 3.2,
+        top: 0,
+        width: compact ? 383.594 : 1433.594,
+        height: compact ? 844 : 900,
+      },
+    });
+    h.frame.ambientTime = 4340.736;
+    await h.prepare('credits', 'index');
+    let partialFrames = 0;
+    for (let tick = 0; tick <= 100; tick++) {
+      const amount = tick / 100;
+      h.bridge.present(amount);
+      const shapes = h.collect(
+        'index',
+        4340.736 + tick * 17,
+        journeyPose(h, 'credits', 'index', amount)
+      );
+      if (
+        shapes.some(
+          (shape) =>
+            shape.id.startsWith('index:') &&
+            shape.face === 'front' &&
+            shape.progress > 0 &&
+            shape.progress < 1
+        )
+      )
+        partialFrames++;
+    }
+    assert.ok(
+      partialFrames >= 10,
+      `long reverse Home chunks must assemble before travel1/${h.frame.width}px`
+    );
+    h.finish('index', 6200);
+  }
+});
+
+test('recorded Credits to About camera frames retain partial Home assembly after a verified native mount', async () => {
+  const h = harness({
+    compact: true,
+    atlasEnvelope: { left: 3.2, top: 124, width: 383.594, height: 720 },
+  });
+  h.frame.ambientTime = 4340.736;
+  await h.prepare('credits', 'index');
+  const native = h.native('index');
+  h.document.body.dataset.page = 'index';
+  h.bridge.land(native);
+  assert.equal(h.bridge.active(), true);
+  // Exact8ab camera/clock poses. Phase is inverted from the engine's actual
+  // smooth camera position because failed old landing had cleared its bridge.
+  const records = [
+    [0.519588235, 5.529367321, -216.963931663, 5357.336],
+    [0.549, 5.573264702, -194.488472576, 5407.336],
+    [0.588176471, 5.630893546, -164.9825045, 5473.936],
+    [0.627411765, 5.686980904, -136.265777355, 5540.636],
+    [0.666647059, 5.740714597, -108.754126558, 5607.336],
+    [0.705823529, 5.791296556, -82.856163393, 5673.936],
+    [0.745058824, 5.838154795, -58.864745004, 5740.636],
+    [0.784294118, 5.880486087, -37.191123509, 5807.336],
+    [0.823470588, 5.917514343, -18.2326564, 5873.936],
+    [0.862705882, 5.948626875, -2.303040153, 5940.636],
+    [0.901941176, 5.973039177, 10.196058658, 6007.336],
+    [0.941117647, 5.990006911, 18.883538563, 6073.936],
+    [0.980352941, 5.998857147, 23.414859285, 6140.636],
+  ];
+  let partialFrames = 0;
+  for (const [amount, x, z, time] of records) {
+    h.bridge.present(amount);
+    const shapes = h.collect('index', time, { position: [x, 4, z], target: [0, 0, z - 29] });
+    if (
+      shapes.some(
+        (shape) =>
+          shape.id.startsWith('index:') &&
+          shape.face === 'front' &&
+          shape.progress > 0 &&
+          shape.progress < 1
+      )
+    )
+      partialFrames++;
+    assert.equal(h.bridge.active(), true);
+  }
+  assert.ok(partialFrames >= 3, 'actual long reverse camera must show partials before travel1');
+  h.bridge.present(1);
+  h.collect('index', 6200);
+  assert.equal(h.bridge.complete(), false);
+  h.collect('index', 6380);
+  assert.equal(h.bridge.complete(), true);
 });
 
 test('three persistent compact fields remain within original global caps and use canonical decorative sampling', async () => {

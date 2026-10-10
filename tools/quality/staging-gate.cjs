@@ -240,7 +240,7 @@ function aggregate({
     .map((report) => ({
       kind: report.kind,
       platform: report.environment?.platform || null,
-      sha256: artifact.digest(JSON.stringify(report)),
+      sha256: common.jsonDigest(report),
     }))
     .sort((a, b) => a.kind.localeCompare(b.kind));
   const gate = {
@@ -287,7 +287,7 @@ function readReports(dir) {
   ]);
   return files(dir)
     .filter((file) => names.has(path.basename(file, '.json')) && file.endsWith('.json'))
-    .map((file) => JSON.parse(fs.readFileSync(file)));
+    .map((file) => common.readJson(file));
 }
 function main() {
   const directory = path.resolve(process.argv[2]),

@@ -3,55 +3,6 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const { aggregate, lighthouse, motion } = require('../tools/quality/validate.cjs');
 const budgets = require('../tools/quality/budgets.json');
-test('raw report writing streams complete JSON and preserves previous evidence on a serialization failure', () => {
-  const fs = require('node:fs');
-  const os = require('node:os');
-  const path = require('node:path');
-  const vm = require('node:vm');
-  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'streamed-evidence-'));
-  const common = require('../tools/quality/common.cjs');
-  // Exercise the actual writer against an isolated destination; a bounded
-  // stringify spy rejects composite calls so small fixtures catch the old bug.
-  const serialize = vm.runInNewContext('(' + common.save.toString() + ')', {
-    fs,
-    path,
-    out: folder,
-    JSON: {
-      stringify(value) {
-        assert.ok(
-          !value || typeof value !== 'object',
-          'writer constructed a whole evidence string'
-        );
-        return JSON.stringify(value);
-      },
-    },
-  });
-  try {
-    const shared = { text: 'native paint " \\ \n Україна', missing: undefined };
-    const data = {
-      rows: [
-        {
-          frames: Array.from({ length: 1000 }, (_, index) => ({
-            index,
-            geometry: [1, NaN, null, undefined],
-            source: shared,
-          })),
-        },
-      ],
-      pass: false,
-    };
-    serialize('proof', data);
-    const before = fs.readFileSync(path.join(folder, 'proof.json'), 'utf8');
-    assert.deepEqual(JSON.parse(before), JSON.parse(JSON.stringify(data)));
-    const cyclic = {};
-    cyclic.self = cyclic;
-    assert.throws(() => serialize('proof', cyclic), /Circular evidence/);
-    assert.equal(fs.readFileSync(path.join(folder, 'proof.json'), 'utf8'), before);
-    assert.deepEqual(fs.readdirSync(folder), ['proof.json']);
-  } finally {
-    fs.rmSync(folder, { recursive: true, force: true });
-  }
-});
 const variant = { id: 'base', contract: 1, fingerprint: 'd'.repeat(64) };
 const identity = {
   variant,

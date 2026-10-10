@@ -645,7 +645,16 @@ module.exports = function () {
     const top =
       rect.top + (parseFloat(value(style, 'border-top-width')) || 0) + number(pseudo, 'top');
     const result = { left, top, right: left + width, bottom: top + height, width, height };
-    return finiteRect(result) ? result : null;
+    if (!Object.values(result).every(Number.isFinite) || width < 0 || height < 0) return null;
+    if (width === 0 || height === 0) return emptyPseudoPaint(pseudo) ? undefined : null;
+    return result;
+  }
+  function emptyPseudoPaint(style) {
+    return (
+      ['""', "''"].includes(value(style, 'content')) &&
+      ['none', ''].includes(value(style, 'box-shadow')) &&
+      (['none', ''].includes(value(style, 'outline-style')) || number(style, 'outline-width') === 0)
+    );
   }
   function nativeFontSupported(document, style, text) {
     return (
@@ -797,6 +806,9 @@ module.exports = function () {
       lines,
       text,
       decoration,
+      paintRects: decoration
+        ? nativeBorderBoxes(rect, nativeStyle(view, owner, undefined, options), options)
+        : [envelope],
       paintFingerprint: nativePaintFingerprint(nodes, text),
       descendants: descendants.length,
       textBytes,
@@ -870,8 +882,8 @@ module.exports = function () {
     }
     return (hash >>> 0).toString(16);
   }
-  function nativeBorderBounds(rect, style, options) {
-    const bounds = { left: Infinity, top: Infinity, right: -Infinity, bottom: -Infinity };
+  function nativeBorderBoxes(rect, style, options) {
+    const boxes = [];
     for (const side of ['top', 'right', 'bottom', 'left']) {
       const width = parseFloat(value(style, 'border-' + side + '-width')) || 0;
       if (!width || value(style, 'border-' + side + '-style') === 'none') continue;
@@ -885,12 +897,19 @@ module.exports = function () {
       box.right = Math.min(options.width, box.right);
       box.bottom = Math.min(options.height, box.bottom);
       if (box.right <= box.left || box.bottom <= box.top) continue;
-      bounds.left = Math.min(bounds.left, box.left);
-      bounds.top = Math.min(bounds.top, box.top);
-      bounds.right = Math.max(bounds.right, box.right);
-      bounds.bottom = Math.max(bounds.bottom, box.bottom);
+      boxes.push(box);
     }
-    return Number.isFinite(bounds.left) ? bounds : null;
+    return boxes;
+  }
+  function nativeBorderBounds(rect, style, options) {
+    const boxes = nativeBorderBoxes(rect, style, options);
+    if (!boxes.length) return null;
+    return {
+      left: Math.min(...boxes.map((box) => box.left)),
+      top: Math.min(...boxes.map((box) => box.top)),
+      right: Math.max(...boxes.map((box) => box.right)),
+      bottom: Math.max(...boxes.map((box) => box.bottom)),
+    };
   }
   function fieldAncestorSupported(style) {
     return (
@@ -934,10 +953,8 @@ module.exports = function () {
       bitmap.height = 0;
     }
   }
-  function serializeNative(measured) {
-    const { nodes, rect, envelope, pixelWidth, pixelHeight } = measured;
-    const placement = measured.rasterPlacement;
-    const scope = 'embedded-owner-' + measured.ownerIndex + '-node-';
+  function nativeMarkup(measured, prefix = '') {
+    const { nodes, rect, envelope } = measured;
     const records = new Map(nodes.map((record, index) => [record.node, { ...record, index }]));
     const css = [];
     function declarations(style, properties) {
@@ -952,6 +969,7 @@ module.exports = function () {
       const record = records.get(node);
       if (!record) throw new Error('Native texture tree changed');
       const { style, before, after, index, box } = record;
+      const className = 'embedded-node-' + prefix + index;
       const vector = node.namespaceURI === 'http://www.w3.org/2000/svg';
       const properties = vector ? [...nativeProperties, ...vectorProperties] : nativeProperties;
       const styles = declarations(style, properties);
@@ -974,8 +992,7 @@ module.exports = function () {
         if (inactive(pseudo)) continue;
         css.push(
           '.' +
-            scope +
-            index +
+            className +
             '::' +
             name +
             '{' +
@@ -988,7 +1005,7 @@ module.exports = function () {
         );
       }
       const attributes = [
-        'class="' + scope + index + '"',
+        'class="' + className + '"',
         'style="' + escapeXML(styles.join(';')) + '"',
       ];
       if (vector) {
@@ -1010,11 +1027,13 @@ module.exports = function () {
       if (['img', 'br', 'hr'].includes(tag)) return '<' + tag + ' ' + attributes.join(' ') + '/>';
       return '<' + tag + ' ' + attributes.join(' ') + '>' + children + '</' + tag + '>';
     }
-    const content = render(measured.owner);
+    return { content: render(measured.owner), css };
+  }
+  function nativeSVG(measured, markup) {
+    const { envelope, pixelWidth, pixelHeight } = measured;
+    const { content, css } = markup;
     return (
-      '<svg xmlns="http://www.w3.org/2000/svg" overflow="hidden" ' +
-      (placement ? 'x="' + placement.x + '" y="' + placement.y + '" ' : '') +
-      'width="' +
+      '<svg xmlns="http://www.w3.org/2000/svg" width="' +
       pixelWidth +
       '" height="' +
       pixelHeight +
@@ -1033,6 +1052,31 @@ module.exports = function () {
       content +
       '</div></foreignObject></svg>'
     );
+  }
+  function serializeNative(measured) {
+    return nativeSVG(measured, nativeMarkup(measured));
+  }
+  function serializeField(measured) {
+    const fragments = measured.fieldOwners.map((owner) => {
+      const fragment = nativeMarkup({ ...owner, dpr: measured.dpr }, owner.ownerIndex + '-');
+      const placement = [
+        'position:absolute',
+        'overflow:hidden',
+        'isolation:isolate',
+        'left:' + (owner.envelope.left - measured.envelope.left) + 'px',
+        'top:' + (owner.envelope.top - measured.envelope.top) + 'px',
+        'width:' + owner.envelope.width + 'px',
+        'height:' + owner.envelope.height + 'px',
+      ].join(';');
+      return {
+        css: fragment.css,
+        content: '<div style="' + escapeXML(placement) + '">' + fragment.content + '</div>',
+      };
+    });
+    return nativeSVG(measured, {
+      css: fragments.flatMap((fragment) => fragment.css),
+      content: fragments.map((fragment) => fragment.content).join(''),
+    });
   }
   function decodeNativeImages(root, view, options) {
     const { signal } = options;
@@ -1216,31 +1260,49 @@ module.exports = function () {
       ownerPixels * 2 + images.reduce((sum, pixels) => sum + pixels, 0) + Math.max(0, ...images)
     );
   }
-  function nativeRasterLayout(measured) {
-    const items = [...measured].sort((first, second) => second.pixelHeight - first.pixelHeight);
-    const pixels = items.reduce((sum, item) => sum + item.pixelWidth * item.pixelHeight, 0);
-    const width = Math.max(
-      1,
-      Math.ceil(Math.sqrt(pixels)),
-      ...items.map((item) => item.pixelWidth)
-    );
-    const placements = new Map();
-    let x = 0;
-    let y = 0;
-    let rowHeight = 0;
-    let usedWidth = 0;
-    for (const item of items) {
-      if (x + item.pixelWidth > width) {
-        y += rowHeight;
-        x = 0;
-        rowHeight = 0;
-      }
-      placements.set(item, { x, y });
-      x += item.pixelWidth;
-      usedWidth = Math.max(usedWidth, x);
-      rowHeight = Math.max(rowHeight, item.pixelHeight);
-    }
-    return { placements, width: usedWidth, height: y + rowHeight };
+  function nativeCaptureContext(root, options, onReject) {
+    const document = root?.ownerDocument;
+    const view = document?.defaultView;
+    if (!root?.isConnected || !view || typeof view.Image !== 'function' || options.signal?.aborted)
+      return rejectNative({ ...options, onReject }, 'native-capture-unavailable', root?.localName);
+    const clock = () => view.performance?.now() ?? Date.now();
+    const started = clock();
+    const normalized = {
+      ...options,
+      offsetX: options.offsetX ?? 0,
+      offsetY: options.offsetY ?? 0,
+      dpr: options.dpr ?? view.devicePixelRatio ?? 1,
+      clock,
+      deadline: Math.min(
+        started + Math.min(160, options.preparationMs ?? 160),
+        options.deadline ?? Infinity
+      ),
+      onReject,
+    };
+    if (
+      ![
+        normalized.width,
+        normalized.height,
+        normalized.offsetX,
+        normalized.offsetY,
+        normalized.dpr,
+        normalized.deadline,
+      ].every(Number.isFinite) ||
+      normalized.width <= 0 ||
+      normalized.height <= 0 ||
+      normalized.dpr <= 0 ||
+      normalized.dpr > settings.maxDpr
+    )
+      return rejectNative(normalized, 'invalid-capture-geometry', root.localName);
+    const caps = options.caps;
+    if (
+      !caps ||
+      ['owners', 'descendants', 'textBytes', 'layerPixels'].some(
+        (name) => !Number.isFinite(caps[name]) || caps[name] < 0
+      )
+    )
+      return rejectNative(normalized, 'invalid-capture-capacity', root.localName);
+    return { document, view, normalized };
   }
   async function captureAll(root, options = {}) {
     const assets = [];
@@ -1253,56 +1315,11 @@ module.exports = function () {
       options.onReject?.(detail);
     };
     try {
-      const document = root?.ownerDocument;
-      const view = document?.defaultView;
-      if (
-        !root?.isConnected ||
-        !view ||
-        typeof view.Image !== 'function' ||
-        options.signal?.aborted
-      )
-        return rejectNative(
-          { ...options, onReject },
-          'native-capture-unavailable',
-          root?.localName
-        );
-      const clock = () => view.performance?.now() ?? Date.now();
-      const started = clock();
-      const normalized = {
-        ...options,
-        offsetX: options.offsetX ?? 0,
-        offsetY: options.offsetY ?? 0,
-        dpr: options.dpr ?? view.devicePixelRatio ?? 1,
-        clock,
-        deadline: Math.min(
-          started + Math.min(160, options.preparationMs ?? 160),
-          options.deadline ?? Infinity
-        ),
-        onReject,
-      };
-      if (
-        ![
-          normalized.width,
-          normalized.height,
-          normalized.offsetX,
-          normalized.offsetY,
-          normalized.dpr,
-          normalized.deadline,
-        ].every(Number.isFinite) ||
-        normalized.width <= 0 ||
-        normalized.height <= 0 ||
-        normalized.dpr <= 0 ||
-        normalized.dpr > settings.maxDpr
-      )
-        return rejectNative(normalized, 'invalid-capture-geometry', root.localName);
+      const context = nativeCaptureContext(root, options, onReject);
+      if (!context) return null;
+      const { document, view, normalized } = context;
+      const clock = normalized.clock;
       const caps = options.caps;
-      if (
-        !caps ||
-        ['owners', 'descendants', 'textBytes', 'layerPixels'].some(
-          (name) => !Number.isFinite(caps[name]) || caps[name] < 0
-        )
-      )
-        return rejectNative(normalized, 'invalid-capture-capacity', root.localName);
       if (typeof view.AbortController !== 'function')
         return rejectNative(normalized, 'native-cancellation-unavailable', root.localName);
       controller = new view.AbortController();
@@ -1318,11 +1335,8 @@ module.exports = function () {
         clock() + Math.min(80, options.acquisitionMs ?? 80)
       );
       const { measured, usage } = measureNativeOwners(root, document, view, normalized, caps);
-      const layout = options.fieldCapture ? nativeRasterLayout(measured) : null;
       const transientPixels = options.fieldCapture
-        ? nativeTransientPixels(measured, usage.layerPixels) -
-          usage.layerPixels * 2 +
-          layout.width * layout.height * 2
+        ? nativeTransientPixels(measured, usage.layerPixels)
         : usage.layerPixels;
       if (transientPixels > caps.layerPixels)
         return rejectNative(normalized, 'field-decode-capacity', root.localName, {
@@ -1330,24 +1344,17 @@ module.exports = function () {
           usage: transientPixels,
           maximum: caps.layerPixels,
         });
-      let captured;
-      if (layout) {
-        captured = await rasterNativeOwners(measured, layout, normalized);
-        if (captured) assets.push(...captured);
-        else controller.abort();
-      } else {
-        captured = await Promise.all(
-          measured.map(async (item) => {
-            const asset = await raster(item, normalized, serializeNative);
-            if (asset) assets.push(asset);
-            else controller.abort();
-            return asset;
-          })
-        );
-      }
+      const captured = await Promise.all(
+        measured.map(async (item) => {
+          const asset = await raster(item, normalized, serializeNative);
+          if (asset) assets.push(asset);
+          else controller.abort();
+          return asset;
+        })
+      );
       const expired = clock() > normalized.deadline;
       if (expired) rejectNative(normalized, 'preparation-deadline', root.localName);
-      if (!captured || captured.some((asset) => !asset) || normalized.signal.aborted || expired)
+      if (captured.some((asset) => !asset) || normalized.signal.aborted || expired)
         throw new Error('Native texture capture failed');
       assets.sort((a, b) => a.ownerIndex - b.ownerIndex);
       assets.transientPixels = transientPixels;
@@ -1510,248 +1517,166 @@ module.exports = function () {
       return false;
     }
   }
+  function fieldSource(owner) {
+    return {
+      ownerPath: owner.ownerPath,
+      rect: owner.rect,
+      lines: owner.lines,
+      envelope: owner.envelope,
+      textContent: owner.text,
+      controls: nativeControls(owner),
+      paintFingerprint: owner.paintFingerprint,
+      decoration: owner.decoration,
+      descendants: owner.descendants,
+      textBytes: owner.textBytes,
+    };
+  }
+  function fieldPixelBox(box, measured, expand = 0) {
+    const scaleX = measured.pixelWidth / measured.envelope.width;
+    const scaleY = measured.pixelHeight / measured.envelope.height;
+    return {
+      left: Math.max(0, Math.floor((box.left - measured.envelope.left) * scaleX) - expand),
+      top: Math.max(0, Math.floor((box.top - measured.envelope.top) * scaleY) - expand),
+      right: Math.min(
+        measured.pixelWidth,
+        Math.ceil((box.right - measured.envelope.left) * scaleX) + expand
+      ),
+      bottom: Math.min(
+        measured.pixelHeight,
+        Math.ceil((box.bottom - measured.envelope.top) * scaleY) + expand
+      ),
+    };
+  }
+  function subtractFieldBox(box, cover) {
+    const left = Math.max(box.left, cover.left);
+    const top = Math.max(box.top, cover.top);
+    const right = Math.min(box.right, cover.right);
+    const bottom = Math.min(box.bottom, cover.bottom);
+    if (left >= right || top >= bottom) return [box];
+    return [
+      { ...box, bottom: top },
+      { ...box, top: bottom },
+      { left: box.left, right: left, top, bottom },
+      { left: right, right: box.right, top, bottom },
+    ].filter((part) => part.left < part.right && part.top < part.bottom);
+  }
+  function exclusiveFieldBoxes(owner, measured, options) {
+    let boxes = owner.paintRects.map((box) => fieldPixelBox(box, measured));
+    for (const other of measured.fieldOwners) {
+      if (other === owner) continue;
+      for (const cover of other.paintRects) {
+        if (options.clock() > options.deadline) return null;
+        const pixels = fieldPixelBox(cover, measured, 1);
+        boxes = boxes.flatMap((box) => subtractFieldBox(box, pixels));
+      }
+    }
+    return boxes;
+  }
+  function fieldBoxHasInk(box, pixels, width) {
+    for (let y = box.top; y < box.bottom; y++)
+      for (let x = box.left; x < box.right; x++)
+        if (pixels[(y * width + x) * 4 + 3] > 0) return true;
+    return false;
+  }
+  function fieldHasNativeInk(context, measured, options) {
+    if (options.signal?.aborted || options.clock() > options.deadline) {
+      rejectNative(options, 'preparation-deadline', measured.owner.localName);
+      return false;
+    }
+    const pixels = context.getImageData(0, 0, measured.pixelWidth, measured.pixelHeight).data;
+    for (const owner of measured.fieldOwners) {
+      const boxes = exclusiveFieldBoxes(owner, measured, options);
+      if (!boxes || options.signal?.aborted || options.clock() > options.deadline) {
+        rejectNative(options, 'preparation-deadline', measured.owner.localName);
+        return false;
+      }
+      if (!boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))) {
+        rejectNative(
+          { ...options, ownerPath: owner.ownerPath },
+          'native-owner-raster-blank',
+          owner.owner.localName
+        );
+        return false;
+      }
+    }
+    return true;
+  }
   async function captureField(root, options = {}) {
-    const view = root?.ownerDocument?.defaultView;
-    const clock = () => view?.performance?.now() ?? Date.now();
-    const deadline = Math.min(
-      clock() + Math.min(160, options.preparationMs ?? 160),
-      options.deadline ?? Infinity
-    );
     let reported = false;
     const onReject = (detail) => {
       if (reported) return;
       reported = true;
       options.onReject?.(detail);
     };
-    const normalized = { ...options, onReject, deadline, fieldCapture: true };
-    let assets;
-    let canvas;
+    let capture;
     let complete = false;
+    const fieldOptions = { ...options, onReject, fieldCapture: true };
     try {
       const retained = options.retainedPixels ?? 0;
       if (!Number.isFinite(retained) || retained < 0)
-        return rejectNative(normalized, 'invalid-field-retained-capacity', root?.localName);
-      const capacity = options.caps?.layerPixels - retained;
-      normalized.caps = { ...options.caps, layerPixels: capacity };
-      assets = await captureAll(root, normalized);
-      if (!assets?.length) return rejectNative(normalized, 'native-field-empty', root?.localName);
-      if (options.signal?.aborted || clock() > deadline)
-        return rejectNative(normalized, 'preparation-deadline', root.localName);
-      const temporary = assets.transientPixels;
-      const envelope = fieldEnvelope(assets);
-      const dimensions = fieldDimensions(
-        envelope,
-        options.dpr ?? view.devicePixelRatio ?? 1,
-        settings.maxPixels
+        return rejectNative(fieldOptions, 'invalid-field-retained-capacity', root?.localName);
+      fieldOptions.caps = { ...options.caps, layerPixels: options.caps?.layerPixels - retained };
+      const context = nativeCaptureContext(root, fieldOptions, onReject);
+      if (!context) return null;
+      const { document, view, normalized } = context;
+      if (typeof view.AbortController !== 'function')
+        return rejectNative(normalized, 'native-cancellation-unavailable', root.localName);
+      const decoded = decodeNativeImages(root, view, normalized);
+      if (!(typeof decoded === 'boolean' ? decoded : await decoded))
+        return rejectNative(normalized, 'native-media-decode-failed', 'img');
+      normalized.acquisitionDeadline = Math.min(
+        normalized.deadline,
+        normalized.clock() + Math.min(80, options.acquisitionMs ?? 80)
       );
-      if (!dimensions || temporary + dimensions.width * dimensions.height > capacity)
+      const { measured } = measureNativeOwners(root, document, view, normalized, normalized.caps);
+      if (!measured.length) return rejectNative(normalized, 'native-field-empty', root.localName);
+      const envelope = fieldEnvelope(measured);
+      const dimensions = fieldDimensions(envelope, normalized.dpr, settings.maxPixels);
+      if (!dimensions) return rejectNative(normalized, 'native-texture-capacity', root.localName);
+      const fieldOwners = measured.map((owner) => ({ ...owner, dpr: dimensions.dpr }));
+      const pixelCount = dimensions.width * dimensions.height;
+      // One SVG decode, its destination canvas, and the bounded ownership-alpha
+      // readback coexist. PNG decode and sequential encoding surfaces remain charged.
+      const peak = nativeTransientPixels(fieldOwners, pixelCount) + pixelCount;
+      if (peak > normalized.caps.layerPixels)
         return rejectNative(normalized, 'field-peak-capacity', root.localName, {
           limit: 'layerPixels',
-          usage: retained + temporary + (dimensions ? dimensions.width * dimensions.height : 1),
+          usage: retained + peak,
           maximum: options.caps.layerPixels,
         });
-      canvas = root.ownerDocument.createElement('canvas');
-      canvas.width = dimensions.width;
-      canvas.height = dimensions.height;
-      const context = canvas.getContext('2d');
-      if (!context) return rejectNative(normalized, 'native-canvas-unavailable', root.localName);
-      const scaleX = canvas.width / envelope.width;
-      const scaleY = canvas.height / envelope.height;
-      for (const asset of assets) {
-        if (options.signal?.aborted || clock() > deadline)
-          return rejectNative(normalized, 'preparation-deadline', root.localName);
-        const source = asset.sourceRect || {
-          x: 0,
-          y: 0,
-          width: asset.canvas.width,
-          height: asset.canvas.height,
-        };
-        context.drawImage(
-          asset.canvas,
-          source.x,
-          source.y,
-          source.width,
-          source.height,
-          (asset.envelope.left - envelope.left) * scaleX,
-          (asset.envelope.top - envelope.top) * scaleY,
-          asset.envelope.width * scaleX,
-          asset.envelope.height * scaleY
-        );
-      }
-      if (options.signal?.aborted || clock() > deadline)
+      const measuredField = {
+        document,
+        view,
+        owner: root,
+        ownerPath: [],
+        ownerIndex: 0,
+        rect: envelope,
+        envelope,
+        lines: [],
+        text: '',
+        dpr: dimensions.dpr,
+        pixelWidth: dimensions.width,
+        pixelHeight: dimensions.height,
+        fieldOwners,
+      };
+      capture = await raster(measuredField, normalized, serializeField);
+      if (!capture) return null;
+      if (normalized.signal?.aborted || normalized.clock() > normalized.deadline)
         return rejectNative(normalized, 'preparation-deadline', root.localName);
-      const asset = fieldAsset(root, assets, canvas, envelope, dimensions.dpr);
+      const asset = fieldAsset(
+        root,
+        measured.map(fieldSource),
+        capture.canvas,
+        envelope,
+        dimensions.dpr
+      );
       complete = true;
       return asset;
     } catch {
-      return rejectNative(normalized, 'native-field-composite-failed', root?.localName);
+      return rejectNative(fieldOptions, 'native-field-composite-failed', root?.localName);
     } finally {
-      for (const asset of assets || []) asset.dispose();
-      if (!complete && canvas) canvasDisposer(canvas)();
+      if (!complete) capture?.dispose();
     }
-  }
-  function nativeRasterAsset(measured, canvas) {
-    return {
-      canvas,
-      owner: measured.owner,
-      rect: measured.rect,
-      envelope: measured.envelope,
-      lines: measured.lines,
-      dpr: measured.dpr,
-      pixelCount: measured.pixelWidth * measured.pixelHeight,
-      ownerPath: measured.ownerPath,
-      ownerIndex: measured.ownerIndex,
-      descendants: measured.descendants || 0,
-      textBytes: measured.textBytes || measured.text.length * 3,
-      textContent: measured.text,
-      paintFingerprint: measured.paintFingerprint,
-      controls: nativeControls(measured),
-      decoration: !!measured.decoration,
-      dispose: canvasDisposer(canvas),
-    };
-  }
-  function nativeRasterVisible(context, canvas, rect = null) {
-    // Every source owner keeps its own readback. Nonblank siblings cannot
-    // establish that a separate foreignObject's native paint was rasterized.
-    const region = rect || { x: 0, y: 0, width: canvas.width, height: canvas.height };
-    const sample = context.getImageData(
-      region.x + Math.floor(region.width / 2),
-      region.y + Math.floor(region.height / 2),
-      1,
-      1
-    );
-    if (sample.data[3] > 0) return true;
-    const pixels = context.getImageData(region.x, region.y, region.width, region.height).data;
-    return pixels.some((alpha, index) => index % 4 === 3 && alpha > 0);
-  }
-  function rasterNativeOwners(measured, layout, options) {
-    if (options.signal?.aborted) return Promise.resolve(null);
-    if (!measured.length) return Promise.resolve([]);
-    const { document, view } = measured[0];
-    const records = [];
-    let source;
-    let image;
-    let canvas;
-    let context;
-    let active = measured[0];
-    function release() {
-      if (canvas) canvasDisposer(canvas)();
-    }
-    function reject(code) {
-      rejectNative({ ...options, ownerPath: active.ownerPath }, code, active.owner.localName);
-    }
-    try {
-      canvas = document.createElement('canvas');
-      canvas.width = layout.width;
-      canvas.height = layout.height;
-      context = canvas.getContext('2d');
-      if (!context) throw new Error('Native raster canvas unavailable');
-      const content = measured.map((item) => {
-        active = item;
-        if (options.signal?.aborted || options.clock() > options.deadline)
-          throw new Error('Native raster preparation expired');
-        records.push({ measured: item });
-        return serializeNative({ ...item, rasterPlacement: layout.placements.get(item) });
-      });
-      source =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="' +
-        layout.width +
-        '" height="' +
-        layout.height +
-        '" viewBox="0 0 ' +
-        layout.width +
-        ' ' +
-        layout.height +
-        '">' +
-        content.join('') +
-        '</svg>';
-      image = new view.Image();
-    } catch {
-      reject(
-        options.clock() > options.deadline ? 'preparation-deadline' : 'raster-serialization-failed'
-      );
-      release();
-      return Promise.resolve(null);
-    }
-    return new Promise((resolve) => {
-      let finished = false;
-      let timeout;
-      function finish(success, code) {
-        if (finished) return;
-        finished = true;
-        view.clearTimeout(timeout);
-        options.signal?.removeEventListener('abort', abort);
-        image.onload = null;
-        image.onerror = null;
-        image.removeAttribute?.('src');
-        if (!success) {
-          reject(code || 'native-raster-failed');
-          release();
-          resolve(null);
-        } else {
-          // The packed bitmap is shared until the field compositor consumes
-          // every source rectangle. No per-owner copy and second raster pass.
-          let remaining = records.length;
-          resolve(
-            records.map(({ measured: item }) => {
-              const asset = nativeRasterAsset(item, canvas);
-              let disposed = false;
-              asset.sourceRect = {
-                ...layout.placements.get(item),
-                width: item.pixelWidth,
-                height: item.pixelHeight,
-              };
-              asset.dispose = () => {
-                if (disposed) return;
-                disposed = true;
-                if (--remaining === 0) release();
-              };
-              return asset;
-            })
-          );
-        }
-      }
-      function abort() {
-        finish(false, options.signal?.aborted ? 'capture-aborted' : 'raster-decode-failed');
-      }
-      image.onload = () => {
-        if (finished) return;
-        try {
-          if (!image.naturalWidth || !image.naturalHeight)
-            return finish(false, 'native-raster-empty');
-          context.drawImage(image, 0, 0, canvas.width, canvas.height);
-          for (const { measured: item } of records) {
-            active = item;
-            if (options.signal?.aborted || options.clock() > options.deadline)
-              return finish(false, 'preparation-deadline');
-            const { x, y } = layout.placements.get(item);
-            if (
-              !nativeRasterVisible(context, canvas, {
-                x,
-                y,
-                width: item.pixelWidth,
-                height: item.pixelHeight,
-              })
-            )
-              return finish(false, 'native-raster-blank');
-          }
-          finish(true);
-        } catch {
-          finish(false, 'native-raster-readback-failed');
-        }
-      };
-      image.onerror = abort;
-      options.signal?.addEventListener('abort', abort, { once: true });
-      const timeoutMs = Math.min(settings.decodeTimeoutMs, options.deadline - options.clock());
-      if (timeoutMs <= 0) return finish(false, 'preparation-deadline');
-      timeout = view.setTimeout(() => finish(false, 'preparation-deadline'), timeoutMs);
-      if (options.signal?.aborted) return abort();
-      try {
-        image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
-      } catch {
-        abort();
-      }
-    });
   }
   function raster(measured, options, serializer) {
     if (!measured || options.signal?.aborted) return Promise.resolve(null);
@@ -1800,7 +1725,30 @@ module.exports = function () {
           resolve(null);
           return;
         }
-        resolve(nativeRasterAsset(measured, canvas));
+        let disposed = false;
+        resolve({
+          canvas,
+          owner: measured.owner,
+          rect: measured.rect,
+          envelope: measured.envelope,
+          lines: measured.lines,
+          dpr: measured.dpr,
+          pixelCount: measured.pixelWidth * measured.pixelHeight,
+          ownerPath: measured.ownerPath,
+          ownerIndex: measured.ownerIndex,
+          descendants: measured.descendants || 0,
+          textBytes: measured.textBytes || measured.text.length * 3,
+          textContent: measured.text,
+          paintFingerprint: measured.paintFingerprint,
+          controls: nativeControls(measured),
+          decoration: !!measured.decoration,
+          dispose() {
+            if (disposed) return;
+            disposed = true;
+            canvas.width = 0;
+            canvas.height = 0;
+          },
+        });
       }
       function abort() {
         finish(false, options.signal?.aborted ? 'capture-aborted' : 'raster-decode-failed');
@@ -1811,8 +1759,23 @@ module.exports = function () {
           if (!image.naturalWidth || !image.naturalHeight)
             return finish(false, 'native-raster-empty');
           context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          if (measured.fieldOwners)
+            return finish(fieldHasNativeInk(context, measured, options), 'native-raster-blank');
           // A loaded image may silently omit foreignObject on an unsupported engine.
-          finish(nativeRasterVisible(context, canvas), 'native-raster-blank');
+          const sample = context.getImageData(
+            Math.floor(canvas.width / 2),
+            Math.floor(canvas.height / 2),
+            1,
+            1
+          );
+          if (sample.data[3] > 0) return finish(true);
+          // Headings and decoded cutouts may have a transparent center. Admit
+          // their raster only after observing actual ink somewhere in its bound.
+          const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+          finish(
+            pixels.some((alpha, index) => index % 4 === 3 && alpha > 0),
+            'native-raster-blank'
+          );
         } catch {
           finish(false, 'native-raster-readback-failed');
         }

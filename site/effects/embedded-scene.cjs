@@ -302,10 +302,18 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   const landingKey = (landing) =>
     JSON.stringify([landing?.position || [0, 0], landing?.hash || '', landing?.search || '']);
+  function scrollInset(node, property) {
+    const value = window.getComputedStyle?.(node)?.getPropertyValue(property) || '0px';
+    if (value === 'auto') return 0;
+    if (!/^-?(?:\d+\.?\d*|\.\d+)px$/.test(value)) return null;
+    const amount = Number.parseFloat(value);
+    return Number.isFinite(amount) ? amount : null;
+  }
   function place(stage, top, landing) {
+    const extent = Math.max(stage.getBoundingClientRect().height, stage.scrollHeight || 0);
+    const maximum = Math.max(0, top + extent - state.height);
     let scroll = Array.isArray(landing?.position) ? landing.position[1] : 0;
-    if (landing?.position === 'end')
-      scroll = Math.max(0, top + stage.getBoundingClientRect().height - state.height);
+    if (landing?.position === 'end') scroll = maximum;
     else if (!landing?.position && landing?.hash) {
       let id;
       try {
@@ -315,18 +323,16 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       }
       const target = [...stage.querySelectorAll('[id]')].find((node) => node.id === id);
       if (!target) return false;
-      const padding = parseFloat(
-        window.getComputedStyle(document.documentElement).scrollPaddingTop
+      const padding = scrollInset(document.documentElement, 'scroll-padding-top');
+      const margin = scrollInset(target, 'scroll-margin-top');
+      if (padding === null || margin === null) return false;
+      scroll = Math.min(
+        maximum,
+        Math.max(0, target.getBoundingClientRect().top - padding - margin)
       );
-      const margin = parseFloat(window.getComputedStyle(target).scrollMarginTop);
-      const inset =
-        (Number.isFinite(padding) ? padding : 0) + (Number.isFinite(margin) ? margin : 0);
-      const maximum = Math.max(0, top + stage.getBoundingClientRect().height - state.height);
-      // Match native scrollIntoView: its start honors the header clearance and
-      // target margin, then clamps to the destination document's scroll range.
-      scroll = Math.max(0, Math.min(maximum, target.getBoundingClientRect().top - inset));
     }
     if (!Number.isFinite(scroll) || scroll < 0) return false;
+    scroll = Math.min(maximum, scroll);
     stage.style.setProperty('--embedded-stage-top', top - scroll + 'px');
     return true;
   }
@@ -396,6 +402,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         search: landing?.search || '',
         hash: landing?.hash || '',
       });
+      window.SiteEffects.preparePreview?.(stage, data.page);
       if (!place(stage, top, landing)) {
         reject('incoming', data.page, 'landing-unavailable');
         return false;

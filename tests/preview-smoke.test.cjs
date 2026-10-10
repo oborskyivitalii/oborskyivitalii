@@ -6,6 +6,9 @@ const {
   artifactFile,
   verifyResponse,
   navigateDocument,
+  trackResponses,
+  drainResponses,
+  responseAction,
   identity,
   verifyRuntimeIdentity,
   state,
@@ -369,6 +372,127 @@ test('document navigation keeps failed exact-byte checks as failures', async () 
   );
   assert.equal(navigated, false);
   assert.equal(checked.size, 0, 'failed body never qualifies as verified');
+});
+test('preview actions drain original requests with late headers and bodies before invalidation', async () => {
+  const { EventEmitter } = require('node:events');
+  for (const action of [
+    'goto',
+    'route click',
+    'back',
+    'forward',
+    'theme',
+    'motion',
+    'completion',
+  ]) {
+    const page = new EventEmitter(),
+      checked = new Set(),
+      errors = [],
+      checks = trackResponses(page, base, manifest, checked, errors);
+    let invalidated = false,
+      releaseBody;
+    const body = new Promise((resolve) => {
+      releaseBody = resolve;
+    });
+    function request(pathname) {
+      const original = { url: () => base + pathname };
+      page.emit('request', original);
+      return original;
+    }
+    function headers(original, pendingBody) {
+      const pathname = new URL(original.url()).pathname;
+      page.emit('response', {
+        ...response(pathname),
+        request: () => original,
+        body: async () => {
+          await pendingBody;
+          assert.equal(invalidated, false, action + ' discarded original response bytes');
+          return Buffer.from(content[artifactFile(original.url(), base, manifest)]);
+        },
+      });
+    }
+    const first = request('/research');
+    page.goto = async () => {
+      invalidated = true;
+    };
+    const changing =
+      action === 'goto'
+        ? navigateDocument(page, base + '/', checks)
+        : responseAction(checks, () => {
+            invalidated = true;
+          });
+    assert.equal(invalidated, false, action + ' must await requests before headers');
+    const late = request('/');
+    headers(first, body);
+    releaseBody();
+    await checks[0];
+    assert.equal(invalidated, false, action + ' must await newly observed request headers');
+    headers(late, Promise.resolve());
+    await changing;
+    await drainResponses(checks);
+    assert.equal(invalidated, true);
+    assert.deepEqual([...checked].sort(), ['index.html', 'research.html']);
+    assert.deepEqual(errors, []);
+  }
+});
+test('tracked corrupt original bodies fail before preview actions and never qualify as verified', async () => {
+  const { EventEmitter } = require('node:events');
+  const page = new EventEmitter(),
+    checked = new Set(),
+    errors = [],
+    checks = trackResponses(page, base, manifest, checked, errors),
+    original = { url: () => base + '/research' };
+  let changed = false;
+  page.emit('request', original);
+  const changing = responseAction(checks, () => {
+    changed = true;
+  });
+  page.emit('response', {
+    ...response('/research', { body: '<h1>Corrupt research</h1>' }),
+    request: () => original,
+  });
+  await assert.rejects(changing, /served bytes research\.html/);
+  assert.equal(changed, false);
+  assert.equal(checked.size, 0);
+  assert.match(errors[0], /served bytes research\.html/);
+});
+test('request failures remain failures while every other original body is drained', async () => {
+  const { EventEmitter } = require('node:events');
+  const page = new EventEmitter(),
+    checked = new Set(),
+    errors = [],
+    checks = trackResponses(page, base, manifest, checked, errors),
+    failed = {
+      url: () => base + '/research',
+      failure: () => ({ errorText: 'net::ERR_FAILED' }),
+    },
+    valid = { url: () => base + '/' };
+  let releaseBody,
+    changed = false;
+  const pendingBody = new Promise((resolve) => {
+    releaseBody = resolve;
+  });
+  page.emit('request', failed);
+  page.emit('request', valid);
+  page.emit('response', {
+    ...response('/'),
+    request: () => valid,
+    body: async () => {
+      await pendingBody;
+      return Buffer.from(content['index.html']);
+    },
+  });
+  const changing = responseAction(checks, () => {
+    changed = true;
+  });
+  const rejected = assert.rejects(changing, /net::ERR_FAILED/);
+  page.emit('requestfailed', failed);
+  await checks[0].catch(() => {});
+  assert.equal(changed, false);
+  releaseBody();
+  await rejected;
+  assert.deepEqual([...checked], ['index.html']);
+  assert.equal(changed, false);
+  assert.match(errors[0], /net::ERR_FAILED/);
 });
 test('redirect and final-response chain keeps the full hash requirement', async () => {
   const checked = new Set(),

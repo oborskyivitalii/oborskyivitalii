@@ -8,6 +8,8 @@ const {
   endScrollGate,
   atPageEnd,
   atPageStart,
+  prepareEndScrollFooter,
+  descriptor,
   createPresentation,
 } = require('../site/effects/flight.cjs');
 const { decorateFlight: decorate } = require('../tools/site/effects.cjs');
@@ -115,6 +117,161 @@ function paintedSnapshot(overrides = {}) {
   return { painted: true, active: true, progress: 0.12, frameId: 1, ...overrides };
 }
 
+function footerFixture({ readyState = 'complete', preference = null } = {}) {
+  const documentEvents = {},
+    windowEvents = {},
+    stored = new Map([['vo.end-scroll', preference]]);
+  let queries = 0,
+    writes = 0;
+  const document = {
+    readyState,
+    body: { dataset: { page: 'index' } },
+    documentElement: { scrollHeight: 2000 },
+    createElement(tag) {
+      return {
+        tag,
+        ownerDocument: document,
+        children: [],
+        events: {},
+        hidden: false,
+        style: { removeProperty() {} },
+        setAttribute(name, value) {
+          this[name] = value;
+        },
+        addEventListener(name, callback) {
+          this.events[name] = callback;
+        },
+        append(node) {
+          this.children.push(node);
+          node.parent = this;
+        },
+        remove() {
+          this.parent.children = this.parent.children.filter((node) => node !== this);
+        },
+        querySelector(selector) {
+          return this.children.find((node) =>
+            selector === 'footer' ? node.tag === 'footer' : node.className === selector.slice(1)
+          );
+        },
+      };
+    },
+    addEventListener(name, callback) {
+      documentEvents[name] = callback;
+    },
+    getElementById(id) {
+      queries++;
+      return id === 'site-content' ? live : null;
+    },
+    querySelector(selector) {
+      queries++;
+      return selector === '.display-controls' ? controls : null;
+    },
+  };
+  const root = () => {
+    const node = document.createElement('div');
+    node.append(document.createElement('footer'));
+    return node;
+  };
+  const live = root(),
+    controls = document.createElement('div'),
+    window = {
+      SiteEffects: {},
+      SiteNavigation: {
+        primaryRoutes: ['index', 'research', 'writing', 'talks', 'credits'],
+        go() {},
+      },
+      addEventListener(name, callback) {
+        windowEvents[name] = callback;
+      },
+    },
+    context = {
+      document,
+      window,
+      performance: { now: () => 0 },
+      scrollY: 0,
+      innerHeight: 800,
+      localStorage: {
+        getItem: (key) => stored.get(key),
+        setItem(key, value) {
+          writes++;
+          stored.set(key, value);
+        },
+      },
+    };
+  vm.runInNewContext(descriptor().controls, context);
+  return {
+    document,
+    documentEvents,
+    windowEvents,
+    live,
+    root,
+    controls,
+    window,
+    stored,
+    effects: () => [queries, writes, Object.keys(documentEvents), Object.keys(windowEvents)],
+  };
+}
+
+test('inert footer preparation shares native route labels, visibility and control preference', () => {
+  const fixture = footerFixture(),
+    preview = fixture.window.SiteEffects.preparePreview,
+    input = fixture.controls.children[0].children[0];
+  assert.equal(input['aria-label'], 'Scroll between pages');
+  const expected = [
+    ['index', 'research', 'Research'],
+    ['research', 'writing', 'Writing'],
+    ['writing', 'talks', 'Talks'],
+    ['talks', 'credits', 'Credits'],
+    ['credits', null, null],
+  ];
+  for (const enabled of [false, true]) {
+    input.checked = enabled;
+    input.events.change();
+    assert.equal(fixture.stored.get('vo.end-scroll'), enabled ? 'on' : 'off');
+    for (const [page, route, name] of expected) {
+      fixture.document.body.dataset.page = page;
+      fixture.windowEvents['site:page-mount']();
+      const stage = fixture.root(),
+        footer = stage.querySelector('footer'),
+        before = fixture.effects(),
+        staged = preview(stage, page),
+        native = fixture.live.querySelector('footer').querySelector('.scroll-continue');
+      assert.deepEqual(fixture.effects(), before, 'preparation cannot add global effects');
+      if (!route) {
+        assert.equal(staged, null);
+        assert.equal(native, undefined);
+        assert.equal(footer.children.length, 0);
+        continue;
+      }
+      assert.equal(staged.href, '?view=' + route);
+      assert.equal(staged.textContent, 'Keep scrolling for ' + name + ' ↓');
+      assert.equal(staged.hidden, !enabled);
+      for (const key of ['tag', 'className', 'href', 'textContent', 'hidden'])
+        assert.equal(staged[key], native[key], 'staged footer changed native ' + key);
+      assert.equal(preview(stage, page), staged, 'repeated preparation must reuse its hint');
+      assert.equal(footer.children.length, 1);
+      assert.deepEqual(staged.events, {});
+    }
+  }
+});
+
+test('serialized preview is available before DOMReady and confines changes to its supplied root', () => {
+  const fixture = footerFixture({ readyState: 'loading', preference: 'off' }),
+    stage = fixture.root(),
+    before = fixture.effects(),
+    preview = fixture.window.SiteEffects.preparePreview;
+  const hint = preview(stage, 'research');
+  assert.equal(hint.textContent, 'Keep scrolling for Writing ↓');
+  assert.equal(hint.hidden, true);
+  assert.deepEqual(fixture.effects(), before);
+  assert.equal(fixture.live.querySelector('footer').children.length, 0);
+  assert.equal(preview(stage, 'credits'), null);
+  assert.equal(stage.querySelector('footer').children.length, 0);
+  assert.equal(preview(null, 'index'), null);
+  assert.equal(prepareEndScrollFooter(stage, 'index', null, true), null);
+  assert.equal(preview(stage, 'invalid'), null);
+});
+
 test('fragments apply by default, with explicit preferences and inactive travel respected', () => {
   for (const storageUnavailable of [false, true]) {
     const fixture = presentationFixture({ storageUnavailable });
@@ -191,6 +348,52 @@ test('world preparation shares landing context, stages intermediate rooms and re
     controller.signal
   );
   assert.equal(calls.at(-1).name, 'prime', 'an aborted preparation cannot acquire outgoing paint');
+});
+
+test('next-page warming prepares the settled source only after a ready, uncancelled destination', async () => {
+  const calls = [];
+  let resolve;
+  const embedded = {
+    prime(data, top, landing, options) {
+      calls.push({ name: 'prime', data, top, landing, signal: options.signal });
+      return new Promise((done) => {
+        resolve = done;
+      });
+    },
+    async prepareDeparture(owner, options) {
+      calls.push({ name: 'depart', owner, signal: options.signal, cacheOnly: options.cacheOnly });
+    },
+  };
+  const fixture = presentationFixture({ embedded });
+  const controller = new AbortController();
+  const data = { page: 'research' };
+  const warm = fixture.presentation.prepareNext(data, controller.signal);
+  assert.deepEqual(
+    calls.map(({ name }) => name),
+    ['prime']
+  );
+  assert.equal(calls[0].data, data);
+  assert.equal(calls[0].top, fixture.content.offsetTop);
+  assert.equal(calls[0].landing, null);
+  resolve(true);
+  await warm;
+  assert.equal(calls.at(-1).owner, fixture.content);
+  assert.equal(calls.at(-1).signal, controller.signal);
+  assert.equal(calls.at(-1).cacheOnly, true);
+
+  const failed = fixture.presentation.prepareNext(data, controller.signal);
+  resolve(false);
+  await failed;
+  assert.equal(calls.at(-1).name, 'prime', 'failed destination capture cannot prewarm its source');
+  const aborted = fixture.presentation.prepareNext(data, controller.signal);
+  controller.abort();
+  resolve(true);
+  await aborted;
+  assert.equal(calls.at(-1).name, 'prime', 'cancelled warming cannot capture a stale source');
+  const count = calls.length;
+  const disabled = presentationFixture({ embedded, preferences: { 'vo.fragment-preview': 'off' } });
+  await disabled.presentation.prepareNext(data);
+  assert.equal(calls.length, count);
 });
 
 test('speculative capture waits for startup idle and navigation cancels its queued work', async () => {

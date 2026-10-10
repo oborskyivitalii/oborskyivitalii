@@ -64,11 +64,9 @@
   position: absolute;
   bottom: 2px;
   left: 0;
-  right: 0;
+  width: calc(100% * var(--scroll-intent, 0));
   height: 2px;
   background: var(--accent);
-  transform: scaleX(var(--scroll-intent, 0));
-  transform-origin: left;
 }
 .scroll-continue[hidden] {
   display: none;

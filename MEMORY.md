@@ -9,12 +9,10 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   depths, give forward breakup fixed source-world poses and preserve reverse
   host retention. Shared native decode avoids per-owner bitmap copies; idle
   preparation also captures the current page. See the latest section of the
-  same versioned #49 handoff. Published2706885 passed Basic/Navigation/Acceptance;
-  hosted37975975394 exposed warm-cache cleanup;4cfe9df fixes it. Hosted37977436274
-  passed all six explicit embedded journeys at both widths (Day/Night), then
-  caught observer readiness/interruption timing failures. Follow-up fixes those
-  observations without changing the runtime. Slow manual cold capture can still
-  fall back; native-device/paired-cost/independent review remain open.
+  same versioned #49 handoff.4cfe fixed warm-cache cleanup and passed six
+  explicit journeys per width; its later readiness/retarget observer failures
+  are corrected in e806. These histories stay preserved alongside direct capture,
+  rear UV, strict native landing and original-response draining; verify live proof.
 
 - Main revalidated at `338e3ff341dc35b64cba7854289e1385cbaf1562`: approved
   harness simplification PR #66 merged; #65 is closed. Revalidate live state.
@@ -35,18 +33,16 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   wide fallback and an offscreen verifier error; the maintainer rejected fixed
   anchors and post-arrival assembly. Fetch live PR for the corrected source,
   current checks and actual rendered proof before presenting a new preview.
-- Resumed at7002fa6: Basic/Navigation/Acceptance passed; preview37967264928
-  failed on a pending-response-body observation race. Manual1363×936 cold
-  Auto Night also found Research acquisition timeout; Day Home departure timed
-  out. Focused native geometry/ancestor work and document-response drain fixes
-  are recorded in the same handoff; revalidate their live head and hosted proof.
-- Resumed candidate8abce999 fixed all four ordinary/no-Canvas smoke lanes and
-  cold Auto Night Research acquisition. Preview37970633915 still found desktop
-  departure preparation timeout and compact Credits→Home native mismatch.
-  Actual compact forward/skip/reverse checkpoint rasters show painted solids;
-  independent review retains faint resting content and weak corridor perception.
-  Single-decode field packing and native hash-inset/clamp fixes passed independent
-  source review and46+23 focused tests; fetch the live head and hosted results.
+- Exact8abce99: Basic/Navigation/Acceptance passed; preview37970633915
+  fixed the response-body race and verified mobile Day/Night paired/reverse/skip
+  journeys, then failed desktop Home preparation and a Credits→Home hash landing.
+  Manual cold Auto Night showed real Research and successful pair/skip travel.
+  The same handoff records single-SVG capture, stronger resting content contrast,
+  native hash/footer parity and unchanged caps; revalidate final head/hosted proof.
+- Remote b79284e preserved the resumed capture/hash fixes; its preview37973018629
+  published ac2165fd, then the evidence writer exceeded the single-string limit.
+  Retain this candidate/history; direct field paint and lossless bounded JSON
+  serialization are the current corrections. Verify the next exact hosted head.
 
 ## Decisions
 
