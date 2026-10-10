@@ -1128,13 +1128,52 @@ module.exports = function () {
       bitmap.height = 0;
     }
   }
-  function nativeMarkup(measured, prefix = '') {
+  function sharedNativeStyle(owners, pseudo = null) {
+    const common = new Map();
+    let first = true;
+    function intersect(style) {
+      if (first) {
+        for (const property of nativeProperties) {
+          const resolved = value(style, property);
+          if (resolved) common.set(property, resolved);
+        }
+        first = false;
+        return;
+      }
+      for (const [property, resolved] of common) {
+        if (value(style, property) !== resolved) common.delete(property);
+      }
+    }
+    for (const owner of owners) {
+      for (const record of owner.nodes) {
+        const style = record[pseudo || 'style'];
+        if (pseudo && inactive(style)) continue;
+        intersect(style);
+      }
+    }
+    // Only values identical in every captured element enter this SVG-local
+    // rule. Node overrides, dimensions and owner pseudos keep their precedence.
+    const declarations = [...common].map(([property, resolved]) => property + ':' + resolved);
+    const selector = '.embedded-native-paint' + (pseudo ? '::' + pseudo : '');
+    return { common, css: selector + '{' + declarations.join(';') + '}' };
+  }
+  function sharedNativeStyles(owners) {
+    return {
+      style: sharedNativeStyle(owners),
+      before: sharedNativeStyle(owners, 'before'),
+      after: sharedNativeStyle(owners, 'after'),
+    };
+  }
+  function nativeMarkup(measured, prefix, shared) {
     const { nodes, rect, envelope } = measured;
     const records = new Map(nodes.map((record, index) => [record.node, { ...record, index }]));
     const css = [];
-    function declarations(style, properties) {
+    function declarations(style, properties, common = null) {
       return properties
-        .map((property) => (value(style, property) ? property + ':' + value(style, property) : ''))
+        .map((property) => {
+          const resolved = value(style, property);
+          return resolved && common?.get(property) !== resolved ? property + ':' + resolved : '';
+        })
         .filter(Boolean);
     }
     function render(node) {
@@ -1147,7 +1186,7 @@ module.exports = function () {
       const className = 'embedded-node-' + prefix + index;
       const vector = node.namespaceURI === 'http://www.w3.org/2000/svg';
       const properties = vector ? [...nativeProperties, ...vectorProperties] : nativeProperties;
-      const styles = declarations(style, properties);
+      const styles = declarations(style, properties, shared.style.common);
       styles.push('visibility:visible', 'animation:none', 'transition:none');
       styles.push(...nativeDimensions(style, box, vector));
       if (node === measured.owner) {
@@ -1172,7 +1211,7 @@ module.exports = function () {
             name +
             '{' +
             [
-              ...declarations(pseudo, nativeProperties),
+              ...declarations(pseudo, nativeProperties, shared[name].common),
               'content:' + value(pseudo, 'content'),
               'visibility:visible',
             ].join(';') +
@@ -1180,7 +1219,7 @@ module.exports = function () {
         );
       }
       const attributes = [
-        'class="' + className + '"',
+        'class="embedded-native-paint ' + className + '"',
         'style="' + escapeXML(styles.join(';')) + '"',
       ];
       if (vector) {
@@ -1240,11 +1279,21 @@ module.exports = function () {
     );
   }
   function serializeNative(measured) {
-    return nativeSVG(measured, nativeMarkup(measured));
+    const shared = sharedNativeStyles([measured]);
+    const markup = nativeMarkup(measured, '', shared);
+    return nativeSVG(measured, {
+      ...markup,
+      css: [...Object.values(shared).map((rule) => rule.css), ...markup.css],
+    });
   }
   function serializeField(measured) {
+    const shared = sharedNativeStyles(measured.fieldOwners);
     const fragments = measured.fieldOwners.map((owner) => {
-      const fragment = nativeMarkup({ ...owner, dpr: measured.dpr }, owner.ownerIndex + '-');
+      const fragment = nativeMarkup(
+        { ...owner, dpr: measured.dpr },
+        owner.ownerIndex + '-',
+        shared
+      );
       const placement = [
         'position:absolute',
         'overflow:hidden',
@@ -1260,7 +1309,10 @@ module.exports = function () {
       };
     });
     return nativeSVG(measured, {
-      css: fragments.flatMap((fragment) => fragment.css),
+      css: [
+        ...Object.values(shared).map((rule) => rule.css),
+        ...fragments.flatMap((fragment) => fragment.css),
+      ],
       content: fragments.map((fragment) => fragment.content).join(''),
     });
   }

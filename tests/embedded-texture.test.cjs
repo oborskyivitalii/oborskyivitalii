@@ -584,6 +584,98 @@ function pageFixture(options = {}) {
 const pageCaps = { owners: 32, descendants: 1500, textBytes: 32768, layerPixels: 8000000 };
 const pageOptions = { ...viewport, caps: pageCaps };
 
+function serializedNativeStyles(svg, pseudo = '') {
+  const unescape = (source) =>
+    source.replace(
+      /&(amp|lt|gt|quot|apos);/g,
+      (_, entity) => ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" })[entity]
+    );
+  const declarations = (source) =>
+    Object.fromEntries(
+      unescape(source)
+        .split(';')
+        .filter(Boolean)
+        .map((declaration) => {
+          const separator = declaration.indexOf(':');
+          return [declaration.slice(0, separator), declaration.slice(separator + 1)];
+        })
+    );
+  const stylesheet = unescape(svg.match(/<style>([\s\S]*?)<\/style>/)[1]);
+  const rules = [...stylesheet.matchAll(/\.([\w-]+)(::before|::after)?\{([^}]*)\}/g)];
+  return [...svg.matchAll(/<(p|strong|span|a) class="([^"]+)" style="([^"]*)"/g)].map(
+    ([, tag, classes, inline]) => {
+      const names = classes.split(' ');
+      const styles = {};
+      for (const [, name, target, content] of rules) {
+        if ((target || '') === pseudo && names.includes(name))
+          Object.assign(styles, declarations(content));
+      }
+      return { tag, styles: pseudo ? styles : { ...styles, ...declarations(inline) } };
+    }
+  );
+}
+
+test('resolved native styles preserve differences, missing values and measured geometry', async () => {
+  const f = pageFixture();
+  const first = new f.Node('p', 'First native owner', {}, { width: 400 });
+  const emphasis = new f.Node(
+    'strong',
+    'Distinct native emphasis',
+    { display: 'inline', color: 'rgb(210, 30, 80)', 'font-weight': '700', 'letter-spacing': '' },
+    { left: 40, top: 65, width: 170, height: 25 }
+  );
+  first.append(emphasis);
+  const second = new f.Node(
+    'p',
+    'Second native owner',
+    { color: 'rgb(10, 80, 150)', 'line-height': '32px' },
+    { top: 220, width: 240, height: 96 }
+  );
+  f.main.append(first, second);
+  const capture = await embeddedTexture().captureField(f.root, pageOptions);
+  assert.ok(capture);
+  const [paragraph, strong, other] = serializedNativeStyles(f.sources[0]);
+  assert.equal(paragraph.styles.color, 'rgb(52, 74, 83)');
+  assert.equal(paragraph.styles['line-height'], '27.2px');
+  assert.equal(paragraph.styles['letter-spacing'], 'normal');
+  assert.equal(paragraph.styles.width, '400px');
+  assert.equal(strong.styles.color, 'rgb(210, 30, 80)');
+  assert.equal(strong.styles['font-weight'], '700');
+  assert.equal(strong.styles['letter-spacing'], undefined);
+  assert.equal(other.styles.color, 'rgb(10, 80, 150)');
+  assert.equal(other.styles['line-height'], '32px');
+  assert.equal(other.styles.width, '240px');
+  assert.equal(other.styles.height, '96px');
+  for (const node of [paragraph, strong, other]) {
+    assert.equal(
+      node.styles['font-family'],
+      f.view.getComputedStyle(first).getPropertyValue('font-family')
+    );
+    assert.equal(node.styles.visibility, 'visible');
+    assert.equal(node.styles.animation, 'none');
+  }
+  capture.dispose();
+});
+
+test('resolved native style reuse stays inside one capture across a theme change', async () => {
+  const f = pageFixture();
+  const owner = new f.Node('p', 'Native text retains its current theme');
+  f.main.append(owner);
+  const textures = embeddedTexture();
+  const first = await textures.captureField(f.root, pageOptions);
+  assert.ok(first);
+  owner.computed.color = 'rgb(241, 242, 245)';
+  owner.computed['background-color'] = 'rgb(20, 25, 31)';
+  const second = await textures.captureField(f.root, pageOptions);
+  assert.ok(second);
+  assert.equal(serializedNativeStyles(f.sources[0])[0].styles.color, 'rgb(52, 74, 83)');
+  const current = serializedNativeStyles(f.sources[1])[0].styles;
+  assert.equal(current.color, 'rgb(241, 242, 245)');
+  assert.equal(current['background-color'], 'rgb(20, 25, 31)');
+  first.dispose();
+  second.dispose();
+});
+
 function opaqueHeaderFixture(options = {}) {
   const f = pageFixture(options);
   const html = new f.Node('html', '', {}, { left: 0, top: 0, width: viewport.width, height: 6000 });
@@ -2605,7 +2697,14 @@ test('the native next-route aside retains its independent border and both child 
   assert.match(f.sources[0], /border-top:1px solid rgb\(51, 70, 76\)/);
   assert.match(f.sources[0], /<p /);
   assert.match(f.sources[0], /<a /);
-  assert.equal((f.sources[0].match(/background-color:rgba\(17, 28, 34, 0\.72\)/g) || []).length, 2);
+  const papers = serializedNativeStyles(f.sources[0], '::before').filter(
+    ({ styles }) => styles.content !== undefined
+  );
+  assert.equal(papers.length, 2);
+  assert.deepEqual(
+    papers.map(({ styles }) => styles['background-color']),
+    ['rgba(17, 28, 34, 0.72)', 'rgba(17, 28, 34, 0.72)']
+  );
   assert.equal(
     textures.matchesField(f.root, field.sourceOwners, {
       ...pageOptions,

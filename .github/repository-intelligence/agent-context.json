@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "edda6f6f213be69c30e2666a7eb7e52cac7410d20cd960f68a02debac2d99851",
+    "digest": "c59ad6ec5adc4c600acc4896e2fc3521af9a210ebe0ea762767323622df5f9fb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "9209465007edb64df1729b3081e205eb1d43b22f462badef29b7cd06a31cc8ff"
+        "sha256": "e4432a753c930f2f803b0dfa2cb55f1fe85bd4b5a99c75ccae7d73d855dd9c0c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "be67a27b666944d60915c3142f3edc0c4158b158f9dbae9b07a1ea58b31ddfe1"
+        "sha256": "e34873ba5d0283db36bf565183fd590ce73b008328e14074f0cb5acd8f2dc949"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9c5c24398a976462d247a381ae798abcc6d121d80822b23d6b6c9cca5b090460"
+        "sha256": "6f8d66cbcc8fe5065eec88d7c50ff4e820813ae683aa0e47242aa205bd619b4d"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -755,7 +755,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "8c46964eb4bc39d1d00a07113d41858e915b45bfd3a58b056a692b4301549c30"
+        "sha256": "4ea31066b66d2aff1ef0faa4f7aa1961cfa907f88b944f2e0a4fd02160fb2065"
       },
       {
         "path": "review/issue-49/2026-10-10-fractal-evidence.tar.gz",
@@ -766,6 +766,11 @@
         "path": "review/issue-49/2026-10-10-fractal-traces.tar.gz",
         "identity_mode": "content",
         "sha256": "6be20a36fb290d98ba673dab7f1457d20fe7b7ecd1dcf42851743a8fe9a720f0"
+      },
+      {
+        "path": "review/issue-49/2026-10-10-native-raster-evidence.tar.gz",
+        "identity_mode": "content",
+        "sha256": "ebb04dc665aaaa621090d07d3677e7f5283eb0b75ca1c8bd340196bb0a28c55a"
       },
       {
         "path": "review/issue-49/2026-10-10-performance.json",
@@ -4665,7 +4670,7 @@
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "1af1ce23c932092b7eb8d6311107cde18e6f61b831c3bc90fb704e54259ce952"
+        "sha256": "f39addb9547385756955f09a96bfb049de23d8359a90fdad44150069064c7b23"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5110,7 +5115,7 @@
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "88b24261752eb9a862aabf3789a7dc00188ef4edaad0340c0a9bae385fc43910"
+        "sha256": "d2f79094629e874ce95f6bd023f270aee8a72dd2de1232fe9c26addf93955cb0"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -7901,6 +7906,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-10-fractal-traces.tar.gz"
+    },
+    {
+      "path": "review/issue-49/2026-10-10-native-raster-evidence.tar.gz",
+      "kind": "file",
+      "purpose": "Inert source-bound cold WebKit raster reports, original failed attempts and warm native-pixel parity evidence; no active runtime or device/release admission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-native-raster-evidence.tar.gz"
     },
     {
       "path": "review/issue-49/2026-10-10-performance.json",
