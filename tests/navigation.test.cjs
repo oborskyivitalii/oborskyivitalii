@@ -376,6 +376,7 @@ function routeNavigationHarness(options = {}) {
     present() {},
   };
   if (options.warm) presentation.prepareNext = (data) => warmed.push(data.page);
+  if (options.prepareTransition) presentation.prepareTransition = options.prepareTransition;
   const context = {
     window,
     document,
@@ -630,6 +631,45 @@ test('neighbor warming coalesces page, theme and resize triggers into one pendin
   assert.equal(h.api.pendingRoute(), null);
   assert.deepEqual(h.mounts, [], 'speculative warming never mounts content or changes history');
   assert.deepEqual(h.historyEntries, []);
+});
+
+test('Research warms Home through the same verified route cache after arrival', async () => {
+  const h = routeNavigationHarness({ warm: true });
+  h.api.go('research');
+  await h.resolve('research');
+  await h.arrive();
+  await new Promise(setImmediate);
+  const read = h.reads.find((entry) => entry.next === 'index' && !entry.resolved);
+  assert.ok(read, 'the reverse destination is prepared while Research is settled');
+  assert.equal(read.signal.aborted, false);
+  await h.resolve('index');
+  assert.deepEqual(h.warmed, ['index']);
+  assert.equal(h.page(), 'research', 'prewarming never mounts the destination');
+});
+
+test('retarget during asynchronous solid capture cannot start a stale flight', async () => {
+  const preparations = [];
+  const h = routeNavigationHarness({
+    prepareTransition(data, itinerary, signal) {
+      return new Promise((resolve) => preparations.push({ data, itinerary, signal, resolve }));
+    },
+  });
+  h.api.go('research');
+  await h.resolve('research');
+  assert.equal(preparations.length, 1);
+  assert.equal(h.flights.length, 0);
+  h.api.go('writing');
+  assert.equal(preparations[0].signal.aborted, true);
+  preparations[0].resolve();
+  await new Promise(setImmediate);
+  assert.equal(h.flights.length, 0, 'cancelled capture cannot mount or animate Research');
+  await h.resolve('writing');
+  preparations[1].resolve();
+  await new Promise(setImmediate);
+  assert.equal(h.flights.length, 1);
+  assert.equal(h.flights[0].next, 'writing');
+  await h.arrive();
+  assert.equal(h.page(), 'writing');
 });
 
 test('navigation aborts stale neighbor warming and each successful Home return warms again', async () => {

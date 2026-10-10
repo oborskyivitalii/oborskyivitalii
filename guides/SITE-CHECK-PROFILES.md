@@ -155,11 +155,14 @@ header clicks, edge landing, footer/cross-links, history and VO. It retains orig
 timing/resource limits, exact heading line handoff and Off cleanup. These targeted
 observations do not replace the full release/device matrix or paired-cost gate.
 
-The next scoped amendment adds AC15 for one Home-to-Research introductory
-paragraph embedded in the shared fractal before navigation. Permanent
+The initial AC15 prototype embedded one Home-to-Research introductory paragraph.
+The 9 October maintainer amendment extends that same owner to all visible
+Home/Research content in both directions, with shared bounded departure and
+arrival resources. Permanent
 `embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
 `embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
-native paragraph/backdrop capture and the shared scene/prewarm/handoff lifecycle.
+native text/paper/link/list and decoded-media capture plus the shared
+paired scene/prewarm/departure/handoff lifecycle.
 They are selected for relevant PR changes, staging and production; the owning
 issue49 policy selects them with existing fragment, scene/router and effect
 delivery guards. Their canonical owners are the three corresponding

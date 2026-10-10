@@ -638,7 +638,8 @@
     return result;
   }
   async function prepareNeighbor() {
-    if (page !== 'index' || request || !presentation?.prepareNext) return;
+    const neighbor = page === 'index' ? 'research' : page === 'research' ? 'index' : null;
+    if (!neighbor || request || !presentation?.prepareNext) return;
     if (presentation.canPrepareNext?.() === false) return;
     if (warmRequest) {
       warmAgain = true;
@@ -649,9 +650,9 @@
     warmRequest = controller;
     const timeout = window.setTimeout(() => controller.abort(), 8000);
     try {
-      const data = await read('research', controller.signal);
-      if (!controller.signal.aborted && own === serial && page === 'index' && !request)
-        await presentation.prepareNext(data);
+      const data = await read(neighbor, controller.signal);
+      if (!controller.signal.aborted && own === serial && !request)
+        await presentation.prepareNext(data, controller.signal);
     } catch {
       // Speculative decoration never blocks verified ordinary navigation.
     } finally {
@@ -704,6 +705,17 @@
       const prepared = prepare(data);
       const animate =
         !initial && primaryRoutes.includes(page) && primaryRoutes.includes(next) && motionAllowed();
+      const itinerary = {
+        from: page,
+        to: next,
+        landing: { position, hash: url.hash, search: url.search },
+        direction: window.SiteScene?.direction?.(next) ?? window.SiteRoutes.direction(page, next),
+      };
+      if (animate && presentation?.prepareTransition) {
+        await presentation.prepareTransition(data, itinerary, controller.signal);
+        if (own !== serial) return;
+        if (controller.signal.aborted) throw Error('Route preparation deadline');
+      }
       await flight(
         next,
         animate,
@@ -731,12 +743,7 @@
         own,
         departure,
         { position, hash: url.hash, search: url.search },
-        {
-          from: page,
-          to: next,
-          landing: { position, hash: url.hash, search: url.search },
-          direction: window.SiteScene?.direction?.(next) ?? window.SiteRoutes.direction(page, next),
-        }
+        itinerary
       );
       // Arrival removes the content transform. Its temporary overflow/offset
       // must not remain the page's scroll range or semantic waypoint geometry.

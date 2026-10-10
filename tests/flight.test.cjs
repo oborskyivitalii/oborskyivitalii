@@ -32,6 +32,7 @@ function presentationFixture(options = {}) {
       failed: false,
     },
     effects = {
+      embedded: options.embedded,
       cameraView(...args) {
         calls.push({ name: 'cameraView', args });
         return options.view;
@@ -133,6 +134,71 @@ test('fragments apply by default, with explicit preferences and inactive travel 
   assert.equal(optedOut.stored.get('vo.fragment-preview'), 'on');
   optedOut.presentation.begin(true);
   assert.equal(optedOut.called('begin').length, 1);
+});
+
+test('paired solid preparation shares landing context and skips disabled or unrelated routes', async () => {
+  const calls = [];
+  const embedded = {
+    async prime(data, top, landing, options) {
+      calls.push({ name: 'prime', page: data.page, top, landing, signal: options.signal });
+    },
+    async prepareDeparture(owner, options) {
+      calls.push({ name: 'depart', owner, signal: options.signal });
+    },
+  };
+  const fixture = presentationFixture({ embedded });
+  const controller = new AbortController();
+  for (const [from, to] of [
+    ['index', 'research'],
+    ['research', 'index'],
+  ]) {
+    const landing = { position: [0, 780] };
+    await fixture.presentation.prepareTransition(
+      { page: to },
+      { from, to, landing },
+      controller.signal
+    );
+    assert.equal(calls.at(-2).landing, landing);
+    assert.equal(calls.at(-2).page, to);
+    assert.equal(calls.at(-1).owner, fixture.content);
+    assert.equal(calls.at(-1).signal, controller.signal);
+  }
+  const count = calls.length;
+  await fixture.presentation.prepareTransition(
+    { page: 'writing' },
+    { from: 'index', to: 'writing' }
+  );
+  const disabled = presentationFixture({ embedded, preferences: { 'vo.fragment-preview': 'off' } });
+  await disabled.presentation.prepareTransition(
+    { page: 'research' },
+    { from: 'index', to: 'research' }
+  );
+  assert.equal(calls.length, count);
+  controller.abort();
+  await fixture.presentation.prepareTransition(
+    { page: 'research' },
+    { from: 'index', to: 'research' },
+    controller.signal
+  );
+  assert.equal(calls.at(-1).name, 'prime', 'an aborted preparation cannot acquire outgoing paint');
+});
+
+test('solid-owned native handoff stays at native opacity and transform while Canvas assembles', () => {
+  const samples = [];
+  const embedded = {
+    begin: () => true,
+    present: (progress, snapshot) => samples.push({ progress, snapshot }),
+    active: () => true,
+    complete: () => false,
+  };
+  const fixture = presentationFixture({ embedded });
+  fixture.presentation.begin(true, { from: 'research', to: 'index', direction: 'backward' });
+  fixture.states.departureReady = false;
+  fixture.presentation.present(0.3, 'backward', undefined, paintedSnapshot());
+  assert.equal(fixture.content.style.opacity, '1');
+  assert.equal(fixture.content.style.transform, 'none');
+  assert.equal(samples.at(-1).snapshot.direction, 'backward');
+  assert.equal(samples.at(-1).progress, 0.3);
 });
 
 test('one session locks the route direction and forwards the current camera projection', () => {

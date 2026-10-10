@@ -345,7 +345,8 @@ module.exports = function (content, geometry, onFallback = null, shared = {}) {
     const selectors =
       'h1,h2,h3,h4,h5,h6,p,img,figure,li,dt,dd,figcaption,blockquote,pre,a,button,label,input,select,textarea,span,time,strong,small';
     function visit(owner) {
-      if (owner === shared.exclude?.()) return;
+      const excluded = shared.exclude?.();
+      if (owner === excluded || (Array.isArray(excluded) && excluded.includes(owner))) return;
       if (clock() - start > settings.acquisitionMs || result.length >= caps.owners) return;
       if (owner.matches('canvas,video,iframe')) return;
       const paint = nativePaint(owner);

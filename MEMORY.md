@@ -13,13 +13,13 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   was delivered through [PR #63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63).
 - [#49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) and
   [Draft PR #53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) own
-  the embedded AC15 prototype: one real Research paragraph becomes persistent
-  closed solid shards in Home and assembles on forward travel. Read its
+  the AC15 paired preview: all visible Home/Research native owners become
+  persistent closed solids with departure and arrival in both directions. Read its
   [single handoff](review/issue-49/2026-10-08-analysis.md) and live PR for evidence.
 
-- Head9245b2a passed Basic/acceptance/navigation and the two-width preview smoke.
-  Recovery completes45 exact public checksum dispositions for main issue65
-  artifacts; fetch live PR for the final source-bound security/preview record.
+- Prior paragraph preview on6d38d000 passed source/preview smoke. The next
+  maintainer amendment extends this same PR to viewport-bounded Home/Research
+  solids; fetch live PR for current exact-head checks and immutable preview.
 
 ## Decisions
 
@@ -29,8 +29,8 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 - Harness #65 excluded site/runtime/generated changes; fragment work stays in #49.
 - AC01 and historical AC11–AC14 retain accepted scope. AC02–AC10 and embedded
   AC15 remain open for current visual/device/accessibility/paired-cost decisions.
-  Keep one scene/camera/clock and original caps; irregular panels/all-route
-  embedding remain later scope. Preview authorization does not authorize merge/release.
+  Keep one scene/camera/clock and original caps; irregular panels and
+  embedding outside Home/Research remain later scope. Preview authorization does not authorize merge/release.
 - A user-supplied issue stays bound across phases/model handoffs; consolidation
   transfers original ACs, evidence and open gates before superseding an owner.
 
@@ -38,7 +38,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #49 / Draft PR #53 | Embedded prototype preview/browser smoke passed; reconcile final metadata source and remaining visual/device/paired-cost acceptance. |
+| #49 / Draft PR #53 | Paired full-content Home/Research preview; verify current source/smoke and preserve visual/device/paired-cost acceptance. |
 | #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
 | #45 / #36 / #41 | Check original visual/editorial/device/release gates in the live owners. |
 | #1 / #13 / #8 | First release, devices, recovery, URL/indexability and analytics activation. |
@@ -47,9 +47,9 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 ## Next session
 
 1. Fetch main and live #49/#39 issues and linked PRs; reconcile heads/ACs.
-2. Read #49's verified preview checkpoint and current PR evidence. Resting solids
-   share the scene but still need actual fractal-root transform attachment;
-   irregular native contours/all-route embedding remain future scope.
+2. Read #49's paired full-content checkpoint and current PR evidence. Verify both
+   Home/Research directions and native handoff. Fractal-root attachment and
+   irregular native contours remain later scope.
 3. Use required current-source checks and honest review/gate evidence; update AC boxes.
 4. Refresh this handoff after a material state change; merge/release only by maintainer decision.
 

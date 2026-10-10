@@ -377,3 +377,61 @@ test('serialized factory only needs explicit canonical camera and haze inputs', 
   const prepared = plate();
   assert.ok(isolated.sample(prepared, { pose: home, width: 1440, height: 900 }).length > 0);
 });
+
+test('reverse flight reuses closed shards and converges on the Home viewport without mirrored text', () => {
+  const width = 1440;
+  const height = 900;
+  const rect = { x: 90, y: 180, width: 700, height: 250 };
+  const cells = fragments.partition(rect, { count: 16, seed: 49 }, { maxPieces: 16 });
+  const prepared = plan.prepare({
+    id: 'index:hero',
+    rect,
+    cells,
+    pose: home,
+    width,
+    height,
+    anchor: [0, 5, -136],
+  });
+  assert.ok(prepared);
+  const ids = new Set(prepared.shards.map((shard) => shard.id));
+  for (let elapsed = 0; elapsed <= 1800; elapsed += 20) {
+    const travel = Math.min(1, elapsed / 1256);
+    const cameraAmount = travel * travel * (3 - 2 * travel);
+    const pose = math.mix(research, home, cameraAmount);
+    const progress = elapsed / 1800;
+    const shapes = plan.sample(prepared, { pose, width, height, progress });
+    assert.ok(shapes.length > 0, `reverse solids disappeared at ${elapsed}ms`);
+    assert.ok(shapes.every((shape) => ids.has(shape.id)));
+    assert.ok(shapes.every((shape) => shape.depth > 0.5));
+    assert.ok(shapes.filter((shape) => shape.face === 'back').every((shape) => !shape.uv));
+  }
+  const landed = plan.sample(prepared, { pose: home, width, height, progress: 1 });
+  assert.equal(landed.filter((shape) => shape.face === 'front').length, cells.length);
+  assert.ok(
+    landed.filter((shape) => shape.face === 'front').every((shape) => shape.textureMix === 1)
+  );
+});
+
+test('a staggered owner remains a complete set of closed solids with independent shard endpoints', () => {
+  const prepared = plate();
+  const progresses = prepared.shards.map((_, index) => index / (prepared.shards.length - 1));
+  const shapes = plan.sample(prepared, { pose: research, width: 1440, height: 900, progresses });
+  assert.ok(shapes.some((shape) => shape.face === 'side'));
+  const last = prepared.shards.at(-1);
+  const landed = shapes.filter((shape) => shape.id === last.id && shape.face === 'front');
+  assert.equal(landed.length, 1);
+  assert.equal(landed[0].textureMix, 1);
+  assert.equal(
+    plan.sample(prepared, { pose: research, width: 1440, height: 900, progresses: [1] }).length,
+    0
+  );
+  assert.equal(
+    plan.sample(prepared, {
+      pose: research,
+      width: 1440,
+      height: 900,
+      progresses: progresses.map(() => Infinity),
+    }).length,
+    0
+  );
+});

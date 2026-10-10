@@ -37,7 +37,7 @@ own source/hosted coverage; generation freshness alone is insufficient.
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
 | `effects/fragment-plan.cjs`, `fragment-dom.cjs` | Shared shard settings/geometry, visible native paint acquisition and staggered 1.8-second assembly | Issue49 all-route bidirectional Color preview; finite painted-clock tail preserves camera duration and resource caps |
-| `effects/embedded-plan.cjs`, `embedded-texture.cjs`, `embedded-scene.cjs` | Scoped persistent closed shards, capability-gated native block texture and shared-scene prewarm/handoff | Issue49 one-block Home-to-Research prototype within the same Color travel descriptor and scene clock |
+| `effects/embedded-plan.cjs`, `embedded-texture.cjs`, `embedded-scene.cjs` | Scoped persistent closed shards, capability-gated native block texture and shared-scene prewarm/handoff | Issue49 viewport-bounded Home/Research solids in both directions within the same Color travel descriptor and scene clock |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
 | `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
 | `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
@@ -226,8 +226,8 @@ owns the optional exact-origin adapter and tracking-free standalone exports.
 
 The router pins a descriptor compatible with the initial shell/route on its first
 verified route read. Base delivery first reads it on user navigation. The scoped
-Color embedded prototype may make that read earlier on Home to prewarm only
-Research's native introductory block. This speculative read shares the existing
+Color embedded preview may make that read earlier on Home or Research to prewarm
+the other route's visible native owners. This speculative read shares the existing
 finite route cache and exact descriptor/byte/version checks; failure cannot block
 ordinary navigation. It does not poll for revisions or refresh the pinned edition.
 The router fetches only the named immutable route and checks its bytes and version

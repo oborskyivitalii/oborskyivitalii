@@ -341,25 +341,46 @@ module.exports = function ({ cameraView, depthVisibility }) {
 
   function sample(
     prepared,
-    { pose, width, height, progress = 0, rect = prepared?.rect, targetPose = prepared?.pose }
+    {
+      pose,
+      width,
+      height,
+      progress = 0,
+      progresses = null,
+      rect = prepared?.rect,
+      targetPose = prepared?.pose,
+    }
   ) {
     if (!prepared || !validRect(rect)) return [];
+    if (
+      progresses &&
+      (!Array.isArray(progresses) ||
+        progresses.length !== prepared.shards.length ||
+        progresses.some((amount) => !Number.isFinite(amount) || amount < 0 || amount > 1))
+    )
+      return [];
     const camera = view(pose, width, height);
     const targetView = view(targetPose, width, height);
     if (!camera || !targetView) return [];
     const shapes = [];
     const limit = Math.max(width, height) * 8;
-    for (const shard of prepared.shards) {
-      const solid = geometry(shard, { view: targetView, rect, depth: prepared.depth, progress });
+    for (const [index, shard] of prepared.shards.entries()) {
+      const amount = progresses ? progresses[index] : progress;
+      const solid = geometry(shard, {
+        view: targetView,
+        rect,
+        depth: prepared.depth,
+        progress: amount,
+      });
       if (!solid) return [];
-      const projected = projectSolid(solid, camera, progress, prepared.depth);
+      const projected = projectSolid(solid, camera, amount, prepared.depth);
       if (!projected) continue;
       for (const face of solid.faces) {
         const surface = projectFace(face, projected, camera, limit);
         if (!surface) continue;
         const { points, normal, depth, nearest } = surface;
         const haze = depthVisibility(depth);
-        const nativeAmount = smooth(progress);
+        const nativeAmount = smooth(amount);
         const nearFade = Math.min(1, (nearest - settings.near) / 2);
         const alpha = (haze + (1 - haze) * nativeAmount) * nearFade;
         shapes.push({

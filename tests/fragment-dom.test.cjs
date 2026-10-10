@@ -445,6 +445,17 @@ test('a fully reserved scene piece budget retains whole native DOM fallback', ()
   assertDisposed(h);
 });
 
+test('all scene-owned native owners are excluded together from DOM replay', () => {
+  let excluded = [];
+  const h = fixture({ shared: { exclude: () => excluded } });
+  excluded = [h.paragraph];
+  assert.equal(h.adapter.prepare('arrive', h.snapshot()), true);
+  assert.ok(h.tiles().every((tile) => tile.children[0].textContent !== h.paragraph.textContent));
+  assert.notEqual(h.paragraph.style.visibility, 'hidden');
+  h.adapter.clear();
+  assertDisposed(h);
+});
+
 function assertDisposed(h) {
   assert.equal(h.layer(), undefined);
   assert.equal(h.adapter.active(), false);

@@ -3,93 +3,170 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const stage = require('../tools/quality/staging-regression.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
-function embeddedPrototypeFixture() {
-  const ids = ['research-intro:0', 'research-intro:1', 'research-intro:2'];
-  const nativeRect = { left: 52.125, top: 320.25, width: 640.5, height: 70.4 };
-  const nativeLines = [{ left: 68.125, top: 332.25, width: 512.25, height: 19 }];
-  const envelope = {
-    left: nativeRect.left - 12,
-    top: nativeRect.top - 12,
-    width: nativeRect.width + 24,
-    height: nativeRect.height + 24,
+function embeddedPrototypeFixture(from = 'index', to = 'research') {
+  const caps = {
+    pieces: 96,
+    owners: 32,
+    descendants: 1500,
+    textBytes: 32768,
+    layerPixels: 8000000,
   };
+  function groups(route) {
+    return [0, 1].map((index) => {
+      const key = route + '-owner-' + index;
+      const rect = { left: 52.125, top: 160.25 + index * 180, width: 640.5, height: 70.4 };
+      return {
+        key,
+        route,
+        ownerPath: [0, index],
+        rect,
+        lines: [{ left: rect.left + 16, top: rect.top + 12, width: 512.25, height: 19 }],
+        envelope: {
+          left: rect.left - 12,
+          top: rect.top - 12,
+          width: rect.width + 24,
+          height: rect.height + 24,
+        },
+        ids: Array.from({ length: 3 }, (_, shard) => key + ':' + shard),
+        pieces: 3,
+        pixels: 100000,
+        descendants: 1,
+        textBytes: 120,
+        topology: { closed: true, fronts: 3, rears: 3, sides: 12 },
+      };
+    });
+  }
+  const arrival = groups(to);
+  const departure = groups(from);
+  const ids = arrival.flatMap((group) => group.ids);
+  const departingIds = departure.flatMap((group) => group.ids);
+  const coverage = { expected: 2, selected: 2, complete: true };
   const handoff = (progress) => Math.max(0, (progress - 0.9) / 0.1);
-  const faces = (progress) =>
-    ids.map((id, index) => ({
-      id,
-      face: progress >= 0.9 || index !== 2 ? 'front' : 'side',
-      points:
-        progress >= 0.9
-          ? [
-              [envelope.left + (envelope.width * index) / 3, envelope.top],
-              [envelope.left + (envelope.width * (index + 1)) / 3, envelope.top],
-              [envelope.left + (envelope.width * (index + 1)) / 3, envelope.top + envelope.height],
-              [envelope.left + (envelope.width * index) / 3, envelope.top + envelope.height],
-            ]
-          : [
-              [50 + progress * 100, 20],
-              [62 + progress * 100, 20],
-              [50 + progress * 100, 28],
-            ],
-      alpha: progress >= 0.9 ? 1 - handoff(progress) : 0.2 + progress * 0.8,
-      textureMix: progress >= 0.9 ? 1 : 0.16 + progress * 0.84,
-    }));
-  const diagnostics = (progress = 0, assembling = false) => ({
+  const faces = (selected, progress, fade = false) =>
+    selected.flatMap((group) =>
+      group.ids.map((id, index) => ({
+        id,
+        face: progress >= 0.9 || index !== 2 ? 'front' : 'side',
+        points:
+          progress >= 0.9
+            ? [
+                [group.envelope.left + (group.envelope.width * index) / 3, group.envelope.top],
+                [
+                  group.envelope.left + (group.envelope.width * (index + 1)) / 3,
+                  group.envelope.top,
+                ],
+                [
+                  group.envelope.left + (group.envelope.width * (index + 1)) / 3,
+                  group.envelope.top + group.envelope.height,
+                ],
+                [
+                  group.envelope.left + (group.envelope.width * index) / 3,
+                  group.envelope.top + group.envelope.height,
+                ],
+              ]
+            : [
+                [50 + progress * 100, 20],
+                [62 + progress * 100, 20],
+                [50 + progress * 100, 28],
+              ],
+        alpha: fade ? 1 - handoff(progress) : 0.2 + progress * 0.8,
+        textureMix: progress >= 0.9 ? 1 : 0.16 + progress * 0.84,
+      }))
+    );
+  const departureState = {
     ready: true,
+    groups: departure,
+    ids: departingIds,
+    texturePixels: 200000,
+    coverage,
+  };
+  const diagnostics = (phase = null, progress = 0) => ({
+    ready: true,
+    groups: arrival,
     ids,
-    texturePixels: 100000,
-    nativeRect,
-    nativeLines,
-    envelope,
-    phase: assembling ? 'assembling' : null,
+    caps,
+    coverage,
+    texturePixels: phase === null ? 200000 : 400000,
+    phase,
     progress,
     physicalProgress: Math.min(1, progress / 0.9),
-    handoff: handoff(progress),
-    faces: faces(progress),
+    handoff: phase === 'assembling' ? handoff(progress) : 0,
+    departure:
+      phase === null
+        ? null
+        : {
+            ...departureState,
+            progress,
+            faces: faces(departure, progress),
+          },
+    faces: faces(
+      phase === 'departing' ? departure : arrival,
+      progress,
+      phase === 'assembling' && progress >= 0.9
+    ),
   });
-  const native = {
-    hidden: true,
-    visibility: 'hidden',
-    opacity: 1,
-    rect: nativeRect,
-    lines: nativeLines,
-    copies: 0,
+  const natives = (selected, progress = 0) =>
+    selected.map((group) => ({
+      key: group.key,
+      route: group.route,
+      hidden: progress <= 0.9,
+      visibility: progress <= 0.9 ? 'hidden' : 'visible',
+      opacity: progress <= 0.9 || progress === 1 ? 1 : handoff(progress),
+      rect: group.rect,
+      lines: group.lines,
+      copies: 0,
+    }));
+  const initial = {
+    page: from,
+    theme: 'light',
+    paints: 1,
+    viewport: [1440, 900],
+    pieces: 0,
+    layers: 0,
+    diagnostics: diagnostics(),
   };
-  const initial = { page: 'index', theme: 'light', paints: 1, diagnostics: diagnostics() };
   const frames = [
-    { ...initial, customShapes: 3 },
-    ...[0.2, 0.4, 0.6, 0.9, 0.94, 0.98].map((progress, index) => ({
-      page: index === 0 ? 'index' : 'research',
-      theme: 'light',
+    { ...initial, customShapes: 6 },
+    ...[0.1, 0.4].map((progress, index) => ({
+      ...initial,
       paints: index + 2,
-      customShapes: 3,
+      customShapes: 6,
+      diagnostics: diagnostics('departing', progress),
+      natives: natives(departure),
+      nativeCoverage: { expected: 2, selected: 2, uncovered: [] },
+    })),
+    ...[0.2, 0.4, 0.6, 0.9, 0.94, 0.98].map((progress, index) => ({
+      ...initial,
+      page: to,
+      paints: index + 4,
+      customShapes: 6,
       camera: progress > 0.9 ? 'settled-native-camera' : 'moving-camera-' + progress,
-      diagnostics: diagnostics(progress, true),
-      native:
-        index === 0
-          ? null
-          : progress > 0.9
-            ? {
-                ...native,
-                hidden: false,
-                visibility: 'visible',
-                opacity: handoff(progress),
-              }
-            : native,
+      diagnostics: diagnostics('assembling', progress),
+      natives: natives(arrival, progress),
+      nativeCoverage: { expected: 2, selected: 2, uncovered: [] },
     })),
   ];
   return {
     initial,
     frames,
     final: {
-      page: 'research',
+      page: to,
       theme: 'light',
       busy: false,
       inert: false,
       stages: 0,
+      pieces: 0,
+      layers: 0,
       camera: 'settled-native-camera',
-      native: { ...native, hidden: false, visibility: 'visible' },
-      diagnostics: { ready: false, phase: null, texturePixels: 0, ids: [], faces: [] },
+      natives: natives(arrival, 1),
+      diagnostics: {
+        ready: false,
+        phase: null,
+        texturePixels: 0,
+        ids: [],
+        faces: [],
+        departure: null,
+      },
     },
   };
 }
@@ -1262,9 +1339,11 @@ test('Off cancellation requires native readiness and cleanup while its camera jo
     inert: false,
     owners: [{ style: { visibility: '' } }],
     sceneTravel: 'flying',
+    embedded: { phase: null, texturePixels: 0, pendingRoute: null },
   };
   const ready = (state) =>
     vm.runInNewContext('(' + fragmentCancellationReady.toString() + ')("research")', {
+      window: { SiteEffects: { embedded: { diagnostics: () => state.embedded } } },
       document: {
         body: { dataset: { page: state.route } },
         getElementById: (id) =>
@@ -1291,6 +1370,9 @@ test('Off cancellation requires native readiness and cleanup while its camera jo
     (state) => (state.opacity = '0.5'),
     (state) => (state.inert = true),
     (state) => (state.owners[0].style.visibility = 'hidden'),
+    (state) => (state.embedded.phase = 'assembling'),
+    (state) => (state.embedded.texturePixels = 1),
+    (state) => (state.embedded.pendingRoute = 'index'),
   ]) {
     const incomplete = structuredClone(complete);
     mutate(incomplete);
@@ -1315,9 +1397,9 @@ test('failed incoming Color wait preserves raw observations and the original fai
     const page = {
       evaluate: async () => {
         evaluations++;
-        if (evaluations <= 2) return;
+        if (evaluations <= 3) return;
         if (captureFails) throw Error('Controlled closed browser');
-        return evaluations === 3 ? structuredClone(raw) : { pieces: 10, motion: 'Motion: on' };
+        return evaluations === 4 ? structuredClone(raw) : { pieces: 10, motion: 'Motion: on' };
       },
       locator: () => ({ click: async () => {} }),
       waitForFunction: async () => {
@@ -1351,8 +1433,8 @@ test('failed all-route Color collection retains its source trip and original par
       if (evaluations === 2) return ['index', 'research', 'writing', 'talks', 'credits'];
       if (evaluations === 4)
         return { page: 'index', y: 300, max: 600, scene: { camera: 'source-camera' } };
-      if (evaluations === 6) return raw;
-      if (evaluations === 7) return { pieces: 12, nativeHidden: 3 };
+      if (evaluations === 7) return raw;
+      if (evaluations === 8) return { pieces: 12, nativeHidden: 3 };
     },
     waitForTimeout: async () => {},
     locator: () => ({
@@ -1626,66 +1708,84 @@ test('failed flight collection retains previous and failing raw records instead 
   assert.equal(measurementClosed, true);
 });
 
-test('embedded native prototype requires painted persistent identities and clean accurate handoff', () => {
+test('embedded pair requires whole visible owner coverage, solid paint and accurate native handoff', () => {
   const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
-  const observed = embeddedPrototypeFixture();
-  const accepted = validateEmbeddedPrototype(observed, 'light');
-  assert.equal(accepted.frames, 7);
-  assert.deepEqual(accepted.ids, observed.initial.diagnostics.ids);
-  assert.equal(accepted.rectDeltaPx, 0);
-  assert.equal(accepted.lineDeltaPx, 0);
-  const mutations = [
-    (value) => (value.initial.diagnostics.ready = false),
-    (value) => (value.initial.diagnostics.ids = []),
-    (value) => (value.initial.diagnostics.texturePixels = 0),
-    (value) => (value.initial.diagnostics.texturePixels = 1000001),
-    (value) => (value.frames[0].customShapes = 0),
-    (value) => (value.frames[0].diagnostics.faces = []),
-    (value) => (value.frames[1].diagnostics.ids[0] = 'replacement-object'),
-    (value) => value.frames.slice(1).forEach((frame) => (frame.paints = 1)),
-    (value) => value.frames.slice(1).forEach((frame) => (frame.customShapes = 0)),
-    (value) =>
-      value.frames.slice(1).forEach((frame) => {
-        frame.diagnostics.faces = structuredClone(value.frames[0].diagnostics.faces);
-      }),
-    (value) =>
-      value.frames.slice(1).forEach((frame) => {
-        frame.diagnostics.faces.forEach((face) => (face.face = 'front'));
-      }),
-    (value) =>
-      value.frames.slice(1).forEach((frame) => {
-        frame.diagnostics.faces.forEach((face) => (face.textureMix = 0));
-      }),
-    (value) => (value.frames[2].native.hidden = false),
-    (value) => (value.frames[2].native.copies = 1),
-    (value) => delete value.frames[2].diagnostics.handoff,
-    (value) => (value.frames[2].diagnostics.handoff = 0.1),
-    (value) => (value.frames[5].native.opacity = 0.9),
-    (value) => (value.frames[5].diagnostics.physicalProgress = 0.98),
-    (value) => (value.frames[5].camera = 'camera-still-moving'),
-    (value) => (value.frames[5].diagnostics.faces[0].points[0][0] -= 2),
-    (value) => (value.frames[6].diagnostics.faces[1].points[0][0] += 0.5),
-    (value) => (value.frames[5].diagnostics.faces[0].alpha = 1),
-    (value) => (value.final.native.opacity = 0.8),
-    (value) => (value.final.native.hidden = true),
-    (value) => (value.final.native.visibility = 'hidden'),
-    (value) => (value.final.stages = 1),
-    (value) => (value.final.diagnostics.texturePixels = 100000),
-    (value) => (value.final.diagnostics.ids = ['research-intro:0']),
-    (value) => (value.final.diagnostics.faces = value.frames[0].diagnostics.faces),
-    (value) => (value.final.native.rect.left += 1),
-    (value) => (value.final.native.lines[0].top += 1),
-    (value) => (value.final.native.lines = []),
-  ];
-  for (const mutate of mutations) {
-    const changed = structuredClone(observed);
-    // Fixture aliases represent identical native values, not mutable identity.
-    changed.initial.diagnostics.nativeRect = { ...observed.initial.diagnostics.nativeRect };
-    changed.initial.diagnostics.nativeLines = structuredClone(
-      observed.initial.diagnostics.nativeLines
-    );
-    changed.initial.diagnostics.ids = [...observed.initial.diagnostics.ids];
-    mutate(changed);
-    assert.throws(() => validateEmbeddedPrototype(changed, 'light'), String(mutate));
+  for (const [from, to] of [
+    ['index', 'research'],
+    ['research', 'index'],
+  ]) {
+    const observed = embeddedPrototypeFixture(from, to);
+    const accepted = validateEmbeddedPrototype(observed, 'light', { from, to });
+    assert.equal(accepted.frames, 9);
+    assert.equal(accepted.owners, 2);
+    assert.equal(accepted.departureOwners, 2);
+    assert.deepEqual(accepted.ids, observed.initial.diagnostics.ids);
+    assert.equal(accepted.rectDeltaPx, 0);
+    assert.equal(accepted.lineDeltaPx, 0);
+    const mutations = [
+      (value) => (value.initial.diagnostics.ready = false),
+      (value) => (value.initial.diagnostics.ids = []),
+      (value) => (value.initial.diagnostics.texturePixels = 0),
+      (value) => (value.frames[0].customShapes = 0),
+      (value) => (value.frames[0].diagnostics.faces = []),
+      (value) => value.frames.splice(1, 2),
+      (value) => (value.frames[1].diagnostics.departure.groups = []),
+      (value) => (value.frames[1].diagnostics.departure.ready = false),
+      (value) => (value.frames[3].diagnostics.coverage.selected = 1),
+      (value) => (value.frames[3].diagnostics.groups[0].topology.closed = false),
+      (value) => (value.frames[3].diagnostics.groups[0].pixels = 0),
+      (value) => (value.frames[3].diagnostics.caps.pieces = 10),
+      (value) => (value.frames[3].diagnostics.ids = ['replacement-object']),
+      (value) => value.frames.slice(1).forEach((frame) => (frame.paints = 1)),
+      (value) => value.frames.slice(1).forEach((frame) => (frame.customShapes = 0)),
+      (value) => (value.frames[3].pieces = 6),
+      (value) => (value.frames[3].nativeCoverage.uncovered = ['FIGURE:portrait']),
+      (value) => (value.frames[3].nativeCoverage.selected = 1),
+      (value) =>
+        value.frames.slice(1).forEach((frame) => {
+          frame.diagnostics.faces.forEach((face) => (face.face = 'front'));
+        }),
+      (value) =>
+        value.frames.slice(1).forEach((frame) => {
+          frame.diagnostics.faces.forEach((face) => (face.textureMix = 0));
+        }),
+      (value) => (value.frames[3].natives[0].hidden = false),
+      (value) => (value.frames[3].natives[0].copies = 1),
+      (value) => delete value.frames[3].diagnostics.handoff,
+      (value) => (value.frames[3].diagnostics.handoff = 0.1),
+      (value) => (value.frames[7].natives[0].opacity = 0.9),
+      (value) => (value.frames[7].diagnostics.physicalProgress = 0.98),
+      (value) => (value.frames[7].camera = 'camera-still-moving'),
+      (value) => (value.frames[7].diagnostics.faces[0].alpha = 1),
+      (value) => (value.frames[7].diagnostics.faces[0].points[0][0] += 2),
+      (value) => (value.frames[8].diagnostics.faces[1].points[0][0] += 0.5),
+      (value) => (value.final.natives[0].opacity = 0.8),
+      (value) => (value.final.natives[0].hidden = true),
+      (value) => (value.final.natives[0].visibility = 'hidden'),
+      (value) => (value.final.stages = 1),
+      (value) => (value.final.diagnostics.texturePixels = 100000),
+      (value) => (value.final.diagnostics.ids = ['research-intro:0']),
+      (value) => (value.final.diagnostics.departure = { ready: true }),
+      (value) =>
+        (value.final.diagnostics.departure = {
+          groups: value.frames[1].diagnostics.departure.groups,
+        }),
+      (value) =>
+        (value.final.diagnostics.departure = {
+          faces: value.frames[1].diagnostics.departure.faces,
+        }),
+      (value) => (value.final.natives[0].rect.left += 1),
+      (value) => (value.final.natives[0].lines[0].top += 1),
+      (value) => (value.final.natives[0].lines = []),
+    ];
+    for (const mutate of mutations) {
+      // JSON cloning deliberately separates equal capture/native layout records.
+      const changed = JSON.parse(JSON.stringify(observed));
+      mutate(changed);
+      assert.throws(
+        () => validateEmbeddedPrototype(changed, 'light', { from, to }),
+        String(mutate)
+      );
+    }
   }
 });

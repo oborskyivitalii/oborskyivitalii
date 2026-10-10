@@ -535,7 +535,8 @@ function createPresentation(content) {
             setPlane(lastPose);
           },
           {
-            exclude: () => window.SiteEffects.embedded?.owner(),
+            exclude: () =>
+              window.SiteEffects.embedded?.owners?.() || window.SiteEffects.embedded?.owner(),
             reserve: () => window.SiteEffects.embedded?.reservation(),
           }
         );
@@ -555,6 +556,7 @@ function createPresentation(content) {
     },
     present(progress, direction, departure, snapshot) {
       const painted = snapshot && { ...snapshot, direction: journeyDirection };
+      window.SiteEffects.embedded?.present?.(progress, painted);
       lastPose = flightPose(progress, journeyDirection, departure);
       if (snapshot?.active === false) {
         window.SiteEffects.embedded?.invalidate();
@@ -579,11 +581,19 @@ function createPresentation(content) {
         phaseFragments = fragments.prepare('depart', painted);
       }
       if (phaseFragments && fragments.present(progress, painted)) {
+        if (window.SiteEffects.embedded?.active?.()) {
+          content.style.opacity = '1';
+          content.style.transform = 'none';
+        }
         const embeddedDone = window.SiteEffects.embedded?.complete() !== false;
         return progress === 1 ? fragments.complete() && embeddedDone : undefined;
       }
       if (phaseFragments && fragments.active() === false) phaseFragments = false;
       setPlane(lastPose);
+      if (window.SiteEffects.embedded?.active?.()) {
+        content.style.opacity = '1';
+        content.style.transform = 'none';
+      }
       if (progress === 1 && window.SiteEffects.embedded?.complete() === false) return false;
     },
     contentFlight(value) {
@@ -622,10 +632,26 @@ function createPresentation(content) {
       return fragmentPreview;
     },
     canPrepareNext: () => contentFlight && fragmentPreview,
-    prepareNext: (data) =>
+    async prepareTransition(data, context, signal) {
+      if (!contentFlight || !fragmentPreview) return;
+      const paired =
+        (context.from === 'index' && context.to === 'research') ||
+        (context.from === 'research' && context.to === 'index');
+      if (!paired) return;
+      const embedded = window.SiteEffects.embedded;
+      if (!embedded) return;
+      try {
+        await embedded.prime(data, content.offsetTop, context.landing, { signal });
+        if (signal?.aborted) return;
+        await embedded.prepareDeparture?.(content, { signal });
+      } catch {
+        embedded.invalidate();
+      }
+    },
+    prepareNext: (data, signal) =>
       contentFlight &&
       fragmentPreview &&
-      window.SiteEffects.embedded?.prime(data, content.offsetTop),
+      window.SiteEffects.embedded?.prime(data, content.offsetTop, null, { signal }),
   };
 }
 function measurePlane(read) {

@@ -32,7 +32,7 @@ function style(visibility = '') {
   };
 }
 
-function harness({ deferred = false } = {}) {
+function harness({ deferred = false, multi = false, captureCount = 3 } = {}) {
   const captures = [];
   const samples = [];
   const preparations = [];
@@ -77,6 +77,9 @@ function harness({ deferred = false } = {}) {
         querySelectorAll() {
           return [];
         },
+        getBoundingClientRect() {
+          return { height: 1500 };
+        },
         remove() {
           this.connected = false;
         },
@@ -111,38 +114,49 @@ function harness({ deferred = false } = {}) {
       return true;
     },
   };
-  const embeddedTexture = () => ({
-    settings: { selector: '.archive-intro > .hero-description' },
-    capture(stage, options) {
+  function capture(stage, options) {
+    const captured = Array.from({ length: multi ? captureCount : 1 }, (_, index) => {
       const asset = {
         owner: { textContent: text },
-        rect: { ...rect },
-        envelope: { ...envelope },
+        ownerPath: multi ? [0, index] : undefined,
+        rect: { ...rect, top: rect.top + 120 * index },
+        envelope: { ...envelope, top: envelope.top + 120 * index },
         canvas: { width: 1129, height: 269 },
         pixelCount: 1129 * 269,
+        descendants: multi ? 3 : 0,
+        textBytes: text.length * 3,
         disposeCount: 0,
         dispose() {
           this.disposeCount++;
         },
       };
+      if (multi && stage.children[0]?.children?.[index])
+        asset.owner = stage.children[0].children[index];
       assets.push(asset);
-      let resolve;
-      let reject;
-      const promise = new Promise((yes, no) => {
-        resolve = yes;
-        reject = no;
-      });
-      const capture = {
-        stage,
-        options,
-        asset,
-        resolve: (result = asset) => resolve(result),
-        reject,
-      };
-      captures.push(capture);
-      if (!deferred) resolve(asset);
-      return promise;
-    },
+      return asset;
+    });
+    const asset = captured[0];
+    let resolve;
+    let reject;
+    const promise = new Promise((yes, no) => {
+      resolve = yes;
+      reject = no;
+    });
+    const capture = {
+      stage,
+      options,
+      asset,
+      assets: captured,
+      resolve: (result = multi ? captured : asset) => resolve(result),
+      reject,
+    };
+    captures.push(capture);
+    if (!deferred) resolve(multi ? captured : asset);
+    return promise;
+  }
+  const embeddedTexture = () => ({
+    settings: { selector: '.archive-intro > .hero-description' },
+    ...(multi ? { captureAll: capture } : { capture }),
   });
   const embeddedPlan = () => ({
     prepare(options) {
@@ -170,8 +184,11 @@ function harness({ deferred = false } = {}) {
   });
   const api = {
     ...math,
-    poses: { researchStart: { position: [0, 0, 24], target: [0, 0, -12] } },
-    initialPoses: { research: 'researchStart' },
+    poses: {
+      homeStart: { position: [0, 0, 24], target: [0, 0, -12] },
+      researchStart: { position: [0, 0, 24], target: [0, 0, -12] },
+    },
+    initialPoses: { index: 'homeStart', research: 'researchStart' },
     routeOrder: ['index', 'research', 'writing', 'talks', 'credits'],
     roomSpacing: 128,
   };
@@ -205,6 +222,15 @@ function harness({ deferred = false } = {}) {
       ...overrides,
     };
   }
+  function nativeContent() {
+    const owners = Array.from({ length: captureCount }, (_, index) =>
+      owner({
+        getBoundingClientRect: () => ({ ...rect, top: rect.top + index * 120 }),
+      })
+    );
+    return { children: [{ children: owners }], owners };
+  }
+  if (multi) data.main = nativeContent().children[0];
   return {
     effect,
     bridge,
@@ -219,6 +245,7 @@ function harness({ deferred = false } = {}) {
     stages,
     dispatched,
     owner,
+    nativeContent,
     setTravel(value) {
       canTravel = value;
     },
@@ -255,6 +282,9 @@ test('the same rest IDs assemble on the existing ambient clock and land before n
   await h.bridge.prime(h.data, 78);
   const ids = h.effect.collect(h.frame).map((shape) => shape.id);
   assert.equal(h.bridge.begin(h.landing), true);
+  const owner = h.owner();
+  h.document.body.dataset.page = 'research';
+  h.bridge.land({ querySelector: () => owner });
   const first = h.effect.collect({ ...h.frame, ambientTime: 100 });
   assert.ok(first.every((shape) => shape.progress === 0));
   const halfway = h.effect.collect({ ...h.frame, ambientTime: 1000 });
@@ -268,9 +298,6 @@ test('the same rest IDs assemble on the existing ambient clock and land before n
     halfway.map((shape) => shape.id),
     ids
   );
-  h.document.body.dataset.page = 'research';
-  const owner = h.owner();
-  h.bridge.land({ querySelector: () => owner });
   assert.equal(owner.style.visibility, 'hidden');
   assert.equal(h.bridge.owner(), owner);
   assert.equal(h.bridge.complete(), false);
@@ -354,6 +381,7 @@ test('assembly progresses monotonically through the canonical ambient loop bound
   h.effect.collect(startingFrame);
   await h.bridge.prime(h.data, 78);
   assert.equal(h.bridge.begin(h.landing), true);
+  h.bridge.land({ querySelector: () => h.owner() });
   for (const [ambientTime, expected] of [
     [math.LOOP_MS - 600, 0],
     [math.LOOP_MS - 150, 0.25],
@@ -618,5 +646,165 @@ test('Off, theme, resize and visibility cancellation restore paint and release o
       }
     );
     assert.equal(h.effect.paint(context, { kind: 'face' }), false);
+  }
+});
+
+test('every visible owner uses stable solids in both route directions and one paired resource cap', async () => {
+  for (const [from, to, direction] of [
+    ['index', 'research', 'forward'],
+    ['research', 'index', 'backward'],
+  ]) {
+    const h = harness({ multi: true });
+    h.document.body.dataset.page = from;
+    h.data.page = to;
+    const frame = { ...h.frame, page: from };
+    h.effect.collect(frame);
+    assert.equal(await h.bridge.prime(h.data, 78), true);
+    const restIds = h.bridge.diagnostics().ids;
+    const incomingAssets = [...h.assets];
+    h.bridge.cancel();
+    assert.deepEqual(
+      h.bridge.diagnostics().ids,
+      restIds,
+      'idle router interruption preserves acquired identities'
+    );
+    assert.ok(incomingAssets.every((asset) => asset.disposeCount === 0));
+    const source = h.nativeContent();
+    assert.equal(await h.bridge.prepareDeparture(source), true);
+    const reserved = h.bridge.reservation();
+    assert.equal(reserved.owners, 6);
+    assert.equal(reserved.pieces, 96);
+    assert.equal(
+      fragmentFactory(math).admit(reserved, fragmentFactory(math).settings.caps.full),
+      true
+    );
+    assert.equal(h.bridge.begin({ from, to, direction, landing: { position: [0, 0] } }), true);
+    assert.equal(h.bridge.active(), true);
+    assert.deepEqual(Array.from(h.bridge.owners()), source.owners);
+    assert.ok(source.owners.every((owner) => owner.style.visibility === 'hidden'));
+    h.bridge.present(0.1);
+    h.effect.collect({ ...frame, ambientTime: 1000 });
+    assert.equal(h.bridge.diagnostics().progress, 0, 'arrival cannot expire before native mount');
+    assert.ok(h.bridge.diagnostics().departure.faces.length > 0);
+    assert.deepEqual(h.bridge.diagnostics().ids, restIds);
+    h.bridge.present(0.5);
+    h.effect.collect({ ...frame, ambientTime: 1100 });
+    assert.equal(
+      h.bridge.diagnostics().departure.faces.length,
+      0,
+      'source solids release before mount'
+    );
+    const destination = h.nativeContent();
+    h.document.body.dataset.page = to;
+    h.bridge.land(destination);
+    assert.equal(h.bridge.diagnostics().phase, 'assembling');
+    assert.deepEqual(Array.from(h.bridge.owners()), destination.owners);
+    assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
+    assert.ok(destination.owners.every((owner) => owner.style.visibility === 'hidden'));
+    const target = h.preparations[0].pose;
+    h.effect.collect({ ...frame, page: to, current: target, ambientTime: 2000 });
+    const latestSamples = h.samples.slice(-3);
+    assert.ok(
+      latestSamples
+        .flatMap((sample) => sample.progresses)
+        .some((amount) => amount > 0 && amount < 1)
+    );
+    h.effect.collect({ ...frame, page: to, current: target, ambientTime: 2900 });
+    assert.deepEqual(h.bridge.diagnostics().ids, restIds);
+    assert.ok(h.bridge.diagnostics().groups.every((group) => group.topology.closed));
+    assert.equal(h.bridge.complete(), true);
+    assert.ok(destination.owners.every((owner) => owner.style.visibility !== 'hidden'));
+    assert.equal(h.bridge.reservation(), null);
+    assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+  }
+});
+
+test('pair departure acquisition is atomic, and cancellation prevents a stale source capture', async () => {
+  const h = harness({ multi: true, deferred: true });
+  h.effect.collect(h.frame);
+  const prime = h.bridge.prime(h.data, 78);
+  h.captures[0].resolve();
+  assert.equal(await prime, true);
+  const source = h.nativeContent();
+  const acquiring = h.bridge.prepareDeparture(source);
+  h.bridge.cancel();
+  assert.equal(h.captures[1].options.signal.aborted, true);
+  h.captures[1].resolve();
+  assert.equal(await acquiring, false);
+  assert.equal(h.bridge.diagnostics().ready, true, 'idle destination plate stays reusable');
+  assert.ok(h.captures[1].assets.every((asset) => asset.disposeCount === 1));
+  assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
+  h.bridge.invalidate();
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+});
+
+test('full owners cannot be hidden when destination or departure allocation fails the shared budget', async () => {
+  const h = harness({ multi: true });
+  h.effect.collect(h.frame);
+  await h.bridge.prime(h.data, 78);
+  const source = h.nativeContent();
+  const acquiring = h.bridge.prepareDeparture(source);
+  h.captures[1].assets[0].pixelCount = 9000000;
+  assert.equal(await acquiring, false);
+  assert.equal(h.bridge.begin(h.landing), false);
+  assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
+  assert.equal(h.bridge.reservation(), null);
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+});
+
+test('one mismatched native owner prevents every destination hide and restores all source paint', async () => {
+  const h = harness({ multi: true });
+  h.effect.collect(h.frame);
+  await h.bridge.prime(h.data, 78);
+  const source = h.nativeContent();
+  await h.bridge.prepareDeparture(source);
+  assert.equal(h.bridge.begin(h.landing), true);
+  const destination = h.nativeContent();
+  destination.owners[1].getBoundingClientRect = () => ({ left: 10, top: 10, width: 5, height: 5 });
+  h.bridge.land(destination);
+  assert.equal(h.bridge.active(), false);
+  assert.ok(
+    [...source.owners, ...destination.owners].every((owner) => owner.style.visibility !== 'hidden')
+  );
+  assert.equal(h.bridge.reservation(), null);
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+});
+
+test('compact allocation is bounded and nonzero history landings use measured viewport geometry', async () => {
+  const h = harness({ multi: true });
+  h.effect.collect({ ...h.frame, compact: true });
+  const landing = { position: [0, 240] };
+  await h.bridge.prime(h.data, 78, landing);
+  assert.equal(h.stages[0].style['--embedded-stage-top'], '-162px');
+  await h.bridge.prepareDeparture(h.nativeContent());
+  assert.equal(h.bridge.reservation().pieces, 40);
+  assert.equal(
+    fragmentFactory(math).admit(
+      h.bridge.reservation(),
+      fragmentFactory(math).settings.caps.compact
+    ),
+    true
+  );
+  assert.equal(h.bridge.begin({ ...h.landing, landing }), true);
+  h.bridge.cancel();
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+});
+
+test('an interrupted DOM plane retains its displayed pose and refuses native-solid capture', async () => {
+  for (const plane of [
+    { transform: 'translate3d(0px,0px,-80px)', opacity: '1' },
+    { transform: 'none', opacity: '0.4' },
+  ]) {
+    const h = harness({ multi: true });
+    h.effect.collect(h.frame);
+    await h.bridge.prime(h.data, 78);
+    const source = h.nativeContent();
+    source.style = { ...plane };
+    assert.equal(await h.bridge.prepareDeparture(source), false);
+    assert.equal(h.captures.length, 1);
+    assert.deepEqual(source.style, plane);
+    assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
+    h.bridge.invalidate();
+    assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
   }
 });
