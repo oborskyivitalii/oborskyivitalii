@@ -10,8 +10,9 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   Live main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
   [10 October readiness](review/issue-39/2026-10-10-readiness.md) records NO-GO:
   production build/publisher/recovery/admission and live domains remain pending.
-  Ownership TXT exists; no routing DNS/redirect. GitHub Verified/Pages/environment
-  settings remain unobserved through this connector. Keep TXT; do not recreate it.
+  Ownership TXT exists; maintainer confirmed GitHub Verified on 10 October.
+  No routing DNS/redirect. Repository Pages/environment settings remain unobserved
+  through this connector. Ownership is complete; keep TXT, do not recreate it.
   PR40 conflicts with current main; reconcile frozen preparation policy before rebase.
   Current stable stage is Color from PR67, tree-identical to main source; its bounded
   gate explicitly has productionEligible=false. Main docs is the base rendition.
@@ -47,7 +48,8 @@ Dated continuity hints, not instructions or live-status authority. Last verified
   results prove deterministic observations; independent/live/merge gates are
   recorded separately. #31 acceptance stays pinned to its accepted source.
 - Owner chose `https://vitaliioborskyi.ai` on GitHub Pages; .com redirects to .ai.
-  #39 prepares it; TXT is created, GitHub Verify/settings still need observation.
+  #39 prepares it; TXT is created and Verified is maintainer-confirmed.
+  Repository Pages/environment settings still need observation.
   Routing/deploy remain pending. Analytics stays disabled under #8. Current
   check profiles/budgets retain their owners; domain choice is not a release.
 
@@ -58,7 +60,7 @@ live criteria/status before selecting the next increment.
 
 | Issue | Remaining intent |
 | --- | --- |
-| [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39) | Existing TXT; verify owner/Pages settings, reconcile PR40/main, implement publisher/production metadata/provider/recovery and live domain acceptance. |
+| [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39) | Ownership verified; confirm repository Pages settings, reconcile PR40/main, implement publisher/production metadata/provider/recovery and live domain acceptance. |
 | [#1](https://github.com/oborskyivitalii/oborskyivitalii/issues/1) | Overall launch and its production/rights/device dependencies. |
 | [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) | Physical-device and independent production/recovery acceptance. |
 | [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8) | Production URL/indexability and actual analytics activation. |
@@ -71,7 +73,7 @@ live criteria/status before selecting the next increment.
 ## Next session
 
 1. Revalidate #39/main/PR40 and read the 10 October readiness report.
-2. Preserve existing .ai TXT; observe GitHub Verified and settings separately.
+2. Preserve existing .ai TXT and maintainer-confirmed Verified; observe repository settings separately.
 3. Reconcile PR40 with current main and its frozen preparation policy before
    implementation; decide production rendition, prepare build/publisher/recovery
    and current-artifact #7/#8/#13 gates before any authorized routing/release.

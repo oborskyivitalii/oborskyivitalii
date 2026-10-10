@@ -50,7 +50,10 @@ Zones `.ai` (`94a46fef3ff2c40cdec1defdff0c85be`) and `.com`
 Ownership TXT `_github-pages-challenge-oborskyivitalii.vitaliioborskyi.ai`
 exists exactly once, record `466edebf239247c914621e5e5d3e858d`, DNS-only,
 Auto TTL. This confirms the 7 October creation; do not request/create it again.
-GitHub ownership Verified remains unobserved: TXT presence cannot prove the click.
+The maintainer subsequently confirmed GitHub **Verified** on 10 October in this
+session. Ownership verification is complete on maintainer-observed evidence;
+this is not a direct connector read. Repository Pages source/domain/HTTPS and
+environment protection remain separate unobserved settings.
 
 Both Universal certificate packs are active and cover apex/wildcard, expiry
 2027-01-05. Those certificates prepare .com redirect TLS; the chosen DNS-only
@@ -96,8 +99,9 @@ deploymentAuthorized=false. Production metadata must retain the100KB budget.
 - Preserve supplied rights decisions: approvals received from everyone except
   Arkadiy. #7's incomplete release/license record does not invalidate existing
   consent or justify asking approved people again; reconcile the actual edition.
-- Personal GitHub [Settings → Pages](https://github.com/settings/pages) must
-  show Verified; do not repeat TXT generation. Repository Actions/custom-domain/
+- Personal GitHub [Settings → Pages](https://github.com/settings/pages) shows
+  Verified, confirmed by the maintainer on 10 October; ownership is complete.
+  Do not repeat TXT generation. Repository Actions/custom-domain/
   HTTPS and environment settings are applied at the reviewed release stage.
 
 ## Sol tasks
@@ -121,7 +125,7 @@ connector results do not supply actual GA4/Cloudflare counts or Search Console v
 | AC01 | Exact main/PR refs, current API inventory and tested connector boundaries; original preparation policy remains source-pinned | Retain accepted inventory criterion; live inventory refreshed here |
 | AC02 | Existing finite desired-state preparation, live absent routing/redirect | Open; LIVE-DOMAINS not passed |
 | AC03 | Source audit, successful bounded stage, absent publisher/metadata/full production acceptance | Open; PRODUCTION-ADMISSION not passed |
-| AC04 | Existing operator runbook, confirmed existing TXT, unknown GitHub owner/settings and conflicted Draft PR | Open; OWNER-SETTINGS/REVIEW/MERGE incomplete |
+| AC04 | Existing operator runbook, confirmed TXT and maintainer-observed Verified; repository settings unknown and Draft PR conflicted | Ownership subcondition complete; OWNER-SETTINGS/REVIEW/MERGE still incomplete |
 | AC05 | API inventory and staged artifact evidence only | Open; actual production all-host DNS/TLS/HTTP acceptance absent |
 
 Report-only edits preserve every public/runtime/deployment blob in the PR40
@@ -137,5 +141,6 @@ does not change deployment, provider settings or the historical preparation plan
 
 Production readiness is NO-GO: current staging is healthy, but production build,
 publisher/recovery, full release admission and DNS/redirect/live checks remain
-unfinished. Ownership TXT already exists; GitHub settings remain unobserved.
+unfinished. Ownership TXT exists and Verified is maintainer-confirmed; repository
+Pages/environment settings remain unobserved.
 Keep AC02–AC05, #39 and release umbrellas open.

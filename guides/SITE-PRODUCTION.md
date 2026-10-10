@@ -35,7 +35,7 @@ and [analysis/tasks](../review/issue-39/2026-10-07-analysis.md).
 | Repository issue/branch/PR, source and workflow preparation | Yes | Review/merge under existing rules |
 | Cloudflare DNS/redirect/TLS inspection | Read access tested successfully | No setup needed |
 | Cloudflare TXT/routing DNS and redirect updates | DNS edit permission advertised; rule API available, writes not tested | No token needs to be pasted into chat |
-| GitHub personal Pages ownership verification | No supported plugin operation | Generate TXT and click Verify |
+| GitHub personal Pages ownership verification | No supported plugin operation | Completed: maintainer confirmed Verified on 10 October |
 | Repository Pages source/domain/Enforce HTTPS | No supported plugin operation | Apply exact settings at release |
 | Environment protection and Actions variables | No supported plugin operation | Apply requested settings after workflow review |
 
@@ -46,24 +46,25 @@ unsupported connector endpoint callable.
 
 [The current audit](../review/issue-39/2026-10-10-readiness.md) supersedes dated
 provider/task-status observations above. Ownership TXT was created on 7 October
-and exists live; do not repeat generation or creation. GitHub Verified is still
-unobserved. Production build, protected publisher/recovery, current-candidate
+and exists live; do not repeat generation or creation. The maintainer confirmed
+GitHub **Verified** on 10 October; ownership verification is complete. Repository
+Pages source/domain/HTTPS and environment settings remain separately unobserved.
+Production build, protected publisher/recovery, current-candidate
 admission and routing/redirect/live acceptance remain pending. PR40 is still
 Draft and conflicts with current main. The stable Color rendition is distinct
 from the base docs artifact; reconcile its production selection explicitly.
 
-## Step 1 — ownership proof (TXT creation already completed)
+## Step 1 — ownership proof (completed)
 
-1. Open [personal GitHub Settings → Pages](https://github.com/settings/pages)
-   while signed in as **oborskyivitalii**.
-2. Inspect the existing **vitaliioborskyi.ai** entry. If it already shows
-   **Verified**, record that observation. If verification is pending, click
-   **Verify** using the existing TXT; report a failure before changing records.
-3. Keep `_github-pages-challenge-oborskyivitalii.vitaliioborskyi.ai` permanently.
+1. The maintainer confirmed **Verified** for the existing **vitaliioborskyi.ai**
+   entry in [personal GitHub Settings → Pages](https://github.com/settings/pages)
+   on 10 October. This is maintainer-observed evidence; the connector does not
+   expose that administration endpoint. No further ownership action is pending.
+2. Keep `_github-pages-challenge-oborskyivitalii.vitaliioborskyi.ai` permanently.
    The maintainer supplied GitHub's exact challenge and the agent created record
    `466edebf239247c914621e5e5d3e858d` on 7 October. The 10 October API read
    confirms one DNS-only, Auto-TTL record. Do not generate or create another one.
-4. If the existing entry is missing or GitHub requires a different challenge,
+3. If the existing entry later disappears or GitHub requires a different challenge,
    reconcile the actual account/name/value before any write. TXT verification
    neither publishes the site nor switches web routing.
 
