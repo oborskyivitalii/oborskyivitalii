@@ -5,10 +5,13 @@ const vm = require('node:vm');
 const math = require('../site/engine/math.cjs')();
 const fragments = require('../site/effects/fragment-plan.cjs')(math);
 const factory = require('../site/effects/embedded-plan.cjs');
-const projection = require('../site/engine/projection.cjs')(
-  math,
-  require('../site/scenes/paths.json')
-);
+const routes = require('../site/routes.json').routes;
+const definitions = {
+  ...require('../site/scenes/paths.json'),
+  routeOrder: routes.map((route) => route.id),
+  initialPoses: Object.fromEntries(routes.map((route) => [route.id, route.initialPose])),
+};
+const projection = require('../site/engine/projection.cjs')(math, definitions);
 const plan = factory({ ...math, loopTransform: projection.loopTransform });
 const home = { position: [0, 0, 24], target: [0, 0, -12] };
 const research = { position: [0, 0, -104], target: [0, 0, -140] };
@@ -40,14 +43,14 @@ function edgeKey(a, b) {
   return a < b ? `${a}:${b}` : `${b}:${a}`;
 }
 
-function livingPlate({ compact = false, pose = research, hostOffset = 0 } = {}) {
+function livingPlate({ compact = false, pose = research, hostOffset = 0, host = 'index' } = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
   const count = compact ? 13 : 32;
   const rect = { x: 0, y: 78, width, height: height - 78 };
   const cells = fragments.partition(rect, { count, seed: 49 }, { maxPieces: count });
   const branches = models
-    .worldFor('index', compact)
+    .worldFor(host, compact)
     .objects.filter((object) => object.root === 1 && object.depth === 2 && object.points?.length);
   const members = cells.map((_, index) => {
     const branch = branches[(37 + index * 7) % branches.length];
@@ -276,6 +279,73 @@ test('resident closed plates touch canonical nested branches and inherit their e
     }
     assert.equal(JSON.stringify(prepared), original);
   }
+});
+
+test('resting next-page body glyphs remain identifiable in the actual Home and Research camera projections', () => {
+  for (const compact of [false, true])
+    for (const [host, route] of [
+      ['index', 'research'],
+      ['research', 'writing'],
+    ]) {
+      const target = projection.routePose(
+        route,
+        definitions.poses[definitions.initialPoses[route]]
+      );
+      const current = projection.routePose(host, definitions.poses[definitions.initialPoses[host]]);
+      const prepared = livingPlate({
+        compact,
+        host,
+        pose: target,
+        hostOffset: projection.roomOffset(host),
+      });
+      const view = plan.view(target, prepared.width, prepared.height);
+      const camera = plan.view(current, prepared.width, prepared.height);
+      for (const time of [0, 6000]) {
+        const readable = [];
+        const shapes = plan.sample(prepared, {
+          pose: current,
+          width: prepared.width,
+          height: prepared.height,
+          time,
+        });
+        const frontIds = new Set(
+          shapes.filter((shape) => shape.face === 'front').map((shape) => shape.id)
+        );
+        assert.ok(frontIds.size >= (compact ? 10 : 24));
+        for (const shard of prepared.shards) {
+          if (!frontIds.has(shard.id)) continue;
+          const [u, v] = shard.centroid;
+          const glyph = {
+            ...shard,
+            uv: [
+              [u, v],
+              [u, v + 16 / prepared.rect.height],
+              [u + 1 / prepared.rect.width, v],
+            ],
+          };
+          const solid = plan.geometry(glyph, {
+            view,
+            rect: prepared.rect,
+            depth: 12,
+            progress: 0,
+            time,
+          });
+          const top = camera.project(camera.camera(solid.vertices[0]));
+          const bottom = camera.project(camera.camera(solid.vertices[1]));
+          readable.push(Math.hypot(...math.sub(bottom, top)));
+        }
+        readable.sort((a, b) => a - b);
+        assert.ok(
+          readable[0] >= 4.5,
+          `16px glyph compressed below4.5px in ${host}/${prepared.width}px`
+        );
+        assert.ok(
+          readable[Math.floor(readable.length / 2)] >= 6,
+          `median body glyph must exceed6px in ${host}/${prepared.width}px`
+        );
+        assert.equal(prepared.shards.length, compact ? 13 : 32);
+      }
+    }
 });
 
 test('world rest contains readable content and normal-lit closed faces sorted by canonical depth', () => {

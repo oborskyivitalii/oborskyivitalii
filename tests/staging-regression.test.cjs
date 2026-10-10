@@ -1925,6 +1925,70 @@ test('native world handoff uses the canonical clock across its 24 second rollove
   assert.throws(() => validateEmbeddedPrototype(invalid, 'light'), /another clock or duration/);
 });
 
+test('native handoff saturates at one on the first real paint after 180 milliseconds', () => {
+  const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
+  const observed = embeddedPrototypeFixture();
+  const saturated = structuredClone(observed.frames[9]);
+  saturated.timeMs = 1100;
+  saturated.diagnostics.clock = 1100;
+  saturated.diagnostics.handoff = 1;
+  saturated.nativeOpacity = 1;
+  for (const face of saturated.diagnostics.faces)
+    if (saturated.diagnostics.ids.includes(face.id)) face.alpha = 0;
+  observed.frames.splice(10, 0, saturated);
+  assert.equal(validateEmbeddedPrototype(observed, 'light').frames, 13);
+  for (const mutate of [
+    (value) => (value.frames[7].diagnostics.handoff = 0.1),
+    (value) =>
+      value.frames
+        .filter((frame) => frame.diagnostics.handoff > 0)
+        .forEach((frame) => (frame.diagnostics.clock += 30)),
+    (value) => (value.frames[9].diagnostics.clock += 10),
+    (value) => (value.frames[10].diagnostics.clock = 1040),
+    (value) => (value.frames[10].diagnostics.handoff = 1.1),
+  ]) {
+    const invalid = structuredClone(observed);
+    mutate(invalid);
+    assert.throws(() => validateEmbeddedPrototype(invalid, 'light'), String(mutate));
+  }
+});
+
+test('failed initial Research warm is reported before any theme dispatch can retry capture', async () => {
+  const {
+    embeddedFirstLoad,
+    embeddedPrototypeState,
+  } = require('../tools/quality/color-browser.cjs');
+  const failure = new Error('initial Research field has no actual textured paint');
+  const state = {
+    page: 'index',
+    diagnostics: {
+      ready: false,
+      bank: [],
+      lastFailure: { reason: 'preparation-deadline', route: 'research' },
+    },
+  };
+  const calls = [];
+  const page = {
+    waitForFunction: async (_callback, target) => {
+      calls.push(target);
+      throw failure;
+    },
+    evaluate: async (callback) => {
+      assert.equal(callback, embeddedPrototypeState, 'failure reports the actual initial scene');
+      calls.push('failureState');
+      return state;
+    },
+  };
+  await assert.rejects(embeddedFirstLoad(page), (error) => {
+    assert.equal(error, failure);
+    assert.equal(error.embeddedObservation.firstLoad, true);
+    assert.equal(error.embeddedObservation.failureState, state);
+    assert.deepEqual(error.embeddedObservation.screenshots, []);
+    return true;
+  });
+  assert.deepEqual(calls, [{ route: 'research', nativePage: 'index' }, 'failureState']);
+});
+
 test('Home Writing skip traverses the existing Research world and mounts only native Writing', () => {
   const { validateEmbeddedCorridor } = require('../tools/quality/color-browser.cjs');
   const observed = embeddedPrototypeFixture('index', 'writing');

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b218b5db0de2d943ac47015949adcdc457d0518b495734323212d82b236a3c7b",
+    "digest": "8fca9f3668a13143824e9b5d1e6138434b1c2dd539566feb28b88f4995f36164",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "84b95ae3a5ccfa66424b8acc0024164e015683044c6d343e0103f2b06713058e"
+        "sha256": "d199e49f38e9601f14ca630898667270b82b442b935b375a4aaf41f35bf3e1ba"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "b06c6567e93a7038ad752c61281dc4d1cbbb71f2f2be3adec8bd3877a05f6d93"
+        "sha256": "31b55c71eeac1fe6419852c016bd676503b3713745e63d50d632e6930b73b98e"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4590,7 +4590,7 @@
       {
         "path": "site/effects/embedded-plan.cjs",
         "identity_mode": "content",
-        "sha256": "87c0e89707704b942c79097ef8bdbd04f1a0f16e15c0cf4cdc1c7c971c31d7b8"
+        "sha256": "21d7da100285956260c8b211be0d070abb7935699b0a8057c795a357f480fec2"
       },
       {
         "path": "site/effects/embedded-scene.cjs",
@@ -5035,7 +5035,7 @@
       {
         "path": "tests/embedded-plan.test.cjs",
         "identity_mode": "content",
-        "sha256": "8705820533e1d5c726cf013c9ea2c3bea54b8cd3216764aebd696c4e307b9286"
+        "sha256": "797a58bd30ea65ee8dcd02498c740e42101704a4149c07d2e3e8cb915d4860ba"
       },
       {
         "path": "tests/embedded-scene.test.cjs",
@@ -5200,7 +5200,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "1b6d85f056fc83878082b836584a90c212c23eef0364b8841a188d7d33aa6dc1"
+        "sha256": "bee271fe15a566eab2045d5dd9f01e4521ed2748ac854e99ba8ced8fb6277cb3"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5505,7 +5505,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "ea19a11bda47b84823feab345e78d2bf620ea82f6f15f5343c926cbe75487ac6"
+        "sha256": "79dce1eb9edbb215e0f4fdfed9392a38edfe4a58702c0f9fff3eb9f4dd6dadd7"
       },
       {
         "path": "tools/quality/common.cjs",

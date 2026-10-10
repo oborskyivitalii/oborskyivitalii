@@ -621,10 +621,21 @@ function validateEmbeddedPrototype(observation, expectedTheme, expected = {}) {
     tails.length >= 2 && new Set(tails.map((frame) => frame.diagnostics.handoff)).size >= 2,
     'native handoff lacks a progressive bounded crossfade'
   );
+  const aligned = moving.find(
+    (frame) =>
+      frame.page === to &&
+      frame.diagnostics.phase === 'assembling' &&
+      frame.diagnostics.travelProgress === 1 &&
+      frame.camera === final.camera
+  );
+  assert.ok(
+    aligned && aligned.diagnostics.handoff === 0 && aligned.diagnostics.physicalProgress === 1,
+    'native handoff starts without actual aligned zero-handoff paint'
+  );
   for (const frame of tails) {
     const clockDelta =
-      (frame.diagnostics.clock - tails[0].diagnostics.clock + sceneLoopMs) % sceneLoopMs;
-    const expectedHandoff = tails[0].diagnostics.handoff + clockDelta / 180;
+      (frame.diagnostics.clock - aligned.diagnostics.clock + sceneLoopMs) % sceneLoopMs;
+    const expectedHandoff = Math.min(1, clockDelta / 180);
     assert.ok(
       Math.abs(frame.diagnostics.handoff - expectedHandoff) <= 0.001,
       'native handoff tail has another clock or duration'
@@ -990,6 +1001,19 @@ async function embeddedScreenshot(page, evidence, label) {
     travelProgress: state.diagnostics.travelProgress,
     physicalProgress: state.diagnostics.physicalProgress,
   });
+}
+async function embeddedFirstLoad(page) {
+  const evidence = { firstLoad: true, from: 'index', to: 'research', screenshots: [] };
+  try {
+    await embeddedRestReady(page, 'research', 'index');
+    evidence.initial = await page.evaluate(embeddedPrototypeState);
+    await embeddedScreenshot(page, evidence, 'first-load-research');
+    return evidence;
+  } catch (error) {
+    evidence.failureState = await page.evaluate(embeddedPrototypeState).catch(() => null);
+    error.embeddedObservation = evidence;
+    throw error;
+  }
 }
 async function embeddedPrototype(page, theme, expected = { from: 'index', to: 'research' }) {
   const evidence = { from: expected.from, to: expected.to, screenshots: [] };
@@ -2484,11 +2508,6 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(url + '/index.html');
     await settled(page, 'index');
-    await page.evaluate((mode) => {
-      const control = document.getElementById('theme-mode');
-      control.value = mode;
-      control.dispatchEvent(new Event('change', { bubbles: true }));
-    }, theme);
     const identity = await page.evaluate(() => ({
       id: document.querySelector('meta[name="site-variant"]').content,
       engine: document.querySelector('meta[name="site-engine"]').content,
@@ -2501,6 +2520,12 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     assert.equal(identity.flight, true);
     assert.equal(identity.edge, true);
     assert.equal(identity.fragments, true, 'fragment flight is the default Color presentation');
+    const firstLoad = engine === 'chromium' ? await embeddedFirstLoad(page) : null;
+    await page.evaluate((mode) => {
+      const control = document.getElementById('theme-mode');
+      control.value = mode;
+      control.dispatchEvent(new Event('change', { bubbles: true }));
+    }, theme);
     const embedded = [];
     if (engine === 'chromium') {
       // Both directions share the existing two-width Day/Night smoke; no new
@@ -2617,12 +2642,14 @@ async function scenario(browser, url, artifact, engine, width, theme) {
         interruptedFragments: true,
         embeddedHomeResearchPair: engine === 'chromium',
         embeddedHomeWritingCorridor: engine === 'chromium',
+        embeddedFirstLoadResearch: engine === 'chromium',
       },
       home: { motion: homeMotion, scroll: homeScroll, edge: homeEdge },
       flight,
       fragments,
       fragmentRoutes,
       embedded,
+      firstLoad,
     };
   } finally {
     await context.close();
@@ -2704,5 +2731,6 @@ module.exports = {
   embeddedPrototypeState,
   validateEmbeddedPrototype,
   validateEmbeddedCorridor,
+  embeddedFirstLoad,
   embeddedPrototype,
 };

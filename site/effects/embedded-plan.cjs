@@ -8,7 +8,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     maxVertices: 10,
     thicknessMinPx: 10,
     thicknessMaxPx: 32,
-    embeddedScale: 0.8,
+    embeddedScale: 2.2,
     near: 0.5,
   });
   const vector = (value, length) =>
