@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d8696977ba0a4eb0ee290a0b7f1b6629d77d07467d402176e294462cef7bfa1b",
+    "digest": "eecc8261cc28a00ec80a5397dc1f4686b0e53e5d8f0a8b1fd189eb0d9c82df8e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "291bbceb3a73769deb602de81f9af6fc3136be574ad9685797171fa05ec7f757"
+        "sha256": "f0d3a7d1b2b8962a6b16aafd8077a051f54605adbf80a874236b5205ca13a3d0"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -5275,7 +5275,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "ba827b0242ec5684d112ed683afa3d895a2eda64f67e6be13ce0e0b9cc80151f"
+        "sha256": "5b45851b95007d031363628c985952425d9f8eafc72af1573916ff3efa78041c"
       },
       {
         "path": "tests/test_code_style.py",
