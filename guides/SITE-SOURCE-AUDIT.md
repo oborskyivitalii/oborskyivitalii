@@ -5,6 +5,31 @@ Each dated section describes that edition; older counts, placement and review
 limits are historical. Use [the editorial review route](SITE-CONTENT-REVIEW.md),
 the owning issue/PR and [MEMORY](../MEMORY.md) for current acceptance.
 
+## Author-first positioning — 2026-10-10
+
+The maintainer's [same-issue amendment](../review/issue-41/2026-10-10-author-first.md)
+continues Draft PR #68 from `e9d273a`. It supersedes only affected 9 October
+service-first Home wording; career, publication and event provenance remains.
+The [five-fragment successor](../review/issue-41/2026-10-10-author-first-amendment.json)
+and [before-edit inventory](../review/issue-41/2026-10-10-author-first-baseline-inventory.json)
+bind the correction without a whole-page or metadata exception.
+
+Enterprise delivery leadership and independent research authorship are the
+maintainer's professional positioning, not new employer verification or an
+academic credential. Career/portfolio facts, concrete technical outputs,
+Corning context and the human-directed AI-assisted site example remain intact.
+Contribution examples depend on role, organization and agreed scope. Leadership
+opportunities, collaboration and selected advisory work are invitations, not an
+established consultancy or fixed commercial offering. No employer, client,
+partnership or measured outcome is added; private circumstances stay off-site.
+
+The topic-first public records and exact post/provenance links stay distinct
+from opportunities. Evaluate Home placement on the corrected rendered hierarchy.
+Public source verified; editorial inclusion instructed by owner; new personal
+approval of website unconfirmed. No personal/organizational endorsement or
+rights clearance follows; #7 stays open. The live issue owns exact current
+checks, preview and checkbox evidence; no merge or release is authorized.
+
 ## Practical positioning — 2026-10-09
 
 [Issue #41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) continues

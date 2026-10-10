@@ -589,6 +589,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/c4f6bd7466ce4f5dbd838fea9405bc8bb89b2a72ca22f6dd0f1f91899712754e": {
+      "kind": "directory",
+      "purpose": "Generated immutable current Home snapshot from canonical authored content.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c4f6bd7466ce4f5dbd838fea9405bc8bb89b2a72ca22f6dd0f1f91899712754e/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable current Home route snapshot; regenerate through the standard site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7": {
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
@@ -598,18 +610,6 @@
     "docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7/writing.html": {
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fb3f34b2a6795f6301ab8a56fec3e58fdf73aed320054e55e31cecd8439e2e6a": {
-      "kind": "directory",
-      "purpose": "Generated immutable current route snapshot from canonical authored content; regenerate through the standard site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/fb3f34b2a6795f6301ab8a56fec3e58fdf73aed320054e55e31cecd8439e2e6a/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable current route snapshot from canonical authored content; regenerate through the standard site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1063,6 +1063,36 @@
       "role": "history",
       "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
     },
+    "review/issue-41/2026-10-10-author-first-amendment.json": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first-baseline-inventory.json": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first-browser.md": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first-review.md": {
+      "kind": "file",
+      "purpose": "Independent AI exact-scope and rendered review of the author-first amendment; human/release approval remains separate.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first.md": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
     "review/issue-41/2026-10-10-editorial-browser.md": {
       "kind": "file",
       "purpose": "Issue41 dated topic-first editorial correction and exact-source acceptance/review evidence; replaces the earlier hidden composition without changing the scroll camera.",
@@ -1308,6 +1338,114 @@
       "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
       "role": "history",
       "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/author-first-captures": {
+      "kind": "directory",
+      "purpose": "Focused ordinary Color Home desktop/mobile Day/Night observations and lossless section captures.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/browser-observations.json": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
     },
     "review/issue-41/content-amendment.json": {
       "kind": "file",

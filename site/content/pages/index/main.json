@@ -2,7 +2,7 @@
   "schema": 1,
   "template": "pages/index/main.html",
   "text": {
-    "T001": "Work with me",
+    "T001": "Where I contribute",
     "T002": {
       "label": "route.research"
     },

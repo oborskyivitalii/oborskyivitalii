@@ -9,16 +9,24 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 - #58/PR60 and #65/PR66 are closed/merged; PMDay #61 delivered via PR63.
 - #41 continues in Draft PR68 on `work/issue-41-arkadiy-scroll-20261010`; current
   exact CI/preview/evaluation pointers are maintained in its live issue.
-- The topic-first correction starts from checked candidate `ca4ee44e50c70cb036ccca3fa6d97d7108ecd423`.
-  Its ordinary generated artifact passed eight scoped Home/Research Day/Night
-  desktop/mobile cases; exact current commit, CI, preview and checkbox evidence
-  are recorded in the live issue. Revalidate those current pointers next time.
+- Author-first positioning starts from checked candidate `e9d273af872e442785a9f183cf23fc31bc877d52`.
+  Its completed topic-first records and stationary reading cameras remain intact.
+  Exact current commit, CI, preview and checkbox evidence are maintained in the
+  live issue. Revalidate current pointers rather than promoting historical runs.
 
 ## Decisions
 
 - [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) retains the
-  public-discussion/content owner. [10 October task/results](review/issue-41/2026-10-10-arkadiy-content.md)
-  and [scroll behavior](review/issue-41/2026-10-10-scroll-camera.md) own this change.
+  public-discussion/content owner. [Author-first task/results](review/issue-41/2026-10-10-author-first.md)
+  and [exact successor](review/issue-41/2026-10-10-author-first-amendment.json) supersede
+  only affected service-first Home framing. [Topic-first history](review/issue-41/2026-10-10-arkadiy-content.md)
+  and [scroll behavior](review/issue-41/2026-10-10-scroll-camera.md) remain current.
+- Home presents enterprise delivery leadership and independent research;
+  concrete contribution examples depend on role, organization and scope.
+  Contact welcomes leadership opportunities, research collaboration and
+  selected advisory work. No established consultancy or fixed engagement model.
+  Home Option A passed corrected desktop/mobile Day/Night composition review;
+  research-led public records remain intact with their exact source boundaries.
 - The owner's superseding 10 October decision includes bounded topic-first
   public-discussion records in canonical generated Home/Research. Home uses
   `Thinking Systems — public discussion` and `Arkadiy Dobkin · EPAM founder`;
@@ -35,17 +43,17 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
   scroll-camera mapping; prior pure model tests remain historical model checks.
   Credits display preferences describe that same steady view and retained flight.
 - No merge, stable promotion or production launch is authorized for this task.
-  Ordinary PR preview and a separate supported offline review candidate only.
+  Use the existing ordinary immutable PR preview; no alternate publishing pipeline.
 - Source contracts, original budgets and profile/device/release boundaries remain.
-  AD01–06/SC01–03 map to AC27–35; affected #41 criteria are reopened. Current
-  implementation, current-source checks and review are pending; original
-  AC02–06 remain pending.
+  AD01–06/SC01–03 retain AC27–35; author-first AP01–09 append AC36–44.
+  Affected composition/evidence boxes are reopened for current checks/review;
+  original AC02–06 and separate rights/human/release gates remain pending.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #41 / current Draft PR | Superseding topic-first implementation and exact current required CI/smoke, independent/code/editorial/layout evidence and actual criterion checkboxes. |
+| #41 / current Draft PR | Author-first implementation and current exact CI/smoke, independent/code/editorial/layout evidence and actual criterion checkboxes. |
 | #49 / Draft PR53 | Separate persistent fragment-flight work; revalidate current head and performance/visual gate. |
 | #39 / Draft PR40 | Domain/Pages preparation; preserve production/settings/release decisions. |
 | #45 / #36 | Original visual/editorial/device/release gates. |
@@ -54,8 +62,8 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 ## Next session
 
-1. Fetch current main and #41/linked Draft PR; read the superseding topic-first decision.
-2. Inspect the [topic amendment](review/issue-41/2026-10-10-arkadiy-topic-amendment.json), exact current CI/smoke and versioned 10 October independent/rendered evidence.
+1. Fetch current main and #41/linked Draft PR; read the latest author-first decision.
+2. Inspect its exact successor/baseline inventory, current CI/smoke and versioned independent/rendered evidence. Earlier topic-first/camera reports retain their original sources.
 3. Keep original pending/release gates separate and update actual issue checkboxes.
 4. Verify canonical generated topic-first records against the owner's instruction;
    keep personal approval unconfirmed and merge/release subject to their existing decisions.

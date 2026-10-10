@@ -397,7 +397,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; 10October #41 topic-first correction supersedes the hidden/review-only decision: canonical Home/Research include exact bounded editorial records, precise links and separate provenance without new personal approval or endorsement; historical semantic evidence and the stationary reading camera remain protected",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; 10October #41 topic-first correction supersedes the hidden/review-only decision: canonical Home/Research include exact bounded editorial records, precise links and separate provenance without new personal approval or endorsement; historical semantic evidence and the stationary reading camera remain protected; the later author-first Home continuation reverses its exact five-fragment successor before historical assertions, preserves current topic-first records/metadata/runtime, and tests professional role hierarchy, bounded work outputs, opportunity paths and meaningful consultancy/endorsement/contact regressions without changing existing gates or performance budgets",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/content.test.cjs",
@@ -410,7 +410,9 @@
         "review/issue-41/2026-10-09-positioning-amendment.json",
         "review/issue-41/2026-10-09-sitecase-amendment.json",
         "review/issue-41/2026-10-10-arkadiy-amendment.json",
-        "review/issue-41/arkadiy-review/**"
+        "review/issue-41/arkadiy-review/**",
+        "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+        "review/issue-41/2026-10-10-author-first-amendment.json"
       ]
     },
     {
@@ -442,7 +444,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; 10October #41 topic-first correction supersedes the hidden/review-only decision: canonical Home/Research include exact bounded editorial records, precise links and separate provenance without new personal approval or endorsement; historical semantic evidence and the stationary reading camera remain protected",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; 10October #41 topic-first correction supersedes the hidden/review-only decision: canonical Home/Research include exact bounded editorial records, precise links and separate provenance without new personal approval or endorsement; historical semantic evidence and the stationary reading camera remain protected; the later author-first Home continuation reverses its exact five-fragment successor before historical assertions, preserves current topic-first records/metadata/runtime, and tests professional role hierarchy, bounded work outputs, opportunity paths and meaningful consultancy/endorsement/contact regressions without changing existing gates or performance budgets",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -457,7 +459,9 @@
         "review/issue-48/content-amendment.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
         "review/issue-41/2026-10-09-sitecase-amendment.json",
-        "review/issue-41/2026-10-10-arkadiy-amendment.json"
+        "review/issue-41/2026-10-10-arkadiy-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+        "review/issue-41/2026-10-10-author-first-amendment.json"
       ]
     },
     {
@@ -1154,12 +1158,14 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure; 10October #41 topic-first correction supersedes the hidden/review-only decision: canonical Home/Research include exact bounded editorial records, precise links and separate provenance without new personal approval or endorsement; historical semantic evidence and the stationary reading camera remain protected",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure; 10October #41 topic-first correction supersedes the hidden/review-only decision: canonical Home/Research include exact bounded editorial records, precise links and separate provenance without new personal approval or endorsement; historical semantic evidence and the stationary reading camera remain protected; the later author-first Home continuation reverses its exact five-fragment successor before historical assertions, preserves current topic-first records/metadata/runtime, and tests professional role hierarchy, bounded work outputs, opportunity paths and meaningful consultancy/endorsement/contact regressions without changing existing gates or performance budgets",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
         "review/issue-41/2026-10-09-sitecase-amendment.json",
-        "review/issue-41/2026-10-10-arkadiy-amendment.json"
+        "review/issue-41/2026-10-10-arkadiy-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+        "review/issue-41/2026-10-10-author-first-amendment.json"
       ]
     },
     {

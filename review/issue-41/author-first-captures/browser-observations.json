@@ -1,0 +1,3968 @@
+{
+  "schema": 1,
+  "kind": "author-first Home focused browser observations",
+  "pass": true,
+  "sourceCommit": "e9d273af872e442785a9f183cf23fc31bc877d52",
+  "sourceTree": "cccde540d66e5ef18312f9dc138452ff600b3c8b",
+  "sourceDirty": true,
+  "artifactDigest": "970bbcb8a97758b3df2b750c00c79773230fb3aef5eb2983e7da8b43e841c503",
+  "baseArtifactDigest": "1d3a577038ec1f5713275d72e10ffddf60902d176fa57f4eea05097c4509fc0b",
+  "engine": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+  "variant": {
+    "id": "color",
+    "contract": 1,
+    "fingerprint": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+    "baseEngine": "eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa",
+    "effects": ["travel"]
+  },
+  "assembledRuntimeSHA256": "443c932e6991cad9027f59b03a69e310765c4c0dd515b57ba1a57889f8b0e864",
+  "browser": "138.0.7204.0",
+  "playwright": "1.63.0",
+  "scope": "Ordinary canonical public output and existing Color staging derivation, loopback only. Four Home Day/Night × 1440/390 cases, 16 section crops, maintained desktop normal preview smoke and all-five-route stationary-camera observation. Chromium 138 is older than pinned CI Chromium 153. No alternate active HTML, new performance campaign, production launch or human acceptance.",
+  "rows": [
+    {
+      "route": "index",
+      "theme": "light",
+      "width": 1440,
+      "pass": true,
+      "documentWidth": 1440,
+      "documentHeight": 6122,
+      "viewportHeight": 900,
+      "overflow": false,
+      "sections": {
+        "hero": {
+          "text": "AI delivery governance & agentic operating models AI tools everywhere.Better delivery?Harder to tell. Vitalii Oborskyi · Enterprise delivery leader & independent research author. My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build. Research, publications, talks and practical engineering experiments. Start a conversation ↗Explore the research ↓ AI is a fundamental shift: an attempt to delegate parts of thinking to machines.More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+          "headings": ["AI tools everywhere.Better delivery?Harder to tell."],
+          "bounds": {
+            "x": 140,
+            "y": 81,
+            "width": 1160,
+            "height": 929.09375
+          },
+          "paragraphs": [
+            {
+              "text": "AI delivery governance & agentic operating models",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+              "className": "hero-lead",
+              "fontSize": 16,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build.",
+              "className": "hero-description",
+              "fontSize": 16,
+              "lineHeight": "27.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Research, publications, talks and practical engineering experiments.",
+              "className": "audience",
+              "fontSize": 13,
+              "lineHeight": "21.45px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+              "className": "shift-statement",
+              "fontSize": 21,
+              "lineHeight": "29.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation ↗",
+              "href": "#contact"
+            },
+            {
+              "text": "Explore the research ↓",
+              "href": "#research"
+            }
+          ],
+          "capture": {
+            "file": "index-day-1440-hero.webp",
+            "sha256": "b60bc9a3acefa33b93e6bcbdd2a27a316e4d1f01d2822cd561fc107bf9285822",
+            "bytes": 484150,
+            "width": 1440,
+            "height": 930,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "help": {
+          "text": "01 / Professional contributionWhere I workand contribute. Delivery / Transformation and verificationAI-assisted deliverytransformation and verification.Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes. Governance / Agentic operating modelsEnterprise AI governanceand agentic operating models.Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them. Leadership / Capability and researchEngineering leadership,organizational capability and applied research.Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.Possible output: draft role and decision boundaries, learning routines and an improvement backlog. Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+          "headings": [
+            "Where I workand contribute.",
+            "AI-assisted deliverytransformation and verification.",
+            "Enterprise AI governanceand agentic operating models.",
+            "Engineering leadership,organizational capability and applied research."
+          ],
+          "bounds": {
+            "x": 140,
+            "y": 1084.09375,
+            "width": 1160,
+            "height": 768.234375
+          },
+          "paragraphs": [
+            {
+              "text": "01 / Professional contribution",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Delivery / Transformation and verification",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Governance / Agentic operating models",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Leadership / Capability and research",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: draft role and decision boundaries, learning routines and an improvement backlog.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation →",
+              "href": "#contact"
+            }
+          ],
+          "capture": {
+            "file": "index-day-1440-help.webp",
+            "sha256": "392a00606cfc67c58412a86d8e37b0cd0332516acb79fcc18329f3d13adc8f56",
+            "bytes": 39268,
+            "width": 1440,
+            "height": 769,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "acknowledgements": {
+          "text": "04 / Selected public responsesHow others have engagedwith the work.A selection of public responses to Uncertainty Architecture. These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only. Thinking Systems — public discussion Arkadiy Dobkin · EPAM founder In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures. Read the original post ↗ Matthew SkeltonCo-author of Team TopologiesReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.Public record ↗Markus KopkoCPMAI Lead Coach · PMI AI Standards Core TeamConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.Public record ↗ UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic. Full discussion & source context ↗",
+          "headings": [
+            "How others have engagedwith the work.",
+            "Thinking Systems — public discussion",
+            "Matthew Skelton",
+            "Markus Kopko"
+          ],
+          "bounds": {
+            "x": 140,
+            "y": 4022.28125,
+            "width": 1160,
+            "height": 915.265625
+          },
+          "paragraphs": [
+            {
+              "text": "04 / Selected public responses",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "A selection of public responses to Uncertainty Architecture.",
+              "className": "",
+              "fontSize": 16,
+              "lineHeight": "26.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Arkadiy Dobkin · EPAM founder",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Co-author of Team Topologies",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Reshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "CPMAI Lead Coach · PMI AI Standards Core Team",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "href": "research.html#ua-advisors"
+            },
+            {
+              "text": "Full discussion & source context ↗",
+              "href": "research.html#acknowledgements"
+            }
+          ],
+          "capture": {
+            "file": "index-day-1440-acknowledgements.webp",
+            "sha256": "844cf5240a69f09fe4c22b3929d5db571a7d493ee33fdad025b755ed2e962b7f",
+            "bytes": 41240,
+            "width": 1440,
+            "height": 916,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "contact": {
+          "text": "06 / ContactLet’s discusswhat comes next.I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.Book a conversationChoose a time for a conversation, or send me an email.Book a conversation ↗Prefer email? oborskyivitalii@gmail.comConnect on LinkedIn ↗",
+          "headings": ["Let’s discusswhat comes next.", "Book a conversation"],
+          "bounds": {
+            "x": 140,
+            "y": 5563.421875,
+            "width": 1160,
+            "height": 467.75
+          },
+          "paragraphs": [
+            {
+              "text": "06 / Contact",
+              "className": "eyebrow",
+              "fontSize": 15,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.",
+              "className": "section-note",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Choose a time for a conversation, or send me an email.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Prefer email? oborskyivitalii@gmail.com",
+              "className": "section-note contact-email",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Book a conversation ↗",
+              "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+            },
+            {
+              "text": "oborskyivitalii@gmail.com",
+              "href": "mailto:oborskyivitalii@gmail.com"
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+            }
+          ],
+          "capture": {
+            "file": "index-day-1440-contact.webp",
+            "sha256": "968404398efb6c0e03aa81c6aafed752c8146e73a0fc198436b7d25b128c1b7d",
+            "bytes": 19910,
+            "width": 1440,
+            "height": 469,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        }
+      },
+      "links": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research"
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help"
+        },
+        {
+          "text": "Research",
+          "href": "#research"
+        },
+        {
+          "text": "Writing",
+          "href": "#writing"
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore delivery research ↗",
+          "href": "research.html#delivery"
+        },
+        {
+          "text": "Methods & evidence ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis"
+        },
+        {
+          "text": "Externalization & the verification crisis",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Explore systems research ↗",
+          "href": "research.html#systems"
+        },
+        {
+          "text": "Living specification ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+        },
+        {
+          "text": "Thinking Systems",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "LinkedIn edition · 27 Aug 2026",
+          "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we"
+        },
+        {
+          "text": "AI, the Externalization of Reasoning, and the Verification Crisis↗",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops↗",
+          "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/"
+        },
+        {
+          "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b"
+        },
+        {
+          "text": "AI-Native Workflows Have a Moat Problem↗",
+          "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088"
+        },
+        {
+          "text": "Browse the complete EN / UA archive ↗",
+          "href": "writing.html"
+        },
+        {
+          "text": "Arkadiy Dobkin",
+          "href": "https://www.linkedin.com/in/arkadiydobkin/"
+        },
+        {
+          "text": "Read the original post ↗",
+          "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+        },
+        {
+          "text": "Matthew Skelton",
+          "href": "https://www.linkedin.com/in/matthewskelton/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+        },
+        {
+          "text": "Markus Kopko",
+          "href": "https://www.linkedin.com/in/markuskleinpmp/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+        },
+        {
+          "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+          "href": "research.html#ua-advisors"
+        },
+        {
+          "text": "Full discussion & source context ↗",
+          "href": "research.html#acknowledgements"
+        },
+        {
+          "text": "Explore the talk ↗",
+          "href": "talks.html#corning"
+        },
+        {
+          "text": "About the build ↗",
+          "href": "credits.html#built-with-ai"
+        },
+        {
+          "text": "LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        },
+        {
+          "text": "GitHub ↗",
+          "href": "https://github.com/oborskyivitalii"
+        },
+        {
+          "text": "Medium ↗",
+          "href": "https://medium.com/@undersmoker"
+        },
+        {
+          "text": "Book a conversation ↗",
+          "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+        },
+        {
+          "text": "oborskyivitalii@gmail.com",
+          "href": "mailto:oborskyivitalii@gmail.com"
+        },
+        {
+          "text": "Connect on LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        }
+      ],
+      "discussion": {
+        "count": 3,
+        "grid": "ack-leads",
+        "heading": "Thinking Systems — public discussion",
+        "byline": "Arkadiy Dobkin · EPAM founder",
+        "explanation": [
+          "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+          "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic."
+        ]
+      },
+      "localLinkChecks": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact",
+          "found": true
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help",
+          "found": true
+        },
+        {
+          "text": "Research",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Writing",
+          "href": "#writing",
+          "found": true
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact",
+          "found": true
+        }
+      ],
+      "nativeBottom": {
+        "route": "index",
+        "pass": true,
+        "beforeCamera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "scrollY": 5222,
+        "range": 5222,
+        "footerTop": 809.171875,
+        "footerBottom": 899.609375,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      }
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "width": 1440,
+      "pass": true,
+      "documentWidth": 1440,
+      "documentHeight": 6122,
+      "viewportHeight": 900,
+      "overflow": false,
+      "sections": {
+        "hero": {
+          "text": "AI delivery governance & agentic operating models AI tools everywhere.Better delivery?Harder to tell. Vitalii Oborskyi · Enterprise delivery leader & independent research author. My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build. Research, publications, talks and practical engineering experiments. Start a conversation ↗Explore the research ↓ AI is a fundamental shift: an attempt to delegate parts of thinking to machines.More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+          "headings": ["AI tools everywhere.Better delivery?Harder to tell."],
+          "bounds": {
+            "x": 140,
+            "y": 81,
+            "width": 1160,
+            "height": 929.09375
+          },
+          "paragraphs": [
+            {
+              "text": "AI delivery governance & agentic operating models",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+              "className": "hero-lead",
+              "fontSize": 16,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build.",
+              "className": "hero-description",
+              "fontSize": 16,
+              "lineHeight": "27.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Research, publications, talks and practical engineering experiments.",
+              "className": "audience",
+              "fontSize": 13,
+              "lineHeight": "21.45px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+              "className": "shift-statement",
+              "fontSize": 21,
+              "lineHeight": "29.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation ↗",
+              "href": "#contact"
+            },
+            {
+              "text": "Explore the research ↓",
+              "href": "#research"
+            }
+          ],
+          "capture": {
+            "file": "index-night-1440-hero.webp",
+            "sha256": "14dff492e21ede9f941acac401bcadb4e417f1c6910488cbf993ab2617b00982",
+            "bytes": 429306,
+            "width": 1440,
+            "height": 930,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "help": {
+          "text": "01 / Professional contributionWhere I workand contribute. Delivery / Transformation and verificationAI-assisted deliverytransformation and verification.Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes. Governance / Agentic operating modelsEnterprise AI governanceand agentic operating models.Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them. Leadership / Capability and researchEngineering leadership,organizational capability and applied research.Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.Possible output: draft role and decision boundaries, learning routines and an improvement backlog. Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+          "headings": [
+            "Where I workand contribute.",
+            "AI-assisted deliverytransformation and verification.",
+            "Enterprise AI governanceand agentic operating models.",
+            "Engineering leadership,organizational capability and applied research."
+          ],
+          "bounds": {
+            "x": 140,
+            "y": 1084.09375,
+            "width": 1160,
+            "height": 768.234375
+          },
+          "paragraphs": [
+            {
+              "text": "01 / Professional contribution",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Delivery / Transformation and verification",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Governance / Agentic operating models",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Leadership / Capability and research",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: draft role and decision boundaries, learning routines and an improvement backlog.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation →",
+              "href": "#contact"
+            }
+          ],
+          "capture": {
+            "file": "index-night-1440-help.webp",
+            "sha256": "32d4e87b57c07e93eb506f80c0b0f7cd8502a626596273e941d4b6239a8ead59",
+            "bytes": 36316,
+            "width": 1440,
+            "height": 769,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "acknowledgements": {
+          "text": "04 / Selected public responsesHow others have engagedwith the work.A selection of public responses to Uncertainty Architecture. These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only. Thinking Systems — public discussion Arkadiy Dobkin · EPAM founder In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures. Read the original post ↗ Matthew SkeltonCo-author of Team TopologiesReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.Public record ↗Markus KopkoCPMAI Lead Coach · PMI AI Standards Core TeamConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.Public record ↗ UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic. Full discussion & source context ↗",
+          "headings": [
+            "How others have engagedwith the work.",
+            "Thinking Systems — public discussion",
+            "Matthew Skelton",
+            "Markus Kopko"
+          ],
+          "bounds": {
+            "x": 140,
+            "y": 4022.28125,
+            "width": 1160,
+            "height": 915.265625
+          },
+          "paragraphs": [
+            {
+              "text": "04 / Selected public responses",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "A selection of public responses to Uncertainty Architecture.",
+              "className": "",
+              "fontSize": 16,
+              "lineHeight": "26.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Arkadiy Dobkin · EPAM founder",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Co-author of Team Topologies",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Reshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "CPMAI Lead Coach · PMI AI Standards Core Team",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "href": "research.html#ua-advisors"
+            },
+            {
+              "text": "Full discussion & source context ↗",
+              "href": "research.html#acknowledgements"
+            }
+          ],
+          "capture": {
+            "file": "index-night-1440-acknowledgements.webp",
+            "sha256": "8cab777b4eaa9b89a31be04c0f2e0fc8062ecedf82120bf0c6f3edaee0ba73f4",
+            "bytes": 37504,
+            "width": 1440,
+            "height": 916,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "contact": {
+          "text": "06 / ContactLet’s discusswhat comes next.I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.Book a conversationChoose a time for a conversation, or send me an email.Book a conversation ↗Prefer email? oborskyivitalii@gmail.comConnect on LinkedIn ↗",
+          "headings": ["Let’s discusswhat comes next.", "Book a conversation"],
+          "bounds": {
+            "x": 140,
+            "y": 5563.421875,
+            "width": 1160,
+            "height": 467.75
+          },
+          "paragraphs": [
+            {
+              "text": "06 / Contact",
+              "className": "eyebrow",
+              "fontSize": 15,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.",
+              "className": "section-note",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Choose a time for a conversation, or send me an email.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Prefer email? oborskyivitalii@gmail.com",
+              "className": "section-note contact-email",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Book a conversation ↗",
+              "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+            },
+            {
+              "text": "oborskyivitalii@gmail.com",
+              "href": "mailto:oborskyivitalii@gmail.com"
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+            }
+          ],
+          "capture": {
+            "file": "index-night-1440-contact.webp",
+            "sha256": "1b0ea2a7a13e6ab96e46ac35a912a5999bf3ca9ea4c8c25163101cb793655238",
+            "bytes": 18336,
+            "width": 1440,
+            "height": 469,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        }
+      },
+      "links": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research"
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help"
+        },
+        {
+          "text": "Research",
+          "href": "#research"
+        },
+        {
+          "text": "Writing",
+          "href": "#writing"
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore delivery research ↗",
+          "href": "research.html#delivery"
+        },
+        {
+          "text": "Methods & evidence ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis"
+        },
+        {
+          "text": "Externalization & the verification crisis",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Explore systems research ↗",
+          "href": "research.html#systems"
+        },
+        {
+          "text": "Living specification ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+        },
+        {
+          "text": "Thinking Systems",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "LinkedIn edition · 27 Aug 2026",
+          "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we"
+        },
+        {
+          "text": "AI, the Externalization of Reasoning, and the Verification Crisis↗",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops↗",
+          "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/"
+        },
+        {
+          "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b"
+        },
+        {
+          "text": "AI-Native Workflows Have a Moat Problem↗",
+          "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088"
+        },
+        {
+          "text": "Browse the complete EN / UA archive ↗",
+          "href": "writing.html"
+        },
+        {
+          "text": "Arkadiy Dobkin",
+          "href": "https://www.linkedin.com/in/arkadiydobkin/"
+        },
+        {
+          "text": "Read the original post ↗",
+          "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+        },
+        {
+          "text": "Matthew Skelton",
+          "href": "https://www.linkedin.com/in/matthewskelton/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+        },
+        {
+          "text": "Markus Kopko",
+          "href": "https://www.linkedin.com/in/markuskleinpmp/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+        },
+        {
+          "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+          "href": "research.html#ua-advisors"
+        },
+        {
+          "text": "Full discussion & source context ↗",
+          "href": "research.html#acknowledgements"
+        },
+        {
+          "text": "Explore the talk ↗",
+          "href": "talks.html#corning"
+        },
+        {
+          "text": "About the build ↗",
+          "href": "credits.html#built-with-ai"
+        },
+        {
+          "text": "LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        },
+        {
+          "text": "GitHub ↗",
+          "href": "https://github.com/oborskyivitalii"
+        },
+        {
+          "text": "Medium ↗",
+          "href": "https://medium.com/@undersmoker"
+        },
+        {
+          "text": "Book a conversation ↗",
+          "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+        },
+        {
+          "text": "oborskyivitalii@gmail.com",
+          "href": "mailto:oborskyivitalii@gmail.com"
+        },
+        {
+          "text": "Connect on LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        }
+      ],
+      "discussion": {
+        "count": 3,
+        "grid": "ack-leads",
+        "heading": "Thinking Systems — public discussion",
+        "byline": "Arkadiy Dobkin · EPAM founder",
+        "explanation": [
+          "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+          "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic."
+        ]
+      },
+      "localLinkChecks": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact",
+          "found": true
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help",
+          "found": true
+        },
+        {
+          "text": "Research",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Writing",
+          "href": "#writing",
+          "found": true
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact",
+          "found": true
+        }
+      ],
+      "nativeBottom": {
+        "route": "index",
+        "pass": true,
+        "beforeCamera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "scrollY": 5222,
+        "range": 5222,
+        "footerTop": 809.171875,
+        "footerBottom": 899.609375,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      }
+    },
+    {
+      "route": "index",
+      "theme": "light",
+      "width": 390,
+      "pass": true,
+      "documentWidth": 390,
+      "documentHeight": 10419,
+      "viewportHeight": 844,
+      "overflow": false,
+      "sections": {
+        "hero": {
+          "text": "AI delivery governance & agentic operating models AI tools everywhere.Better delivery?Harder to tell. Vitalii Oborskyi · Enterprise delivery leader & independent research author. My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build. Research, publications, talks and practical engineering experiments. Start a conversation ↗Explore the research ↓ AI is a fundamental shift: an attempt to delegate parts of thinking to machines.More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+          "headings": ["AI tools everywhere.Better delivery?Harder to tell."],
+          "bounds": {
+            "x": 20,
+            "y": 105,
+            "width": 350,
+            "height": 1221.03125
+          },
+          "paragraphs": [
+            {
+              "text": "AI delivery governance & agentic operating models",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+              "className": "hero-lead",
+              "fontSize": 16,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build.",
+              "className": "hero-description",
+              "fontSize": 16,
+              "lineHeight": "27.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Research, publications, talks and practical engineering experiments.",
+              "className": "audience",
+              "fontSize": 13,
+              "lineHeight": "21.45px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+              "className": "shift-statement",
+              "fontSize": 21,
+              "lineHeight": "29.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation ↗",
+              "href": "#contact"
+            },
+            {
+              "text": "Explore the research ↓",
+              "href": "#research"
+            }
+          ],
+          "capture": {
+            "file": "index-day-390-hero.webp",
+            "sha256": "9c4f66d0b852d3f1af7d83dff5f5aaf85bd8e70f31a3ec07aaca64b5b8205b8f",
+            "bytes": 132110,
+            "width": 390,
+            "height": 1222,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "help": {
+          "text": "01 / Professional contributionWhere I workand contribute. Delivery / Transformation and verificationAI-assisted deliverytransformation and verification.Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes. Governance / Agentic operating modelsEnterprise AI governanceand agentic operating models.Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them. Leadership / Capability and researchEngineering leadership,organizational capability and applied research.Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.Possible output: draft role and decision boundaries, learning routines and an improvement backlog. Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+          "headings": [
+            "Where I workand contribute.",
+            "AI-assisted deliverytransformation and verification.",
+            "Enterprise AI governanceand agentic operating models.",
+            "Engineering leadership,organizational capability and applied research."
+          ],
+          "bounds": {
+            "x": 20,
+            "y": 1400.03125,
+            "width": 350,
+            "height": 1572.328125
+          },
+          "paragraphs": [
+            {
+              "text": "01 / Professional contribution",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Delivery / Transformation and verification",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Governance / Agentic operating models",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Leadership / Capability and research",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: draft role and decision boundaries, learning routines and an improvement backlog.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation →",
+              "href": "#contact"
+            }
+          ],
+          "capture": {
+            "file": "index-day-390-help.webp",
+            "sha256": "2e5cc23e24ec9f0055b37f88a3bff34fc1ec37940f3ad3ab1a6b66bfcec544b9",
+            "bytes": 37694,
+            "width": 390,
+            "height": 1573,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "acknowledgements": {
+          "text": "04 / Selected public responsesHow others have engagedwith the work.A selection of public responses to Uncertainty Architecture. These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only. Thinking Systems — public discussion Arkadiy Dobkin · EPAM founder In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures. Read the original post ↗ Matthew SkeltonCo-author of Team TopologiesReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.Public record ↗Markus KopkoCPMAI Lead Coach · PMI AI Standards Core TeamConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.Public record ↗ UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic. Full discussion & source context ↗",
+          "headings": [
+            "How others have engagedwith the work.",
+            "Thinking Systems — public discussion",
+            "Matthew Skelton",
+            "Markus Kopko"
+          ],
+          "bounds": {
+            "x": 20,
+            "y": 6816.5625,
+            "width": 350,
+            "height": 1579.78125
+          },
+          "paragraphs": [
+            {
+              "text": "04 / Selected public responses",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "A selection of public responses to Uncertainty Architecture.",
+              "className": "",
+              "fontSize": 16,
+              "lineHeight": "26.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Arkadiy Dobkin · EPAM founder",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Co-author of Team Topologies",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Reshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "CPMAI Lead Coach · PMI AI Standards Core Team",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "href": "research.html#ua-advisors"
+            },
+            {
+              "text": "Full discussion & source context ↗",
+              "href": "research.html#acknowledgements"
+            }
+          ],
+          "capture": {
+            "file": "index-day-390-acknowledgements.webp",
+            "sha256": "d09dd8bc044faeff71bca9db91058333ca6163dc8f5882143b966d65925a8696",
+            "bytes": 38906,
+            "width": 390,
+            "height": 1581,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "contact": {
+          "text": "06 / ContactLet’s discusswhat comes next.I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.Book a conversationChoose a time for a conversation, or send me an email.Book a conversation ↗Prefer email? oborskyivitalii@gmail.comConnect on LinkedIn ↗",
+          "headings": ["Let’s discusswhat comes next.", "Book a conversation"],
+          "bounds": {
+            "x": 20,
+            "y": 9348.53125,
+            "width": 350,
+            "height": 872.234375
+          },
+          "paragraphs": [
+            {
+              "text": "06 / Contact",
+              "className": "eyebrow",
+              "fontSize": 15,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.",
+              "className": "section-note",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Choose a time for a conversation, or send me an email.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Prefer email? oborskyivitalii@gmail.com",
+              "className": "section-note contact-email",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Book a conversation ↗",
+              "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+            },
+            {
+              "text": "oborskyivitalii@gmail.com",
+              "href": "mailto:oborskyivitalii@gmail.com"
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+            }
+          ],
+          "capture": {
+            "file": "index-day-390-contact.webp",
+            "sha256": "5f32efba4fe801decda20e58b0d7b2a780119a46f772e8743ed4a37367c35122",
+            "bytes": 18212,
+            "width": 390,
+            "height": 873,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        }
+      },
+      "links": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research"
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help"
+        },
+        {
+          "text": "Research",
+          "href": "#research"
+        },
+        {
+          "text": "Writing",
+          "href": "#writing"
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore delivery research ↗",
+          "href": "research.html#delivery"
+        },
+        {
+          "text": "Methods & evidence ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis"
+        },
+        {
+          "text": "Externalization & the verification crisis",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Explore systems research ↗",
+          "href": "research.html#systems"
+        },
+        {
+          "text": "Living specification ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+        },
+        {
+          "text": "Thinking Systems",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "LinkedIn edition · 27 Aug 2026",
+          "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we"
+        },
+        {
+          "text": "AI, the Externalization of Reasoning, and the Verification Crisis↗",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops↗",
+          "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/"
+        },
+        {
+          "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b"
+        },
+        {
+          "text": "AI-Native Workflows Have a Moat Problem↗",
+          "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088"
+        },
+        {
+          "text": "Browse the complete EN / UA archive ↗",
+          "href": "writing.html"
+        },
+        {
+          "text": "Arkadiy Dobkin",
+          "href": "https://www.linkedin.com/in/arkadiydobkin/"
+        },
+        {
+          "text": "Read the original post ↗",
+          "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+        },
+        {
+          "text": "Matthew Skelton",
+          "href": "https://www.linkedin.com/in/matthewskelton/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+        },
+        {
+          "text": "Markus Kopko",
+          "href": "https://www.linkedin.com/in/markuskleinpmp/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+        },
+        {
+          "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+          "href": "research.html#ua-advisors"
+        },
+        {
+          "text": "Full discussion & source context ↗",
+          "href": "research.html#acknowledgements"
+        },
+        {
+          "text": "Explore the talk ↗",
+          "href": "talks.html#corning"
+        },
+        {
+          "text": "About the build ↗",
+          "href": "credits.html#built-with-ai"
+        },
+        {
+          "text": "LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        },
+        {
+          "text": "GitHub ↗",
+          "href": "https://github.com/oborskyivitalii"
+        },
+        {
+          "text": "Medium ↗",
+          "href": "https://medium.com/@undersmoker"
+        },
+        {
+          "text": "Book a conversation ↗",
+          "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+        },
+        {
+          "text": "oborskyivitalii@gmail.com",
+          "href": "mailto:oborskyivitalii@gmail.com"
+        },
+        {
+          "text": "Connect on LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        }
+      ],
+      "discussion": {
+        "count": 3,
+        "grid": "ack-leads",
+        "heading": "Thinking Systems — public discussion",
+        "byline": "Arkadiy Dobkin · EPAM founder",
+        "explanation": [
+          "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+          "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic."
+        ]
+      },
+      "localLinkChecks": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact",
+          "found": true
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help",
+          "found": true
+        },
+        {
+          "text": "Research",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Writing",
+          "href": "#writing",
+          "found": true
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact",
+          "found": true
+        }
+      ],
+      "nativeBottom": {
+        "route": "index",
+        "pass": true,
+        "beforeCamera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "scrollY": 9575,
+        "range": 9575,
+        "footerTop": 645.765625,
+        "footerBottom": 843.59375,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      }
+    },
+    {
+      "route": "index",
+      "theme": "dark",
+      "width": 390,
+      "pass": true,
+      "documentWidth": 390,
+      "documentHeight": 10419,
+      "viewportHeight": 844,
+      "overflow": false,
+      "sections": {
+        "hero": {
+          "text": "AI delivery governance & agentic operating models AI tools everywhere.Better delivery?Harder to tell. Vitalii Oborskyi · Enterprise delivery leader & independent research author. My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build. Research, publications, talks and practical engineering experiments. Start a conversation ↗Explore the research ↓ AI is a fundamental shift: an attempt to delegate parts of thinking to machines.More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+          "headings": ["AI tools everywhere.Better delivery?Harder to tell."],
+          "bounds": {
+            "x": 20,
+            "y": 105,
+            "width": 350,
+            "height": 1221.03125
+          },
+          "paragraphs": [
+            {
+              "text": "AI delivery governance & agentic operating models",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+              "className": "hero-lead",
+              "fontSize": 16,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "My work combines enterprise software delivery leadership with independent research into how AI changes engineering, operating models and the systems we build.",
+              "className": "hero-description",
+              "fontSize": 16,
+              "lineHeight": "27.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Research, publications, talks and practical engineering experiments.",
+              "className": "audience",
+              "fontSize": 13,
+              "lineHeight": "21.45px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "AI is a fundamental shift: an attempt to delegate parts of thinking to machines.",
+              "className": "shift-statement",
+              "fontSize": 21,
+              "lineHeight": "29.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "More than 20 years in software engineering and technology delivery, including over a decade in leadership. Delivery and PMO responsibility across a portfolio of around 25 projects and more than 120 engineers. That experience shapes my research into software delivery and systems that depend on model judgment.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation ↗",
+              "href": "#contact"
+            },
+            {
+              "text": "Explore the research ↓",
+              "href": "#research"
+            }
+          ],
+          "capture": {
+            "file": "index-night-390-hero.webp",
+            "sha256": "fdd0a30aa80c616638bb0e84b9771b7a5ad7ef1fc79e77872dc50eacc7f73555",
+            "bytes": 120268,
+            "width": 390,
+            "height": 1222,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "help": {
+          "text": "01 / Professional contributionWhere I workand contribute. Delivery / Transformation and verificationAI-assisted deliverytransformation and verification.Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes. Governance / Agentic operating modelsEnterprise AI governanceand agentic operating models.Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them. Leadership / Capability and researchEngineering leadership,organizational capability and applied research.Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.Possible output: draft role and decision boundaries, learning routines and an improvement backlog. Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+          "headings": [
+            "Where I workand contribute.",
+            "AI-assisted deliverytransformation and verification.",
+            "Enterprise AI governanceand agentic operating models.",
+            "Engineering leadership,organizational capability and applied research."
+          ],
+          "bounds": {
+            "x": 20,
+            "y": 1400.03125,
+            "width": 350,
+            "height": 1572.328125
+          },
+          "paragraphs": [
+            {
+              "text": "01 / Professional contribution",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Delivery / Transformation and verification",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Assess the delivery flow, review and verification capacity, rework, knowledge dependencies and costs. Investigate the actual constraint.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A prioritized diagnosis of delivery constraints and a plan for testing the next changes.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Governance / Agentic operating models",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Review delegated judgment, permissions, limits, evaluation evidence, cost ownership, escalation and corrective action.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: A review of decision authority, operating limits and evidence gaps, with priorities for addressing them.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Leadership / Capability and research",
+              "className": "card-kicker",
+              "fontSize": 12,
+              "lineHeight": "20.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Work through requirements, evaluation, release decisions and human capacity through organizational work, applied research or focused workshops.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Possible output: draft role and decision boundaries, learning routines and an improvement backlog.",
+              "className": "possible-output",
+              "fontSize": 14,
+              "lineHeight": "23.8px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Examples of work, depending on the role, organization and agreed scope. Start a conversation →",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Start a conversation →",
+              "href": "#contact"
+            }
+          ],
+          "capture": {
+            "file": "index-night-390-help.webp",
+            "sha256": "3ac7023c84c962b9183156105f34483235300ffa60a9917937b52b01fae2dd80",
+            "bytes": 35562,
+            "width": 390,
+            "height": 1573,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "acknowledgements": {
+          "text": "04 / Selected public responsesHow others have engagedwith the work.A selection of public responses to Uncertainty Architecture. These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only. Thinking Systems — public discussion Arkadiy Dobkin · EPAM founder In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures. Read the original post ↗ Matthew SkeltonCo-author of Team TopologiesReshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.Public record ↗Markus KopkoCPMAI Lead Coach · PMI AI Standards Core TeamConnected UA’s control-theory framing with CPMAI practices, roles and governance gates.Public record ↗ UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic. Full discussion & source context ↗",
+          "headings": [
+            "How others have engagedwith the work.",
+            "Thinking Systems — public discussion",
+            "Matthew Skelton",
+            "Markus Kopko"
+          ],
+          "bounds": {
+            "x": 20,
+            "y": 6816.5625,
+            "width": 350,
+            "height": 1579.78125
+          },
+          "paragraphs": [
+            {
+              "text": "04 / Selected public responses",
+              "className": "eyebrow",
+              "fontSize": 12,
+              "lineHeight": "19.2px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "A selection of public responses to Uncertainty Architecture.",
+              "className": "",
+              "fontSize": 16,
+              "lineHeight": "26.4px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Arkadiy Dobkin · EPAM founder",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "In his public response to Thinking Systems, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Co-author of Team Topologies",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Reshared Michael Risch’s discussion of my AI governance article and highlighted governance as bringing business intent back into the system.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "CPMAI Lead Coach · PMI AI Standards Core Team",
+              "className": "person-context",
+              "fontSize": 14,
+              "lineHeight": "21px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connected UA’s control-theory framing with CPMAI practices, roles and governance gates.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "25.5px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "className": "section-note",
+              "fontSize": 14,
+              "lineHeight": "23.1px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Arkadiy Dobkin",
+              "href": "https://www.linkedin.com/in/arkadiydobkin/"
+            },
+            {
+              "text": "Read the original post ↗",
+              "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+            },
+            {
+              "text": "Matthew Skelton",
+              "href": "https://www.linkedin.com/in/matthewskelton/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+            },
+            {
+              "text": "Markus Kopko",
+              "href": "https://www.linkedin.com/in/markuskleinpmp/"
+            },
+            {
+              "text": "Public record ↗",
+              "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+            },
+            {
+              "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+              "href": "research.html#ua-advisors"
+            },
+            {
+              "text": "Full discussion & source context ↗",
+              "href": "research.html#acknowledgements"
+            }
+          ],
+          "capture": {
+            "file": "index-night-390-acknowledgements.webp",
+            "sha256": "889f451ef455d5bb250e09c59ae13e15786a8d5bc9ee76ee593101744a981528",
+            "bytes": 35388,
+            "width": 390,
+            "height": 1581,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        },
+        "contact": {
+          "text": "06 / ContactLet’s discusswhat comes next.I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.Book a conversationChoose a time for a conversation, or send me an email.Book a conversation ↗Prefer email? oborskyivitalii@gmail.comConnect on LinkedIn ↗",
+          "headings": ["Let’s discusswhat comes next.", "Book a conversation"],
+          "bounds": {
+            "x": 20,
+            "y": 9348.53125,
+            "width": 350,
+            "height": 872.234375
+          },
+          "paragraphs": [
+            {
+              "text": "06 / Contact",
+              "className": "eyebrow",
+              "fontSize": 15,
+              "lineHeight": "24px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "I’m open to conversations about enterprise leadership opportunities, research collaboration and selected advisory work where my experience and research may be relevant.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Speaking invitations and practical questions about AI delivery, engineering and governance are welcome too.",
+              "className": "section-note",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Choose a time for a conversation, or send me an email.",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Prefer email? oborskyivitalii@gmail.com",
+              "className": "section-note contact-email",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "className": "",
+              "fontSize": 15,
+              "lineHeight": "24.75px",
+              "lineClamp": "none",
+              "overflow": "visible",
+              "textOutsideBounds": false
+            }
+          ],
+          "emptyArticles": 0,
+          "links": [
+            {
+              "text": "Book a conversation ↗",
+              "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+            },
+            {
+              "text": "oborskyivitalii@gmail.com",
+              "href": "mailto:oborskyivitalii@gmail.com"
+            },
+            {
+              "text": "Connect on LinkedIn ↗",
+              "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+            }
+          ],
+          "capture": {
+            "file": "index-night-390-contact.webp",
+            "sha256": "54352cf1ffb86ec1b8efca3ae5594724306f4551239a45310ea9f2b94a404a3d",
+            "bytes": 17406,
+            "width": 390,
+            "height": 873,
+            "format": "lossless WebP",
+            "method": "unmodified full-page browser screenshot cropped to measured section vertical bounds"
+          }
+        }
+      },
+      "links": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research"
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help"
+        },
+        {
+          "text": "Research",
+          "href": "#research"
+        },
+        {
+          "text": "Writing",
+          "href": "#writing"
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact"
+        },
+        {
+          "text": "Explore delivery research ↗",
+          "href": "research.html#delivery"
+        },
+        {
+          "text": "Methods & evidence ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis"
+        },
+        {
+          "text": "Externalization & the verification crisis",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Explore systems research ↗",
+          "href": "research.html#systems"
+        },
+        {
+          "text": "Living specification ↗",
+          "href": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+        },
+        {
+          "text": "Thinking Systems",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "Uncertainty Architecture: Thinking Systems, When the Controlled Object Changes↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-thinking-systems-when-the-controlled-object-changes-21275fe2f3db"
+        },
+        {
+          "text": "LinkedIn edition · 27 Aug 2026",
+          "href": "https://www.linkedin.com/pulse/thinking-systems-when-controlled-object-changes-vitalii-oborskyi-6k4we"
+        },
+        {
+          "text": "AI, the Externalization of Reasoning, and the Verification Crisis↗",
+          "href": "https://medium.com/agileinsider/ai-the-externalization-of-reasoning-and-the-verification-crisis-4f5046f9f0d0"
+        },
+        {
+          "text": "Reinventing Control Theory One Feature at a Time: The Fallacy of Agentic Loops↗",
+          "href": "https://www.linkedin.com/pulse/reinventing-control-theory-one-feature-time-fallacy-agentic-oborskyi-vkwve/"
+        },
+        {
+          "text": "Uncertainty Architecture: Beyond Embeddings — Neuro-Symbolic Verification of Semantic Drift in LLMs↗",
+          "href": "https://generativeai.pub/uncertainty-architecture-beyond-embeddings-neuro-symbolic-verification-of-semantic-drift-in-llms-69822872825b"
+        },
+        {
+          "text": "AI-Native Workflows Have a Moat Problem↗",
+          "href": "https://aiadvances.org/ai-native-workflows-have-a-moat-problem-49992bcc3088"
+        },
+        {
+          "text": "Browse the complete EN / UA archive ↗",
+          "href": "writing.html"
+        },
+        {
+          "text": "Arkadiy Dobkin",
+          "href": "https://www.linkedin.com/in/arkadiydobkin/"
+        },
+        {
+          "text": "Read the original post ↗",
+          "href": "https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H"
+        },
+        {
+          "text": "Matthew Skelton",
+          "href": "https://www.linkedin.com/in/matthewskelton/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/matthewskelton_uncertainty-architecture-why-ai-governance-activity-7455172623409430528-MI9x"
+        },
+        {
+          "text": "Markus Kopko",
+          "href": "https://www.linkedin.com/in/markuskleinpmp/"
+        },
+        {
+          "text": "Public record ↗",
+          "href": "https://www.linkedin.com/posts/markuskleinpmp_uncertainty-architecture-why-ai-governance-activity-7462053122773827584-mKwf"
+        },
+        {
+          "text": "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic.",
+          "href": "research.html#ua-advisors"
+        },
+        {
+          "text": "Full discussion & source context ↗",
+          "href": "research.html#acknowledgements"
+        },
+        {
+          "text": "Explore the talk ↗",
+          "href": "talks.html#corning"
+        },
+        {
+          "text": "About the build ↗",
+          "href": "credits.html#built-with-ai"
+        },
+        {
+          "text": "LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        },
+        {
+          "text": "GitHub ↗",
+          "href": "https://github.com/oborskyivitalii"
+        },
+        {
+          "text": "Medium ↗",
+          "href": "https://medium.com/@undersmoker"
+        },
+        {
+          "text": "Book a conversation ↗",
+          "href": "https://calendar.app.google/zy9rAnUcoWygSdxH7"
+        },
+        {
+          "text": "oborskyivitalii@gmail.com",
+          "href": "mailto:oborskyivitalii@gmail.com"
+        },
+        {
+          "text": "Connect on LinkedIn ↗",
+          "href": "https://www.linkedin.com/in/vitaliioborskyi/"
+        }
+      ],
+      "discussion": {
+        "count": 3,
+        "grid": "ack-leads",
+        "heading": "Thinking Systems — public discussion",
+        "byline": "Arkadiy Dobkin · EPAM founder",
+        "explanation": [
+          "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+          "UA advisors: Markus Kopko — governance and alignment; Otman Basir — academic."
+        ]
+      },
+      "localLinkChecks": [
+        {
+          "text": "Start a conversation ↗",
+          "href": "#contact",
+          "found": true
+        },
+        {
+          "text": "Explore the research ↓",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Where I contribute",
+          "href": "#help",
+          "found": true
+        },
+        {
+          "text": "Research",
+          "href": "#research",
+          "found": true
+        },
+        {
+          "text": "Writing",
+          "href": "#writing",
+          "found": true
+        },
+        {
+          "text": "Start a conversation →",
+          "href": "#contact",
+          "found": true
+        }
+      ],
+      "nativeBottom": {
+        "route": "index",
+        "pass": true,
+        "beforeCamera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "scrollY": 9575,
+        "range": 9575,
+        "footerTop": 645.765625,
+        "footerBottom": 843.59375,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      }
+    }
+  ],
+  "maintainedSmoke": {
+    "width": 1440,
+    "mode": "normal",
+    "pass": true,
+    "served": [
+      {
+        "route": "index",
+        "sha256": "f7ffb3830ebead80f72d3c8c87b686dee5962815fec659a21533c3089a5cb3af",
+        "status": 200
+      },
+      {
+        "route": "research",
+        "sha256": "6fd01b4bfad75b261af769fa3f0c038acfaeb92462c039b887ff4774b50fe084",
+        "status": 200
+      },
+      {
+        "route": "writing",
+        "sha256": "f14a539475d2898e70815461be2d3ea8f3b2a4cbff0d2a2405511c33285df48d",
+        "status": 200
+      },
+      {
+        "route": "talks",
+        "sha256": "4943204cd01a5e8a1b7419b1e20f9e7e14ab1dba365c95dfce16f0e5bdc1e3a1",
+        "status": 200
+      },
+      {
+        "route": "credits",
+        "sha256": "64bb9802e822b17b66c6e3cbf61c115897ba36566fdc73bda2552939a9589c4b",
+        "status": 200
+      }
+    ],
+    "rows": [
+      {
+        "route": "index",
+        "pass": true,
+        "state": {
+          "page": "index",
+          "ready": true,
+          "travel": "settled",
+          "phase": "213.4",
+          "fallback": false,
+          "h1": 1,
+          "overflow": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "engine": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+          "variant": "color"
+        },
+        "detail": null,
+        "checks": [
+          "exact identity",
+          "heading",
+          "viewport",
+          "persistent shell",
+          "theme control",
+          "canvas active"
+        ]
+      },
+      {
+        "route": "research",
+        "pass": true,
+        "state": {
+          "page": "research",
+          "ready": true,
+          "travel": "settled",
+          "phase": "1830",
+          "fallback": false,
+          "h1": 1,
+          "overflow": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "engine": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+          "variant": "color"
+        },
+        "detail": null,
+        "checks": [
+          "exact identity",
+          "heading",
+          "viewport",
+          "persistent shell",
+          "theme control",
+          "canvas active"
+        ]
+      },
+      {
+        "route": "writing",
+        "pass": true,
+        "state": {
+          "page": "writing",
+          "ready": true,
+          "travel": "settled",
+          "phase": "3746.4999999999995",
+          "fallback": false,
+          "h1": 1,
+          "overflow": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "engine": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+          "variant": "color"
+        },
+        "detail": [
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "flying",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          },
+          {
+            "geometry": "full",
+            "detail": 0,
+            "travel": "settled",
+            "rooms": 3,
+            "models": 3,
+            "narrow": false
+          }
+        ],
+        "checks": [
+          "exact identity",
+          "heading",
+          "viewport",
+          "persistent shell",
+          "theme control",
+          "canvas active"
+        ]
+      },
+      {
+        "route": "talks",
+        "pass": true,
+        "state": {
+          "page": "talks",
+          "ready": true,
+          "travel": "settled",
+          "phase": "5329.767999999999",
+          "fallback": false,
+          "h1": 1,
+          "overflow": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "engine": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+          "variant": "color"
+        },
+        "detail": null,
+        "checks": [
+          "exact identity",
+          "heading",
+          "viewport",
+          "persistent shell",
+          "theme control",
+          "canvas active"
+        ]
+      },
+      {
+        "route": "credits",
+        "pass": true,
+        "state": {
+          "page": "credits",
+          "ready": true,
+          "travel": "settled",
+          "phase": "5546.467999999999",
+          "fallback": false,
+          "h1": 1,
+          "overflow": false,
+          "motion": {
+            "hidden": false,
+            "disabled": false,
+            "label": "Motion: on"
+          },
+          "engine": "9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8",
+          "variant": "color"
+        },
+        "detail": null,
+        "checks": [
+          "exact identity",
+          "heading",
+          "viewport",
+          "persistent shell",
+          "theme control",
+          "canvas active"
+        ]
+      }
+    ],
+    "history": true,
+    "discussion": {
+      "home": ["Arkadiy Dobkin", "Matthew Skelton", "Markus Kopko"],
+      "research": [
+        "Markus Kopko",
+        "Otman Basir, Ph.D.",
+        "Maximiliano Armesto",
+        "Arkadiy Dobkin",
+        "Christophe Kolb & Taller",
+        "Rod Montgomery",
+        "Michael Risch",
+        "Matthew Skelton"
+      ],
+      "cta": true,
+      "localNavigation": true,
+      "history": true,
+      "directAnchor": true
+    },
+    "motionOff": true,
+    "errors": [],
+    "externalRequests": [],
+    "verifiedResponses": [
+      "index.html",
+      "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp",
+      "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/archive.js",
+      "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/navigation.js",
+      "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/space.js",
+      "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/styles.css",
+      "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/theme.js",
+      "site-revision.json",
+      "snapshots/7cfb03d4410d6f80b6c62e0812e5a3c1901ccf21de968873b7540866fd0ac3d2/credits.html",
+      "snapshots/a43d2226b9ec5338efa11abe9a8b74da072891f4b66c4c3e32cd6c446bb8018d/talks.html",
+      "snapshots/d7ba327bc256e151c755c46f9d5c9708cae930ec78ce7e05ed59dd08d6d9f9fb/research.html",
+      "snapshots/da362c3e5a2732bbd364945133f92b8d258de3e497f8ac0e99fc6999477613c2/writing.html"
+    ]
+  },
+  "cameraJourney": {
+    "routes": [
+      {
+        "route": "index",
+        "pass": true,
+        "beforeCamera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "scrollY": 5222,
+        "range": 5222,
+        "footerTop": 809.171875,
+        "footerBottom": 899.609375,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      },
+      {
+        "route": "research",
+        "pass": true,
+        "beforeCamera": {
+          "position": [5, 4, -105],
+          "target": [0, 0, -133]
+        },
+        "camera": {
+          "position": [5, 4, -105],
+          "target": [0, 0, -133]
+        },
+        "scrollY": 5537,
+        "range": 5537,
+        "footerTop": 809.703125,
+        "footerBottom": 900.140625,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      },
+      {
+        "route": "writing",
+        "pass": true,
+        "beforeCamera": {
+          "position": [5, 3, -232],
+          "target": [0, 0, -261]
+        },
+        "camera": {
+          "position": [5, 3, -232],
+          "target": [0, 0, -261]
+        },
+        "scrollY": 5361,
+        "range": 5361,
+        "footerTop": 809.453125,
+        "footerBottom": 899.890625,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      },
+      {
+        "route": "talks",
+        "pass": true,
+        "beforeCamera": {
+          "position": [5, 3, -360],
+          "target": [0, 0, -389]
+        },
+        "camera": {
+          "position": [5, 3, -360],
+          "target": [0, 0, -389]
+        },
+        "scrollY": 1321,
+        "range": 1321,
+        "footerTop": 826.953125,
+        "footerBottom": 899.75,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      },
+      {
+        "route": "credits",
+        "pass": true,
+        "beforeCamera": {
+          "position": [5, 4, -488],
+          "target": [0, 0, -517]
+        },
+        "camera": {
+          "position": [5, 4, -488],
+          "target": [0, 0, -517]
+        },
+        "scrollY": 2051,
+        "range": 2051,
+        "footerTop": 826.96875,
+        "footerBottom": 899.765625,
+        "overflow": false,
+        "observationUnit": "CSS pixels; exact serialized camera equality"
+      }
+    ],
+    "writingTopicFixed": true,
+    "flightSamples": [
+      {
+        "route": "index",
+        "travel": "settled",
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [6, 4, 24],
+          "target": [0, 0, -5]
+        },
+        "opacity": 1,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.997947292270941, 4, 23.735200702951364],
+          "target": [0, 0, -5.262746589319576]
+        },
+        "opacity": 1,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 9.97178, 0.99169)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.991888459189904, 4, 22.953611235497657],
+          "target": [0, 0, -6.038277223692248]
+        },
+        "opacity": 1,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 38.5223, 0.967898)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.975819984545495, 4, 20.880778006368928],
+          "target": [0, 0, -8.095041978176567]
+        },
+        "opacity": 1,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 110.709, 0.907742)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.960788256026608, 4, 18.941685027432417],
+          "target": [0, 0, -10.01910322859419]
+        },
+        "opacity": 0.992736,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 174.866, 0.854279)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.952030245000296, 4, 17.811901605038194],
+          "target": [0, 0, -11.1401286399621]
+        },
+        "opacity": 0.978588,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 210.975, 0.824187)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.932274146631558, 4, 15.263364915471003],
+          "target": [0, 0, -13.668909231160555]
+        },
+        "opacity": 0.930728,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 289.324, 0.758897)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.909650000997154, 4, 12.344850128632906],
+          "target": [0, 0, -16.564799872364247]
+        },
+        "opacity": 0.860715,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 374.121, 0.688233)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.884300735805804, 4, 9.074794918948808],
+          "target": [0, 0, -19.809505816856998]
+        },
+        "opacity": 0.773084,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 463.236, 0.61397)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.856601273154206, 4, 5.5015642368925555],
+          "target": [0, 0, -23.35503703626165]
+        },
+        "opacity": 0.67319,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 553.729, 0.53856)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.826702149922019, 4, 1.6445773399403727],
+          "target": [0, 0, -27.182124809981644]
+        },
+        "opacity": 0.565614,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 643.46, 0.463783)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.794727460802988, 4, -2.4801575564146106],
+          "target": [0, 0, -31.2748850172176]
+        },
+        "opacity": 0.454842,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 730.282, 0.391432)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.743633013997381, 4, -9.071341194337805],
+          "target": [0, 0, -37.81497420833519]
+        },
+        "opacity": 0.294223,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 849.03, 0.292475)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.707672368378442, 4, -13.71026447918095],
+          "target": [0, 0, -42.41793684755939]
+        },
+        "opacity": 0.197484,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 917.331, 0.235558)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.67073379237683, 4, -18.475340783388866],
+          "target": [0, 0, -47.146074575765695]
+        },
+        "opacity": 0.115309,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 973.678, 0.188602)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.632595707525622, 4, -23.395153729194746],
+          "target": [0, 0, -52.02774943672037]
+        },
+        "opacity": 0.0515457,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1016.34, 0.15305)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.613229209032578, 4, -25.893432034797343],
+          "target": [0, 0, -54.506661243829925]
+        },
+        "opacity": 0.0282914,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1031.64, 0.140299)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.574159730158609, 4, -30.9333948095395],
+          "target": [0, 0, -59.507554539698106]
+        },
+        "opacity": 0.00211043,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1048.65, 0.126128)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.534673177993151, 4, -36.02716003888363],
+          "target": [0, 0, -64.56183321687678]
+        },
+        "opacity": 0,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 1050, 0.125)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.494872893862255, 4, -41.16139669176911],
+          "target": [0, 0, -69.65626958563136]
+        },
+        "opacity": 0,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -4200, 4.5)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.474969557863334, 4, -43.728927035629894],
+          "target": [0, 0, -72.20389659349323]
+        },
+        "opacity": 0.00055465,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -4186.27, 4.48856)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.415701365567681, 4, -51.37452384176916],
+          "target": [0, 0, -79.79022520733685]
+        },
+        "opacity": 0.0252433,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -4051.54, 4.37628)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.376775762447383, 4, -56.395926644287584],
+          "target": [0, 0, -84.77270240673496]
+        },
+        "opacity": 0.059831,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3891.85, 4.24321)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.338547286639621, 4, -61.32740002348888],
+          "target": [0, 0, -89.6659473101285]
+        },
+        "opacity": 0.106718,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3684.95, 4.0708)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.301238510910525, 4, -66.14023209254228],
+          "target": [0, 0, -94.4414706034528]
+        },
+        "opacity": 0.164012,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3438.33, 3.86528)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.265072008026226, 4, -70.80571096461686],
+          "target": [0, 0, -99.07078297264309]
+        },
+        "opacity": 0.229822,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -3159.46, 3.63288)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.230168120543544, 4, -75.30831244988286],
+          "target": [0, 0, -103.5384805704264]
+        },
+        "opacity": 0.302481,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -2854.87, 3.37906)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.19695898386631, 4, -79.59229108124607],
+          "target": [0, 0, -107.78925006511238]
+        },
+        "opacity": 0.379658,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -2533.9, 3.11158)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.165560506718949, 4, -83.64269463325556],
+          "target": [0, 0, -111.8082551399745]
+        },
+        "opacity": 0.459669,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -2203.13, 2.83594)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.136195261867593, 4, -87.43081121908045],
+          "target": [0, 0, -115.56700648094805]
+        },
+        "opacity": 0.540622,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -1870.05, 2.55837)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.109008033415569, 4, -90.9379636893916],
+          "target": [0, 0, -119.04697172280716]
+        },
+        "opacity": 0.620864,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -1541.16, 2.2843)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.084314762701058, 4, -94.12339561156355],
+          "target": [0, 0, -122.20771037426461]
+        },
+        "opacity": 0.698241,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -1225.02, 2.02085)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.062401545661011, 4, -96.9502006097296],
+          "target": [0, 0, -125.01260215539061]
+        },
+        "opacity": 0.770637,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -930.008, 1.77501)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.043413188754862, 4, -99.39969865062288],
+          "target": [0, 0, -127.44311183937774]
+        },
+        "opacity": 0.836396,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -662.647, 1.55221)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.02757226474874, 4, -101.44317784741253],
+          "target": [0, 0, -129.47075011216128]
+        },
+        "opacity": 0.893628,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -430.409, 1.35867)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.015101346408778, 4, -103.0519263132677],
+          "target": [0, 0, -131.06702765967648]
+        },
+        "opacity": 0.94044,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -240.774, 1.20064)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.006201979080744, 4, -104.19994469858395],
+          "target": [0, 0, -132.2061466776647]
+        },
+        "opacity": 0.975023,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -100.883, 1.08407)"
+      },
+      {
+        "route": "research",
+        "travel": "flying",
+        "camera": {
+          "position": [5.001150582478924, 4, -104.85157486021888],
+          "target": [0, 0, -132.85272544269782]
+        },
+        "opacity": 0.995274,
+        "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, -19.0724, 1.01589)"
+      },
+      {
+        "route": "research",
+        "travel": "settled",
+        "camera": {
+          "position": [5, 4, -105],
+          "target": [0, 0, -133]
+        },
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "observationUnit": "existing scene data-phase DOM mutations; opacity and CSS transform observations, not timing/performance measurements"
+  },
+  "expectedContactURLs": {
+    "U001": "https://calendar.app.google/zy9rAnUcoWygSdxH7",
+    "U002": "mailto:oborskyivitalii@gmail.com",
+    "U003": "https://www.linkedin.com/in/vitaliioborskyi/"
+  },
+  "authoredSources": {
+    "site/content/pages/index/hero.json": "4bc0154a11b04d4cfc80ac7fc5eddad0bcd79db88ac18759b9bbabb7b8b3a400",
+    "site/content/pages/index/help.json": "e3a5007df5c6bf93f550585081722e0a197fa9299be35fa090316896be00053f",
+    "site/content/pages/index/main.json": "7112c8cd147fc5a1f21f2cb1022fadc95df50acc9cc1df155dc78b9fd548784a",
+    "site/content/pages/index/about.json": "e216d331b23ebef8b1d6897bb66790fb9a14113a6986637376208432c71545ef",
+    "site/content/pages/index/contact.json": "2970236d14440430a0da5470960fc706367c27da4af255bbbc9756427460d4b7",
+    "site/content/pages/index/acknowledgements.json": "1e0420c20d78020d6b239727d87fb0f41953bfc1291e8e87bca2240b0590e967",
+    "site/templates/pages/index/hero.html": "c3343799f162eb04aee7c0ed2b174dd1979d3d3bb7c06719a56aadb8e1eecee9",
+    "site/templates/pages/index/help.html": "95ea1a3af0fafc7f864145a06d0162e3ffdf92ec83887b035409e69690f7bc58",
+    "site/templates/pages/index/main.html": "93cf82b6decbb524738d808cdcf8a656e5d8a0d851b3346deb07a775028ef16f",
+    "site/templates/pages/index/about.html": "84289497494d14ed546efe06ff68211a7f6a0cfe3332b221c25f18cdd528fcfd",
+    "site/templates/pages/index/contact.html": "b42e60bf0ddbebcf5527fd71a46a3ecc0e7d7da4b27023083b5947c7bcdf91b0",
+    "site/templates/pages/index/acknowledgements.html": "97436129684d0f2f2a7cd5919644cb3974a8c60f9617ea84cfab5c8e1aa4bd70",
+    "site/content/pages/index/metadata.json": "634739e7825d05f1f4dfc407cde51b6ca7f6e351acf0a3098cc8c10b950e7f72",
+    "site/content/pages/research/acknowledgements.json": "af8f4040b2cc391f47f87e44575fa8835d4aca7d13eb956fca559f7d185ed33a",
+    "site/templates/pages/research/acknowledgements.html": "cd6491ea29207447e1c3aa8fd5473241adf0169710639bf251100135ca601d35",
+    "site/engine/lifecycle.cjs": "0923b0b7cba590e18fdfcd2c833b2b1a476d174e98177dc9c414b5be6e232058",
+    "site/engine/styles.css": "06e5776ee5efe2e66364641f66223d22571e5637344622001467ae7c7346d082",
+    "site/engine/navigation.js": "908f05a548dedc176825a1bed94f40dd7f6ed44164e0aab3b16eafe9c41c53ee",
+    "tools/quality/local-browser.cjs": "2b724b32137c51985f0d3321cda4b89b1a7dc90a86d4b909f0ef9af26e232dac"
+  },
+  "publicSources": {
+    "index.html": "f7ffb3830ebead80f72d3c8c87b686dee5962815fec659a21533c3089a5cb3af",
+    "research.html": "6fd01b4bfad75b261af769fa3f0c038acfaeb92462c039b887ff4774b50fe084",
+    "site-revision.json": "fa55ea41ebbd86a2b087883d12cb6b0dd2eb5f058e71af235e9d80ce7b10192e",
+    "space.js": "443c932e6991cad9027f59b03a69e310765c4c0dd515b57ba1a57889f8b0e864",
+    "styles.css": "ddf1e07ba9097140acc81cb79b6fbfcfee8d4ce4c5c624d95a6a4713cc0d524e",
+    "navigation.js": "63460e40eb0ee7d2e2d3001365bc2e85b88edb964cbd34852a7d58c58eafe6e4"
+  },
+  "verifiedResponses": [
+    "index.html",
+    "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp",
+    "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/archive.js",
+    "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/navigation.js",
+    "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/space.js",
+    "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/styles.css",
+    "runtime/9fd66a22f26b9cb487179db4d38812a1c03627d436506422cd0987cfdd8509c8/theme.js",
+    "site-revision.json",
+    "snapshots/7cfb03d4410d6f80b6c62e0812e5a3c1901ccf21de968873b7540866fd0ac3d2/credits.html",
+    "snapshots/a43d2226b9ec5338efa11abe9a8b74da072891f4b66c4c3e32cd6c446bb8018d/talks.html",
+    "snapshots/d7ba327bc256e151c755c46f9d5c9708cae930ec78ce7e05ed59dd08d6d9f9fb/research.html",
+    "snapshots/da362c3e5a2732bbd364945133f92b8d258de3e497f8ac0e99fc6999477613c2/writing.html"
+  ],
+  "artifactVerifiedBeforeAndAfter": true,
+  "errors": [],
+  "protectedSourceEqualityToPreparation": {
+    "site/content/pages/index/acknowledgements.json": {
+      "sha256": "1e0420c20d78020d6b239727d87fb0f41953bfc1291e8e87bca2240b0590e967",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/index/hero.html": {
+      "sha256": "c3343799f162eb04aee7c0ed2b174dd1979d3d3bb7c06719a56aadb8e1eecee9",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/index/help.html": {
+      "sha256": "95ea1a3af0fafc7f864145a06d0162e3ffdf92ec83887b035409e69690f7bc58",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/index/main.html": {
+      "sha256": "93cf82b6decbb524738d808cdcf8a656e5d8a0d851b3346deb07a775028ef16f",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/index/about.html": {
+      "sha256": "84289497494d14ed546efe06ff68211a7f6a0cfe3332b221c25f18cdd528fcfd",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/index/contact.html": {
+      "sha256": "b42e60bf0ddbebcf5527fd71a46a3ecc0e7d7da4b27023083b5947c7bcdf91b0",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/index/acknowledgements.html": {
+      "sha256": "97436129684d0f2f2a7cd5919644cb3974a8c60f9617ea84cfab5c8e1aa4bd70",
+      "equalsPreparedHead": true
+    },
+    "site/content/pages/index/metadata.json": {
+      "sha256": "634739e7825d05f1f4dfc407cde51b6ca7f6e351acf0a3098cc8c10b950e7f72",
+      "equalsPreparedHead": true
+    },
+    "site/content/pages/research/acknowledgements.json": {
+      "sha256": "af8f4040b2cc391f47f87e44575fa8835d4aca7d13eb956fca559f7d185ed33a",
+      "equalsPreparedHead": true
+    },
+    "site/templates/pages/research/acknowledgements.html": {
+      "sha256": "cd6491ea29207447e1c3aa8fd5473241adf0169710639bf251100135ca601d35",
+      "equalsPreparedHead": true
+    },
+    "site/engine/lifecycle.cjs": {
+      "sha256": "0923b0b7cba590e18fdfcd2c833b2b1a476d174e98177dc9c414b5be6e232058",
+      "equalsPreparedHead": true
+    },
+    "site/engine/styles.css": {
+      "sha256": "06e5776ee5efe2e66364641f66223d22571e5637344622001467ae7c7346d082",
+      "equalsPreparedHead": true
+    },
+    "site/engine/navigation.js": {
+      "sha256": "908f05a548dedc176825a1bed94f40dd7f6ed44164e0aab3b16eafe9c41c53ee",
+      "equalsPreparedHead": true
+    },
+    "tools/quality/local-browser.cjs": {
+      "sha256": "2b724b32137c51985f0d3321cda4b89b1a7dc90a86d4b909f0ef9af26e232dac",
+      "equalsPreparedHead": true
+    }
+  },
+  "renderedHierarchy": {
+    "order": [
+      "hero",
+      "help",
+      "research",
+      "writing",
+      "acknowledgements",
+      "about",
+      "contact"
+    ],
+    "headings": [
+      {
+        "section": "hero",
+        "heading": "AI tools everywhere. Better delivery? Harder to tell.",
+        "top": 81
+      },
+      {
+        "section": "help",
+        "heading": "Where I work and contribute.",
+        "top": 1084.09375
+      },
+      {
+        "section": "research",
+        "heading": "Two questions behind the work.",
+        "top": 1852.328125
+      },
+      {
+        "section": "writing",
+        "heading": "Five ways into the work.",
+        "top": 2836.25
+      },
+      {
+        "section": "acknowledgements",
+        "heading": "How others have engaged with the work.",
+        "top": 4022.28125
+      },
+      {
+        "section": "about",
+        "heading": "From quality engineering to delivery leadership.",
+        "top": 4937.546875
+      },
+      {
+        "section": "contact",
+        "heading": "Let’s discuss what comes next.",
+        "top": 5563.421875
+      }
+    ],
+    "heroIdentity": "Vitalii Oborskyi · Enterprise delivery leader & independent research author.",
+    "contributionNav": "Where I contribute",
+    "disclaimer": "These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.",
+    "decision": "Option A retained for owning review: response section follows Research/Writing and About separates it from Contact; no layout relocation required in this scoped author-first rendition.",
+    "reviewRole": "delegated execution agent interpretation; parent and independent review are separate",
+    "allHomeAnchorDestinationsUnchanged": true,
+    "homeAnchorCount": 45
+  }
+}

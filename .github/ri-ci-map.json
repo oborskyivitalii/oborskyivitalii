@@ -418,7 +418,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b0440d45ee3ca7769f2e0124898ec1d9cb27ec7eaceee412d631b276aed6275e",
+    "digest": "f642258b218d8aff5203a65b433f330a1362d6bb99c772eba681390797bc46c0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -454,7 +454,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "b05192cb5e77f145d885c788288a35a645b0720b8c48a5c25522f91cfb44d1ad"
+        "sha256": "b9324f2caa7d481f3d9753c1e18e366f441ae19e8248916f020096cc13b524b8"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -498,7 +498,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "907327ee60a6f4bb291df18f134ce7899c904b0b3e25de1a04509bea7ec0964b"
+        "sha256": "a509b616b59c961faec8dae289493edcf144298b95ae61caa7b46fe175d32d25"
       },
       {
         "path": ".github/repository-layout.json",
@@ -506,7 +506,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "9b99efc1bc7d44defc6592a0d46febb2685222736f2f4d328dcb3787a754786c"
+        "sha256": "2ef8fae431007e388e21c39b82536c18f2c442e2d34b1d4cf86f5dc9694f404a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -630,7 +630,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "f9c4bb90789a3462e318f6fd1e79068dd21e3bbdd75d83824061a631225b1f3d"
+        "sha256": "b41c85574a9c5ff35e960754e5723948014de8b8936941278542cb95bd7213ce"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -710,7 +710,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "3ea9df82d7c49542137245da07530d776677ceea4cfa10f87d8829182d9af09b"
+        "sha256": "547935bab6ba7ea6fe4fba97f4e1b78285ca666f45bdb8d7067630a2d5cb5412"
       },
       {
         "path": "tools/repository_intelligence.py",

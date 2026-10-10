@@ -90,9 +90,22 @@ Decision recorded 2026-10-01: the maintainer wants an English site, visibly
 separated English/Ukrainian editions, a portrait, and search coverage of the
 research vocabulary. The original clusters below remain editorial vocabulary; the separately identified provider estimates are limited evidence, not qualified-buyer demand, a ranking forecast or a new research glossary.
 
-## Current buyer routes
+## Current professional audiences and topic routes
 
-Home names adoption without delivery gains and agents difficult to control/own in production; Help defines three bounded engagement formats. Research explains AI agent governance/control theory alongside delivery/verification/TOC. Writing retains original editions; no new service/guide page is fabricated. The #11 guides still follow launch and PMDay. CPC and other provider advertising data are unused by public content and both exporters. Browser/release acceptance belongs to live #1/#8/#13; canonicals/social URLs/sitemap need the actual production address under #8.
+The 10 October [author-first amendment](../review/issue-41/2026-10-10-author-first.md)
+supersedes the service-first Home framing and three engagement formats. Home
+retains its problem-led opening and specific AI delivery governance/agentic
+operating-model metadata, while presenting enterprise leadership, independent
+research and domains of contribution. Examples depend on role, organization
+and scope. Contact welcomes leadership opportunities, research collaboration
+and selected advisory work. Research still explains agent governance/control
+theory alongside delivery/verification/TOC; Writing retains original editions.
+The [five-page baseline inventory](../review/issue-41/2026-10-10-author-first-baseline-inventory.json)
+records metadata, headings, anchors, JSON-LD, source links and topic coverage.
+No new service/guide page is added. #11 still follows launch and PMDay. Provider
+advertising data remain unused by public content/exporters. Browser/release
+acceptance belongs to #1/#8/#13; canonical/social URLs and sitemap require the
+production address under #8. No new demand, ranking or validation claim.
 
 ## Keyword clusters and content owners
 

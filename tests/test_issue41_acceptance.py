@@ -7,6 +7,9 @@ historical assertions and preserves the current protected-main runtime bytes.
 The dated 2026-10-10 decisions admit only the recorded acknowledgements and
 scroll-camera successor. The later topic-first editorial instruction supersedes
 the historical hidden-card decision without claiming new personal approval.
+The author-first Home successor reverses five exact fragments before those
+historical checks; its current role, opportunity and claim boundaries are tested
+separately without changing any existing criterion or manual gate.
 Source reading, editorial/independent review, browser observations and merge
 are separate gates; structural copy assertions do not prove factual truth.
 """
@@ -35,6 +38,8 @@ ARKADIY = 'review/issue-41/2026-10-10-arkadiy-amendment.json'
 ARKADIY_BASE = '93a818dbc3239b97b47b7d56edb83f5a7ebf65fc'
 ARKADIY_TOPIC = 'review/issue-41/2026-10-10-arkadiy-topic-amendment.json'
 ARKADIY_TOPIC_BASE = 'ca4ee44e50c70cb036ccca3fa6d97d7108ecd423'
+AUTHOR_FIRST = 'review/issue-41/2026-10-10-author-first-amendment.json'
+AUTHOR_FIRST_BASE = 'e9d273af872e442785a9f183cf23fc31bc877d52'
 ARKADIY_PROFILE = 'https://www.linkedin.com/in/arkadiydobkin/'
 PUBLIC_RESPONSES_NOTE = (
     'These entries summarize public discussions of specific publications. They do not imply '
@@ -422,11 +427,15 @@ const record = require('./'+process.argv[1]);
 const sitecase = require('./review/issue-41/2026-10-09-sitecase-amendment.json');
 const arkadiy = require('./review/issue-41/2026-10-10-arkadiy-amendment.json');
 const arkadiyTopic = require('./review/issue-41/2026-10-10-arkadiy-topic-amendment.json');
+const authorFirst = require('./review/issue-41/2026-10-10-author-first-amendment.json');
 const normalize = html => normalizeHTML(sourceForPreview(html));
 const pages = {}, baseline = {};
 for (const page of ['index','research','writing','talks','credits']) {
   pages[page] = normalize(fs.readFileSync('docs/'+page+'.html','utf8'));
-  if(record.base !== arkadiyTopic.base) pages[page] = restoreContentAmendment(pages[page],page,arkadiyTopic);
+  if(record.base !== authorFirst.base) {
+    pages[page] = restoreContentAmendment(pages[page],page,authorFirst);
+    if(record.base !== arkadiyTopic.base) pages[page] = restoreContentAmendment(pages[page],page,arkadiyTopic);
+  }
   if(process.argv[3] === 'true') pages[page] = restoreContentAmendment(pages[page],page,arkadiy);
   if(process.argv[2] === 'true') pages[page] = restoreContentAmendment(pages[page],page,sitecase);
   baseline[page] = normalize(cp.execFileSync('git',['show',record.base+':docs/'+page+'.html'],{encoding:'utf8'}));
@@ -547,6 +556,115 @@ def validate_arkadiy_states(states):
                 require(advisors.count('<article>') == 2, 'UA advisor grouping changed')
                 require(ARKADIY_PROFILE not in advisors, 'public response promoted to advisor')
                 require(responses.count('<article>') == count - 2, 'response grouping changed')
+
+
+def validate_author_first(home):
+    """Test role hierarchy, useful opportunity paths and bounded professional claims."""
+    hero = re.search(r'<section class="hero wrap"[\s\S]*?</section>', home)
+    require(hero is not None, 'missing Home hero')
+    hero = hero[0]
+    help_section = section(home, 'help')
+    contact = section(home, 'contact')
+    about = section(home, 'about')
+    text = plain_text(home)
+    require(
+        'AI tools everywhere. Better delivery? Harder to tell.' in plain_text(hero),
+        'problem-led headline changed',
+    )
+    require(
+        'Enterprise delivery leader & independent research author.' in plain_text(hero),
+        'leadership and independent research identity missing',
+    )
+    require(
+        hero.index('class="hero-lead"')
+        < hero.index('class="hero-description"')
+        < hero.index('class="hero-actions"'),
+        'author identity must precede work description and conversation action',
+    )
+    require(
+        'enterprise software delivery leadership with independent research' in plain_text(hero)
+        and 'Research, publications, talks and practical engineering experiments.'
+        in plain_text(hero),
+        'professional home and research context missing',
+    )
+    stops = re.findall(r'data-space-stop="([^"]+)"', home)
+    require(
+        stops == ['hero', 'help', 'research', 'writing', 'acknowledgements', 'about', 'contact'],
+        'reader path or public-response context changed',
+    )
+    require('Where I work and contribute.' in plain_text(help_section), 'contribution heading')
+    headings = [plain_text(row) for row in re.findall(r'<h3>[\s\S]*?</h3>', help_section)]
+    require(
+        headings
+        == [
+            'AI-assisted delivery transformation and verification.',
+            'Enterprise AI governance and agentic operating models.',
+            'Engineering leadership, organizational capability and applied research.',
+        ],
+        'three professional domains including organizational capability are required',
+    )
+    require(
+        'Examples of work, depending on the role, organization and agreed scope.'
+        in plain_text(help_section),
+        'outputs must depend on role, organization and agreed scope',
+    )
+    require(help_section.count('class="possible-output"') == 3, 'concrete outputs missing')
+    for output in [
+        'A prioritized diagnosis of delivery constraints and a plan for testing the next changes.',
+        'A review of decision authority, operating limits and evidence gaps, with priorities for addressing them.',
+        'draft role and decision boundaries, learning routines and an improvement backlog.',
+    ]:
+        require(output in plain_text(help_section), 'supported possible output changed')
+    opportunity = plain_text(contact)
+    require(
+        all(
+            phrase in opportunity
+            for phrase in [
+                'enterprise leadership opportunities',
+                'research collaboration',
+                'selected advisory work where my experience and research may be relevant',
+            ]
+        ),
+        'leadership, collaboration and bounded advisory paths required',
+    )
+    require(
+        opportunity.index('enterprise leadership opportunities')
+        < opportunity.index('research collaboration')
+        < opportunity.index('selected advisory work'),
+        'advisory work cannot displace leadership and research opportunities',
+    )
+    for url in [
+        'https://calendar.app.google/zy9rAnUcoWygSdxH7',
+        'mailto:oborskyivitalii@gmail.com',
+        'https://www.linkedin.com/in/vitaliioborskyi/',
+    ]:
+        require(contact.count(f'href="{url}"') == 1, 'existing contact destination changed')
+    require('Book a conversation' in opportunity, 'booking label changed')
+    require(
+        'href="credits.html#built-with-ai"' in about
+        and 'human-directed, AI-assisted delivery' in plain_text(about),
+        'practical site case and public evidence path missing',
+    )
+    require(
+        'including over a decade in leadership' in text
+        and 'across a portfolio of around 25 projects and more than 120 engineers' in text,
+        'supported career durations and portfolio responsibility changed',
+    )
+    require(
+        not re.search(
+            r'\b(?:established consultancy|consulting firm|service packages|guaranteed (?:outcomes|transformation)|'
+            r'proven methodology|final career decision|consulting sponsor|endorses my services|'
+            r'EPAM endorses|clients include (?:Corning|EPAM))\b',
+            text,
+            re.I,
+        ),
+        'unsupported consultancy, guarantee or endorsement claim',
+    )
+    require(
+        not re.search(r'\b(?:Services|Pricing)\b', plain_text(help_section))
+        and 'href="#contact"' not in section(home, 'acknowledgements'),
+        'public responses must remain outside a services funnel',
+    )
 
 
 class Issue41ImplementationTests(unittest.TestCase):
@@ -1090,6 +1208,168 @@ class Issue41ImplementationTests(unittest.TestCase):
         for text in ['hypotheses to test in context', 'Much remains to develop and test']:
             self.assertIn(text, home)
         self.assertNotRegex(help_section, r'guarantee|proven methodology|guaranteed transformation')
+
+    def test_author_first_identity_domains_opportunities_and_bounded_claims(self):
+        projection = positioning_projection(AUTHOR_FIRST, False, False)
+        validate_author_first(projection['pages']['index'])
+        node_checks(
+            [
+                'Home provides the agreed reader path, precise public actions and a real contact alternative'
+            ]
+        )
+
+    def test_author_first_amendment_binds_five_fragments_and_preserves_protected_sources(self):
+        amendment = json.loads((ROOT / AUTHOR_FIRST).read_text())
+        self.assertEqual(
+            (amendment['schema'], amendment['issue'], amendment['base']),
+            (1, 41, AUTHOR_FIRST_BASE),
+        )
+        expected = [
+            ('index', 'author-first-hero'),
+            ('index', 'author-first-help'),
+            ('index', 'author-first-about'),
+            ('index', 'author-first-contact'),
+            ('index', 'author-first-page-nav'),
+        ]
+        self.assertEqual([(row['page'], row['id']) for row in amendment['changes']], expected)
+        projection = positioning_projection(AUTHOR_FIRST, False, False)
+        restored = dict(projection['pages'])
+        for original, change in zip(amendment['changes'], projection['changes']):
+            self.assertTrue(original['intent'])
+            for version in ['before', 'after']:
+                self.assertEqual(
+                    hashlib.sha256(original[version].encode()).hexdigest(),
+                    original[version + 'SHA256'],
+                )
+            self.assertNotEqual(change['before'], change['after'])
+            self.assertEqual(projection['baseline']['index'].count(change['before']), 1)
+            self.assertEqual(restored['index'].count(change['after']), 1)
+            self.assertEqual(
+                re.findall(r'href="([^"]+)"', change['before']),
+                re.findall(r'href="([^"]+)"', change['after']),
+                'professional positioning does not change contact or source destinations',
+            )
+            self.assertEqual(
+                re.findall(r'\bid="([^"]+)"', change['before']),
+                re.findall(r'\bid="([^"]+)"', change['after']),
+                'existing local anchors remain stable',
+            )
+            restored['index'] = restored['index'].replace(change['after'], change['before'])
+        # The content-addressed route hash changes with Home copy. Admit only
+        # that existing generated identity; metadata and raw JSON-LD stay exact.
+        route_identity = r'<meta name="site-route" content="[a-f0-9]{64}">'
+        baseline = dict(projection['baseline'])
+        for pages in [restored, baseline]:
+            self.assertEqual(len(re.findall(route_identity, pages['index'])), 1)
+            pages['index'] = re.sub(
+                route_identity, '[generated Home route identity]', pages['index']
+            )
+        self.assertEqual(restored, baseline, 'only five declared Home fragments change')
+
+        mutable = {
+            f'site/content/pages/index/{block}.json'
+            for block in ['hero', 'help', 'about', 'contact', 'main']
+        }
+        # The output lock is generated from those owners; all other site source
+        # and retained bytes, including metadata, templates and runtime, stay exact.
+        source_rows = subprocess.check_output(
+            ['git', 'ls-tree', '-r', AUTHOR_FIRST_BASE, '--', 'site'], cwd=ROOT, text=True
+        ).splitlines()
+        protected = set()
+        for row in source_rows:
+            metadata, path = row.split('\t', 1)
+            if path in mutable or path == 'site/output-lock.json':
+                continue
+            protected.add(path)
+            content = (ROOT / path).read_bytes()
+            git_blob = b'blob ' + str(len(content)).encode() + b'\0' + content
+            self.assertEqual(hashlib.sha1(git_blob).hexdigest(), metadata.split()[2], path)
+        self.assertTrue(protected)
+        self.assertEqual(
+            {str(path.relative_to(ROOT)) for path in (ROOT / 'site').rglob('*') if path.is_file()},
+            protected | mutable | {'site/output-lock.json'},
+            'no undeclared source owner or generated source is introduced',
+        )
+        for path in mutable:
+            prior = json.loads(
+                subprocess.check_output(['git', 'show', f'{AUTHOR_FIRST_BASE}:{path}'], cwd=ROOT)
+            )
+            current = json.loads((ROOT / path).read_text())
+            self.assertEqual(
+                {key: value for key, value in current.items() if key != 'text'},
+                {key: value for key, value in prior.items() if key != 'text'},
+                'copy amendment preserves each template/URL/attribute contract',
+            )
+        for path in [POSITIONING, SITECASE, ARKADIY, ARKADIY_TOPIC]:
+            self.assertEqual(
+                (ROOT / path).read_bytes(),
+                subprocess.check_output(['git', 'show', f'{AUTHOR_FIRST_BASE}:{path}'], cwd=ROOT),
+                'historical amendment evidence remains immutable',
+            )
+        policy_path = '.github/acceptance/issue-41.json'
+        prior_policy = json.loads(
+            subprocess.check_output(['git', 'show', f'{AUTHOR_FIRST_BASE}:{policy_path}'], cwd=ROOT)
+        )
+        current_policy = json.loads((ROOT / policy_path).read_text())
+        self.assertEqual(current_policy['criteria'][:35], prior_policy['criteria'])
+        self.assertEqual(current_policy['gates'], prior_policy['gates'])
+        self.assertEqual(
+            {key: current_policy['checks'][key] for key in prior_policy['checks']},
+            prior_policy['checks'],
+        )
+        self.assertEqual(
+            set(current_policy['checks']) - set(prior_policy['checks']),
+            {'AUTHOR-POSITIONING', 'AP-AMENDMENT', 'AP-NEGATIVES'},
+        )
+
+    def test_author_first_role_funnel_guarantee_endorsement_and_contact_regressions_fail(self):
+        home = positioning_projection(AUTHOR_FIRST, False, False)['pages']['index']
+        identity = re.search(r'<p class="hero-lead">[\s\S]*?</p>', home)[0]
+        mutations = [
+            ('identity missing', home.replace(identity, '')),
+            (
+                'identity after action',
+                home.replace(identity, '').replace('</figure>', '</figure>' + identity),
+            ),
+            (
+                'organizational capability missing',
+                home.replace('organizational capability and ', ''),
+            ),
+            ('leadership path removed', home.replace('enterprise leadership opportunities, ', '')),
+            (
+                'unqualified work products',
+                home.replace(
+                    'depending on the role, organization and agreed scope',
+                    'delivered in every engagement',
+                ),
+            ),
+            (
+                'changed booking destination',
+                home.replace(
+                    'https://calendar.app.google/zy9rAnUcoWygSdxH7', 'https://example.org/book'
+                ),
+            ),
+            (
+                'public discussion sales CTA',
+                home.replace(
+                    PUBLIC_RESPONSES_NOTE, PUBLIC_RESPONSES_NOTE + '<a href="#contact">Hire me</a>'
+                ),
+            ),
+        ]
+        for claim in [
+            'I run an established consultancy.',
+            'My service packages deliver guaranteed outcomes.',
+            'This is a proven methodology.',
+            'EPAM endorses my services.',
+            'Arkadiy Dobkin is my consulting sponsor.',
+            'Clients include Corning.',
+        ]:
+            mutations.append((claim, home.replace('</main>', '<p>' + claim + '</p></main>')))
+        for label, changed in mutations:
+            with self.subTest(label=label):
+                self.assertNotEqual(changed, home, 'negative mutation must affect its fixture')
+                with self.assertRaises(ValueError):
+                    validate_author_first(changed)
 
     def test_site_case_amendment_binds_fragments_and_public_evidence_destinations(self):
         """Check exact admission and link structure, not claim truth or live PR status."""
