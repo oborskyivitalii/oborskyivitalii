@@ -15,7 +15,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     entries: 3,
     arrivalStart: 0.12,
     skippedHostSpan: 0.7,
-    stagger: 0.04,
+    stagger: 0.2,
     handoffMs: 180,
   });
   let generation = 0;
@@ -172,17 +172,25 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   function hostFor(route) {
     return api.routeOrder[Math.max(0, api.routeOrder.indexOf(route) - 1)];
   }
-  function branchMembers(host, cells, seed, root = 1) {
+  function branchMembers(host, cells, seed, root = null) {
     const world = api.worldForRoom?.(host);
     const objects = world?.objects || [];
     let branches = objects.filter(
-      (object) => object.depth === 2 && object.root === root && object.points?.length
+      (object) =>
+        object.depth === 2 &&
+        (root === null ? object.root <= 2 : object.root === root) &&
+        object.points?.length
     );
     if (!branches.length)
       branches = objects.filter((object) => object.points?.length && object.rootCenter);
     if (!branches.length) return null;
     return cells.map((_, index) => {
-      const branch = branches[(seed + index * 7) % branches.length];
+      // Repeated branches at three actual tunnel depths form the content
+      // structure. A single ring gives even thick meshes the look of a sheet.
+      const level = root === null ? index % 3 : root;
+      const levelBranches = branches.filter((branch) => branch.root === level);
+      const candidates = levelBranches.length ? levelBranches : branches;
+      const branch = candidates[(seed + Math.floor(index / 3) * 7) % candidates.length];
       const attachment = branch.points[(seed + index * 11) % branch.points.length];
       return {
         name: branch.name,
@@ -750,6 +758,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
           entry === incoming &&
           context?.direction === 'backward' &&
           entry.host !== entry.route,
+        departing: phase && entry === outgoing && context?.direction === 'forward',
       });
       for (const shape of shapes) {
         shape.ownerKey = group.key;

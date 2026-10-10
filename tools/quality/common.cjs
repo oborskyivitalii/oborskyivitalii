@@ -55,7 +55,54 @@ function identity() {
 }
 function save(name, value) {
   fs.mkdirSync(out, { recursive: true });
-  fs.writeFileSync(path.join(out, name + '.json'), JSON.stringify(value, null, 2) + '\n');
+  const target = path.join(out, name + '.json');
+  const temporary = target + '.tmp';
+  const file = fs.openSync(temporary, 'w');
+  const ancestors = new Set();
+  let buffer = '';
+  function write(text) {
+    buffer += text;
+    if (buffer.length >= 65536) {
+      fs.writeSync(file, buffer);
+      buffer = '';
+    }
+  }
+  function serialize(item, key = '') {
+    if (item && typeof item.toJSON === 'function') item = item.toJSON(key);
+    if (!item || typeof item !== 'object') {
+      write(JSON.stringify(item) ?? 'null');
+      return;
+    }
+    if (ancestors.has(item)) throw new TypeError('Circular evidence record');
+    ancestors.add(item);
+    const array = Array.isArray(item);
+    write(array ? '[' : '{');
+    const keys = array
+      ? Array.from({ length: item.length }, (_, index) => index)
+      : Object.keys(item);
+    let count = 0;
+    for (const name of keys) {
+      if (!array && ['undefined', 'function', 'symbol'].includes(typeof item[name])) continue;
+      if (count++) write(',');
+      if (!array) write(JSON.stringify(name) + ':');
+      serialize(item[name], String(name));
+    }
+    write(array ? ']' : '}');
+    ancestors.delete(item);
+  }
+  try {
+    // Preserve every raw observation without constructing one V8 string for
+    // hundreds of painted frames and repeated native geometry records.
+    serialize(value);
+    write('\n');
+    if (buffer) fs.writeSync(file, buffer);
+  } catch (error) {
+    fs.closeSync(file);
+    fs.rmSync(temporary, { force: true });
+    throw error;
+  }
+  fs.closeSync(file);
+  fs.renameSync(temporary, target);
 }
 function report(kind, detail, pass = true) {
   const r = {

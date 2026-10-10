@@ -6,9 +6,11 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     nativeDepth: 12,
     maxPieces: 32,
     maxVertices: 10,
-    thicknessMinPx: 10,
-    thicknessMaxPx: 32,
+    thicknessMinPx: 18,
+    thicknessMaxPx: 64,
     embeddedScale: 2.2,
+    restExtrusion: 2.4,
+    departureBreakup: 0.26,
     returnStop: 0.4,
     near: 0.5,
   });
@@ -244,9 +246,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       const seed = (cell.seed ?? index + 1) >>> 0;
       const fraction = (shift) => ((Math.imul(seed ^ shift, 2654435761) >>> 0) % 65536) / 65536;
       const angles = [
-        (fraction(13) - 0.5) * 1.5,
-        (fraction(31) - 0.5) * 2.2,
-        (fraction(47) - 0.5) * 2.4,
+        (fraction(13) - 0.5) * 1.1,
+        (fraction(31) - 0.5) * 1.45,
+        (fraction(47) - 0.5) * 1.3,
       ];
       const restAxes = [
         [1, 0, 0],
@@ -280,7 +282,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         Math.max(settings.thicknessMinPx, span * (0.18 + fraction(97) * 0.2))
       );
       const thickness = (thicknessPx * depth) / camera.focal;
-      const contact = members ? turn([0, 0, thickness], restOrientation) : [0, 0, 0];
+      const contact = members
+        ? turn([0, 0, thickness * settings.restExtrusion], restOrientation)
+        : [0, 0, 0];
       return {
         id: `${id}:${index}`,
         uv,
@@ -289,6 +293,11 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         restOrientation,
         restSize: [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
         thickness,
+        departureOffset: [
+          (centroid[0] - 0.5) * 9 + (fraction(113) - 0.5) * 2,
+          (0.5 - centroid[1]) * 7 + (fraction(127) - 0.5) * 2,
+          5 + fraction(139) * 21,
+        ],
         member: copyMember(members?.[index]),
         hostOffset,
         returnMember: copyMember(returnMembers?.[index]),
@@ -316,7 +325,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
   }
   function geometry(
     shard,
-    { view: camera, rect, depth, progress = 0, time = 0, returnPath = false }
+    { view: camera, rect, depth, progress = 0, time = 0, returnPath = false, departing = false }
   ) {
     if (
       !shard ||
@@ -348,7 +357,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         )
       : [0, 0, 0, 1];
     const waypoint = returnPath && shard.returnMember ? returnCenter(shard, time) : null;
-    const origin = waypoint
+    let origin = waypoint
       ? progress <= settings.returnStop
         ? blend(worldCenter, waypoint, smooth(progress / settings.returnStop))
         : blend(
@@ -357,16 +366,38 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
             smooth((progress - settings.returnStop) / (1 - settings.returnStop))
           )
       : blend(worldCenter, targetCenter, amount);
-    const rotation = orientation(
+    let rotation = orientation(
       compose(motion, shard.restOrientation),
       quaternion(basis(camera)),
       amount
     );
-    const size = blend(
+    let size = blend(
       shard.restSize.map((value) => value * settings.embeddedScale * (transform?.scale || 1)),
       [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
       amount
     );
+    let extrusion =
+      (settings.restExtrusion * (1 - amount) + amount) *
+      ((transform?.scale || 1) * (1 - amount) + amount);
+    if (departing) {
+      // Break at the source plane, then leave the solids in world space. The
+      // advancing camera crosses them; they never chase its near plane or
+      // collapse toward a previous room behind the source camera.
+      const breakup = smooth(Math.min(1, (1 - progress) / settings.departureBreakup));
+      const axes = [camera.right, camera.up, camera.forward];
+      origin = add(
+        targetCenter,
+        axes[0].map((_, coordinate) =>
+          shard.departureOffset.reduce(
+            (sum, distance, axis) => sum + distance * axes[axis][coordinate] * breakup,
+            0
+          )
+        )
+      );
+      rotation = orientation(quaternion(basis(camera)), shard.restOrientation, breakup);
+      size = [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal];
+      extrusion = 1 + (settings.restExtrusion - 1) * breakup;
+    }
     const front = shard.uv.map(([u, v]) =>
       add(
         origin,
@@ -380,7 +411,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           [
             (u - shard.centroid[0]) * size[0] * 0.9,
             (shard.centroid[1] - v) * size[1] * 0.9,
-            -shard.thickness * ((transform?.scale || 1) * (1 - amount) + amount),
+            -shard.thickness * extrusion,
           ],
           rotation
         )
@@ -479,6 +510,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       targetPose = prepared?.pose,
       clearance = false,
       returnPath = false,
+      departing = false,
     }
   ) {
     if (!prepared || !validRect(rect)) return [];
@@ -496,17 +528,18 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     const limit = Math.max(width, height) * 8;
     for (const [index, shard] of prepared.shards.entries()) {
       const requested = progresses ? progresses[index] : progress;
-      const amount = clearance
-        ? phaseForClearance(shard, {
-            view: targetView,
-            camera,
-            rect,
-            depth: prepared.depth,
-            progress: requested,
-            returnPath,
-            time,
-          })
-        : requested;
+      const amount =
+        clearance && !departing
+          ? phaseForClearance(shard, {
+              view: targetView,
+              camera,
+              rect,
+              depth: prepared.depth,
+              progress: requested,
+              returnPath,
+              time,
+            })
+          : requested;
       const solid = geometry(shard, {
         view: targetView,
         rect,
@@ -514,6 +547,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         progress: amount,
         time,
         returnPath,
+        departing,
       });
       if (!solid) return [];
       const projected = projectSolid(solid, camera);
@@ -525,7 +559,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         const haze = depthVisibility(depth);
         const nativeAmount = smooth(amount);
         const nearFade = Math.min(1, (nearest - settings.near) / 2);
-        const alpha = (haze + (1 - haze) * nativeAmount) * nearFade;
+        const visibility = Math.sqrt(haze);
+        const alpha = (visibility + (1 - visibility) * nativeAmount) * nearFade;
+        const textured = face.face !== 'side';
         shapes.push({
           kind: 'embedded-face',
           id: shard.id,
@@ -536,9 +572,9 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           tint: Math.min(0.63, 0.42 * (0.65 + 0.5 * Math.abs(dot(normal, light)))),
           color: shard.color,
           alpha,
-          textureMix: face.face === 'front' ? 1 : 0,
+          textureMix: textured ? 1 : 0,
           progress: amount,
-          uv: face.face === 'front' ? face.indices.map((index) => shard.uv[index]) : null,
+          uv: textured ? face.indices.map((index) => shard.uv[index % shard.uv.length]) : null,
         });
       }
     }
@@ -622,10 +658,10 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     try {
       ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = `rgb(${fill.join(',')})`;
-      ctx.globalAlpha = shape.alpha * (shape.face === 'front' ? 1 - textureMix : 1);
+      ctx.globalAlpha = shape.alpha * (shape.face !== 'side' ? 1 - textureMix : 1);
       path(ctx, shape.points);
       ctx.fill();
-      if (shape.face === 'front' && surface && shape.uv) {
+      if (shape.face !== 'side' && surface && shape.uv) {
         ctx.globalAlpha = shape.alpha * shape.textureMix;
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';

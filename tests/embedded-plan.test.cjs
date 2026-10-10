@@ -467,17 +467,53 @@ test('world rest contains readable content and normal-lit closed faces sorted by
   );
 });
 
-test('orbiting the same world solids reveals plain rear faces with no mirrored text', () => {
+test('passing behind a content solid retains its captured paint on the rear face', () => {
   const prepared = plate();
   const rearView = { position: [0, 0, -45], target: [0, 0, -10] };
   const shapes = plan.sample(prepared, { pose: rearView, width: 1440, height: 900 });
   const rear = shapes.filter((shape) => shape.face === 'back');
   assert.ok(rear.length > 0);
-  assert.ok(rear.every((shape) => shape.uv === null && shape.textureMix === 0));
+  assert.ok(
+    rear.every((shape) => shape.uv?.length === shape.points.length && shape.textureMix === 1)
+  );
   const { context, calls } = canvasContext();
   for (const shape of rear) plan.paint(context, shape, { width: 581, height: 141 }, colors);
-  assert.equal(calls.filter(([kind]) => kind === 'drawImage').length, 0);
+  assert.ok(calls.filter(([kind]) => kind === 'drawImage').length >= rear.length);
   assert.equal(calls.filter(([kind]) => kind === 'fill').length, rear.length);
+});
+
+test('forward departure leaves a broken volume for the camera to cross instead of following it', () => {
+  const prepared = livingPlate({ pose: home });
+  const target = plan.view(home, prepared.width, prepared.height);
+  const depths = [];
+  for (const shard of prepared.shards) {
+    const options = { view: target, rect: prepared.rect, depth: 12, departing: true };
+    const initial = plan.geometry(shard, { ...options, progress: 1 });
+    shard.uv.forEach(([u, v], index) =>
+      assertPoint(target.project(target.camera(initial.vertices[index])), [
+        prepared.rect.x + u * prepared.rect.width,
+        prepared.rect.y + v * prepared.rect.height,
+      ])
+    );
+    const broken = plan.geometry(shard, { ...options, progress: 0.6 });
+    const later = plan.geometry(shard, { ...options, progress: 0.2 });
+    assert.deepEqual(broken.vertices, later.vertices, 'broken objects remain in the source world');
+    depths.push(target.camera(pointCenter(broken.vertices.slice(0, shard.uv.length)))[2]);
+  }
+  assert.ok(
+    Math.max(...depths) - Math.min(...depths) > 12,
+    'the breakup has real longitudinal extent'
+  );
+  assert.ok(depths.every((depth) => depth > 12 && depth < 40));
+  const crossed = plan.sample(prepared, {
+    pose: research,
+    width: prepared.width,
+    height: prepared.height,
+    progress: 0.2,
+    departing: true,
+    clearance: true,
+  });
+  assert.equal(crossed.length, 0, 'the destination camera has actually passed the outgoing volume');
 });
 
 test('full polygon normals retain a front with collinear first three partition vertices', () => {

@@ -940,7 +940,7 @@ test('a page field composites visible semantic owners into one viewport atlas an
   assert.equal(field.sourceOwners[1].textContent, second.textContent);
   assert.deepEqual(field.sourceOwners[1].lines, [second.getBoundingClientRect()]);
   assert.equal(field.textBytes, (first.textContent.length + second.textContent.length) * 3);
-  assert.equal(f.canvases.length, 3);
+  assert.equal(f.canvases.length, 2, 'one shared decode surface and one retained viewport atlas');
   assert.ok(f.canvases.slice(0, -1).every((canvas) => canvas.width === 0 && canvas.height === 0));
   assert.deepEqual(
     f.draws.slice(-2).map(({ x, y, width, height }) => ({ x, y, width, height })),
@@ -1005,9 +1005,9 @@ test('one blank owner rejects the packed field even when a sibling has visible p
   const f = pageFixture();
   f.main.append(new f.Node('p', 'Visible source owner'), new f.Node('p', 'Omitted source owner'));
   let proofReads = 0;
-  f.context.getImageData = () => {
+  f.context.getImageData = (x, y) => {
     proofReads++;
-    return { data: new Uint8ClampedArray([17, 28, 34, f.context.lastDraw.crop[1] ? 0 : 222]) };
+    return { data: new Uint8ClampedArray([17, 28, 34, y >= 80 ? 0 : 222]) };
   };
   const failures = [];
   assert.equal(
@@ -1024,7 +1024,7 @@ test('one blank owner rejects the packed field even when a sibling has visible p
   assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
 });
 
-test('packed source padding is charged with owner canvases and retained atlas pixels', async () => {
+test('packed source padding is charged for both shared decode surfaces and retained atlas pixels', async () => {
   const f = pageFixture();
   const wide = new f.Node('p', 'Wide owner', {}, { width: 1000, height: 10 });
   const tall = new f.Node('p', 'Tall owner', {}, { width: 100, height: 200 });
@@ -1041,9 +1041,9 @@ test('packed source padding is charged with owner canvases and retained atlas pi
     }),
     null
   );
-  // 30k owner canvases + 210k decoded packed SVG; reject before allocation.
+  // The decoded image and shared canvas each have the actual padded 210k size.
   assert.equal(failures[0].reason, 'field-decode-capacity');
-  assert.equal(failures[0].usage, 240000);
+  assert.equal(failures[0].usage, 420000);
   assert.equal(f.canvases.length, 0);
 });
 

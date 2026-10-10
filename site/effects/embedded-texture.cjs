@@ -1320,8 +1320,8 @@ module.exports = function () {
       const layout = options.fieldCapture ? nativeRasterLayout(measured) : null;
       const transientPixels = options.fieldCapture
         ? nativeTransientPixels(measured, usage.layerPixels) -
-          usage.layerPixels +
-          layout.width * layout.height
+          usage.layerPixels * 2 +
+          layout.width * layout.height * 2
         : usage.layerPixels;
       if (transientPixels > caps.layerPixels)
         return rejectNative(normalized, 'field-decode-capacity', root.localName, {
@@ -1559,8 +1559,18 @@ module.exports = function () {
       for (const asset of assets) {
         if (options.signal?.aborted || clock() > deadline)
           return rejectNative(normalized, 'preparation-deadline', root.localName);
+        const source = asset.sourceRect || {
+          x: 0,
+          y: 0,
+          width: asset.canvas.width,
+          height: asset.canvas.height,
+        };
         context.drawImage(
           asset.canvas,
+          source.x,
+          source.y,
+          source.width,
+          source.height,
           (asset.envelope.left - envelope.left) * scaleX,
           (asset.envelope.top - envelope.top) * scaleY,
           asset.envelope.width * scaleX,
@@ -1599,17 +1609,18 @@ module.exports = function () {
       dispose: canvasDisposer(canvas),
     };
   }
-  function nativeRasterVisible(context, canvas) {
+  function nativeRasterVisible(context, canvas, rect = null) {
     // Every source owner keeps its own readback. Nonblank siblings cannot
     // establish that a separate foreignObject's native paint was rasterized.
+    const region = rect || { x: 0, y: 0, width: canvas.width, height: canvas.height };
     const sample = context.getImageData(
-      Math.floor(canvas.width / 2),
-      Math.floor(canvas.height / 2),
+      region.x + Math.floor(region.width / 2),
+      region.y + Math.floor(region.height / 2),
       1,
       1
     );
     if (sample.data[3] > 0) return true;
-    const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    const pixels = context.getImageData(region.x, region.y, region.width, region.height).data;
     return pixels.some((alpha, index) => index % 4 === 3 && alpha > 0);
   }
   function rasterNativeOwners(measured, layout, options) {
@@ -1619,25 +1630,26 @@ module.exports = function () {
     const records = [];
     let source;
     let image;
+    let canvas;
+    let context;
     let active = measured[0];
     function release() {
-      for (const { canvas } of records) canvasDisposer(canvas)();
+      if (canvas) canvasDisposer(canvas)();
     }
     function reject(code) {
       rejectNative({ ...options, ownerPath: active.ownerPath }, code, active.owner.localName);
     }
     try {
+      canvas = document.createElement('canvas');
+      canvas.width = layout.width;
+      canvas.height = layout.height;
+      context = canvas.getContext('2d');
+      if (!context) throw new Error('Native raster canvas unavailable');
       const content = measured.map((item) => {
         active = item;
         if (options.signal?.aborted || options.clock() > options.deadline)
           throw new Error('Native raster preparation expired');
-        const canvas = document.createElement('canvas');
-        records.push({ measured: item, canvas });
-        canvas.width = item.pixelWidth;
-        canvas.height = item.pixelHeight;
-        const context = canvas.getContext('2d');
-        if (!context) throw new Error('Native raster canvas unavailable');
-        records[records.length - 1].context = context;
+        records.push({ measured: item });
         return serializeNative({ ...item, rasterPlacement: layout.placements.get(item) });
       });
       source =
@@ -1675,8 +1687,28 @@ module.exports = function () {
           reject(code || 'native-raster-failed');
           release();
           resolve(null);
-        } else
-          resolve(records.map(({ measured: item, canvas }) => nativeRasterAsset(item, canvas)));
+        } else {
+          // The packed bitmap is shared until the field compositor consumes
+          // every source rectangle. No per-owner copy and second raster pass.
+          let remaining = records.length;
+          resolve(
+            records.map(({ measured: item }) => {
+              const asset = nativeRasterAsset(item, canvas);
+              let disposed = false;
+              asset.sourceRect = {
+                ...layout.placements.get(item),
+                width: item.pixelWidth,
+                height: item.pixelHeight,
+              };
+              asset.dispose = () => {
+                if (disposed) return;
+                disposed = true;
+                if (--remaining === 0) release();
+              };
+              return asset;
+            })
+          );
+        }
       }
       function abort() {
         finish(false, options.signal?.aborted ? 'capture-aborted' : 'raster-decode-failed');
@@ -1686,23 +1718,21 @@ module.exports = function () {
         try {
           if (!image.naturalWidth || !image.naturalHeight)
             return finish(false, 'native-raster-empty');
-          for (const { measured: item, canvas, context } of records) {
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          for (const { measured: item } of records) {
             active = item;
             if (options.signal?.aborted || options.clock() > options.deadline)
               return finish(false, 'preparation-deadline');
             const { x, y } = layout.placements.get(item);
-            context.drawImage(
-              image,
-              x,
-              y,
-              item.pixelWidth,
-              item.pixelHeight,
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
-            if (!nativeRasterVisible(context, canvas)) return finish(false, 'native-raster-blank');
+            if (
+              !nativeRasterVisible(context, canvas, {
+                x,
+                y,
+                width: item.pixelWidth,
+                height: item.pixelHeight,
+              })
+            )
+              return finish(false, 'native-raster-blank');
           }
           finish(true);
         } catch {

@@ -674,10 +674,13 @@ function createPresentation(content) {
         embedded.invalidate();
       }
     },
-    prepareNext: (data, signal) =>
-      contentFlight &&
-      fragmentPreview &&
-      window.SiteEffects.embedded?.prime(data, content.offsetTop, null, { signal }),
+    async prepareNext(data, signal) {
+      if (!contentFlight || !fragmentPreview) return;
+      const embedded = window.SiteEffects.embedded;
+      if (await embedded?.prime(data, content.offsetTop, null, { signal })) {
+        if (!signal?.aborted) await embedded.prepareDeparture?.(content, { signal });
+      }
+    },
   };
 }
 function measurePlane(read) {

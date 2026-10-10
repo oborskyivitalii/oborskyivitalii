@@ -4,6 +4,13 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 ## Snapshot
 
+- Current #49 visual rework follows the maintainer's rejection ofb79284e.
+  Canonical patches distribute textured closed shards across three real fractal
+  depths, give forward breakup fixed source-world poses and preserve reverse
+  host retention. Shared native decode avoids per-owner bitmap copies; idle
+  preparation also captures the current page. See the latest section of the
+  same versioned #49 handoff. Rendered admission and current CI remain pending.
+
 - Main revalidated at `338e3ff341dc35b64cba7854289e1385cbaf1562`: approved
   harness simplification PR #66 merged; #65 is closed. Revalidate live state.
 - [#58](https://github.com/oborskyivitalii/oborskyivitalii/issues/58) is closed and

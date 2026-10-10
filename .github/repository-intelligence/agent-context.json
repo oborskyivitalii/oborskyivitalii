@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "21057d7dfc259eda0d261952cd28aa30514059b875df829728940d10b9c6990d",
+    "digest": "74d318f2066a71f4f19e550fcd8c45b1885243c4a69b35cbaa3d13e62c67ad2f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "abb6caca36fb9a71285b5db05fb3d1eebf3d6f835a03146d62377e01256a76dc"
+        "sha256": "8e7523ef4b49ea3da5cbc0e049eaa715ea91c0f8f6c1bd531430e895a9654c23"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "3d23304dbf8b86c6a5d765c3226b179dba77ca2f6ddc5769db9edc880063aeae"
+        "sha256": "266b09cc0c5250b2973851c1baa7271c09d8346fdb60245a5180257857890313"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4405,7 +4405,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "e5f1bd7dfbb5b4b9c88de2f9cf5b52fafb7f8dd9db1fdd71783164dcd8d3be40"
+        "sha256": "726c43f56ed27c62644815552d7984901c79d622dbb874088b9f77ced96e6110"
       },
       {
         "path": "site/analytics.json",
@@ -4590,22 +4590,22 @@
       {
         "path": "site/effects/embedded-plan.cjs",
         "identity_mode": "content",
-        "sha256": "f1dd90b109be4fa043a53a86bb8951879ae3f98f0bcfc3b991d27e4b6aec1e50"
+        "sha256": "444cc50bc67982398bd4e1b8ae3d102f932df92f3548b0cc0817f0c0543fdfcf"
       },
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "1bb8974203d610b95d33a440d1d659a4223dfbbdb068277c3c3e4ac12215c0da"
+        "sha256": "054bdd05f21e60f3b7d1c5c53269ef1df82c30b27e9858cf2aee48ed57392b22"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "d81ddf0cfb64aca2426521fe2351390cd9201ac7f5b6e1da2f4f68719de5e35f"
+        "sha256": "999007531a3fd8476710bfe27873a40668f7af17b5bfab7238d31f51624101f3"
       },
       {
         "path": "site/effects/flight.cjs",
         "identity_mode": "content",
-        "sha256": "71bb5d4303844c93c1157234a6d0824b17acc3c90987fe18d9d6f276438f8c15"
+        "sha256": "f9bc74573cad4b71fdddcf437b8c09668bc23a3c30230a9fa4334558cc3943d0"
       },
       {
         "path": "site/effects/flight.css",
@@ -5035,17 +5035,17 @@
       {
         "path": "tests/embedded-plan.test.cjs",
         "identity_mode": "content",
-        "sha256": "ed07ec529eaefef42b705d38c042d476e9c70937d7fa059f8d50d38d8c45772d"
+        "sha256": "7723ecb31a15f4a8ec1554889efaf866cf527c93afb5b937682d41ffb3e5f828"
       },
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "0ee44afd309aa6824e144f972e2502183bcec366e08271e24d92c09d66896607"
+        "sha256": "872735410fcb190345b28f4f52396bd84668e78c88837bd7c0ae9c028abec86c"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "8c6c84f510ec9d1a90c2de10fa60f9404dba630aea0d05692244ef282c37aeed"
+        "sha256": "4b2c0098375dacc8608844b283190b7f6fc8ef9b9e6f862a35ee5dfc6f6e3027"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5150,7 +5150,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "d4fe4b0951e0978b7b901cbb619b31cf6c8b5a00177ef0414a3f426b09312dfc"
+        "sha256": "0650a7d1e5a746b4314bde6f2143c7384dd46ca2323d52821d37d811b6826679"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5510,7 +5510,7 @@
       {
         "path": "tools/quality/common.cjs",
         "identity_mode": "content",
-        "sha256": "e9cadaf7288c6c12a0b3554c130e3a1dff36e2f3f91d4bd2f0f7cbde16f95e50"
+        "sha256": "7b270c1a21a5c91ccb32892143bcfa8986cc2f83471329183a59b4488a7f2088"
       },
       {
         "path": "tools/quality/deploy-pages.example.yml",

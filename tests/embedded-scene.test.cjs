@@ -324,6 +324,12 @@ test('idle next-page field retains real branch membership, readable paint and th
   const group = first.bank[0].groups[0];
   assert.equal(group.host, 'index');
   assert.equal(group.pieces, 32);
+  assert.deepEqual([...new Set(group.members.map((member) => member.root))].sort(), [0, 1, 2]);
+  const depths = group.members.map((member) => member.worldCenter[2]);
+  assert.ok(
+    Math.max(...depths) - Math.min(...depths) > 40,
+    'next-page content occupies successive depths, not one flat ring'
+  );
   assert.ok(
     group.members.every((member) =>
       h.api

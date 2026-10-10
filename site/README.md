@@ -146,6 +146,17 @@ Reverse collection can traverse a second genuine branch in the destination room
 before reaching its native plane, so a retreating camera sees partial geometry
 while both resting contact and the final endpoint remain exact. This world path
 uses the existing cached room descriptors and shared transform.
+The visual rework distributes the content field across three successive fractal
+roots, retaining actual branch membership and their canonical loop. Closed shards
+have deeper beveled sides and captured paint on both faces. Forward departure
+breaks at the source reading plane, then leaves the pieces at fixed source-world
+positions for the camera to cross; reverse departure retains its host trajectory.
+Incoming pieces converge at staggered phases of that same camera flight.
+Neighbor preparation also warms the current visible field before a click. Packed
+native raster owners share one decode canvas with separate source rectangles and
+per-owner nonblank checks; final atlas composition avoids per-owner bitmap copies.
+Both padded decode surfaces and retained/temporary pixels still count toward the
+original cap, and the preparation deadline is unchanged.
 `embedded-scene.cjs` attaches collection/paint to the current travel effect;
 the existing scene composition sorts its faces with the fractal. It owns no
 runtime dependency, second renderer or animation clock. Preparation, native
