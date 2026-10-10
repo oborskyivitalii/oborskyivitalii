@@ -3,26 +3,36 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const factory = require('../site/effects/embedded-scene.cjs');
-const fragmentFactory = require('../site/effects/fragment-plan.cjs');
+const fragmentPlan = require('../site/effects/fragment-plan.cjs');
+const embeddedPlan = require('../site/effects/embedded-plan.cjs');
 const math = require('../site/engine/math.cjs')();
+const routes = require('../site/routes.json').routes;
+const definitions = {
+  ...require('../site/scenes/paths.json'),
+  routeOrder: routes.map((route) => route.id),
+  initialPoses: Object.fromEntries(routes.map((route) => [route.id, route.initialPose])),
+};
+const projection = require('../site/engine/projection.cjs')(math, definitions);
+const models = require('../site/scenes/world.cjs')(math);
 
-function events() {
+function eventTarget() {
   const listeners = new Map();
   return {
     addEventListener(name, listener) {
-      const existing = listeners.get(name) || [];
-      existing.push(listener);
-      listeners.set(name, existing);
+      const callbacks = listeners.get(name) || [];
+      callbacks.push(listener);
+      listeners.set(name, callbacks);
     },
     emit(name) {
-      for (const listener of listeners.get(name) || []) listener();
+      for (const callback of listeners.get(name) || []) callback();
     },
   };
 }
-
-function style(visibility = '') {
+function style() {
   return {
-    visibility,
+    visibility: '',
+    opacity: '',
+    transform: '',
     setProperty(name, value) {
       this[name] = value;
     },
@@ -31,38 +41,28 @@ function style(visibility = '') {
     },
   };
 }
-
-function harness({ deferred = false, multi = false, captureCount = 3 } = {}) {
+function harness({ compact = false, deferred = false, wholeViewport = false } = {}) {
+  const width = compact ? 390 : 1440;
+  const height = compact ? 844 : 900;
   const captures = [];
-  const samples = [];
-  const preparations = [];
   const assets = [];
   const stages = [];
-  const dispatched = [];
+  const oracleReads = [];
+  const worlds = new Map();
   let canTravel = true;
-  let themeChange;
-  const rect = { left: 80.25, top: 150.5, width: 540.75, height: 110.25 };
-  const envelope = {
-    left: rect.left - 12,
-    top: rect.top - 12,
-    width: rect.width + 24,
-    height: rect.height + 24,
-  };
-  const text = 'Delegated model judgment changes control and responsibility.';
-  const documentEvents = events();
-  const body = {
-    dataset: { page: 'index' },
-    append(node) {
-      stages.push(node);
-      node.connected = true;
-    },
-  };
+  let theme;
   const document = {
-    ...documentEvents,
-    body,
+    ...eventTarget(),
     hidden: false,
-    documentElement: { clientWidth: 1440 },
-    fonts: events(),
+    body: {
+      dataset: { page: 'index' },
+      append(node) {
+        node.connected = true;
+        stages.push(node);
+      },
+    },
+    documentElement: { clientWidth: width },
+    fonts: eventTarget(),
     createElement() {
       return {
         style: style(),
@@ -78,7 +78,7 @@ function harness({ deferred = false, multi = false, captureCount = 3 } = {}) {
           return [];
         },
         getBoundingClientRect() {
-          return { height: 1500 };
+          return { height: 1800 };
         },
         remove() {
           this.connected = false;
@@ -89,17 +89,25 @@ function harness({ deferred = false, multi = false, captureCount = 3 } = {}) {
       return { ...node };
     },
   };
-  const windowEvents = events();
   const window = {
-    ...windowEvents,
-    innerWidth: 1440,
-    innerHeight: 900,
+    ...eventTarget(),
+    innerWidth: width,
+    innerHeight: height,
     devicePixelRatio: 2,
+    scrollX: 0,
+    scrollY: 0,
+    location: { search: '', hash: '' },
     SiteEffects: {},
     SiteScene: { canTravel: () => canTravel },
+    SiteArchive: {
+      preparePreview(stage, landing) {
+        stage.normalized = true;
+        stage.archiveLanding = landing;
+      },
+    },
     MutationObserver: class {
       constructor(callback) {
-        themeChange = callback;
+        theme = callback;
       }
       observe() {}
     },
@@ -109,702 +117,591 @@ function harness({ deferred = false, multi = false, captureCount = 3 } = {}) {
       }
     },
     dispatchEvent(event) {
-      dispatched.push(event.type);
-      windowEvents.emit(event.type);
+      window.emit(event.type);
       return true;
     },
   };
-  function capture(stage, options) {
-    const captured = Array.from({ length: multi ? captureCount : 1 }, (_, index) => {
+  const api = {
+    ...math,
+    ...definitions,
+    ...projection,
+    worldForRoom(route) {
+      if (!worlds.has(route)) worlds.set(route, models.worldFor(route, compact));
+      return worlds.get(route);
+    },
+  };
+  function native(route) {
+    const owners = Array.from({ length: 3 }, (_, index) => ({
+      textContent: `${route} visible native block ${index}`,
+      paintFingerprint: `native-paint-${index}`,
+      rect: { left: 30, top: 120 + index * 130, width: width - 60, height: 100 },
+      getBoundingClientRect() {
+        return { ...this.rect };
+      },
+    }));
+    return { style: style(), children: [{ children: owners }], owners };
+  }
+  const texture = () => ({
+    settings: { maxPixels: 1000000 },
+    captureField(root, options) {
+      const owners = root.children[0].children;
+      const envelope = wholeViewport
+        ? { left: 0, top: 78, width, height: height - 78 }
+        : { left: 25, top: 100, width: width - 50, height: 450 };
+      const scale = Math.min(1, Math.sqrt(1000000 / (envelope.width * envelope.height)));
       const asset = {
-        owner: { textContent: text },
-        ownerPath: multi ? [0, index] : undefined,
-        rect: { ...rect, top: rect.top + 120 * index },
-        envelope: { ...envelope, top: envelope.top + 120 * index },
-        canvas: { width: 1129, height: 269 },
-        pixelCount: 1129 * 269,
-        descendants: multi ? 3 : 0,
-        textBytes: text.length * 3,
+        owner: root,
+        ownerPath: [],
+        sourceOwners: owners.map((owner, index) => ({
+          ownerPath: [0, index],
+          rect: { ...owner.rect },
+          lines: [{ ...owner.rect }],
+          envelope: { ...owner.rect },
+          textContent: owner.textContent,
+          paintFingerprint: owner.paintFingerprint,
+        })),
+        rect: { ...envelope },
+        envelope,
+        canvas: {
+          width: Math.floor(envelope.width * scale),
+          height: Math.floor(envelope.height * scale),
+        },
+        pixelCount: Math.floor(envelope.width * scale) * Math.floor(envelope.height * scale),
+        descendants: 6,
+        textBytes: 300,
         disposeCount: 0,
+        decorations: [{ ownerPath: [0], paintFingerprint: 'native-divider' }],
         dispose() {
           this.disposeCount++;
         },
       };
-      if (multi && stage.children[0]?.children?.[index])
-        asset.owner = stage.children[0].children[index];
       assets.push(asset);
-      return asset;
-    });
-    const asset = captured[0];
-    let resolve;
-    let reject;
-    const promise = new Promise((yes, no) => {
-      resolve = yes;
-      reject = no;
-    });
-    const capture = {
-      stage,
-      options,
-      asset,
-      assets: captured,
-      resolve: (result = multi ? captured : asset) => resolve(result),
-      reject,
-    };
-    captures.push(capture);
-    if (!deferred) resolve(multi ? captured : asset);
-    return promise;
-  }
-  const embeddedTexture = () => ({
-    settings: { selector: '.archive-intro > .hero-description' },
-    ...(multi ? { captureAll: capture } : { capture }),
-  });
-  const embeddedPlan = () => ({
-    prepare(options) {
-      preparations.push(options);
-      return {
-        ...options,
-        shards: options.cells.map((_, index) => ({ id: `${options.id}:${index}` })),
-      };
+      let resolve;
+      let reject;
+      const promise = new Promise((yes, no) => {
+        resolve = yes;
+        reject = no;
+      });
+      captures.push({ root, options, asset, resolve: (result = asset) => resolve(result), reject });
+      if (!deferred) resolve(asset);
+      return promise;
     },
-    sample(prepared, frame) {
-      samples.push({ prepared, ...frame });
-      return prepared.shards.map((shard) => ({
-        kind: 'embedded-face',
-        id: shard.id,
-        depth: 12,
-        alpha: 1,
-        progress: frame.progress,
-      }));
-    },
-    paint(ctx, shape, surface) {
-      if (shape.kind !== 'embedded-face') return false;
-      ctx.drawImage(surface);
-      return true;
+    matchesField(root, sources, options) {
+      oracleReads.push({
+        visibility: root.style.visibility,
+        opacity: root.style.opacity,
+        sources,
+        options,
+      });
+      const owners = root.children[0].children;
+      return (
+        root.style.visibility !== 'hidden' &&
+        Number(root.style.opacity || 1) === 1 &&
+        sources.length === owners.length &&
+        sources.every((source, index) => source.paintFingerprint === owners[index].paintFingerprint)
+      );
     },
   });
-  const api = {
-    ...math,
-    poses: {
-      homeStart: { position: [0, 0, 24], target: [0, 0, -12] },
-      researchStart: { position: [0, 0, 24], target: [0, 0, -12] },
-    },
-    initialPoses: { index: 'homeStart', research: 'researchStart' },
-    routeOrder: ['index', 'research', 'writing', 'talks', 'credits'],
-    roomSpacing: 128,
-  };
   const install = vm.runInNewContext(`(${factory.toString()})`, {
     document,
     window,
-    AbortController,
     Promise,
+    AbortController,
   });
-  const effect = install(api, {
-    fragmentPlan: fragmentFactory,
-    embeddedPlan,
-    embeddedTexture,
-  });
+  const effect = install(api, { fragmentPlan, embeddedPlan, embeddedTexture: texture });
   const bridge = window.SiteEffects.embedded;
-  const data = { page: 'research', main: { querySelector: () => ({ textContent: text }) } };
   const frame = {
-    width: 1440,
-    height: 900,
-    compact: false,
+    width,
+    height,
+    compact,
     ambientTime: 100,
-    current: { position: [0, 0, 24], target: [0, 0, -12] },
-    colors: { paper: '#102030', cyan: '#abcdef', amber: '#cdefab' },
     page: 'index',
+    current: projection.routePose('index', definitions.poses[definitions.initialPoses.index]),
+    colors: { paper: '#102030', cyan: '#abcdef', amber: '#cdefab' },
   };
-  function owner(overrides = {}) {
-    return {
-      textContent: text,
-      style: style(),
-      getBoundingClientRect: () => ({ ...rect }),
-      ...overrides,
+  const data = (route) => ({ page: route, main: native(route).children[0] });
+  const pose = (route) =>
+    projection.routePose(route, definitions.poses[definitions.initialPoses[route]]);
+  function collect(route, time, current = pose(route)) {
+    frame.page = route;
+    frame.ambientTime = time;
+    frame.current = current;
+    return effect.collect(frame);
+  }
+  async function prepare(from, to) {
+    document.body.dataset.page = from;
+    collect(from, frame.ambientTime);
+    const content = native(from);
+    assert.equal(await bridge.prime(data(to), 78), true);
+    assert.equal(await bridge.prepareDeparture(content), true);
+    const context = {
+      from,
+      to,
+      direction:
+        definitions.routeOrder.indexOf(to) > definitions.routeOrder.indexOf(from)
+          ? 'forward'
+          : 'backward',
+      landing: { position: [0, 0] },
     };
+    assert.equal(bridge.begin(context), true);
+    return { content, context };
   }
-  function nativeContent() {
-    const owners = Array.from({ length: captureCount }, (_, index) =>
-      owner({
-        getBoundingClientRect: () => ({ ...rect, top: rect.top + index * 120 }),
-      })
-    );
-    return { children: [{ children: owners }], owners };
+  function finish(to, time = frame.ambientTime + 1000) {
+    const content = native(to);
+    document.body.dataset.page = to;
+    bridge.land(content);
+    bridge.present(1);
+    collect(to, time);
+    assert.equal(bridge.complete(), false);
+    collect(to, time + 180);
+    assert.equal(bridge.complete(), true);
+    return content;
   }
-  if (multi) data.main = nativeContent().children[0];
   return {
+    api,
+    window,
+    document,
     effect,
     bridge,
-    data,
     frame,
-    document,
-    window,
     captures,
-    preparations,
-    samples,
     assets,
     stages,
-    dispatched,
-    owner,
-    nativeContent,
+    oracleReads,
+    native,
+    data,
+    pose,
+    collect,
+    prepare,
+    finish,
     setTravel(value) {
       canTravel = value;
     },
-    themeChange: () => themeChange(),
-    landing: { from: 'index', to: 'research', direction: 'forward', landing: { position: [0, 0] } },
+    theme: () => theme(),
   };
 }
+const plain = (value) => JSON.parse(JSON.stringify(value));
+const journeyPose = (h, from, to, amount) =>
+  math.mix(h.pose(from), h.pose(to), amount * amount * (3 - 2 * amount));
 
-test('warm acquisition waits for a scene frame and persists once until navigation', async () => {
+test('idle next-page field retains real branch membership, readable paint and the existing periodic breathing', async () => {
   const h = harness();
-  assert.equal(await h.bridge.prime(h.data, 78), false);
-  assert.equal(h.captures.length, 0);
-  h.effect.collect(h.frame);
+  assert.equal(await h.bridge.prime(h.data('research'), 78), false);
+  h.collect('index', 100);
   await new Promise(setImmediate);
-  assert.equal(h.bridge.diagnostics().ready, true);
-  assert.equal(h.captures.length, 1);
-  assert.equal(await h.bridge.prime(h.data, 78), true);
-  assert.equal(h.captures.length, 1);
-  const shapes = h.effect.collect(h.frame);
-  const ids = shapes.map((shape) => shape.id);
-  assert.ok(ids.length > 0);
-  assert.deepEqual(
-    h.effect.collect({ ...h.frame, ambientTime: 500 }).map((shape) => shape.id),
-    ids
+  const first = h.bridge.diagnostics();
+  assert.equal(first.bank.length, 1);
+  const group = first.bank[0].groups[0];
+  assert.equal(group.host, 'index');
+  assert.equal(group.pieces, 32);
+  assert.ok(
+    group.members.every((member) =>
+      h.api
+        .worldForRoom('index')
+        .objects.some((branch) => branch.name === member.name && branch.parent === member.parent)
+    )
   );
-  assert.ok(h.samples.every((sample) => sample.progress === 0));
-  assert.equal(h.stages.filter((stage) => stage.connected).length, 0);
+  assert.equal(h.assets[0].owner, null, 'resident atlas releases its detached page owner');
+  const startPoints = plain(group.members.map((member) => member.worldCenter));
+  const shapes = h.collect('index', 1600);
+  assert.ok(shapes.some((shape) => shape.face === 'front' && shape.textureMix === 1));
+  assert.notDeepEqual(
+    plain(h.bridge.diagnostics().bank[0].groups[0].members.map((member) => member.worldCenter)),
+    startPoints
+  );
+  h.collect('index', 100 + math.LOOP_MS);
+  assert.deepEqual(
+    plain(h.bridge.diagnostics().bank[0].groups[0].members.map((member) => member.worldCenter)),
+    startPoints
+  );
+  assert.equal(await h.bridge.prime(h.data('research'), 78), true);
+  assert.equal(h.captures.length, 1);
+  h.bridge.cancel();
+  assert.equal(h.bridge.diagnostics().bank.length, 1);
   assert.equal(h.assets[0].disposeCount, 0);
 });
 
-test('the same rest IDs assemble on the existing ambient clock and land before native restoration', async () => {
+test('forward field assembles during camera flight, land preserves progress, handoff keeps both resident bitmaps', async () => {
   const h = harness();
-  h.effect.collect(h.frame);
-  await h.bridge.prime(h.data, 78);
-  const ids = h.effect.collect(h.frame).map((shape) => shape.id);
-  assert.equal(h.bridge.begin(h.landing), true);
-  const owner = h.owner();
+  const { content } = await h.prepare('index', 'research');
+  const ids = plain(h.bridge.diagnostics().ids);
+  assert.equal(content.style.visibility, 'hidden');
+  h.bridge.present(0.65);
+  const inFlight = h.collect('research', 500, journeyPose(h, 'index', 'research', 0.65));
+  const beforeLand = h.bridge.diagnostics();
+  assert.ok(beforeLand.progress > 0 && beforeLand.progress < 1);
+  assert.ok(inFlight.some((shape) => shape.id.startsWith('research:') && shape.face === 'front'));
+  const target = h.native('research');
   h.document.body.dataset.page = 'research';
-  h.bridge.land({ querySelector: () => owner });
-  const first = h.effect.collect({ ...h.frame, ambientTime: 100 });
-  assert.ok(first.every((shape) => shape.progress === 0));
-  const halfway = h.effect.collect({ ...h.frame, ambientTime: 1000 });
-  assert.ok(halfway.every((shape) => Math.abs(shape.progress - 5 / 9) < 1e-12));
-  assert.equal(
-    h.bridge.diagnostics().progress,
-    0.5,
-    'the physical endpoint reserves a native handoff tail'
-  );
+  h.bridge.land(target);
+  assert.equal(h.bridge.diagnostics().progress, beforeLand.progress);
+  h.bridge.present(1);
+  h.collect('research', 1000);
+  assert.equal(h.bridge.nativeOpacity(), 0);
+  assert.equal(h.bridge.complete(), false);
+  h.collect('research', 1090);
+  assert.equal(h.bridge.nativeOpacity(), 0.5);
+  assert.equal(target.style.opacity, '0.5');
+  h.collect('research', 1180);
+  assert.equal(h.bridge.complete(), true);
+  assert.notEqual(target.style.visibility, 'hidden');
+  assert.equal(h.bridge.diagnostics().bank.length, 2);
   assert.deepEqual(
-    halfway.map((shape) => shape.id),
+    plain(h.bridge.diagnostics().bank.find((entry) => entry.route === 'research').groups[0].ids),
     ids
   );
-  assert.equal(owner.style.visibility, 'hidden');
-  assert.equal(h.bridge.owner(), owner);
-  assert.equal(h.bridge.complete(), false);
-  const last = h.effect.collect({ ...h.frame, page: 'research', ambientTime: 1900 });
-  assert.ok(last.every((shape) => shape.progress === 1));
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
+  const settled = h.collect('research', 1400);
+  assert.ok(
+    settled.every((shape) => !shape.id.startsWith('research:')),
+    'native page cannot also paint itself as an atlas'
+  );
+});
+
+test('reverse Research departure returns the original shards to the breathing Home world', async () => {
+  const h = harness();
+  await h.prepare('index', 'research');
+  const original = plain(h.bridge.diagnostics().groups[0]);
+  h.finish('research', 1000);
+  await h.prepare('research', 'index');
+  assert.equal(h.captures.length, 2, 'return trip reuses both original fields');
+  h.bridge.present(0.3);
+  h.collect('index', 1400, journeyPose(h, 'research', 'index', 0.3));
+  assert.ok(h.bridge.diagnostics().departure.faces.length > 0);
+  h.finish('index', 2000);
+  const returned = h.bridge.diagnostics().bank.find((entry) => entry.route === 'research');
+  assert.equal(returned.host, 'index');
+  assert.deepEqual(plain(returned.groups[0].ids), original.ids);
   assert.deepEqual(
-    last.map((shape) => shape.id),
-    ids
+    plain(
+      returned.groups[0].members.map(({ name, parent, rootCenter }) => ({
+        name,
+        parent,
+        rootCenter,
+      }))
+    ),
+    original.members.map(({ name, parent, rootCenter }) => ({ name, parent, rootCenter }))
   );
-  assert.equal(h.bridge.complete(), true);
-  assert.notEqual(owner.style.visibility, 'hidden');
-  assert.equal(h.bridge.owner(), null);
-  assert.equal(h.bridge.reservation(), null);
-  assert.equal(h.effect.collect({ ...h.frame, page: 'research' }).length, 0);
-  assert.equal(h.assets[0].disposeCount, 1);
+  const idle = h.collect('index', 2300);
+  assert.ok(idle.some((shape) => shape.id.startsWith('research:') && shape.face === 'front'));
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
 });
 
-test('failed capture and aborted stale decode cannot replace a newer prepared plate', async () => {
-  const h = harness({ deferred: true });
-  h.effect.collect(h.frame);
-  const failed = h.bridge.prime(h.data, 78);
-  h.captures[0].reject(new Error('decode failed'));
-  assert.equal(await failed, false);
-  assert.equal(h.bridge.reservation(), null);
-  assert.equal(h.stages.filter((stage) => stage.connected).length, 0);
-  const stale = h.bridge.prime(h.data, 78);
-  h.window.emit('resize');
-  assert.equal(h.captures[1].options.signal.aborted, true);
-  const current = h.bridge.prime(h.data, 78);
-  h.captures[2].resolve();
-  assert.equal(await current, true);
-  h.captures[1].resolve();
-  assert.equal(await stale, false);
-  assert.equal(h.assets[1].disposeCount, 1);
-  assert.equal(h.assets[2].disposeCount, 0);
-  assert.equal(h.bridge.diagnostics().ready, true);
-  assert.equal(h.stages.filter((stage) => stage.connected).length, 0);
-});
-
-test('reservation shares finite piece, owner, byte and pixel caps until cancellation', async () => {
+test('Home to Writing crosses the real Research host field while keeping the intermediate Research bank entry', async () => {
   const h = harness();
-  assert.equal(h.bridge.reservation(), null);
-  h.effect.collect(h.frame);
-  await h.bridge.prime(h.data, 78);
-  const reserved = h.bridge.reservation();
-  assert.equal(reserved.owners, 1);
-  assert.equal(reserved.pieces, h.bridge.diagnostics().ids.length);
-  assert.equal(reserved.layerPixels, h.assets[0].pixelCount);
-  h.effect.collect({ ...h.frame, compact: true });
-  assert.equal(h.bridge.reservation().pieces, reserved.pieces);
-  assert.equal(
-    h.bridge.reservation().pieces,
-    12,
-    'changing a frame flag cannot shrink live allocation accounting'
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  const researchIds = plain(h.bridge.diagnostics().ids);
+  await h.prepare('index', 'writing');
+  const before = h.bridge.diagnostics();
+  assert.equal(before.bank.length, 3);
+  assert.equal(before.bank.find((entry) => entry.route === 'writing').host, 'research');
+  let visible = false;
+  let crossedResearch = false;
+  for (let tick = 0; tick <= 20; tick++) {
+    const amount = tick / 20;
+    h.bridge.present(amount);
+    const current = journeyPose(h, 'index', 'writing', amount);
+    const shapes = h.collect('writing', 100 + tick * 50, current);
+    if (current.position[2] < h.pose('research').position[2]) crossedResearch = true;
+    if (
+      amount < 1 &&
+      shapes.some((shape) => shape.id.startsWith('writing:') && shape.face === 'front')
+    )
+      visible = true;
+  }
+  assert.equal(crossedResearch, true);
+  assert.equal(visible, true, 'destination content is actual geometry during the corridor flight');
+  assert.deepEqual(
+    plain(h.bridge.diagnostics().bank.find((entry) => entry.route === 'research').groups[0].ids),
+    researchIds
   );
-  const geometry = fragmentFactory(math);
-  const caps = geometry.settings.caps.full;
-  assert.equal(geometry.admit(reserved, caps), true);
-  const outgoing = {
-    pieces: 48,
-    owners: 7,
-    descendants: 100,
-    textBytes: 8192,
-    layerPixels: 1000000,
-  };
-  const combined = Object.fromEntries(
-    Object.keys(caps).map((key) => [key, reserved[key] + outgoing[key]])
-  );
-  assert.equal(geometry.admit(combined, caps), true);
-  const full = { ...combined, pieces: caps.pieces + 1 };
-  assert.equal(geometry.admit(full, caps), false);
-  assert.equal(h.bridge.begin(h.landing), true);
-  h.bridge.cancel();
-  assert.equal(h.bridge.reservation(), null);
-  assert.equal(h.assets[0].disposeCount, 1);
+  h.finish('writing', 1500);
+  assert.equal(h.document.body.dataset.page, 'writing');
+  assert.ok(h.bridge.reservation().pieces <= 96);
+  assert.ok(h.bridge.reservation().owners <= 32);
 });
 
-test('assembly progresses monotonically through the canonical ambient loop boundary', async () => {
-  const h = harness();
-  const startingFrame = { ...h.frame, ambientTime: math.LOOP_MS - 600 };
-  h.effect.collect(startingFrame);
-  await h.bridge.prime(h.data, 78);
-  assert.equal(h.bridge.begin(h.landing), true);
-  h.bridge.land({ querySelector: () => h.owner() });
-  for (const [ambientTime, expected] of [
-    [math.LOOP_MS - 600, 0],
-    [math.LOOP_MS - 150, 0.25],
-    [300, 0.5],
-    [750, 0.75],
-    [1200, 1],
-  ]) {
-    const shapes = h.effect.collect({ ...h.frame, ambientTime });
-    assert.ok(shapes.length > 0);
-    const physical = Math.min(1, expected / 0.9);
-    assert.ok(shapes.every((shape) => shape.progress === physical));
-    assert.equal(h.bridge.diagnostics().progress, expected);
-    const frozen = h.effect.collect({ ...h.frame, ambientTime });
-    assert.ok(
-      frozen.every((shape) => shape.progress === physical),
-      'a frozen shared clock cannot advance assembly'
-    );
-  }
-  assert.equal(h.bridge.complete(), true);
-});
-
-test('native handoff waits for the exact destination camera and crossfades the last 180ms', async () => {
-  const h = harness();
-  h.effect.collect(h.frame);
-  await h.bridge.prime(h.data, 78);
-  assert.equal(h.bridge.begin(h.landing), true);
-  const owner = h.owner();
-  h.bridge.land({ querySelector: () => owner });
-  const target = h.preparations[0].pose;
-  h.effect.collect({ ...h.frame, page: 'research', current: target, ambientTime: 1700 });
-  assert.equal(
-    owner.style.visibility,
-    'hidden',
-    'native paint cannot appear before solids reach their endpoint'
-  );
-  for (const current of [
-    {
-      ...target,
-      position: target.position.map((value, index) => value + (index === 0 ? 1e-9 : 0)),
-    },
-    { ...target, target: target.target.map((value, index) => value + (index === 1 ? 1e-9 : 0)) },
-  ]) {
-    const faces = h.effect.collect({ ...h.frame, page: 'research', current, ambientTime: 1774 });
-    assert.ok(faces.every((face) => face.progress === 1 && face.alpha === 1));
-    assert.equal(h.bridge.diagnostics().handoff, 0);
-    assert.equal(
-      owner.style.visibility,
-      'hidden',
-      'even a tiny camera mismatch must keep native paint hidden'
-    );
-  }
-  const middle = h.effect.collect({
-    ...h.frame,
-    page: 'research',
-    current: target,
-    ambientTime: 1810,
-  });
-  const nativeAlpha = Number(owner.style.opacity);
-  assert.equal(owner.style.visibility, 'visible');
-  assert.ok(Math.abs(nativeAlpha - 0.5) < 1e-12);
-  assert.ok(Math.abs(h.bridge.diagnostics().handoff - 0.5) < 1e-12);
-  assert.ok(middle.every((face) => face.progress === 1 && Math.abs(face.alpha - 0.5) < 1e-12));
-  assert.ok(middle.every((face) => Math.abs(face.alpha + nativeAlpha - 1) < 1e-12));
-  assert.equal(h.bridge.complete(), false);
-  const endpoint = h.effect.collect({
-    ...h.frame,
-    page: 'research',
-    current: target,
-    ambientTime: 1900,
-  });
-  assert.ok(endpoint.every((face) => face.alpha < 1e-12));
-  assert.ok(Math.abs(Number(owner.style.opacity) - 1) < 1e-12);
-  assert.equal(h.bridge.complete(), true);
-  assert.equal(
-    Object.hasOwn(owner.style, 'opacity'),
-    false,
-    'completion removes its temporary native opacity'
-  );
-  assert.notEqual(owner.style.visibility, 'hidden');
-  assert.equal(h.bridge.owner(), null);
-  assert.equal(h.assets[0].disposeCount, 1);
-});
-
-test('cancel or completion during handoff restores the exact original opacity and visibility', async () => {
-  for (const finish of ['cancel', 'complete']) {
-    const h = harness();
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    assert.equal(h.bridge.begin(h.landing), true);
-    const originalStyle = { ...style('visible'), opacity: '0.42' };
-    const owner = h.owner({ style: originalStyle });
-    h.bridge.land({ querySelector: () => owner });
-    const target = h.preparations[0].pose;
-    h.effect.collect({ ...h.frame, page: 'research', current: target, ambientTime: 1810 });
-    assert.notEqual(
-      owner.style.opacity,
-      '0.42',
-      'the crossfade must actually own a temporary opacity'
-    );
-    if (finish === 'complete')
-      h.effect.collect({ ...h.frame, page: 'research', current: target, ambientTime: 1900 });
-    h.bridge[finish]();
-    assert.equal(owner.style.visibility, 'visible');
-    assert.equal(owner.style.opacity, '0.42');
-    assert.equal(h.bridge.owner(), null);
-    assert.equal(h.bridge.reservation(), null);
-    assert.equal(h.assets[0].disposeCount, 1);
-  }
-});
-
-test('native scroll invalidates moved hidden or crossfading paint while preserving unchanged mount scroll', async () => {
-  for (const phase of ['hidden', 'handoff']) {
-    const h = harness();
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    h.window.emit('scroll');
-    assert.equal(
-      h.bridge.diagnostics().ready,
-      true,
-      'idle Home scroll retains world-anchored decoration'
-    );
-    assert.equal(h.assets[0].disposeCount, 0);
-    assert.equal(h.bridge.begin(h.landing), true);
-    let nativeRect = h.owner().getBoundingClientRect();
-    const owner = h.owner({
-      style: { ...style('visible'), opacity: '0.42' },
-      getBoundingClientRect: () => ({ ...nativeRect }),
-    });
-    h.bridge.land({ querySelector: () => owner });
-    const current = phase === 'handoff' ? h.preparations[0].pose : h.frame.current;
-    h.effect.collect({
-      ...h.frame,
-      page: 'research',
-      current,
-      ambientTime: phase === 'handoff' ? 1810 : 1000,
-    });
-    h.window.emit('scroll');
-    assert.equal(
-      h.bridge.owner(),
-      owner,
-      'the programmatic mount scroll keeps matching native geometry'
-    );
-    assert.equal(h.assets[0].disposeCount, 0);
-    assert.equal(owner.style.visibility, phase === 'handoff' ? 'visible' : 'hidden');
-    nativeRect = { ...nativeRect, top: nativeRect.top - 32 };
-    h.window.emit('scroll');
-    assert.equal(owner.style.visibility, 'visible');
-    assert.equal(owner.style.opacity, '0.42');
-    assert.equal(h.bridge.owner(), null);
-    assert.equal(h.bridge.reservation(), null);
-    assert.equal(h.bridge.diagnostics().ready, false);
-    assert.equal(h.assets[0].disposeCount, 1);
-    assert.equal(h.effect.collect({ ...h.frame, page: 'research' }).length, 0);
-  }
-});
-
-test('prime waits for the resized scene dimensions instead of rasterizing against stale paint', async () => {
-  const h = harness();
-  h.effect.collect(h.frame);
-  h.window.innerWidth = 390;
-  h.window.innerHeight = 844;
-  h.document.documentElement.clientWidth = 390;
-  assert.equal(await h.bridge.prime(h.data, 78), false);
-  assert.equal(h.captures.length, 0);
-  h.effect.collect(h.frame);
-  await new Promise(setImmediate);
-  assert.equal(h.captures.length, 0, 'a second stale frame still must not admit a raster');
-  h.effect.collect({ ...h.frame, width: 390, height: 844, compact: true });
-  await new Promise(setImmediate);
-  assert.equal(h.bridge.diagnostics().ready, true);
-  assert.equal(h.captures.length, 1);
-  assert.equal(h.captures[0].options.width, 390);
-  assert.equal(h.captures[0].options.height, 844);
-  assert.equal(h.bridge.reservation().pieces, 8);
-});
-
-test('font, theme and motion reactivation notify cached route warming and prepare a fresh texture', async () => {
-  for (const trigger of ['font', 'theme', 'motion']) {
-    const h = harness();
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    h.window.addEventListener('site:embedded-invalidated', () => h.bridge.prime(h.data, 78));
-    if (trigger === 'font') h.document.fonts.emit('loadingdone');
-    else if (trigger === 'theme') h.themeChange();
-    else {
-      h.setTravel(false);
-      h.window.emit('site:motion-preference');
-      assert.equal(h.dispatched.length, 0, 'motion Off must not request new raster work');
-      assert.equal(h.bridge.diagnostics().ready, false);
-      h.setTravel(true);
-      h.window.emit('site:motion-preference');
-    }
-    await new Promise(setImmediate);
-    assert.equal(h.assets[0].disposeCount, 1);
-    assert.equal(h.dispatched.filter((name) => name === 'site:embedded-invalidated').length, 1);
-    assert.equal(h.captures.length, 2);
-    assert.equal(h.bridge.diagnostics().ready, true);
-    assert.equal(h.assets[1].disposeCount, 0);
-    assert.equal(h.stages.filter((stage) => stage.connected).length, 0);
-  }
-});
-
-test('unsupported routes and nonmatching native landing keep the full block visible', async () => {
-  for (const context of [
-    { from: 'writing', to: 'research', direction: 'backward' },
-    { from: 'index', to: 'talks', direction: 'forward' },
-    { from: 'index', to: 'research', direction: 'forward', landing: { hash: '#details' } },
-    { from: 'index', to: 'research', direction: 'forward', landing: { position: [0, 10] } },
-  ]) {
-    const h = harness();
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    assert.equal(h.bridge.begin(context), false);
-    assert.equal(h.bridge.diagnostics().ready, false);
-    assert.equal(h.assets[0].disposeCount, 1);
-  }
-  for (const mismatch of ['text', 'bounds', 'missing']) {
-    const h = harness();
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    assert.equal(h.bridge.begin(h.landing), true);
-    const owner = h.owner(mismatch === 'text' ? { textContent: 'Changed content' } : {});
-    if (mismatch === 'bounds') {
-      const original = owner.getBoundingClientRect();
-      owner.getBoundingClientRect = () => ({ ...original, left: original.left + 1 });
-    }
-    h.bridge.land({ querySelector: () => (mismatch === 'missing' ? null : owner) });
-    assert.notEqual(owner.style.visibility, 'hidden');
-    assert.equal(h.bridge.owner(), null);
-    assert.equal(h.bridge.reservation(), null);
-    assert.equal(h.bridge.complete(), true);
-  }
-});
-
-test('Off, theme, resize and visibility cancellation restore paint and release one texture', async () => {
-  for (const event of ['off', 'theme', 'resize', 'hidden']) {
-    const h = harness();
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    assert.equal(h.bridge.begin(h.landing), true);
-    const owner = h.owner({ style: style('visible') });
-    h.bridge.land({ querySelector: () => owner });
-    assert.equal(owner.style.visibility, 'hidden');
-    if (event === 'off') {
-      h.setTravel(false);
-      h.window.emit('site:motion-preference');
-    } else if (event === 'theme') h.themeChange();
-    else if (event === 'hidden') {
-      h.document.hidden = true;
-      h.document.emit('visibilitychange');
-    } else h.window.emit('resize');
-    assert.equal(owner.style.visibility, 'visible');
-    assert.equal(h.bridge.owner(), null);
-    assert.equal(h.bridge.reservation(), null);
-    assert.equal(h.assets[0].disposeCount, 1);
-    const context = new Proxy(
-      {},
-      {
-        get() {
-          throw Error('declining paint changed context');
-        },
+test('actual engine flights never overtake a whole arrival field across adjacent and skipped hosts', async () => {
+  for (const compact of [false, true])
+    for (const [from, to] of [
+      ['index', 'research'],
+      ['research', 'writing'],
+      ['writing', 'talks'],
+      ['talks', 'credits'],
+      ['index', 'writing'],
+      ['index', 'credits'],
+    ]) {
+      const h = harness({ compact, wholeViewport: true });
+      await h.prepare(from, to);
+      const start = h.bridge.diagnostics().arrivalStart;
+      const expectedStart =
+        from === 'index' && to === 'writing'
+          ? 0.47
+          : from === 'index' && to === 'credits'
+            ? 0.645
+            : 0.12;
+      assert.ok(Math.abs(start - expectedStart) < 1e-12);
+      const ids = plain(h.bridge.diagnostics().ids);
+      for (let tick = 0; tick <= 100; tick++) {
+        const amount = tick / 100;
+        h.bridge.present(amount);
+        const shapes = h.collect(to, 100 + tick * 15, journeyPose(h, from, to, amount));
+        const fronts = shapes.filter(
+          (shape) => shape.id.startsWith(`${to}:`) && shape.face === 'front'
+        );
+        // A forward skipped destination starts in its actual distant host; once
+        // release starts, camera motion cannot make the entire field disappear.
+        if (amount >= start)
+          assert.ok(fronts.length > 0, `${from}→${to} vanished at ${amount}/${h.frame.width}px`);
+        assert.ok(fronts.every((shape) => shape.textureMix === 1 && shape.depth > 0.5));
+        assert.deepEqual(plain(h.bridge.diagnostics().ids), ids);
       }
-    );
-    assert.equal(h.effect.paint(context, { kind: 'face' }), false);
+    }
+});
+
+test('reverse camera passage reveals Home chunks near their real root before they collect into native content', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact, wholeViewport: true });
+    await h.prepare('index', 'research');
+    h.finish('research', 1000);
+    await h.prepare('research', 'index');
+    const visiblePhases = [];
+    for (let tick = 0; tick <= 100; tick++) {
+      const amount = tick / 100;
+      h.bridge.present(amount);
+      const shapes = h.collect(
+        'index',
+        1300 + tick * 15,
+        journeyPose(h, 'research', 'index', amount)
+      );
+      const outgoing = shapes.filter(
+        (shape) => shape.id.startsWith('research:') && shape.face === 'front'
+      );
+      assert.ok(outgoing.length > 0, `reverse departure vanished at ${amount}/${h.frame.width}px`);
+      const arriving = shapes.filter(
+        (shape) => shape.id.startsWith('index:') && shape.face === 'front'
+      );
+      if (arriving.length) visiblePhases.push(Math.max(...arriving.map((shape) => shape.progress)));
+      if (amount === 0.8) {
+        assert.ok(arriving.length > 0);
+        assert.ok(
+          Math.max(...arriving.map((shape) => shape.progress)) < 0.8,
+          'reverse chunks cannot first appear already almost at their native endpoint'
+        );
+      }
+    }
+    assert.ok(visiblePhases.filter((amount) => amount < 0.8).length >= 10);
+    assert.ok(visiblePhases[0] < 0.6);
+    assert.ok(Math.abs(visiblePhases.at(-1) - 1) < 1e-12);
   }
 });
 
-test('every visible owner uses stable solids in both route directions and one paired resource cap', async () => {
-  for (const [from, to, direction] of [
-    ['index', 'research', 'forward'],
-    ['research', 'index', 'backward'],
-  ]) {
-    const h = harness({ multi: true });
-    h.document.body.dataset.page = from;
-    h.data.page = to;
-    const frame = { ...h.frame, page: from };
-    h.effect.collect(frame);
-    assert.equal(await h.bridge.prime(h.data, 78), true);
-    const restIds = h.bridge.diagnostics().ids;
-    const incomingAssets = [...h.assets];
-    h.bridge.cancel();
-    assert.deepEqual(
-      h.bridge.diagnostics().ids,
-      restIds,
-      'idle router interruption preserves acquired identities'
-    );
-    assert.ok(incomingAssets.every((asset) => asset.disposeCount === 0));
-    const source = h.nativeContent();
-    assert.equal(await h.bridge.prepareDeparture(source), true);
-    const reserved = h.bridge.reservation();
-    assert.equal(reserved.owners, 6);
-    assert.equal(reserved.pieces, 96);
-    assert.equal(
-      fragmentFactory(math).admit(reserved, fragmentFactory(math).settings.caps.full),
-      true
-    );
-    assert.equal(h.bridge.begin({ from, to, direction, landing: { position: [0, 0] } }), true);
-    assert.equal(h.bridge.active(), true);
-    assert.deepEqual(Array.from(h.bridge.owners()), source.owners);
-    assert.ok(source.owners.every((owner) => owner.style.visibility === 'hidden'));
-    h.bridge.present(0.1);
-    h.effect.collect({ ...frame, ambientTime: 1000 });
-    assert.equal(h.bridge.diagnostics().progress, 0, 'arrival cannot expire before native mount');
-    assert.ok(h.bridge.diagnostics().departure.faces.length > 0);
-    assert.deepEqual(h.bridge.diagnostics().ids, restIds);
-    h.bridge.present(0.5);
-    h.effect.collect({ ...frame, ambientTime: 1100 });
-    assert.equal(
-      h.bridge.diagnostics().departure.faces.length,
-      0,
-      'source solids release before mount'
-    );
-    const destination = h.nativeContent();
-    h.document.body.dataset.page = to;
-    h.bridge.land(destination);
-    assert.equal(h.bridge.diagnostics().phase, 'assembling');
-    assert.deepEqual(Array.from(h.bridge.owners()), destination.owners);
-    assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
-    assert.ok(destination.owners.every((owner) => owner.style.visibility === 'hidden'));
-    const target = h.preparations[0].pose;
-    h.effect.collect({ ...frame, page: to, current: target, ambientTime: 2000 });
-    const latestSamples = h.samples.slice(-3);
-    assert.ok(
-      latestSamples
-        .flatMap((sample) => sample.progresses)
-        .some((amount) => amount > 0 && amount < 1)
-    );
-    h.effect.collect({ ...frame, page: to, current: target, ambientTime: 2900 });
-    assert.deepEqual(h.bridge.diagnostics().ids, restIds);
-    assert.ok(h.bridge.diagnostics().groups.every((group) => group.topology.closed));
-    assert.equal(h.bridge.complete(), true);
-    assert.ok(destination.owners.every((owner) => owner.style.visibility !== 'hidden'));
-    assert.equal(h.bridge.reservation(), null);
-    assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
-  }
+test('a warmed Writing field canonicalizes empty archive query and hash before capture', async () => {
+  const h = harness();
+  h.collect('research', 100);
+  h.document.body.dataset.page = 'research';
+  assert.equal(await h.bridge.prime(h.data('writing'), 78), true);
+  assert.deepEqual(plain(h.stages[0].archiveLanding), { search: '', hash: '' });
+  assert.equal(h.stages[0].normalized, true);
 });
 
-test('pair departure acquisition is atomic, and cancellation prevents a stale source capture', async () => {
-  const h = harness({ multi: true, deferred: true });
-  h.effect.collect(h.frame);
-  const prime = h.bridge.prime(h.data, 78);
-  h.captures[0].resolve();
-  assert.equal(await prime, true);
-  const source = h.nativeContent();
-  const acquiring = h.bridge.prepareDeparture(source);
+test('three persistent compact fields remain within original global caps and use canonical decorative sampling', async () => {
+  const h = harness({ compact: true });
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  await h.prepare('index', 'writing');
+  const reserved = h.bridge.reservation();
+  assert.equal(reserved.pieces, 39);
+  assert.equal(reserved.owners, 3);
+  assert.equal(fragmentPlan(math).admit(reserved, fragmentPlan(math).settings.caps.compact), true);
+  assert.ok(h.captures.every(({ options }) => options.dpr === 1));
+  assert.ok(h.captures[2].options.caps.layerPixels < 3000000);
   h.bridge.cancel();
-  assert.equal(h.captures[1].options.signal.aborted, true);
-  h.captures[1].resolve();
-  assert.equal(await acquiring, false);
-  assert.equal(h.bridge.diagnostics().ready, true, 'idle destination plate stays reusable');
-  assert.ok(h.captures[1].assets.every((asset) => asset.disposeCount === 1));
-  assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
   h.bridge.invalidate();
   assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
 });
 
-test('full owners cannot be hidden when destination or departure allocation fails the shared budget', async () => {
-  const h = harness({ multi: true });
-  h.effect.collect(h.frame);
-  await h.bridge.prime(h.data, 78);
-  const source = h.nativeContent();
-  const acquiring = h.bridge.prepareDeparture(source);
-  h.captures[1].assets[0].pixelCount = 9000000;
-  assert.equal(await acquiring, false);
-  assert.equal(h.bridge.begin(h.landing), false);
-  assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
-  assert.equal(h.bridge.reservation(), null);
-  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
-});
-
-test('one mismatched native owner prevents every destination hide and restores all source paint', async () => {
-  const h = harness({ multi: true });
-  h.effect.collect(h.frame);
-  await h.bridge.prime(h.data, 78);
-  const source = h.nativeContent();
-  await h.bridge.prepareDeparture(source);
-  assert.equal(h.bridge.begin(h.landing), true);
-  const destination = h.nativeContent();
-  destination.owners[1].getBoundingClientRect = () => ({ left: 10, top: 10, width: 5, height: 5 });
-  h.bridge.land(destination);
-  assert.equal(h.bridge.active(), false);
-  assert.ok(
-    [...source.owners, ...destination.owners].every((owner) => owner.style.visibility !== 'hidden')
-  );
-  assert.equal(h.bridge.reservation(), null);
-  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
-});
-
-test('compact allocation is bounded and nonzero history landings use measured viewport geometry', async () => {
-  const h = harness({ multi: true });
-  h.effect.collect({ ...h.frame, compact: true });
-  const landing = { position: [0, 240] };
-  await h.bridge.prime(h.data, 78, landing);
-  assert.equal(h.stages[0].style['--embedded-stage-top'], '-162px');
-  await h.bridge.prepareDeparture(h.nativeContent());
-  assert.equal(h.bridge.reservation().pieces, 40);
+test('fourth route evicts only the unprotected oldest field and never expands the global bank', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  await h.bridge.prime(h.data('writing'), 78);
+  await h.bridge.prepareDeparture(h.native('index'));
+  await h.bridge.prime(h.data('talks'), 78);
+  const routes = h.bridge.diagnostics().bank.map((entry) => entry.route);
+  assert.equal(routes.length, 3);
+  assert.ok(routes.includes('index'));
+  assert.ok(routes.includes('talks'));
+  assert.equal(h.assets[0].disposeCount, 1);
   assert.equal(
-    fragmentFactory(math).admit(
-      h.bridge.reservation(),
-      fragmentFactory(math).settings.caps.compact
-    ),
-    true
+    h.assets.slice(1).reduce((sum, asset) => sum + asset.disposeCount, 0),
+    0
   );
-  assert.equal(h.bridge.begin({ ...h.landing, landing }), true);
-  h.bridge.cancel();
-  assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+  assert.ok(h.bridge.reservation().pieces <= 96);
 });
 
-test('an interrupted DOM plane retains its displayed pose and refuses native-solid capture', async () => {
-  for (const plane of [
-    { transform: 'translate3d(0px,0px,-80px)', opacity: '1' },
-    { transform: 'none', opacity: '0.4' },
-  ]) {
-    const h = harness({ multi: true });
-    h.effect.collect(h.frame);
-    await h.bridge.prime(h.data, 78);
-    const source = h.nativeContent();
-    source.style = { ...plane };
-    assert.equal(await h.bridge.prepareDeparture(source), false);
-    assert.equal(h.captures.length, 1);
-    assert.deepEqual(source.style, plane);
-    assert.ok(source.owners.every((owner) => owner.style.visibility !== 'hidden'));
-    h.bridge.invalidate();
+test('one mismatched captured block prevents native hide while retaining the valid resident pool', async () => {
+  const h = harness();
+  const { content } = await h.prepare('index', 'research');
+  const target = h.native('research');
+  target.owners[1].rect.top += 3;
+  h.bridge.land(target);
+  assert.equal(h.bridge.active(), false);
+  assert.notEqual(content.style.visibility, 'hidden');
+  assert.notEqual(target.style.visibility, 'hidden');
+  assert.equal(h.bridge.diagnostics().lastFailure.reason, 'native-geometry-mismatch');
+  assert.equal(h.bridge.diagnostics().bank.length, 2);
+});
+
+test('native oracle retains fingerprints and decoration metadata and rejects an additional visible owner', async () => {
+  const h = harness();
+  const { content } = await h.prepare('index', 'research');
+  const target = h.native('research');
+  target.children[0].children.push({
+    textContent: 'new visible control',
+    paintFingerprint: 'new-paint',
+  });
+  h.bridge.land(target);
+  assert.equal(h.bridge.active(), false);
+  assert.notEqual(content.style.visibility, 'hidden');
+  const read = h.oracleReads.at(-1);
+  assert.equal(read.sources[0].paintFingerprint, 'native-paint-0');
+  assert.equal(read.options.decorations[0].paintFingerprint, 'native-divider');
+  assert.equal(read.options.caps.owners, 32, 'oracle uses the unchanged native capture caps');
+  assert.equal(h.bridge.diagnostics().lastFailure.reason, 'native-geometry-mismatch');
+});
+
+test('mount opacity and a queued scroll read cannot invalidate the lifecycle-owned native handoff', async () => {
+  const h = harness();
+  const { content } = await h.prepare('index', 'research');
+  content.children = h.native('research').children;
+  content.style.opacity = '0';
+  h.document.body.dataset.page = 'research';
+  h.bridge.land(content);
+  assert.equal(h.bridge.active(), true);
+  h.bridge.present(1);
+  h.collect('research', 1000);
+  h.collect('research', 1090);
+  assert.equal(content.style.opacity, '0.5');
+  h.window.emit('scroll');
+  const read = h.oracleReads.at(-1);
+  assert.equal(read.opacity || '1', '1');
+  assert.notEqual(read.visibility, 'hidden');
+  assert.equal(content.style.opacity, '0.5');
+  assert.equal(h.bridge.active(), true);
+  h.collect('research', 1180);
+  assert.equal(h.bridge.complete(), true);
+});
+
+test('after a skipped route handoff, next warming evicts Home and keeps the crossed Research field', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  const research = plain(h.bridge.diagnostics().ids);
+  await h.prepare('index', 'writing');
+  h.finish('writing', 1000);
+  assert.equal(await h.bridge.prime(h.data('talks'), 78), true);
+  const resident = h.bridge.diagnostics().bank;
+  assert.equal(resident.length, 3);
+  assert.deepEqual(plain(resident.map((entry) => entry.route).sort()), [
+    'research',
+    'talks',
+    'writing',
+  ]);
+  assert.deepEqual(
+    plain(resident.find((entry) => entry.route === 'research').groups[0].ids),
+    research
+  );
+  assert.equal(h.assets[2].disposeCount, 1);
+  assert.equal(h.assets[0].disposeCount, 0);
+});
+
+test('failed source capture exposes a bounded reason through fallback without losing the resident destination', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const warm = h.bridge.prime(h.data('research'), 78);
+  h.captures[0].resolve();
+  await warm;
+  const failed = h.bridge.prepareDeparture(h.native('index'));
+  h.captures[1].options.onReject({ reason: 'unsupported-native-paint', tag: 'svg', path: [0, 1] });
+  h.captures[1].resolve(null);
+  assert.equal(await failed, false);
+  assert.equal(
+    h.bridge.begin({ from: 'index', to: 'research', landing: { position: [0, 0] } }),
+    false
+  );
+  assert.equal(h.bridge.diagnostics().lastFailure.reason, 'unsupported-native-paint');
+  assert.equal(h.bridge.diagnostics().bank.length, 1);
+  assert.equal(h.assets[0].disposeCount, 0);
+});
+
+test('aborted stale acquisition cannot overwrite or retain resources after invalidation', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const stale = h.bridge.prime(h.data('research'), 78);
+  h.bridge.invalidate();
+  assert.equal(h.captures[0].options.signal.aborted, true);
+  const fresh = h.bridge.prime(h.data('writing'), 78);
+  h.captures[0].options.onReject({ reason: 'stale-rejection', text: 'private' });
+  assert.equal(h.bridge.diagnostics().lastFailure, null);
+  h.captures[1].resolve();
+  assert.equal(await fresh, true);
+  h.captures[0].resolve();
+  assert.equal(await stale, false);
+  assert.equal(h.assets[0].disposeCount, 1);
+  assert.equal(h.assets[1].disposeCount, 0);
+  assert.equal(h.stages.filter((stage) => stage.connected).length, 0);
+});
+
+test('theme, resize, Off and print invalidate persistent pixels and restore the exact native owner style', async () => {
+  for (const name of ['theme', 'resize', 'beforeprint', 'motion']) {
+    const h = harness();
+    const { content } = await h.prepare('index', 'research');
+    content.style.opacity = '0.42';
+    if (name === 'theme') h.theme();
+    else if (name === 'motion') {
+      h.setTravel(false);
+      h.window.emit('site:motion-preference');
+    } else h.window.emit(name);
+    assert.equal(h.bridge.active(), false);
+    assert.notEqual(content.style.visibility, 'hidden');
+    assert.equal(h.bridge.reservation(), null);
     assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
   }
+});
+
+test('an interrupted DOM plane refuses raster acquisition and retains its displayed transform', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  const content = h.native('index');
+  content.style.transform = 'translate3d(0px,0px,-80px)';
+  assert.equal(await h.bridge.prepareDeparture(content), false);
+  assert.equal(h.captures.length, 1);
+  assert.equal(content.style.transform, 'translate3d(0px,0px,-80px)');
+  assert.equal(h.bridge.diagnostics().lastFailure.reason, 'source-plane-interrupted');
+});
+
+test('native handoff uses one frozen or wrapped clock and waits for exact camera alignment', async () => {
+  const h = harness();
+  await h.prepare('index', 'research');
+  const target = h.native('research');
+  h.bridge.land(target);
+  h.bridge.present(1);
+  const exact = h.pose('research');
+  const wrong = {
+    ...exact,
+    position: exact.position.map((value, index) => value + (index === 0 ? 1e-9 : 0)),
+  };
+  h.collect('research', math.LOOP_MS - 60, wrong);
+  assert.equal(h.bridge.nativeOpacity(), 0);
+  h.collect('research', math.LOOP_MS - 60, exact);
+  h.collect('research', math.LOOP_MS - 60, exact);
+  assert.equal(h.bridge.nativeOpacity(), 0);
+  h.collect('research', 30, exact);
+  assert.equal(h.bridge.nativeOpacity(), 0.5);
+  h.collect('research', 120, exact);
+  assert.equal(h.bridge.complete(), true);
 });

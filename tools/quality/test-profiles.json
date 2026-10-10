@@ -340,7 +340,9 @@
       "inputs": [
         "tests/archive.test.cjs",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "site/engine/archive.js",
+        "site/effects/embedded-scene.cjs"
       ]
     },
     {
@@ -1918,7 +1920,8 @@
         "tools/site/effects.cjs",
         "site/engine/reading-surfaces.css",
         "site/content/pages/research/**",
-        "site/templates/pages/research/**"
+        "site/templates/pages/research/**",
+        "site/engine/archive.js"
       ]
     },
     {

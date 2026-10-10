@@ -1,10 +1,10 @@
 'use strict';
 // A bounded plate uses the canonical partition and camera. Lifecycle supplies
 // its progress and world anchor; this factory owns neither a DOM node nor a clock.
-module.exports = function ({ cameraView, depthVisibility }) {
+module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
   const settings = Object.freeze({
     nativeDepth: 12,
-    maxPieces: 24,
+    maxPieces: 32,
     maxVertices: 10,
     thicknessMinPx: 10,
     thicknessMaxPx: 32,
@@ -33,7 +33,8 @@ module.exports = function ({ cameraView, depthVisibility }) {
     const length = Math.hypot(...a);
     return length > 1e-9 ? scale(a, 1 / length) : null;
   };
-  const blend = (a, b, progress) => a.map((value, index) => value + (b[index] - value) * progress);
+  const blend = (a, b, progress) =>
+    progress === 1 ? [...b] : a.map((value, index) => value + (b[index] - value) * progress);
   const center = (points) =>
     points[0].map((_, index) =>
       points.reduce((sum, point) => sum + point[index] / points.length, 0)
@@ -131,8 +132,17 @@ module.exports = function ({ cameraView, depthVisibility }) {
   }
 
   function orientation(from, to, progress) {
+    if (progress === 1) return to;
     const target = dot(from, to) < 0 ? scale(to, -1) : to;
     return normalize(blend(from, target, progress));
+  }
+  function compose(a, b) {
+    return [
+      a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1],
+      a[3] * b[1] - a[0] * b[2] + a[1] * b[3] + a[2] * b[0],
+      a[3] * b[2] + a[0] * b[1] - a[1] * b[0] + a[2] * b[3],
+      a[3] * b[3] - a[0] * b[0] - a[1] * b[1] - a[2] * b[2],
+    ];
   }
 
   function validCell(cell, rect) {
@@ -164,7 +174,19 @@ module.exports = function ({ cameraView, depthVisibility }) {
     return area > 1e-6;
   }
 
-  function prepare({ id, rect, cells, pose, width, height, embeddedAnchor, anchor, depth = 12 }) {
+  function prepare({
+    id,
+    rect,
+    cells,
+    pose,
+    width,
+    height,
+    embeddedAnchor,
+    anchor,
+    depth = 12,
+    members = null,
+    hostOffset = 0,
+  }) {
     const restAnchor = embeddedAnchor || anchor;
     if (
       typeof id !== 'string' ||
@@ -173,7 +195,21 @@ module.exports = function ({ cameraView, depthVisibility }) {
       !Array.isArray(cells) ||
       !cells.length ||
       cells.length > settings.maxPieces ||
-      !vector(restAnchor, 3) ||
+      (!members && !vector(restAnchor, 3)) ||
+      (members &&
+        (typeof loopTransform !== 'function' ||
+          !Array.isArray(members) ||
+          members.length !== cells.length ||
+          members.some(
+            (member) =>
+              !member ||
+              !vector(member.center, 3) ||
+              !vector(member.rootCenter, 3) ||
+              !vector(member.attachment, 3) ||
+              !Number.isFinite(member.phase) ||
+              !Number.isFinite(member.root)
+          ))) ||
+      !Number.isFinite(hostOffset) ||
       !Number.isFinite(depth) ||
       depth <= settings.near
     )
@@ -209,24 +245,41 @@ module.exports = function ({ cameraView, depthVisibility }) {
         (0.5 - centroid[1]) * 7 + (fraction(71) - 0.5) * 2,
         (fraction(83) - 0.5) * 7,
       ];
-      const restCenter = restAnchor.map(
+      const restOrientation = quaternion(restAxes);
+      const restCenter = (members ? members[index].attachment : restAnchor).map(
         (value, coordinate) =>
           value +
-          spread.reduce((sum, amount, axisIndex) => sum + amount * axes[axisIndex][coordinate], 0)
+          (members
+            ? 0
+            : spread.reduce(
+                (sum, amount, axisIndex) => sum + amount * axes[axisIndex][coordinate],
+                0
+              ))
       );
       const span = Math.min(cell.width, cell.height);
       const thicknessPx = Math.min(
         settings.thicknessMaxPx,
         Math.max(settings.thicknessMinPx, span * (0.18 + fraction(97) * 0.2))
       );
+      const thickness = (thicknessPx * depth) / camera.focal;
+      const contact = members ? turn([0, 0, thickness], restOrientation) : [0, 0, 0];
       return {
         id: `${id}:${index}`,
         uv,
         centroid,
-        restCenter,
-        restOrientation: quaternion(restAxes),
+        restCenter: add(restCenter, contact),
+        restOrientation,
         restSize: [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
-        thickness: (thicknessPx * depth) / camera.focal,
+        thickness,
+        member: members
+          ? {
+              ...members[index],
+              center: [...members[index].center],
+              rootCenter: [...members[index].rootCenter],
+              attachment: [...members[index].attachment],
+            }
+          : null,
+        hostOffset,
         color: index % 3 === 0 ? 'amber' : 'cyan',
       };
     });
@@ -241,7 +294,7 @@ module.exports = function ({ cameraView, depthVisibility }) {
     };
   }
 
-  function geometry(shard, { view: camera, rect, depth, progress = 0 }) {
+  function geometry(shard, { view: camera, rect, depth, progress = 0, time = 0 }) {
     if (
       !shard ||
       !camera ||
@@ -259,10 +312,26 @@ module.exports = function ({ cameraView, depthVisibility }) {
       [rect.x + rect.width * shard.centroid[0], rect.y + rect.height * shard.centroid[1]],
       depth
     );
-    const origin = blend(shard.restCenter, targetCenter, amount);
-    const rotation = orientation(shard.restOrientation, quaternion(basis(camera)), amount);
+    const transform = shard.member ? loopTransform(shard.member, time) : null;
+    const restCenter = transform ? transform(shard.restCenter) : shard.restCenter;
+    const worldCenter = add(restCenter, [0, 0, shard.hostOffset || 0]);
+    const motion = transform
+      ? quaternion(
+          [
+            [transform.matrix[0], transform.matrix[3], transform.matrix[6]],
+            [transform.matrix[1], transform.matrix[4], transform.matrix[7]],
+            [transform.matrix[2], transform.matrix[5], transform.matrix[8]],
+          ].map((column) => scale(column, 1 / transform.scale))
+        )
+      : [0, 0, 0, 1];
+    const origin = blend(worldCenter, targetCenter, amount);
+    const rotation = orientation(
+      compose(motion, shard.restOrientation),
+      quaternion(basis(camera)),
+      amount
+    );
     const size = blend(
-      shard.restSize.map((value) => value * settings.embeddedScale),
+      shard.restSize.map((value) => value * settings.embeddedScale * (transform?.scale || 1)),
       [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
       amount
     );
@@ -279,7 +348,7 @@ module.exports = function ({ cameraView, depthVisibility }) {
           [
             (u - shard.centroid[0]) * size[0] * 0.9,
             (shard.centroid[1] - v) * size[1] * 0.9,
-            -shard.thickness,
+            -shard.thickness * ((transform?.scale || 1) * (1 - amount) + amount),
           ],
           rotation
         )
@@ -297,23 +366,41 @@ module.exports = function ({ cameraView, depthVisibility }) {
     return { id: shard.id, vertices: [...front, ...back], faces };
   }
 
-  function projectSolid(solid, camera, progress, depth) {
-    let world = solid.vertices;
-    let vertices = world.map(camera.camera);
-    if (progress > 0 && progress < 1) {
-      // The unchanged camera flight may finish before the assembly tail.
-      // Carry a moving solid ahead of that camera instead of letting it
-      // disappear behind the near plane and reappear near its endpoint.
-      // Only depth changes: immutable rest poses, IDs, texture coordinates
-      // and the exact final world/native target remain unchanged.
-      const nearest = Math.min(...vertices.map((point) => point[2]));
-      const advance = Math.max(0, depth - nearest);
-      if (Number.isFinite(advance) && advance > 1e-8) {
-        const offset = scale(camera.forward, advance);
-        world = world.map((point) => add(point, offset));
-        vertices = vertices.map(([x, y, z]) => [x, y, z + advance]);
-      }
+  function phaseForClearance(shard, { view: target, camera, rect, depth, progress, time = 0 }) {
+    if (!Number.isFinite(progress) || progress < 0 || progress > 1) return NaN;
+    if (progress === 0) return 0;
+    const moving = shard.member
+      ? loopTransform(shard.member, time)(shard.restCenter)
+      : shard.restCenter;
+    const rest = add(moving, [0, 0, shard.hostOffset || 0]);
+    const endpoint = unproject(
+      target,
+      [rect.x + rect.width * shard.centroid[0], rect.y + rect.height * shard.centroid[1]],
+      depth
+    );
+    const a = camera.camera(rest)[2];
+    const b = camera.camera(endpoint)[2];
+    const difference = b - a;
+    if (Math.abs(difference) < 1e-9) return progress;
+    const boundary = Math.max(0, Math.min(1, (depth - a) / difference));
+    const amount =
+      difference > 0 ? Math.max(smooth(progress), boundary) : Math.min(smooth(progress), boundary);
+    if (amount === 0 || amount === 1) return amount;
+    // The geometry still lies on the original moving-root→native segment.
+    // Only its phase waits for (or precedes) the camera's corridor passage.
+    let left = 0,
+      right = 1;
+    for (let index = 0; index < 20; index++) {
+      const middle = (left + right) / 2;
+      if (smooth(middle) < amount) left = middle;
+      else right = middle;
     }
+    return (left + right) / 2;
+  }
+
+  function projectSolid(solid, camera) {
+    const world = solid.vertices;
+    const vertices = world.map(camera.camera);
     // Cull a complete solid before any vertex enters the near plane. Texture
     // clips cannot stretch through a near intersection or submit huge bitmaps.
     if (vertices.some((point) => !vector(point, 3) || point[2] <= settings.near)) return null;
@@ -347,8 +434,10 @@ module.exports = function ({ cameraView, depthVisibility }) {
       height,
       progress = 0,
       progresses = null,
+      time = 0,
       rect = prepared?.rect,
       targetPose = prepared?.pose,
+      clearance = false,
     }
   ) {
     if (!prepared || !validRect(rect)) return [];
@@ -365,15 +454,26 @@ module.exports = function ({ cameraView, depthVisibility }) {
     const shapes = [];
     const limit = Math.max(width, height) * 8;
     for (const [index, shard] of prepared.shards.entries()) {
-      const amount = progresses ? progresses[index] : progress;
+      const requested = progresses ? progresses[index] : progress;
+      const amount = clearance
+        ? phaseForClearance(shard, {
+            view: targetView,
+            camera,
+            rect,
+            depth: prepared.depth,
+            progress: requested,
+            time,
+          })
+        : requested;
       const solid = geometry(shard, {
         view: targetView,
         rect,
         depth: prepared.depth,
         progress: amount,
+        time,
       });
       if (!solid) return [];
-      const projected = projectSolid(solid, camera, amount, prepared.depth);
+      const projected = projectSolid(solid, camera);
       if (!projected) continue;
       for (const face of solid.faces) {
         const surface = projectFace(face, projected, camera, limit);
@@ -393,7 +493,8 @@ module.exports = function ({ cameraView, depthVisibility }) {
           tint: Math.min(0.63, 0.42 * (0.65 + 0.5 * Math.abs(dot(normal, light)))),
           color: shard.color,
           alpha,
-          textureMix: face.face === 'front' ? 0.16 + nativeAmount * 0.84 : 0,
+          textureMix: face.face === 'front' ? 1 : 0,
+          progress: amount,
           uv: face.face === 'front' ? face.indices.map((index) => shard.uv[index]) : null,
         });
       }
@@ -501,5 +602,5 @@ module.exports = function ({ cameraView, depthVisibility }) {
     return true;
   }
 
-  return { settings, view, prepare, geometry, sample, paint };
+  return { settings, view, prepare, geometry, phaseForClearance, sample, paint };
 };

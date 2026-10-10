@@ -5,10 +5,15 @@ const vm = require('node:vm');
 const math = require('../site/engine/math.cjs')();
 const fragments = require('../site/effects/fragment-plan.cjs')(math);
 const factory = require('../site/effects/embedded-plan.cjs');
-const plan = factory(math);
+const projection = require('../site/engine/projection.cjs')(
+  math,
+  require('../site/scenes/paths.json')
+);
+const plan = factory({ ...math, loopTransform: projection.loopTransform });
 const home = { position: [0, 0, 24], target: [0, 0, -12] };
 const research = { position: [0, 0, -104], target: [0, 0, -140] };
 const colors = { paper: '#101923', sheet: '#f2f6fa', cyan: '#73defa', amber: '#ffb56b' };
+const models = require('../site/scenes/world.cjs')(math);
 
 function plate({ width = 1440, height = 900, rect = null, count = 12 } = {}) {
   rect ||= { x: 90.25, y: 210.5, width: 580.75, height: 140.25 };
@@ -34,6 +39,32 @@ function assertPoint(actual, expected, tolerance = 1e-7) {
 function edgeKey(a, b) {
   return a < b ? `${a}:${b}` : `${b}:${a}`;
 }
+
+function livingPlate({ compact = false, pose = research, hostOffset = 0 } = {}) {
+  const width = compact ? 390 : 1440;
+  const height = compact ? 844 : 900;
+  const count = compact ? 13 : 32;
+  const rect = { x: 0, y: 78, width, height: height - 78 };
+  const cells = fragments.partition(rect, { count, seed: 49 }, { maxPieces: count });
+  const branches = models
+    .worldFor('index', compact)
+    .objects.filter((object) => object.root === 1 && object.depth === 2 && object.points?.length);
+  const members = cells.map((_, index) => {
+    const branch = branches[(37 + index * 7) % branches.length];
+    return {
+      name: branch.name,
+      parent: branch.parent,
+      center: [...branch.center],
+      rootCenter: [...branch.rootCenter],
+      root: branch.root,
+      phase: branch.phase,
+      attachment: [...branch.points[(37 + index * 11) % branch.points.length]],
+    };
+  });
+  return plan.prepare({ id: 'index:field', rect, cells, pose, width, height, members, hostOffset });
+}
+const pointCenter = (points) =>
+  points[0].map((_, index) => points.reduce((sum, point) => sum + point[index] / points.length, 0));
 
 test('each reused canonical cell is a closed nonzero prism throughout assembly', () => {
   const prepared = plate();
@@ -148,57 +179,111 @@ test('rest poses and IDs persist while camera and target geometry change without
   assert.deepEqual(plate(), prepared, 'the same canonical partition makes deterministic solids');
 });
 
-test('the real faster camera flight cannot overtake and hide the slower assembly solids', () => {
-  for (const [width, height, rect, count] of [
-    [1440, 900, { x: 48, y: 350, width: 664, height: 100 }, 12],
-    [390, 844, { x: 4, y: 290, width: 382, height: 186 }, 8],
-  ]) {
-    const prepared = plan.prepare({
-      id: 'research-intro',
-      rect,
-      cells: fragments.partition(rect, { count, seed: 49 }, { maxPieces: count }),
-      pose: research,
-      width,
-      height,
-      anchor: [0, 5, -8],
-    });
-    const original = JSON.stringify(prepared);
-    const expectedIds = new Set(prepared.shards.map((shard) => shard.id));
-    // The canonical camera duration is 1000 + 128*2 = 1256ms; existing assembly
-    // lasts 1800ms. Both observe the same frame without changing either clock.
-    for (let elapsed = 0; elapsed <= 1800; elapsed += 20) {
-      const travel = Math.min(1, elapsed / 1256);
-      const cameraAmount = travel * travel * (3 - 2 * travel);
-      const pose = math.mix(home, research, cameraAmount);
-      const progress = Math.min(1, elapsed / 1800);
-      const shapes = plan.sample(prepared, { pose, width, height, progress });
-      assert.ok(shapes.length > 0, `the complete field vanished at ${elapsed}ms/${width}px`);
-      assert.ok(shapes.every((shape) => expectedIds.has(shape.id)));
-      assert.ok(
-        shapes.every(
-          (shape) =>
-            shape.depth > 0.5 && shape.points.every((point) => point.every(Number.isFinite))
-        )
+test('world-path phase waits for reverse corridor entry without moving the closed geometry toward the camera', () => {
+  for (const compact of [false, true]) {
+    const prepared = livingPlate({ compact, pose: home });
+    const target = plan.view(home, prepared.width, prepared.height);
+    const pose = math.mix(research, home, 0.8 * 0.8 * (3 - 2 * 0.8));
+    const camera = plan.view(pose, prepared.width, prepared.height);
+    const requested = (0.8 - 0.12) / 0.88;
+    for (const shard of prepared.shards) {
+      const options = { view: target, camera, rect: prepared.rect, depth: 12, time: 2000 };
+      const amount = plan.phaseForClearance(shard, { ...options, progress: requested });
+      assert.ok(amount >= 0 && amount < requested);
+      const solid = plan.geometry(shard, { ...options, progress: amount });
+      const actual = pointCenter(solid.vertices.slice(0, shard.uv.length));
+      const rest = pointCenter(
+        plan.geometry(shard, { ...options, progress: 0 }).vertices.slice(0, shard.uv.length)
       );
+      const endpoint = pointCenter(
+        plan.geometry(shard, { ...options, progress: 1 }).vertices.slice(0, shard.uv.length)
+      );
+      assertPoint(actual, math.lerp(rest, endpoint, amount * amount * (3 - 2 * amount)), 1e-6);
+      assertPoint([camera.camera(actual)[2]], [12], 0.0001);
+      assert.equal(solid.faces.length, shard.uv.length + 2);
+      assert.equal(plan.phaseForClearance(shard, { ...options, camera: target, progress: 1 }), 1);
     }
-    const landed = plan.sample(prepared, {
-      pose: research,
-      width,
-      height,
-      progress: 1,
+    const shapes = plan.sample(prepared, {
+      pose,
+      width: prepared.width,
+      height: prepared.height,
+      progress: requested,
+      time: 2000,
+      clearance: true,
     });
-    assert.equal(landed.filter((shape) => shape.face === 'front').length, count);
-    assert.ok(landed.every((shape) => shape.alpha === 1));
-    assert.equal(JSON.stringify(prepared), original, 'travel cannot mutate the embedded model');
+    assert.ok(shapes.some((shape) => shape.face === 'front' && shape.progress < requested));
+    const behind = plan.sample(prepared, {
+      pose: { position: [0, 0, -80], target: [0, 0, -120] },
+      width: prepared.width,
+      height: prepared.height,
+      progress: 0,
+    });
+    assert.deepEqual(behind, [], 'a real field behind the camera must never be carried forward');
   }
 });
 
-test('world rest contains faint content and normal-lit closed faces sorted by canonical depth', () => {
+test('resident closed plates touch canonical nested branches and inherit their exact loop before one host offset', () => {
+  for (const compact of [false, true]) {
+    const prepared = livingPlate({ compact, hostOffset: -120 });
+    const original = JSON.stringify(prepared);
+    const view = plan.view(research, prepared.width, prepared.height);
+    for (const time of [0, 1650, 9000, math.LOOP_MS])
+      for (const shard of prepared.shards) {
+        const transform = projection.loopTransform(shard.member, time);
+        const solid = plan.geometry(shard, {
+          view,
+          rect: prepared.rect,
+          depth: 12,
+          progress: 0,
+          time,
+        });
+        const front = pointCenter(solid.vertices.slice(0, shard.uv.length));
+        const back = pointCenter(solid.vertices.slice(shard.uv.length));
+        assertPoint(
+          front,
+          transform(shard.restCenter).map((value, index) => value + (index === 2 ? -120 : 0))
+        );
+        assertPoint(
+          back,
+          transform(shard.member.attachment).map((value, index) => value + (index === 2 ? -120 : 0))
+        );
+        assert.ok(Math.hypot(...math.sub(front, back)) > 0.05);
+        const endpoint = plan.geometry(shard, {
+          view,
+          rect: prepared.rect,
+          depth: 12,
+          progress: 1,
+          time,
+        });
+        assert.deepEqual(
+          endpoint,
+          plan.geometry(shard, { view, rect: prepared.rect, depth: 12, progress: 1, time: 0 }),
+          'native endpoint cannot retain root motion or the previous-room offset'
+        );
+      }
+    for (const shard of prepared.shards) {
+      assert.ok(shard.member.parent);
+      assert.deepEqual(
+        plan.geometry(shard, { view, rect: prepared.rect, depth: 12, progress: 0, time: 0 }),
+        plan.geometry(shard, {
+          view,
+          rect: prepared.rect,
+          depth: 12,
+          progress: 0,
+          time: math.LOOP_MS,
+        })
+      );
+    }
+    assert.equal(JSON.stringify(prepared), original);
+  }
+});
+
+test('world rest contains readable content and normal-lit closed faces sorted by canonical depth', () => {
   const prepared = plate();
   const shapes = plan.sample(prepared, { pose: home, width: 1440, height: 900 });
   assert.ok(shapes.length > prepared.shards.length);
   assert.ok(shapes.some((shape) => shape.face === 'side'));
-  assert.ok(shapes.some((shape) => shape.face === 'front' && shape.textureMix === 0.16));
+  assert.ok(shapes.some((shape) => shape.face === 'front' && shape.textureMix === 1));
   assert.ok(shapes.every((shape) => shape.alpha > 0 && shape.alpha < 1));
   for (const shape of shapes) {
     assertPoint([Math.hypot(...shape.normal)], [1]);
@@ -301,7 +386,7 @@ test('near plane and malformed input fail closed without nonfinite native submis
     anchor: [0, 0, -10],
   };
   for (const changes of [
-    { cells: Array(25).fill(config.cells[0]) },
+    { cells: Array(33).fill(config.cells[0]) },
     {
       cells: [
         {

@@ -638,7 +638,7 @@
     return result;
   }
   async function prepareNeighbor() {
-    const neighbor = page === 'index' ? 'research' : page === 'research' ? 'index' : null;
+    const neighbor = routes[routes.indexOf(page) + 1];
     if (!neighbor || request || !presentation?.prepareNext) return;
     if (presentation.canPrepareNext?.() === false) return;
     if (warmRequest) {
@@ -669,6 +669,17 @@
   window.addEventListener?.('site:page-ready', prepareNeighbor);
   window.addEventListener?.('site:embedded-invalidated', prepareNeighbor);
   window.addEventListener?.('resize', prepareNeighbor, { passive: true });
+  async function prepareCorridor(from, to, signal, own) {
+    const sourceIndex = routes.indexOf(from);
+    const targetIndex = routes.indexOf(to);
+    if (targetIndex <= sourceIndex + 1) return;
+    const corridor = [];
+    for (const route of routes.slice(sourceIndex + 1, targetIndex)) {
+      corridor.push(await read(route, signal));
+      if (own !== serial || signal.aborted) throw Error('World corridor interrupted');
+    }
+    return corridor;
+  }
   async function navigate(
     url,
     { pop = false, position = null, initial = false, input = null } = {}
@@ -712,6 +723,9 @@
         direction: window.SiteScene?.direction?.(next) ?? window.SiteRoutes.direction(page, next),
       };
       if (animate && presentation?.prepareTransition) {
+        // The native destination mounts once. Intermediate room content is
+        // acquired only through the same verified finite route cache.
+        itinerary.corridor = await prepareCorridor(page, next, controller.signal, own);
         await presentation.prepareTransition(data, itinerary, controller.signal);
         if (own !== serial) return;
         if (controller.signal.aborted) throw Error('Route preparation deadline');

@@ -106,7 +106,12 @@ module.exports = function (api) {
   const effects = window.SiteEffects;
   if (effects && effects.contract !== 1) throw Error('Incompatible scene effect contract');
   effects?.registerView?.(cameraView);
-  const sceneEffects = effects?.scene?.(api);
+  const sceneEffects = effects?.scene?.({
+    ...api,
+    // Content belongs to the same immutable branch descriptors and bounded
+    // room cache as the projected fractal, under its existing ambient clock.
+    worldForRoom: (route) => roomFor(route).world,
+  });
   // The decorative mobile bitmap uses one physical pixel per CSS pixel.
   // Text and controls retain their native resolution; timing is independent.
   const pixelRatio = () =>

@@ -136,7 +136,7 @@ test('fragments apply by default, with explicit preferences and inactive travel 
   assert.equal(optedOut.called('begin').length, 1);
 });
 
-test('paired solid preparation shares landing context and skips disabled or unrelated routes', async () => {
+test('world preparation shares landing context, stages intermediate rooms and respects Off', async () => {
   const calls = [];
   const embedded = {
     async prime(data, top, landing, options) {
@@ -166,14 +166,23 @@ test('paired solid preparation shares landing context and skips disabled or unre
   const count = calls.length;
   await fixture.presentation.prepareTransition(
     { page: 'writing' },
-    { from: 'index', to: 'writing' }
+    { from: 'index', to: 'writing', corridor: [{ page: 'research' }] }
   );
+  assert.deepEqual(
+    calls.slice(count).map(({ name, page }) => [name, page]),
+    [
+      ['prime', 'research'],
+      ['prime', 'writing'],
+      ['depart', undefined],
+    ]
+  );
+  const preparedCount = calls.length;
   const disabled = presentationFixture({ embedded, preferences: { 'vo.fragment-preview': 'off' } });
   await disabled.presentation.prepareTransition(
     { page: 'research' },
     { from: 'index', to: 'research' }
   );
-  assert.equal(calls.length, count);
+  assert.equal(calls.length, preparedCount);
   controller.abort();
   await fixture.presentation.prepareTransition(
     { page: 'research' },
@@ -199,6 +208,34 @@ test('solid-owned native handoff stays at native opacity and transform while Can
   assert.equal(fixture.content.style.transform, 'none');
   assert.equal(samples.at(-1).snapshot.direction, 'backward');
   assert.equal(samples.at(-1).progress, 0.3);
+});
+
+test('page-owned solids preserve their native crossfade and avoid a second DOM replay', () => {
+  let opacity = 0;
+  let complete = false;
+  const embedded = {
+    begin: () => true,
+    land() {},
+    present() {},
+    active: () => true,
+    nativeOpacity: () => opacity,
+    complete: () => complete,
+    cancel() {},
+  };
+  const fixture = presentationFixture({ embedded });
+  fixture.presentation.begin(true, { from: 'index', to: 'writing' });
+  fixture.presentation.prepareMount();
+  fixture.presentation.mounted();
+  for (const amount of [0, 0.25, 0.75]) {
+    opacity = amount;
+    assert.equal(fixture.presentation.present(1, 'forward', undefined, paintedSnapshot()), false);
+    assert.equal(fixture.content.style.opacity, String(amount));
+    assert.equal(fixture.content.style.transform, 'none');
+  }
+  assert.equal(fixture.called('dom').length, 0);
+  complete = true;
+  opacity = 1;
+  assert.equal(fixture.presentation.present(1, 'forward', undefined, paintedSnapshot()), true);
 });
 
 test('one session locks the route direction and forwards the current camera projection', () => {

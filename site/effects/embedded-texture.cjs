@@ -357,6 +357,9 @@ module.exports = function () {
     'column-gap',
     'object-fit',
     'object-position',
+    'appearance',
+    '-webkit-appearance',
+    'color-scheme',
     'background-color',
     'background-image',
     'background-position',
@@ -370,6 +373,8 @@ module.exports = function () {
     'border-bottom',
     'border-left',
     'border-radius',
+    'outline',
+    'outline-offset',
     'box-decoration-break',
     '-webkit-box-decoration-break',
     'isolation',
@@ -433,6 +438,10 @@ module.exports = function () {
     'img',
     'button',
     'label',
+    'form',
+    'select',
+    'option',
+    'optgroup',
     'b',
     'i',
     'sup',
@@ -504,6 +513,7 @@ module.exports = function () {
   function nativeSupported(node, style) {
     const vector = node.namespaceURI === 'http://www.w3.org/2000/svg';
     if (!(vector ? vectorTags : nativeTags).has(node.localName)) return false;
+    if (node.localName === 'select' && (node.multiple || node.size > 1)) return false;
     if (
       ['filter', 'backdrop-filter', 'clip-path', 'mask-image', 'perspective'].some(
         (property) => !['none', ''].includes(value(style, property))
@@ -532,12 +542,38 @@ module.exports = function () {
       ['ltr', ''].includes(value(style, 'direction'))
     );
   }
+  function fullyClipped(style) {
+    return /^inset\(50%(?:\s+50%){0,3}\)$/.test(value(style, 'clip-path'));
+  }
+  function invisibleNative(node, owner, view) {
+    for (let current = node; current; current = current.parentElement) {
+      const style = view.getComputedStyle(current);
+      if (
+        current.hasAttribute('hidden') ||
+        value(style, 'display') === 'none' ||
+        value(style, 'opacity') === '0' ||
+        fullyClipped(style)
+      )
+        return true;
+      if (current === owner) break;
+    }
+    return false;
+  }
   function extendBounds(bounds, box, style) {
     if (!finiteRect(box)) return;
     bounds.left = Math.min(bounds.left, box.left);
     bounds.top = Math.min(bounds.top, box.top);
     bounds.right = Math.max(bounds.right, box.right);
     bounds.bottom = Math.max(bounds.bottom, box.bottom);
+    if (!['none', ''].includes(value(style, 'outline-style'))) {
+      const outset =
+        (parseFloat(value(style, 'outline-width')) || 0) +
+        (parseFloat(value(style, 'outline-offset')) || 0);
+      bounds.left = Math.min(bounds.left, box.left - outset);
+      bounds.top = Math.min(bounds.top, box.top - outset);
+      bounds.right = Math.max(bounds.right, box.right + outset);
+      bounds.bottom = Math.max(bounds.bottom, box.bottom + outset);
+    }
     for (const part of value(style, 'box-shadow').split(/,(?![^()]*\))/)) {
       if (/\binset\b/.test(part)) continue;
       const lengths = (part.match(/[-+]?(?:\d*\.)?\d+px/g) || []).map(parseFloat);
@@ -598,91 +634,127 @@ module.exports = function () {
         )
     );
   }
+  function rejectNative(options, code, tag, extra = {}) {
+    try {
+      options.onReject?.({ reason: code, path: options.ownerPath || [], tag, ...extra });
+    } catch {
+      // Optional public diagnostics cannot change capture or cleanup behavior.
+    }
+    return null;
+  }
   function extendNativeNodeBounds(node, owner, style, bounds, options) {
+    if (options.decoration) return;
     if (node !== owner && node.localName !== 'svg' && !visiblePaper(style)) return;
     const boxes = node.getClientRects ? [...node.getClientRects()] : [node.getBoundingClientRect()];
     for (const original of boxes)
       extendBounds(bounds, copyRect(original, options.offsetX, options.offsetY), style);
   }
-  function inspectNativePseudo(document, box, style, pseudo, bounds) {
+  function inspectNativePseudo(document, box, style, pseudo, bounds, options, tag) {
     const material = pseudoBox(box, style, pseudo);
-    if (material === null) return null;
+    if (material === null) return rejectNative(options, 'unsupported-pseudo-paint', tag);
     if (material) extendBounds(bounds, material, pseudo);
     if (inactive(pseudo)) return 0;
     const content = value(pseudo, 'content');
     if (content.length > 2 && !nativeFontSupported(document, pseudo, content.slice(1, -1)))
-      return null;
+      return rejectNative(options, 'unsupported-pseudo-font', tag);
     return Math.max(0, content.length - 2) * 3;
   }
   function inspectNativeNode(node, owner, document, view, options, bounds) {
     const style = view.getComputedStyle(node);
     const before = view.getComputedStyle(node, '::before');
     const after = view.getComputedStyle(node, '::after');
-    if (!nativeSupported(node, style)) return null;
+    if (!nativeSupported(node, style))
+      return rejectNative(options, 'unsupported-native-paint', node.localName);
     const box = copyRect(node.getBoundingClientRect(), options.offsetX, options.offsetY);
     extendNativeNodeBounds(node, owner, style, bounds, options);
     let textBytes = 0;
     for (const pseudo of [before, after]) {
-      const bytes = inspectNativePseudo(document, box, style, pseudo, bounds);
+      const bytes = inspectNativePseudo(
+        document,
+        box,
+        style,
+        pseudo,
+        bounds,
+        options,
+        node.localName
+      );
       if (bytes === null) return null;
       textBytes += bytes;
     }
     const hasDirectText = [...node.childNodes].some(
       (child) => child.nodeType === 3 && child.textContent.trim()
     );
-    if (hasDirectText && !nativeFontSupported(document, style, node.textContent)) return null;
+    if (hasDirectText && !nativeFontSupported(document, style, node.textContent))
+      return rejectNative(options, 'unsupported-native-font', node.localName);
     if (
       node.localName === 'img' &&
       (!node.complete || !node.naturalWidth || !node.naturalHeight || !node.currentSrc)
     )
-      return null;
+      return rejectNative(options, 'native-image-not-decoded', node.localName);
     if (node.namespaceURI === 'http://www.w3.org/2000/svg')
       textBytes += [...node.attributes].reduce(
         (sum, attribute) => sum + (attribute.name.length + attribute.value.length + 4) * 3,
         0
       );
-    return { node, style, before, after, box, textBytes };
+    const control = node.localName === 'select' ? selectedControl(node) : null;
+    return { node, style, before, after, box, textBytes, control };
   }
-  function inspectNative(owner, ownerPath, document, view, options, caps) {
-    const descendants = [...owner.querySelectorAll('*')];
-    const text = owner.textContent || '';
-    if (descendants.length + 1 > caps.descendants || text.length * 3 > caps.textBytes) return null;
+  function inspectNative(owner, ownerPath, document, view, options, caps, decoration = false) {
+    const descendants = decoration ? [] : [...owner.querySelectorAll('*')];
+    const text = decoration ? '' : owner.textContent || '';
+    const ownerOptions = { ...options, ownerPath, decoration };
+    if (descendants.length + 1 > caps.descendants || text.length * 3 > caps.textBytes)
+      return rejectNative(ownerOptions, 'native-owner-capacity', owner.localName);
     const nativeRect = owner.getBoundingClientRect();
     const rect = copyRect(nativeRect, options.offsetX, options.offsetY);
-    const bounds = { ...rect };
+    const bounds = decoration
+      ? nativeBorderBounds(rect, view.getComputedStyle(owner), options)
+      : { ...rect };
+    if (!bounds) return false;
     const nodes = [];
+    const skippedNodes = new Set();
     let textBytes = text.length * 3;
     for (const node of [owner, ...descendants]) {
-      if (options.clock() > options.acquisitionDeadline) return null;
-      const record = inspectNativeNode(node, owner, document, view, options, bounds);
+      if (options.clock() > options.acquisitionDeadline)
+        return rejectNative(ownerOptions, 'acquisition-deadline', node.localName);
+      if (node !== owner && invisibleNative(node, owner, view)) {
+        skippedNodes.add(node);
+        continue;
+      }
+      const record = inspectNativeNode(node, owner, document, view, ownerOptions, bounds);
       if (!record) return null;
       textBytes += record.textBytes;
-      if (textBytes > caps.textBytes) return null;
+      if (textBytes > caps.textBytes)
+        return rejectNative(ownerOptions, 'native-text-capacity', node.localName);
       nodes.push(record);
     }
     const envelope = {
-      left: Math.max(-64, bounds.left),
-      top: Math.max(-64, bounds.top),
-      right: Math.min(options.width + 64, bounds.right),
-      bottom: Math.min(options.height + 64, bounds.bottom),
+      left: Math.max(0, bounds.left),
+      top: Math.max(0, bounds.top),
+      right: Math.min(options.width, bounds.right),
+      bottom: Math.min(options.height, bounds.bottom),
     };
     envelope.width = envelope.right - envelope.left;
     envelope.height = envelope.bottom - envelope.top;
-    if (!finiteRect(envelope)) return null;
+    if (!finiteRect(envelope)) return false;
     // A complete visible paper may be larger than one texture at high DPR.
     // Reduce sampling inside the original per-texture pixel ceiling.
     const area = envelope.width * envelope.height;
     const dpr = Math.min(options.dpr, Math.sqrt(settings.maxPixels / area));
     const pixelWidth = Math.max(1, Math.floor(envelope.width * dpr));
     const pixelHeight = Math.max(1, Math.floor(envelope.height * dpr));
-    if (pixelWidth * pixelHeight > settings.maxPixels) return null;
+    if (pixelWidth * pixelHeight > settings.maxPixels)
+      return rejectNative(ownerOptions, 'native-texture-capacity', owner.localName);
     const range = document.createRange();
     let lines;
     try {
-      range.selectNodeContents(owner);
-      lines = [...range.getClientRects()]
-        .map((line) => copyRect(line, options.offsetX, options.offsetY))
-        .filter(finiteRect);
+      lines = [];
+      if (!decoration) {
+        range.selectNodeContents(owner);
+        lines = [...range.getClientRects()]
+          .map((line) => copyRect(line, options.offsetX, options.offsetY))
+          .filter(finiteRect);
+      }
     } finally {
       range.detach?.();
     }
@@ -692,10 +764,13 @@ module.exports = function () {
       owner,
       ownerPath,
       nodes,
+      skippedNodes,
       rect,
       envelope,
       lines,
       text,
+      decoration,
+      paintFingerprint: nativePaintFingerprint(nodes, text),
       descendants: descendants.length,
       textBytes,
       dpr,
@@ -719,15 +794,101 @@ module.exports = function () {
     }
     return width > 0 && height > 0 ? ['width:' + width + 'px', 'height:' + height + 'px'] : [];
   }
-  function nativeImageSource(document, node) {
+  function selectedControl(node) {
+    const index = Number.isInteger(node.selectedIndex) ? node.selectedIndex : 0;
+    const selected = node.selectedOptions?.[0] || node.options?.[index] || node.children[index];
+    return { selectedIndex: index, text: selected?.textContent || '' };
+  }
+  function nativeControls(measured) {
+    if (measured.decoration) return [];
+    return (measured.nodes || [])
+      .filter(({ node }) => node.localName === 'select')
+      .map(({ node, control }) => {
+        const path = [];
+        for (let current = node; current !== measured.owner; current = current.parentElement) {
+          path.unshift([...current.parentElement.children].indexOf(current));
+        }
+        return { ownerPath: [...(measured.ownerPath || []), ...path], ...control };
+      });
+  }
+  function nativePaintFingerprint(nodes, text) {
+    let hash = 2166136261;
+    function append(source) {
+      for (let index = 0; index < source.length; index++)
+        hash = Math.imul(hash ^ source.charCodeAt(index), 16777619);
+      hash = Math.imul(hash ^ 0, 16777619);
+    }
+    append(text);
+    for (const { node, style, before, after, control } of nodes) {
+      append(node.localName);
+      for (const paint of [style, before, after])
+        append(
+          [...nativeProperties, ...vectorProperties, 'content']
+            .map((name) => value(paint, name))
+            .join(';')
+        );
+      if (node.namespaceURI === 'http://www.w3.org/2000/svg')
+        for (const attribute of node.attributes)
+          if (vectorAttributes.has(attribute.name)) append(attribute.name + ':' + attribute.value);
+      if (node.localName === 'img')
+        append([node.currentSrc, node.naturalWidth, node.naturalHeight].join(':'));
+      if (control) append(control.selectedIndex + ':' + control.text);
+    }
+    return (hash >>> 0).toString(16);
+  }
+  function nativeBorderBounds(rect, style, options) {
+    const bounds = { left: Infinity, top: Infinity, right: -Infinity, bottom: -Infinity };
+    for (const side of ['top', 'right', 'bottom', 'left']) {
+      const width = parseFloat(value(style, 'border-' + side + '-width')) || 0;
+      if (!width || value(style, 'border-' + side + '-style') === 'none') continue;
+      const box = { ...rect };
+      if (side === 'top') box.bottom = rect.top + width;
+      if (side === 'bottom') box.top = rect.bottom - width;
+      if (side === 'left') box.right = rect.left + width;
+      if (side === 'right') box.left = rect.right - width;
+      box.left = Math.max(0, box.left);
+      box.top = Math.max(0, box.top);
+      box.right = Math.min(options.width, box.right);
+      box.bottom = Math.min(options.height, box.bottom);
+      if (box.right <= box.left || box.bottom <= box.top) continue;
+      bounds.left = Math.min(bounds.left, box.left);
+      bounds.top = Math.min(bounds.top, box.top);
+      bounds.right = Math.max(bounds.right, box.right);
+      bounds.bottom = Math.max(bounds.bottom, box.bottom);
+    }
+    return Number.isFinite(bounds.left) ? bounds : null;
+  }
+  function fieldAncestorSupported(style) {
+    return (
+      ['1', ''].includes(value(style, 'opacity')) &&
+      ['auto', ''].includes(value(style, 'z-index')) &&
+      ['overflow-x', 'overflow-y'].every((property) =>
+        ['visible', ''].includes(value(style, property))
+      )
+    );
+  }
+  function nativeImageDimensions(measured, node, box) {
+    const scale = Math.min(
+      1,
+      Math.max(
+        (box.width * measured.dpr) / node.naturalWidth,
+        (box.height * measured.dpr) / node.naturalHeight
+      ),
+      Math.sqrt(settings.maxPixels / (node.naturalWidth * node.naturalHeight))
+    );
+    if (!Number.isFinite(scale) || scale <= 0) throw new Error('Native image capacity');
+    return {
+      width: Math.max(1, Math.floor(node.naturalWidth * scale)),
+      height: Math.max(1, Math.floor(node.naturalHeight * scale)),
+    };
+  }
+  function nativeImageSource(measured, node, box) {
+    const { document } = measured;
     const bitmap = document.createElement('canvas');
     try {
-      const scale = Math.min(
-        1,
-        Math.sqrt(settings.maxPixels / (node.naturalWidth * node.naturalHeight))
-      );
-      bitmap.width = Math.max(1, Math.floor(node.naturalWidth * scale));
-      bitmap.height = Math.max(1, Math.floor(node.naturalHeight * scale));
+      const dimensions = nativeImageDimensions(measured, node, box);
+      bitmap.width = dimensions.width;
+      bitmap.height = dimensions.height;
       const context = bitmap.getContext('2d');
       if (!context) throw new Error('Native image raster unavailable');
       context.drawImage(node, 0, 0, bitmap.width, bitmap.height);
@@ -751,6 +912,7 @@ module.exports = function () {
     function render(node) {
       if (node.nodeType === 3) return escapeXML(node.textContent);
       if (node.nodeType !== 1) return '';
+      if (measured.skippedNodes?.has(node)) return '';
       const record = records.get(node);
       if (!record) throw new Error('Native texture tree changed');
       const { style, before, after, index, box } = record;
@@ -800,8 +962,13 @@ module.exports = function () {
         }
       }
       if (node.localName === 'img')
-        attributes.push('src="' + nativeImageSource(measured.document, node) + '"');
-      const children = [...node.childNodes].map(render).join('');
+        attributes.push('src="' + nativeImageSource(measured, node, box) + '"');
+      const selected = record.control;
+      const children = measured.decoration
+        ? ''
+        : selected
+          ? '<option selected="selected">' + escapeXML(selected.text) + '</option>'
+          : [...node.childNodes].map(render).join('');
       const tag = node.localName;
       if (['img', 'br', 'hr'].includes(tag)) return '<' + tag + ' ' + attributes.join(' ') + '/>';
       return '<' + tag + ' ' + attributes.join(' ') + '>' + children + '</' + tag + '>';
@@ -872,10 +1039,147 @@ module.exports = function () {
       );
     });
   }
+  function measureNativeOwners(root, document, view, normalized, caps) {
+    const clock = normalized.clock;
+    const measured = [];
+    const usage = { owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 };
+    const semantic = new Set([
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'p',
+      'img',
+      'figure',
+      'li',
+      'dt',
+      'dd',
+      'figcaption',
+      'blockquote',
+      'pre',
+      'a',
+      'button',
+      'label',
+      'select',
+      'span',
+      'time',
+      'strong',
+      'small',
+    ]);
+    function fail(code, path, node, extra) {
+      rejectNative({ ...normalized, ownerPath: path }, code, node.localName, extra);
+      throw new Error('Native capture rejected');
+    }
+    function admit(item, path, node) {
+      const increment = {
+        owners: 1,
+        descendants: item.descendants,
+        textBytes: item.textBytes,
+        layerPixels: item.pixelWidth * item.pixelHeight,
+      };
+      for (const name of Object.keys(usage)) {
+        usage[name] += increment[name];
+        if (usage[name] > caps[name])
+          fail('shared-texture-capacity', path, node, {
+            limit: name,
+            usage: usage[name],
+            maximum: caps[name],
+          });
+      }
+      item.ownerIndex = measured.length;
+      measured.push(item);
+    }
+    function admitFieldDecoration(node, path, style, box) {
+      if (!normalized.fieldCapture) return;
+      if (!fieldAncestorSupported(style)) fail('unsupported-field-ancestor', path, node);
+      if (!nativeBorderBounds(box, style, normalized)) return;
+      const decoration = inspectNative(node, path, document, view, normalized, caps, true);
+      if (!decoration) fail('unsupported-field-decoration', path, node);
+      admit(decoration, path, node);
+    }
+    function visit(node, path) {
+      if (clock() > normalized.acquisitionDeadline) fail('acquisition-deadline', path, node);
+      if (node.hasAttribute('hidden')) return;
+      const style = view.getComputedStyle(node);
+      if (
+        value(style, 'display') === 'none' ||
+        value(style, 'opacity') === '0' ||
+        fullyClipped(style)
+      )
+        return;
+      if (value(style, 'display') === 'contents') {
+        if (!nativeSupported(node, style)) fail('unsupported-native-ancestor', path, node);
+        if (normalized.fieldCapture && !fieldAncestorSupported(style))
+          fail('unsupported-field-ancestor', path, node);
+        [...node.children].forEach((child, index) => visit(child, [...path, index]));
+        return;
+      }
+      const native = node.getBoundingClientRect();
+      if (!finiteRect(native)) return;
+      const box = copyRect(native, normalized.offsetX, normalized.offsetY);
+      if (
+        box.right <= -64 ||
+        box.left >= normalized.width + 64 ||
+        box.bottom <= -64 ||
+        box.top >= normalized.height + 64
+      )
+        return;
+      if (!nativeSupported(node, style)) fail('unsupported-native-ancestor', path, node);
+      const before = view.getComputedStyle(node, '::before');
+      const after = view.getComputedStyle(node, '::after');
+      const atomic =
+        visiblePaper(style) ||
+        visiblePaper(before, true) ||
+        visiblePaper(after, true) ||
+        ['figure', 'svg'].includes(node.localName);
+      const inlineGroup =
+        node.localName === 'div' &&
+        node.children.length > 0 &&
+        [...node.children].every((child) =>
+          ['span', 'time', 'strong', 'small'].includes(child.localName)
+        );
+      if (atomic || semantic.has(node.localName) || inlineGroup) {
+        if (normalized.fieldCapture && !['auto', ''].includes(value(style, 'z-index')))
+          fail('unsupported-field-stacking', path, node);
+        const item = inspectNative(node, path, document, view, normalized, caps);
+        if (item === false) return;
+        if (!item) fail('unsupported-visible-native-paint', path, node);
+        admit(item, path, node);
+        return;
+      }
+      admitFieldDecoration(node, path, style, box);
+      [...node.children].forEach((child, index) => visit(child, [...path, index]));
+    }
+    visit(root, []);
+    return { measured, usage };
+  }
+  function nativeTransientPixels(measured, ownerPixels) {
+    const images = measured.flatMap((item) =>
+      item.nodes
+        .filter(({ node }) => node.localName === 'img')
+        .map(({ node, box }) => {
+          const dimensions = nativeImageDimensions(item, node, box);
+          return dimensions.width * dimensions.height;
+        })
+    );
+    // Known bitmap surfaces: owner canvases and decoded SVG images, each
+    // inlined PNG decode, and the largest sequential PNG encoding canvas.
+    return (
+      ownerPixels * 2 + images.reduce((sum, pixels) => sum + pixels, 0) + Math.max(0, ...images)
+    );
+  }
   async function captureAll(root, options = {}) {
     const assets = [];
     let controller;
     let externalAbort;
+    let reported = false;
+    const onReject = (detail) => {
+      if (reported) return;
+      reported = true;
+      options.onReject?.(detail);
+    };
     try {
       const document = root?.ownerDocument;
       const view = document?.defaultView;
@@ -885,7 +1189,11 @@ module.exports = function () {
         typeof view.Image !== 'function' ||
         options.signal?.aborted
       )
-        return null;
+        return rejectNative(
+          { ...options, onReject },
+          'native-capture-unavailable',
+          root?.localName
+        );
       const clock = () => view.performance?.now() ?? Date.now();
       const started = clock();
       const normalized = {
@@ -894,7 +1202,11 @@ module.exports = function () {
         offsetY: options.offsetY ?? 0,
         dpr: options.dpr ?? view.devicePixelRatio ?? 1,
         clock,
-        deadline: started + Math.min(160, options.preparationMs ?? 160),
+        deadline: Math.min(
+          started + Math.min(160, options.preparationMs ?? 160),
+          options.deadline ?? Infinity
+        ),
+        onReject,
       };
       if (
         ![
@@ -903,13 +1215,14 @@ module.exports = function () {
           normalized.offsetX,
           normalized.offsetY,
           normalized.dpr,
+          normalized.deadline,
         ].every(Number.isFinite) ||
         normalized.width <= 0 ||
         normalized.height <= 0 ||
         normalized.dpr <= 0 ||
         normalized.dpr > settings.maxDpr
       )
-        return null;
+        return rejectNative(normalized, 'invalid-capture-geometry', root.localName);
       const caps = options.caps;
       if (
         !caps ||
@@ -917,98 +1230,30 @@ module.exports = function () {
           (name) => !Number.isFinite(caps[name]) || caps[name] < 0
         )
       )
-        return null;
-      if (typeof view.AbortController !== 'function') return null;
+        return rejectNative(normalized, 'invalid-capture-capacity', root.localName);
+      if (typeof view.AbortController !== 'function')
+        return rejectNative(normalized, 'native-cancellation-unavailable', root.localName);
       controller = new view.AbortController();
       externalAbort = () => controller.abort();
       options.signal?.addEventListener('abort', externalAbort, { once: true });
       normalized.signal = controller.signal;
       if (options.signal?.aborted) controller.abort();
-      if (!(await decodeNativeImages(root, view, normalized))) return null;
+      if (!(await decodeNativeImages(root, view, normalized)))
+        return rejectNative(normalized, 'native-media-decode-failed', 'img');
       normalized.acquisitionDeadline = Math.min(
         normalized.deadline,
         clock() + Math.min(80, options.acquisitionMs ?? 80)
       );
-      const measured = [];
-      const usage = { owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 };
-      const semantic = new Set([
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'h5',
-        'h6',
-        'p',
-        'img',
-        'figure',
-        'li',
-        'dt',
-        'dd',
-        'figcaption',
-        'blockquote',
-        'pre',
-        'a',
-        'button',
-        'label',
-        'span',
-        'time',
-        'strong',
-        'small',
-      ]);
-      function visit(node, path) {
-        if (clock() > normalized.acquisitionDeadline) throw new Error('Native acquisition expired');
-        if (node.hasAttribute('hidden')) return;
-        const style = view.getComputedStyle(node);
-        if (value(style, 'display') === 'none' || value(style, 'opacity') === '0') return;
-        if (value(style, 'display') === 'contents') {
-          if (!nativeSupported(node, style)) throw new Error('Unsupported native ancestor paint');
-          [...node.children].forEach((child, index) => visit(child, [...path, index]));
-          return;
-        }
-        const native = node.getBoundingClientRect();
-        if (!finiteRect(native)) return;
-        const box = copyRect(native, normalized.offsetX, normalized.offsetY);
-        if (
-          box.right <= -64 ||
-          box.left >= normalized.width + 64 ||
-          box.bottom <= -64 ||
-          box.top >= normalized.height + 64
-        )
-          return;
-        if (!nativeSupported(node, style)) throw new Error('Unsupported native ancestor paint');
-        const before = view.getComputedStyle(node, '::before');
-        const after = view.getComputedStyle(node, '::after');
-        const atomic =
-          visiblePaper(style) ||
-          visiblePaper(before, true) ||
-          visiblePaper(after, true) ||
-          ['figure', 'svg'].includes(node.localName);
-        const inlineGroup =
-          node.localName === 'div' &&
-          node.children.length > 0 &&
-          [...node.children].every((child) =>
-            ['span', 'time', 'strong', 'small'].includes(child.localName)
-          );
-        if (atomic || semantic.has(node.localName) || inlineGroup) {
-          const item = inspectNative(node, path, document, view, normalized, caps);
-          if (!item) throw new Error('Unsupported visible native paint');
-          const increment = {
-            owners: 1,
-            descendants: item.descendants,
-            textBytes: item.textBytes,
-            layerPixels: item.pixelWidth * item.pixelHeight,
-          };
-          for (const name of Object.keys(usage)) {
-            usage[name] += increment[name];
-            if (usage[name] > caps[name]) throw new Error('Native texture capacity exceeded');
-          }
-          item.ownerIndex = measured.length;
-          measured.push(item);
-          return;
-        }
-        [...node.children].forEach((child, index) => visit(child, [...path, index]));
-      }
-      visit(root, []);
+      const { measured, usage } = measureNativeOwners(root, document, view, normalized, caps);
+      const transientPixels = options.fieldCapture
+        ? nativeTransientPixels(measured, usage.layerPixels)
+        : usage.layerPixels;
+      if (transientPixels > caps.layerPixels)
+        return rejectNative(normalized, 'field-decode-capacity', root.localName, {
+          limit: 'layerPixels',
+          usage: transientPixels,
+          maximum: caps.layerPixels,
+        });
       const captured = await Promise.all(
         measured.map(async (item) => {
           const asset = await raster(item, normalized, serializeNative);
@@ -1024,8 +1269,10 @@ module.exports = function () {
       )
         throw new Error('Native texture capture failed');
       assets.sort((a, b) => a.ownerIndex - b.ownerIndex);
+      assets.transientPixels = transientPixels;
       return assets;
     } catch {
+      rejectNative({ ...options, onReject }, 'native-capture-failed', root?.localName);
       controller?.abort();
       for (const asset of assets) asset.dispose();
       return null;
@@ -1042,12 +1289,223 @@ module.exports = function () {
     }
     return raster(measured, options, serialize);
   }
+  function canvasDisposer(canvas) {
+    let disposed = false;
+    return () => {
+      if (disposed) return;
+      disposed = true;
+      canvas.width = 0;
+      canvas.height = 0;
+    };
+  }
+  function fieldEnvelope(assets) {
+    const envelope = {
+      left: Math.min(...assets.map((asset) => asset.envelope.left)),
+      top: Math.min(...assets.map((asset) => asset.envelope.top)),
+      right: Math.max(...assets.map((asset) => asset.envelope.right)),
+      bottom: Math.max(...assets.map((asset) => asset.envelope.bottom)),
+    };
+    envelope.width = envelope.right - envelope.left;
+    envelope.height = envelope.bottom - envelope.top;
+    return envelope;
+  }
+  function fieldDimensions(envelope, dpr, available) {
+    if (!finiteRect(envelope) || available < 1) return null;
+    const sampling = Math.min(
+      dpr,
+      Math.sqrt(Math.min(settings.maxPixels, available) / (envelope.width * envelope.height))
+    );
+    const width = Math.max(1, Math.floor(envelope.width * sampling));
+    const height = Math.max(1, Math.floor(envelope.height * sampling));
+    return width * height <= available ? { width, height, dpr: sampling } : null;
+  }
+  function fieldAsset(root, assets, canvas, envelope, dpr) {
+    return {
+      canvas,
+      owner: root,
+      ownerPath: [],
+      ownerIndex: 0,
+      rect: envelope,
+      envelope,
+      lines: [],
+      dpr,
+      pixelCount: canvas.width * canvas.height,
+      descendants: assets.reduce((sum, asset) => sum + asset.descendants, 0),
+      textBytes: assets.reduce((sum, asset) => sum + asset.textBytes, 0),
+      sourceOwners: assets
+        .filter((asset) => !asset.decoration)
+        .map(
+          ({
+            ownerPath,
+            rect,
+            lines,
+            envelope: sourceEnvelope,
+            textContent,
+            controls,
+            paintFingerprint,
+          }) => ({
+            ownerPath,
+            rect,
+            lines,
+            envelope: sourceEnvelope,
+            textContent,
+            controls,
+            paintFingerprint,
+          })
+        ),
+      decorations: assets
+        .filter((asset) => asset.decoration)
+        .map(({ ownerPath, rect, envelope: sourceEnvelope, paintFingerprint }) => ({
+          ownerPath,
+          rect,
+          envelope: sourceEnvelope,
+          paintFingerprint,
+        })),
+      dispose: canvasDisposer(canvas),
+    };
+  }
+  function sameNativeRect(first, second) {
+    return (
+      !!second &&
+      ['left', 'top', 'width', 'height'].every((key) => Math.abs(first[key] - second[key]) <= 0.75)
+    );
+  }
+  function sameNativeSource(current, previous) {
+    return (
+      JSON.stringify(current.ownerPath) === JSON.stringify(previous.ownerPath) &&
+      current.text === previous.textContent &&
+      current.paintFingerprint === previous.paintFingerprint &&
+      sameNativeRect(current.rect, previous.rect) &&
+      sameNativeRect(current.envelope, previous.envelope) &&
+      current.lines.length === previous.lines.length &&
+      current.lines.every((line, index) => sameNativeRect(line, previous.lines[index])) &&
+      JSON.stringify(nativeControls(current)) === JSON.stringify(previous.controls || [])
+    );
+  }
+  function matchesField(root, sourceOwners, options = {}) {
+    try {
+      const document = root?.ownerDocument;
+      const view = document?.defaultView;
+      if (!root?.isConnected || !view || !Array.isArray(sourceOwners) || !options.caps)
+        return false;
+      const clock = () => view.performance?.now() ?? Date.now();
+      const deadline = clock() + Math.min(80, options.acquisitionMs ?? 80);
+      const normalized = {
+        ...options,
+        offsetX: options.offsetX ?? 0,
+        offsetY: options.offsetY ?? 0,
+        dpr: options.dpr ?? view.devicePixelRatio ?? 1,
+        fieldCapture: true,
+        clock,
+        deadline,
+        acquisitionDeadline: deadline,
+      };
+      if (![options.width, options.height, normalized.dpr, deadline].every(Number.isFinite))
+        return false;
+      const { measured } = measureNativeOwners(root, document, view, normalized, options.caps);
+      const semantic = measured.filter((item) => !item.decoration);
+      if (
+        semantic.length !== sourceOwners.length ||
+        !semantic.every((item, index) => sameNativeSource(item, sourceOwners[index]))
+      )
+        return false;
+      const decorations = measured.filter((item) => item.decoration);
+      if (
+        options.decorations &&
+        (decorations.length !== options.decorations.length ||
+          !decorations.every((item, index) => {
+            const previous = options.decorations[index];
+            return (
+              JSON.stringify(item.ownerPath) === JSON.stringify(previous.ownerPath) &&
+              item.paintFingerprint === previous.paintFingerprint &&
+              sameNativeRect(item.rect, previous.rect) &&
+              sameNativeRect(item.envelope, previous.envelope)
+            );
+          }))
+      )
+        return false;
+      return clock() <= deadline;
+    } catch {
+      return false;
+    }
+  }
+  async function captureField(root, options = {}) {
+    const view = root?.ownerDocument?.defaultView;
+    const clock = () => view?.performance?.now() ?? Date.now();
+    const deadline = Math.min(
+      clock() + Math.min(160, options.preparationMs ?? 160),
+      options.deadline ?? Infinity
+    );
+    let reported = false;
+    const onReject = (detail) => {
+      if (reported) return;
+      reported = true;
+      options.onReject?.(detail);
+    };
+    const normalized = { ...options, onReject, deadline, fieldCapture: true };
+    let assets;
+    let canvas;
+    let complete = false;
+    try {
+      const retained = options.retainedPixels ?? 0;
+      if (!Number.isFinite(retained) || retained < 0)
+        return rejectNative(normalized, 'invalid-field-retained-capacity', root?.localName);
+      const capacity = options.caps?.layerPixels - retained;
+      normalized.caps = { ...options.caps, layerPixels: capacity };
+      assets = await captureAll(root, normalized);
+      if (!assets?.length) return rejectNative(normalized, 'native-field-empty', root?.localName);
+      if (options.signal?.aborted || clock() > deadline)
+        return rejectNative(normalized, 'preparation-deadline', root.localName);
+      const temporary = assets.transientPixels;
+      const envelope = fieldEnvelope(assets);
+      const dimensions = fieldDimensions(
+        envelope,
+        options.dpr ?? view.devicePixelRatio ?? 1,
+        settings.maxPixels
+      );
+      if (!dimensions || temporary + dimensions.width * dimensions.height > capacity)
+        return rejectNative(normalized, 'field-peak-capacity', root.localName, {
+          limit: 'layerPixels',
+          usage: retained + temporary + (dimensions ? dimensions.width * dimensions.height : 1),
+          maximum: options.caps.layerPixels,
+        });
+      canvas = root.ownerDocument.createElement('canvas');
+      canvas.width = dimensions.width;
+      canvas.height = dimensions.height;
+      const context = canvas.getContext('2d');
+      if (!context) return rejectNative(normalized, 'native-canvas-unavailable', root.localName);
+      const scaleX = canvas.width / envelope.width;
+      const scaleY = canvas.height / envelope.height;
+      for (const asset of assets) {
+        if (options.signal?.aborted || clock() > deadline)
+          return rejectNative(normalized, 'preparation-deadline', root.localName);
+        context.drawImage(
+          asset.canvas,
+          (asset.envelope.left - envelope.left) * scaleX,
+          (asset.envelope.top - envelope.top) * scaleY,
+          asset.envelope.width * scaleX,
+          asset.envelope.height * scaleY
+        );
+      }
+      if (options.signal?.aborted || clock() > deadline)
+        return rejectNative(normalized, 'preparation-deadline', root.localName);
+      const asset = fieldAsset(root, assets, canvas, envelope, dimensions.dpr);
+      complete = true;
+      return asset;
+    } catch {
+      return rejectNative(normalized, 'native-field-composite-failed', root?.localName);
+    } finally {
+      for (const asset of assets || []) asset.dispose();
+      if (!complete && canvas) canvasDisposer(canvas)();
+    }
+  }
   function raster(measured, options, serializer) {
     if (!measured || options.signal?.aborted) return Promise.resolve(null);
     let canvas;
     let context;
     let image;
     let source;
+    const nativeOptions = { ...options, ownerPath: measured.ownerPath };
     try {
       canvas = measured.document.createElement('canvas');
       canvas.width = measured.pixelWidth;
@@ -1059,6 +1517,11 @@ module.exports = function () {
       source = null;
     }
     if (!source) {
+      rejectNative(
+        nativeOptions,
+        context ? 'raster-serialization-failed' : 'native-canvas-unavailable',
+        measured.owner.localName
+      );
       if (canvas) {
         canvas.width = 0;
         canvas.height = 0;
@@ -1068,7 +1531,7 @@ module.exports = function () {
     return new Promise((resolve) => {
       let finished = false;
       let timeout;
-      function finish(success) {
+      function finish(success, code) {
         if (finished) return;
         finished = true;
         measured.view.clearTimeout(timeout);
@@ -1077,6 +1540,7 @@ module.exports = function () {
         image.onerror = null;
         image.removeAttribute?.('src');
         if (!success) {
+          rejectNative(nativeOptions, code || 'native-raster-failed', measured.owner.localName);
           canvas.width = 0;
           canvas.height = 0;
           resolve(null);
@@ -1095,6 +1559,10 @@ module.exports = function () {
           ownerIndex: measured.ownerIndex,
           descendants: measured.descendants || 0,
           textBytes: measured.textBytes || measured.text.length * 3,
+          textContent: measured.text,
+          paintFingerprint: measured.paintFingerprint,
+          controls: nativeControls(measured),
+          decoration: !!measured.decoration,
           dispose() {
             if (disposed) return;
             disposed = true;
@@ -1104,12 +1572,13 @@ module.exports = function () {
         });
       }
       function abort() {
-        finish(false);
+        finish(false, options.signal?.aborted ? 'capture-aborted' : 'raster-decode-failed');
       }
       image.onload = () => {
         if (finished) return;
         try {
-          if (!image.naturalWidth || !image.naturalHeight) return finish(false);
+          if (!image.naturalWidth || !image.naturalHeight)
+            return finish(false, 'native-raster-empty');
           context.drawImage(image, 0, 0, canvas.width, canvas.height);
           // A loaded image may silently omit foreignObject on an unsupported engine.
           const sample = context.getImageData(
@@ -1122,9 +1591,12 @@ module.exports = function () {
           // Headings and decoded cutouts may have a transparent center. Admit
           // their raster only after observing actual ink somewhere in its bound.
           const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
-          finish(pixels.some((alpha, index) => index % 4 === 3 && alpha > 0));
+          finish(
+            pixels.some((alpha, index) => index % 4 === 3 && alpha > 0),
+            'native-raster-blank'
+          );
         } catch {
-          finish(false);
+          finish(false, 'native-raster-readback-failed');
         }
       };
       image.onerror = abort;
@@ -1133,8 +1605,8 @@ module.exports = function () {
         options.deadline === undefined
           ? settings.decodeTimeoutMs
           : Math.min(settings.decodeTimeoutMs, options.deadline - options.clock());
-      if (timeoutMs <= 0) return abort();
-      timeout = measured.view.setTimeout(abort, timeoutMs);
+      if (timeoutMs <= 0) return finish(false, 'preparation-deadline');
+      timeout = measured.view.setTimeout(() => finish(false, 'preparation-deadline'), timeoutMs);
       if (options.signal?.aborted) return abort();
       try {
         image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
@@ -1143,5 +1615,5 @@ module.exports = function () {
       }
     });
   }
-  return { capture, captureAll, settings };
+  return { capture, captureAll, captureField, matchesField, settings };
 };

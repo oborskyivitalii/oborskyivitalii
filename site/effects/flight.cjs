@@ -448,6 +448,7 @@ function createPresentation(content) {
   let contentFlight = true,
     fragmentPreview = true,
     useFragments = false,
+    useSolids = false,
     phaseFragments = false,
     capturing = false,
     waitingArrival = false,
@@ -477,6 +478,26 @@ function createPresentation(content) {
     if (contentFlight) content.style.transform = 'perspective(1200px) translateZ(' + pose.z + 'px)';
     else content.style.removeProperty('transform');
   }
+  function beginFragments() {
+    fragments ||= fragmentDOM(
+      content,
+      fragmentPlan({ cameraView: (...args) => window.SiteEffects.cameraView(...args) }),
+      () => {
+        phaseFragments = false;
+        setPlane(lastPose);
+      },
+      {
+        exclude: () =>
+          window.SiteEffects.embedded?.owners?.() || window.SiteEffects.embedded?.owner(),
+        reserve: () => window.SiteEffects.embedded?.reservation(),
+      }
+    );
+    fragments.begin(journeyContext);
+  }
+  function nativeSolidPlane() {
+    content.style.opacity = String(window.SiteEffects.embedded?.nativeOpacity?.() ?? 1);
+    content.style.transform = 'none';
+  }
   return {
     mountAt: 0.5,
     layoutStableDuringTravel: true,
@@ -491,6 +512,7 @@ function createPresentation(content) {
       window.SiteEffects.embedded?.cancel();
       fragments?.clear();
       useFragments = false;
+      useSolids = false;
       phaseFragments = false;
       capturing = false;
       waitingArrival = false;
@@ -519,28 +541,18 @@ function createPresentation(content) {
       journeyDirection = context?.direction || 'forward';
       journeyContext = { ...context, direction: journeyDirection };
       useFragments = animate && contentFlight && fragmentPreview;
+      useSolids = false;
       phaseFragments = false;
       capturing = useFragments;
       waitingArrival = false;
-      if (useFragments) window.SiteEffects.embedded?.begin(context);
+      if (useFragments) useSolids = window.SiteEffects.embedded?.begin(context) === true;
       else window.SiteEffects.embedded?.invalidate();
-      if (useFragments) {
-        fragments ||= fragmentDOM(
-          content,
-          fragmentPlan({
-            cameraView: (...args) => window.SiteEffects.cameraView(...args),
-          }),
-          () => {
-            phaseFragments = false;
-            setPlane(lastPose);
-          },
-          {
-            exclude: () =>
-              window.SiteEffects.embedded?.owners?.() || window.SiteEffects.embedded?.owner(),
-            reserve: () => window.SiteEffects.embedded?.reservation(),
-          }
-        );
-        fragments.begin(journeyContext);
+      if (useSolids) {
+        capturing = false;
+        nativeSolidPlane();
+      }
+      if (useFragments && !useSolids) {
+        beginFragments();
       }
     },
     mounted() {
@@ -550,7 +562,13 @@ function createPresentation(content) {
       // when departure's clone/deadline fallback rejected its old paint.
       if (useFragments) {
         window.SiteEffects.embedded?.land(content);
-        fragments.begin(journeyContext);
+        if (useSolids && window.SiteEffects.embedded?.active?.()) {
+          nativeSolidPlane();
+          waitingArrival = false;
+          return;
+        }
+        useSolids = false;
+        beginFragments();
       }
       waitingArrival = useFragments;
     },
@@ -562,9 +580,15 @@ function createPresentation(content) {
         window.SiteEffects.embedded?.invalidate();
         fragments?.clear();
         useFragments = false;
+        useSolids = false;
         phaseFragments = false;
         capturing = false;
         waitingArrival = false;
+      }
+      if (useSolids) {
+        nativeSolidPlane();
+        if (progress === 1) return window.SiteEffects.embedded?.complete() !== false;
+        return;
       }
       if (useFragments && waitingArrival) {
         const status = fragments.arrivalStatus(painted);
@@ -603,6 +627,7 @@ function createPresentation(content) {
           window.SiteEffects.embedded?.invalidate();
           fragments?.clear();
           useFragments = false;
+          useSolids = false;
           phaseFragments = false;
         } else window.SiteEffects.embedded?.refresh();
         if (content.dataset.flightStage)
@@ -621,6 +646,7 @@ function createPresentation(content) {
           window.SiteEffects.embedded?.invalidate();
           fragments?.clear();
           useFragments = false;
+          useSolids = false;
           phaseFragments = false;
         } else window.SiteEffects.embedded?.refresh();
         try {
@@ -634,13 +660,13 @@ function createPresentation(content) {
     canPrepareNext: () => contentFlight && fragmentPreview,
     async prepareTransition(data, context, signal) {
       if (!contentFlight || !fragmentPreview) return;
-      const paired =
-        (context.from === 'index' && context.to === 'research') ||
-        (context.from === 'research' && context.to === 'index');
-      if (!paired) return;
       const embedded = window.SiteEffects.embedded;
       if (!embedded) return;
       try {
+        for (const neighbor of context.corridor || []) {
+          await embedded.prime(neighbor, content.offsetTop, null, { signal });
+          if (signal?.aborted) return;
+        }
         await embedded.prime(data, content.offsetTop, context.landing, { signal });
         if (signal?.aborted) return;
         await embedded.prepareDeparture?.(content, { signal });

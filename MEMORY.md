@@ -13,13 +13,16 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   was delivered through [PR #63](https://github.com/oborskyivitalii/oborskyivitalii/pull/63).
 - [#49](https://github.com/oborskyivitalii/oborskyivitalii/issues/49) and
   [Draft PR #53](https://github.com/oborskyivitalii/oborskyivitalii/pull/53) own
-  the AC15 paired preview: all visible Home/Research native owners become
-  persistent closed solids with departure and arrival in both directions. Read its
+  the AC15 persistent content world: actual Research chunks belong to Home's
+  moving fractal, Writing chunks to Research's, with camera-flight assembly,
+  reverse retention and intermediate-room passage. Read its
   [single handoff](review/issue-49/2026-10-08-analysis.md) and live PR for evidence.
 
-- Prior paragraph preview on6d38d000 passed source/preview smoke. The next
-  maintainer amendment extends this same PR to viewport-bounded Home/Research
-  solids; fetch live PR for current exact-head checks and immutable preview.
+- Prior paragraph preview on6d38d000 passed its bounded checks. The paired
+  candidatec173ff1 and metadata3b4bba64 are rejected: hosted Color smoke found
+  wide fallback and an offscreen verifier error; the maintainer rejected fixed
+  anchors and post-arrival assembly. Fetch live PR for the corrected source,
+  current checks and actual rendered proof before presenting a new preview.
 
 ## Decisions
 
@@ -29,8 +32,9 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 - Harness #65 excluded site/runtime/generated changes; fragment work stays in #49.
 - AC01 and historical AC11–AC14 retain accepted scope. AC02–AC10 and embedded
   AC15 remain open for current visual/device/accessibility/paired-cost decisions.
-  Keep one scene/camera/clock and original caps; irregular panels and
-  embedding outside Home/Research remain later scope. Preview authorization does not authorize merge/release.
+  Keep one scene/camera/clock and original caps. Root/branch motion and retained
+  next-page textures are now required scope; irregular native panel redesign
+  remains separate. Preview authorization does not authorize merge/release.
 - A user-supplied issue stays bound across phases/model handoffs; consolidation
   transfers original ACs, evidence and open gates before superseding an owner.
 
@@ -38,7 +42,7 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #49 / Draft PR #53 | Paired full-content Home/Research preview; verify current source/smoke and preserve visual/device/paired-cost acceptance. |
+| #49 / Draft PR #53 | Corrected moving content world; verify Home/Research forward/reverse and Home/Writing corridor in actual frames, preserving native/device/paired-cost gates. |
 | #39 / Draft PR #40 | GitHub Pages/custom-domain preparation; retain domain/production decisions. |
 | #45 / #36 / #41 | Check original visual/editorial/device/release gates in the live owners. |
 | #1 / #13 / #8 | First release, devices, recovery, URL/indexability and analytics activation. |
@@ -47,9 +51,9 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
 ## Next session
 
 1. Fetch main and live #49/#39 issues and linked PRs; reconcile heads/ACs.
-2. Read #49's paired full-content checkpoint and current PR evidence. Verify both
-   Home/Research directions and native handoff. Fractal-root attachment and
-   irregular native contours remain later scope.
+2. Read #49's persistent-world correction and current PR evidence. Verify moving
+   branch membership, readable next-page textures, convergence during flight,
+   retained reverse detachment and skipped Research room before native Writing.
 3. Use required current-source checks and honest review/gate evidence; update AC boxes.
 4. Refresh this handoff after a material state change; merge/release only by maintainer decision.
 

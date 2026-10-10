@@ -1,16 +1,24 @@
 'use strict';
 // Authored Color behavior against the same exact artifact used by generic smoke.
 const assert = require('node:assert/strict'),
-  fs = require('node:fs');
-const { toolRequire, report, launchOptions } = require('./common.cjs'),
+  fs = require('node:fs'),
+  path = require('node:path');
+const { toolRequire, report, launchOptions, out } = require('./common.cjs'),
   { start } = require('./serve.cjs');
 const { paintProbe: canvasPaintProbe, liveScrollPrecondition } = require('./engine-browser.cjs'),
   { probe: scrollProbe } = require('./scroll-browser.cjs');
 const { colorPaint } = require('./validate.cjs');
 const motion = require('./motion.cjs'),
   { transition: flightBudgets } = require('./budgets.json').motion;
+const sceneLoopMs = require('../../site/engine/math.cjs')().LOOP_MS;
+const embeddedRouteOrder = ['index', 'research', 'writing', 'talks', 'credits'];
 function paintProbe() {
-  const paint = { completed: 0, ordinaryShapes: 0, customShapes: 0, embeddedShapes: 0 };
+  const paint = {
+    completed: 0,
+    ordinaryShapes: 0,
+    customShapes: 0,
+    embeddedShapes: 0,
+  };
   const ribbons = { submissions: 0, shapes: 0 };
   const raf = window.requestAnimationFrame;
   window.__colorPaint = paint;
@@ -78,10 +86,11 @@ function embeddedPrototypeState(action = null) {
     return {
       key: group.key,
       route: group.route,
-      hidden: node.style.visibility === 'hidden',
+      hidden: style.visibility === 'hidden',
       visibility: style.visibility,
       opacity: Number(style.opacity),
       opacityStyle: node.style.opacity,
+      textContent: node.textContent,
       rect: rectangle(node.getBoundingClientRect()),
       lines,
       copies: [...document.querySelectorAll('.fragment-paint')].filter(
@@ -93,19 +102,40 @@ function embeddedPrototypeState(action = null) {
     const content = document.getElementById('site-content');
     const bridge = window.SiteEffects?.embedded;
     const diagnostics = bridge?.diagnostics() || null;
-    const groups =
-      diagnostics?.phase === 'departing'
-        ? diagnostics.departure?.groups || []
-        : diagnostics?.groups || [];
-    const owners = bridge?.owners?.() || [];
-    owners.forEach((owner, index) => {
-      const group = groups[index];
-      if (group) seen.set(group.route + ':' + group.key, { owner, group });
-    });
+    const groups = [
+      ...(diagnostics?.groups || []),
+      ...(diagnostics?.departure?.groups || []),
+    ].filter((group) => group.route === document.body.dataset.page);
+    const owners = [];
+    if (groups.some((group) => Array.isArray(group.sourceOwners))) {
+      for (const group of groups) {
+        for (const source of group.sourceOwners || []) {
+          let owner = content;
+          for (const index of source.ownerPath || []) owner = owner?.children?.[index];
+          if (!owner) continue;
+          const key = group.key + ':' + source.ownerPath.join('.');
+          seen.set(group.route + ':' + key, {
+            owner,
+            group: { ...source, key, route: group.route },
+          });
+          owners.push(owner);
+        }
+      }
+    } else {
+      const selected = bridge?.owners?.() || [];
+      selected.forEach((owner, index) => {
+        const group = groups[index];
+        if (group) {
+          seen.set(group.route + ':' + group.key, { owner, group });
+          owners.push(owner);
+        }
+      });
+    }
     const natives = [...seen.values()]
       .map(({ owner, group }) => nativeState(owner, group))
       .filter(Boolean);
-    if (diagnostics?.phase && diagnostics.phase !== coveragePhase) {
+    const coverageKey = diagnostics?.phase + ':' + document.body.dataset.page;
+    if (diagnostics?.phase && coverageKey !== coveragePhase) {
       const semantic =
         'h1,h2,h3,h4,h5,h6,p,li,dt,dd,figure,img,a,button,label,span,time,strong,small';
       const expected = [...content.querySelectorAll(semantic)].filter((node) => {
@@ -117,10 +147,10 @@ function embeddedPrototypeState(action = null) {
           Number(style.opacity) > 0 &&
           rect.width > 0 &&
           rect.height > 0 &&
-          rect.right > -64 &&
-          rect.left < innerWidth + 64 &&
-          rect.bottom > -64 &&
-          rect.top < innerHeight + 64
+          rect.right > 0 &&
+          rect.left < innerWidth &&
+          rect.bottom > 0 &&
+          rect.top < innerHeight
         );
       });
       const uncovered = expected.filter((node) => !owners.some((owner) => owner.contains(node)));
@@ -131,17 +161,20 @@ function embeddedPrototypeState(action = null) {
           (node) => node.tagName + ':' + node.textContent.trim().slice(0, 80)
         ),
       };
-      coveragePhase = diagnostics.phase;
+      coveragePhase = coverageKey;
     }
     return {
       page: document.body.dataset.page,
       theme: document.documentElement.dataset.theme,
       camera: document.querySelector('.space-scene').dataset.camera,
+      travel: document.querySelector('.space-scene').dataset.travel,
       diagnostics,
       natives,
       nativeCoverage: diagnostics?.phase ? nativeCoverage : null,
       busy: content.hasAttribute('aria-busy'),
       inert: content.inert,
+      nativeOpacity: Number(content.style.opacity || 1),
+      rootVisibility: getComputedStyle(content).visibility,
       stages: document.querySelectorAll('.embedded-stage').length,
       stageRoutes: [...document.querySelectorAll('.embedded-stage')].map(
         (stage) => stage.dataset.embeddedRoute || null
@@ -154,7 +187,13 @@ function embeddedPrototypeState(action = null) {
   }
   window.__snapshotEmbeddedPrototype = snapshot;
   if (action !== 'observe') return snapshot();
-  const observation = { frames: [], start: performance.now() };
+  const observation = { frames: [], mounts: [], start: performance.now() };
+  const mounted = (event) =>
+    observation.mounts.push({
+      page: event.detail.page,
+      timeMs: performance.now(),
+    });
+  window.addEventListener('site:page-mount', mounted);
   window.__embeddedPrototype = observation;
   // The existing scene paint probe invokes this after actual native Canvas work.
   // No observer-owned RAF, fabricated scene frame or independent clock is added.
@@ -167,6 +206,7 @@ function embeddedPrototypeState(action = null) {
     });
   };
   window.__finishEmbeddedPrototype = () => {
+    window.removeEventListener('site:page-mount', mounted);
     delete window.__sampleEmbeddedPrototype;
     delete window.__embeddedPrototype;
     delete window.__finishEmbeddedPrototype;
@@ -181,330 +221,600 @@ function validateEmbeddedPrototype(observation, expectedTheme, expected = {}) {
     Math.max(
       ...['left', 'top', 'width', 'height'].map((key) => Math.abs(native[key] - captured[key]))
     );
-  function validateGroups(diagnostics, label) {
-    const groups = diagnostics?.groups;
-    const ids = diagnostics?.ids;
-    assert.ok(Array.isArray(groups) && groups.length >= 2, label + ' lacks multiple native owners');
-    assert.ok(Array.isArray(ids) && ids.length >= groups.length, label + ' lacks shard IDs');
-    assert.equal(new Set(ids).size, ids.length, label + ' has duplicate shard IDs');
-    const compact = initial.viewport[0] <= 640;
-    const caps = compact
-      ? { pieces: 40, owners: 20, descendants: 600, textBytes: 12288, layerPixels: 3000000 }
-      : { pieces: 96, owners: 32, descendants: 1500, textBytes: 32768, layerPixels: 8000000 };
-    const usage = groups.reduce(
-      (total, group) => {
-        assert.ok(group.key && group.route, label + ' lacks owner identity');
-        assert.ok(Array.isArray(group.ids) && group.ids.length === group.pieces);
-        assert.ok(group.ids.every((id) => ids.includes(id)));
-        assert.ok(group.pixels > 0, label + ' has an untextured owner');
-        assert.equal(group.topology?.closed, true, label + ' contains a flat shard fallback');
-        assert.equal(group.topology.fronts, group.pieces);
-        assert.equal(group.topology.rears, group.pieces);
-        assert.ok(group.topology.sides >= group.pieces * 3, label + ' has open solid sides');
-        for (const key of ['pieces', 'pixels', 'descendants', 'textBytes']) {
-          assert.ok(Number.isInteger(group[key]) && group[key] >= 0, label + ' lacks ' + key);
+  function clipToViewport(polygon) {
+    let clipped = polygon;
+    for (const [axis, edge, sign] of [
+      [0, 0, 1],
+      [0, initial.viewport[0], -1],
+      [1, 0, 1],
+      [1, initial.viewport[1], -1],
+    ]) {
+      const next = [];
+      for (let index = 0; index < clipped.length; index++) {
+        const start = clipped[index];
+        const end = clipped[(index + 1) % clipped.length];
+        const startInside = (start[axis] - edge) * sign >= 0;
+        const endInside = (end[axis] - edge) * sign >= 0;
+        if (startInside) next.push(start);
+        if (startInside !== endInside) {
+          const amount = (edge - start[axis]) / (end[axis] - start[axis]);
+          next.push(start.map((value, coordinate) => value + (end[coordinate] - value) * amount));
         }
-        return {
-          pieces: total.pieces + group.pieces,
-          owners: total.owners + 1,
-          descendants: total.descendants + group.descendants,
-          textBytes: total.textBytes + group.textBytes,
-          layerPixels: total.layerPixels + group.pixels,
-        };
-      },
-      { pieces: 0, owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 }
-    );
-    for (const key of Object.keys(caps))
-      assert.ok(usage[key] <= caps[key], label + ' exceeds ' + key);
-    if (label === 'arrival') {
-      assert.equal(
-        diagnostics.coverage?.complete,
-        true,
-        label + ' has incomplete visible coverage'
-      );
-      assert.equal(diagnostics.coverage.expected, groups.length);
-      assert.equal(diagnostics.coverage.selected, groups.length);
+      }
+      clipped = next;
     }
-    return { groups, ids, usage };
+    return clipped;
   }
-  assert.equal(initial.page, from);
-  assert.equal(initial.theme, expectedTheme);
-  assert.equal(final.page, to);
-  assert.equal(final.theme, expectedTheme);
-  const departures = frames.filter((frame) => frame.diagnostics?.phase === 'departing');
-  const active = frames.filter((frame) => frame.diagnostics?.phase === 'assembling');
-  assert.ok(departures.length >= 2, 'missing actual closed-solid departure frames');
-  assert.ok(active.length >= 4, 'missing actual closed-solid assembly frames');
-  const arrival = validateGroups(active[0].diagnostics, 'arrival');
-  const departureDiagnostics = departures[0].diagnostics.departure;
-  assert.equal(departureDiagnostics.ready, true, 'outgoing native texture was not captured');
-  const departure = validateGroups(
-    {
-      ...departureDiagnostics,
-      ids: departureDiagnostics.groups.flatMap((group) => group.ids),
-    },
-    'departure'
-  );
-  assert.equal(
-    active[0].diagnostics.texturePixels,
-    arrival.usage.layerPixels + departure.usage.layerPixels,
-    'combined texture accounting differs'
-  );
-  assert.ok(
-    arrival.groups.every((group) => group.route === to),
-    'arrival has wrong route owners'
-  );
-  assert.ok(
-    departure.groups.every((group) => group.route === from),
-    'departure has wrong route owners'
-  );
-  const caps = active[0].diagnostics.caps;
-  assert.ok(caps, 'missing common resource caps');
-  assert.deepEqual(
-    caps,
+  const polygonArea = (polygon) =>
+    Math.abs(
+      polygon.reduce((sum, point, index) => {
+        const next = polygon[(index + 1) % polygon.length];
+        return sum + point[0] * next[1] - next[0] * point[1];
+      }, 0)
+    ) / 2;
+  function intersectPolygons(subject, boundary) {
+    let result = subject;
+    const signedArea = boundary.reduce((sum, point, index) => {
+      const next = boundary[(index + 1) % boundary.length];
+      return sum + point[0] * next[1] - next[0] * point[1];
+    }, 0);
+    const winding = Math.sign(signedArea);
+    for (let edge = 0; edge < boundary.length; edge++) {
+      const start = boundary[edge];
+      const end = boundary[(edge + 1) % boundary.length];
+      const distance = (point) =>
+        winding *
+        ((end[0] - start[0]) * (point[1] - start[1]) - (end[1] - start[1]) * (point[0] - start[0]));
+      const next = [];
+      for (let index = 0; index < result.length; index++) {
+        const a = result[index];
+        const b = result[(index + 1) % result.length];
+        const aDistance = distance(a);
+        const bDistance = distance(b);
+        const aInside = aDistance >= 0;
+        const bInside = bDistance >= 0;
+        if (aInside) next.push(a);
+        if (aInside !== bInside) {
+          const amount = aDistance / (aDistance - bDistance);
+          next.push(a.map((value, axis) => value + (b[axis] - value) * amount));
+        }
+      }
+      result = next;
+    }
+    return result;
+  }
+  const visibleRect = (rect) => {
+    const left = Math.max(0, rect.left);
+    const top = Math.max(0, rect.top);
+    const right = Math.min(initial.viewport[0], rect.left + rect.width);
+    const bottom = Math.min(initial.viewport[1], rect.top + rect.height);
+    return { left, top, width: right - left, height: bottom - top };
+  };
+  const order = embeddedRouteOrder;
+  const hostFor = (route) => order[Math.max(0, order.indexOf(route) - 1)];
+  const expectedCaps =
     initial.viewport[0] <= 640
-      ? { pieces: 40, owners: 20, descendants: 600, textBytes: 12288, layerPixels: 3000000 }
-      : { pieces: 96, owners: 32, descendants: 1500, textBytes: 32768, layerPixels: 8000000 },
-    'native capture changed common resource caps'
-  );
-  for (const key of Object.keys(departure.usage)) {
-    assert.ok(
-      departure.usage[key] + arrival.usage[key] <= caps[key],
-      'pair exceeds combined ' + key
-    );
+      ? {
+          pieces: 40,
+          owners: 20,
+          descendants: 600,
+          textBytes: 12288,
+          layerPixels: 3000000,
+        }
+      : {
+          pieces: 96,
+          owners: 32,
+          descendants: 1500,
+          textBytes: 32768,
+          layerPixels: 8000000,
+        };
+  function validateEntry(entry) {
+    assert.ok(entry && order.includes(entry.route), 'missing persistent route entry');
+    assert.equal(entry.host, hostFor(entry.route), 'content belongs to the wrong fractal room');
+    assert.ok(entry.groups.length > 0, 'persistent entry has no texture atlas');
+    const usage = {
+      pieces: 0,
+      owners: 0,
+      descendants: 0,
+      textBytes: 0,
+      layerPixels: 0,
+    };
+    const ids = [];
+    const bindings = [];
+    for (const group of entry.groups) {
+      assert.equal(group.route, entry.route);
+      assert.equal(group.host, entry.host);
+      assert.ok(group.key && group.pixels > 0, 'missing persistent native atlas');
+      assert.ok(
+        Array.isArray(group.sourceOwners) && group.sourceOwners.length >= 2,
+        'single root lacks actual native source bindings'
+      );
+      assert.ok(
+        group.sourceOwners.length <= expectedCaps.owners,
+        'unbounded native capture bindings'
+      );
+      assert.equal(
+        new Set(group.sourceOwners.map((owner) => JSON.stringify(owner.ownerPath))).size,
+        group.sourceOwners.length,
+        'duplicate native source paths'
+      );
+      for (const owner of group.sourceOwners) {
+        assert.ok(
+          owner.ownerPath.length > 0 &&
+            owner.ownerPath.every((index) => Number.isInteger(index) && index >= 0),
+          'atlas binding points only at the page root'
+        );
+        assert.equal(typeof owner.textContent, 'string');
+        assert.ok(owner.rect && Array.isArray(owner.lines), 'atlas lacks captured native geometry');
+        bindings.push({
+          ...owner,
+          key: group.key + ':' + owner.ownerPath.join('.'),
+          route: entry.route,
+        });
+      }
+      assert.ok(
+        group.ids.length >= 3 && group.ids.length === group.pieces,
+        'missing solid atlas shards'
+      );
+      assert.equal(group.topology?.closed, true, 'flat shard fallback');
+      assert.equal(group.topology.fronts, group.pieces);
+      assert.equal(group.topology.rears, group.pieces);
+      assert.ok(group.topology.sides >= group.pieces * 3, 'open solid sides');
+      assert.equal(group.members.length, group.pieces, 'missing nested fractal ownership');
+      for (const member of group.members) {
+        assert.ok(
+          group.ids.includes(member.id) &&
+            member.name &&
+            member.parent &&
+            member.parent !== member.name,
+          'shard is detached from a nested fractal branch'
+        );
+        for (const vector of [member.rootCenter, member.worldCenter])
+          assert.ok(
+            Array.isArray(vector) && vector.length === 3 && vector.every(Number.isFinite),
+            'fractal member lacks an actual finite world transform'
+          );
+        assert.ok(Number.isFinite(member.hostOffset), 'missing route world offset');
+      }
+      const visible = visibleRect(group.envelope);
+      assert.ok(visible.width > 0 && visible.height > 0, 'atlas admits wholly offscreen paint');
+      for (const key of ['pieces', 'pixels', 'descendants', 'textBytes'])
+        assert.ok(Number.isInteger(group[key]) && group[key] >= 0, 'missing bounded atlas ' + key);
+      usage.pieces += group.pieces;
+      usage.owners++;
+      usage.descendants += group.descendants;
+      usage.textBytes += group.textBytes;
+      usage.layerPixels += group.pixels;
+      ids.push(...group.ids);
+    }
+    assert.equal(new Set(ids).size, ids.length, 'duplicate persistent shard IDs');
+    return { ...entry, ids, bindings, usage };
   }
-  if (expected.rest !== false) {
-    assert.equal(initial.diagnostics?.ready, true, 'destination native texture must be primed');
+  function validateBank(frame) {
+    const diagnostics = frame.diagnostics;
+    assert.ok(
+      Number.isFinite(diagnostics.clock) &&
+        diagnostics.clock >= 0 &&
+        diagnostics.clock < sceneLoopMs,
+      'persistent field has no canonical scene clock'
+    );
     assert.deepEqual(
-      initial.diagnostics.ids,
-      arrival.ids,
-      'prewarmed objects replaced on navigation'
+      diagnostics.caps,
+      expectedCaps,
+      'persistent bank changed original resource caps'
+    );
+    assert.ok(
+      Array.isArray(diagnostics.bank) &&
+        diagnostics.bank.length > 0 &&
+        diagnostics.bank.length <= 3,
+      'missing or unbounded persistent atlas bank'
     );
     assert.equal(
-      initial.diagnostics.texturePixels,
-      arrival.usage.layerPixels,
-      'prewarmed native texture changed on navigation'
+      new Set(diagnostics.bank.map((entry) => entry.route)).size,
+      diagnostics.bank.length
     );
-    const resting = frames.filter(
-      (frame) => frame.page === from && frame.diagnostics?.phase === null
+    const entries = diagnostics.bank.map(validateEntry);
+    const total = Object.fromEntries(Object.keys(expectedCaps).map((key) => [key, 0]));
+    for (const entry of entries)
+      for (const key of Object.keys(total)) total[key] += entry.usage[key];
+    for (const key of Object.keys(total))
+      assert.ok(total[key] <= expectedCaps[key], 'bank exceeds ' + key);
+    assert.equal(diagnostics.texturePixels, total.layerPixels, 'bank texture accounting differs');
+    const allIds = entries.flatMap((entry) => entry.ids);
+    assert.equal(new Set(allIds).size, allIds.length, 'bank reuses IDs across worlds');
+    for (const face of diagnostics.faces || []) {
+      assert.ok(allIds.includes(face.id), 'painted face has no persistent world owner');
+      assert.ok(
+        face.points.length >= 3 &&
+          face.points.every((point) => point.length === 2 && point.every(Number.isFinite)),
+        'nonfinite world face projection'
+      );
+      assert.ok(
+        Number.isFinite(face.progress) && face.progress >= 0 && face.progress <= 1,
+        'painted world face lacks actual path progress'
+      );
+    }
+    return entries;
+  }
+  function validateRest(route, page, sampled) {
+    const resting = sampled.filter(
+      (frame) =>
+        frame.page === page &&
+        !frame.diagnostics.phase &&
+        frame.travel === 'settled' &&
+        frame.diagnostics.bank.some((entry) => entry.route === route)
+    );
+    assert.ok(resting.length >= 2, 'missing persistent idle scene observations for ' + route);
+    const first = resting[0];
+    const entry = validateEntry(first.diagnostics.bank.find((value) => value.route === route));
+    assert.equal(entry.host, page, 'next content is not resident in the current fractal');
+    const painted = resting.flatMap((frame) =>
+      frame.diagnostics.faces.filter((face) => entry.ids.includes(face.id))
     );
     assert.ok(
-      resting.some((frame) => frame.customShapes > 0),
-      'embedded rest has no actual paint'
+      resting.some((frame) => frame.customShapes > 0) &&
+        painted.some((face) => face.face === 'front' && face.alpha > 0.01),
+      'persistent next content has no actual visible paint'
     );
     assert.ok(
-      resting.some((frame) => frame.diagnostics.faces.some((face) => face.alpha > 0.01)),
-      'embedded rest is invisible'
+      painted
+        .filter((face) => face.face === 'front')
+        .every((face) => Math.abs(face.textureMix - 1) <= 0.000001),
+      'idle native texture is replaced by palette wash'
     );
+    const centers = new Map(
+      entry.groups
+        .flatMap((group) => group.members)
+        .map((member) => [member.id, member.worldCenter])
+    );
+    const moved = resting.slice(1).some((frame) => {
+      assert.equal(frame.camera, first.camera, 'rest observation silently moves the camera');
+      const resident = frame.diagnostics.bank.find((value) => value.route === route);
+      assert.deepEqual(
+        resident.groups.flatMap((group) => group.ids),
+        entry.ids,
+        'idle refresh replaces the persistent objects'
+      );
+      return resident.groups
+        .flatMap((group) => group.members)
+        .some(
+          (member) =>
+            Math.hypot(
+              ...member.worldCenter.map((value, axis) => value - centers.get(member.id)[axis])
+            ) > 0.00001
+        );
+    });
+    assert.ok(moved, 'next content does not inherit the breathing fractal transform');
     const centroid = (face) =>
       face.points[0].map((_, axis) =>
         face.points.reduce((sum, point) => sum + point[axis] / face.points.length, 0)
       );
+    const firstFaces = first.diagnostics.faces.filter((face) => entry.ids.includes(face.id));
     assert.ok(
-      resting
-        .flatMap((frame) => frame.diagnostics.faces)
-        .some((rest) =>
-          active
-            .flatMap((frame) => frame.diagnostics.faces)
-            .some(
+      firstFaces.some((rest) =>
+        resting
+          .slice(1)
+          .some((frame) =>
+            frame.diagnostics.faces.some(
               (face) =>
                 face.id === rest.id &&
                 face.face === rest.face &&
-                Math.hypot(...centroid(face).map((value, axis) => value - centroid(rest)[axis])) > 2
+                Math.hypot(...centroid(face).map((value, axis) => value - centroid(rest)[axis])) >
+                  0.01
             )
-        ),
-      'resting solid objects do not actually move into the page'
+          )
+      ),
+      'world motion is not reflected in actual projected paint'
     );
+    return entry;
   }
-  function validatePaint(samples, ids, label) {
-    assert.ok(
-      samples.some((frame) => frame.customShapes > 0),
-      label + ' has no scene paint'
+  function validateEndpoint(group, frame) {
+    const fronts = frame.diagnostics.faces.filter(
+      (face) => group.ids.includes(face.id) && face.face === 'front'
     );
-    const faces = samples.flatMap((frame) =>
-      label === 'departure'
-        ? frame.diagnostics.departure.faces || []
-        : frame.diagnostics.faces || []
-    );
-    for (const frame of samples) {
-      assert.equal(frame.pieces, 0, label + ' silently uses DOM fragments');
-      assert.equal(frame.layers, 0, label + ' retains a DOM fragment layer');
-      assert.ok(frame.paints > initial.paints, label + ' has no actual Canvas paint');
-      assert.ok(frame.nativeCoverage?.expected > 0, label + ' lacks independent native coverage');
-      assert.equal(
-        frame.nativeCoverage.selected,
-        frame.nativeCoverage.expected,
-        label + ' leaves visible native content outside solid owners'
-      );
-      assert.deepEqual(frame.nativeCoverage.uncovered, [], label + ' omits visible native content');
-    }
-    for (const face of faces) {
-      assert.ok(ids.includes(face.id), label + ' painted a different object identity');
-      assert.ok(
-        face.points.length >= 3 &&
-          face.points.every((point) => point.length === 2 && point.every(Number.isFinite)),
-        'nonfinite solid projection'
-      );
-    }
-    assert.ok(
-      faces.some((face) => face.face === 'front' && face.alpha > 0.01 && face.textureMix > 0),
-      label + ' never paints a native textured front'
-    );
-    assert.ok(
-      faces.some((face) => face.face === 'side' && face.alpha > 0.01),
-      label + ' has no visibly painted thickness'
-    );
-  }
-  validatePaint(departures, departure.ids, 'departure');
-  validatePaint(active, arrival.ids, 'arrival');
-  assert.ok(
-    active.some((frame) =>
-      frame.diagnostics.faces.some(
-        (face) => face.face === 'front' && face.alpha > 0.8 && face.textureMix > 0.8
-      )
-    ),
-    'native texture never reaches visible endpoint fidelity'
-  );
-  const tails = active.filter((frame) => frame.page === to && frame.diagnostics.handoff > 0);
-  assert.ok(
-    tails.length >= 2 && new Set(tails.map((frame) => frame.diagnostics.handoff)).size >= 2,
-    'native handoff lacks a progressive bounded crossfade'
-  );
-  let rectDeltaPx = 0;
-  let lineDeltaPx = 0;
-  for (const frame of active) {
-    assert.deepEqual(frame.diagnostics.ids, arrival.ids, 'assembly replaced persistent objects');
-    assert.equal(
-      frame.diagnostics.texturePixels,
-      arrival.usage.layerPixels + departure.usage.layerPixels
-    );
-    if (frame.page !== to) continue;
-    const handoff = frame.diagnostics.handoff;
-    assert.ok(Number.isFinite(handoff) && handoff >= 0 && handoff <= 1, 'unbounded native handoff');
-    for (const group of arrival.groups) {
-      const native = frame.natives.find((owner) => owner.key === group.key && owner.route === to);
-      assert.ok(native, 'arrival native owner was not observed');
-      assert.equal(native.copies, 0, 'solid owner also uses DOM paint');
-      if (handoff === 0) {
-        assert.equal(native.hidden, true, 'native owner exposed before aligned tail');
-        continue;
-      }
-      assert.ok(frame.diagnostics.progress >= 0.9, 'native handoff starts before assembly tail');
-      assert.equal(
-        frame.diagnostics.physicalProgress,
-        1,
-        'geometry has not reached native endpoint'
-      );
-      assert.equal(frame.camera, final.camera, 'handoff camera has not reached native endpoint');
-      assert.equal(native.hidden, false);
-      assert.equal(native.visibility, 'visible');
-      assert.ok(Math.abs(native.opacity - handoff) <= 0.001, 'native opacity differs from handoff');
-      assert.ok(compareRect(native.rect, group.rect) <= 0.75, 'native owner rectangle shifted');
-      assert.equal(native.lines.length, group.lines.length, 'native lines changed during handoff');
-      assert.ok(
-        native.lines.every((line, index) => compareRect(line, group.lines[index]) <= 0.75),
-        'native text lines shifted during handoff'
-      );
-      const fronts = frame.diagnostics.faces.filter(
-        (face) => group.ids.includes(face.id) && face.face === 'front'
-      );
+    const visible = visibleRect(group.envelope);
+    if (compareRect(visible, group.envelope) <= 0.000001)
       assert.equal(
         new Set(fronts.map((face) => face.id)).size,
         group.ids.length,
         'native handoff lacks aligned front faces'
       );
-      const points = fronts.flatMap((face) => face.points);
-      const left = Math.min(...points.map((point) => point[0]));
-      const top = Math.min(...points.map((point) => point[1]));
-      const right = Math.max(...points.map((point) => point[0]));
-      const bottom = Math.max(...points.map((point) => point[1]));
-      assert.ok(
-        compareRect({ left, top, width: right - left, height: bottom - top }, group.envelope) <=
-          0.75,
-        'aligned solid fronts miss the captured native envelope'
+    assert.equal(
+      new Set(fronts.map((face) => face.id)).size,
+      fronts.length,
+      'native handoff repeats a solid front'
+    );
+    const clipped = fronts.map((face) => clipToViewport(face.points));
+    const points = clipped.flat();
+    assert.ok(points.length >= 3, 'native handoff lacks actually visible aligned fronts');
+    const left = Math.min(...points.map((point) => point[0]));
+    const top = Math.min(...points.map((point) => point[1]));
+    const right = Math.max(...points.map((point) => point[0]));
+    const bottom = Math.max(...points.map((point) => point[1]));
+    assert.ok(
+      compareRect({ left, top, width: right - left, height: bottom - top }, visible) <= 0.75,
+      'aligned fronts miss the visible native envelope'
+    );
+    const area = clipped.reduce((sum, polygon) => sum + polygonArea(polygon), 0);
+    assert.ok(
+      Math.abs(area - visible.width * visible.height) <= 0.75 * (visible.width + visible.height),
+      'aligned fronts omit or duplicate visible native paint'
+    );
+    for (let index = 0; index < clipped.length; index++) {
+      if (polygonArea(clipped[index]) <= 0.1) continue;
+      for (let other = index + 1; other < clipped.length; other++) {
+        if (polygonArea(clipped[other]) <= 0.1) continue;
+        assert.ok(
+          polygonArea(intersectPolygons(clipped[index], clipped[other])) <= 0.1,
+          'aligned fronts overlap visible native paint'
+        );
+      }
+    }
+    assert.ok(
+      fronts.every((face) => Math.abs(face.alpha - (1 - frame.diagnostics.handoff)) <= 0.001),
+      'world opacity does not complement native handoff'
+    );
+  }
+  assert.equal(initial.page, from);
+  assert.equal(initial.theme, expectedTheme);
+  assert.equal(final.page, to);
+  assert.equal(final.theme, expectedTheme);
+  const initialEntries = validateBank(initial);
+  for (const frame of frames) validateBank(frame);
+  const moving = frames.filter((frame) => frame.diagnostics.phase);
+  assert.ok(moving.length >= 6, 'missing actual closed-solid flight frames');
+  const firstArrival = moving.find((frame) => frame.diagnostics.groups[0]?.route === to);
+  assert.ok(firstArrival, 'missing destination field during flight');
+  const arrival = validateEntry({
+    route: to,
+    host: hostFor(to),
+    groups: firstArrival.diagnostics.groups,
+  });
+  const outgoingFrame = moving.find((frame) => frame.diagnostics.departure?.ready);
+  assert.ok(outgoingFrame, 'missing actual closed-solid departure');
+  const departure = validateEntry({
+    route: from,
+    host: hostFor(from),
+    groups: outgoingFrame.diagnostics.departure.groups,
+  });
+  const initialArrival = initialEntries.find((entry) => entry.route === to);
+  if (initialArrival)
+    assert.deepEqual(
+      arrival.ids,
+      initialArrival.ids,
+      'navigation replaces resident destination objects'
+    );
+  if (expected.rest !== false) {
+    const next = order[order.indexOf(from) + 1];
+    validateRest(next, from, frames);
+  }
+  const departurePaint = moving.flatMap((frame) => frame.diagnostics.departure?.faces || []);
+  assert.ok(
+    departurePaint.some(
+      (face) => face.face === 'front' && face.textureMix === 1 && face.alpha > 0.01
+    ),
+    'departure lacks native textured world paint'
+  );
+  assert.ok(
+    departurePaint.some((face) => face.face === 'side' && face.alpha > 0.01),
+    'outgoing content has no real solid thickness'
+  );
+  assert.ok(
+    moving.some(
+      (frame) =>
+        frame.travel === 'flying' &&
+        frame.diagnostics.travelProgress < 1 &&
+        frame.diagnostics.faces.some(
+          (face) =>
+            arrival.ids.includes(face.id) &&
+            face.face === 'front' &&
+            face.progress > 0.001 &&
+            face.progress < 0.999 &&
+            face.textureMix === 1 &&
+            face.alpha > 0.01
+        )
+    ),
+    'incoming content assembles only after the camera flight ends'
+  );
+  const tails = moving.filter((frame) => frame.page === to && frame.diagnostics.handoff > 0);
+  assert.ok(
+    tails.length >= 2 && new Set(tails.map((frame) => frame.diagnostics.handoff)).size >= 2,
+    'native handoff lacks a progressive bounded crossfade'
+  );
+  for (const frame of tails) {
+    const clockDelta =
+      (frame.diagnostics.clock - tails[0].diagnostics.clock + sceneLoopMs) % sceneLoopMs;
+    const expectedHandoff = tails[0].diagnostics.handoff + clockDelta / 180;
+    assert.ok(
+      Math.abs(frame.diagnostics.handoff - expectedHandoff) <= 0.001,
+      'native handoff tail has another clock or duration'
+    );
+  }
+  for (const frame of moving) {
+    validateBank(frame);
+    assert.equal(
+      frame.diagnostics.departure.ready,
+      true,
+      'active world departure disappears during flight'
+    );
+    assert.deepEqual(
+      frame.diagnostics.departure.groups.flatMap((group) => group.ids),
+      departure.ids,
+      'flight replaces the actual outgoing field'
+    );
+    assert.equal(frame.pieces, 0, 'world journey silently uses DOM fragments');
+    assert.equal(frame.layers, 0, 'world journey retains a DOM fragment layer');
+    assert.ok(frame.paints > initial.paints, 'world journey has no actual Canvas paint');
+    assert.deepEqual(frame.diagnostics.ids, arrival.ids, 'flight replaces persistent incoming IDs');
+    assert.ok(
+      frame.nativeCoverage?.expected > 0 &&
+        frame.nativeCoverage.selected === frame.nativeCoverage.expected,
+      'atlas root fails to cover actual visible native owners'
+    );
+    assert.deepEqual(frame.nativeCoverage.uncovered, []);
+    const start = frame.diagnostics.arrivalStart;
+    assert.ok(
+      Number.isFinite(start) && start >= 0.12 && start <= 0.82,
+      'missing bounded world approach threshold'
+    );
+    if (Math.abs(order.indexOf(to) - order.indexOf(from)) === 1)
+      assert.ok(Math.abs(start - 0.12) <= 0.000001, 'adjacent context assembles too late');
+    const amount = Math.max(
+      0,
+      Math.min(1, (frame.diagnostics.travelProgress - start) / (1 - start))
+    );
+    assert.ok(
+      Math.abs(frame.diagnostics.progress - amount) <= 0.000001,
+      'assembly progress is detached from the camera journey'
+    );
+    assert.ok([from, to].includes(frame.page), 'corridor mounts an intermediate native page');
+    if (frame.page !== to) continue;
+    const handoff = frame.diagnostics.handoff;
+    assert.ok(Number.isFinite(handoff) && handoff >= 0 && handoff <= 1, 'unbounded native handoff');
+    if (!handoff) {
+      assert.equal(frame.nativeOpacity, 0, 'native page exposed before aligned handoff');
+      assert.equal(
+        frame.rootVisibility,
+        'hidden',
+        'native page becomes visible before aligned handoff'
+      );
+      continue;
+    }
+    assert.equal(frame.diagnostics.travelProgress, 1, 'native handoff begins during camera flight');
+    assert.equal(
+      frame.diagnostics.physicalProgress,
+      1,
+      'solid geometry has not reached the native endpoint'
+    );
+    assert.equal(frame.camera, final.camera, 'handoff camera has not reached native endpoint');
+    assert.ok(
+      Math.abs(frame.nativeOpacity - handoff) <= 0.001,
+      'root opacity differs from handoff'
+    );
+    for (const group of arrival.groups) validateEndpoint(group, frame);
+    for (const binding of arrival.bindings) {
+      const native = frame.natives.find((owner) => owner.key === binding.key && owner.route === to);
+      assert.ok(native, 'native source binding was not observed');
+      assert.equal(
+        native.textContent,
+        binding.textContent,
+        'atlas text differs from actual native owner'
+      );
+      assert.equal(native.copies, 0, 'atlas owner also uses DOM paint');
+      assert.ok(compareRect(native.rect, binding.rect) <= 0.75, 'native owner rectangle shifted');
+      assert.equal(
+        native.lines.length,
+        binding.lines.length,
+        'native wrapping differs from the captured texture'
       );
       assert.ok(
-        fronts.every((face) => Math.abs(face.alpha - (1 - handoff)) <= 0.001),
-        'solid opacity does not complement native handoff'
+        native.lines.every((line, index) => compareRect(line, binding.lines[index]) <= 0.75),
+        'native text lines shift during world handoff'
       );
     }
   }
   const stableFronts = new Map(
     tails[0].diagnostics.faces
-      .filter((face) => face.face === 'front')
+      .filter((face) => arrival.ids.includes(face.id) && face.face === 'front')
       .map((face) => [face.id, face.points])
   );
-  for (const frame of tails.slice(1)) {
-    for (const face of frame.diagnostics.faces.filter((item) => item.face === 'front')) {
+  const centroid = (points) =>
+    points[0].map((_, axis) => points.reduce((sum, point) => sum + point[axis] / points.length, 0));
+  assert.ok(
+    moving.some(
+      (frame) =>
+        frame.travel === 'flying' &&
+        frame.diagnostics.faces.some((face) => {
+          const endpoint = stableFronts.get(face.id);
+          return (
+            endpoint &&
+            face.face === 'front' &&
+            face.alpha > 0.01 &&
+            face.textureMix === 1 &&
+            face.progress > 0 &&
+            face.progress < 0.8 &&
+            Math.hypot(
+              ...centroid(face.points).map((value, axis) => value - centroid(endpoint)[axis])
+            ) > 2
+          );
+        })
+    ),
+    'actual textured solid paint does not move into the native endpoint'
+  );
+  for (const frame of tails.slice(1))
+    for (const face of frame.diagnostics.faces.filter(
+      (value) => arrival.ids.includes(value.id) && value.face === 'front'
+    )) {
       const captured = stableFronts.get(face.id);
       assert.equal(face.points.length, captured?.length);
       assert.ok(
         face.points.every((point, index) =>
           point.every((value, axis) => Math.abs(value - captured[index][axis]) <= 0.001)
         ),
-        'individual solid geometry moves during native handoff'
+        'solid geometry moves during native handoff'
       );
     }
-  }
-  for (const group of arrival.groups) {
-    const native = final.natives.find((owner) => owner.key === group.key && owner.route === to);
-    assert.ok(native, 'final native owner was not restored');
-    assert.equal(native.hidden, false);
-    assert.equal(native.visibility, 'visible');
-    assert.equal(native.opacity, 1);
-    assert.equal(native.copies, 0);
-    rectDeltaPx = Math.max(rectDeltaPx, compareRect(native.rect, group.rect));
-    assert.equal(native.lines.length, group.lines.length, 'final native wrapping differs');
-    for (let index = 0; index < native.lines.length; index++) {
-      lineDeltaPx = Math.max(lineDeltaPx, compareRect(native.lines[index], group.lines[index]));
+  function validateCompletion() {
+    let rectDeltaPx = 0;
+    let lineDeltaPx = 0;
+    for (const binding of arrival.bindings) {
+      const native = final.natives.find((owner) => owner.key === binding.key && owner.route === to);
+      assert.ok(native, 'final captured source owner was not restored');
+      assert.equal(native.textContent, binding.textContent);
+      assert.equal(native.hidden, false);
+      assert.equal(native.visibility, 'visible');
+      assert.equal(native.opacity, 1);
+      assert.equal(native.copies, 0);
+      rectDeltaPx = Math.max(rectDeltaPx, compareRect(native.rect, binding.rect));
+      assert.equal(native.lines.length, binding.lines.length);
+      for (let index = 0; index < native.lines.length; index++)
+        lineDeltaPx = Math.max(lineDeltaPx, compareRect(native.lines[index], binding.lines[index]));
     }
-  }
-  assert.ok(rectDeltaPx <= 0.75, 'native owner seam shifted');
-  assert.ok(lineDeltaPx <= 0.75, 'native text line seam shifted');
-  assert.equal(final.busy, false);
-  assert.equal(final.inert, false);
-  assert.ok(final.stages <= 1, 'preparatory native stage leaked');
-  if (final.stages) {
-    assert.deepEqual(final.stageRoutes, [from], 'completed destination stage survives handoff');
-    assert.equal(final.diagnostics?.pendingRoute, from, 'stage has no declared next-route prime');
-  }
-  assert.equal(final.pieces, 0);
-  assert.equal(final.layers, 0);
-  assert.equal(final.diagnostics?.phase, null);
-  assert.equal(
-    final.diagnostics?.departure?.ready || false,
-    false,
-    'outgoing texture survives handoff'
-  );
-  assert.deepEqual(
-    final.diagnostics?.departure?.groups || [],
-    [],
-    'outgoing owners survive handoff'
-  );
-  assert.deepEqual(final.diagnostics?.departure?.faces || [], [], 'outgoing faces survive handoff');
-  if (final.diagnostics?.ready) {
+    assert.ok(rectDeltaPx <= 0.75 && lineDeltaPx <= 0.75, 'native texture seam shifted');
+    assert.equal(final.busy, false);
+    assert.equal(final.inert, false);
+    assert.equal(final.nativeOpacity, 1);
+    assert.equal(final.pieces, 0);
+    assert.equal(final.layers, 0);
+    assert.equal(final.diagnostics.phase, null);
+    assert.deepEqual(
+      observation.mounts?.map((event) => event.page),
+      [to],
+      'world corridor mounts more than its one native destination'
+    );
+    assert.equal(final.diagnostics.departure.ready, false, 'active departure survives handoff');
+    assert.deepEqual(final.diagnostics.departure.groups, []);
+    assert.deepEqual(final.diagnostics.departure.faces, []);
+    const finalBank = validateBank(final);
+    assert.deepEqual(
+      finalBank.find((entry) => entry.route === to)?.ids,
+      arrival.ids,
+      'completion clears the resident destination field'
+    );
+    if (expected.retainDeparture !== false)
+      assert.deepEqual(
+        finalBank.find((entry) => entry.route === from)?.ids,
+        departure.ids,
+        'completion clears the outgoing world field'
+      );
     assert.ok(
-      final.diagnostics.groups.every((group) => group.route === from),
-      'completed destination texture survives handoff'
+      !final.diagnostics.faces.some((face) => arrival.ids.includes(face.id)),
+      'completed destination paint overlays its native text'
     );
-    const next = validateGroups(final.diagnostics, 'next');
-    assert.equal(
-      final.diagnostics.texturePixels,
-      next.usage.layerPixels,
-      'outgoing texture is included in next-route reservation'
-    );
-  } else {
-    assert.equal(final.diagnostics?.texturePixels, 0, 'texture survives native handoff');
-    assert.deepEqual(final.diagnostics?.ids, []);
-    assert.deepEqual(final.diagnostics?.faces, []);
+    assert.ok(final.stages <= 1, 'temporary capture stages leaked');
+    if (final.stages) assert.deepEqual(final.stageRoutes, [final.diagnostics.pendingRoute]);
+    if (expected.rest !== false && order[order.indexOf(to) + 1])
+      validateRest(order[order.indexOf(to) + 1], to, frames);
+    return { rectDeltaPx, lineDeltaPx };
   }
+  const { rectDeltaPx, lineDeltaPx } = validateCompletion();
   return {
     from,
     to,
     theme: expectedTheme,
     ids: arrival.ids,
-    owners: arrival.groups.length,
-    departureOwners: departure.groups.length,
+    owners: arrival.bindings.length,
+    departureOwners: departure.bindings.length,
     frames: frames.length,
     rectDeltaPx,
     lineDeltaPx,
@@ -512,8 +822,177 @@ function validateEmbeddedPrototype(observation, expectedTheme, expected = {}) {
     observation,
   };
 }
+function validateEmbeddedCorridor(observation, theme, researchCamera) {
+  const accepted = validateEmbeddedPrototype(observation, theme, {
+    from: 'index',
+    to: 'writing',
+    rest: false,
+    retainDeparture: false,
+  });
+  const research = observation.initial.diagnostics.bank.find((entry) => entry.route === 'research');
+  assert.ok(research, 'skip corridor has no existing Research world');
+  const researchIds = research.groups.flatMap((group) => group.ids);
+  const writingIds = accepted.ids;
+  const moving = observation.frames.filter((frame) => frame.diagnostics.phase);
+  for (const frame of moving) {
+    assert.deepEqual(
+      frame.diagnostics.bank
+        .find((entry) => entry.route === 'research')
+        ?.groups.flatMap((group) => group.ids),
+      researchIds,
+      'skip replaces the intermediate Research world'
+    );
+    assert.ok(
+      Math.abs(frame.diagnostics.arrivalStart - 0.47) <= 0.000001,
+      'skip assembly ignores the intermediate host room'
+    );
+  }
+  assert.deepEqual(
+    observation.final.diagnostics.bank
+      .find((entry) => entry.route === 'research')
+      ?.groups.flatMap((group) => group.ids),
+    researchIds,
+    'skip clears the previous Research room'
+  );
+  const position = (camera) => {
+    const vector = JSON.parse(camera).position;
+    assert.ok(
+      Array.isArray(vector) && vector.length === 3 && vector.every(Number.isFinite),
+      'skip corridor has no actual finite camera position'
+    );
+    return vector;
+  };
+  const source = position(observation.initial.camera);
+  const room = position(researchCamera);
+  const destination = position(observation.final.camera);
+  const distance = Math.abs(destination[2] - source[2]);
+  assert.ok(
+    distance > 1 && (room[2] - source[2]) * (room[2] - destination[2]) < 0,
+    'Research room does not lie between Home and Writing'
+  );
+  const flying = moving.filter((frame) => frame.travel === 'flying');
+  const cameras = flying.map((frame) => position(frame.camera));
+  assert.ok(cameras.length >= 3, 'skip has no observed passage through the corridor');
+  const direction = Math.sign(destination[2] - source[2]);
+  const signed = cameras.map((camera) => direction * (camera[2] - room[2]));
+  const crossing = signed.findIndex(
+    (value, index) => index > 0 && value >= 0 && signed[index - 1] < 0
+  );
+  assert.ok(crossing > 0, 'camera skips the intermediate Research room');
+  const maximumStep = Math.max(
+    ...cameras.slice(1).map((camera, index) => Math.abs(camera[2] - cameras[index][2]))
+  );
+  assert.ok(maximumStep < distance * 0.35, 'camera teleports across the skip corridor');
+  assert.ok(
+    cameras
+      .slice(1)
+      .every((camera, index) => direction * (camera[2] - cameras[index][2]) >= -0.000001),
+    'skip camera reverses inside the corridor'
+  );
+  const beforeRoom = flying.filter(
+    (frame, index) => signed[index] <= 0 && Math.abs(signed[index]) <= distance * 0.3
+  );
+  assert.ok(
+    beforeRoom.some((frame) =>
+      frame.diagnostics.faces.some(
+        (face) =>
+          writingIds.includes(face.id) &&
+          face.face === 'front' &&
+          face.alpha > 0.01 &&
+          face.textureMix === 1
+      )
+    ),
+    'Writing is not actually textured in its Research host before the camera enters'
+  );
+  assert.ok(
+    moving.some((frame) =>
+      frame.diagnostics.faces.some(
+        (face) =>
+          researchIds.includes(face.id) &&
+          face.face === 'front' &&
+          face.alpha > 0.01 &&
+          face.textureMix === 1
+      )
+    ),
+    'skip does not paint the intermediate Research world'
+  );
+  return {
+    ...accepted,
+    corridor: {
+      researchIds,
+      researchCamera,
+      crossing,
+      maximumStep,
+      observedCameraFrames: cameras.length,
+    },
+  };
+}
+async function embeddedRestReady(page, route, nativePage) {
+  await page.waitForFunction(
+    ({ route, nativePage }) => {
+      const scene = document.querySelector('.space-scene');
+      const diagnostics = window.SiteEffects?.embedded?.diagnostics();
+      const entry = diagnostics?.bank?.find((value) => value.route === route);
+      const ids = entry?.groups.flatMap((group) => group.ids) || [];
+      return (
+        document.body.dataset.page === nativePage &&
+        scene.dataset.travel === 'settled' &&
+        !diagnostics?.phase &&
+        ids.length > 0 &&
+        diagnostics.faces.some(
+          (face) =>
+            ids.includes(face.id) &&
+            face.face === 'front' &&
+            face.alpha > 0.01 &&
+            face.textureMix === 1
+        )
+      );
+    },
+    { route, nativePage },
+    { polling: 20, timeout: 5000 }
+  );
+}
+async function embeddedRest(page, route, nativePage) {
+  await embeddedRestReady(page, route, nativePage);
+  await page.waitForFunction(
+    ({ nativePage }) => {
+      const idle =
+        window.__embeddedPrototype?.frames.filter(
+          (frame) =>
+            frame.page === nativePage &&
+            !frame.diagnostics.phase &&
+            frame.travel === 'settled' &&
+            frame.customShapes > 0
+        ) || [];
+      return idle.length >= 2 && idle.at(-1).timeMs - idle[0].timeMs >= 120;
+    },
+    { nativePage },
+    { polling: 20, timeout: 3000 }
+  );
+}
+async function embeddedScreenshot(page, evidence, label) {
+  const state = await page.evaluate(() => window.__snapshotEmbeddedPrototype());
+  const filename =
+    [state.viewport[0], state.theme, evidence.from, evidence.to, label].join('-') + '.png';
+  const directory = path.join(out, 'screenshots');
+  fs.mkdirSync(directory, { recursive: true });
+  await page.screenshot({
+    path: path.join(directory, filename),
+    fullPage: false,
+  });
+  evidence.screenshots.push({
+    label,
+    file: 'screenshots/' + filename,
+    page: state.page,
+    camera: state.camera,
+    clock: state.diagnostics.clock,
+    phase: state.diagnostics.phase,
+    travelProgress: state.diagnostics.travelProgress,
+    physicalProgress: state.diagnostics.physicalProgress,
+  });
+}
 async function embeddedPrototype(page, theme, expected = { from: 'index', to: 'research' }) {
-  const evidence = {};
+  const evidence = { from: expected.from, to: expected.to, screenshots: [] };
   try {
     await preferences(page, 'fragment-flight-preview', true);
     await page.evaluate((mode) => {
@@ -521,27 +1000,72 @@ async function embeddedPrototype(page, theme, expected = { from: 'index', to: 'r
       control.value = mode;
       control.dispatchEvent(new Event('change', { bubbles: true }));
     }, theme);
-    await page.waitForFunction(
-      () => {
-        const state = window.SiteEffects?.embedded?.diagnostics();
-        return state?.ready && state.texturePixels > 0 && state.faces?.length > 0;
-      },
-      null,
-      { polling: 40, timeout: 5000 }
-    );
+    const order = embeddedRouteOrder;
+    await embeddedRestReady(page, order[order.indexOf(expected.from) + 1], expected.from);
     evidence.initial = await page.evaluate(embeddedPrototypeState);
     await page.evaluate(embeddedPrototypeState, 'observe');
-    await page.waitForFunction(
-      (from) =>
-        window.__embeddedPrototype?.frames.some(
-          (frame) => frame.page === from && frame.customShapes > 0
-        ),
-      expected.from,
-      { polling: 20, timeout: 3000 }
+    await embeddedRest(page, order[order.indexOf(expected.from) + 1], expected.from);
+    evidence.initial = await page.evaluate(() => window.__snapshotEmbeddedPrototype());
+    if (expected.from === 'index') await embeddedScreenshot(page, evidence, 'idle-research');
+    await page
+      .locator(
+        '.site-header nav a[href="' +
+          (expected.to === 'index' ? './' : expected.to + '.html') +
+          '"]'
+      )
+      .click();
+    if (expected.from === 'index') {
+      await page.waitForFunction(
+        () => {
+          const state = window.SiteEffects?.embedded?.diagnostics();
+          return state?.phase && state.travelProgress >= 0.2 && state.travelProgress <= 0.65;
+        },
+        null,
+        { polling: 10, timeout: 4000 }
+      );
+      await embeddedScreenshot(
+        page,
+        evidence,
+        expected.to === 'writing' ? 'corridor-research' : 'mid-forward'
+      );
+      await page.waitForFunction(
+        () => {
+          const state = window.SiteEffects?.embedded?.diagnostics();
+          return (
+            state?.phase &&
+            state.travelProgress < 1 &&
+            state.faces.some(
+              (face) =>
+                state.ids.includes(face.id) &&
+                face.face === 'front' &&
+                face.progress > 0.001 &&
+                face.progress < 0.999 &&
+                face.alpha > 0.01
+            )
+          );
+        },
+        null,
+        { polling: 10, timeout: 4000 }
+      );
+      await embeddedScreenshot(page, evidence, 'during-assembly');
+    }
+    await settled(page, expected.to);
+    if (expected.rest !== false && order[order.indexOf(expected.to) + 1])
+      await embeddedRest(page, order[order.indexOf(expected.to) + 1], expected.to);
+    else await page.waitForTimeout(120);
+    await embeddedScreenshot(
+      page,
+      evidence,
+      expected.to === 'writing'
+        ? 'native-writing'
+        : expected.to === 'index'
+          ? 'reverse-idle-research'
+          : 'idle-writing'
     );
-    await travel(page, expected.to);
     Object.assign(evidence, await page.evaluate(() => window.__finishEmbeddedPrototype()));
-    return validateEmbeddedPrototype(evidence, theme, expected);
+    return expected.corridor
+      ? validateEmbeddedCorridor(evidence, theme, expected.researchCamera)
+      : validateEmbeddedPrototype(evidence, theme, expected);
   } catch (error) {
     const pending = await page
       .evaluate(() => window.__finishEmbeddedPrototype?.() || null)
@@ -563,6 +1087,7 @@ function observeFragmentFlight() {
       longTasks: [],
       backdrops: [],
       vectors: [],
+      mounts: [],
       embeddedInitial: window.__snapshotEmbeddedPrototype?.() || null,
     };
   let lastSeamSettled = 0,
@@ -626,7 +1151,10 @@ function observeFragmentFlight() {
   function copiedCells(box, copies) {
     const copyPlacements = copies.map(({ copy }) => {
       const matrix = new DOMMatrix(copy.style.transform);
-      return { transform: copy.style.transform, translation: [matrix.m41, matrix.m42] };
+      return {
+        transform: copy.style.transform,
+        translation: [matrix.m41, matrix.m42],
+      };
     });
     return {
       nativeOrigin: [box.left, box.top],
@@ -761,7 +1289,10 @@ function observeFragmentFlight() {
   function vectorViewport(svg) {
     if (!svg) return null;
     const style = getComputedStyle(svg);
-    return { x: style.getPropertyValue('overflow-x'), y: style.getPropertyValue('overflow-y') };
+    return {
+      x: style.getPropertyValue('overflow-x'),
+      y: style.getPropertyValue('overflow-y'),
+    };
   }
   function vectorFigure(native, copies, phase) {
     const root = copies[0].copy,
@@ -921,6 +1452,12 @@ function observeFragmentFlight() {
     });
   };
   const observer = new MutationObserver(sample);
+  const mounted = (event) =>
+    observation.mounts.push({
+      page: event.detail.page,
+      timeMs: performance.now(),
+    });
+  window.addEventListener?.('site:page-mount', mounted);
   observer.observe(content, {
     attributes: true,
     attributeFilter: [
@@ -952,6 +1489,7 @@ function observeFragmentFlight() {
   window.__finishFragmentFlight = () => {
     sample();
     observer.disconnect();
+    window.removeEventListener?.('site:page-mount', mounted);
     for (const task of tasks?.takeRecords?.() || [])
       observation.longTasks.push({
         start: task.startTime,
@@ -976,6 +1514,10 @@ function validateFragmentAssembly(observation, measured) {
       from: embedded.initial.page,
       to,
       rest: false,
+      retainDeparture:
+        Math.abs(
+          embeddedRouteOrder.indexOf(embedded.initial.page) - embeddedRouteOrder.indexOf(to)
+        ) === 1,
     });
     validateFragmentTiming(measured);
     return { nativeHandoff: embedded.final, measured, embedded: accepted };
@@ -1043,7 +1585,12 @@ function embeddedFragmentObservation(observation) {
   const frames = observation.samples.map((sample) => sample.embedded).filter(Boolean);
   if (!frames.some((frame) => ['departing', 'assembling'].includes(frame.diagnostics?.phase)))
     return null;
-  return { initial: observation.embeddedInitial, frames, final: frames.at(-1) };
+  return {
+    initial: observation.embeddedInitial,
+    frames,
+    mounts: observation.mounts,
+    final: frames.at(-1),
+  };
 }
 function validateHeadingSeam(seam) {
   assert.ok(seam, 'settled incoming heading seam was not observed');
@@ -1430,6 +1977,10 @@ function validateFragmentRoute(observation, measured, expected) {
     const accepted = validateEmbeddedPrototype(embedded, embedded.initial.theme, {
       ...expected,
       rest: false,
+      retainDeparture:
+        Math.abs(
+          embeddedRouteOrder.indexOf(expected.from) - embeddedRouteOrder.indexOf(expected.to)
+        ) === 1,
     });
     const sourceCamera = JSON.parse(expected.sourceCamera || embedded.initial.camera);
     const targetCamera = JSON.parse(embedded.final.camera);
@@ -1836,7 +2387,11 @@ async function fragmentRouteCoverage(page) {
       const scene = document.querySelector('.space-scene'),
         before = scene.dataset.camera;
       document.querySelector('.site-header .wordmark').click();
-      return { before, after: scene.dataset.camera, nativePage: document.body.dataset.page };
+      return {
+        before,
+        after: scene.dataset.camera,
+        nativePage: document.body.dataset.page,
+      };
     });
     assert.equal(retarget.nativePage, 'index');
     assert.equal(retarget.after, retarget.before, 'VO interruption preserves the displayed camera');
@@ -1844,7 +2399,10 @@ async function fragmentRouteCoverage(page) {
     const observation = await page.evaluate(() => window.__finishFragmentFlight()),
       measured = motion.summarize(observation, 'flight');
     Object.assign(evidence.pending, { retarget, observation, measured });
-    const transaction = fragmentTransaction(observation, { from: 'index', to: 'index' });
+    const transaction = fragmentTransaction(observation, {
+      from: 'index',
+      to: 'index',
+    });
     // The observer starts before VO is clicked, so retain the abandoned paint
     // in its own raw record and validate the new transaction from its real
     // navigation-start. Inclusive callback/timing measurements stay unchanged.
@@ -1948,8 +2506,25 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       // Both directions share the existing two-width Day/Night smoke; no new
       // browser or device matrix is introduced for the expanded native capture.
       for (const mode of ['light', 'dark']) {
-        embedded.push(await embeddedPrototype(page, mode));
-        embedded.push(await embeddedPrototype(page, mode, { from: 'research', to: 'index' }));
+        const forward = await embeddedPrototype(page, mode);
+        embedded.push(forward);
+        embedded.push(
+          await embeddedPrototype(page, mode, {
+            from: 'research',
+            to: 'index',
+          })
+        );
+        embedded.push(
+          await embeddedPrototype(page, mode, {
+            from: 'index',
+            to: 'writing',
+            rest: false,
+            corridor: true,
+            researchCamera: forward.nativeHandoff.camera,
+          })
+        );
+        await preferences(page, 'fragment-flight-preview', false);
+        await travel(page, 'index');
       }
       await page.evaluate((mode) => {
         const control = document.getElementById('theme-mode');
@@ -2000,7 +2575,10 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     await preferences(page, 'end-scroll', true);
     await travel(page, 'credits');
     await page.evaluate(() =>
-      scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+      scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'instant',
+      })
     );
     await page.waitForTimeout(900);
     await page.mouse.wheel(0, 320);
@@ -2038,6 +2616,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
         allRouteFragments: true,
         interruptedFragments: true,
         embeddedHomeResearchPair: engine === 'chromium',
+        embeddedHomeWritingCorridor: engine === 'chromium',
       },
       home: { motion: homeMotion, scroll: homeScroll, edge: homeEdge },
       flight,
@@ -2124,5 +2703,6 @@ module.exports = {
   fragmentRouteCoverage,
   embeddedPrototypeState,
   validateEmbeddedPrototype,
+  validateEmbeddedCorridor,
   embeddedPrototype,
 };

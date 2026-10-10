@@ -11,163 +11,216 @@ function embeddedPrototypeFixture(from = 'index', to = 'research') {
     textBytes: 32768,
     layerPixels: 8000000,
   };
-  function groups(route) {
-    return [0, 1].map((index) => {
-      const key = route + '-owner-' + index;
-      const rect = { left: 52.125, top: 160.25 + index * 180, width: 640.5, height: 70.4 };
-      return {
-        key,
-        route,
-        ownerPath: [0, index],
-        rect,
-        lines: [{ left: rect.left + 16, top: rect.top + 12, width: 512.25, height: 19 }],
-        envelope: {
-          left: rect.left - 12,
-          top: rect.top - 12,
-          width: rect.width + 24,
-          height: rect.height + 24,
+  const order = ['index', 'research', 'writing', 'talks', 'credits'];
+  const host = (route) => order[Math.max(0, order.indexOf(route) - 1)];
+  const skipped = from === 'index' && to === 'writing';
+  const routes = skipped
+    ? ['index', 'research', 'writing']
+    : [...new Set([from, to, order[order.indexOf(from) + 1], order[order.indexOf(to) + 1]])];
+  const arrivalStart = skipped ? 0.47 : 0.12;
+  const camera = (route) => ({
+    position: [0, 0, 24 - order.indexOf(route) * 52],
+    target: [0, 0, -4],
+  });
+  function group(route, clock) {
+    const key = route + ':field';
+    const sourceOwners = [0, 1].map((index) => ({
+      ownerPath: [0, index],
+      textContent: route + ' captured native text ' + index,
+      rect: {
+        left: 52.125,
+        top: 160.25 + index * 180,
+        width: 640.5,
+        height: 70.4,
+      },
+      lines: [{ left: 68.125, top: 172.25 + index * 180, width: 512.25, height: 19 }],
+      envelope: {
+        left: 40.125,
+        top: 148.25 + index * 180,
+        width: 664.5,
+        height: 94.4,
+      },
+    }));
+    const ids = Array.from({ length: 6 }, (_, index) => key + ':' + index);
+    return {
+      key,
+      route,
+      host: host(route),
+      ownerPath: [],
+      sourceOwners,
+      rect: { left: 40.125, top: 100, width: 664.5, height: 350 },
+      envelope: { left: 40.125, top: 100, width: 664.5, height: 350 },
+      lines: sourceOwners.flatMap((owner) => owner.lines),
+      ids,
+      pieces: 6,
+      pixels: 240000,
+      descendants: 4,
+      textBytes: 400,
+      members: ids.map((id, index) => ({
+        id,
+        name: 'nested-child-' + index,
+        parent: 'nested-parent',
+        root: 0,
+        rootCenter: [0, 4, 0],
+        hostOffset: -52 * order.indexOf(host(route)),
+        worldCenter: [index * 0.1 + clock / 10000, 4, -52 * order.indexOf(host(route))],
+      })),
+      topology: { closed: true, fronts: 6, rears: 6, sides: 24 },
+    };
+  }
+  const entry = (route, clock) => ({
+    route,
+    host: host(route),
+    groups: [group(route, clock)],
+  });
+  function faces(selected, amount, clock, alpha = 1) {
+    return selected.ids.flatMap((id, index) => {
+      const points =
+        amount === 1
+          ? [
+              [
+                selected.envelope.left + (selected.envelope.width * index) / 6,
+                selected.envelope.top,
+              ],
+              [
+                selected.envelope.left + (selected.envelope.width * (index + 1)) / 6,
+                selected.envelope.top,
+              ],
+              [
+                selected.envelope.left + (selected.envelope.width * (index + 1)) / 6,
+                selected.envelope.top + selected.envelope.height,
+              ],
+              [
+                selected.envelope.left + (selected.envelope.width * index) / 6,
+                selected.envelope.top + selected.envelope.height,
+              ],
+            ]
+          : [
+              [50 + amount * 100 + clock / 1000, 20],
+              [62 + amount * 100 + clock / 1000, 20],
+              [50 + amount * 100 + clock / 1000, 28],
+            ];
+      return [
+        { id, face: 'front', points, alpha, textureMix: 1, progress: amount },
+        {
+          id,
+          face: 'side',
+          points: points.map(([x, y]) => [x, y + 2]),
+          alpha,
+          textureMix: 0,
+          progress: amount,
         },
-        ids: Array.from({ length: 3 }, (_, shard) => key + ':' + shard),
-        pieces: 3,
-        pixels: 100000,
-        descendants: 1,
-        textBytes: 120,
-        topology: { closed: true, fronts: 3, rears: 3, sides: 12 },
-      };
+      ];
     });
   }
-  const arrival = groups(to);
-  const departure = groups(from);
-  const ids = arrival.flatMap((group) => group.ids);
-  const departingIds = departure.flatMap((group) => group.ids);
-  const coverage = { expected: 2, selected: 2, complete: true };
-  const handoff = (progress) => Math.max(0, (progress - 0.9) / 0.1);
-  const faces = (selected, progress, fade = false) =>
-    selected.flatMap((group) =>
-      group.ids.map((id, index) => ({
-        id,
-        face: progress >= 0.9 || index !== 2 ? 'front' : 'side',
-        points:
-          progress >= 0.9
-            ? [
-                [group.envelope.left + (group.envelope.width * index) / 3, group.envelope.top],
-                [
-                  group.envelope.left + (group.envelope.width * (index + 1)) / 3,
-                  group.envelope.top,
-                ],
-                [
-                  group.envelope.left + (group.envelope.width * (index + 1)) / 3,
-                  group.envelope.top + group.envelope.height,
-                ],
-                [
-                  group.envelope.left + (group.envelope.width * index) / 3,
-                  group.envelope.top + group.envelope.height,
-                ],
-              ]
-            : [
-                [50 + progress * 100, 20],
-                [62 + progress * 100, 20],
-                [50 + progress * 100, 28],
-              ],
-        alpha: fade ? 1 - handoff(progress) : 0.2 + progress * 0.8,
-        textureMix: progress >= 0.9 ? 1 : 0.16 + progress * 0.84,
-      }))
+  function snapshot({ clock, page = from, phase = null, travelProgress = 0, handoff = 0 }) {
+    const bank = routes.map((route) => entry(route, clock));
+    const incoming = bank.find((value) => value.route === to);
+    const outgoing = bank.find((value) => value.route === from);
+    const progress = Math.max(0, Math.min(1, (travelProgress - arrivalStart) / (1 - arrivalStart)));
+    const painted = bank.flatMap((value) => {
+      if (value.route === page && !(phase && [from, to].includes(value.route))) return [];
+      const amount =
+        phase && value.route === to
+          ? progress
+          : phase && value.route === from
+            ? 1 - Math.min(1, travelProgress / 0.46)
+            : 0;
+      return faces(value.groups[0], amount, clock, phase && value.route === to ? 1 - handoff : 1);
+    });
+    const selected = bank.find((value) => value.route === page).groups[0];
+    return {
+      page,
+      theme: 'light',
+      paints: 1 + Math.round(clock / 30),
+      customShapes: painted.length,
+      timeMs: clock,
+      viewport: [1440, 900],
+      pieces: 0,
+      layers: 0,
+      stages: 0,
+      stageRoutes: [],
+      busy: !!phase,
+      inert: !!phase,
+      rootVisibility: phase && !handoff ? 'hidden' : 'visible',
+      nativeOpacity: phase && page === to ? handoff : 1,
+      travel: phase && travelProgress < 1 ? 'flying' : 'settled',
+      camera: JSON.stringify(
+        !phase
+          ? camera(page)
+          : {
+              ...camera(from),
+              position: camera(from).position.map(
+                (value, axis) => value + (camera(to).position[axis] - value) * travelProgress
+              ),
+            }
+      ),
+      nativeCoverage: phase ? { expected: 2, selected: 2, uncovered: [] } : null,
+      natives: selected.sourceOwners.map((owner) => ({
+        ...owner,
+        key: selected.key + ':' + owner.ownerPath.join('.'),
+        route: page,
+        hidden: !!phase && !handoff,
+        visibility: phase && !handoff ? 'hidden' : 'visible',
+        opacity: 1,
+        copies: 0,
+      })),
+      diagnostics: {
+        ready: true,
+        clock,
+        pendingRoute: null,
+        route: to,
+        phase,
+        progress,
+        physicalProgress: progress,
+        travelProgress,
+        arrivalStart,
+        handoff,
+        caps,
+        texturePixels: bank.length * 240000,
+        groups: incoming.groups,
+        ids: incoming.groups[0].ids,
+        bank,
+        coverage: { expected: 2, selected: 2, complete: true },
+        faces: painted,
+        departure: phase
+          ? {
+              ready: true,
+              progress: travelProgress,
+              groups: outgoing.groups,
+              faces: faces(outgoing.groups[0], 1 - Math.min(1, travelProgress / 0.46), clock),
+            }
+          : { ready: false, progress: 0, groups: [], faces: [] },
+      },
+    };
+  }
+  const initial = snapshot({ clock: 0 });
+  const frames = [0, 120, 240].map((clock) => snapshot({ clock }));
+  for (const [clock, travelProgress, handoff] of [
+    [360, 0.1, 0],
+    [480, 0.4, 0],
+    [650, 0.7, 0],
+    [820, 0.95, 0],
+    [900, 1, 0],
+    [954, 1, 0.3],
+    [1026, 1, 0.7],
+  ]) {
+    frames.push(
+      snapshot({
+        clock,
+        travelProgress,
+        handoff,
+        phase: travelProgress < 0.6 ? 'departing' : 'assembling',
+        page: travelProgress < 0.6 ? from : to,
+      })
     );
-  const departureState = {
-    ready: true,
-    groups: departure,
-    ids: departingIds,
-    texturePixels: 200000,
-    coverage,
-  };
-  const diagnostics = (phase = null, progress = 0) => ({
-    ready: true,
-    groups: arrival,
-    ids,
-    caps,
-    coverage,
-    texturePixels: phase === null ? 200000 : 400000,
-    phase,
-    progress,
-    physicalProgress: Math.min(1, progress / 0.9),
-    handoff: phase === 'assembling' ? handoff(progress) : 0,
-    departure:
-      phase === null
-        ? null
-        : {
-            ...departureState,
-            progress,
-            faces: faces(departure, progress),
-          },
-    faces: faces(
-      phase === 'departing' ? departure : arrival,
-      progress,
-      phase === 'assembling' && progress >= 0.9
-    ),
-  });
-  const natives = (selected, progress = 0) =>
-    selected.map((group) => ({
-      key: group.key,
-      route: group.route,
-      hidden: progress <= 0.9,
-      visibility: progress <= 0.9 ? 'hidden' : 'visible',
-      opacity: progress <= 0.9 || progress === 1 ? 1 : handoff(progress),
-      rect: group.rect,
-      lines: group.lines,
-      copies: 0,
-    }));
-  const initial = {
-    page: from,
-    theme: 'light',
-    paints: 1,
-    viewport: [1440, 900],
-    pieces: 0,
-    layers: 0,
-    diagnostics: diagnostics(),
-  };
-  const frames = [
-    { ...initial, customShapes: 6 },
-    ...[0.1, 0.4].map((progress, index) => ({
-      ...initial,
-      paints: index + 2,
-      customShapes: 6,
-      diagnostics: diagnostics('departing', progress),
-      natives: natives(departure),
-      nativeCoverage: { expected: 2, selected: 2, uncovered: [] },
-    })),
-    ...[0.2, 0.4, 0.6, 0.9, 0.94, 0.98].map((progress, index) => ({
-      ...initial,
-      page: to,
-      paints: index + 4,
-      customShapes: 6,
-      camera: progress > 0.9 ? 'settled-native-camera' : 'moving-camera-' + progress,
-      diagnostics: diagnostics('assembling', progress),
-      natives: natives(arrival, progress),
-      nativeCoverage: { expected: 2, selected: 2, uncovered: [] },
-    })),
-  ];
+  }
+  frames.push(snapshot({ clock: 1170, page: to }), snapshot({ clock: 1290, page: to }));
   return {
     initial,
     frames,
-    final: {
-      page: to,
-      theme: 'light',
-      busy: false,
-      inert: false,
-      stages: 0,
-      pieces: 0,
-      layers: 0,
-      camera: 'settled-native-camera',
-      natives: natives(arrival, 1),
-      diagnostics: {
-        ready: false,
-        phase: null,
-        texturePixels: 0,
-        ids: [],
-        faces: [],
-        departure: null,
-      },
-    },
+    mounts: [{ page: to, timeMs: 650 }],
+    final: snapshot({ clock: 1350, page: to }),
   };
 }
 function fragmentBackdropFixture(phase, timeMs = 0) {
@@ -661,7 +714,12 @@ test('Color scenario observes actual Canvas paints alongside completed scene sub
     );
     callbacks[0](10);
     assert.deepEqual({ ...sandbox.window.__quality }, { paints: 0, callbacks: 1 });
-    const sample = { kind: 'paint', ordinaryShapes: 12, customShapes: 0, embeddedShapes: 0 };
+    const sample = {
+      kind: 'paint',
+      ordinaryShapes: 12,
+      customShapes: 0,
+      embeddedShapes: 0,
+    };
     sandbox.window.SiteEngineProbe({ ...sample, kind: 'model' });
     assert.equal(sandbox.window.__colorPaint.completed, 0);
     sandbox.window.SiteEngineProbe(sample);
@@ -784,10 +842,16 @@ test('whole-block heading observation compares descendant glyphs when the native
       textContent: 'Native heading',
       getBoundingClientRect: () => box,
     },
-    copied = { textContent: native.textContent, getBoundingClientRect: () => box },
+    copied = {
+      textContent: native.textContent,
+      getBoundingClientRect: () => box,
+    },
     layer = {},
     tile = {
-      style: { opacity: '1', transform: 'matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)' },
+      style: {
+        opacity: '1',
+        transform: 'matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)',
+      },
       closest: () => layer,
       querySelector: (selector) =>
         selector === '.fragment-paint'
@@ -842,7 +906,12 @@ test('whole-block heading observation compares descendant glyphs when the native
             owner = node.owner;
           },
           getClientRects: () => [
-            { left: 40, top: owner === native ? 158 : 158.5, width: 220, height: 65 },
+            {
+              left: 40,
+              top: owner === native ? 158 : 158.5,
+              width: 220,
+              height: 65,
+            },
           ],
         };
       },
@@ -878,7 +947,11 @@ test('whole-block acquisition preserves fractional paint translation when absolu
       tagName: native.tagName,
       classList: classes(['publication', 'fragment-paint', 'fragment-surface-before']),
       textContent: native.textContent,
-      style: { left: '0px', top: '0px', transform: 'translate3d(12.12345px, 12.56789px, 0px)' },
+      style: {
+        left: '0px',
+        top: '0px',
+        transform: 'translate3d(12.12345px, 12.56789px, 0px)',
+      },
       matches: () => true,
       querySelectorAll: () => [],
     },
@@ -918,11 +991,15 @@ test('whole-block acquisition preserves fractional paint translation when absolu
       observe() {}
       disconnect() {}
     },
-    getComputedStyle: () => ({ getPropertyValue: (name) => material[name] || '' }),
+    getComputedStyle: () => ({
+      getPropertyValue: (name) => material[name] || '',
+    }),
     document: {
       body: { dataset: { page: 'research' } },
       getElementById: () => content,
-      querySelector: () => ({ dataset: { direction: 'forward', camera: '{}' } }),
+      querySelector: () => ({
+        dataset: { direction: 'forward', camera: '{}' },
+      }),
       querySelectorAll: (selector) => (selector === '.fragment-piece' ? [tile] : [layer]),
     },
   };
@@ -1172,7 +1249,12 @@ test('all-route Color observations require actual two-sided fragments, camera di
       paintIntervalsMs: { max: 80 },
       readyMs: 2600,
     },
-    expected = { from: 'index', to: 'credits', direction: 'forward', sourceCamera: source };
+    expected = {
+      from: 'index',
+      to: 'credits',
+      direction: 'forward',
+      sourceCamera: source,
+    };
   const report = validateFragmentRoute(observation, measured, expected);
   assert.equal(report.departurePieces, 12);
   assert.equal(report.arrivalPieces, 12);
@@ -1221,7 +1303,12 @@ test('VO interruption keeps abandoned raw paint but validates only the actual fr
   } = require('../tools/quality/color-browser.cjs');
   const camera = (z) => JSON.stringify({ position: [0, 4, z], target: [0, 0, z - 30] }),
     source = camera(20),
-    expected = { from: 'index', to: 'index', direction: 'backward', sourceCamera: source },
+    expected = {
+      from: 'index',
+      to: 'index',
+      direction: 'backward',
+      sourceCamera: source,
+    },
     observation = {
       backdrops: [
         fragmentBackdropFixture('depart', 95),
@@ -1343,7 +1430,9 @@ test('Off cancellation requires native readiness and cleanup while its camera jo
   };
   const ready = (state) =>
     vm.runInNewContext('(' + fragmentCancellationReady.toString() + ')("research")', {
-      window: { SiteEffects: { embedded: { diagnostics: () => state.embedded } } },
+      window: {
+        SiteEffects: { embedded: { diagnostics: () => state.embedded } },
+      },
       document: {
         body: { dataset: { page: state.route } },
         getElementById: (id) =>
@@ -1425,14 +1514,22 @@ test('failed incoming Color wait preserves raw observations and the original fai
 test('failed all-route Color collection retains its source trip and original partial observation', async () => {
   const { fragmentRouteCoverage } = require('../tools/quality/color-browser.cjs'),
     original = Error('Controlled route click failure'),
-    raw = { samples: [{ phase: 'depart', page: 'index', pieces: 12 }], frames: [] };
+    raw = {
+      samples: [{ phase: 'depart', page: 'index', pieces: 12 }],
+      frames: [],
+    };
   let evaluations = 0;
   const page = {
     evaluate: async () => {
       evaluations++;
       if (evaluations === 2) return ['index', 'research', 'writing', 'talks', 'credits'];
       if (evaluations === 4)
-        return { page: 'index', y: 300, max: 600, scene: { camera: 'source-camera' } };
+        return {
+          page: 'index',
+          y: 300,
+          max: 600,
+          scene: { camera: 'source-camera' },
+        };
       if (evaluations === 7) return raw;
       if (evaluations === 8) return { pieces: 12, nativeHidden: 3 };
     },
@@ -1449,7 +1546,10 @@ test('failed all-route Color collection retains its source trip and original par
     assert.equal(error.fragmentRouteObservation.pending.from, 'index');
     assert.equal(error.fragmentRouteObservation.pending.to, 'research');
     assert.deepEqual(error.fragmentRouteObservation.pending.observation, raw);
-    assert.deepEqual(error.fragmentRouteObservation.failureState, { pieces: 12, nativeHidden: 3 });
+    assert.deepEqual(error.fragmentRouteObservation.failureState, {
+      pieces: 12,
+      nativeHidden: 3,
+    });
     return true;
   });
 });
@@ -1708,7 +1808,7 @@ test('failed flight collection retains previous and failing raw records instead 
   assert.equal(measurementClosed, true);
 });
 
-test('embedded pair requires whole visible owner coverage, solid paint and accurate native handoff', () => {
+test('persistent field pair requires real bound native text, breathing fractals and camera-driven assembly', () => {
   const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
   for (const [from, to] of [
     ['index', 'research'],
@@ -1716,70 +1816,94 @@ test('embedded pair requires whole visible owner coverage, solid paint and accur
   ]) {
     const observed = embeddedPrototypeFixture(from, to);
     const accepted = validateEmbeddedPrototype(observed, 'light', { from, to });
-    assert.equal(accepted.frames, 9);
+    assert.equal(accepted.frames, 12);
     assert.equal(accepted.owners, 2);
     assert.equal(accepted.departureOwners, 2);
     assert.deepEqual(accepted.ids, observed.initial.diagnostics.ids);
     assert.equal(accepted.rectDeltaPx, 0);
     assert.equal(accepted.lineDeltaPx, 0);
     const mutations = [
-      (value) => (value.initial.diagnostics.ready = false),
-      (value) => (value.initial.diagnostics.ids = []),
-      (value) => (value.initial.diagnostics.texturePixels = 0),
-      (value) => (value.frames[0].customShapes = 0),
-      (value) => (value.frames[0].diagnostics.faces = []),
-      (value) => value.frames.splice(1, 2),
-      (value) => (value.frames[1].diagnostics.departure.groups = []),
-      (value) => (value.frames[1].diagnostics.departure.ready = false),
-      (value) => (value.frames[3].diagnostics.coverage.selected = 1),
-      (value) => (value.frames[3].diagnostics.groups[0].topology.closed = false),
-      (value) => (value.frames[3].diagnostics.groups[0].pixels = 0),
-      (value) => (value.frames[3].diagnostics.caps.pieces = 10),
-      (value) => (value.frames[3].diagnostics.ids = ['replacement-object']),
-      (value) => value.frames.slice(1).forEach((frame) => (frame.paints = 1)),
-      (value) => value.frames.slice(1).forEach((frame) => (frame.customShapes = 0)),
-      (value) => (value.frames[3].pieces = 6),
-      (value) => (value.frames[3].nativeCoverage.uncovered = ['FIGURE:portrait']),
-      (value) => (value.frames[3].nativeCoverage.selected = 1),
+      (value) => (value.initial.diagnostics.bank = []),
+      (value) => (value.frames[0].diagnostics.bank[0].host = 'credits'),
+      (value) => (value.frames[0].diagnostics.bank[0].groups[0].sourceOwners = []),
+      (value) => (value.frames[0].diagnostics.bank[0].groups[0].sourceOwners[0].ownerPath = []),
+      (value) => (value.frames[0].diagnostics.bank[0].groups[0].members[0].parent = null),
       (value) =>
-        value.frames.slice(1).forEach((frame) => {
-          frame.diagnostics.faces.forEach((face) => (face.face = 'front'));
-        }),
+        value.frames
+          .filter((frame) => !frame.diagnostics.phase && frame.page === from)
+          .forEach((frame) => {
+            frame.diagnostics.faces.forEach((face) => {
+              if (face.face === 'front') face.textureMix = 0.16;
+            });
+          }),
       (value) =>
-        value.frames.slice(1).forEach((frame) => {
-          frame.diagnostics.faces.forEach((face) => (face.textureMix = 0));
-        }),
-      (value) => (value.frames[3].natives[0].hidden = false),
-      (value) => (value.frames[3].natives[0].copies = 1),
-      (value) => delete value.frames[3].diagnostics.handoff,
-      (value) => (value.frames[3].diagnostics.handoff = 0.1),
-      (value) => (value.frames[7].natives[0].opacity = 0.9),
-      (value) => (value.frames[7].diagnostics.physicalProgress = 0.98),
-      (value) => (value.frames[7].camera = 'camera-still-moving'),
-      (value) => (value.frames[7].diagnostics.faces[0].alpha = 1),
-      (value) => (value.frames[7].diagnostics.faces[0].points[0][0] += 2),
-      (value) => (value.frames[8].diagnostics.faces[1].points[0][0] += 0.5),
+        value.frames
+          .filter((frame) => !frame.diagnostics.phase && frame.page === from)
+          .forEach((frame) => {
+            frame.diagnostics.bank.forEach((entry) =>
+              entry.groups.forEach((group) =>
+                group.members.forEach((member) => {
+                  member.worldCenter[0] = Number(member.id.split(':').at(-1)) * 0.1;
+                })
+              )
+            );
+          }),
+      (value) =>
+        value.frames
+          .filter((frame) => frame.diagnostics.phase && frame.diagnostics.travelProgress < 1)
+          .forEach((frame) => (frame.travel = 'settled')),
+      (value) =>
+        value.frames
+          .filter((frame) => frame.travel === 'flying')
+          .forEach((frame) => {
+            frame.diagnostics.faces
+              .filter((face) => frame.diagnostics.ids.includes(face.id))
+              .forEach((face) => (face.progress = 0));
+          }),
+      (value) => (value.frames[3].diagnostics.departure.ready = false),
+      (value) =>
+        value.frames
+          .filter((frame) => frame.diagnostics.phase)
+          .forEach((frame) => {
+            frame.diagnostics.departure.faces = [];
+          }),
+      (value) => (value.frames[4].diagnostics.progress = 0),
+      (value) => (value.frames[6].diagnostics.bank[0].groups[0].topology.closed = false),
+      (value) => (value.frames[6].diagnostics.texturePixels = 1),
+      (value) => (value.frames[6].diagnostics.ids = ['replacement-object']),
+      (value) => (value.frames[6].pieces = 6),
+      (value) => (value.frames[6].nativeCoverage.uncovered = ['FIGURE:portrait']),
+      (value) => (value.frames[6].nativeCoverage.selected = 1),
+      (value) => (value.frames[6].nativeOpacity = 1),
+      (value) => (value.frames[6].rootVisibility = 'visible'),
+      (value) => (value.frames[8].diagnostics.physicalProgress = 0.98),
+      (value) => (value.frames[8].nativeOpacity = 0.9),
+      (value) => (value.frames[8].camera = 'camera-still-moving'),
+      (value) => (value.frames[8].natives[0].textContent = 'different uncaptured text'),
+      (value) =>
+        (value.frames[8].diagnostics.faces.find((face) =>
+          value.frames[8].diagnostics.ids.includes(face.id)
+        ).alpha = 1),
       (value) => (value.final.natives[0].opacity = 0.8),
       (value) => (value.final.natives[0].hidden = true),
       (value) => (value.final.natives[0].visibility = 'hidden'),
-      (value) => (value.final.stages = 1),
-      (value) => (value.final.diagnostics.texturePixels = 100000),
-      (value) => (value.final.diagnostics.ids = ['research-intro:0']),
-      (value) => (value.final.diagnostics.departure = { ready: true }),
+      (value) => (value.final.stages = 2),
+      (value) => (value.final.diagnostics.texturePixels = 1),
+      (value) =>
+        (value.final.diagnostics.bank = value.final.diagnostics.bank.filter(
+          (entry) => entry.route !== from
+        )),
       (value) =>
         (value.final.diagnostics.departure = {
-          groups: value.frames[1].diagnostics.departure.groups,
-        }),
-      (value) =>
-        (value.final.diagnostics.departure = {
-          faces: value.frames[1].diagnostics.departure.faces,
+          ready: true,
+          groups: [],
+          faces: [],
         }),
       (value) => (value.final.natives[0].rect.left += 1),
       (value) => (value.final.natives[0].lines[0].top += 1),
       (value) => (value.final.natives[0].lines = []),
     ];
     for (const mutate of mutations) {
-      // JSON cloning deliberately separates equal capture/native layout records.
       const changed = JSON.parse(JSON.stringify(observed));
       mutate(changed);
       assert.throws(
@@ -1788,4 +1912,175 @@ test('embedded pair requires whole visible owner coverage, solid paint and accur
       );
     }
   }
+});
+
+test('native world handoff uses the canonical clock across its 24 second rollover', () => {
+  const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
+  const observed = embeddedPrototypeFixture();
+  for (const frame of [observed.initial, ...observed.frames, observed.final])
+    frame.diagnostics.clock = (frame.diagnostics.clock + 23000) % 24000;
+  assert.equal(validateEmbeddedPrototype(observed, 'light').rectDeltaPx, 0);
+  const invalid = JSON.parse(JSON.stringify(observed));
+  invalid.frames[9].diagnostics.clock = (invalid.frames[9].diagnostics.clock + 21000) % 24000;
+  assert.throws(() => validateEmbeddedPrototype(invalid, 'light'), /another clock or duration/);
+});
+
+test('Home Writing skip traverses the existing Research world and mounts only native Writing', () => {
+  const { validateEmbeddedCorridor } = require('../tools/quality/color-browser.cjs');
+  const observed = embeddedPrototypeFixture('index', 'writing');
+  const researchCamera = JSON.stringify({
+    position: [0, 0, -28],
+    target: [0, 0, -4],
+  });
+  const accepted = validateEmbeddedCorridor(observed, 'light', researchCamera);
+  assert.equal(accepted.corridor.observedCameraFrames, 4);
+  const evictedHome = JSON.parse(JSON.stringify(observed));
+  evictedHome.final.diagnostics.bank = evictedHome.final.diagnostics.bank.filter(
+    (entry) => entry.route !== 'index'
+  );
+  evictedHome.final.diagnostics.faces = evictedHome.final.diagnostics.faces.filter(
+    (face) => !face.id.startsWith('index:')
+  );
+  evictedHome.final.diagnostics.texturePixels -= 240000;
+  assert.equal(validateEmbeddedCorridor(evictedHome, 'light', researchCamera).to, 'writing');
+  for (const mutate of [
+    (value) => (value.mounts = [{ page: 'research' }, { page: 'writing' }]),
+    (value) =>
+      value.frames
+        .filter((frame) => frame.diagnostics.phase)
+        .forEach((frame) => {
+          frame.diagnostics.faces = frame.diagnostics.faces.filter(
+            (face) => !face.id.startsWith('research:')
+          );
+        }),
+    (value) =>
+      (value.final.diagnostics.bank = value.final.diagnostics.bank.filter(
+        (entry) => entry.route !== 'research'
+      )),
+    (value) =>
+      value.frames
+        .filter((frame) => frame.travel === 'flying')
+        .forEach((frame) => {
+          frame.camera = value.initial.camera;
+        }),
+    (value) =>
+      value.frames
+        .filter((frame) => frame.travel === 'flying' && frame.diagnostics.travelProgress <= 0.5)
+        .forEach(
+          (frame) =>
+            (frame.diagnostics.faces = frame.diagnostics.faces.filter(
+              (face) => !face.id.startsWith('writing:')
+            ))
+        ),
+  ]) {
+    const invalid = JSON.parse(JSON.stringify(observed));
+    mutate(invalid);
+    assert.throws(() => validateEmbeddedCorridor(invalid, 'light', researchCamera), String(mutate));
+  }
+});
+
+test('persistent endpoint checks exact visible paint when offscreen shard fronts are culled', () => {
+  const { validateEmbeddedPrototype } = require('../tools/quality/color-browser.cjs');
+  const observed = JSON.parse(JSON.stringify(embeddedPrototypeFixture()));
+  const compact = {
+    pieces: 40,
+    owners: 20,
+    descendants: 600,
+    textBytes: 12288,
+    layerPixels: 3000000,
+  };
+  observed.initial.viewport = [450, 900];
+  for (const frame of [observed.initial, ...observed.frames, observed.final]) {
+    frame.diagnostics.caps = compact;
+    if (!frame.diagnostics.handoff) continue;
+    frame.diagnostics.faces = frame.diagnostics.faces.filter(
+      (face) =>
+        !frame.diagnostics.ids.includes(face.id) ||
+        face.face !== 'front' ||
+        Math.min(...face.points.map((point) => point[0])) < 450
+    );
+  }
+  assert.equal(validateEmbeddedPrototype(observed, 'light').owners, 2);
+  for (const mutate of [
+    (value) =>
+      value.frames
+        .filter((frame) => frame.diagnostics.handoff > 0)
+        .forEach((frame) => {
+          frame.diagnostics.faces = frame.diagnostics.faces.filter(
+            (face) => face.id !== 'research:field:1'
+          );
+        }),
+    (value) => (value.final.natives[0].opacity = 0.5),
+    (value) => (value.frames[6].diagnostics.bank[0].groups[0].envelope.top = 950),
+  ]) {
+    const invalid = JSON.parse(JSON.stringify(observed));
+    mutate(invalid);
+    assert.throws(() => validateEmbeddedPrototype(invalid, 'light'), String(mutate));
+  }
+});
+
+test('embedded native coverage ignores wholly offscreen DOM and requires every visible owner', () => {
+  const { embeddedPrototypeState } = require('../tools/quality/color-browser.cjs');
+  const vm = require('node:vm');
+  const node = (top) => ({
+    tagName: 'H2',
+    textContent: 'Native heading',
+    closest: () => null,
+    getBoundingClientRect: () => ({
+      left: 20,
+      top,
+      right: 300,
+      bottom: top + 40,
+      width: 280,
+      height: 40,
+    }),
+  });
+  const visible = node(800);
+  const unseen = node(880);
+  const owner = {
+    isConnected: false,
+    contains: (candidate) => candidate === visible,
+  };
+  const content = {
+    style: { opacity: '' },
+    querySelectorAll: () => [visible, unseen],
+    hasAttribute: () => false,
+    inert: false,
+  };
+  const window = {
+    SiteEffects: {
+      embedded: {
+        diagnostics: () => ({
+          phase: 'assembling',
+          groups: [{ key: 'visible', route: 'index' }],
+        }),
+        owners: () => [owner],
+      },
+    },
+    __quality: { paints: 1 },
+  };
+  const sandbox = {
+    window,
+    document: {
+      body: { dataset: { page: 'index' } },
+      documentElement: { dataset: { theme: 'light' } },
+      getElementById: () => content,
+      querySelector: () => ({ dataset: { camera: 'native-pose' } }),
+      querySelectorAll: () => [],
+    },
+    innerWidth: 390,
+    innerHeight: 844,
+    getComputedStyle: () => ({ display: 'block', opacity: '1' }),
+  };
+  const snapshot = () =>
+    vm.runInNewContext('(' + embeddedPrototypeState.toString() + ')()', sandbox);
+  const accepted = snapshot().nativeCoverage;
+  assert.equal(accepted.expected, 1);
+  assert.equal(accepted.selected, 1);
+  assert.equal(accepted.uncovered.length, 0);
+  owner.contains = () => false;
+  const missing = snapshot().nativeCoverage;
+  assert.equal(missing.expected, 1);
+  assert.equal(missing.selected, 0);
+  assert.equal(missing.uncovered.length, 1);
 });

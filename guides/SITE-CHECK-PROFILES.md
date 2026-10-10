@@ -156,18 +156,28 @@ timing/resource limits, exact heading line handoff and Off cleanup. These target
 observations do not replace the full release/device matrix or paired-cost gate.
 
 The initial AC15 prototype embedded one Home-to-Research introductory paragraph.
-The 9 October maintainer amendment extends that same owner to all visible
-Home/Research content in both directions, with shared bounded departure and
-arrival resources. Permanent
+The 9 October maintainer amendment and subsequent rejected-preview correction
+extend that owner to persistent neighboring-page content structures: Research in
+Home and Writing in Research, breathing with the exact shared branch transform.
+The same captured identities converge during forward camera travel and remain
+in their host after reverse detachment. Home-to-Writing also passes through the
+intermediate Research content and room without mounting a Research DOM. Shared
+caps include retained fields and temporary capture, with one bounded native
+viewport texture per page and independently verified subowner paint coverage.
+Permanent
 `embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
 `embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
-native text/paper/link/list and decoded-media capture plus the shared
-paired scene/prewarm/departure/handoff lifecycle.
+native text/paper/link/list/control and decoded-media capture plus the shared
+retained-bank, room/prewarm/departure/handoff lifecycle. Existing archive tests
+also verify inert preview and native filter normalization use the same scoped
+renderer, without detaching the live archive or creating listeners in a stage.
 They are selected for relevant PR changes, staging and production; the owning
 issue49 policy selects them with existing fragment, scene/router and effect
 delivery guards. Their canonical owners are the three corresponding
 `site/effects/embedded-*.cjs` modules within the same travel descriptor.
-No second effect runtime, transition clock or hosted matrix is introduced.
+The existing two-width Day/Night smoke observes the paired direction and skipped
+room behavior, actual resting textures/motion and native handoff. No second
+effect runtime, transition clock or hosted matrix is introduced.
 The pending `G-EMBEDDED` human gate requires actual persistent-shard depth,
 fractal occlusion, faithful native texture and native handoff evidence. A source
 pass cannot tick AC15 or replace original resource, fidelity, paired-cost,

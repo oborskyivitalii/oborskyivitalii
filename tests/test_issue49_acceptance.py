@@ -52,7 +52,7 @@ class Issue49AcceptanceTests(unittest.TestCase):
         node_cases(["tests/embedded-plan.test.cjs"])
 
     def test_embedded_native_texture_capability_contracts(self):
-        node_cases(["tests/embedded-texture.test.cjs"])
+        node_cases(["tests/embedded-texture.test.cjs", "tests/archive.test.cjs"])
 
     def test_embedded_scene_and_effect_delivery_contracts(self):
         node_cases(["tests/embedded-scene.test.cjs", "tests/effects.test.cjs"])

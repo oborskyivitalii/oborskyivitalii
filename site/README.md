@@ -124,26 +124,36 @@ paints for camera/journey diagnostics. It uses the existing clock and constructs
 no frame evidence when the probe is absent; no independent loop is added.
 Historical ribbon material/phase evidence remains attached to its prior edition.
 
-Issue49's embedded extension covers supported visible Home and Research content
-on travel in both directions. The router may prewarm the exact pinned destination
-through its existing verified route cache; an inert, inaccessible staging copy
-measures the destination viewport at the target width. `embedded-texture.cjs`
-captures native headings, text, reading paper, links, lists, decoded local images
-and supported static SVG as bounded texture owners. Departure and arrival share
-the original piece, pixel, owner, descendant and text limits. Unsupported paint,
-capture/decode failure, invalidation or an unsupported landing retains the existing
-shared fragments or native fallback. Capture follows the visible viewport rather
-than allocating the full scrollable document.
+Issue49's embedded extension carries actual neighboring-page content in persistent
+moving fractal structures. Research belongs to Home's world, Writing to Research's,
+and subsequent pages follow the existing route order. The router prewarms the next
+pinned page through its verified finite cache. An inert, inaccessible staging copy
+measures the target viewport, with Writing's controls normalized by the same scoped
+archive preparation as native mount. `embedded-texture.cjs` validates visible native
+headings, text, reading paper, links, lists, controls, decoded local images and
+supported static SVG before compositing one page-owned viewport texture. Recorded
+subowner paths, geometry and text remain the native coverage and landing oracle.
+Capture follows the visible viewport rather than allocating the full scrollable
+document. Temporary captures, retained textures and solid geometry share the
+original piece, pixel, owner, descendant and text limits; unsupported capture or
+an unadmittable landing retains shared fragments or ordinary native navigation.
 
 `embedded-plan.cjs` gives those same identified shards closed front, rear and
-side faces, target-camera endpoints and a persistent world anchor.
+side faces, target-camera endpoints and immutable membership in existing fractal
+branches. Their resting geometry uses the exact shared `loopTransform` and room
+offset under the existing ambient clock; real content textures remain visible.
 `embedded-scene.cjs` attaches collection/paint to the current travel effect;
 the existing scene composition sorts its faces with the fractal. It owns no
 runtime dependency, second renderer or animation clock. Preparation, native
 owner hiding, texture lifetime, cancellation and disposal remain bounded and
-reserve resources against the shared departure/arrival caps. Arrival returns
+reserve resources against the shared departure/arrival caps across at most three
+retained page fields. Forward convergence starts during camera travel. A skipped
+Research native page remains a pass-through content structure on Home-to-Writing
+travel; the router mounts only Writing. Reverse travel detaches the same Research
+objects into their Home host, preserving them there after arrival. Native mount
+binds the measured subowners without restarting convergence. Arrival returns
 ordinary semantic HTML for reading, selection and interaction. The final
-180ms of the same 1.8-second assembly clock may blend each native owner in
+180ms of the shared painted arrival may blend the native page in
 as the corresponding Canvas faces fade out, only after the shared camera reaches
 its exact target pose. This preserves the ordinary scene atmosphere overlay
 without a hard color seam between Canvas texture and foreground HTML; it adds
