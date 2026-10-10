@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "17d32503ab1badff4d71f6272fea91456bb4f8d73507930781ae1c43798ecce8",
+    "digest": "0e9f40543505e142102de4cad2cbabfb21e074362b798f729152828e26470031",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-41.json",
         "identity_mode": "content",
-        "sha256": "6995893af739fef307bf88739535932bd674b69086227b2937364ec1d78c7325"
+        "sha256": "0b8c37b4e71c1721b8fec4c293dce7247602b0413c9cb5faa980a766a74a1586"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -136,12 +136,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b3933eda3db6983c5611f29b13492507760b7f209659ba9d78c4162f41875909"
+        "sha256": "aba362b0c77015a7216afef56cb163cb3c4d76a3341b57cad347b5ab2e3b93e9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "cad6866adecdc0c353ac31b272b576a3cd57b2871b6eb4c9af2c09d61db4d066"
+        "sha256": "823b73765ddfdea42db1b36b49f21aadc69dd2ac2b90be1a12c721e6e444ec4d"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -236,7 +236,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "653d79a1b3d26229ec50070f24bb4e3d1527754fa536692a71ca061905aed4c6"
+        "sha256": "c7ae37979c01fd706649a79a8c378d21bbc2d159ab0994f2075c88e96c756249"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -285,7 +285,7 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "f135c3810b696bed376df5580e50f715793558e88e11342b2488c00df2c1f836"
+        "sha256": "6d2c225955bfa3279fcbd7525319dc3fab2bab0b90753e903aab2feb7fb65b2d"
       },
       {
         "path": "docs/index.html",
@@ -375,12 +375,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "a91987cd74cf75db002a05c1332b6932d5be3cff794bd98278d836965d718df1"
-      },
-      {
-        "path": "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html",
-        "identity_mode": "content",
-        "sha256": "83bb2325a46785b40010d1ac8cc6acfec896fcb6660209b745dfc55598a21fd7"
+        "sha256": "faf8c9abe2e5089582aeb8d875b634cd3e13fa152b9c43a714395a461f623655"
       },
       {
         "path": "docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473/index.html",
@@ -406,6 +401,11 @@
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
         "identity_mode": "content",
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
+      },
+      {
+        "path": "docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/credits.html",
+        "identity_mode": "content",
+        "sha256": "9c5bd0fcc65cdf4a6a2667610624097d58c069c51136d198fff4ba6b641d0887"
       },
       {
         "path": "docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7/writing.html",
@@ -705,22 +705,22 @@
       {
         "path": "review/issue-41/2026-10-10-arkadiy-amendment.json",
         "identity_mode": "content",
-        "sha256": "5778f318b348a9b794e13e364ab4b9eb04997891442483442197462c5dfec285"
+        "sha256": "82221ec42f8581a35fed7fc4ef2ed3a79a97a588878b855b2f75835c5f1d57d1"
       },
       {
         "path": "review/issue-41/2026-10-10-arkadiy-browser.md",
         "identity_mode": "content",
-        "sha256": "570a485ff8c76508f27f6771dbec9379a13a49b282259c5044c07a577ef97da6"
+        "sha256": "b974c1b386f5572202e499d7ac2b8436353d3332cddb3cdcbd4753b7665e0cda"
       },
       {
         "path": "review/issue-41/2026-10-10-arkadiy-content.md",
         "identity_mode": "content",
-        "sha256": "49a0446013287290316e0f4f7d5229e59150e9b1bd146e36eedfbe8e7a20e6b7"
+        "sha256": "5b3725b93ef52f53906510df9559377a3a235e42fa0a6d3a8fcbd89d5bf2dd1c"
       },
       {
         "path": "review/issue-41/2026-10-10-review.md",
         "identity_mode": "content",
-        "sha256": "f6ae5f24707530fb2d71aed93aa29075c7c1fe3cd4db9d96e8f0c5fc549fa7f5"
+        "sha256": "5d18bdbc3cb326d0d5d783f6979a0e92322817ab4a3debae78b233193f228b6d"
       },
       {
         "path": "review/issue-41/2026-10-10-scroll-camera.md",
@@ -730,7 +730,47 @@
       {
         "path": "review/issue-41/arkadiy-review/captures/browser-observations.json",
         "identity_mode": "content",
-        "sha256": "3a52489de840edc00da9596fe99c7eb2e3dc80d823b834963a18015cfeb84d98"
+        "sha256": "9638ba3297d6358b6f6e3490dcc01879fccc269b36f78acaa14b8d00fa9bb863"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "cde0cbdb64da8d9be595514a7a109aa3890226199f9548175ba88c6eca067e4e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "2f6f84ca84686fd3493bd3ef3d77ac2787a52068945b9aa711e5bc7dfac86d38"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "0673ea0943d19fb85b99201aacfe308400d61d7d69501ae7419c8dd65dffba06"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "52c2ccb7305a56a97d928e4e38fc382a7c48ab6773524223c59664228e75f95a"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "cde0cbdb64da8d9be595514a7a109aa3890226199f9548175ba88c6eca067e4e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "2f6f84ca84686fd3493bd3ef3d77ac2787a52068945b9aa711e5bc7dfac86d38"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "0673ea0943d19fb85b99201aacfe308400d61d7d69501ae7419c8dd65dffba06"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "52c2ccb7305a56a97d928e4e38fc382a7c48ab6773524223c59664228e75f95a"
       },
       {
         "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp",
@@ -3945,17 +3985,17 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "10558f25eef08f40d7c0192a15ce29210ae6543b20b0356742a4212234fd8ca3"
+        "sha256": "beef13990dad0445e12e7b77579408414eb5d4eb70a6ecbe5bbb11e9242ea717"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "927d87d8652561f891c8822af55337e5992ffd8fe0c214030764d3ce3fed7b5e"
+        "sha256": "846123b89d79d1f34867dfced3677e183df62387cf0aaa0c75947fadc8041a9f"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "e8eb58bd18d9c8b52e163056a904b3e88455648a942796eb86f959236db13e7a"
+        "sha256": "2838835688655a86a119bbf19cf6f195dd47063b7943f4f6466879dfc4af0fb5"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
@@ -3970,7 +4010,7 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "8c12c989ae50da1bff0da36d27dc33260677dfa9d5a460d8c3fdde9c0365e989"
+        "sha256": "959e01f191e1775416826b8b0d70680e02f8d3040685ad9c80cd2ac5fefb9144"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
@@ -3985,7 +4025,7 @@
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "a2f3178653c21fe29dcb18921d6c467923c7a680132e94b7e6522bb5f03bd289"
+        "sha256": "b8b8e8bdee59568434d7da486c72e8c21db2d6eef170d240cd3b5bd9c525fc4e"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
@@ -4000,7 +4040,7 @@
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "7ada5d0002f93c9bf1066b990892c7de87327172fcaef616def430e355066b9f"
+        "sha256": "b655bab087dd4962ad049bf43587f9df35116fe296d29e7795f083aca1d7371c"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
@@ -4015,7 +4055,7 @@
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "ac33db96a7a9543b7add3a5030247a582bf69b4a913c80f5a1b0f7bbe57d0151"
+        "sha256": "4ee285de3f507b54f59e20bd9ca0bf5da06e7189bbe8f88e01a328612b353000"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
@@ -4085,7 +4125,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "3370a54420736eecb3f9f8dbfba897763ae18e62eef692b14e8677c87a2df62c"
+        "sha256": "16e14fa2ab9128cbf5784f81212471a6efbf34c9ba953663585bbb346363c207"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -4625,7 +4665,7 @@
       {
         "path": "site/content/pages/credits/main.json",
         "identity_mode": "content",
-        "sha256": "793b4964f23b84a3f4371dd10c3ec50e51dcd9195bda4894e1f821efcdc67bc5"
+        "sha256": "a7edc5c2f442403d8560050c71892564a3225997fc5cdaf598e7e408189dc60a"
       },
       {
         "path": "site/content/pages/credits/metadata.json",
@@ -4845,7 +4885,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "381b6d34eb42b9cd4ba4ef5c88c4b77acc9cacc8601c49e616fa4bcda7b2a1ce"
+        "sha256": "d323aa1961c87a57f588b812e424df7439651c3bf1ff816438bc501711cb4296"
       },
       {
         "path": "site/retained/manifest.json",
@@ -5370,7 +5410,7 @@
       {
         "path": "tests/test_issue41_acceptance.py",
         "identity_mode": "content",
-        "sha256": "dcc5e3b026e92d5d0d77cded2ef7415331748e36a4f5e799c7989a7dd1be096b"
+        "sha256": "80f3a00cb539a1b93f388d49a8e5a490371537ea586cf07d8b1eeb1c8c19dbf1"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -7095,17 +7135,6 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html",
-      "kind": "file",
-      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
-    },
-    {
       "path": "docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473/index.html",
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
@@ -7151,6 +7180,17 @@
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/credits.html",
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -7874,6 +7914,94 @@
         "AGENTS.md"
       ],
       "title": "browser-observations.json"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-day-390.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-night-390.webp",
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-night-390.webp"
     },
     {
       "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp",
@@ -19733,16 +19861,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8",
-      "kind": "directory",
-      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473",
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
@@ -19784,6 +19902,16 @@
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68",
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355",
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",

@@ -2,7 +2,7 @@
   "kind": "Review-only ten fixed-theme and five interactive copies; not visual QA or a deployment",
   "generator": "tools/build_site_previews.cjs",
   "sources": {
-    "docs/site-revision.json": "a91987cd74cf75db002a05c1332b6932d5be3cff794bd98278d836965d718df1",
+    "docs/site-revision.json": "faf8c9abe2e5089582aeb8d875b634cd3e13fa152b9c43a714395a461f623655",
     "docs/assets/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
     "docs/styles.css": "ee52d55966414ecedda0eb5ea2b6e104f091ed8a8caea02ebaa7be66ab7ab78a",
     "docs/assets/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
@@ -14,25 +14,25 @@
     "docs/research.html": "c2942c61ba5c7a4e90a9015c2a7bdfc1f92eeaa9ccc2bf9275ac683341fae72e",
     "docs/writing.html": "09ea256b60555be7a155e0fe1cb716941c3340f7da21c8556a77bb88d41e37be",
     "docs/talks.html": "1c359b7b1352a617b45919e4a573e322989b5b47725294bbee658dcf8ed7afb7",
-    "docs/credits.html": "f135c3810b696bed376df5580e50f715793558e88e11342b2488c00df2c1f836"
+    "docs/credits.html": "6d2c225955bfa3279fcbd7525319dc3fab2bab0b90753e903aab2feb7fb65b2d"
   },
   "evidence": {},
   "files": {
     "review/site-v1-20261004-v11-day.html": "2dbc3700cdc262b69352941cae2cbfcea331c0e6346b9793752fd56d09c674f7",
     "review/site-v1-20261004-v11-night.html": "c5ac206c83afb7b23efb45f71b3a2e0c91617efdb13a2999cc5fea535f3a1276",
-    "review/site-v1-20261004-v11-interactive.html": "8c12c989ae50da1bff0da36d27dc33260677dfa9d5a460d8c3fdde9c0365e989",
+    "review/site-v1-20261004-v11-interactive.html": "959e01f191e1775416826b8b0d70680e02f8d3040685ad9c80cd2ac5fefb9144",
     "review/site-v1-20261004-v11-research-day.html": "e6d2b72666380cbb5b595fc709a762dc02cf13663c2e06362b304184fc4647b7",
     "review/site-v1-20261004-v11-research-night.html": "217c5dc3136750b5a8905b08b213bfb21be6040df9ffe8044e31fa283beed031",
-    "review/site-v1-20261004-v11-research-interactive.html": "a2f3178653c21fe29dcb18921d6c467923c7a680132e94b7e6522bb5f03bd289",
+    "review/site-v1-20261004-v11-research-interactive.html": "b8b8e8bdee59568434d7da486c72e8c21db2d6eef170d240cd3b5bd9c525fc4e",
     "review/site-v1-20261004-v11-writing-day.html": "7ede47f2fbb0796a15e1e253d8875c6cf8b00344601dce0c82766a01f385cfce",
     "review/site-v1-20261004-v11-writing-night.html": "d719b68ea302a3de57e6bf2d20fc35b80e78a25fe427acd0f625e74b75c9111a",
-    "review/site-v1-20261004-v11-writing-interactive.html": "ac33db96a7a9543b7add3a5030247a582bf69b4a913c80f5a1b0f7bbe57d0151",
+    "review/site-v1-20261004-v11-writing-interactive.html": "4ee285de3f507b54f59e20bd9ca0bf5da06e7189bbe8f88e01a328612b353000",
     "review/site-v1-20261004-v11-talks-day.html": "bf284d5733c65d2656e97e8fbea0eedd3352626dd88a5567b5fe5f2edbf8ebe8",
     "review/site-v1-20261004-v11-talks-night.html": "e2023444e6854e66d2db9c823163f55d638c5c513342588c48984a02f045948d",
-    "review/site-v1-20261004-v11-talks-interactive.html": "7ada5d0002f93c9bf1066b990892c7de87327172fcaef616def430e355066b9f",
-    "review/site-v1-20261004-v11-credits-day.html": "10558f25eef08f40d7c0192a15ce29210ae6543b20b0356742a4212234fd8ca3",
-    "review/site-v1-20261004-v11-credits-night.html": "e8eb58bd18d9c8b52e163056a904b3e88455648a942796eb86f959236db13e7a",
-    "review/site-v1-20261004-v11-credits-interactive.html": "927d87d8652561f891c8822af55337e5992ffd8fe0c214030764d3ce3fed7b5e",
+    "review/site-v1-20261004-v11-talks-interactive.html": "b655bab087dd4962ad049bf43587f9df35116fe296d29e7795f083aca1d7371c",
+    "review/site-v1-20261004-v11-credits-day.html": "beef13990dad0445e12e7b77579408414eb5d4eb70a6ecbe5bbb11e9242ea717",
+    "review/site-v1-20261004-v11-credits-night.html": "2838835688655a86a119bbf19cf6f195dd47063b7943f4f6466879dfc4af0fb5",
+    "review/site-v1-20261004-v11-credits-interactive.html": "846123b89d79d1f34867dfced3677e183df62387cf0aaa0c75947fadc8041a9f",
     "review/site-v1-20261004-v11-index.html": "12be15e435122117cfcfd3762d7a12e924ef62e23ccc4d0abe18f91bed89c46e"
   },
   "transformations": "All copies strip optional analytics and Search Console verification, inline exact CSS/WebP, retain JSON-LD/main text/external edition URLs and remap navigation; noindex review notices. Ten fixed-theme copies remove scripts and unavailable controls. Five interactive copies inline exact theme/space/archive/navigation scripts and inert all-route data; originally deferred scripts execute after the DOM. Interactive copies link fixed Day/Night alternatives. Neither export is browser QA."

@@ -41,12 +41,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa](docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8](docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473](docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/6a2a86ab09787acdcade090189cb49fef64103cc4e3f69adce02886d1cf8f4f4](docs/snapshots/6a2a86ab09787acdcade090189cb49fef64103cc4e3f69adce02886d1cf8f4f4) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Current immutable content-addressed route snapshot; generated from the exact maintained Talks content. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355](docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7](docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/f7f4cd904e0ddb4b533967418dd9a6bd4307ed60ed1502e5bbf0cd100a8834c5](docs/snapshots/f7f4cd904e0ddb4b533967418dd9a6bd4307ed60ed1502e5bbf0cd100a8834c5) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -275,12 +275,6 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/styles.css](docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/styles.css) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/theme.js](docs/runtime/eedff4e2ad0f8301315b1dab7ed9a6d44fe8dcf53fe15f23dc408fc3a4777ffa/theme.js) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html](docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -310,6 +304,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/credits.html](docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/credits.html) | Generated exact public runtime or route snapshot; regenerate from canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7/
 
@@ -642,6 +642,14 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-41/arkadiy-review/captures/browser-observations.json](review/issue-41/arkadiy-review/captures/browser-observations.json) | Issue41 exact-source review and rendered evidence, excluded from default public build. | history | [review/issue-41/2026-10-10-arkadiy-content.md](review/issue-41/2026-10-10-arkadiy-content.md) |
+| [review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp](review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp](review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp](review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp](review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp](review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-review-day-390.webp](review/issue-41/arkadiy-review/captures/credits-review-day-390.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp](review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
+| [review/issue-41/arkadiy-review/captures/credits-review-night-390.webp](review/issue-41/arkadiy-review/captures/credits-review-night-390.webp) | Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation. | history | [review/issue-41/2026-10-10-arkadiy-browser.md](review/issue-41/2026-10-10-arkadiy-browser.md) |
 | [review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp](review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp) | Issue41 exact-source review and rendered evidence, excluded from default public build. | history | [review/issue-41/2026-10-10-arkadiy-content.md](review/issue-41/2026-10-10-arkadiy-content.md) |
 | [review/issue-41/arkadiy-review/captures/launch-safe-index-day-390.webp](review/issue-41/arkadiy-review/captures/launch-safe-index-day-390.webp) | Issue41 exact-source review and rendered evidence, excluded from default public build. | history | [review/issue-41/2026-10-10-arkadiy-content.md](review/issue-41/2026-10-10-arkadiy-content.md) |
 | [review/issue-41/arkadiy-review/captures/launch-safe-index-night-1440.webp](review/issue-41/arkadiy-review/captures/launch-safe-index-night-1440.webp) | Issue41 exact-source review and rendered evidence, excluded from default public build. | history | [review/issue-41/2026-10-10-arkadiy-content.md](review/issue-41/2026-10-10-arkadiy-content.md) |

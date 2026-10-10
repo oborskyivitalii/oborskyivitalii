@@ -128,7 +128,7 @@
       "snapshotSHA": "62f06fadbd25c9c1673e69a04096e923e91a8bb4b81670ade52c11dadc5c72fe"
     },
     "credits": {
-      "version": "212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8",
+      "version": "b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355",
       "url": "credits.html",
       "inputs": [
         "site/content/pages/credits/main.json",
@@ -136,7 +136,7 @@
         "site/templates/pages/credits/main.html"
       ],
       "records": [],
-      "snapshotSHA": "83bb2325a46785b40010d1ac8cc6acfec896fcb6660209b745dfc55598a21fd7"
+      "snapshotSHA": "9c5bd0fcc65cdf4a6a2667610624097d58c069c51136d198fff4ba6b641d0887"
     }
   },
   "files": {
@@ -148,8 +148,8 @@
     "snapshots/d2bc7acebcc1b6849eb32053a5194ef8aa18971be47d644d4b5e73966f6745a7/writing.html": "502dd8a40f17bbecc29c069609c76b9c5a41a78cf777b1784e505a6f4328bf98",
     "talks.html": "1c359b7b1352a617b45919e4a573e322989b5b47725294bbee658dcf8ed7afb7",
     "snapshots/6a2a86ab09787acdcade090189cb49fef64103cc4e3f69adce02886d1cf8f4f4/talks.html": "62f06fadbd25c9c1673e69a04096e923e91a8bb4b81670ade52c11dadc5c72fe",
-    "credits.html": "f135c3810b696bed376df5580e50f715793558e88e11342b2488c00df2c1f836",
-    "snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html": "83bb2325a46785b40010d1ac8cc6acfec896fcb6660209b745dfc55598a21fd7",
+    "credits.html": "6d2c225955bfa3279fcbd7525319dc3fab2bab0b90753e903aab2feb7fb65b2d",
+    "snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/credits.html": "9c5bd0fcc65cdf4a6a2667610624097d58c069c51136d198fff4ba6b641d0887",
     "theme.js": "b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee",
     "archive.js": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad",
     "navigation.js": "908f05a548dedc176825a1bed94f40dd7f6ed44164e0aab3b16eafe9c41c53ee",
@@ -177,6 +177,6 @@
     "snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7",
     "snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d",
     "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
-    "site-revision.json": "a91987cd74cf75db002a05c1332b6932d5be3cff794bd98278d836965d718df1"
+    "site-revision.json": "faf8c9abe2e5089582aeb8d875b634cd3e13fa152b9c43a714395a461f623655"
   }
 }

@@ -517,18 +517,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8": {
-      "kind": "directory",
-      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/212d9a42fc25004e884c89acc955956acb7deab688903e380e38d72af89ca2a8/credits.html": {
-      "kind": "file",
-      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/4be7c0f702d82d60bac713d0cb4c948e27985b9f845d31d53872f914368e1473": {
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
@@ -584,6 +572,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355": {
+      "kind": "directory",
+      "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b3aa87e5e173d4b91614230a23f8b002b833955e821e92dfe1e84534a6c84355/credits.html": {
       "kind": "file",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
       "role": "generated",
@@ -1086,6 +1086,54 @@
       "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
       "role": "history",
       "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-day-390.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-night-390.webp": {
+      "kind": "file",
+      "purpose": "Lossless scoped Credits display-preferences capture; publication state, viewport and theme identify the observation.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
     },
     "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp": {
       "kind": "file",

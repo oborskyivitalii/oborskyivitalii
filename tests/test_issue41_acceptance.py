@@ -408,7 +408,7 @@ def node_suite_checks(owner, names):
     )
 
 
-def positioning_projection(record_path=POSITIONING, restore_sitecase=True):
+def positioning_projection(record_path=POSITIONING, restore_sitecase=True, restore_arkadiy=True):
     """Normalize immutable/current fragments using the maintained HTML owner."""
     script = r"""
 const fs = require('node:fs');
@@ -422,7 +422,7 @@ const normalize = html => normalizeHTML(sourceForPreview(html));
 const pages = {}, baseline = {};
 for (const page of ['index','research','writing','talks','credits']) {
   pages[page] = normalize(fs.readFileSync('docs/'+page+'.html','utf8'));
-  pages[page] = restoreContentAmendment(pages[page],page,arkadiy);
+  if(process.argv[3] === 'true') pages[page] = restoreContentAmendment(pages[page],page,arkadiy);
   if(process.argv[2] === 'true') pages[page] = restoreContentAmendment(pages[page],page,sitecase);
   baseline[page] = normalize(cp.execFileSync('git',['show',record.base+':docs/'+page+'.html'],{encoding:'utf8'}));
 }
@@ -430,7 +430,15 @@ process.stdout.write(JSON.stringify({pages,baseline,changes:record.changes.map(c
 """
     return json.loads(
         subprocess.check_output(
-            ["node", "-e", script, record_path, str(restore_sitecase).lower()], cwd=ROOT
+            [
+                "node",
+                "-e",
+                script,
+                record_path,
+                str(restore_sitecase).lower(),
+                str(restore_arkadiy).lower(),
+            ],
+            cwd=ROOT,
         )
     )
 
@@ -854,7 +862,11 @@ class Issue41ImplementationTests(unittest.TestCase):
         self.assertEqual((record['schema'], record['issue'], record['base']), (1, 41, ARKADIY_BASE))
         self.assertEqual(
             [(row['page'], row['id']) for row in record['changes']],
-            [('index', 'arkadiy-home'), ('research', 'arkadiy-research')],
+            [
+                ('index', 'arkadiy-home'),
+                ('research', 'arkadiy-research'),
+                ('credits', 'scroll-reading-preferences'),
+            ],
         )
         states = arkadiy_projection()
         validate_arkadiy_states(states)
@@ -867,6 +879,24 @@ class Issue41ImplementationTests(unittest.TestCase):
                 self.assertEqual(
                     hashlib.sha256(change[version].encode()).hexdigest(), change[version + 'SHA256']
                 )
+            if change['page'] == 'credits':
+                projection = positioning_projection(ARKADIY, False, False)
+                fragment = next(row for row in projection['changes'] if row['page'] == 'credits')
+                self.assertEqual(projection['baseline']['credits'].count(fragment['before']), 1)
+                self.assertEqual(projection['pages']['credits'].count(fragment['after']), 1)
+                self.assertEqual(change['after'], change['reviewAfter'])
+                self.assertEqual(
+                    change['before'].replace(
+                        'The decorative spatial background follows native scrolling on each '
+                        'page, and topic choices in Writing.',
+                        'Scrolling and Writing topic choices leave the camera at the page’s '
+                        'opening view. Main-page navigation retains the camera flight and '
+                        'content fade.',
+                    ),
+                    change['after'],
+                    'only the stale scrolling explanation changes in the existing paragraph',
+                )
+                continue
             for version, state in [
                 ('before', 'baseline'),
                 ('after', 'public'),

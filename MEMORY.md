@@ -7,7 +7,7 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 - Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`;
   PR67 merged with accepted stable staging. Revalidate live refs/checks next time.
 - #58/PR60 and #65/PR66 are closed/merged; PMDay #61 delivered via PR63.
-- #41 continues on `work/issue-41-arkadiy-scroll-20261010`; current Draft PR and
+- #41 continues in Draft PR68 on `work/issue-41-arkadiy-scroll-20261010`; current
   exact CI/preview/evaluation pointers are maintained in its live issue.
 
 ## Decisions
@@ -23,6 +23,7 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
   reflow and history/anchor landings. Existing navigation flight/fade/movement
   and passive fractal motion remain. Current source contract supersedes old
   scroll-camera mapping; prior pure model tests remain historical model checks.
+  Credits display preferences describe that same steady view and retained flight.
 - No merge, stable promotion or production launch is authorized for this task.
   Ordinary PR preview and a separate supported offline review candidate only.
 - Source contracts, original budgets and profile/device/release boundaries remain.

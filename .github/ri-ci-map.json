@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
     "date": "2026-10-10",
-    "summary": "Issue41 scoped Arkadiy publication-state successor preserves exact historical semantics and original review gates; default output omits both cards and exactly two retained snapshots, four bounded review-only sources use canonical composition. Native scroll no longer moves the camera; maintained behavioral/hosted checks retain route flights, scrolling, profiles and original budgets. AC27–35 alias AD/SC criteria; applicable existing test suites/CI and new evidence paths reconciled."
+    "summary": "Issue41 scoped Arkadiy publication-state successor preserves exact historical semantics and original review gates; default output omits both cards and exactly two retained snapshots, four bounded review-only sources use canonical composition. Native scroll no longer moves the camera; the exact Credits display-preferences paragraph describes the steady view and retained navigation flight. Maintained behavioral/hosted checks retain scrolling, profiles and original budgets. AC27–35 alias AD/SC criteria; applicable existing test suites/CI and new evidence paths reconciled."
   },
   "layers": [
     {
@@ -415,7 +415,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "27a390326884502491fbd730369ab65d4eb2fafded3d564b0d9a7dcce6030aff",
+    "digest": "8debe49b2284b423f2a82069c3b7deab9a50de7651897e5f2aae77fa624e3024",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -451,7 +451,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "6995893af739fef307bf88739535932bd674b69086227b2937364ec1d78c7325"
+        "sha256": "0b8c37b4e71c1721b8fec4c293dce7247602b0413c9cb5faa980a766a74a1586"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -503,7 +503,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b3933eda3db6983c5611f29b13492507760b7f209659ba9d78c4162f41875909"
+        "sha256": "aba362b0c77015a7216afef56cb163cb3c4d76a3341b57cad347b5ab2e3b93e9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -627,7 +627,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "dcc5e3b026e92d5d0d77cded2ef7415331748e36a4f5e799c7989a7dd1be096b"
+        "sha256": "80f3a00cb539a1b93f388d49a8e5a490371537ea586cf07d8b1eeb1c8c19dbf1"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
