@@ -284,6 +284,8 @@ function fixture(options = {}) {
     },
   };
   const window = {
+    setTimeout,
+    clearTimeout,
     devicePixelRatio: 1,
     innerHeight: 900,
     scrollY: 0,

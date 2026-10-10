@@ -676,6 +676,43 @@ test('resolved native style reuse stays inside one capture across a theme change
   second.dispose();
 });
 
+test('identical native paint keeps independent owner sizes and generated pseudo content', async () => {
+  const f = pageFixture();
+  const first = new f.Node('p', 'First paper', {}, { width: 400, height: 70 });
+  const second = new f.Node('p', 'Second paper', {}, { top: 220, width: 240, height: 96 });
+  for (const [owner, text] of [
+    [first, 'First marker'],
+    [second, 'Second marker'],
+  ]) {
+    const marker = new f.Node(
+      'span',
+      text,
+      { display: 'inline' },
+      { left: 40, top: owner.rect.top + 20, width: 120, height: 20 }
+    );
+    marker.pseudos['::before'] = {
+      content: '"' + text + '"',
+      position: 'static',
+      'font-family': f.view.getComputedStyle(marker).getPropertyValue('font-family'),
+      'font-size': '16px',
+    };
+    owner.append(marker);
+  }
+  f.main.append(first, second);
+  const capture = await embeddedTexture().captureField(f.root, pageOptions);
+  assert.ok(capture);
+  const [paper, marker, otherPaper, otherMarker] = serializedNativeStyles(f.sources[0]);
+  assert.deepEqual(marker.styles, otherMarker.styles);
+  assert.equal(paper.styles.width, '400px');
+  assert.equal(otherPaper.styles.width, '240px');
+  assert.equal(paper.styles.height, '70px');
+  assert.equal(otherPaper.styles.height, '96px');
+  const pseudos = serializedNativeStyles(f.sources[0], '::before');
+  assert.equal(pseudos[1].styles.content, '"First marker"');
+  assert.equal(pseudos[3].styles.content, '"Second marker"');
+  capture.dispose();
+});
+
 function opaqueHeaderFixture(options = {}) {
   const f = pageFixture(options);
   const html = new f.Node('html', '', {}, { left: 0, top: 0, width: viewport.width, height: 6000 });

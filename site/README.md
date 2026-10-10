@@ -238,6 +238,14 @@ clock, including first-load or deferred post-handoff captures. Actual navigation
 uses its admitted field at full visibility. Cancellation aborts the separately
 signalled warm task; ordinary completed handoff may let it finish within the same
 capture deadlines and shared resource caps.
+Startup warming waits for the existing idle callback, or its cancellable500ms
+timeout fallback where that API is unavailable. The adapter's80ms acquisition
+and160ms preparation deadlines start inside the capture; foreground navigation
+and resident-only warming during travel keep their existing scheduling.
+Native SVG snapshots reuse complete identical resolved paint declarations only
+within that capture. Measured owner sizes belong to the equality key; individual
+pseudo content and selectors remain separate. No style cache survives a capture
+or theme change.
 Settled fields paint only with their actual host room. Other cached fields keep
 their identities and textures for reverse travel, fading over the existing180ms
 handoff before their absent-host contribution stops; this includes skipped

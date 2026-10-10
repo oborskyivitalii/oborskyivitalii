@@ -627,15 +627,19 @@ function createPresentation(content) {
       // First-load capture must not compete with the initial layout and scene
       // build. This is one cancellable idle task, not another animation clock;
       // the adapter still owns its unchanged acquisition/decode deadlines.
-      if (!residentOnly && window.requestIdleCallback) {
+      if (!residentOnly) {
         await new Promise((resolve) => {
           let ticket;
+          const idle = typeof window.requestIdleCallback === 'function';
           const finish = () => {
-            window.cancelIdleCallback?.(ticket);
+            if (idle) window.cancelIdleCallback?.(ticket);
+            else window.clearTimeout(ticket);
             signal?.removeEventListener('abort', finish);
             resolve();
           };
-          ticket = window.requestIdleCallback(finish, { timeout: 500 });
+          ticket = idle
+            ? window.requestIdleCallback(finish, { timeout: 500 })
+            : window.setTimeout(finish, 500);
           signal?.addEventListener('abort', finish, { once: true });
           if (signal?.aborted) finish();
         });

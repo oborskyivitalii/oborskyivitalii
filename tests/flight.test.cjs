@@ -91,6 +91,11 @@ function presentationFixture(options = {}) {
     window: {
       scrollY: 640,
       innerHeight: 800,
+      requestIdleCallback(callback) {
+        queueMicrotask(callback);
+        return 1;
+      },
+      cancelIdleCallback() {},
       SiteEffects: effects,
       CSS: { supports: () => true },
       ...options.window,
@@ -386,6 +391,7 @@ test('next-page warming prepares the settled source only after a ready, uncancel
   const controller = new AbortController();
   const data = { page: 'research' };
   const warm = fixture.presentation.prepareNext(data, controller.signal);
+  await new Promise(setImmediate);
   assert.deepEqual(
     calls.map(({ name }) => name),
     ['prime']
@@ -400,10 +406,12 @@ test('next-page warming prepares the settled source only after a ready, uncancel
   assert.equal(calls.at(-1).cacheOnly, true);
 
   const failed = fixture.presentation.prepareNext(data, controller.signal);
+  await new Promise(setImmediate);
   resolve(false);
   await failed;
   assert.equal(calls.at(-1).name, 'prime', 'failed destination capture cannot prewarm its source');
   const aborted = fixture.presentation.prepareNext(data, controller.signal);
+  await new Promise(setImmediate);
   controller.abort();
   resolve(true);
   await aborted;
@@ -513,6 +521,53 @@ test('speculative capture waits for startup idle and navigation cancels its queu
   await fresh;
   assert.deepEqual(calls, ['writing', 'departure']);
   assert.equal(tasks.size, 0);
+});
+
+test('startup warming without the idle API waits, cancels and rejects stale timer callbacks', async () => {
+  const calls = [];
+  const tasks = new Map();
+  let serial = 0;
+  const fixture = presentationFixture({
+    window: {
+      requestIdleCallback: undefined,
+      setTimeout(callback, milliseconds) {
+        assert.equal(milliseconds, 500);
+        tasks.set(++serial, callback);
+        return serial;
+      },
+      clearTimeout: (ticket) => tasks.delete(ticket),
+    },
+    embedded: {
+      async prime(data) {
+        calls.push(data.page);
+        return true;
+      },
+      async prepareDeparture() {
+        calls.push('departure');
+      },
+    },
+  });
+  const controller = new AbortController();
+  const stale = fixture.presentation.prepareNext({ page: 'research' }, controller.signal);
+  assert.deepEqual(calls, []);
+  assert.equal(tasks.size, 1);
+  const lateCallback = tasks.values().next().value;
+  controller.abort();
+  await stale;
+  assert.equal(tasks.size, 0);
+  lateCallback();
+  await Promise.resolve();
+  assert.deepEqual(calls, [], 'cancelled warming cannot start capture after a late timer');
+  const fresh = fixture.presentation.prepareNext({ page: 'writing' });
+  assert.deepEqual(calls, []);
+  tasks.values().next().value();
+  await fresh;
+  assert.deepEqual(calls, ['writing', 'departure']);
+  assert.equal(tasks.size, 0);
+  const alreadyAborted = fixture.presentation.prepareNext({ page: 'research' }, controller.signal);
+  await alreadyAborted;
+  assert.equal(tasks.size, 0);
+  assert.deepEqual(calls, ['writing', 'departure']);
 });
 
 test('mounted successor warming uses the spare scene slot during travel and never captures its hidden native plane', async () => {

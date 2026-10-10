@@ -7968,6 +7968,12 @@
       "purpose": "Inert source-bound cold WebKit raster reports, original failed attempts and warm native-pixel parity evidence; no active runtime or device/release admission.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-49/2026-10-10-startup-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Inert source-bound WebKit startup-idle observations, exact failed rows, rejected runtime snapshots and warm native-pixel parity; no active profile or device/performance admission.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md"
     }
   }
 }

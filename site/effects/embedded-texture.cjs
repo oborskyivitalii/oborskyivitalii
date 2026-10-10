@@ -1162,6 +1162,7 @@ module.exports = function () {
       style: sharedNativeStyle(owners),
       before: sharedNativeStyle(owners, 'before'),
       after: sharedNativeStyle(owners, 'after'),
+      declarations: new Map(),
     };
   }
   function nativeMarkup(measured, prefix, shared) {
@@ -1218,9 +1219,16 @@ module.exports = function () {
             '}'
         );
       }
+      const declaration = styles.join(';');
+      let paintClass = shared.declarations.get(declaration);
+      if (!paintClass) {
+        paintClass = 'embedded-paint-' + shared.declarations.size;
+        shared.declarations.set(declaration, paintClass);
+        css.push('.' + paintClass + '{' + declaration + '}');
+      }
       const attributes = [
-        'class="embedded-native-paint ' + className + '"',
-        'style="' + escapeXML(styles.join(';')) + '"',
+        'class="embedded-native-paint ' + className + ' ' + paintClass + '"',
+        'style=""',
       ];
       if (vector) {
         if (node.localName === 'svg') attributes.push('xmlns="http://www.w3.org/2000/svg"');
@@ -1283,7 +1291,7 @@ module.exports = function () {
     const markup = nativeMarkup(measured, '', shared);
     return nativeSVG(measured, {
       ...markup,
-      css: [...Object.values(shared).map((rule) => rule.css), ...markup.css],
+      css: [shared.style.css, shared.before.css, shared.after.css, ...markup.css],
     });
   }
   function serializeField(measured) {
@@ -1310,7 +1318,9 @@ module.exports = function () {
     });
     return nativeSVG(measured, {
       css: [
-        ...Object.values(shared).map((rule) => rule.css),
+        shared.style.css,
+        shared.before.css,
+        shared.after.css,
         ...fragments.flatMap((fragment) => fragment.css),
       ],
       content: fragments.map((fragment) => fragment.content).join(''),
