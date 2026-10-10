@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8ba731968fb360963025d8aa4d748db5f5db5814b2b68445c0ad8389ebc550c1",
+    "digest": "3dcc7d3dd53a03bdfc44d2adf15c1b426417a2d852f6e7a297c950c93c64d08c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "252a956399830c39d096e88ffbbeda78f904fedcb58091851f045e70af6b1b51"
+        "sha256": "ca90f9184df15927bac64456df769626b5901847b505e5841e64087f651835ba"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e0f48b7deb991436db60b4127e259e19f649ddfe876c2ea21217e995b55e0a7a"
+        "sha256": "ffcbb4ccd2f3515326b825d23bfe25490237eef975c616959ba9976f01318c12"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "598a139d9484838f086f4a665f0560e4c6d9f12aec30136a8e1c8ba6fc949afb"
+        "sha256": "94b406f2b5e46ca0b81e26a1bb7d82e71d83b43868566cd381bff5b8cd1207a6"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -755,7 +755,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "89aea08abb457b5b31e72ea58d57e2a1bf0f64a55200afe97a976524330d2e8d"
+        "sha256": "bad30aa6287fdd404a977c9d14148128ce358cb57c4c598cf93d4f69f876cb0b"
       },
       {
         "path": "review/issue-49/2026-10-10-fractal-evidence.tar.gz",
@@ -766,6 +766,11 @@
         "path": "review/issue-49/2026-10-10-fractal-traces.tar.gz",
         "identity_mode": "content",
         "sha256": "6be20a36fb290d98ba673dab7f1457d20fe7b7ecd1dcf42851743a8fe9a720f0"
+      },
+      {
+        "path": "review/issue-49/2026-10-10-motion-evidence.tar.gz",
+        "identity_mode": "content",
+        "sha256": "b81b092a64e24d0bb9046e61d516851aa1b35fdeabbbf3194cfa623dd6b5f3bd"
       },
       {
         "path": "review/issue-49/2026-10-10-native-raster-evidence.tar.gz",
@@ -7911,6 +7916,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-10-fractal-traces.tar.gz"
+    },
+    {
+      "path": "review/issue-49/2026-10-10-motion-evidence.tar.gz",
+      "kind": "file",
+      "purpose": "Inert exact-runtime assembly-lag observations, original WebKit videos and explicitly temporary counterfactual; no active profile, runtime fix or device/performance admission.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-motion-evidence.tar.gz"
     },
     {
       "path": "review/issue-49/2026-10-10-native-raster-evidence.tar.gz",

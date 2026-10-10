@@ -6,8 +6,8 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 - Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
 - Issue49 / Draft PR53 remains the sole fragment-flight execution route on
-  `docs/fractal-content-flight-plan-20261008`. This continuation starts from
-  inspected `2bbf44edcea81029260d9a37dc2c375549ba39a6`; fetch the live head/checks.
+  `docs/fractal-content-flight-plan-20261008`. Motion source inspected at clean
+  `50eb63d31466c6975a533f45671419ce6b824a4b`; fetch the live head/checks.
 - WebKit26.6 exposes no requestIdleCallback. Startup warming now uses the same
   cancellable500ms idle timeout as a fallback instead of competing immediately
   with first layout. Foreground/travel scheduling and capture caps are unchanged.
@@ -20,9 +20,16 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
   subsequent navigation preflight passes. Original failed revisions remain failed.
 - Prepared Color public digest is
   `054fde357fa04044f51b3942cc8038904b27e688bc481fd35d047c73866fe2fe`.
-  Dirty local observations need exact-byte clean/hosted binding. Read
+  Clean hosted source50eb passes the scoped tablet profile, with optional Home
+  capture167ms landscape still failed against160ms. Read
   [the startup result](review/issue-49/2026-10-08-analysis.md#webkit-startup-idle-compatibility)
   and its inert evidence archive; exact published checks/preview belong to issue/PR.
+- Assembly jerk investigation confirms one-paint progress lag: camera is already
+  stationary while assembly remains94.76%; next WebKit paint moves visible corners
+  85.39/104.89px. Temporary synchronized fixture removes this remaining movement
+  (0/0px), without admitting the whole motion or cost. Production runtime is
+  unchanged. See [motion investigation](review/issue-49/2026-10-08-analysis.md#assembly-jerk-investigation)
+  and its inert evidence; implement through authored owners and original checks.
 
 ## Decisions
 
@@ -55,7 +62,7 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 ## Next session
 
 1. Fetch live main, issue49/PR53 head and exact preview/check identities.
-2. Read startup-idle compatibility and the hierarchy/cost predecessor in the same handoff.
+2. Read assembly-jerk investigation, startup-idle compatibility and the hierarchy/cost predecessor.
 3. Preserve all failed cold captures; distinguish destination readiness and warm
    bitmap parity from whole paired cost and physical-device playback acceptance.
 4. Use current issue AC mapping and existing source/browser profiles. Rebuild RI

@@ -7974,6 +7974,12 @@
       "purpose": "Inert source-bound WebKit startup-idle observations, exact failed rows, rejected runtime snapshots and warm native-pixel parity; no active profile or device/performance admission.",
       "role": "history",
       "owner": "review/issue-49/2026-10-08-analysis.md"
+    },
+    "review/issue-49/2026-10-10-motion-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Inert exact-runtime assembly-lag observations, original WebKit videos and explicitly temporary counterfactual; no active profile, runtime fix or device/performance admission.",
+      "role": "history",
+      "owner": "review/issue-49/2026-10-08-analysis.md"
     }
   }
 }
