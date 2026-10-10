@@ -46,6 +46,9 @@ function harness({
   deferred = false,
   wholeViewport = false,
   atlasEnvelope = null,
+  anchor = null,
+  scrollPaddingTop = '0px',
+  stageHeight = 1800,
 } = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
@@ -73,7 +76,7 @@ function harness({
     },
     fonts: eventTarget(),
     createElement() {
-      return {
+      const stage = {
         style: style(),
         children: [],
         attributes: {},
@@ -84,15 +87,25 @@ function harness({
           this.children.push(node);
         },
         querySelectorAll() {
-          return [];
+          return this.anchor ? [this.anchor] : [];
         },
         getBoundingClientRect() {
-          return { height: 1800 };
+          return { height: stageHeight };
         },
         remove() {
           this.connected = false;
         },
       };
+      if (anchor)
+        stage.anchor = {
+          id: anchor.id,
+          getBoundingClientRect() {
+            return {
+              top: parseFloat(stage.style['--embedded-stage-top']) + anchor.offsetTop,
+            };
+          },
+        };
+      return stage;
     },
     importNode(node) {
       return { ...node };
@@ -107,6 +120,11 @@ function harness({
     scrollY: 0,
     location: { search: '', hash: '' },
     SiteEffects: {},
+    getComputedStyle(node) {
+      return node === document.documentElement
+        ? { scrollPaddingTop }
+        : { scrollMarginTop: anchor?.scrollMarginTop || '0px' };
+    },
     SiteScene: { canTravel: () => canTravel },
     SiteArchive: {
       preparePreview(stage, landing) {
@@ -602,6 +620,41 @@ test('a warmed Writing field canonicalizes empty archive query and hash before c
   assert.equal(await h.bridge.prime(h.data('writing'), 78), true);
   assert.deepEqual(plain(h.stages[0].archiveLanding), { search: '', hash: '' });
   assert.equal(h.stages[0].normalized, true);
+});
+
+test('incoming hash capture honors native header clearance and the target scroll margin', async () => {
+  const h = harness({
+    anchor: { id: 'about', offsetTop: 1100, scrollMarginTop: '14px' },
+    scrollPaddingTop: '126px',
+    stageHeight: 2400,
+  });
+  h.document.body.dataset.page = 'credits';
+  h.collect('credits', 100);
+  const landing = { hash: '#about', search: '', position: null };
+  assert.equal(await h.bridge.prime(h.data('index'), 78, landing), true);
+  assert.equal(h.stages[0].anchor.getBoundingClientRect().top, 140);
+  assert.equal(h.captures[0].root, h.stages[0]);
+  assert.equal(h.bridge.diagnostics().lastFailure, null);
+});
+
+test('incoming hash capture clamps near the native bottom and preserves explicit history positions', async () => {
+  const h = harness({
+    anchor: { id: 'contact', offsetTop: 1700 },
+    scrollPaddingTop: '110px',
+  });
+  h.document.body.dataset.page = 'credits';
+  h.collect('credits', 100);
+  assert.equal(
+    await h.bridge.prime(h.data('index'), 78, { hash: '#contact', position: null }),
+    true
+  );
+  assert.equal(h.stages[0].anchor.getBoundingClientRect().top, 800);
+  assert.equal(h.stages[0].style['--embedded-stage-top'], '-900px');
+  assert.equal(
+    await h.bridge.prime(h.data('index'), 78, { hash: '#contact', position: [0, 300] }),
+    true
+  );
+  assert.equal(h.stages[1].style['--embedded-stage-top'], '-222px');
 });
 
 test('three persistent compact fields remain within original global caps and use canonical decorative sampling', async () => {

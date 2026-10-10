@@ -28,6 +28,13 @@ Dated continuity, not live authority. Last verified: **2026-10-09**.
   Auto Night also found Research acquisition timeout; Day Home departure timed
   out. Focused native geometry/ancestor work and document-response drain fixes
   are recorded in the same handoff; revalidate their live head and hosted proof.
+- Resumed candidate8abce999 fixed all four ordinary/no-Canvas smoke lanes and
+  cold Auto Night Research acquisition. Preview37970633915 still found desktop
+  departure preparation timeout and compact Credits→Home native mismatch.
+  Actual compact forward/skip/reverse checkpoint rasters show painted solids;
+  independent review retains faint resting content and weak corridor perception.
+  Single-decode field packing and native hash-inset/clamp fixes passed independent
+  source review and46+23 focused tests; fetch the live head and hosted results.
 
 ## Decisions
 

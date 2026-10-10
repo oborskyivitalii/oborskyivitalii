@@ -307,7 +307,16 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       }
       const target = [...stage.querySelectorAll('[id]')].find((node) => node.id === id);
       if (!target) return false;
-      scroll = target.getBoundingClientRect().top;
+      const padding = parseFloat(
+        window.getComputedStyle(document.documentElement).scrollPaddingTop
+      );
+      const margin = parseFloat(window.getComputedStyle(target).scrollMarginTop);
+      const inset =
+        (Number.isFinite(padding) ? padding : 0) + (Number.isFinite(margin) ? margin : 0);
+      const maximum = Math.max(0, top + stage.getBoundingClientRect().height - state.height);
+      // Match native scrollIntoView: its start honors the header clearance and
+      // target margin, then clamps to the destination document's scroll range.
+      scroll = Math.max(0, Math.min(maximum, target.getBoundingClientRect().top - inset));
     }
     if (!Number.isFinite(scroll) || scroll < 0) return false;
     stage.style.setProperty('--embedded-stage-top', top - scroll + 'px');

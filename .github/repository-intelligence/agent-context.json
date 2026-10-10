@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8f097cfbe65541b5d9f97fc4bdd48b168bed4bb6b1e79a9a118223c7bb935be0",
+    "digest": "21057d7dfc259eda0d261952cd28aa30514059b875df829728940d10b9c6990d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "811934a6834a8a34daa5161e4ce44c59198876f6ce792e2fb699914d8159192b"
+        "sha256": "abb6caca36fb9a71285b5db05fb3d1eebf3d6f835a03146d62377e01256a76dc"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "7269276c57c1030acc5e3e9ad57bf5bf589fdbe8a751172a7f8c8d464edc63e9"
+        "sha256": "3d23304dbf8b86c6a5d765c3226b179dba77ca2f6ddc5769db9edc880063aeae"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4595,12 +4595,12 @@
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "933f68cef193e0c9298f102c66c0b65c3193c7c40528633235b50cc48a0e224b"
+        "sha256": "1bb8974203d610b95d33a440d1d659a4223dfbbdb068277c3c3e4ac12215c0da"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "952b6757dd5a06c1c572afd17b992695837bd63476e0cee4b577da9a8de00c1b"
+        "sha256": "d81ddf0cfb64aca2426521fe2351390cd9201ac7f5b6e1da2f4f68719de5e35f"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5040,12 +5040,12 @@
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "1c601a69bff093109f0f831a6f6b83ce320bfb4fff8ea762e93a03b9bdc21f97"
+        "sha256": "0ee44afd309aa6824e144f972e2502183bcec366e08271e24d92c09d66896607"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "fd890ddc6666bbfc9d4089c8049dbb2553c7b98518c10e3ee0c5db1a2fd2c3c0"
+        "sha256": "8c6c84f510ec9d1a90c2de10fa60f9404dba630aea0d05692244ef282c37aeed"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
