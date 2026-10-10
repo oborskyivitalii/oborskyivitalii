@@ -211,6 +211,124 @@ function fixture(options = {}) {
 }
 const viewport = { width: 1440, height: 900, dpr: 1.5 };
 
+test('either decoded SVG readiness or load paints once and retains ownership proof', async () => {
+  for (const first of ['decode', 'load']) {
+    const f = pageFixture({ autoLoad: false });
+    f.main.append(new f.Node('p', 'Decoded native text'));
+    const decoded = [];
+    f.view.Image.prototype.decode = function () {
+      return new Promise((resolve) => decoded.push(resolve));
+    };
+    const pending = embeddedTexture().captureField(f.root, pageOptions);
+    const lateLoad = f.images[0].onload;
+    assert.equal(f.counts.draws, 0);
+    if (first === 'decode') decoded[0]();
+    else await lateLoad();
+    const asset = await pending;
+    assert.ok(asset);
+    assert.equal(asset.sourceOwners.length, 1);
+    assert.equal(f.counts.draws, 1);
+    assert.equal(f.timers.size, 0);
+    decoded[0]();
+    await lateLoad();
+    assert.equal(f.counts.draws, 1);
+    asset.dispose();
+  }
+});
+
+test('decode and load racing an isolated proof cannot start duplicate draws', async () => {
+  const f = adjacentBorderFixture(100.3, {
+    width: 1440,
+    contentTop: 880,
+    contentHeight: 20,
+    autoLoad: false,
+  });
+  const decoded = [];
+  f.view.Image.prototype.decode = function () {
+    return new Promise((resolve) => decoded.push(resolve));
+  };
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+  });
+  const load = f.images[0].onload;
+  decoded[0]();
+  await Promise.resolve();
+  assert.equal(f.images.length, 2);
+  await load();
+  assert.equal(f.counts.draws, 1);
+  const lateProofLoad = f.images[1].onload;
+  decoded[1]();
+  const asset = await pending;
+  assert.ok(asset);
+  assert.equal(f.counts.draws, 2);
+  await lateProofLoad();
+  assert.equal(f.counts.draws, 2);
+  assert.equal(f.timers.size, 0);
+  asset.dispose();
+});
+
+test('unavailable SVG decode keeps the bounded onload path', async () => {
+  for (const throws of [false, true]) {
+    const f = fixture({ autoLoad: false });
+    f.root.ownerDocument.defaultView.Image.prototype.decode = () => {
+      if (throws) throw new Error('Unsupported SVG decode');
+      return Promise.reject(new Error('Unsupported SVG decode'));
+    };
+    const pending = embeddedTexture().capture(f.root, viewport);
+    await Promise.resolve();
+    assert.equal(f.counts.draws, 0);
+    await f.images[0].onload();
+    const asset = await pending;
+    assert.ok(asset);
+    assert.equal(f.counts.draws, 1);
+    asset.dispose();
+  }
+});
+
+test('late decoded readiness respects abort and absolute preparation expiry', async () => {
+  for (const outcome of ['abort', 'timeout', 'expired']) {
+    const f = pageFixture({ autoLoad: false });
+    f.main.append(new f.Node('p', 'Bounded native text'));
+    let elapsed = 0;
+    f.view.performance = { now: () => elapsed };
+    let decoded;
+    f.view.Image.prototype.decode = () => new Promise((resolve) => (decoded = resolve));
+    const controller = new AbortController();
+    const failures = [];
+    const pending = embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      signal: controller.signal,
+      onReject: (detail) => failures.push(detail),
+    });
+    if (outcome === 'abort') controller.abort();
+    else {
+      elapsed = 161;
+      if (outcome === 'timeout') [...f.timers.values()][0]();
+    }
+    decoded();
+    assert.equal(await pending, null);
+    await Promise.resolve();
+    assert.equal(f.counts.draws, 0);
+    assert.equal(f.timers.size, 0);
+    assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+    assert.equal(
+      failures[0].reason,
+      outcome === 'abort' ? 'capture-aborted' : 'preparation-deadline'
+    );
+  }
+});
+
+test('decoded readiness cannot admit missing native ink', async () => {
+  const f = pageFixture({ autoLoad: false, blank: true });
+  f.main.append(new f.Node('p', 'Actual native ink is required'));
+  f.view.Image.prototype.decode = () => Promise.resolve();
+  assert.equal(await embeddedTexture().captureField(f.root, pageOptions), null);
+  assert.equal(f.counts.draws, 1);
+  assert.equal(f.timers.size, 0);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+});
+
 test('one native raster includes complete resolved paper, padding and plain text', async () => {
   const f = fixture();
   const capture = await embeddedTexture().capture(f.root, viewport);

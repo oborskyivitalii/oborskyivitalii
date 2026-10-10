@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3e44f53460b2ffb1780ebc5b47439713c3d3b0b07bd2b91e0e1f65edac2a416d",
+    "digest": "162c6b83104d6e013ed1ec19dc0bf4dab29b9329a2f9fa3b32cecbe457e8038e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "798ca43695f726f372b970e01670272388f193d57ec322ea24fa5b336f333c61"
+        "sha256": "7e7b4ffa7f63ffb22588cee0cf57cd91503c05928bf4d58bf3bdea2b0a2d10b6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9068ce8fcf2bea6f96fdb99482b50b42709d09945defad0a002b9f3b24dde95c"
+        "sha256": "a05ba1e103227e10dda497320b5adb47a830d255f6d599da7be09aca7e921693"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -755,12 +755,12 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "9ef7ed966213409459b186fd098686d0d87a5371e1d10f5d9c1265c8c1a2f2df"
+        "sha256": "dfb5ca53997bb099046dca3ff6158a485e1ab27f5f40c2e89b175e0ad5157da6"
       },
       {
         "path": "review/issue-49/2026-10-10-performance.json",
         "identity_mode": "content",
-        "sha256": "ece7431bd70165c1f4db5a5808efab0693ace58ebe6111b0687cda3d738d6ecd"
+        "sha256": "4aa5c353d57189f2c0db6082db3467b99b15c9bb4805a7a329d3fd40824afcf9"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4460,7 +4460,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "d7eb5d8e1ac8b90fb78fb8d27e1bd45c144d6b2b14e64be701d303f1c70191ed"
+        "sha256": "4758ba2070613c49ad393dfa4627a7848b7809c7477a6b47b5b08efd411c6ae4"
       },
       {
         "path": "site/analytics.json",
@@ -4655,7 +4655,7 @@
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "9671e1ba2b65a6ce0d3d04273b9c69dd5a4b8948767a715be605dceca85831b3"
+        "sha256": "7730c8e550bda983b9fa1c027d84cb833eaeb4b0c62ff9c766036af362c14076"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -5100,7 +5100,7 @@
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "e698dcdc0fd8dabc040db039cb18053b8ab19674ce2fe896e857efa3695d3b27"
+        "sha256": "7dc9098f76a71f04bf50c7383944cb892c1776604244b25d76b4dd5ac919219a"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",

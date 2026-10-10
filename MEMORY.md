@@ -25,6 +25,9 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
   hidden behind the opaque sticky header. Current correction clips proven native
   visibility inside original clocks; independent122-case review passes. Exact
   published-head hosted proof is still required; no whole-browser pass is claimed.
+  Parallel source23622 preserves a complete physical header proof; Basic,
+  Navigation and acceptance pass. The interrupted-session append preserves it
+  and adds one guarded Image.decode/onload readiness path with original limits.
 - Prior failed preview37985227296 remains failed evidence: desktop cold
   preparation timed out; mobile warming lost current Home. Its raw ZIP was
   inspected during this continuation; no old result is reclassified as passing.
@@ -49,6 +52,8 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
   opaque header above the isolated capture plane. Preserve native coordinates,
   inspect outsets first and revalidate coverage after decode; uncertain proof
   keeps original viewport and visible-owner ink gates.
+- Independent settled-camera audit passes128 source cases: native reading scroll
+  cannot fly the active camera; inter-route travel/fade and ambient motion remain.
 - AC01 and accepted historicalAC11–AC14 retain their original scope. AC02–AC10
   andAC15 remain open for whole visual/device/accessibility/paired-cost/delivery
   gates. Preview authorization does not authorize stable promotion or merge.

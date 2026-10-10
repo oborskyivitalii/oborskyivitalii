@@ -2014,6 +2014,7 @@ module.exports = function () {
     return new Promise((resolve) => {
       let finished = false;
       let timeout;
+      let painting = false;
       const decodeStarted = timingStart(options);
       let decodeReported = false;
       function finishDecode() {
@@ -2068,10 +2069,16 @@ module.exports = function () {
       function abort() {
         finish(false, options.signal?.aborted ? 'capture-aborted' : 'raster-decode-failed');
       }
-      image.onload = async () => {
-        if (finished) return;
+      async function paintReady() {
+        // SVG decode can make the bitmap usable before its queued load event.
+        // Both readiness paths share one draw/proof and the original deadline.
+        if (finished || painting) return;
+        painting = true;
         finishDecode();
         try {
+          if (options.signal?.aborted) return abort();
+          if (options.deadline !== undefined && options.clock() > options.deadline)
+            return finish(false, 'preparation-deadline');
           if (!image.naturalWidth || !image.naturalHeight)
             return finish(false, 'native-raster-empty');
           const readbackStarted = timingStart(options);
@@ -2103,7 +2110,8 @@ module.exports = function () {
         } catch {
           finish(false, 'native-raster-readback-failed');
         }
-      };
+      }
+      image.onload = paintReady;
       image.onerror = abort;
       options.signal?.addEventListener('abort', abort, { once: true });
       const timeoutMs =
@@ -2115,6 +2123,15 @@ module.exports = function () {
       if (options.signal?.aborted) return abort();
       try {
         image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+        if (!finished && typeof image.decode === 'function') {
+          // Engines that reject SVG decode may still support ordinary onload.
+          // Rejection leaves that existing capability/deadline path in charge.
+          try {
+            Promise.resolve(image.decode()).then(paintReady, () => {});
+          } catch {
+            // Retain onload when this optional readiness API throws.
+          }
+        }
       } catch {
         abort();
       }

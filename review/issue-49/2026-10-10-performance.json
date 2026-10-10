@@ -5,7 +5,7 @@
   "owner": "https://github.com/oborskyivitalii/oborskyivitalii/issues/49",
   "fullGate": false,
   "browserPerformanceAcceptance": false,
-  "limitations": "Synthetic native-paint/SVG fixture and pure Node geometry timings; no browser Canvas draw, GPU, native-device or FPS acceptance. Original deadlines and shared caps unchanged. Paired browser gate remains open.",
+  "limitations": "Original samples are synthetic native-paint/SVG fixtures and pure Node geometry timings. The svgReadiness subsection adds isolated Chromium foreignObject/Canvas readiness probes, not source-bound site performance. Neither supplies GPU, native-device, FPS or paired browser acceptance. Original deadlines and shared caps remain unchanged; paired browser gate remains open.",
   "texture": {
     "workload": "32 disjoint 400x20 native text owners, 100 unrelated FontFaces; original caps, one full field readback, synthetic SVG decoder",
     "pairedRuns": 25,
@@ -706,5 +706,409 @@
     "beforeBytes": 199323,
     "afterBytes": 160515,
     "savedBytes": 38808
+  },
+  "svgReadiness": {
+    "kind": "isolated-browser-mechanism-diagnostic",
+    "browser": "Chromium 138.0.7204.0",
+    "viewport": [
+      1440,
+      960
+    ],
+    "performanceAcceptance": false,
+    "limitations": "Synthetic foreignObject and inline-PNG readiness; excludes full native source capture, scene cost, hosted engine and device acceptance. Each actual bitmap retains the existing ownership proof and budgets.",
+    "textRuns": [
+      {
+        "owners": 1,
+        "i": 0,
+        "decode": 3.699999999254942,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 7.799999998882413
+      },
+      {
+        "owners": 1,
+        "i": 1,
+        "decode": 1,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 3.200000001117587
+      },
+      {
+        "owners": 1,
+        "i": 2,
+        "decode": 0.6999999992549419,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 3.300000000745058
+      },
+      {
+        "owners": 1,
+        "i": 3,
+        "decode": 1.099999999627471,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 3.400000000372529
+      },
+      {
+        "owners": 1,
+        "i": 4,
+        "decode": 0.6999999992549419,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 3
+      },
+      {
+        "owners": 1,
+        "i": 5,
+        "decode": 0.8999999985098839,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 2.899999998509884
+      },
+      {
+        "owners": 16,
+        "i": 0,
+        "decode": 1.099999999627471,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4.099999999627471
+      },
+      {
+        "owners": 16,
+        "i": 1,
+        "decode": 1.400000000372529,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4.5
+      },
+      {
+        "owners": 16,
+        "i": 2,
+        "decode": 1.199999999254942,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4
+      },
+      {
+        "owners": 16,
+        "i": 3,
+        "decode": 1.099999999627471,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 5
+      },
+      {
+        "owners": 16,
+        "i": 4,
+        "decode": 1.1000000014901161,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 3.800000000745058
+      },
+      {
+        "owners": 16,
+        "i": 5,
+        "decode": 1.099999999627471,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 3.599999999627471
+      },
+      {
+        "owners": 32,
+        "i": 0,
+        "decode": 1.400000000372529,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4.600000001490116
+      },
+      {
+        "owners": 32,
+        "i": 1,
+        "decode": 1.699999999254942,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4.799999998882413
+      },
+      {
+        "owners": 32,
+        "i": 2,
+        "decode": 1.5,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 5.299999998882413
+      },
+      {
+        "owners": 32,
+        "i": 3,
+        "decode": 1.5,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4.600000001490116
+      },
+      {
+        "owners": 32,
+        "i": 4,
+        "decode": 1.5,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 5
+      },
+      {
+        "owners": 32,
+        "i": 5,
+        "decode": 1.5,
+        "completeAtDecode": true,
+        "widthAtDecode": 1440,
+        "ink": 222,
+        "onload": 4.5
+      }
+    ],
+    "inlineMediaRuns": [
+      {
+        "i": 0,
+        "pngBytes": 29458,
+        "decode": 7,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 13.699999999254942,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 1,
+        "pngBytes": 29458,
+        "decode": 2.199999999254942,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 5.299999998882413,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 2,
+        "pngBytes": 29458,
+        "decode": 2.5,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 6,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 3,
+        "pngBytes": 29458,
+        "decode": 2.400000000372529,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 5.900000000372529,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 4,
+        "pngBytes": 29458,
+        "decode": 2.599999999627471,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 5.799999998882413,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 5,
+        "pngBytes": 29458,
+        "decode": 2.700000001117587,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 6.200000001117587,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 6,
+        "pngBytes": 29458,
+        "decode": 2.699999999254942,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 6.799999998882413,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 7,
+        "pngBytes": 29458,
+        "decode": 2.400000000372529,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 5.800000000745058,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 8,
+        "pngBytes": 29458,
+        "decode": 3.200000001117587,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 6.900000000372529,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 9,
+        "pngBytes": 29458,
+        "decode": 2.5,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 5.300000000745058,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 10,
+        "pngBytes": 29458,
+        "decode": 2.099999999627471,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 4.699999999254942,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      },
+      {
+        "i": 11,
+        "pngBytes": 29458,
+        "decode": 1.900000000372529,
+        "decodePixel": [
+          201,
+          119,
+          135,
+          255
+        ],
+        "complete": true,
+        "onload": 4.400000000372529,
+        "loadPixel": [
+          201,
+          119,
+          135,
+          255
+        ]
+      }
+    ]
   }
 }

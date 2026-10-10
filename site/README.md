@@ -144,7 +144,12 @@ blank owners fail closed. The temporary peak includes decoded SVG, atlas canvas,
 readback and sampled PNG decode/encoding surfaces within the original limits.
 Recorded subowner paths, geometry and text remain the native coverage and landing oracle.
 Capture follows the visible viewport rather than allocating the full scrollable
-document. Temporary captures, retained textures and solid geometry share the
+document. The shared native measurement owner clips only paint proven hidden
+by the opaque full-width header, revalidating physical coverage after decode.
+Unknown stacking, effects or shape keep the complete viewport and native ink gates.
+SVG decode readiness and onload share one draw/proof under the same absolute
+deadline, with ordinary onload retained when decode is unavailable.
+Temporary captures, retained textures and solid geometry share the
 original piece, pixel, owner, descendant and text limits; unsupported capture or
 an unadmittable landing uses the existing native `flightPose` fade, with no DOM
 fragment acquisition or scatter. Motion Off/reduced and unsupported scene travel
