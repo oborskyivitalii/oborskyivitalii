@@ -514,17 +514,50 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   const assertValue = (actual, expected, message) =>
     assert.deepEqual(valueContract(actual), valueContract(expected), message);
   function verifyAlpha(screen) {
-    const accessibility =
-      /@media\s*\(\s*prefers-reduced-transparency\s*:\s*reduce\s*\)\s*\{\s*:where\(\s*:root\s*\)\s*\{\s*--reading-surface-alpha\s*:\s*100%\s*;?\s*\}\s*\}/g;
-    assert.equal(
-      [...screen.matchAll(accessibility)].length,
-      1,
-      'one exact reduced-transparency alpha override'
+    const { toolRequire } = require('../tools/quality/common.cjs');
+    const postcss = toolRequire('postcss');
+    const selector = toolRequire('postcss-selector-parser');
+    const compact = 'screenand(max-width:640px)';
+    const tokens = [];
+    postcss.parse(screen).walkDecls('--reading-surface-alpha', (declaration) => {
+      const media = [];
+      for (let parent = declaration.parent; parent; parent = parent.parent)
+        if (parent.type === 'atrule') media.unshift(parent.params.replace(/\s+/g, ''));
+      tokens.push({
+        selector: selector().processSync(declaration.parent.selector, { lossless: false }),
+        value: declaration.value,
+        media,
+      });
+    });
+    assert.deepEqual(
+      tokens,
+      [
+        { selector: ':where(:root)', value: '87%', media: [] },
+        {
+          selector: ":where(:root:has(meta[name='site-variant'][content='color']))",
+          value: '72%',
+          media: [compact],
+        },
+        {
+          selector:
+            ":where(:root[data-theme='dark']:has(meta[name='site-variant'][content='color']))",
+          value: '78%',
+          media: [compact],
+        },
+        {
+          selector:
+            ":where(:root:not([data-theme]):has(meta[name='site-variant'][content='color']))",
+          value: '78%',
+          media: [compact, '(prefers-color-scheme:dark)'],
+        },
+        {
+          selector: ':where(:root)',
+          value: '100%',
+          media: ['(prefers-reduced-transparency:reduce)'],
+        },
+      ],
+      'only exact canonical default, compact Color and reduced-transparency alpha scopes'
     );
-    const ordinary = screen.replace(accessibility, ''),
-      tokens = [...ordinary.matchAll(/--reading-surface-alpha\s*:\s*([^;}]+)/g)];
-    assert.equal(tokens.length, 1, 'one shared default alpha authority');
-    assert.equal(tokens[0][1].trim(), '87%', 'restored Color reading alpha');
     assert.equal(
       (screen.match(/color-mix\s*\(/g) || []).length,
       1,
@@ -856,7 +889,7 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   const alpha = '\n:root {--reading-surface-alpha:100%}\n';
   assert.throws(
     () => verify(owner + alpha, base, extra, base + '\n' + owner + alpha),
-    /default alpha authority/,
+    /canonical default, compact Color and reduced-transparency alpha scopes/,
     'an opaque repaint outside accessibility preferences fails'
   );
   const wrongAlpha = owner.replace(
@@ -866,9 +899,24 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   assert.notEqual(wrongAlpha, owner, 'alpha mutation changes the actual default token');
   assert.throws(
     () => verify(wrongAlpha, base, extra, base + '\n' + wrongAlpha),
-    /restored Color reading alpha/,
+    /canonical default, compact Color and reduced-transparency alpha scopes/,
     'the historical shared alpha cannot drift'
   );
+  for (const mutate of [
+    (css) => css.replace('--reading-surface-alpha: 72%', '--reading-surface-alpha: 70%'),
+    (css) => css.replace('screen and (max-width: 640px)', 'screen and (max-width: 641px)'),
+    (css) => css.replaceAll("[content='color']", "[content='base']"),
+    (css) => css.replace("[data-theme='dark']", "[data-theme='light']"),
+    (css) => css.replace('--reading-surface-alpha: 100%', '--reading-surface-alpha: 78%'),
+  ]) {
+    const changed = mutate(owner);
+    assert.notEqual(changed, owner, 'material-scope mutation changes the actual owner');
+    assert.throws(
+      () => verify(changed, base, extra, base + '\n' + changed),
+      /canonical default, compact Color and reduced-transparency alpha scopes/,
+      'compact Color cannot drift or change the base, breakpoint, theme or accessibility scope'
+    );
+  }
   const wrongAccessibility = owner.replace(
     /prefers-reduced-transparency\s*:\s*reduce/,
     'prefers-color-scheme:dark'
@@ -880,7 +928,7 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
   );
   assert.throws(
     () => verify(wrongAccessibility, base, extra, base + '\n' + wrongAccessibility),
-    /reduced-transparency alpha override/,
+    /canonical default, compact Color and reduced-transparency alpha scopes/,
     'theme changes cannot select opaque paint'
   );
 });

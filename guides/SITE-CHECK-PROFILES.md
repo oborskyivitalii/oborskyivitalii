@@ -168,7 +168,11 @@ Permanent
 `embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
 `embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
 native text/paper/link/list/control and decoded-media capture plus the shared
-retained-bank, room/prewarm/departure/handoff lifecycle. Existing archive tests
+retained-bank, room/prewarm/departure/handoff lifecycle.
+Recorded reverse-camera regressions also require visible partial geometry along
+real destination-room branches before native handoff, with exact source contact
+and endpoints; a behind-camera path cannot pass by first appearing fully assembled.
+Existing archive tests
 also verify inert preview and native filter normalization use the same scoped
 renderer, without detaching the live archive or creating listeners in a stage.
 They are selected for relevant PR changes, staging and production; the owning

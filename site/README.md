@@ -142,6 +142,10 @@ an unadmittable landing retains shared fragments or ordinary native navigation.
 side faces, target-camera endpoints and immutable membership in existing fractal
 branches. Their resting geometry uses the exact shared `loopTransform` and room
 offset under the existing ambient clock; real content textures remain visible.
+Reverse collection can traverse a second genuine branch in the destination room
+before reaching its native plane, so a retreating camera sees partial geometry
+while both resting contact and the final endpoint remain exact. This world path
+uses the existing cached room descriptors and shared transform.
 `embedded-scene.cjs` attaches collection/paint to the current travel effect;
 the existing scene composition sorts its faces with the fractal. It owns no
 runtime dependency, second renderer or animation clock. Preparation, native
@@ -307,7 +311,20 @@ effect fails generation. Hosted evidence is bound to the producer's base variant
 selecting Color for production remains a separate decision requiring its complete
 same-byte hosted behavioral/performance matrix. A base pass cannot admit Color.
 
-Reading backdrop paint is authored only in `engine/reading-surfaces.css` and concatenated into the existing stylesheet by the producer. All routes, Color and the Appearance popup share theme-paper paint at 87% background alpha (13% transparency), crisp edges and a 12px visible radius at all four outer corners; title spread adjusts its inner radius and preserves ink stacking. Element opacity stays one so text and controls do not fade. The same owner restores fully opaque paper for `prefers-reduced-transparency: reduce`. Component spacing and semantic control/CTA paint remain ordinary layout CSS.
+Reading backdrop paint is authored only in `engine/reading-surfaces.css` and
+concatenated into the existing stylesheet by the producer. Base and desktop Color
+use theme-paper paint at 87% background alpha (13% transparency). Compact Color
+screens at or below 640px use 72% in Day and 78% in Night, so the neighboring
+content structures remain visible through the native paper. Live content, inert
+capture stages and native fallback share this metadata-gated material.
+
+All surfaces retain crisp edges and a 12px visible radius at all four outer
+corners; title spread adjusts its inner radius and preserves ink stacking.
+Element opacity stays one so text and controls do not fade. The same owner
+restores fully opaque paper for `prefers-reduced-transparency: reduce`. The compact
+Color atmosphere veil uses 25% element opacity in `engine/styles.css`; Canvas,
+text and control opacity stay unchanged. Component spacing and semantic
+control/CTA paint remain ordinary layout CSS.
 
 Writing and Talks publication cards use one backdrop on the complete row, with
 the same shared 12px gutter and content-driven height. Metadata and copy do not

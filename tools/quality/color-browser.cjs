@@ -2537,6 +2537,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     reducedMotion: 'no-preference',
   });
   const errors = [];
+  const embeddedCheckpoints = { firstLoad: null, journeys: [] };
   try {
     await context.addInitScript(canvasPaintProbe);
     await context.addInitScript(paintProbe);
@@ -2557,12 +2558,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     assert.equal(identity.edge, true);
     assert.equal(identity.fragments, true, 'fragment flight is the default Color presentation');
     const firstLoad = engine === 'chromium' ? await embeddedFirstLoad(page) : null;
+    embeddedCheckpoints.firstLoad = firstLoad;
     await page.evaluate((mode) => {
       const control = document.getElementById('theme-mode');
       control.value = mode;
       control.dispatchEvent(new Event('change', { bubbles: true }));
     }, theme);
-    const embedded = [];
+    const embedded = embeddedCheckpoints.journeys;
     if (engine === 'chromium') {
       // Both directions share the existing two-width Day/Night smoke; no new
       // browser or device matrix is introduced for the expanded native capture.
@@ -2687,6 +2689,9 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       embedded,
       firstLoad,
     };
+  } catch (error) {
+    error.embeddedCheckpoints = embeddedCheckpoints;
+    throw error;
   } finally {
     await context.close();
   }
@@ -2696,6 +2701,7 @@ function failedScenario(error, engine, width, theme) {
   if (error.fragmentObservation) row.fragments = error.fragmentObservation;
   if (error.fragmentRouteObservation) row.fragmentRoutes = error.fragmentRouteObservation;
   if (error.embeddedObservation) row.embedded = error.embeddedObservation;
+  if (error.embeddedCheckpoints) row.embeddedCheckpoints = error.embeddedCheckpoints;
   return row;
 }
 async function main(options = {}) {

@@ -41,7 +41,12 @@ function style() {
     },
   };
 }
-function harness({ compact = false, deferred = false, wholeViewport = false } = {}) {
+function harness({
+  compact = false,
+  deferred = false,
+  wholeViewport = false,
+  atlasEnvelope = null,
+} = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
   const captures = [];
@@ -149,9 +154,11 @@ function harness({ compact = false, deferred = false, wholeViewport = false } = 
     settings: { maxPixels: 1000000 },
     captureField(root, options) {
       const owners = root.children[0].children;
-      const envelope = wholeViewport
-        ? { left: 0, top: 78, width, height: height - 78 }
-        : { left: 25, top: 100, width: width - 50, height: 450 };
+      const envelope =
+        atlasEnvelope ||
+        (wholeViewport
+          ? { left: 0, top: 78, width, height: height - 78 }
+          : { left: 25, top: 100, width: width - 50, height: 450 });
       const scale = Math.min(1, Math.sqrt(1000000 / (envelope.width * envelope.height)));
       const asset = {
         owner: root,
@@ -500,6 +507,92 @@ test('reverse camera passage reveals Home chunks near their real root before the
     assert.ok(visiblePhases[0] < 0.6);
     assert.ok(Math.abs(visiblePhases.at(-1) - 1) < 1e-12);
   }
+});
+
+test('recorded Talks to Writing reverse camera frames expose partial content before the native endpoint', async () => {
+  const h = harness({
+    compact: true,
+    atlasEnvelope: { left: 0, top: 131, width: 382, height: 713 },
+  });
+  h.frame.ambientTime = 14557.534;
+  await h.prepare('talks', 'writing');
+  const ids = plain(h.bridge.diagnostics().ids);
+  // Actual failing 390px hosted-camera observations, before the camera settled.
+  const records = [
+    [0.212261146, -341.580886087, 15040.934],
+    [0.265286624, -333.651490785, 15107.534],
+    [0.31839172, -324.823268009, 15174.134],
+    [0.371496815, -315.31057269, 15240.834],
+    [0.424601911, -305.371220293, 15307.434],
+    [0.477627389, -295.205113708, 15374.134],
+    [0.517436306, -285.05694113, 15440.834],
+    [0.583757962, -275.156740672, 15507.534],
+    [0.636863057, -265.748204176, 15574.134],
+    [0.689968153, -257.032828577, 15640.834],
+    [0.743073248, -249.255194557, 15707.534],
+    [0.796098726, -242.64534023, 15774.234],
+    [0.849203822, -237.439956888, 15840.834],
+    [0.902229299, -233.853163544, 15907.534],
+    [0.955334395, -232.125006842, 15974.134],
+  ];
+  let partialFrames = 0;
+  for (const [amount, z, time] of records) {
+    h.bridge.present(amount);
+    const shapes = h.collect('writing', time, { position: [5, 3, z], target: [0, 0, z - 29] });
+    const partial = shapes.filter(
+      (shape) =>
+        shape.id.startsWith('writing:') &&
+        shape.face === 'front' &&
+        shape.progress > 0 &&
+        shape.progress < 1
+    );
+    if (partial.length) partialFrames++;
+    if (amount >= 0.4246)
+      assert.ok(partial.length > 0, `recorded reverse partials missing at ${amount}`);
+    assert.deepEqual(plain(h.bridge.diagnostics().ids), ids);
+  }
+  assert.ok(
+    partialFrames >= 10,
+    'reverse content must visibly collect across actual painted camera frames'
+  );
+  h.finish('writing', 16000);
+  assert.deepEqual(
+    plain(h.bridge.diagnostics().bank.find((entry) => entry.route === 'writing').groups[0].ids),
+    ids
+  );
+});
+
+test('all adjacent non-Home reverse destinations collect through their own existing world before native handoff', async () => {
+  for (const compact of [false, true])
+    for (const [from, to] of [
+      ['writing', 'research'],
+      ['talks', 'writing'],
+      ['credits', 'talks'],
+    ]) {
+      const h = harness({ compact, wholeViewport: true });
+      await h.prepare(from, to);
+      let partialFrames = 0;
+      for (let tick = 0; tick <= 100; tick++) {
+        const amount = tick / 100;
+        h.bridge.present(amount);
+        const shapes = h.collect(to, 100 + tick * 15, journeyPose(h, from, to, amount));
+        if (
+          shapes.some(
+            (shape) =>
+              shape.id.startsWith(`${to}:`) &&
+              shape.face === 'front' &&
+              shape.progress > 0 &&
+              shape.progress < 1
+          )
+        )
+          partialFrames++;
+      }
+      assert.ok(
+        partialFrames >= 25,
+        `${from}→${to}/${h.frame.width}px cannot first appear fully assembled`
+      );
+      h.finish(to, 2000);
+    }
 });
 
 test('a warmed Writing field canonicalizes empty archive query and hash before capture', async () => {

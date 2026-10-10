@@ -1272,3 +1272,140 @@ test('field factory serialization preserves complete synchronous native admissio
   );
   field.dispose();
 });
+
+test('one acquisition reads every resolved native style property once and skips inactive pseudo paint', async () => {
+  const f = pageFixture();
+  const card = new f.Node('article', '', { 'background-color': 'rgb(20, 30, 40)' });
+  const paragraph = new f.Node('p', 'A paragraph with ');
+  paragraph.append(new f.Node('strong', 'nested native ink', { display: 'inline' }));
+  card.append(paragraph);
+  f.main.append(card);
+  const records = new Map();
+  const getComputedStyle = f.view.getComputedStyle;
+  f.view.getComputedStyle = (node, pseudo) => {
+    let styles = records.get(node);
+    if (!styles) records.set(node, (styles = new Map()));
+    const key = pseudo || '';
+    let record = styles.get(key);
+    if (!record) styles.set(key, (record = { calls: 0, properties: new Map() }));
+    record.calls++;
+    const style = getComputedStyle(node, pseudo);
+    return {
+      getPropertyValue(property) {
+        record.properties.set(property, (record.properties.get(property) || 0) + 1);
+        return style.getPropertyValue(property);
+      },
+    };
+  };
+  const field = await embeddedTexture().captureField(f.root, pageOptions);
+  assert.ok(field);
+  for (const styles of records.values()) {
+    for (const [pseudo, record] of styles) {
+      assert.equal(record.calls, 1);
+      assert.ok([...record.properties.values()].every((reads) => reads === 1));
+      if (pseudo) assert.deepEqual([...record.properties.keys()], ['content']);
+    }
+  }
+  assert.match(f.sources[0], /nested native ink/);
+  field.dispose();
+});
+
+test('a later capture and native field check never reuse the preceding style snapshot', async () => {
+  const f = pageFixture();
+  const paragraph = new f.Node('p', 'Native style snapshot');
+  f.main.append(paragraph);
+  const textures = embeddedTexture();
+  const first = await textures.captureField(f.root, pageOptions);
+  assert.ok(first);
+  paragraph.computed.color = 'rgb(200, 210, 220)';
+  assert.equal(
+    textures.matchesField(f.root, first.sourceOwners, {
+      ...pageOptions,
+      decorations: first.decorations,
+    }),
+    false
+  );
+  const second = await textures.captureField(f.root, pageOptions);
+  assert.ok(second);
+  assert.notEqual(second.sourceOwners[0].paintFingerprint, first.sourceOwners[0].paintFingerprint);
+  assert.match(f.sources[1], /color:rgb\(200, 210, 220\)/);
+  paragraph.computed['font-family'] = 'Unsupported Web Font';
+  assert.equal(await textures.captureField(f.root, pageOptions), null);
+  first.dispose();
+  second.dispose();
+});
+
+test('newly generated pseudo paint receives fresh admission, geometry and a complete fingerprint', async () => {
+  const f = pageFixture();
+  const paragraph = new f.Node('p', 'Native generated surface');
+  paragraph.pseudos['::before'] = {
+    content: 'none',
+    'background-image': 'url(https://invalid.test/ignored)',
+  };
+  f.main.append(paragraph);
+  const textures = embeddedTexture();
+  const first = await textures.captureField(f.root, pageOptions);
+  assert.ok(first);
+  assert.doesNotMatch(f.sources[0], /invalid\.test/);
+  paragraph.pseudos['::before'] = {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    'box-sizing': 'border-box',
+    left: '-10px',
+    top: '-10px',
+    width: '420px',
+    height: '100px',
+    'background-color': 'rgb(20, 30, 40)',
+    opacity: '1',
+    transform: 'none',
+    filter: 'none',
+  };
+  assert.equal(
+    textures.matchesField(f.root, first.sourceOwners, {
+      ...pageOptions,
+      decorations: first.decorations,
+    }),
+    false
+  );
+  const second = await textures.captureField(f.root, pageOptions);
+  assert.ok(second);
+  assert.equal(second.envelope.left, paragraph.rect.left - 10);
+  assert.match(f.sources[1], /::before\{/);
+  assert.match(f.sources[1], /background-color:rgb\(20, 30, 40\)/);
+  paragraph.pseudos['::before']['background-color'] = 'rgb(40, 50, 60)';
+  assert.equal(
+    textures.matchesField(f.root, second.sourceOwners, {
+      ...pageOptions,
+      decorations: second.decorations,
+    }),
+    false
+  );
+  paragraph.pseudos['::before']['background-image'] = 'url(https://invalid.test/paint)';
+  assert.equal(await textures.captureField(f.root, pageOptions), null);
+  first.dispose();
+  second.dispose();
+});
+
+test('successful rasters completed beyond the shared deadline report precise bounded failure and release pixels', async () => {
+  const f = pageFixture();
+  f.main.append(new f.Node('p', 'Never expose native content in a deadline reason'));
+  let elapsed = 0;
+  f.view.performance = { now: () => elapsed };
+  const drawImage = f.context.drawImage;
+  f.context.drawImage = function (...args) {
+    drawImage.apply(this, args);
+    elapsed = 161;
+  };
+  const failures = [];
+  assert.equal(
+    await embeddedTexture().captureAll(f.root, {
+      ...pageOptions,
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
+  );
+  assert.deepEqual(failures, [{ reason: 'preparation-deadline', path: [], tag: 'div' }]);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.equal(f.timers.size, 0);
+});

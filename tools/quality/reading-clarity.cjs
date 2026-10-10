@@ -605,6 +605,10 @@ async function surfaceSamples(page, route, width, theme, result) {
   const observed = await page.evaluate((selectors) => {
     const appearance = document.querySelector('.appearance'),
       wasOpen = appearance?.open;
+    const variant = document.querySelector('meta[name="site-variant"]')?.content || 'base';
+    const theme =
+      document.documentElement.dataset.theme ||
+      (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     if (appearance) appearance.open = true;
     const samples = selectors.map((selector) => {
       const el = document.querySelector(selector);
@@ -622,6 +626,9 @@ async function surfaceSamples(page, route, width, theme, result) {
       ].map((corner) => parseFloat(css[corner]) + spread);
       return {
         selector,
+        variant,
+        width: innerWidth,
+        theme,
         inline,
         background: css.backgroundColor,
         reducedTransparency: matchMedia('(prefers-reduced-transparency: reduce)').matches,
@@ -654,14 +661,14 @@ function paintAlpha(background) {
 function validateSurfaceSample(sample) {
   assert.equal(sample.missing, undefined, 'actual reading sample ' + sample.selector);
   const measuredAlpha = paintAlpha(sample.background),
-    expectedAlpha = sample.reducedTransparency ? 1 : 0.87;
+    expectedAlpha = expectedSurfaceAlpha(sample);
   assert.ok(
     Number.isFinite(measuredAlpha) && Math.abs(sample.backgroundAlpha - measuredAlpha) < 0.00001,
     'actual background alpha measured independently of element opacity'
   );
   assert.ok(
     Math.abs(measuredAlpha - expectedAlpha) < 0.00001,
-    'shared historical paper alpha or explicit reduced-transparency preference'
+    'shared historical paper alpha, compact Color material or explicit reduced-transparency preference'
   );
   assert.equal(sample.opacity, '1', 'title ink and popup controls retain full element opacity');
   assert.equal(sample.mask, 'none', 'shared crisp surface edge');
@@ -677,6 +684,12 @@ function validateSurfaceSample(sample) {
     'shared visible outer corner radius'
   );
 }
+function expectedSurfaceAlpha(sample) {
+  if (sample.reducedTransparency) return 1;
+  if (sample.variant === 'color' && sample.width <= 640)
+    return sample.theme === 'dark' ? 0.78 : 0.72;
+  return 0.87;
+}
 function validateSurfaceSamples(samples) {
   assert.equal(samples.length, 52, '13 actual surfaces at two widths and two themes');
   for (const sample of samples) validateSurfaceSample(sample);
@@ -688,13 +701,18 @@ function validateSurfaceSamples(samples) {
     ['1440/dark', '1440/light', '320/dark', '320/light'],
     'Appearance panel measured at both widths and themes'
   );
-  for (const theme of ['light', 'dark']) {
-    const rows = samples.filter((row) => row.theme === theme),
-      background = rows[0].background;
+  const materials = new Map();
+  for (const sample of samples) {
+    const key = sample.theme + '/' + expectedSurfaceAlpha(sample);
+    if (!materials.has(key)) materials.set(key, []);
+    materials.get(key).push(sample);
+  }
+  for (const rows of materials.values()) {
+    const background = rows[0].background;
     assert.ok(background !== 'rgba(0, 0, 0, 0)', 'shared visible theme paper');
     assert.ok(
       rows.every((row) => row.background === background),
-      'all surface types and widths use the same theme paper color'
+      'all surface types use the same theme paper color within their admitted material'
     );
   }
 }

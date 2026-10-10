@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "93a33bcd8ae261e5aa1e1020ffff982c062a7fc49a42435abf133c6ab9a4c740",
+    "digest": "474b6d53e54549beab994f7b7af961dca506992034c7ac729207560c9e9505ee",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d34e3f61b04fd4eecad419e211b8de3ddac1458e47263a85c42df75cde5bb98b"
+        "sha256": "7163e556896cb486b242829b266c47b708aae9b60b27417e79ef93c3cb43af36"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b561ff2104224703c08ec531a12c0d8bc32f234768e057642b9b3f8962786e78"
+        "sha256": "b7b58f1e3be9e5536cd77857d40df29c2b63f20efb2754baec9ec364e61af32c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -290,12 +290,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "6e24d7821ef0faca8cc7c047c0f7377468f0cded91c4a640c98c3366a6a5e946"
+        "sha256": "7afd067715afff1cd163fec25f5a28b2e6bdb9b56915ad141b176fa11f6b2880"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "78bd167bc5724182e35af7c3065c185cc87311aabdfd854126778a838be74d97"
+        "sha256": "8e94243cc2f94d39e6ebe735572de26e21d1478b736def26a4dc511bd8c0addb"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -325,7 +325,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "b7439e6e3dd43ea8f64f1f53d23f63c277ca01fa31f72f129b59af8b0de07bb9"
+        "sha256": "19a9d2be7cc66ee4550c2a3d19b4fdd8f9363f0e9bf0e9863b49738f5f67b406"
       },
       {
         "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
@@ -353,44 +353,44 @@
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
-        "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/archive.js",
+        "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/archive.js",
         "identity_mode": "content",
         "sha256": "ba55ef343b11c3c4194537f97312661a98b1e604edb73b4d41b456636c667afd"
       },
       {
-        "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/navigation.js",
+        "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/navigation.js",
         "identity_mode": "content",
         "sha256": "80f7efd0b25b17fb1541bfbc5958789296d9cd4650036dc7726319d952f07e29"
       },
       {
-        "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/space.js",
+        "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/space.js",
         "identity_mode": "content",
         "sha256": "fe14b771b2866a7993d439f32d89c5414cf68f8b23db0c07850158afb0237a75"
       },
       {
-        "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/styles.css",
+        "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/styles.css",
         "identity_mode": "content",
-        "sha256": "f7a3c2e65884f426f916518c687316f65d554e3c257a35b35effe0c54b455952"
+        "sha256": "10cc4a307dff9a7565a1654329319df7fd20fa24df32f52618e9de8f0844beab"
       },
       {
-        "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/theme.js",
+        "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/theme.js",
         "identity_mode": "content",
         "sha256": "b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee"
       },
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "975c3287f67ceb10a1be492ffc84de2330769464246f70e9b3ed719b9bb16627"
+        "sha256": "0f8ae0e9522d4250fedd30869d458368395c6c84af028e796033a2892a0f39d2"
       },
       {
-        "path": "docs/snapshots/3b69a6776fcad1571f88c67af715bc312e77714bf5285cb081e183123b81051b/writing.html",
+        "path": "docs/snapshots/07c0e608bb4c8bc517e5134174fb0ff064dfc8e8505a49fd3184d9835da297df/index.html",
         "identity_mode": "content",
-        "sha256": "087917ebda8089702cc2e9536afb0eac2e7dacc18e68535b85a064b677ce289a"
+        "sha256": "a49727e1c8c97def59d9c300bf8feabb03795c681e217ca7e8695bffe4ffd9c7"
       },
       {
-        "path": "docs/snapshots/51d8672cf04b03d5df704d38b15d76ea7e4e917c0165bc2cd8f316fbee273dee/research.html",
+        "path": "docs/snapshots/46aa338f64c658b80d8f4cd4d1654da36bf876cb40402bf0838bd068d7a22b8d/talks.html",
         "identity_mode": "content",
-        "sha256": "9458404e9ba3b1357f625570f4f4a63d17935d76a8cd1e5910934a7896e1aa40"
+        "sha256": "4d69d52e294da589cafb7f5fa6965340152db92aa1f6c2518113842f84bc604e"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -413,24 +413,24 @@
         "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
       },
       {
+        "path": "docs/snapshots/99a7f50fa029dba016c4efb539877b3d80b33bab8402c89dcc82f3fdc9c374ac/credits.html",
+        "identity_mode": "content",
+        "sha256": "04efbba6833937ec23e160583979b983295caf6027368e94cbb9722df9e04722"
+      },
+      {
         "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
         "identity_mode": "content",
         "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
       },
       {
-        "path": "docs/snapshots/c5547d608d41ffaab080aa9b514dcb111ed1934eb563ef1722675c0c212c21e8/credits.html",
+        "path": "docs/snapshots/d42f7ac9a197e198e6444a7530eb691f880780f5117ed367768ac7153f648ca7/research.html",
         "identity_mode": "content",
-        "sha256": "2b74bb65ffb0003393fad9c1a1e0606e5cdb5f197599c4fa1aab5531e8bac384"
+        "sha256": "a7708bb4914b0dfc7ed02ff2843a41f9a20014d98ce0913cd54762fa1f602e5b"
       },
       {
-        "path": "docs/snapshots/c6461de3051fe7983a8f95217c7c1526c0dede9466b0cddf04bc3f86250ed27f/talks.html",
+        "path": "docs/snapshots/f990c0aa0bdf083dfe027632a697b1d46a1b34d866bf6b28c0ae9b119855cae8/writing.html",
         "identity_mode": "content",
-        "sha256": "24026e422ee54247d09cc72f4df1a2a20be748218843e517d3caf264375c14a6"
-      },
-      {
-        "path": "docs/snapshots/c9d81955c1370c97f7c2b9d9be400357a66e2370630fa08e34979562f3c43b0b/index.html",
-        "identity_mode": "content",
-        "sha256": "d0998c62708e0ed9ff481e7184fe9cb344050e14113c7580e6731aff5788fd19"
+        "sha256": "c41cfbd4208c4f13f802f73f5328a4e33c936be9fdd3ef0061532bf57a1883b7"
       },
       {
         "path": "docs/space.js",
@@ -440,12 +440,12 @@
       {
         "path": "docs/styles.css",
         "identity_mode": "content",
-        "sha256": "f7a3c2e65884f426f916518c687316f65d554e3c257a35b35effe0c54b455952"
+        "sha256": "10cc4a307dff9a7565a1654329319df7fd20fa24df32f52618e9de8f0844beab"
       },
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "8aec3cf95b2a398a9e078bd7e24e92b5148dc7cfb1b2e349613a485ad9404424"
+        "sha256": "1650940dffeef9c6432d567c3e83b783863faaa468e73b863105b7aa23fe23f1"
       },
       {
         "path": "docs/theme.js",
@@ -455,7 +455,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "34ea9dcecc4aac504f94178cebe41bdc60d9f0093a9cb0e63c5506d89d470194"
+        "sha256": "ac8eadd4f250f278cedede1f6e77b23856d74968b85fb6f681b1a64bc5ae6953"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -485,7 +485,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "c601673bc5ed577ebfa2d74ede0685c93d5768757f18854e1b559a7a13317d11"
+        "sha256": "ffbb334f34d24c27a65fe1d55371cefe5901a2f1eeff3edcece60c1a71d43ed0"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -705,7 +705,7 @@
       {
         "path": "review/issue-49/2026-10-08-analysis.md",
         "identity_mode": "content",
-        "sha256": "11f7ca7bc1967ae5f8a9c1f3842eceec040e47e4a88ba8647537d8781beca76c"
+        "sha256": "9b369352b79a47b00be40853e1a39dc18b938e2e0aadbdc1f7348bc9a156c37a"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -4405,7 +4405,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "e35ce4c513c227a735c9a37a025142eef983b6de35ec66b1f5877ebca45b7daf"
+        "sha256": "e5f1bd7dfbb5b4b9c88de2f9cf5b52fafb7f8dd9db1fdd71783164dcd8d3be40"
       },
       {
         "path": "site/analytics.json",
@@ -4590,17 +4590,17 @@
       {
         "path": "site/effects/embedded-plan.cjs",
         "identity_mode": "content",
-        "sha256": "21d7da100285956260c8b211be0d070abb7935699b0a8057c795a357f480fec2"
+        "sha256": "f1dd90b109be4fa043a53a86bb8951879ae3f98f0bcfc3b991d27e4b6aec1e50"
       },
       {
         "path": "site/effects/embedded-scene.cjs",
         "identity_mode": "content",
-        "sha256": "179987bfe0e9110230755037d2c81cf9c86f3a4d8a47db39b9511e5d1976a372"
+        "sha256": "933f68cef193e0c9298f102c66c0b65c3193c7c40528633235b50cc48a0e224b"
       },
       {
         "path": "site/effects/embedded-texture.cjs",
         "identity_mode": "content",
-        "sha256": "7ad4ab1d355c3a5b529061da29876e54b9f6fe3c5319f99416e2234a2f6ff5db"
+        "sha256": "4ce9d55f0f70fe19e45142a0b6c1189bd2f6c3cb1de3a45583e3332a27be06b0"
       },
       {
         "path": "site/effects/flight.cjs",
@@ -4665,7 +4665,7 @@
       {
         "path": "site/engine/reading-surfaces.css",
         "identity_mode": "content",
-        "sha256": "fdd2c60523aae31feadb4585fa720d313c6fa2869f2de74654e776c9f653e2a0"
+        "sha256": "2e94c212697ea2fc59600d63e1bc4023d2fe11a33782317a33a9ce550eba262b"
       },
       {
         "path": "site/engine/renderer.cjs",
@@ -4675,7 +4675,7 @@
       {
         "path": "site/engine/styles.css",
         "identity_mode": "content",
-        "sha256": "afe11b4666b0d3fb76ace14bdc1efde0d6072645a931a537a430eb7a994f56c9"
+        "sha256": "4ee85396d71121b829757459548f6c2c3174cda12104dc6117aff15970b0f0cd"
       },
       {
         "path": "site/engine/theme.js",
@@ -4690,7 +4690,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "91834cba4969b36e89cf17e63bc66e556c2f7ae0fa373ff0e500a689a0ca18d9"
+        "sha256": "d4d39387101cda097df2be01a4c159064cce374c6a00c1a8fba6c5a54b50dfee"
       },
       {
         "path": "site/retained/manifest.json",
@@ -4980,7 +4980,7 @@
       {
         "path": "tests/browser-gate-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "ed95d88ba02dbf92b4a902f3d22b0577aeab7e9c9371b2127ab3ddc91d7720ff"
+        "sha256": "000a4f1381afff0c57ac499fab2644d9b00ff3cd5f820de9eab56f896184e740"
       },
       {
         "path": "tests/browser-lifecycle.test.cjs",
@@ -5035,17 +5035,17 @@
       {
         "path": "tests/embedded-plan.test.cjs",
         "identity_mode": "content",
-        "sha256": "797a58bd30ea65ee8dcd02498c740e42101704a4149c07d2e3e8cb915d4860ba"
+        "sha256": "ed07ec529eaefef42b705d38c042d476e9c70937d7fa059f8d50d38d8c45772d"
       },
       {
         "path": "tests/embedded-scene.test.cjs",
         "identity_mode": "content",
-        "sha256": "50adf90dfa8c409b929261f43b5b1693dcb1ba510d8959d206c73cd093bee481"
+        "sha256": "1c601a69bff093109f0f831a6f6b83ce320bfb4fff8ea762e93a03b9bdc21f97"
       },
       {
         "path": "tests/embedded-texture.test.cjs",
         "identity_mode": "content",
-        "sha256": "8e4e2e55889d4c5825bcc497fff9966fde92d1086aef2e9f2494ed02aafd81e8"
+        "sha256": "0d80353eb0b55cce06405f52c7b8896e905693da712789b0352d7c978b23d924"
       },
       {
         "path": "tests/endpoint-fixtures.test.cjs",
@@ -5060,7 +5060,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "78c0f7f3acfea4483fccd2c2a79f19c5114ff096733900521fe0d59029cd7c83"
+        "sha256": "aca5495ec3a6adc56a920ead27ffe41449a0bcca03873a9c8f53349f504984c3"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -5505,7 +5505,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "1691590122eeb00123a97e07ef8c65e773d05c240060b134d71ee6f70947669b"
+        "sha256": "674fccb9bb5924b334e661249408a5bcd627ef58580366a7d326bdfe881de18c"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -5650,7 +5650,7 @@
       {
         "path": "tools/quality/reading-clarity.cjs",
         "identity_mode": "content",
-        "sha256": "1032b929716a691df151f28608ce1be5547e2c3a9fc97606a7959cff4f564c6f"
+        "sha256": "c2666de95ae5ea2bb769201ecec393c3b8d56a4e29a039a6b1db1167e6de9b66"
       },
       {
         "path": "tools/quality/refactor-metrics.cjs",
@@ -5685,7 +5685,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "062433531cb25c19f50a2d7d9a9fd74fdb6c4bf81dc2302c7ff951a3a4371912"
+        "sha256": "1de41ad1eab6e60a7956315bdc09bcf2acf0a6aad61a3398346e5bc03d510a3e"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -6925,7 +6925,7 @@
       "title": "theme.js"
     },
     {
-      "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/archive.js",
+      "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/archive.js",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -6936,7 +6936,7 @@
       "title": "archive.js"
     },
     {
-      "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/navigation.js",
+      "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/navigation.js",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -6947,7 +6947,7 @@
       "title": "navigation.js"
     },
     {
-      "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/space.js",
+      "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/space.js",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -6958,7 +6958,7 @@
       "title": "space.js"
     },
     {
-      "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/styles.css",
+      "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/styles.css",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -6969,7 +6969,7 @@
       "title": "styles.css"
     },
     {
-      "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb/theme.js",
+      "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/theme.js",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -6991,7 +6991,7 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/3b69a6776fcad1571f88c67af715bc312e77714bf5285cb081e183123b81051b/writing.html",
+      "path": "docs/snapshots/07c0e608bb4c8bc517e5134174fb0ff064dfc8e8505a49fd3184d9835da297df/index.html",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -6999,10 +6999,10 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "writing.html"
+      "title": "index.html"
     },
     {
-      "path": "docs/snapshots/51d8672cf04b03d5df704d38b15d76ea7e4e917c0165bc2cd8f316fbee273dee/research.html",
+      "path": "docs/snapshots/46aa338f64c658b80d8f4cd4d1654da36bf876cb40402bf0838bd068d7a22b8d/talks.html",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -7010,7 +7010,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -7057,6 +7057,17 @@
       "title": "research.html"
     },
     {
+      "path": "docs/snapshots/99a7f50fa029dba016c4efb539877b3d80b33bab8402c89dcc82f3fdc9c374ac/credits.html",
+      "kind": "file",
+      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -7068,7 +7079,7 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/c5547d608d41ffaab080aa9b514dcb111ed1934eb563ef1722675c0c212c21e8/credits.html",
+      "path": "docs/snapshots/d42f7ac9a197e198e6444a7530eb691f880780f5117ed367768ac7153f648ca7/research.html",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -7076,10 +7087,10 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "credits.html"
+      "title": "research.html"
     },
     {
-      "path": "docs/snapshots/c6461de3051fe7983a8f95217c7c1526c0dede9466b0cddf04bc3f86250ed27f/talks.html",
+      "path": "docs/snapshots/f990c0aa0bdf083dfe027632a697b1d46a1b34d866bf6b28c0ae9b119855cae8/writing.html",
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -7087,18 +7098,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/c9d81955c1370c97f7c2b9d9be400357a66e2370630fa08e34979562f3c43b0b/index.html",
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
+      "title": "writing.html"
     },
     {
       "path": "docs/space.js",
@@ -19345,7 +19345,7 @@
       ]
     },
     {
-      "path": "docs/runtime/e5b792a5ca0d2c6f6b9d63e46af92c767fb142b1d149d81e5aa9e97311a338eb",
+      "path": "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c",
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -19365,7 +19365,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/3b69a6776fcad1571f88c67af715bc312e77714bf5285cb081e183123b81051b",
+      "path": "docs/snapshots/07c0e608bb4c8bc517e5134174fb0ff064dfc8e8505a49fd3184d9835da297df",
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -19375,7 +19375,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/51d8672cf04b03d5df704d38b15d76ea7e4e917c0165bc2cd8f316fbee273dee",
+      "path": "docs/snapshots/46aa338f64c658b80d8f4cd4d1654da36bf876cb40402bf0838bd068d7a22b8d",
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -19425,6 +19425,16 @@
       ]
     },
     {
+      "path": "docs/snapshots/99a7f50fa029dba016c4efb539877b3d80b33bab8402c89dcc82f3fdc9c374ac",
+      "kind": "directory",
+      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7",
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -19435,7 +19445,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/c5547d608d41ffaab080aa9b514dcb111ed1934eb563ef1722675c0c212c21e8",
+      "path": "docs/snapshots/d42f7ac9a197e198e6444a7530eb691f880780f5117ed367768ac7153f648ca7",
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",
@@ -19445,17 +19455,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/c6461de3051fe7983a8f95217c7c1526c0dede9466b0cddf04bc3f86250ed27f",
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/c9d81955c1370c97f7c2b9d9be400357a66e2370630fa08e34979562f3c43b0b",
+      "path": "docs/snapshots/f990c0aa0bdf083dfe027632a697b1d46a1b34d866bf6b28c0ae9b119855cae8",
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
       "role": "generated",

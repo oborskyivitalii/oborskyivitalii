@@ -186,6 +186,40 @@ test('reading clarity rejects any individual corner drift and missing Appearance
     () => validateSurfaceSamples(reduced),
     'the explicit accessibility preference retains opaque paint'
   );
+  const compactColor = plain(samples);
+  for (const sample of compactColor) {
+    sample.variant = 'color';
+    const alpha = sample.width <= 640 ? (sample.theme === 'dark' ? 0.78 : 0.72) : 0.87;
+    sample.background =
+      sample.theme === 'light' ? `rgba(243, 241, 234, ${alpha})` : `rgba(17, 28, 34, ${alpha})`;
+    sample.backgroundAlpha = alpha;
+  }
+  assert.doesNotThrow(() => validateSurfaceSamples(compactColor));
+  for (const [width, variant, theme, alpha] of [
+    [320, 'base', 'light', 0.72],
+    [320, 'ribbons', 'dark', 0.78],
+    [320, 'color', 'light', 0.87],
+    [320, 'color', 'dark', 0.72],
+    [640, 'color', 'dark', 0.87],
+    [641, 'color', 'light', 0.72],
+    [1440, 'color', 'dark', 0.78],
+  ]) {
+    const changed = plain(compactColor);
+    Object.assign(changed[0], {
+      width,
+      variant,
+      theme,
+      background: `rgba(17, 28, 34, ${alpha})`,
+      backgroundAlpha: alpha,
+    });
+    assert.throws(() => validateSurfaceSamples(changed), /shared historical paper alpha/);
+  }
+  const reducedColor = plain(reduced);
+  for (const sample of reducedColor) sample.variant = 'color';
+  assert.doesNotThrow(() => validateSurfaceSamples(reducedColor));
+  const fadedColor = plain(compactColor);
+  fadedColor[0].opacity = '0.72';
+  assert.throws(() => validateSurfaceSamples(fadedColor), /full element opacity/);
 });
 function scene(source, theme = 'dark') {
   const context = {

@@ -43,7 +43,13 @@ function edgeKey(a, b) {
   return a < b ? `${a}:${b}` : `${b}:${a}`;
 }
 
-function livingPlate({ compact = false, pose = research, hostOffset = 0, host = 'index' } = {}) {
+function livingPlate({
+  compact = false,
+  pose = research,
+  hostOffset = 0,
+  host = 'index',
+  returnRoom = null,
+} = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
   const count = compact ? 13 : 32;
@@ -64,7 +70,39 @@ function livingPlate({ compact = false, pose = research, hostOffset = 0, host = 
       attachment: [...branch.points[(37 + index * 11) % branch.points.length]],
     };
   });
-  return plan.prepare({ id: 'index:field', rect, cells, pose, width, height, members, hostOffset });
+  const returnBranches = returnRoom
+    ? models
+        .worldFor(returnRoom, compact)
+        .objects.filter(
+          (object) => object.root === 3 && object.depth === 2 && object.points?.length
+        )
+    : [];
+  const returnMembers = returnRoom
+    ? cells.map((_, index) => {
+        const branch = returnBranches[(37 + index * 7) % returnBranches.length];
+        return {
+          name: branch.name,
+          parent: branch.parent,
+          center: [...branch.center],
+          rootCenter: [...branch.rootCenter],
+          root: branch.root,
+          phase: branch.phase,
+          attachment: [...branch.points[(37 + index * 11) % branch.points.length]],
+        };
+      })
+    : null;
+  return plan.prepare({
+    id: 'index:field',
+    rect,
+    cells,
+    pose,
+    width,
+    height,
+    members,
+    hostOffset,
+    returnMembers,
+    returnOffset: returnRoom ? projection.roomOffset(returnRoom) : 0,
+  });
 }
 const pointCenter = (points) =>
   points[0].map((_, index) => points.reduce((sum, point) => sum + point[index] / points.length, 0));
@@ -277,6 +315,59 @@ test('resident closed plates touch canonical nested branches and inherit their e
         })
       );
     }
+    assert.equal(JSON.stringify(prepared), original);
+  }
+});
+
+test('reverse world path passes an existing destination branch with unchanged rest and native endpoints', () => {
+  for (const compact of [false, true]) {
+    const pose = projection.routePose('writing', definitions.poses.library);
+    const prepared = livingPlate({
+      compact,
+      host: 'research',
+      hostOffset: projection.roomOffset('research'),
+      returnRoom: 'writing',
+      pose,
+    });
+    const view = plan.view(pose, prepared.width, prepared.height);
+    const original = JSON.stringify(prepared);
+    for (const time of [0, 14557.534, math.LOOP_MS])
+      for (const shard of prepared.shards) {
+        const options = { view, rect: prepared.rect, depth: 12, time };
+        const rest = plan.geometry(shard, { ...options, progress: 0 });
+        const native = plan.geometry(shard, { ...options, progress: 1 });
+        assert.deepEqual(plan.geometry(shard, { ...options, progress: 0, returnPath: true }), rest);
+        assert.deepEqual(
+          plan.geometry(shard, { ...options, progress: 1, returnPath: true }),
+          native
+        );
+        const branch = models
+          .worldFor('writing', compact)
+          .objects.find((object) => object.name === shard.returnMember.name);
+        assert.equal(branch.root, 3);
+        assert.equal(branch.parent, shard.returnMember.parent);
+        assert.ok(
+          branch.points.some((point) =>
+            point.every((value, index) => value === shard.returnMember.attachment[index])
+          )
+        );
+        const waypoint = projection
+          .loopTransform(
+            shard.returnMember,
+            time
+          )(shard.returnMember.attachment)
+          .map((value, index) => value + (index === 2 ? projection.roomOffset('writing') : 0));
+        const via = plan.geometry(shard, { ...options, progress: 0.4, returnPath: true });
+        assertPoint(pointCenter(via.vertices.slice(0, shard.uv.length)), waypoint);
+        for (const [amount, a, b] of [
+          [0.2, pointCenter(rest.vertices.slice(0, shard.uv.length)), waypoint],
+          [0.7, waypoint, pointCenter(native.vertices.slice(0, shard.uv.length))],
+        ]) {
+          const solid = plan.geometry(shard, { ...options, progress: amount, returnPath: true });
+          assertPoint(pointCenter(solid.vertices.slice(0, shard.uv.length)), math.lerp(a, b, 0.5));
+          assert.equal(solid.faces.length, shard.uv.length + 2);
+        }
+      }
     assert.equal(JSON.stringify(prepared), original);
   }
 });

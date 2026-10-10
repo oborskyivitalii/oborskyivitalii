@@ -9,6 +9,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     thicknessMinPx: 10,
     thicknessMaxPx: 32,
     embeddedScale: 2.2,
+    returnStop: 0.4,
     near: 0.5,
   });
   const vector = (value, length) =>
@@ -173,6 +174,31 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     }
     return area > 1e-6;
   }
+  const validMembers = (members, count) =>
+    typeof loopTransform === 'function' &&
+    Array.isArray(members) &&
+    members.length === count &&
+    members.every(
+      (member) =>
+        member &&
+        vector(member.center, 3) &&
+        vector(member.rootCenter, 3) &&
+        vector(member.attachment, 3) &&
+        Number.isFinite(member.phase) &&
+        Number.isFinite(member.root)
+    );
+  const copyMember = (member) =>
+    member
+      ? {
+          name: member.name,
+          parent: member.parent,
+          center: [...member.center],
+          rootCenter: [...member.rootCenter],
+          attachment: [...member.attachment],
+          root: member.root,
+          phase: member.phase,
+        }
+      : null;
 
   function prepare({
     id,
@@ -186,6 +212,8 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     depth = 12,
     members = null,
     hostOffset = 0,
+    returnMembers = null,
+    returnOffset = 0,
   }) {
     const restAnchor = embeddedAnchor || anchor;
     if (
@@ -196,20 +224,10 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       !cells.length ||
       cells.length > settings.maxPieces ||
       (!members && !vector(restAnchor, 3)) ||
-      (members &&
-        (typeof loopTransform !== 'function' ||
-          !Array.isArray(members) ||
-          members.length !== cells.length ||
-          members.some(
-            (member) =>
-              !member ||
-              !vector(member.center, 3) ||
-              !vector(member.rootCenter, 3) ||
-              !vector(member.attachment, 3) ||
-              !Number.isFinite(member.phase) ||
-              !Number.isFinite(member.root)
-          ))) ||
+      (members && !validMembers(members, cells.length)) ||
+      (returnMembers && !validMembers(returnMembers, cells.length)) ||
       !Number.isFinite(hostOffset) ||
+      !Number.isFinite(returnOffset) ||
       !Number.isFinite(depth) ||
       depth <= settings.near
     )
@@ -271,15 +289,10 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         restOrientation,
         restSize: [(rect.width * depth) / camera.focal, (rect.height * depth) / camera.focal],
         thickness,
-        member: members
-          ? {
-              ...members[index],
-              center: [...members[index].center],
-              rootCenter: [...members[index].rootCenter],
-              attachment: [...members[index].attachment],
-            }
-          : null,
+        member: copyMember(members?.[index]),
         hostOffset,
+        returnMember: copyMember(returnMembers?.[index]),
+        returnOffset,
         color: index % 3 === 0 ? 'amber' : 'cyan',
       };
     });
@@ -294,7 +307,17 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     };
   }
 
-  function geometry(shard, { view: camera, rect, depth, progress = 0, time = 0 }) {
+  function returnCenter(shard, time) {
+    return add(loopTransform(shard.returnMember, time)(shard.returnMember.attachment), [
+      0,
+      0,
+      shard.returnOffset,
+    ]);
+  }
+  function geometry(
+    shard,
+    { view: camera, rect, depth, progress = 0, time = 0, returnPath = false }
+  ) {
     if (
       !shard ||
       !camera ||
@@ -324,7 +347,16 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           ].map((column) => scale(column, 1 / transform.scale))
         )
       : [0, 0, 0, 1];
-    const origin = blend(worldCenter, targetCenter, amount);
+    const waypoint = returnPath && shard.returnMember ? returnCenter(shard, time) : null;
+    const origin = waypoint
+      ? progress <= settings.returnStop
+        ? blend(worldCenter, waypoint, smooth(progress / settings.returnStop))
+        : blend(
+            waypoint,
+            targetCenter,
+            smooth((progress - settings.returnStop) / (1 - settings.returnStop))
+          )
+      : blend(worldCenter, targetCenter, amount);
     const rotation = orientation(
       compose(motion, shard.restOrientation),
       quaternion(basis(camera)),
@@ -366,7 +398,10 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     return { id: shard.id, vertices: [...front, ...back], faces };
   }
 
-  function phaseForClearance(shard, { view: target, camera, rect, depth, progress, time = 0 }) {
+  function phaseForClearance(
+    shard,
+    { view: target, camera, rect, depth, progress, time = 0, returnPath = false }
+  ) {
     if (!Number.isFinite(progress) || progress < 0 || progress > 1) return NaN;
     if (progress === 0) return 0;
     const moving = shard.member
@@ -378,16 +413,21 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       [rect.x + rect.width * shard.centroid[0], rect.y + rect.height * shard.centroid[1]],
       depth
     );
-    const a = camera.camera(rest)[2];
-    const b = camera.camera(endpoint)[2];
+    const waypoint = returnPath && shard.returnMember ? returnCenter(shard, time) : null;
+    const first = waypoint && progress <= settings.returnStop;
+    const start = waypoint && !first ? settings.returnStop : 0;
+    const span = waypoint ? (first ? settings.returnStop : 1 - settings.returnStop) : 1;
+    const local = (progress - start) / span;
+    const a = camera.camera(waypoint && !first ? waypoint : rest)[2];
+    const b = camera.camera(first ? waypoint : endpoint)[2];
     const difference = b - a;
     if (Math.abs(difference) < 1e-9) return progress;
     const boundary = Math.max(0, Math.min(1, (depth - a) / difference));
     const amount =
-      difference > 0 ? Math.max(smooth(progress), boundary) : Math.min(smooth(progress), boundary);
-    if (amount === 0 || amount === 1) return amount;
-    // The geometry still lies on the original moving-root→native segment.
-    // Only its phase waits for (or precedes) the camera's corridor passage.
+      difference > 0 ? Math.max(smooth(local), boundary) : Math.min(smooth(local), boundary);
+    if (amount === 0 || amount === 1) return start + span * amount;
+    // Only phase changes along the existing world path. Reverse destinations
+    // pass their own deep branch before collecting toward the native plane.
     let left = 0,
       right = 1;
     for (let index = 0; index < 20; index++) {
@@ -395,7 +435,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       if (smooth(middle) < amount) left = middle;
       else right = middle;
     }
-    return (left + right) / 2;
+    return start + (span * (left + right)) / 2;
   }
 
   function projectSolid(solid, camera) {
@@ -438,6 +478,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       rect = prepared?.rect,
       targetPose = prepared?.pose,
       clearance = false,
+      returnPath = false,
     }
   ) {
     if (!prepared || !validRect(rect)) return [];
@@ -462,6 +503,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
             rect,
             depth: prepared.depth,
             progress: requested,
+            returnPath,
             time,
           })
         : requested;
@@ -471,6 +513,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
         depth: prepared.depth,
         progress: amount,
         time,
+        returnPath,
       });
       if (!solid) return [];
       const projected = projectSolid(solid, camera);

@@ -545,9 +545,29 @@ module.exports = function () {
   function fullyClipped(style) {
     return /^inset\(50%(?:\s+50%){0,3}\)$/.test(value(style, 'clip-path'));
   }
-  function invisibleNative(node, owner, view) {
+  function nativeStyle(view, node, pseudo, options) {
+    let styles = options.styleCache.get(node);
+    if (!styles) {
+      styles = new Map();
+      options.styleCache.set(node, styles);
+    }
+    const key = pseudo || '';
+    if (!styles.has(key)) {
+      const resolved = view.getComputedStyle(node, pseudo);
+      const properties = new Map();
+      styles.set(key, {
+        getPropertyValue(property) {
+          if (!properties.has(property))
+            properties.set(property, resolved.getPropertyValue(property));
+          return properties.get(property);
+        },
+      });
+    }
+    return styles.get(key);
+  }
+  function invisibleNative(node, owner, view, options) {
     for (let current = node; current; current = current.parentElement) {
-      const style = view.getComputedStyle(current);
+      const style = nativeStyle(view, current, undefined, options);
       if (
         current.hasAttribute('hidden') ||
         value(style, 'display') === 'none' ||
@@ -660,9 +680,9 @@ module.exports = function () {
     return Math.max(0, content.length - 2) * 3;
   }
   function inspectNativeNode(node, owner, document, view, options, bounds) {
-    const style = view.getComputedStyle(node);
-    const before = view.getComputedStyle(node, '::before');
-    const after = view.getComputedStyle(node, '::after');
+    const style = nativeStyle(view, node, undefined, options);
+    const before = nativeStyle(view, node, '::before', options);
+    const after = nativeStyle(view, node, '::after', options);
     if (!nativeSupported(node, style))
       return rejectNative(options, 'unsupported-native-paint', node.localName);
     const box = copyRect(node.getBoundingClientRect(), options.offsetX, options.offsetY);
@@ -708,7 +728,7 @@ module.exports = function () {
     const nativeRect = owner.getBoundingClientRect();
     const rect = copyRect(nativeRect, options.offsetX, options.offsetY);
     const bounds = decoration
-      ? nativeBorderBounds(rect, view.getComputedStyle(owner), options)
+      ? nativeBorderBounds(rect, nativeStyle(view, owner, undefined, options), options)
       : { ...rect };
     if (!bounds) return false;
     const nodes = [];
@@ -717,7 +737,7 @@ module.exports = function () {
     for (const node of [owner, ...descendants]) {
       if (options.clock() > options.acquisitionDeadline)
         return rejectNative(ownerOptions, 'acquisition-deadline', node.localName);
-      if (node !== owner && invisibleNative(node, owner, view)) {
+      if (node !== owner && invisibleNative(node, owner, view, options)) {
         skippedNodes.add(node);
         continue;
       }
@@ -821,12 +841,19 @@ module.exports = function () {
     append(text);
     for (const { node, style, before, after, control } of nodes) {
       append(node.localName);
-      for (const paint of [style, before, after])
+      for (const paint of [style, before, after]) {
+        // Inactive pseudo boxes produce no native paint. A later generated
+        // box changes this marker and receives the complete paint fingerprint.
+        if (paint !== style && inactive(paint)) {
+          append('inactive:' + value(paint, 'content'));
+          continue;
+        }
         append(
           [...nativeProperties, ...vectorProperties, 'content']
             .map((name) => value(paint, name))
             .join(';')
         );
+      }
       if (node.namespaceURI === 'http://www.w3.org/2000/svg')
         for (const attribute of node.attributes)
           if (vectorAttributes.has(attribute.name)) append(attribute.name + ':' + attribute.value);
@@ -1041,6 +1068,9 @@ module.exports = function () {
   }
   function measureNativeOwners(root, document, view, normalized, caps) {
     const clock = normalized.clock;
+    // Each synchronous acquisition owns its cache; media decode finishes
+    // before this snapshot, and later captures always read fresh native styles.
+    normalized.styleCache = new WeakMap();
     const measured = [];
     const usage = { owners: 0, descendants: 0, textBytes: 0, layerPixels: 0 };
     const semantic = new Set([
@@ -1102,7 +1132,7 @@ module.exports = function () {
     function visit(node, path) {
       if (clock() > normalized.acquisitionDeadline) fail('acquisition-deadline', path, node);
       if (node.hasAttribute('hidden')) return;
-      const style = view.getComputedStyle(node);
+      const style = nativeStyle(view, node, undefined, normalized);
       if (
         value(style, 'display') === 'none' ||
         value(style, 'opacity') === '0' ||
@@ -1127,8 +1157,8 @@ module.exports = function () {
       )
         return;
       if (!nativeSupported(node, style)) fail('unsupported-native-ancestor', path, node);
-      const before = view.getComputedStyle(node, '::before');
-      const after = view.getComputedStyle(node, '::after');
+      const before = nativeStyle(view, node, '::before', normalized);
+      const after = nativeStyle(view, node, '::after', normalized);
       const atomic =
         visiblePaper(style) ||
         visiblePaper(before, true) ||
@@ -1262,11 +1292,9 @@ module.exports = function () {
           return asset;
         })
       );
-      if (
-        captured.some((asset) => !asset) ||
-        normalized.signal.aborted ||
-        clock() > normalized.deadline
-      )
+      const expired = clock() > normalized.deadline;
+      if (expired) rejectNative(normalized, 'preparation-deadline', root.localName);
+      if (captured.some((asset) => !asset) || normalized.signal.aborted || expired)
         throw new Error('Native texture capture failed');
       assets.sort((a, b) => a.ownerIndex - b.ownerIndex);
       assets.transientPixels = transientPixels;

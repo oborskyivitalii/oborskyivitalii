@@ -172,11 +172,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   function hostFor(route) {
     return api.routeOrder[Math.max(0, api.routeOrder.indexOf(route) - 1)];
   }
-  function branchMembers(host, cells, seed) {
+  function branchMembers(host, cells, seed, root = 1) {
     const world = api.worldForRoom?.(host);
     const objects = world?.objects || [];
     let branches = objects.filter(
-      (object) => object.depth === 2 && object.root === 1 && object.points?.length
+      (object) => object.depth === 2 && object.root === root && object.points?.length
     );
     if (!branches.length)
       branches = objects.filter((object) => object.points?.length && object.rootCenter);
@@ -259,6 +259,13 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         width: state.width,
         height: state.height,
         members,
+        returnMembers:
+          host !== route
+            ? branchMembers(route, cells, index * 19 + api.routeOrder.indexOf(route) * 37, 3)
+            : null,
+        returnOffset: api.roomOffset
+          ? api.roomOffset(route)
+          : -api.roomSpacing * api.routeOrder.indexOf(route),
         hostOffset: api.roomOffset
           ? api.roomOffset(host)
           : -api.roomSpacing * api.routeOrder.indexOf(host),
@@ -729,6 +736,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         progresses,
         time: frame.ambientTime,
         clearance: phase && (entry === incoming || entry === outgoing),
+        returnPath:
+          phase &&
+          entry === incoming &&
+          context?.direction === 'backward' &&
+          entry.host !== entry.route,
       });
       for (const shape of shapes) {
         shape.ownerKey = group.key;

@@ -12,6 +12,21 @@
   --reading-title-outset: 0.16em;
   --surface-gutter: 12px;
 }
+/* Compact Color keeps the neighboring textured structure visible through the
+   same native paper material. Root metadata also covers inert capture stages. */
+@media screen and (max-width: 640px) {
+  :where(:root:has(meta[name='site-variant'][content='color'])) {
+    --reading-surface-alpha: 72%;
+  }
+  :where(:root[data-theme='dark']:has(meta[name='site-variant'][content='color'])) {
+    --reading-surface-alpha: 78%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root:not([data-theme]):has(meta[name='site-variant'][content='color'])) {
+      --reading-surface-alpha: 78%;
+    }
+  }
+}
 .section,
 .archive-intro,
 .credits-page,
