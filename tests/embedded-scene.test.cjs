@@ -423,6 +423,185 @@ test('speculative warming preserves returned content until real navigation reque
   assert.equal(h.captures.length, count + 1, 'real top navigation still acquires matching content');
 });
 
+test('fresh resident paint reveals continuously on the existing frozen and wrapped scene clock', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact });
+    const reference = harness({ compact });
+    h.collect('index', 100);
+    reference.collect('index', 100);
+    await h.bridge.prime(h.data('research'), 78, null, {
+      reuseResident: true,
+      revealResident: true,
+    });
+    await reference.bridge.prime(reference.data('research'), 78);
+    const ids = plain(h.bridge.diagnostics().ids);
+    const start = math.LOOP_MS - 100;
+    const samples = [
+      [start, 0],
+      [start, 0],
+      [110, 0.5],
+      [320, 1],
+      [700, 1],
+    ];
+    for (const [time, visibility] of samples) {
+      const faces = h.collect('index', time);
+      const original = reference.collect('index', time);
+      assert.equal(faces.length, original.length);
+      assert.ok(original.some((face) => face.alpha > 0.01));
+      assert.equal(h.bridge.diagnostics().residentReveals[0].progress, visibility);
+      assert.deepEqual(plain(h.bridge.diagnostics().ids), ids);
+      for (const [index, face] of faces.entries()) {
+        const baseline = original[index];
+        assert.ok(baseline, 'reveal preserves the same projected face and identity');
+        assert.equal(face.id, baseline.id);
+        assert.equal(face.face, baseline.face);
+        assert.ok(Math.abs(face.alpha - baseline.alpha * visibility) < 1e-12);
+        assert.equal(face.textureMix, baseline.textureMix);
+      }
+      if (visibility === 0) assert.ok(faces.every((face) => face.alpha === 0));
+      else assert.ok(faces.some((face) => face.alpha > 0.01));
+    }
+    assert.equal(h.captures.length, 1, 'revealing cannot recapture the page');
+    assert.ok(h.bridge.reservation().pieces <= (compact ? 40 : 96));
+  }
+});
+
+test('mounted neighbor warming fills only the spare slot without taking live native ownership', async () => {
+  for (const compact of [false, true]) {
+    const h = harness({ compact });
+    const { content } = await h.prepare('index', 'research');
+    const arrivalIds = plain(h.bridge.diagnostics().ids);
+    const departureIds = plain(h.bridge.diagnostics().departure.groups[0].ids);
+    assert.equal(h.bridge.canPrepareNeighbor(), false, 'source page is still mounted');
+    h.document.body.dataset.page = 'research';
+    const target = h.native('research');
+    h.bridge.land(target);
+    assert.equal(h.bridge.canPrepareNeighbor(), true);
+    assert.equal(
+      await h.bridge.prime(h.data('talks'), 78, null, { residentOnly: true }),
+      false,
+      "only the mounted page's logical successor may warm during a live session"
+    );
+    h.setDeferred(true);
+    const warming = h.bridge.prime(h.data('writing'), 78, null, {
+      residentOnly: true,
+      reuseResident: true,
+      revealResident: true,
+    });
+    assert.equal(h.bridge.canPrepareNeighbor(), false, 'one pending task owns the slot');
+    assert.equal(h.effect.preparing(), false, 'resident warming never pauses a painted flight');
+    assert.equal(target.style.visibility, 'hidden');
+    assert.notEqual(content.style.visibility, 'hidden');
+    h.bridge.present(1);
+    h.collect('research', 1000);
+    h.collect('research', 1180);
+    assert.equal(h.bridge.complete(), true);
+    assert.equal(h.captures.at(-1).options.signal.aborted, false);
+    h.captures.at(-1).resolve();
+    assert.equal(await warming, true, 'bounded warm can finish after native handoff');
+    assert.equal(h.bridge.diagnostics().route, 'research');
+    assert.deepEqual(plain(h.bridge.diagnostics().ids), arrivalIds);
+    assert.equal(h.bridge.owners().length, 0);
+    assert.notEqual(target.style.visibility, 'hidden');
+    assert.deepEqual(
+      plain(h.bridge.diagnostics().bank.find((entry) => entry.route === 'index').groups[0].ids),
+      departureIds
+    );
+    assert.equal(h.bridge.diagnostics().residentRoutes.length, 3);
+    h.collect('research', 1300);
+    const writingIds = h.bridge
+      .diagnostics()
+      .bank.find((entry) => entry.route === 'writing')
+      .groups.flatMap((group) => group.ids);
+    assert.ok(
+      h.bridge
+        .diagnostics()
+        .faces.filter((face) => writingIds.includes(face.id))
+        .every((face) => face.alpha === 0)
+    );
+    h.collect('research', 1720);
+    assert.ok(
+      h.bridge
+        .diagnostics()
+        .faces.some(
+          (face) => writingIds.includes(face.id) && face.face === 'front' && face.alpha > 0.01
+        )
+    );
+    assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
+    assert.ok(h.bridge.reservation().pieces <= (compact ? 40 : 96));
+  }
+});
+
+test('a full live corridor refuses successor warming and retains every painted bitmap', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78);
+  await h.prepare('index', 'writing');
+  h.document.body.dataset.page = 'writing';
+  h.bridge.land(h.native('writing'));
+  const bank = plain(h.bridge.diagnostics().residentRoutes);
+  const captures = h.captures.length;
+  assert.equal(h.bridge.canPrepareNeighbor(), false);
+  assert.equal(await h.bridge.prime(h.data('talks'), 78, null, { residentOnly: true }), false);
+  assert.equal(h.captures.length, captures);
+  assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), bank);
+  assert.ok(h.assets.every((asset) => asset.disposeCount === 0));
+  assert.equal(h.bridge.active(), true);
+});
+
+test('cancelled mounted warm cannot replace the active pair or keep late textures', async () => {
+  for (const terminal of ['aborted', 'cancelled', 'invalidated']) {
+    const h = harness();
+    await h.prepare('index', 'research');
+    h.document.body.dataset.page = 'research';
+    const target = h.native('research');
+    h.bridge.land(target);
+    h.setDeferred(true);
+    const controller = new AbortController();
+    const warming = h.bridge.prime(h.data('writing'), 78, null, {
+      residentOnly: true,
+      revealResident: true,
+      signal: controller.signal,
+    });
+    const captured = h.captures.at(-1);
+    if (terminal === 'aborted') controller.abort();
+    else if (terminal === 'cancelled') h.bridge.cancel();
+    else h.bridge.invalidate();
+    captured.resolve();
+    assert.equal(await warming, false);
+    assert.equal(captured.asset.disposeCount, 1);
+    assert.ok(!h.bridge.diagnostics().residentRoutes.includes('writing'));
+    if (terminal === 'aborted') {
+      assert.equal(h.bridge.active(), true, 'speculative cancellation preserves the flight');
+      assert.equal(h.bridge.diagnostics().route, 'research');
+      assert.equal(target.style.visibility, 'hidden');
+    } else {
+      assert.equal(h.bridge.active(), false);
+      assert.notEqual(target.style.visibility, 'hidden');
+    }
+  }
+});
+
+test('a just-warmed neighbor becomes fully painted when actual navigation owns its shards', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78, null, { revealResident: true });
+  h.collect('index', 200);
+  assert.equal(h.bridge.diagnostics().residentReveals[0].progress, 0);
+  await h.bridge.prepareDeparture(h.native('index'));
+  assert.equal(
+    h.bridge.begin({ from: 'index', to: 'research', landing: null, direction: 'forward' }),
+    true
+  );
+  h.bridge.present(0);
+  const faces = h.collect('index', 200);
+  assert.equal(
+    h.bridge.diagnostics().residentReveals.find((entry) => entry.route === 'research').progress,
+    1
+  );
+  assert.ok(faces.some((face) => face.id.startsWith('research:') && face.alpha > 0.01));
+});
+
 test('warming current paint retains a reusable field without activating a departure session', async () => {
   const h = harness();
   h.collect('index', 100);

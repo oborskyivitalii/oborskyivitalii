@@ -2297,5 +2297,881 @@
       "samplingNegative": "removing CSS-plane scaling fails the positioned native ink regression",
       "physicalIPadVerified": false
     }
+  },
+  "visualCorrection": {
+    "scope": "Actual local Chromium138 touch/mobile DPR2 captures; source-model renderer oracle; not hosted, physical iPad or paired added-cost acceptance",
+    "fullGate": false,
+    "physicalIPadVerified": false,
+    "browserPerformanceAcceptance": false,
+    "baseline": {
+      "sourceCommit": "e001f38cb9dea294be8409fc063f099f90fc5322",
+      "sourceTree": "56d5dfed51589b13252ab3a0f44d9d7734f25590",
+      "artifactDigest": "6070b82fe881a62c650360a5a14ac96122e6c4db212e52ef61a3eeeec727ac33",
+      "rawSha256": "9a646d47a63a4aafb7455f8da355a7eaf0fbfa45c84ae96d0b8604f92749b251",
+      "screencastFrames": 126,
+      "viewports": [
+        {
+          "width": 1024,
+          "height": 1366
+        },
+        {
+          "width": 1366,
+          "height": 1024
+        }
+      ],
+      "firstSuccessorAfterSettledMs": [
+        263,
+        197
+      ],
+      "instantVisibleFaces": 62,
+      "initialColdPortrait": "separate failed cold-ready timeout retained; successful repeated source-bound capture does not erase it"
+    },
+    "candidate": {
+      "sourceDirty": true,
+      "baseCommit": "e001f38cb9dea294be8409fc063f099f90fc5322",
+      "artifactDigest": "da7752f366f7905b95d16ae959389d0c9ab84b85e3d95deabfa7e686a85177b4",
+      "rawSha256": "52c9de6fae92b0129227990f135d573d0a5a45aad8803199e42a05f254500340",
+      "summarySha256": "6ea3ed330f148a2c72890a418f11fb08d222c7ea25ac2af7e258e1b5593d04af",
+      "screencastFrames": 369,
+      "journeys": 8,
+      "passed": 8,
+      "failed": 0,
+      "pageErrors": 0,
+      "incomingFrontsPerJourney": 32,
+      "peakFields": 3,
+      "peakPieces": 96,
+      "nextWritingCaptureMs": [
+        142.9,
+        136.1
+      ],
+      "nextTalksCaptureMs": [
+        35.3,
+        35.2
+      ],
+      "rows": [
+        {
+          "viewport": {
+            "width": 1024,
+            "height": 1366
+          },
+          "from": "index",
+          "to": "research",
+          "theme": "light",
+          "liveFrames": 24,
+          "firstMountAt": 5536.10000000149,
+          "settledAt": 6901.900000002235,
+          "next": "writing",
+          "firstVisibleNextAt": 6001.5,
+          "gapFromMountMs": 465.3999999985099,
+          "gapFromSettledMs": -900.4000000022352,
+          "freshRevealFrames": [
+            {
+              "at": 5927.300000000745,
+              "value": 0,
+              "alpha": 0,
+              "phase": "assembling"
+            },
+            {
+              "at": 6001.5,
+              "value": 0.09502213583846235,
+              "alpha": 0.05610068459566648,
+              "phase": "assembling"
+            },
+            {
+              "at": 6114.800000000745,
+              "value": 0.32480293704783497,
+              "alpha": 0.19517710605869276,
+              "phase": "assembling"
+            },
+            {
+              "at": 6249.70000000298,
+              "value": 0.6064139941690961,
+              "alpha": 0.36439504232761216,
+              "phase": "assembling"
+            },
+            {
+              "at": 6377.5,
+              "value": 0.8569268977432242,
+              "alpha": 0.5149197326630469,
+              "phase": "assembling"
+            },
+            {
+              "at": 6560.5,
+              "value": 0.9934132383111975,
+              "alpha": 0.5969232385974409,
+              "phase": "assembling"
+            }
+          ],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 4555.10000000149,
+              "file": "1024-light-index-research-015.jpg",
+              "deltaMs": -33.715234376490116
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.1907790143084261,
+              "at": 5103.400000002235,
+              "file": "1024-light-index-research-019.jpg",
+              "deltaMs": 4.277734372764826
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.4107313195548488,
+              "at": 5386.900000002235,
+              "file": "1024-light-index-research-023.jpg",
+              "deltaMs": 5.597802732139826
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.6226550079491258,
+              "at": 5649.900000002235,
+              "file": "1024-light-index-research-027.jpg",
+              "deltaMs": 7.387841794639826
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8187599364069952,
+              "at": 5927.300000000745,
+              "file": "1024-light-index-research-031.jpg",
+              "deltaMs": -17.660107422620058
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 6377.5,
+              "file": "1024-light-index-research-035.jpg",
+              "deltaMs": 2.60205078125
+            }
+          ],
+          "effectsStages": {
+            "count": 46,
+            "medianMs": 1.0,
+            "p95Ms": 2.399999998509884,
+            "maxMs": 2.5
+          },
+          "paintStages": {
+            "count": 46,
+            "medianMs": 8.600000001490116,
+            "p95Ms": 14,
+            "maxMs": 16.300000000745058
+          }
+        },
+        {
+          "viewport": {
+            "width": 1024,
+            "height": 1366
+          },
+          "from": "research",
+          "to": "index",
+          "theme": "light",
+          "liveFrames": 21,
+          "firstMountAt": 10704.800000000745,
+          "settledAt": 12352.900000002235,
+          "next": "research",
+          "firstVisibleNextAt": 9726.20000000298,
+          "gapFromMountMs": -978.5999999977648,
+          "gapFromSettledMs": -2626.699999999255,
+          "freshRevealFrames": [],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 9726.20000000298,
+              "file": "1024-light-research-index-013.jpg",
+              "deltaMs": -18.448046877980232
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.1907790143084261,
+              "at": 10177,
+              "file": "1024-light-research-index-022.jpg",
+              "deltaMs": 7.55078125
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.3815580286168522,
+              "at": 10450.300000000745,
+              "file": "1024-light-research-index-025.jpg",
+              "deltaMs": 5.895068358629942
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.5723370429252782,
+              "at": 10814.20000000298,
+              "file": "1024-light-research-index-028.jpg",
+              "deltaMs": 2.8078124970197678
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8267090620031796,
+              "at": 11305.10000000149,
+              "file": "1024-light-research-index-032.jpg",
+              "deltaMs": -1.1942382827401161
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 11816.70000000298,
+              "file": "1024-light-research-index-035.jpg",
+              "deltaMs": 4.685009762644768
+            }
+          ],
+          "effectsStages": {
+            "count": 40,
+            "medianMs": 1.1000000014901161,
+            "p95Ms": 2.100000001490116,
+            "maxMs": 2.399999998509884
+          },
+          "paintStages": {
+            "count": 40,
+            "medianMs": 7.950000001117587,
+            "p95Ms": 19.199999999254942,
+            "maxMs": 20.5
+          }
+        },
+        {
+          "viewport": {
+            "width": 1024,
+            "height": 1366
+          },
+          "from": "index",
+          "to": "writing",
+          "theme": "light",
+          "liveFrames": 27,
+          "firstMountAt": 16796.400000002235,
+          "settledAt": 18036.300000000745,
+          "next": "talks",
+          "firstVisibleNextAt": 18273,
+          "gapFromMountMs": 1476.5999999977648,
+          "gapFromSettledMs": 236.69999999925494,
+          "freshRevealFrames": [
+            {
+              "at": 18213.400000002235,
+              "value": 0,
+              "alpha": 0,
+              "phase": null
+            },
+            {
+              "at": 18273,
+              "value": 0.09502213583846235,
+              "alpha": 0.060423806107346184,
+              "phase": null
+            },
+            {
+              "at": 18357.400000002235,
+              "value": 0.32480293704783497,
+              "alpha": 0.20896051589619236,
+              "phase": null
+            },
+            {
+              "at": 18454,
+              "value": 0.6064139941690961,
+              "alpha": 0.3901519476801154,
+              "phase": null
+            },
+            {
+              "at": 18544.70000000298,
+              "value": 0.8569268977432242,
+              "alpha": 0.5429492730618672,
+              "phase": null
+            },
+            {
+              "at": 18628.800000000745,
+              "value": 0.9934132383111975,
+              "alpha": 0.6294544566045579,
+              "phase": null
+            }
+          ],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 15600.20000000298,
+              "file": "1024-light-index-writing-013.jpg",
+              "deltaMs": -8.811328127980232
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.21164021164021163,
+              "at": 16295.900000002235,
+              "file": "1024-light-index-writing-024.jpg",
+              "deltaMs": 5.243066404014826
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.39675925925925903,
+              "at": 16567.70000000298,
+              "file": "1024-light-index-writing-028.jpg",
+              "deltaMs": 5.190869137644768
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.623809523809523,
+              "at": 16948.300000000745,
+              "file": "1024-light-index-writing-033.jpg",
+              "deltaMs": 5.940966796129942
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8001984126984124,
+              "at": 17203.300000000745,
+              "file": "1024-light-index-writing-037.jpg",
+              "deltaMs": 13.656054686754942
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 17606,
+              "file": "1024-light-index-writing-042.jpg",
+              "deltaMs": 10.911865234375
+            }
+          ],
+          "effectsStages": {
+            "count": 53,
+            "medianMs": 1,
+            "p95Ms": 3.300000000745058,
+            "maxMs": 6.100000001490116
+          },
+          "paintStages": {
+            "count": 53,
+            "medianMs": 6.900000002235174,
+            "p95Ms": 10.899999998509884,
+            "maxMs": 16.600000001490116
+          }
+        },
+        {
+          "viewport": {
+            "width": 1024,
+            "height": 1366
+          },
+          "from": "writing",
+          "to": "research",
+          "theme": "dark",
+          "liveFrames": 21,
+          "firstMountAt": 24143.20000000298,
+          "settledAt": 25361.900000002235,
+          "next": "writing",
+          "firstVisibleNextAt": 23020.10000000149,
+          "gapFromMountMs": -1123.1000000014901,
+          "gapFromSettledMs": -2341.800000000745,
+          "freshRevealFrames": [],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 23020.10000000149,
+              "file": "1024-dark-writing-research-015.jpg",
+              "deltaMs": -26.744042970240116
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.19138755980861244,
+              "at": 23529.10000000149,
+              "file": "1024-dark-writing-research-025.jpg",
+              "deltaMs": 6.677832029759884
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.37216905901116487,
+              "at": 23793.20000000298,
+              "file": "1024-dark-writing-research-028.jpg",
+              "deltaMs": 0.9948242157697678
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.6273524720893148,
+              "at": 24241.300000000745,
+              "file": "1024-dark-writing-research-032.jpg",
+              "deltaMs": 2.714892577379942
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8187400318979272,
+              "at": 24535.300000000745,
+              "file": "1024-dark-writing-research-035.jpg",
+              "deltaMs": 0.32280273362994194
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 24869.20000000298,
+              "file": "1024-dark-writing-research-038.jpg",
+              "deltaMs": 5.700878903269768
+            }
+          ],
+          "effectsStages": {
+            "count": 40,
+            "medianMs": 0.9500000011175871,
+            "p95Ms": 2,
+            "maxMs": 2.099999997764826
+          },
+          "paintStages": {
+            "count": 40,
+            "medianMs": 7.349999999627471,
+            "p95Ms": 13.400000002235174,
+            "maxMs": 18.100000001490116
+          }
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 1024
+          },
+          "from": "index",
+          "to": "research",
+          "theme": "light",
+          "liveFrames": 23,
+          "firstMountAt": 6135.800000000745,
+          "settledAt": 7493.300000000745,
+          "next": "writing",
+          "firstVisibleNextAt": 6596.60000000149,
+          "gapFromMountMs": 460.80000000074506,
+          "gapFromSettledMs": -896.6999999992549,
+          "freshRevealFrames": [
+            {
+              "at": 6530.300000000745,
+              "value": 0,
+              "alpha": 0,
+              "phase": "assembling"
+            },
+            {
+              "at": 6596.60000000149,
+              "value": 0.09502213583846235,
+              "alpha": 0.05868755596964732,
+              "phase": "assembling"
+            },
+            {
+              "at": 6721.89999999851,
+              "value": 0.32480293704783497,
+              "alpha": 0.20586797270937648,
+              "phase": "assembling"
+            },
+            {
+              "at": 6850.5,
+              "value": 0.6064139941690961,
+              "alpha": 0.3846816699997518,
+              "phase": "assembling"
+            },
+            {
+              "at": 6982.800000000745,
+              "value": 0.8569268977432242,
+              "alpha": 0.5435904473170179,
+              "phase": "assembling"
+            },
+            {
+              "at": 7115.10000000149,
+              "value": 0.9934132383111975,
+              "alpha": 0.6301645095011126,
+              "phase": "assembling"
+            }
+          ],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 4866.699999999255,
+              "file": "1366-light-index-research-014.jpg",
+              "deltaMs": -13.025927733629942
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.1907790143084261,
+              "at": 5500,
+              "file": "1366-light-index-research-023.jpg",
+              "deltaMs": 2.247802734375
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.3815580286168522,
+              "at": 5905,
+              "file": "1366-light-index-research-026.jpg",
+              "deltaMs": -2.078125
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.5723370429252782,
+              "at": 6206.800000000745,
+              "file": "1366-light-index-research-029.jpg",
+              "deltaMs": 8.269824218004942
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8187599364069952,
+              "at": 6530.300000000745,
+              "file": "1366-light-index-research-034.jpg",
+              "deltaMs": -24.311962891370058
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 6982.800000000745,
+              "file": "1366-light-index-research-038.jpg",
+              "deltaMs": 1.804980468004942
+            }
+          ],
+          "effectsStages": {
+            "count": 43,
+            "medianMs": 1.199999999254942,
+            "p95Ms": 2.099999997764826,
+            "maxMs": 3.300000000745058
+          },
+          "paintStages": {
+            "count": 43,
+            "medianMs": 8.700000002980232,
+            "p95Ms": 14,
+            "maxMs": 17.600000001490116
+          }
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 1024
+          },
+          "from": "research",
+          "to": "index",
+          "theme": "light",
+          "liveFrames": 21,
+          "firstMountAt": 11705,
+          "settledAt": 13926.699999999255,
+          "next": "research",
+          "firstVisibleNextAt": 10724.699999999255,
+          "gapFromMountMs": -980.3000000007451,
+          "gapFromSettledMs": -3202.0,
+          "freshRevealFrames": [],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 10724.699999999255,
+              "file": "1366-light-research-index-013.jpg",
+              "deltaMs": -12.149951171129942
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.1907790143084261,
+              "at": 11190.5,
+              "file": "1366-light-research-index-017.jpg",
+              "deltaMs": 6.412841796875
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.3815580286168522,
+              "at": 11466.300000000745,
+              "file": "1366-light-research-index-020.jpg",
+              "deltaMs": 1.613085936754942
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.5723370429252782,
+              "at": 11855.39999999851,
+              "file": "1366-light-research-index-023.jpg",
+              "deltaMs": -2.839208982884884
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8267090620031796,
+              "at": 12598.300000000745,
+              "file": "1366-light-research-index-027.jpg",
+              "deltaMs": -3.632031250745058
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 13202.39999999851,
+              "file": "1366-light-research-index-030.jpg",
+              "deltaMs": 3.675927735865116
+            }
+          ],
+          "effectsStages": {
+            "count": 40,
+            "medianMs": 1.2000000029802322,
+            "p95Ms": 2.699999999254942,
+            "maxMs": 9
+          },
+          "paintStages": {
+            "count": 40,
+            "medianMs": 10.0,
+            "p95Ms": 16.399999998509884,
+            "maxMs": 16.899999998509884
+          }
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 1024
+          },
+          "from": "index",
+          "to": "writing",
+          "theme": "light",
+          "liveFrames": 25,
+          "firstMountAt": 19263.300000000745,
+          "settledAt": 20581.300000000745,
+          "next": "talks",
+          "firstVisibleNextAt": 20914.60000000149,
+          "gapFromMountMs": 1651.300000000745,
+          "gapFromSettledMs": 333.30000000074506,
+          "freshRevealFrames": [
+            {
+              "at": 20854.699999999255,
+              "value": 0,
+              "alpha": 0,
+              "phase": null
+            },
+            {
+              "at": 20914.60000000149,
+              "value": 0.09502213583846235,
+              "alpha": 0.059766110395868315,
+              "phase": null
+            },
+            {
+              "at": 21012.300000000745,
+              "value": 0.32480293704783497,
+              "alpha": 0.20191263675625218,
+              "phase": null
+            },
+            {
+              "at": 21092.5,
+              "value": 0.6064139941690961,
+              "alpha": 0.37697693303825763,
+              "phase": null
+            },
+            {
+              "at": 21187.199999999255,
+              "value": 0.8569268977432242,
+              "alpha": 0.5327100203995146,
+              "phase": null
+            },
+            {
+              "at": 21268.300000000745,
+              "value": 0.9934132383111975,
+              "alpha": 0.6175584671707627,
+              "phase": null
+            }
+          ],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 17878.699999999255,
+              "file": "1366-light-index-writing-013.jpg",
+              "deltaMs": -25.797900389879942
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.21164021164021163,
+              "at": 18687.10000000149,
+              "file": "1366-light-index-writing-025.jpg",
+              "deltaMs": 0.5279296860098839
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.41441798941798846,
+              "at": 19081.800000000745,
+              "file": "1366-light-index-writing-029.jpg",
+              "deltaMs": 4.480029296129942
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.6083994708994719,
+              "at": 19484.89999999851,
+              "file": "1366-light-index-writing-033.jpg",
+              "deltaMs": 0.7989746108651161
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8200396825396835,
+              "at": 19822.89999999851,
+              "file": "1366-light-index-writing-037.jpg",
+              "deltaMs": 10.504785157740116
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 20137,
+              "file": "1366-light-index-writing-041.jpg",
+              "deltaMs": 9.23193359375
+            }
+          ],
+          "effectsStages": {
+            "count": 53,
+            "medianMs": 1,
+            "p95Ms": 1.9000000022351742,
+            "maxMs": 6.599999997764826
+          },
+          "paintStages": {
+            "count": 53,
+            "medianMs": 8.800000000745058,
+            "p95Ms": 15.399999998509884,
+            "maxMs": 16.200000002980232
+          }
+        },
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 1024
+          },
+          "from": "writing",
+          "to": "research",
+          "theme": "dark",
+          "liveFrames": 21,
+          "firstMountAt": 27692.60000000149,
+          "settledAt": 29327,
+          "next": "writing",
+          "firstVisibleNextAt": 26592,
+          "gapFromMountMs": -1100.6000000014901,
+          "gapFromSettledMs": -2735,
+          "freshRevealFrames": [],
+          "selectedFrames": [
+            {
+              "requested": 0,
+              "actual": 0,
+              "at": 26592,
+              "file": "1366-dark-writing-research-016.jpg",
+              "deltaMs": -15.81494140625
+            },
+            {
+              "requested": 0.2,
+              "actual": 0.19138755980861244,
+              "at": 27085.300000000745,
+              "file": "1366-dark-writing-research-023.jpg",
+              "deltaMs": 9.945849608629942
+            },
+            {
+              "requested": 0.4,
+              "actual": 0.3827751196172249,
+              "at": 27391.699999999255,
+              "file": "1366-dark-writing-research-026.jpg",
+              "deltaMs": 4.619091797620058
+            },
+            {
+              "requested": 0.6,
+              "actual": 0.5741626794258373,
+              "at": 27823.39999999851,
+              "file": "1366-dark-writing-research-029.jpg",
+              "deltaMs": 3.974023438990116
+            },
+            {
+              "requested": 0.8,
+              "actual": 0.8293460925039873,
+              "at": 28291.39999999851,
+              "file": "1366-dark-writing-research-033.jpg",
+              "deltaMs": -0.7449707016348839
+            },
+            {
+              "requested": 1,
+              "actual": 1,
+              "at": 28719.800000000745,
+              "file": "1366-dark-writing-research-036.jpg",
+              "deltaMs": 1.535937499254942
+            }
+          ],
+          "effectsStages": {
+            "count": 40,
+            "medianMs": 1.349999999627471,
+            "p95Ms": 5.800000000745058,
+            "maxMs": 17.5
+          },
+          "paintStages": {
+            "count": 40,
+            "medianMs": 9.200000001117587,
+            "p95Ms": 20.599999997764826,
+            "maxMs": 24.400000002235174
+          }
+        }
+      ],
+      "limitations": "Historical preceding material/choreography artifact da7752f3 uses an extra exact outer clip at the native endpoint. Endpoint-corrected 5a297a98 removes that redundant clip and has a separate focused endpoint observation; both actual browser captures precede the final readability extraction and retain their original artifact bindings. Full three-field Home-Writing corridor cannot prepare a fourth Talks field during travel: first visible237/333ms after settlement then continuous420ms reveal."
+    },
+    "projectiveOracle": {
+      "samples": 961,
+      "oldTriangles": 2,
+      "maximumTriangles": 8,
+      "meanBeforeCssPx": 26.34,
+      "meanAfterCssPx": 3.91,
+      "maximumBeforeCssPx": 46.86,
+      "maximumAfterCssPx": 12.39,
+      "uncoveredSamples": 0,
+      "limitation": "Independent analytic plane interior samples, bounded approximation; not exact perspective or full real-native glyph fidelity"
+    },
+    "sourceValidation": {
+      "integratedCases": 208,
+      "passed": 208,
+      "failed": 0,
+      "skipped": 0,
+      "geometryIndependentReview": "no blocker; bounded approximation/native endpoint clipping reviewed",
+      "lifecycleNavigationIndependentReview": "no blocker; active pair, warm signal and original caps retained",
+      "scope": "Historical integrated208-case result and renderer/lifecycle review preceding the final readability extraction; final delivered source has separate exact parity/source review below and still needs clean source-bound policy and hosted CI."
+    },
+    "finalArtifact": {
+      "artifactDigest": "5a297a983c917b1691fd224828ac839a8fc6ad03da2d02088469215cb50fc447",
+      "engine": "c1fdd00e7ebb49e2293bb3221bfad562cbc2f9086944a0f65e5fb3af0e580ffe",
+      "embeddedPlanSha256": "61b59b454ffecae4da1ae80f902ce3ae4cdf9d5185b4303d1b96167cabfbc18c",
+      "sourceDirty": true,
+      "limitation": "Exact prepared5a297a98 public-byte endpoint observation preceding final readability extraction; retained sourceDirty and original source/artifact bindings. It is not the final delivered artifact and cannot be relabelled as final-source hosted/native evidence.",
+      "endpointObservation": {
+        "rawSha256": "6681234cd5caa3a5e1ae6ff7dd14448ce770fb1c218b748652c5f83bff6315e1",
+        "viewport": {
+          "width": 1024,
+          "height": 1366
+        },
+        "engine": "Chromium138",
+        "journeys": 1,
+        "passed": 1,
+        "pageErrors": 0,
+        "recordedCaptureFailures": 0,
+        "actualPaints": 45,
+        "screencastFrames": 42,
+        "incomingAlignedFronts": 32,
+        "incomingFrontAlpha": 1,
+        "nativeOpacityAfter": 1,
+        "successorWritingCaptureMs": 139.8,
+        "peakPieces": 96,
+        "peakFields": 3,
+        "peakLayerPixels": 2996752,
+        "limitation": "Exact bridge/camera handoff and final native PNG. Asynchronous CDP screencast JPEG closest to progress1 shows a prior partial assembly paint, so it is not exact endpoint pixel proof."
+      },
+      "status": "historical endpoint-corrected artifact preceding final readability extraction"
+    },
+    "deliveredArtifact": {
+      "artifactDigest": "a376f881d4c328481e8754b0f61bf8857e665105f7feec9e858fd9f025630570",
+      "engine": "f88f2d44d4bfc67a428c6fb160afba522cab988ef0078dd6d883294d2257f47f",
+      "embeddedPlanSha256": "8f9d994518d4ca1bf53487a957e3ad909860c248ecfbca44bc4511dbce2c5c74",
+      "sourceDirty": true,
+      "readabilityParity": {
+        "scope": "Primary agent independently replayed the final readability extraction against preceding endpoint-corrected factory bytes on identical inputs; exact factory output and Canvas operation equality, not a new browser or paired-cost trial.",
+        "precedingEmbeddedPlanSha256": "61b59b454ffecae4da1ae80f902ce3ae4cdf9d5185b4303d1b96167cabfbc18c",
+        "preparations": 6,
+        "geometryOutputs": 16632,
+        "sampleOutputs": 648,
+        "canvasOperations": 33827,
+        "exactEquality": true,
+        "independentSourceReview": "visual_audit reviewed the final extraction; no blocker"
+      },
+      "actualBrowserEvidence": "The eight-trip da7752f3 recording and focused5a297a98 endpoint capture remain historical observations bound to their preceding exact artifacts; no actual final-artifact browser observation is claimed.",
+      "hostedCI": "pending exact final committed source and immutable preview binding",
+      "fullGate": false,
+      "physicalIPadVerified": false,
+      "browserPerformanceAcceptance": false,
+      "limitations": "Prepared delivery before final source commit. Exact readability parity does not supply final-source hosted CI, whole visual/device/accessibility or paired added-cost acceptance. Original failures, caps/deadlines and pending AC02-AC10/AC15 remain; no merge/stable/production admission.",
+      "currentSourceChecks": {
+        "integratedCases": 208,
+        "passed": 208,
+        "failed": 0,
+        "skipped": 0,
+        "fullLint": "pass on a376f881/f88f2d44 prepared artifact",
+        "boundedStyleGuard": {
+          "result": "pass",
+          "filesScanned": 88,
+          "legacyOccurrences": 0,
+          "limitation": "Enforced subset only; not whole CS01-CS10 acceptance"
+        },
+        "repositoryIntelligenceCoupling": {
+          "result": "pass before this evidence append",
+          "nextRequired": "Regenerate and verify RI/coupling after MEMORY and review evidence updates before final commit"
+        }
+      }
+    }
   }
 }

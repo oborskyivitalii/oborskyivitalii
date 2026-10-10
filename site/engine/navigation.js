@@ -448,6 +448,9 @@
           mounted = true;
           commit();
           presentation?.mounted?.(lastView);
+          // The mounted destination can warm its successor in an unused
+          // resident slot while this same camera journey is still painting.
+          void prepareNeighbor();
         } finally {
           if (start) {
             const time = performance.now();
@@ -639,7 +642,8 @@
   }
   async function prepareNeighbor() {
     const neighbor = routes[routes.indexOf(page) + 1];
-    if (!neighbor || request || !presentation?.prepareNext) return;
+    if (!neighbor || !presentation?.prepareNext) return;
+    if (request && presentation.canPrepareNeighbor?.(neighbor) !== true) return;
     if (presentation.canPrepareNext?.() === false) return;
     if (warmRequest) {
       warmAgain = true;
@@ -651,7 +655,11 @@
     const timeout = window.setTimeout(() => controller.abort(), 8000);
     try {
       const data = await read(neighbor, controller.signal);
-      if (!controller.signal.aborted && own === serial && !request)
+      if (
+        !controller.signal.aborted &&
+        own === serial &&
+        (!request || presentation.canPrepareNeighbor?.(neighbor) === true)
+      )
         await presentation.prepareNext(data, controller.signal);
     } catch {
       // Speculative decoration never blocks verified ordinary navigation.

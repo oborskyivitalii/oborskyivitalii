@@ -11,8 +11,12 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     embeddedScale: 2.2,
     restExtrusion: 2.4,
     departureBreakup: 0.26,
+    forwardLateralStop: 0.5,
+    forwardOrientationStop: 0.65,
     returnStop: 0.4,
-    contentVisibilityFloor: 0.6,
+    contentVisibilityFloor: 1,
+    textureErrorPx: 1,
+    textureTriangles: 8,
     near: 0.5,
   });
   const vector = (value, length) =>
@@ -350,6 +354,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           (0.5 - centroid[1]) * 7 + (fraction(127) - 0.5) * 2,
           5 + fraction(139) * 21,
         ],
+        forwardDepth: 24 + fraction(151) * 32,
         member: copyMember(members?.[index]),
         hostOffset,
         returnMember: copyMember(returnMembers?.[index]),
@@ -384,9 +389,47 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     const { transform } = memberTransform(shard.returnMember, time, state, key);
     return add(transform(shard.returnMember.attachment), [0, 0, shard.returnOffset]);
   }
+  function arrivalCenter(
+    shard,
+    camera,
+    worldCenter,
+    targetCenter,
+    { forwardPath, waypoint, progress, amount, lateralAmount }
+  ) {
+    if (forwardPath) {
+      // Separate axial travel from lateral assembly. This fixed world
+      // corridor has real seeded depth; it never follows the live
+      // camera's near plane. Lateral alignment finishes while distant.
+      const delta = sub(targetCenter, worldCenter);
+      const longitudinal = dot(delta, camera.forward);
+      const transverse = sub(delta, scale(camera.forward, longitudinal));
+      const depthSpread = shard.forwardDepth * 4 * amount * (1 - amount);
+      return add(
+        add(worldCenter, scale(transverse, lateralAmount)),
+        scale(camera.forward, longitudinal * amount + depthSpread)
+      );
+    }
+    if (!waypoint) return blend(worldCenter, targetCenter, amount);
+    if (progress <= settings.returnStop)
+      return blend(worldCenter, waypoint, smooth(progress / settings.returnStop));
+    return blend(
+      waypoint,
+      targetCenter,
+      smooth((progress - settings.returnStop) / (1 - settings.returnStop))
+    );
+  }
   function geometry(
     shard,
-    { view: camera, rect, depth, progress = 0, time = 0, returnPath = false, departing = false },
+    {
+      view: camera,
+      rect,
+      depth,
+      progress = 0,
+      time = 0,
+      returnPath = false,
+      forwardPath = false,
+      departing = false,
+    },
     state = null
   ) {
     if (
@@ -457,20 +500,28 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       const motion = transformed?.orientation || [0, 0, 0, 1];
       const waypoint =
         returnPath && shard.returnMember ? returnCenter(shard, time, frame, layout) : null;
-      origin = waypoint
-        ? progress <= settings.returnStop
-          ? blend(worldCenter, waypoint, smooth(progress / settings.returnStop))
-          : blend(
-              waypoint,
-              targetCenter,
-              smooth((progress - settings.returnStop) / (1 - settings.returnStop))
-            )
-        : blend(worldCenter, targetCenter, amount);
-      rotation = orientation(compose(motion, shard.restOrientation), frame.orientation, amount);
+      const lateralAmount = forwardPath
+        ? smooth(Math.min(1, progress / settings.forwardLateralStop))
+        : amount;
+      const rotationAmount = forwardPath
+        ? smooth(Math.min(1, progress / settings.forwardOrientationStop))
+        : amount;
+      origin = arrivalCenter(shard, camera, worldCenter, targetCenter, {
+        forwardPath,
+        waypoint,
+        progress,
+        amount,
+        lateralAmount,
+      });
+      rotation = orientation(
+        compose(motion, shard.restOrientation),
+        frame.orientation,
+        rotationAmount
+      );
       size = blend(
         shard.restSize.map((value) => value * settings.embeddedScale * (transform?.scale || 1)),
         frame.size,
-        amount
+        lateralAmount
       );
       extrusion =
         (settings.restExtrusion * (1 - amount) + amount) *
@@ -490,10 +541,20 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
 
   function phaseForClearance(
     shard,
-    { view: target, camera, rect, depth, progress, time = 0, returnPath = false },
+    {
+      view: target,
+      camera,
+      rect,
+      depth,
+      progress,
+      time = 0,
+      returnPath = false,
+      forwardPath = false,
+    },
     state = null
   ) {
     if (!Number.isFinite(progress) || progress < 0 || progress > 1) return NaN;
+    if (forwardPath) return progress;
     if (progress === 0) return 0;
     const layout = layouts.get(shard);
     const key = layout?.member === shard.member ? layout.memberKey : shard.member;
@@ -558,20 +619,37 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       return null;
     return {
       points,
+      cameraPoints: vertices,
       normal,
       depth: center(vertices)[2],
       nearest: Math.min(...vertices.map((point) => point[2])),
     };
   }
   function faceVisibility(face, depth, nearest, progress) {
-    const haze = depthVisibility(depth);
-    const materialHaze =
-      face !== 'side'
-        ? settings.contentVisibilityFloor + (1 - settings.contentVisibilityFloor) * haze
-        : haze;
-    const nativeAmount = smooth(progress);
     const nearFade = Math.min(1, (nearest - settings.near) / 2);
-    return (materialHaze + (1 - materialHaze) * nativeAmount) * nearFade;
+    if (face !== 'side') return nearFade;
+    const haze = depthVisibility(depth);
+    return (haze + (1 - haze) * smooth(progress)) * nearFade;
+  }
+  function faceShape(shard, face, surface, amount) {
+    const { points, normal, depth, nearest } = surface;
+    const textured = face.face !== 'side';
+    const coordinates = face.face === 'back' ? shard.rearUv : shard.uv;
+    return {
+      kind: 'embedded-face',
+      id: shard.id,
+      face: face.face,
+      points,
+      depth,
+      normal,
+      tint: Math.min(0.63, 0.42 * (0.65 + 0.5 * Math.abs(dot(normal, light)))),
+      color: shard.color,
+      alpha: faceVisibility(face.face, depth, nearest, amount),
+      textureMix: Number(textured),
+      progress: amount,
+      uv: textured ? face.indices.map((index) => coordinates[index % shard.uv.length]) : null,
+      cameraPoints: textured ? surface.cameraPoints : null,
+    };
   }
 
   function sample(
@@ -587,6 +665,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       targetPose = prepared?.pose,
       clearance = false,
       returnPath = false,
+      forwardPath = false,
       departing = false,
     }
   ) {
@@ -617,6 +696,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
                 depth: prepared.depth,
                 progress: requested,
                 returnPath,
+                forwardPath,
                 time,
               },
               state
@@ -631,6 +711,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
           progress: amount,
           time,
           returnPath,
+          forwardPath,
           departing,
         },
         state
@@ -641,24 +722,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
       for (const face of solid.faces) {
         const surface = projectFace(face, projected, camera, limit);
         if (!surface) continue;
-        const { points, normal, depth, nearest } = surface;
-        const alpha = faceVisibility(face.face, depth, nearest, amount);
-        const textured = face.face !== 'side';
-        const coordinates = face.face === 'back' ? shard.rearUv : shard.uv;
-        shapes.push({
-          kind: 'embedded-face',
-          id: shard.id,
-          face: face.face,
-          points,
-          depth,
-          normal,
-          tint: Math.min(0.63, 0.42 * (0.65 + 0.5 * Math.abs(dot(normal, light)))),
-          color: shard.color,
-          alpha,
-          textureMix: Number(textured),
-          progress: amount,
-          uv: textured ? face.indices.map((index) => coordinates[index % shard.uv.length]) : null,
-        });
+        shapes.push(faceShape(shard, face, surface, amount));
       }
     }
     return shapes;
@@ -671,7 +735,7 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     ctx.closePath();
   }
 
-  function paintTriangle(ctx, surface, source, points) {
+  function paintTriangle(ctx, surface, source, points, seam = false) {
     const [p, q, r] = source;
     const [P, Q, R] = points;
     const dx = q[0] - p[0];
@@ -686,7 +750,16 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     const d = ((R[1] - P[1]) * dx - (Q[1] - P[1]) * ex) / denominator;
     ctx.save();
     try {
-      path(ctx, points);
+      // The outer face clip remains exact. A small internal overlap avoids
+      // antialiased hairlines between adjacent samples of this one solid.
+      const middle = center(points);
+      const clip = seam
+        ? points.map((point) => {
+            const distance = Math.hypot(...sub(point, middle));
+            return distance > 1e-9 ? blend(middle, point, 1 + 0.35 / distance) : point;
+          })
+        : points;
+      path(ctx, clip);
       ctx.clip();
       ctx.transform(a, b, c, d, P[0] - a * p[0] - c * p[1], P[1] - b * p[0] - d * p[1]);
       // Submit only the shard's source bounding rectangle, with a one-pixel
@@ -718,6 +791,50 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     }
   }
 
+  function textureTriangles(shape, surface) {
+    const source = shape.uv.map(([u, v]) => [u * surface.width, v * surface.height]);
+    const vertices = source.map((point, index) => ({
+      source: point,
+      point: shape.points[index],
+      depth: shape.cameraPoints?.[index]?.[2],
+    }));
+    const triangles = [];
+    for (let index = 1; index < vertices.length - 1; index++)
+      triangles.push([vertices[0], vertices[index], vertices[index + 1]]);
+    if (!vertices.every((vertex) => Number.isFinite(vertex.depth) && vertex.depth > settings.near))
+      return triangles;
+    const depths = vertices.map((vertex) => vertex.depth);
+    if (Math.max(...depths) - Math.min(...depths) < 1e-8) return triangles;
+    const midpoint = (a, b) => ({
+      source: blend(a.source, b.source, 0.5),
+      // Project an actual midpoint on this world plane. An affine screen
+      // midpoint would bend the captured glyphs on a tilted face.
+      point: a.point.map(
+        (value, index) => (value * a.depth + b.point[index] * b.depth) / (a.depth + b.depth)
+      ),
+      depth: (a.depth + b.depth) / 2,
+    });
+    while (triangles.length < settings.textureTriangles) {
+      let selected = null;
+      for (const [triangleIndex, triangle] of triangles.entries())
+        for (let edge = 0; edge < 3; edge++) {
+          const a = triangle[edge];
+          const b = triangle[(edge + 1) % 3];
+          const middle = midpoint(a, b);
+          const error = Math.hypot(...sub(middle.point, blend(a.point, b.point, 0.5)));
+          if (error > (selected?.error || settings.textureErrorPx))
+            selected = { triangleIndex, edge, middle, error };
+        }
+      if (!selected) break;
+      const triangle = triangles[selected.triangleIndex];
+      const a = triangle[selected.edge];
+      const b = triangle[(selected.edge + 1) % 3];
+      const c = triangle[(selected.edge + 2) % 3];
+      triangles.splice(selected.triangleIndex, 1, [a, selected.middle, c], [selected.middle, b, c]);
+    }
+    return triangles;
+  }
+
   function paint(ctx, shape, surface, colors) {
     if (shape.kind !== 'embedded-face') return false;
     const key = `${colors.paper}:${colors.cyan}:${colors.amber}`;
@@ -741,21 +858,28 @@ module.exports = function ({ cameraView, depthVisibility, loopTransform }) {
     try {
       ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = `rgb(${fill.join(',')})`;
-      ctx.globalAlpha = shape.alpha * (shape.face !== 'side' ? 1 - textureMix : 1);
+      // Fragments are material solids. Transparent pixels in the native atlas
+      // reveal a palette substrate while broken, rather than glass-like holes.
+      // The substrate is gone at the exact native endpoint.
+      ctx.globalAlpha =
+        shape.alpha * (shape.face !== 'side' ? 1 - smooth(shape.progress) * textureMix : 1);
       path(ctx, shape.points);
       ctx.fill();
       if (shape.face !== 'side' && surface && shape.uv) {
         ctx.globalAlpha = shape.alpha * shape.textureMix;
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
-        const source = shape.uv.map(([u, v]) => [u * surface.width, v * surface.height]);
-        // Convex canonical cells need at most eight affine texture triangles.
-        for (let index = 1; index < source.length - 1; index++)
+        const overlap = shape.alpha === 1 && shape.progress < 0.98;
+        if (overlap) ctx.clip();
+        // Refine only where actual perspective bends the native texture, with
+        // the same eight-submission bound as the largest canonical face fan.
+        for (const triangle of textureTriangles(shape, surface))
           paintTriangle(
             ctx,
             surface,
-            [source[0], source[index], source[index + 1]],
-            [shape.points[0], shape.points[index], shape.points[index + 1]]
+            triangle.map((vertex) => vertex.source),
+            triangle.map((vertex) => vertex.point),
+            overlap
           );
       }
     } finally {

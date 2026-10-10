@@ -179,19 +179,35 @@ The 9 October maintainer amendment and subsequent rejected-preview correction
 extend that owner to persistent neighboring-page content structures: Research in
 Home and Writing in Research, breathing with the exact shared branch transform.
 The same captured identities converge during forward camera travel and remain
-in their host after reverse detachment. Home-to-Writing also passes through the
+in their host after reverse detachment. Forward incoming geometry aligns
+laterally while distant, retains seeded longitudinal spread and approaches
+through depth on fixed target-world axes; camera proximity cannot advance its
+requested assembly phase. Branch contact, native endpoints and reverse paths
+remain covered by the same geometry suite. Home-to-Writing also passes through the
 intermediate Research content and room without mounting a Research DOM. Shared
 caps include retained fields and temporary capture, with one bounded native
 viewport texture per page and independently verified subowner paint coverage.
 The single SVG raster preserves each owner's isolated native clip; exclusive
 alpha regions reject paint borrowed from another owner. Physical accounting
-includes decode, atlas, readback and inlined-media surfaces. Resting textured
-fronts retain content contrast while closed side/rear surfaces keep native fog.
+includes decode, atlas, readback and inlined-media surfaces. Textured fronts and
+rears retain opaque content material before near-plane fading; closed sides
+retain canonical fog. Broken material fills transparent atlas pixels with a
+substrate that disappears at the native endpoint. Tilted faces use actual
+perspective midpoints with at most eight bounded source triangle submissions,
+without new textures or a second renderer.
 Permanent
 `embedded-plan.test.cjs`, `embedded-texture.test.cjs` and
 `embedded-scene.test.cjs` exercise persistent closed-shard geometry, bounded
 native text/paper/link/list/control and decoded-media capture plus the shared
 retained-bank, room/prewarm/departure/handoff lifecycle.
+The same permanent lifecycle suite checks successor preparation only after
+native destination mount, resident-only ownership, protection of every live
+field and rejection of a fourth corridor field. It checks 420ms continuous
+speculative reveal on the existing ambient clock, frozen/wrapped clock behavior,
+completion without cancelling a separately signalled warm task, and interruption
+cleanup. The existing geometry suite checks opaque material and its native
+endpoint, perspective subdivision bounds and glyph coverage; these deterministic
+observations do not establish perceived fidelity or device cost.
 Recorded reverse-camera regressions also require visible partial geometry along
 real destination-room branches before native handoff, with exact source contact
 and endpoints; a behind-camera path cannot pass by first appearing fully assembled.

@@ -7,29 +7,33 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 - Main revalidated at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`.
   Issue41 positioning/sitecase work remains distinct; revalidate its live route.
 - Issue49 / Draft PR53 is the sole persistent content-world execution route.
-  Published baseline `de3c41f`, tree `2c6946c`, preserves rebased history and
-  concurrent23622 complete opaque-header proof. Earlier Chromium hosted smoke
-  passes13 trips per width1440/390, but never establishes Safari/iPad readiness.
-- The maintainer reports native fallback on iPad Pro M2 12.9 at preview
-  `c91f3438` /research. Actual Linux
-  WebKit26.6 reproduces missing nav/section border ink; positioned HTML ignores
-  SVG viewBox scaling. The current continuation keeps SVG bitmap dimensions
-  and scales its native CSS plane on the same rounded X/Y pixel axes. Original
-  clips, exclusive ink proof, clocks, caps and texture surfaces remain.
-- Local Chromium138 font matching consumed71/83ms of native acquisition. A
-  loaded empty FontFaceSet with validated system families now uses its exact
-  nonloading result; registered/unknown-size sets retain actual per-text checks.
-  Temporary atlas CPU-read preference reduces WebKit readback cost; the scene
-  context remains unchanged. Canonical16 actual native captures pass across
-  both engines/four viewports. Full cold/route/hosted evidence is separately
-  recorded; initial decode-deadline misses remain failed observations.
-- Read the same [issue49 handoff](review/issue-49/2026-10-08-analysis.md) and
-  [bounded diagnostics](review/issue-49/2026-10-10-performance.json). A scoped
-  WebKit tablet preview profile requires actual default textures, forward/reverse
-  and Home→Writing corridor at both DPR2 orientations, without allowing fallback
-  to count as required textured success. It is not physical iPad acceptance.
-- Earlier failed previews/cold probes retain their failed status. Source/CI/
-  artifact identities must be revalidated live; green Chromium cannot admit Safari.
+  The iPad capture continuation was published at e001f38, tree56d5dfed,
+  with green exact-source Chromium and tablet WebKit CI. The maintainer now
+  confirms flights work on the reported iPad Pro M2 12.9, but rejects successor
+  pop-in, sideways collection and transparent/perspective-distorted shard faces.
+- The same continuation corrects mounted resident-only successor warming in
+  an empty third slot, preserves every live field and separate warm cancellation,
+  adds420ms reveal on the existing ambientTime, and separates forward lateral
+  alignment from seeded axial depth. Front/rear material and bounded8-triangle
+  perspective preserve exact native endpoints; no native reading-style change.
+- Exact baseline6070b82f and prepared candidate da7752f3 have source-bound local
+  touch/DPR2 frame comparisons. Candidate passes8/8 trips in both orientations;
+  successor Writing is visible900/897ms before Research settles. A full three-
+  field Home→Writing corridor defers Talks237/333ms after settlement, then
+  reveals smoothly; it cannot admit a fourth live field. Failed cold baseline
+  observation remains failed. This is not physical/whole visual/paired cost proof.
+- Endpoint clipping restores the original single boundary clip. Historical
+  digest5a297a98/Colorc1fdd00e has one focused endpoint capture; the eight-trip
+  capture uses preceding da7752f3. Both precede the final readability extraction.
+  Prepared delivery digest a376f881, Color f88f2d44, plan SHA256 8f9d9945 retains
+  exact parity across 6 preparations/16,632 geometry/648 samples/33,827 Canvas
+  operations. Final integrated208/208 and full lint pass; the bounded style
+  guard scans88 files with0 legacy occurrences. Independent review reports no
+  blocker. Actual captures retain their preceding artifact bindings; clean
+  policy and final-source hosted preview/CI remain pending. Regenerate RI after
+  this evidence update before committing.
+- Read the same [issue49 handoff](review/issue-49/2026-10-08-analysis.md#visual-continuity-forward-depth-and-solid-texture-correction--10-october-2026)
+  and [bounded diagnostics](review/issue-49/2026-10-10-performance.json).
 
 ## Decisions
 
@@ -55,7 +59,7 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #49 / Draft PR53 | Verify corrected exact source, WebKit tablet/Chromium hosted reports and immutable preview; retain cold misses; complete physical iPad, visual/accessibility and paired-cost gates. |
+| #49 / Draft PR53 | Verify the visual-correction exact source and immutable preview/CI; retain the three-field skip boundary and cold failures; complete whole visual/device/accessibility and paired-cost gates. |
 | #41 | Revalidate current editorial PR/main and original AC02–AC06; preserve accepted positioning/sitecase. |
 | #39 / Draft PR40 | Pages/domain preparation; preserve production/domain decisions. |
 | #45 / #36 | Original visual/editorial/device/release gates remain separate. |
@@ -65,9 +69,9 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 ## Next session
 
 1. Fetch live main, issue49/PR53 head, checks and exact preview identities.
-2. Read the iPad fallback/WebKit correction in the same issue49 handoff.
-3. Check actual default textured readiness on the reported iPad/URL; native
-   device and whole visual/paired-cost admission cannot come from Linux emulation.
+2. Read the visual continuity/depth/material correction in the same issue49 handoff.
+3. Compare the final preview on the reported iPad, including adjacent and skipped
+   routes; whole visual/device/paired-cost admission cannot come from emulation.
 4. Refresh source-bound evidence, actual issue boxes and this handoff; do not
    merge/promote without the applicable decision.
 

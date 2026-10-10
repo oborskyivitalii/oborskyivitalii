@@ -50,17 +50,27 @@ function livingPlate({
   host = 'index',
   returnRoom = null,
   planner = plan,
+  depthRoots = false,
+  width = compact ? 390 : 1440,
+  height = compact ? 844 : 900,
 } = {}) {
-  const width = compact ? 390 : 1440;
-  const height = compact ? 844 : 900;
   const count = compact ? 13 : 32;
   const rect = { x: 0, y: 78, width, height: height - 78 };
   const cells = fragments.partition(rect, { count, seed: 49 }, { maxPieces: count });
   const branches = models
     .worldFor(host, compact)
-    .objects.filter((object) => object.root === 1 && object.depth === 2 && object.points?.length);
+    .objects.filter(
+      (object) =>
+        (depthRoots ? object.root <= 2 : object.root === 1) &&
+        object.depth === 2 &&
+        object.points?.length
+    );
   const members = cells.map((_, index) => {
-    const branch = branches[(37 + index * 7) % branches.length];
+    const candidates = depthRoots
+      ? branches.filter((branch) => branch.root === index % 3)
+      : branches;
+    const branch =
+      candidates[(37 + (depthRoots ? Math.floor(index / 3) : index) * 7) % candidates.length];
     return {
       name: branch.name,
       parent: branch.parent,
@@ -561,7 +571,8 @@ test('world rest contains readable content and normal-lit closed faces sorted by
   assert.ok(shapes.length > prepared.shards.length);
   assert.ok(shapes.some((shape) => shape.face === 'side'));
   assert.ok(shapes.some((shape) => shape.face === 'front' && shape.textureMix === 1));
-  assert.ok(shapes.every((shape) => shape.alpha > 0 && shape.alpha < 1));
+  assert.ok(shapes.every((shape) => shape.alpha > 0 && shape.alpha <= 1));
+  assert.ok(shapes.filter((shape) => shape.face === 'front').every((shape) => shape.alpha === 1));
   for (const shape of shapes) {
     assertPoint([Math.hypot(...shape.normal)], [1]);
     const expected = Math.min(
@@ -583,7 +594,7 @@ test('world rest contains readable content and normal-lit closed faces sorted by
   );
 });
 
-test('native content fronts retain readable contrast while closed side material keeps canonical fog', () => {
+test('native content fronts remain opaque while closed side material keeps canonical fog', () => {
   for (const compact of [false, true]) {
     const current = projection.routePose('index', definitions.poses.overview);
     const target = projection.routePose('research', definitions.poses.researchOverview);
@@ -598,9 +609,8 @@ test('native content fronts retain readable contrast while closed side material 
     const sides = shapes.filter((shape) => shape.face === 'side');
     assert.ok(fronts.length > 0 && sides.length > 0);
     for (const shape of fronts) {
-      assertPoint([shape.alpha], [0.6 + 0.4 * math.depthVisibility(shape.depth)]);
+      assert.equal(shape.alpha, 1);
       assert.equal(shape.textureMix, 1);
-      assert.ok(shape.alpha >= 0.6 && shape.alpha < 1);
     }
     for (const shape of sides) {
       assertPoint([shape.alpha], [math.depthVisibility(shape.depth)]);
@@ -697,6 +707,79 @@ test('forward departure leaves a broken volume for the camera to cross instead o
     clearance: true,
   });
   assert.equal(crossed.length, 0, 'the destination camera has actually passed the outgoing volume');
+});
+
+test('forward incoming assembly has a fixed deep corridor and a late axial approach to native paint', () => {
+  for (const [width, height, compact] of [
+    [1024, 1366, false],
+    [1366, 1024, false],
+    [390, 844, true],
+  ]) {
+    const from = projection.routePose('index', definitions.poses.overview);
+    const to = projection.routePose('research', definitions.poses.researchOverview);
+    const prepared = livingPlate({ compact, pose: to, width, height, depthRoots: true });
+    const target = plan.view(to, prepared.width, prepared.height);
+    const original = JSON.stringify(prepared);
+    const centers = [];
+    const axialTravel = [];
+    for (const shard of prepared.shards) {
+      const options = { view: target, rect: prepared.rect, depth: 12, time: 2000 };
+      for (const progress of [0, 1])
+        assert.deepEqual(
+          plan.geometry(shard, { ...options, progress, forwardPath: true }),
+          plan.geometry(shard, { ...options, progress }),
+          'branch contact and native plane are unchanged'
+        );
+      const at = (progress) => plan.geometry(shard, { ...options, progress, forwardPath: true });
+      const halfway = pointCenter(at(0.5).vertices.slice(0, shard.uv.length));
+      const later = pointCenter(at(0.75).vertices.slice(0, shard.uv.length));
+      centers.push(target.camera(halfway));
+      const change = math.sub(later, halfway);
+      assert.ok(Math.abs(math.dot(change, target.right)) < 1e-7);
+      assert.ok(Math.abs(math.dot(change, target.up)) < 1e-7);
+      axialTravel.push(Math.abs(math.dot(change, target.forward)));
+      const late = at(0.8);
+      const depths = late.vertices
+        .slice(0, shard.uv.length)
+        .map((point) => target.camera(point)[2]);
+      assert.ok(Math.max(...depths) - Math.min(...depths) < 1e-7);
+    }
+    assert.ok(
+      Math.max(...centers.map((point) => point[2])) -
+        Math.min(...centers.map((point) => point[2])) >
+        16,
+      'collection remains a longitudinal volume instead of a lateral sheet'
+    );
+    assert.ok(Math.max(...axialTravel) > 8, 'the late approach moves chiefly through depth');
+    for (let index = 0; index <= 40; index++) {
+      const flight = index / 40;
+      const pose = math.mix(from, to, math.smooth(flight));
+      const progress = math.clamp((flight - 0.12) / 0.88);
+      const progresses = prepared.shards.map((_, shard) => {
+        const delay = (0.2 * shard) / (prepared.shards.length - 1);
+        return math.clamp((progress - delay) / (1 - delay));
+      });
+      const shapes = plan.sample(prepared, {
+        pose,
+        width: prepared.width,
+        height: prepared.height,
+        progresses,
+        time: 2000,
+        clearance: true,
+        forwardPath: true,
+      });
+      assert.ok(shapes.length > 0, `forward corridor vanished at ${flight}`);
+      assert.ok(
+        shapes.some((shape) => shape.face === 'front'),
+        `native ink vanished at ${flight}`
+      );
+      for (const shape of shapes) {
+        const shard = prepared.shards.findIndex((candidate) => candidate.id === shape.id);
+        assert.equal(shape.progress, progresses[shard], 'camera proximity cannot advance assembly');
+      }
+    }
+    assert.equal(JSON.stringify(prepared), original);
+  }
 });
 
 test('full polygon normals retain a front with collinear first three partition vertices', () => {
@@ -802,6 +885,163 @@ function canvasContext() {
   );
   return { context, calls };
 }
+
+function textureTrace() {
+  let state = { matrix: [1, 0, 0, 1, 0, 0], alpha: 1, clips: [] };
+  const stack = [];
+  let polygon = [];
+  const draws = [];
+  const fills = [];
+  const context = {
+    save() {
+      stack.push({ ...state, matrix: [...state.matrix], clips: [...state.clips] });
+    },
+    restore() {
+      state = stack.pop();
+    },
+    beginPath() {
+      polygon = [];
+    },
+    moveTo(...point) {
+      polygon.push(point);
+    },
+    lineTo(...point) {
+      polygon.push(point);
+    },
+    closePath() {},
+    clip() {
+      state.clips.push(polygon.map((point) => [...point]));
+    },
+    transform(...matrix) {
+      state.matrix = matrix;
+    },
+    drawImage() {
+      draws.push({ ...state, matrix: [...state.matrix], clips: [...state.clips] });
+    },
+    fill() {
+      fills.push({ alpha: state.alpha, style: context.fillStyle });
+    },
+    set globalAlpha(alpha) {
+      state.alpha = alpha;
+    },
+    get globalAlpha() {
+      return state.alpha;
+    },
+  };
+  return { context, draws, fills, stack };
+}
+
+test('transparent atlas pixels rest on solid material that vanishes at the native endpoint', () => {
+  const prepared = plate({ count: 1 });
+  prepared.shards[0].restCenter = [0, 0, -130];
+  for (const progress of [0, 0.5, 1]) {
+    const shape = plan
+      .sample(prepared, { pose: research, width: 1440, height: 900, progress })
+      .find((candidate) => candidate.face === 'front');
+    assert.ok(shape);
+    const { context, fills, draws, stack } = textureTrace();
+    plan.paint(context, shape, { width: 581, height: 141 }, colors);
+    assert.equal(fills.length, 1);
+    if (progress === 0) assert.equal(fills[0].alpha, 1);
+    if (progress === 0.5) assert.ok(fills[0].alpha > 0 && fills[0].alpha < 1);
+    if (progress === 1) assert.equal(fills[0].alpha, 0);
+    assert.ok(draws.length > 0 && draws.every((draw) => draw.alpha === 1));
+    assert.equal(stack.length, 0);
+  }
+});
+
+test('bounded texture sampling follows a tilted glyph plane instead of an affine face fan', () => {
+  const width = 240;
+  const height = 160;
+  const uv = [
+    [0, 0],
+    [1, 0],
+    [1, 1],
+    [0, 1],
+  ];
+  const cameraPoint = ([u, v]) => [u * 6 - 3, 2 - v * 4, 20 + u * 20 + v * 5];
+  const project = ([x, y, z]) => [400 + (x * 900) / z, 300 - (y * 900) / z];
+  const points = uv.map((point) => project(cameraPoint(point)));
+  const shape = {
+    kind: 'embedded-face',
+    face: 'front',
+    color: 'cyan',
+    alpha: 1,
+    tint: 0.4,
+    textureMix: 1,
+    progress: 0,
+    uv,
+    points,
+    cameraPoints: uv.map(cameraPoint),
+  };
+  const contains = (polygon, point) => {
+    const signs = polygon.map((a, index) => {
+      const b = polygon[(index + 1) % polygon.length];
+      return (b[0] - a[0]) * (point[1] - a[1]) - (b[1] - a[1]) * (point[0] - a[0]);
+    });
+    return signs.every((value) => value >= -1e-7) || signs.every((value) => value <= 1e-7);
+  };
+  const errors = (candidate) => {
+    const { context, draws } = textureTrace();
+    plan.paint(context, candidate, { width, height }, colors);
+    const result = [];
+    // Distinct interior strokes of an asymmetric glyph exercise both axes;
+    // all four corners alone would pass the old, visibly warped affine fan.
+    for (let y = 1; y < 8; y++)
+      for (let x = 1; x < 8; x++) {
+        const point = [x / 8, y / 8];
+        const expected = project(cameraPoint(point));
+        const candidates = draws.flatMap((draw) => {
+          const [a, b, c, d, e, f] = draw.matrix;
+          const painted = [
+            a * point[0] * width + c * point[1] * height + e,
+            b * point[0] * width + d * point[1] * height + f,
+          ];
+          return draw.clips.every((clip) => contains(clip, painted))
+            ? [Math.hypot(...math.sub(painted, expected))]
+            : [];
+        });
+        assert.ok(candidates.length > 0, 'glyph stroke lost between texture triangles');
+        result.push(Math.min(...candidates));
+      }
+    return {
+      draws,
+      maximum: Math.max(...result),
+      mean: result.reduce((a, b) => a + b) / result.length,
+    };
+  };
+  const original = errors({ ...shape, cameraPoints: null });
+  const corrected = errors(shape);
+  assert.equal(original.draws.length, 2);
+  assert.ok(corrected.draws.length > 2 && corrected.draws.length <= 8);
+  assert.ok(original.maximum > 20, 'negative control must expose actual perspective distortion');
+  assert.ok(corrected.maximum < original.maximum * 0.4);
+  assert.ok(corrected.mean < original.mean * 0.4);
+  const native = {
+    ...shape,
+    progress: 1,
+    points: uv.map(([u, v]) => [120.25 + u * width, 90.5 + v * height]),
+    cameraPoints: uv.map(([u, v]) => [u, v, 12]),
+  };
+  const { context, draws, fills } = textureTrace();
+  plan.paint(context, native, { width, height }, colors);
+  assert.equal(draws.length, 2, 'the native endpoint retains the minimal fan');
+  assert.ok(draws.every((draw) => draw.alpha === 1));
+  assert.ok(draws.every((draw) => draw.matrix.every(Number.isFinite)));
+  assert.ok(
+    draws.every((draw) => draw.clips.length === 1),
+    'native antialiased paper/glyph edges must not be clipped a second time'
+  );
+  assert.equal(fills[0].alpha, 0);
+  for (const draw of draws) assertPoint(draw.matrix, [1, 0, 0, 1, 120.25, 90.5]);
+  const originalNative = textureTrace();
+  plan.paint(originalNative.context, { ...native, cameraPoints: null }, { width, height }, colors);
+  assert.deepEqual(
+    draws,
+    originalNative.draws,
+    'semi-transparent native paint retains the original affine mapping and boundary clips'
+  );
+});
 
 test('one bounded source bitmap paints front texture and restores Canvas state, unknown shapes untouched', () => {
   const prepared = plate();

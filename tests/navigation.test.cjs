@@ -74,6 +74,7 @@ function harness(options = {}) {
     },
     releaseEndpoint() {},
     releaseTail() {},
+    prepareNeighbor() {},
     Promise,
   };
   vm.runInNewContext(
@@ -376,6 +377,9 @@ function routeNavigationHarness(options = {}) {
     present() {},
   };
   if (options.warm) presentation.prepareNext = (data) => warmed.push(data.page);
+  if (options.canPrepareNeighbor)
+    presentation.canPrepareNeighbor = (neighbor) =>
+      options.canPrepareNeighbor(document.body.dataset.page, neighbor);
   if (options.prepareTransition) presentation.prepareTransition = options.prepareTransition;
   const context = {
     window,
@@ -645,6 +649,54 @@ test('Research warms Writing through the same verified route cache after arrival
   await h.resolve('writing');
   assert.deepEqual(h.warmed, ['writing']);
   assert.equal(h.page(), 'research', 'prewarming never mounts the destination');
+});
+
+test('a mounted destination warms its successor before arrival only with explicit slot admission', async () => {
+  const h = routeNavigationHarness({
+    warm: true,
+    canPrepareNeighbor: (page, neighbor) => page === 'research' && neighbor === 'writing',
+  });
+  h.api.go('research');
+  await h.resolve('research');
+  await h.warm();
+  assert.equal(h.reads.length, 1, 'the old native source cannot warm during departure');
+  h.midpoint();
+  const successor = h.reads.find((entry) => entry.next === 'writing');
+  assert.ok(successor, 'the mounted destination starts its verified successor read during travel');
+  assert.equal(h.api.pendingRoute(), 'research');
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, ['writing']);
+  assert.equal(h.api.pendingRoute(), 'research', 'warming never completes the active journey');
+  assert.deepEqual(
+    h.mounts.map((entry) => entry.page),
+    ['research']
+  );
+  await h.arrive();
+});
+
+test('successor slot admission is rechecked after an asynchronous read and after retargeting', async () => {
+  let admitted = true;
+  const h = routeNavigationHarness({
+    warm: true,
+    canPrepareNeighbor: (page, neighbor) =>
+      admitted && page === 'research' && neighbor === 'writing',
+  });
+  h.api.go('research');
+  await h.resolve('research');
+  h.midpoint();
+  admitted = false;
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, [], 'a full resident bank cannot accept the completed read');
+  admitted = true;
+  void h.warm();
+  const successor = h.reads.find((entry) => entry.next === 'writing' && !entry.resolved);
+  assert.ok(successor);
+  h.api.go('index');
+  assert.equal(successor.signal.aborted, true);
+  await h.resolve('writing');
+  assert.deepEqual(h.warmed, [], 'stale successor preparation cannot affect a replacement flight');
+  await h.resolve('index');
+  await h.arrive();
 });
 
 test('retarget during asynchronous solid capture cannot start a stale flight', async () => {

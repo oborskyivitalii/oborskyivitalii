@@ -17,6 +17,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     skippedHostSpan: 0.7,
     stagger: 0.2,
     handoffMs: 180,
+    residentRevealMs: 420,
   });
   let generation = 0;
   let state = null;
@@ -86,12 +87,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       surfaces.delete(group.key);
     }
   }
-  function cancel() {
-    generation++;
-    pending?.abort();
-    pending = null;
-    pendingRoute = null;
-    queuedPrime = null;
+  function releaseSession() {
     restore();
     phase = null;
     context = null;
@@ -104,6 +100,14 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     faces = [];
     departureFaces = [];
     paintedEntries = [];
+  }
+  function cancel() {
+    generation++;
+    pending?.abort();
+    pending = null;
+    pendingRoute = null;
+    queuedPrime = null;
+    releaseSession();
   }
   function invalidate() {
     cancel();
@@ -437,7 +441,17 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   async function prime(data, top, landing = null, options = {}) {
     const from = document.body.dataset.page;
-    if (!validRoute(from) || !validRoute(data.page) || from === data.page || phase) return false;
+    const residentOnly = options.residentOnly === true;
+    const neighbor = api.routeOrder[api.routeOrder.indexOf(from) + 1];
+    if (
+      !validRoute(from) ||
+      !validRoute(data.page) ||
+      from === data.page ||
+      options.signal?.aborted ||
+      (residentOnly && data.page !== neighbor) ||
+      (phase && (!residentOnly || !canPrepareNeighbor(data.page)))
+    )
+      return false;
     if (
       !state ||
       state.width !== (window.innerWidth || state.width) ||
@@ -451,12 +465,14 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     // A returned field must keep its actual captured scroll/content. Only real
     // navigation may replace it to satisfy a different destination landing.
     if (cached && (options.reuseResident || cached.landingKey === key)) {
-      incoming = cached;
+      if (!residentOnly) incoming = cached;
       touch(cached);
       return true;
     }
     if (pending || !window.SiteScene?.canTravel() || options.signal?.aborted) return false;
-    if (!makeRoom(data.page, [from])) return false;
+    // Speculative work during a flight may use its empty third slot, but cannot
+    // evict source, destination or an intermediate corridor's painted field.
+    if (!makeRoom(data.page, phase ? [...bank.keys()] : [from])) return false;
     const own = ++generation;
     lastFailure = null;
     const controller = new AbortController();
@@ -492,8 +508,10 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       const entry = build(assets, data.page, limits, 'incoming');
       if (!entry) return false;
       entry.landingKey = key;
+      entry.residentReveal = options.revealResident && !cached ? { startedAt: null } : null;
+      entry.residentVisibility = entry.residentReveal ? 0 : 1;
       commit(entry);
-      incoming = entry;
+      if (!residentOnly) incoming = entry;
       assets = null;
       return true;
     } catch {
@@ -665,6 +683,10 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     progress = 0;
     handoff = 0;
     tailStarted = null;
+    for (const entry of [incoming, outgoing]) {
+      entry.residentReveal = null;
+      entry.residentVisibility = 1;
+    }
     hide(outgoing.groups[0].native);
     return true;
   }
@@ -736,6 +758,19 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     if (window.CustomEvent)
       window.dispatchEvent(new window.CustomEvent('site:embedded-invalidated'));
   }
+  function canPrepareNeighbor(route) {
+    const native = document.body.dataset.page;
+    const neighbor = api.routeOrder[api.routeOrder.indexOf(native) + 1];
+    return (
+      !!phase &&
+      native === context?.to &&
+      validRoute(neighbor) &&
+      (route === undefined || route === neighbor) &&
+      bank.size < settings.entries &&
+      !pending &&
+      window.SiteScene?.canTravel() === true
+    );
+  }
   const bridge = {
     prime,
     prepareDeparture,
@@ -745,6 +780,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     cancel,
     invalidate,
     refresh,
+    canPrepareNeighbor,
     active: () => phase !== null,
     nativeOpacity: () => (phase === 'assembling' ? handoff : 1),
     owner: () => hidden[0]?.owner || null,
@@ -753,7 +789,9 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       if (!phase) return true;
       if (phase !== 'assembling' || travelProgress < 1 || handoff < 1) return false;
       const arrival = incoming;
-      cancel();
+      // A separately owned successor capture may outlast the native handoff.
+      // Finishing this session must not abort or invalidate that bounded task.
+      releaseSession();
       incoming = arrival;
       touch(arrival);
       const crossed = bank.get(arrival.host);
@@ -782,6 +820,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       texturePixels: totalUsage(faces.length ? paintedEntries : bank.values())?.layerPixels || 0,
       residentUsage: reservation(),
       residentRoutes: [...bank.keys()],
+      residentRevealMs: settings.residentRevealMs,
+      residentReveals: [...bank.values()].map((entry) => ({
+        route: entry.route,
+        progress: entry.residentVisibility ?? 1,
+      })),
       nativeRect: incoming?.groups[0]?.asset.rect || null,
       nativeLines: incoming?.groups[0]?.asset.lines || [],
       envelope: incoming?.groups[0]?.asset.envelope || null,
@@ -872,6 +915,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
           entry === incoming &&
           context?.direction === 'backward' &&
           entry.host !== entry.route,
+        forwardPath: phase && entry === incoming && context?.direction === 'forward',
         departing: phase && entry === outgoing && context?.direction === 'forward',
       });
       for (const shape of shapes) {
@@ -895,6 +939,15 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       entry.owner.style.visibility = handoff > 0 ? entry.visibility || 'visible' : 'hidden';
       entry.owner.style.opacity = String(handoff);
     }
+  }
+  function residentVisibility(entry, frame) {
+    if (!entry.residentReveal) return 1;
+    const reveal = entry.residentReveal;
+    if (reveal.startedAt === null) reveal.startedAt = frame.ambientTime;
+    const elapsed = (frame.ambientTime - reveal.startedAt + api.LOOP_MS) % api.LOOP_MS;
+    const amount = clamp(elapsed / settings.residentRevealMs);
+    if (amount === 1) entry.residentReveal = null;
+    return amount * amount * (3 - 2 * amount);
   }
   function publishStatus() {
     if (!statusOwner?.dataset) return;
@@ -950,6 +1003,9 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
         else if (phase && entry === outgoing) amount = 1 - travelProgress;
         else if (entry.route === native) continue;
         const shapes = sample(entry, frame, amount);
+        entry.residentVisibility = residentVisibility(entry, frame);
+        if (entry.residentVisibility < 1)
+          for (const shape of shapes) shape.alpha *= entry.residentVisibility;
         if (phase && entry === incoming && handoff > 0)
           for (const shape of shapes) shape.alpha *= 1 - handoff;
         if (phase && entry === outgoing) departureFaces = shapes;

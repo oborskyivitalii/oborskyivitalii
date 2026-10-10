@@ -515,6 +515,81 @@ test('speculative capture waits for startup idle and navigation cancels its queu
   assert.equal(tasks.size, 0);
 });
 
+test('mounted successor warming uses the spare scene slot during travel and never captures its hidden native plane', async () => {
+  const calls = [];
+  let active = true;
+  let spare = true;
+  let resolve;
+  const fixture = presentationFixture({
+    window: {
+      requestIdleCallback() {
+        throw Error('live flight successor cannot wait for startup idle');
+      },
+    },
+    embedded: {
+      begin: () => true,
+      active: () => active,
+      canPrepareNeighbor: (route) => spare && route === 'writing',
+      prime(data, top, landing, options) {
+        calls.push({ name: 'prime', data, top, landing, options });
+        return new Promise((done) => {
+          resolve = done;
+        });
+      },
+      async prepareDeparture() {
+        calls.push({ name: 'depart' });
+      },
+    },
+  });
+  fixture.presentation.begin(true, { from: 'index', to: 'research', direction: 'forward' });
+  assert.equal(fixture.presentation.canPrepareNeighbor('writing'), true);
+  assert.equal(fixture.presentation.canPrepareNeighbor('talks'), false);
+  const controller = new AbortController();
+  const warming = fixture.presentation.prepareNext({ page: 'writing' }, controller.signal);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].options.signal, controller.signal);
+  assert.equal(calls[0].options.residentOnly, true);
+  assert.equal(calls[0].options.reuseResident, true);
+  assert.equal(calls[0].options.revealResident, true);
+  active = false;
+  fixture.presentation.clear();
+  fixture.presentation.clear();
+  resolve(true);
+  await warming;
+  assert.deepEqual(
+    calls.map(({ name }) => name),
+    ['prime']
+  );
+  active = true;
+  spare = false;
+  assert.equal(fixture.presentation.canPrepareNeighbor('writing'), false);
+  await fixture.presentation.prepareNext({ page: 'talks' });
+  assert.equal(calls.length, 1, 'full live bank cannot stage an unused fourth texture');
+  spare = true;
+  fixture.presentation.fragmentPreview(false);
+  assert.equal(fixture.presentation.canPrepareNeighbor('writing'), false);
+  await fixture.presentation.prepareNext({ page: 'writing' });
+  assert.equal(calls.length, 1);
+});
+
+test("presentation cleanup preserves a completed session's warm task and cancels an active native owner", () => {
+  let active = false;
+  let cancellations = 0;
+  const fixture = presentationFixture({
+    embedded: {
+      active: () => active,
+      cancel() {
+        cancellations++;
+      },
+    },
+  });
+  fixture.presentation.clear();
+  assert.equal(cancellations, 0, 'completed phase cannot cancel another finite task');
+  active = true;
+  fixture.presentation.clear();
+  assert.equal(cancellations, 1, 'interrupted phase still restores native paint');
+});
+
 test('solid-owned native handoff stays at native opacity and transform while Canvas assembles', () => {
   const samples = [];
   const embedded = {

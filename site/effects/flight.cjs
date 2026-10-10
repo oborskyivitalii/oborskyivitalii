@@ -500,7 +500,10 @@ function createPresentation(content) {
     },
     canTravel: () => window.CSS?.supports?.('overflow', 'clip') === true,
     clear() {
-      window.SiteEffects.embedded?.cancel();
+      const embedded = window.SiteEffects.embedded;
+      // A completed handoff already released native ownership. Ordinary text
+      // cleanup must not cancel its separately signalled successor warm-up.
+      if (embedded?.active?.() !== false) embedded?.cancel();
       useSolids = false;
       content.style.removeProperty('transform-origin');
       delete content.dataset.flightStage;
@@ -593,6 +596,11 @@ function createPresentation(content) {
       return fragmentPreview;
     },
     canPrepareNext: () => contentFlight && fragmentPreview,
+    canPrepareNeighbor: (route) =>
+      contentFlight &&
+      fragmentPreview &&
+      useSolids &&
+      window.SiteEffects.embedded?.canPrepareNeighbor?.(route) === true,
     async prepareTransition(data, context, signal) {
       if (!contentFlight || !fragmentPreview) return;
       const embedded = window.SiteEffects.embedded;
@@ -613,10 +621,13 @@ function createPresentation(content) {
     },
     async prepareNext(data, signal) {
       if (!contentFlight || !fragmentPreview) return;
+      const embedded = window.SiteEffects.embedded;
+      const residentOnly = embedded?.active?.() === true;
+      if (residentOnly && embedded.canPrepareNeighbor?.(data.page) !== true) return;
       // First-load capture must not compete with the initial layout and scene
       // build. This is one cancellable idle task, not another animation clock;
       // the adapter still owns its unchanged acquisition/decode deadlines.
-      if (window.requestIdleCallback) {
+      if (!residentOnly && window.requestIdleCallback) {
         await new Promise((resolve) => {
           let ticket;
           const finish = () => {
@@ -630,9 +641,15 @@ function createPresentation(content) {
         });
       }
       if (signal?.aborted || !contentFlight || !fragmentPreview) return;
-      const embedded = window.SiteEffects.embedded;
-      if (await embedded?.prime(data, content.offsetTop, null, { signal, reuseResident: true })) {
-        if (!signal?.aborted)
+      if (
+        await embedded?.prime(data, content.offsetTop, null, {
+          signal,
+          reuseResident: true,
+          residentOnly,
+          revealResident: true,
+        })
+      ) {
+        if (!signal?.aborted && !residentOnly && embedded.active?.() !== true)
           await embedded.prepareDeparture?.(content, { signal, cacheOnly: true });
       }
     },

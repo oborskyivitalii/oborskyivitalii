@@ -164,9 +164,14 @@ retain ordinary native navigation.
 side faces, target-camera endpoints and immutable membership in existing fractal
 branches. Their resting geometry uses the exact shared `loopTransform` and room
 offset under the existing ambient clock; real content textures remain visible.
-Textured fronts and rears retain at least60% of material visibility before
-near-plane fading; their remaining fog follows canonical depth visibility.
-Closed sides keep canonical fog, and assembled native endpoints remain fully opaque.
+Textured fronts and rears remain opaque before near-plane fading; closed sides
+keep canonical depth fog. Broken fragments have a palette substrate beneath
+transparent native atlas pixels, so captured paper and ink remain on solid
+material. That added substrate disappears at the exact native endpoint.
+Tilted texture faces refine actual projected midpoints when their affine error
+exceeds one CSS pixel, up to eight triangle submissions per face, using bounded
+source rectangles and existing triangle clips. This bounded approximation
+reduces affine bending of glyphs; it adds no bitmap, decode or scene clock.
 Reverse collection can traverse a second genuine branch in the destination room
 before reaching its native plane, so a retreating camera sees partial geometry
 while both resting contact and the final endpoint remain exact. This world path
@@ -177,6 +182,12 @@ shards have deeper beveled sides and captured paint on both faces. Forward break
 begins on the native reading plane, then leaves detached pieces at fixed source-world
 positions for the camera to cross; reverse departure retains the canonical host
 trajectory. Incoming pieces converge at staggered phases during that flight.
+Forward assembly separates lateral alignment from longitudinal approach using
+the fixed destination-camera world axes. Pieces align laterally while distant,
+retain seeded depth spread, finish their rotation early and approach the native
+plane chiefly through depth. The live camera cannot advance their assembly
+phase or carry that corridor along its near plane. Resting branch contact,
+native endpoints and reverse paths retain their original geometry.
 Neighbor preparation also captures the settled current viewport before a click,
 within the same abort, matching, retention, pixel and absolute deadline rules.
 `embedded-scene.cjs` attaches collection/paint to the current travel effect;
@@ -203,6 +214,17 @@ no independent clock or generic content-plane fade. Source
 fixtures do not establish native texture fidelity or perceived depth: the
 explicit AC15 embedded visual gate and existing fidelity/performance/device
 gates remain pending before visual acceptance or release admission.
+
+After the destination mounts during travel, speculative preparation may capture
+its logical successor into an empty third resident slot. Every live field remains
+protected, including a skipped-room corridor; a full bank defers successor work
+until the existing handoff completes. This resident-only task cannot select the
+incoming or outgoing owner, recapture the departure plane or pause the painted
+flight. New speculative fields reveal smoothly over 420ms on the shared ambient
+clock, including first-load or deferred post-handoff captures. Actual navigation
+uses its admitted field at full visibility. Cancellation aborts the separately
+signalled warm task; ordinary completed handoff may let it finish within the same
+capture deadlines and shared resource caps.
 
 Large inline titles retain native wrapping while their cloned backgrounds
 extend0.16em around each fragment. An inner positioned ink span paints the
