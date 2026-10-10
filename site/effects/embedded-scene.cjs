@@ -928,6 +928,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     }
   }
   return {
+    preparing: () => !!pending && !phase,
     collect(frame) {
       state = frame;
       if (queuedPrime) {

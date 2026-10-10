@@ -316,6 +316,7 @@ test('world preparation shares landing context, stages intermediate rooms and re
   const embedded = {
     async prime(data, top, landing, options) {
       calls.push({ name: 'prime', page: data.page, top, landing, signal: options.signal });
+      return true;
     },
     async prepareDeparture(owner, options) {
       calls.push({ name: 'depart', owner, signal: options.signal });
@@ -411,6 +412,70 @@ test('next-page warming prepares the settled source only after a ready, uncancel
   const disabled = presentationFixture({ embedded, preferences: { 'vo.fragment-preview': 'off' } });
   await disabled.presentation.prepareNext(data);
   assert.equal(calls.length, count);
+});
+
+test('transition preparation acquires its source only after the required destination succeeds', async () => {
+  for (const result of [false, true, 'aborted']) {
+    const calls = [];
+    let resolve;
+    const controller = new AbortController();
+    const fixture = presentationFixture({
+      embedded: {
+        prime(data, top, landing, options) {
+          calls.push({ name: 'prime', data, top, landing, signal: options.signal });
+          return new Promise((done) => {
+            resolve = done;
+          });
+        },
+        async prepareDeparture(owner, options) {
+          calls.push({ name: 'depart', owner, signal: options.signal });
+        },
+        begin: () => result === true,
+        active: () => result === true,
+        present() {},
+      },
+    });
+    const context = {
+      from: 'writing',
+      to: 'talks',
+      direction: 'forward',
+      landing: { position: [0, 0] },
+    };
+    const preparing = fixture.presentation.prepareTransition(
+      { page: 'talks' },
+      context,
+      controller.signal
+    );
+    assert.deepEqual(
+      calls.map(({ name }) => name),
+      ['prime']
+    );
+    assert.equal(calls[0].signal, controller.signal);
+    assert.equal(calls[0].landing, context.landing);
+    if (result === 'aborted') controller.abort();
+    resolve(result !== false);
+    await preparing;
+    assert.deepEqual(
+      calls.map(({ name }) => name),
+      result === true ? ['prime', 'depart'] : ['prime'],
+      'failed or cancelled destination cannot schedule an unused source SVG'
+    );
+    if (result === true) {
+      assert.equal(calls[1].owner, fixture.content);
+      assert.equal(calls[1].signal, controller.signal);
+    } else if (result === false) {
+      fixture.presentation.begin(true, context);
+      fixture.presentation.present(0.12, 'forward', undefined, paintedSnapshot());
+      assert.equal(fixture.content.dataset.flightMode, 'fade');
+      assert.equal(Number(fixture.content.style.opacity), flightPose(0.12).opacity);
+      assert.equal(fixture.called('dom').length, 0);
+      assert.equal(fixture.called('prepare').length, 0);
+      fixture.presentation.present(1, 'forward', undefined, paintedSnapshot());
+      assert.equal(fixture.content.style.opacity, '1');
+      fixture.presentation.clear();
+      assert.equal(fixture.content.dataset.flightMode, undefined);
+    }
+  }
 });
 
 test('speculative capture waits for startup idle and navigation cancels its queued work', async () => {

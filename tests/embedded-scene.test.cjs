@@ -358,6 +358,54 @@ const plain = (value) => JSON.parse(JSON.stringify(value));
 const journeyPose = (h, from, to, amount) =>
   math.mix(h.pose(from), h.pose(to), amount * amount * (3 - 2 * amount));
 
+test('scene preparation predicate owns only pending captures and closes on every terminal path', async () => {
+  for (const terminal of ['success', 'failed', 'aborted', 'invalidated']) {
+    const h = harness({ deferred: true });
+    const controller = new AbortController();
+    assert.equal(h.effect.preparing(), false);
+    h.collect('index', 100);
+    const warming = h.bridge.prime(h.data('research'), 78, null, {
+      signal: controller.signal,
+    });
+    assert.equal(h.effect.preparing(), true);
+    assert.equal(h.bridge.active(), false);
+    assert.equal(h.bridge.owners().length, 0);
+    if (terminal === 'aborted') controller.abort();
+    if (terminal === 'invalidated') {
+      h.bridge.invalidate();
+      assert.equal(h.effect.preparing(), false, 'invalidation synchronously releases the owner');
+    }
+    h.captures[0].resolve(terminal === 'failed' ? null : h.captures[0].asset);
+    assert.equal(await warming, terminal === 'success');
+    assert.equal(h.effect.preparing(), false);
+    assert.equal(h.stages[0].connected, false);
+    assert.equal(h.bridge.owners().length, 0);
+    if (terminal !== 'success') {
+      assert.equal(h.bridge.diagnostics().residentRoutes.length, 0);
+      if (terminal !== 'failed') assert.equal(h.assets[0].disposeCount, 1);
+    } else {
+      const content = h.native('index');
+      const departure = h.bridge.prepareDeparture(content);
+      assert.equal(h.effect.preparing(), true);
+      assert.notEqual(content.style.visibility, 'hidden');
+      h.captures[1].resolve();
+      assert.equal(await departure, true);
+      assert.equal(h.effect.preparing(), false);
+      assert.equal(
+        h.bridge.begin({ from: 'index', to: 'research', landing: null, direction: 'forward' }),
+        true
+      );
+      assert.equal(h.bridge.active(), true);
+      assert.equal(h.effect.preparing(), false, 'an admitted flight must keep painting');
+      assert.equal(content.style.visibility, 'hidden');
+      h.bridge.invalidate();
+      assert.notEqual(content.style.visibility, 'hidden');
+      assert.equal(h.effect.preparing(), false);
+      assert.ok(h.assets.every((asset) => asset.disposeCount === 1));
+    }
+  }
+});
+
 test('speculative warming preserves returned content until real navigation requests another landing', async () => {
   const h = harness();
   h.collect('index', 100);

@@ -3337,6 +3337,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     ambientTime = 0,
     lastFrame = null,
     nextDraw = null;
+  let preparationDrawDeadline = null;
   let layoutDirty = true,
     layoutReasons = new Set(['initial']),
     layoutPasses = 0;
@@ -3532,6 +3533,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     pending = null;
     lastFrame = null;
     nextDraw = null;
+    preparationDrawDeadline = null;
     ambientTime = displayedTime;
     current = displayedCamera;
     detailTier = displayedTier;
@@ -3832,9 +3834,24 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       fail();
       return;
     }
+    const living = enabled && !hold && owns(initialPoses, page);
+    if (painted && living && !reduced.matches && !journey && sceneEffects?.preparing?.()) {
+      // A settled frame remains visible while native paint is captured. The
+      // same RAF observes completion without charging capture wall time to
+      // the ambient clock or competing with its bounded raster work.
+      lastFrame = time;
+      if (preparationDrawDeadline === null) preparationDrawDeadline = time + 100;
+      if (time < preparationDrawDeadline) {
+        schedule();
+        return;
+      }
+      // Stalled or chained captures still receive an ordinary paint at least
+      // once per 100ms burst plus the existing RAF/rendering interval.
+      preparationDrawDeadline = time + 100;
+      nextDraw = null;
+    } else preparationDrawDeadline = null;
     const delta = lastFrame === null ? 0 : Math.min(80, Math.max(0, time - lastFrame));
     lastFrame = time;
-    const living = enabled && !hold && owns(initialPoses, page);
     if (living) {
       ambientTime = (ambientTime + delta) % LOOP_MS;
       detailTier += (tier - detailTier) * (1 - Math.exp(-delta / 180));

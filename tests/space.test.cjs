@@ -4,6 +4,7 @@ const test = require('node:test'),
   fs = require('node:fs'),
   path = require('node:path'),
   vm = require('node:vm');
+const lifecycle = require('../site/engine/lifecycle.cjs');
 const sourceFile = process.env.SITE_SPACE_SOURCE || path.join(__dirname, '../docs/space.js');
 const source = fs.readFileSync(sourceFile, 'utf8'),
   model = require(sourceFile);
@@ -223,13 +224,14 @@ function visit(options = {}) {
   }
   window.MutationObserver = MutationObserver;
   if (options.probe) window.SiteEngineProbe = options.probe;
-  if (options.ribbonProbe) {
+  if (options.ribbonProbe || options.preparing) {
     window.SiteRibbonProbe = () => {};
     window.SiteEffects = {
       contract: 1,
       scene: () => ({
+        preparing: options.preparing,
         collect: (state) => {
-          options.ribbonProbe(
+          options.ribbonProbe?.(
             JSON.parse(
               JSON.stringify({
                 current: state.current,
@@ -254,7 +256,9 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  vm.runInNewContext(source, { document, window, localStorage });
+  const scope = { document, window, localStorage };
+  if (options.authoredLifecycle) vm.runInNewContext(`(${lifecycle.toString()})`, scope)(model);
+  else vm.runInNewContext(source, scope);
   const api = {
     window,
     document,
@@ -337,6 +341,163 @@ function visit(options = {}) {
   };
   return api;
 }
+test('settled native capture retains its paint and quality then resumes without ambient catch-up', () => {
+  let preparing = false;
+  const collected = [];
+  const p = visit({
+    authoredLifecycle: true,
+    preparing: () => preparing,
+    ribbonProbe: (state) => collected.push(state),
+  });
+  p.frame(20);
+  p.frame(40);
+  const painted = {
+    draws: p.draws(),
+    collected: collected.length,
+    phase: p.phase(),
+    camera: p.trace(),
+    quality: p.scene.dataset.quality,
+    cadence: p.scene.dataset.cadence,
+    resizeCount: p.resizeCount(),
+  };
+  preparing = true;
+  p.paintCost(100);
+  for (let index = 0; index < 4; index++) {
+    p.frame(20);
+    assert.equal(p.pending.size, 1, 'only the existing RAF observes capture completion');
+  }
+  assert.equal(p.draws(), painted.draws);
+  assert.equal(collected.length, painted.collected);
+  assert.equal(p.phase(), painted.phase);
+  assert.equal(p.trace(), painted.camera);
+  assert.equal(p.scene.dataset.quality, painted.quality);
+  assert.equal(p.scene.dataset.cadence, painted.cadence);
+  assert.equal(p.resizeCount(), painted.resizeCount);
+  assert.equal(p.bitmapValid(), true);
+  preparing = false;
+  p.paintCost(5);
+  p.frame(20);
+  assert.equal(p.draws(), painted.draws + 1);
+  assert.equal(collected.length, painted.collected + 1);
+  assert.equal(p.phase(), painted.phase + 20);
+  assert.equal(p.trace(), painted.camera);
+  assert.equal(p.pending.size, 1);
+});
+
+test('stalled and chained native captures keep ordinary paint gaps bounded without ambient jumps', () => {
+  let preparing = false;
+  const p = visit({ authoredLifecycle: true, preparing: () => preparing });
+  p.frame(20);
+  p.frame(40);
+  const initialPhase = p.phase();
+  const quality = p.scene.dataset.quality;
+  const paintedFrames = [0];
+  let previousDraws = p.draws();
+  preparing = true;
+  for (let frame = 1; frame <= 40; frame++) {
+    // The first capture completes, then its queued replacement starts during
+    // the next RAF. Neither a chain nor an unresolved image can starve paints.
+    preparing = frame !== 13;
+    p.frame(20);
+    if (p.draws() > previousDraws) paintedFrames.push(frame);
+    previousDraws = p.draws();
+    assert.equal(p.pending.size, 1);
+    assert.ok(p.phase() <= initialPhase + 20, 'capture wait cannot become ambient catch-up');
+    assert.equal(p.scene.dataset.quality, quality);
+  }
+  assert.ok(paintedFrames.length >= 7);
+  for (let index = 1; index < paintedFrames.length; index++) {
+    assert.ok((paintedFrames[index] - paintedFrames[index - 1]) * 20 <= 120);
+  }
+  assert.ok((40 - paintedFrames.at(-1)) * 20 <= 120);
+  const beforeResume = p.phase();
+  preparing = false;
+  p.frame(20);
+  assert.equal(p.phase(), beforeResume + 20);
+});
+
+test('pending capture never suppresses first paint or an admitted camera journey', () => {
+  const p = visit({ authoredLifecycle: true, preparing: () => true });
+  p.frame(20);
+  assert.equal(p.draws(), 1);
+  assert.equal(p.scene.dataset.ready, 'true');
+  assert.equal(p.bitmapValid(), true);
+  p.frame(125);
+  assert.equal(p.draws(), 1);
+  p.window.SiteScene.navigate('research');
+  p.frame(40);
+  const started = p.draws();
+  assert.equal(p.scene.dataset.travel, 'flying');
+  p.frame(40);
+  assert.equal(p.draws(), started + 1);
+  assert.ok(Number(p.scene.dataset.progress) >= 0);
+  assert.ok(p.phase() > 0);
+  assert.notEqual(p.trace(), JSON.stringify(model.routePose('index', model.poses.overview)));
+});
+
+test('capture pause still reconciles resized layout and redraws the latest viewport on completion', () => {
+  let preparing = false;
+  const p = visit({ authoredLifecycle: true, preparing: () => preparing });
+  p.frame(20);
+  const originalWidth = p.canvas.width;
+  const phase = p.phase();
+  preparing = true;
+  p.window.innerWidth = 390;
+  p.narrow.matches = true;
+  p.event('resize');
+  const before = p.window.SiteScene.diagnostics().layoutPasses;
+  p.frame(125);
+  assert.equal(p.window.SiteScene.diagnostics().layoutPasses, before + 1);
+  assert.equal(p.canvas.width, originalWidth);
+  assert.equal(p.bitmapValid(), true);
+  assert.equal(p.phase(), phase);
+  preparing = false;
+  p.frame(20);
+  assert.equal(p.canvas.width, 390);
+  assert.equal(p.scene.dataset.geometry, 'compact');
+  assert.equal(p.bitmapValid(), true);
+  assert.equal(p.phase(), phase + 20);
+});
+
+test('Off, reduced motion, hidden, print and canvas failure cancel capture polling safely', () => {
+  for (const stop of ['off', 'reduced', 'hidden', 'print', 'failure']) {
+    let preparing = false;
+    const p = visit({ authoredLifecycle: true, preparing: () => preparing });
+    p.frame(20);
+    const phase = p.phase();
+    preparing = true;
+    p.frame(125);
+    const beforeStop = p.draws();
+    if (stop === 'off') p.click();
+    else if (stop === 'reduced') {
+      p.media.matches = true;
+      p.media.change();
+    } else if (stop === 'hidden') p.hidden(true);
+    else if (stop === 'print') p.event('beforeprint');
+    else p.contextLost();
+    p.frame(125);
+    assert.equal(p.pending.size, 0, stop);
+    if (stop === 'off' || stop === 'reduced')
+      assert.equal(p.draws(), beforeStop + 1, `${stop} must retain its ordinary static paint`);
+    const draws = p.draws();
+    preparing = false;
+    p.frame(5000);
+    assert.equal(p.draws(), draws, `${stop} cannot restart from a stale capture check`);
+    assert.equal(p.phase(), phase);
+    if (stop === 'failure') continue;
+    if (stop === 'off') p.click();
+    else if (stop === 'reduced') {
+      p.media.matches = false;
+      p.media.change();
+    } else if (stop === 'hidden') p.hidden(false);
+    else p.event('afterprint');
+    p.frame(20);
+    assert.equal(p.draws(), draws + 1);
+    assert.equal(p.phase(), phase);
+    assert.equal(p.pending.size, 1);
+  }
+});
+
 test('every settled route keeps its canonical camera through native scrolling while ambient motion continues', () => {
   for (const page of Object.keys(model.initialPoses)) {
     const p = visit({ page, scrollY: 7000 });

@@ -602,8 +602,10 @@ function createPresentation(content) {
           await embedded.prime(neighbor, content.offsetTop, null, { signal });
           if (signal?.aborted) return;
         }
-        await embedded.prime(data, content.offsetTop, context.landing, { signal });
-        if (signal?.aborted) return;
+        const ready = await embedded.prime(data, content.offsetTop, context.landing, { signal });
+        // A missing destination cannot admit the pair. Avoid decoding a source
+        // that the settled native fade will never consume.
+        if (!ready || signal?.aborted) return;
         await embedded.prepareDeparture?.(content, { signal });
       } catch {
         embedded.invalidate();
