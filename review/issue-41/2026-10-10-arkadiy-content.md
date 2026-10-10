@@ -1,5 +1,7 @@
 # Issue41 — 10 October 2026: Arkadiy discussion copy and reading camera
 
+> Historical initial treatment below: the earlier hidden/review-only Arkadiy decision and its copy/layout acceptance are superseded by the later topic-first editorial instruction recorded at the end of this file. Prior runtime and exact-source evidence remains historical; the current canonical records are governed by the successor amendment.
+
 Owning issue: https://github.com/oborskyivitalii/oborskyivitalii/issues/41 .
 Dependencies: #7 publication rights, #1 first launch. Execution: one new Draft PR
 following merged PR67. Root self-analysis; separate implementation and independent
@@ -155,3 +157,72 @@ creditsAmendment observation preserve the provenance of the original20 captures.
 The updated full review export is732063bytes, SHA256
 d9b16478957bf4002a4f23d85de6b5c450f9f40616d18a88a3e3f6f31faab4c8;
 the earlier732018byte artifact remains initial evidence, not the final deliverable.
+
+
+## Later 10 October correction — canonical topic-first editorial records
+
+The owner explicitly cancels the earlier requirement to hide both Home and
+Research records pending a new personal approval. The active canonical sources
+now use the exact bounded topic-led summary supplied by the owner. Home heads the
+record **Thinking Systems — public discussion**, with ordinary attribution
+**Arkadiy Dobkin · EPAM founder**. Research uses **Thinking Systems: runtime control
+and differentiation**, with ordinary attribution **Public response by Arkadiy
+Dobkin · EPAM founder**, followed by a separate **Formulation provenance** heading,
+paragraph and the existing provenance link. The public reading recommendation
+and conditional market/runtime-control propositions stay distinct from that
+prior published attribution. No portraits, logos, quote/testimonial treatment,
+ratings, badges or author highlighting are added.
+
+Public source verified; editorial inclusion instructed by owner; new personal
+approval of website unconfirmed. No consent granted/approved by Arkadiy or legal
+clearance is claimed. [Rights issue7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7)
+remains open. The change asserts no project/advisory role, personal approval,
+website/research-programme/services endorsement or organizational endorsement.
+The new supplied explanation appears once at section level, outside person
+records; organizational affiliations identify the public source. This explicit
+owner instruction supersedes hiding while preserving source/rights review and
+original release/device obligations.
+
+### Exact source and instruction audit
+
+| Owner | Current treatment | Preservation |
+| --- | --- | --- |
+| Four canonical Home/Research acknowledgement JSON/templates | The only active source of the bounded topic-first records; generated Home3/Research8 | Other people, roles and exact source URLs unchanged |
+| [Successor amendment](2026-10-10-arkadiy-topic-amendment.json) | Starts at raw ca4ee44; exact two-section before/after hashes; explicit rights status | Restored before all historical amendments during semantic comparison |
+| [Initial amendment](2026-10-10-arkadiy-amendment.json) and arkadiy-review snapshots | Inactive immutable historical evidence, superseded for card inclusion/copy | Exact bytes compared with ca4ee44; no second current composition |
+| Published article/catalog, metadata and Research publication/theory records | Existing original identities and attribution remain canonical | Full SEO restoration, catalog/metadata comparison and unrelated-card equality |
+| Existing camera lifecycle and Credits copy | Prior stationary reading camera, route flight/fade and passive movement remain | Existing exact runtime amendment and SC checks unchanged |
+| Policy, source tests, editorial guide, source audit and MEMORY | Replaced stale active hidden-card assertions and instructions | Stable35 IDs, mandatory mappings and all manual gate IDs/kinds retained |
+
+Before changing live issue41, its exact body was saved at
+`/tmp/issue41-before-arkadiy-topic-20261010.md`, SHA256
+`869004c97cdc1ae9c36677d09594b10a84db27b865501f6523767bf84c59de90`.
+The initial corrective read-back body SHA256 is
+`ccc65113ff6d5aebe9793991dfa9cbc1437e5952fd7e3662562dcdc38a567e12`.
+AD01–AD06/AC27–AC32, AC15/16/24/25/26 and SC03/AC35 were reopened; current
+AD01/AD02/AD04 observable conditions now govern bounded copy, topic-first
+presentation and default inclusion. SC01/SC02 retain unchanged prior behavior
+evidence and existing mandatory rechecks. Original AC02–AC06 remain pending.
+
+### Current verification disposition
+
+The canonical source test checks default3/8 records, ordinary source bylines,
+exact copy/links and distinct formulation provenance. The owning checker rejects
+missing records/notes, a personal-name heading, approval/advisor promotion, wrong
+URLs and edits to other people. It binds the exact successor fragments to both
+canonical sources and generated pages/current immutable snapshots, keeps JSON-LD
+and unrelated retained bytes exact, and verifies historical source snapshots
+remain unchanged. Older positioning/site-case/SEO assertions reverse the
+successor first; the frozen runtime gate admits no new camera/build changes.
+
+Prepared corrective-source observations passed: canonical content 10/10, the
+focused successor/copy/claim-boundary/SEO/history/frozen-runtime checks, and
+policy validation of 35 criteria/25 checks. [Current browser evidence](2026-10-10-editorial-browser.md)
+records 8/8 ordinary Home/Research desktop/mobile Day/Night cases and 16 captures;
+[the independent correction review](2026-10-10-editorial-correction-review.md)
+records source, presentation and unchanged-scope review. Exact committed source,
+mandatory CI/preview reports and actual criterion reconciliation are recorded in
+the live owning issue and PR; prepared dirty observations are not relabeled as
+clean commit checks. No merge, production launch, rights clearance or full
+performance diagnostics are supplied. The earlier completed task table above is
+historical evidence for ca4ee44, not acceptance of this new copy.

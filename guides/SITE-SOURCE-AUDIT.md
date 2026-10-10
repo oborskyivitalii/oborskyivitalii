@@ -413,7 +413,10 @@ research statuses and publication identities are preserved. Upstream UA/Subprime
 claims and protocols are unchanged. This is the maintainer's explicitly requested
 bounded profile context, not new research evidence integration.
 
-## Arkadiy discussion presentation — 2026-10-10
+## Arkadiy discussion presentation — 2026-10-10 (superseded decision)
+
+This paragraph records the earlier decision, superseded by the topic-first
+decision below. It is historical evidence, not the active inclusion instruction.
 
 The owner supplied revised Home/Research wording distinguishing the public
 Thinking Systems reading recommendation and two conditional propositions from
@@ -425,3 +428,36 @@ snapshots are withdrawn too. The article and upstream research record remain
 unchanged. A review preview or owner approval of copy is not third-party consent.
 No private messages, permission text, photographs or organizational logos are
 added. See [the task and evidence](../review/issue-41/2026-10-10-arkadiy-content.md).
+
+## Arkadiy topic-first public discussion — 2026-10-10
+
+The owner supersedes the earlier hiding requirement and instructs inclusion in
+canonical generated Home/Research. Home uses the topic heading
+`Thinking Systems — public discussion` and ordinary byline
+`Arkadiy Dobkin · EPAM founder`. Research uses
+`Thinking Systems: runtime control and differentiation` and
+`Public response by Arkadiy Dobkin · EPAM founder`, with a separate
+`Formulation provenance` block. The record describes the specific public post;
+the earlier formulation influence remains attributed to its own provenance.
+Neither is an advisory/project role or an endorsement of the website, research
+programme, services or organization.
+
+**Public source verified; editorial inclusion instructed by owner; new personal approval of website unconfirmed.**
+
+The [independent correction review](../review/issue-41/2026-10-10-editorial-correction-review.md)
+records fresh public-source inspection and its access limits. That evidence
+establishes the public discussion and identification basis; it does not supply
+new personal consent, legal clearance or production-release approval.
+The exact original post/profile/provenance URLs, published article and upstream
+record remain unchanged. Rights #7 stays open; existing external-source,
+editorial/device and release owners retain their decisions. The superseding
+decision introduces no global prior-permission blocker. The earlier review
+snapshots are inactive historical evidence, not a second active content source.
+No private messages, permission text, photographs or organizational logos are added.
+
+The [content review](../review/issue-41/2026-10-10-arkadiy-content.md) and
+[topic amendment](../review/issue-41/2026-10-10-arkadiy-topic-amendment.json) bind
+this treatment to #41. Evaluate the affected criteria with current source-bound
+checks and review; exact current-source results and preview are recorded in the
+live owning issue. Camera/Credits behavior is unchanged by this editorial decision;
+no merge or production launch is authorized.
