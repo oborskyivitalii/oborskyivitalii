@@ -65,6 +65,7 @@ test('Color keeps the native route inventory and packages all requested authored
       },
     };
     const document = {
+      body: { dataset: { page: 'index' } },
       documentElement: {},
       addEventListener() {},
     };

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1b59deb004e5107bba3657d6197be880214b6cfc37e1fb8b3409796d731474fd",
+    "digest": "70b6c5c44dd17ac006bac25d08cb919245f6c64e52823e25cd4adb3d82b760e9",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5010,7 +5010,7 @@
       {
         "path": "tests/color-build.test.cjs",
         "identity_mode": "content",
-        "sha256": "7d5ecb1702be5365297c4653460063def09f60bb24872116f785cd988ad56c77"
+        "sha256": "d3642059276675d885080666f5e7c912db722704f95668304c98a29e0b6fd796"
       },
       {
         "path": "tests/content-migration.test.cjs",
