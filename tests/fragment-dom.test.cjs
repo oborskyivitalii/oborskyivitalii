@@ -1976,74 +1976,73 @@ test('long offscreen archives preserve captured viewport paint inside the acquis
   assertDisposed(h);
 });
 
-function assertCompleteFallbackPaint(h, portrait, compact, caps) {
-  const { figure, vector, polygons } = portrait;
-  assert.equal(h.content.dataset.fragmentOwners, '3', 'heading, paragraph and portrait all fly');
-  assert.ok(h.tiles().length >= 3 && h.tiles().length <= caps.pieces);
-  for (const owner of [h.heading, h.paragraph, figure])
-    assert.equal(owner.style.visibility, 'hidden');
-  const portraitTiles = h.tiles().filter((tile) => tile.children[0].matches('figure'));
-  assert.ok(portraitTiles.length > 0);
-  assertPaintCoverage(portraitTiles, figure, {
-    left: 326,
-    top: 130,
-    width: compact ? 128 : 164,
-    height: 164,
-  });
-  for (const tile of portraitTiles) {
-    const copy = tile.children[0];
-    const copiedVector = copy.querySelector('svg');
-    const copiedImage = copy.querySelector('img');
-    assert.equal(copiedVector.getAttribute('viewBox'), vector.getAttribute('viewBox'));
-    assert.equal(copiedVector.namespaceURI, vector.namespaceURI);
-    assert.equal(copy.querySelectorAll('polygon').length, polygons.length);
-    assert.equal(copiedImage.complete, true);
-    assert.ok(copiedImage.naturalWidth > 0);
-    assert.equal(copiedImage.src, h.image.currentSrc);
+function assertWholeNativeFade(h, progress, direction, departure, owners, text) {
+  const expected = flight.flightPose(progress, direction, departure);
+  assertDisposed(h);
+  assert.equal(h.tiles().length, 0, 'fallback cannot allocate DOM shards');
+  assert.equal(h.content.dataset.flightMode, 'fade');
+  assert.equal(Number(h.content.style.opacity), expected.opacity);
+  assert.equal(h.content.style.transform, 'perspective(1200px) translateZ(' + expected.z + 'px)');
+  assert.ok(Number.isFinite(expected.opacity) && expected.opacity >= 0 && expected.opacity <= 1);
+  assert.equal(h.content.textContent, text, 'native text remains complete and unchanged');
+  for (const owner of owners) {
+    assert.ok(h.content.querySelectorAll('*').includes(owner), 'fallback removed a native owner');
+    assert.notEqual(owner.style.visibility, 'hidden', 'fallback hides an individual native owner');
   }
+  assert.notEqual(h.content.style.visibility, 'hidden', 'fallback hides the native content root');
+  assert.equal(h.counts.clones, 0);
+  assert.equal(h.counts.created, 0);
+  assert.equal(h.counts.rafs, 0);
 }
 
-test('failed world admission releases resident capacity before complete native DOM fallback', async () => {
+test('failed world admission keeps complete native fade without reusing a mismatched resident session', async () => {
   for (const compact of [true, false]) {
     for (const failedPhase of ['depart', 'arrive']) {
       const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
       const portrait = portraitFigure(h);
+      const owners = [h.heading, h.paragraph, h.link, h.image, portrait.figure, portrait.vector];
+      const text = h.content.textContent;
       const caps = fragmentPlan(math).settings.caps[compact ? 'compact' : 'full'];
       const residentPieces = compact ? caps.pieces - 1 : caps.pieces;
       let reservedPieces = residentPieces;
       let active = false;
       let released = 0;
-      const camera = JSON.stringify({
-        position: [6, 4, 23.73],
-        target: [0, 0, -5.26],
-      });
+      let attempts = 0;
+      let mounts = 0;
+      const camera = JSON.stringify({ position: [6, 4, 23.73], target: [0, 0, -5.26] });
       const scene = new h.Node('section');
       scene.dataset.camera = camera;
       h.body.append(scene);
+      function restore() {
+        active = false;
+        h.content.style.removeProperty('visibility');
+      }
       const embedded = {
         reservation: () => ({ pieces: reservedPieces }),
         owners: () => (active ? [h.content] : []),
-        begin() {
-          active = failedPhase === 'arrive';
+        begin(context) {
+          attempts++;
+          // Model the bridge's same-route rejection independently of the
+          // retained bank; resident pixels alone cannot authorize a session.
+          active = failedPhase === 'arrive' && context.from !== context.to;
           if (active) h.content.style.visibility = 'hidden';
+          else restore();
           return active;
         },
         land() {
-          active = false;
+          mounts++;
+          // A rejected geometry match restores native ownership but keeps
+          // valid resident resources available for later verified preparation.
+          restore();
         },
         active: () => active,
         complete: () => true,
         invalidate() {
-          assert.equal(h.tiles().length, 0, 'resident release precedes DOM acquisition');
           reservedPieces = 0;
-          active = false;
           released++;
-          h.content.style.removeProperty('visibility');
-          h.content.style.removeProperty('opacity');
+          restore();
         },
-        cancel() {
-          active = false;
-        },
+        cancel: restore,
         async prime() {
           reservedPieces = Math.floor(caps.pieces / 3);
           return true;
@@ -2055,80 +2054,74 @@ test('failed world admission releases resident capacity before complete native D
       h.window.SiteEffects.embedded = embedded;
       const presentation = h.window.SiteEffects.navigation(h.content);
       const departure = { opacity: 1, z: 0 };
-      const position = JSON.parse(camera).position;
-      const snapshot = (progress) =>
-        h.snapshot(position, {
-          direction: 'backward',
-          progress,
-          compact,
-          width: compact ? 390 : 1440,
-          height: 844,
-          projection: math.cameraView(
-            { position, target: [position[0], position[1], position[2] - 10] },
-            compact ? 390 : 1440,
-            844
-          ),
-        });
+      const progress = failedPhase === 'depart' ? 0.1 : 0.7;
       presentation.begin(true, {
-        from: 'index',
+        from: failedPhase === 'depart' ? 'index' : 'research',
         to: 'index',
         direction: 'backward',
       });
-      assert.equal(scene.dataset.camera, camera, 'retarget preserves the displayed camera');
       if (failedPhase === 'arrive') {
-        assert.equal(reservedPieces, residentPieces, 'accepted world departure retains its bank');
-        assert.equal(released, 0);
+        assert.equal(active, true);
         presentation.prepareMount();
         presentation.mounted();
       }
-      assert.equal(reservedPieces, 0);
-      assert.equal(released, 1);
-      assert.notEqual(h.content.style.visibility, 'hidden', 'failed world restores native paint');
+      assert.equal(active, false, 'mismatched world paint cannot remain active');
+      assert.equal(
+        reservedPieces,
+        residentPieces,
+        'unused native fade need not evict a valid bank'
+      );
+      assert.equal(released, 0, 'native fade allocates no competing fragment budget');
       presentation.present(
-        failedPhase === 'depart' ? 0.1 : 0.7,
+        progress,
         'backward',
         departure,
-        snapshot(failedPhase === 'depart' ? 0.1 : 0.7)
+        h.snapshot([6, 4, 23.73], { progress })
       );
-      assertCompleteFallbackPaint(h, portrait, compact, caps);
-      assert.equal(scene.dataset.camera, camera);
+      assertWholeNativeFade(h, progress, 'backward', departure, owners, text);
+      assert.equal(attempts, 1, 'arrival cannot retry rejected admission');
+      assert.equal(mounts, failedPhase === 'arrive' ? 1 : 0);
+      assert.equal(scene.dataset.camera, camera, 'fallback preserves the displayed scene camera');
+      presentation.present(1, 'backward', departure, h.snapshot([6, 4, 23.73], { progress: 1 }));
+      assertWholeNativeFade(h, 1, 'backward', departure, owners, text);
       presentation.clear();
       assertDisposed(h);
-      assert.notEqual(portrait.figure.style.visibility, 'hidden');
+      assert.equal(h.content.dataset.flightMode, undefined);
+      assert.equal(h.content.dataset.flightStage, undefined);
+      assert.equal(h.content.dataset.flightDepth, undefined);
       await presentation.prepareNext({ page: 'research' });
-      assert.ok(reservedPieces > 0, 'settled native fallback permits renewed world warming');
+      assert.ok(reservedPieces > 0 && reservedPieces <= caps.pieces);
       assert.equal(scene.dataset.camera, camera);
+      embedded.invalidate();
+      assert.equal(reservedPieces, 0, 'explicit invalidation releases retained resources');
+      assert.equal(released, 1);
+      assertDisposed(h);
     }
   }
 });
 
-test('unavailable scene completes the serialized arrival tail without waiting for another paint', () => {
+test('unavailable scene settles native fade at the camera endpoint without an assembly tail', () => {
   const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
+  const owners = [h.heading, h.paragraph, h.link, h.image];
+  const text = h.content.textContent;
   vm.runInContext(flight.descriptor().code, h.context);
   h.window.SiteEffects.registerView(math.cameraView);
   const presentation = h.window.SiteEffects.navigation(h.content);
   const departure = { opacity: 1, z: 0 };
-  presentation.begin(true);
+  presentation.begin(true, { direction: 'forward' });
   presentation.prepareMount();
   presentation.mounted();
   presentation.present(0.7, 'forward', departure, h.snapshot([0, 0, 0], { progress: 0.7 }));
-  assert.ok(h.layer());
-  assert.equal(
-    presentation.present(1, 'forward', departure, h.snapshot([0, 0, 0], { progress: 1 })),
-    false
-  );
+  assertWholeNativeFade(h, 0.7, 'forward', departure, owners, text);
   assert.notEqual(
-    presentation.present(
-      1,
-      'forward',
-      departure,
-      h.snapshot([0, 0, 0], { progress: 1, active: false })
-    ),
-    false
+    presentation.present(1, 'forward', departure, h.snapshot([0, 0, 0], { progress: 1 })),
+    false,
+    'native fade needs no post-flight paint to settle'
   );
+  assertWholeNativeFade(h, 1, 'forward', departure, owners, text);
+  presentation.clear();
   assertDisposed(h);
-  assert.equal(h.content.style.opacity, '1');
-  assert.equal(h.counts.rafs, 0);
+  assert.equal(h.content.dataset.flightMode, undefined);
 });
 
 test('reverse arrival waits for a visible forward corridor before measuring or cloning', () => {
@@ -2165,89 +2158,78 @@ test('reverse arrival waits for a visible forward corridor before measuring or c
   assert.equal(h.counts.clones, clones);
 });
 
-test('serialized presentation waits for depth, then completes a finite tail or a coherent settled fallback', () => {
-  for (const canAssemble of [true, false]) {
-    const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
-    vm.runInContext(flight.descriptor().code, h.context);
-    h.window.SiteEffects.registerView(math.cameraView);
-    const presentation = h.window.SiteEffects.navigation(h.content);
-    const departure = { opacity: 1, z: 0 };
-    presentation.begin(true);
-    presentation.prepareMount();
-    presentation.mounted();
-    for (const progress of [0.5, 0.6]) {
-      presentation.present(
-        progress,
-        'backward',
-        departure,
-        h.snapshot([0, 0, -60], { progress, remainingMs: 600 })
+test('serialized native fallback follows the route fade without depth acquisition or a delayed tail', () => {
+  for (const direction of ['forward', 'backward']) {
+    for (const cameraPosition of [
+      [0, 0, -60],
+      [0, 0, 0],
+    ]) {
+      const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
+      const owners = [h.heading, h.paragraph, h.link, h.image];
+      const text = h.content.textContent;
+      vm.runInContext(flight.descriptor().code, h.context);
+      h.window.SiteEffects.registerView(math.cameraView);
+      const presentation = h.window.SiteEffects.navigation(h.content);
+      const departure = { opacity: 1, z: 0 };
+      presentation.begin(true, { direction });
+      presentation.prepareMount();
+      presentation.mounted();
+      for (const progress of [0.5, 0.6, 0.7, 1]) {
+        const completed = presentation.present(
+          progress,
+          direction,
+          departure,
+          h.snapshot(cameraPosition, { progress, remainingMs: progress === 1 ? 0 : 600 })
+        );
+        assertWholeNativeFade(h, progress, direction, departure, owners, text);
+        if (progress === 1)
+          assert.notEqual(completed, false, 'fallback cannot create an arrival tail');
+      }
+      assert.equal(
+        h.counts.rects,
+        2,
+        'only the native arrival and settled plane origins are measured'
       );
-      assert.equal(h.layer(), undefined);
-      assert.equal(h.counts.clones, 0);
-      assert.equal(h.counts.rects, 0);
-      assert.equal(h.counts.created, 0);
-      assert.equal(h.counts.rafs, 0);
-      assert.equal(h.content.style.opacity, '0');
+      presentation.clear();
+      assertDisposed(h);
+      assert.equal(h.content.dataset.flightMode, undefined);
+      assert.equal(h.content.style.transformOrigin, undefined);
     }
-    if (canAssemble) {
-      const ready = h.snapshot([0, 0, 0], { progress: 0.7, remainingMs: 350 });
-      presentation.present(0.7, 'backward', departure, ready);
-      assert.ok(h.layer());
-      assert.equal(h.content.dataset.fragmentPhase, 'arrive');
-      assert.ok(h.tiles().every((tile) => tile.style.opacity === '0'));
-      assert.equal(
-        presentation.present(1, 'backward', departure, h.snapshot([0, 0, 5], { progress: 1 })),
-        false
-      );
-      h.advance(1800);
-      assert.equal(
-        presentation.present(1, 'backward', departure, h.snapshot([0, 0, 5], { progress: 1 })),
-        true
-      );
-      for (const tile of h.tiles()) assertNativeCorners(h, tile);
-      assert.equal(h.content.style.opacity, '1');
-    } else {
-      presentation.present(
-        1,
-        'backward',
-        departure,
-        h.snapshot([0, 0, -60], { progress: 1, remainingMs: 0 })
-      );
-      const expected = flight.flightPose(1, 'backward', departure);
-      assert.equal(h.layer(), undefined);
-      assert.equal(h.counts.clones, 0);
-      assert.equal(Number(h.content.style.opacity), expected.opacity);
-      assert.equal(
-        h.content.style.transform,
-        'perspective(1200px) translateZ(' + expected.z + 'px)'
-      );
-      presentation.present(1, 'backward', departure, h.snapshot([0, 0, 5], { progress: 1 }));
-      assert.equal(h.content.style.opacity, '1');
-    }
-    presentation.clear();
-    assertDisposed(h);
-    assert.equal(h.counts.rafs, 0);
   }
 });
 
-test('serialized presentation invalidation switches atomically to its current legacy pose', () => {
+test('serialized native fallback preserves its displayed pose across resize and reversal without shard allocation', () => {
   const h = fixture({ storage: { 'vo.fragment-preview': 'on' } });
+  const owners = [h.heading, h.paragraph, h.link, h.image];
+  const text = h.content.textContent;
   vm.runInContext(flight.descriptor().code, h.context);
   h.window.SiteEffects.registerView(math.cameraView);
   const presentation = h.window.SiteEffects.navigation(h.content);
   const departure = { opacity: 1, z: 0 };
-  presentation.begin(true);
+  presentation.begin(true, { direction: 'forward' });
   presentation.present(0.1, 'forward', departure, h.snapshot());
-  assert.ok(h.layer());
-  const clones = h.counts.clones;
+  assertWholeNativeFade(h, 0.1, 'forward', departure, owners, text);
+  const displayed = presentation.departure();
+  const transform = h.content.style.transform;
+  const opacity = h.content.style.opacity;
   h.fire('resize');
-  assertDisposed(h);
-  const expected = flight.flightPose(0.1, 'forward', departure);
-  assert.equal(Number(h.content.style.opacity), expected.opacity);
-  assert.equal(h.content.style.transform, 'perspective(1200px) translateZ(' + expected.z + 'px)');
-  presentation.present(0.2, 'forward', departure, h.snapshot());
-  assert.equal(h.counts.clones, clones, 'fallback must not recreate invalidated fragments');
+  assert.equal(h.content.style.transform, transform);
+  assert.equal(h.content.style.opacity, opacity);
+  presentation.begin(true, { direction: 'backward' });
+  presentation.restoreDeparture(displayed);
+  presentation.present(0, 'backward', displayed, h.snapshot());
+  assertWholeNativeFade(h, 0, 'backward', displayed, owners, text);
+  assert.equal(h.content.style.transform, transform, 'retarget cannot jump the displayed plane');
+  assert.equal(
+    h.content.style.opacity,
+    opacity,
+    'retarget cannot flash native content at full opacity'
+  );
+  presentation.present(1, 'backward', displayed, h.snapshot([0, 0, 0], { progress: 1 }));
+  assertWholeNativeFade(h, 1, 'backward', displayed, owners, text);
   presentation.clear();
+  assertDisposed(h);
+  assert.equal(h.content.dataset.flightMode, undefined);
 });
 
 test('serialized travel descriptor keeps disabled preview and Content flight from allocating pieces', () => {

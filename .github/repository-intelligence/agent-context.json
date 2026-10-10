@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "eecc8261cc28a00ec80a5397dc1f4686b0e53e5d8f0a8b1fd189eb0d9c82df8e",
+    "digest": "ac399712e63eede4607663d09aa3b806f0e9ebb0d2917186834074e2e601fd20",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5140,7 +5140,7 @@
       {
         "path": "tests/fragment-dom.test.cjs",
         "identity_mode": "content",
-        "sha256": "61b011b8d02cc8ebad43fb299052070c96da1fd95c1cc570755a9c0116e6a91a"
+        "sha256": "3367de6e4a38a5463ebc29f3be0f50d4439dca85631020f0a8cf5e8229da5cbd"
       },
       {
         "path": "tests/fragment-plan.test.cjs",
