@@ -46,6 +46,7 @@ function harness({
   deferred = false,
   wholeViewport = false,
   atlasEnvelope = null,
+  legacyOracle = false,
 } = {}) {
   const width = compact ? 390 : 1440;
   const height = compact ? 844 : 900;
@@ -161,7 +162,9 @@ function harness({
       textContent: `${route} visible native block ${index}`,
       paintFingerprint: `native-paint-${index}`,
       rect: { left: 30, top: 120 + index * 130, width: width - 60, height: 100 },
+      rectReads: 0,
       getBoundingClientRect() {
+        this.rectReads++;
         return { ...this.rect };
       },
     }));
@@ -183,10 +186,19 @@ function harness({
         sourceOwners: owners.map((owner, index) => ({
           ownerPath: [0, index],
           rect: { ...owner.rect },
-          lines: [{ ...owner.rect }],
+          lines: (owner.lines || [owner.rect]).map((line) => ({ ...line })),
           envelope: { ...owner.rect },
           textContent: owner.textContent,
           paintFingerprint: owner.paintFingerprint,
+          controls: Number.isInteger(owner.selectedIndex)
+            ? [
+                {
+                  ownerPath: [0, index],
+                  selectedIndex: owner.selectedIndex,
+                  text: owner.selectedOptions?.[0]?.textContent || '',
+                },
+              ]
+            : [],
         })),
         rect: { ...envelope },
         envelope,
@@ -216,21 +228,49 @@ function harness({
       if (!deferCapture) resolve(asset);
       return promise;
     },
-    matchesField(root, sources, options) {
-      oracleReads.push({
-        visibility: root.style.visibility,
-        opacity: root.style.opacity,
-        sources,
-        options,
-      });
-      const owners = root.children[0].children;
-      return (
-        root.style.visibility !== 'hidden' &&
-        Number(root.style.opacity || 1) === 1 &&
-        sources.length === owners.length &&
-        sources.every((source, index) => source.paintFingerprint === owners[index].paintFingerprint)
-      );
-    },
+    matchesField: legacyOracle
+      ? undefined
+      : function matchesField(root, sources, options) {
+          oracleReads.push({
+            visibility: root.style.visibility,
+            opacity: root.style.opacity,
+            sources,
+            options,
+          });
+          const owners = root.children[0].children;
+          return (
+            root.style.visibility !== 'hidden' &&
+            Number(root.style.opacity || 1) === 1 &&
+            sources.length === owners.length &&
+            sources.every((source, index) => {
+              const owner = owners[index],
+                rect = owner.getBoundingClientRect(),
+                lines = owner.lines || [rect],
+                controls = Number.isInteger(owner.selectedIndex)
+                  ? [
+                      {
+                        ownerPath: [0, index],
+                        selectedIndex: owner.selectedIndex,
+                        text: owner.selectedOptions?.[0]?.textContent || '',
+                      },
+                    ]
+                  : [];
+              const equalRect = (actual, expected) =>
+                ['left', 'top', 'width', 'height'].every(
+                  (key) => Math.abs(actual[key] - expected[key]) <= 0.75
+                );
+              return (
+                source.textContent === owner.textContent &&
+                source.paintFingerprint === owner.paintFingerprint &&
+                equalRect(rect, source.rect) &&
+                equalRect(rect, source.envelope) &&
+                lines.length === source.lines.length &&
+                lines.every((line, lineIndex) => equalRect(line, source.lines[lineIndex])) &&
+                JSON.stringify(controls) === JSON.stringify(source.controls || [])
+              );
+            })
+          );
+        },
   });
   const install = vm.runInNewContext(`(${factory.toString()})`, {
     document,
@@ -1296,4 +1336,244 @@ test('pending same-route replacement cannot authorize a flight using its retaine
   assert.equal(h.assets[2].disposeCount, 1);
   assert.notEqual(native.style.visibility, 'hidden');
   assert.equal(h.bridge.active(), false);
+});
+
+test('changed native landing skips guaranteed-failing cache proof and captures the current viewport', async () => {
+  for (const change of [
+    (h) => {
+      h.window.scrollY = 600;
+    },
+    (h) => {
+      h.window.location.search = '?language=ua';
+    },
+    (h) => {
+      h.window.location.hash = '#about';
+    },
+  ]) {
+    const h = harness();
+    h.collect('index', 100);
+    await h.bridge.prime(h.data('research'), 78);
+    const content = h.native('index');
+    await h.bridge.prepareDeparture(content, { cacheOnly: true });
+    const captures = h.captures.length;
+    change(h);
+    assert.equal(await h.bridge.prepareDeparture(content), true);
+    assert.equal(
+      h.oracleReads.length,
+      0,
+      'different landing cannot benefit from native revalidation'
+    );
+    assert.equal(h.captures.length, captures + 1);
+    assert.equal(h.bridge.diagnostics().departure.ready, true);
+    assert.notEqual(content.style.visibility, 'hidden');
+  }
+});
+
+test('default native landing reuses complete proof with one geometry read per owner', async () => {
+  const h = harness();
+  h.collect('index', 100);
+  await h.bridge.prime(h.data('research'), 78, null);
+  const content = h.native('index');
+  await h.bridge.prepareDeparture(content, { cacheOnly: true });
+  const count = h.captures.length;
+  assert.equal(await h.bridge.prepareDeparture(content), true);
+  assert.equal(
+    h.captures.length,
+    count,
+    'null incoming landing and actual zero scroll stay equivalent'
+  );
+  assert.equal(h.oracleReads.length, 1);
+  assert.ok(
+    content.owners.every((owner) => owner.rectReads === 1),
+    'complete proof cannot repeat layout reads'
+  );
+});
+
+test('complete native oracle rejects changed paint, wrapping and selection with unchanged text and border box', async () => {
+  for (const mutate of [
+    (owner) => {
+      owner.paintFingerprint = 'different-native-paint';
+    },
+    (owner) => {
+      owner.lines[0].top += 2;
+    },
+    (owner) => {
+      owner.selectedIndex = 1;
+      owner.selectedOptions = [{ textContent: 'Other selection' }];
+    },
+  ]) {
+    const h = harness();
+    h.collect('index', 100);
+    await h.bridge.prime(h.data('research'), 78);
+    const content = h.native('index');
+    const owner = content.owners[0];
+    owner.lines = [{ ...owner.rect }];
+    owner.selectedIndex = 0;
+    owner.selectedOptions = [{ textContent: 'Original selection' }];
+    await h.bridge.prepareDeparture(content, { cacheOnly: true });
+    const retained = h.assets.at(-1);
+    const originalText = owner.textContent;
+    const originalRect = { ...owner.rect };
+    mutate(owner);
+    assert.equal(owner.textContent, originalText);
+    assert.deepEqual(owner.rect, originalRect);
+    h.setDeferred(true);
+    const replacement = h.bridge.prepareDeparture(content);
+    assert.equal(h.oracleReads.length, 1);
+    assert.equal(h.bridge.diagnostics().departure.ready, false);
+    h.captures.at(-1).resolve(null);
+    assert.equal(await replacement, false);
+    assert.equal(retained.disposeCount, 0, 'failed replacement retains the prior bounded bitmap');
+    assert.equal(h.bridge.begin({ from: 'index', to: 'research', landing: null }), false);
+    assert.equal(h.bridge.active(), false);
+    assert.notEqual(
+      content.style.visibility,
+      'hidden',
+      'retained pixels cannot authorize changed paint'
+    );
+  }
+});
+
+test('legacy texture adapters retain explicit native rectangle and text validation without a field oracle', async () => {
+  for (const mutate of [
+    (owner) => {
+      owner.rect.top += 3;
+    },
+    (owner) => {
+      owner.textContent = 'changed native text';
+    },
+  ]) {
+    const h = harness({ legacyOracle: true });
+    const { content } = await h.prepare('index', 'research');
+    const target = h.native('research');
+    mutate(target.owners[0]);
+    h.bridge.land(target);
+    assert.equal(h.oracleReads.length, 0);
+    assert.equal(h.bridge.active(), false);
+    assert.notEqual(target.style.visibility, 'hidden');
+    assert.notEqual(content.style.visibility, 'hidden');
+    assert.equal(h.bridge.diagnostics().lastFailure.reason, 'native-geometry-mismatch');
+  }
+});
+
+test('capture diagnostics retain bounded stage timings and ignore stale callbacks without changing caps', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const pending = h.bridge.prime(h.data('research'), 78);
+  const { options } = h.captures[0];
+  assert.equal(options.preparationMs, 160);
+  assert.equal(options.acquisitionMs, 80);
+  options.onTiming({ stage: 'measure', milliseconds: 10, owners: 3 });
+  options.onTiming({ stage: 'serialize', milliseconds: 2 });
+  options.onTiming({ stage: 'serialize', milliseconds: 4 });
+  options.onTiming({ stage: 'proof', milliseconds: 1, owners: 0 });
+  options.onTiming({ stage: 'total', milliseconds: 35 });
+  options.onTiming({ stage: 'unknown', milliseconds: 999 });
+  options.onTiming({ stage: 'decode', milliseconds: NaN });
+  options.onTiming({ stage: 'readback', milliseconds: -1 });
+  const expected = {
+    stage: 'incoming',
+    route: 'research',
+    measureMs: 10,
+    measureOwners: 3,
+    serializeMs: 6,
+    proofMs: 1,
+    proofOwners: 0,
+    totalMs: 35,
+  };
+  assert.deepEqual(plain(h.bridge.diagnostics().captureTimings), expected);
+  const snapshot = h.bridge.diagnostics().captureTimings;
+  snapshot.totalMs = 0;
+  assert.deepEqual(
+    plain(h.bridge.diagnostics().captureTimings),
+    expected,
+    'diagnostics cannot mutate timing ownership'
+  );
+  h.bridge.invalidate();
+  options.onTiming({ stage: 'decode', milliseconds: 40 });
+  h.captures[0].resolve();
+  assert.equal(await pending, false);
+  assert.deepEqual(
+    plain(h.bridge.diagnostics().captureTimings),
+    expected,
+    'stale capture cannot overwrite current evidence'
+  );
+});
+
+test('source capture cannot label a changed native route, scroll or viewport with its prior atlas', async () => {
+  for (const change of [
+    (h) => {
+      h.window.scrollY = 500;
+    },
+    (h) => {
+      h.window.location.hash = '#another-section';
+    },
+    (h) => {
+      h.window.innerWidth -= 20;
+    },
+    (h) => {
+      h.window.innerHeight -= 20;
+    },
+    (h) => {
+      h.document.body.dataset.page = 'writing';
+    },
+  ]) {
+    const h = harness({ deferred: true });
+    h.collect('index', 100);
+    const warming = h.bridge.prime(h.data('research'), 78);
+    h.captures[0].resolve();
+    await warming;
+    const content = h.native('index');
+    const source = h.bridge.prepareDeparture(content);
+    change(h);
+    h.captures[1].resolve();
+    assert.equal(await source, false);
+    assert.equal(h.assets[1].disposeCount, 1, 'mismatched async capture must dispose its bitmap');
+    assert.equal(h.bridge.diagnostics().departure.ready, false);
+    assert.deepEqual(plain(h.bridge.diagnostics().residentRoutes), ['research']);
+    assert.equal(h.bridge.diagnostics().lastFailure.reason, 'source-landing-changed');
+    assert.notEqual(content.style.visibility, 'hidden');
+    assert.equal(h.bridge.begin({ from: 'index', to: 'research', landing: null }), false);
+  }
+});
+
+test('timing callbacks close with acquisition and cannot overwrite the next capture in one generation', async () => {
+  const h = harness({ deferred: true });
+  h.collect('index', 100);
+  const incoming = h.bridge.prime(h.data('research'), 78);
+  const earlier = h.captures[0].options.onTiming;
+  earlier({ stage: 'total', milliseconds: 5 });
+  h.captures[0].resolve();
+  assert.equal(await incoming, true);
+  earlier({ stage: 'decode', milliseconds: 100 });
+  assert.equal(
+    h.bridge.diagnostics().captureTimings.decodeMs,
+    undefined,
+    'completed capture callback is closed'
+  );
+  const departure = h.bridge.prepareDeparture(h.native('index'));
+  const current = h.captures[1].options.onTiming;
+  current({ stage: 'serialize', milliseconds: 3 });
+  earlier({ stage: 'serialize', milliseconds: 100 });
+  assert.equal(
+    h.bridge.diagnostics().captureTimings.serializeMs,
+    3,
+    'previous capture cannot alter new same-generation evidence'
+  );
+  current({ stage: 'proof', milliseconds: Number.MAX_VALUE });
+  current({ stage: 'proof', milliseconds: Number.MAX_VALUE });
+  assert.equal(
+    h.bridge.diagnostics().captureTimings.proofMs,
+    Number.MAX_VALUE,
+    'overflow cannot enter serialized evidence'
+  );
+  current({ stage: 'total', milliseconds: 10 });
+  h.captures[1].resolve();
+  assert.equal(await departure, true);
+  current({ stage: 'total', milliseconds: 200 });
+  assert.equal(
+    h.bridge.diagnostics().captureTimings.totalMs,
+    10,
+    'terminal timing is retained before acquisition closes'
+  );
 });

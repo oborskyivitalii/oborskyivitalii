@@ -439,6 +439,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/1548489c2ba4c164417a4279df09731747049b5a39808f6137e830268f6ae95e": {
+      "kind": "directory",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1548489c2ba4c164417a4279df09731747049b5a39808f6137e830268f6ae95e/archive.js": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1548489c2ba4c164417a4279df09731747049b5a39808f6137e830268f6ae95e/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1548489c2ba4c164417a4279df09731747049b5a39808f6137e830268f6ae95e/space.js": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1548489c2ba4c164417a4279df09731747049b5a39808f6137e830268f6ae95e/styles.css": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/1548489c2ba4c164417a4279df09731747049b5a39808f6137e830268f6ae95e/theme.js": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -475,42 +511,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/archive.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/space.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/styles.css": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/de493f443b56ab6e53ccfd10c733651d4e2ca295ffd0984437558a1b36a49e8c/theme.js": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -523,15 +523,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2b27bc2b418f983fc6e4a3d3b876a7194229043d8aa5a0dc1919749013feb63c": {
+    "docs/snapshots/16e88b07598323e845000cdb643c923409bd396935a8283a823c0ea8e269dcae": {
       "kind": "directory",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2b27bc2b418f983fc6e4a3d3b876a7194229043d8aa5a0dc1919749013feb63c/writing.html": {
+    "docs/snapshots/16e88b07598323e845000cdb643c923409bd396935a8283a823c0ea8e269dcae/writing.html": {
       "kind": "file",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/41b24ef88021cda3241f46688d3fdb51f29390b7b1122e7777d6bf5be6f23abf": {
+      "kind": "directory",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/41b24ef88021cda3241f46688d3fdb51f29390b7b1122e7777d6bf5be6f23abf/credits.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/54e217bcd7c8bc6bff4e11fccb4399f1348fdd40743f1d1927a25bb1ef7b7daf": {
+      "kind": "directory",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/54e217bcd7c8bc6bff4e11fccb4399f1348fdd40743f1d1927a25bb1ef7b7daf/talks.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -544,18 +568,6 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/75b30bd4dc15474ca2c60ac699103fffc804836b3a6a3527e5f6b7333d0bf0f0": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/75b30bd4dc15474ca2c60ac699103fffc804836b3a6a3527e5f6b7333d0bf0f0/credits.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -583,6 +595,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/8cdddedf59b34c59eca66f26ce81c8258fb1a537509b574fcc1fa9f9288b4563": {
+      "kind": "directory",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/8cdddedf59b34c59eca66f26ce81c8258fb1a537509b574fcc1fa9f9288b4563/research.html": {
+      "kind": "file",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
       "kind": "directory",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
@@ -592,18 +616,6 @@
     "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
       "kind": "file",
       "purpose": "Generated exact source-bound runtime or route snapshot; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/adf2f9d4e6c1068b0899ab9ff7e8d47c77d63205c8c615cb4b7e59fcefc37019": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/adf2f9d4e6c1068b0899ab9ff7e8d47c77d63205c8c615cb4b7e59fcefc37019/talks.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -619,27 +631,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d42f7ac9a197e198e6444a7530eb691f880780f5117ed367768ac7153f648ca7": {
+    "docs/snapshots/e4c0b4eb589376497aa6c9f2af25ca9529d788dfb8281c494cba151649fa33cb": {
       "kind": "directory",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d42f7ac9a197e198e6444a7530eb691f880780f5117ed367768ac7153f648ca7/research.html": {
+    "docs/snapshots/e4c0b4eb589376497aa6c9f2af25ca9529d788dfb8281c494cba151649fa33cb/index.html": {
       "kind": "file",
-      "purpose": "Generated exact source-bound runtime or route rendition; regenerate from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/eed278d8e60ee60e04d789f7b50de8c522bd5ba3a56650ee2dda2a9ee36c7f14": {
-      "kind": "directory",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/eed278d8e60ee60e04d789f7b50de8c522bd5ba3a56650ee2dda2a9ee36c7f14/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact source-bound route snapshot; regenerate from canonical site owners.",
+      "purpose": "Generated source-bound site rendition retained by the canonical site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },

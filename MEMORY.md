@@ -18,7 +18,9 @@ Dated continuity, not live authority. Last verified: **2026-10-10**.
 - Read the same [issue49 handoff](review/issue-49/2026-10-08-analysis.md) and
   [raw synthetic diagnostics](review/issue-49/2026-10-10-performance.json).
   Pure geometry snapshots remain bit-exact; synthetic timings are not browser
-  performance acceptance. Final exact-head CI/preview proof must be revalidated.
+  performance acceptance. Exactc112 hosted smoke failed middle Writing deadline
+  and unsupported Talks aside; active-manifest/native-admission corrections need
+  fresh exact-head proof. Both measured smoke timing lanes passed their scope.
 - Prior failed preview37985227296 remains failed evidence: desktop cold
   preparation timed out; mobile warming lost current Home. Its raw ZIP was
   inspected during this continuation; no old result is reclassified as passing.

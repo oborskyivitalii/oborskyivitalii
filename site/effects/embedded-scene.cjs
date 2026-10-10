@@ -36,6 +36,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   let departureFaces = [];
   let paintedEntries = [];
   let lastFailure = null;
+  let lastCaptureTimings = null;
   let publishedStatus = null;
   const clamp = (amount) => Math.max(0, Math.min(1, amount));
   const validRoute = (route) => api.routeOrder.includes(route);
@@ -346,6 +347,12 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
   }
   const landingKey = (landing) =>
     JSON.stringify([landing?.position || [0, 0], landing?.hash || '', landing?.search || '']);
+  const nativeLandingKey = () =>
+    landingKey({
+      position: [window.scrollX || 0, window.scrollY || 0],
+      search: window.location?.search || '',
+      hash: window.location?.hash || '',
+    });
   function scrollInset(node, property) {
     const value = window.getComputedStyle?.(node)?.getPropertyValue(property) || '0px';
     if (value === 'auto') return 0;
@@ -381,6 +388,8 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     return true;
   }
   function captureOptions(controller, limits, stage, route, own) {
+    const timings = { stage, route };
+    lastCaptureTimings = timings;
     return {
       width: state.width,
       height: state.height,
@@ -389,6 +398,29 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       caps: limits,
       preparationMs: geometry.settings.preparationMs,
       acquisitionMs: geometry.settings.acquisitionMs,
+      onTiming(detail) {
+        if (
+          own !== generation ||
+          timings !== lastCaptureTimings ||
+          pending !== controller ||
+          controller.signal.aborted ||
+          !['measure', 'serialize', 'decode', 'readback', 'proof', 'total'].includes(
+            detail?.stage
+          ) ||
+          !Number.isFinite(detail.milliseconds) ||
+          detail.milliseconds < 0
+        )
+          return;
+        const key = detail.stage + 'Ms';
+        const amount =
+          detail.stage === 'total'
+            ? detail.milliseconds
+            : (timings[key] || 0) + detail.milliseconds;
+        if (!Number.isFinite(amount)) return;
+        timings[key] = amount;
+        if (Number.isInteger(detail.owners) && detail.owners >= 0 && detail.owners <= caps().owners)
+          timings[detail.stage + 'Owners'] = detail.owners;
+      },
       onReject(detail) {
         if (own === generation) reject(stage, route, detail);
       },
@@ -501,9 +533,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
     // A lifecycle-owned crossfade must not invalidate its own captured paint.
     if (managed) appearance(managed);
     try {
-      if (
-        textures.matchesField &&
-        !entry.groups.every((group) =>
+      if (typeof textures.matchesField === 'function') {
+        // The complete native oracle already proves source text, geometry,
+        // wrapping, controls and paint. A second per-owner pass repeats layout
+        // reads without adding coverage; older adapters retain the narrow path.
+        return entry.groups.every((group) =>
           textures.matchesField(content, group.sources, {
             width: state.width,
             height: state.height,
@@ -512,9 +546,8 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
             acquisitionMs: geometry.settings.acquisitionMs,
             decorations: group.asset.decorations,
           })
-        )
-      )
-        return false;
+        );
+      }
       return entry.groups.every((group) =>
         group.sources.every((source) => {
           const owner = resolve(content, source.ownerPath);
@@ -554,7 +587,11 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       return false;
     }
     const cached = bank.get(route);
-    if (cached && matching(cached, content)) {
+    const nativeLanding = nativeLandingKey();
+    const sourceViewport = { width: state.width, height: state.height };
+    // A changed viewport cannot match its previous native atlas. Skip that
+    // guaranteed-failing style/layout scan, then capture under the same limits.
+    if (cached?.landingKey === nativeLanding && matching(cached, content)) {
       if (!options.cacheOnly) {
         outgoing = cached;
         for (const group of cached.groups) group.native = content;
@@ -574,13 +611,20 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       const limits = remainingBudget();
       assets = await acquire(content, captureOptions(controller, limits, 'departure', route, own));
       if (own !== generation || controller.signal.aborted) return false;
+      if (
+        document.body.dataset.page !== route ||
+        state.width !== sourceViewport.width ||
+        state.height !== sourceViewport.height ||
+        (window.innerWidth || state.width) !== sourceViewport.width ||
+        (window.innerHeight || state.height) !== sourceViewport.height ||
+        nativeLandingKey() !== nativeLanding
+      ) {
+        reject('departure', route, 'source-landing-changed');
+        return false;
+      }
       const entry = build(assets, route, limits, 'departure');
       if (!entry) return false;
-      entry.landingKey = landingKey({
-        position: [window.scrollX || 0, window.scrollY || 0],
-        search: window.location?.search || '',
-        hash: window.location?.hash || '',
-      });
+      entry.landingKey = nativeLanding;
       commit(entry);
       if (!options.cacheOnly) {
         for (const group of entry.groups) group.native = content;
@@ -721,6 +765,7 @@ module.exports = function (api, { fragmentPlan, embeddedPlan, embeddedTexture })
       ready: !!incoming,
       pendingRoute,
       lastFailure,
+      captureTimings: lastCaptureTimings && { ...lastCaptureTimings },
       route: incoming?.route || null,
       phase,
       progress,

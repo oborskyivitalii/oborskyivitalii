@@ -418,6 +418,7 @@ module.exports = function () {
     'header',
     'section',
     'article',
+    'aside',
     'div',
     'h1',
     'h2',
@@ -691,6 +692,22 @@ module.exports = function () {
       // Optional public diagnostics cannot change capture or cleanup behavior.
     }
     return null;
+  }
+  function timingStart(options) {
+    return options.fieldCapture && typeof options.onTiming === 'function' ? options.clock() : null;
+  }
+  function reportTiming(options, stage, started, owners) {
+    if (started === null || started === undefined) return;
+    const milliseconds = options.clock() - started;
+    if (!Number.isFinite(milliseconds) || milliseconds < 0) return;
+    const detail = { stage, milliseconds };
+    if (Number.isInteger(owners) && owners >= 0 && owners <= options.caps.owners)
+      detail.owners = owners;
+    try {
+      options.onTiming(detail);
+    } catch {
+      // Optional bounded diagnostics cannot change admission or disposal.
+    }
   }
   function extendNativeNodeBounds(node, owner, style, bounds, options) {
     if (options.decoration) return;
@@ -1318,7 +1335,7 @@ module.exports = function () {
       )
     )
       return rejectNative(normalized, 'invalid-capture-capacity', root.localName);
-    return { document, view, normalized };
+    return { document, view, normalized, started };
   }
   async function captureAll(root, options = {}) {
     const assets = [];
@@ -1643,43 +1660,67 @@ module.exports = function () {
   }
   async function fieldHasNativeInk(context, measured, options) {
     if (options.signal?.aborted || options.clock() > options.deadline) {
+      reportTiming(options, 'readback', options.readbackStarted);
       rejectNative(options, 'preparation-deadline', measured.owner.localName);
       return false;
     }
-    const pixels = context.getImageData(0, 0, measured.pixelWidth, measured.pixelHeight).data;
-    const owners = fieldInkOwners(measured);
-    for (const item of owners) {
-      const owner = item.owner;
-      const boxes = exclusiveFieldBoxes(item, owners, options);
-      if (!boxes || options.signal?.aborted || options.clock() > options.deadline) {
-        rejectNative(options, 'preparation-deadline', measured.owner.localName);
-        return false;
-      }
-      if (!boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))) {
-        // Fractional adjacent borders may legitimately share one raster pixel.
-        // Prove that owner's native paint in isolation instead of borrowing
-        // its neighbour's alpha. Both the composite and isolated paint need ink.
-        if (
-          ambiguousDecoration(item, owners) &&
-          item.boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))
-        ) {
-          const proof = await raster(owner, options, serializeNative);
-          if (proof) {
-            proof.dispose();
-            if (!options.signal?.aborted && options.clock() <= options.deadline) continue;
-            rejectNative(options, 'preparation-deadline', measured.owner.localName);
-            return false;
-          }
-        }
-        rejectNative(
-          { ...options, ownerPath: owner.ownerPath },
-          'native-owner-raster-blank',
-          owner.owner.localName
-        );
-        return false;
-      }
+    let pixels;
+    try {
+      pixels = context.getImageData(0, 0, measured.pixelWidth, measured.pixelHeight).data;
+    } finally {
+      reportTiming(options, 'readback', options.readbackStarted);
     }
-    return true;
+    const proofStarted = timingStart(options);
+    let isolatedProofs = 0;
+    let proofReported = false;
+    const finishProof = () => {
+      if (proofReported) return;
+      proofReported = true;
+      options.signal?.removeEventListener('abort', finishProof);
+      reportTiming(options, 'proof', proofStarted, isolatedProofs);
+    };
+    if (proofStarted !== null)
+      options.signal?.addEventListener('abort', finishProof, { once: true });
+    try {
+      const owners = fieldInkOwners(measured);
+      for (const item of owners) {
+        const owner = item.owner;
+        const boxes = exclusiveFieldBoxes(item, owners, options);
+        if (!boxes || options.signal?.aborted || options.clock() > options.deadline) {
+          rejectNative(options, 'preparation-deadline', measured.owner.localName);
+          return false;
+        }
+        if (!boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))) {
+          // Fractional adjacent borders may legitimately share one raster pixel.
+          // Prove that owner's native paint in isolation instead of borrowing
+          // its neighbour's alpha. Both the composite and isolated paint need ink.
+          if (
+            ambiguousDecoration(item, owners) &&
+            item.boxes.some((box) => fieldBoxHasInk(box, pixels, measured.pixelWidth))
+          ) {
+            isolatedProofs++;
+            // Nested proof decoding belongs to the inclusive ownership-proof
+            // stage, never a second main-field decode or total observation.
+            const proof = await raster(owner, { ...options, onTiming: undefined }, serializeNative);
+            if (proof) {
+              proof.dispose();
+              if (!options.signal?.aborted && options.clock() <= options.deadline) continue;
+              rejectNative(options, 'preparation-deadline', measured.owner.localName);
+              return false;
+            }
+          }
+          rejectNative(
+            { ...options, ownerPath: owner.ownerPath },
+            'native-owner-raster-blank',
+            owner.owner.localName
+          );
+          return false;
+        }
+      }
+      return true;
+    } finally {
+      finishProof();
+    }
   }
   async function captureField(root, options = {}) {
     let reported = false;
@@ -1689,6 +1730,8 @@ module.exports = function () {
       options.onReject?.(detail);
     };
     let capture;
+    let timingOptions;
+    let captureStarted;
     let complete = false;
     const fieldOptions = { ...options, onReject, fieldCapture: true };
     try {
@@ -1699,6 +1742,8 @@ module.exports = function () {
       const context = nativeCaptureContext(root, fieldOptions, onReject);
       if (!context) return null;
       const { document, view, normalized } = context;
+      timingOptions = normalized;
+      captureStarted = context.started;
       if (typeof view.AbortController !== 'function')
         return rejectNative(normalized, 'native-cancellation-unavailable', root.localName);
       const decoded = decodeNativeImages(root, view, normalized);
@@ -1708,7 +1753,13 @@ module.exports = function () {
         normalized.deadline,
         normalized.clock() + Math.min(80, options.acquisitionMs ?? 80)
       );
-      const { measured } = measureNativeOwners(root, document, view, normalized, normalized.caps);
+      let measured;
+      const measureStarted = timingStart(normalized);
+      try {
+        measured = measureNativeOwners(root, document, view, normalized, normalized.caps).measured;
+      } finally {
+        reportTiming(normalized, 'measure', measureStarted, measured?.length || 0);
+      }
       if (!measured.length) return rejectNative(normalized, 'native-field-empty', root.localName);
       const envelope = fieldEnvelope(measured);
       const dimensions = fieldDimensions(envelope, normalized.dpr, settings.maxPixels);
@@ -1762,6 +1813,8 @@ module.exports = function () {
       return rejectNative(fieldOptions, 'native-field-composite-failed', root?.localName);
     } finally {
       if (!complete) capture?.dispose();
+      if (typeof timingOptions?.onTiming === 'function')
+        reportTiming(timingOptions, 'total', captureStarted);
     }
   }
   function raster(measured, options, serializer) {
@@ -1772,6 +1825,7 @@ module.exports = function () {
     let source;
     let proofController;
     const nativeOptions = { ...options, ownerPath: measured.ownerPath };
+    const serializeStarted = timingStart(options);
     try {
       canvas = measured.document.createElement('canvas');
       canvas.width = measured.pixelWidth;
@@ -1782,6 +1836,8 @@ module.exports = function () {
       if (source && measured.fieldOwners) proofController = new measured.view.AbortController();
     } catch {
       source = null;
+    } finally {
+      reportTiming(options, 'serialize', serializeStarted);
     }
     if (!source) {
       rejectNative(
@@ -1798,9 +1854,17 @@ module.exports = function () {
     return new Promise((resolve) => {
       let finished = false;
       let timeout;
+      const decodeStarted = timingStart(options);
+      let decodeReported = false;
+      function finishDecode() {
+        if (decodeReported) return;
+        decodeReported = true;
+        reportTiming(options, 'decode', decodeStarted);
+      }
       function finish(success, code) {
         if (finished) return;
         finished = true;
+        finishDecode();
         measured.view.clearTimeout(timeout);
         options.signal?.removeEventListener('abort', abort);
         image.onload = null;
@@ -1846,15 +1910,18 @@ module.exports = function () {
       }
       image.onload = async () => {
         if (finished) return;
+        finishDecode();
         try {
           if (!image.naturalWidth || !image.naturalHeight)
             return finish(false, 'native-raster-empty');
+          const readbackStarted = timingStart(options);
           context.drawImage(image, 0, 0, canvas.width, canvas.height);
           if (measured.fieldOwners)
             return finish(
               await fieldHasNativeInk(context, measured, {
                 ...options,
                 signal: proofController.signal,
+                readbackStarted,
               }),
               'native-raster-blank'
             );

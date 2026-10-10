@@ -2266,3 +2266,263 @@ test('capture and handoff invalidate previous family eligibility when a collidin
   assert.equal(f.canvases.length, allocations, 'newly unsupported font fails before allocation');
   field.dispose();
 });
+
+function nextRouteAsideFixture(style = {}) {
+  const f = pageFixture();
+  const aside = new f.Node(
+    'aside',
+    '',
+    {
+      display: 'flex',
+      'flex-wrap': 'wrap',
+      'align-items': 'center',
+      'justify-content': 'space-between',
+      gap: '16px',
+      'padding-top': '28px',
+      'padding-bottom': '28px',
+      'padding-left': '18px',
+      'padding-right': '18px',
+      'border-top': '1px solid rgb(51, 70, 76)',
+      'border-top-width': '1px',
+      'border-top-style': 'solid',
+      ...style,
+    },
+    { left: 0, top: 50, width: 360, height: 150 }
+  );
+  for (const [tag, text, top] of [
+    ['p', 'Continue the research', 90],
+    ['a', 'Explore Credits', 145],
+  ]) {
+    const child = new f.Node(tag, text, {}, { left: 18, top, width: 200, height: 30 });
+    child.pseudos['::before'] = {
+      content: '""',
+      position: 'absolute',
+      display: 'block',
+      opacity: '1',
+      'box-sizing': 'border-box',
+      left: '-8px',
+      top: '-8px',
+      width: '216px',
+      height: '46px',
+      'background-color': 'rgba(17, 28, 34, 0.72)',
+      'border-radius': '12px',
+    };
+    aside.append(child);
+  }
+  f.main.append(aside);
+  return { ...f, aside };
+}
+
+test('the native next-route aside retains its independent border and both child paper owners', async () => {
+  const f = nextRouteAsideFixture();
+  const textures = embeddedTexture();
+  const field = await textures.captureField(f.root, { ...pageOptions, dpr: 1 });
+  assert.ok(field);
+  assert.equal(field.decorations.length, 1);
+  assert.deepEqual(field.decorations[0].ownerPath, [0, 0]);
+  assert.deepEqual(
+    field.sourceOwners.map(({ ownerPath }) => ownerPath),
+    [
+      [0, 0, 0],
+      [0, 0, 1],
+    ]
+  );
+  assert.deepEqual(
+    field.sourceOwners.map(({ textContent }) => textContent),
+    ['Continue the research', 'Explore Credits']
+  );
+  assert.match(f.sources[0], /<aside[^>]*><\/aside>/);
+  assert.match(f.sources[0], /border-top:1px solid rgb\(51, 70, 76\)/);
+  assert.match(f.sources[0], /<p /);
+  assert.match(f.sources[0], /<a /);
+  assert.equal((f.sources[0].match(/background-color:rgba\(17, 28, 34, 0\.72\)/g) || []).length, 2);
+  assert.equal(
+    textures.matchesField(f.root, field.sourceOwners, {
+      ...pageOptions,
+      decorations: field.decorations,
+    }),
+    true
+  );
+  f.aside.computed.transform = 'matrix(1, 0, 0, 1, 0, 2)';
+  assert.equal(
+    textures.matchesField(f.root, field.sourceOwners, {
+      ...pageOptions,
+      decorations: field.decorations,
+    }),
+    false
+  );
+  field.dispose();
+});
+
+test('aside admission retains unsupported ancestor, executable child and unresolved resource rejection', async () => {
+  for (const style of [
+    { transform: 'matrix(1, 0, 0, 1, 0, 2)' },
+    { filter: 'blur(2px)' },
+    { 'clip-path': 'inset(1px)' },
+    { 'mask-image': 'linear-gradient(black, transparent)' },
+    { perspective: '500px' },
+    { 'animation-name': 'pulse' },
+    { direction: 'rtl' },
+    { 'background-image': 'url(https://evil.test/aside.png)' },
+  ]) {
+    const f = nextRouteAsideFixture(style);
+    assert.equal(await embeddedTexture().captureField(f.root, pageOptions), null);
+    assert.equal(f.canvases.length, 0);
+    assert.equal(f.images.length, 0);
+  }
+  const f = nextRouteAsideFixture();
+  f.aside.append(new f.Node('script', 'executable()'));
+  assert.equal(await embeddedTexture().captureField(f.root, pageOptions), null);
+  assert.equal(f.canvases.length, 0);
+  assert.equal(f.images.length, 0);
+});
+
+test('painted aside children cannot supply the missing native aside border alpha', async () => {
+  const f = nextRouteAsideFixture();
+  f.context.getImageData = (x, y, width, height) => {
+    const data = new Uint8ClampedArray(width * height * 4);
+    // Both native child papers are visible; the independently owned top
+    // border at field row zero has no native paint.
+    for (let row = 32; row < height; row++)
+      for (let column = 10; column < 226; column++) data[(row * width + column) * 4 + 3] = 255;
+    return { data };
+  };
+  const failures = [];
+  assert.equal(
+    await embeddedTexture().captureField(f.root, {
+      ...pageOptions,
+      dpr: 1,
+      onReject: (detail) => failures.push(detail),
+    }),
+    null
+  );
+  assert.deepEqual(failures, [
+    {
+      reason: 'native-owner-raster-blank',
+      path: [0, 0],
+      tag: 'aside',
+    },
+  ]);
+  assert.equal(f.images.length, 1);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+});
+
+test('optional field timings retain the original capture clock and report only bounded stage durations', async () => {
+  const f = pageFixture({ autoLoad: false });
+  let elapsed = 0;
+  f.view.performance = { now: () => elapsed };
+  f.main.append(new f.Node('p', 'Never expose this native text in timing observations'));
+  f.document.fonts.check = () => {
+    elapsed += 3;
+    return true;
+  };
+  const createElement = f.document.createElement;
+  f.document.createElement = (tag) => {
+    elapsed += 5;
+    return createElement(tag);
+  };
+  const drawImage = f.context.drawImage;
+  f.context.drawImage = (...args) => {
+    elapsed += 4;
+    return drawImage.apply(f.context, args);
+  };
+  const getImageData = f.context.getImageData;
+  f.context.getImageData = (...args) => {
+    elapsed += 6;
+    return getImageData.apply(f.context, args);
+  };
+  const timings = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    onTiming: (detail) => timings.push(detail),
+  });
+  elapsed = 35;
+  await f.images[0].onload();
+  const field = await pending;
+  assert.ok(field);
+  assert.deepEqual(timings, [
+    { stage: 'measure', milliseconds: 3, owners: 1 },
+    { stage: 'serialize', milliseconds: 5 },
+    { stage: 'decode', milliseconds: 27 },
+    { stage: 'readback', milliseconds: 10 },
+    { stage: 'proof', milliseconds: 0, owners: 0 },
+    { stage: 'total', milliseconds: 45 },
+  ]);
+  assert.doesNotMatch(JSON.stringify(timings), /native text|ownerPath|envelope|style|canvas/);
+  field.dispose();
+});
+
+test('capture timing observers cannot extend the original deadline or prevent failed allocation cleanup', async () => {
+  const f = pageFixture({ autoLoad: false });
+  let elapsed = 0;
+  f.view.performance = { now: () => elapsed };
+  f.main.append(new f.Node('p', 'Bounded timing failure'));
+  const timings = [];
+  const failures = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    onTiming(detail) {
+      timings.push(detail);
+      throw new Error('An optional observer cannot own cleanup');
+    },
+    onReject: (detail) => failures.push(detail),
+  });
+  const deadline = [...f.timers.values()][0];
+  elapsed = 161;
+  deadline();
+  assert.equal(await pending, null);
+  assert.deepEqual(failures, [{ reason: 'preparation-deadline', path: [], tag: 'div' }]);
+  assert.deepEqual(
+    timings.map(({ stage }) => stage),
+    ['measure', 'serialize', 'decode', 'total']
+  );
+  assert.equal(timings.at(-1).milliseconds, 161);
+  assert.equal(f.timers.size, 0);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+  assert.ok(f.images.every((image) => image.onload === null && image.onerror === null));
+});
+
+test('isolated proof timing remains one main decode and total, including cancellation without late reports', async () => {
+  const f = adjacentBorderFixture(100.3, {
+    width: 1440,
+    contentTop: 880,
+    contentHeight: 20,
+    autoLoad: false,
+  });
+  let elapsed = 0;
+  f.view.performance = { now: () => elapsed };
+  const controller = new AbortController();
+  const timings = [];
+  const pending = embeddedTexture().captureField(f.root, {
+    ...pageOptions,
+    dpr: 1,
+    signal: controller.signal,
+    onTiming: (detail) => timings.push(detail),
+  });
+  elapsed = 20;
+  const fieldLoad = f.images[0].onload();
+  assert.equal(f.images.length, 2);
+  const lateProofLoad = f.images[1].onload;
+  elapsed = 70;
+  controller.abort();
+  assert.equal(await pending, null);
+  await fieldLoad;
+  assert.deepEqual(
+    timings.map(({ stage }) => stage),
+    ['measure', 'serialize', 'decode', 'readback', 'proof', 'total']
+  );
+  assert.deepEqual(
+    timings.find(({ stage }) => stage === 'proof'),
+    {
+      stage: 'proof',
+      milliseconds: 50,
+      owners: 1,
+    }
+  );
+  assert.deepEqual(timings.at(-1), { stage: 'total', milliseconds: 70 });
+  const reports = timings.length;
+  await lateProofLoad();
+  assert.equal(timings.length, reports);
+  assert.equal(f.timers.size, 0);
+  assert.ok(f.canvases.every((canvas) => canvas.width === 0 && canvas.height === 0));
+});
