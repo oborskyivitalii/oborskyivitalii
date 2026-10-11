@@ -14,7 +14,26 @@ function origin(value) {
   return url.origin;
 }
 
+function baseURL(value) {
+  const url = new URL(value);
+  assert.equal(url.protocol, 'https:');
+  assert.equal(url.username + url.password + url.search + url.hash, '');
+  assert.equal(url.port, '');
+  assert.ok(!value.includes('\\'), 'invalid Pages base URL');
+  const supplied = value.match(/^https:\/\/[^/?#]+(\/[^?#]*)?$/);
+  assert.ok(supplied, 'invalid Pages base URL');
+  const suppliedPath = supplied[1] || '/';
+  assert.equal(url.pathname, suppliedPath, 'Pages base path was normalized unexpectedly');
+  const prefix = pkg.basePath(url.pathname);
+  return url.origin + (prefix === '/' ? '' : prefix.slice(0, -1));
+}
+
 async function request(url, expected, fetcher) {
+  const base = new URL(baseURL(expected));
+  const target = new URL(url);
+  const prefix = pkg.basePath(base.pathname);
+  assert.equal(target.origin, base.origin);
+  assert.ok(target.pathname.startsWith(prefix), 'Pages request left configured base path');
   const response = await fetcher(url, {
     redirect: 'manual',
     cache: 'no-store',
@@ -24,14 +43,19 @@ async function request(url, expected, fetcher) {
     ![301, 302, 303, 307, 308].includes(response.status),
     'use the configured canonical Pages origin'
   );
-  assert.equal(new URL(response.url || url).origin, expected);
+  const actual = new URL(response.url || url);
+  assert.equal(actual.origin, base.origin);
+  assert.ok(actual.pathname.startsWith(prefix), 'Pages response left configured base path');
+  assert.equal(actual.href, target.href, 'Pages response changed requested URL');
   return { response, bytes: Buffer.from(await response.arrayBuffer()) };
 }
 
 async function check(directory, value, fetcher = fetch) {
-  const base = origin(value);
+  const base = baseURL(value);
   const record = JSON.parse(fs.readFileSync(path.join(directory, 'pages-package.json')));
   pkg.verify(directory, record);
+  const prefix = pkg.basePath(new URL(base).pathname);
+  assert.equal(record.state.basePath || '/', prefix, 'Pages package base path differs');
   const rows = [];
   const names = Object.keys(record.files).filter((name) => !name.endsWith('.nojekyll'));
   for (let start = 0; start < names.length; start += 4) {
@@ -67,7 +91,9 @@ async function check(directory, value, fetcher = fetch) {
     schema: 1,
     kind: 'pages-http',
     pass: true,
-    origin: base,
+    origin: new URL(base).origin,
+    baseURL: base + '/',
+    basePath: prefix,
     packageDigest: record.packageDigest,
     rows,
     root: true,
@@ -98,4 +124,4 @@ if (require.main === module) {
       process.exitCode = 1;
     });
 }
-module.exports = { origin, request, check };
+module.exports = { origin, baseURL, request, check };

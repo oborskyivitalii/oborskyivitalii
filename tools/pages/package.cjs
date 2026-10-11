@@ -6,12 +6,29 @@ const path = require('node:path');
 const artifact = require('../quality/artifact.cjs');
 const snapshot = require('../site/snapshot.cjs');
 
-const notFound =
-  '<!doctype html><html lang="en"><meta charset="utf-8">' +
-  '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-  '<meta name="robots" content="noindex,nofollow"><title>Page not found</title>' +
-  '<main><h1>Page not found</h1><p><a href="/">Home</a> · ' +
-  '<a href="/staging/">Staging</a></p></main></html>\n';
+function basePath(value = '/') {
+  assert.equal(typeof value, 'string');
+  assert.match(value, /^\/(?:[A-Za-z0-9._-]+\/)*[A-Za-z0-9._-]*$/, 'invalid Pages base path');
+  assert.ok(!value.split('/').some((part) => part === '.' || part === '..'));
+  return value.endsWith('/') ? value : value + '/';
+}
+
+function notFoundFor(value = '/') {
+  const prefix = basePath(value);
+  return (
+    '<!doctype html><html lang="en"><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<meta name="robots" content="noindex,nofollow"><title>Page not found</title>' +
+    '<main><h1>Page not found</h1><p><a href="' +
+    prefix +
+    '">Home</a> · ' +
+    '<a href="' +
+    prefix +
+    'staging/">Staging</a></p></main></html>\n'
+  );
+}
+
+const notFound = notFoundFor();
 
 function read(directory) {
   const record = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
@@ -52,6 +69,9 @@ function subtree(files, prefix) {
 function verify(directory, record) {
   assert.equal(record.schema, 1);
   assert.equal(record.kind, 'pages-package');
+  const prefix = basePath(record.state.basePath || '/');
+  if (record.state.basePath !== undefined) assert.equal(record.state.basePath, prefix);
+  if (record.state.production) assert.equal(prefix, '/', 'production Pages requires origin root');
   const publicDir = path.join(directory, 'public');
   const actual = artifact.manifest(publicDir);
   assert.equal(actual.artifactDigest, record.packageDigest, 'combined Pages bytes changed');
@@ -77,7 +97,7 @@ function verify(directory, record) {
   const state = JSON.parse(fs.readFileSync(path.join(publicDir, '_delivery/state.json')));
   assert.deepEqual(state, record.state);
   if (!record.root.files['404.html'])
-    assert.equal(fs.readFileSync(path.join(publicDir, '404.html'), 'utf8'), notFound);
+    assert.equal(fs.readFileSync(path.join(publicDir, '404.html'), 'utf8'), notFoundFor(prefix));
   return true;
 }
 
@@ -86,12 +106,15 @@ function build(
   output,
   productionDirectory = null,
   productionTag = null,
-  publication = null
+  publication = null,
+  deploymentPath = '/'
 ) {
+  const prefix = basePath(deploymentPath);
   const staging = read(stagingDirectory);
   checkStaging(stagingDirectory, staging);
   const production = productionDirectory ? read(productionDirectory) : null;
   if (production) {
+    assert.equal(prefix, '/', 'production Pages requires origin root');
     assert.equal(production.edition?.id || 'production', 'production');
     require('../release/archive.cjs').tag(productionTag);
   } else {
@@ -104,6 +127,7 @@ function build(
   copy(stagingDirectory, path.join(target, 'staging'), staging);
   const state = {
     schema: 1,
+    basePath: prefix,
     production: production
       ? {
           tag: productionTag,
@@ -120,7 +144,7 @@ function build(
     JSON.stringify(state, null, 2) + '\n'
   );
   if (!(production || staging).files['404.html'])
-    fs.writeFileSync(path.join(target, '404.html'), notFound);
+    fs.writeFileSync(path.join(target, '404.html'), notFoundFor(prefix));
   const manifest = artifact.manifest(target);
   const record = {
     schema: 1,
@@ -143,4 +167,4 @@ if (require.main === module) {
     verify(staging, JSON.parse(fs.readFileSync(path.join(staging, 'pages-package.json'))));
   else throw Error('Usage: package.cjs build STAGING OUTPUT [PRODUCTION TAG] | verify OUTPUT');
 }
-module.exports = { read, checkStaging, subtree, build, verify, notFound };
+module.exports = { basePath, read, checkStaging, subtree, build, verify, notFound, notFoundFor };

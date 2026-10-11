@@ -64,10 +64,10 @@ jobs:
       - id: configure
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - id: origin
-        name: Normalize the configured canonical Pages origin
+        name: Normalize the configured Pages deployment base
         env:
           PAGES_CONFIGURED: ${{ steps.configure.outputs.base_url }}
-        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'url='+require('./tools/pages/http.cjs').origin(process.env.PAGES_CONFIGURED)+'\n')"
+        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'url='+require('./tools/pages/http.cjs').baseURL(process.env.PAGES_CONFIGURED)+'\n')"
       - name: Authenticate controller and actual successful staging producer
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
@@ -159,10 +159,11 @@ jobs:
       - name: Compose staging while preserving accepted production file hashes
         env:
           RELEASE_TAG: ${{ steps.production.outputs.tag }}
+          PAGES_BASE_URL: ${{ steps.origin.outputs.url }}
         run: |
           node - <<'JS'
           const pkg=require('./tools/pages/package.cjs');
-          pkg.build('staging-source','pages-package',process.env.RELEASE_TAG?'production-source':null,process.env.RELEASE_TAG||null,{kind:'ci-pages',runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,controller:process.env.GITHUB_SHA});
+          pkg.build('staging-source','pages-package',process.env.RELEASE_TAG?'production-source':null,process.env.RELEASE_TAG||null,{kind:'ci-pages',runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,controller:process.env.GITHUB_SHA},new URL(process.env.PAGES_BASE_URL).pathname);
           require('node:fs').mkdirSync('pages-reports',{recursive:true});
           JS
       - name: Retain the complete new package before touching the live site

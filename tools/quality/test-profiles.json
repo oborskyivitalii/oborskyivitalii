@@ -1463,7 +1463,7 @@
     {
       "path": "tests/pages-delivery.test.cjs",
       "language": "javascript",
-      "purpose": "Hashed staging, production root, hosted bytes and retained-attempt recovery negatives",
+      "purpose": "Hashed root/project staging, confined hosted bytes, production root and retained-attempt recovery negatives",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

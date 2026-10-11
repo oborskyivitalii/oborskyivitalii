@@ -72,7 +72,7 @@ function sameProduction(actual, expected) {
 
 async function previous(github, context, baseURL, production, fetcher = fetch) {
   const http = require('./http.cjs'),
-    base = http.origin(baseURL);
+    base = http.baseURL(baseURL);
   const result = await http.request(base + '/_delivery/state.json', base, fetcher);
   if (result.response.status === 404) {
     assert.equal(production, null, 'active production has no Pages recovery receipt');
@@ -83,6 +83,11 @@ async function previous(github, context, baseURL, production, fetcher = fetch) {
   assert.equal(result.response.status, 200, 'cannot observe previous Pages state');
   const state = JSON.parse(result.bytes);
   assert.equal(state.schema, 1);
+  assert.equal(
+    state.basePath || '/',
+    require('./package.cjs').basePath(new URL(base).pathname),
+    'live Pages receipt base path differs'
+  );
   sameProduction(state.production, production);
   const receipt = state.publication;
   assert.equal(receipt.kind, 'ci-pages');

@@ -4,71 +4,78 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 ## Snapshot
 
-- Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`; revalidate live tip.
-- [#72](https://github.com/oborskyivitalii/oborskyivitalii/issues/72) owns the accepted
-  prototype/staging/Pages/production-archive plan. Implementation is authorized on
-  `work/issue-72-prototype-staging-release-20261011`; [Draft PR #73](https://github.com/oborskyivitalii/oborskyivitalii/pull/73).
-  [Analysis and handoff](review/issue-72/2026-10-11-analysis.md).
-  [Review/corrections](review/issue-72/2026-10-11-review.md) records separate AI
-  source/security/browser reviews and corrections. Direct Git refs reconciled
-  published `e0dd85ad...`; final clean source/CI must be revalidated.
-- PR67 is merged; Cloudflare stable alias maps to its accepted source
-  `4a7b44ff0877961d5a2d0dc8233b8ae643ca340c`, deployment `5ee165bf`, on 9 October.
-  This API identity is not a new direct HTTP health observation.
-- PR73 prototype `f86f79a0...` passed Actions run `38138327025`: link in 75 seconds,
-  full prototype workflow 101 seconds; source/RI/acceptance/browser admission deferred.
-  Clean local mapped acceptance and 375 additional source cases passed for that commit.
-  Revalidate its latest head/preview after metadata follow-ups.
-- Local continuation reproduced418 JS/109 Python cases and214-file lint; final
-  clean mapping/security/format and hosted prototype are bound in issue/PR.
-  No production branch/tag/Release is active; Pages reports has_pages=false.
+- Protected main inspected at `12bf2a6d66be766a1e3f2c28b2e70c0bbba0f1e2`,
+  tree `ec19106b0764890f5cedc2d96febc468454a6213`; PR73 is merged. Revalidate live tip.
+- [#72](https://github.com/oborskyivitalii/oborskyivitalii/issues/72) owns the existing
+  staging/Pages/archive controller and its confirmed project-base repair.
+  Isolated preparation: `work/issue-72-pages-basepath-20261011`, based on main;
+  [repair evidence and decision route](review/issue-72/2026-10-11-pages-basepath.md).
+  Source changes are dirty preparation; no repair commit, PR, integration or
+  hosted acceptance is claimed by this checkpoint.
+- [#69](https://github.com/oborskyivitalii/oborskyivitalii/issues/69) and
+  [PR71](https://github.com/oborskyivitalii/oborskyivitalii/pull/71) retain runtime
+  ownership. Bounded staging tested head `f111368f1f77b6f5027f71e6287d256d914aa2fc`,
+  tree `b0244d68a2645be1eb9c81abc5e3700a4c1168d2` in
+  [run 38157594946/1](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38157594946).
+- That run passed bounded build/static/host/functional/performance/gate and
+  Cloudflare promotion. Pages job `114526430944` failed during normalization:
+  configured base `https://oborskyivitalii.github.io/oborskyivitalii`, actual
+  pathname `/oborskyivitalii`, expected `/`. No Pages upload/deployment occurred.
+  Merge admission failed; mirror recovery `114526493004` succeeded and verified
+  the previous Cloudflare package. The overall attempt remains failed.
+- Pages configuration now responds successfully in the official action; this
+  does not prove all environment/ruleset settings or a live Pages publication.
+  Production remains disabled; no production/domain activation is recorded.
 
 ## Decisions
 
-- Maintainer accepted #72's full plan/archive clarification and instructed
-  implementation on 11 October. First production/domain activation retains its
-  existing release decision; green fixtures cannot supply that decision.
-- Drafts publish build/package/HTTP prototypes. Ready PRs run real source/RI/issue
-  admission before owner `/stage` and unchanged bounded staging regression.
-  Deferred names cannot impersonate currently required main contexts.
-- Permanent Cloudflare alias needs no project or DNS change:
-  `https://staging.oborskyi-author-ci-staging.pages.dev`.
-- Pages uses `/staging/`, a pre-test badge/noindex/analytics-free edition, preserved
-  production-root hashes and serialized exact recovery. Pages/variable setup and
-  required `Staging admission` need live evidence after controller bootstrap;
-  the current strict ruleset still requires `checks` and RI.
-- Production policy: immutable `prod-YYYY-MM-DD.N` tags and durable GitHub Releases
-  retaining exact packages/manifests/full evidence, protected current production
-  ref, deployment identity and active/archive PR labels after live checks. Archive
-  publisher/ref/label/rollback source integration now exists, with separately
-  hashed prospective production previews and durable full/raw/live evidence.
-  Production stays absent/disabled; actual activation is expressly excluded.
-  Dedicated installed Production App tokens own protected refs/Releases;
-  ordinary workflow tokens retain Pages, deployment and label operations.
-  Pages, variables, environment/ruleset and Release immutability administration
-  remain unobserved because the connector has no administrative operations.
-- Original #41 content/sitecase evidence stays in its review records. #65 harness
-  cleanup is merged/closed; task snapshots stay owning-policy-only.
+- Maintainer accepted #72's plan and implementation on 11 October. The runtime
+  rebase/merge/staging request remains with #69; production/domain/DNS activation
+  is excluded. Green source fixtures cannot supply any retained release decision.
+- Drafts use build/package/HTTP prototypes. Ready PRs require actual raw-head
+  source/RI/issue admission before owner `/stage`; profile cases and original
+  performance budgets remain unchanged.
+- Pages staging preserves the configured deployment base, receipt/recovery and
+  `/staging/` subtree. Original public manifest bytes stay unchanged; only host
+  transport state and generated fallback links gain the base prefix. Legacy
+  receipts without a prefix mean origin root only. Production remains restricted
+  to the existing canonical origin root and all full release gates.
+- `/stage` loads its trusted controller from protected main. A candidate-only
+  Pages correction cannot repair the observed old-main failure. Prepare a
+  concrete reviewed #72 repair PR, then obtain the explicit scoped maintainer
+  integration decision. No bootstrap exception or failed-admission waiver exists
+  in this checkpoint. After integration PR71 must rebase and stage afresh.
+- Permanent Cloudflare alias remains
+  `https://staging.oborskyi-author-ci-staging.pages.dev`; no project or DNS change.
+  Required `Staging admission` setting evidence remains pending; retain existing
+  `checks` and `Local navigation and RI freshness` strict contexts.
+- Immutable production tags, durable Releases, protected production identity,
+  external full/device/rights/review gates and dedicated App authentication retain
+  their existing #72/#8/#1/#7 owners. No production activation is authorized here.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #72 | Complete source checks/PR preview; reviewed bootstrap, Pages/settings/merge admission and live staging/recovery. Production uploader/ref/label/rollback source is implemented; no activation is authorized. All AC01–AC10 remain open pending complete conditions. |
-| #49 / Draft PR #53 | Fragment-flight work; revalidate head and visual acceptance. |
-| #39 / Draft PR #40 | Pages/domain preparation; preserve release decisions. |
+| #72 | Review the concrete Pages repair, source-clean CI and scoped main-integration decision; then observe actual project-base publication/recovery and required settings. Complete issue criteria remain open. |
+| #69 / PR71 | Rebase onto the integrated repair, regenerate companions, fresh source/RI/issue checks, dual-host staging, unchanged-tree merge admission and post-merge identity. Original device/find/bfcache/full-cost gates stay separate. |
+| #49 / Draft PR53 | Fragment-flight work; revalidate current head and visual acceptance. |
+| #39 / Draft PR40 | Canonical Pages/domain preparation; preserve release decisions. |
 | #45 / #36 / #41 | Original editorial/visual/review/device gates in live owners. |
 | #1 / #13 / #8 | First release, devices, recovery, indexing and analytics. |
 | #7 / #5 / #6 / #2 / #11 | Rights, editions, adapters and post-launch guides. |
 
 ## Next session
 
-1. Fetch main, #72 and execution PR; inspect exact source/CI/deployments.
-2. Continue #72's versioned handoff on the same PR; use reviewed bootstrap and
-   authenticated Pages/environment/variable/ruleset/App setup without activation.
-3. Reconcile actual AC boxes with current-source/live results; no fixture proves
-   host activation, durable Releases or independent review.
-4. Keep launch/domain owners; merge/release only by maintainer decision.
+1. Revalidate main, #72 repair execution, PR71 exact head/checks and failed stage
+   recovery. Read the linked confirmed-failure artifact before changing controllers.
+2. Finish source-bound repair checks and independent review; make the complete
+   repair reviewable before requesting its scoped main-integration decision.
+3. After that reviewed integration, rebase PR71 and create a fresh `/stage`
+   attempt. Earlier runtime-only passes cannot admit the changed candidate.
+4. Require both publishers/recovery, exact-tree merge admission and post-merge
+   identity. Update actual issue criteria only for wholly verified conditions;
+   retain production and external release gates.
 
 ## Maintenance
 
