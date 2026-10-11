@@ -376,7 +376,7 @@
     {
       "path": "tests/color-build.test.cjs",
       "language": "javascript",
-      "purpose": "Current authored Color build, complete route inventory, deterministic exact source identity and failed-build rejection",
+      "purpose": "Current authored Color build, complete route inventory, deterministic exact source identity, failed-build rejection and finite owned settlement deadlines",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -384,6 +384,10 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/color-build.test.cjs",
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/quality/color-browser.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs",
         "tools/staging/color.cjs",
         "tools/quality/artifact.cjs",
         "tools/site/snapshot.cjs",
@@ -396,7 +400,10 @@
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
         ".github/workflows/**",
-        "tools/site/effects.cjs"
+        "tools/site/effects.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/budgets.json"
       ]
     },
     {
@@ -429,18 +436,27 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/endpoint-fixtures.test.cjs", "tools/quality/navigation.cjs"]
+      "inputs": [
+        "tests/endpoint-fixtures.test.cjs",
+        "tools/quality/navigation.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
+      ]
     },
     {
       "path": "tests/engine-browser-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Stable actual engine/camera startup, delayed layout, archive filtering and first native gestures",
+      "purpose": "Stable actual engine/camera startup, delayed layout, archive filtering, first native gestures and bounded in-progress camera settlement",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/engine-browser-fixtures.test.cjs", "tools/quality/engine-browser.cjs"]
+      "inputs": [
+        "tests/engine-browser-fixtures.test.cjs",
+        "tools/quality/engine-browser.cjs",
+        "tools/quality/transition-pacing.json"
+      ]
     },
     {
       "path": "tests/executive.test.cjs",
@@ -490,7 +506,7 @@
     {
       "path": "tests/functional-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Browser harness serial-engine ownership, CSS hold/cleanup, canonical media route/history observations, delayed paint/scroll response and no invented success",
+      "purpose": "Native route reading behavior with stationary camera, working controls/fallbacks, source-bound artifact and functional evidence",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -543,13 +559,18 @@
     {
       "path": "tests/navigation-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Native route/history completion, native endpoint/print/hidden takeover and actual mount provenance",
+      "purpose": "Ordered opaque visual rows and moving separators around centered/restored camera stages, reverse Tetris assembly, native mount, interruption/history and bounded navigation evidence",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/navigation-fixtures.test.cjs", "tools/quality/navigation.cjs"]
+      "inputs": [
+        "tests/navigation-fixtures.test.cjs",
+        "tools/quality/navigation.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
+      ]
     },
     {
       "path": "tests/navigation-motion-fixtures.test.cjs",
@@ -560,12 +581,17 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/navigation-motion-fixtures.test.cjs", "tools/quality/navigation.cjs"]
+      "inputs": [
+        "tests/navigation-motion-fixtures.test.cjs",
+        "tools/quality/navigation.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
+      ]
     },
     {
       "path": "tests/navigation.test.cjs",
       "language": "javascript",
-      "purpose": "Current runtime camera-before-mount, queued retarget/cancellation, cloned route-head media ownership, instant paths and no diagnostic task clock",
+      "purpose": "Shared yielded route mounting, outgoing-block/camera-restoration/incoming-block sequencing, serial cancellation, native landing/head/history and instant fallback",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -592,7 +618,9 @@
         "tools/site/**",
         "site/engine/**",
         "site/effects/**",
-        "docs/site-revision.json"
+        "docs/site-revision.json",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ]
     },
     {
@@ -639,7 +667,8 @@
         "tools/quality/stylelint.cjs",
         "site/**/*.css",
         "tools/quality/security-rules.yml",
-        "tools/quality/exceptions.json"
+        "tools/quality/exceptions.json",
+        "tools/quality/secrets-reviewed-checksums.json"
       ]
     },
     {
@@ -654,6 +683,8 @@
       "inputs": [
         "tests/quality.test.cjs",
         "tools/quality/validate.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs",
         "tools/quality/budgets.json",
         "tools/quality/scroll-browser.cjs",
         "tools/quality/navigation.cjs",
@@ -666,7 +697,9 @@
         "tools/quality/hosted.cjs",
         "tools/quality/artifact.cjs",
         "tools/check_site_contrast.cjs",
-        ".github/workflows/**"
+        ".github/workflows/**",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ]
     },
     {
@@ -793,7 +826,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Current scene/runtime displayed-camera route and layout retarget continuity, native scrolling, flight preparation, CSS/failure, adaptive detail/cadence/quality and bounded atmosphere invariants",
+      "purpose": "Stationary all-route reading cameras, smooth center/transit/restore within original flight deadlines, pause/retarget/failure handling, shared clock and bounded scene resources",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -819,6 +852,8 @@
       "inputs": [
         "tests/staging-gate.test.cjs",
         "tools/quality/staging-gate.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/validate.cjs",
         "tools/quality/common.cjs",
@@ -826,7 +861,9 @@
         "tests/fixtures/staging-evidence.cjs",
         ".github/workflows/site-release-checks.yml",
         "tools/staging/review-flow.cjs",
-        "tools/staging/state.cjs"
+        "tools/staging/state.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ]
     },
     {
@@ -841,6 +878,8 @@
       "inputs": [
         "tests/staging-regression.test.cjs",
         "tools/quality/staging-regression.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs",
         "site/engine/critical-media.css",
         "tools/quality/functional.cjs",
         "tools/quality/common.cjs",
@@ -850,7 +889,9 @@
         "tools/quality/lighthouse.cjs",
         "tools/quality/test-profiles.json",
         "tests/fixtures/staging-evidence.cjs",
-        ".github/workflows/site-release-checks.yml"
+        ".github/workflows/site-release-checks.yml",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ]
     },
     {
@@ -1138,11 +1179,18 @@
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
       "inputs": [
         "tests/writing-paradigm-quality.test.cjs",
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs",
         "tools/quality/writing-paradigm.cjs",
         "tools/quality/writing-paradigm-validate.cjs",
+        "tools/quality/writing-probe.cjs",
+        "tools/quality/validate.cjs",
         "tools/quality/motion.cjs",
         "tools/quality/artifact.cjs",
-        "tools/site/snapshot.cjs"
+        "tools/site/snapshot.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ]
     },
     {
@@ -1167,7 +1215,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1354,7 +1402,7 @@
     {
       "path": "tests/camera-view.test.cjs",
       "language": "javascript",
-      "purpose": "Shared finite camera basis/projection and caller clipping/payload contract equivalence",
+      "purpose": "Shared finite camera basis/projection with interpolated reading/optical-center framing, axis centering, translation and clipping/payload contracts",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1430,7 +1478,9 @@
         "tests/refactor-metrics.test.cjs",
         "tools/quality/refactor-metrics.cjs",
         "tools/quality/motion.cjs",
-        "tools/quality/budgets.json"
+        "tools/quality/budgets.json",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ]
     },
     {
@@ -1555,7 +1605,47 @@
         "tools/quality/navigation.cjs",
         "tools/quality/artifact.cjs",
         "tests/fixtures/staging-evidence.cjs",
-        "tools/quality/test-profiles.json"
+        "tools/quality/test-profiles.json",
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/budgets.json"
+      ]
+    },
+    {
+      "path": "tests/scroll-entry.test.cjs",
+      "language": "javascript",
+      "purpose": "Native one-shot reading entry plus viewport-bounded overlapping directional visual rows and native separator paint, route-block departure/hold/arrival, geometry, cancellation and readable fallback",
+      "owner": "site/README.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain narrow entry lifecycle contract; focused active-frame replay extends existing scroll-browser helper without a new routine hosted matrix",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/scroll-entry.test.cjs",
+        "site/engine/scroll-entry.cjs",
+        "site/engine/scroll-entry.css",
+        "site/engine/navigation.js",
+        "site/engine/lifecycle.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue69_acceptance.py",
+      "language": "python",
+      "purpose": "Issue69 mapped native scroll/route blocks, stationary/staged cameras, router sequencing and coherent delivery; visual/device/independent gates remain separate",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue69 policy only; reuse maintained behavior and producer cases without duplicate browser or historical task replay",
+      "surviving_route": ".github/acceptance/issue-69.json",
+      "inputs": [
+        "tests/test_issue69_acceptance.py",
+        ".github/acceptance/issue-69.json",
+        "tests/scroll-entry.test.cjs",
+        "tests/site-engine.test.cjs",
+        "tests/space.test.cjs",
+        "tests/camera-view.test.cjs",
+        "tests/navigation.test.cjs",
+        "tests/flight.test.cjs"
       ]
     }
   ]

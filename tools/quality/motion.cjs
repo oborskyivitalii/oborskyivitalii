@@ -1,14 +1,37 @@
 'use strict';
 const assert = require('node:assert/strict');
+const pacing = require('./transition-pacing.cjs');
 const { toolRequire, report, launchOptions } = require('./common.cjs');
 const { routes, motion: budgets } = require('./budgets.json'),
   { start } = require('./serve.cjs');
 function installProbe() {
   const native = window.requestAnimationFrame.bind(window),
     clear = CanvasRenderingContext2D.prototype.clearRect;
-  const probe = { schema: 2, frames: [], longTasks: [], events: [], paints: 0 };
+  const probe = {
+    schema: 2,
+    frames: [],
+    longTasks: [],
+    events: [],
+    paints: 0,
+    viewportWidth: innerWidth,
+  };
   window.__qualityMotion = probe;
-  window.SiteEngineProbe = (event) => probe.events.push(event);
+  window.SiteEngineProbe = (event) => {
+    // Two bounded inline-only snapshots per flight independently tie the claimed
+    // row count and planned wait to the actual native schedule. No layout read.
+    if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {
+      const state = event.stage === 'departure' ? 'departing' : 'arriving';
+      const observedRowSchedule = [
+        ...document.querySelectorAll('[data-route-block="' + state + '"]'),
+      ].map((unit) => ({
+        row: Number(unit.dataset.routeRow),
+        order: Number(unit.dataset.routeDelay),
+        delayMs: Number.parseFloat(unit.style.getPropertyValue('--route-block-delay')),
+        durationMs: Number.parseFloat(unit.style.getPropertyValue('--route-block-duration')),
+      }));
+      probe.events.push({ ...event, observedRowSchedule });
+    } else probe.events.push(event);
+  };
   CanvasRenderingContext2D.prototype.clearRect = function (...args) {
     probe.paints++;
     return clear.apply(this, args);
@@ -34,7 +57,7 @@ function installProbe() {
     /* Long-task observation is optional; RAF and Canvas probes are mandatory. */
   }
 }
-function summarize(data, kind) {
+function summarize(data, kind, context = {}) {
   const painted = data.frames.filter((x) => x.painted),
     values = painted.map((x) => x.duration).sort((a, b) => a - b);
   const percentile = (p) =>
@@ -61,7 +84,7 @@ function summarize(data, kind) {
     max: preparation.length ? Math.max(...preparation.map((x) => x.duration)) : 0,
     total: preparation.reduce((n, x) => n + x.duration, 0),
   };
-  return {
+  const result = {
     kind,
     probeVersion: data.schema ?? null,
     elapsedMs: data.elapsed,
@@ -96,6 +119,23 @@ function summarize(data, kind) {
         : 'unobserved',
     errors: data.errors || [],
   };
+  if (kind === 'flight') {
+    result.rawChoreography = events.filter((event) => pacing.kinds.has(event.kind));
+    try {
+      Object.assign(
+        result,
+        pacing.verify({
+          ...result,
+          from: context.from ?? starts[0]?.from,
+          to: context.to ?? starts[0]?.to,
+          width: context.width ?? data.viewportWidth,
+        })
+      );
+    } catch (error) {
+      result.pacingError = error.message;
+    }
+  }
+  return result;
 }
 async function collect(page, kind, duration, { formula = false } = {}) {
   await page.evaluate((formula) => {
@@ -276,7 +316,7 @@ async function flights(browser, url, profile) {
           !document.querySelector('#site-content').hasAttribute('aria-busy') &&
           document.querySelector('.space-scene').dataset.travel === 'settled',
         destination,
-        { polling: 40, timeout: 8000 }
+        { polling: 40, timeout: pacing.deadline(profile.width) }
       );
       const data = await page.evaluate(() => {
         const end = performance.now(),
@@ -289,7 +329,12 @@ async function flights(browser, url, profile) {
           state: document.querySelector('.space-scene').dataset.state,
         };
       });
-      rows.push({ from, to: destination, ...profile, ...summarize(data, 'flight') });
+      rows.push({
+        from,
+        to: destination,
+        ...profile,
+        ...summarize(data, 'flight', { from, to: destination, width: profile.width }),
+      });
     }
     await page.locator('#space-motion').evaluate((el) => el.click());
     await page.waitForTimeout(200);
@@ -424,4 +469,11 @@ if (require.main === module)
     console.error(e.stack);
     process.exitCode = 1;
   });
-module.exports = { installProbe, summarize, flights, sample, collect };
+module.exports = {
+  installProbe,
+  summarize,
+  flights,
+  sample,
+  collect,
+  transitionReadyDeadlineMs: pacing.deadline,
+};

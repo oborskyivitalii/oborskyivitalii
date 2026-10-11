@@ -18,6 +18,9 @@ const math=(function () {
   const mix = (a, b, t) => ({
     position: lerp(a.position, b.position, t),
     target: lerp(a.target, b.target, t),
+    ...(a.framing !== undefined || b.framing !== undefined
+      ? { framing: (a.framing || 0) + ((b.framing || 0) - (a.framing || 0)) * t }
+      : {}),
   });
   const clamp = (v) => Math.max(0, Math.min(1, v));
   const spline = (a, b, c, d, t) =>
@@ -54,7 +57,11 @@ const math=(function () {
       right = normalize(cross(forward, [0, 1, 0])),
       up = cross(right, forward);
     const focal = (compact ? Math.min(height, width * 1.15) : height) / (2 * Math.tan(Math.PI / 8)),
-      origin = [width * (compact ? 0.42 : 0.66), height * 0.48];
+      framing = clamp(Number.isFinite(current.framing) ? current.framing : 0),
+      origin = [
+        width * ((compact ? 0.42 : 0.66) * (1 - framing) + 0.5 * framing),
+        height * (0.48 * (1 - framing) + 0.5 * framing),
+      ];
     const camera = (point) => {
       const x = point[0] - current.position[0],
         y = point[1] - current.position[1],
@@ -2352,10 +2359,18 @@ const projection=(function (math, definitions) {
         .join('')
     );
   }
+  // Every route shares the same longitudinal fractal axis. Center the eye and
+  // sightline on that axis without changing their native depth or orientation.
+  const centerPose = (pose) => ({
+    position: [0, 0, pose.position[2]],
+    target: [0, 0, pose.target[2]],
+    framing: 1,
+  });
   const roomOffset = (page) => -Math.max(0, routeOrder.indexOf(page)) * roomSpacing;
   const translatePose = (pose, z) => ({
     position: add(pose.position, [0, 0, z]),
     target: add(pose.target, [0, 0, z]),
+    ...(pose.framing !== undefined ? { framing: pose.framing } : {}),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
   return {
@@ -2369,6 +2384,7 @@ const projection=(function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    centerPose,
     roomOffset,
     translatePose,
   };
@@ -3261,26 +3277,22 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     sub,
     mix,
     clamp,
+    smooth,
     LOOP_MS,
     rates,
     owns,
     atmosphereState,
-    followCamera,
-    fitScrollStops,
-    writingProgress,
     cadenceFor,
     nextDeadline,
     poses,
-    topicPaths,
-    pageStops,
     initialPoses,
     routeOrder,
     roomSpacing,
     worldFor,
     projectedWorld,
     paintShapes,
-    journeyPose,
     routePose,
+    centerPose,
     roomOffset,
     translatePose,
   } = api;
@@ -3316,11 +3328,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   let domReady = document.readyState !== 'loading' && document.readyState !== 'interactive';
   let width = 1,
     height = 1,
-    ratio = 1,
-    stops = [],
-    bounds = null,
-    focus = 'all',
-    localProgress = 0;
+    ratio = 1;
   const initial = initialPoses[page] || 'overview';
   const rooms = new Map();
   let compact = narrow.matches,
@@ -3345,19 +3353,15 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     hold = false;
   const clock = () => window.performance?.now() ?? Date.now();
   let current = routePose(page, poses[initial]),
-    animation = null,
-    writingAnchor = null,
     displayedTime = 0,
     displayedCamera = current,
-    displayedProgress = 0,
+    displayedElapsed = 0,
     journey = null;
   let travelUpdate = null;
   let colors = { cyan: '#075d7b', amber: '#895710', paper: '#f8f7f3' };
   let paletteRevision = 0,
     colorFills = new Map();
-  const pose = (id) => routePose(page, poses[id]);
-  const pathPose = () =>
-    routePose(page, journeyPose(topicPaths[focus], localProgress, narrow.matches));
+  const readingPose = (name = page) => routePose(name, poses[initialPoses[name] || 'overview']);
   const effects = window.SiteEffects;
   if (effects && effects.contract !== 1) throw Error('Incompatible scene effect contract');
   const sceneEffects = effects?.scene?.(api);
@@ -3365,9 +3369,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   // Text and controls retain their native resolution; timing is independent.
   const pixelRatio = () =>
     Math.min(compact || tier === 2 ? 1 : tier === 1 ? 1.25 : 1.5, window.devicePixelRatio || 1);
-  function visible(el) {
-    return !el.hidden && el.getClientRects().length > 0;
-  }
   function measure() {
     const read = () => measureNative();
     if (effects?.measure) return effects.measure(read);
@@ -3389,35 +3390,11 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     const maxScroll = Math.max(0, document.documentElement.scrollHeight - height);
     window.SiteNavigation?.reconcileEndpoint?.(maxScroll);
     span('layout-range');
-    const markers = [...document.querySelectorAll('[data-space-stop]')]
-      .filter((el) => visible(el) && pageStops[page]?.[el.dataset.spaceStop])
-      .map((el) => ({
-        id: pageStops[page][el.dataset.spaceStop],
-        y: Math.max(0, el.getBoundingClientRect().top + window.scrollY - height * 0.22),
-      }));
-    stops = fitScrollStops(markers, maxScroll);
-    span('layout-stops');
-    bounds = null;
-    if (page === 'writing') {
-      const results = document.getElementById('archive-results');
-      const row = results ? [...results.querySelectorAll('li.publication')].find(visible) : null;
-      if (row) {
-        const first = row.getBoundingClientRect();
-        const firstY = Math.max(0, first.top + window.scrollY - height * 0.22),
-          end = maxScroll;
-        // A one-record archive can start below the maximum viewport offset.
-        // In that case its entire real scroll range still forms a valid path.
-        const start = firstY < end - 0.5 ? firstY : 0;
-        if (end > start + 0.5) bounds = { start, end };
-      }
-      writingAnchor = { y: window.scrollY, progress: localProgress };
-    }
-    span('layout-writing');
   }
   function flushLayout() {
     if (!initialized || !layoutDirty || failed) return;
-    // During departure the engine already owns the next route, while the old
-    // DOM is still shown. Its geometry cannot describe the destination.
+    // The old DOM can remain mounted during the centered route flight.
+    // Wait for the destination mount before measuring its native endpoint.
     if (document.body.dataset.page !== page) return;
     layoutDirty = false;
     const reasons = [...layoutReasons];
@@ -3426,9 +3403,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     measure();
     if (window.SiteEngineProbe)
       diagnostic('layout', { reasons, passes: layoutPasses, start, duration: clock() - start });
-    const target = scrollPose();
-    if (journey) retargetJourney(target);
-    else moveTo(target);
     nextDraw = null;
   }
   function invalidateLayout(reason) {
@@ -3447,6 +3421,22 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   // Opt-in measurements emit no timing/JSON work on an ordinary visitor path.
   function diagnostic(kind, detail) {
     window.SiteEngineProbe?.({ kind, time: clock(), page, ...detail });
+  }
+  function cameraDiagnostic(kind, planned, disposition) {
+    if (!window.SiteEngineProbe || !planned) return;
+    diagnostic(kind, {
+      navigationId: planned.navigationId,
+      from: planned.fromPage,
+      to: planned.toPage,
+      fromZ: planned.from.position[2],
+      toZ: planned.to.position[2],
+      plannedDurationMs: planned.duration,
+      centerDurationMs: planned.centerDuration,
+      transitDurationMs: planned.transitDuration,
+      restoreDurationMs: planned.restoreDuration,
+      elapsedMs: kind === 'camera-travel-cancelled' ? displayedElapsed : planned.elapsed,
+      ...(disposition ? { disposition } : {}),
+    });
   }
   function readColors() {
     const css = window.getComputedStyle(document.documentElement);
@@ -3516,31 +3506,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     if (room.paletteRevision !== paletteRevision) paintColors(room);
     return room;
   }
-  function scrollPose() {
-    // Departure keeps the old DOM until the hidden content midpoint. Its
-    // delayed scroll events cannot describe or retarget the incoming route.
-    if (document.body.dataset.page !== page) return journey?.to || current;
-    if (page === 'writing') {
-      if (!bounds) return journey ? pathPose() : current;
-      localProgress = writingProgress(window.scrollY, bounds, writingAnchor);
-      return pathPose();
-    }
-    if (!pageStops[page] || stops.length < 2) return journey ? pose(initialPoses[page]) : current;
-    if (window.scrollY <= stops[0].y) return pose(stops[0].id);
-    let i = 0;
-    while (i < stops.length - 2 && window.scrollY >= stops[i + 1].y) i++;
-    const a = stops[i],
-      b = stops[i + 1],
-      t = clamp((window.scrollY - a.y) / (b.y - a.y));
-    return routePose(
-      page,
-      journeyPose(
-        stops.map((s) => s.id),
-        (i + t) / (stops.length - 1),
-        narrow.matches
-      )
-    );
-  }
   function schedule() {
     if (initialized && !failed && pending === null && !document.hidden && !printing)
       pending = window.requestAnimationFrame(frame);
@@ -3548,38 +3513,33 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function cancel() {
     if (pending !== null) window.cancelAnimationFrame(pending);
     pending = null;
-    animation = null;
     lastFrame = null;
     nextDraw = null;
     ambientTime = displayedTime;
     current = displayedCamera;
     detailTier = displayedTier;
     if (journey) {
-      rebaseJourney(journey.to, displayedProgress);
+      // Keep the exact displayed phase of all three stages through a pause.
+      journey.elapsed = displayedElapsed;
       journey.started = false;
     }
   }
-  function moveTo(target) {
-    if (!initialized || failed || hold || document.hidden || printing || !enabled) return;
-    if (journey) {
-      retargetJourney(target);
-      return;
-    }
-    if (
-      Math.hypot(...sub(current.position, target.position), ...sub(current.target, target.target)) <
-      1e-6
-    ) {
-      animation = null;
-      return;
-    }
-    // Retarget without resetting the frame clock. Resetting start on every scroll
-    // event would keep the camera at t=0 during a continuous wheel/touch gesture.
-    if (!animation) nextDraw = null;
-    animation = { to: target, last: animation?.last ?? null };
-    schedule();
+  function travelRoomIndices(travel, pose, elapsed = travel.elapsed) {
+    // A replacement keeps the displayed pair while it centers the same camera.
+    // Its logical source page may still be several rooms away from that paint.
+    if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
+    const targetIndex = routeOrder.indexOf(travel.toPage);
+    const near = Math.max(
+      Math.min(...travel.fromRooms, targetIndex),
+      Math.min(
+        Math.max(...travel.fromRooms, targetIndex) - 1,
+        Math.floor((24 - pose.position[2]) / roomSpacing)
+      )
+    );
+    return [near, Math.min(near + 1, routeOrder.length - 1)];
   }
   function visibleRooms() {
-    if (!journey) {
+    if (!journey || journeyStage() === 'restore') {
       const room = roomFor(page);
       const shapes = projectedWorld(
         room.world,
@@ -3594,13 +3554,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       for (const shape of shapes) shape.room = room;
       return shapes;
     }
-    // Render at most the two rooms around the camera, including intermediate
-    // rooms on a multi-page flight. Models are lazy and the cache is bounded.
-    const near = Math.max(
-      0,
-      Math.min(routeOrder.length - 1, Math.floor((24 - current.position[2]) / roomSpacing))
-    );
-    const names = [routeOrder[near], routeOrder[Math.min(near + 1, routeOrder.length - 1)]];
+    // Opening poses can cross the next cell just before restoration. Keep the
+    // pair within the displayed departure rooms and intended destination.
+    const names = travelRoomIndices(journey, current).map((index) => routeOrder[index]);
     const active = [...new Set(names)];
     const shapes = active.flatMap((name) => {
       // Entire room envelope behind the camera cannot contribute geometry.
@@ -3661,12 +3617,14 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     displayedTime = ambientTime;
     displayedCamera = current;
     displayedTier = detailTier;
-    displayedProgress = journeyProgress();
+    displayedElapsed = journey?.elapsed || 0;
     scene.dataset.phase = String(ambientTime);
     scene.dataset.camera = JSON.stringify(current);
     scene.dataset.detail = String(detailTier);
     scene.dataset.route = page;
     scene.dataset.travel = journey ? 'flying' : 'settled';
+    scene.dataset.cameraStage = journeyStage();
+    scene.dataset.framing = String(current.framing || 0);
     scene.dataset.rooms = String(rooms.size);
     scene.dataset.geometry = compact || detailTier >= 0.5 ? 'compact' : 'full';
     scene.dataset.roomModels = String(
@@ -3682,6 +3640,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         compact,
         detailTier,
         journey,
+        paintedRooms: [...new Set(geometry.map((shape) => shape.room.name))],
         ordinaryShapes: geometry.length,
         customShapes: custom.length,
       });
@@ -3690,12 +3649,15 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   function fail() {
     failed = true;
     cancel();
+    cameraDiagnostic('camera-travel-cancelled', journey, 'failed');
+    journey = null;
     delete scene.dataset.ready;
     scene.dataset.state = 'fallback';
     control.hidden = false;
     control.disabled = true;
     control.setAttribute('aria-pressed', 'false');
     control.textContent = 'Motion: unavailable';
+    notifyMotion();
     reportTravel(1);
   }
   function reportTravel(progress) {
@@ -3752,6 +3714,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       ratio = pixelRatio();
     } else if (slow >= 16 && tier === 2 && cost > 50) {
       const arrival = journey?.to;
+      cameraDiagnostic('camera-travel-cancelled', journey, 'device-hold');
       hold = true;
       cancel();
       // A device hold completes an explicitly requested route with one still
@@ -3771,71 +3734,41 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     scene.dataset.quality = hold ? 'still' : String(tier);
   }
   function journeyProgress() {
-    return journey
-      ? journey.progressStart +
-          (1 - journey.progressStart) * clamp(journey.elapsed / journey.duration)
-      : 1;
+    return journey ? clamp(journey.elapsed / journey.duration) : 1;
   }
-  function rebaseJourney(target, progress = journeyProgress()) {
-    // Layout/history can change the destination after its DOM is mounted.
-    // Start the remaining segment at the actual current camera, preserving
-    // both the existing arrival deadline and monotonically painted progress.
-    const segment = clamp(
-        (progress - journey.progressStart) / Math.max(1e-12, 1 - journey.progressStart)
-      ),
-      remaining = Math.max(1, journey.duration * (1 - segment));
-    journey = {
-      from: current,
-      to: target,
-      elapsed: 0,
-      duration: remaining,
-      progressStart: progress,
-      started: journey.started,
-    };
-  }
-  function retargetJourney(target) {
-    if (
-      Math.hypot(
-        ...sub(journey.to.position, target.position),
-        ...sub(journey.to.target, target.target)
-      ) < 1e-6
-    )
-      return;
-    rebaseJourney(target);
+  function journeyStage() {
+    if (!journey) return 'settled';
+    if (journey.elapsed < journey.centerDuration) return 'center';
+    if (journey.elapsed < journey.centerDuration + journey.transitDuration) return 'transit';
+    return 'restore';
   }
   function advanceJourney(delta, living) {
-    if (journey && living) {
-      // A cold room preparation cannot consume the new flight before its first
-      // displayed frame. Ambient time still advances on the shared RAF clock.
-      if (journey.started) journey.elapsed += delta;
-      else journey.started = true;
-      const t = clamp(journey.elapsed / journey.duration);
-      // Eased suffix of the original global progress. Cancelling its squared
-      // remaining factor avoids numerical division near arrival and keeps
-      // retargets moving instead of restarting smooth() at zero velocity.
-      const remainder = 1 - journey.progressStart,
-        v = 1 - t,
-        eased = 1 - (v * v * (3 - 2 * remainder * v)) / (3 - 2 * remainder);
-      current = mix(journey.from, journey.to, eased);
-      if (t === 1) {
-        current = journey.to;
-        journey = null;
-      }
-    }
-  }
-  function advanceAnimation(delta, time) {
-    if (!animation || !enabled || hold) return;
-    const dt = animation.last === null ? delta : Math.min(80, Math.max(0, time - animation.last));
-    animation.last = time;
-    current = followCamera(current, animation.to, dt);
-    const done =
-      Math.hypot(
-        ...sub(current.position, animation.to.position),
-        ...sub(current.target, animation.to.target)
-      ) < 1e-5;
-    if (done) {
-      current = animation.to;
-      animation = null;
+    if (!journey || !living) return;
+    // Cold room preparation cannot consume the flight before its first paint.
+    if (journey.started) journey.elapsed += delta;
+    else journey.started = true;
+    const elapsed = Math.min(journey.elapsed, journey.duration),
+      centerEnd = journey.centerDuration,
+      transitEnd = centerEnd + journey.transitDuration;
+    if (elapsed === 0) {
+      current = journey.from;
+    } else if (elapsed < centerEnd) {
+      current = mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
+    } else if (elapsed < transitEnd) {
+      current = mix(
+        journey.centeredFrom,
+        journey.centeredTo,
+        smooth((elapsed - centerEnd) / (transitEnd - centerEnd))
+      );
+    } else if (elapsed < journey.duration) {
+      current = mix(
+        journey.centeredTo,
+        journey.to,
+        smooth((elapsed - transitEnd) / journey.restoreDuration)
+      );
+    } else {
+      current = journey.to;
+      journey.elapsed = journey.duration;
     }
   }
   function frame(time) {
@@ -3855,20 +3788,24 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       detailTier += (tier - detailTier) * (1 - Math.exp(-delta / 180));
     }
     advanceJourney(delta, living);
-    advanceAnimation(delta, time);
     // Camera response gets a temporary, cost-bounded higher cadence. Deadlines
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate = Math.min([30, 20, 15][tier], cadenceFor(costAverage, compact, true));
-    const interval = 1000 / (animation || journey ? Math.max(idleRate, cameraRate) : idleRate);
+    const interval = 1000 / (journey ? Math.max(idleRate, cameraRate) : idleRate);
     if (nextDraw === null || time + 0.5 >= nextDraw || !living) {
-      const start = clock();
+      const start = clock(),
+        arrived = journey && journey.elapsed === journey.duration ? journey : null;
       try {
+        // Completion belongs to the actual arrival paint, never a skipped RAF.
+        if (journey && journey.elapsed === journey.duration) journey = null;
         draw();
       } catch {
+        cameraDiagnostic('camera-travel-cancelled', arrived, 'failed');
         fail();
         return;
       }
       const renderCost = clock() - start;
+      cameraDiagnostic('camera-travel-complete', arrived, 'arrived');
       // Text follows the painted camera, including skipped frames and stalls.
       if (travelUpdate) reportTravel(journeyProgress());
       nextDraw = nextDeadline(nextDraw, time, interval);
@@ -3876,7 +3813,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       // including route mount, is still measured by the outer frame/ready gate.
       if (living) quality(renderCost, time);
     }
-    if (animation || (living && !hold)) schedule();
+    if (living && !hold) schedule();
   }
   function updateControl() {
     if (failed) return;
@@ -3890,6 +3827,24 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         : hold
           ? 'Motion: still (device)'
           : 'Motion: on';
+    notifyMotion();
+  }
+  function motionState() {
+    return {
+      ready: initialized || failed,
+      enabled:
+        initialized &&
+        !failed &&
+        enabled &&
+        !reduced.matches &&
+        !hold &&
+        !printing &&
+        !document.hidden,
+    };
+  }
+  function notifyMotion() {
+    if (window.dispatchEvent)
+      window.dispatchEvent(new CustomEvent('site:motion-state', { detail: motionState() }));
   }
   function preferenceChanged() {
     const was = enabled;
@@ -3899,7 +3854,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     }
     if (!enabled) {
       if (was) cancel();
-    } else if (!was) moveTo(page === 'writing' && !bounds ? pathPose() : scrollPose());
+    }
     updateControl();
     schedule();
     if (window.dispatchEvent) window.dispatchEvent(new CustomEvent('site:motion-preference'));
@@ -3918,33 +3873,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     }
     preferenceChanged();
   });
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (!enabled || document.hidden || printing) return;
-      if (page !== 'writing' && !pageStops[page]) return;
-      // A new scroll takes control of any unfinished topic transition.
-      moveTo(scrollPose());
-    },
-    { passive: true }
-  );
-  window.addEventListener('site:scene-focus', (event) => {
-    if (
-      document.body.dataset.page !== page ||
-      page !== 'writing' ||
-      !owns(topicPaths, event.detail?.focus)
-    )
-      return;
-    focus = event.detail.focus;
-    invalidateLayout('archive-focus');
-    if (!enabled || hold || document.hidden || printing) return;
-    const target = pathPose();
-    if (event.detail.reason === 'initial' && !journey) {
-      current = target;
-      animation = null;
-      schedule();
-    } else moveTo(target);
-  });
+  // Native page scrolling moves reading blocks, never the scene camera.
   const resize = () => {
     if (failed) return;
     if (compact !== narrow.matches) compact = narrow.matches;
@@ -4015,22 +3944,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
   }
   observeLayout();
   document.fonts?.addEventListener?.('loadingdone', resize);
-  function landingPose(landing, from, travelling) {
-    // Writing URL filters/fragments can select a different canonical topic
-    // path, including its endpoint. Let the mounted archive identify it.
-    if (travelling && page === 'writing' && (landing?.search || landing?.hash)) return from;
-    if (landing?.position === 'end') {
-      const ids = page === 'writing' ? topicPaths.all : Object.values(pageStops[page] || {});
-      return pose(ids.at(-1) || initialPoses[page]);
-    }
-    // Interior history and fragments need the incoming page's native layout.
-    // Keep the displayed pose until the existing hidden midpoint mount measures
-    // that landing; guessing its initial pose can pass the destination first.
-    if (travelling && (landing?.position?.[1] > 0 || (!landing?.position && landing?.hash)))
-      return from;
-    return pose(initialPoses[page]);
-  }
   window.SiteScene = {
+    motionState,
     managesLayout: true,
     canTravel: () =>
       initialized &&
@@ -4040,7 +3955,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       !hold &&
       !printing &&
       !document.hidden,
-    navigate(next, animate = true, update = null, landing = null) {
+    navigate(next, animate = true, update = null, ...options) {
       if (!owns(initialPoses, next)) return;
       // Media-query state can change before its queued change event is delivered.
       if (reduced.matches && enabled) {
@@ -4049,28 +3964,45 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         updateControl();
       }
       const from = displayedCamera,
-        sourcePage = page;
+        sourcePage = page,
+        fromRooms =
+          journey && displayedElapsed < journey.centerDuration + journey.transitDuration
+            ? travelRoomIndices(journey, from, displayedElapsed)
+            : [routeOrder.indexOf(sourcePage)];
       page = next;
-      focus = 'all';
-      localProgress = landing?.position === 'end' ? 1 : 0;
-      writingAnchor = null;
-      const travelling = animate && this.canTravel(),
-        target = landingPose(landing, from, travelling);
-      animation = null;
+      const travelling = animate && next !== sourcePage && this.canTravel(),
+        target = readingPose();
+      cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
-      displayedProgress = 0;
       const forward =
         target.position[2] === from.position[2]
           ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
           : target.position[2] < from.position[2];
       scene.dataset.direction = forward ? 'forward' : 'backward';
       if (travelling) {
+        // The fourth router argument remains its native landing contract;
+        // the optional fifth argument carries navigation measurement identity.
+        const navigationId = options[1]?.navigationId,
+          centerDuration = 400,
+          transitDuration = 1000,
+          restoreDuration = 350;
         journey = {
+          navigationId:
+            Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
+          fromPage: sourcePage,
+          toPage: page,
+          fromRooms,
           from,
           to: target,
           elapsed: 0,
-          duration: Math.min(1700, 1000 + Math.abs(target.position[2] - from.position[2]) * 2),
-          progressStart: 0,
+          centeredFrom: centerPose(from),
+          centeredTo: centerPose(target),
+          // Center, depth travel and reading restoration share a fixed camera
+          // budget. Direct route choices change distance, never waiting time.
+          centerDuration,
+          transitDuration,
+          restoreDuration,
+          duration: centerDuration + transitDuration + restoreDuration,
           started: false,
         };
       } else {
@@ -4079,18 +4011,19 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       }
       scene.dataset.travel = journey ? 'flying' : 'settled';
       travelUpdate = update;
-      // Prepare the bounded source/target working set at its settled detail
+      // Prepare the bounded displayed-source/target set at its settled detail
       // before either can be painted in flight. Avoid a visible downgrade and
       // post-arrival rebuild; mobile/adaptive compact detail still applies.
       // Probe costs remain part of input-to-ready evidence.
       if (journey) {
         try {
-          roomFor(sourcePage);
-          roomFor(page);
+          for (const route of new Set([...fromRooms.map((index) => routeOrder[index]), page]))
+            roomFor(route);
         } catch {
           fail();
           return;
         }
+        cameraDiagnostic('camera-travel', journey);
       }
       reportTravel(journey ? 0 : 1);
       observeLayout();
@@ -4130,11 +4063,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     layoutReasons.clear();
     initialized = true;
     scene.dataset.state = 'active';
-    if (enabled) {
-      if (page === 'writing') current = pathPose();
-      else if (stops.length === 1) current = pose(stops[0].id);
-      else current = scrollPose();
-    }
+    current = readingPose();
     updateControl();
     schedule();
   }

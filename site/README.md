@@ -2,8 +2,8 @@
 
 The [current check profiles](../guides/SITE-CHECK-PROFILES.md) supersede older full-local
 and always-full PR requirements below. Native-scroll mapping and all release
-budgets remain. Primary flights follow the four header links; Credits is a footer
-utility route with instant navigation.
+budgets remain. All five routes use the same inter-page camera/block transition.
+The deliberate scroll-edge itinerary still follows the four header links.
 
 The original engine work is recorded in completed
 [#15](https://github.com/oborskyivitalii/oborskyivitalii/issues/15) and
@@ -13,13 +13,13 @@ staging and release state; dated implementation plans are historical evidence.
 The website still ships complete ordinary HTML. Canvas and the persistent router
 enhance that HTML; a content editor does not need a server, CMS or browser build.
 
-Native-scroll camera endpoints follow 0/the actual current page bottom on every
-route, including added unmarked blocks and the footer. Semantic markers define
-interior stops; repeated closing poses are coalesced. Main/body content reflow,
-font loading, viewport resize and route mounts recalculate the mapping. Writing
-retains its topic path, early-scroll response and valid anchored filter reflow.
-Every content edit still runs the normal all-route browser synchronization fixtures
-and strict aggregate under #13; generation freshness alone is insufficient.
+Within-page reading keeps each route's opening camera pose stationary, including
+scrolling in both directions, Writing filters, anchors, history and reflow. The
+fractal keeps its existing passive animation when motion is enabled. Native range,
+semantic markers and actual footer/bottom are still measured for content and edge
+navigation; they no longer drive camera travel. All-route browser synchronization
+checks verify stationary camera and unchanged native reading geometry; generation
+freshness alone is insufficient.
 
 ## Authoritative sources and dependencies
 
@@ -34,6 +34,7 @@ and strict aggregate under #13; generation freshness alone is insufficient.
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
 | `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
+| `engine/scroll-entry.cjs`, `scroll-entry.css` | Native reading entry and opaque directional route-block departure/hold/arrival; router sequences completion and scene owns motion state | Composed `navigation.js`, shared stylesheet, hosted and standalone outputs |
 | `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
 | `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
 | `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
@@ -79,7 +80,9 @@ reading. Other routes receive no critical block. Missing, duplicate or unsafe
 owners fail before output changes; authored templates contain no CSS declaration.
 
 Native links, anchors, language badges, full text and JSON-LD remain available
-without JavaScript. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
+without JavaScript. The router's negative-tabindex main landmark retains native
+arrival focus without a page-sized browser outline; interactive focus rings
+remain in the common stylesheet. Contract 1 retains `SiteScene.navigate/refresh/detachTravel/canTravel`,
 `SiteArchive.mount/destroy` and `SiteNavigation`. The router owns mount/unmount and
 history; the scene owns route progress and its actual arrival paint. Ambient phase,
 scroll/topic pose and route flight remain separate. Off/reduced, visibility, print,
@@ -89,6 +92,71 @@ geometry. Flights prepare each room at its settled adaptive detail before the
 first painted flight frame. Each of at most three active/pending rooms caches
 at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
+During a flight, the two projected adjacent rooms stay within that journey's
+source/destination interval. Differing opening-pose depths cannot briefly admit
+the room beyond its destination before reading framing is restored.
+
+Reading entry observes existing stable semantic component shells and moves their
+direct ink children and existing paper pseudo-element with the same finite CSS
+animation. Publication rows retain their grid/filter/measurement identity; no
+serialized wrapper or marker is added. Runtime ink spans serve text-only leaves
+and are removed on disposal. Initial/restored visible blocks and bottom-overflow
+candidates stay settled; lower below-fold blocks enter once during downward
+reading. Reading distance is 88px on desktop and 56px on narrow layouts; the global
+block-motion duration, curve and sibling stagger are shared at every width,
+with at most two local sibling delays and six active blocks. No opacity change, permanent layer
+promotion, per-frame style write or additional RAF is introduced.
+
+`SiteScrollEntry` owns one observer/session with explicit suspend, mount, resume,
+settle and destroy paths. The router suspends before departure and resumes only
+after the surviving route's actual arrival. Archive/reflow notifications reconcile
+after native landing. `SiteScene.motionState()` and `site:motion-state` expose
+effective readiness/motion without adding a preference writer. Off/hold/failure,
+focus/find/anchors, large jumps, hidden/print/pagehide and unsupported APIs settle
+native content. Focused active-frame geometry diagnostics reuse the existing
+scroll-browser helper; physical-device and independent admission remain separate.
+
+Route changes sequence three owners without another animation clock: the entry
+controller first sends visible context units fully above the viewport (forward)
+or below (reverse), holding native content during the camera journey. The scene
+centers optical framing, travels through the existing rooms, restores the usual
+reading framing and only then reports arrival. The controller assembles destination
+units from below (forward) or above (reverse), then resumes ordinary one-shot
+upward reading entry. Intro/hero/portrait, reading units and visible footer leaves
+participate; persistent header and appearance controls remain usable. Each block's
+sharp ink and existing paper share finite CSS animation; native shells/range stay
+fixed. No whole-page opacity fade or depth-plane translation is used. The common
+content frame clips transient visual overflow in both base and Color editions.
+
+The issue69 bounded-preview amendment targets 3750 ms of complete motion on
+any route: a 1000 ms departure wave, a 1750 ms camera journey (400 ms centering,
+1000 ms depth travel, 350 ms restoration) and a 1000 ms assembly wave. Route
+length and visible row count do not add serial waiting time. CSS owns the row
+phase envelopes; runtime distributes directional starts within them. A single
+root configuration in `engine/styles.css` owns the common 700 ms row
+movement, 1000 ms phase and symmetric easing for departure and assembly. Single
+rows use the whole envelope; multiple rows share the remaining 300 ms as stagger. Forward order is
+top-first and reverse order bottom-first; native peers and separators move together.
+Each row keeps its own complete paint clearance, and more than 24 visible rows
+still falls back to native content. Ordinary reading entry uses the same 700 ms
+movement and easing, plus the common 80 ms local sibling stagger. Only its
+reading distance changes at the narrow breakpoint.
+The maintainer approved the bounded preview continuation on 11 October and
+authorized rebase, staging and merge. Current-source checks and the main staging
+controller establish their own evidence; prior serial pacing reports apply only
+to their own source. Physical-device and production gates remain separate.
+
+The controller owns explicit depart/prepareArrival/arrive/cancel with bounded phase
+and hold timers and current-session identity. The router leases the complete
+sequence, yields the midpoint native mount and waits for camera restoration and
+block assembly before focus/readiness. Cancellation, failure, motion changes,
+hidden/print and native focus/find settle all transient content. Color's retained
+Block transitions preference is the one control for route and reading-block
+movement on all pages. The presentation owns its stored preference; the router
+notifies the controller once, cancelling transient route state and releasing
+reading layers. Re-enabling can arm untouched below-fold content without
+replaying completed blocks or resuming a suspended route. Its page-edge gesture gate
+continues to require deliberate input at the actual boundary.
 
 Current Color delivery uses only the travel effect. Issue61's explicit maintainer
 decision removes ribbon construction, collection and painting on every route,

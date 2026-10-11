@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "mobileMaxWidth": 640,
+  "maximumRows": 24,
+  "watchdogAllowanceMs": 1000,
+  "exposureToleranceMs": 20,
+  "rows": { "durationMs": 700, "phaseMs": 1000 },
+  "camera": {
+    "centerMs": 400,
+    "transitMs": 1000,
+    "restoreMs": 350
+  },
+  "legacy214": {
+    "source": "214cdca976a2fd25166be361623e9f15a30a49e5",
+    "cameraBaseMs": 1000,
+    "cameraMaxMs": 1700,
+    "depthMsPerUnit": 2,
+    "desktopPhaseMs": 600,
+    "mobilePhaseMs": 500
+  }
+}

@@ -1,0 +1,87 @@
+"""One-off #69 exact public-checksum proof; no scanner or gate changes."""
+
+import gzip
+import hashlib
+import json
+import pathlib
+import re
+import subprocess
+
+ROOT = pathlib.Path('/workspace/scratch/d8631dcc2123/oborskyivitalii')
+SCRATCH = ROOT.parent
+rows = json.loads((SCRATCH / 'issue69-candidate-values.json').read_text())
+allowed = json.loads((SCRATCH / 'issue69-generated-checksum-proof.json').read_text())
+identities = json.loads((SCRATCH / 'issue69-recomputed-public-identities.json').read_text())
+metadata_values = {v for row in identities.values() for v in row.values()}
+archive = ROOT / 'review/issue-69/2026-10-10-local-evidence.tar.gz'
+archive_sha = hashlib.sha256(archive.read_bytes()).hexdigest()
+proofs = []
+for row in rows:
+    path, value = row['file'], row['value']
+    assert row['type'] == 'Hex High Entropy String'
+    assert hashlib.sha1(value.encode(), usedforsecurity=False).hexdigest() == row['hashed_secret']
+    line = (ROOT / path).read_text().splitlines()[row['line_number'] - 1]
+    matches = {v for v in re.findall(r'(?<![0-9a-f])[0-9a-f]{12,64}(?![0-9a-f])', line)
+               if hashlib.sha1(v.encode(), usedforsecurity=False).hexdigest() == row['hashed_secret']}
+    assert matches == {value}
+    if value in allowed.get(path, []):
+        kind = 'recomputed canonical build/revision/snapshot/preview/offline checksum'
+        owner = 'tools/quality/triage-engine-checksums.cjs proof()'
+    elif path == 'review/issue-69/2026-10-10-browser-summary.json' and value == archive_sha:
+        kind = 'SHA256 of retained raw browser-evidence archive'
+        owner = str(archive.relative_to(ROOT))
+    elif path in ('review/issue-69/2026-10-10-browser-summary.json',
+                  'review/issue-69/2026-10-11-document-history.json') and value in metadata_values:
+        kind = 'recomputed base/Color public digest or authored runtime identity'
+        owner = 'tools/quality/artifact.cjs manifest(); tools/staging/color.cjs decoratePublic()'
+    elif path == 'review/issue-69/2026-10-11-document-history.json' and len(value) == 40:
+        kind = 'public Git object identity reproduced from exact object bytes'
+        object_type = subprocess.check_output(['git', 'cat-file', '-t', value], cwd=ROOT).decode().strip()
+        assert object_type in ('commit', 'tree')
+        data = subprocess.check_output(['git', 'cat-file', object_type, value], cwd=ROOT)
+        assert hashlib.sha1(f'{object_type} {len(data)}\0'.encode() + data,
+                            usedforsecurity=False).hexdigest() == value
+        owner = 'git cat-file ' + object_type
+    else:
+        raise ValueError('Unknown candidate: ' + path)
+    proofs.append({'id': ':'.join((path, row['type'], row['hashed_secret'])),
+                   'path': path, 'line': row['line_number'], 'rule': row['type'],
+                   'value': value, 'proof': kind, 'owner': owner})
+assert len(proofs) == 195 and len({p['id'] for p in proofs}) == 195
+record = {'schema': 1, 'issue': 69, 'role': 'self-review; independent review pending',
+          'source': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip(),
+          'staticArtifact': 11686741071, 'rawFindings': len(proofs),
+          'unknownFindings': 0, 'proofs': proofs}
+raw = (json.dumps(record, indent=2, ensure_ascii=False) + '\n').encode()
+out = ROOT / 'review/issue-69/2026-10-11-security-proof.json.gz'
+out.write_bytes(gzip.compress(raw, mtime=0))
+
+ledger = ROOT / 'tools/quality/secrets-reviewed.json'
+original = json.loads(ledger.read_text())
+baseline = (ROOT / 'tools/quality/secrets-baseline.json').read_bytes()
+before = original['findings'][:]
+ids = {p['id'] for p in before}
+assert not ids.intersection(p['id'] for p in proofs)
+for p in proofs:
+    original['findings'].append({'id': p['id'], 'path': p['path'], 'rule': p['rule'],
+                                'disposition': 'false positive',
+                                'reason': p['proof'] + '; #69 self-review; independent review pending.'})
+original['reviewedAt'] = '2026-10-11'
+original['scope'] += (' Issue69 appends 195 exact source-proved public checksum/Git identities; '
+                      'proof archive review/issue-69/2026-10-11-security-proof.json.gz. '
+                      'Self-review only; independent review pending. Prior records are data-identical; '
+                      'JSON whitespace compacted within the unchanged RI byte limit.')
+# One readable record per line avoids exceeding the unchanged 2,000,000-byte bound.
+head = {k: v for k, v in original.items() if k != 'findings'}
+text = json.dumps(head, indent=2, ensure_ascii=False)[:-2] + ',\n  "findings": [\n'
+text += ',\n'.join('    ' + json.dumps(p, separators=(',', ':'), ensure_ascii=False)
+                   for p in original['findings']) + '\n  ]\n}\n'
+assert len(text.encode()) <= 2_000_000
+ledger.write_text(text)
+after = json.loads(ledger.read_text())
+assert after['findings'][:len(before)] == before
+assert after['findings'][len(before):] == original['findings'][len(before):]
+assert baseline == (ROOT / 'tools/quality/secrets-baseline.json').read_bytes()
+print('Proved and appended', len(proofs), 'exact public checksum identities; zero unknowns.')
+print('Preserved', len(before), 'prior records and frozen baseline; ledger bytes', len(text.encode()))
+print('Proof archive SHA256', hashlib.sha256(out.read_bytes()).hexdigest())

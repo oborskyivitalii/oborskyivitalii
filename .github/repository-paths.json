@@ -133,6 +133,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-69.json": {
+      "kind": "file",
+      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
       "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
@@ -463,6 +469,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated exact public runtime or route snapshot; regenerate from canonical site sources.",
@@ -499,42 +541,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -547,27 +553,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0daa4a6b4f06004cba70329772780b0590ce26207e7a12d24d1f9962897eea13": {
+    "docs/snapshots/0d003c0af888de6cad52517d6c7424bd571279a63dc1cbc7b4ea6cd5457ceb9d": {
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0daa4a6b4f06004cba70329772780b0590ce26207e7a12d24d1f9962897eea13/index.html": {
+    "docs/snapshots/0d003c0af888de6cad52517d6c7424bd571279a63dc1cbc7b4ea6cd5457ceb9d/credits.html": {
       "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1ff4d0dbc710ea0cfa6b24ca0a89cf578c7ea3a3fdd4a44579fb0dd42cee3857": {
+    "docs/snapshots/18a672e5028f1c21565eef033a8c07ffe82eb6b33622bab0e8d1b6cec99f7cc2": {
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1ff4d0dbc710ea0cfa6b24ca0a89cf578c7ea3a3fdd4a44579fb0dd42cee3857/writing.html": {
+    "docs/snapshots/18a672e5028f1c21565eef033a8c07ffe82eb6b33622bab0e8d1b6cec99f7cc2/research.html": {
       "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -583,18 +589,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7191eba54c81b2f85a6e0894ec293d518c698ad71521d90370483f0cfd4971ea": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7191eba54c81b2f85a6e0894ec293d518c698ad71521d90370483f0cfd4971ea/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Current immutable content-addressed route snapshot; generated from the exact maintained Talks content.",
@@ -604,18 +598,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable Talks route snapshot; regenerate from site sources with tools/site/build.cjs.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/88e39f6257794169e0c2213c098eff2ba0f1746be1dfa8902dbe26b1fdbe1efb": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/88e39f6257794169e0c2213c098eff2ba0f1746be1dfa8902dbe26b1fdbe1efb/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -655,15 +637,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ff3b436145daf7bd39ca0e552a49332690e0fd18d7265255b08eba7f236de5a6": {
+    "docs/snapshots/bef70126e52378d620d6ae0a8c8817812fa011e5be8404c560d223a6a8d48d89": {
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ff3b436145daf7bd39ca0e552a49332690e0fd18d7265255b08eba7f236de5a6/credits.html": {
+    "docs/snapshots/bef70126e52378d620d6ae0a8c8817812fa011e5be8404c560d223a6a8d48d89/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot from the authored site; regenerate instead of editing.",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d0c82c84c4a2ff62124b70383e26e6c0cd5bbe781fdd018f5df4467795e062d5": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d0c82c84c4a2ff62124b70383e26e6c0cd5bbe781fdd018f5df4467795e062d5/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d6c5f5ba795fc3edbd92aa4abbfc1ca686e47f35370175b43b638da4447ac77a": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d6c5f5ba795fc3edbd92aa4abbfc1ca686e47f35370175b43b638da4447ac77a/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1338,6 +1344,246 @@
       "purpose": "Independent implementation review of harness rules, findings and bounded acceptance.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-69": {
+      "kind": "directory",
+      "purpose": "Issue69 exact-main plan, implementation self-review and inert scoped browser/cost evidence; independent/device/delivery gates remain external.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-10-analysis.md": {
+      "kind": "file",
+      "purpose": "Issue69 source-grounded native block-entry architecture, target inventory, lifecycle/geometry risks and ordered execution.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-10-browser-summary.json": {
+      "kind": "file",
+      "purpose": "Issue69 dated actual browser and paired cost observations with byte identities; raw prepared-state evidence retained.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-10-implementation.md": {
+      "kind": "file",
+      "purpose": "Issue69 implementation and honestly labeled self-review, source correction, style/AC mapping and scoped browser/cost limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-10-local-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Inert issue69 local raw reports, actual active-frame PNGs and reproduction inputs; no active runtime authority.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-10-review.md": {
+      "kind": "file",
+      "purpose": "Issue69 adversarial plan self-review with explicit findings, alternatives and pending implementation/device proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-bounded-preview-observations.json": {
+      "kind": "file",
+      "purpose": "Exact-source limited standalone motion/configuration/control observations for the unified preview; not full testing or admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-bounded-preview.md": {
+      "kind": "file",
+      "purpose": "Dated unified global block configuration/control preview, partial exact-export observations and deferred visual/testing gates for issue69.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-bounded-review.md": {
+      "kind": "file",
+      "purpose": "Issue69 bounded-motion rebase, independent source review and exact-source validation evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-bounded-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact archived source, scanner-token and public-artifact proofs for the independently reviewed 205-checksum continuation.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-bounded-security-review.md": {
+      "kind": "file",
+      "purpose": "Independent exact checksum review preserving historical ledgers and recording clean canonical artifact verification.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-continuation.md": {
+      "kind": "file",
+      "purpose": "Issue69 consolidation of duplicate70, original criteria transfer and honestly labeled source/lifecycle continuation review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-css-timing-serialization.md": {
+      "kind": "file",
+      "purpose": "Issue69 actual staging failure, bounded computed CSS serialization correction, behavioral regressions and independent review with preserved evidence limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-document-history-collector.txt": {
+      "kind": "file",
+      "purpose": "Inert dated local collector for actual issue69 document-history observations; environment paths are evidence, not active tooling.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-document-history.json": {
+      "kind": "file",
+      "purpose": "Dated actual full-document Back observations on clean issue69 source; persisted=false explicitly does not establish bfcache.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-paced-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact source/public-only companion checksum records, preserved prior/baseline bytes and independently verified producer/admission proof.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-paced-transitions-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Inert local paced-transition collectors, raw browser/cost/lifecycle records and manifests; historical refinements retained separately.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-paced-transitions-summary.json": {
+      "kind": "file",
+      "purpose": "Source/public-byte-bound local readable-pacing browser and execution-cost summary with raw evidence archive inventory.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-paced-transitions.md": {
+      "kind": "file",
+      "purpose": "Maintainer timing amendment, source-owned fixed row/camera pacing, verified presentation accounting and scoped evidence/limits.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact-source harness regression evidence for paired pacing latency and a finite Color diagnostic deadline; public runtime bytes remain unchanged.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-pacing-harness.md": {
+      "kind": "file",
+      "purpose": "Issue69 harness follow-up for historical Writing diagnostic compatibility, paired current pacing latency and the finite Color observation deadline.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-pages-controller-rebase.md": {
+      "kind": "file",
+      "purpose": "Confirmed Pages controller integration, scoped maintainer decision, combined-source rebase and fresh dual-host admission route for issue69.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-69/2026-10-11-preview-cleanup-observations.json": {
+      "kind": "file",
+      "purpose": "Limited exact standalone before/after fractal-room, focus/separator and Credits journey evidence; not full testing or admission.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-preview-cleanup.md": {
+      "kind": "file",
+      "purpose": "Dated self-review of late-room admission, main focus frame removal and common Credits transition, with preview-first acceptance limits.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-preview-refinement-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Inert complete local browser samples, collectors and retained failed hosted latency evidence for issue69 preview refinement.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-preview-refinement-review.md": {
+      "kind": "file",
+      "purpose": "Dated independent AI review of smoother framing, serial visual rows, separator paint and exact security dispositions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-preview-refinement-summary.json": {
+      "kind": "file",
+      "purpose": "Dated prepared public-byte browser summary for smoother framing and serial block rows; separate from clean-head hosted/device admission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-preview-refinement.md": {
+      "kind": "file",
+      "purpose": "Dated issue69 preview-feedback implementation analysis, unchanged latency guard and exact failed staging evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-rebase-staging.md": {
+      "kind": "file",
+      "purpose": "Issue69 approved bounded-motion rebase, independent review and source-bound staging continuation evidence.",
+      "role": "history",
+      "owner": "AGENTS.md"
+    },
+    "review/issue-69/2026-10-11-refined-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact public-checksum proof for the append-only issue69 refined-source secret candidate dispositions.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-security-collector.txt": {
+      "kind": "file",
+      "purpose": "Inert dated checksum classification and append collector; original environment paths and dependencies retained as history.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert compressed complete exact 195-value public-checksum proof; self-review, independent review pending.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-sequenced-browser-summary.json": {
+      "kind": "file",
+      "purpose": "Dated issue69 prepared Base and Color public-byte 104-case navigation/entry evidence, raw samples and reproducible inert collectors; separate from hosted/device/cost admission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-sequenced-local-evidence.tar.gz": {
+      "kind": "file",
+      "purpose": "Dated issue69 prepared Base and Color public-byte 104-case navigation/entry evidence, raw samples and reproducible inert collectors; separate from hosted/device/cost admission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-sequenced-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue69 stationary reading and sequenced block travel implementation analysis and independently identified review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-sequenced-security-review.md": {
+      "kind": "file",
+      "purpose": "Dated independent AI review of exact public checksum dispositions, unchanged prior ledger/baseline and security admission limits for sequenced travel.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-sequenced-travel.md": {
+      "kind": "file",
+      "purpose": "Dated issue69 stationary reading and sequenced block travel implementation analysis and independently identified review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-slower-pacing-review.md": {
+      "kind": "file",
+      "purpose": "Independent current-source pacing, native geometry, lifecycle and exact public-checksum/storage review with explicit remaining visual/device gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-staging-security.md": {
+      "kind": "file",
+      "purpose": "Issue69 exact failed staging scan, source-proved checksum correction, retained browser evidence and honest remaining gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-69/2026-10-11-v3-security-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact191 public generation and browser-evidence checksum proofs for current issue69 raw secret-candidate dispositions; no rule or baseline relaxation.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-72": {
       "kind": "directory",
@@ -6271,6 +6517,18 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/engine/scroll-entry.cjs": {
+      "kind": "file",
+      "purpose": "Bounded native reading and route-block controller with one global effect control, stable shells, CSS layers, cancellation and visible fallback.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/engine/scroll-entry.css": {
+      "kind": "file",
+      "purpose": "Canonical global block-motion configuration, opaque reading/route keyframes and responsive reading distance shared by hosted/base/Color/offline.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/engine/styles.css": {
       "kind": "file",
       "purpose": "Shared responsive presentation, reading surfaces, controls and theme contrast.",
@@ -7021,6 +7279,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/scroll-entry.test.cjs": {
+      "kind": "file",
+      "purpose": "Serialized native reading-entry lifecycle, one-shot/jump/tall/cap/stagger and readable fallback behavioral contracts.",
+      "role": "test",
+      "owner": "site/README.md"
+    },
     "tests/scroll-sync.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for scroll sync.",
@@ -7150,6 +7414,12 @@
     "tests/test_issue65_acceptance.py": {
       "kind": "file",
       "purpose": "Owning issue65 assertions for reading, disposition topology, preserved sources and pinned overhead.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue69_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue69 named selections of maintained entry behavior and shared delivery; independent/browser/device gates remain external.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -7687,6 +7957,12 @@
       "role": "configuration",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/secrets-reviewed-checksums.json": {
+      "kind": "file",
+      "purpose": "Closed companion ledger of individually proved public-checksum dispositions; preserves historical reviewed/baseline bytes and the original 2 MB RI bound.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
     "tools/quality/secrets-reviewed.json": {
       "kind": "file",
       "purpose": "105 exact independently proved current Git/file/line checksum false positives, complementing the byte-preserved historical baseline; unknown values still fail.",
@@ -7768,6 +8044,18 @@
     "tools/quality/toolchain/requirements.txt": {
       "kind": "file",
       "purpose": "Pinned quality toolchain dependency manifest/lock: requirements.txt.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/transition-pacing.cjs": {
+      "kind": "file",
+      "purpose": "Fail-closed verification of owned raw row/camera phase plans, actual CSS schedule, finite presentation deadline and frozen-baseline execution headroom.",
+      "role": "source",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/transition-pacing.json": {
+      "kind": "file",
+      "purpose": "Approved readable row/camera presentation contract and frozen 214 timing baseline for verified intentional-duration accounting under unchanged execution guards.",
       "role": "configuration",
       "owner": "tools/quality/README.md"
     },

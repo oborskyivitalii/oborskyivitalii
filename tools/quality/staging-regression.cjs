@@ -316,11 +316,7 @@ function validateNavigation(row) {
     assert.equal(arrival.samples.at(-1).y, arrival.end);
     if (arrival.end > 100)
       for (let i = 1; i < arrival.samples.length; i++)
-        assert.notEqual(
-          arrival.samples[i].camera,
-          arrival.samples[i - 1].camera,
-          'post-arrival scroll plateau'
-        );
+        assert.equal(arrival.samples[i].camera, arrival.start, 'post-arrival reading camera moved');
   }
 }
 function validateAnalytics(row) {
@@ -628,6 +624,49 @@ function validateColor(report, manifest) {
   }
   return 2;
 }
+async function collectFunctionalEngine(api, engine, url, manifest, variant) {
+  const detail = {
+    browsers: [],
+    journeys: [],
+    navigation: [],
+    failures: [],
+    analytics: [],
+    startupFailures: [],
+  };
+  let browser;
+  try {
+    browser = await api.launch(engine);
+    detail.browsers.push({
+      engine,
+      version: browser.version(),
+      executable: browser.executable || common.toolRequire('playwright')[engine].executablePath(),
+    });
+    for (const selected of journeyCases().filter((row) => row.engine === engine))
+      detail.journeys.push({
+        ...selected,
+        ...(await api.preview(browser, url, manifest, variant, selected.width, selected.mode)),
+      });
+    for (const selected of navigationCases().filter((row) => row.engine === engine))
+      detail.navigation.push(await api.nav(browser, url, selected));
+    if (engine === 'chromium') {
+      for (const selected of failureCases())
+        detail.failures.push(await api.failure(browser, url, selected));
+      detail.analytics.push(...(await api.analytics(browser, engine, analyticsCases())));
+    }
+  } catch (error) {
+    detail.startupFailures.push({ engine, error: error.message });
+  } finally {
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (error) {
+        detail.startupFailures.push({ engine, error: 'browser close: ' + error.message });
+        detail.cleanupFailed = true;
+      }
+    }
+  }
+  return detail;
+}
 async function collectFunctional(url, manifest, helpers = {}) {
   const live = () => ({
     launch: (engine) =>
@@ -653,34 +692,33 @@ async function collectFunctional(url, manifest, helpers = {}) {
     analytics: [],
     startupFailures: [],
   };
-  for (const engine of engines) {
-    let browser;
-    try {
-      browser = await api.launch(engine);
-      detail.browsers.push({
-        engine,
-        version: browser.version(),
-        executable: browser.executable || common.toolRequire('playwright')[engine].executablePath(),
-      });
-      for (const selected of journeyCases().filter((row) => row.engine === engine))
-        detail.journeys.push({
-          ...selected,
-          ...(await api.preview(browser, url, manifest, variant, selected.width, selected.mode)),
-        });
-      for (const selected of navigationCases().filter((row) => row.engine === engine))
-        detail.navigation.push(await api.nav(browser, url, selected));
-      if (engine === 'chromium') {
-        for (const selected of failureCases())
-          detail.failures.push(await api.failure(browser, url, selected));
-        detail.analytics.push(...(await api.analytics(browser, engine, analyticsCases())));
-      }
-    } catch (error) {
-      detail.startupFailures.push({ engine, error: error.message });
-    } finally {
-      if (browser) await browser.close();
+  // Only these two independent functional engine groups overlap. Each keeps its
+  // own cases serial; allSettled joins their cleanup before isolated benchmarks.
+  const groups = await Promise.allSettled(
+    engines.map((engine) => collectFunctionalEngine(api, engine, url, manifest, variant))
+  );
+  for (const [index, group] of groups.entries()) {
+    if (group.status === 'rejected') {
+      detail.startupFailures.push({ engine: engines[index], error: group.reason.message });
+      continue;
     }
+    for (const key of [
+      'browsers',
+      'journeys',
+      'navigation',
+      'failures',
+      'analytics',
+      'startupFailures',
+    ])
+      detail[key].push(...group.value[key]);
   }
   detail.elapsedMs = performance.now() - started;
+  if (groups.some((group) => group.status === 'fulfilled' && group.value.cleanupFailed)) {
+    const error = Error('functional browser cleanup failed');
+    error.detail = detail;
+    error.functionalCleanupFailed = true;
+    throw error;
+  }
   return detail;
 }
 function flightSetupSample() {
@@ -784,7 +822,7 @@ async function measureFlight(pair, selected, setup) {
         !document.querySelector('#site-content').hasAttribute('aria-busy') &&
         document.querySelector('.space-scene').dataset.travel === 'settled',
       selected.to,
-      { polling: 40, timeout: 8000 }
+      { polling: 40, timeout: motion.transitionReadyDeadlineMs(390) }
     );
   } catch (error) {
     failure = error.message;
@@ -805,7 +843,7 @@ async function measureFlight(pair, selected, setup) {
     to: selected.to,
     width: 390,
     rate: 4,
-    ...motion.summarize(data, 'flight'),
+    ...motion.summarize(data, 'flight', { from, to: selected.to, width: 390 }),
     setup,
     errors: [...errors],
     pass: !failure,
@@ -822,7 +860,7 @@ async function restoreFlightIndex(pair) {
       !document.querySelector('#site-content').hasAttribute('aria-busy') &&
       document.querySelector('.space-scene').dataset.travel === 'settled',
     null,
-    { polling: 40, timeout: 8000 }
+    { polling: 40, timeout: motion.transitionReadyDeadlineMs(390) }
   );
 }
 async function closeCollectedContext(handle, failure) {
@@ -965,7 +1003,8 @@ async function main() {
     manifest = JSON.parse(fs.readFileSync(process.env.SITE_ARTIFACT_MANIFEST));
   require('./artifact.cjs').verify(process.env.SITE_PUBLIC_DIR, manifest);
   fs.mkdirSync(common.out, { recursive: true });
-  let failed = false;
+  let failed = false,
+    functionalCleanupFailed = false;
   for (const [kind, collect, validate] of [
     [
       'stage-functional',
@@ -981,11 +1020,16 @@ async function main() {
       productionEligible: false,
     };
     try {
+      assert.ok(
+        kind !== 'stage-performance' || !functionalCleanupFailed,
+        'functional browser cleanup failed; isolated performance collection not started'
+      );
       detail = await collect();
       const report = common.report(kind, detail);
       validate(report);
     } catch (error) {
       failed = true;
+      functionalCleanupFailed ||= !!error.functionalCleanupFailed;
       common.report(kind, { ...(error.detail || detail), error: error.message }, false);
       console.error(kind + ': ' + error.stack);
     }

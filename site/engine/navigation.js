@@ -1,6 +1,8 @@
 /* One document, one header and one canvas. Every route remains ordinary HTML. */
 (() => {
   'use strict';
+  const scrollEntry = window.SiteScrollEntry;
+  scrollEntry?.boot();
   const routes = ['index', 'research', 'writing', 'talks', 'credits'];
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
@@ -35,6 +37,10 @@
   if (!main || !footer) return;
   main.before(content);
   content.append(main, footer);
+  const frame = document.createElement('div');
+  frame.id = 'site-content-frame';
+  content.before(frame);
+  frame.append(content);
   presentation?.mount?.();
   const announcement = document.createElement('p');
   announcement.className = 'sr-only';
@@ -212,6 +218,8 @@
     content.inert = false;
   }
   function interrupt() {
+    scrollEntry?.cancelRoute?.();
+    scrollEntry?.suspend();
     const travelling = transition !== null;
     releaseEndpoint('interrupt');
     releaseTail();
@@ -407,7 +415,7 @@
         mountTimer = null,
         settled = false,
         lastProgress = 0;
-      const mountAt = presentation?.mountAt ?? 0.18;
+      const mountAt = 0.5;
       const cancelTask = () => {
         if (mountTimer !== null) window.clearTimeout(mountTimer);
         mountTimer = null;
@@ -456,9 +464,9 @@
       }
       function queueMount() {
         if (mountTimer !== null) return;
-        // The Color midpoint has hidden the old plane. Yield the completed
-        // Canvas paint before native archive construction/layout, using the
-        // existing browser task queue rather than another animation clock.
+        // Outgoing blocks have already left. Yield the completed Canvas paint
+        // before native archive construction/layout; the new blocks stay held
+        // offscreen until the camera restores its destination reading framing.
         mountTimer = window.setTimeout(() => {
           mountTimer = null;
           if (settled || own !== serial) {
@@ -489,37 +497,17 @@
         try {
           lastProgress = progress;
           if (progress >= mountAt && !mounted) {
-            if (animate && presentation?.mountAt === 0.5 && progress < 1) queueMount();
+            if (animate && progress < 1) queueMount();
             else mountNow(mountTimer !== null);
           }
           if (settled || own !== serial) {
             cancel();
             return;
           }
-          // Do not reveal the old DOM if a painted progress jumps past the
-          // midpoint before its queued native mount has completed.
-          if (!mounted && mountTimer !== null) progress = mountAt;
-          if (presentation) {
-            if (progress === 1) finish();
-            else
-              presentation.present(
-                progress,
-                document.querySelector('.space-scene')?.dataset.direction || 'forward',
-                departure
-              );
-            return;
-          }
-          // Smooth exit, empty tunnel, then arrival. No independent clock/RAF.
-          const t = progress < 0.18 ? progress / 0.18 : Math.max(0, (progress - 0.72) / 0.28);
-          const eased = t * t * (3 - 2 * t);
-          // CSS serializes values near 1 as fully opaque before arrival.
-          // Reserve full visibility for the renderer's actual arrival paint.
-          const opacity =
-            progress < 0.18 ? departure * (1 - eased) : progress === 1 ? 1 : Math.min(0.999, eased);
-          content.style.opacity = String(opacity);
-          content.style.transform =
-            'translateY(' + (progress < 0.18 ? -10 * eased : 12 * (1 - eased)) + 'px)';
+          // Presentation metadata follows the existing scene clock. Native
+          // content has no root opacity/depth transform during camera travel.
           if (progress === 1) finish();
+          else presentation?.present?.(progress);
         } catch (error) {
           fail(error);
         }
@@ -527,21 +515,22 @@
       update.cancel = cancel;
       transition = update;
       content.inert = true;
-      if (window.SiteScene) window.SiteScene.navigate(next, animate, transition, landing);
+      if (window.SiteScene)
+        window.SiteScene.navigate(next, animate, transition, landing, { navigationId: own });
       else transition(1);
     });
   }
-  function mount(data, url, position) {
+  function mount(data, url, position, blockDirection = null, navigationId = serial) {
     // History captured the old reading position before this layout-affecting
     // write. Clearing the plane before history's scroll read would flush the
     // old page, then immediately flush the newly mounted archive again.
     presentation?.prepareMount?.();
     // Clear the presentation transform before DOM writes and landing. The
     // nested scene measurement then reuses that same native layout snapshot.
-    const run = () => mountNative(data, url, position);
+    const run = () => mountNative(data, url, position, blockDirection, navigationId);
     return effects?.measure ? effects.measure(run) : run();
   }
-  function mountNative(data, url, position) {
+  function mountNative(data, url, position, blockDirection = null, navigationId = serial) {
     let stage = window.SiteEngineStages ? performance.now() : 0;
     const span = (part) => {
       if (stage) {
@@ -558,7 +547,12 @@
       }
     };
     window.SiteArchive?.destroy();
+    scrollEntry?.destroy();
     span('mount-unmount');
+    if (blockDirection) {
+      data.main.setAttribute('data-route-blocks', 'holding');
+      data.footer.setAttribute('data-route-blocks', 'holding');
+    }
     content.replaceChildren(data.main, data.footer);
     document.body.dataset.page = data.page;
     page = data.page;
@@ -596,6 +590,8 @@
     window.SiteScene?.refresh({ sync: true });
     span('mount-layout');
     window.dispatchEvent(new CustomEvent('site:page-ready', { detail: { page } }));
+    scrollEntry?.mount(data.main, { footer: data.footer });
+    if (blockDirection) scrollEntry?.prepareArrival?.(blockDirection, navigationId);
     span('mount-ready');
   }
   function prepare(data) {
@@ -624,23 +620,19 @@
   ) {
     const next = routeFor(url);
     if (!next) return;
-    const departure = presentation?.departure?.() ?? Number(content.style.opacity || 1);
+    const direction = routes.indexOf(next) >= routes.indexOf(page) ? 1 : -1;
     const own = ++serial;
     interrupt();
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
     if (input === 'wheel' || input === 'key') {
       inputTail = { own, type: input, key: lastKey };
     }
-    if (presentation) presentation.restoreDeparture(departure);
-    else {
-      content.style.opacity = String(departure);
-      content.inert = departure < 1;
-    }
     window.SiteEngineProbe?.({
       kind: 'navigation-start',
       time: performance.now(),
       from: page,
       to: next,
+      navigationId: own,
     });
     const controller = new AbortController();
     request = controller;
@@ -650,8 +642,14 @@
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);
-      const animate =
-        !initial && primaryRoutes.includes(page) && primaryRoutes.includes(next) && motionAllowed();
+      let animate = !initial && next !== page && motionAllowed();
+      let blocks = animate && (presentation?.contentFlight?.() ?? true);
+      if (blocks) {
+        const result = await scrollEntry?.depart?.(direction, own);
+        blocks = result?.completed === true;
+      }
+      animate = animate && motionAllowed();
+      if (own !== serial) return;
       await flight(
         next,
         animate,
@@ -674,26 +672,34 @@
               page: next,
             });
           }
-          mount(prepared, destination, position);
+          mount(prepared, destination, position, blocks ? direction : null, own);
         },
         own,
-        departure,
+        null,
         { position, hash: url.hash, search: url.search }
       );
-      // Arrival removes the content transform. Its temporary overflow/offset
-      // must not remain the page's scroll range or semantic waypoint geometry.
+      if (own !== serial) return;
+      if (blocks && motionAllowed() && (presentation?.contentFlight?.() ?? true))
+        await scrollEntry?.arrive?.(direction, own);
+      else scrollEntry?.cancelRoute?.();
       if (own === serial) {
-        if (!presentation?.layoutStableDuringTravel)
-          window.SiteScene?.refresh({ reason: 'arrival' });
         arriveEndpoint();
         content.querySelector('main').focus({ preventScroll: true });
+        scrollEntry?.resume();
         announcement.textContent = data.title;
         save();
-        window.SiteEngineProbe?.({ kind: 'navigation-ready', time: performance.now(), page: next });
+        window.SiteEngineProbe?.({
+          kind: 'navigation-ready',
+          time: performance.now(),
+          page: next,
+          navigationId: own,
+        });
       }
     } catch {
       if (own === serial) {
         releaseEndpoint('failed');
+        scrollEntry?.cancelRoute?.();
+        scrollEntry?.settle();
         releaseTail();
         window.location.assign(address(url, next).href);
       }
@@ -702,6 +708,7 @@
       if (own === serial) {
         content.removeAttribute('aria-busy');
         request = null;
+        scrollEntry?.cancelRoute?.();
         clearText();
       }
     }
@@ -733,7 +740,10 @@
     if (next === page) {
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
-      if (link.getAttribute('href').startsWith('#')) return;
+      if (link.getAttribute('href').startsWith('#')) {
+        scrollEntry?.resume();
+        return;
+      }
       event.preventDefault();
       const dest = address(url, next);
       if (dest.href !== window.location.href) push(dest);
@@ -741,6 +751,7 @@
       if (dest.hash)
         document.getElementById(dest.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
       else restoreScroll(0, 0);
+      scrollEntry?.resume();
       return;
     }
     event.preventDefault();
@@ -756,9 +767,11 @@
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
       if (event.state?.site?.scroll)
         restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
+      scrollEntry?.resume();
     }
   });
   function finishText() {
+    scrollEntry?.cancelRoute?.();
     window.SiteScene?.detachTravel();
     transition?.(1);
     transition = null;
@@ -799,7 +812,9 @@
     primaryRoutes,
     reconcileEndpoint,
     contentFlight(value) {
-      return presentation?.contentFlight?.(value) ?? false;
+      const enabled = presentation?.contentFlight?.(value) ?? true;
+      if (typeof value === 'boolean') scrollEntry?.refreshPreference?.();
+      return enabled;
     },
     go(next, { atEnd = false, input = null } = {}) {
       if (

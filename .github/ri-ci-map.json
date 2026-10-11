@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/72",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
     "date": "2026-10-11",
-    "summary": "Review strict source-bound legacy/fixed Color validation, authenticated explicitly unaccepted first-Pages recovery, changed test/profile/catalog ownership and unchanged both-host admission and production boundaries. Required Staging admission administration remains a separate pending live gate."
+    "summary": "Rebase approved overlapping block phases and fixed reading camera onto reviewed main75 dual-runtime Color validation and authenticated unaccepted first-Pages recovery. Preserve every source/check/profile case and original budget; retain both motion branches, exact ledger entries, authored catalogs and current controls. Refresh exact coupled source identities after independent review; ordinary both-host admission, whole manual/device gates and production decisions remain separate."
   },
   "layers": [
     {
@@ -75,7 +75,35 @@
         "review/issue-41/2026-10-09-sitecase-browser.md",
         "review/issue-41/2026-10-09-staging-security.md",
         ".github/acceptance/issue-72.json",
-        "tests/test_issue72_acceptance.py"
+        "tests/test_issue72_acceptance.py",
+        ".github/acceptance/issue-69.json",
+        "review/issue-69/2026-10-10-analysis.md",
+        "review/issue-69/2026-10-10-review.md",
+        "tests/test_issue69_acceptance.py",
+        "review/issue-69/2026-10-10-implementation.md",
+        "review/issue-69/2026-10-10-browser-summary.json",
+        "review/issue-69/2026-10-10-local-evidence.tar.gz",
+        "review/issue-69/2026-10-11-continuation.md",
+        "review/issue-69/2026-10-11-document-history.json",
+        "review/issue-69/2026-10-11-document-history-collector.txt",
+        "review/issue-69/2026-10-11-sequenced-travel.md",
+        "review/issue-69/2026-10-11-sequenced-review.md",
+        "review/issue-69/2026-10-11-sequenced-browser-summary.json",
+        "review/issue-69/2026-10-11-sequenced-local-evidence.tar.gz",
+        "review/issue-69/2026-10-11-sequenced-security-review.md",
+        "review/issue-69/2026-10-11-v3-security-proof.json.gz",
+        "review/issue-69/2026-10-11-preview-refinement.md",
+        "review/issue-69/2026-10-11-preview-refinement-review.md",
+        "review/issue-69/2026-10-11-preview-refinement-summary.json",
+        "review/issue-69/2026-10-11-preview-refinement-evidence.tar.gz",
+        "review/issue-69/2026-10-11-refined-security-proof.json.gz",
+        "review/issue-69/2026-10-11-paced-transitions.md",
+        "review/issue-69/2026-10-11-slower-pacing-review.md",
+        "review/issue-69/2026-10-11-paced-transitions-summary.json",
+        "review/issue-69/2026-10-11-paced-transitions-evidence.tar.gz",
+        "review/issue-69/2026-10-11-paced-security-proof.json.gz",
+        "review/issue-69/2026-10-11-pacing-harness.md",
+        "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -130,6 +158,9 @@
         "tools/quality/stylelint.cjs",
         "tools/quality/security-rules.yml",
         "tools/site/effects.cjs",
+        "tools/quality/secrets-reviewed-checksums.json",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs",
         "tests/color-motion-contract.test.cjs",
         "tools/quality/color-motion-contract.cjs",
         "tools/quality/block-flight.cjs"
@@ -440,7 +471,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b4f914f775ae2b6fb06da31fe0e5f41722153f8ed71030e92e7c320625c80b1c",
+    "digest": "86ac7359349d18bd918dac8b4168c685d2c2871b02d7f4092e4748811fcbe52c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -511,6 +542,10 @@
         "sha256": "3f7489a42a98ea85dfe6062bf96bb970a132d9e1ebd89a294475afb37c106de9"
       },
       {
+        "path": ".github/acceptance/issue-69.json",
+        "sha256": "80b8c9f43707a077a31e7e8997670002782b79c103895192e3aec7aac7690788"
+      },
+      {
         "path": ".github/acceptance/issue-72.json",
         "sha256": "8e4128b77f18d94b6506b2c830bb4f7b41e84759adf1e3bf79415bcfd41b5262"
       },
@@ -524,7 +559,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "b1de1ee3f458e6262f98191b00e409bd85ec1ec26acc4cd89d1900d97fae25ee"
+        "sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
       },
       {
         "path": ".github/repository-layout.json",
@@ -532,7 +567,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "08abf5de5a4bfd497eb6e26c3b33aad5a7d215ec11cbd595944ab116c7cd5a23"
+        "sha256": "6b1c0d1e2541a3c028d76c162f85ff215b61633eddd40367f57b92b922d0df02"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -636,15 +671,15 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "300751452b68cc0fe47054d9875d6a6db9124bc863941cd160a34221f95814c2"
+        "sha256": "80a50e995ca66dbfafa08612e8d0211ab7ad5e7751a947a57a210432aaa3b6fd"
       },
       {
         "path": "tests/staging-gate.test.cjs",
-        "sha256": "16b8888327b3c6784a67be677d9461b6670c783813518570e08078d097de1c8a"
+        "sha256": "fc5d85c43caf88fb3786bf868404d72d4e2bcb936006d44aa5508e837b723e7b"
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "cde257f73c181ebab48f77a2ba11e91bc3393f53637501bb70d050b4910b6726"
+        "sha256": "3752097ae41ff15f596c5cf08f4bb11c4369031f26f078c9ef06e44fe502479b"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -697,6 +732,10 @@
       {
         "path": "tests/test_issue65_acceptance.py",
         "sha256": "f7362fa370ed37b324803fed158b068eea53da8a961b349154422704db50089d"
+      },
+      {
+        "path": "tests/test_issue69_acceptance.py",
+        "sha256": "4ac4546265e8e38063b28480efda6e84ba0ff87988824418f1e2ff50aad0ed9d"
       },
       {
         "path": "tests/test_issue72_acceptance.py",
@@ -752,11 +791,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "de2a191c8fbfc240728777814dd5a649565306bffe94a293bf58afe4565f97f3"
+        "sha256": "97414d60b5c4baddf78086d946d221d86b389205f6e39e76c72f9b08890435d6"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "d96887c69913dd6acf3fb41c5b118d51b7c8a204cc5e9e7831d1fd396ff86235"
+        "sha256": "8c1c1f9a7a0942bc8f01d9a7e64a13d4eac09bed3471686b6f14b27552350729"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -384,7 +384,10 @@
         "tools/quality/scanners.cjs",
         "tools/quality/secrets-baseline.json",
         "tests/quality-sources.test.cjs",
-        "tools/quality/secrets-reviewed.json"
+        "tools/quality/secrets-reviewed.json",
+        "tools/quality/secrets-reviewed-checksums.json",
+        "tools/quality/transition-pacing.json",
+        "tools/quality/transition-pacing.cjs"
       ],
       "commands": [
         "node --test tests/test-profile-selection.test.cjs tests/staging-gate.test.cjs tests/staging-regression.test.cjs tests/quality-sources.test.cjs",

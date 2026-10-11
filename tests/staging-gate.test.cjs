@@ -67,7 +67,7 @@ test('Color evidence cannot disappear or describe a different rendition', () => 
     (f) => f.reports.pop(),
     (f) => (f.reports.at(-1).variant.id = 'base'),
     (f) => (f.reports.at(-1).rows[0].identity.engine = 'f'.repeat(64)),
-    (f) => (f.reports.at(-1).rows[0].checks.spatialFlight = false),
+    (f) => (f.reports.at(-1).rows[0].checks.blockFlight = false),
   ]) {
     const f = fixture.aggregateFixture(true);
     mutate(f);

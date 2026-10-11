@@ -1,0 +1,1286 @@
+{
+  "scope": "Local loopback prepared public-byte browser evidence; no hosted, physical device, clean-head CI, performance or release admission.",
+  "total": 104,
+  "failed": 0,
+  "pageErrors": 0,
+  "variants": [
+    {
+      "variant": "color",
+      "pass": true,
+      "browser": "153.0.8010.0",
+      "artifactDigest": "fc2d8afb97bf8713f74cf341c6e6055380ee695ab7614c4fcd539e9058ff684a",
+      "sourceCommit": "15dabb70135468550cac52153887d9a60d6eb0d3",
+      "sourceTree": "a57457239be3bd6f77337798e7a261a1669a3b6f",
+      "sourceDirty": true,
+      "cases": [
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 85,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 84,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 83,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "samples": 90,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 113,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "samples": 75,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5929,
+          "bottom": {
+            "y": 5029,
+            "end": 5029,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6073,
+          "bottom": {
+            "y": 5173,
+            "end": 5173,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6261,
+          "bottom": {
+            "y": 5361,
+            "end": 5361,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 79,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 84,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 90,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 102,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 97,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 112,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "samples": 109,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5929,
+          "bottom": {
+            "y": 5029,
+            "end": 5029,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6073,
+          "bottom": {
+            "y": 5173,
+            "end": 5173,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6261,
+          "bottom": {
+            "y": 5361,
+            "end": 5361,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 98,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 98,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 99,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 99,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "samples": 102,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10171,
+          "bottom": {
+            "y": 9271,
+            "end": 9271,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10684,
+          "bottom": {
+            "y": 9784,
+            "end": 9784,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10456,
+          "bottom": {
+            "y": 9556,
+            "end": 9556,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 90,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 92,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 99,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 98,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 98,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10171,
+          "bottom": {
+            "y": 9271,
+            "end": 9271,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10684,
+          "bottom": {
+            "y": 9784,
+            "end": 9784,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10456,
+          "bottom": {
+            "y": 9556,
+            "end": 9556,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        }
+      ]
+    },
+    {
+      "variant": "base",
+      "pass": true,
+      "browser": "153.0.8010.0",
+      "artifactDigest": "7d39e320158c5abbf99df7e283f0df601fd8cb1d9aa7e4b09f424f450003d26d",
+      "sourceCommit": "15dabb70135468550cac52153887d9a60d6eb0d3",
+      "sourceTree": "a57457239be3bd6f77337798e7a261a1669a3b6f",
+      "sourceDirty": true,
+      "cases": [
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 94,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 102,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "samples": 113,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 112,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "samples": 109,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5912,
+          "bottom": {
+            "y": 5012,
+            "end": 5012,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6055,
+          "bottom": {
+            "y": 5155,
+            "end": 5155,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6243,
+          "bottom": {
+            "y": 5343,
+            "end": 5343,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 101,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 103,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 112,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 112,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 112,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 111,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "samples": 109,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5912,
+          "bottom": {
+            "y": 5012,
+            "end": 5012,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6055,
+          "bottom": {
+            "y": 5155,
+            "end": 5155,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6243,
+          "bottom": {
+            "y": 5343,
+            "end": 5343,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 73,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 73,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 74,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "samples": 75,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 75,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 82,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "samples": 95,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10118,
+          "bottom": {
+            "y": 9218,
+            "end": 9218,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10631,
+          "bottom": {
+            "y": 9731,
+            "end": 9731,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10439,
+          "bottom": {
+            "y": 9539,
+            "end": 9539,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 98,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 99,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 101,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 101,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 99,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 98,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "samples": 100,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"]
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10118,
+          "bottom": {
+            "y": 9218,
+            "end": 9218,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10631,
+          "bottom": {
+            "y": 9731,
+            "end": 9731,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10439,
+          "bottom": {
+            "y": 9539,
+            "end": 9539,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        }
+      ]
+    }
+  ]
+}

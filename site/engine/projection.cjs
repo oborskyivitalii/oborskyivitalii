@@ -391,10 +391,18 @@ module.exports = function (math, definitions) {
         .join('')
     );
   }
+  // Every route shares the same longitudinal fractal axis. Center the eye and
+  // sightline on that axis without changing their native depth or orientation.
+  const centerPose = (pose) => ({
+    position: [0, 0, pose.position[2]],
+    target: [0, 0, pose.target[2]],
+    framing: 1,
+  });
   const roomOffset = (page) => -Math.max(0, routeOrder.indexOf(page)) * roomSpacing;
   const translatePose = (pose, z) => ({
     position: add(pose.position, [0, 0, z]),
     target: add(pose.target, [0, 0, z]),
+    ...(pose.framing !== undefined ? { framing: pose.framing } : {}),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
   return {
@@ -408,6 +416,7 @@ module.exports = function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    centerPose,
     roomOffset,
     translatePose,
   };

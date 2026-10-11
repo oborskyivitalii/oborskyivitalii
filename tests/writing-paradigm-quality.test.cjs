@@ -185,6 +185,32 @@ function measure(kind, { cost = 2, zero = false, cold = false, duration = 1200 }
     trace,
   };
 }
+function currentFlight({ cost, cold, from, to, width, navigationId, readyDelayMs = 0 }) {
+  // Synthetic current-plan observations exercise maintained admission. The
+  // separate frozen baseline fixture retains its literal historical telemetry.
+  const data = require('./fixtures/staging-evidence.cjs').flightData(
+    to,
+    from,
+    cold ? 'cold' : 'warm',
+    width
+  );
+  for (const frame of data.frames) frame.duration = cost;
+  for (const event of data.events)
+    if (event.navigationId !== undefined) event.navigationId = navigationId;
+  data.events.at(-1).time += readyDelayMs;
+  data.end += readyDelayMs;
+  data.elapsed += readyDelayMs;
+  return shift(
+    {
+      from,
+      to,
+      width,
+      ...summarize({ ...data, quality: '0', cadence: '15' }, 'flight', { from, to, width }),
+      events: data.events,
+    },
+    100
+  );
+}
 function shift(sample, start) {
   const offset = start - sample.window.startMs;
   sample.window.startMs += offset;
@@ -201,7 +227,7 @@ function shift(sample, start) {
   for (const task of sample.rawLongTasks) task.start += offset;
   return sample;
 }
-function fixture() {
+function fixture({ currentReadyDelayMs = 0 } = {}) {
   const identities = { baseline: source('baseline'), candidate: source('candidate') },
     rows = [];
   let clock = 1;
@@ -212,7 +238,23 @@ function fixture() {
           flights = ['writing', 'talks', 'writing', 'research'].map((to, index) => ({
             from: ['research', 'writing', 'talks', 'writing'][index],
             to,
-            ...measure('flight', { cost, cold: index === 0 }),
+            ...(label === 'candidate'
+              ? currentFlight({
+                  cost,
+                  cold: index === 0,
+                  from: ['research', 'writing', 'talks', 'writing'][index],
+                  to,
+                  width: profile.width,
+                  navigationId: index + 1,
+                  readyDelayMs: index === 0 ? currentReadyDelayMs : 0,
+                })
+              : measure('flight', {
+                  cost,
+                  cold: index === 0,
+                  // Controlled legacy-shaped baseline latency matches the expected
+                  // equivalent current cold entry; this is not a historical replay.
+                  duration: index === 0 ? (profile.width > 640 ? 2524 : 2324) : 1200,
+                })),
             formula: cache(),
           }));
         const measurements = ['idle', 'scroll', 'filtered', 'empty'].map((kind) => {
@@ -345,6 +387,11 @@ test('Writing paired performance accepts complete exact-source raw observations 
   assert.deepEqual(Object.keys(result.outcomes), ['startup', 'warmup', 'steady']);
   assert.ok(Object.values(result.outcomes).every((row) => row.pass));
   assert.ok(result.comparisons.every((row) => Math.abs(row.startup.p95Delta - 0.4) < 1e-8));
+  const coldPair = result.comparisons[0].paired[0];
+  assert.equal(coldPair.candidateRawReady, 3820, 'raw programmed presentation is retained');
+  assert.equal(coldPair.candidateEquivalentReady, 2524);
+  assert.equal(coldPair.baselineReady, 2524, 'historical-shaped control retains raw ready');
+  assert.equal(coldPair.readyDelta, 0, 'paired cost uses verified current equivalent latency');
   const natural = structuredClone(fixture());
   for (const row of natural.rows.filter((row) => row.label === 'candidate'))
     for (const sample of row.measurements.filter((sample) =>
@@ -406,6 +453,80 @@ test('Writing paired performance accepts complete exact-source raw observations 
   assert.ok(!sandbox.observer.disconnected, 'observer remains active through measurement');
   await runner.traceSample(page, { window: { startMs: 100, endMs: 200 } }, true);
   assert.equal(sandbox.observer.disconnected, true);
+});
+test('only the identity-validated frozen baseline can use literal historical flight telemetry', () => {
+  const value = fixture(),
+    baseline = value.rows.find((row) => row.label === 'baseline').flights[0];
+  assert.equal(
+    baseline.events.some((event) => event.navigationId !== undefined),
+    false
+  );
+  assert.equal(baseline.plannedMotionMs, undefined, 'legacy controls earn no invented plan credit');
+  for (const historicalContext of [true, Symbol('identity-validated frozen baseline flight')])
+    assert.throws(
+      () =>
+        contract.measurement(baseline, 'flight', {
+          flight: true,
+          historicalContext,
+        }),
+      /missing owned navigation identity/,
+      'the exported observer has no historical bypass'
+    );
+  const legacyCandidate = fixture(),
+    candidate = legacyCandidate.rows.find((row) => row.label === 'candidate'),
+    current = candidate.flights[0];
+  candidate.flights[0] = {
+    ...current,
+    ...shift(measure('flight', { cost: 2.4, cold: true, duration: 2524 }), current.window.startMs),
+  };
+  assert.throws(() => contract.validate(legacyCandidate), /missing owned navigation identity/);
+  const unapproved = fixture();
+  unapproved.identities.baseline.sourceCommit = '1'.repeat(40);
+  unapproved.identities.baseline.candidateCommit = '1'.repeat(40);
+  assert.throws(() => contract.validate(unapproved), /unapproved historical baseline/);
+  const wrongWidth = fixture();
+  wrongWidth.rows.find((row) => row.label === 'candidate').flights[0].width = 390;
+  assert.throws(() => contract.validate(wrongWidth), /viewport differs from trial profile/);
+  const slowHistorical = fixture(),
+    old = slowHistorical.rows.find((row) => row.label === 'baseline');
+  old.flights[0] = { ...old.flights[0], ...measure('flight', { cold: true, duration: 3300 }) };
+  assert.throws(
+    () => contract.validate(slowHistorical),
+    /slow input-to-ready latency/,
+    'frozen identity does not waive the original3200ms raw latency limit'
+  );
+});
+test('Writing collector retains actual pacing width and a finite canonical route deadline', async () => {
+  const vm = require('node:vm'),
+    probe = require('../tools/quality/writing-probe.cjs'),
+    fixture = require('./fixtures/staging-evidence.cjs');
+  for (const width of [1440, 390]) {
+    const raw = fixture.flightData('writing', 'research', 'cold', width),
+      page = {
+        evaluate: async (fn) =>
+          vm.runInNewContext('(' + fn.toString() + ')()', {
+            window: { __qualityMotion: raw, __qualityStart: raw.start },
+            performance: { now: () => raw.end },
+            document: {
+              querySelector: () => ({ dataset: { state: 'active', quality: '0', cadence: '15' } }),
+            },
+          }),
+      };
+    const sample = { from: 'research', to: 'writing', ...(await probe.measure(page, 'flight')) };
+    assert.equal(sample.width, width, 'source browser width survives summary for re-verification');
+    assert.equal(contract.measurement(sample, 'flight', { flight: true }), sample);
+  }
+  let observed;
+  await probe.ready(
+    {
+      waitForFunction: async (fn, route, options) => {
+        observed = options;
+        assert.equal(route, 'writing');
+      },
+    },
+    'writing'
+  );
+  assert.deepEqual(observed, { polling: 40, timeout: 6950 });
 });
 function startupQualityPublication(sample, prefix = 5) {
   for (const state of sample.trace.slice(0, prefix)) {
@@ -612,18 +733,22 @@ test('Writing paired performance rejects absolute failures, added cost and quali
         },
       };
     },
-    (value) => {
-      for (const row of value.rows.filter((row) => row.label === 'candidate'))
-        row.flights[0] = {
-          ...row.flights[0],
-          ...measure('flight', { cold: true, duration: 1600 }),
-        };
-    },
   ]) {
     const value = structuredClone(fixture());
     mutate(value);
     assert.throws(() => contract.validate(value));
   }
+  assert.throws(
+    () => contract.validate(fixture({ currentReadyDelayMs: 400 })),
+    (error) => {
+      assert.match(error.message, /added cold ready cost/);
+      assert.equal(error.result.outcomes.startup.pass, false);
+      assert.equal(error.result.outcomes.warmup.pass, true);
+      assert.equal(error.result.outcomes.steady.pass, true);
+      return true;
+    },
+    'unprogrammed current delay still exceeds unchanged50ms/5% paired thresholds'
+  );
   const reduced = structuredClone(fixture()),
     row = reduced.rows.find((row) => row.label === 'candidate'),
     sample = row.measurements[0],

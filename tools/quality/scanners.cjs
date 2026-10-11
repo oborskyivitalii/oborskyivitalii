@@ -233,6 +233,98 @@ function verifiedChecksumFinding(file, finding, proved) {
     proved.get(file)?.has(finding.hashed_secret) === true
   );
 }
+const secretReviewInputs = Object.freeze([
+  'tools/quality/secrets-baseline.json',
+  'tools/quality/secrets-reviewed.json',
+  'tools/quality/secrets-reviewed-checksums.json',
+  'tools/quality/secrets-publication.json',
+]);
+function secretReviewMetadata(review, file) {
+  const baseline = file === secretReviewInputs[0];
+  const keys = ['owner', 'issue', 'reviewedAt', 'scope', 'findings'];
+  if (!baseline) keys.push('schema_version');
+  if (
+    !review ||
+    typeof review !== 'object' ||
+    Array.isArray(review) ||
+    Object.keys(review).sort().join(':') !== keys.sort().join(':') ||
+    (!baseline && review.schema_version !== 1) ||
+    typeof review.owner !== 'string' ||
+    !review.owner.trim() ||
+    typeof review.issue !== 'string' ||
+    !/^https:\/\/github\.com\/oborskyivitalii\/oborskyivitalii\/issues\/[1-9][0-9]*$/.test(
+      review.issue || ''
+    ) ||
+    typeof review.reviewedAt !== 'string' ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(review.reviewedAt || '') ||
+    !Number.isFinite(Date.parse(review.reviewedAt)) ||
+    new Date(review.reviewedAt).toISOString().slice(0, 10) !== review.reviewedAt ||
+    typeof review.scope !== 'string' ||
+    !review.scope.trim() ||
+    !Array.isArray(review.findings)
+  ) {
+    throw Error('Invalid secret review metadata: ' + file);
+  }
+}
+function secretReviewPath(file) {
+  if (
+    typeof file !== 'string' ||
+    !file ||
+    path.posix.isAbsolute(file) ||
+    /[\\:*?[\]{}]/.test(file)
+  ) {
+    return false;
+  }
+  for (const character of file) {
+    if (character.charCodeAt(0) < 32 || character.charCodeAt(0) === 127) return false;
+  }
+  return file.split('/').every((part) => part && part !== '.' && part !== '..');
+}
+function secretReviewEntry(entry, file) {
+  const checksumOnly = file === secretReviewInputs[2];
+  const rules = checksumOnly
+    ? ['Hex High Entropy String']
+    : ['Hex High Entropy String', 'Secret Keyword', 'Basic Auth Credentials'];
+  if (
+    !entry ||
+    typeof entry !== 'object' ||
+    Array.isArray(entry) ||
+    Object.keys(entry).sort().join(':') !== 'disposition:id:path:reason:rule' ||
+    !secretReviewPath(entry.path) ||
+    !rules.includes(entry.rule) ||
+    entry.disposition !== 'false positive' ||
+    typeof entry.reason !== 'string' ||
+    !entry.reason.trim() ||
+    typeof entry.id !== 'string' ||
+    !/^[a-f0-9]{40}$/.test(entry.id.slice(-40)) ||
+    entry.id !== entry.path + ':' + entry.rule + ':' + entry.id.slice(-40)
+  ) {
+    throw Error('Invalid exact secret review entry: ' + file);
+  }
+}
+function loadSecretReviews(projectRoot = root) {
+  const reviewed = new Map();
+  // A closed input list keeps a neighboring JSON file from silently becoming
+  // an admission authority. Each ledger retains the existing 2 MB byte bound.
+  for (const file of secretReviewInputs) {
+    const absolute = path.join(projectRoot, file);
+    const stat = fs.lstatSync(absolute);
+    if (!stat.isFile() || stat.isSymbolicLink() || stat.size > 2000000) {
+      throw Error('Invalid or oversized secret review input: ' + file);
+    }
+    const review = JSON.parse(fs.readFileSync(absolute, 'utf8'));
+    secretReviewMetadata(review, file);
+    for (const entry of review.findings) {
+      secretReviewEntry(entry, file);
+      if (reviewed.has(entry.id)) throw Error('Duplicate secret review ID: ' + entry.id);
+      reviewed.set(entry.id, entry);
+    }
+  }
+  return reviewed;
+}
+function reviewedSecretFinding(file, finding, reviewed) {
+  return reviewed.has([file, finding.type, finding.hashed_secret].join(':'));
+}
 function lint() {
   const inventory = require('./format.cjs').sourceInventory(root);
   const offlineRuntime = authoredRuntime(
@@ -419,11 +511,7 @@ function security() {
     });
   const secrets = JSON.parse(run(py('detect-secrets'), ['scan', '--no-verify', ...text]));
   fs.writeFileSync(path.join(out, 'detect-secrets.json'), JSON.stringify(secrets, null, 2));
-  const reviewed = [
-      ...require('./secrets-baseline.json').findings,
-      ...require('./secrets-reviewed.json').findings,
-      ...require('./secrets-publication.json').findings,
-    ],
+  const reviewed = loadSecretReviews(),
     newFindings = [];
   const navigationFile = '.github/repository-intelligence/agent-context.json';
   run(py('python'), [
@@ -452,9 +540,8 @@ function security() {
   ]);
   for (const [file, findings] of Object.entries(secrets.results))
     for (const finding of findings) {
-      const id = [file, finding.type, finding.hashed_secret].join(':');
       const provedChecksum = verifiedChecksumFinding(file, finding, proved);
-      if (!provedChecksum && !reviewed.some((x) => x.id === id))
+      if (!provedChecksum && !reviewedSecretFinding(file, finding, reviewed))
         newFindings.push({ file, type: finding.type, hash: finding.hashed_secret });
     }
   if (newFindings.length)
@@ -567,4 +654,6 @@ module.exports = {
   reviewComplexity,
   verifiedChecksumIds,
   verifiedChecksumFinding,
+  loadSecretReviews,
+  reviewedSecretFinding,
 };

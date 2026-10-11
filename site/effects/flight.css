@@ -1,6 +1,3 @@
-#site-content-frame {
-  overflow: clip;
-}
 .end-scroll-control input {
   width: 16px;
   height: 16px;
@@ -30,9 +27,6 @@
   display: none;
 }
 @media print {
-  #site-content-frame {
-    overflow: visible;
-  }
   .scroll-continue {
     display: none;
   }

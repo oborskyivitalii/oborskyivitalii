@@ -3,38 +3,51 @@ const test = require('node:test'),
   assert = require('node:assert/strict'),
   fs = require('node:fs'),
   vm = require('node:vm');
-const { flightPose, endScrollGate, atPageEnd, atPageStart } = require('../site/effects/flight.cjs');
+const {
+  createPresentation,
+  endScrollGate,
+  atPageEnd,
+  atPageStart,
+} = require('../site/effects/flight.cjs');
 const { decorateFlight: decorate } = require('../tools/site/effects.cjs');
-test('forward passes the current page toward the viewer; reverse sends it into distance', () => {
+test('travel presentation keeps native content opaque and untransformed at every camera sample', () => {
+  const content = { dataset: {}, style: {} };
+  const window = { CSS: { supports: () => true } };
+  const presentation = vm.runInNewContext(`(${createPresentation.toString()})(content)`, {
+    content,
+    window,
+  });
   for (const direction of ['forward', 'backward']) {
-    for (let i = 0; i <= 100; i++) {
-      const p = flightPose(i / 100, direction);
-      assert.ok(Number.isFinite(p.z) && p.z < 1200);
-      assert.ok(p.opacity >= 0 && p.opacity <= 1);
-    }
-    const a = flightPose(0.1, direction),
-      b = flightPose(0.3, direction),
-      entry = flightPose(0.65, direction);
-    assert.equal(Math.sign(b.z - a.z), direction === 'forward' ? 1 : -1);
-    assert.equal(Math.sign(entry.z), direction === 'forward' ? -1 : 1);
-    assert.ok(entry.opacity > 0 && entry.opacity < 1, 'fog accompanies spatial approach');
-    assert.deepEqual(flightPose(1, direction), { stage: 'settled', z: 0, opacity: 1 });
-    assert.equal(flightPose(0.49, direction).opacity, 0);
-    assert.equal(
-      flightPose(0.5, direction).opacity,
-      0,
-      'mount while the old/new plane is outside view'
-    );
+    for (let i = 0; i <= 100; i++) presentation.present(i / 100, direction);
+    assert.deepEqual(content.style, {});
+    assert.equal(content.dataset.flightStage, 'camera');
+    presentation.clear();
+    assert.equal(content.dataset.flightStage, undefined);
   }
 });
-test('retargeting preserves the actual displayed plane instead of flashing it at full size', () => {
-  for (const direction of ['forward', 'backward'])
-    for (const progress of [0.08, 0.31, 0.65, 0.89]) {
-      const displayed = flightPose(progress, direction),
-        retarget = flightPose(0, direction === 'forward' ? 'backward' : 'forward', displayed);
-      assert.equal(retarget.z, displayed.z);
-      assert.equal(retarget.opacity, displayed.opacity);
-    }
+test('block presentation owns persistence and leaves cancellation to the shared navigation control', () => {
+  let cancelled = 0;
+  const stored = [];
+  const content = { dataset: {}, style: {} };
+  const window = {
+    SiteScrollEntry: {
+      cancelRoute() {
+        cancelled++;
+      },
+    },
+  };
+  const presentation = vm.runInNewContext(`(${createPresentation.toString()})(content)`, {
+    content,
+    window,
+    localStorage: { getItem: () => 'on', setItem: (...value) => stored.push(value) },
+  });
+  assert.equal(presentation.contentFlight(), true);
+  assert.equal(presentation.contentFlight(false), false);
+  assert.equal(cancelled, 0, 'presentation cannot be a second cancellation owner');
+  assert.deepEqual(stored, [['vo.content-flight', 'off']]);
+  assert.deepEqual(content.style, {});
+  assert.equal(presentation.contentFlight(true), true);
+  assert.deepEqual(stored.at(-1), ['vo.content-flight', 'on']);
 });
 test('bottom detection uses the real rounded range and tolerates native overscroll', () => {
   assert.equal(atPageEnd(7197, 8000, 800), false);
@@ -170,10 +183,10 @@ test('optional exporter compiles, keeps one scheduler and changes both embedded 
     (previous.match(/requestAnimationFrame/g) || []).length
   );
   assert.match(output, /\bpassive\s*:\s*true\b/);
-  assert.match(output, /overflow\s*:\s*clip/);
-  assert.match(
-    output,
-    /\bfinally\s*\{\s*if\s*\(\s*transform\s*\)\s*plane\.style\.transform\s*=\s*transform\b/
+  assert.doesNotMatch(
+    output.match(/<script data-site-effect="travel">([\s\S]*?)<\/script>/)[1],
+    /translateZ|style\.opacity\s*=/,
+    'active travel controls cannot reintroduce a whole-plane depth or fade owner'
   );
   assert.throws(() => decorate(output), /duplicate offline travel/);
   let reformatted = source;

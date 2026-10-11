@@ -50,75 +50,51 @@ async function semanticWaypoint(page, route) {
       y: el.getBoundingClientRect().top + scrollY - innerHeight * 0.22,
     };
   }, config);
-  if (route === 'writing') {
-    const firstY = await page
-      .locator('li.publication:visible')
-      .first()
-      .evaluate((el) => Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight * 0.22));
-    const end = await range(page);
-    goal.progress =
-      firstY < end - 0.5 ? (goal.y < firstY ? (0.12 * goal.y) / firstY : 0.12) : goal.y / end;
-  }
   await page.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), goal.y);
-  // Native offsets are pixel-rounded. Evaluate the contract at the actual
-  // offset instead of allowing an arbitrary world-distance tolerance.
-  const layout = await page.evaluate(
-    (config) => ({
-      y: scrollY,
-      end: document.documentElement.scrollHeight - innerHeight,
-      markers: [...document.querySelectorAll('[data-space-stop]')]
-        .filter(
-          (el) => !el.hidden && el.getClientRects().length && config.stops[el.dataset.spaceStop]
-        )
-        .map((el) => ({
-          id: config.stops[el.dataset.spaceStop],
-          y: Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight * 0.22),
-        })),
-    }),
-    config
-  );
-  let expected;
-  if (route === 'writing') {
-    const firstY = await page
-      .locator('li.publication:visible')
-      .first()
-      .evaluate((el) => Math.max(0, el.getBoundingClientRect().top + scrollY - innerHeight * 0.22));
-    expected = model.routePose(
-      route,
-      model.journeyPose(
-        model.topicPaths[goal.topic],
-        model.writingProgress(layout.y, {
-          start: firstY < layout.end - 0.5 ? firstY : 0,
-          end: layout.end,
-        })
-      )
-    );
-  } else {
-    const stops = model.fitScrollStops(layout.markers, layout.end);
-    let i = 0;
-    while (i < stops.length - 2 && layout.y >= stops[i + 1].y) i++;
-    const t = model.clamp((layout.y - stops[i].y) / (stops[i + 1].y - stops[i].y));
-    expected = model.routePose(
-      route,
-      model.journeyPose(
-        stops.map((s) => s.id),
-        (i + t) / (stops.length - 1)
-      )
-    );
-  }
+  const expected = model.routePose(route, model.poses[model.initialPoses[route]]);
   const actual = JSON.parse(await settledCamera(page));
   const distance = Math.hypot(
     ...['position', 'target'].flatMap((key) => actual[key].map((v, i) => v - expected[key][i]))
   );
   assert.ok(
     distance < 1e-4,
-    'semantic waypoint follows reordered content: ' + JSON.stringify({ route, goal, distance })
+    'native waypoint preserves the fixed reading camera: ' +
+      JSON.stringify({ route, goal, distance })
   );
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   await settledCamera(page);
   return { ...goal, actual, expected, distance };
 }
 async function probe(page, label, route) {
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  const start = await settledCamera(page),
+    end = await range(page),
+    samples = [];
+  for (const fraction of [0.9, 0.95, 0.99, 1]) {
+    await page.evaluate(
+      (y) => scrollTo({ top: y, behavior: 'instant' }),
+      Math.round(end * fraction)
+    );
+    samples.push({
+      fraction,
+      y: await page.evaluate(() => scrollY),
+      camera: await settledCamera(page),
+    });
+  }
+  for (const sample of samples)
+    assert.equal(sample.camera, start, label + ' reading camera stays fixed at ' + sample.fraction);
+  assert.equal(samples.at(-1).y, end, label + ' native scroll reaches bottom');
+  const model = require('../../docs/space.js');
+  assert.deepEqual(
+    JSON.parse(start),
+    model.routePose(route, model.poses[model.initialPoses[route]]),
+    label + ' fixed authored reading pose'
+  );
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  assert.equal(await settledCamera(page), start, label + ' exact reverse endpoint');
+  return { label, end, start, samples };
+}
+async function legacyProbe(page, label, route) {
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   const start = await settledCamera(page),
     end = await range(page),
@@ -171,33 +147,7 @@ async function fixedProbe(page, label, route, manifest) {
     'fixed-blocks',
     'fixed reading requires the reviewed block runtime'
   );
-  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  const start = await settledCamera(page),
-    end = await range(page),
-    samples = [];
-  for (const fraction of [0.9, 0.95, 0.99, 1]) {
-    await page.evaluate(
-      (y) => scrollTo({ top: y, behavior: 'instant' }),
-      Math.round(end * fraction)
-    );
-    samples.push({
-      fraction,
-      y: await page.evaluate(() => scrollY),
-      camera: await settledCamera(page),
-    });
-  }
-  for (const sample of samples)
-    assert.equal(sample.camera, start, label + ' reading camera stays fixed at ' + sample.fraction);
-  assert.equal(samples.at(-1).y, end, label + ' native scroll reaches bottom');
-  const model = require('../../docs/space.js');
-  assert.deepEqual(
-    JSON.parse(start),
-    model.routePose(route, model.poses[model.initialPoses[route]]),
-    label + ' fixed authored reading pose'
-  );
-  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-  assert.equal(await settledCamera(page), start, label + ' exact reverse endpoint');
-  return { label, end, start, samples };
+  return probe(page, label, route);
 }
 async function scenario(page, route) {
   const rows = [];
@@ -289,4 +239,197 @@ async function scenario(page, route) {
     ),
   };
 }
-module.exports = { scenario, probe, fixedProbe, semanticWaypoint, fixtures, checks };
+// Focused issue69 replay on the existing browser fixture; no new routine matrix.
+async function entryScenario(page, { route, screenshot = null } = {}) {
+  await page.waitForFunction(() => window.SiteScene?.motionState?.().ready);
+  await page.evaluate(() => document.fonts.ready);
+  const baseline = await page.evaluate(() => {
+    window.SiteScrollEntry.destroy();
+    scrollTo({ top: 0, behavior: 'instant' });
+    const nodes = [
+      ...document.querySelectorAll(
+        '[data-space-stop],.publication,.section-heading,.research-card,.topic-card,' +
+          '.help-grid article,.ack-leads article,.ack-compact article,.ack-grid article,' +
+          '.discussion-row,.about-grid > div,.about-grid > h2,.contact-grid > div,' +
+          '.credits-page > p,.credits-page > h2,.writing-topic,.year-heading'
+      ),
+    ];
+    window.__entryNodes = nodes;
+    const geometry = () => ({
+      height: document.documentElement.scrollHeight,
+      width: document.documentElement.scrollWidth,
+      text: document.querySelector('main').textContent,
+      links: [...document.querySelectorAll('main a')].map((link) => link.getAttribute('href')),
+      rects: nodes.map((node) => {
+        const rect = node.getBoundingClientRect();
+        return [rect.x, rect.y + scrollY, rect.width, rect.height];
+      }),
+    });
+    window.__entryGeometry = geometry;
+    const native = geometry();
+    window.SiteScrollEntry.mount(document.querySelector('main'));
+    window.SiteScrollEntry.resume();
+    return {
+      native,
+      armed: geometry(),
+      targets: window.SiteScrollEntry.diagnostics().targets,
+      distance: Number.parseFloat(
+        getComputedStyle(document.querySelector('main')).getPropertyValue('--scroll-entry-distance')
+      ),
+    };
+  });
+  assert.deepEqual(baseline.armed, baseline.native, route + ' native geometry while armed');
+  assert.ok(baseline.targets > 0, route + ' has meaningful blocks');
+  await page.waitForTimeout(80);
+  const goal = await page.evaluate(() => {
+    const waiting = [...document.querySelectorAll('[data-scroll-entry="waiting"]')];
+    const element =
+      waiting.find((node) =>
+        node.matches('.publication,.research-card,.topic-card,.help-grid article,.ack-grid article')
+      ) || waiting[0];
+    return element ? element.getBoundingClientRect().top + scrollY - innerHeight * 0.78 : null;
+  });
+  assert.ok(goal !== null, route + ' below-fold entry target');
+  let position = 0;
+  while (position < goal) {
+    position = Math.min(goal, position + 160);
+    await page.evaluate((top) => scrollTo({ top, behavior: 'instant' }), position);
+    await page.waitForTimeout(25);
+  }
+  await page.waitForFunction(() => document.querySelector('[data-scroll-entry="entering"]'), null, {
+    timeout: 2000,
+    polling: 10,
+  });
+  const frames = [];
+  for (let frame = 0; frame < 3; frame++) {
+    frames.push(
+      await page.evaluate(() => {
+        const units = [...document.querySelectorAll('[data-scroll-entry="entering"]')];
+        return {
+          geometry: window.__entryGeometry(),
+          active: window.SiteScrollEntry.diagnostics().active,
+          layoutPasses: window.SiteScene.diagnostics().layoutPasses,
+          units: units.map((element) => ({
+            component: element.className,
+            ink: [...element.children].map((child) => getComputedStyle(child).translate),
+            paper: getComputedStyle(element, '::before').translate,
+            starts: element
+              .getAnimations({ subtree: true })
+              .filter((animation) => animation.animationName === 'scroll-entry-rise')
+              .map((animation) => animation.startTime),
+            timings: element
+              .getAnimations({ subtree: true })
+              .filter((animation) => animation.animationName === 'scroll-entry-rise')
+              .map((animation) => animation.effect.getTiming()),
+            opacity: getComputedStyle(element).opacity,
+            filter: getComputedStyle(element).filter,
+          })),
+        };
+      })
+    );
+    await page.waitForTimeout(60);
+  }
+  if (screenshot) {
+    await page.evaluate(() => {
+      window.__entryAnimations = document
+        .querySelector('main')
+        .getAnimations({ subtree: true })
+        .filter((animation) => animation.animationName === 'scroll-entry-rise');
+      for (const animation of window.__entryAnimations) animation.pause();
+    });
+    await page.screenshot({ path: screenshot });
+    await page.evaluate(() => {
+      for (const animation of window.__entryAnimations) animation.play();
+      delete window.__entryAnimations;
+    });
+  }
+  for (const frame of frames) {
+    assert.deepEqual(frame.geometry, baseline.native, route + ' geometry during movement');
+    assert.ok(frame.active > 0 && frame.active <= 6, route + ' bounded active work');
+    for (const unit of frame.units) {
+      assert.equal(unit.opacity, '1', route + ' sharp opaque reading');
+      assert.equal(unit.filter, 'none', route + ' no blur');
+      const position = (value) =>
+        value === 'none' ? [0, 0] : value.split(' ').map(Number.parseFloat);
+      // WebKit can advance computed styles between successive queries within
+      // one evaluation. Native start and effect timings describe one paint's
+      // shared phase without pretending those sequential reads are simultaneous.
+      for (const value of [...unit.ink, unit.paper]) {
+        const [x = 0, y = 0] = position(value);
+        assert.equal(x, 0, route + ' no horizontal entry');
+        assert.ok(
+          y >= -0.01 && y <= baseline.distance + 0.01,
+          route + ' bounded upward movement: ' + value
+        );
+      }
+      assert.equal(
+        unit.starts.length,
+        unit.ink.length + 1,
+        route + ' every ink layer and its paper participates'
+      );
+      assert.ok(
+        unit.starts.every((start) => start === unit.starts[0]),
+        route + ' all layers share the same native animation start'
+      );
+      for (const timing of unit.timings)
+        assert.deepEqual(
+          timing,
+          unit.timings[0],
+          route + ' all layers share native duration, delay and easing'
+        );
+    }
+  }
+  assert.ok(
+    frames.at(-1).layoutPasses - frames[0].layoutPasses <= 1,
+    route + ' entry does not invalidate scene layout every frame'
+  );
+  await page.waitForTimeout(750);
+  assert.equal(await page.locator('[data-scroll-entry="entering"]').count(), 0);
+  const settled = await page.evaluate(() => window.__entryGeometry());
+  assert.deepEqual(settled, baseline.native, route + ' settled geometry');
+  await page.evaluate(() =>
+    scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+  );
+  await page.waitForTimeout(80);
+  const bottom = await page.evaluate(() => ({
+    y: scrollY,
+    end: document.documentElement.scrollHeight - innerHeight,
+    width: document.documentElement.scrollWidth,
+    active: window.SiteScrollEntry.diagnostics().active,
+  }));
+  assert.equal(bottom.y, bottom.end, route + ' actual bottom reach');
+  assert.equal(bottom.active, 0, route + ' jump settles immediately');
+  assert.equal(bottom.width, baseline.native.width, route + ' no horizontal overflow growth');
+  await page.evaluate(() => {
+    window.SiteScrollEntry.destroy();
+    delete window.__entryNodes;
+    delete window.__entryGeometry;
+  });
+  return {
+    route,
+    targets: baseline.targets,
+    distance: baseline.distance,
+    height: baseline.native.height,
+    width: baseline.native.width,
+    nativeRects: baseline.native.rects,
+    frames: frames.map(({ geometry, ...frame }) => ({
+      ...frame,
+      rects: geometry.rects,
+      height: geometry.height,
+      width: geometry.width,
+    })),
+    bottom,
+    nativeGeometryEqual: true,
+    semanticsEqual: true,
+  };
+}
+module.exports = {
+  scenario,
+  probe,
+  legacyProbe,
+  fixedProbe,
+  semanticWaypoint,
+  fixtures,
+  checks,
+  entryScenario,
+};

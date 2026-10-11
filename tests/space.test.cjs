@@ -337,44 +337,43 @@ function visit(options = {}) {
   };
   return api;
 }
-test('native-scroll camera is reversible while the bounded ambient loop continues at idle', () => {
-  const p = visit();
-  p.settle();
-  const start = p.trace(),
-    phase = p.phase();
-  p.scroll(1400);
-  p.scroll(1750);
-  assert.equal(p.pending.size, 1);
-  p.settle();
-  assert.notEqual(p.trace(), start);
-  p.scroll(0);
-  p.settle();
-  assert.equal(p.trace(), start);
-  assert.ok(p.phase() > phase);
-  assert.equal(p.pending.size, 1);
-  const fixed = p.trace();
-  p.frame(60);
-  assert.equal(p.trace(), fixed);
-  assert.equal(p.canvas.width, 2160);
+test('all routes keep a stationary reading camera through forward and reverse native scroll', () => {
+  for (const page of model.routeOrder) {
+    const p = visit({ page });
+    p.settle();
+    const start = p.trace(),
+      phase = p.phase();
+    assert.deepEqual(
+      JSON.parse(start),
+      model.routePose(page, model.poses[model.initialPoses[page]])
+    );
+    for (const y of [80, 1400, 14100, 1400, 0]) {
+      p.scroll(y);
+      p.settle();
+      assert.equal(p.trace(), start, `${page} camera at scroll ${y}`);
+      assert.equal(p.scene.dataset.travel, 'settled');
+      assert.equal(p.scene.dataset.cameraStage, 'settled');
+    }
+    assert.ok(p.phase() > phase, 'the independent ambient loop continues');
+    assert.equal(p.pending.size, 1);
+    assert.equal(p.canvas.width, 2160);
+  }
 });
-test('continuous gestures move immediately; pointer events never influence the camera', () => {
+test('continuous gestures and pointer events never influence the reading camera', () => {
   const p = visit();
   p.settle();
-  let last = p.trace();
+  const camera = p.trace();
   for (let i = 0; i < 8; i++) {
     p.scroll(200 + i * 140);
     p.frame(65);
-    assert.notEqual(p.trace(), last);
-    last = p.trace();
+    assert.equal(p.trace(), camera);
   }
-  p.settle();
-  last = p.trace();
   for (const type of ['pointermove', 'pointerout', 'mouseover', 'mouseenter', 'focus']) {
     p.event(type, { clientX: 12 });
     assert.equal(p.events[type], undefined);
   }
   p.frame(60);
-  assert.equal(p.trace(), last);
+  assert.equal(p.trace(), camera);
   assert.equal(p.pending.size, 1);
 });
 test('Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print', () => {
@@ -493,13 +492,13 @@ test('short/degenerate pages keep their camera and still breathe without manufac
     const start = p.trace();
     p.scroll(1200);
     p.settle();
-    assert.notEqual(p.trace(), start);
+    assert.equal(p.trace(), start);
     p.scroll(0);
     p.settle();
     assert.equal(p.trace(), start);
   }
 });
-test('Writing topic travel, reflow, empty restoration and unchanged scroll preserve local progress', () => {
+test('Writing filters, reflow and empty restoration retain its stationary reading pose', () => {
   const p = visit({ page: 'writing' });
   p.event('site:scene-focus', { focus: 'systems', reason: 'initial' });
   p.settle();
@@ -524,7 +523,7 @@ test('Writing topic travel, reflow, empty restoration and unchanged scroll prese
   assert.equal(p.trace(), fixed);
   p.scroll(1450);
   p.settle();
-  assert.notEqual(p.trace(), fixed);
+  assert.equal(p.trace(), fixed);
   p.event('site:scene-focus', { focus: 'delivery', reason: 'filter' });
   p.settle();
   const changed = p.trace();
@@ -636,7 +635,15 @@ test('route flights use one canvas and global space; retarget, Off and hidden pr
   p.frame(80);
   p.frame(80);
   const flying = JSON.parse(p.trace());
-  assert.ok(flying.position[2] < 24);
+  assert.equal(flying.position[2], 24, 'centering occurs before forward depth travel');
+  assert.ok(flying.framing > 0 && flying.framing < 1);
+  advanceUntil(
+    p,
+    () => p.scene.dataset.cameraStage === 'transit' && JSON.parse(p.trace()).position[2] < 24,
+    'center before the first depth movement',
+    20
+  );
+  assert.ok(JSON.parse(p.trace()).position[2] < 24);
   assert.equal(p.scene.dataset.direction, 'forward');
   p.click();
   p.settle();
@@ -656,7 +663,7 @@ test('route flights use one canvas and global space; retarget, Off and hidden pr
   p.frame(30000);
   assert.equal(p.trace(), paused);
   p.hidden(false);
-  for (let i = 0; i < 30; i++) p.frame(80);
+  finishFlight(p, 'the reversed flight restores its reading pose');
   assert.deepEqual(JSON.parse(p.trace()), model.routePose('index', model.poses.overview));
   assert.equal(p.scene.dataset.travel, 'settled');
   assert.equal(p.canvas, canvas);
@@ -675,7 +682,7 @@ test('short pages and empty archives finish in their destination room', () => {
   for (const page of ['credits', 'writing']) {
     p.window.SiteScene.navigate(page);
     p.window.SiteScene.refresh();
-    for (let i = 0; i < 30; i++) p.frame(80);
+    finishFlight(p, 'short-page flight completes within its finite presentation');
     assert.equal(p.scene.dataset.travel, 'settled');
     assert.deepEqual(
       JSON.parse(p.trace()),
@@ -705,7 +712,7 @@ test('flight models have their settled detail before the first paint, without an
     );
     p.frame(80);
     assert.equal(p.scene.dataset.travel, 'flying');
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i < 60 && p.scene.dataset.travel !== 'settled'; i++) {
       assert.equal(p.scene.dataset.geometry, narrow ? 'compact' : 'full');
       p.frame(80);
     }
@@ -845,8 +852,8 @@ test('direct boot waits for deferred archive/navigation setup and measures the f
     p.settle();
     assert.deepEqual(
       JSON.parse(p.trace()),
-      model.routePose('writing', model.journeyPose(model.topicPaths.leadership, 0, false)),
-      'initial archive focus survives the deferred initialization'
+      model.routePose('writing', model.poses.library),
+      'archive filters cannot change the fixed reading camera'
     );
     p.domReady();
     p.stylesheetLoad();
@@ -922,6 +929,9 @@ test('24-second cycle doubles v8 speed without changing geometry or camera', () 
 function advanceUntil(p, predicate, message, maxFrames = 300) {
   for (let i = 0; i < maxFrames && !predicate(); i++) p.frame(125);
   assert.ok(predicate(), message);
+}
+function finishFlight(p, message) {
+  advanceUntil(p, () => p.scene.dataset.travel === 'settled', message, 60);
 }
 test('observed-cost adaptation preserves the bitmap and DPR caps through resize and Off', () => {
   const p = visit({ paintCost: 30 });
@@ -1030,7 +1040,14 @@ test('severe hold is bounded, preserves preference, and explicit On retries at t
   assert.equal(p.trace(), fixed);
 });
 test('device overload during a long route flight finishes with one still destination paint', () => {
-  const p = visit({ paintCost: 100, saved: 'on' });
+  const events = [],
+    p = visit({
+      paintCost: 100,
+      saved: 'on',
+      probe: (event) => {
+        if (event.kind.startsWith('camera-travel')) events.push(event);
+      },
+    });
   advanceUntil(p, () => p.scene.dataset.quality === '2', 'reach low tier before travelling');
   p.window.SiteScene.navigate('credits');
   for (let i = 0; i < 30 && p.scene.dataset.quality !== 'still'; i++) p.frame(300);
@@ -1045,6 +1062,14 @@ test('device overload during a long route flight finishes with one still destina
   assert.equal(p.draws(), draws + 1);
   assert.equal(p.pending.size, 0);
   assert.equal(p.stored(), 'on');
+  assert.equal(events.filter((event) => event.kind === 'camera-travel-complete').length, 0);
+  assert.deepEqual(
+    events
+      .filter((event) => event.kind === 'camera-travel-cancelled')
+      .map((event) => event.disposition),
+    ['device-hold'],
+    'the adaptive still arrival cannot claim the cancelled programmed presentation'
+  );
 });
 
 test('camera convergence depends on elapsed time, not the RAF frequency', () => {
@@ -1061,7 +1086,7 @@ test('camera convergence depends on elapsed time, not the RAF frequency', () => 
       for (let i = 0; i < 3; i++) assert.ok(Math.abs(p[key][i] - poses[0][key][i]) < 1e-10);
   assert.deepEqual(model.followCamera(from, target, 0), from);
 });
-test('the live RAF camera uses actual elapsed time from its first scroll frame', () => {
+test('the reading camera stays stationary at every RAF frequency', () => {
   const reference = visit();
   reference.settle();
   reference.scroll(1800);
@@ -1248,31 +1273,78 @@ test('detail fades across a tier change and Off freezes the exact displayed deta
   assert.equal(p.pending.size, 0);
 });
 test('travel progress is emitted with the displayed camera, retargets cleanly and completes on draw failure', () => {
-  const p = visit();
+  const cameraEvents = [],
+    p = visit({
+      probe: (event) => {
+        if (event.kind.startsWith('camera-travel')) {
+          cameraEvents.push(event);
+          if (event.kind === 'camera-travel-complete') {
+            assert.equal(p.scene.dataset.travel, 'settled');
+            assert.deepEqual(
+              JSON.parse(p.trace()),
+              model.routePose('research', model.poses.researchOverview)
+            );
+          }
+        }
+      },
+    });
   p.settle();
   const records = [];
-  p.window.SiteScene.navigate('research', true, (value) =>
-    records.push({ value, camera: p.trace() })
+  p.window.SiteScene.navigate(
+    'research',
+    true,
+    (value) => records.push({ value, camera: p.trace() }),
+    null,
+    { navigationId: 1 }
   );
   assert.equal(records.length, 1);
   assert.equal(records[0].value, 0);
-  for (let i = 0; i < 30; i++) p.frame(60);
+  finishFlight(p, 'painted progress finishes after the complete presentation');
   assert.equal(records.at(-1).value, 1);
   assert.equal(records.at(-1).camera, p.trace());
   assert.ok(records.some((x) => x.value > 0.2 && x.value < 0.7));
   assert.ok(records.every((x, i) => i === 0 || x.value >= records[i - 1].value));
+  assert.deepEqual(
+    cameraEvents.map((event) => [event.kind, event.navigationId]),
+    [
+      ['camera-travel', 1],
+      ['camera-travel-complete', 1],
+    ]
+  );
+  assert.equal(cameraEvents[1].disposition, 'arrived');
+  assert.equal(cameraEvents[1].plannedDurationMs, cameraEvents[0].plannedDurationMs);
+  assert.equal(cameraEvents[0].elapsedMs, 0);
+  assert.equal(cameraEvents[1].elapsedMs, cameraEvents[0].plannedDurationMs);
   const next = [];
-  p.window.SiteScene.navigate('credits', true, (value) => next.push(value));
+  p.window.SiteScene.navigate('credits', true, (value) => next.push(value), null, {
+    navigationId: 2,
+  });
   p.frame(80);
   p.window.SiteScene.detachTravel();
   const detached = next.length;
   p.frame(80);
   assert.equal(next.length, detached);
-  p.window.SiteScene.navigate('index', true, (value) => next.push(value));
+  p.window.SiteScene.navigate('index', true, (value) => next.push(value), null, {
+    navigationId: 3,
+  });
   p.drawingFault();
   p.frame(80);
   assert.equal(next.at(-1), 1);
   assert.equal(p.pending.size, 0);
+  assert.deepEqual(
+    cameraEvents
+      .filter((event) => event.kind === 'camera-travel-cancelled')
+      .map((event) => [event.navigationId, event.disposition]),
+    [
+      [2, 'retargeted'],
+      [3, 'failed'],
+    ]
+  );
+  assert.equal(
+    cameraEvents.filter((event) => event.kind === 'camera-travel-complete').length,
+    1,
+    'cancelled and failed flights cannot claim complete visual presentation'
+  );
 });
 
 function assertFlightDepths(paints, sourceZ, endpointZ) {
@@ -1353,17 +1425,17 @@ function reverseEndpointFlight(from, to, narrow) {
     assert.deepEqual(
       paints.at(-1).journey.to,
       target,
-      'the native bottom is the flight target before incoming DOM exists'
+      'the fixed reading pose is the flight target before incoming DOM exists'
     );
     p.scroll(0);
     advanceUntil(
       p,
       () => progress >= 0.5,
       'reverse endpoint flight reaches the hidden content mount',
-      20
+      30
     );
     mountSceneFixture(p, to, 14100);
-    for (let i = 0; i < 30; i++) p.frame(80);
+    finishFlight(p, 'reverse endpoint flight restores the destination reading pose');
     assert.deepEqual(JSON.parse(p.trace()), target);
     assert.equal(progress, 1);
     assertFlightDepths(paints, sourceZ, target.position[2]);
@@ -1394,15 +1466,15 @@ test('departure scroll events cannot retarget a flight through source page geome
     p,
     () => progress >= 0.5,
     'the real displayed flight reaches its mount midpoint',
-    20
+    30
   );
   mountSceneFixture(p, 'research', 0);
-  for (let i = 0; i < 30; i++) p.frame(80);
+  finishFlight(p, 'the destination mount preserves the complete paced flight');
   assert.deepEqual(JSON.parse(p.trace()), target);
   assert.equal(progress, 1);
   assertFlightDepths(paints, sourceZ, target.position[2]);
 });
-test('reverse endpoint flights target the destination bottom before content mount and retain depth direction', () => {
+test('reverse endpoint flights use the fixed reading pose before content mount and retain depth direction', () => {
   for (const narrow of [false, true])
     for (const [from, to] of [
       ['credits', 'talks'],
@@ -1412,7 +1484,7 @@ test('reverse endpoint flights target the destination bottom before content moun
     ])
       reverseEndpointFlight(from, to, narrow);
 });
-test('unknown history and fragment landings hold the displayed camera until destination mount', () => {
+test('history and fragment landings use the fixed destination pose before native content mount', () => {
   const cases = [
     ['research', { position: [0, 7050], hash: '' }, 7050, null],
     ['research', { position: null, hash: '#topics' }, 2200, null],
@@ -1437,17 +1509,17 @@ test('unknown history and fragment landings hold the displayed camera until dest
       p,
       () => progress >= 0.5,
       'an unresolved landing still reaches the hidden content mount',
-      20
+      30
     );
-    assert.equal(
+    assert.notEqual(
       p.trace(),
       displayed,
-      'unknown native geometry must not cause a speculative camera departure'
+      'the known fixed reading pose does not depend on incoming native geometry'
     );
     assert.ok(p.phase() > phase, 'holding the camera does not stop the shared ambient clock');
     const target = nativeReadingPose(to, y, { height: 700, focus });
     mountSceneFixture(p, to, y, focus);
-    for (let i = 0; i < 30; i++) p.frame(80);
+    finishFlight(p, 'the fixed history destination completes its paced flight');
     assert.deepEqual(JSON.parse(p.trace()), target);
     assert.equal(progress, 1);
     assertFlightDepths(paints, JSON.parse(displayed).position[2], target.position[2]);
@@ -1461,7 +1533,7 @@ test('unknown history and fragment landings hold the displayed camera until dest
       assertInstantLanding(to, landing, options);
 });
 
-test('midflight destination layout retargeting preserves the displayed camera and shared ribbon clock', () => {
+test('midflight destination reflow and pauses preserve the staged camera and shared clock', () => {
   const paints = [],
     p = visit({ ribbonProbe: (state) => paints.push(state) });
   p.settle();
@@ -1470,6 +1542,7 @@ test('midflight destination layout retargeting preserves the displayed camera an
     phase = p.phase();
   p.window.SiteScene.navigate('research', true, (value) => records.push(value));
   p.frame(80);
+  const originalDuration = paints.at(-1).journey.duration;
   assert.equal(
     p.trace(),
     before,
@@ -1494,8 +1567,13 @@ test('midflight destination layout retargeting preserves the displayed camera an
   assert.equal(p.phase(), mountedPhase);
   assert.equal(records.at(-1), mountedProgress);
   const retained = paints.at(-1).journey;
-  assert.deepEqual(JSON.parse(p.trace()), retained.from);
-  assert.ok(retained.duration > 0 && retained.duration < 1300);
+  assert.deepEqual(retained.from, JSON.parse(before));
+  assert.equal(retained.duration, originalDuration, 'layout cannot restart the flight deadline');
+  assert.deepEqual(
+    retained.to,
+    model.routePose('research', model.poses.researchOverview),
+    'reflow cannot alter the fixed reading destination'
+  );
   // A skipped RAF can advance the solver without painting. Cancellation must
   // preserve actual displayed progress, not that newer unseen solver state.
   p.frame(80);
@@ -1512,8 +1590,11 @@ test('midflight destination layout retargeting preserves the displayed camera an
   assert.equal(p.trace(), displayedCamera);
   assert.equal(p.phase(), displayedPhase);
   assert.equal(records.at(-1), displayedProgress);
-  for (let i = 0; i < 30; i++) p.frame(80);
-  assert.deepEqual(JSON.parse(p.trace()), model.routePose('research', model.poses.closing));
+  finishFlight(p, 'a paused flight finishes after its remaining presentation');
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('research', model.poses.researchOverview)
+  );
   assert.equal(records.at(-1), 1);
   assert.ok(
     records.every((value, index) => index === 0 || value >= records[index - 1]),
@@ -1534,7 +1615,7 @@ test('midflight destination layout retargeting preserves the displayed camera an
     reversal,
     'quick reversal plus synchronous layout retains its first displayed camera'
   );
-  for (let i = 0; i < 30; i++) p.frame(80);
+  finishFlight(p, 'rapid reversal finishes from the last painted camera');
   assert.deepEqual(JSON.parse(p.trace()), model.routePose('index', model.poses.overview));
   assert.ok(
     paints.every((state) =>
@@ -1561,8 +1642,8 @@ test('a route chosen before the reduced-motion change event paints its static ar
   assert.equal(p.pending.size, 0);
 });
 
-// User-visible regression: archive-bound progress formerly stayed zero here.
-test('Writing responds to the first small gestures before the archive, including after route arrival', () => {
+// First archive gestures animate reading blocks while the camera keeps its composition.
+test('Writing small gestures preserve its fixed camera, including after route arrival', () => {
   for (const arrival of [false, true])
     for (const single of [false, true]) {
       const p = visit({ page: arrival ? 'index' : 'writing', single });
@@ -1571,7 +1652,7 @@ test('Writing responds to the first small gestures before the archive, including
         // The real router installs the destination DOM before its mount flush.
         p.document.body.dataset.page = 'writing';
         p.window.SiteScene.refresh({ sync: true });
-        for (let i = 0; i < 30; i++) p.frame(80);
+        finishFlight(p, 'Writing arrives before native reading gestures');
       }
       p.settle();
       const start = p.trace(),
@@ -1581,7 +1662,7 @@ test('Writing responds to the first small gestures before the archive, including
       for (const y of [100, 200, 400]) {
         p.scroll(y);
         p.settle();
-        assert.notEqual(p.trace(), last, `first gesture at ${y}px`);
+        assert.equal(p.trace(), last, `first gesture at ${y}px`);
         last = p.trace();
       }
       p.scroll(0);
@@ -1659,5 +1740,355 @@ test('Writing world formula stays singular and frozen through Off/reduced and re
     p.settle();
     assert.ok(p.window.SiteScene.diagnostics().formula.paintCount > frozen.paintCount);
     assert.equal(p.formulaConstructions(), 1);
+  }
+});
+test('each route flight centers, travels in depth and restores its reading composition before arrival', () => {
+  for (const narrow of [false, true]) {
+    for (const [from, to] of [
+      ['index', 'research'],
+      ['research', 'index'],
+    ]) {
+      const p = visit({ page: from, narrow });
+      p.settle();
+      const source = JSON.parse(p.trace()),
+        target = model.routePose(to, model.poses[model.initialPoses[to]]),
+        direction = Math.sign(target.position[2] - source.position[2]),
+        records = [];
+      p.window.SiteScene.navigate(to, true, (progress) => {
+        records.push({
+          progress,
+          stage: p.scene.dataset.cameraStage,
+          camera: JSON.parse(p.trace()),
+        });
+      });
+      finishFlight(p, 'every camera leg is painted before route arrival');
+      const stages = [...new Set(records.slice(1).map((record) => record.stage))];
+      assert.deepEqual(stages, ['center', 'transit', 'restore', 'settled']);
+      const centering = records.filter((record) => record.stage === 'center');
+      assert.ok(centering.some((record) => record.camera.framing > 0));
+      assert.ok(centering.every((record) => record.camera.position[2] === source.position[2]));
+      const transit = records.filter((record) => record.stage === 'transit');
+      assert.ok(transit.every((record) => record.camera.framing === 1));
+      assert.ok(
+        transit.every(
+          (record) => record.camera.position[0] === 0 && record.camera.position[1] === 0
+        )
+      );
+      assert.ok(
+        transit.every((record) => record.camera.target[0] === 0 && record.camera.target[1] === 0)
+      );
+      assert.ok(
+        transit.some((record) => direction * (record.camera.position[2] - source.position[2]) > 1)
+      );
+      const restoring = records.filter((record) => record.stage === 'restore');
+      assert.ok(restoring.every((record) => record.camera.position[2] === target.position[2]));
+      assert.ok(restoring.some((record) => record.camera.framing > 0 && record.camera.framing < 1));
+      assert.equal(records.at(-1).progress, 1);
+      assert.deepEqual(records.at(-1).camera, target);
+      assert.equal(records.at(-1).stage, 'settled');
+      assert.equal(p.scene.dataset.framing, '0');
+      assert.ok(
+        records.every(
+          (record, index) => index === 0 || record.progress >= records[index - 1].progress
+        )
+      );
+      assert.equal(p.pending.size, 1, 'the same ambient RAF remains after arrival');
+    }
+  }
+});
+test('Off, hidden and print freeze and resume the displayed centering, transit and restoring stages', () => {
+  const p = visit();
+  p.settle();
+  const progress = [];
+  p.window.SiteScene.navigate('research', true, (value) => progress.push(value));
+  p.frame(80);
+  p.frame(80);
+  for (const [stage, pause, resume] of [
+    ['center', () => p.click(), () => p.click()],
+    ['transit', () => p.hidden(true), () => p.hidden(false)],
+    ['restore', () => p.events.beforeprint(), () => p.events.afterprint()],
+  ]) {
+    advanceUntil(p, () => p.scene.dataset.cameraStage === stage, `reach ${stage}`);
+    const camera = p.trace(),
+      phase = p.phase(),
+      paintedProgress = progress.at(-1);
+    pause();
+    p.frame(30000);
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.trace(), camera);
+    assert.equal(p.phase(), phase);
+    resume();
+    p.frame(0);
+    assert.equal(p.trace(), camera);
+    assert.equal(p.phase(), phase);
+    assert.equal(progress.at(-1), paintedProgress);
+    p.frame(80);
+  }
+  advanceUntil(p, () => progress.at(-1) === 1, 'complete after all stage pauses');
+  assert.equal(p.scene.dataset.cameraStage, 'settled');
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('research', model.poses.researchOverview)
+  );
+  assert.ok(progress.every((value, index) => index === 0 || value >= progress[index - 1]));
+});
+test('same-route navigation keeps a settled reading camera without a zero-depth journey', () => {
+  for (const page of model.routeOrder) {
+    const p = visit({ page });
+    p.settle();
+    const camera = p.trace(),
+      progress = [];
+    p.window.SiteScene.navigate(page, true, (value) => progress.push(value));
+    assert.deepEqual(progress, [1], 'same-route cleanup completes immediately');
+    assert.equal(p.scene.dataset.travel, 'settled');
+    p.frame(80);
+    assert.equal(p.trace(), camera);
+    assert.equal(p.scene.dataset.cameraStage, 'settled');
+    assert.equal(p.scene.dataset.framing, '0');
+    assert.equal(p.pending.size, 1, 'only the existing ambient scene remains active');
+  }
+});
+test('returning to the old mounted route during an interrupted flight still travels backward', () => {
+  const p = visit();
+  p.settle();
+  const opening = p.trace();
+  p.window.SiteScene.navigate('research');
+  advanceUntil(
+    p,
+    () =>
+      p.scene.dataset.cameraStage === 'transit' &&
+      JSON.parse(p.trace()).position[2] < JSON.parse(opening).position[2],
+    'reach forward depth flight',
+    20
+  );
+  const departure = p.trace();
+  assert.equal(p.document.body.dataset.page, 'index', 'the incoming DOM is not mounted yet');
+  assert.notEqual(departure, opening);
+  assert.ok(JSON.parse(departure).position[2] < JSON.parse(opening).position[2]);
+  const progress = [];
+  p.window.SiteScene.navigate('index', true, (value) => progress.push(value));
+  assert.deepEqual(progress, [0], 'returning to the old DOM route starts an actual flight');
+  assert.equal(p.scene.dataset.travel, 'flying');
+  assert.equal(p.scene.dataset.direction, 'backward');
+  p.frame(80);
+  assert.equal(p.trace(), departure, 'the return starts at the last displayed camera');
+  advanceUntil(p, () => progress.at(-1) === 1, 'complete interrupted return');
+  assert.equal(p.trace(), opening);
+  assert.equal(p.scene.dataset.cameraStage, 'settled');
+  assert.equal(p.scene.dataset.framing, '0');
+});
+test('framing and depth flight each retain a readable additive presentation duration', () => {
+  const paints = [],
+    p = visit({ ribbonProbe: (state) => paints.push(state) });
+  p.settle();
+  const source = JSON.parse(p.trace()),
+    target = model.routePose('research', model.poses.researchOverview);
+  p.window.SiteScene.navigate('research');
+  p.frame(80);
+  const planned = paints.at(-1).journey;
+  assert.equal(planned.centerDuration, 400);
+  assert.equal(planned.transitDuration, 1000, 'framing cannot consume the visible depth flight');
+  assert.equal(planned.restoreDuration, 350);
+  assert.equal(planned.duration, 1750, 'all three leg durations contribute to arrival');
+  p.frame(40);
+  p.frame(40);
+  const early = JSON.parse(p.trace());
+  assert.equal(p.scene.dataset.cameraStage, 'center');
+  assert.ok(early.framing > 0 && early.framing < 0.2, 'the first80ms use a gradual ease');
+  assert.equal(early.position[2], source.position[2], 'centering cannot start depth flight early');
+  p.frame(60);
+  p.frame(60);
+  const middle = JSON.parse(p.trace());
+  assert.ok(
+    middle.framing > 0.4 && middle.framing < 0.6,
+    'the framing move remains midway at200ms'
+  );
+  assert.ok(middle.framing > early.framing);
+  advanceUntil(p, () => p.scene.dataset.cameraStage === 'transit', 'paint centered transit', 20);
+  assert.equal(p.scene.dataset.framing, '1');
+  assert.deepEqual(JSON.parse(p.trace()).position.slice(0, 2), [0, 0]);
+  finishFlight(p, 'restoration completes after the full visible transit');
+  assert.deepEqual(JSON.parse(p.trace()), target);
+});
+test('all direct route choices have finite independent camera legs at desktop and mobile widths', () => {
+  let navigationId = 0;
+  for (const narrow of [false, true])
+    for (const from of model.routeOrder) {
+      const paints = [],
+        plans = [],
+        p = visit({
+          page: from,
+          narrow,
+          ribbonProbe: (state) => paints.push(state),
+          probe: (event) => {
+            if (event.kind === 'camera-travel') plans.push(event);
+          },
+        });
+      p.settle();
+      for (const to of model.routeOrder.filter((route) => route !== from)) {
+        plans.length = 0;
+        p.window.SiteScene.navigate(from, false);
+        p.frame(80);
+        assert.deepEqual(plans, [], 'an instant cleanup has no programmed camera presentation');
+        const source = p.trace();
+        p.window.SiteScene.navigate(to, true, null, null, { navigationId: ++navigationId });
+        p.frame(80);
+        const planned = paints.at(-1).journey;
+        assert.equal(p.trace(), source, 'a new request begins at the actual source paint');
+        assert.equal(planned.centerDuration, 400);
+        assert.equal(planned.restoreDuration, 350);
+        assert.equal(planned.transitDuration, 1000);
+        assert.equal(
+          planned.duration,
+          planned.centerDuration + planned.transitDuration + planned.restoreDuration
+        );
+        assert.equal(planned.duration, 1750, 'route distance never extends the camera budget');
+        assert.equal(plans.length, 1, 'one source-owned plan is emitted for the whole journey');
+        assert.equal(plans[0].navigationId, navigationId);
+        assert.equal(plans[0].from, from);
+        assert.equal(plans[0].to, to);
+        assert.equal(plans[0].fromZ, planned.from.position[2]);
+        assert.equal(plans[0].toZ, planned.to.position[2]);
+        assert.equal(plans[0].plannedDurationMs, planned.duration);
+        assert.equal(plans[0].centerDurationMs, planned.centerDuration);
+        assert.equal(plans[0].transitDurationMs, planned.transitDuration);
+        assert.equal(plans[0].restoreDurationMs, planned.restoreDuration);
+        assert.deepEqual(planned.to, model.routePose(to, model.poses[model.initialPoses[to]]));
+        assert.equal(p.scene.dataset.cameraStage, 'center');
+        assert.equal(p.scene.dataset.framing, '0');
+        assert.ok(Number(p.scene.dataset.rooms) <= 3 && Number(p.scene.dataset.roomModels) <= 6);
+        assert.equal(p.pending.size, 1, 'the existing scene clock alone owns all legs');
+      }
+    }
+});
+test('all direct route flights paint only their journey rooms through the last transit frames', () => {
+  for (const narrow of [false, true])
+    for (const from of model.routeOrder)
+      for (const to of model.routeOrder.filter((route) => route !== from)) {
+        const paints = [],
+          p = visit({
+            page: from,
+            narrow,
+            probe: (event) => {
+              if (event.kind !== 'paint') return;
+              const travel = event.journey;
+              paints.push({
+                rooms: event.paintedRooms,
+                lateTransit:
+                  !!travel &&
+                  travel.elapsed >= travel.centerDuration + travel.transitDuration - 80 &&
+                  travel.elapsed < travel.centerDuration + travel.transitDuration,
+              });
+            },
+          });
+        p.settle();
+        paints.length = 0;
+        p.window.SiteScene.navigate(to);
+        for (let frame = 0; frame < 40 && p.scene.dataset.travel !== 'settled'; frame++) {
+          p.frame(80);
+          assert.ok(Number(p.scene.dataset.rooms) <= 3, 'the route cache remains bounded');
+          assert.ok(Number(p.scene.dataset.roomModels) <= 6, 'detail variants remain bounded');
+        }
+        assert.equal(p.scene.dataset.travel, 'settled', `${from} to ${to} completes`);
+        const endpoints = [model.routeOrder.indexOf(from), model.routeOrder.indexOf(to)],
+          journeyRooms = model.routeOrder.slice(Math.min(...endpoints), Math.max(...endpoints) + 1);
+        for (const paint of paints)
+          assert.ok(
+            paint.rooms.every((room) => journeyRooms.includes(room)),
+            `${from} to ${to} cannot flash an unrelated room`
+          );
+        assert.ok(
+          paints.some((paint) => paint.lateTransit),
+          'the late transit was actually painted'
+        );
+        assert.ok(
+          paints.some((paint) => paint.lateTransit && paint.rooms.includes(to)),
+          'the destination remains visible through its late transit'
+        );
+        assert.ok(
+          journeyRooms.every((room) => paints.some((paint) => paint.rooms.includes(room))),
+          'long flights retain every intermediate room'
+        );
+        assert.deepEqual([...paints.at(-1).rooms], [to], 'restoration paints only the destination');
+      }
+});
+test('retargeted flights retain their displayed room pair, including reverse and same-cell starts', () => {
+  const cases = [
+    { from: 'index', first: 'credits', next: 'talks', frames: 9 },
+    { from: 'index', first: 'credits', next: 'writing', frames: 17 },
+    { from: 'credits', first: 'index', next: 'research', frames: 9 },
+    { from: 'index', first: 'research', next: 'writing', frames: 18 },
+    { from: 'index', first: 'research', next: 'index', frames: 18 },
+  ];
+  for (const narrow of [false, true])
+    for (const { from, first, next, frames } of cases) {
+      const paints = [],
+        models = [],
+        p = visit({
+          page: from,
+          narrow,
+          probe: (event) => {
+            if (event.kind === 'paint') paints.push(event);
+            if (event.kind === 'model') models.push(event);
+          },
+        });
+      p.settle();
+      p.window.SiteScene.navigate(first);
+      for (let frame = 0; frame < frames; frame++) p.frame(80);
+      assert.equal(p.scene.dataset.cameraStage, 'transit', 'interrupt an actual depth flight');
+      const displayed = p.trace(),
+        rooms = [...paints.at(-1).paintedRooms].sort();
+      assert.ok(rooms.length > 0, 'the source geometry was actually painted');
+      models.length = 0;
+      p.window.SiteScene.navigate(next);
+      const preparedModels = models.length;
+      p.frame(80);
+      assert.equal(
+        models.length,
+        preparedModels,
+        'the displayed source pair is ready before paint'
+      );
+      assert.equal(p.trace(), displayed, 'the replacement starts at the displayed camera');
+      assert.deepEqual(
+        [...paints.at(-1).paintedRooms].sort(),
+        rooms,
+        'the first replacement paint keeps the same contributing rooms'
+      );
+      finishFlight(p, 'the replacement completes without losing its departure rooms');
+      assert.deepEqual([...paints.at(-1).paintedRooms], [next]);
+      assert.ok(Number(p.scene.dataset.rooms) <= 3 && Number(p.scene.dataset.roomModels) <= 6);
+    }
+});
+test('retargeting each longer camera leg cancels its plan and completes from its last real paint', () => {
+  for (const [index, stage] of ['center', 'transit', 'restore'].entries()) {
+    const events = [],
+      p = visit({
+        narrow: true,
+        probe: (event) => {
+          if (event.kind.startsWith('camera-travel')) events.push(event);
+        },
+      });
+    p.settle();
+    const firstId = index * 2 + 1,
+      secondId = firstId + 1;
+    p.window.SiteScene.navigate('research', true, null, null, { navigationId: firstId });
+    p.frame(80);
+    p.frame(80);
+    advanceUntil(p, () => p.scene.dataset.cameraStage === stage, 'reach interrupted ' + stage, 40);
+    const displayed = p.trace();
+    p.window.SiteScene.navigate('index', true, null, null, { navigationId: secondId });
+    p.frame(80);
+    assert.equal(p.trace(), displayed, 'retargeting cannot jump from an unpainted solver pose');
+    const cancelled = events.find((event) => event.kind === 'camera-travel-cancelled');
+    assert.equal(cancelled.navigationId, firstId);
+    assert.equal(cancelled.disposition, 'retargeted');
+    assert.equal(events.filter((event) => event.kind === 'camera-travel-complete').length, 0);
+    finishFlight(p, 'the replacement completes its own finite visual sequence');
+    const completed = events.filter((event) => event.kind === 'camera-travel-complete');
+    assert.equal(completed.length, 1);
+    assert.equal(completed[0].navigationId, secondId);
+    assert.equal(completed[0].disposition, 'arrived');
+    assert.deepEqual(JSON.parse(p.trace()), model.routePose('index', model.poses.overview));
+    assert.equal(p.pending.size, 1);
   }
 });

@@ -5,6 +5,7 @@ const assert = require('node:assert/strict'),
   { pathToFileURL } = require('node:url');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const { matchesRoute } = require('./fallback-url.cjs');
+const cameraTiming = require('./transition-pacing.json').camera;
 async function ready(page, id) {
   await page.waitForFunction(
     (id) =>
@@ -74,6 +75,10 @@ function cameraSettlingSample() {
     return true;
   }
   probe.quietStart = null;
+  if (sample.travel !== 'settled' || previous?.travel !== 'settled') {
+    probe.same = 0;
+    return false;
+  }
   if (previous?.camera !== sample.camera) probe.same = 0;
   if (previous?.phase === sample.phase) return false;
   probe.same = previous?.camera === sample.camera ? (probe.same || 0) + 1 : 0;
@@ -83,17 +88,23 @@ function cameraSettlingSample() {
   return true;
 }
 async function settledCamera(page) {
+  const flying = await page.evaluate(
+      () => document.querySelector('.space-scene').dataset.travel === 'flying'
+    ),
+    timeoutMs =
+      3000 + (flying ? cameraTiming.centerMs + cameraTiming.transitMs + cameraTiming.restoreMs : 0);
   await page.evaluate(
-    () =>
+    (timeoutMs) =>
       (window.__engineCameraSettling = {
         start: performance.now(),
-        timeoutMs: 3000,
+        timeoutMs,
         status: 'sampling',
         samples: [],
-      })
+      }),
+    timeoutMs
   );
   try {
-    await page.waitForFunction(cameraSettlingSample, null, { polling: 50, timeout: 3000 });
+    await page.waitForFunction(cameraSettlingSample, null, { polling: 50, timeout: timeoutMs });
   } catch (error) {
     await page
       .evaluate((reason) => {
@@ -209,18 +220,13 @@ async function writingGestures(page) {
     // WebKit layout/scroll delivery. A fixed 260ms could retain a transient pose.
     const start = await settledCamera(page),
       phase = await page.locator('.space-scene').getAttribute('data-phase');
-    let previous = start;
     for (const y of [100, 200, 400]) {
       await page.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), y);
-      await page.waitForFunction(
-        (previous) => document.querySelector('.space-scene').dataset.camera !== previous,
-        previous,
-        { polling: 50, timeout: 2000 }
-      );
-      const next = await camera(page);
-      previous = next;
-      assert.notEqual(next, start, 'Writing first gesture ' + y);
-      observations.push({ filter: filter ? 'single' : 'all', y, camera: next });
+      const next = await settledCamera(page),
+        actualY = await page.evaluate(() => scrollY);
+      assert.equal(next, start, 'Writing keeps its reading camera at gesture ' + y);
+      assert.ok(actualY > 0, 'Writing retains native scroll at gesture ' + y);
+      observations.push({ filter: filter ? 'single' : 'all', y: actualY, camera: next });
     }
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
     await page.waitForFunction(
