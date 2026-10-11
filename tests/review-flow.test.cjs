@@ -1065,7 +1065,7 @@ test('workflow publishes through the official action, excludes full tests from P
     /artifact.name,'site-review-package-'\+previous.runId\+'-'\+previous.attempt/
   );
   const smoke = text.split('\n  smoke:\n')[1].split('\n  full:\n')[0];
-  assert.match(smoke, /if: needs.target.outputs.mode == 'preview'/);
+  assert.match(smoke, /always\(\) && needs.target.outputs.mode == 'preview'/);
   assert.match(smoke, /local-browser.cjs --smoke/);
   assert.match(smoke, /SITE_PUBLIC_VARIANT: \$\{\{ needs.build.outputs.variant \}\}/);
   assert.doesNotMatch(smoke, /secrets\.|lighthouse|scanners.cjs|motion.cjs/);

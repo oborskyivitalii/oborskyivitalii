@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "92a5ec571c4923ec70bf26f5ea7716b5d47cdfd6e797caa9d04c3eb99c681442",
+    "digest": "63f1e867c22081e33b91ec2f7a94f5ac273545c287376e6285e149a167fb083b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "18c3ad68058b040850709d5686f551a4f889f0c92d9c8bc517a1539d2c6db657"
+        "sha256": "e2763bccd1c842600ee6739a6f0a885694b5bce03ec80add4b0b68d128410e84"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -186,7 +186,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "6b31d72c4400e01de3bef981a5c5ea666df41cf86cec80d78bbc4fa4f9e7691f"
+        "sha256": "81f5dde08d3736e28e35812a219a69344698a40ee89a62febb2d4c0bee29b594"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -910,7 +910,7 @@
       {
         "path": "review/issue-72/2026-10-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "c11467e629d5a9a624f0f7b886086e36749a614edfc4e8181722256980186358"
+        "sha256": "e4f062b123b174bc14881e1b2528876cd5de0b727856e5cd0134a8bb402e37e5"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5215,7 +5215,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "fff56a7f0aec6e65e87455c1456cbccae910b5e0f88ebf6c9e0ac7b3ec4f09ce"
+        "sha256": "7f855d45801e4ad8d77eb5cff5990954df5c0440ad8fcb2e6a9bd2f1628e0e0f"
       },
       {
         "path": "tests/ribbons.test.cjs",

@@ -184,7 +184,9 @@ jobs:
           retention-days: 90
   publish:
     needs: [target, build]
-    if: needs.target.outputs.enabled == 'true'
+    if: >-
+      always() && needs.target.result == 'success' && needs.build.result == 'success' &&
+      needs.target.outputs.enabled == 'true' && !cancelled()
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     environment: ${{ needs.target.outputs.mode == 'preview' && 'preview' || 'staging' }}
@@ -237,6 +239,7 @@ jobs:
           command: pages deploy staging-package/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=${{ needs.target.outputs.branch }} --commit-hash=${{ needs.target.outputs.source }} --commit-dirty=false
   published-comment:
     needs: [target, publish]
+    if: always() && needs.publish.result == 'success' && !cancelled()
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     continue-on-error: true
@@ -262,7 +265,10 @@ jobs:
             const status=process.env.REVIEW_PROTOTYPE==='true'?'Prototype published; HTTP identity pending. Source and browser admission deferred.':'Published; '+(process.env.REVIEW_MODE==='preview'&&process.env.REVIEW_EVIDENCE!=='true'?'minimal hosted smoke':'bounded staging regression')+' pending.';
             await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:process.env.REVIEW_URL,alias:process.env.REVIEW_ALIAS,status,run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});
   smoke:
-    if: needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true'
+    if: >-
+      always() && needs.target.outputs.mode == 'preview' && needs.target.outputs.evidence != 'true' &&
+      needs.target.result == 'success' && needs.build.result == 'success' &&
+      needs.publish.result == 'success' && !cancelled()
     needs: [target, build, publish]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -310,8 +316,9 @@ jobs:
   stage-evidence:
     needs: [target, build, publish]
     if: >-
-      github.event_name == 'pull_request' && needs.target.outputs.evidence == 'true' &&
-      needs.target.result == 'success' && needs.build.result == 'success' && needs.publish.result == 'success'
+      always() && github.event_name == 'pull_request' && needs.target.outputs.evidence == 'true' &&
+      needs.target.result == 'success' && needs.build.result == 'success' &&
+      needs.publish.result == 'success' && !cancelled()
     uses: ./.github/workflows/site-release-checks.yml
     with:
       candidate_sha: ${{ needs.target.outputs.source }}
