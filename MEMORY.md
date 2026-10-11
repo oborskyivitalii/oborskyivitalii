@@ -4,10 +4,12 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 ## Snapshot
 
-- Main is `8389eb0145940c0f269fc7240d854a5b38c64c08` after reviewed
-  [PR75](https://github.com/oborskyivitalii/oborskyivitalii/pull/75), full tree
-  `a945b1e610f4c1e551ee8847be647179855259b3`, exactly equal to tested raw head
-  `82d5572fbfd45b462d4c1fb37a246698e4393456`. Revalidate live tip.
+- Main is `7b0d5b68a922eea64d77f50f574f50e1bf184571` after merged PR71
+  and the preceding PR75 controller. Live refs verified on11October.
+- New [#76](https://github.com/oborskyivitalii/oborskyivitalii/issues/76) preview
+  branch `work/issue-76-scene-scroll-preview` implements outside Appearance
+  dismissal, continuous room visibility, repeatable downward entry and five
+  shared compositions. Draft publication pending at this checkpoint; no merge.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -15,11 +17,9 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 - Its ordinary postmerge identity38167640337/1 failed `missing staging admission`.
   Main navigation38167640287 passed. The approved bootstrap is not a green
   postmerge admission result. Earlier bootstrap and stage failures stay failed.
-- [#69](https://github.com/oborskyivitalii/oborskyivitalii/issues/69) remains in
-  [PR71](https://github.com/oborskyivitalii/oborskyivitalii/pull/71), undergoing
-  rebase from raw `fa95fc3516392f6c36991f40d455ec5516291960` onto current main.
-  Raw fa95 source484/484 and bounded source463/463 passed; stage38161511583 failed
-  trusted-main legacy Color expectations after Pages deployment/HTTP passed.
+- #69 / PR71 code is integrated into main. Earlier failed stage38161511583
+  remains failed historical evidence; its remaining physical/lifecycle/full-cost
+  acceptance stays separate from merge and the new #76 preview.
 - Cloudflare recovery114538536517 restored prior stable sourcec08741db.
   First Pages publication remains explicitly unaccepted with no prior accepted
   baseline. PR75 authenticates that exact package only as failed-first recovery.
@@ -27,6 +27,10 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
   complete administration, stable accepted revision and production remain distinct.
 
 ## Decisions
+
+- New11October instruction: issue76 preview first. It supersedes one-shot
+  reading for ordinary downward re-entry; source/staging/production admission
+  is deferred until visual review. Existing fallback and resource limits stay.
 
 - At21:20 Europe/Warsaw on11October the maintainer answered **«Ок давай»** to
   concrete one-time PR75 controller integration before ordinary two-host staging,
@@ -57,7 +61,8 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #69 / PR71 | Finish current rebase, exact native source/RI/owning checks, actual both-host staging, unchanged-tree merge and ordinary postmerge identity. Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate. |
+| #76 / preview branch | Inspect Draft preview; confirm outside dismissal, continuous forward/reverse rooms, repeat down/up/down entries and distinct shared layouts. Ready-source/hosted/device/cost admission remains later. |
+| #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
 | #72 | Current-controller both-host stable acceptance/recovery, strict additional admission setting and remaining whole criteria. PR75 integration is observed under its scoped decision; ordinary admission remains pending. |
 | #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |
 | #41 / Draft PR68 | Separate editorial and author-first intent; no task merge is inferred. |
@@ -67,14 +72,11 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 ## Next session
 
-1. Revalidate main, PR71 head/checks and live #69/#72. Their latest evidence
-   supersedes this dated preparation; preserve failed attempts and recovery.
-2. Freeze reviewed combined source with original runtime bytes and both guard
-   branches; verify catalog/profile/ledger preservation and fresh generated RI/CI.
-3. Obtain real exact-head checks and a new complete two-host `/stage`, then merge
-   only its unchanged admitted tree and verify actual postmerge identity.
-4. Tick only whole criteria with every original gate verified; keep unresolved
-   device/lifecycle/cost/rights/production obligations and umbrella issues open.
+1. Revalidate issue76 Draft head and its preview, current main and owner feedback.
+2. Continue in the same issue/PR; fix observed visual defects before ready admission.
+3. After visual approval, run exact-head source/RI/owning and hosted checks,
+   with explicit new-runtime identity review. No automatic merge/production.
+4. Keep older device/lifecycle/cost/rights/release gates and failed attempts honest.
 
 ## Maintenance
 

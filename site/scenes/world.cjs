@@ -2,9 +2,68 @@
 // Native function factory; the producer serializes this exact authored function.
 module.exports = function (math) {
   const { add, normalize, facePlane, owns } = math;
-  // Finite symbol/detail templates are shared by every room. No route models
-  // or browser objects live here; the vocabulary bounds this immutable cache.
+  // Finite symbol/detail templates are shared by every room. The cache stores
+  // no route models or browser objects; the vocabulary bounds its geometry.
   const templates = new Map();
+  // Each room keeps the common symbols but places their finite hierarchy in
+  // its own spatial composition. These transforms never enter template keys.
+  const sharedCompositions = {
+    index: {
+      width: 9.6,
+      height: 2.8,
+      depth: 8,
+      depthWave: 1.4,
+      turn: 0.05,
+      winding: 0.13,
+      branchLift: 1.4,
+      scale: 1.12,
+      phase: 0,
+    },
+    research: {
+      width: 10.4,
+      height: 5.2,
+      depth: 10,
+      depthWave: 2,
+      turn: -0.24,
+      winding: 0.24,
+      branchLift: -1.3,
+      scale: 1.08,
+      phase: 1.1,
+    },
+    writing: {
+      width: 11,
+      height: 1.2,
+      depth: 6,
+      depthWave: 1.8,
+      turn: 0.18,
+      winding: -0.18,
+      branchLift: 1.8,
+      scale: 1.16,
+      phase: 2.2,
+    },
+    talks: {
+      width: 9.2,
+      height: 4.3,
+      depth: 10,
+      depthWave: 3.2,
+      turn: 0.3,
+      winding: 0.17,
+      branchLift: -1,
+      scale: 1.04,
+      phase: 3.3,
+    },
+    credits: {
+      width: 10.1,
+      height: 3.2,
+      depth: 11,
+      depthWave: 2,
+      turn: -0.14,
+      winding: -0.23,
+      branchLift: 1.1,
+      scale: 1.1,
+      phase: 4.4,
+    },
+  };
   // Finite recursive grammars use modeled symbols as their terminal geometry.
   // Immutable geometry is built once; every animated pose is evaluated from it.
   function worldFor(page, compact = false) {
@@ -961,7 +1020,11 @@ module.exports = function (math) {
     // A common angular grammar threads every thematic room. Each branch uses
     // the same finite 1 + 2 + 4 hierarchy and clear camera corridor.
     function sharedGeometry() {
-      // Replace shared terminals, keeping the same bounded 56-object hierarchy.
+      const composition = owns(sharedCompositions, page)
+        ? sharedCompositions[page]
+        : sharedCompositions.index;
+      // Changing room composition never changes the bounded 56-object hierarchy
+      // or the shared terminal/detail cache and its geometry allocation limits.
       const brain = ({ path, face, poly, box }) => {
         // Two closed lobes, a real fissure, cortical folds and a stem. The small
         // fixed mesh carries volume; the grooves carry the recognisable silhouette.
@@ -1370,6 +1433,7 @@ module.exports = function (math) {
         const slot = depth === 0 ? root * 2 + (index === 8 ? 1 : 0) : index + root * 3;
         const [symbol, build] = geometry[slot % geometry.length],
           name = `shared-${root}-${index}`;
+        const angle = composition.turn + root * composition.winding;
         detail = depth ? 1 : 0;
         metadata = {
           family: 'shared',
@@ -1379,37 +1443,59 @@ module.exports = function (math) {
           root,
           rootCenter: roots[root],
           parent,
-          phase: index * 0.71 + root * 1.9,
+          phase: index * 0.71 + root * 1.9 + composition.phase,
         };
         const readable = symbol === 'brain' || symbol.includes('chart') || owns(formulas, symbol);
         object(
           name,
           center,
-          readable ? [0.12, -0.18, 0.08 * Math.sin(index + root)] : [0.3, 0.45, index * 0.6],
+          readable
+            ? [0.12, -0.18, composition.turn + 0.08 * Math.sin(index + root)]
+            : [0.3, 0.45, index * 0.6 + angle],
           scale,
           root > 1 ? 'distant' : 'middle',
           build
         );
         if (depth === 2) return;
-        for (let j = 0; j < 2; j++)
+        for (let j = 0; j < 2; j++) {
+          const x = (j ? 1 : -1) * scale * 2.6;
+          const y = scale * composition.branchLift;
+          const z = -scale * (1.4 + 0.4 * Math.sin(index + composition.phase));
           branch(
-            add(center, [(j ? 1 : -1) * scale * 2.6, scale * 1.7, -scale * 1.4]),
+            add(center, [
+              x * Math.cos(angle) - y * Math.sin(angle),
+              x * Math.sin(angle) + y * Math.cos(angle),
+              z,
+            ]),
             scale * 0.43,
             depth + 1,
             root,
             index * 2 + j + 1,
             name
           );
+        }
       }
-      for (let root = 0; root < roots.length; root++)
-        for (let side = 0; side < 2; side++)
+      for (let root = 0; root < roots.length; root++) {
+        const angle = composition.turn + root * composition.winding;
+        for (let side = 0; side < 2; side++) {
+          const x = (side ? 1 : -1) * composition.width;
+          const y = (side ? -1 : 1) * composition.height;
+          const z =
+            -composition.depth +
+            composition.depthWave * Math.sin(root * 1.3 + side * 1.7 + composition.phase);
           branch(
-            add(roots[root], [(side ? 1 : -1) * 10, side ? -3 : 3, -9]),
-            1.2,
+            add(roots[root], [
+              x * Math.cos(angle) - y * Math.sin(angle),
+              x * Math.sin(angle) + y * Math.cos(angle),
+              z,
+            ]),
+            composition.scale,
             0,
             root,
             side ? 8 : 0
           );
+        }
+      }
     }
     const light = normalize([-0.55, 0.85, 1]);
     for (const f of faces) prepareFace(f, light);

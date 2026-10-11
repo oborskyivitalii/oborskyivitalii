@@ -132,6 +132,7 @@ function harness({
       getPropertyValue: (name) => {
         if (name === '--scroll-entry-distance') return '88px';
         if (name === '--block-motion-duration') return '700ms';
+        if (name === '--block-motion-stagger') return '80ms';
         if (name === '--block-motion-phase') return '1000ms';
         if (name.endsWith('-color') && element.attributes?.has('data-entry-border-source'))
           return 'transparent';
@@ -167,11 +168,11 @@ function harness({
     window.scrollY = y;
     window.emit('scroll');
   }
-  function intersect(indices, observer = observers.at(-1)) {
+  function intersect(indices, observer = observers.at(-1), isIntersecting = true) {
     observer.callback(
       indices.map((index) => ({
         target: elements[index],
-        isIntersecting: true,
+        isIntersecting,
         boundingClientRect: elements[index].getBoundingClientRect(),
       }))
     );
@@ -216,6 +217,7 @@ function harness({
     state,
     scroll,
     intersect,
+    leave: (indices) => intersect(indices, observers.at(-1), false),
     task,
     routeWatchdog,
     preference(next) {
@@ -236,25 +238,74 @@ test('entry boot keeps the first fold steady and arms only safe below-fold shell
   const h = harness();
   assert.equal(h.state(0), undefined);
   assert.equal(h.state(1), 'waiting');
-  assert.equal(h.observers[0].options.rootMargin, '0px 0px -90px 0px');
+  assert.equal(h.observers[0].options.rootMargin, '0px');
   h.elements[7].top = 11900;
   h.window.emit('resize');
   h.task(0);
   assert.equal(h.state(7), undefined, 'bottom guard prevents transformed overflow growth');
 });
 
-test('entry down moves once, settles by animation event and never replays upward', () => {
+test('reconciliation snapshots native page extent once for all reading candidates', () => {
+  const h = harness({ count: 24 });
+  let reads = 0;
+  Object.defineProperty(h.document.documentElement, 'scrollHeight', {
+    get() {
+      reads++;
+      return 24000;
+    },
+  });
+  h.window.emit('resize');
+  h.task(0);
+  assert.equal(reads, 1, 'arming each shell cannot trigger another native extent read');
+  assert.equal(h.state(1), 'waiting');
+  assert.equal(h.state(20), 'waiting');
+});
+
+test('entry repeats on every full downward re-entry and never animates upward', () => {
+  const h = harness();
+  for (let pass = 0; pass < 4; pass++) {
+    h.scroll(200);
+    h.intersect([1]);
+    assert.equal(h.state(1), 'entering');
+    h.tick(700);
+    h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[1] });
+    assert.equal(h.state(1), undefined);
+    assert.equal(h.tasks.size, 0);
+    assert.ok(h.observers.at(-1).observed.has(h.elements[1]), 'settled shells retain crossings');
+    h.scroll(150);
+    h.intersect([1]);
+    assert.equal(h.state(1), undefined, 'upward reading remains native');
+    h.scroll(0);
+    h.leave([1]);
+    assert.equal(h.state(1), 'waiting', 'only a complete offscreen bottom exit rearms');
+  }
+});
+
+test('zero-delta notifications and delayed ordinary crossings preserve the downward reveal', () => {
+  const h = harness();
+  h.scroll(400);
+  h.scroll(800);
+  h.scroll(800);
+  h.intersect([1]);
+  assert.equal(
+    h.state(1),
+    'entering',
+    'queued crossing is not mistaken for an upward or idle visit'
+  );
+  h.controller.destroy();
+  assert.equal(h.tasks.size, 0);
+});
+
+test('the initial fold only becomes repeatable after leaving completely below the viewport', () => {
   const h = harness();
   h.scroll(200);
-  h.intersect([1]);
-  assert.equal(h.state(1), 'entering');
-  h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[1] });
-  assert.equal(h.state(1), undefined);
-  assert.equal(h.tasks.size, 0);
+  h.intersect([0]);
+  assert.equal(h.state(0), undefined, 'initial visible content stays native');
+  h.elements[0].top = 500;
   h.scroll(0);
-  h.scroll(200);
-  h.intersect([1]);
-  assert.equal(h.state(1), undefined);
+  h.leave([0]);
+  assert.equal(h.state(0), undefined, 'a partial native viewport exit cannot prepare visible ink');
+  h.controller.destroy();
 });
 
 test('entry tall blocks use a low threshold and sibling delay stays local and bounded', () => {
@@ -273,7 +324,7 @@ test('entry tall blocks use a low threshold and sibling delay stays local and bo
   assert.equal(h.state(1), 'entering');
 });
 
-test('entry large jumps, late callbacks and upward movement settle immediately', () => {
+test('entry large native jumps and upward movement settle immediately', () => {
   const h = harness();
   h.scroll(950);
   h.intersect([1]);
@@ -287,15 +338,53 @@ test('entry large jumps, late callbacks and upward movement settle immediately',
   assert.equal(h.state(2), undefined);
 });
 
-test('entry active work is capped and cancellation fallback releases timers', () => {
+test('dense ordinary entries queue instead of consuming the excess and keep six active timers', () => {
   const h = harness({ count: 10 });
+  h.elements.forEach((element, index) => {
+    element.top = 1000 + index * 8;
+    element.height = 24;
+  });
+  h.window.emit('resize');
+  h.task(0);
   h.scroll(200);
   h.intersect([1, 2, 3, 4, 5, 6, 7, 8]);
   assert.equal(h.controller.diagnostics().active, 6);
-  assert.equal(h.state(7), undefined);
+  assert.equal(h.state(7), 'waiting');
+  assert.equal(h.tasks.size, 6);
+  h.tick(700);
+  h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[1] });
+  assert.equal(h.state(7), 'entering', 'first completed slot starts the next native shell');
+  assert.equal(h.controller.diagnostics().active, 6);
+  h.tick(80);
+  h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[2] });
+  assert.equal(h.state(8), 'entering');
+  assert.equal(h.tasks.size, 6);
   h.task(2000);
   assert.equal(h.controller.diagnostics().active, 0);
   assert.equal(h.tasks.size, 0);
+});
+
+test('queued entries settle on watchdog failure, upward interruption and native jumps', () => {
+  for (const interruption of ['watchdog', 'upward', 'jump', 'off', 'destroy']) {
+    const h = harness({ count: 10 });
+    h.elements.forEach((element, index) => {
+      element.top = 1000 + index * 8;
+      element.height = 24;
+    });
+    h.window.emit('resize');
+    h.task(0);
+    h.scroll(200);
+    h.intersect([1, 2, 3, 4, 5, 6, 7, 8]);
+    assert.equal(h.state(8), 'waiting');
+    if (interruption === 'watchdog') h.task(2000);
+    if (interruption === 'upward') h.scroll(150);
+    if (interruption === 'jump') h.scroll(1200);
+    if (interruption === 'off') h.preference(false);
+    if (interruption === 'destroy') h.controller.destroy();
+    assert.equal(h.state(8), undefined, interruption + ' releases queued native ink');
+    assert.equal(h.controller.diagnostics().active, 0);
+    assert.equal(h.tasks.size, 0);
+  }
 });
 
 test('entry stale callbacks and cached-node remount cannot leak old state or listeners', () => {
@@ -314,6 +403,24 @@ test('entry stale callbacks and cached-node remount cannot leak old state or lis
   assert.equal(h.tasks.size, 0);
   assert.equal(h.window.events.get('scroll').size, 0);
   assert.ok(h.elements.every((element) => element.attributes.size === 0));
+});
+
+test('a stale reading completion cannot settle a newer retained-shell reveal early', () => {
+  const h = harness();
+  h.scroll(200);
+  h.intersect([1]);
+  h.tick(600);
+  h.scroll(0);
+  h.leave([1]);
+  h.scroll(200);
+  h.intersect([1]);
+  h.tick(100);
+  h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[1] });
+  assert.equal(h.state(1), 'entering', 'old completion cannot consume the fresh animation');
+  h.tick(600);
+  h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[1] });
+  assert.equal(h.state(1), undefined);
+  assert.equal(h.tasks.size, 0);
 });
 
 test('entry awaits effective motion readiness and settles on Off, hold or failure', () => {
@@ -669,6 +776,7 @@ test('route-only cleanup cancels transient promises without consuming below-fold
     'entering',
     'route preference cleanup leaves ordinary active reading intact'
   );
+  h.tick(700);
   h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: h.elements[1] });
   assert.equal(h.state(1), undefined);
   h.controller.cancel();
@@ -948,6 +1056,60 @@ test('separator layers preserve every native side and restore paint across hold,
   assert.equal(element.attributes.get('data-entry-border-source'), undefined);
   h.controller.destroy();
   assert.equal(element.attributes.size, 0);
+});
+
+test('repeat reading keeps shared ancestor side ownership and native paint while a sibling is armed', () => {
+  const h = harness({ count: 4 });
+  const [first, second] = h.elements;
+  const source = h.elements[3];
+  first.top = 1000;
+  second.top = 1900;
+  source.top = 950;
+  source.height = 2000;
+  source.contains = (node) => [source, first, second].includes(node);
+  first.parentElement = source;
+  second.parentElement = source;
+  for (const side of ['top', 'bottom']) {
+    source.borders[`border-${side}-width`] = '1px';
+    source.borders[`border-${side}-style`] = 'solid';
+    source.borders[`border-${side}-color`] = 'rgb(10, 40, 70)';
+  }
+  h.root.querySelectorAll = (selector) =>
+    selector.startsWith('.shift-intro,') ? [source] : [first, second];
+  h.controller.resume();
+  assert.equal(first.children[0].attributes.get('data-entry-separator'), 'top');
+  assert.equal(second.children[0].attributes.get('data-entry-separator'), 'bottom');
+  for (let pass = 0; pass < 3; pass++) {
+    h.scroll(200);
+    h.intersect([0]);
+    h.tick(700);
+    h.root.emit('animationend', { animationName: 'scroll-entry-rise', target: first });
+    h.scroll(0);
+    h.leave([0]);
+    assert.equal(first.children.length, 1, 'rearmed owner receives only its original native side');
+    assert.equal(first.children[0].attributes.get('data-entry-separator'), 'top');
+    assert.equal(first.children[0].styles.get('--entry-separator-color'), 'rgb(10, 40, 70)');
+    assert.equal(second.children.length, 1, 'sibling retains its own bottom divider');
+    assert.equal(second.children[0].attributes.get('data-entry-separator'), 'bottom');
+    assert.equal(second.children[0].styles.get('--entry-separator-color'), 'rgb(10, 40, 70)');
+    assert.notEqual(
+      source.attributes.get('data-entry-border-top-owner'),
+      source.attributes.get('data-entry-border-bottom-owner')
+    );
+  }
+  for (const side of ['top', 'bottom']) source.borders[`border-${side}-color`] = 'rgb(70, 40, 10)';
+  h.window.emit('resize');
+  h.task(0);
+  assert.ok(
+    [first, second].every(
+      (element) => element.children[0].styles.get('--entry-separator-color') === 'rgb(70, 40, 10)'
+    ),
+    'full reconciliation replaces retained models with current restored native paint'
+  );
+  h.controller.destroy();
+  assert.equal(source.attributes.has('data-entry-border-source'), false);
+  assert.equal(first.children.length, 0);
+  assert.equal(second.children.length, 0);
 });
 
 test('visible isolated ancestor separators move without pulling unseen content into the phase', async () => {

@@ -600,8 +600,9 @@ test('every page has eight semantic motifs, three recursive depths, immutable to
   }
   assert.equal(identities.size, 5);
 });
-test('all five worlds share the same multiscale angular geometry beside their own motifs', () => {
-  const common = (page) => model.worldFor(page).objects.filter((o) => o.family === 'shared');
+test('all five worlds share bounded symbol geometry in distinct deterministic spatial compositions', () => {
+  const common = (page, compact = false) =>
+    model.worldFor(page, compact).objects.filter((o) => o.family === 'shared');
   const first = common('index');
   assert.equal(first.length, 56);
   for (const symbol of [
@@ -615,16 +616,73 @@ test('all five worlds share the same multiscale angular geometry beside their ow
   ])
     assert.ok(first.some((o) => o.symbol === symbol));
   assert.deepEqual([...new Set(first.map((o) => o.depth))].sort(), [0, 1, 2]);
-  const signature = (objects) =>
-    objects.map(({ name, center, scale, depth, parent, symbol }) => ({
+  const topology = (objects) =>
+    objects.map(({ name, depth, parent, symbol, faceCount, lineCount }) => ({
       name,
-      center,
-      scale,
       depth,
       parent,
       symbol,
+      faceCount,
+      lineCount,
     }));
-  for (const page of model.routeOrder) assert.deepEqual(signature(common(page)), signature(first));
+  const composition = (objects) =>
+    objects.map(({ center, scale, phase }) => ({ center, scale, phase }));
+  const worlds = model.routeOrder.map((page) => common(page));
+  for (let i = 0; i < worlds.length; i++) {
+    const page = model.routeOrder[i];
+    const objects = worlds[i];
+    assert.deepEqual(topology(objects), topology(first), page + ' preserves symbol/detail budgets');
+    assert.deepEqual(
+      composition(common(page, true)),
+      composition(objects),
+      page + ' quality parity'
+    );
+    assert.deepEqual(common(page), objects, page + ' unchanged by visiting or caching other rooms');
+    for (const object of objects) {
+      assert.ok(object.center.every(Number.isFinite));
+      assert.ok(object.scale > 0 && object.scale <= 1.2, 'no enlarged instance or geometry budget');
+      assert.ok(
+        Math.hypot(...object.center.map((value, axis) => value - object.rootCenter[axis])) < 22,
+        'composition stays beside its existing room anchors'
+      );
+    }
+    for (let j = 0; j < i; j++) {
+      const previous = worlds[j];
+      const branchVectors = (rows) => {
+        const lookup = new Map(rows.map((object) => [object.name, object]));
+        return rows
+          .filter((object) => object.parent)
+          .map((object) =>
+            object.center.map(
+              (coordinate, axis) => coordinate - lookup.get(object.parent).center[axis]
+            )
+          );
+      };
+      assert.notDeepEqual(
+        composition(objects),
+        composition(previous),
+        'distinct placement and scale'
+      );
+      assert.notDeepEqual(
+        branchVectors(objects),
+        branchVectors(previous),
+        'distinct recursive arrangement'
+      );
+      for (let k = 0; k < objects.length; k++) {
+        assert.notDeepEqual(objects[k].center.slice(0, 2), previous[k].center.slice(0, 2));
+        assert.notEqual(
+          objects[k].center[2],
+          previous[k].center[2],
+          'every shared asset changes depth'
+        );
+      }
+    }
+  }
+  assert.deepEqual(
+    common('unknown-route'),
+    first,
+    'unknown routes retain the explicit Home fallback'
+  );
 });
 test('route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose', () => {
   const p = visit();
@@ -2012,6 +2070,61 @@ test('all direct route flights paint only their journey rooms through the last t
         assert.deepEqual([...paints.at(-1).rooms], [to], 'restoration paints only the destination');
       }
 });
+test('prepared adjacent rooms emerge continuously from zero in both travel directions', () => {
+  for (const narrow of [false, true])
+    for (let index = 0; index < model.routeOrder.length - 1; index++)
+      for (const reverse of [false, true]) {
+        const endpoints = model.routeOrder.slice(index, index + 2),
+          [from, to] = reverse ? endpoints.reverse() : endpoints,
+          paints = [],
+          prepared = [],
+          p = visit({
+            page: from,
+            narrow,
+            probe: (event) => {
+              if (event.kind === 'paint') paints.push(event);
+              if (event.kind === 'model') prepared.push(event.route);
+            },
+          });
+        p.settle();
+        paints.length = 0;
+        prepared.length = 0;
+        p.window.SiteScene.navigate(to);
+        assert.ok(prepared.includes(to), 'the invisible destination is prepared before paint');
+        p.frame(0);
+        assert.deepEqual([...paints.at(-1).paintedRooms], [from]);
+        const visibility = (paint, route) =>
+          paint.roomVisibility.find((entry) => entry.route === route)?.opacity || 0;
+        assert.equal(visibility(paints.at(-1), to), 0, 'no destination ink at departure');
+        finishFlight(p, 'the spatial fade reaches the actual destination paint');
+        const fromZ = model.routePose(from, model.poses[model.initialPoses[from]]).position[2],
+          toZ = model.routePose(to, model.poses[model.initialPoses[to]]).position[2];
+        let previousArrival = 0,
+          previousDeparture = 1;
+        for (const paint of paints) {
+          const progress = model.clamp((paint.current.position[2] - fromZ) / (toZ - fromZ)),
+            incoming = visibility(paint, to),
+            outgoing = visibility(paint, from);
+          assert.ok(Math.abs(incoming - model.smooth(progress)) < 1e-10);
+          assert.ok(Math.abs(outgoing - (1 - incoming)) < 1e-10);
+          assert.ok(incoming >= previousArrival && outgoing <= previousDeparture);
+          assert.ok(paint.paintedRooms.length <= 2);
+          if (incoming === 0) assert.ok(!paint.paintedRooms.includes(to));
+          if (outgoing === 0) assert.ok(!paint.paintedRooms.includes(from));
+          previousArrival = incoming;
+          previousDeparture = outgoing;
+        }
+        assert.ok(
+          paints.some((paint) => {
+            const opacity = visibility(paint, to);
+            return opacity > 0 && opacity < 1;
+          }),
+          'intermediate visibility is actually painted'
+        );
+        assert.equal(previousArrival, 1);
+        assert.equal(previousDeparture, 0);
+      }
+});
 test('retargeted flights retain their displayed room pair, including reverse and same-cell starts', () => {
   const cases = [
     { from: 'index', first: 'credits', next: 'talks', frames: 9 },
@@ -2037,7 +2150,8 @@ test('retargeted flights retain their displayed room pair, including reverse and
       for (let frame = 0; frame < frames; frame++) p.frame(80);
       assert.equal(p.scene.dataset.cameraStage, 'transit', 'interrupt an actual depth flight');
       const displayed = p.trace(),
-        rooms = [...paints.at(-1).paintedRooms].sort();
+        rooms = [...paints.at(-1).paintedRooms].sort(),
+        visibility = JSON.stringify(paints.at(-1).roomVisibility);
       assert.ok(rooms.length > 0, 'the source geometry was actually painted');
       models.length = 0;
       p.window.SiteScene.navigate(next);
@@ -2053,6 +2167,11 @@ test('retargeted flights retain their displayed room pair, including reverse and
         [...paints.at(-1).paintedRooms].sort(),
         rooms,
         'the first replacement paint keeps the same contributing rooms'
+      );
+      assert.equal(
+        JSON.stringify(paints.at(-1).roomVisibility),
+        visibility,
+        'retargeting keeps the displayed spatial visibility weights'
       );
       finishFlight(p, 'the replacement completes without losing its departure rooms');
       assert.deepEqual([...paints.at(-1).paintedRooms], [next]);

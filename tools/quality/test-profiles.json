@@ -826,7 +826,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Stationary all-route reading cameras, smooth center/transit/restore within original flight deadlines, pause/retarget/failure handling, shared clock and bounded scene resources",
+      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1079,13 +1079,13 @@
     {
       "path": "tests/theme.test.cjs",
       "language": "javascript",
-      "purpose": "Visitor-local Auto boundaries, overrides, storage/tab events, Escape and timezone independence",
+      "purpose": "Canonical visitor-local themes, outside Appearance dismissal, inside/summary/Escape behavior and storage/tab boundaries",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-smoke", "pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
-      "inputs": ["tests/theme.test.cjs"]
+      "inputs": ["tests/theme.test.cjs", "site/engine/theme.js"]
     },
     {
       "path": "tests/writing-diagnosis.test.cjs",
@@ -1614,7 +1614,7 @@
     {
       "path": "tests/scroll-entry.test.cjs",
       "language": "javascript",
-      "purpose": "Native one-shot reading entry plus viewport-bounded overlapping directional visual rows and native separator paint, route-block departure/hold/arrival, geometry, cancellation and readable fallback",
+      "purpose": "Repeat ordinary downward re-entry on stable shells, native block route phases, bounded lifecycle/resources and readable motion/focus/jump fallback",
       "owner": "site/README.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

@@ -93,21 +93,24 @@ first painted flight frame. Each of at most three active/pending rooms caches
 at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
 During a flight, the two projected adjacent rooms stay within that journey's
-source/destination interval. Differing opening-pose depths cannot briefly admit
-the room beyond its destination before reading framing is restored.
+source/destination interval. Complete room ink fades from zero at neighboring
+reading-depth anchors to full visibility at its own anchor, in either direction.
+Geometry is prepared before the first flight paint; pair and restoration switches
+remove only zero-weight rooms, without exposing a room beyond the destination.
 
 Reading entry observes existing stable semantic component shells and moves their
 direct ink children and existing paper pseudo-element with the same finite CSS
 animation. Publication rows retain their grid/filter/measurement identity; no
 serialized wrapper or marker is added. Runtime ink spans serve text-only leaves
 and are removed on disposal. Initial/restored visible blocks and bottom-overflow
-candidates stay settled; lower below-fold blocks enter once during downward
-reading. Reading distance is 88px on desktop and 56px on narrow layouts; the global
+candidates stay settled; lower below-fold blocks enter during ordinary downward reading and rearm after
+a complete exit below the viewport, so a later downward visit reveals them again. Reading distance is 88px on desktop and 56px on narrow layouts; the global
 block-motion duration, curve and sibling stagger are shared at every width,
-with at most two local sibling delays and six active blocks. No opacity change, permanent layer
+with at most two local sibling delays and six active blocks; excess visible
+entries use a finite queue that settles on interruption or missing animation events. No opacity change, permanent layer
 promotion, per-frame style write or additional RAF is introduced.
 
-`SiteScrollEntry` owns one observer/session with explicit suspend, mount, resume,
+`SiteScrollEntry` owns one persistent observer/session with explicit suspend, mount, resume,
 settle and destroy paths. The router suspends before departure and resumes only
 after the surviving route's actual arrival. Archive/reflow notifications reconcile
 after native landing. `SiteScene.motionState()` and `site:motion-state` expose
@@ -121,7 +124,7 @@ controller first sends visible context units fully above the viewport (forward)
 or below (reverse), holding native content during the camera journey. The scene
 centers optical framing, travels through the existing rooms, restores the usual
 reading framing and only then reports arrival. The controller assembles destination
-units from below (forward) or above (reverse), then resumes ordinary one-shot
+units from below (forward) or above (reverse), then resumes ordinary repeatable
 upward reading entry. Intro/hero/portrait, reading units and visible footer leaves
 participate; persistent header and appearance controls remain usable. Each block's
 sharp ink and existing paper share finite CSS animation; native shells/range stay
@@ -155,7 +158,7 @@ Block transitions preference is the one control for route and reading-block
 movement on all pages. The presentation owns its stored preference; the router
 notifies the controller once, cancelling transient route state and releasing
 reading layers. Re-enabling can arm untouched below-fold content without
-replaying completed blocks or resuming a suspended route. Its page-edge gesture gate
+replaying already visible blocks or resuming a suspended route. Its page-edge gesture gate
 continues to require deliberate input at the actual boundary.
 
 Current Color delivery uses only the travel effect. Issue61's explicit maintainer
