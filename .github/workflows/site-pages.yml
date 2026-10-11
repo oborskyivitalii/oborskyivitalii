@@ -125,7 +125,7 @@ jobs:
           PRODUCTION_RECORD: ${{ steps.production.outputs.record }}
         with:
           script: |
-            const previous=await require('./tools/pages/controller.cjs').previous(github,context,process.env.PAGES_URL,JSON.parse(process.env.PRODUCTION_RECORD));
+            const previous=await require('./tools/pages/controller.cjs').previousStaging(github,context,process.env.PAGES_URL,JSON.parse(process.env.PRODUCTION_RECORD));
             core.setOutput('record',JSON.stringify(previous));
             if(previous){core.setOutput('id',previous.artifactId);core.setOutput('run',previous.runId);}
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
@@ -140,7 +140,12 @@ jobs:
         env:
           PREVIOUS_RECORD: ${{ steps.previous.outputs.record }}
         run: |
-          node -e "require('./tools/pages/controller.cjs').retained('pages-previous/pages-package',JSON.parse(process.env.PREVIOUS_RECORD))"
+          node - <<'JS'
+          const controller=require('./tools/pages/controller.cjs'),record=JSON.parse(process.env.PREVIOUS_RECORD);
+          const bytes=record.accepted===false?require('node:child_process').execFileSync('gh',['api','repos/'+process.env.GITHUB_REPOSITORY+'/actions/artifacts/'+require('./tools/staging/review-flow.cjs').positive(record.artifactId)+'/zip'],{timeout:120000,maxBuffer:300_000_000}):null;
+          controller.retained('pages-previous/pages-package',record,bytes);
+          if(record.accepted===false){require('node:fs').mkdirSync('pages-reports',{recursive:true});require('node:fs').writeFileSync('pages-reports/recovery-baseline.json',JSON.stringify(record,null,2)+'\n');}
+          JS
           node tools/pages/http.cjs pages-previous/pages-package "${{ steps.origin.outputs.url }}" pages-reports/previous-http.json
       - name: Restore durable production bytes when production is active
         if: steps.production.outputs.tag != ''

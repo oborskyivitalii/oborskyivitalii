@@ -17,6 +17,13 @@ test('selected journeys compare actual base runtime and Color identities without
     variant,
     components: { ...components, variant, engine: variant.fingerprint },
   };
+  const reviewed = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
+    'legacy-plain'
+  );
+  assert.deepEqual(variant, reviewed.variant, 'fixture uses the reviewed authored runtime');
+  for (const [name, sha256] of Object.entries(reviewed.files))
+    for (const file of [name, 'runtime/' + variant.fingerprint + '/' + name])
+      colored.files[file] = { ...(colored.files[file] || { raw: 5000, gzip: 1000 }), sha256 };
   assert.notEqual(components.variant.fingerprint, components.engine, 'base descriptor is separate');
   for (const manifest of [base, colored]) {
     const journey = fixture.journeyRow(

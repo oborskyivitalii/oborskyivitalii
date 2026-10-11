@@ -1363,6 +1363,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-72/2026-10-11-pages-validator-recovery.md": {
+      "kind": "file",
+      "purpose": "Failed two-host evidence, strict motion-validator compatibility and authenticated failed-first Pages recovery preparation.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-72/2026-10-11-review.md": {
       "kind": "file",
       "purpose": "Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates.",
@@ -6811,6 +6817,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/color-motion-contract.test.cjs": {
+      "kind": "file",
+      "purpose": "Independent positive and adversarial known-runtime dispatch and legacy/fixed Color evidence regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/content-migration.test.cjs": {
       "kind": "file",
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
@@ -7405,6 +7417,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/block-flight.cjs": {
+      "kind": "file",
+      "purpose": "Strict native block timing, layers, separators, overlap and camera-phase checks for reviewed Color runtime.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
     "tools/quality/browser-gate-diagnostics.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -7446,6 +7464,12 @@
       "purpose": "Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/color-motion-contract.cjs": {
+      "kind": "file",
+      "purpose": "Closed reviewed Color runtime identity and motion contract selection before hosted validation.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md"
     },
     "tools/quality/common.cjs": {
       "kind": "file",

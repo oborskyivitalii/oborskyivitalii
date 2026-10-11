@@ -228,6 +228,24 @@ Pages action, verifies it and stays red. First publication has no previous accep
 package to restore. Combined staging recovery is retained for 90 days; durable
 production archives are separate.
 
+A first deployment that reached verified HTTP bytes but failed its final browser
+guard can leave an unaccepted receipt when no previous Pages package exists.
+Only the staging controller's `previousStaging()` recovery path may retain that
+baseline, explicitly with `accepted: false`. It authenticates the exact failed
+owner/main attempt1, named publisher steps, native artifact upload digest, ZIP
+record and every public entry, served receipt and complete current HTTP inventory.
+It requires no production or prior recovery. Ordinary `previous()` and production
+remain accepted-only; reruns, later failures and conflicting state cannot use
+this first-publication path. Restoration preserves the failed admission.
+
+Trusted Color checks select a closed reviewed runtime contract before opening
+the browser, binding variant, base engine, edition and canonical/immutable file
+hashes. Legacy sources retain scroll-camera/spatial-flight guards; the reviewed
+fixed-camera/native-block sources use their strict corresponding guards. Smoke
+and full aggregates revalidate that source selection. Unknown or mixed identities
+fail; assertions cannot fall back to another contract. Width/engine/theme cases
+and the existing resource budgets remain unchanged.
+
 Before each owner staging attempt, the trusted main controller creates a fresh
 in-progress `Staging admission` check. Previous green admission cannot survive a
 failed new attempt. Actual source admission and both enabled publishers are

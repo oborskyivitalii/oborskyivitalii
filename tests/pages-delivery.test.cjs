@@ -397,3 +397,278 @@ test('Pages recovery trusts the exact successful attempt and stops on untracked 
     /untracked/
   );
 });
+
+function failedInitialFixture(t) {
+  const temp = fixture.temporary(t),
+    stage = fixture.staging(temp),
+    directory = path.join(temp, 'first-failed');
+  const context = { repo: { owner: 'oborskyivitalii', repo: 'oborskyivitalii' } };
+  const record = pkg.build(
+    stage.directory,
+    directory,
+    null,
+    null,
+    {
+      kind: 'ci-pages',
+      runId: '900',
+      attempt: '1',
+      controller: 'a'.repeat(40),
+    },
+    '/project/'
+  );
+  const upload = require('node:child_process').execFileSync(
+    'python3',
+    [
+      '-c',
+      `
+import io, pathlib, sys, zipfile
+root = pathlib.Path(sys.argv[1])
+output = io.BytesIO()
+with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
+    for file in sorted(root.rglob('*')):
+        if file.is_file():
+            archive.write(file, 'pages-package/' + file.relative_to(root).as_posix())
+sys.stdout.buffer.write(output.getvalue())
+`,
+      directory,
+    ],
+    { timeout: 20000, maxBuffer: 300_000_000 }
+  );
+  const run = {
+    id: 900,
+    repository: { full_name: 'oborskyivitalii/oborskyivitalii' },
+    head_sha: 'a'.repeat(40),
+    head_branch: 'main',
+    actor: { login: context.repo.owner },
+    triggering_actor: { login: context.repo.owner },
+    path: '.github/workflows/site-color-review.yml',
+    event: 'issue_comment',
+    status: 'completed',
+    conclusion: 'failure',
+    run_attempt: 1,
+  };
+  const steps = [
+    ...[
+      'Authenticate controller and actual successful staging producer',
+      'Verify actual bounded gate and frozen staging edition',
+      'Resolve the currently accepted production archive',
+      'Authenticate the current Pages receipt and retained recovery',
+      'Compose staging while preserving accepted production file hashes',
+      'Retain the complete new package before touching the live site',
+      'Recheck the publication controller and active production lease',
+      'Run actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e',
+      'Verify every hosted Pages byte, staging path and real 404',
+      // continue-on-error masks the failed browser outcome in the REST conclusion.
+      'Verify actual staged navigation on the Pages subpath',
+      'Retain actual publication observations before acceptance',
+    ].map((name) => ({ name, status: 'completed', conclusion: 'success' })),
+    ...[
+      'Verify retained and currently hosted recovery bytes before publication',
+      'Restore durable production bytes when production is active',
+      'Extract and verify the production archive',
+      'Retain the previous complete Pages artifact for exact recovery',
+      'Restore the previous exact combined Pages artifact on a failed update',
+      'Verify the restored Pages publication',
+    ].map((name) => ({ name, status: 'completed', conclusion: 'skipped' })),
+    { name: 'Keep failed publication or recovery red', status: 'completed', conclusion: 'failure' },
+  ];
+  const publisher = {
+    name: 'pages / Pages publication',
+    status: 'completed',
+    conclusion: 'failure',
+    steps,
+  };
+  const item = {
+    id: 123,
+    name: 'site-pages-900-1',
+    expired: false,
+    digest: 'sha256:' + artifact.digest(upload),
+    workflow_run: { id: 900, head_sha: run.head_sha, head_branch: 'main' },
+  };
+  const inputs = { run, jobs: [publisher], artifacts: [item] };
+  const api = {
+    rest: {
+      actions: {
+        getWorkflowRun: async () => ({ data: inputs.run }),
+        listJobsForWorkflowRunAttempt: 'jobs',
+        listWorkflowRunArtifacts: 'artifacts',
+      },
+    },
+    paginate: async (method, args) => {
+      assert.equal(args.run_id, 900);
+      if (method === 'jobs') assert.equal(args.attempt_number, 1);
+      return inputs[method];
+    },
+  };
+  return {
+    directory,
+    context,
+    record,
+    upload,
+    inputs,
+    api,
+    fetcher: hosted(directory, '/project/'),
+  };
+}
+
+test('only staging can use an authenticated failed first Pages publication as unaccepted recovery', async (t) => {
+  const f = failedInitialFixture(t),
+    base = 'https://author.invalid/project';
+  await assert.rejects(
+    controller.previous(f.api, f.context, base, null, f.fetcher, true),
+    /was not accepted/
+  );
+  const previous = await controller.previousStaging(f.api, f.context, base, null, f.fetcher);
+  assert.equal(previous.accepted, false);
+  assert.equal(previous.recoveryKind, 'failed-initial-staging');
+  assert.equal(previous.artifactId, 123);
+  controller.retained(f.directory, previous, f.upload);
+  const observed = await http.check(f.directory, base, f.fetcher);
+  assert.equal(observed.pass, true);
+  assert.equal(observed.packageDigest, f.record.packageDigest);
+  assert.equal(f.record.state.publication.runId, '900');
+});
+
+test('failed first Pages recovery rejects foreign, incomplete, stale and ambiguous provenance', async (t) => {
+  const f = failedInitialFixture(t),
+    original = structuredClone(f.inputs);
+  const changes = [
+    (x) => x.run.id++,
+    (x) => (x.run.repository.full_name = 'other/other'),
+    (x) => (x.run.head_sha = 'b'.repeat(40)),
+    (x) => (x.run.head_branch = 'candidate'),
+    (x) => (x.run.actor.login = 'other'),
+    (x) => (x.run.triggering_actor.login = 'other'),
+    (x) => (x.run.path = '.github/workflows/site-production.yml'),
+    (x) => (x.run.event = 'pull_request'),
+    (x) => (x.run.status = 'in_progress'),
+    (x) => (x.run.conclusion = 'cancelled'),
+    (x) => (x.run.run_attempt = 2),
+    (x) => (x.jobs[0].status = 'in_progress'),
+    (x) => (x.jobs[0].conclusion = 'cancelled'),
+    (x) => (x.jobs[0].name = 'other / Pages publication'),
+    (x) => x.jobs.push(structuredClone(x.jobs[0])),
+    (x) => x.jobs[0].steps.pop(),
+    (x) => x.jobs[0].steps.push(structuredClone(x.jobs[0].steps[0])),
+    (x) => (x.artifacts.length = 0),
+    (x) => x.artifacts.push(structuredClone(x.artifacts[0])),
+    (x) => (x.artifacts[0].expired = true),
+    (x) => x.artifacts[0].workflow_run.id++,
+    (x) => (x.artifacts[0].workflow_run.head_sha = 'b'.repeat(40)),
+    (x) => (x.artifacts[0].workflow_run.head_branch = 'candidate'),
+    (x) => (x.artifacts[0].digest = 'unknown'),
+    (x) => (x.artifacts[0].id = 'invalid'),
+    (x) =>
+      (x.jobs[0].steps = x.jobs[0].steps.filter(
+        (step) => step.name !== 'Verify actual staged navigation on the Pages subpath'
+      )),
+    (x) =>
+      (x.jobs[0].steps.find(
+        (step) => step.name === 'Verify actual staged navigation on the Pages subpath'
+      ).status = 'in_progress'),
+  ];
+  for (const change of changes) {
+    Object.assign(f.inputs, structuredClone(original));
+    change(f.inputs);
+    await assert.rejects(
+      controller.previousStaging(
+        f.api,
+        f.context,
+        'https://author.invalid/project',
+        null,
+        f.fetcher
+      )
+    );
+  }
+});
+
+test('a prior Pages baseline, failed rollback or active production cannot become first-failed recovery', async (t) => {
+  const f = failedInitialFixture(t),
+    original = structuredClone(f.inputs);
+  for (const name of [
+    'Verify retained and currently hosted recovery bytes before publication',
+    'Retain the previous complete Pages artifact for exact recovery',
+    'Restore the previous exact combined Pages artifact on a failed update',
+    'Verify the restored Pages publication',
+  ]) {
+    Object.assign(f.inputs, structuredClone(original));
+    f.inputs.jobs[0].steps.find((step) => step.name === name).conclusion = 'success';
+    await assert.rejects(
+      controller.previousStaging(
+        f.api,
+        f.context,
+        'https://author.invalid/project',
+        null,
+        f.fetcher
+      ),
+      /not a first failed/
+    );
+  }
+  Object.assign(f.inputs, structuredClone(original));
+  await assert.rejects(
+    controller.previousStaging(
+      f.api,
+      f.context,
+      'https://author.invalid/project',
+      {
+        tag: 'prod-2026-10-11.1',
+        sourceCommit: 'b'.repeat(40),
+        publicDigest: 'c'.repeat(64),
+      },
+      f.fetcher
+    ),
+    /production differs/
+  );
+});
+
+test('failed first Pages recovery requires the exact upload, receipt and current hosted bytes', async (t) => {
+  const f = failedInitialFixture(t),
+    base = 'https://author.invalid/project';
+  const previous = await controller.previousStaging(f.api, f.context, base, null, f.fetcher);
+  assert.throws(() => controller.retained(f.directory, previous), /exact upload ZIP/);
+  assert.throws(
+    () => controller.retained(f.directory, previous, Buffer.from('changed')),
+    /upload changed/
+  );
+  assert.throws(
+    () =>
+      controller.retained(
+        f.directory,
+        {
+          ...previous,
+          receiptDigest: 'e'.repeat(64),
+        },
+        f.upload
+      ),
+    /receipt bytes differ/
+  );
+  assert.throws(
+    () =>
+      controller.retained(
+        f.directory,
+        {
+          ...previous,
+          state: { ...previous.state, staging: null },
+        },
+        f.upload
+      ),
+    /differs from live receipt/
+  );
+  const metadata = path.join(f.directory, 'pages-package.json');
+  const original = fs.readFileSync(metadata);
+  const substituted = structuredClone(f.record);
+  substituted.root.sourceTree = substituted.staging.sourceTree = 'e'.repeat(40);
+  fs.writeFileSync(metadata, JSON.stringify(substituted, null, 2) + '\n');
+  assert.throws(() => controller.retained(f.directory, previous, f.upload), /authenticated ZIP/);
+  fs.writeFileSync(metadata, original);
+  await assert.rejects(
+    http.check(f.directory, base, async (url) => {
+      const response = await f.fetcher(url);
+      return url.endsWith('/index.html') ? fixture.response(url, 'changed live bytes') : response;
+    }),
+    /wrong Pages bytes/
+  );
+  const file = path.join(f.directory, 'public/index.html');
+  fs.appendFileSync(file, '<!-- changed recovery -->');
+  assert.throws(() => controller.retained(f.directory, previous, f.upload), /bytes changed/);
+});

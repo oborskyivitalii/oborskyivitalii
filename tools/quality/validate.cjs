@@ -694,12 +694,15 @@ function colorPaint(row) {
   assert.equal(row.paint.customShapes, 0, 'Color still submits custom ribbon geometry');
 }
 function colorReports(reports, manifest) {
+  const colorMotion = require('./color-motion-contract.cjs'),
+    runtime = colorMotion.select(manifest);
   const found = reports.filter((report) => report.kind === 'color-functional');
   assert.equal(found.length, 1, 'missing/duplicate Color feature matrix');
   const report = found[0];
   assert.deepEqual(manifest.variant.effects, ['travel'], 'current Color effect composition');
   assert.equal(report.variant.fingerprint, manifest.variant.fingerprint);
   assert.deepEqual(report.variant.effects, manifest.variant.effects);
+  assert.deepEqual(report.motionContract, runtime, 'Color feature motion contract differs');
   assert.equal(report.rows.length, 12);
   unique(report.rows, (row) => `${row.engine}/${row.width}/${row.theme}`);
   for (const engine of ['chromium', 'firefox', 'webkit']) {
@@ -712,9 +715,10 @@ function colorReports(reports, manifest) {
         assert.equal(row.pass, true, row.error);
         assert.equal(row.identity.id, 'color');
         assert.equal(row.identity.engine, manifest.variant.fingerprint);
+        assert.deepEqual(row.motionContract, runtime, 'Color row motion contract differs');
         colorPaint(row);
         for (const key of [
-          'spatialFlight',
+          colorMotion.flightCheck(manifest),
           'forwardEdge',
           'reverseNativeBottom',
           'disabledEdge',
@@ -723,18 +727,7 @@ function colorReports(reports, manifest) {
         ]) {
           assert.equal(row.checks[key], true, 'missing Color ' + key);
         }
-        assert.ok(
-          row.flight.some(
-            (sample) =>
-              sample.plane.flightStage === 'depart' && Number(sample.plane.flightDepth) > 0
-          )
-        );
-        assert.ok(
-          row.flight.some(
-            (sample) =>
-              sample.plane.flightStage === 'arrive' && Number(sample.plane.flightDepth) < 0
-          )
-        );
+        colorMotion.validateFlight(row, manifest);
       }
     }
   }
@@ -868,4 +861,5 @@ module.exports = {
   sourceReport,
   readEvidence,
   colorPaint,
+  colorReports,
 };

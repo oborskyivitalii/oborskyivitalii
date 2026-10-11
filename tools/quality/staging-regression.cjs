@@ -585,10 +585,13 @@ function validateFlight(row, selected) {
   else assert.equal(targetModels.length, 0, 'warm flight reconstructed its destination model');
 }
 function validateColor(report, manifest) {
-  const variant = common.variant(manifest);
+  const variant = common.variant(manifest),
+    colorMotion = require('./color-motion-contract.cjs'),
+    runtime = colorMotion.select(manifest);
   assert.equal(variant.id, 'color');
   assert.deepEqual(variant.effects, ['travel'], 'current Color effect composition');
   assert.deepEqual(report.variant, variant, 'Color smoke belongs to another runtime variant');
+  assert.deepEqual(report.motionContract, runtime, 'Color smoke motion contract differs');
   assert.equal(report.kind, 'color-preview-smoke');
   assert.equal(report.pass, true);
   assert.equal(report.smoke, true);
@@ -606,11 +609,12 @@ function validateColor(report, manifest) {
     assert.equal(row.pass, true, row.error);
     assert.equal(row.identity.id, 'color');
     assert.equal(row.identity.engine, variant.fingerprint);
+    assert.deepEqual(row.motionContract, runtime, 'Color row motion contract differs');
     require('./validate.cjs').colorPaint(row);
     for (const key of [
       'shortenedHomeRange',
       'homeForwardEdge',
-      'spatialFlight',
+      colorMotion.flightCheck(manifest),
       'forwardEdge',
       'reverseNativeBottom',
       'disabledEdge',
@@ -620,16 +624,7 @@ function validateColor(report, manifest) {
     ]) {
       assert.equal(row.checks?.[key], true, 'missing Color ' + key);
     }
-    assert.ok(
-      row.flight?.some(
-        (sample) => sample.plane.flightStage === 'depart' && Number(sample.plane.flightDepth) > 0
-      )
-    );
-    assert.ok(
-      row.flight.some(
-        (sample) => sample.plane.flightStage === 'arrive' && Number(sample.plane.flightDepth) < 0
-      )
-    );
+    colorMotion.validateFlight(row, manifest);
   }
   return 2;
 }

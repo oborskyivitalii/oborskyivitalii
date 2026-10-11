@@ -5,7 +5,9 @@ const assert = require('node:assert/strict'),
 const { toolRequire, report, launchOptions } = require('./common.cjs'),
   { start } = require('./serve.cjs');
 const { liveScrollPrecondition } = require('./engine-browser.cjs'),
-  { probe: scrollProbe } = require('./scroll-browser.cjs');
+  { probe: scrollProbe, fixedProbe } = require('./scroll-browser.cjs'),
+  colorMotion = require('./color-motion-contract.cjs'),
+  blockFlight = require('./block-flight.cjs');
 const { colorPaint } = require('./validate.cjs');
 function paintProbe() {
   const paint = { completed: 0, ordinaryShapes: 0, customShapes: 0 };
@@ -54,7 +56,21 @@ async function state(page) {
     };
   });
 }
-async function forwardFlight(page) {
+async function forwardFlight(page, artifact) {
+  if (colorMotion.select(artifact).behavior === 'fixed-blocks') {
+    await page.evaluate(() => {
+      window.__flightSamples = [];
+    });
+    await page.locator('.site-header nav a[href="research.html"]').click();
+    await settled(page, 'research');
+    const samples = await page.evaluate(() => window.__flightSamples);
+    blockFlight.checkTiming(samples);
+    assert.ok(
+      samples.some((sample) => sample.travel === 'flying'),
+      'actual camera flight'
+    );
+    return samples;
+  }
   await page.locator('.site-header nav a[href="research.html"]').click();
   const samples = [];
   for (let i = 0; i < 200; i++) {
@@ -104,6 +120,7 @@ async function preferences(page, id, value) {
   );
 }
 async function scenario(browser, url, artifact, engine, width, theme) {
+  const runtime = colorMotion.select(artifact);
   const context = await browser.newContext({
     viewport: { width, height: width === 390 ? 844 : 900 },
     reducedMotion: 'no-preference',
@@ -111,6 +128,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
   const errors = [];
   try {
     await context.addInitScript(paintProbe);
+    if (runtime.behavior === 'fixed-blocks') await context.addInitScript(blockFlight.timingProbe);
     const page = await context.newPage();
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(url + '/index.html');
@@ -129,6 +147,11 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     assert.equal(identity.id, 'color');
     assert.equal(identity.engine, artifact.variant.fingerprint);
     assert.equal(identity.flight, true);
+    if (runtime.behavior === 'fixed-blocks')
+      assert.equal(
+        await page.locator('#content-flight').getAttribute('aria-label'),
+        'Block transitions'
+      );
     assert.equal(identity.edge, true);
     assert.equal(
       await page.locator('#surface-mode,[data-glass-visible]').count(),
@@ -146,7 +169,10 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     const rendered = await state(page);
     colorPaint(rendered);
     const homeMotion = await liveScrollPrecondition(page);
-    const homeScroll = await scrollProbe(page, 'selected-responses', 'index');
+    const homeScroll =
+      runtime.behavior === 'fixed-blocks'
+        ? await fixedProbe(page, 'selected-responses', 'index', artifact)
+        : await scrollProbe(page, 'selected-responses', 'index');
     assert.equal(
       homeMotion.after?.label || homeMotion.before.label,
       'Motion: on',
@@ -156,7 +182,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     const homeEdge = await state(page);
     assert.equal(homeEdge.page, 'research', 'shortened Home continues to Research');
     await travel(page, 'index');
-    const flight = await forwardFlight(page);
+    const flight = await forwardFlight(page, artifact);
     await edge(page, 'writing', 1);
     await edge(page, 'research', -1);
     const reverse = await state(page);
@@ -184,12 +210,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       theme,
       pass: true,
       identity,
+      motionContract: runtime,
       ribbons: rendered.ribbons,
       paint: rendered.paint,
       checks: {
         shortenedHomeRange: true,
         homeForwardEdge: true,
-        spatialFlight: true,
+        [colorMotion.flightCheck(artifact)]: true,
         forwardEdge: true,
         reverseNativeBottom: true,
         disabledEdge: true,
@@ -212,6 +239,8 @@ async function main(options = {}) {
   assert.deepEqual(artifact.variant.effects, ['travel'], 'current Color effect composition');
   assert.equal(artifact.variant.fingerprint, artifact.components.engine);
   assert.deepEqual(artifact.variant, artifact.components.variant);
+  require('./artifact.cjs').verify(process.env.SITE_PUBLIC_DIR, artifact);
+  const runtime = colorMotion.select(artifact);
   const { server, url } = await start(),
     rows = [],
     browsers = [];
@@ -242,6 +271,7 @@ async function main(options = {}) {
     {
       smoke,
       variant: artifact.variant,
+      motionContract: runtime,
       browsers,
       rows,
       ...(smoke ? { profile: 'preview', fullGate: false, deploymentAuthorized: false } : {}),
@@ -255,4 +285,4 @@ if (require.main === module)
     console.error(error.stack);
     process.exitCode = 1;
   });
-module.exports = { main, scenario, settled, paintProbe };
+module.exports = { main, scenario, settled, paintProbe, forwardFlight };

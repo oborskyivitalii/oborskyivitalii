@@ -3,6 +3,7 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const { aggregate, lighthouse, motion } = require('../tools/quality/validate.cjs');
 const budgets = require('../tools/quality/budgets.json');
+const colorMotion = require('../tools/quality/color-motion-contract.cjs');
 const variant = { id: 'base', contract: 1, fingerprint: 'd'.repeat(64) };
 const identity = {
   variant,
@@ -701,15 +702,19 @@ test('full coverage requires complete macOS WebKit and Linux Chromium/Firefox wi
 });
 function colorFixture() {
   const evidence = fullFixture();
-  const color = {
-    id: 'color',
-    contract: 1,
-    fingerprint: 'f'.repeat(64),
-    baseEngine: 'd'.repeat(64),
-    effects: ['travel'],
-  };
+  const motionContract = colorMotion.reviewedRuntime('legacy-plain'),
+    color = motionContract.variant;
   evidence.manifest.variant = color;
-  evidence.manifest.components = { variant: color };
+  evidence.manifest.components = { variant: color, engine: color.fingerprint, contract: 1 };
+  for (const [name, sha256] of Object.entries(motionContract.files))
+    for (const file of [name, 'runtime/' + color.fingerprint + '/' + name])
+      evidence.manifest.files[file] = {
+        ...(evidence.manifest.files[file] || { raw: 5000, gzip: 1000 }),
+        sha256,
+      };
+  evidence.reports.find((report) => report.kind === 'captures').public_sources = Object.fromEntries(
+    Object.entries(evidence.manifest.files).map(([file, info]) => ['docs/' + file, info.sha256])
+  );
   for (const report of [...evidence.reports, evidence.releaseEvidence]) {
     report.variant = color;
   }
@@ -721,6 +726,7 @@ function colorFixture() {
         theme,
         pass: true,
         identity: { id: 'color', engine: color.fingerprint },
+        motionContract: structuredClone(motionContract),
         ribbons: { sceneHook: 'undefined', dataset: {} },
         paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
         checks: Object.fromEntries(
@@ -743,6 +749,7 @@ function colorFixture() {
   evidence.reports.push({
     ...identity,
     variant: color,
+    motionContract,
     kind: 'color-functional',
     pass: true,
     rows,
@@ -772,7 +779,7 @@ test('full macOS policy keeps twelve travel Color cells with ordinary paint incl
   }
   const oldComposition = colorFixture();
   oldComposition.manifest.variant.effects = ['ribbons', 'travel'];
-  assert.throws(() => aggregate(oldComposition), /current Color effect composition/);
+  assert.throws(() => aggregate(oldComposition), /conflicting Color motion identity/);
 });
 test('workflow selects full Linux Chromium/Firefox and macOS WebKit while preserving nonfull and Windows coverage', () => {
   const fs = require('node:fs'),
