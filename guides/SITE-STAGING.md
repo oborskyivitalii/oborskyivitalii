@@ -147,11 +147,19 @@ root and real-404 checks. The existing 20-second request and 15-minute promotion
 job limits remain. A preceding revision during alias propagation never counts
 as success; exhausted convergence remains a failed promotion or recovery.
 
-Recovery records distinguish the original package producer attempt from the
-promotion attempt. A promotion-only retry must reuse the exact tested package
-ID and upload digest. Future recovery validates its name against that producer
-attempt; legacy records retain their original matching attempt. No browser
-report, failed observation or artifact is relabeled.
+For the two-host staging controller, retry with **Re-run all jobs**, or create a
+new owner `/stage` request. **Re-run failed jobs** is not supported: reused jobs
+and admission outputs can belong to an earlier attempt, so they cannot prove one
+complete accepted attempt. Admission validates the actual run attempt and blocks
+mixed-attempt evidence. A retry does not reuse an earlier successful check as its
+admission.
+
+Recovery records retain the original package producer attempt separately from
+the promotion attempt. Historical promotion-only retries retain their exact
+tested package ID/upload digest and producer name; legacy records keep their
+original matching attempt. This recovery compatibility does not authorize a
+partial retry of the current two-host controller. No browser report, failed
+observation or artifact is relabeled.
 
 After enabling preview, subsequent PR commits publish automatically. Changing
 settings alone does not trigger a run: use the latest source run's **Re-run all

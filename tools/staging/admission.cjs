@@ -62,14 +62,26 @@ function controller(context, pr, main, expectedSource) {
   return flow;
 }
 
-async function beginMergeAdmission(github, context, pr, main) {
+function executionIdentity(context, attempt) {
+  const flow = require('./review-flow.cjs');
+  return String(flow.positive(context.runId)) + '/' + String(flow.positive(attempt));
+}
+
+async function beginMergeAdmission(
+  github,
+  context,
+  pr,
+  main,
+  attempt = process.env.GITHUB_RUN_ATTEMPT
+) {
   const flow = controller(context, pr, main, pr.head.sha);
+  const identity = executionIdentity(context, attempt);
   const { data } = await github.rest.checks.create({
     ...context.repo,
     name: 'Staging admission',
     head_sha: pr.head.sha,
     status: 'in_progress',
-    external_id: String(context.runId) + '/' + String(context.runAttempt || 1),
+    external_id: identity,
     details_url: 'https://github.com/' + flow.repository + '/actions/runs/' + context.runId,
     output: {
       title: 'Both staging hosts must accept this attempt',
@@ -79,11 +91,20 @@ async function beginMergeAdmission(github, context, pr, main) {
   return data.id;
 }
 
-async function finishMergeAdmission(github, context, source, id, conclusion, output) {
+async function finishMergeAdmission(
+  github,
+  context,
+  source,
+  id,
+  conclusion,
+  output,
+  attempt = process.env.GITHUB_RUN_ATTEMPT
+) {
+  const identity = executionIdentity(context, attempt);
   const { data } = await github.rest.checks.get({ ...context.repo, check_run_id: Number(id) });
   assert.equal(data.name, 'Staging admission');
   assert.equal(data.head_sha, source);
-  assert.equal(data.external_id, String(context.runId) + '/' + String(context.runAttempt || 1));
+  assert.equal(data.external_id, identity);
   return github.rest.checks.update({
     ...context.repo,
     check_run_id: data.id,
@@ -93,7 +114,16 @@ async function finishMergeAdmission(github, context, source, id, conclusion, out
   });
 }
 
-async function publishMergeAdmission(github, context, pr, main, expectedSource, outcomes, id) {
+async function publishMergeAdmission(
+  github,
+  context,
+  pr,
+  main,
+  expectedSource,
+  outcomes,
+  id,
+  attempt = process.env.GITHUB_RUN_ATTEMPT
+) {
   controller(context, pr, main, expectedSource);
   const evidence = await requireAdmission(github, context, pr);
   const comparison = (
@@ -110,15 +140,23 @@ async function publishMergeAdmission(github, context, pr, main, expectedSource, 
   assert.equal(comparison.behind_by, 0);
   assert.equal(outcomes.promote, 'success', 'stable Cloudflare verification failed');
   assert.equal(outcomes.pages, 'success', 'Pages mirror must be activated and verified');
-  return finishMergeAdmission(github, context, expectedSource, id, 'success', {
-    title: 'Exact PR source accepted on both staging hosts',
-    summary:
-      'Source admission: ' +
-      evidence.map((item) => item.workflowRun + '/' + item.attempt).join(', ') +
-      '. Protected main: ' +
-      main.commit.sha +
-      '. This result does not authorize production.',
-  });
+  return finishMergeAdmission(
+    github,
+    context,
+    expectedSource,
+    id,
+    'success',
+    {
+      title: 'Exact PR source accepted on both staging hosts',
+      summary:
+        'Source admission: ' +
+        evidence.map((item) => item.workflowRun + '/' + item.attempt).join(', ') +
+        '. Protected main: ' +
+        main.commit.sha +
+        '. This result does not authorize production.',
+    },
+    attempt
+  );
 }
 
 async function verifyMerge(github, context, pr) {

@@ -51,6 +51,7 @@ jobs:
       request_id: ${{ steps.retained.outputs.artifact-id }}
     env:
       PRODUCTION_ENABLED: ${{ vars.SITE_PRODUCTION_ENABLED }}
+      PRODUCTION_APP_ID: ${{ vars.PRODUCTION_APP_ID }}
       RELEASE_OPERATION: ${{ inputs.operation }}
       RELEASE_TAG: ${{ inputs.release_tag }}
       VALIDATION_RUN: ${{ inputs.validation_run_id }}
@@ -64,9 +65,21 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - id: production-app
+        name: Mint the installed production App token for protected settings inspection
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        with:
+          client-id: ${{ vars.PRODUCTION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PRODUCTION_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-administration: write
+          permission-metadata: read
       - id: request
         name: Authenticate owner, source protection and complete real production jobs
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').resolve(github,context,core)
       - id: retained
@@ -85,7 +98,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     permissions:
-      contents: write
+      contents: read
       actions: read
       issues: write
       pull-requests: read
@@ -95,6 +108,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       PRODUCTION_ENABLED: ${{ vars.SITE_PRODUCTION_ENABLED }}
+      PRODUCTION_APP_ID: ${{ vars.PRODUCTION_APP_ID }}
       SITE_TEST_PROFILE: production
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
@@ -150,8 +164,22 @@ jobs:
           run-id: ${{ steps.public.outputs.run }}
           github-token: ${{ github.token }}
           path: production-source
+      - id: production-app
+        name: Mint the installed production App token for protected refs and archives
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        with:
+          client-id: ${{ vars.PRODUCTION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PRODUCTION_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-administration: write
+          permission-contents: write
+          permission-workflows: write
+          permission-metadata: read
       - name: Verify full/external admission and upload recoverable draft archive assets
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').prepareArchive(github,context)
       - name: Compose production root with the unchanged accepted staging subtree
@@ -180,6 +208,8 @@ jobs:
       - id: pending
         name: Retain the transition lease and create a pending production deployment
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').begin(github,context)
       - name: Retain the created deployment and exact bookkeeping recovery state
@@ -246,6 +276,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           OBSERVATIONS_RETAINED: 'true'
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').accept(github,context)
       - id: rollback
@@ -262,6 +293,8 @@ jobs:
       - name: Restore previous production ref, label state and deployment identity
         if: steps.rollback.outcome == 'success' && success()
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').recover(github,context)
       - name: Mark a created deployment failed when live publication never started

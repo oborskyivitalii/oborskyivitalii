@@ -147,7 +147,7 @@ test('all exact source workflows must finish before owner staging', async () => 
 test('merge admission is written only for current owner source accepted on both hosts', async () => {
   const main = { protected: true, commit: { sha: mainSHA } },
     api = github();
-  const id = await admission.beginMergeAdmission(api, context, pr(), main);
+  const id = await admission.beginMergeAdmission(api, context, pr(), main, '1');
   const result = await admission.publishMergeAdmission(
     api,
     context,
@@ -158,7 +158,8 @@ test('merge admission is written only for current owner source accepted on both 
       promote: 'success',
       pages: 'success',
     },
-    id
+    id,
+    '1'
   );
   assert.equal(api.writes[0].status, 'in_progress');
   assert.equal(api.writes[0].head_sha, source);
@@ -197,19 +198,64 @@ test('merge admission is written only for current owner source accepted on both 
 test('a fresh staging attempt supersedes old success and failure completes only its own check', async () => {
   const api = github(),
     main = { protected: true, commit: { sha: mainSHA } };
-  const id = await admission.beginMergeAdmission(api, context, pr(), main);
+  const id = await admission.beginMergeAdmission(api, context, pr(), main, '1');
   assert.equal(api.writes[0].status, 'in_progress');
   assert.equal(api.writes[0].external_id, '900/1');
-  await admission.finishMergeAdmission(api, context, source, id, 'failure', {
-    title: 'Failed mirror',
-    summary: 'fixture',
-  });
+  await admission.finishMergeAdmission(
+    api,
+    context,
+    source,
+    id,
+    'failure',
+    { title: 'Failed mirror', summary: 'fixture' },
+    '1'
+  );
   assert.equal(api.writes[1].conclusion, 'failure');
   await assert.rejects(
-    admission.finishMergeAdmission(api, { ...context, runId: 901 }, source, id, 'success', {})
+    admission.finishMergeAdmission(api, { ...context, runId: 901 }, source, id, 'success', {}, '1')
   );
-  await assert.rejects(admission.finishMergeAdmission(api, context, mainSHA, id, 'success', {}));
+  await assert.rejects(
+    admission.finishMergeAdmission(api, context, mainSHA, id, 'success', {}, '1')
+  );
   assert.equal(api.writes.length, 2);
+});
+
+test('rerun admission uses the actual environment attempt and rejects missing or invalid identity', async () => {
+  const main = { protected: true, commit: { sha: mainSHA } };
+  const previousAttempt = process.env.GITHUB_RUN_ATTEMPT;
+  try {
+    process.env.GITHUB_RUN_ATTEMPT = '2';
+    const api = github();
+    const id = await admission.beginMergeAdmission(api, context, pr(), main);
+    assert.equal(api.writes[0].external_id, '900/2');
+    await assert.rejects(
+      admission.finishMergeAdmission(api, context, source, id, 'success', {}, '1')
+    );
+    assert.equal(api.writes.length, 1);
+    await admission.publishMergeAdmission(
+      api,
+      context,
+      pr(),
+      main,
+      source,
+      { promote: 'success', pages: 'success' },
+      id
+    );
+    assert.equal(api.writes[1].conclusion, 'success');
+    assert.equal(api.writes[0].external_id, '900/2');
+    for (const attempt of [undefined, '', '0', '-1', '1.5', '2x']) {
+      if (attempt === undefined) delete process.env.GITHUB_RUN_ATTEMPT;
+      else process.env.GITHUB_RUN_ATTEMPT = attempt;
+      const rejected = github();
+      await assert.rejects(
+        admission.beginMergeAdmission(rejected, { ...context, runAttempt: 1 }, pr(), main)
+      );
+      assert.equal(rejected.writes.length, 0);
+    }
+  } finally {
+    if (previousAttempt === undefined) delete process.env.GITHUB_RUN_ATTEMPT;
+    else process.env.GITHUB_RUN_ATTEMPT = previousAttempt;
+  }
 });
 
 test('actual merge identity requires the complete tested tree and the real latest two-host admission', async () => {
@@ -252,6 +298,11 @@ test('actual merge identity requires the complete tested tree and the real lates
   const record = await admission.verifyMerge(api, context, p);
   assert.equal(record.publicBytesUnchanged, true);
   assert.equal(record.testedSource, source);
+  check.external_id = '900/2';
+  r.run_attempt = 2;
+  assert.equal((await admission.verifyMerge(api, context, p)).attempt, 2);
+  check.external_id = '900/1';
+  r.run_attempt = 1;
   mergedTree = mainSHA;
   await assert.rejects(admission.verifyMerge(api, context, p), /tree differs/);
   mergedTree = tree;

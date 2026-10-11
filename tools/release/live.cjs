@@ -47,8 +47,7 @@ function observation(record, combined, reports) {
     assert.ok(result.rows.every((row) => row.pass));
     assert.equal(result.target, edition.origin + (name === 'stagingBrowser' ? '/staging' : ''));
   }
-  assert.equal(reports.passive.pass, true);
-  assert.equal(reports.passive.origin, edition.origin);
+  require('./passive.cjs').verifyReport(reports.passive);
   assert.equal(reports.retained, true);
   return {
     pass: true,

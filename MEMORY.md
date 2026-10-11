@@ -9,6 +9,9 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
   prototype/staging/Pages/production-archive plan. Implementation is authorized on
   `work/issue-72-prototype-staging-release-20261011`; [Draft PR #73](https://github.com/oborskyivitalii/oborskyivitalii/pull/73).
   [Analysis and handoff](review/issue-72/2026-10-11-analysis.md).
+  [Review/corrections](review/issue-72/2026-10-11-review.md) records separate AI
+  source/security/browser reviews and corrections. Direct Git refs reconciled
+  published `e0dd85ad...`; final clean source/CI must be revalidated.
 - PR67 is merged; Cloudflare stable alias maps to its accepted source
   `4a7b44ff0877961d5a2d0dc8233b8ae643ca340c`, deployment `5ee165bf`, on 9 October.
   This API identity is not a new direct HTTP health observation.
@@ -16,8 +19,9 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
   full prototype workflow 101 seconds; source/RI/acceptance/browser admission deferred.
   Clean local mapped acceptance and 375 additional source cases passed for that commit.
   Revalidate its latest head/preview after metadata follow-ups.
-- All 33 refs were inspected: no production branch/tag/Release or accepted Pages
-  production publisher on main. Pages administration remains unobserved.
+- Local continuation reproduced418 JS/109 Python cases and214-file lint; final
+  clean mapping/security/format and hosted prototype are bound in issue/PR.
+  No production branch/tag/Release is active; Pages reports has_pages=false.
 
 ## Decisions
 
@@ -39,6 +43,8 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
   publisher/ref/label/rollback source integration now exists, with separately
   hashed prospective production previews and durable full/raw/live evidence.
   Production stays absent/disabled; actual activation is expressly excluded.
+  Dedicated installed Production App tokens own protected refs/Releases;
+  ordinary workflow tokens retain Pages, deployment and label operations.
   Pages, variables, environment/ruleset and Release immutability administration
   remain unobserved because the connector has no administrative operations.
 - Original #41 content/sitecase evidence stays in its review records. #65 harness
@@ -58,7 +64,8 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 ## Next session
 
 1. Fetch main, #72 and execution PR; inspect exact source/CI/deployments.
-2. Continue #72's versioned handoff and remaining implementation on the same PR.
+2. Continue #72's versioned handoff on the same PR; use reviewed bootstrap and
+   authenticated Pages/environment/variable/ruleset/App setup without activation.
 3. Reconcile actual AC boxes with current-source/live results; no fixture proves
    host activation, durable Releases or independent review.
 4. Keep launch/domain owners; merge/release only by maintainer decision.

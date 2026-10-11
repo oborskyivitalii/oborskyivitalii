@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "63f1e867c22081e33b91ec2f7a94f5ac273545c287376e6285e149a167fb083b",
+    "digest": "e9b60e17eff94e1d0294dd023ea7e394200428b38fb78a9b501ce7e18825076b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "88a541ac4269a18356055891ad4f700ad5438cccc64938d02361e5744de8e90a"
+        "sha256": "d7a890123e1fbd4c065b6113f2a5169441b6343126d1549ffa9844c3f229a5a4"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e2763bccd1c842600ee6739a6f0a885694b5bce03ec80add4b0b68d128410e84"
+        "sha256": "5bfb98d2a9916eb691b615025a4032df4205b17c6bfb6940197f3fe45dc47fa2"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -211,7 +211,7 @@
       {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
-        "sha256": "24a6f3187b942a672c5b10dad5b7f48d2ace68f9a2b0af64f2541a8085262640"
+        "sha256": "eb7bce17608f70403b8fdc621d5b462b990190cb463a317f489b402defcf1b8a"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -261,7 +261,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cf12861e75ec0c1d62fe2ee21582638916f4f36f6060759753048b76ad9420f7"
+        "sha256": "300f1a1008c306b882f313c024a3bc6d8619910dc27216ae664a3f5301a95dd0"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -515,7 +515,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "5088c05450d37240b9ac79883e62f67e020c9c079ecf7482f7750586fc6923b3"
+        "sha256": "3744e1315325bdd47f5dadd89254a74118ae3aa42d90cc2b0907ca3622022d39"
       },
       {
         "path": "guides/SITE-ROADMAP.md",
@@ -535,7 +535,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "dee3f1dbe1a70cda796366c13866eff20e5dfa81f62824abd149af106fe052e1"
+        "sha256": "9d9f55958237c2feec219ed2933df233b453bfe19a0466c4716f4cd448f30684"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -910,7 +910,17 @@
       {
         "path": "review/issue-72/2026-10-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "e4f062b123b174bc14881e1b2528876cd5de0b727856e5cd0134a8bb402e37e5"
+        "sha256": "6a9407096e638aaa6b3963607322cbc83f28ff9314447e4196e624eae7ea40d0"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-browser-evidence.json.gz",
+        "identity_mode": "content",
+        "sha256": "f0ccf13402c430f3ea50b05b103acf1420b031904802f74bd24a04eab1ff6ee2"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-review.md",
+        "identity_mode": "content",
+        "sha256": "9056307668b9d8a848e81c40dd0c1b59fb5a5291016296691377d88569cdb176"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5180,7 +5190,7 @@
       {
         "path": "tests/prototype-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "681d2246aa6ddc5fee586a2925225925ef012180ace0c2b3a753779f45e3cf68"
+        "sha256": "c1cbb506f9a48576a1a16a188ecd6359f708a389ab9dc2e64975e2f269c28d6f"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5200,12 +5210,12 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "e6d103481279e3accc610a8940b6830d1c11396161eb19192c3cbcc37c3eccd2"
+        "sha256": "818e96627ff1949de38e4ac9465bdeb7a95c1829764239ab038ac524b5790162"
       },
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "b77845009e0687c8935e6706ab9ca82727fa16c482f6e6777d94fb59d5b5e86f"
+        "sha256": "018949ce72d6d446c54b75272db81ada8ffee11f643fd2652368705481304ba3"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -5900,7 +5910,7 @@
       {
         "path": "tools/release/controller.cjs",
         "identity_mode": "content",
-        "sha256": "f56a20ed65020cf72f3ca61d0b09f483a2c254023be56410fff1cfdf7d0ec775"
+        "sha256": "27cdf633825ea570f3cfd95311d40f41d46195cbfadc5564adfa92c97b812609"
       },
       {
         "path": "tools/release/edition.cjs",
@@ -5910,7 +5920,7 @@
       {
         "path": "tools/release/live.cjs",
         "identity_mode": "content",
-        "sha256": "1d59a09e307cc65ba6922a56d8e208b1e0ce8c077faa7dd3c1e3cf2c2c2f9515"
+        "sha256": "cbc85b590e4c3efd3c21a202c40afe54e5f609efa71a198eed04cfe4c43efac8"
       },
       {
         "path": "tools/release/package.py",
@@ -5920,7 +5930,7 @@
       {
         "path": "tools/release/passive.cjs",
         "identity_mode": "content",
-        "sha256": "8c5bd25759c210feeaf18b1ec1b002b575c929e206b0638de8a508d1b1e91c3c"
+        "sha256": "b6834b0eb45390bac2d117c8445da72af84484651c649ce4475141d73984a901"
       },
       {
         "path": "tools/repository_intelligence.py",
@@ -6020,7 +6030,7 @@
       {
         "path": "tools/staging/admission.cjs",
         "identity_mode": "content",
-        "sha256": "4f34d6b4216d3636687fb5ea53ae87d8757c6a0c36db770ce5d494fa65032189"
+        "sha256": "68656eddc482c1416700884ce9ecf17f4b1c43495fcbd36fa4bd5d56a9251486"
       },
       {
         "path": "tools/staging/color.cjs",
@@ -8275,6 +8285,28 @@
         "AGENTS.md"
       ],
       "title": "Issue 72 — 2026-10-11 analysis and execution"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-browser-evidence.json.gz",
+      "kind": "file",
+      "purpose": "Compressed immutable local staging edition and Pages smoke observations with temporary-fixture and dirty-parent source bindings.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-11-browser-evidence.json.gz"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-review.md",
+      "kind": "file",
+      "purpose": "Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 72 — 2026-10-11 independent review and corrections"
     },
     {
       "path": "review/public-responses-20261006/README.md",

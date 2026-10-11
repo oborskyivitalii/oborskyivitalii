@@ -96,8 +96,25 @@ async function validation(github, context, runId) {
   return { run, gate: gates[0], reports };
 }
 
-async function protection(github, context) {
-  const { data: rules } = await github.request('GET /repos/{owner}/{repo}/rulesets', {
+function productionClient(github, token = process.env.PRODUCTION_APP_TOKEN) {
+  assert.ok(token, 'protected production App installation token is not configured');
+  // Octokit's token-auth hook overwrites per-request Authorization headers.
+  // The installed App owns protected refs/releases; Pages, labels and deployment
+  // records keep the ordinary workflow client and its authenticated identity.
+  return new github.constructor({ auth: token });
+}
+
+function productionAppId(value = process.env.PRODUCTION_APP_ID) {
+  assert.ok(value, 'installed production App ID is not configured');
+  const id = flow.positive(value);
+  assert.notEqual(id, 15368, 'the internal GitHub Actions App is not the installed publisher');
+  return id;
+}
+
+async function protection(github, context, settingsGithub = null, appId = undefined) {
+  const id = productionAppId(appId);
+  if (!settingsGithub) settingsGithub = productionClient(github);
+  const { data: rules } = await settingsGithub.request('GET /repos/{owner}/{repo}/rulesets', {
     ...context.repo,
     per_page: 100,
   });
@@ -105,10 +122,13 @@ async function protection(github, context) {
     (rule) => rule.name === 'protect-production' && rule.enforcement === 'active'
   );
   assert.equal(matches.length, 1, 'protected production source ruleset is not configured');
-  const { data: rule } = await github.request('GET /repos/{owner}/{repo}/rulesets/{ruleset_id}', {
-    ...context.repo,
-    ruleset_id: matches[0].id,
-  });
+  const { data: rule } = await settingsGithub.request(
+    'GET /repos/{owner}/{repo}/rulesets/{ruleset_id}',
+    {
+      ...context.repo,
+      ruleset_id: matches[0].id,
+    }
+  );
   assert.equal(rule.name, 'protect-production');
   assert.equal(rule.enforcement, 'active');
   assert.equal(rule.target, 'branch');
@@ -120,7 +140,7 @@ async function protection(github, context) {
     'update',
   ]);
   assert.deepEqual(rule.bypass_actors, [
-    { actor_id: 15368, actor_type: 'Integration', bypass_mode: 'always' },
+    { actor_id: id, actor_type: 'Integration', bypass_mode: 'always' },
   ]);
   return rule.id;
 }
@@ -201,7 +221,14 @@ async function wasAccepted(github, context, record) {
       deployment_id: deployment.id,
       per_page: 100,
     });
-    if (statuses.some((item) => item.state === 'success')) return true;
+    // A remotely committed success can still be followed by failed-response
+    // compensation. Preserve ordinary superseded releases, but do not let that
+    // historical status admit a failed transaction as a rollback target.
+    if (
+      ['success', 'inactive'].includes(statuses[0]?.state) &&
+      statuses.some((item) => item.state === 'success')
+    )
+      return true;
   }
   throw Error('rollback requires a previously live accepted release');
 }
@@ -344,9 +371,16 @@ async function restoreArchive(github, context, tag, directory) {
   return record;
 }
 
-async function publishArchive(github, context, directory, record, activation = null) {
+async function publishArchive(
+  github,
+  context,
+  directory,
+  record,
+  activation = null,
+  control = productionClient(github)
+) {
   const tag = archive.tag(record.tag);
-  let release = await optional(() => github.rest.repos.getReleaseByTag({ ...context.repo, tag }));
+  let release = await optional(() => control.rest.repos.getReleaseByTag({ ...context.repo, tag }));
   const names = [
     'archive.json',
     'public.tar.gz',
@@ -368,16 +402,16 @@ async function publishArchive(github, context, directory, record, activation = n
   );
   if (!release) {
     const ref = await optional(() =>
-      github.rest.git.getRef({ ...context.repo, ref: 'tags/' + tag })
+      control.rest.git.getRef({ ...context.repo, ref: 'tags/' + tag })
     );
     assert.equal(ref, null, 'untracked tag cannot be reused for an archive');
-    await github.rest.git.createRef({
+    await control.rest.git.createRef({
       ...context.repo,
       ref: 'refs/tags/' + tag,
       sha: record.sourceCommit,
     });
     release = (
-      await github.rest.repos.createRelease({
+      await control.rest.repos.createRelease({
         ...context.repo,
         tag_name: tag,
         target_commitish: record.sourceCommit,
@@ -389,8 +423,8 @@ async function publishArchive(github, context, directory, record, activation = n
       })
     ).data;
   }
-  await releaseSource(github, context, tag, record.sourceCommit);
-  let items = await github.paginate(github.rest.repos.listReleaseAssets, {
+  await releaseSource(control, context, tag, record.sourceCommit);
+  let items = await control.paginate(control.rest.repos.listReleaseAssets, {
     ...context.repo,
     release_id: release.id,
     per_page: 100,
@@ -398,7 +432,7 @@ async function publishArchive(github, context, directory, record, activation = n
   for (const item of items) {
     assert.ok(Object.hasOwn(expected, item.name), 'unexpected existing archive asset');
     assert.deepEqual(
-      await releaseAsset(github, context, item),
+      await releaseAsset(control, context, item),
       expected[item.name],
       'archive asset cannot be replaced'
     );
@@ -407,7 +441,7 @@ async function publishArchive(github, context, directory, record, activation = n
     if (items.some((item) => item.name === name)) continue;
     assert.equal(release.draft, true, 'published archive cannot gain new assets');
     const bytes = expected[name];
-    await github.rest.repos.uploadReleaseAsset({
+    await control.rest.repos.uploadReleaseAsset({
       ...context.repo,
       release_id: release.id,
       name,
@@ -415,15 +449,15 @@ async function publishArchive(github, context, directory, record, activation = n
       headers: { 'content-type': 'application/octet-stream', 'content-length': bytes.length },
     });
   }
-  items = await github.paginate(github.rest.repos.listReleaseAssets, {
+  items = await control.paginate(control.rest.repos.listReleaseAssets, {
     ...context.repo,
     release_id: release.id,
     per_page: 100,
   });
   assert.deepEqual(items.map((item) => item.name).sort(), names);
   for (const item of items)
-    assert.deepEqual(await releaseAsset(github, context, item), expected[item.name]);
-  await releaseSource(github, context, tag, record.sourceCommit);
+    assert.deepEqual(await releaseAsset(control, context, item), expected[item.name]);
+  await releaseSource(control, context, tag, record.sourceCommit);
   if (!activation) {
     assert.equal(
       release.draft,
@@ -434,7 +468,7 @@ async function publishArchive(github, context, directory, record, activation = n
   }
   if (release.draft)
     release = (
-      await github.rest.repos.updateRelease({
+      await control.rest.repos.updateRelease({
         ...context.repo,
         release_id: release.id,
         draft: false,
@@ -442,7 +476,7 @@ async function publishArchive(github, context, directory, record, activation = n
       })
     ).data;
   assert.equal(release.immutable, true, 'enable repository immutable Releases before production');
-  await releaseSource(github, context, tag, record.sourceCommit);
+  await releaseSource(control, context, tag, record.sourceCommit);
   return release;
 }
 
@@ -503,14 +537,18 @@ async function setLabels(github, context, number, wanted) {
   }
 }
 
-async function move(github, context, expected, source) {
+async function move(github, context, expected, source, control = productionClient(github)) {
   assert.equal(await branch(github, context), expected, 'production ref moved during publication');
   if (source === null) {
-    if (expected) await github.rest.git.deleteRef({ ...context.repo, ref: 'heads/production' });
+    if (expected) await control.rest.git.deleteRef({ ...context.repo, ref: 'heads/production' });
   } else if (expected === null) {
-    await github.rest.git.createRef({ ...context.repo, ref: 'refs/heads/production', sha: source });
+    await control.rest.git.createRef({
+      ...context.repo,
+      ref: 'refs/heads/production',
+      sha: source,
+    });
   } else if (source !== expected) {
-    await github.rest.git.updateRef({
+    await control.rest.git.updateRef({
       ...context.repo,
       ref: 'heads/production',
       sha: source,
@@ -560,7 +598,13 @@ function live(release, observation) {
     assert.equal(observation[check], true, 'production live acceptance missing: ' + check);
 }
 
-async function accept(github, context, transaction, observation) {
+async function accept(
+  github,
+  context,
+  transaction,
+  observation,
+  control = productionClient(github)
+) {
   const release = transaction.desired;
   live(release, observation);
   assert.deepEqual(
@@ -568,7 +612,13 @@ async function accept(github, context, transaction, observation) {
     transaction.before,
     'active production changed'
   );
-  await move(github, context, transaction.before?.sourceCommit || null, release.sourceCommit);
+  await move(
+    github,
+    context,
+    transaction.before?.sourceCommit || null,
+    release.sourceCommit,
+    control
+  );
   for (const number of Object.keys(transaction.savedLabels))
     await setLabels(github, context, number, [
       Number(number) === release.releasePR ? labels[0] : labels[1],
@@ -588,7 +638,13 @@ async function accept(github, context, transaction, observation) {
   );
 }
 
-async function recover(github, context, transaction, observation) {
+async function recover(
+  github,
+  context,
+  transaction,
+  observation,
+  control = productionClient(github)
+) {
   assert.equal(observation.pass, true, 'verify restored Pages bytes before restoring bookkeeping');
   assert.equal(observation.productionTag, transaction.before?.tag || null);
   const actual = await branch(github, context);
@@ -596,7 +652,7 @@ async function recover(github, context, transaction, observation) {
     [transaction.before?.sourceCommit || null, transaction.desired.sourceCommit].includes(actual),
     'unrelated production ref cannot be overwritten'
   );
-  await move(github, context, actual, transaction.before?.sourceCommit || null);
+  await move(github, context, actual, transaction.before?.sourceCommit || null, control);
   for (const [number, wanted] of Object.entries(transaction.savedLabels))
     await setLabels(github, context, number, wanted);
   await github.rest.repos.createDeploymentStatus({
@@ -622,6 +678,8 @@ module.exports = {
   authorize,
   producer,
   validation,
+  productionClient,
+  productionAppId,
   protection,
   sourcePR,
   publicArtifact,

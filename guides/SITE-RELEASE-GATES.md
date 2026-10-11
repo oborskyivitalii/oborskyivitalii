@@ -137,9 +137,26 @@ The maintainer's 11 October instruction explicitly excludes production activatio
    observation; a source guide or a CI variable is not evidence of the setting.
 2. Configure active `protect-production`, targeting exactly
    `refs/heads/production`, without creating the branch. Require creation, update,
-   deletion and non-fast-forward restrictions. The only bypass is GitHub Actions
-   integration `15368`, mode `always`, for the serialized publisher/rollback.
+   deletion and non-fast-forward restrictions. The only bypass is a dedicated
+   registered Production GitHub App, installed on this repository, mode `always`.
+   Set its numeric App ID in `PRODUCTION_APP_ID`; the publisher rejects internal
+   GitHub Actions integration `15368` and any wider bypass list. A required-check
+   integration ID does not establish an eligible installed ruleset bypass.
 3. Restrict `production` and `github-pages` environments to protected main.
+   Configure `PRODUCTION_APP_CLIENT_ID` and `PRODUCTION_APP_ID` as environment
+   variables and `PRODUCTION_APP_PRIVATE_KEY` as a secret in both protected
+   environments. Install the App on this repository only with Administration,
+   Contents and Workflows write, and Metadata read permissions. The pinned official
+   action mints and revokes a fresh repository-scoped installation token per job.
+   GitHub only returns ruleset bypass actors to a caller with write access to the
+   ruleset; the ordinary `GITHUB_TOKEN` cannot establish that inspection or the
+   installed App bypass. A separate client uses the App token for ruleset metadata,
+   protected Git refs/tags and durable Release operations. Workflows write permits
+   restoring archived commits whose workflow files differ from current main.
+   Pages, labels and production deployment records retain `GITHUB_TOKEN`; the App
+   is not granted those publishing permissions. Missing credentials, a mismatched
+   App ID or hidden bypass actors block publication. Actual provider configuration
+   and authorized operations still need observation; fixtures do not prove setup.
    Keep `SITE_PRODUCTION_ENABLED` absent or `false` during preparation. No production
    ref, active label, release tag, `.ai` domain or DNS route is created by setup.
 4. Before a later authorized release, observe Pages on the canonical owned

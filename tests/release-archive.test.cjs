@@ -147,3 +147,126 @@ test('release extraction rejects traversal and links before writing any source',
   );
   assert.equal(fs.existsSync(output), false);
 });
+
+test('passive acceptance requires actual successful traffic for every production route', () => {
+  const passive = require('../tools/release/passive.cjs');
+  const edition = require('../tools/release/edition.cjs');
+  const routes = require('../tools/site/snapshot.cjs').routes;
+  const report = { '@version': 'fixture', site: [{ '@name': edition.origin, alerts: [] }] };
+  const traffic = {
+    log: {
+      entries: routes.map((id) => ({
+        request: { method: 'GET', url: edition.routeURL(id) },
+        response: { status: 200 },
+      })),
+    },
+  };
+  const result = passive.validate(report, traffic);
+  assert.equal(result.pass, true);
+  assert.equal(result.coverage.messages, 5);
+  assert.equal(result.coverage.routes.length, 5);
+  assert.throws(() => passive.validate(report), /actual passive HTTP coverage/);
+  for (const mutate of [
+    (value) => (value.log.entries = []),
+    (value) => value.log.entries.pop(),
+    (value) => (value.log.entries[0].response.status = 503),
+    (value) => (value.log.entries[0].request.method = 'POST'),
+    (value) => (value.log.entries[0].request.url = 'https://outside.invalid/'),
+    (value) => (value.log.entries[0].request.url = edition.origin + '/staging/'),
+    (value) => (value.log.entries[0].request.url = edition.origin + '/staging'),
+    (value) => (value.log.entries[0].request.url = edition.origin + '/%73taging/'),
+  ]) {
+    const invalid = structuredClone(traffic);
+    mutate(invalid);
+    assert.throws(() => passive.validate(report, invalid));
+  }
+  const partial = structuredClone(traffic);
+  partial.log.entries[0] = structuredClone(partial.log.entries[1]);
+  assert.throws(() => passive.validate(report, partial), /missed route/);
+  const plan = passive.plan();
+  const requestor = plan.jobs.find((job) => job.type === 'requestor');
+  assert.deepEqual(
+    requestor.requests,
+    routes.map((id) => ({ url: edition.routeURL(id), method: 'GET', responseCode: 200 }))
+  );
+  for (const type of ['spider', 'passiveScan-wait']) {
+    const job = plan.jobs.find((item) => item.type === type);
+    assert.ok(job.tests.some((check) => check.type === 'stats' && check.onFail === 'error'));
+  }
+  const exported = plan.jobs.findIndex((job) => job.type === 'export');
+  assert.ok(exported > plan.jobs.findIndex((job) => job.type === 'passiveScan-wait'));
+  assert.equal(plan.jobs[exported].parameters.type, 'har');
+  assert.equal(plan.jobs[exported].parameters.source, 'all');
+  const excluded = new RegExp(plan.env.contexts[0].excludePaths[0]);
+  for (const url of [edition.origin + '/staging', edition.origin + '/staging/?theme=day'])
+    assert.ok(excluded.test(url));
+  const alertReport = structuredClone(report);
+  alertReport.site[0].alerts = [
+    { pluginid: '10038', riskcode: '2', instances: [{ uri: edition.origin + '/staging' }] },
+  ];
+  assert.throws(() => passive.validate(alertReport, traffic), /included staging/);
+});
+
+test('live production cannot accept a passive pass flag without complete scan coverage', (t) => {
+  const edition = require('../tools/release/edition.cjs');
+  const passive = require('../tools/release/passive.cjs');
+  const live = require('../tools/release/live.cjs');
+  const pages = require('../tools/pages/package.cjs');
+  const temp = fixture.temporary(t);
+  const source = fixture.source(temp, 'production');
+  source.record = edition.build(source.directory);
+  const stage = fixture.staging(temp);
+  const combined = pages.build(
+    stage.directory,
+    path.join(temp, 'combined'),
+    source.directory,
+    'prod-2026-10-11.1'
+  );
+  const record = {
+    sourceCommit: source.record.sourceCommit,
+    publicDigest: source.record.artifactDigest,
+    public: source.record,
+  };
+  const browser = (manifest, target) => ({
+    ...fixture.fullProof(manifest).external,
+    kind: 'preview-smoke',
+    target,
+    rows: Array.from({ length: 4 }, () => ({ pass: true })),
+  });
+  const traffic = {
+    log: {
+      entries: require('../tools/site/snapshot.cjs').routes.map((id) => ({
+        request: { method: 'GET', url: edition.routeURL(id) },
+        response: { status: 200 },
+      })),
+    },
+  };
+  const reports = {
+    pages: { pass: true, packageDigest: combined.packageDigest },
+    policy: { pass: true, ...record, origin: edition.origin },
+    productionBrowser: browser(source.record, edition.origin),
+    stagingBrowser: browser(stage.record, edition.origin + '/staging'),
+    passive: passive.validate(
+      { '@version': 'fixture', site: [{ '@name': edition.origin, alerts: [] }] },
+      traffic
+    ),
+    retained: true,
+  };
+  assert.equal(live.observation(record, combined, reports).pass, true);
+  for (const mutate of [
+    (value) => (value.passive = { pass: true, origin: edition.origin }),
+    (value) => delete value.passive.version,
+    (value) => delete value.passive.coverage,
+    (value) => (value.passive.coverage.messages = 0),
+    (value) => value.passive.coverage.routes.pop(),
+    (value) => (value.passive.coverage.visitedURLs[0] = 'https://outside.invalid/'),
+    (value) => delete value.passive.rows,
+    (value) => (value.passive.rows = [{ rule: '999', risk: 3, disposition: 'warn' }]),
+    (value) => (value.passive.rows = [{ rule: '10038', risk: 3, disposition: 'warn' }]),
+    (value) => (value.passive.rows = [{ rule: '10038', risk: 2, disposition: 'info' }]),
+  ]) {
+    const invalid = structuredClone(reports);
+    mutate(invalid);
+    assert.throws(() => live.observation(record, combined, invalid));
+  }
+});

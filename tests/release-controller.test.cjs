@@ -260,7 +260,7 @@ test('production metadata is a separately hashed edition and Pages preserves its
 test('archive uploads bind all raw evidence and become immutable only after retained live observations', async (t) => {
   const f = releaseFixture(t),
     api = github();
-  const staged = await controller.publishArchive(api, context, f.directory, f.record);
+  const staged = await controller.publishArchive(api, context, f.directory, f.record, null, api);
   assert.equal(staged.draft, true);
   assert.equal(api.state.deployments.length, 0);
   assert.equal(api.state.refs.has('heads/production'), false);
@@ -274,7 +274,14 @@ test('archive uploads bind all raw evidence and become immutable only after reta
     observation: live(f.record),
   };
   fs.writeFileSync(f.directory + '/activation.json', JSON.stringify(activation, null, 2) + '\n');
-  const accepted = await controller.publishArchive(api, context, f.directory, f.record, activation);
+  const accepted = await controller.publishArchive(
+    api,
+    context,
+    f.directory,
+    f.record,
+    activation,
+    api
+  );
   assert.equal(accepted.immutable, true);
   assert.ok(
     api.state.calls.indexOf('asset:observations.tar.gz') < api.state.calls.indexOf('immutable')
@@ -292,7 +299,7 @@ test('archive uploads bind all raw evidence and become immutable only after reta
   );
   fs.appendFileSync(f.directory + '/public.tar.gz', 'tamper');
   await assert.rejects(
-    controller.publishArchive(api, context, f.directory, f.record, activation),
+    controller.publishArchive(api, context, f.directory, f.record, activation, api),
     /cannot be replaced/
   );
 });
@@ -300,7 +307,7 @@ test('archive uploads bind all raw evidence and become immutable only after reta
 test('unprotected Releases and moved tags cannot become production identity', async (t) => {
   const f = releaseFixture(t),
     api = github(false);
-  await controller.publishArchive(api, context, f.directory, f.record);
+  await controller.publishArchive(api, context, f.directory, f.record, null, api);
   const activation = {
     tag: f.record.tag,
     packageDigest: f.record.packageDigest,
@@ -311,7 +318,7 @@ test('unprotected Releases and moved tags cannot become production identity', as
   fs.writeFileSync(f.directory + '/observations.tar.gz', 'fixture');
   fs.writeFileSync(f.directory + '/activation.json', JSON.stringify(activation, null, 2) + '\n');
   await assert.rejects(
-    controller.publishArchive(api, context, f.directory, f.record, activation),
+    controller.publishArchive(api, context, f.directory, f.record, activation, api),
     /immutable Releases/
   );
   assert.equal(api.state.refs.has('heads/production'), false);
@@ -329,12 +336,12 @@ test('failed or missing live observations cannot update any production source or
   await controller.pending(api, context, transaction);
   for (const name of ['pass', 'pages', 'productionPolicy', 'browser', 'passiveScan', 'retained'])
     await assert.rejects(
-      controller.accept(api, context, transaction, { ...live(f.record), [name]: false })
+      controller.accept(api, context, transaction, { ...live(f.record), [name]: false }, api)
     );
   assert.equal(await controller.branch(api, context), null);
   assert.deepEqual([...api.state.flags.get(73)], []);
   assert.equal(api.state.deployments[0].statuses[0].state, 'in_progress');
-  await controller.accept(api, context, transaction, live(f.record));
+  await controller.accept(api, context, transaction, live(f.record), api);
   assert.equal(await controller.branch(api, context), f.record.sourceCommit);
   assert.deepEqual([...api.state.flags.get(73)], ['active-production']);
   assert.equal(api.state.deployments[0].statuses[0].state, 'success');
@@ -350,22 +357,22 @@ test('failed bookkeeping restores the pre-release ref and exact label state afte
     throw Error('fixture label write failed');
   };
   await assert.rejects(
-    controller.accept(api, context, transaction, live(f.record)),
+    controller.accept(api, context, transaction, live(f.record), api),
     /label write failed/
   );
   assert.equal(await controller.branch(api, context), f.record.sourceCommit);
   await assert.rejects(
-    controller.recover(api, context, transaction, { pass: false, productionTag: null }),
+    controller.recover(api, context, transaction, { pass: false, productionTag: null }, api),
     /restored Pages/
   );
   api.rest.issues.addLabels = add;
-  await controller.recover(api, context, transaction, { pass: true, productionTag: null });
+  await controller.recover(api, context, transaction, { pass: true, productionTag: null }, api);
   assert.equal(await controller.branch(api, context), null);
   assert.deepEqual([...api.state.flags.get(73)], []);
   assert.equal(api.state.deployments[0].statuses[0].state, 'failure');
   api.state.refs.set('heads/production', 'd'.repeat(40));
   await assert.rejects(
-    controller.recover(api, context, transaction, { pass: true, productionTag: null }),
+    controller.recover(api, context, transaction, { pass: true, productionTag: null }, api),
     /unrelated/
   );
 });
@@ -378,7 +385,7 @@ test('successor and rollback retain immutable identities and swap only the actua
   api.state.flags.get(67).clear();
   const first = await controller.plan(api, context, null, f.record);
   await controller.pending(api, context, first);
-  await controller.accept(api, context, first, live(f.record));
+  await controller.accept(api, context, first, live(f.record), api);
   const previous = { ...api.state.deployments[0].payload, deploymentId: first.deploymentId };
   const next = {
     ...f.record,
@@ -388,13 +395,13 @@ test('successor and rollback retain immutable identities and swap only the actua
   };
   const second = await controller.plan(api, context, previous, next);
   await controller.pending(api, context, second);
-  await controller.accept(api, context, second, live(next));
+  await controller.accept(api, context, second, live(next), api);
   assert.deepEqual([...api.state.flags.get(73)], ['archived-production']);
   assert.deepEqual([...api.state.flags.get(67)], ['active-production']);
   const accepted = { ...api.state.deployments[1].payload, deploymentId: second.deploymentId };
   const rollback = await controller.plan(api, context, accepted, f.record);
   await controller.pending(api, context, rollback);
-  await controller.accept(api, context, rollback, live(f.record));
+  await controller.accept(api, context, rollback, live(f.record), api);
   assert.equal(await controller.branch(api, context), f.record.sourceCommit);
   assert.deepEqual([...api.state.flags.get(73)], ['active-production']);
   assert.deepEqual([...api.state.flags.get(67)], ['archived-production']);
@@ -405,6 +412,40 @@ test('successor and rollback retain immutable identities and swap only the actua
   );
 });
 
+test('compensated remote success cannot qualify a failed publication as a rollback archive', async (t) => {
+  const f = releaseFixture(t),
+    api = github();
+  const transaction = await controller.plan(api, context, null, f.record);
+  await controller.pending(api, context, transaction);
+  const status = api.rest.repos.createDeploymentStatus;
+  api.rest.repos.createDeploymentStatus = async (value) => {
+    await status(value);
+    if (value.state === 'success') throw Error('fixture response lost after remote success');
+    return { data: {} };
+  };
+  await assert.rejects(
+    controller.accept(api, context, transaction, live(f.record), api),
+    /response lost/
+  );
+  assert.equal(api.state.deployments[0].statuses[0].state, 'success');
+  api.rest.repos.createDeploymentStatus = status;
+  await controller.recover(api, context, transaction, { pass: true, productionTag: null }, api);
+  assert.equal(await controller.branch(api, context), null);
+  assert.deepEqual([...api.state.flags.get(73)], []);
+  assert.deepEqual(
+    api.state.deployments[0].statuses.map((item) => item.state),
+    ['failure', 'success', 'in_progress']
+  );
+  await assert.rejects(controller.wasAccepted(api, context, f.record), /previously live/);
+
+  const accepted = await controller.plan(api, context, null, f.record);
+  await controller.pending(api, context, accepted);
+  await controller.accept(api, context, accepted, live(f.record), api);
+  assert.equal(await controller.wasAccepted(api, context, f.record), true);
+  await status({ deployment_id: accepted.deploymentId, state: 'inactive' });
+  assert.equal(await controller.wasAccepted(api, context, f.record), true);
+});
+
 test('production rules must protect creation, update, deletion and force moves with only the publisher bypass', async () => {
   const rule = {
     id: 9,
@@ -413,15 +454,109 @@ test('production rules must protect creation, update, deletion and force moves w
     target: 'branch',
     conditions: { ref_name: { include: ['refs/heads/production'], exclude: [] } },
     rules: ['creation', 'deletion', 'non_fast_forward', 'update'].map((type) => ({ type })),
-    bypass_actors: [{ actor_id: 15368, actor_type: 'Integration', bypass_mode: 'always' }],
+    bypass_actors: [{ actor_id: 424242, actor_type: 'Integration', bypass_mode: 'always' }],
   };
   const api = { request: async (route) => ({ data: route.endsWith('/rulesets') ? [rule] : rule }) };
-  assert.equal(await controller.protection(api, context), 9);
+  assert.equal(await controller.protection({}, context, api, 424242), 9);
+  await assert.rejects(controller.protection({}, context, api, 424243));
   rule.rules.pop();
-  await assert.rejects(controller.protection(api, context));
+  await assert.rejects(controller.protection({}, context, api, 424242));
   rule.rules.push({ type: 'update' });
   rule.bypass_actors.push({ actor_id: 1, actor_type: 'Team', bypass_mode: 'always' });
-  await assert.rejects(controller.protection(api, context));
+  await assert.rejects(controller.protection({}, context, api, 424242));
+});
+
+test('production settings inspection uses a separate client and rejects hidden bypass actors', async () => {
+  const rule = {
+    id: 9,
+    name: 'protect-production',
+    enforcement: 'active',
+    target: 'branch',
+    conditions: { ref_name: { include: ['refs/heads/production'], exclude: [] } },
+    rules: ['creation', 'deletion', 'non_fast_forward', 'update'].map((type) => ({ type })),
+    bypass_actors: [{ actor_id: 424242, actor_type: 'Integration', bypass_mode: 'always' }],
+  };
+  const calls = [];
+  const publication = {
+    request: async () => {
+      throw Error('publication credentials cannot inspect hidden settings');
+    },
+  };
+  const settings = {
+    request: async (route) => {
+      calls.push(route);
+      return { data: route.endsWith('/rulesets') ? [rule] : rule };
+    },
+  };
+  assert.equal(await controller.protection(publication, context, settings, 424242), 9);
+  assert.deepEqual(calls, [
+    'GET /repos/{owner}/{repo}/rulesets',
+    'GET /repos/{owner}/{repo}/rulesets/{ruleset_id}',
+  ]);
+  delete rule.bypass_actors;
+  await assert.rejects(controller.protection(publication, context, settings, 424242));
+});
+
+test('the settings client requires explicit credentials without replacing publication authentication', () => {
+  const publication = {
+    auth: 'fixture-publication-only',
+    constructor: class SettingsClient {
+      constructor(options) {
+        this.auth = options.auth;
+      }
+    },
+  };
+  assert.throws(() => controller.productionClient(publication, ''), /installation token/);
+  const settings = controller.productionClient(publication, 'fixture-settings-only');
+  assert.equal(settings.auth, 'fixture-settings-only');
+  assert.equal(publication.auth, 'fixture-publication-only');
+  assert.notEqual(settings, publication);
+  assert.equal(controller.productionAppId('424242'), 424242);
+  assert.throws(() => controller.productionAppId(''), /not configured/);
+  assert.throws(() => controller.productionAppId('15368'), /internal GitHub Actions/);
+});
+
+test('only protected refs and Release operations use the installed production App client', async (t) => {
+  const f = releaseFixture(t),
+    api = github();
+  const clone = () => ({
+    ...api,
+    rest: {
+      ...api.rest,
+      git: { ...api.rest.git },
+      repos: { ...api.rest.repos },
+      issues: { ...api.rest.issues },
+    },
+  });
+  const publication = clone(),
+    control = clone();
+  const forbidden = async () => {
+    throw Error('credential used outside its production role');
+  };
+  for (const name of ['createRef', 'updateRef', 'deleteRef'])
+    publication.rest.git[name] = forbidden;
+  for (const name of ['createRelease', 'uploadReleaseAsset', 'updateRelease'])
+    publication.rest.repos[name] = forbidden;
+  for (const name of ['createDeployment', 'createDeploymentStatus'])
+    control.rest.repos[name] = forbidden;
+  for (const name of ['addLabels', 'removeLabel', 'createLabel'])
+    control.rest.issues[name] = forbidden;
+  await controller.publishArchive(publication, context, f.directory, f.record, null, control);
+  const transaction = await controller.plan(publication, context, null, f.record);
+  await controller.pending(publication, context, transaction);
+  await controller.accept(publication, context, transaction, live(f.record), control);
+  assert.equal(await controller.branch(publication, context), f.record.sourceCommit);
+  assert.deepEqual([...api.state.flags.get(73)], ['active-production']);
+  assert.equal(api.state.deployments[0].creator.login, 'github-actions[bot]');
+  await controller.recover(
+    publication,
+    context,
+    transaction,
+    { pass: true, productionTag: null },
+    control
+  );
+  assert.equal(await controller.branch(publication, context), null);
+  assert.equal(api.state.deployments[0].statuses[0].state, 'failure');
 });
 
 test('full run admission requires both named native platforms, actual successful jobs and all raw reports', async () => {
@@ -492,25 +627,35 @@ test('passive scanner uses a pinned image, an exact bounded origin and explicit 
   assert.ok(scope.test(edition.origin + '/research.html'));
   assert.equal(scope.test('https://medium.com/article'), false);
   assert.equal(scope.test(edition.origin.replace('.ai', '.ai.attacker.invalid') + '/'), false);
-  assert.ok(plan.env.parameters.maxDuration <= 300);
+  assert.ok(plan.jobs.find((job) => job.type === 'spider').parameters.maxDuration <= 1);
+  assert.ok(plan.jobs.find((job) => job.type === 'passiveScan-wait').parameters.maxDuration <= 3);
   assert.ok(!plan.jobs.some((job) => job.type === 'activeScan'));
   assert.match(passive.image, /@sha256:[a-f0-9]{64}$/);
   const raw = { '@version': 'fixture', site: [{ '@name': edition.origin, alerts: [] }] };
-  assert.equal(passive.validate(raw).pass, true);
+  const traffic = {
+    log: {
+      entries: require('../tools/site/snapshot.cjs').routes.map((id) => ({
+        request: { method: 'GET', url: edition.routeURL(id) },
+        response: { status: 200 },
+      })),
+    },
+  };
+  assert.throws(() => passive.validate(raw));
+  assert.equal(passive.validate(raw, traffic).pass, true);
   raw.site[0].alerts.push({
     pluginid: '10038',
     riskcode: '2',
     instances: [{ uri: edition.origin + '/' }],
   });
-  assert.equal(passive.validate(raw).rows[0].disposition, 'warn');
+  assert.equal(passive.validate(raw, traffic).rows[0].disposition, 'warn');
   raw.site[0].alerts[0].pluginid = 'untriaged';
-  assert.throws(() => passive.validate(raw));
+  assert.throws(() => passive.validate(raw, traffic));
   raw.site[0].alerts[0].pluginid = '10038';
   raw.site[0].alerts[0].riskcode = '3';
-  assert.throws(() => passive.validate(raw), /untriaged/);
+  assert.throws(() => passive.validate(raw, traffic), /untriaged/);
   raw.site[0].alerts[0].riskcode = '2';
   raw.site[0].alerts[0].instances[0].uri = 'https://medium.com/';
-  assert.throws(() => passive.validate(raw), /authorized origin/);
+  assert.throws(() => passive.validate(raw, traffic), /authorized origin/);
 });
 
 test('live report reduction binds both browser editions, exact Pages digest, owned origin and retained observations', (t) => {
@@ -538,7 +683,17 @@ test('live report reduction binds both browser editions, exact Pages digest, own
     },
     productionBrowser: browser(f.record.public, edition.origin),
     stagingBrowser: browser(stage.record, edition.origin + '/staging'),
-    passive: { pass: true, origin: edition.origin },
+    passive: passive.validate(
+      { '@version': 'fixture', site: [{ '@name': edition.origin, alerts: [] }] },
+      {
+        log: {
+          entries: require('../tools/site/snapshot.cjs').routes.map((id) => ({
+            request: { method: 'GET', url: edition.routeURL(id) },
+            response: { status: 200 },
+          })),
+        },
+      }
+    ),
     retained: true,
   };
   assert.equal(releaseLive.observation(f.record, combined, reports).pass, true);
@@ -549,6 +704,8 @@ test('live report reduction binds both browser editions, exact Pages digest, own
     (r) => (r.stagingBrowser.target = edition.origin),
     (r) => (r.stagingBrowser.rows[0].pass = false),
     (r) => (r.passive.origin = 'https://medium.com'),
+    (r) => delete r.passive.kind,
+    (r) => delete r.passive.coverage,
     (r) => (r.retained = false),
   ]) {
     const invalid = structuredClone(reports);
