@@ -12,29 +12,23 @@ const { validate } = require('../tools/quality/flight-detail.cjs');
 test('preview identity preserves real base descriptor and Color runtime fingerprints with exact bindings', (t) => {
   const fs = require('node:fs'),
     path = require('node:path'),
-    color = require('../tools/staging/color.cjs');
-  const components = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../docs/site-revision.json'))
-  );
-  const baseManifest = {
-    candidateCommit: 'a'.repeat(40),
-    artifactDigest: 'b'.repeat(64),
-    components,
-  };
-  const { variant } = color.identities(components, color.authoredEffects());
-  const colorManifest = {
-    ...baseManifest,
-    variant,
-    components: { ...components, variant, engine: variant.fingerprint },
-  };
+    os = require('node:os'),
+    color = require('../tools/staging/color.cjs'),
+    artifact = require('../tools/quality/artifact.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'preview-identity-'));
   const keys = ['SITE_CANDIDATE_SHA', 'SITE_EXPECTED_PUBLIC_DIGEST', 'SITE_PUBLIC_VARIANT'];
   const previous = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
   t.after(() => {
+    fs.rmSync(directory, { recursive: true, force: true });
     for (const key of keys)
       if (previous[key] === undefined) delete process.env[key];
       else process.env[key] = previous[key];
   });
   for (const key of keys) delete process.env[key];
+  const baseManifest = artifact.build(directory),
+    components = baseManifest.components,
+    colorManifest = color.build(directory),
+    variant = colorManifest.components.variant;
   assert.notEqual(components.variant.fingerprint, components.engine, 'base descriptor is separate');
   assert.strictEqual(identity(baseManifest), components.variant, 'declared base identity retained');
   assert.strictEqual(identity(colorManifest), variant, 'declared Color identity retained');
@@ -82,6 +76,15 @@ test('preview identity preserves real base descriptor and Color runtime fingerpr
   wrongColorFingerprint.variant.fingerprint = '0'.repeat(64);
   wrongColorFingerprint.components.variant.fingerprint = '0'.repeat(64);
   assert.throws(() => identity(wrongColorFingerprint));
+  for (const name of ['styles.css', 'space.js'])
+    for (const file of [name, 'runtime/' + variant.fingerprint + '/' + name]) {
+      const absent = structuredClone(colorManifest);
+      delete absent.files[file];
+      assert.throws(() => identity(absent), /Color bytes/, 'missing ' + file);
+      const substituted = structuredClone(colorManifest);
+      substituted.files[file].sha256 = '0'.repeat(64);
+      assert.throws(() => identity(substituted), /Color bytes/, 'substituted ' + file);
+    }
   for (const mutate of [
     (m) => (m.components.variant.id = 'unknown'),
     (m) => (m.components.variant.contract = 2),

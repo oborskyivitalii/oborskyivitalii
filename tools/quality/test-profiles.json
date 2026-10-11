@@ -585,7 +585,14 @@
       "inputs": [
         "tests/preview-smoke.test.cjs",
         "tools/quality/local-browser.cjs",
-        "tools/quality/flight-detail.cjs"
+        "tools/quality/flight-detail.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/staging/color.cjs",
+        "tools/site/**",
+        "site/engine/**",
+        "site/effects/**",
+        "docs/site-revision.json"
       ]
     },
     {

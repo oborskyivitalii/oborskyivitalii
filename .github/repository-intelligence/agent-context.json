@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1b8cdd3e084640fae060150de42a1a8c93b0b42c9983abb4efaee811cc89e2f2",
+    "digest": "b2dd1c6a36099433229f4c0e938d4160c2f5345dcb3d96b0c46f639ebb28f6a7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -146,7 +146,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7d0c3e9e5ba2ff40db302909bb8fc8638f8bcbc7a3430eaa8370ce5905a5dc85"
+        "sha256": "77065e76f35fff80b184290a6d97b5dd56ef18281d663270130a94470baf9b86"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -925,7 +925,7 @@
       {
         "path": "review/issue-72/2026-10-11-pages-validator-recovery.md",
         "identity_mode": "content",
-        "sha256": "e8729b007827ea768e9aa197c99592515073855a5f402b199e7dda1e30c4484e"
+        "sha256": "cb3bf4653a8a269bb5809b6e3146b5458487b7f66a6ad8ecc9312cbea3efa243"
       },
       {
         "path": "review/issue-72/2026-10-11-review.md",
@@ -5195,7 +5195,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "2daa05ee76905e38a5124e3e76f09bca7bf655667146e10d5f5a54146a82ef73"
+        "sha256": "9591b6766256fa7d37ed11e59fad501eb7e5aa94e624cf9b1745bcbbb752c637"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -5835,7 +5835,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "1394444b4e77f47f7068603dd52b634b1285ae79d777e7ed991e40cc253e5a8f"
+        "sha256": "d96887c69913dd6acf3fb41c5b118d51b7c8a204cc5e9e7831d1fd396ff86235"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

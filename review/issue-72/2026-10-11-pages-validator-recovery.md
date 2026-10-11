@@ -75,6 +75,27 @@ The retained references are `issue72-bridge-runtime-reference/legacy-plain` and 
 
 Only16 exact path/rule/hashed-value entries were appended to `secrets-reviewed.json`, taking its count from3791 to3807. Every prior reviewed entry, its order and top-level metadata were preserved, as were the existing ledger bytes before the append. The4957-entry baseline and50-entry publication ledger remain byte-identical, and all8814 IDs across the three closed ledgers are unique. No scanner rule, entropy threshold, input, exclusion or runtime source changed. Changed values or proofs require exact re-review; final maintained security verification on the new clean published source remains required.
 
+## Initial native CI finding
+
+Ready PR75 initially published headc4bf8847c8f4a81e04dbbd267b617720da3b72fd,
+tree9c4332b57365977906120e6e0400945630ecb683. Native RI38165681234 and
+owning acceptance38165681241 passed at that raw head/app15368. Basic38165681467
+and preview38165681317 failed on the old metadata-only preview identity fixture:
+`manifest.files['styles.css']` was absent. Strict Color selection correctly
+rejected it before browser execution. No source PASS accounting, upload or hosted
+preview resulted; these runs remain failed.
+
+The fixture is replaced with an actual temporary authored artifact/Color build
+and byte/snapshot verification, retaining identity negatives and adding missing
+or substituted runtime-file negatives. Its registry dependencies include the
+actual producers and strict selector. Production code and guard strictness are
+unchanged. Independent review of the correction found no blocker; preview and
+Color-contract suites passed15/15 without skips/cancellations, and focused pinned
+ESLint passed with0findings. All prior base/Color candidate, digest, variant,
+engine and fingerprint negatives remain. Eight absent/substituted canonical and
+immutable styles/space checks were added. Fresh native checks of the corrected
+source are required.
+
 ## Integration decision and next action
 
 The maintainer's19:27Europe/Warsaw “Дозволяю” explicitly permitted PR74 once; live #72 states it grants no standing waiver. PR74 merged as858d, while its ordinary bootstrap post-merge identity38159764089 remains failed for missing staging admission. This follow-up has no exceptional integration decision yet. [AGENTS rule14](../../AGENTS.md) requires the applicable maintainer decision; passing checks do not supply one.
