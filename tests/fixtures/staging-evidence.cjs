@@ -2,6 +2,7 @@
 // Controlled validator fixtures. These are not browser, device or performance evidence.
 const stage = require('../../tools/quality/staging-regression.cjs'),
   common = require('../../tools/quality/common.cjs'),
+  colorMotion = require('../../tools/quality/color-motion-contract.cjs'),
   motion = require('../../tools/quality/motion.cjs'),
   budgets = require('../../tools/quality/budgets.json'),
   fs = require('node:fs'),
@@ -361,8 +362,10 @@ function performanceReport(m = manifest()) {
   };
 }
 function colorReport(manifest) {
+  const motionContract = colorMotion.select(manifest);
   return {
     ...identity(manifest),
+    motionContract,
     kind: 'color-preview-smoke',
     profile: 'preview',
     smoke: true,
@@ -374,6 +377,7 @@ function colorReport(manifest) {
       theme: 'light',
       pass: true,
       identity: { id: 'color', engine: common.variant(manifest).fingerprint },
+      motionContract: clone(motionContract),
       ribbons: { sceneHook: 'undefined', dataset: {} },
       paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
       checks: Object.fromEntries(
@@ -399,9 +403,12 @@ function colorReport(manifest) {
 function aggregateFixture(color = false) {
   const m = manifest();
   if (color) {
-    m.components.variant.id = 'color';
-    m.components.variant.effects = ['travel'];
-    m.variant = { ...m.components.variant };
+    const runtime = colorMotion.reviewedRuntime('legacy-plain');
+    m.variant = runtime.variant;
+    m.components = { variant: runtime.variant, engine: runtime.variant.fingerprint, contract: 1 };
+    for (const [name, sha256] of Object.entries(runtime.files))
+      for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name])
+        m.files[file] = { ...(m.files[file] || { raw: 5000, gzip: 1000 }), sha256 };
   }
   const host = {
     ...identity(m),

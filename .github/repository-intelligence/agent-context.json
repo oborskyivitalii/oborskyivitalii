@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "066ebd75a7294d2a9606da8696304f8d32f25fd8c1dd41a99b0711e1f1dc5014",
+    "digest": "1b8cdd3e084640fae060150de42a1a8c93b0b42c9983abb4efaee811cc89e2f2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2f24b0c5c615040243d1dce8e7d2294efaa0974d0a9b21279d0d6a7fcdb7d183"
+        "sha256": "08abf5de5a4bfd497eb6e26c3b33aad5a7d215ec11cbd595944ab116c7cd5a23"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7757c2b40057d8a7fe532890bd6ae083102534ce59261578e5392dd16303f08d"
+        "sha256": "7d0c3e9e5ba2ff40db302909bb8fc8638f8bcbc7a3430eaa8370ce5905a5dc85"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -206,7 +206,7 @@
       {
         "path": ".github/workflows/site-pages.yml",
         "identity_mode": "content",
-        "sha256": "c0e731a8c2ff6be8f67c37d36378d5a2c5b39db026eb14118cb4a4d1bd6bfb5a"
+        "sha256": "4bcd0e1763163cc5645d99fb51639eae6b253d4625880dee85426329cf6a3e58"
       },
       {
         "path": ".github/workflows/site-production.yml",
@@ -261,7 +261,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "8a5116c3662692d4e210a948b1f583a733df3d5cf74b7c8df77a72382767747a"
+        "sha256": "8144a19700556384d5850988457f194aa4c071280c9fe752ea1373f5cbb72095"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -535,7 +535,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "708132f488e3c672ea9dc37e4da8cbdc57389da7d80a1773f4a2780a0f0a3f47"
+        "sha256": "a2b738cb1ad31289e3f968a64cafa48389d3d731b3ffcde645a4d7d67cf4b472"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -921,6 +921,11 @@
         "path": "review/issue-72/2026-10-11-pages-basepath.md",
         "identity_mode": "content",
         "sha256": "97f164fcd7de3ee7774d325ebdc33078334d51ff9abfaf22e4bd5bec13d6546a"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-pages-validator-recovery.md",
+        "identity_mode": "content",
+        "sha256": "e8729b007827ea768e9aa197c99592515073855a5f402b199e7dda1e30c4484e"
       },
       {
         "path": "review/issue-72/2026-10-11-review.md",
@@ -5078,6 +5083,11 @@
         "sha256": "acebe5721c7a0f054c2bd34aaad1a304e355b759211b2bddb43a7ec8f48f1170"
       },
       {
+        "path": "tests/color-motion-contract.test.cjs",
+        "identity_mode": "content",
+        "sha256": "e417d519174c3602ca9ba21ffb6b9d76659fd531a057bfaa4c2ad3b604b33f42"
+      },
+      {
         "path": "tests/content-migration.test.cjs",
         "identity_mode": "content",
         "sha256": "974cb960aeecf8b9a7c7fb0ea7d000a3ff81ff8ef1a408db3e0921eb831b3419"
@@ -5120,7 +5130,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "bd0c1565f657a7a0944f74ceecc755c8342ca93306315564ccb61e718d080a53"
+        "sha256": "300751452b68cc0fe47054d9875d6a6db9124bc863941cd160a34221f95814c2"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -5175,7 +5185,7 @@
       {
         "path": "tests/pages-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "cba444b29a3a1d7221a8b55fb3821eb9fe0ac56e346b887935242405280c24cb"
+        "sha256": "c8afc350d8fdebcea0d02ebd711976a2084d22d2ab20caecf0340a1988a1dc05"
       },
       {
         "path": "tests/phase-checkpoint.test.cjs",
@@ -5205,7 +5215,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "da3de84074e9941fcfa9146185d0619a3dc08594e20d1656a73e34fd9356a7eb"
+        "sha256": "4ff80d9c7fea4e4d6c1ddf2bdc34c438360f827f25d8bc44d06dc7a7f8b67eba"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5265,7 +5275,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "b32301616da5fafd4f8ed5d898a6d2cadd2c71b7d5387c4699874ef6d12b6710"
+        "sha256": "cde257f73c181ebab48f77a2ba11e91bc3393f53637501bb70d050b4910b6726"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5505,7 +5515,7 @@
       {
         "path": "tools/pages/controller.cjs",
         "identity_mode": "content",
-        "sha256": "a1ae2b722c325d45eb552a3e41fac699ee15524528d9b82d87b9076fe00bd961"
+        "sha256": "ce5958daee6443163f23ec60b9161a7357adcbc9e00622e9a144ad55f0cf4c06"
       },
       {
         "path": "tools/pages/http.cjs",
@@ -5553,6 +5563,11 @@
         "sha256": "597454f795bf287c7eee5765db0b88589741e96c3f991091669db14275884564"
       },
       {
+        "path": "tools/quality/block-flight.cjs",
+        "identity_mode": "content",
+        "sha256": "1fd068231cd7d5998010e50d64b7dbdeacb3f047eba962196465c3339326816f"
+      },
+      {
         "path": "tools/quality/browser-gate-diagnostics.cjs",
         "identity_mode": "content",
         "sha256": "ee5a3c2dcc7424870b759a500b422d0f9e1feb252a2081f8c0ff44d9eb0d07ed"
@@ -5585,7 +5600,12 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "88cd459603c3d0649d9559bb0323993add8f76c735027370f1ba18e4f0c0cd87"
+        "sha256": "77efe24dc8762346c1c1d2e21d145e247ac9950a9554fba057a1280633a73228"
+      },
+      {
+        "path": "tools/quality/color-motion-contract.cjs",
+        "identity_mode": "content",
+        "sha256": "700ad28ecbdf7bd00abfbfbe72a730ee76901f1cb0562250811e238e6f0c6474"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -5690,7 +5710,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "8671284d66f18c714a0643dfe8139199659ab60fd1aaf9ad5293b25f268df206"
+        "sha256": "38bf2b4451812669fd89e4d942dc49e80296bfbff3d53d2d2f9b3f207d80de7a"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -5755,7 +5775,7 @@
       {
         "path": "tools/quality/scroll-browser.cjs",
         "identity_mode": "content",
-        "sha256": "74d3d4d11642e5357c7391aa9e7958719f0282d6036069e4276cf457d7a70776"
+        "sha256": "c010b7a69619ee4d5b67ee1abf7b6a466fce48cfe5250021dbc52d960aa30ff6"
       },
       {
         "path": "tools/quality/secrets-baseline.json",
@@ -5770,7 +5790,7 @@
       {
         "path": "tools/quality/secrets-reviewed.json",
         "identity_mode": "content",
-        "sha256": "99a4dd04ec5cae9b749f0b5843663177f294ab1baea508184fa2593e37a27c57"
+        "sha256": "4cbb32e0849a8e9ca043d487c9e63dec49d994c6b79591c81806d0d811541582"
       },
       {
         "path": "tools/quality/security-rules.yml",
@@ -5800,7 +5820,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "53fb2c18a73f99fca3a0ef71944b6a0c32b8ddd0a412610abb640d93e4b129c2"
+        "sha256": "de2a191c8fbfc240728777814dd5a649565306bffe94a293bf58afe4565f97f3"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -5815,7 +5835,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "a6c106dcfb249dbba48da43abc2b15a3f85dbb56c7f86a39eed7cff97e1c8c76"
+        "sha256": "1394444b4e77f47f7068603dd52b634b1285ae79d777e7ed991e40cc253e5a8f"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5845,7 +5865,7 @@
       {
         "path": "tools/quality/validate.cjs",
         "identity_mode": "content",
-        "sha256": "684c8d1e47730e186fac28357bd83ea0ee243c0e959b4e29f1211db8a3b3b6ef"
+        "sha256": "024e92ec3668e01ec6eff162b97d569a1d01b6a2d2d498ff4624ca9d387caa9c"
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",
@@ -8312,6 +8332,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 72 — 2026-10-11 confirmed Pages base-path repair"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-pages-validator-recovery.md",
+      "kind": "file",
+      "purpose": "Failed two-host evidence, strict motion-validator compatibility and authenticated failed-first Pages recovery preparation.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Trusted Pages motion validation and failed-first recovery"
     },
     {
       "path": "review/issue-72/2026-10-11-review.md",
@@ -17455,6 +17486,17 @@
       "title": "color-build.test.cjs"
     },
     {
+      "path": "tests/color-motion-contract.test.cjs",
+      "kind": "file",
+      "purpose": "Independent positive and adversarial known-runtime dispatch and legacy/fixed Color evidence regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "color-motion-contract.test.cjs"
+    },
+    {
       "path": "tests/content-migration.test.cjs",
       "kind": "file",
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
@@ -18500,6 +18542,17 @@
       "title": "bandit-triage.cjs"
     },
     {
+      "path": "tools/quality/block-flight.cjs",
+      "kind": "file",
+      "purpose": "Strict native block timing, layers, separators, overlap and camera-phase checks for reviewed Color runtime.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "block-flight.cjs"
+    },
+    {
       "path": "tools/quality/browser-gate-diagnostics.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -18575,6 +18628,17 @@
         "AGENTS.md"
       ],
       "title": "color-browser.cjs"
+    },
+    {
+      "path": "tools/quality/color-motion-contract.cjs",
+      "kind": "file",
+      "purpose": "Closed reviewed Color runtime identity and motion contract selection before hosted validation.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "color-motion-contract.cjs"
     },
     {
       "path": "tools/quality/common.cjs",

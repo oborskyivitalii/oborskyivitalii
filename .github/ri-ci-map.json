@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/72",
     "date": "2026-10-11",
-    "summary": "Review Draft-deferred source/RI/issue jobs, ready exact-head admission, bounded stage/Pages mirror and new policy/catalog/profile entries. Existing strict main contexts remain; Pages/admin settings and required Staging admission are separate pending live gates. Production helpers/full artifact wiring do not claim Release/ref/label activation."
+    "summary": "Review strict source-bound legacy/fixed Color validation, authenticated explicitly unaccepted first-Pages recovery, changed test/profile/catalog ownership and unchanged both-host admission and production boundaries. Required Staging admission administration remains a separate pending live gate."
   },
   "layers": [
     {
@@ -129,7 +129,10 @@
         "tools/quality/exceptions.json",
         "tools/quality/stylelint.cjs",
         "tools/quality/security-rules.yml",
-        "tools/site/effects.cjs"
+        "tools/site/effects.cjs",
+        "tests/color-motion-contract.test.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs"
       ],
       "checks": [
         "acceptance-policy",
@@ -437,7 +440,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "71dd18bf1bc454b3b4a0f593ec804a28f30819f2d63f368493a87fc269be9b9d",
+    "digest": "d75415a6ddc68842ded925024ba424c5a7f534b2432d67b1805f7ea035a7b19c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -529,7 +532,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2f24b0c5c615040243d1dce8e7d2294efaa0974d0a9b21279d0d6a7fcdb7d183"
+        "sha256": "08abf5de5a4bfd497eb6e26c3b33aad5a7d215ec11cbd595944ab116c7cd5a23"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -577,7 +580,7 @@
       },
       {
         "path": ".github/workflows/site-pages.yml",
-        "sha256": "c0e731a8c2ff6be8f67c37d36378d5a2c5b39db026eb14118cb4a4d1bd6bfb5a"
+        "sha256": "4bcd0e1763163cc5645d99fb51639eae6b253d4625880dee85426329cf6a3e58"
       },
       {
         "path": ".github/workflows/site-production.yml",
@@ -633,7 +636,7 @@
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
-        "sha256": "bd0c1565f657a7a0944f74ceecc755c8342ca93306315564ccb61e718d080a53"
+        "sha256": "300751452b68cc0fe47054d9875d6a6db9124bc863941cd160a34221f95814c2"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -641,7 +644,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "b32301616da5fafd4f8ed5d898a6d2cadd2c71b7d5387c4699874ef6d12b6710"
+        "sha256": "cde257f73c181ebab48f77a2ba11e91bc3393f53637501bb70d050b4910b6726"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -749,11 +752,11 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "53fb2c18a73f99fca3a0ef71944b6a0c32b8ddd0a412610abb640d93e4b129c2"
+        "sha256": "de2a191c8fbfc240728777814dd5a649565306bffe94a293bf58afe4565f97f3"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "a6c106dcfb249dbba48da43abc2b15a3f85dbb56c7f86a39eed7cff97e1c8c76"
+        "sha256": "1394444b4e77f47f7068603dd52b634b1285ae79d777e7ed991e40cc253e5a8f"
       },
       {
         "path": "tools/repository_intelligence.py",

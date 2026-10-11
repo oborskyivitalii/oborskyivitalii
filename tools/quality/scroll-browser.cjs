@@ -165,6 +165,40 @@ async function probe(page, label, route) {
   assert.equal(await settledCamera(page), start, label + ' exact reverse endpoint');
   return { label, end, start, samples };
 }
+async function fixedProbe(page, label, route, manifest) {
+  assert.equal(
+    require('./color-motion-contract.cjs').select(manifest).behavior,
+    'fixed-blocks',
+    'fixed reading requires the reviewed block runtime'
+  );
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  const start = await settledCamera(page),
+    end = await range(page),
+    samples = [];
+  for (const fraction of [0.9, 0.95, 0.99, 1]) {
+    await page.evaluate(
+      (y) => scrollTo({ top: y, behavior: 'instant' }),
+      Math.round(end * fraction)
+    );
+    samples.push({
+      fraction,
+      y: await page.evaluate(() => scrollY),
+      camera: await settledCamera(page),
+    });
+  }
+  for (const sample of samples)
+    assert.equal(sample.camera, start, label + ' reading camera stays fixed at ' + sample.fraction);
+  assert.equal(samples.at(-1).y, end, label + ' native scroll reaches bottom');
+  const model = require('../../docs/space.js');
+  assert.deepEqual(
+    JSON.parse(start),
+    model.routePose(route, model.poses[model.initialPoses[route]]),
+    label + ' fixed authored reading pose'
+  );
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  assert.equal(await settledCamera(page), start, label + ' exact reverse endpoint');
+  return { label, end, start, samples };
+}
 async function scenario(page, route) {
   const rows = [];
   rows.push(await probe(page, 'original', route));
@@ -255,4 +289,4 @@ async function scenario(page, route) {
     ),
   };
 }
-module.exports = { scenario, probe, semanticWaypoint, fixtures, checks };
+module.exports = { scenario, probe, fixedProbe, semanticWaypoint, fixtures, checks };

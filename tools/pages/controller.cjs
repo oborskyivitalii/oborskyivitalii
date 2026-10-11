@@ -70,7 +70,73 @@ function sameProduction(actual, expected) {
   );
 }
 
-async function previous(github, context, baseURL, production, fetcher = fetch) {
+function firstFailedPublication(run, publisher, state, production, context, attempt) {
+  assert.equal(context.repo.owner + '/' + context.repo.repo, flow.repository);
+  assert.equal(production, null, 'failed first staging cannot recover active production');
+  assert.equal(state.production, null);
+  assert.equal(run.repository?.full_name, flow.repository);
+  assert.equal(run.path, flow.workflow, 'failed recovery requires the staging workflow');
+  assert.ok(['workflow_dispatch', 'issue_comment'].includes(run.event));
+  assert.equal(run.triggering_actor?.login, context.repo.owner);
+  assert.equal(run.status, 'completed');
+  assert.equal(run.conclusion, 'failure');
+  assert.equal(attempt, 1, 'failed first staging cannot reuse a rerun');
+  assert.equal(run.run_attempt, attempt, 'failed receipt is not the exact run attempt');
+  assert.equal(publisher.name, 'pages / Pages publication');
+  assert.equal(publisher.status, 'completed');
+  assert.equal(publisher.conclusion, 'failure');
+  const browser = (publisher.steps || []).filter(
+    (step) => step.name === 'Verify actual staged navigation on the Pages subpath'
+  );
+  assert.equal(browser.length, 1, 'failed first publication has no unique browser observation');
+  assert.equal(browser[0].status, 'completed');
+  // REST can report success for a failed continue-on-error command; acceptance
+  // comes from the failed job/red guard, never this browser step conclusion.
+  assert.ok(['success', 'failure'].includes(browser[0].conclusion));
+  const steps = {
+    success: [
+      'Authenticate controller and actual successful staging producer',
+      'Verify actual bounded gate and frozen staging edition',
+      'Resolve the currently accepted production archive',
+      'Authenticate the current Pages receipt and retained recovery',
+      'Compose staging while preserving accepted production file hashes',
+      'Retain the complete new package before touching the live site',
+      'Recheck the publication controller and active production lease',
+      'Run actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e',
+      'Verify every hosted Pages byte, staging path and real 404',
+      'Retain actual publication observations before acceptance',
+    ],
+    skipped: [
+      'Verify retained and currently hosted recovery bytes before publication',
+      'Restore durable production bytes when production is active',
+      'Extract and verify the production archive',
+      'Retain the previous complete Pages artifact for exact recovery',
+      'Restore the previous exact combined Pages artifact on a failed update',
+      'Verify the restored Pages publication',
+    ],
+    failure: ['Keep failed publication or recovery red'],
+  };
+  for (const [conclusion, names] of Object.entries(steps))
+    for (const name of names) {
+      const matches = (publisher.steps || []).filter((step) => step.name === name);
+      assert.equal(matches.length, 1, 'missing/ambiguous failed-first Pages step: ' + name);
+      assert.equal(matches[0].status, 'completed');
+      assert.equal(
+        matches[0].conclusion,
+        conclusion,
+        'not a first failed Pages publication: ' + name
+      );
+    }
+}
+
+async function previousPublication(
+  github,
+  context,
+  baseURL,
+  production,
+  fetcher = fetch,
+  allowFailedInitial = false
+) {
   const http = require('./http.cjs'),
     base = http.baseURL(baseURL);
   const result = await http.request(base + '/_delivery/state.json', base, fetcher);
@@ -113,7 +179,12 @@ async function previous(github, context, baseURL, production, fetcher = fetch) {
     (job) => job.name.endsWith(' / Pages publication') || job.name === 'Pages publication'
   );
   assert.equal(accepted.length, 1, 'previous Pages publisher is missing/ambiguous');
-  assert.equal(accepted[0].conclusion, 'success', 'previous Pages publication was not accepted');
+  const failedInitial = accepted[0].conclusion === 'failure' && allowFailedInitial;
+  if (failedInitial) {
+    assert.equal(run.id, runId);
+    firstFailedPublication(run, accepted[0], state, production, context, attempt);
+  } else
+    assert.equal(accepted[0].conclusion, 'success', 'previous Pages publication was not accepted');
   const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
     ...context.repo,
     run_id: runId,
@@ -127,10 +198,59 @@ async function previous(github, context, baseURL, production, fetcher = fetch) {
     false,
     'previous Pages recovery expired; reconcile before publication'
   );
-  return { runId, attempt, artifactId: item.id, uploadDigest: item.digest, state };
+  const record = { runId, attempt, artifactId: item.id, uploadDigest: item.digest, state };
+  if (failedInitial) {
+    require('../staging/trust.cjs').digest(item.digest);
+    artifactIdentity(item, run, item.id, item.digest, matches[0].name);
+    assert.equal(item.workflow_run.head_sha, run.head_sha);
+    assert.equal(item.workflow_run.head_branch, 'main');
+    record.accepted = false;
+    record.recoveryKind = 'failed-initial-staging';
+    record.receiptDigest = require('../quality/artifact.cjs').digest(result.bytes);
+  }
+  return record;
 }
 
-function retained(directory, previousRecord) {
+// Only the staging publisher opts in; production still requires accepted Pages.
+function previous(github, context, baseURL, production, fetcher = fetch) {
+  return previousPublication(github, context, baseURL, production, fetcher);
+}
+
+function previousStaging(github, context, baseURL, production, fetcher = fetch) {
+  return previousPublication(github, context, baseURL, production, fetcher, true);
+}
+
+function uploadedInventory(bytes) {
+  // Inspect authenticated ZIP bytes without extracting or executing their contents.
+  const script = `import hashlib, io, json, sys, zipfile
+with zipfile.ZipFile(io.BytesIO(sys.stdin.buffer.read())) as archive:
+    entries = archive.infolist()
+    if len(entries) > 2001 or len({item.filename for item in entries}) != len(entries):
+        raise ValueError('Invalid recovery ZIP inventory')
+    if sum(item.file_size for item in entries) > 300_000_000:
+        raise ValueError('Recovery ZIP is too large')
+    files = {}
+    for item in entries:
+        name = item.filename
+        if name.startswith('/') or '\\\\' in name or any(part in {'.', '..'} for part in name.split('/')):
+            raise ValueError('Unsafe recovery ZIP path')
+        if (item.external_attr >> 16) & 0o170000 == 0o120000:
+            raise ValueError('Recovery ZIP contains a link')
+        if name.startswith('pages-package/') and not item.is_dir():
+            files[name[len('pages-package/'):]] = hashlib.sha256(archive.read(item)).hexdigest()
+    print(json.dumps(files))
+`;
+  return JSON.parse(
+    require('node:child_process').execFileSync('python3', ['-c', script], {
+      input: bytes,
+      timeout: 20000,
+      maxBuffer: 1_000_000,
+      encoding: 'utf8',
+    })
+  );
+}
+
+function retained(directory, previousRecord, uploadBytes = null) {
   const record = JSON.parse(fs.readFileSync(path.join(directory, 'pages-package.json')));
   require('./package.cjs').verify(directory, record);
   assert.deepEqual(
@@ -138,6 +258,42 @@ function retained(directory, previousRecord) {
     previousRecord.state,
     'retained recovery differs from live receipt'
   );
+  if (previousRecord.accepted === false) {
+    assert.equal(previousRecord.recoveryKind, 'failed-initial-staging');
+    assert.ok(Buffer.isBuffer(uploadBytes), 'failed first recovery requires its exact upload ZIP');
+    const artifact = require('../quality/artifact.cjs');
+    assert.equal(
+      artifact.digest(uploadBytes),
+      require('../staging/trust.cjs').digest(previousRecord.uploadDigest),
+      'failed first recovery upload changed'
+    );
+    assert.deepEqual(
+      uploadedInventory(uploadBytes),
+      {
+        'pages-package.json': artifact.digest(
+          fs.readFileSync(path.join(directory, 'pages-package.json'))
+        ),
+        ...Object.fromEntries(
+          Object.entries(record.files).map(([name, info]) => ['public/' + name, info.sha256])
+        ),
+      },
+      'failed first recovery differs from its authenticated ZIP'
+    );
+    assert.equal(
+      record.files['_delivery/state.json'].sha256,
+      previousRecord.receiptDigest,
+      'failed first recovery receipt bytes differ'
+    );
+    assert.equal(record.state.production, null);
+    assert.deepEqual(record.root, record.staging, 'failed first recovery root is not staging');
+    assert.equal(record.staging.sourceDirty, false);
+    assert.equal(record.staging.sourceCommit, record.staging.candidateCommit);
+    assert.deepEqual(record.state.staging, {
+      sourceCommit: record.staging.sourceCommit,
+      publicDigest: record.staging.artifactDigest,
+    });
+    require('./package.cjs').checkStaging(directory, record.root);
+  }
   return record;
 }
 
@@ -185,6 +341,7 @@ module.exports = {
   activeProduction,
   sameProduction,
   previous,
+  previousStaging,
   retained,
   productionLease,
   sourceFromPackage,

@@ -1,0 +1,372 @@
+'use strict';
+// Controlled compatibility fixtures are not hosted or device acceptance.
+const test = require('node:test'),
+  assert = require('node:assert/strict');
+const motion = require('../tools/quality/color-motion-contract.cjs'),
+  stage = require('../tools/quality/staging-regression.cjs'),
+  gate = require('../tools/quality/staging-gate.cjs'),
+  quality = require('../tools/quality/validate.cjs'),
+  color = require('../tools/quality/color-browser.cjs'),
+  fixture = require('./fixtures/staging-evidence.cjs');
+function manifest(id) {
+  const value = fixture.manifest(),
+    runtime = motion.reviewedRuntime(id);
+  value.variant = runtime.variant;
+  value.components = { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant };
+  if (runtime.edition === 'staging')
+    value.edition = { id: 'staging', indexable: false, analytics: false };
+  for (const [name, sha256] of Object.entries(runtime.files))
+    for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name])
+      value.files[file] = { raw: 5000, gzip: 1000, sha256 };
+  return value;
+}
+function blockSamples(width = 1440, direction = 'forward', count = 2) {
+  const plan = motion.rowPlan(width, count),
+    sign = direction === 'forward' ? 1 : -1;
+  function unit(stage, y, row, peer = 0) {
+    const order = direction === 'forward' ? row : count - 1 - row,
+      translate = '0px ' + y + 'px',
+      layer = {
+        translate,
+        opacity: 1,
+        animation: {
+          name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+          delay: order * plan.rowStepMs,
+          duration: plan.rowDurationMs,
+        },
+      };
+    return {
+      stage,
+      direction,
+      row,
+      order,
+      top: 100 + row * 200 + peer * 8,
+      bottom: 200 + row * 200 + peer * 30,
+      borderOwner: row === count - 1 ? '2' : null,
+      opacity: 1,
+      ink: [translate],
+      paper: translate,
+      layers: [
+        structuredClone(layer),
+        structuredClone(layer),
+        ...(row === count - 1
+          ? [
+              {
+                ...structuredClone(layer),
+                separator: 'bottom',
+                separatorSource: 'unit',
+                borderOwner: '2',
+                separatorPaint: { width: 1, length: 300, style: 'solid', color: 'rgb(20, 30, 40)' },
+              },
+            ]
+          : []),
+      ],
+    };
+  }
+  const units = (stage, y) => [
+    ...Array.from({ length: count }, (_, row) => unit(stage, y, row)),
+    unit(stage, y, 0, 1),
+  ];
+  return [
+    {
+      stage: 'departing',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('departing', -20 * sign),
+    },
+    {
+      stage: 'departing',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('departing', -200 * sign),
+    },
+    { stage: 'holding', cameraStage: 'center', framing: 0.4, units: [] },
+    { stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    { kind: 'mount', stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    { stage: 'holding', cameraStage: 'restore', framing: 0.4, units: [] },
+    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 200 * sign) },
+    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 20 * sign) },
+  ].map((sample, index) => ({
+    kind: 'progress',
+    progress: index / 8,
+    opacity: 1,
+    viewportWidth: width,
+    transform: 'none',
+    travel: sample.cameraStage === 'transit' ? 'flying' : 'settled',
+    borderSources:
+      sample.stage === 'departing' || sample.stage === 'arriving'
+        ? [{ sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }] }]
+        : [],
+    ...sample,
+  }));
+}
+function fixedHome() {
+  const model = require('../docs/space.js'),
+    start = JSON.stringify(model.routePose('index', model.poses[model.initialPoses.index]));
+  return {
+    scroll: {
+      label: 'selected-responses',
+      end: 1000,
+      start,
+      samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
+        fraction,
+        y: fraction * 1000,
+        camera: start,
+      })),
+    },
+  };
+}
+function evidence(id) {
+  const selected = manifest(id),
+    value = fixture.aggregateFixture(true),
+    runtime = motion.select(selected),
+    report = value.reports.at(-1);
+  value.manifest = selected;
+  value.sizes.files = selected.files;
+  for (const observed of value.reports) observed.variant = selected.variant;
+  const hosted = value.reports.find((row) => row.kind === 'hosted');
+  hosted.rows = Object.keys(selected.files)
+    .filter((file) => file !== '.nojekyll')
+    .map((file) => ({
+      file,
+      status: 200,
+      sha256: selected.files[file].sha256,
+      url: value.hostedURL + '/' + file,
+      mime: file.endsWith('.html')
+        ? 'text/html'
+        : file.endsWith('.js')
+          ? 'application/javascript'
+          : file.endsWith('.css')
+            ? 'text/css'
+            : 'application/json',
+    }));
+  for (const journey of value.reports.find((row) => row.kind === 'stage-functional').journeys)
+    for (const row of journey.rows) row.state.engine = selected.variant.fingerprint;
+  report.motionContract = runtime;
+  for (const row of report.rows) {
+    row.identity.engine = selected.variant.fingerprint;
+    row.motionContract = structuredClone(runtime);
+    if (runtime.behavior === 'fixed-blocks') {
+      delete row.checks.spatialFlight;
+      row.checks.blockFlight = true;
+      row.flight = blockSamples(row.width);
+      row.home = fixedHome();
+    }
+  }
+  return value;
+}
+test('only the four reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+  for (const family of ['legacy', 'fixed'])
+    for (const edition of ['plain', 'staging']) {
+      const id = family + '-' + edition,
+        selected = manifest(id);
+      assert.equal(motion.select(selected).id, id);
+      assert.equal(
+        motion.flightCheck(selected),
+        family === 'fixed' ? 'blockFlight' : 'spatialFlight'
+      );
+      assert.equal(gate.aggregate(evidence(id)).pass, true);
+    }
+  const copy = motion.reviewedRuntime('fixed-plain');
+  copy.files['space.js'] = '0'.repeat(64);
+  assert.equal(motion.select(manifest('fixed-plain')).id, 'fixed-plain');
+});
+test('unknown, conflicting, mixed or merely marked runtime identities fail before browser execution', async () => {
+  const mutations = [
+    (m) => (m.variant.fingerprint = '0'.repeat(64)),
+    (m) => (m.variant.baseEngine = '0'.repeat(64)),
+    (m) => (m.variant.contract = 2),
+    (m) => (m.variant.effects = ['ribbons', 'travel']),
+    (m) => (m.variant.readingCamera = 'fixed'),
+    (m) => (m.components.variant = motion.reviewedRuntime('legacy-plain').variant),
+    (m) => (m.components.engine = '0'.repeat(64)),
+    (m) => (m.components.contract = 2),
+    (m) => (m.edition = { id: 'production', indexable: true, analytics: true }),
+    (m) => (m.files['space.js'].sha256 = motion.reviewedRuntime('legacy-plain').files['space.js']),
+    (m) => delete m.files['navigation.js'],
+    (m) => {
+      m.files['runtime/' + m.variant.fingerprint + '/styles.css'].sha256 = '0'.repeat(64);
+    },
+  ];
+  for (const mutate of mutations) {
+    const value = manifest('fixed-plain');
+    mutate(value);
+    assert.throws(() => motion.select(value));
+    const invalidEvidence = evidence('fixed-plain');
+    mutate(invalidEvidence.manifest);
+    assert.throws(() => gate.aggregate(invalidEvidence));
+    let contexts = 0;
+    await assert.rejects(() =>
+      color.scenario(
+        {
+          newContext() {
+            contexts++;
+          },
+        },
+        'https://controlled.invalid',
+        value,
+        'chromium',
+        390,
+        'light'
+      )
+    );
+    assert.equal(contexts, 0, 'unreviewed tuple cannot launch a browser context');
+  }
+  const staged = manifest('fixed-staging');
+  delete staged.edition;
+  assert.throws(() => motion.select(staged), /edition differs/);
+});
+test('full Color aggregation preserves all twelve engine, viewport and theme cells for both contracts', () => {
+  for (const id of ['legacy-plain', 'fixed-plain']) {
+    const value = evidence(id),
+      report = value.reports.at(-1),
+      model = report.rows[0];
+    report.kind = 'color-functional';
+    report.rows = ['chromium', 'firefox', 'webkit'].flatMap((engine) =>
+      [1440, 390].flatMap((width) =>
+        ['light', 'dark'].map((theme) => ({
+          ...structuredClone(model),
+          engine,
+          width,
+          theme,
+          ...(id === 'fixed-plain' ? { flight: blockSamples(width) } : {}),
+        }))
+      )
+    );
+    quality.colorReports([report], value.manifest);
+    const invalid = [
+      (r) => (r.rows = r.rows.filter((row) => row.engine !== 'webkit')),
+      (r) => (r.rows[0] = structuredClone(r.rows[1])),
+      (r) => (r.rows[0].theme = 'other'),
+      (r) => (r.rows[0].checks.disabledEdge = false),
+      (r) => (r.rows[0].checks.creditsBoundary = false),
+      (r) => (r.rows[0].paint.customShapes = 1),
+      (r) => delete r.motionContract,
+      (r) => (r.rows[0].motionContract = motion.reviewedRuntime('legacy-staging')),
+      (r) => (r.rows[0].flight = []),
+    ];
+    if (id === 'fixed-plain')
+      invalid.push((r) => (r.rows[0].home.scroll.samples[0].camera = 'moving'));
+    else invalid.push((r) => (r.rows[0].flight[0].plane.flightDepth = -1));
+    for (const mutate of invalid) {
+      const copy = structuredClone(report);
+      mutate(copy);
+      assert.throws(() => quality.colorReports([copy], value.manifest));
+    }
+  }
+});
+test('both report guard branches reject wrong planes, moving reading cameras and false contract claims', () => {
+  for (const id of ['legacy-plain', 'fixed-plain']) {
+    const value = evidence(id),
+      report = value.reports.at(-1);
+    assert.equal(stage.validateColor(report, value.manifest), 2);
+    const invalid = [
+      (r) => delete r.motionContract,
+      (r) => (r.rows[0].motionContract = motion.reviewedRuntime('legacy-staging')),
+      (r) => (r.rows[0].checks[motion.flightCheck(value.manifest)] = false),
+      (r) => (r.rows[0].flight = []),
+    ];
+    if (id === 'fixed-plain')
+      invalid.push(
+        (r) => (r.rows[0].home.scroll.samples[2].camera = 'moving'),
+        (r) => (r.rows[0].home.scroll.samples[3].y = 999),
+        (r) =>
+          (r.rows[0].home.scroll.start = JSON.stringify({
+            position: [0, 0, 0],
+            target: [0, 0, 0],
+          })),
+        (r) => (r.rows[0].flight[0].opacity = 0.5),
+        (r) => (r.rows[0].flight[0].transform = 'translateZ(10px)'),
+        (r) => (r.rows[0].flight[3].framing = 0.8),
+        (r) => (r.rows[0].flight[6].cameraStage = 'restore')
+      );
+    else
+      invalid.push(
+        (r) => (r.rows[0].flight[0].plane.flightDepth = -1),
+        (r) => (r.rows[0].flight[1].plane.flightDepth = 1),
+        (r) => (r.rows[0].flight = blockSamples())
+      );
+    for (const mutate of invalid) {
+      const copy = structuredClone(value);
+      mutate(copy.reports.at(-1));
+      assert.throws(() => stage.validateColor(copy.reports.at(-1), copy.manifest));
+      assert.throws(() => gate.aggregate(copy));
+    }
+  }
+});
+function serializeDelays(samples) {
+  for (const sample of samples)
+    for (const unit of sample.units)
+      for (const layer of unit.layers)
+        layer.animation.delay = Number((layer.animation.delay / 1000).toPrecision(6)) * 1000;
+}
+test('fixed native row waves preserve direction, exact duration, overlap and serialization bounds', () => {
+  const block = require('../tools/quality/block-flight.cjs');
+  for (const width of [1440, 390])
+    for (const direction of ['forward', 'backward'])
+      for (const rows of [8, 24]) {
+        const samples = blockSamples(width, direction, rows);
+        serializeDelays(samples);
+        block.checkTiming(samples);
+        const wrong = structuredClone(samples);
+        for (const layer of wrong[0].units.find((unit) => unit.order === 1).layers)
+          layer.animation.delay += 0.002;
+        assert.throws(() => block.checkTiming(wrong));
+      }
+  const mutations = [
+    (s) => s[0].units.forEach((u) => u.layers.forEach((l) => (l.animation.duration += 0.001))),
+    (s) => s[0].units.forEach((u) => u.layers.forEach((l) => (l.animation.delay = u.order * 700))),
+    (s) => (s[0].units[0].layers[0].animation.delay = 0.0001),
+    (s) => {
+      const separator = s[0].units.flatMap((unit) => unit.layers).find((layer) => layer.separator);
+      separator.separatorPaint.color = 'transparent';
+    },
+  ];
+  for (const mutate of mutations) {
+    const samples = blockSamples();
+    mutate(samples);
+    assert.throws(() => block.checkTiming(samples));
+  }
+});
+test('fixed flight readiness waits for block arrival after the camera settles and never retries legacy checks', async () => {
+  let busy = true,
+    clicks = 0,
+    evaluations = 0;
+  const samples = blockSamples(),
+    page = {
+      async evaluate(fn) {
+        evaluations++;
+        return fn.toString().includes('__flightSamples =') ? undefined : samples;
+      },
+      locator() {
+        return {
+          async click() {
+            clicks++;
+          },
+        };
+      },
+      async waitForFunction(fn, route, options) {
+        assert.equal(options.timeout, 10000, 'existing Color deadline remains unchanged');
+        const vm = require('node:vm'),
+          context = {
+            id: route,
+            document: {
+              body: { dataset: { page: 'research' } },
+              getElementById: () => ({ hasAttribute: () => busy }),
+              querySelector: () => ({ dataset: { travel: 'settled' } }),
+            },
+          },
+          ready = () => vm.runInNewContext('(' + fn.toString() + ')(id)', context);
+        assert.equal(ready(), false, 'settled camera with active arriving blocks is not ready');
+        busy = false;
+        assert.equal(ready(), true);
+      },
+    };
+  assert.equal(await color.forwardFlight(page, manifest('fixed-plain')), samples);
+  assert.equal(clicks, 1);
+  assert.equal(evaluations, 2, 'only fixed capture setup and retrieval ran');
+  samples[0].opacity = 0.5;
+  busy = true;
+  await assert.rejects(() => color.forwardFlight(page, manifest('fixed-plain')));
+  assert.equal(evaluations, 4, 'failed fixed guards never collect legacy plane states');
+});

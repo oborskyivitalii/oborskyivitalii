@@ -1463,7 +1463,7 @@
     {
       "path": "tests/pages-delivery.test.cjs",
       "language": "javascript",
-      "purpose": "Hashed root/project staging, confined hosted bytes, production root and retained-attempt recovery negatives",
+      "purpose": "Hashed root/project staging, confined hosted bytes, production root, accepted recovery and authenticated unaccepted first-publication negatives",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1526,6 +1526,30 @@
       "disposition": "owning policy only; reuse permanent behavior without recurring task history",
       "surviving_route": ".github/acceptance/issue-72.json",
       "inputs": ["tests/test_issue72_acceptance.py", ".github/acceptance/issue-72.json"]
+    },
+    {
+      "path": "tests/color-motion-contract.test.cjs",
+      "language": "javascript",
+      "purpose": "Exact reviewed legacy/fixed Color runtime dispatch, strict reading/block/spatial guards and malformed or substituted evidence negatives.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent failure surfaces; defer during Draft packaging",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/color-motion-contract.test.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/block-flight.cjs",
+        "tools/quality/color-browser.cjs",
+        "tools/quality/local-browser.cjs",
+        "tools/quality/scroll-browser.cjs",
+        "tools/quality/staging-regression.cjs",
+        "tools/quality/validate.cjs",
+        "tools/quality/navigation.cjs",
+        "tools/quality/artifact.cjs",
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/quality/test-profiles.json"
+      ]
     }
   ]
 }

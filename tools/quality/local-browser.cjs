@@ -82,7 +82,10 @@ function identity(manifest) {
   assert.match(manifest.components.engine, /^[a-f0-9]{64}$/, 'preview runtime engine identity');
   // Base fingerprints its authored descriptor; Color fingerprints the derived
   // runtime. Both retain their verified manifest identities without rewriting.
-  if (variant.id === 'color') assert.equal(variant.fingerprint, manifest.components.engine);
+  if (variant.id === 'color') {
+    assert.equal(variant.fingerprint, manifest.components.engine);
+    require('./color-motion-contract.cjs').select(manifest);
+  }
   if (process.env.SITE_PUBLIC_VARIANT) assert.equal(variant.id, process.env.SITE_PUBLIC_VARIANT);
   return variant;
 }
