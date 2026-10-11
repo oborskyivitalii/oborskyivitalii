@@ -1,0 +1,44 @@
+name: Accepted staging merge identity
+on:
+  pull_request:
+    types: [closed]
+permissions:
+  contents: read
+  actions: read
+  checks: read
+  pull-requests: read
+jobs:
+  identity:
+    if: >-
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      vars.SITE_PAGES_STAGING_ENABLED == 'true' &&
+      github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Bind the actual merge tree to the accepted PR and both staging publishers
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs=require('node:fs');
+            fs.mkdirSync('merge-reports',{recursive:true});
+            try{
+              const pr=(await github.rest.pulls.get({...context.repo,pull_number:context.payload.pull_request.number})).data;
+              const record=await require('./tools/staging/admission.cjs').verifyMerge(github,context,pr);
+              fs.writeFileSync('merge-reports/identity.json',JSON.stringify(record,null,2)+'\n');
+              await core.summary.addHeading('Accepted staging merge').addRaw('Tested source: '+record.testedSource+'; merged source: '+record.mergedSource+'; identical source tree: '+record.sourceTree+'. The tested package remains unchanged.').write();
+            }catch(error){
+              fs.writeFileSync('merge-reports/identity.json',JSON.stringify({pass:false,error:error.message},null,2)+'\n');
+              throw error;
+            }
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-staging-merge-${{ github.run_id }}-${{ github.run_attempt }}
+          path: merge-reports/
+          if-no-files-found: error
+          retention-days: 90

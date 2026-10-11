@@ -114,10 +114,12 @@ def control_paths(root):
     return sorted(paths - DERIVED)
 
 
-def workflow_commands(root, path, job):
+def workflow_commands(root, path, job, event_scope="all-pr"):
     """Read the narrow YAML execution shape used by these mapped workflows.
 
-    Only the first actual command of an unconditional job/step is eligible. No
+    Commands must be unconditional within the declared event scope. The sole
+    ready-pr adapter admits the exact Draft deferral and requires ready_for_review.
+    Only the first actual command of an unconditional step is eligible. No
     substring search, shell evaluation, YAML aliases or conditional command can
     establish invocation. Complex workflow syntax needs a reviewed adapter.
     """
@@ -160,6 +162,7 @@ def workflow_commands(root, path, job):
     type_fields = [(i, hit.group(1)) for i, hit in type_fields if hit]
     if len(type_fields) > 1:
         raise ValueError("Duplicate pull_request types: " + path)
+    types = set()
     if type_fields:
         index, value = type_fields[0]
         if re.fullmatch(r"\[[^\[\]]*\]", value):
@@ -175,7 +178,6 @@ def workflow_commands(root, path, job):
                 tokens.append(hit.group(1))
         else:
             raise ValueError("Unsupported pull_request types shape: " + path)
-        types = set()
         for token in tokens:
             values = shlex.split(token)
             if len(values) != 1 or not re.fullmatch(r"[a-z_]+", values[0]):
@@ -208,7 +210,16 @@ def workflow_commands(root, path, job):
         raise ValueError(
             "Mapped job dependencies require a reviewed reachability adapter: " + path + ":" + job
         )
-    if any(re.match(r"    (?:if|continue-on-error|strategy|defaults):", line) for line in body):
+    conditions = [line for line in body if re.match(r"    if:", line)]
+    if event_scope == "ready-pr":
+        guard = "    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false"
+        if conditions != [guard] or "ready_for_review" not in types:
+            raise ValueError(
+                "Ready-PR reachability requires exact Draft guard and ready event: " + path
+            )
+    elif event_scope != "all-pr" or conditions:
+        raise ValueError("Mapped job has unknown scope or unsupported condition: " + path)
+    if any(re.match(r"    (?:continue-on-error|strategy|defaults):", line) for line in body):
         raise ValueError("Mapped job is conditional, optional or matrix-based: " + path + ":" + job)
     steps = []
     for line in body:
@@ -344,7 +355,9 @@ def validate_definition(root, data):
     if used != set(checks):
         raise ValueError("Unused mapped checks: " + ", ".join(sorted(set(checks) - used)))
     for check in checks.values():
-        if check["argv"] not in workflow_commands(root, check["workflow"], check["job"]):
+        if check["argv"] not in workflow_commands(
+            root, check["workflow"], check["job"], check.get("event_scope", "all-pr")
+        ):
             raise ValueError("Mapped check is not invoked unconditionally: " + check["id"])
         resolve_tests(root, check)
     return paths

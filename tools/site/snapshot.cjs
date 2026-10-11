@@ -27,19 +27,24 @@ function immutable(name) {
     ).includes(match[3])
   );
 }
-function inventory(names, requiredMedia = legacyMediaFiles) {
+function inventory(names, requiredMedia = legacyMediaFiles, edition = null) {
   assert.ok(names.length <= 1000, 'public retention inventory bound');
   for (const name of baseFiles
     .filter((name) => !name.startsWith('assets/'))
     .concat(requiredMedia.map((name) => 'assets/' + name)))
     assert.ok(names.includes(name), 'missing public file ' + name);
+  const hostFiles = edition === 'production' ? ['404.html', 'robots.txt', 'sitemap.xml'] : [];
+  for (const name of hostFiles) assert.ok(names.includes(name), 'missing production input ' + name);
   for (const name of names)
-    assert.ok(baseFiles.includes(name) || immutable(name), 'unexpected public input ' + name);
+    assert.ok(
+      baseFiles.includes(name) || immutable(name) || hostFiles.includes(name),
+      'unexpected public input ' + name
+    );
   return true;
 }
 function verify(dir, record) {
   const files = record.files;
-  inventory(Object.keys(files), legacyMediaFiles);
+  inventory(Object.keys(files), legacyMediaFiles, record.edition?.id);
   const read = (name) => fs.readFileSync(path.join(dir, name));
   const revision = JSON.parse(read('site-revision.json'));
   const declaredMedia = revision.mediaFiles === undefined ? legacyMediaFiles : revision.mediaFiles;
@@ -52,7 +57,8 @@ function verify(dir, record) {
         !read('writing.html').toString().includes('writing-paradigm'),
       'formula artifact requires current media declaration'
     );
-  inventory(Object.keys(files), declaredMedia);
+  inventory(Object.keys(files), declaredMedia, record.edition?.id);
+  assert.deepEqual(revision.edition, record.edition, 'edition manifest differs from runtime');
   assert.equal(revision.schema, 1);
   assert.equal(revision.contract, 1);
   for (const key of ['engine', 'scenes', 'assets', 'content'])

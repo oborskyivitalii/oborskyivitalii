@@ -1,0 +1,21 @@
+.site-environment {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 0.4rem;
+  background: var(--paper);
+  color: var(--ink);
+  font:
+    600 0.75rem/1.4 system-ui,
+    sans-serif;
+  pointer-events: none;
+}
+
+@media print {
+  .site-environment {
+    position: static;
+  }
+}

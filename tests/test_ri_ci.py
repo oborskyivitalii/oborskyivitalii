@@ -333,6 +333,32 @@ class RICICouplingTests(unittest.TestCase):
             with self.subTest(changed=changed), self.assertRaises(ValueError):
                 self.refresh()
 
+    def test_ready_pr_adapter_requires_exact_guard_and_ready_event(self):
+        original = (self.root / self.workflow).read_text()
+        guard = "github.event_name != 'pull_request' || github.event.pull_request.draft == false"
+        ready = original.replace(
+            "  pull_request:", "  pull_request:\n    types: [opened, synchronize, ready_for_review]"
+        ).replace("    runs-on:", "    if: " + guard + "\n    runs-on:")
+        self.data["checks"][0]["event_scope"] = "ready-pr"
+        self.write(self.workflow, ready)
+        self.refresh()
+        self.assertTrue(ci.verify(self.root)["pass"])
+        for changed in [
+            ready.replace(", ready_for_review", ""),
+            ready.replace("draft == false", "draft == true"),
+            ready.replace("    if: " + guard, "    if: true"),
+            ready.replace("    if: " + guard + "\n", ""),
+            ready.replace("    runs-on:", "    continue-on-error: true\n    runs-on:"),
+            ready.replace("    runs-on:", "    if: false\n    runs-on:"),
+        ]:
+            self.write(self.workflow, changed)
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                self.refresh()
+        self.write(self.workflow, ready)
+        self.data["checks"][0]["event_scope"] = "invented"
+        with self.assertRaises(ValueError):
+            self.refresh()
+
     def test_missing_job_event_or_filtered_event_fails(self):
         original = (self.root / self.workflow).read_text()
         for changed in [

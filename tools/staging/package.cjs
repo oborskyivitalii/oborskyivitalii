@@ -48,7 +48,7 @@ function sourceGate(source, gate, expected = {}) {
   assert.match(source.sourceCommit, /^[0-9a-f]{40}$/);
   assert.match(source.sourceTree, /^[0-9a-f]{40}$/);
   assert.equal(source.candidateCommit, source.sourceCommit, 'candidate/source mismatch');
-  snapshot.inventory(Object.keys(source.files));
+  snapshot.inventory(Object.keys(source.files), snapshot.legacyMediaFiles, source.edition?.id);
   assert.equal(gate.schema, 1);
   assert.equal(gate.pass, true, 'Source package proof did not pass');
   if (gate.kind === 'package-gate') {
@@ -97,7 +97,7 @@ function additions(source) {
   };
   return {
     _headers: headers,
-    '404.html': notFound,
+    ...(source.files['404.html'] ? {} : { '404.html': notFound }),
     '_staging/revision.json': JSON.stringify(revision, null, 2) + '\n',
   };
 }

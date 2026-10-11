@@ -64,6 +64,13 @@ create competing task instructions in AGENTS, memory or a second handoff system.
 
 ## Reviewing RI changes with CI
 
+The reviewed `event_scope: ready-pr` mapping defers Draft source/RI/acceptance
+jobs while preserving unconditional commands for ready PRs and other enabled
+events. Its adapter admits only the literal Draft guard and requires the
+`ready_for_review` event. Other conditions, optional steps, filters, matrices
+and unknown scopes still fail. Deferred job names cannot supply required main
+contexts; actual host/settings/merge acceptance remains separate evidence.
+
 Changes to RI interpretation, catalogs, the agent/acceptance protocol or workflow
 routes require checking the dependent layer and CI selection in the same PR:
 

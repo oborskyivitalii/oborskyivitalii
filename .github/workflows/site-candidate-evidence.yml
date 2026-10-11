@@ -6,6 +6,26 @@ on:
         description: Exact candidate for optional full production automation preflight
         required: true
         type: string
+      base_url:
+        description: Immutable HTTPS preview of the prospective production bytes
+        required: true
+        type: string
+      public_artifact_id:
+        description: Frozen prospective production artifact, without STAGING edition
+        required: true
+        type: string
+      public_run_id:
+        description: Run that uploaded the frozen public artifact
+        required: true
+        type: string
+      public_digest:
+        description: Exact public file manifest SHA256
+        required: true
+        type: string
+      public_upload_digest:
+        description: GitHub upload archive SHA256
+        required: true
+        type: string
 permissions:
   contents: read
   actions: read
@@ -17,3 +37,10 @@ jobs:
       validation_level: production
       automated_only: true
       full: true
+      profile: staging
+      base_url: ${{ inputs.base_url }}
+      public_variant: base
+      public_artifact_id: ${{ inputs.public_artifact_id }}
+      public_run_id: ${{ inputs.public_run_id }}
+      public_digest: ${{ inputs.public_digest }}
+      public_upload_digest: ${{ inputs.public_upload_digest }}

@@ -103,6 +103,7 @@ function resolve(context, pr, main) {
   }
   return {
     mode,
+    prototype: mode === 'preview' && pr.draft === true && !previewEvidence(context),
     number: String(pr.number),
     source: pr.head.sha,
     branch: mode === 'preview' ? 'pr-' + pr.number : 'candidate-staging-' + pr.head.sha,
@@ -412,7 +413,7 @@ async function findRecovery(github, context) {
     ...context.repo,
     workflow_id: workflow.split('/').pop(),
     branch: 'main',
-    status: 'success',
+    status: 'completed',
     per_page: 100,
   });
   for (const run of runs) {
@@ -423,7 +424,6 @@ async function findRecovery(github, context) {
       continue;
     assert.equal(run.path, workflow);
     assert.equal(run.head_branch, 'main');
-    assert.equal(run.conclusion, 'success');
     sha(run.head_sha);
     const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
       ...context.repo,
@@ -442,6 +442,15 @@ async function findRecovery(github, context) {
       )
     )
       continue;
+    const mirrorRecovery = jobs.find((job) => job.name === 'mirror-recovery');
+    if (mirrorRecovery && mirrorRecovery.conclusion !== 'skipped') {
+      assert.equal(
+        mirrorRecovery.conclusion,
+        'success',
+        'failed mirror recovery requires reconciliation'
+      );
+      continue;
+    }
     const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
       ...context.repo,
       run_id: run.id,
@@ -529,16 +538,16 @@ function commentBody(state) {
     const entry = state[key];
     if (!entry) continue;
     lines.push('', `**${label}** · source \`${entry.source}\``, entry.status);
-    if (entry.url) lines.push(`[Immutable candidate](${entry.url})`);
     if (entry.alias)
       lines.push(
         `[${key === 'preview' ? 'Latest PR preview' : 'Verified staging'}](${entry.alias})`
       );
+    if (entry.url) lines.push(`[Exact tested candidate](${entry.url})`);
     lines.push(`[GitHub Actions run](${entry.run})`);
   }
   lines.push(
     '',
-    'Preview smoke is separate from full staging acceptance.',
+    'Draft prototypes defer source/browser admission. Stable staging requires the exact-head admission and staging gate.',
     '<!-- site-review-state:' + JSON.stringify(state) + ' -->'
   );
   return lines.join('\n');

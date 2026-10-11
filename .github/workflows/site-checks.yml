@@ -13,6 +13,8 @@ permissions:
   actions: read
 jobs:
   checks:
+    name: ${{ github.event_name == 'pull_request' && github.event.pull_request.draft && 'Prototype source admission deferred' || 'checks' }}
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
@@ -83,6 +85,7 @@ jobs:
     needs: checks
     if: >-
       vars.SITE_STAGING_ENABLED == 'true' &&
+      vars.SITE_PR_STAGING_ENABLED != 'true' &&
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
       github.event_name == 'workflow_dispatch' &&
       github.ref == 'refs/heads/main' &&

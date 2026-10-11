@@ -24,6 +24,7 @@ const pr = {
 test('preview tracks the latest open same-repository PR head; stale runs and forks fail', () => {
   assert.deepEqual(flow.resolve(context, pr), {
     mode: 'preview',
+    prototype: false,
     number: '26',
     source,
     branch: 'pr-26',
@@ -91,6 +92,7 @@ test('explicit staging resolves a PR source while requiring an unchanged protect
     main = { protected: true, commit: { sha: controller } };
   assert.deepEqual(flow.resolve(dispatch, pr, main), {
     mode: 'staging',
+    prototype: false,
     number: '26',
     source,
     branch: 'candidate-staging-' + source,
@@ -126,6 +128,7 @@ test('only an exact new owner /stage comment on the resolved PR may stage from p
   assert.equal(flow.stageComment(command), 26);
   assert.deepEqual(flow.resolve(command, pr, main), {
     mode: 'staging',
+    prototype: false,
     number: '26',
     source,
     branch: 'candidate-staging-' + source,
@@ -818,7 +821,8 @@ test('recovery uses only actual successful main promotions from dispatch or owne
     artifacts = () => {};
   let runs = [run],
     records = [{ id: 11, name: 'site-staging-recovery-10-2', expired: false }];
-  let jobAttempt = 2;
+  let jobAttempt = 2,
+    mirrorStatus = 'skipped';
   const api = {
     rest: {
       actions: {
@@ -837,11 +841,31 @@ test('recovery uses only actual successful main promotions from dispatch or owne
                 conclusion: args.run_id === 12 ? 'skipped' : 'success',
                 run_attempt: jobAttempt,
               },
+              { name: 'mirror-recovery', conclusion: mirrorStatus },
             ]
           : records,
   };
   const previous = await flow.findRecovery(api, { ...context, runId: 20 });
   assert.deepEqual(previous, { runId: '10', attempt: '2', controller, stateId: '11' });
+  run.conclusion = 'failure';
+  assert.deepEqual(
+    await flow.findRecovery(api, { ...context, runId: 20 }),
+    previous,
+    'later bookkeeping failure cannot discard a successfully served package'
+  );
+  mirrorStatus = 'success';
+  assert.equal(
+    await flow.findRecovery(api, { ...context, runId: 20 }),
+    null,
+    'a package already restored after mirror failure is not the live package'
+  );
+  mirrorStatus = 'failure';
+  await assert.rejects(
+    flow.findRecovery(api, { ...context, runId: 20 }),
+    /requires reconciliation/
+  );
+  mirrorStatus = 'skipped';
+  run.conclusion = 'success';
   runs = [
     { ...run, id: 12, event: 'issue_comment' },
     { ...run, event: 'issue_comment' },
@@ -1024,7 +1048,7 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(full, /validation_level: staging/);
   assert.match(full, /full: true/);
   assert.match(full, /public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
-  const promote = text.split('\n  promote:\n')[1].split('\n  status-comment:\n')[0];
+  const promote = text.split('\n  promote:\n')[1].split('\n  pages:\n')[0];
   assert.match(promote, /needs.full.result == 'success'/);
   assert.match(promote, /review-flow.cjs gate/);
   assert.match(promote, /--branch=staging/);
@@ -1041,7 +1065,7 @@ test('workflow publishes through the official action, excludes full tests from P
     /artifact.name,'site-review-package-'\+previous.runId\+'-'\+previous.attempt/
   );
   const smoke = text.split('\n  smoke:\n')[1].split('\n  full:\n')[0];
-  assert.match(smoke, /if: needs.target.outputs.mode == 'preview'/);
+  assert.match(smoke, /always\(\) && needs.target.outputs.mode == 'preview'/);
   assert.match(smoke, /local-browser.cjs --smoke/);
   assert.match(smoke, /SITE_PUBLIC_VARIANT: \$\{\{ needs.build.outputs.variant \}\}/);
   assert.doesNotMatch(smoke, /secrets\.|lighthouse|scanners.cjs|motion.cjs/);

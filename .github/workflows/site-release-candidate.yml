@@ -1,0 +1,156 @@
+name: Frozen production candidate
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact current main commit; prepares a preview, never activates production
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: author-production-candidate
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      public_id: ${{ steps.public.outputs.artifact-id }}
+      upload_digest: ${{ steps.public.outputs.artifact-digest }}
+      digest: ${{ steps.identity.outputs.digest }}
+      package_id: ${{ steps.package.outputs.artifact-id }}
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Authenticate an owner request on exact protected main
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            require('./tools/pages/controller.cjs').controller(context,(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data);
+            require('node:assert/strict').equal(process.env.SITE_CANDIDATE_SHA,context.sha);
+      - name: Freeze a separate production edition before tests
+        run: |
+          node tools/quality/artifact.cjs build quality-artifact
+          node tools/release/edition.cjs build quality-artifact
+          node tools/release/edition.cjs verify quality-artifact
+      - id: public
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-production-candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+      - name: Add preview transport policy without changing public files
+        env:
+          SITE_ARTIFACT_ID: ${{ steps.public.outputs.artifact-id }}
+          SITE_UPLOAD_DIGEST: ${{ steps.public.outputs.artifact-digest }}
+        run: |
+          node tools/quality/local.cjs --package-gate quality-artifact
+          node tools/staging/package.cjs build quality-artifact staging-package
+      - id: identity
+        run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
+      - id: package
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-production-preview-package-${{ github.run_id }}-${{ github.run_attempt }}
+          path: staging-package/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: preview
+    outputs:
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.digest }}
+      SITE_ARTIFACT_ID: ${{ needs.build.outputs.public_id }}
+      SITE_UPLOAD_DIGEST: ${{ needs.build.outputs.upload_digest }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.package_id }}
+          path: staging-package
+      - name: Recheck controller, frozen bytes and preview-only project
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          REVIEW_ACCOUNT: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          REVIEW_PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+          REVIEW_TOKEN_READY: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        with:
+          script: |
+            const flow=require('./tools/staging/review-flow.cjs');
+            require('./tools/pages/controller.cjs').controller(context,(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data);
+            flow.configuration(process.env.REVIEW_ACCOUNT,process.env.REVIEW_PROJECT,process.env.REVIEW_TOKEN_READY==='true');
+            const record=JSON.parse(require('node:fs').readFileSync('staging-package/staging-package.json'));
+            require('./tools/staging/package.cjs').verify('staging-package',record,require('./tools/staging/package.cjs').expectedEnvironment());
+            require('./tools/release/edition.cjs').verify('staging-package',record.source);
+      - id: deploy
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: 4.147.0
+          command: pages deploy staging-package/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=production-candidate-${{ github.run_id }} --commit-hash=${{ inputs.candidate_sha }} --commit-dirty=false
+  http:
+    needs: [build, publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.digest }}
+      SITE_ARTIFACT_ID: ${{ needs.build.outputs.public_id }}
+      SITE_UPLOAD_DIGEST: ${{ needs.build.outputs.upload_digest }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.package_id }}
+          path: staging-package
+      - name: Observe immutable candidate bytes with preview transport policy
+        run: node tools/staging/review-flow.cjs http staging-package "${{ needs.publish.outputs.url }}" quality-reports/production-candidate-http.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-production-candidate-observations-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Show exact inputs for the existing full candidate validation
+        env:
+          CANDIDATE_URL: ${{ needs.publish.outputs.url }}
+          PUBLIC_ID: ${{ needs.build.outputs.public_id }}
+          PUBLIC_DIGEST: ${{ needs.build.outputs.digest }}
+          UPLOAD_DIGEST: ${{ needs.build.outputs.upload_digest }}
+        run: |
+          node - <<'JS'
+          require('node:fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+            'Prepared prospective production bytes; production remains inactive.\n\n'+JSON.stringify({candidate_sha:process.env.SITE_CANDIDATE_SHA,base_url:process.env.CANDIDATE_URL,public_artifact_id:process.env.PUBLIC_ID,public_run_id:process.env.GITHUB_RUN_ID,public_digest:process.env.PUBLIC_DIGEST,public_upload_digest:process.env.UPLOAD_DIGEST},null,2)+'\n');
+          JS
