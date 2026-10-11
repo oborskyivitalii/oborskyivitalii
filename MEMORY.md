@@ -7,11 +7,15 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 - Main inspected at `93a818dbc3239b97b47b7d56edb83f5a7ebf65fc`; revalidate live tip.
 - [#72](https://github.com/oborskyivitalii/oborskyivitalii/issues/72) owns the accepted
   prototype/staging/Pages/production-archive plan. Implementation is authorized on
-  `work/issue-72-prototype-staging-release-20261011`; execution PR is being prepared.
+  `work/issue-72-prototype-staging-release-20261011`; [Draft PR #73](https://github.com/oborskyivitalii/oborskyivitalii/pull/73).
   [Analysis and handoff](review/issue-72/2026-10-11-analysis.md).
 - PR67 is merged; Cloudflare stable alias maps to its accepted source
   `4a7b44ff0877961d5a2d0dc8233b8ae643ca340c`, deployment `5ee165bf`, on 9 October.
   This API identity is not a new direct HTTP health observation.
+- PR73 prototype `f86f79a0...` passed Actions run `38138327025`: link in 75 seconds,
+  full prototype workflow 101 seconds; source/RI/acceptance/browser admission deferred.
+  Clean local mapped acceptance and 375 additional source cases passed for that commit.
+  Revalidate its latest head/preview after metadata follow-ups.
 - All 33 refs were inspected: no production branch/tag/Release or accepted Pages
   production publisher on main. Pages administration remains unobserved.
 
@@ -40,7 +44,7 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #72 | Draft PR/preview and exact mapped checks; Pages/settings/merge admission; durable Release/ref/label/rollback integration and actual live transitions. All AC01–AC10 remain open pending complete conditions. |
+| #72 | Latest Draft PR/preview and exact mapped checks; Pages/settings/merge admission; durable Release/ref/label/rollback integration and actual live transitions. All AC01–AC10 remain open pending complete conditions. |
 | #49 / Draft PR #53 | Fragment-flight work; revalidate head and visual acceptance. |
 | #39 / Draft PR #40 | Pages/domain preparation; preserve release decisions. |
 | #45 / #36 / #41 | Original editorial/visual/review/device gates in live owners. |

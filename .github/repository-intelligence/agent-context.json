@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ce981189a4e1a9adeff21a769208fe25a6f6cc201dcf053a4c704d89f376e067",
+    "digest": "0c6dbd5b364193f128abb853b26e7eeb0598191568a4d00a0359bc2242dac093",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -246,7 +246,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f243014f5dc173034c6235610a250f13a28c064afd12cb43a49dce81de6c3d42"
+        "sha256": "98952611ad50ce41da7a0d53b86dc2fc205f8593750f13b31999c11c9e7a5c8b"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -895,7 +895,7 @@
       {
         "path": "review/issue-72/2026-10-11-analysis.md",
         "identity_mode": "content",
-        "sha256": "74dc5dc50326eed2fae26eaaf5f2218be1652d2b3eed190f87c8e87fa860e1e4"
+        "sha256": "391afbcc1ebefe583e652c2a5f204292f2d78ffa3e45ce95e435bb94722a0996"
       },
       {
         "path": "review/public-responses-20261006/README.md",
