@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e9b60e17eff94e1d0294dd023ea7e394200428b38fb78a9b501ce7e18825076b",
+    "digest": "066ebd75a7294d2a9606da8696304f8d32f25fd8c1dd41a99b0711e1f1dc5014",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -141,12 +141,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d7a890123e1fbd4c065b6113f2a5169441b6343126d1549ffa9844c3f229a5a4"
+        "sha256": "2f24b0c5c615040243d1dce8e7d2294efaa0974d0a9b21279d0d6a7fcdb7d183"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5bfb98d2a9916eb691b615025a4032df4205b17c6bfb6940197f3fe45dc47fa2"
+        "sha256": "7757c2b40057d8a7fe532890bd6ae083102534ce59261578e5392dd16303f08d"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -206,7 +206,7 @@
       {
         "path": ".github/workflows/site-pages.yml",
         "identity_mode": "content",
-        "sha256": "b46ca8c45d59d3deb64a39ffb728ca57dd1593b4dd9298e8cc1808b288ec723b"
+        "sha256": "c0e731a8c2ff6be8f67c37d36378d5a2c5b39db026eb14118cb4a4d1bd6bfb5a"
       },
       {
         "path": ".github/workflows/site-production.yml",
@@ -261,7 +261,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "300f1a1008c306b882f313c024a3bc6d8619910dc27216ae664a3f5301a95dd0"
+        "sha256": "8a5116c3662692d4e210a948b1f583a733df3d5cf74b7c8df77a72382767747a"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -535,7 +535,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "9d9f55958237c2feec219ed2933df233b453bfe19a0466c4716f4cd448f30684"
+        "sha256": "708132f488e3c672ea9dc37e4da8cbdc57389da7d80a1773f4a2780a0f0a3f47"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -916,6 +916,11 @@
         "path": "review/issue-72/2026-10-11-browser-evidence.json.gz",
         "identity_mode": "content",
         "sha256": "f0ccf13402c430f3ea50b05b103acf1420b031904802f74bd24a04eab1ff6ee2"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-pages-basepath.md",
+        "identity_mode": "content",
+        "sha256": "97f164fcd7de3ee7774d325ebdc33078334d51ff9abfaf22e4bd5bec13d6546a"
       },
       {
         "path": "review/issue-72/2026-10-11-review.md",
@@ -5170,7 +5175,7 @@
       {
         "path": "tests/pages-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "b4354880ed17b97482444672572ab1022a48fa1c6692b6e451bb72b5163aa4b8"
+        "sha256": "cba444b29a3a1d7221a8b55fb3821eb9fe0ac56e346b887935242405280c24cb"
       },
       {
         "path": "tests/phase-checkpoint.test.cjs",
@@ -5500,17 +5505,17 @@
       {
         "path": "tools/pages/controller.cjs",
         "identity_mode": "content",
-        "sha256": "5fe20e9d80e13bf152233517cc8dfed9ffbaeecafd4538c2453b3aeffc014e79"
+        "sha256": "a1ae2b722c325d45eb552a3e41fac699ee15524528d9b82d87b9076fe00bd961"
       },
       {
         "path": "tools/pages/http.cjs",
         "identity_mode": "content",
-        "sha256": "dbbd4eba117e05093b72f59eece222910cfd7913c339a010c21348e770903e80"
+        "sha256": "0c0504c6087295fe22310057326971f69cb4bb142003523499ba5404aa774d60"
       },
       {
         "path": "tools/pages/package.cjs",
         "identity_mode": "content",
-        "sha256": "e135de7d3668389deee1ca688f4b924767f8848752f0591738b4c907962c39e9"
+        "sha256": "b955df574c92079dfd3690db36ed7a02169a5d2b802fb48188d15d28750b5c7f"
       },
       {
         "path": "tools/quality/README.md",
@@ -5810,7 +5815,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "c2e82aaf9ab3e03ad661c24711e89e18bc69556ae143026e029fd512330bc80e"
+        "sha256": "a6c106dcfb249dbba48da43abc2b15a3f85dbb56c7f86a39eed7cff97e1c8c76"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -8296,6 +8301,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-11-browser-evidence.json.gz"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-pages-basepath.md",
+      "kind": "file",
+      "purpose": "Isolated preparation, focused evidence and trusted-main integration prerequisites for configured Pages project-base compatibility.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 72 — 2026-10-11 confirmed Pages base-path repair"
     },
     {
       "path": "review/issue-72/2026-10-11-review.md",

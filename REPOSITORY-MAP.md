@@ -725,6 +725,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-72/2026-10-11-analysis.md](review/issue-72/2026-10-11-analysis.md) | Issue72 dated self-analysis, execution and remaining acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-72/2026-10-11-browser-evidence.json.gz](review/issue-72/2026-10-11-browser-evidence.json.gz) | Compressed immutable local staging edition and Pages smoke observations with temporary-fixture and dirty-parent source bindings. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-72/2026-10-11-pages-basepath.md](review/issue-72/2026-10-11-pages-basepath.md) | Isolated preparation, focused evidence and trusted-main integration prerequisites for configured Pages project-base compatibility. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-72/2026-10-11-review.md](review/issue-72/2026-10-11-review.md) | Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 
 ## review/public-responses-20261006/

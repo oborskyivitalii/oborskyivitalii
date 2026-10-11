@@ -1357,6 +1357,12 @@
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
     },
+    "review/issue-72/2026-10-11-pages-basepath.md": {
+      "kind": "file",
+      "purpose": "Isolated preparation, focused evidence and trusted-main integration prerequisites for configured Pages project-base compatibility.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-72/2026-10-11-review.md": {
       "kind": "file",
       "purpose": "Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates.",

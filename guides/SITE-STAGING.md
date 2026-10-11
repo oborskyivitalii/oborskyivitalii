@@ -205,8 +205,12 @@ Enable Pages with the GitHub Actions source, preserve the canonical-domain owner
 integrated into main. The connector does not expose Pages/variables/ruleset
 administration; a guide or skipped publisher is not setting evidence.
 
-The permanent mirror is `/staging/` on the configured canonical Pages origin
-(planned initial URL `https://oborskyivitalii.github.io/staging/`). Before first
+The permanent mirror is `/staging/` beneath the configured Pages deployment base.
+A project base such as `https://oborskyivitalii.github.io/oborskyivitalii/`
+publishes its mirror at that base plus `staging/`; an origin-root base retains
+`https://oborskyivitalii.github.io/staging/`. The receipt, complete HTTP inventory,
+recovery and generated fallback links stay within the same base. Accepted
+production requires the unchanged canonical origin root. Before first
 production, root also serves labelled staging. Afterwards the combined package
 preserves every declared file hash of the accepted durable production archive at
 root while staging changes its subtree. Both hosts consume the same staging
