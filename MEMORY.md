@@ -9,7 +9,9 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 - New [#76](https://github.com/oborskyivitalii/oborskyivitalii/issues/76) preview
   branch `work/issue-76-scene-scroll-preview` implements outside Appearance
   dismissal, continuous room visibility, repeatable downward entry and five
-  shared compositions. Draft publication pending at this checkpoint; no merge.
+  shared compositions in [Draft PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77).
+  First prototype run38173013744 passed build/package and HTTP identity;
+  final metadata freshness follow-up is pending. No merge or stable promotion.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -61,7 +63,7 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #76 / preview branch | Inspect Draft preview; confirm outside dismissal, continuous forward/reverse rooms, repeat down/up/down entries and distinct shared layouts. Ready-source/hosted/device/cost admission remains later. |
+| #76 / Draft PR77 | Inspect PR preview; confirm outside dismissal, continuous forward/reverse rooms, repeat down/up/down entries and distinct shared layouts. Ready-source/hosted/device/cost admission remains later. |
 | #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
 | #72 | Current-controller both-host stable acceptance/recovery, strict additional admission setting and remaining whole criteria. PR75 integration is observed under its scoped decision; ordinary admission remains pending. |
 | #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |

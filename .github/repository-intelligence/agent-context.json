@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a67681655d0c56624717d586e2b408e6a4d08ee5381832cbe88c528c3f76e08e",
+    "digest": "1633b7bc238232fd20f7f3b74a3deb8923a68070748efe11173b1cdebe8acbea",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "45d28afa4df4e85701a234282a862c25d5f78b8503c04e30c2c81bd55034d465"
+        "sha256": "444e8f795016feb90e6ea74206be7759d61a5394ea00ec10f9fc2934f7aac627"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -1140,7 +1140,7 @@
       {
         "path": "review/issue-76/2026-10-11-preview.md",
         "identity_mode": "content",
-        "sha256": "63853f0ad27dffb1e677a23817e1093c9392410b017aea61f54e8a22f5fdf36b"
+        "sha256": "24a8971dd9f9a93ef6b366a2993476df86cb664e395fac2937b066ca60a9f13c"
       },
       {
         "path": "review/public-responses-20261006/README.md",
