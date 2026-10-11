@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a033b81ebc0eaa6b818da867c5c1af30697682318286f60f4af8903aeaba08e2",
+    "digest": "ce981189a4e1a9adeff21a769208fe25a6f6cc201dcf053a4c704d89f376e067",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -42,7 +42,7 @@
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "397878fce81257274efb815587e2fa6923e3368c8da242e538c2fd3144a823f5"
+        "sha256": "46fdeee6ed0bad0d3c1fa2b4ab3d82e9bc8ca55975bbbcf50a2f7626008ba45b"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -110,6 +110,11 @@
         "sha256": "3f7489a42a98ea85dfe6062bf96bb970a132d9e1ebd89a294475afb37c106de9"
       },
       {
+        "path": ".github/acceptance/issue-72.json",
+        "identity_mode": "content",
+        "sha256": "9b34eaef25b1a0c5782b43b4cd0fbc3221a7d71c0ba39fa297e62363f33cdd13"
+      },
+      {
         "path": ".github/code-style.json",
         "identity_mode": "content",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
@@ -136,22 +141,22 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "dc82008feaad83ea4936f249aa48d18e673a8affa33411b4bf66f1f6d5e6e950"
+        "sha256": "8925c95b7343ac1a3a32494dd254daeb05238aba946ae9aaac9e6b0eef9a83d1"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4b7de371e61e34eea6289df636415df66a7eceb1d26a55bcb948ed0613a9e123"
+        "sha256": "866e5d6e7fab1904dd5c81f2667eaf18c0995385d7d18ea1bbc06a88c2198e19"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "c25fff96e085686ba944766c41500b9391f34339cd0f30fcaf7ddaf8df757b0a"
+        "sha256": "18892853d182eb1fbde7ffcdb9db67592592bb7da94fd44a9c86f547d1759265"
       },
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "bdba63ae8bdc3a080b8ac0383afd8a6cbf9e50984a92ad46e0420d618bbf706b"
+        "sha256": "7483e65af4d73989ca47f924ac39f4391f101ecc4e70ee6e0e0ac2893031a675"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -161,7 +166,7 @@
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
-        "sha256": "c94593e872f7868dbc526da93a5c1a417c8cd5b264c04a0b5f29288b8c529058"
+        "sha256": "989e16cce13d998dc070f98908a3e3e21b5dca794b5c850540cb5879f85c0533"
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
@@ -176,12 +181,12 @@
       {
         "path": ".github/workflows/site-checks.yml",
         "identity_mode": "content",
-        "sha256": "e789f463dde84cf9a3a2bc3df813065c237f3f533689d7eda5b3994fc359bb27"
+        "sha256": "9f0125236c92dc678f94bd6315340497a92cb74f83454acd90bb95371ac3fb17"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "1380817817ed73ccf18359afcc32d366bf8d96b0a4e46f062a2a2491a80e2752"
+        "sha256": "879894f124e67bf840916fb7135c509c95f304d89d25a805747e6a05a7562acf"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -199,9 +204,14 @@
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
+        "path": ".github/workflows/site-pages.yml",
+        "identity_mode": "content",
+        "sha256": "b46ca8c45d59d3deb64a39ffb728ca57dd1593b4dd9298e8cc1808b288ec723b"
+      },
+      {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "48efe855a075321ed36e667e8128b2119288a2023d9406ab5c6c4cc905b5dccf"
+        "sha256": "c6016d904092ba9b3f739d002505520ee2e09e409347b295a03c255d17819ae0"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -236,7 +246,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "08fd3d1b6bc3609d74910221f358456c6f8ef3d37f7d6ee6937df6ced0524f93"
+        "sha256": "f243014f5dc173034c6235610a250f13a28c064afd12cb43a49dce81de6c3d42"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -480,7 +490,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "d3fda7bcd9d71fb4bf28aecd801c5106fdcd1e380e580f6c91598f49bb99767c"
+        "sha256": "7469a8b70daa2e8c400b245adee08b4e78cf637773b825992f3f3df0d389d086"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -490,7 +500,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "acde6828b7b5d154ed489e5929ded27b72aa723bbbb60ff8ed2aea3ce00ea75d"
+        "sha256": "69b17927080a645bf365e1d44b42a1ceff433d79fb19fa67b0327b50f8c03539"
       },
       {
         "path": "guides/SITE-ROADMAP.md",
@@ -510,7 +520,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "19bb42dcdfed67dd910d7acfc1c7578cb10715b257332b32c1edfed54d1a5bd9"
+        "sha256": "784af2ddcadf24adeb002c5ea6a45266a6020e8206c81f095ca130229618e5dc"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -881,6 +891,11 @@
         "path": "review/issue-65/2026-10-09-review.md",
         "identity_mode": "content",
         "sha256": "155001616582d5be95c5648a3ccf3b2cdecb3bc691e73301117620e922d23d01"
+      },
+      {
+        "path": "review/issue-72/2026-10-11-analysis.md",
+        "identity_mode": "content",
+        "sha256": "74dc5dc50326eed2fae26eaaf5f2218be1652d2b3eed190f87c8e87fa860e1e4"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -4628,6 +4643,11 @@
         "sha256": "026b9f491bf26516ffe6fa21e04612e8a523320071fdcbad7dbc786b7ae9eb10"
       },
       {
+        "path": "site/effects/environment.css",
+        "identity_mode": "content",
+        "sha256": "714e476d2b8f007bf6d74dba58df86b2d16f72d7374af791078f011349505ffb"
+      },
+      {
         "path": "site/effects/flight.cjs",
         "identity_mode": "content",
         "sha256": "287ba1787b7b0fcd169b8cf41ef22c71eb21e055f9121749ec20add6b7f88842"
@@ -5063,6 +5083,11 @@
         "sha256": "825ae6c5804aca88e2a826105227882ea95970b7f65e2c56ca6750163601a055"
       },
       {
+        "path": "tests/fixtures/delivery.cjs",
+        "identity_mode": "content",
+        "sha256": "2e6faefb38c24d7a181f301684534e5cf3a88355cd2ba3bae65824d932183268"
+      },
+      {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
         "sha256": "bd0c1565f657a7a0944f74ceecc755c8342ca93306315564ccb61e718d080a53"
@@ -5118,6 +5143,11 @@
         "sha256": "441933556c68aae76e00db7202d86964d938e463ac9d6916e99f2eaebc5d47a9"
       },
       {
+        "path": "tests/pages-delivery.test.cjs",
+        "identity_mode": "content",
+        "sha256": "b4354880ed17b97482444672572ab1022a48fa1c6692b6e451bb72b5163aa4b8"
+      },
+      {
         "path": "tests/phase-checkpoint.test.cjs",
         "identity_mode": "content",
         "sha256": "5f097aab452cf06e7455addd68ff05aecb8523a5b111fd9a8b291b869716d87c"
@@ -5131,6 +5161,11 @@
         "path": "tests/preview.test.cjs",
         "identity_mode": "content",
         "sha256": "6f47da67d099d4bd6e6e46b064b89453d4a90b0172624bb1f6a6463bef2bdad6"
+      },
+      {
+        "path": "tests/prototype-admission.test.cjs",
+        "identity_mode": "content",
+        "sha256": "cbdb5591053f41c2ec18d6e54be5ac99a88bbc26c5b0d0cde12dba0c8c2b7c2f"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5148,6 +5183,11 @@
         "sha256": "946a724e0bf41f124293e7d79f8279dfe230c32893f2e5c9a742c3b0fec71fc6"
       },
       {
+        "path": "tests/release-archive.test.cjs",
+        "identity_mode": "content",
+        "sha256": "cb2d3855a04a3fd1216e11c0f91f9feb270bdf38b6331e5644ae8bda714a7eb8"
+      },
+      {
         "path": "tests/renderer.test.cjs",
         "identity_mode": "content",
         "sha256": "01f555d257793f589a407b74e767cf78eaf65e136b339b39e4c4d5fbe618d7a5"
@@ -5155,7 +5195,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "0803548ce231339ae09ae3fe850396168df9c8dfc733ad2b5291669ad582a436"
+        "sha256": "b2050960bb8e9ff04b5c17f36fa1fe82eccbc19fff28cc9ba8d749ae7e321c42"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -5273,6 +5313,11 @@
         "sha256": "f7362fa370ed37b324803fed158b068eea53da8a961b349154422704db50089d"
       },
       {
+        "path": "tests/test_issue72_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "62be5c1f61cd84062627d8447b87d26fab674494ac070fec0a6ecc03c6fa7881"
+      },
+      {
         "path": "tests/test_issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "51b509df5b1bb8838d85c1c25ee1c07e5323d7cf882ae2b1bbe8846709f3bd8d"
@@ -5295,7 +5340,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "26eca6ca6c6931dec3ba0f04366c6df25808388079c53dfc09f81891d1bcda80"
+        "sha256": "9a5240a85621c518f89d7faa28e6512ef76d076ae9eba66e0381c0382d6ab09a"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -5400,7 +5445,7 @@
       {
         "path": "tools/check_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d"
+        "sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9"
       },
       {
         "path": "tools/check_site_contrast.cjs",
@@ -5421,6 +5466,21 @@
         "path": "tools/issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97"
+      },
+      {
+        "path": "tools/pages/controller.cjs",
+        "identity_mode": "content",
+        "sha256": "ca726f1d2396e9a04203954796de9139fcee99ceda05dba1c68576114470ad93"
+      },
+      {
+        "path": "tools/pages/http.cjs",
+        "identity_mode": "content",
+        "sha256": "dbbd4eba117e05093b72f59eece222910cfd7913c339a010c21348e770903e80"
+      },
+      {
+        "path": "tools/pages/package.cjs",
+        "identity_mode": "content",
+        "sha256": "aca324e0706e1961d5084c8876305f1cb2f6719a9fcf8f3c421c43f955a6f6e6"
       },
       {
         "path": "tools/quality/README.md",
@@ -5445,7 +5505,7 @@
       {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
-        "sha256": "d16be270473140c5b4ea05a775e13f1be9d22192b241d6e6048c5e37143f5373"
+        "sha256": "cbaecf80e783a0dd7bf4aec3ef6695e03f00bc409c349dec37ff5fcbcb887978"
       },
       {
         "path": "tools/quality/bandit-policy.json",
@@ -5600,7 +5660,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "b6930efe9a36568d8be0fcf3d7f0ea431cda1146eaa1701db3182a43585f95ec"
+        "sha256": "ae166064cd711058c8c7623c6d9f1783e9b71c178104251fa1725a98791b2052"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -5630,7 +5690,7 @@
       {
         "path": "tools/quality/promotion.cjs",
         "identity_mode": "content",
-        "sha256": "5db5fe7bcc6d0aba9535c3c669612f1c516e04ef98330a50061fead31855bbea"
+        "sha256": "06aa5730d0c637710698d880b8a6686e748408ec0ead74ba314e9e62a88baca7"
       },
       {
         "path": "tools/quality/reading-clarity.cjs",
@@ -5715,7 +5775,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "dd160c8895b4f6b84f7c9ae760147afd94ca421e322b19b6fc6fa6419d63f2e4"
+        "sha256": "2b4f1a92d6fe277aa19b28ded000fde332085a38f40b6b5812d6e4410b93b603"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -5801,6 +5861,16 @@
         "path": "tools/quality/writing-variants.cjs",
         "identity_mode": "content",
         "sha256": "383d928bd96dc6d12e81f0abee1545d3a0595bf33ac6091d896073bf79441f42"
+      },
+      {
+        "path": "tools/release/archive.cjs",
+        "identity_mode": "content",
+        "sha256": "12b3773c65900d0d35ef10d062b5355abcc1255487e272abcbd2a47dd58720dc"
+      },
+      {
+        "path": "tools/release/package.py",
+        "identity_mode": "content",
+        "sha256": "7756e8c0700829afc3210063a7fc5f6bd04c821f057080fa26f552d7605d1543"
       },
       {
         "path": "tools/repository_intelligence.py",
@@ -5893,9 +5963,19 @@
         "sha256": "0f6c3b6bc64e9b1cd81cf659a76c6ce7c17c6772a60328456b4bdce99dd2be39"
       },
       {
+        "path": "tools/staging/admission.cjs",
+        "identity_mode": "content",
+        "sha256": "92ba6bda49f7ecab65cd707230d351db1a04b35a76af25b4a1ef0c68db9edcca"
+      },
+      {
         "path": "tools/staging/color.cjs",
         "identity_mode": "content",
         "sha256": "37ab6f6a83e9164701aa4a73a162d4fdd982d09914ce7b3011f786dd6ca5a627"
+      },
+      {
+        "path": "tools/staging/edition.cjs",
+        "identity_mode": "content",
+        "sha256": "80173512b1bc8e56126fc3a3529157629ec38c0126b7b17704bbf851d148d56b"
       },
       {
         "path": "tools/staging/hosted.cjs",
@@ -5910,7 +5990,7 @@
       {
         "path": "tools/staging/review-flow.cjs",
         "identity_mode": "content",
-        "sha256": "58e290b859de3fc6ba1e4d3289fd8d60e04e9f7945273e35d5cc45c9ea2efcc0"
+        "sha256": "a96d742d7c660a66d7b18d6101f2e2654b2335c54028a479d2d61d681564f6ea"
       },
       {
         "path": "tools/staging/selftest.cjs",
@@ -6371,6 +6451,17 @@
       "title": "issue-65.json"
     },
     {
+      "path": ".github/acceptance/issue-72.json",
+      "kind": "file",
+      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-72.json"
+    },
+    {
       "path": ".github/code-style.json",
       "kind": "file",
       "purpose": "Exact issue54 legacy source/inline-style debt with frozen-baseline ceilings and removal tasks.",
@@ -6567,6 +6658,17 @@
         "AGENTS.md"
       ],
       "title": "site-navigation-probe.yml"
+    },
+    {
+      "path": ".github/workflows/site-pages.yml",
+      "kind": "file",
+      "purpose": "Serialized staging Pages mirror with production hash invariants and exact recovery.",
+      "role": "workflow",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-pages.yml"
     },
     {
       "path": ".github/workflows/site-release-checks.yml",
@@ -8074,6 +8176,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 65 — 2026-10-09 independent implementation review"
+    },
+    {
+      "path": "review/issue-72/2026-10-11-analysis.md",
+      "kind": "file",
+      "purpose": "Issue72 dated self-analysis, execution and remaining acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 72 — 2026-10-11 analysis and execution"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -16315,6 +16428,17 @@
       "title": "header.json"
     },
     {
+      "path": "site/effects/environment.css",
+      "kind": "file",
+      "purpose": "Theme-token staging badge generated before candidate hashing.",
+      "role": "source",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "environment.css"
+    },
+    {
       "path": "site/effects/flight.cjs",
       "kind": "file",
       "purpose": "Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls.",
@@ -17272,6 +17396,17 @@
       "title": "executive.test.cjs"
     },
     {
+      "path": "tests/fixtures/delivery.cjs",
+      "kind": "file",
+      "purpose": "Meaningful admission, Pages preservation/recovery and durable archive regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery.cjs"
+    },
+    {
       "path": "tests/fixtures/staging-evidence.cjs",
       "kind": "file",
       "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
@@ -17393,6 +17528,17 @@
       "title": "navigation.test.cjs"
     },
     {
+      "path": "tests/pages-delivery.test.cjs",
+      "kind": "file",
+      "purpose": "Meaningful admission, Pages preservation/recovery and durable archive regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pages-delivery.test.cjs"
+    },
+    {
       "path": "tests/phase-checkpoint.test.cjs",
       "kind": "file",
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
@@ -17426,6 +17572,17 @@
       "title": "preview.test.cjs"
     },
     {
+      "path": "tests/prototype-admission.test.cjs",
+      "kind": "file",
+      "purpose": "Meaningful admission, Pages preservation/recovery and durable archive regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prototype-admission.test.cjs"
+    },
+    {
       "path": "tests/quality-sources.test.cjs",
       "kind": "file",
       "purpose": "Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests.",
@@ -17457,6 +17614,17 @@
         "AGENTS.md"
       ],
       "title": "refactor-metrics.test.cjs"
+    },
+    {
+      "path": "tests/release-archive.test.cjs",
+      "kind": "file",
+      "purpose": "Meaningful admission, Pages preservation/recovery and durable archive regressions.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "release-archive.test.cjs"
     },
     {
       "path": "tests/renderer.test.cjs",
@@ -17732,6 +17900,17 @@
         "AGENTS.md"
       ],
       "title": "test_issue65_acceptance.py"
+    },
+    {
+      "path": "tests/test_issue72_acceptance.py",
+      "kind": "file",
+      "purpose": "Meaningful admission, Pages preservation/recovery and durable archive regressions.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue72_acceptance.py"
     },
     {
       "path": "tests/test_issue_acceptance.py",
@@ -18062,6 +18241,39 @@
         "AGENTS.md"
       ],
       "title": "issue_acceptance.py"
+    },
+    {
+      "path": "tools/pages/controller.cjs",
+      "kind": "file",
+      "purpose": "Issue72 source-bound staging and Pages delivery controller.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "controller.cjs"
+    },
+    {
+      "path": "tools/pages/http.cjs",
+      "kind": "file",
+      "purpose": "Issue72 source-bound staging and Pages delivery controller.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "http.cjs"
+    },
+    {
+      "path": "tools/pages/package.cjs",
+      "kind": "file",
+      "purpose": "Issue72 source-bound staging and Pages delivery controller.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "package.cjs"
     },
     {
       "path": "tools/quality/README.md",
@@ -18900,6 +19112,28 @@
       "title": "writing-variants.cjs"
     },
     {
+      "path": "tools/release/archive.cjs",
+      "kind": "file",
+      "purpose": "Immutable production archive identity and deterministic bounded extraction.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive.cjs"
+    },
+    {
+      "path": "tools/release/package.py",
+      "kind": "file",
+      "purpose": "Immutable production archive identity and deterministic bounded extraction.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "package.py"
+    },
+    {
       "path": "tools/repository_intelligence.py",
       "kind": "file",
       "purpose": "Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification.",
@@ -19098,6 +19332,17 @@
       "title": "variants.cjs"
     },
     {
+      "path": "tools/staging/admission.cjs",
+      "kind": "file",
+      "purpose": "Issue72 source-bound staging and Pages delivery controller.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "admission.cjs"
+    },
+    {
       "path": "tools/staging/color.cjs",
       "kind": "file",
       "purpose": "Authored Color variant lineage, package construction and source preflight.",
@@ -19107,6 +19352,17 @@
         "AGENTS.md"
       ],
       "title": "color.cjs"
+    },
+    {
+      "path": "tools/staging/edition.cjs",
+      "kind": "file",
+      "purpose": "Pre-test staging badge/indexing/analytics edition and snapshot identities.",
+      "role": "source",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition.cjs"
     },
     {
       "path": "tools/staging/hosted.cjs",
@@ -19622,6 +19878,16 @@
       "purpose": "Harness simplification evidence and independent review under issue65.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-72",
+      "kind": "directory",
+      "purpose": "Issue72 dated self-analysis, execution and remaining acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -20417,6 +20683,16 @@
       ]
     },
     {
+      "path": "tools/pages",
+      "kind": "directory",
+      "purpose": "Issue72 source-bound staging and Pages delivery controller.",
+      "role": "validator",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "tools/quality",
       "kind": "directory",
       "purpose": "Maintained source, security, browser, hosted-origin, performance and release checks.",
@@ -20432,6 +20708,16 @@
       "purpose": "Pinned isolated quality tooling packages and Python dependencies.",
       "role": "configuration",
       "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/release",
+      "kind": "directory",
+      "purpose": "Immutable production archive identity and deterministic bounded extraction.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
         "AGENTS.md"
       ]

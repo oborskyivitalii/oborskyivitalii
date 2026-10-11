@@ -72,6 +72,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-58](review/issue-58) | Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-61](review/issue-61) | Bounded source amendment and handoff for the supplied PMDay Ukrainian recording update. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-65](review/issue-65) | Harness simplification evidence and independent review under issue65. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-72](review/issue-72) | Issue72 dated self-analysis, execution and remaining acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -151,8 +152,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures](tests/fixtures) | Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [tools/pages](tools/pages) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/toolchain](tools/quality/toolchain) | Pinned isolated quality tooling packages and Python dependencies. | configuration | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/release](tools/release) | Immutable production archive identity and deterministic bounded extraction. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/site](tools/site) | Deterministic source assembly, snapshots/retention, analytics and authored effect variants. | source | [site/README.md](site/README.md) |
 | [tools/staging](tools/staging) | Verified artifact packaging, state/controller leases, promotion and recovery mechanics. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 
@@ -193,6 +196,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-59.json](.github/acceptance/issue-59.json) | Superseded issue59 original preparation policy retained as nonselected audit/transition history; current phase PRs select issue58 only. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-61.json](.github/acceptance/issue-61.json) | PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-65.json](.github/acceptance/issue-65.json) | Issue65 AC01-AC09 source checks with separate review, live and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-72.json](.github/acceptance/issue-72.json) | Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -215,6 +219,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/workflows/site-gtk-native-probe.yml](.github/workflows/site-gtk-native-probe.yml) | GitHub Actions: Retain exact GTK WebProcess offline abort stack; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-gtk-target-probe.yml](.github/workflows/site-gtk-target-probe.yml) | GitHub Actions: Attribute GTK disabled-script target crashes; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-navigation-probe.yml](.github/workflows/site-navigation-probe.yml) | GitHub Actions: Site navigation diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-pages.yml](.github/workflows/site-pages.yml) | Serialized staging Pages mirror with production hash invariants and exact recovery. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/site-release-checks.yml](.github/workflows/site-release-checks.yml) | Reusable explicit selected staging or full production validation, separate report identities and exact artifact/source bindings. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-runtime-checks.yml](.github/workflows/site-runtime-checks.yml) | GitHub Actions: Site local diagnostics; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-staging.yml](.github/workflows/site-staging.yml) | GitHub Actions: Verified site staging; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -710,6 +715,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-65/2026-10-09-dispositions.json](review/issue-65/2026-10-09-dispositions.json) | Pinned finding classifications and destinations for preserved or consolidated rules. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-65/2026-10-09-overhead-input.json](review/issue-65/2026-10-09-overhead-input.json) | Frozen five-PR metadata, Git line counts, classification rules and bounded workflow observations. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-65/2026-10-09-review.md](review/issue-65/2026-10-09-review.md) | Independent implementation review of harness rules, findings and bounded acceptance. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+
+## review/issue-72/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-72/2026-10-11-analysis.md](review/issue-72/2026-10-11-analysis.md) | Issue72 dated self-analysis, execution and remaining acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 
@@ -1536,6 +1547,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [site/effects/environment.css](site/effects/environment.css) | Theme-token staging badge generated before candidate hashing. | source | [site/README.md](site/README.md) |
 | [site/effects/flight.cjs](site/effects/flight.cjs) | Canonical pure Travel effect descriptor and runtime helpers; hosted/offline adapters share raw code, CSS and controls. | source | [site/README.md](site/README.md) |
 | [site/effects/flight.css](site/effects/flight.css) | Canonical static effect CSS consumed byte-identically by hosted/offline descriptors. | source | [site/README.md](site/README.md) |
 | [site/effects/reading-surfaces.css](site/effects/reading-surfaces.css) | Canonical static effect CSS consumed byte-identically by hosted/offline descriptors. | source | [site/README.md](site/README.md) |
@@ -1731,12 +1743,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/navigation-fixtures.test.cjs](tests/navigation-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation.test.cjs](tests/navigation.test.cjs) | Behavioral/adversarial tests and fixtures for navigation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/pages-delivery.test.cjs](tests/pages-delivery.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/phase-checkpoint.test.cjs](tests/phase-checkpoint.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview.test.cjs](tests/preview.test.cjs) | Behavioral/adversarial tests and fixtures for preview. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/prototype-admission.test.cjs](tests/prototype-admission.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/quality-sources.test.cjs](tests/quality-sources.test.cjs) | Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/refactor-metrics.test.cjs](tests/refactor-metrics.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/release-archive.test.cjs](tests/release-archive.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/renderer.test.cjs](tests/renderer.test.cjs) | Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1762,6 +1777,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue58_acceptance.py](tests/test_issue58_acceptance.py) | Issue58 phase-specific R2 exact formatter/semantic/source/serialization evidence; selected by the shared owning policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue61_acceptance.py](tests/test_issue61_acceptance.py) | Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix. | source | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue65_acceptance.py](tests/test_issue65_acceptance.py) | Owning issue65 assertions for reading, disposition topology, preserved sources and pinned overhead. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue72_acceptance.py](tests/test_issue72_acceptance.py) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -1783,6 +1799,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [tests/fixtures/delivery.cjs](tests/fixtures/delivery.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures/staging-evidence.cjs](tests/fixtures/staging-evidence.cjs) | Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## tools/
@@ -1805,6 +1822,14 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/run_repository_tests.py](tools/run_repository_tests.py) | Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+
+## tools/pages/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/pages/controller.cjs](tools/pages/controller.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/pages/http.cjs](tools/pages/http.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/pages/package.cjs](tools/pages/package.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 
 ## tools/quality/
 
@@ -1892,6 +1917,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/toolchain/package.json](tools/quality/toolchain/package.json) | Pinned quality toolchain dependency manifest/lock: package.json. | configuration | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/toolchain/requirements.txt](tools/quality/toolchain/requirements.txt) | Pinned quality toolchain dependency manifest/lock: requirements.txt. | configuration | [tools/quality/README.md](tools/quality/README.md) |
 
+## tools/release/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/release/archive.cjs](tools/release/archive.cjs) | Immutable production archive identity and deterministic bounded extraction. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/release/package.py](tools/release/package.py) | Immutable production archive identity and deterministic bounded extraction. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+
 ## tools/site/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -1917,7 +1949,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [tools/staging/admission.cjs](tools/staging/admission.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/color.cjs](tools/staging/color.cjs) | Authored Color variant lineage, package construction and source preflight. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/edition.cjs](tools/staging/edition.cjs) | Pre-test staging badge/indexing/analytics edition and snapshot identities. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/hosted.cjs](tools/staging/hosted.cjs) | Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/package.cjs](tools/staging/package.cjs) | Verified public artifact packaging and staging-only headers/noindex additions. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/review-flow.cjs](tools/staging/review-flow.cjs) | Issue/PR preview and owner-stage command routing with exact source/controller trust. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |

@@ -6,11 +6,14 @@ Owner: [test optimization #35](https://github.com/oborskyivitalii/oborskyivitali
 pipeline and deployment acceptance. This guide owns test scheduling and the
 [test registry](../tools/quality/test-profiles.json). Runtime/publication claims
 belong to source-bound results in the live issue/PR, not the profile name.
+Issue [#72](https://github.com/oborskyivitalii/oborskyivitalii/issues/72) changes
+Draft iteration scheduling while preserving admission and later budgets.
 
 | Profile | Trigger | Required coverage |
 | --- | --- | --- |
-| PR source | PR updates | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
-| PR hosted smoke | Same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
+| Draft prototype | Same-repository Draft updates | Generated/package/snapshot/size checks, public script syntax and bounded HTTP identity; no toolchain installation or browser/source/governance suites. Deferred admission is explicit. |
+| PR source | Ready PR updates and `ready_for_review` | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
+| PR hosted smoke | Ready same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
 | Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
 | Production regression | Explicit full candidate validation before an authorized release | Complete source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix. Independent/device/rights and live production-origin requirements remain separate required release gates. |
 | Diagnostics | Manual dispatch or a relevant changed-path selection | Historical export/configuration probes and experimental comparison suites. Preserve useful fault coverage; dated edition assertions do not run as every candidate's universal regression. |
@@ -31,6 +34,13 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
+After visual approval mark the PR ready; deferred source/RI jobs use distinct
+names, so their skips cannot impersonate required admission contexts. `/stage`
+requires real successful latest raw-head source/RI/issue jobs. Explicit
+`staging-regression` requests retain their selected regression for Drafts.
+The Pages mirror adds bounded exact-byte and Chromium `/staging/` navigation
+checks without replaying staging performance. Admission, Pages and archive
+negative suites are permanent source checks, deferred during Draft packaging.
 
 Issue #36 adds a scoped diagnostic on existing `site-writing-probe.yml`:
 the exact `site-writing-paradigm-evidence` label event on same-repository PR #38

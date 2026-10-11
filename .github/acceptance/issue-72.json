@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 72,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/72",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Draft prototype cycle",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["ADMISSION"],
+      "gates": ["LIVE", "REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Exact source/staging/merge admission",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["ADMISSION", "BASIC"],
+      "gates": ["LIVE", "REVIEW"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Permanent Cloudflare staging",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["ADMISSION"],
+      "gates": ["LIVE"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Labelled permanent Pages mirror",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["PAGES"],
+      "gates": ["LIVE", "REVIEW"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Production preservation/recovery",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["PAGES", "ARCHIVE"],
+      "gates": ["LIVE", "REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Complete frozen production gate",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["FULL", "ARCHIVE"],
+      "gates": ["RELEASE", "LIVE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Protected live production identity",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["ARCHIVE"],
+      "gates": ["RELEASE", "LIVE"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Style/test/RI allocation",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["GUARD", "RI-CI", "ALLOCATION"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Delivery evidence and merged closure",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["ADMISSION", "PAGES", "ARCHIVE", "FULL", "BASIC"],
+      "gates": ["REVIEW", "LIVE", "MERGED"]
+    },
+    {
+      "id": "AC10",
+      "intent": "Durable archive lifecycle",
+      "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
+      "checks": ["ARCHIVE"],
+      "gates": ["RELEASE", "LIVE"]
+    }
+  ],
+  "checks": {
+    "ADMISSION": {
+      "kind": "unittest",
+      "test": "test_issue72_acceptance.Issue72AcceptanceTests.test_prototype_and_exact_head_admission"
+    },
+    "PAGES": {
+      "kind": "unittest",
+      "test": "test_issue72_acceptance.Issue72AcceptanceTests.test_pages_edition_preservation_and_recovery"
+    },
+    "ARCHIVE": {
+      "kind": "unittest",
+      "test": "test_issue72_acceptance.Issue72AcceptanceTests.test_durable_archive_and_verified_transitions"
+    },
+    "FULL": {
+      "kind": "unittest",
+      "test": "test_issue72_acceptance.Issue72AcceptanceTests.test_complete_production_gate_and_candidate_wiring"
+    },
+    "ALLOCATION": {
+      "kind": "unittest",
+      "test": "test_issue72_acceptance.Issue72AcceptanceTests.test_profile_and_catalog_allocation"
+    },
+    "GUARD": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Independent design/behavior, CS01/03/04/05/08/09/CS10 architecture/readability and visual review; implementer checks remain self-review."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Current raw-head CI/prototype timing; two stable revisions; Pages paths/history/refresh/failure recovery; authenticated settings/ruleset/ref protection, source/merge equivalence and actual deployments/archive assets."
+    },
+    "RELEASE": {
+      "kind": "human",
+      "description": "Integrate durable Release uploading and verified production/ref/label/rollback controller in #72; observe full/external/device/rights/origin gates and explicit release decision under existing launch owners."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Explicit merge decision, actual main/source and original-intent closure; green fixtures do not supply it."
+    }
+  }
+}

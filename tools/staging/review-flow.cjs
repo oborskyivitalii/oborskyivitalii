@@ -103,6 +103,7 @@ function resolve(context, pr, main) {
   }
   return {
     mode,
+    prototype: mode === 'preview' && pr.draft === true && !previewEvidence(context),
     number: String(pr.number),
     source: pr.head.sha,
     branch: mode === 'preview' ? 'pr-' + pr.number : 'candidate-staging-' + pr.head.sha,
@@ -529,16 +530,16 @@ function commentBody(state) {
     const entry = state[key];
     if (!entry) continue;
     lines.push('', `**${label}** · source \`${entry.source}\``, entry.status);
-    if (entry.url) lines.push(`[Immutable candidate](${entry.url})`);
     if (entry.alias)
       lines.push(
         `[${key === 'preview' ? 'Latest PR preview' : 'Verified staging'}](${entry.alias})`
       );
+    if (entry.url) lines.push(`[Exact tested candidate](${entry.url})`);
     lines.push(`[GitHub Actions run](${entry.run})`);
   }
   lines.push(
     '',
-    'Preview smoke is separate from full staging acceptance.',
+    'Draft prototypes defer source/browser admission. Stable staging requires the exact-head admission and staging gate.',
     '<!-- site-review-state:' + JSON.stringify(state) + ' -->'
   );
   return lines.join('\n');

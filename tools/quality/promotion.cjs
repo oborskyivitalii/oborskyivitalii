@@ -5,7 +5,15 @@ const fs = require('node:fs'),
   assert = require('node:assert/strict');
 const artifact = require('./artifact.cjs'),
   { sourceReport } = require('./validate.cjs');
-function validate(manifest, gate, evidence) {
+function validate(
+  manifest,
+  gate,
+  evidence,
+  expected = {
+    artifactId: process.env.SITE_ARTIFACT_ID,
+    uploadDigest: process.env.SITE_UPLOAD_DIGEST,
+  }
+) {
   assert.equal(gate.schema, 1);
   assert.equal(gate.kind, 'hosted-gate');
   assert.equal(gate.profile, 'staging');
@@ -15,10 +23,9 @@ function validate(manifest, gate, evidence) {
   require('./hosted-origin.cjs').target(gate.hostedOrigin, 'staging');
   for (const name of ['build', 'static', 'linux', 'native', 'performance', 'captures', 'host'])
     assert.equal(gate.jobs[name]?.result, 'success', 'full staging gate incomplete');
-  if (process.env.SITE_ARTIFACT_ID)
-    assert.equal(String(gate.githubArtifact?.id), process.env.SITE_ARTIFACT_ID);
-  if (process.env.SITE_UPLOAD_DIGEST)
-    assert.equal(gate.githubArtifact?.uploadDigest, process.env.SITE_UPLOAD_DIGEST);
+  if (expected.artifactId)
+    assert.equal(String(gate.githubArtifact?.id), String(expected.artifactId));
+  if (expected.uploadDigest) assert.equal(gate.githubArtifact?.uploadDigest, expected.uploadDigest);
   sourceReport(evidence, manifest);
   for (const key of ['independentReview', 'iosSafari', 'androidChrome'])
     assert.ok(

@@ -24,6 +24,7 @@ const pr = {
 test('preview tracks the latest open same-repository PR head; stale runs and forks fail', () => {
   assert.deepEqual(flow.resolve(context, pr), {
     mode: 'preview',
+    prototype: false,
     number: '26',
     source,
     branch: 'pr-26',
@@ -91,6 +92,7 @@ test('explicit staging resolves a PR source while requiring an unchanged protect
     main = { protected: true, commit: { sha: controller } };
   assert.deepEqual(flow.resolve(dispatch, pr, main), {
     mode: 'staging',
+    prototype: false,
     number: '26',
     source,
     branch: 'candidate-staging-' + source,
@@ -126,6 +128,7 @@ test('only an exact new owner /stage comment on the resolved PR may stage from p
   assert.equal(flow.stageComment(command), 26);
   assert.deepEqual(flow.resolve(command, pr, main), {
     mode: 'staging',
+    prototype: false,
     number: '26',
     source,
     branch: 'candidate-staging-' + source,

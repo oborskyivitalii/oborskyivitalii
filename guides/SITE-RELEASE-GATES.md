@@ -50,7 +50,8 @@ SonarQube service, Lighthouse server or device-cloud subscription is required.
 
 | Stage | Required work | Acceptance boundary |
 | --- | --- | --- |
-| PR update | Bounded Basic source/hosted smoke, RI checks and targeted owning-issue AC checks | Required checks fail on missing/failed applicable results; preview does not authorize stable staging. |
+| Draft prototype | Generated/package/snapshot/size/syntax and HTTP identity | Deferred source/browser checks are not admission. |
+| Visually approved ready PR | Bounded Basic source/hosted smoke, RI checks and targeted owning-issue AC checks | Required checks fail on missing/failed applicable results; preview does not authorize stable staging. |
 | Explicit staging | Exact-artifact source/lint/security/advisory/host checks and bounded browser/failure/navigation/analytics/Lighthouse/CPU/flight regression | The distinct complete staging gate and source/controller/artifact identities must match before stable staging promotion. |
 | Before production admission | Complete exact-artifact source/security/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture regression and applicable source-bound rights/independent/device/production-origin checks | Only the strict full gate plus applicable external release acceptance admits the candidate; activation stays with #8 and the release decision. |
 | After deployment | Served edition/digests, every route and assets, interactions, HTTPS/live headers and applicable canonical/robots/sitemap policy | Deployment is healthy only after live checks; recovery follows the reviewed same-artifact controller route. |
@@ -62,6 +63,35 @@ mapping with those dispositions. The complete authorized production matrix must
 not be skipped by a path filter. If a check is legitimately not applicable, the
 aggregate records a validated reason; absent/cancelled/unknown results do not
 count as success. No recurring clock schedule is implied by this guide.
+
+## Production archive identity
+
+The accepted [#72 archive policy](https://github.com/oborskyivitalii/oborskyivitalii/issues/72)
+uses immutable `prod-YYYY-MM-DD.N` tags and GitHub Releases retaining exact
+`public.tar.gz`, `archive.json` and full test/external evidence. Records bind
+source/tree, public/package SHA256, validation run, date and previous accepted tag.
+CI retention is not archive lifetime. Deterministic packing and bounded
+manifest-only extraction live in `tools/release/package.py`; `archive.cjs` rejects
+staging/prototype proof, incomplete full jobs/devices, package tampering and
+reassignment of a release identity.
+
+After successful authorized deployment and live checks, protected `production`
+and the GitHub `production` deployment must identify the same live source/package.
+Preserve an actual existing publisher ref if authenticated settings reveal one.
+The release PR carries `active-production`; its verified successor moves the
+preceding PR to `archived-production`. Labels aid browsing; tags/manifests/live
+deployment remain authoritative. Until first release production is inactive.
+Rollback deploys the archived package unchanged and verifies it before moving
+the production pointer or labels. Immutable tags never move. Failed or partial
+transitions remain observable and preserve recoverable accepted packages.
+
+These helpers validate contracts. Durable Release uploading, production
+publication/ref protection and actual label/deployment transitions still need
+integration and live acceptance in #72 with #39/#40. The candidate-evidence wrapper
+requires prospective production artifact IDs/digests and its immutable HTTPS
+origin, retaining the complete production matrix. It rejects staging-edition
+HTML. Automated hosted evidence still requires independent/physical-device/rights
+acceptance and applicable live production-origin checks before activation.
 
 ## Security and source quality
 

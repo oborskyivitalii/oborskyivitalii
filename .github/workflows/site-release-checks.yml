@@ -206,6 +206,7 @@ jobs:
           a.equal(m.sourceCommit,process.env.SITE_CANDIDATE_SHA);a.equal(m.candidateCommit,m.sourceCommit);a.equal(m.sourceDirty,false);
           a.equal(m.sourceTree,require('node:child_process').execFileSync('git',['rev-parse','HEAD^{tree}'],{encoding:'utf8'}).trim());
           a.equal(m.components.variant?.id||'base',process.env.SITE_PUBLIC_VARIANT,'wrong tested public rendition');
+          if(process.env.SITE_VALIDATION_LEVEL==='production')a.notEqual(m.edition?.id,'staging','production validates a separately frozen production edition');
           JS
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"

@@ -88,12 +88,9 @@ function build(out) {
   fs.writeFileSync(path.join(out, 'sizes.json'), JSON.stringify(checkSize(target), null, 2) + '\n');
   return m;
 }
-function verify(dir, record) {
+function verify(dir, record, expectedDigest = process.env.SITE_EXPECTED_PUBLIC_DIGEST) {
   const actual = manifest(dir);
-  if (
-    process.env.SITE_EXPECTED_PUBLIC_DIGEST &&
-    actual.artifactDigest !== process.env.SITE_EXPECTED_PUBLIC_DIGEST
-  )
+  if (expectedDigest && actual.artifactDigest !== expectedDigest)
     throw Error('Public digest differs from trusted build output');
   if (
     actual.artifactDigest !== record.artifactDigest ||
