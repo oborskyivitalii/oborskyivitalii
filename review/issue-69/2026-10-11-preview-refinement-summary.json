@@ -1,0 +1,2864 @@
+{
+  "scope": "Local loopback prepared public-byte Chromium browser evidence; source dirty. No hosted, physical-device, clean-head CI, full performance/release admission or maintainer visual signoff.",
+  "total": 104,
+  "failed": 0,
+  "pageErrors": 0,
+  "variants": [
+    {
+      "variant": "color",
+      "pass": true,
+      "browser": "153.0.8010.0",
+      "artifactDigest": "5b1de28c54c7493c8bae5e1564166aa324b3585d697de5b1cbdaabce62d2be6f",
+      "sourceCommit": "a45ef3a370c816cfeeb769d2e2ad0b9482ce06b9",
+      "sourceTree": "95303f1641bdd9df49f1a06e8363e43b2622307d",
+      "sourceDirty": true,
+      "rawRecord": "color-browser.json",
+      "cases": [
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 58,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 2,
+              "executionOrder": [0, 1],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 64,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 70,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "samples": 72,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 9,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 79,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 9,
+              "executionOrder": [8, 7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 82,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "samples": 83,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 2,
+              "executionOrder": [1, 0],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5929,
+          "bottom": {
+            "y": 5029,
+            "end": 5029,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6073,
+          "bottom": {
+            "y": 5173,
+            "end": 5173,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6261,
+          "bottom": {
+            "y": 5361,
+            "end": 5361,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 63,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 2,
+              "executionOrder": [0, 1],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 63,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 63,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 66,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 9,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 70,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 9,
+              "executionOrder": [8, 7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 74,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 82,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "samples": 86,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 2,
+              "executionOrder": [1, 0],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5929,
+          "bottom": {
+            "y": 5029,
+            "end": 5029,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6073,
+          "bottom": {
+            "y": 5173,
+            "end": 5173,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6261,
+          "bottom": {
+            "y": 5361,
+            "end": 5361,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10171,
+          "bottom": {
+            "y": 9271,
+            "end": 9271,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10684,
+          "bottom": {
+            "y": 9784,
+            "end": 9784,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10456,
+          "bottom": {
+            "y": 9556,
+            "end": 9556,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 78,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 79,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 79,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10171,
+          "bottom": {
+            "y": 9271,
+            "end": 9271,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10684,
+          "bottom": {
+            "y": 9784,
+            "end": 9784,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10456,
+          "bottom": {
+            "y": 9556,
+            "end": 9556,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        }
+      ]
+    },
+    {
+      "variant": "base",
+      "pass": true,
+      "browser": "153.0.8010.0",
+      "artifactDigest": "28ffc50006521cff74d38dfca56a4b484370e634ce3aff70f2e59a77830437cf",
+      "sourceCommit": "a45ef3a370c816cfeeb769d2e2ad0b9482ce06b9",
+      "sourceTree": "95303f1641bdd9df49f1a06e8363e43b2622307d",
+      "sourceDirty": true,
+      "rawRecord": "base-browser.json",
+      "cases": [
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 72,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 2,
+              "executionOrder": [0, 1],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 72,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 79,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 9,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 9,
+              "executionOrder": [8, 7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "samples": 86,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 2,
+              "executionOrder": [1, 0],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5912,
+          "bottom": {
+            "y": 5012,
+            "end": 5012,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6055,
+          "bottom": {
+            "y": 5155,
+            "end": 5155,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6243,
+          "bottom": {
+            "y": 5343,
+            "end": 5343,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 79,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 2,
+              "executionOrder": [0, 1],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 71,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 71,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 77,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 9,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 9,
+              "executionOrder": [8, 7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 66.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 85.7,
+              "wholePhaseMs": 600,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "samples": 84,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 75,
+              "wholePhaseMs": 600,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "samples": 85,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 2],
+              "rowSlotMs": 100,
+              "wholePhaseMs": 600,
+              "separatorProxies": 5,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 2,
+              "executionOrder": [1, 0],
+              "peerCountsTopToBottom": [2, 2],
+              "rowSlotMs": 300,
+              "wholePhaseMs": 600,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "index",
+          "targets": 29,
+          "distance": 88,
+          "height": 5912,
+          "bottom": {
+            "y": 5012,
+            "end": 5012,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 88,
+          "height": 6055,
+          "bottom": {
+            "y": 5155,
+            "end": 5155,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 88,
+          "height": 6243,
+          "bottom": {
+            "y": 5343,
+            "end": 5343,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 88,
+          "height": 2221,
+          "bottom": {
+            "y": 1321,
+            "end": 1321,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 1440,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 88,
+          "height": 2924,
+          "bottom": {
+            "y": 2024,
+            "end": 2024,
+            "width": 1440,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 79,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10118,
+          "bottom": {
+            "y": 9218,
+            "end": 9218,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10631,
+          "bottom": {
+            "y": 9731,
+            "end": 9731,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10439,
+          "bottom": {
+            "y": 9539,
+            "end": 9539,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "light",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 79,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 6,
+              "executionOrder": [0, 1, 2, 3, 4, 5],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 78,
+          "stages": ["settled", "departing", "holding", "arriving"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 4,
+              "executionOrder": [0, 1, 2, 3],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "forward",
+              "visualRows": 7,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "forward",
+              "visualRows": 8,
+              "executionOrder": [0, 1, 2, 3, 4, 5, 6, 7],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "samples": 77,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 8,
+              "executionOrder": [7, 6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 62.5,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 0
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 2,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 4,
+              "executionOrder": [3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1],
+              "rowSlotMs": 125,
+              "wholePhaseMs": 500,
+              "separatorProxies": 0,
+              "unitsWithoutPaper": 1
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "flight",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "samples": 78,
+          "stages": ["departing", "holding", "arriving", "settled"],
+          "cameraStages": ["settled", "center", "transit", "restore"],
+          "rows": {
+            "departure": {
+              "direction": "backward",
+              "visualRows": 6,
+              "executionOrder": [5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 1, 1, 1, 1],
+              "rowSlotMs": 83.3,
+              "wholePhaseMs": 500,
+              "separatorProxies": 4,
+              "unitsWithoutPaper": 2
+            },
+            "arrival": {
+              "direction": "backward",
+              "visualRows": 7,
+              "executionOrder": [6, 5, 4, 3, 2, 1, 0],
+              "peerCountsTopToBottom": [1, 1, 2, 1, 1, 1, 1],
+              "rowSlotMs": 71.4,
+              "wholePhaseMs": 500,
+              "separatorProxies": 1,
+              "unitsWithoutPaper": 2
+            }
+          }
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "index",
+          "targets": 34,
+          "distance": 56,
+          "height": 10118,
+          "bottom": {
+            "y": 9218,
+            "end": 9218,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "research",
+          "targets": 33,
+          "distance": 56,
+          "height": 10631,
+          "bottom": {
+            "y": 9731,
+            "end": 9731,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "writing",
+          "targets": 50,
+          "distance": 56,
+          "height": 10439,
+          "bottom": {
+            "y": 9539,
+            "end": 9539,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "talks",
+          "targets": 14,
+          "distance": 56,
+          "height": 3181,
+          "bottom": {
+            "y": 2281,
+            "end": 2281,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        },
+        {
+          "kind": "entry",
+          "width": 390,
+          "theme": "dark",
+          "route": "credits",
+          "targets": 24,
+          "distance": 56,
+          "height": 4686,
+          "bottom": {
+            "y": 3786,
+            "end": 3786,
+            "width": 390,
+            "active": 0
+          },
+          "nativeGeometryEqual": true,
+          "semanticsEqual": true
+        }
+      ]
+    }
+  ],
+  "localCpu4Flights": {
+    "scope": "Targeted local loopback cold/warm flights under unchanged staging CPU4 guards; public-byte dirty evidence, no hosted/device/release admission; separately scoped from the 104 unthrottled browser cases and the retained failed hosted profile.",
+    "total": 4,
+    "pass": true,
+    "browser": "153.0.8010.0",
+    "artifactDigest": "5b1de28c54c7493c8bae5e1564166aa324b3585d697de5b1cbdaabce62d2be6f",
+    "sourceDirty": true,
+    "rawRecord": "local-cpu4-flights.json",
+    "readyMaxMs": 3200,
+    "flights": [
+      {
+        "from": "index",
+        "to": "research",
+        "phase": "cold",
+        "width": 390,
+        "cpuRate": 4,
+        "pass": true,
+        "readyMs": 2513.2,
+        "paints": 37,
+        "paintCallbackMs": {
+          "p50": 16,
+          "p95": 29.4,
+          "max": 40.6
+        },
+        "paintIntervalMaxMs": 145.8,
+        "preparationMaxMs": 26.2
+      },
+      {
+        "from": "index",
+        "to": "research",
+        "phase": "warm",
+        "width": 390,
+        "cpuRate": 4,
+        "pass": true,
+        "readyMs": 2442.4,
+        "paints": 44,
+        "paintCallbackMs": {
+          "p50": 12,
+          "p95": 15.9,
+          "max": 18.6
+        },
+        "paintIntervalMaxMs": 154.1,
+        "preparationMaxMs": 16.2
+      },
+      {
+        "from": "index",
+        "to": "writing",
+        "phase": "cold",
+        "width": 390,
+        "cpuRate": 4,
+        "pass": true,
+        "readyMs": 2897.4,
+        "paints": 41,
+        "paintCallbackMs": {
+          "p50": 16.4,
+          "p95": 27.5,
+          "max": 51.4
+        },
+        "paintIntervalMaxMs": 159.3,
+        "preparationMaxMs": 56
+      },
+      {
+        "from": "index",
+        "to": "writing",
+        "phase": "warm",
+        "width": 390,
+        "cpuRate": 4,
+        "pass": true,
+        "readyMs": 2739,
+        "paints": 47,
+        "paintCallbackMs": {
+          "p50": 13.1,
+          "p95": 17.1,
+          "max": 17.8
+        },
+        "paintIntervalMaxMs": 144.4,
+        "preparationMaxMs": 28.7
+      }
+    ]
+  },
+  "independent": {
+    "scope": "Separate local actual-browser geometry probes; paused trajectory samples are not CPU4 timing, hosted, device or subjective visual acceptance.",
+    "artifactDigest": "5b1de28c54c7493c8bae5e1564166aa324b3585d697de5b1cbdaabce62d2be6f",
+    "separator": {
+      "cases": 10,
+      "rawRecord": "independent/separator-final.json"
+    },
+    "trajectory": {
+      "cases": 16,
+      "violations": 0,
+      "samplesPerPhase": 180,
+      "rawRecord": "independent/trajectory-final.json"
+    },
+    "baseCamera": {
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "artifactDigest": "28ffc50006521cff74d38dfca56a4b484370e634ce3aff70f2e59a77830437cf",
+      "rawRecord": "independent/base-camera-final.json"
+    },
+    "sourceStyleParity": {
+      "scope": "Source-style injection diagnosis; this separate ten-case probe is not a final exact-public-byte or performance result.",
+      "cases": 10,
+      "retainedNegativeRangeDifferencePx": 54,
+      "retainedNegativeNoteColorChange": {
+        "before": "rgb(112, 81, 45)",
+        "after": "rgb(36, 88, 102)"
+      },
+      "rawRecord": "independent/source-style-parity.json"
+    }
+  },
+  "retainedFailures": {
+    "scope": "Historical failures remain attached to their original source/artifact. Final local passing observations do not turn the failed hosted profile into a pass.",
+    "hostedStaging": {
+      "run": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38122693332",
+      "artifact": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38122693332/artifacts/11696546190",
+      "pass": false,
+      "sourceCommit": "a45ef3a370c816cfeeb769d2e2ad0b9482ce06b9",
+      "sourceTree": "95303f1641bdd9df49f1a06e8363e43b2622307d",
+      "browser": "153.0.8010.12",
+      "error": "invalid/slow input-to-ready latency",
+      "flights": [
+        {
+          "from": "index",
+          "to": "research",
+          "phase": "cold",
+          "width": 390,
+          "cpuRate": 4,
+          "pass": false,
+          "readyMs": 3371.6,
+          "paints": 46,
+          "paintCallbackMs": {
+            "p50": 14.1,
+            "p95": 30.9,
+            "max": 42.7
+          },
+          "paintIntervalMaxMs": 162.8,
+          "preparationMaxMs": 26.4,
+          "error": "invalid/slow input-to-ready latency"
+        }
+      ],
+      "laterFlightAndLighthouseCompletion": false,
+      "rawRecord": "retained-failures/ci-stage-performance.json"
+    },
+    "helper": {
+      "pass": false,
+      "casesBeforeStop": 1,
+      "failure": "AssertionError [ERR_ASSERTION]: separator follows the block paper path\n+ actual - expected\n\n+ '0px 932px'\n- 'none'\n\n    at checkBlockSeparators (/workspace/scratch/1ac2e01fc1c8/author-site/tools/quality/navigation.cjs:536:14)\n    at checkBlockRows (/workspace/scratch/1ac2e01fc1c8/author-site/tools/quality/navigation.cjs:630:33)\n    at checkTiming (/workspace/scratch/1ac2e01fc1c8/author-site/tools/quality/navigation.cjs:678:3)\n    at /workspace/scratch/1ac2e01fc1c8/staged-browser-v4.cjs:31:5",
+      "rawRecord": "retained-failures/browser-helper.json",
+      "disposition": "Probe assumed a nonexistent paper pseudo-element; final probe observes actual rendered ink/paper/separator layers."
+    },
+    "sourceFixtures": {
+      "rawLog": "retained-failures/source-fixtures.log",
+      "disposition": "Initial shared synthetic traces lacked visual-row, animated-layer and separator metadata; revised fixtures preserve negative guards."
+    },
+    "nativeGeometry": {
+      "width": 390,
+      "route": "index",
+      "rangeBefore": 9381,
+      "rangeAfter": 9327,
+      "rawRecord": "retained-failures/separator-first-v4.json",
+      "disposition": "Separator spans changed final-paragraph structural CSS matching; final actual geometry is verified separately."
+    },
+    "priorPreparedBytes": "refined-failed-preparation/",
+    "priorTrajectory": "retained-failures/trajectory-first-v4.json"
+  },
+  "archive": "2026-10-11-preview-refinement-evidence.tar.gz",
+  "archiveManifest": "index.json"
+}

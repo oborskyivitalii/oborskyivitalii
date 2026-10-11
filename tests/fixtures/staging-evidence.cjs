@@ -183,10 +183,11 @@ function navigationRow(selected) {
     scrollArrivals: budgets.routes.slice(1).map((route) => ({
       route,
       end: 1000,
+      start: 'reading-camera',
       samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
         fraction,
         y: 1000 * fraction,
-        camera: 'camera-' + fraction,
+        camera: 'reading-camera',
       })),
     })),
   };
@@ -255,38 +256,99 @@ function measurement(kind, zero = ['off', 'reduced'].includes(kind), start = 0) 
     motion: zero ? 'Motion: ' + kind : 'Motion: on',
   };
 }
-function flight(to, from, phase) {
-  const elapsed = 2100,
-    frames = Array.from({ length: 12 }, (_, i) => ({
+function flightData(to, from, phase, width = 390, slow = false) {
+  const pacing = require('../../tools/quality/transition-pacing.cjs'),
+    navigationId = 1,
+    direction =
+      require('../../site/routes.json').routes.findIndex((route) => route.id === to) >
+      require('../../site/routes.json').routes.findIndex((route) => route.id === from)
+        ? 'forward'
+        : 'backward';
+  function rowEvent(part, time, completion = false) {
+    const plan = pacing.rowPlan(width, 2);
+    return {
+      kind: 'route-block',
+      time,
+      navigationId,
+      direction,
+      phase: part,
+      stage: completion ? (part === 'departure' ? 'holding' : 'settled') : part,
+      rows: 2,
+      count: 2,
+      ...plan,
+      completedBy: completion ? 'animationend' : null,
+      ...(!completion
+        ? {
+            observedRowSchedule: [0, 1].map((row) => {
+              const order = direction === 'forward' ? row : 1 - row;
+              return {
+                row,
+                order,
+                delayMs: order * plan.rowStepMs,
+                durationMs: plan.rowDurationMs,
+              };
+            }),
+          }
+        : {}),
+    };
+  }
+  const departure = rowEvent('departure', 10),
+    departed = rowEvent('departure', 10 + departure.plannedDurationMs, true),
+    plan = pacing.cameraPlan(from, to),
+    camera = {
+      kind: 'camera-travel',
+      navigationId,
+      time: departed.time + 10,
+      elapsedMs: 0,
+      ...plan,
+    },
+    landed = {
+      ...camera,
+      kind: 'camera-travel-complete',
+      time: camera.time + plan.plannedDurationMs,
+      elapsedMs: plan.plannedDurationMs,
+      disposition: 'arrived',
+    },
+    arrival = rowEvent('arrival', landed.time + 10),
+    arrived = rowEvent('arrival', arrival.time + arrival.plannedDurationMs, true),
+    elapsed = arrived.time + 40,
+    frames = Array.from({ length: Math.floor(elapsed / 100) }, (_, i) => ({
       time: i * 100,
       started: i * 100 + 10,
-      duration: 10,
+      duration: slow && i === 11 ? 900 : 10,
       painted: true,
     })),
     events = [
-      { kind: 'navigation-start', time: 0 },
+      { kind: 'navigation-start', time: 0, navigationId, from, to },
       { kind: 'layout', time: 3, start: 2, duration: 1 },
       ...(phase === 'cold' ? [{ kind: 'model', route: to, time: 5, start: 3, duration: 2 }] : []),
-      { kind: 'navigation-ready', time: 2100 },
+      departure,
+      departed,
+      camera,
+      landed,
+      arrival,
+      arrived,
+      { kind: 'navigation-ready', time: elapsed, navigationId, page: to },
     ];
+  return {
+    schema: 2,
+    start: 0,
+    end: elapsed,
+    elapsed,
+    frames,
+    longTasks: [],
+    events,
+    state: 'active',
+    viewportWidth: width,
+  };
+}
+function flight(to, from, phase, width = 390, slow = false) {
   return {
     from,
     to,
-    width: 390,
+    width,
     rate: 4,
-    ...motion.summarize(
-      {
-        schema: 2,
-        start: 0,
-        end: elapsed,
-        elapsed,
-        frames,
-        longTasks: [],
-        events,
-        state: 'active',
-      },
-      'flight'
-    ),
+    ...motion.summarize(flightData(to, from, phase, width, slow), 'flight', { from, to, width }),
     setup: flightSetup(to, phase),
     errors: [],
     pass: true,
@@ -361,6 +423,87 @@ function performanceReport(m = manifest()) {
     lighthouse: ['research', 'writing'].map(lighthouseRow),
   };
 }
+function blockFlightSamples(width = 1440) {
+  function unit(stage, y, row, peer = 0) {
+    const plan = require('../../tools/quality/transition-pacing.cjs').rowPlan(width, 2);
+    const translate = '0px ' + y + 'px',
+      layer = {
+        translate,
+        opacity: 1,
+        animation: {
+          name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+          delay: row * plan.rowStepMs,
+          duration: plan.rowDurationMs,
+        },
+      };
+    return {
+      stage,
+      direction: 'forward',
+      row,
+      order: row,
+      top: row === 0 ? 100 + peer * 8 : 350,
+      bottom: row === 0 ? 200 + peer * 30 : 450,
+      borderOwner: row === 1 ? '2' : null,
+      opacity: 1,
+      ink: [translate],
+      paper: translate,
+      paperContent: '""',
+      layers: [
+        clone(layer),
+        clone(layer),
+        ...(row === 1
+          ? [
+              {
+                ...clone(layer),
+                separator: 'bottom',
+                separatorSource: 'unit',
+                borderOwner: '2',
+                separatorPaint: { width: 1, length: 300, style: 'solid', color: 'rgb(20, 30, 40)' },
+              },
+            ]
+          : []),
+      ],
+    };
+  }
+  const units = (stage, y) => [unit(stage, y, 0), unit(stage, y, 0, 1), unit(stage, y, 1)];
+  return [
+    { stage: 'departing', cameraStage: 'settled', framing: 0, units: units('departing', -20) },
+    { stage: 'departing', cameraStage: 'settled', framing: 0, units: units('departing', -100) },
+    { stage: 'holding', cameraStage: 'center', framing: 0.5, units: [] },
+    { stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    { kind: 'mount', stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    { stage: 'holding', cameraStage: 'restore', framing: 0.5, units: [] },
+    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 100) },
+    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 20) },
+  ].map((sample, i) => ({
+    kind: 'progress',
+    progress: i / 8,
+    opacity: 1,
+    viewportWidth: width,
+    transform: 'none',
+    borderSources:
+      sample.stage === 'departing' || sample.stage === 'arriving'
+        ? [{ sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }] }]
+        : [],
+    ...sample,
+  }));
+}
+function fixedHome() {
+  const model = require('../../docs/space.js'),
+    start = JSON.stringify(model.routePose('index', model.poses[model.initialPoses.index]));
+  return {
+    scroll: {
+      label: 'selected-responses',
+      end: 1000,
+      start,
+      samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
+        fraction,
+        y: fraction * 1000,
+        camera: start,
+      })),
+    },
+  };
+}
 function colorReport(manifest) {
   const motionContract = colorMotion.select(manifest);
   return {
@@ -384,7 +527,7 @@ function colorReport(manifest) {
         [
           'shortenedHomeRange',
           'homeForwardEdge',
-          'spatialFlight',
+          'blockFlight',
           'forwardEdge',
           'reverseNativeBottom',
           'disabledEdge',
@@ -393,17 +536,15 @@ function colorReport(manifest) {
           'retiredReadingEffectAbsent',
         ].map((key) => [key, true])
       ),
-      flight: [
-        { plane: { flightStage: 'depart', flightDepth: 1 } },
-        { plane: { flightStage: 'arrive', flightDepth: -1 } },
-      ],
+      home: fixedHome(),
+      flight: blockFlightSamples(width),
     })),
   };
 }
 function aggregateFixture(color = false) {
   const m = manifest();
   if (color) {
-    const runtime = colorMotion.reviewedRuntime('legacy-plain');
+    const runtime = colorMotion.reviewedRuntime('fixed-plain');
     m.variant = runtime.variant;
     m.components = { variant: runtime.variant, engine: runtime.variant.fingerprint, contract: 1 };
     for (const [name, sha256] of Object.entries(runtime.files))
@@ -494,9 +635,11 @@ module.exports = {
   functional,
   measurement,
   flight,
+  flightData,
   flightSetup,
   lighthouseRow,
   performanceReport,
+  blockFlightSamples,
   colorReport,
   aggregateFixture,
 };

@@ -539,6 +539,7 @@ test('serialized collector forwards existing motion events and actual ordinary p
   let nextRAF = 0;
   const stored = [];
   const sandbox = {
+    innerWidth: 1440,
     location: { protocol: 'http:' },
     localStorage: { setItem: (key, value) => stored.push([key, value]) },
     performance: { now: () => 1 },
@@ -549,6 +550,7 @@ test('serialized collector forwards existing motion events and actual ordinary p
   sandbox.CanvasRenderingContext2D.prototype.clearRect = () => {};
   sandbox.window = sandbox;
   vm.runInNewContext(metrics.measurementProbeScript(), sandbox);
+  assert.equal(sandbox.__qualityMotion.viewportWidth, 1440);
   const model = { kind: 'model', time: 3, start: 2, duration: 1 };
   const painted = { kind: 'paint', ordinaryShapes: 17, customShapes: 0 };
   sandbox.SiteEngineProbe(model);

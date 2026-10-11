@@ -228,8 +228,9 @@ test('serialized active effects retain travel hooks without constructing a ribbo
   const presentation = window.SiteEffects.navigation(content);
   assert.equal(presentation.canTravel(), true);
   presentation.present(1, 'forward');
-  assert.equal(content.dataset.flightStage, 'settled');
-  assert.equal(content.style.opacity, '1');
+  assert.equal(content.dataset.flightStage, 'camera');
+  assert.equal(content.style.opacity, undefined);
+  assert.equal(content.style.transform, undefined);
   assert.equal(typeof window.SiteEffects.measure, 'function');
 });
 

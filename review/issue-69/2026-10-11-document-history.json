@@ -1,0 +1,156 @@
+{
+  "scope": "Actual full-document Back/Forward; persisted pageshow distinguishes real bfcache from reload. No synthetic lifecycle events.",
+  "source": "a158c48b329803c36c0e5571980c7cbc77594bdd",
+  "tree": "2194f1658eb9013731fd62f7ffcbca483566df63",
+  "dirty": false,
+  "publicDigest": "3408c4d90e51778be5b94169bbb974bc435c28873c6ed6c4e7b8d47514463c38",
+  "playwright": "1.63.0",
+  "cases": [
+    {
+      "engine": "chromium",
+      "browser": "138.0.7204.0",
+      "width": 1440,
+      "before": {
+        "document": "5b00gqxoujs",
+        "y": 295,
+        "diagnostics": {
+          "targets": 37,
+          "active": 2,
+          "observing": true,
+          "suspended": false
+        }
+      },
+      "after": {
+        "document": "c0o640bumog",
+        "y": 0,
+        "diagnostics": {
+          "targets": 37,
+          "active": 0,
+          "observing": true,
+          "suspended": false
+        },
+        "events": [
+          {
+            "kind": "pageshow",
+            "persisted": false
+          }
+        ],
+        "waiting": 37,
+        "rows": 29
+      },
+      "persisted": false,
+      "status": "pass",
+      "physicalDevice": false
+    },
+    {
+      "engine": "chromium",
+      "browser": "138.0.7204.0",
+      "width": 390,
+      "before": {
+        "document": "0c5v78ch3lh",
+        "y": 627,
+        "diagnostics": {
+          "targets": 37,
+          "active": 3,
+          "observing": true,
+          "suspended": false
+        }
+      },
+      "after": {
+        "document": "25gv825anini",
+        "y": 0,
+        "diagnostics": {
+          "targets": 37,
+          "active": 0,
+          "observing": true,
+          "suspended": false
+        },
+        "events": [
+          {
+            "kind": "pageshow",
+            "persisted": false
+          }
+        ],
+        "waiting": 37,
+        "rows": 29
+      },
+      "persisted": false,
+      "status": "pass",
+      "physicalDevice": false
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.6",
+      "width": 1440,
+      "before": {
+        "document": "d6f1utssgxq",
+        "y": 294,
+        "diagnostics": {
+          "targets": 37,
+          "active": 2,
+          "observing": true,
+          "suspended": false
+        }
+      },
+      "after": {
+        "document": "z4flq643neb",
+        "y": 0,
+        "diagnostics": {
+          "targets": 37,
+          "active": 0,
+          "observing": true,
+          "suspended": false
+        },
+        "events": [
+          {
+            "kind": "pageshow",
+            "persisted": false
+          }
+        ],
+        "waiting": 37,
+        "rows": 29
+      },
+      "persisted": false,
+      "status": "pass",
+      "physicalDevice": false
+    },
+    {
+      "engine": "webkit",
+      "browser": "26.6",
+      "width": 390,
+      "before": {
+        "document": "1315qe61hexn",
+        "y": 626,
+        "diagnostics": {
+          "targets": 37,
+          "active": 3,
+          "observing": true,
+          "suspended": false
+        }
+      },
+      "after": {
+        "document": "gw4gbep18u",
+        "y": 0,
+        "diagnostics": {
+          "targets": 37,
+          "active": 0,
+          "observing": true,
+          "suspended": false
+        },
+        "events": [
+          {
+            "kind": "pageshow",
+            "persisted": false
+          }
+        ],
+        "waiting": 37,
+        "rows": 29
+      },
+      "persisted": false,
+      "status": "pass",
+      "physicalDevice": false
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

@@ -159,7 +159,13 @@ function styles(root) {
     critical = validateCriticalMedia(read(root, criticalMediaSource));
   if (source.split(criticalMediaMarker).length !== 2 || /\.portrait-media\b/.test(source + reading))
     throw Error('Expected one canonical critical media stylesheet include');
-  return source.replace(criticalMediaMarker, critical) + '\n' + reading;
+  return (
+    source.replace(criticalMediaMarker, critical) +
+    '\n' +
+    reading +
+    '\n' +
+    read(root, 'site/engine/scroll-entry.css')
+  );
 }
 
 function fileDigests(root, names) {
@@ -411,8 +417,12 @@ function build({
         result.routes[route.id].snapshotSHA = result.files[name];
       }
     }
-    for (const name of ['theme.js', 'archive.js', 'navigation.js'])
-      put(name, read(root, 'site/engine/' + name));
+    for (const name of ['theme.js', 'archive.js']) put(name, read(root, 'site/engine/' + name));
+    put(
+      'navigation.js',
+      `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
+        read(root, 'site/engine/navigation.js')
+    );
     put('styles.css', styles(root));
     put('space.js', runtime(root, definitions));
     for (const name of files(path.join(root, 'site/assets')))

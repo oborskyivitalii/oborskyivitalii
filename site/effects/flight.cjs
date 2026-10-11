@@ -1,31 +1,5 @@
 'use strict';
-// Optional offline navigation comparison. Authored production sources stay intact.
-function flightPose(progress, direction, departure = { z: 0, opacity: 1 }) {
-  const clamp = (t) => Math.max(0, Math.min(1, t)),
-    smooth = (t) => {
-      t = clamp(t);
-      return t * t * (3 - 2 * t);
-    };
-  progress = clamp(progress);
-  if (progress === 1) return { stage: 'settled', z: 0, opacity: 1 };
-  if (progress < 0.5) {
-    const t = clamp(progress / 0.46),
-      eased = smooth(t),
-      end = direction === 'forward' ? 1050 : -3600;
-    return {
-      stage: 'depart',
-      z: departure.z + (end - departure.z) * eased,
-      opacity: departure.opacity * (1 - smooth((t - 0.22) / 0.78)),
-    };
-  }
-  const t = clamp((progress - 0.5) / 0.5),
-    near = direction === 'backward' ? 1020 : -4200;
-  return {
-    stage: 'arrive',
-    z: near * (1 - smooth(t)),
-    opacity: Math.min(0.999, smooth((t - 0.02) / 0.98)),
-  };
-}
+// Shared navigation preferences and deliberate native page-edge gestures.
 function endScrollGate() {
   let edges = { top: null, bottom: null },
     selected = null,
@@ -100,21 +74,16 @@ function installFlightPreference() {
     if (!controls || !window.SiteNavigation?.contentFlight) return;
     const label = document.createElement('label');
     label.className = 'theme-control end-scroll-control';
-    label.textContent = 'Content flight ';
+    label.textContent = 'Block transitions ';
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.id = 'content-flight';
     input.checked = window.SiteNavigation.contentFlight();
-    input.setAttribute('aria-label', 'Content flight');
+    input.setAttribute('aria-label', 'Block transitions');
     label.append(input);
     controls.append(label);
     input.addEventListener('change', () => {
       window.SiteNavigation.contentFlight(input.checked);
-      try {
-        localStorage.setItem('vo.content-flight', input.checked ? 'on' : 'off');
-      } catch {
-        /* In-tab controls remain useful. */
-      }
     });
   }
   if (document.readyState === 'loading')
@@ -424,85 +393,33 @@ function createPresentation(content) {
   } catch {
     /* In-tab preference is sufficient. */
   }
-  function setPlane(pose) {
-    if (content.dataset.flightStage !== pose.stage) {
-      const top = window.SiteEffects?.nativePlaneTop;
-      content.style.transformOrigin =
-        '50% ' +
-        (window.scrollY +
-          window.innerHeight * 0.5 -
-          (typeof top === 'number' ? top : content.offsetTop)) +
-        'px';
-    }
-    content.dataset.flightStage = pose.stage;
-    content.dataset.flightDepth = String(pose.z);
-    content.style.opacity = String(pose.opacity);
-    if (contentFlight) content.style.transform = 'perspective(1200px) translateZ(' + pose.z + 'px)';
-    else content.style.removeProperty('transform');
-  }
   return {
-    mountAt: 0.5,
     layoutStableDuringTravel: true,
-    mount() {
-      const frame = document.createElement('div');
-      frame.id = 'site-content-frame';
-      content.before(frame);
-      frame.append(content);
-    },
     canTravel: () => window.CSS?.supports?.('overflow', 'clip') === true,
     clear() {
-      content.style.removeProperty('transform-origin');
-      delete content.dataset.flightStage;
-      delete content.dataset.flightDepth;
-    },
-    departure: () => ({
-      opacity: Number(content.style.opacity || 1),
-      z: Number(content.dataset.flightDepth || 0),
-    }),
-    restoreDeparture(departure) {
-      if (departure.z || departure.opacity < 1) setPlane({ stage: 'depart', ...departure });
-      content.style.opacity = String(departure.opacity);
-      content.inert = departure.opacity < 1;
-    },
-    prepareMount() {
-      content.style.transform = 'none';
-      content.style.opacity = '0';
-      content.style.removeProperty('transform-origin');
       delete content.dataset.flightStage;
     },
-    present(progress, direction, departure) {
-      setPlane(flightPose(progress, direction, departure));
+    present() {
+      content.dataset.flightStage = 'camera';
     },
     contentFlight(value) {
       if (typeof value === 'boolean') {
         contentFlight = value;
-        if (content.dataset.flightStage)
-          setPlane({
-            stage: content.dataset.flightStage,
-            z: Number(content.dataset.flightDepth || 0),
-            opacity: Number(content.style.opacity || 1),
-          });
+        try {
+          localStorage.setItem('vo.content-flight', value ? 'on' : 'off');
+        } catch {
+          /* In-tab preference is sufficient. */
+        }
       }
       return contentFlight;
     },
   };
 }
 function measurePlane(read) {
-  const plane = document.getElementById('site-content'),
-    transform = plane?.style.transform;
-  if (transform) plane.style.transform = 'none';
-  try {
-    const result = read();
-    // Reuse the same native layout snapshot when presentation resumes. Reading
-    // offsetTop after mount restores root styles would force a second flush.
-    if (plane) window.SiteEffects.nativePlaneTop = plane.offsetTop;
-    return result;
-  } finally {
-    if (transform) plane.style.transform = transform;
-  }
+  return read();
 }
 function descriptor() {
-  const code = `const flightPose=${flightPose.toString()};\nwindow.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
+  const code = `window.SiteEffects.navigation=${createPresentation.toString()};\nwindow.SiteEffects.measure=${measurePlane.toString()};`;
   const controls =
     '(' +
     installFlightPreference.toString() +
@@ -524,7 +441,6 @@ function descriptor() {
   };
 }
 module.exports = {
-  flightPose,
   endScrollGate,
   atPageEnd,
   atPageStart,

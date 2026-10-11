@@ -471,7 +471,17 @@ test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no 
     css,
     /\.button:link\s*,\s*\.button:visited\s*,\s*\.button:hover\s*,\s*\.button:focus-visible/
   );
-  assert.doesNotMatch(css, /animation\s*:|backdrop-filter\s*:|filter\s*:\s*blur/);
+  const entry = fs.readFileSync(
+    require('node:path').join(__dirname, '../site/engine/scroll-entry.css'),
+    'utf8'
+  );
+  assert.ok(css.endsWith('\n' + entry), 'one canonical finite reading-entry stylesheet');
+  assert.doesNotMatch(
+    css.slice(0, -entry.length),
+    /animation\s*:/,
+    'the scene atmosphere still has no independent CSS clock'
+  );
+  assert.doesNotMatch(css, /backdrop-filter\s*:|filter\s*:\s*blur/);
 });
 test('reading surfaces have one shared CSS authority across base and Color renditions', () => {
   const path = require('node:path'),
@@ -569,6 +579,7 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     }
   }
   function verify(reading, ordinary, authoredColor, publicCSS) {
+    if (publicCSS.endsWith('\n' + entry)) publicCSS = publicCSS.slice(0, -entry.length - 1);
     assert.equal(
       publicCSS,
       ordinary + '\n' + reading,
@@ -671,6 +682,13 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
         }
     }
   }
+  const entry = read('site/engine/scroll-entry.css');
+  assert.ok(generated.endsWith('\n' + entry), 'canonical finite entry styles are appended once');
+  for (const rule of rules(entry))
+    assert.ok(
+      properties(rule.body).every(([property]) => !paint.test(property)),
+      'entry moves the existing paint without another reading material owner'
+    );
   verify(owner, base, extra, generated);
   const split =
     '\n.talks-list .publication>div::before {content:"";background:var(--reading-surface-color)}\n';

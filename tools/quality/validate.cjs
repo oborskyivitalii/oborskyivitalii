@@ -235,8 +235,13 @@ function transition(row) {
   assert.equal(row.probeVersion, 2, 'invalid/missing transition probe');
   assert.ok(['cold', 'warm'].includes(row.transitionPhase), 'missing transition phase');
   assert.ok(row.paints >= limits.minimumPaints, 'insufficient transition paints');
+  const planned = require('./transition-pacing.cjs').verify(row);
+  for (const [key, value] of Object.entries(planned))
+    assert.equal(row[key], value, 'incorrect verified pacing metric: ' + key);
   assert.ok(
-    Number.isFinite(row.readyMs) && row.readyMs >= 900 && row.readyMs <= limits.readyMaxMs,
+    Number.isFinite(row.readyMs) &&
+      row.readyMs >= 900 &&
+      row.equivalentReadyMs <= limits.readyMaxMs,
     'invalid/slow input-to-ready latency'
   );
   assert.ok(row.paintCallbackMs.p95 <= limits.paintCallbackP95Ms, 'slow transition painted p95');
@@ -308,10 +313,10 @@ function scrollSyncEvidence(sync, route) {
     assert.equal(row.samples.at(-1).y, row.end, 'reported scroll never reaches bottom');
     if (row.end > 100)
       for (let i = 1; i < row.samples.length; i++)
-        assert.notEqual(
+        assert.equal(
           row.samples[i].camera,
-          row.samples[i - 1].camera,
-          'reported final-scroll plateau'
+          row.start,
+          'reported reading camera moved during scroll'
         );
   }
   assert.equal(sync.filtered.length, route === 'writing' ? 1 : 0, 'missing filtered scroll case');
@@ -339,7 +344,7 @@ function functionalChecks(mode, route, checks) {
     ])
       assert.equal(checks[key], true, 'missing ' + key);
     assert.ok(checks.axePasses > 0);
-    assert.ok(['camera changed', 'short page'].includes(checks.forward));
+    assert.ok(['camera fixed', 'short page'].includes(checks.forward));
     assert.equal(checks.archive, route === 'writing' ? true : 'not applicable');
     scrollSyncEvidence(checks.scrollSync, route);
   } else if (['no-js', 'no-canvas', 'no-raf', 'no-match-media', 'css-blocked'].includes(mode))
@@ -459,10 +464,10 @@ function navigation(r, engines) {
           assert.equal(arrival.samples.at(-1).y, arrival.end);
           if (arrival.end > 100)
             for (let i = 1; i < arrival.samples.length; i++)
-              assert.notEqual(
+              assert.equal(
                 arrival.samples[i].camera,
-                arrival.samples[i - 1].camera,
-                'post-arrival scroll plateau'
+                arrival.start,
+                'post-arrival reading camera moved'
               );
         }
       }

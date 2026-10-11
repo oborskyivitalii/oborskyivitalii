@@ -546,12 +546,13 @@ test('critical media has one canonical stylesheet slot and exact dependency-boun
     source = fs.readFileSync(path.join(dir, 'site/engine/critical-media.css'), 'utf8'),
     authoredStyles = fs.readFileSync(path.join(dir, 'site/engine/styles.css'), 'utf8'),
     readingStyles = fs.readFileSync(path.join(dir, 'site/engine/reading-surfaces.css'), 'utf8'),
+    entryStyles = fs.readFileSync(path.join(dir, 'site/engine/scroll-entry.css'), 'utf8'),
     stylesheet = fs.readFileSync(path.join(dir, 'docs/styles.css'), 'utf8');
   const marker = '/* {{CRITICAL_MEDIA}} */\n';
   assert.equal(authoredStyles.split(marker).length - 1, 1, 'one declared stylesheet position');
   assert.equal(
     stylesheet,
-    authoredStyles.replace(marker, source) + '\n' + readingStyles,
+    authoredStyles.replace(marker, source) + '\n' + readingStyles + '\n' + entryStyles,
     'current canonical sources retain their declared order and exact bytes'
   );
   assert.equal(stylesheet.split(source).length - 1, 1);
@@ -566,6 +567,53 @@ test('critical media has one canonical stylesheet slot and exact dependency-boun
   const once = inventory(dir);
   run(dir, { all: true });
   assert.deepEqual(inventory(dir), once, 'cold and incremental assembly agree');
+});
+test('reading entry shares immutable hosted and Color runtime without adding route markup or assets', (t) => {
+  const dir = fixture(t);
+  const before = run(dir);
+  const navigation = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
+  const context = {
+    window: {},
+    document: {
+      readyState: 'interactive',
+      addEventListener() {},
+      getElementById: () => null,
+      querySelector: () => null,
+      body: { dataset: { page: 'unsupported' } },
+    },
+    URL,
+  };
+  context.window.location = { href: 'https://site.test/' };
+  vm.runInNewContext(navigation, context);
+  assert.equal(typeof context.window.SiteScrollEntry.mount, 'function');
+  const originalMain = Object.fromEntries(
+    snapshot.routes.map((id) => [
+      id,
+      fs
+        .readFileSync(path.join(dir, 'docs', id + '.html'), 'utf8')
+        .match(/<main\b[\s\S]*?<\/main>/)[0],
+    ])
+  );
+  assert.ok(Buffer.byteLength(fs.readFileSync(path.join(dir, 'docs/writing.html'))) <= 100000);
+  const color = require('../tools/staging/color.cjs');
+  color.decoratePublic(path.join(dir, 'docs'));
+  const colored = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
+  assert.ok(colored.includes(navigation), 'Color consumes the exact shared navigation bytes');
+  edit(dir, 'site/engine/scroll-entry.cjs', (source) =>
+    source.replace('active.size >= 6', 'active.size >= 5')
+  );
+  const after = run(dir);
+  assert.notEqual(after.components.engine, before.components.engine);
+  for (const id of snapshot.routes) {
+    const html = fs.readFileSync(path.join(dir, 'docs', id + '.html'), 'utf8');
+    assert.equal(html.match(/<main\b[\s\S]*?<\/main>/)[0], originalMain[id]);
+  }
+  assert.deepEqual(after.built, snapshot.routes);
+  assert.ok(!Object.keys(after.files).some((name) => name.endsWith('/scroll-entry.js')));
+  const coherent = inventory(dir);
+  fs.unlinkSync(path.join(dir, 'site/engine/scroll-entry.css'));
+  assert.throws(() => run(dir), /ENOENT/);
+  assert.deepEqual(inventory(dir), coherent, 'failed shared owner cannot partially publish');
 });
 test('missing, duplicate or unsafe critical media owners leave the coherent output intact', (t) => {
   const dir = fixture(t);

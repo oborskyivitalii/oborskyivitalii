@@ -100,7 +100,7 @@ async function ready(page, route) {
       !document.querySelector('#site-content').hasAttribute('aria-busy') &&
       document.querySelector('.space-scene').dataset.travel === 'settled',
     route,
-    { polling: 40, timeout: 10000 }
+    { polling: 40, timeout: require('./transition-pacing.cjs').deadline() }
   );
 }
 async function reset(page) {
@@ -129,7 +129,7 @@ async function measure(page, kind) {
   const row = summarize(raw, kind);
   assert.ok(row.paints > 0, 'positive actual Canvas paints');
   assert.equal(row.state, 'active');
-  return { ...row, events: raw.events };
+  return { ...row, events: raw.events, ...(kind === 'flight' ? { width: raw.viewportWidth } : {}) };
 }
 async function boot(url) {
   const { browser, page, errors } = await open();

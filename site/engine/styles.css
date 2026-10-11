@@ -1,4 +1,9 @@
 :root {
+  --scroll-entry-distance: 88px;
+  --block-motion-duration: 700ms;
+  --block-motion-phase: 1000ms;
+  --block-motion-stagger: 80ms;
+  --block-motion-easing: cubic-bezier(0.65, 0, 0.35, 1);
   --paper: #f3f1ea;
   --ink: #172b36;
   --muted: #435962;
@@ -134,6 +139,11 @@ select:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
+}
+/* The router focuses this reading landmark after arrival. Its native focus
+   ring would outline the whole page; interactive controls keep their own rings. */
+main[tabindex='-1']:focus {
+  outline: none;
 }
 button,
 select {
@@ -582,7 +592,7 @@ h1 {
   text-transform: uppercase;
   color: var(--accent);
 }
-.note-row:last-child .note-number {
+.note-row:last-of-type .note-number {
   color: var(--systems);
 }
 .note-row p {
@@ -626,7 +636,7 @@ h2 {
   line-height: 1.2;
   margin: 0;
 }
-.section-heading > p:last-child:not(.eyebrow) {
+.section-heading > p:last-of-type:not(.eyebrow) {
   color: var(--muted);
   font-size: 16px;
   max-width: 780px;

@@ -7,6 +7,8 @@ const {
   cameraSettlingSample,
   liveScrollPrecondition,
 } = require('../tools/quality/engine-browser.cjs');
+const cameraTiming = require('../tools/quality/transition-pacing.json').camera;
+const maximumFlightMs = cameraTiming.centerMs + cameraTiming.transitMs + cameraTiming.restoreMs;
 function cameraFixture(update = () => {}) {
   let time = 0;
   const scene = {
@@ -48,13 +50,14 @@ function cameraFixture(update = () => {}) {
       return invoke(fn, arg);
     },
     async waitForFunction(fn, arg, options) {
-      assert.deepEqual(options, { polling: 50, timeout: 3000 });
+      const timeout = 3000 + (scene.dataset.travel === 'flying' ? maximumFlightMs : 0);
+      assert.deepEqual(options, { polling: 50, timeout });
       const started = time;
       for (time = started; time <= started + options.timeout; time += options.polling) {
         update(time, context, scene, control);
         if (invoke(fn, arg)) return;
       }
-      throw Error('Controlled camera settling timeout after 3000ms');
+      throw Error('Controlled camera settling timeout after ' + timeout + 'ms');
     },
     locator(selector) {
       if (selector === '#space-motion')
@@ -101,6 +104,54 @@ test('camera settling retains two real ambient phase changes at one stable live 
   assert.equal(evidence.samples.length, 7);
   assert.equal(evidence.same, 2);
 });
+test('an observed flight preserves camera framing and motion before two settled live phase changes', async () => {
+  const h = cameraFixture((time, context, scene) => {
+    scene.dataset.phase = String(Math.floor(time / 100));
+    scene.dataset.camera =
+      time < cameraTiming.centerMs
+        ? 'opening'
+        : time < maximumFlightMs - cameraTiming.restoreMs
+          ? 'moving-' + time
+          : 'target';
+    scene.dataset.travel = time < maximumFlightMs ? 'flying' : 'settled';
+  });
+  h.scene.dataset.travel = 'flying';
+  assert.equal(await settledCamera(h.page), 'target');
+  const evidence = h.context.window.__engineCameraSettling;
+  assert.equal(maximumFlightMs, 1750);
+  assert.equal(evidence.timeoutMs, maximumFlightMs + 3000);
+  assert.equal(evidence.elapsedMs, maximumFlightMs + 150);
+  assert.equal(evidence.policy, 'live');
+  assert.equal(evidence.same, 2);
+  assert.ok(
+    evidence.samples
+      .filter((sample) => sample.time < cameraTiming.centerMs)
+      .every((sample) => sample.camera === 'opening' && sample.travel === 'flying'),
+    'a constant camera during framing cannot settle before the flight ends'
+  );
+  assert.ok(
+    evidence.samples
+      .filter(
+        (sample) =>
+          sample.time >= maximumFlightMs - cameraTiming.restoreMs && sample.time < maximumFlightMs
+      )
+      .every((sample) => sample.camera === 'target' && sample.travel === 'flying'),
+    'a constant target pose during restoration cannot earn settled live phase changes'
+  );
+});
+test('a permanently moving observed flight still fails its finite camera and observation deadline', async () => {
+  const h = cameraFixture((time, context, scene) => {
+    scene.dataset.phase = String(time);
+    scene.dataset.camera = 'moving-' + time;
+  });
+  h.scene.dataset.travel = 'flying';
+  await assert.rejects(() => settledCamera(h.page), /camera settling timeout/);
+  const evidence = h.context.window.__engineCameraSettling;
+  assert.equal(evidence.timeoutMs, maximumFlightMs + 3000);
+  assert.equal(evidence.elapsedMs, evidence.timeoutMs);
+  assert.equal(evidence.status, 'failed');
+  assert.match(evidence.error, /4750ms/);
+});
 test('explicit adaptive hold settles only after native position, pose and measured work stay quiet', async () => {
   const h = held(
     cameraFixture((time, context) => {
@@ -141,13 +192,14 @@ test('a frozen live scene or invalid hold cannot satisfy camera settling and ret
   for (let i = 0; i < invalid.length; i++) {
     const h = i === 0 ? cameraFixture() : held(cameraFixture());
     invalid[i](h);
+    const timeout = 3000 + (h.scene.dataset.travel === 'flying' ? maximumFlightMs : 0);
     await assert.rejects(() => settledCamera(h.page), /camera settling timeout/);
     const evidence = h.context.window.__engineCameraSettling;
     assert.equal(evidence.status, 'failed');
-    assert.equal(evidence.elapsedMs, 3000);
-    assert.equal(evidence.timeoutMs, 3000);
-    assert.equal(evidence.samples.length, 61);
-    assert.match(evidence.error, /3000ms/);
+    assert.equal(evidence.elapsedMs, timeout);
+    assert.equal(evidence.timeoutMs, timeout);
+    assert.equal(evidence.samples.length, timeout / 50 + 1);
+    assert.ok(evidence.error.includes(timeout + 'ms'));
   }
 });
 test('a changing held camera remains a bounded failure', async () => {

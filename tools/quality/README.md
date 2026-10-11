@@ -106,6 +106,23 @@ median, full-engine, real-device or soak claim. Static and staging browser jobs
 have 15-minute limits. At most 15 minutes of active staging work is an operational
 target; report achieved CI duration and queue time separately.
 
+Issue69's readable-pacing amendment retains raw route readiness and reports
+verified programmed presentation separately. The timing contract in
+`transition-pacing.json` fixes row slots and camera legs and pins the historical
+214 schedule. Equivalent readiness subtracts only the additional programmed
+motion, preserving the original 3200 ms execution contract. The four selected
+CPU×4 flights retain their route-specific headroom; callback, preparation,
+paint-gap and resource bounds are unchanged. Missing, inflated, incomplete or
+early-finished plans and cancelled/watchdog phases receive no animation credit.
+Finite collection deadlines account for the approved presentation maximum.
+
+The security scanner consumes a closed list of exact reviewed ledgers. The
+historical ledger and frozen baseline retain their bytes; the named companion
+`secrets-reviewed-checksums.json` contains individually proved public checksum
+records. Duplicate, malformed, missing or oversized ledgers fail visibly under
+the unchanged RI 2 MB source-read bound. A companion is storage for exact review,
+not an entropy-rule exemption or blanket checksum admission.
+
 For a local reproduction against the same immutable hosted candidate, set
 `SITE_TEST_BASE_URL` to its HTTPS URL and `SITE_TEST_PROFILE=staging`, retain the
 artifact/report variables above, and run:

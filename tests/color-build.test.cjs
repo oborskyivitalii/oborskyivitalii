@@ -7,7 +7,71 @@ const test = require('node:test'),
   vm = require('node:vm');
 const color = require('../tools/staging/color.cjs'),
   artifact = require('../tools/quality/artifact.cjs'),
-  snapshot = require('../tools/site/snapshot.cjs');
+  snapshot = require('../tools/site/snapshot.cjs'),
+  motionArtifact = require('./fixtures/staging-evidence.cjs').aggregateFixture(true).manifest;
+test('Color waits for a complete native row sequence within the shared finite pacing bound', async () => {
+  const { settled } = require('../tools/quality/color-browser.cjs');
+  for (const width of [1440, 390]) {
+    const state = { route: 'research', busy: true, travel: 'flying' };
+    let predicate,
+      release,
+      finished = false;
+    const page = {
+      viewportSize: () => ({ width }),
+      waitForFunction(fn, route, options) {
+        predicate = fn;
+        assert.equal(route, 'credits');
+        assert.equal(options.polling, 25);
+        assert.equal(
+          options.timeout,
+          require('../tools/quality/transition-pacing.cjs').deadline(width)
+        );
+        assert.ok(Number.isFinite(options.timeout));
+        assert.equal(options.timeout, 6950, 'page density cannot extend the fixed motion plan');
+        return new Promise((resolve) => (release = resolve));
+      },
+    };
+    const pending = settled(page, 'credits', motionArtifact).then(() => (finished = true));
+    const ready = () =>
+      vm.runInNewContext('(' + predicate.toString() + ')(' + JSON.stringify('credits') + ')', {
+        document: {
+          body: { dataset: { page: state.route } },
+          getElementById: () => ({ hasAttribute: () => state.busy }),
+          querySelector: () => ({ dataset: { travel: state.travel } }),
+        },
+      });
+    assert.equal(ready(), false);
+    state.route = 'credits';
+    state.travel = 'settled';
+    assert.equal(ready(), false, 'camera arrival while blocks are assembling is not ready');
+    await Promise.resolve();
+    assert.equal(finished, false);
+    state.busy = false;
+    state.travel = 'flying';
+    assert.equal(ready(), false, 'visible route content cannot accept an unfinished camera');
+    state.travel = 'settled';
+    assert.equal(ready(), true);
+    release();
+    await pending;
+    assert.equal(finished, true);
+  }
+});
+test('Color preserves failure when the owned settlement deadline expires', async () => {
+  await assert.rejects(
+    () =>
+      require('../tools/quality/color-browser.cjs').settled(
+        {
+          viewportSize: () => ({ width: 390 }),
+          waitForFunction: async () => {
+            throw Error('Controlled finite Color settlement deadline');
+          },
+        },
+        'credits',
+        motionArtifact
+      ),
+    /finite Color settlement deadline/
+  );
+});
 test('collecting other hosted checks cannot accept a failed source-regression stage', () => {
   assert.throws(
     () => require('../tools/quality/validate.cjs').aggregate({ sourceChecks: 'failure' }),

@@ -25,7 +25,7 @@ function checks(mode, route) {
       samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
         fraction,
         y: fraction * 1000,
-        camera: 'camera-' + fraction,
+        camera: 'opening',
       })),
     });
   if (mode === 'normal')
@@ -36,7 +36,7 @@ function checks(mode, route) {
       syntheticVisibility: true,
       keyboard: true,
       reverse: true,
-      forward: 'camera changed',
+      forward: 'camera fixed',
       archive: route === 'writing' ? true : 'not applicable',
       zoom: true,
       axePasses: 1,
@@ -123,10 +123,11 @@ function fixture() {
         scrollArrivals: ['research', 'writing', 'talks', 'credits'].map((route) => ({
           route,
           end: 1000,
+          start: 'arrival',
           samples: [0.9, 0.95, 0.99, 1].map((fraction) => ({
             fraction,
             y: fraction * 1000,
-            camera: 'arrival-' + fraction,
+            camera: 'arrival',
           })),
         })),
         checks: Object.fromEntries(
@@ -214,9 +215,7 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     (x) => delete x.reports[3].rows[0].checks.scrollSync.checks.contentGrowth,
     (x) => delete x.reports[3].rows[0].checks.scrollSync.waypoint,
     (x) => (x.reports[3].rows[0].checks.scrollSync.waypoint.actual.position[0] = 1),
-    (x) =>
-      (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera =
-        x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[2].camera),
+    (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].camera = 'moving-camera'),
     (x) => (x.reports[3].rows[0].checks.scrollSync.fixtures[0].samples[3].y = 990),
     (x) =>
       x.reports[3].rows
@@ -341,26 +340,8 @@ function measurement(kind, startMs = 0) {
     state: 'active',
   };
 }
-function flightMeasurement(slow = false) {
-  const data = {
-    schema: 2,
-    start: 0,
-    end: 2100,
-    elapsed: 2100,
-    frames: Array.from({ length: 12 }, (_, i) => ({
-      time: i * 100,
-      started: i * 100 + 10,
-      duration: slow && i === 11 ? 900 : 10,
-      painted: true,
-    })),
-    longTasks: [],
-    events: [
-      { kind: 'layout', time: 3, start: 2, duration: 1 },
-      { kind: 'navigation-start', time: 0 },
-      { kind: 'navigation-ready', time: 2100 },
-    ],
-  };
-  return { ...require('../tools/quality/motion.cjs').summarize(data, 'flight'), state: 'active' };
+function flightMeasurement(slow = false, to = 'research', from = 'index', width = 1440) {
+  return require('./fixtures/staging-evidence.cjs').flight(to, from, 'warm', width, slow);
 }
 function motionFixture() {
   return {
@@ -392,7 +373,10 @@ function motionFixture() {
       before: { nodes: 100, jsEventListeners: 20 },
       after: { nodes: 100, jsEventListeners: 20 },
       rows: ['research', 'writing', 'talks', 'index', 'talks', 'writing', 'research', 'index'].map(
-        (to) => ({ to, ...flightMeasurement() })
+        (to, index, itinerary) => ({
+          to,
+          ...flightMeasurement(false, to, index ? itinerary[index - 1] : 'index', width),
+        })
       ),
     })),
     soak: {
@@ -411,7 +395,7 @@ test('motion requires positive paints, every profile, real raw samples and settl
   assert.equal(motion(r), true);
   const huge = structuredClone(r);
   huge.journeys[0].rows[0] = { to: 'research', ...flightMeasurement(true) };
-  assert.throws(() => motion(huge), /slow transition/);
+  assert.throws(() => motion(huge), /blocked transition callback/);
   for (const mutate of [
     (x) => delete x.variant,
     (x) => delete x.journeys[0].rows[0].readyMs,
@@ -437,6 +421,124 @@ test('motion requires positive paints, every profile, real raw samples and settl
     fn(x);
     assert.throws(() => motion(x));
   }
+});
+test('the bounded overlapping wave credits only verified presentation while preserving latency and work guards', () => {
+  const { transition } = require('../tools/quality/validate.cjs'),
+    pacing = require('../tools/quality/transition-pacing.cjs'),
+    fixture = require('./fixtures/staging-evidence.cjs'),
+    motionProbe = require('../tools/quality/motion.cjs');
+  assert.equal(pacing.deadline(1440), 6950);
+  assert.equal(pacing.deadline(390), 6950);
+  for (const rows of [0, 1, 2, 6, 24]) {
+    const plan = pacing.rowPlan(1440, rows);
+    assert.deepEqual(pacing.rowPlan(390, rows), plan);
+    assert.equal(plan.plannedDurationMs, rows ? 1000 : 0);
+    if (rows > 1) assert.ok(plan.rowStepMs < plan.rowDurationMs);
+  }
+  for (const from of ['index', 'research', 'writing', 'talks', 'credits'])
+    for (const to of ['index', 'research', 'writing', 'talks', 'credits'])
+      assert.equal(pacing.cameraPlan(from, to).plannedDurationMs, 1750);
+  for (const [to, legacy] of [
+    ['research', 2258],
+    ['writing', 2512],
+  ]) {
+    const row = fixture.flight(to, 'index', 'cold');
+    assert.equal(transition(row), true);
+    assert.ok(row.readyMs > 3200, 'deliberate presentation can exceed the old raw deadline');
+    assert.equal(row.plannedMotionMs, 3750, 'distance does not change the common motion plan');
+    assert.equal(row.legacyPlannedMotionMs, legacy, 'frozen214 camera plus mobile phase totals');
+    assert.equal(row.readyResidualMs, 70);
+    assert.equal(row.equivalentReadyMs, legacy + 70);
+  }
+  const valid = fixture.flight('research', 'index', 'warm'),
+    completion = (row, phase) =>
+      row.rawChoreography.find(
+        (event) =>
+          event.kind === 'route-block' &&
+          event.phase === phase &&
+          event.completedBy === 'animationend'
+      ),
+    phaseStart = (row) => row.rawChoreography.find((event) => event.stage === 'departure');
+  const release = {
+    ...completion(valid, 'departure'),
+    stage: 'cancelled',
+    completedBy: 'cancelled',
+    active: 0,
+    count: 0,
+  };
+  release.time = valid.rawChoreography.find((event) => event.kind === 'camera-travel').time + 100;
+  const withRelease = structuredClone(valid);
+  withRelease.rawChoreography.push(release);
+  withRelease.rawChoreography.sort((a, b) => a.time - b.time);
+  assert.equal(transition(withRelease), true, 'completed departure hold can be disposed at mount');
+  for (const mutate of [
+    (row) => delete row.rawChoreography,
+    (row) => delete row.plannedMotionMs,
+    (row) => (row.equivalentReadyMs = 10),
+    (row) => (row.rawChoreography.at(-1).navigationId = 2),
+    (row) => (phaseStart(row).rows = 25),
+    (row) => (phaseStart(row).plannedDurationMs += 500),
+    (row) => (phaseStart(row).rowDurationMs = 1000),
+    (row) => phaseStart(row).observedRowSchedule.pop(),
+    (row) => (phaseStart(row).observedRowSchedule[1].durationMs = 1000),
+    (row) => (phaseStart(row).observedRowSchedule[1].delayMs = 400),
+    (row) => {
+      for (const event of row.rawChoreography.filter((event) => event.phase === 'departure')) {
+        event.rowStepMs = event.rowDurationMs;
+        event.plannedDurationMs = event.rows * event.rowDurationMs;
+        for (const unit of event.observedRowSchedule || [])
+          unit.delayMs = unit.order * event.rowDurationMs;
+      }
+    },
+    (row) => (completion(row, 'departure').completedBy = 'watchdog'),
+    (row) => (completion(row, 'arrival').time -= 100),
+    (row) =>
+      (row.rawChoreography.find((event) => event.kind === 'camera-travel-complete').elapsedMs = 0),
+    (row) =>
+      (row.rawChoreography.find((event) => event.kind === 'camera-travel').plannedDurationMs +=
+        1000),
+    (row) =>
+      row.rawChoreography.push({
+        ...row.rawChoreography.at(-1),
+        kind: 'camera-travel-cancelled',
+        disposition: 'retargeted',
+      }),
+    (row) => row.rawChoreography.push(structuredClone(row.rawChoreography.at(-1))),
+    (row) => (row.paintCallbackMs.max = 201),
+    (row) => (row.paintIntervalsMs.max = 301),
+    (row) => (row.preparationMs.max = 161),
+  ]) {
+    const row = structuredClone(valid);
+    mutate(row);
+    assert.throws(() => transition(row));
+  }
+  const cancelled = structuredClone(withRelease);
+  cancelled.rawChoreography.find((event) => event.stage === 'cancelled').time =
+    phaseStart(cancelled).time + 100;
+  cancelled.rawChoreography.sort((a, b) => a.time - b.time);
+  assert.throws(() => transition(cancelled), /completed departure/);
+  const stalled = fixture.flightData('research', 'index', 'warm');
+  stalled.events.at(-1).time += 1000;
+  stalled.end += 1000;
+  stalled.elapsed += 1000;
+  const slow = {
+    from: 'index',
+    to: 'research',
+    width: 390,
+    ...motionProbe.summarize(stalled, 'flight'),
+  };
+  assert.equal(slow.readyResidualMs, 1070);
+  assert.throws(
+    () => transition(slow),
+    /slow input-to-ready/,
+    'a genuine unprogrammed stall still exceeds the unchanged3200 equivalent budget'
+  );
+  const failedRaw = fixture.flightData('research', 'index', 'warm');
+  failedRaw.events.find((event) => event.kind === 'camera-travel-complete').disposition = 'failed';
+  const failed = motionProbe.summarize(failedRaw, 'flight');
+  assert.ok(failed.pacingError, 'collection retains failed planning evidence');
+  assert.ok(failed.rawChoreography.length > 0);
+  assert.equal(failed.plannedMotionMs, undefined, 'failure receives no duration credit');
 });
 test('paint intervals use actual painted callback starts and expose a cheap but uneven trace', () => {
   const { summarize } = require('../tools/quality/motion.cjs');
@@ -702,7 +804,7 @@ test('full coverage requires complete macOS WebKit and Linux Chromium/Firefox wi
 });
 function colorFixture() {
   const evidence = fullFixture();
-  const motionContract = colorMotion.reviewedRuntime('legacy-plain'),
+  const motionContract = colorMotion.reviewedRuntime('fixed-plain'),
     color = motionContract.variant;
   evidence.manifest.variant = color;
   evidence.manifest.components = { variant: color, engine: color.fingerprint, contract: 1 };
@@ -731,7 +833,7 @@ function colorFixture() {
         paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
         checks: Object.fromEntries(
           [
-            'spatialFlight',
+            'blockFlight',
             'forwardEdge',
             'reverseNativeBottom',
             'disabledEdge',
@@ -739,10 +841,11 @@ function colorFixture() {
             'homeBoundary',
           ].map((key) => [key, true])
         ),
-        flight: [
-          { plane: { flightStage: 'depart', flightDepth: 1 } },
-          { plane: { flightStage: 'arrive', flightDepth: -1 } },
-        ],
+        home: require('./fixtures/staging-evidence.cjs').colorReport(evidence.manifest).rows[0]
+          .home,
+        flight: require('./fixtures/staging-evidence.cjs')
+          .colorReport(evidence.manifest)
+          .rows.find((row) => row.width === width).flight,
       }))
     )
   );
@@ -760,7 +863,7 @@ test('full macOS policy keeps twelve travel Color cells with ordinary paint incl
   assert.equal(aggregate(colorFixture()).pass, true);
   const mutations = [
     (report) => (report.rows = report.rows.filter((row) => row.engine !== 'webkit')),
-    (report) => (report.rows[0].checks.spatialFlight = false),
+    (report) => (report.rows[0].checks.blockFlight = false),
     (report) => (report.rows[0] = structuredClone(report.rows[1])),
     (report) => (report.rows[0].ribbons.sceneHook = 'function'),
     (report) => (report.rows[0].ribbons.dataset = { ribbons: '3' }),
@@ -1071,26 +1174,16 @@ test('flight measurements and repeated-navigation resources are mandatory', () =
     assert.throws(() => motion(r));
   }
 });
-test('Color navigation requires both depth planes and a clear handover without changing base fades', () => {
-  const { checkTiming } = require('../tools/quality/navigation.cjs');
-  const samples = [0.05, 0.1, 0.2, 0.3, 0.4, 0.47, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9, 0.99].map(
-    (progress) => ({
-      progress,
-      opacity:
-        progress < 0.46 ? 1 - progress / 0.46 : progress <= 0.51 ? 0 : (progress - 0.51) / 0.49,
-      depth: progress < 0.5 ? 100 : -100,
-      stage: progress < 0.5 ? 'depart' : 'arrive',
-      direction: 'forward',
-    })
-  );
-  samples.splice(-1, 0, { kind: 'mount', progress: 0.5, opacity: 0, direction: 'forward' });
+test('Color and base navigation share directional block stages with no fade or depth plane', () => {
+  const { checkTiming } = require('../tools/quality/navigation.cjs'),
+    samples = require('./fixtures/staging-evidence.cjs').blockFlightSamples();
   checkTiming(samples, 'color');
-  assert.throws(() => checkTiming(samples, 'base'), /hidden throughout middle/);
+  checkTiming(samples, 'base');
   for (const mutate of [
-    (s) => (s[0].depth = -100),
-    (s) => (s.at(-1).depth = 100),
-    (s) => (s[5].opacity = 0.1),
-    (s) => (s.at(-1).opacity = 1),
+    (rows) => (rows[0].units[0].ink = ['0px 100px']),
+    (rows) => (rows.at(-1).units[0].paper = '0px -100px'),
+    (rows) => (rows[3].opacity = 0.1),
+    (rows) => (rows.at(-1).transform = 'matrix(1,0,0,1,0,20)'),
   ]) {
     const changed = structuredClone(samples);
     mutate(changed);

@@ -34,14 +34,14 @@ def build():
         '<meta name="robots" content="noindex,nofollow">'
         '<meta http-equiv="refresh" content="0;url=review/site-v1-20261004-v11-index.html">'
         '<title>All five pages</title><a href="review/site-v1-20261004-v11-index.html">'
-        'Open all five pages, Day/Night, mobile views and recordings</a></html>\n'
+        "Open all five pages, Day/Night, mobile views and recordings</a></html>\n"
     ).encode()
     inputs["OPEN-ME.txt"] = (
         "Author site v11 review, 2026-10-04. Review candidate, not deployment.\n"
         "Extract this whole ZIP, then open index.html for the all-page gallery.\n"
         "One persistent header and Canvas join Home, Research, Writing, Talks and Credits.\n"
-        "Navigation flies forward/back through connected rooms; text fades between routes.\n"
-        "Pointer/hover do not move it. Motion Off freezes the current view; reduced motion wins.\n"
+        "Navigation moves opaque blocks out, flies through centered rooms, then assembles blocks.\n"
+        "Reading scroll and pointer leave the camera still; Motion Off and reduced motion win.\n"
         "The structures breathe in a 24-second loop, even on short pages. Themes recolor the view.\n"
         "Writing filters by topic/year/language; queries, fragments and history restore visible state.\n"
         "If your viewer blocks JavaScript, open review/site-v1-20261004-v11-day.html\n"

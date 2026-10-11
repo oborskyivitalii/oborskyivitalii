@@ -755,3 +755,199 @@ test('only actually verified RI/coupling checksum fields may bypass literal secr
   assert.equal(verifiedChecksumFinding(ci, finding, new Map()), false);
   assert.throws(() => verifiedChecksumIds(['private-value']), /invalid verified public checksum/);
 });
+
+function secretReviewFixture() {
+  const os = require('node:os');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'secret-review-'));
+  const files = [
+    'tools/quality/secrets-baseline.json',
+    'tools/quality/secrets-reviewed.json',
+    'tools/quality/secrets-reviewed-checksums.json',
+    'tools/quality/secrets-publication.json',
+  ];
+  const metadata = {
+    owner: 'Review owner',
+    issue: 'https://github.com/oborskyivitalii/oborskyivitalii/issues/69',
+    reviewedAt: '2026-10-11',
+    scope: 'Individually reviewed exact public findings.',
+    findings: [],
+  };
+  const reviews = files.map((_, index) => ({
+    ...(index ? { schema_version: 1 } : {}),
+    ...structuredClone(metadata),
+  }));
+  const write = (index, review = reviews[index]) =>
+    fs.writeFileSync(path.join(directory, files[index]), JSON.stringify(review));
+  fs.mkdirSync(path.join(directory, 'tools/quality'), { recursive: true });
+  files.forEach((_, index) => write(index));
+  const entry = (file, rule = 'Hex High Entropy String', hash = 'a'.repeat(40)) => ({
+    id: [file, rule, hash].join(':'),
+    path: file,
+    rule,
+    disposition: 'false positive',
+    reason: 'Individually recomputed public checksum with independent review.',
+  });
+  return { directory, files, reviews, write, entry };
+}
+
+test('closed secret ledgers admit only exact reviewed path, rule and hashed value', () => {
+  const { loadSecretReviews, reviewedSecretFinding } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  try {
+    f.reviews[0].findings.push(f.entry('review/legacy.json', 'Basic Auth Credentials'));
+    f.reviews[1].findings.push(f.entry('review/metadata.json', 'Secret Keyword'));
+    f.reviews[2].findings.push(f.entry('review/naïve proof.json'));
+    f.reviews[3].findings.push(f.entry('review/publication.json'));
+    f.files.forEach((_, index) => f.write(index));
+    fs.writeFileSync(
+      path.join(f.directory, 'tools/quality/secrets-reviewed-extra.json'),
+      JSON.stringify({
+        ...f.reviews[2],
+        findings: [f.entry('unreviewed.json')],
+      })
+    );
+    const reviewed = loadSecretReviews(f.directory);
+    assert.equal(reviewed.size, 4);
+    for (const entry of f.reviews.flatMap((review) => review.findings)) {
+      const finding = { type: entry.rule, hashed_secret: entry.id.slice(-40) };
+      assert.deepEqual(reviewed.get(entry.id), entry);
+      assert.equal(reviewedSecretFinding(entry.path, finding, reviewed), true);
+      assert.equal(reviewedSecretFinding('other/' + entry.path, finding, reviewed), false);
+      assert.equal(
+        reviewedSecretFinding(entry.path, { ...finding, type: 'unknown rule' }, reviewed),
+        false
+      );
+      assert.equal(
+        reviewedSecretFinding(entry.path, { ...finding, hashed_secret: 'b'.repeat(40) }, reviewed),
+        false
+      );
+    }
+    assert.equal(
+      reviewedSecretFinding(
+        'unreviewed.json',
+        { type: 'Hex High Entropy String', hashed_secret: 'a'.repeat(40) },
+        reviewed
+      ),
+      false,
+      'neighboring ledger names are not admission authorities'
+    );
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('secret ledgers reject malformed metadata and non-exact or non-checksum companion records', () => {
+  const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  try {
+    const record = f.entry('review/public.json');
+    for (const changed of [
+      null,
+      [],
+      { ...record, path: '/absolute.json' },
+      { ...record, path: '../escape.json' },
+      { ...record, path: 'review/./public.json' },
+      { ...record, path: 'review//public.json' },
+      { ...record, path: 'review\\public.json' },
+      { ...record, path: 'review/*.json' },
+      { ...record, path: 'review/line\npublic.json' },
+      { ...record, path: 'review:public.json' },
+      { ...record, id: 'wrong:' + record.id },
+      { ...record, id: record.id.slice(0, -1) + 'z' },
+      { ...record, id: record.id.slice(0, -1) },
+      { ...record, disposition: 'accepted risk' },
+      { ...record, reason: ' ' },
+      { ...record, extraAdmission: true },
+      f.entry('review/public.json', 'Secret Keyword'),
+      f.entry('review/public.json', 'Basic Auth Credentials'),
+      f.entry('review/public.json', 'unknown rule'),
+    ]) {
+      f.write(2, { ...f.reviews[2], findings: [changed] });
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+    }
+    for (const changed of [
+      null,
+      [],
+      { ...f.reviews[2], schema_version: true },
+      { ...f.reviews[2], schema_version: 2 },
+      { ...f.reviews[2], owner: '' },
+      { ...f.reviews[2], issue: 'https://example.com/69' },
+      { ...f.reviews[2], issue: [f.reviews[2].issue] },
+      { ...f.reviews[2], reviewedAt: '2026-02-30' },
+      { ...f.reviews[2], reviewedAt: [f.reviews[2].reviewedAt] },
+      { ...f.reviews[2], reviewedAt: '2026-10-11T00:00:00Z' },
+      { ...f.reviews[2], scope: '' },
+      { ...f.reviews[2], findings: {} },
+      { ...f.reviews[2], extraLedger: 'other.json' },
+    ]) {
+      f.write(2, changed);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid secret review metadata/);
+    }
+    f.write(2);
+    f.write(0, { ...f.reviews[0], schema_version: 1 });
+    assert.throws(() => loadSecretReviews(f.directory), /Invalid secret review metadata/);
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('secret ledgers reject duplicate IDs within or across every closed input', () => {
+  const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  try {
+    const record = f.entry('review/public.json');
+    for (let first = 0; first < f.files.length; first++) {
+      for (let second = first; second < f.files.length; second++) {
+        f.reviews.forEach((review) => (review.findings = []));
+        f.reviews[first].findings.push(record);
+        f.reviews[second].findings.push(record);
+        f.files.forEach((_, index) => f.write(index));
+        assert.throws(() => loadSecretReviews(f.directory), /Duplicate secret review ID/);
+      }
+    }
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('secret ledgers require all bounded regular inputs and reject invalid JSON', () => {
+  const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  try {
+    for (let index = 0; index < f.files.length; index++) {
+      const absolute = path.join(f.directory, f.files[index]);
+      fs.unlinkSync(absolute);
+      assert.throws(() => loadSecretReviews(f.directory), /ENOENT/);
+      fs.mkdirSync(absolute);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid or oversized/);
+      fs.rmdirSync(absolute);
+      fs.symlinkSync(path.join(f.directory, f.files[(index + 1) % f.files.length]), absolute);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid or oversized/);
+      fs.unlinkSync(absolute);
+      const bytes = JSON.stringify(f.reviews[index]);
+      fs.writeFileSync(absolute, bytes.padEnd(2000000));
+      assert.equal(loadSecretReviews(f.directory).size, 0);
+      fs.appendFileSync(absolute, ' ');
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid or oversized/);
+      fs.writeFileSync(absolute, '{');
+      assert.throws(() => loadSecretReviews(f.directory), SyntaxError);
+      f.write(index);
+    }
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
+test('all historical secret dispositions retain their exact data in the closed ledger map', () => {
+  const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
+  const reviewed = loadSecretReviews(root);
+  const legacy = [
+    'tools/quality/secrets-baseline.json',
+    'tools/quality/secrets-reviewed.json',
+    'tools/quality/secrets-publication.json',
+  ];
+  for (const file of legacy) {
+    const source = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+    for (const entry of source.findings) assert.deepEqual(reviewed.get(entry.id), entry);
+  }
+});

@@ -100,7 +100,7 @@ async function ready(page, id) {
       document.getElementById('site-content') &&
       !document.getElementById('site-content').hasAttribute('aria-busy'),
     id,
-    { polling: 40, timeout: 10000 }
+    { polling: 40, timeout: require('./transition-pacing.cjs').deadline() }
   );
 }
 function routeSelector(id) {

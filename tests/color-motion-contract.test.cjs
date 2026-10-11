@@ -151,6 +151,13 @@ function evidence(id) {
       row.checks.blockFlight = true;
       row.flight = blockSamples(row.width);
       row.home = fixedHome();
+    } else {
+      delete row.checks.blockFlight;
+      row.checks.spatialFlight = true;
+      row.flight = [
+        { plane: { flightStage: 'depart', flightDepth: 1 } },
+        { plane: { flightStage: 'arrive', flightDepth: -1 } },
+      ];
     }
   }
   return value;
@@ -334,6 +341,9 @@ test('fixed flight readiness waits for block arrival after the camera settles an
     evaluations = 0;
   const samples = blockSamples(),
     page = {
+      viewportSize() {
+        return { width: 1440 };
+      },
       async evaluate(fn) {
         evaluations++;
         return fn.toString().includes('__flightSamples =') ? undefined : samples;
@@ -346,7 +356,11 @@ test('fixed flight readiness waits for block arrival after the camera settles an
         };
       },
       async waitForFunction(fn, route, options) {
-        assert.equal(options.timeout, 10000, 'existing Color deadline remains unchanged');
+        assert.equal(
+          options.timeout,
+          require('../tools/quality/transition-pacing.cjs').deadline(1440),
+          'fixed Color keeps the authored pacing deadline'
+        );
         const vm = require('node:vm'),
           context = {
             id: route,
@@ -369,4 +383,39 @@ test('fixed flight readiness waits for block arrival after the camera settles an
   busy = true;
   await assert.rejects(() => color.forwardFlight(page, manifest('fixed-plain')));
   assert.equal(evaluations, 4, 'failed fixed guards never collect legacy plane states');
+});
+test('legacy Color keeps its deadline and requires matching route, finished content and settled camera', async () => {
+  let waits = 0,
+    busy = true;
+  const scene = { dataset: { travel: 'flying' } },
+    body = { dataset: { page: 'index' } },
+    page = {
+      async waitForFunction(fn, route, options) {
+        waits++;
+        assert.equal(options.timeout, 10000, 'legacy Color deadline remains unchanged');
+        const context = {
+            id: route,
+            document: {
+              body,
+              getElementById: () => ({ hasAttribute: () => busy }),
+              querySelector: () => scene,
+            },
+          },
+          ready = () => require('node:vm').runInNewContext('(' + fn.toString() + ')(id)', context);
+        assert.equal(ready(), false);
+        body.dataset.page = route;
+        assert.equal(ready(), false, 'active content and camera are not ready');
+        busy = false;
+        assert.equal(ready(), false, 'flying camera is not ready');
+        scene.dataset.travel = 'settled';
+        assert.equal(ready(), true);
+        body.dataset.page = 'index';
+        assert.equal(ready(), false, 'another route is not ready');
+      },
+    };
+  await color.settled(page, 'research', manifest('legacy-plain'));
+  const unknown = manifest('legacy-plain');
+  unknown.files['styles.css'].sha256 = '0'.repeat(64);
+  await assert.rejects(() => color.settled(page, 'research', unknown), /Color bytes/);
+  assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
 });

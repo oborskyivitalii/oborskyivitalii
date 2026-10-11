@@ -17,6 +17,9 @@ module.exports = function () {
   const mix = (a, b, t) => ({
     position: lerp(a.position, b.position, t),
     target: lerp(a.target, b.target, t),
+    ...(a.framing !== undefined || b.framing !== undefined
+      ? { framing: (a.framing || 0) + ((b.framing || 0) - (a.framing || 0)) * t }
+      : {}),
   });
   const clamp = (v) => Math.max(0, Math.min(1, v));
   const spline = (a, b, c, d, t) =>
@@ -53,7 +56,11 @@ module.exports = function () {
       right = normalize(cross(forward, [0, 1, 0])),
       up = cross(right, forward);
     const focal = (compact ? Math.min(height, width * 1.15) : height) / (2 * Math.tan(Math.PI / 8)),
-      origin = [width * (compact ? 0.42 : 0.66), height * 0.48];
+      framing = clamp(Number.isFinite(current.framing) ? current.framing : 0),
+      origin = [
+        width * ((compact ? 0.42 : 0.66) * (1 - framing) + 0.5 * framing),
+        height * (0.48 * (1 - framing) + 0.5 * framing),
+      ];
     const camera = (point) => {
       const x = point[0] - current.position[0],
         y = point[1] - current.position[1],

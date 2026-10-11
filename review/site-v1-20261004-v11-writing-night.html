@@ -476,13 +476,18 @@
 
 
 
-  <meta name="site-engine" content="bf00029e91c5bfd7177ca04fd7eb32dc4348e57b227c201a8652b87bad0519b9">
-  <meta name="site-route" content="be195546aed16e6358e4555a1781631ebb2455ccbf05e48da811d9f37898d524">
+  <meta name="site-engine" content="b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc">
+  <meta name="site-route" content="d0c82c84c4a2ff62124b70383e26e6c0cd5bbe781fdd018f5df4467795e062d5">
   <meta name="site-contract" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
 <style>
 :root {
+  --scroll-entry-distance: 88px;
+  --block-motion-duration: 700ms;
+  --block-motion-phase: 1000ms;
+  --block-motion-stagger: 80ms;
+  --block-motion-easing: cubic-bezier(0.65, 0, 0.35, 1);
   --paper: #f3f1ea;
   --ink: #172b36;
   --muted: #435962;
@@ -618,6 +623,11 @@ select:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
+}
+/* The router focuses this reading landmark after arrival. Its native focus
+   ring would outline the whole page; interactive controls keep their own rings. */
+main[tabindex='-1']:focus {
+  outline: none;
 }
 button,
 select {
@@ -1069,7 +1079,7 @@ h1 {
   text-transform: uppercase;
   color: var(--accent);
 }
-.note-row:last-child .note-number {
+.note-row:last-of-type .note-number {
   color: var(--systems);
 }
 .note-row p {
@@ -1113,7 +1123,7 @@ h2 {
   line-height: 1.2;
   margin: 0;
 }
-.section-heading > p:last-child:not(.eyebrow) {
+.section-heading > p:last-of-type:not(.eyebrow) {
   color: var(--muted);
   font-size: 16px;
   max-width: 780px;
@@ -2237,6 +2247,165 @@ body[data-page='writing'] #archive-results {
   .reading-title {
     background: transparent;
     box-shadow: none;
+  }
+}
+
+/* One common native frame clips transient ink without changing scroll geometry.
+   Header, appearance and edge controls remain outside the content frame. */
+#site-content-frame {
+  overflow: clip;
+}
+/* Stable semantic shells keep native measurements. Their ink and paper share
+   one CSS animation and remain fully opaque, including the Writing row grid. */
+[data-scroll-ink] {
+  display: block;
+}
+/* The movable layer keeps the eyebrow's native flex relationship between its
+   accent mark and text, including narrow Home's separate reading shell. */
+.eyebrow > [data-scroll-ink] {
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+  flex-direction: inherit;
+  flex-wrap: inherit;
+  gap: inherit;
+  min-width: 0;
+}
+:where([data-entry-separator-owner], [data-entry-border-source]) {
+  position: relative;
+}
+body[data-page] [data-entry-border-source] {
+  border-color: transparent;
+}
+[data-entry-separator],
+[data-entry-separator-shell] {
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+[data-entry-separator-shell] {
+  left: var(--entry-separator-shell-left);
+  top: var(--entry-separator-shell-top);
+  width: var(--entry-separator-shell-width);
+  height: var(--entry-separator-shell-height);
+}
+[data-entry-separator] {
+  left: var(--entry-separator-left);
+  top: var(--entry-separator-top);
+  display: block;
+}
+[data-entry-separator='top'],
+[data-entry-separator='bottom'] {
+  width: var(--entry-separator-length);
+  height: 0;
+}
+[data-entry-separator='left'],
+[data-entry-separator='right'] {
+  height: var(--entry-separator-length);
+  width: 0;
+}
+[data-entry-separator='top'] {
+  border-top: var(--entry-separator-width) var(--entry-separator-style) var(--entry-separator-color);
+}
+[data-entry-separator='right'] {
+  border-right: var(--entry-separator-width) var(--entry-separator-style)
+    var(--entry-separator-color);
+}
+[data-entry-separator='bottom'] {
+  border-bottom: var(--entry-separator-width) var(--entry-separator-style)
+    var(--entry-separator-color);
+}
+[data-entry-separator='left'] {
+  border-left: var(--entry-separator-width) var(--entry-separator-style)
+    var(--entry-separator-color);
+}
+[data-scroll-entry] {
+  --scroll-entry-delay: 0ms;
+}
+[data-scroll-delay='1'] {
+  --scroll-entry-delay: var(--block-motion-stagger);
+}
+[data-scroll-delay='2'] {
+  --scroll-entry-delay: calc(2 * var(--block-motion-stagger));
+}
+[data-scroll-entry='waiting'] > *,
+[data-scroll-entry='waiting']::before {
+  translate: 0 var(--scroll-entry-distance);
+}
+[data-scroll-entry='entering'] > *,
+[data-scroll-entry='entering']::before {
+  animation: scroll-entry-rise var(--block-motion-duration) var(--block-motion-easing)
+    var(--scroll-entry-delay) both;
+}
+@keyframes scroll-entry-rise {
+  from {
+    translate: 0 var(--scroll-entry-distance);
+  }
+  to {
+    translate: 0 0;
+  }
+}
+/* Visibility only holds the content during camera flight. Each visible unit
+   travels fully outside the viewport at constant opacity; the page never moves
+   as a single plane. Ink and its existing paper pseudo-element share one path. */
+[data-route-blocks] {
+  visibility: hidden;
+}
+[data-route-block='departing'],
+[data-route-block='arriving'] {
+  visibility: visible;
+}
+[data-route-block] {
+  --route-block-delay: 0ms;
+  --route-block-duration: var(--block-motion-duration);
+}
+[data-route-block='departing'] > *,
+[data-route-block='departing']::before {
+  animation: route-block-depart var(--route-block-duration) var(--block-motion-easing)
+    var(--route-block-delay) both;
+}
+[data-route-block='arriving'] > *,
+[data-route-block='arriving']::before {
+  animation: route-block-arrive var(--route-block-duration) var(--block-motion-easing)
+    var(--route-block-delay) both;
+}
+@keyframes route-block-depart {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 var(--route-block-distance);
+  }
+}
+@keyframes route-block-arrive {
+  from {
+    translate: 0 var(--route-block-distance);
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --scroll-entry-distance: 56px;
+  }
+}
+@media print, (prefers-reduced-motion: reduce) {
+  [data-route-blocks],
+  [data-route-block] {
+    visibility: visible;
+  }
+  [data-scroll-entry] > *,
+  [data-scroll-entry]::before,
+  [data-route-block] > *,
+  [data-route-block]::before {
+    animation: none;
+    translate: none;
+  }
+}
+@media print {
+  #site-content-frame {
+    overflow: visible;
   }
 }
 </style>

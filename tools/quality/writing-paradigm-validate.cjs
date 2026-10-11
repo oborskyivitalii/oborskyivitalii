@@ -41,6 +41,7 @@ const scope = {
   acceptance: 'startup-and-warmup-and-steady',
 };
 const frozenBaselineSHA = '11e5432d908ca0b81431ca4eac6721b076c33cb6';
+const frozenBaselineFlight = Symbol('identity-validated frozen baseline flight');
 function identity(manifest) {
   return {
     sourceCommit: manifest.sourceCommit,
@@ -125,7 +126,64 @@ function routeTransfer(input) {
     routeGzipBytes: input.sizes.rows.find((row) => row.route === 'writing').totalGzipBytes,
   };
 }
-function measurement(row, kind, { zero = false, flight = false } = {}) {
+// The frozen artifact predates owned row/camera telemetry. Keep its original
+// transition admission (214cdca, before pacing credit) private to this diagnostic.
+function historicalTransition(row) {
+  const limits = budgets.motion.transition;
+  assert.equal(row.probeVersion, 2, 'invalid/missing transition probe');
+  assert.ok(['cold', 'warm'].includes(row.transitionPhase), 'missing transition phase');
+  assert.ok(row.paints >= limits.minimumPaints, 'insufficient transition paints');
+  assert.ok(
+    Number.isFinite(row.readyMs) && row.readyMs >= 900 && row.readyMs <= limits.readyMaxMs,
+    'invalid/slow input-to-ready latency'
+  );
+  assert.ok(row.paintCallbackMs.p95 <= limits.paintCallbackP95Ms, 'slow transition painted p95');
+  assert.ok(row.paintCallbackMs.max <= limits.paintCallbackMaxMs, 'blocked transition callback');
+  assert.ok(
+    row.paintIntervalsMs.count >= limits.minimumPaints - 1 &&
+      row.paintIntervalsMs.max <= limits.paintGapMaxMs,
+    'transition paint gap'
+  );
+  assert.ok(Array.isArray(row.rawPreparation), 'missing model/layout preparation');
+  for (const sample of row.rawPreparation)
+    assert.ok(
+      ['model', 'layout', 'route'].includes(sample.kind) &&
+        Number.isFinite(sample.duration) &&
+        sample.duration >= 0 &&
+        sample.start >= row.window.startMs &&
+        sample.start + sample.duration <= row.window.endMs,
+      'invalid preparation sample'
+    );
+  const durations = row.rawPreparation.map((x) => x.duration);
+  assert.deepEqual(
+    row.preparationMs,
+    {
+      count: durations.length,
+      max: durations.length ? Math.max(...durations) : 0,
+      total: durations.reduce((n, x) => n + x, 0),
+    },
+    'incorrect preparation metrics'
+  );
+  assert.ok(
+    row.rawPreparation.some((x) => x.kind === 'layout'),
+    'missing layout preparation probe'
+  );
+  assert.equal(
+    row.transitionPhase,
+    row.rawPreparation.some((x) => x.kind === 'model') ? 'cold' : 'warm'
+  );
+  assert.ok(row.preparationMs.max <= limits.preparationMaxMs, 'blocked scene preparation');
+  for (const sample of row.rawLongTasks)
+    assert.ok(
+      Number.isFinite(sample.duration) &&
+        sample.duration >= 0 &&
+        sample.start >= row.window.startMs &&
+        sample.start + sample.duration <= row.window.endMs,
+      'long task outside measurement'
+    );
+  return true;
+}
+function measurement(row, kind, { zero = false, flight = false, historicalContext } = {}) {
   assert.equal(row?.kind, kind, 'wrong observation kind');
   assert.equal(row.probeVersion, 2, 'missing maintained probe');
   assert.ok(
@@ -211,7 +269,8 @@ function measurement(row, kind, { zero = false, flight = false } = {}) {
   if (flight) {
     for (const key of ['readyMs', 'transitionPhase'])
       assert.deepEqual(row[key], recomputed[key], 'declared ' + key + ' differs from raw events');
-    transition(row);
+    if (historicalContext === frozenBaselineFlight) historicalTransition(row);
+    else transition(row);
   }
   return row;
 }
@@ -1011,7 +1070,16 @@ function validateTrial(record, row, index, expected, gate, trustedTransfers) {
     row.flights.map((value) => value.from),
     ['research', 'writing', 'talks', 'writing']
   );
-  for (const sample of row.flights) measurement(sample, 'flight', { flight: true });
+  // validate() has already checked both authoritative identities and the exact
+  // ordered label above. No exported caller can manufacture this capability.
+  for (const sample of row.flights) {
+    if (row.label === 'candidate')
+      assert.equal(sample.width, profile.width, 'flight viewport differs from trial profile');
+    measurement(sample, 'flight', {
+      flight: true,
+      historicalContext: row.label === 'baseline' ? frozenBaselineFlight : undefined,
+    });
+  }
   const chronology = [row.flights[0], ...sequence, ...row.flights.slice(1)];
   for (let index = 1; index < chronology.length; index++)
     assert.ok(
@@ -1149,7 +1217,11 @@ function validate(record, { trustedIdentities, trustedTransfers } = {}) {
         startup,
         metrics,
         baselineReady: a.readyMs,
-        readyDelta: b.readyMs - a.readyMs,
+        candidateRawReady: b.readyMs,
+        candidateEquivalentReady: b.equivalentReadyMs,
+        // Current admission has independently verified the complete plan and
+        // equivalent214 latency. The frozen report keeps its original raw ready.
+        readyDelta: b.equivalentReadyMs - a.readyMs,
         rawTransferDelta: candidate.transfer.routeRawBytes - baseline.transfer.routeRawBytes,
         gzipTransferDelta: candidate.transfer.routeGzipBytes - baseline.transfer.routeGzipBytes,
       };

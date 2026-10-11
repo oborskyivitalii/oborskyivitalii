@@ -5,9 +5,10 @@ const assert = require('node:assert/strict'),
 const { toolRequire, report, launchOptions } = require('./common.cjs'),
   { start } = require('./serve.cjs');
 const { liveScrollPrecondition } = require('./engine-browser.cjs'),
-  { probe: scrollProbe, fixedProbe } = require('./scroll-browser.cjs'),
+  { legacyProbe: scrollProbe, fixedProbe } = require('./scroll-browser.cjs'),
   colorMotion = require('./color-motion-contract.cjs'),
-  blockFlight = require('./block-flight.cjs');
+  blockFlight = require('./block-flight.cjs'),
+  pacing = require('./transition-pacing.cjs');
 const { colorPaint } = require('./validate.cjs');
 function paintProbe() {
   const paint = { completed: 0, ordinaryShapes: 0, customShapes: 0 };
@@ -19,23 +20,28 @@ function paintProbe() {
     paint.customShapes = sample.customShapes;
   };
 }
-async function settled(page, route) {
+async function settled(page, route, artifact) {
+  const runtime = colorMotion.select(artifact),
+    timeout =
+      runtime.behavior === 'fixed-blocks'
+        ? pacing.deadline(page.viewportSize()?.width ?? 1440)
+        : 10000;
   await page.waitForFunction(
     (id) =>
       document.body.dataset.page === id &&
       !document.getElementById('site-content').hasAttribute('aria-busy') &&
       document.querySelector('.space-scene').dataset.travel === 'settled',
     route,
-    { polling: 25, timeout: 10000 }
+    { polling: 25, timeout }
   );
 }
-async function travel(page, route) {
+async function travel(page, route, artifact) {
   const selector =
     route === 'credits'
       ? 'footer a[href="credits.html"]'
       : '.site-header nav a[href="' + (route === 'index' ? './' : route + '.html') + '"]';
   await page.locator(selector).click();
-  await settled(page, route);
+  await settled(page, route, artifact);
 }
 async function state(page) {
   return page.evaluate(() => {
@@ -62,7 +68,7 @@ async function forwardFlight(page, artifact) {
       window.__flightSamples = [];
     });
     await page.locator('.site-header nav a[href="research.html"]').click();
-    await settled(page, 'research');
+    await settled(page, 'research', artifact);
     const samples = await page.evaluate(() => window.__flightSamples);
     blockFlight.checkTiming(samples);
     assert.ok(
@@ -95,10 +101,10 @@ async function forwardFlight(page, artifact) {
     samples.some((s) => s.scene.travel === 'flying'),
     'actual camera flight'
   );
-  await settled(page, 'research');
+  await settled(page, 'research', artifact);
   return samples;
 }
-async function edge(page, route, direction) {
+async function edge(page, route, direction, artifact) {
   await page.evaluate(
     (d) =>
       scrollTo({ top: d < 0 ? 0 : document.documentElement.scrollHeight, behavior: 'instant' }),
@@ -107,7 +113,7 @@ async function edge(page, route, direction) {
   await page.waitForTimeout(900);
   await page.mouse.move(200, 150);
   await page.mouse.wheel(0, direction * 320);
-  await settled(page, route);
+  await settled(page, route, artifact);
 }
 async function preferences(page, id, value) {
   await page.evaluate(
@@ -132,7 +138,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     const page = await context.newPage();
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(url + '/index.html');
-    await settled(page, 'index');
+    await settled(page, 'index', artifact);
     await page.evaluate((mode) => {
       const control = document.getElementById('theme-mode');
       control.value = mode;
@@ -178,13 +184,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       'Motion: on',
       'Home range checked with live motion'
     );
-    await edge(page, 'research', 1);
+    await edge(page, 'research', 1, artifact);
     const homeEdge = await state(page);
     assert.equal(homeEdge.page, 'research', 'shortened Home continues to Research');
-    await travel(page, 'index');
+    await travel(page, 'index', artifact);
     const flight = await forwardFlight(page, artifact);
-    await edge(page, 'writing', 1);
-    await edge(page, 'research', -1);
+    await edge(page, 'writing', 1, artifact);
+    await edge(page, 'research', -1, artifact);
     const reverse = await state(page);
     assert.ok(Math.abs(reverse.y - reverse.max) <= 2, 'reverse arrives at real native bottom');
     await preferences(page, 'end-scroll', false);
@@ -193,11 +199,11 @@ async function scenario(browser, url, artifact, engine, width, theme) {
     await page.waitForTimeout(350);
     assert.equal((await state(page)).page, 'research', 'disabled edge scrolling remains native');
     await preferences(page, 'end-scroll', true);
-    await travel(page, 'credits');
+    await travel(page, 'credits', artifact);
     await page.mouse.wheel(0, 320);
     await page.waitForTimeout(350);
     assert.equal((await state(page)).page, 'credits', 'Credits stays outside itinerary');
-    await travel(page, 'index');
+    await travel(page, 'index', artifact);
     await page.waitForTimeout(900);
     await page.mouse.wheel(0, -320);
     await page.waitForTimeout(350);

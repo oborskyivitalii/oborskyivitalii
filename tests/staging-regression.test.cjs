@@ -18,7 +18,7 @@ test('selected journeys compare actual base runtime and Color identities without
     components: { ...components, variant, engine: variant.fingerprint },
   };
   const reviewed = require('../tools/quality/color-motion-contract.cjs').reviewedRuntime(
-    'legacy-plain'
+    'fixed-plain'
   );
   assert.deepEqual(variant, reviewed.variant, 'fixture uses the reviewed authored runtime');
   for (const [name, sha256] of Object.entries(reviewed.files))
@@ -214,9 +214,7 @@ test('selected browser regression requires all route observations, navigation, f
     (r) => (r.navigation[0].checks.flightTiming = false),
     (r) => r.navigation[0].scrollArrivals.pop(),
     (r) => (r.navigation[0].scrollArrivals[0].samples[3].y = 999),
-    (r) =>
-      (r.navigation[0].scrollArrivals[0].samples[3].camera =
-        r.navigation[0].scrollArrivals[0].samples[2].camera),
+    (r) => (r.navigation[0].scrollArrivals[0].samples[3].camera = 'moving-camera'),
     (r) => r.failures.pop(),
     (r) => (r.failures[0] = structuredClone(r.failures[1])),
     (r) => delete r.failures[0].checks.evidence,
@@ -405,23 +403,31 @@ test('the functional driver executes precisely its selected helpers and closes e
       return selection.map(fixture.analyticsRow);
     },
   });
-  assert.deepEqual(closed, ['chromium', 'firefox']);
+  assert.deepEqual(closed.sort(), ['chromium', 'firefox']);
+  assert.deepEqual(
+    report.browsers.map((row) => row.engine),
+    ['chromium', 'firefox']
+  );
   for (const [group, expected] of [
     ['journey', stage.journeyCases()],
     ['navigation', stage.navigationCases()],
     ['failure', stage.failureCases()],
     ['analytics', stage.analyticsCases()],
   ]) {
-    assert.deepEqual(
-      calls
-        .filter((row) => row.group === group)
-        .map((row) => {
-          const selected = { ...row };
-          delete selected.group;
-          return selected;
-        }),
-      expected
-    );
+    const observed = calls
+      .filter((row) => row.group === group)
+      .map((row) => {
+        const selected = { ...row };
+        delete selected.group;
+        return selected;
+      });
+    assert.equal(observed.length, expected.length);
+    for (const selected of expected)
+      assert.equal(
+        observed.filter((row) => JSON.stringify(row) === JSON.stringify(selected)).length,
+        1,
+        'each selected functional case executes exactly once'
+      );
   }
   assert.deepEqual(report.startupFailures, []);
   assert.equal(
@@ -429,6 +435,71 @@ test('the functional driver executes precisely its selected helpers and closes e
       .failures,
     10
   );
+});
+test('functional overlap is bounded to two engine groups and joins failed cleanup before returning', async () => {
+  let release,
+    active = 0,
+    maximum = 0,
+    finished = false;
+  const gate = new Promise((resolve) => (release = resolve)),
+    closed = [],
+    calls = [];
+  const pending = stage
+    .collectFunctional(fixture.target, fixture.manifest(), {
+      launch: async (engine) => {
+        active++;
+        maximum = Math.max(maximum, active);
+        calls.push('launch ' + engine);
+        return {
+          engine,
+          executable: 'controlled fixture',
+          version: () => 'fixture',
+          close: async () => {
+            closed.push(engine);
+            active--;
+            if (engine === 'chromium') throw Error('controlled close failure');
+          },
+        };
+      },
+      preview: async (browser, url, manifest, variant, width, mode) => {
+        if (browser.engine === 'chromium') throw Error('controlled first-group failure');
+        await gate;
+        calls.push('preview ' + browser.engine);
+        return fixture.journeyRow({ engine: browser.engine, width, mode }, manifest);
+      },
+      nav: async (browser, url, selected) => fixture.navigationRow(selected),
+    })
+    .then(
+      (report) => {
+        finished = true;
+        return { report };
+      },
+      (error) => {
+        finished = true;
+        return { error, report: error.detail };
+      }
+    );
+  for (let turn = 0; turn < 10; turn++) await Promise.resolve();
+  assert.equal(maximum, 2, 'only two functional browsers can overlap');
+  assert.equal(finished, false, 'a failed group cannot skip the other group join');
+  assert.deepEqual(closed, ['chromium']);
+  assert.equal(active, 1);
+  release();
+  const { error, report } = await pending;
+  assert.equal(error.functionalCleanupFailed, true, 'failed closure prevents isolated benchmarks');
+  assert.equal(active, 0, 'all functional browser cleanup finished');
+  assert.deepEqual(closed, ['chromium', 'firefox']);
+  assert.deepEqual(
+    report.browsers.map((row) => row.engine),
+    ['chromium', 'firefox'],
+    'report order follows the selected engine order despite completion order'
+  );
+  assert.deepEqual(report.startupFailures, [
+    { engine: 'chromium', error: 'controlled first-group failure' },
+    { engine: 'chromium', error: 'browser close: controlled close failure' },
+  ]);
+  assert.equal(report.journeys.length, 2, 'the independent second engine completes every case');
+  assert.equal(calls.filter((call) => call.startsWith('launch ')).length, 2);
 });
 test('performance driver runs two route samples and two audits serially with a closed measurement browser', async () => {
   const calls = [];

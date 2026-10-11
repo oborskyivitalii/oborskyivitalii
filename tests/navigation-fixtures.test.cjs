@@ -257,60 +257,320 @@ test('a declared animated interruption without a flight never fabricates a print
   assert.deepEqual(h.events, []);
   assert.equal(h.disconnected(), 1);
 });
-function spatialSamples() {
-  const samples = [0.05, 0.1, 0.2, 0.3, 0.4, 0.55, 0.6, 0.7, 0.8, 0.9, 0.99].map((progress) => ({
+function blockSamples(direction = 'forward') {
+  function unit(stage, y, row, peer = 0) {
+    const plan = require('../tools/quality/transition-pacing.cjs').rowPlan(1440, 2);
+    const order = direction === 'forward' ? row : 1 - row,
+      translate = '0px ' + y + 'px',
+      layer = {
+        translate,
+        opacity: 1,
+        animation: {
+          name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+          delay: order * plan.rowStepMs,
+          duration: plan.rowDurationMs,
+        },
+      };
+    return {
+      stage,
+      direction,
+      row,
+      order,
+      top: row === 0 ? 100 + peer * 8 : 350,
+      bottom: row === 0 ? 200 + peer * 30 : 450,
+      borderOwner: row === 1 ? '2' : null,
+      opacity: 1,
+      ink: [translate],
+      paper: translate,
+      layers: [
+        structuredClone(layer),
+        structuredClone(layer),
+        ...(row === 1
+          ? [
+              {
+                ...structuredClone(layer),
+                separator: 'bottom',
+                separatorSource: 'unit',
+                borderOwner: '2',
+                separatorPaint: { width: 1, length: 300, style: 'solid', color: 'rgb(20, 30, 40)' },
+              },
+            ]
+          : []),
+      ],
+    };
+  }
+  const units = (stage, y) => [unit(stage, y, 0), unit(stage, y, 0, 1), unit(stage, y, 1)];
+  const sign = direction === 'forward' ? 1 : -1;
+  return [
+    {
+      stage: 'departing',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('departing', -20 * sign),
+    },
+    {
+      stage: 'departing',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('departing', -200 * sign),
+    },
+    { stage: 'holding', cameraStage: 'center', framing: 0.4, units: [] },
+    { stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    { kind: 'mount', stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    { stage: 'holding', cameraStage: 'restore', framing: 0.4, units: [] },
+    {
+      stage: 'arriving',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('arriving', 200 * sign),
+    },
+    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 20 * sign) },
+  ].map((sample, i) => ({
     kind: 'progress',
-    progress,
-    opacity: progress < 0.46 ? 1 - progress / 0.46 : (progress - 0.51) / 0.49,
-    depth: progress < 0.5 ? 100 : -100,
-    stage: progress < 0.5 ? 'depart' : 'arrive',
-    direction: 'forward',
+    progress: i / 8,
+    opacity: 1,
+    viewportWidth: 1440,
+    transform: 'none',
+    borderSources:
+      sample.stage === 'departing' || sample.stage === 'arriving'
+        ? [{ sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }] }]
+        : [],
+    ...sample,
   }));
-  samples.splice(5, 0, { kind: 'mount', progress: 0.56, opacity: 0, direction: 'forward' });
-  return samples;
 }
-test('spatial handover observes the real hidden mount even if no painted sample lands at the midpoint', () => {
-  checkTiming(spatialSamples(), 'color');
+test('block navigation requires directional departure, centered flight, restored framing and arrival', () => {
+  for (const direction of ['forward', 'backward']) checkTiming(blockSamples(direction), 'color');
   const invalid = [
-    (samples) => (samples.find((sample) => sample.kind === 'mount').opacity = 0.1),
-    (samples) => (samples.find((sample) => sample.kind === 'mount').progress = 0.49),
-    (samples) => (samples.find((sample) => sample.kind === 'mount').progress = 1),
+    (samples) => (samples[0].opacity = 0.5),
+    (samples) => (samples[0].transform = 'matrix(1,0,0,1,0,10)'),
+    (samples) => (samples[3].framing = 0.8),
+    (samples) => (samples[3].stage = 'arriving'),
+    (samples) => (samples[6].cameraStage = 'restore'),
+    (samples) => (samples[6].framing = 0.2),
+    (samples) => (samples[0].units[0].ink = ['0px 20px']),
+    (samples) => (samples[6].units[0].paper = '0px -20px'),
+    (samples) => samples.splice(2, 0, { ...samples[6] }),
+    (samples) => samples.splice(6, 0, { ...samples[0] }),
+    (samples) => samples.splice(2, 1),
+    (samples) => samples.splice(4, 1),
+    (samples) => samples.push({ ...samples[4] }),
+    (samples) => (samples[4].stage = 'arriving'),
     (samples) =>
-      samples.splice(
-        samples.findIndex((sample) => sample.kind === 'mount'),
-        1
-      ),
-    (samples) => samples.push({ ...samples.find((sample) => sample.kind === 'mount') }),
-    (samples) =>
-      samples.push({
-        kind: 'progress',
-        progress: 0.49,
-        opacity: 0.1,
-        stage: 'depart',
-        depth: 100,
-        direction: 'forward',
-      }),
-    (samples) =>
-      samples.splice(0, samples.length, ...samples.filter((sample) => sample.stage !== 'arrive')),
+      samples.splice(0, samples.length, ...samples.filter((sample) => sample.stage !== 'arriving')),
   ];
   for (const mutate of invalid) {
-    const samples = spatialSamples();
+    const samples = blockSamples();
     mutate(samples);
     assert.throws(() => checkTiming(samples, 'color'));
   }
 });
-test('timing evidence records the actual mount synchronously and keeps ordinary progress samples', () => {
-  const scene = { dataset: { progress: '.56', direction: 'forward' } },
-    content = { dataset: { flightDepth: '0' }, hasAttribute: () => true },
+test('native row timing rejects reversed order, serial or wrong waves and separators that disappear or stay still', () => {
+  const invalid = [
+    (samples) => (samples[0].units[0].order = 1),
+    (samples) => (samples[0].units[2].top = 50),
+    (samples) => {
+      for (const unit of samples[0].units) {
+        unit.row = 0;
+        unit.order = 0;
+        for (const layer of unit.layers) layer.animation.delay = 0;
+      }
+    },
+    (samples) => {
+      for (const layer of samples[0].units[2].layers) layer.animation.delay = 150;
+    },
+    (samples) => {
+      for (const unit of samples[0].units)
+        for (const layer of unit.layers)
+          layer.animation.delay = unit.order * layer.animation.duration;
+    },
+    (samples) => {
+      for (const layer of samples[0].units[1].layers) layer.animation.delay = 10;
+    },
+    (samples) => samples[0].units[2].layers.pop(),
+    (samples) => (samples[6].units[2].layers.at(-1).translate = 'none'),
+    (samples) => (samples[6].units[2].layers.at(-1).animation.name = 'none'),
+    (samples) =>
+      samples[0].borderSources.push({
+        sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }],
+      }),
+    (samples) => (samples[0].units[2].layers.at(-1).separatorPaint.color = 'rgba(0, 0, 0, 0)'),
+    (samples) => (samples[0].units[2].layers.at(-1).separatorPaint.length = 0),
+    (samples) => (samples[0].borderSources[0].sides[0].color = 'rgb(20, 30, 40)'),
+  ];
+  for (const mutate of invalid) {
+    const samples = blockSamples();
+    mutate(samples);
+    assert.throws(() => checkTiming(samples));
+  }
+  for (const phase of [0, 6]) {
+    const samples = blockSamples('backward');
+    for (const unit of samples[phase].units) {
+      unit.order = unit.row;
+      for (const layer of unit.layers) layer.animation.delay = unit.row * layer.animation.duration;
+    }
+    assert.throws(() => checkTiming(samples), /motion order follows route direction/);
+  }
+});
+
+function fractionalBlockSamples(rows, direction, serialize) {
+  const samples = blockSamples(direction);
+  const plan = require('../tools/quality/transition-pacing.cjs').rowPlan(1440, rows);
+  for (const sample of samples) {
+    if (!sample.units.length) continue;
+    const first = sample.units[0];
+    const last = sample.units[2];
+    sample.units = Array.from({ length: rows }, (_, row) => {
+      const unit = structuredClone(row === rows - 1 ? last : first);
+      unit.row = row;
+      unit.order = direction === 'backward' ? rows - 1 - row : row;
+      unit.top = 100 + row * 30;
+      unit.bottom = unit.top + 20;
+      for (const layer of unit.layers) {
+        layer.animation.delay = serialize(unit.order * plan.rowStepMs);
+        layer.animation.duration = plan.rowDurationMs;
+      }
+      return unit;
+    });
+    const peer = structuredClone(sample.units[0]);
+    peer.top += 5;
+    sample.units.splice(1, 0, peer);
+  }
+  return samples;
+}
+
+function checkFractionalTimingViolations(samples, rows) {
+  const mutations = [
+    (unit) => {
+      for (const layer of unit.layers) layer.animation.delay += 0.002;
+    },
+    (unit) => {
+      for (const layer of unit.layers) layer.animation.duration += 0.001;
+    },
+    (unit) => {
+      for (const layer of unit.layers)
+        layer.animation.delay = unit.order * layer.animation.duration;
+    },
+  ];
+  for (const phase of [0, 6])
+    for (const mutate of mutations) {
+      const wrong = structuredClone(samples);
+      const unit = wrong[phase].units.find((unit) => unit.order === 1);
+      mutate(unit);
+      assert.throws(() => checkTiming(wrong));
+    }
+  const last = structuredClone(samples);
+  for (const unit of last[0].units.filter((unit) => unit.order === rows - 1))
+    for (const layer of unit.layers) layer.animation.delay += 0.002;
+  assert.throws(() => checkTiming(last), /approved overlapping native row wave/);
+}
+
+test('computed CSS fractional waves admit microsecond serialization and reject timing changes', () => {
+  const serializers = [
+    (ms) => Number((ms / 1000).toPrecision(6)) * 1000,
+    (ms) => Number((ms / 1000).toFixed(6)) * 1000,
+  ];
+  for (const rows of [8, 24])
+    for (const direction of ['forward', 'backward'])
+      for (const serialize of serializers) {
+        const samples = fractionalBlockSamples(rows, direction, serialize);
+        assert.ok(
+          samples[0].units.some((unit) => unit.layers[0].animation.delay % 1 !== 0),
+          'the regression exercises actual fractional serialized delays'
+        );
+        for (const width of [390, 1440]) {
+          for (const sample of samples) sample.viewportWidth = width;
+          assert.doesNotThrow(() => checkTiming(samples));
+        }
+        checkFractionalTimingViolations(samples, rows);
+      }
+});
+
+function noPaperSamples(direction, isolated) {
+  const samples = blockSamples(direction);
+  for (const sample of samples) {
+    if (!sample.units.length) continue;
+    const unit = sample.units[2];
+    unit.tag = isolated ? 'SPAN' : 'NAV';
+    unit.row = 0;
+    unit.order = 0;
+    unit.paper = null;
+    unit.paperContent = 'none';
+    unit.layers = isolated
+      ? unit.layers.filter((layer) => layer.separator)
+      : unit.layers.filter((_, index) => index !== 1);
+    for (const layer of unit.layers) {
+      layer.animation.delay = 0;
+      layer.animation.duration = 1000;
+    }
+    unit.ink = unit.layers.map((layer) => layer.translate);
+    sample.units = [unit];
+  }
+  return samples;
+}
+test('navigation without a paper pseudo-element and isolated dividers retain actual animated layers', () => {
+  for (const isolated of [false, true])
+    for (const direction of ['forward', 'backward']) {
+      const samples = noPaperSamples(direction, isolated);
+      checkTiming(samples);
+      const missingAnimation = structuredClone(samples);
+      missingAnimation[0].units[0].layers.at(-1).animation.name = 'none';
+      assert.throws(() => checkTiming(missingAnimation));
+      if (isolated) {
+        const staticDivider = structuredClone(samples);
+        for (const sample of staticDivider.filter((sample) => sample.stage === 'departing')) {
+          sample.units[0].ink = ['none'];
+          sample.units[0].layers[0].translate = 'none';
+        }
+        assert.throws(() => checkTiming(staticDivider), /actual signed block movement/);
+      }
+    }
+});
+test('timing evidence records the hidden native mount, camera framing and opaque native content', () => {
+  const routeUnits = [],
+    borderSources = [];
+  const scene = {
+      dataset: { progress: '.56', direction: 'forward', cameraStage: 'transit', framing: '1' },
+    },
+    main = { dataset: { routeBlocks: 'holding' } },
+    content = {
+      hasAttribute: () => true,
+      querySelector: () => main,
+      querySelectorAll: (selector) =>
+        selector === '[data-route-block]' ? routeUnits : borderSources,
+    },
     listeners = new Map();
-  let observer;
+  let observer,
+    time = 100;
   const context = {
     window: { addEventListener: (name, fn) => listeners.set(name, fn) },
     document: {
       body: { dataset: { page: 'writing' } },
       querySelector: (selector) => (selector === '.space-scene' ? scene : content),
     },
-    getComputedStyle: () => ({ opacity: '0' }),
+    performance: { now: () => time },
+    innerWidth: 1440,
+    innerHeight: 844,
+    getComputedStyle: (element, pseudo) => ({
+      opacity: '1',
+      transform: 'none',
+      translate: '0px 40px',
+      animationName: 'route-block-depart',
+      animationDelay: '0.2s',
+      animationDuration: '200ms',
+      content: pseudo && element.noPaper ? 'none' : '""',
+      width: '300px',
+      height: '0px',
+      getPropertyValue: (name) =>
+        name === 'border-top-width'
+          ? '2px'
+          : name.endsWith('-width')
+            ? '0px'
+            : name.endsWith('-color')
+              ? element.dataset?.entrySeparator
+                ? 'rgb(20, 30, 40)'
+                : 'rgba(0, 0, 0, 0)'
+              : 'solid',
+    }),
     MutationObserver: class MutationObserver {
       constructor(callback) {
         observer = callback;
@@ -321,13 +581,101 @@ test('timing evidence records the actual mount synchronously and keeps ordinary 
   vm.runInNewContext('(' + timingProbe.toString() + ')()', context);
   listeners.get('site:page-mount')();
   observer();
+  assert.equal(context.window.__flightSamples.length, 1, 'same-stage progress is bounded');
+  time += 100;
+  observer();
   const samples = context.window.__flightSamples;
   assert.equal(samples.length, 2);
   assert.equal(samples[0].kind, 'mount');
   assert.equal(samples[0].progress, 0.56);
-  assert.equal(samples[0].opacity, 0);
+  assert.equal(samples[0].opacity, 1);
+  assert.equal(samples[0].transform, 'none');
+  assert.equal(samples[0].stage, 'holding');
+  assert.equal(samples[0].cameraStage, 'transit');
+  assert.equal(samples[0].framing, 1);
   assert.equal(samples[0].page, 'writing');
   assert.equal(samples[1].kind, 'progress');
+  routeUnits.push({
+    tagName: 'ARTICLE',
+    id: 'native-block',
+    className: 'research-card',
+    dataset: {
+      routeBlock: 'departing',
+      routeDirection: 'backward',
+      routeRow: '1',
+      routeDelay: '0',
+      entryBorderOwner: '2',
+    },
+    children: [
+      { dataset: {} },
+      {
+        dataset: { entrySeparator: 'top', entrySeparatorSource: 'ancestor', entryBorderOwner: '2' },
+      },
+    ],
+    getBoundingClientRect: () => ({ top: 320, bottom: 450 }),
+  });
+  borderSources.push({
+    dataset: { entryBorderTopOwner: '2' },
+    getBoundingClientRect: () => ({ top: 300, bottom: 450 }),
+  });
+  main.dataset.routeBlocks = 'departing';
+  observer();
+  const actual = samples[2].units[0];
+  assert.equal(actual.row, 1);
+  assert.equal(actual.order, 0);
+  assert.equal(actual.top, 320);
+  assert.equal(actual.bottom, 450);
+  assert.equal(actual.layers[0].animation.delay, 200);
+  assert.equal(actual.layers[0].animation.duration, 200);
+  assert.equal(actual.layers[1].separator, 'top');
+  assert.equal(actual.layers[1].separatorSource, 'ancestor');
+  assert.equal(actual.layers[1].borderOwner, '2');
+  assert.equal(actual.layers[1].translate, actual.paper);
+  assert.equal(actual.layers[1].separatorPaint.width, 2);
+  assert.equal(actual.layers[1].separatorPaint.length, 300);
+  assert.equal(actual.layers[1].separatorPaint.color, 'rgb(20, 30, 40)');
+  assert.deepEqual(JSON.parse(JSON.stringify(samples[2].borderSources)), [
+    { sides: [{ owner: '2', side: 'top', color: 'rgba(0, 0, 0, 0)' }] },
+  ]);
+  routeUnits.push({
+    tagName: 'NAV',
+    id: 'native-navigation',
+    className: 'section-nav',
+    dataset: {
+      routeBlock: 'departing',
+      routeDirection: 'backward',
+      routeRow: '0',
+      routeDelay: '1',
+    },
+    children: [{ dataset: {} }],
+    noPaper: true,
+    getBoundingClientRect: () => ({ top: 200, bottom: 260 }),
+  });
+  time += 100;
+  observer();
+  assert.equal(samples[3].units[1].paper, null);
+  assert.equal(samples[3].units[1].paperContent, 'none');
+  assert.equal(samples[3].units[1].layers.length, 1);
+  const before = samples.length;
+  for (let frame = 0; frame < 100; frame++) {
+    time += 10;
+    scene.dataset.progress = String(frame / 100);
+    observer();
+  }
+  assert.equal(samples.length - before, 10, 'progress reads run at most every100ms');
+  scene.dataset.cameraStage = 'center';
+  observer();
+  scene.dataset.cameraStage = 'transit';
+  observer();
+  listeners.get('site:page-mount')();
+  assert.equal(
+    samples
+      .slice(-3)
+      .map((sample) => sample.kind)
+      .join('/'),
+    'progress/progress/mount'
+  );
+  assert.equal(samples.at(-3).cameraStage, 'center', 'stage changes are recorded without throttle');
 });
 function historyPositionFixture(update = () => {}) {
   let time = 0;
