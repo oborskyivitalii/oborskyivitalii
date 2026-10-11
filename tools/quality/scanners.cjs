@@ -422,6 +422,7 @@ function security() {
   const reviewed = [
       ...require('./secrets-baseline.json').findings,
       ...require('./secrets-reviewed.json').findings,
+      ...require('./secrets-publication.json').findings,
     ],
     newFindings = [];
   const navigationFile = '.github/repository-intelligence/agent-context.json';

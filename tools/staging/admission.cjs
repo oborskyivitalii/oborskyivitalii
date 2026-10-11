@@ -52,13 +52,49 @@ async function requireAdmission(github, context, pr) {
   return evidence;
 }
 
-async function publishMergeAdmission(github, context, pr, main, expectedSource, outcomes) {
+function controller(context, pr, main, expectedSource) {
   const flow = require('./review-flow.cjs');
   flow.controller(context, main);
   assert.equal(context.actor, context.repo.owner);
   flow.lease(pr, expectedSource);
   assert.equal(pr.base.ref, 'main');
   assert.equal(pr.base.repo.full_name, flow.repository);
+  return flow;
+}
+
+async function beginMergeAdmission(github, context, pr, main) {
+  const flow = controller(context, pr, main, pr.head.sha);
+  const { data } = await github.rest.checks.create({
+    ...context.repo,
+    name: 'Staging admission',
+    head_sha: pr.head.sha,
+    status: 'in_progress',
+    external_id: String(context.runId) + '/' + String(context.runAttempt || 1),
+    details_url: 'https://github.com/' + flow.repository + '/actions/runs/' + context.runId,
+    output: {
+      title: 'Both staging hosts must accept this attempt',
+      summary: 'A previous successful staging attempt cannot admit this new attempt.',
+    },
+  });
+  return data.id;
+}
+
+async function finishMergeAdmission(github, context, source, id, conclusion, output) {
+  const { data } = await github.rest.checks.get({ ...context.repo, check_run_id: Number(id) });
+  assert.equal(data.name, 'Staging admission');
+  assert.equal(data.head_sha, source);
+  assert.equal(data.external_id, String(context.runId) + '/' + String(context.runAttempt || 1));
+  return github.rest.checks.update({
+    ...context.repo,
+    check_run_id: data.id,
+    status: 'completed',
+    conclusion,
+    output,
+  });
+}
+
+async function publishMergeAdmission(github, context, pr, main, expectedSource, outcomes, id) {
+  controller(context, pr, main, expectedSource);
   const evidence = await requireAdmission(github, context, pr);
   const comparison = (
     await github.rest.repos.compareCommitsWithBasehead({
@@ -74,23 +110,91 @@ async function publishMergeAdmission(github, context, pr, main, expectedSource, 
   assert.equal(comparison.behind_by, 0);
   assert.equal(outcomes.promote, 'success', 'stable Cloudflare verification failed');
   assert.equal(outcomes.pages, 'success', 'Pages mirror must be activated and verified');
-  return github.rest.checks.create({
-    ...context.repo,
-    name: 'Staging admission',
-    head_sha: expectedSource,
-    status: 'completed',
-    conclusion: 'success',
-    details_url: 'https://github.com/' + flow.repository + '/actions/runs/' + context.runId,
-    output: {
-      title: 'Exact PR source accepted on both staging hosts',
-      summary:
-        'Source admission: ' +
-        evidence.map((item) => item.workflowRun + '/' + item.attempt).join(', ') +
-        '. Protected main: ' +
-        main.commit.sha +
-        '. This result does not authorize production.',
-    },
+  return finishMergeAdmission(github, context, expectedSource, id, 'success', {
+    title: 'Exact PR source accepted on both staging hosts',
+    summary:
+      'Source admission: ' +
+      evidence.map((item) => item.workflowRun + '/' + item.attempt).join(', ') +
+      '. Protected main: ' +
+      main.commit.sha +
+      '. This result does not authorize production.',
   });
 }
 
-module.exports = { routes, validateRun, requireAdmission, publishMergeAdmission };
+async function verifyMerge(github, context, pr) {
+  const flow = require('./review-flow.cjs');
+  assert.equal(pr.merged, true);
+  assert.equal(pr.base.ref, 'main');
+  for (const endpoint of [pr.base, pr.head]) assert.equal(endpoint.repo.full_name, flow.repository);
+  const commits = await Promise.all(
+    [pr.head.sha, pr.merge_commit_sha].map(
+      async (ref) => (await github.rest.repos.getCommit({ ...context.repo, ref })).data
+    )
+  );
+  assert.equal(
+    commits[0].commit.tree.sha,
+    commits[1].commit.tree.sha,
+    'merged source tree differs from the tested PR; stage the changed source'
+  );
+  const checks = await github.paginate(github.rest.checks.listForRef, {
+    ...context.repo,
+    ref: pr.head.sha,
+    check_name: 'Staging admission',
+    filter: 'latest',
+    per_page: 100,
+  });
+  const check = checks
+    .filter((item) => item.name === 'Staging admission')
+    .sort((left, right) => right.id - left.id)[0];
+  assert.ok(check, 'missing staging admission');
+  assert.equal(check.head_sha, pr.head.sha);
+  assert.equal(check.app.id, 15368);
+  assert.equal(check.status, 'completed');
+  assert.equal(check.conclusion, 'success');
+  assert.match(check.external_id, /^[1-9]\d*\/[1-9]\d*$/);
+  const [runId, attempt] = check.external_id.split('/').map(flow.positive);
+  const run = (await github.rest.actions.getWorkflowRun({ ...context.repo, run_id: runId })).data;
+  assert.equal(run.path, flow.workflow);
+  assert.equal(run.head_branch, 'main');
+  assert.equal(run.head_repository.full_name, flow.repository);
+  assert.equal(run.actor.login, context.repo.owner);
+  assert.ok(['workflow_dispatch', 'issue_comment'].includes(run.event));
+  assert.equal(run.run_attempt, attempt);
+  assert.equal(run.status, 'completed');
+  assert.equal(run.conclusion, 'success');
+  const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRunAttempt, {
+    ...context.repo,
+    run_id: runId,
+    attempt_number: attempt,
+    per_page: 100,
+  });
+  for (const name of ['promote', 'pages / Pages publication', 'merge-admission']) {
+    const matches = jobs.filter((job) => job.name === name);
+    assert.equal(matches.length, 1, 'missing/ambiguous merged staging job: ' + name);
+    assert.equal(matches[0].status, 'completed');
+    assert.equal(matches[0].conclusion, 'success');
+  }
+  return {
+    schema: 1,
+    kind: 'accepted-staging-merge',
+    pass: true,
+    pr: pr.number,
+    testedSource: pr.head.sha,
+    mergedSource: pr.merge_commit_sha,
+    sourceTree: commits[0].commit.tree.sha,
+    stagingRun: runId,
+    attempt,
+    publicBytesUnchanged: true,
+    method: 'Identical complete source trees; preserve the tested package without rebuilding',
+  };
+}
+
+module.exports = {
+  routes,
+  validateRun,
+  requireAdmission,
+  beginMergeAdmission,
+  finishMergeAdmission,
+  publishMergeAdmission,
+  verifyMerge,
+};

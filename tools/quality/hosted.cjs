@@ -47,7 +47,7 @@ async function verify(base, profile, manifest, fetcher = fetch) {
       assert.equal(headers.get('x-content-type-options'), 'nosniff');
     } else {
       assert.doesNotMatch(robots, /noindex/i);
-      if (file.endsWith('.html'))
+      if (file.endsWith('.html') && file !== '404.html')
         assert.doesNotMatch(
           result.bytes.toString(),
           /<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i

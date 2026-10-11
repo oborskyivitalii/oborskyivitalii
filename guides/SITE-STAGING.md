@@ -175,7 +175,12 @@ Promotion retains the successful package/recovery for 90 days; subsequent runs
 locate the last real successful promotion, verify its attempt/digests and restore
 it through the official action if stable verification fails. Disabled/skipped
 runs never replace recovery. Expired recovery blocks promotion. The first stable
-promotion has no earlier accepted package to restore.
+promotion has no earlier accepted package to restore. When a later Pages mirror
+fails, its publisher restores the previous combined Pages package and the
+staging controller restores and verifies the previous Cloudflare alias. A
+failed mirror recovery requires reconciliation; its newly promoted recovery
+record cannot be mistaken for the live accepted alias. A later bookkeeping
+failure does not discard an otherwise verified live publisher receipt.
 
 Production GitHub Pages and physical-device/independent release acceptance retain
 their existing requirements. Staging and full-production failures are recorded
@@ -211,7 +216,13 @@ Pages action, verifies it and stays red. First publication has no previous accep
 package to restore. Combined staging recovery is retained for 90 days; durable
 production archives are separate.
 
-After both hosts pass, the trusted main controller writes `Staging admission`
+Before each owner staging attempt, the trusted main controller creates a fresh
+in-progress `Staging admission` check. Previous green admission cannot survive a
+failed new attempt. Actual source admission and both enabled publishers are
+required before building that staging candidate; Draft preview packaging is
+unchanged. Failed or cancelled attempts remain blocked.
+
+After both hosts pass, the trusted main controller completes `Staging admission`
 for the exact open PR head only if current main remains its merge base. After
 bootstrap integration add this GitHub Actions check to the existing strict
 `protect-main` ruleset, retaining `checks` and
@@ -219,3 +230,19 @@ bootstrap integration add this GitHub Actions check to the existing strict
 additional requirement is pending. Bootstrap uses the current reviewed main
 staging controller; subsequent requests use the integrated publisher. Record
 the tested head, actual merge commit/tree and public-byte equivalence separately.
+After bootstrap and Pages enablement, `site-staging-merge.yml` authenticates the
+latest GitHub Actions check and its actual successful two-host jobs. It requires
+the merged commit's complete source tree to equal the accepted PR tree, records
+both SHAs/tree/run, and preserves the tested package without rebuilding main.
+The bootstrap PR uses the preceding reviewed main controller; the new requirement
+is enabled only after that controller and Pages mirror are integrated and observed.
+
+For the initial Pages setup select **GitHub Actions** under
+[Settings → Pages](https://github.com/oborskyivitalii/oborskyivitalii/settings/pages)
+and keep the initial GitHub origin. Publish labelled staging at root and
+`/staging/`; do not configure the `.ai` custom domain or DNS while production
+activation is excluded. The `github-pages` environment permits protected main.
+After bootstrap, enable `SITE_PAGES_STAGING_ENABLED=true`, stage a ready source
+with the current controller, observe both addresses and recovery, then add
+`Staging admission` (GitHub Actions integration `15368`) to strict `protect-main`.
+Keep both existing required contexts. `SITE_PRODUCTION_ENABLED` stays absent/false.

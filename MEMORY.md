@@ -36,7 +36,11 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 - Production policy: immutable `prod-YYYY-MM-DD.N` tags and durable GitHub Releases
   retaining exact packages/manifests/full evidence, protected current production
   ref, deployment identity and active/archive PR labels after live checks. Archive
-  validators exist; actual Release/ref/label production integration remains.
+  publisher/ref/label/rollback source integration now exists, with separately
+  hashed prospective production previews and durable full/raw/live evidence.
+  Production stays absent/disabled; actual activation is expressly excluded.
+  Pages, variables, environment/ruleset and Release immutability administration
+  remain unobserved because the connector has no administrative operations.
 - Original #41 content/sitecase evidence stays in its review records. #65 harness
   cleanup is merged/closed; task snapshots stay owning-policy-only.
 
@@ -44,7 +48,7 @@ Dated continuity, not live authority. Last verified: **2026-10-11**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #72 | Latest Draft PR/preview and exact mapped checks; Pages/settings/merge admission; durable Release/ref/label/rollback integration and actual live transitions. All AC01–AC10 remain open pending complete conditions. |
+| #72 | Complete source checks/PR preview; reviewed bootstrap, Pages/settings/merge admission and live staging/recovery. Production uploader/ref/label/rollback source is implemented; no activation is authorized. All AC01–AC10 remain open pending complete conditions. |
 | #49 / Draft PR #53 | Fragment-flight work; revalidate head and visual acceptance. |
 | #39 / Draft PR #40 | Pages/domain preparation; preserve release decisions. |
 | #45 / #36 / #41 | Original editorial/visual/review/device gates in live owners. |

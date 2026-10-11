@@ -119,7 +119,7 @@
     },
     "RELEASE": {
       "kind": "human",
-      "description": "Integrate durable Release uploading and verified production/ref/label/rollback controller in #72; observe full/external/device/rights/origin gates and explicit release decision under existing launch owners."
+      "description": "Observe configured source/Release protection, complete frozen full/external/device/rights/origin gates and an explicit release decision under existing launch owners. Durable upload/ref/label/rollback source integration is implemented; fixtures do not activate production."
     },
     "MERGED": {
       "kind": "merge",

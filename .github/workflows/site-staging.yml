@@ -29,7 +29,7 @@ defaults:
   run:
     shell: bash
 concurrency:
-  group: site-staging-${{ github.repository }}
+  group: site-pr-staging
   cancel-in-progress: false
 jobs:
   deploy:
@@ -167,6 +167,9 @@ jobs:
       public_digest: ${{ inputs.public_digest }}
       public_upload_digest: ${{ inputs.upload_digest }}
   promote:
+    concurrency:
+      group: author-cloudflare-staging-alias
+      cancel-in-progress: false
     needs: [deploy, hosted_checks]
     if: ${{ always() && needs.deploy.result == 'success' && !cancelled() }}
     runs-on: ubuntu-24.04

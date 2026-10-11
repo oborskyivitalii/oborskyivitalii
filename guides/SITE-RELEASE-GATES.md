@@ -85,13 +85,68 @@ Rollback deploys the archived package unchanged and verifies it before moving
 the production pointer or labels. Immutable tags never move. Failed or partial
 transitions remain observable and preserve recoverable accepted packages.
 
-These helpers validate contracts. Durable Release uploading, production
-publication/ref protection and actual label/deployment transitions still need
-integration and live acceptance in #72 with #39/#40. The candidate-evidence wrapper
-requires prospective production artifact IDs/digests and its immutable HTTPS
-origin, retaining the complete production matrix. It rejects staging-edition
-HTML. Automated hosted evidence still requires independent/physical-device/rights
-acceptance and applicable live production-origin checks before activation.
+`site-release-candidate.yml` builds a distinct production edition before hashing
+or testing: canonical URLs, indexing, robots, sitemap and owned 404. It publishes
+only an isolated `production-candidate-RUN` Cloudflare preview. Provider preview
+headers suppress indexing; the public archive already has its production policy.
+Forward its artifact/run/digests and immutable URL into `site-candidate-evidence.yml`.
+That wrapper retains the complete native/browser/security/performance matrix.
+Its full hosted gate must match the exact public artifact; staging-edition HTML
+and the smaller staging gate cannot qualify. Independent, physical iOS/Android
+and applicable rights records must bind the same source/artifact.
+
+`site-production.yml` is dispatch-only and disabled unless
+`SITE_PRODUCTION_ENABLED=true`. `tools/release/controller.cjs` authenticates the
+actual completed owner/main producers, both named native jobs and every raw
+report artifact, source PR/tree/history and production protection. Before live
+publication it uploads `public.tar.gz`, `archive.json`, seven original report
+ZIPs and full run logs to a draft Release, redownloads and verifies their bytes,
+and retains the previous and next complete Pages packages. Existing tags/assets
+cannot be repurposed or replaced. A tag-only interrupted preparation needs explicit
+reconciliation or a fresh identity; the publisher does not overwrite it.
+
+The official Pages deployment composes the frozen production root with the
+previous accepted staging subtree. Exact HTTP/TLS/MIME/canonical/indexing, root
+and staging navigation, real 404 and a bounded passive ZAP scan must pass. The
+scan uses a pinned image, the owned origin only, excludes `/staging/`, and does
+not run active attacks. Explicit reviewed header warnings reflect Pages hosting
+capabilities; new or high-risk findings fail. All observations must be retained.
+`activation.json` and `observations.tar.gz` then join the durable Release before
+publication locks its assets/tag. GitHub must report `immutable: true` before
+the protected source ref, labels and successful production deployment can move.
+If any stage fails, exact previous Pages bytes are restored and checked before
+bookkeeping compensation; the run stays red. A frozen Release from a failed
+bookkeeping transition is retained but is not an accepted rollback target.
+
+Rollback consumes a previously live accepted immutable Release, verifies every
+asset digest and safely unpacks the original package, then repeats live
+production checks. It moves the active pointer and PR labels after success;
+the original Release/tag/evidence remain unchanged. Several releases from the
+same PR share its active PR label; their distinct tags and deployment records
+identify which versions are historical. Labels are checked against the actual
+accepted deployment before a transition, so stale manual labels stop publication.
+
+Source integration is implemented under #72. Live controls, actual production
+transitions and existing #39/#40/#1/#7 release acceptance remain separate evidence.
+The maintainer's 11 October instruction explicitly excludes production activation.
+
+### Production preparation without activation
+
+1. Enable repository **Settings → General → Releases → Enable release immutability**.
+   This administrative setting and published Release immutability need actual
+   observation; a source guide or a CI variable is not evidence of the setting.
+2. Configure active `protect-production`, targeting exactly
+   `refs/heads/production`, without creating the branch. Require creation, update,
+   deletion and non-fast-forward restrictions. The only bypass is GitHub Actions
+   integration `15368`, mode `always`, for the serialized publisher/rollback.
+3. Restrict `production` and `github-pages` environments to protected main.
+   Keep `SITE_PRODUCTION_ENABLED` absent or `false` during preparation. No production
+   ref, active label, release tag, `.ai` domain or DNS route is created by setup.
+4. Before a later authorized release, observe Pages on the canonical owned
+   `https://vitaliioborskyi.ai` origin under #39/#40, complete full/external/rights
+   acceptance, and enable the production opt-in by the maintainer's release decision.
+   Run **Authorized production release or rollback** on main with the immutable
+   tag, successful full validation run, merged PR and source-bound evidence JSON.
 
 ## Security and source quality
 
@@ -218,10 +273,9 @@ oversize HTML, browser-error, missing-engine/report, invalid-probe and digest-
 mismatch cases. Fixtures must not contain real credentials and stay out of docs/.
 Also demonstrate a complete passing validation after #12's fixes.
 
-For future GitHub Pages hosting, #8 must configure an Actions-based deployment
-whose deploy job depends on the successful strict production gate; direct
-automatic branch publication cannot enforce it. The existing `promotion.cjs`
-and GitHub Pages example retain their full hosted/device/review contract;
+GitHub Pages uses an Actions-based deployment whose production job depends on
+the successful strict full gate; direct automatic branch publication cannot
+enforce it. The existing `promotion.cjs` and GitHub Pages example retain their full hosted/device/review contract;
 `staging-gate` does not satisfy them. Preserve separate existing rights/URL/release
 decisions. If a different host is selected, implement equivalent same-artifact
 gating. Inspect any repository/environment controls at activation and record

@@ -51,7 +51,7 @@ async function activeProduction(github, context) {
     assert.equal(payload.kind, 'accepted-production');
     require('../release/archive.cjs').tag(payload.tag);
     assert.equal(payload.sourceCommit, deployment.sha);
-    return payload;
+    return { ...payload, deploymentId: deployment.id };
   }
   return null;
 }
@@ -156,6 +156,23 @@ function sourceFromPackage(directory, output) {
   return staged.source;
 }
 
+function stagingFromPages(directory, output) {
+  const record = JSON.parse(fs.readFileSync(path.join(directory, 'pages-package.json')));
+  require('./package.cjs').verify(directory, record);
+  fs.mkdirSync(path.join(output, 'public'), { recursive: true });
+  for (const name of Object.keys(record.staging.files)) {
+    const target = path.join(output, 'public', name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.copyFileSync(path.join(directory, 'public/staging', name), target);
+  }
+  fs.writeFileSync(
+    path.join(output, 'artifact.json'),
+    JSON.stringify(record.staging, null, 2) + '\n'
+  );
+  require('./package.cjs').checkStaging(output, record.staging);
+  return record.staging;
+}
+
 module.exports = {
   controller,
   stagingRun,
@@ -166,4 +183,5 @@ module.exports = {
   retained,
   productionLease,
   sourceFromPackage,
+  stagingFromPages,
 };

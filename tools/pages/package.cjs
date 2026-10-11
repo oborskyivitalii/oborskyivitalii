@@ -63,10 +63,12 @@ function verify(directory, record) {
   assert.deepEqual(
     Object.keys(actual.files).sort(),
     [
-      ...Object.keys(record.root.files),
-      ...Object.keys(record.staging.files).map((name) => 'staging/' + name),
-      '_delivery/state.json',
-      '404.html',
+      ...new Set([
+        ...Object.keys(record.root.files),
+        ...Object.keys(record.staging.files).map((name) => 'staging/' + name),
+        '_delivery/state.json',
+        '404.html',
+      ]),
     ].sort(),
     'unexpected Pages deployment input'
   );
@@ -74,7 +76,8 @@ function verify(directory, record) {
   snapshot.verify(path.join(publicDir, 'staging'), record.staging);
   const state = JSON.parse(fs.readFileSync(path.join(publicDir, '_delivery/state.json')));
   assert.deepEqual(state, record.state);
-  assert.equal(fs.readFileSync(path.join(publicDir, '404.html'), 'utf8'), notFound);
+  if (!record.root.files['404.html'])
+    assert.equal(fs.readFileSync(path.join(publicDir, '404.html'), 'utf8'), notFound);
   return true;
 }
 
@@ -116,7 +119,8 @@ function build(
     path.join(target, '_delivery/state.json'),
     JSON.stringify(state, null, 2) + '\n'
   );
-  fs.writeFileSync(path.join(target, '404.html'), notFound);
+  if (!(production || staging).files['404.html'])
+    fs.writeFileSync(path.join(target, '404.html'), notFound);
   const manifest = artifact.manifest(target);
   const record = {
     schema: 1,

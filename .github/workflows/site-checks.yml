@@ -85,6 +85,7 @@ jobs:
     needs: checks
     if: >-
       vars.SITE_STAGING_ENABLED == 'true' &&
+      vars.SITE_PR_STAGING_ENABLED != 'true' &&
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
       github.event_name == 'workflow_dispatch' &&
       github.ref == 'refs/heads/main' &&

@@ -125,68 +125,68 @@
       "test_name": "blacklist",
       "severity": "LOW",
       "confidence": "HIGH",
-      "source_sha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "source_sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9",
       "line_sha256": "7d8752c4c7ea34c2c6d04a15aa31a1f25f62848f8c3c82528fd62439c01a225b",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Import is used only by the reviewed explicit-argv Git/Node calls in this source; no shell execution is enabled. The installed executable PATH is owned by the pinned CI/developer environment. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Import is used only by the reviewed explicit-argv Git/Node calls in this source; no shell execution is enabled. The installed executable PATH is owned by the pinned CI/developer environment. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue72, 2026-10-11: reviewed the exact Draft/ready reachability adapter diff; only bounded event-scope parsing changed. This execution/report line, explicit argv or trusted repository test loading, severity/confidence and trust boundary are unchanged; matched the actual current raw Bandit finding."
     },
     {
       "path": "tools/check_ri_ci.py",
       "rule": "B102",
-      "line": 288,
+      "line": 299,
       "test_name": "exec_used",
       "severity": "MEDIUM",
       "confidence": "HIGH",
-      "source_sha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "source_sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9",
       "line_sha256": "94db90176a4da7e3a9fb69a2b5cda47fd06e4dc5fb4efbee027d68fb0eb0886c",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Current repository-owned module/test bytes are deliberately compiled and executed to avoid stale Python bytecode. The repository test loader owns this trust boundary; policy supplies bounded selectors rather than executable text. This is developer tooling, not an interpreter for hostile candidate code. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Current repository-owned module/test bytes are deliberately compiled and executed to avoid stale Python bytecode. The repository test loader owns this trust boundary; policy supplies bounded selectors rather than executable text. This is developer tooling, not an interpreter for hostile candidate code. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue72, 2026-10-11: reviewed the exact Draft/ready reachability adapter diff; only bounded event-scope parsing changed. This execution/report line, explicit argv or trusted repository test loading, severity/confidence and trust boundary are unchanged; matched the actual current raw Bandit finding."
     },
     {
       "path": "tools/check_ri_ci.py",
       "rule": "B607",
-      "line": 360,
+      "line": 373,
       "test_name": "start_process_with_partial_path",
       "severity": "LOW",
       "confidence": "HIGH",
-      "source_sha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "source_sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9",
       "line_sha256": "f30259a82206fcd9599d14d3a09f591c50703b97543c7a9985988e9d01a9adca",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue72, 2026-10-11: reviewed the exact Draft/ready reachability adapter diff; only bounded event-scope parsing changed. This execution/report line, explicit argv or trusted repository test loading, severity/confidence and trust boundary are unchanged; matched the actual current raw Bandit finding."
     },
     {
       "path": "tools/check_ri_ci.py",
       "rule": "B603",
-      "line": 360,
+      "line": 373,
       "test_name": "subprocess_without_shell_equals_true",
       "severity": "LOW",
       "confidence": "HIGH",
-      "source_sha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "source_sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9",
       "line_sha256": "f30259a82206fcd9599d14d3a09f591c50703b97543c7a9985988e9d01a9adca",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue72, 2026-10-11: reviewed the exact Draft/ready reachability adapter diff; only bounded event-scope parsing changed. This execution/report line, explicit argv or trusted repository test loading, severity/confidence and trust boundary are unchanged; matched the actual current raw Bandit finding."
     },
     {
       "path": "tools/check_ri_ci.py",
       "rule": "B105",
-      "line": 415,
+      "line": 428,
       "test_name": "hardcoded_password_string",
       "severity": "LOW",
       "confidence": "MEDIUM",
-      "source_sha256": "6c0be0f08e2d998d34e82fb333a3e8541607491f24943e5bb3ca4555d4d9e41d",
+      "source_sha256": "ad2c3beb905849b49da1433c2569fb61e339e856981a88791bb0e9b249bed9d9",
       "line_sha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Bandit identifies a Python True/False boolean under the pass/automation_pass report dictionary key as a password. This value is acceptance state, never a credential, token or environment secret. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Bandit identifies a Python True/False boolean under the pass/automation_pass report dictionary key as a password. This value is acceptance state, never a credential, token or environment secret. Reconfirmed under issue56 against merged PR55: only the CODE-STYLE owner set expanded; this finding line and execution trust boundary are unchanged. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue72, 2026-10-11: reviewed the exact Draft/ready reachability adapter diff; only bounded event-scope parsing changed. This execution/report line, explicit argv or trusted repository test loading, severity/confidence and trust boundary are unchanged; matched the actual current raw Bandit finding."
     },
     {
       "path": "tools/issue_acceptance.py",

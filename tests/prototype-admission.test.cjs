@@ -61,6 +61,11 @@ function github(mutator = () => {}) {
       checks: {
         create: async (value) => {
           writes.push(value);
+          return { data: { ...value, id: 30 } };
+        },
+        get: async () => ({ data: { ...writes[0], id: 30 } }),
+        update: async (value) => {
+          writes.push(value);
           return value;
         },
       },
@@ -142,12 +147,22 @@ test('all exact source workflows must finish before owner staging', async () => 
 test('merge admission is written only for current owner source accepted on both hosts', async () => {
   const main = { protected: true, commit: { sha: mainSHA } },
     api = github();
-  const result = await admission.publishMergeAdmission(api, context, pr(), main, source, {
-    promote: 'success',
-    pages: 'success',
-  });
-  assert.equal(result.name, 'Staging admission');
-  assert.equal(result.head_sha, source);
+  const id = await admission.beginMergeAdmission(api, context, pr(), main);
+  const result = await admission.publishMergeAdmission(
+    api,
+    context,
+    pr(),
+    main,
+    source,
+    {
+      promote: 'success',
+      pages: 'success',
+    },
+    id
+  );
+  assert.equal(api.writes[0].status, 'in_progress');
+  assert.equal(api.writes[0].head_sha, source);
+  assert.equal(result.conclusion, 'success');
   for (const outcomes of [
     { promote: 'failure', pages: 'success' },
     { promote: 'success', pages: 'skipped' },
@@ -179,6 +194,84 @@ test('merge admission is written only for current owner source accepted on both 
   assert.equal(behind.writes.length, 0);
 });
 
+test('a fresh staging attempt supersedes old success and failure completes only its own check', async () => {
+  const api = github(),
+    main = { protected: true, commit: { sha: mainSHA } };
+  const id = await admission.beginMergeAdmission(api, context, pr(), main);
+  assert.equal(api.writes[0].status, 'in_progress');
+  assert.equal(api.writes[0].external_id, '900/1');
+  await admission.finishMergeAdmission(api, context, source, id, 'failure', {
+    title: 'Failed mirror',
+    summary: 'fixture',
+  });
+  assert.equal(api.writes[1].conclusion, 'failure');
+  await assert.rejects(
+    admission.finishMergeAdmission(api, { ...context, runId: 901 }, source, id, 'success', {})
+  );
+  await assert.rejects(admission.finishMergeAdmission(api, context, mainSHA, id, 'success', {}));
+  assert.equal(api.writes.length, 2);
+});
+
+test('actual merge identity requires the complete tested tree and the real latest two-host admission', async () => {
+  const tree = 'c'.repeat(40),
+    check = {
+      id: 30,
+      name: 'Staging admission',
+      head_sha: source,
+      app: { id: 15368 },
+      status: 'completed',
+      conclusion: 'success',
+      external_id: '900/1',
+    };
+  const r = {
+    id: 900,
+    run_attempt: 1,
+    path: flow.workflow,
+    event: 'workflow_dispatch',
+    head_branch: 'main',
+    head_repository: { full_name: flow.repository },
+    actor: { login: context.actor },
+    status: 'completed',
+    conclusion: 'success',
+  };
+  const jobs = ['promote', 'pages / Pages publication', 'merge-admission'].map(job);
+  let mergedTree = tree;
+  const api = {
+    rest: {
+      repos: {
+        getCommit: async ({ ref }) => ({
+          data: { commit: { tree: { sha: ref === source ? tree : mergedTree } } },
+        }),
+      },
+      checks: { listForRef: 'checks' },
+      actions: { getWorkflowRun: async () => ({ data: r }), listJobsForWorkflowRunAttempt: 'jobs' },
+    },
+    paginate: async (method) => (method === 'checks' ? [check] : jobs),
+  };
+  const p = { ...pr(), merged: true, merge_commit_sha: mainSHA };
+  const record = await admission.verifyMerge(api, context, p);
+  assert.equal(record.publicBytesUnchanged, true);
+  assert.equal(record.testedSource, source);
+  mergedTree = mainSHA;
+  await assert.rejects(admission.verifyMerge(api, context, p), /tree differs/);
+  mergedTree = tree;
+  for (const mutate of [
+    () => (check.conclusion = 'failure'),
+    () => (check.app.id = 1),
+    () => (r.run_attempt = 2),
+    () => (r.path = '.github/workflows/other.yml'),
+    () => (jobs[1].conclusion = 'skipped'),
+  ]) {
+    mutate();
+    await assert.rejects(admission.verifyMerge(api, context, p));
+    check.conclusion = 'success';
+    check.app.id = 15368;
+    r.run_attempt = 1;
+    r.path = flow.workflow;
+    jobs[1].conclusion = 'success';
+  }
+});
+
 test('Draft jobs cannot impersonate required contexts and browser installation is deferred', () => {
   for (const [file, deferred] of [
     ['site-checks.yml', 'Prototype source admission deferred'],
@@ -202,5 +295,7 @@ test('Draft jobs cannot impersonate required contexts and browser installation i
     smoke,
     /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true'/
   );
-  assert.match(yaml, /needs.pages.result == 'success'/);
+  assert.match(yaml, /PAGES_RESULT: \$\{\{ needs.pages.result \}\}/);
+  assert.match(yaml, /pages:process.env.PAGES_RESULT/);
+  assert.match(yaml, /beginMergeAdmission/);
 });

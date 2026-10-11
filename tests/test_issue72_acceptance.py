@@ -39,6 +39,7 @@ class Issue72AcceptanceTests(unittest.TestCase):
 
     def test_durable_archive_and_verified_transitions(self):
         run_node(self, "tests/release-archive.test.cjs")
+        run_node(self, "tests/release-controller.test.cjs")
 
     def test_complete_production_gate_and_candidate_wiring(self):
         run_node(self, "tests/quality.test.cjs")
@@ -59,7 +60,12 @@ class Issue72AcceptanceTests(unittest.TestCase):
         registry = json.loads((ROOT / "tools/quality/test-profiles.json").read_text())
         rows = {row["path"]: row for row in registry["tests"]}
         catalog = json.loads((ROOT / ".github/repository-paths.json").read_text())["entries"]
-        for name in ("prototype-admission", "pages-delivery", "release-archive"):
+        for name in (
+            "prototype-admission",
+            "pages-delivery",
+            "release-archive",
+            "release-controller",
+        ):
             file = "tests/" + name + ".test.cjs"
             self.assertEqual(rows[file]["lifecycle"], "permanent")
             self.assertEqual(rows[file]["profiles"], ["pr-targeted", "staging", "production"])

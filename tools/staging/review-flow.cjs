@@ -413,7 +413,7 @@ async function findRecovery(github, context) {
     ...context.repo,
     workflow_id: workflow.split('/').pop(),
     branch: 'main',
-    status: 'success',
+    status: 'completed',
     per_page: 100,
   });
   for (const run of runs) {
@@ -424,7 +424,6 @@ async function findRecovery(github, context) {
       continue;
     assert.equal(run.path, workflow);
     assert.equal(run.head_branch, 'main');
-    assert.equal(run.conclusion, 'success');
     sha(run.head_sha);
     const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
       ...context.repo,
@@ -443,6 +442,15 @@ async function findRecovery(github, context) {
       )
     )
       continue;
+    const mirrorRecovery = jobs.find((job) => job.name === 'mirror-recovery');
+    if (mirrorRecovery && mirrorRecovery.conclusion !== 'skipped') {
+      assert.equal(
+        mirrorRecovery.conclusion,
+        'success',
+        'failed mirror recovery requires reconciliation'
+      );
+      continue;
+    }
     const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
       ...context.repo,
       run_id: run.id,

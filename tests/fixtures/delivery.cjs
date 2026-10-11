@@ -37,4 +37,43 @@ function staging(parent, color = false) {
 function response(url, bytes, status = 200) {
   return { url, status, arrayBuffer: async () => Buffer.from(bytes) };
 }
-module.exports = { source, staging, temporary, response };
+function fullProof(record) {
+  const identity = {
+    schema: 1,
+    pass: true,
+    variant: require('../../tools/quality/common.cjs').variant(record),
+  };
+  for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit', 'artifactDigest'])
+    identity[key] = record[key];
+  const external = {
+    ...identity,
+    independentReview: { pass: true, reviewer: 'fixture reviewer', record: 'fixture review' },
+    rights: { pass: true, reviewer: 'fixture owner', record: 'fixture publication decision' },
+  };
+  for (const key of ['iosSafari', 'androidChrome'])
+    external[key] = {
+      pass: true,
+      reviewer: 'fixture reviewer',
+      record: 'fixture observation',
+      device: 'fixture device',
+      os: 'fixture OS',
+      browser: 'fixture browser',
+    };
+  return {
+    gate: {
+      ...identity,
+      kind: 'hosted-gate',
+      profile: 'staging',
+      hostedOrigin: 'https://candidate.invalid',
+      githubArtifact: { id: '41', uploadDigest: 'sha256:' + 'c'.repeat(64) },
+      jobs: Object.fromEntries(
+        ['build', 'static', 'linux', 'native', 'performance', 'captures', 'host'].map((name) => [
+          name,
+          { result: 'success' },
+        ])
+      ),
+    },
+    external,
+  };
+}
+module.exports = { source, staging, temporary, response, fullProof };

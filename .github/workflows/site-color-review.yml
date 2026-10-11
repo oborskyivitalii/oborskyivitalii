@@ -68,12 +68,53 @@ jobs:
             const {data:pr}=await github.rest.pulls.get({...context.repo,pull_number:number});
             const main=context.eventName!=='pull_request'?(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data:null;
             const target=flow.resolve(context,pr,main);
-            if(target.mode==='staging')await require('./tools/staging/admission.cjs').requireAdmission(github,context,pr);
             target.evidence=String(flow.previewEvidence(context));
             target.enabled=String(process.env[target.mode==='preview'?'REVIEW_PREVIEW_ENABLED':'REVIEW_STAGING_ENABLED']==='true');
             for(const [key,value]of Object.entries(target))core.setOutput(key,value);
-  build:
+  begin-admission:
     needs: target
+    if: needs.target.outputs.mode == 'staging'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+      checks: write
+    outputs:
+      check_id: ${{ steps.begin.outputs.check_id }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - id: begin
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          REVIEW_PR: ${{ needs.target.outputs.number }}
+          REVIEW_SOURCE: ${{ needs.target.outputs.source }}
+          STAGING_ENABLED: ${{ needs.target.outputs.enabled }}
+          PAGES_ENABLED: ${{ vars.SITE_PAGES_STAGING_ENABLED }}
+        with:
+          script: |
+            const admission=require('./tools/staging/admission.cjs');
+            const pr=(await github.rest.pulls.get({...context.repo,pull_number:Number(process.env.REVIEW_PR)})).data;
+            const main=(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data;
+            require('./tools/staging/review-flow.cjs').lease(pr,process.env.REVIEW_SOURCE);
+            const id=await admission.beginMergeAdmission(github,context,pr,main);
+            core.setOutput('check_id',id);
+            try{
+              if(process.env.STAGING_ENABLED!=='true'||process.env.PAGES_ENABLED!=='true')throw Error('Both staging publishers must be enabled before admission');
+              await admission.requireAdmission(github,context,pr);
+            }catch(error){
+              await admission.finishMergeAdmission(github,context,pr.head.sha,id,'failure',{title:'Staging admission failed',summary:error.message});
+              throw error;
+            }
+  build:
+    needs: [target, begin-admission]
+    if: >-
+      always() && needs.target.result == 'success' && !cancelled() &&
+      (needs.target.outputs.mode == 'preview' || needs.begin-admission.result == 'success')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
@@ -311,10 +352,15 @@ jobs:
       needs.smoke.result == 'skipped' && needs.full.result == 'success' && !cancelled()
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    concurrency:
+      group: author-cloudflare-staging-alias
+      cancel-in-progress: false
     environment: staging
     outputs:
       stable: ${{ steps.verified.outputs.url }}
       rollback: ${{ steps.rollback-check.outcome }}
+      previous: ${{ toJSON(steps.previous.outputs) }}
+      recovery_artifact: ${{ steps.recovery-retained.outputs.artifact-id }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
       SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
@@ -442,7 +488,8 @@ jobs:
           fs.mkdirSync('staging-reports/recovery',{recursive:true});fs.writeFileSync('staging-reports/recovery/recovery.json',JSON.stringify(record,null,2)+'\n');
           fs.appendFileSync(e.GITHUB_OUTPUT,'url='+e.REVIEW_STABLE+'\n');
           JS
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+      - id: recovery-retained
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: steps.verified.outcome == 'success'
         with:
           name: site-staging-recovery-${{ github.run_id }}-${{ github.run_attempt }}
@@ -478,10 +525,9 @@ jobs:
       public_upload_digest: ${{ needs.build.outputs.public_upload_digest }}
       gate_artifact_id: ${{ needs.full.outputs.gate_artifact_id }}
   merge-admission:
-    needs: [target, promote, pages]
+    needs: [target, begin-admission, promote, pages]
     if: >-
-      always() && needs.target.outputs.mode == 'staging' && needs.promote.result == 'success' &&
-      needs.pages.result == 'success' && !cancelled()
+      always() && needs.target.outputs.mode == 'staging' && needs.begin-admission.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
@@ -498,11 +544,99 @@ jobs:
         env:
           REVIEW_PR: ${{ needs.target.outputs.number }}
           REVIEW_SOURCE: ${{ needs.target.outputs.source }}
+          REVIEW_CHECK: ${{ needs.begin-admission.outputs.check_id }}
+          PROMOTE_RESULT: ${{ needs.promote.result }}
+          PAGES_RESULT: ${{ needs.pages.result }}
         with:
           script: |
             const pr=(await github.rest.pulls.get({...context.repo,pull_number:Number(process.env.REVIEW_PR)})).data;
             const main=(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data;
-            await require('./tools/staging/admission.cjs').publishMergeAdmission(github,context,pr,main,process.env.REVIEW_SOURCE,{promote:'success',pages:'success'});
+            const admission=require('./tools/staging/admission.cjs');
+            try{
+              await admission.publishMergeAdmission(github,context,pr,main,process.env.REVIEW_SOURCE,{promote:process.env.PROMOTE_RESULT,pages:process.env.PAGES_RESULT},process.env.REVIEW_CHECK);
+            }catch(error){
+              await admission.finishMergeAdmission(github,context,process.env.REVIEW_SOURCE,process.env.REVIEW_CHECK,'failure',{title:'Staging admission failed',summary:error.message});
+              throw error;
+            }
+  mirror-recovery:
+    needs: [target, promote, pages]
+    if: >-
+      always() && needs.promote.result == 'success' && needs.pages.result != 'success' &&
+      vars.SITE_PAGES_STAGING_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: author-cloudflare-staging-alias
+      cancel-in-progress: false
+    environment: staging
+    env:
+      REVIEW_PREVIOUS: ${{ needs.promote.outputs.previous }}
+      REVIEW_STABLE: https://staging.${{ vars.CLOUDFLARE_PAGES_PROJECT }}.pages.dev
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - id: previous
+        run: |
+          node - <<'JS'
+          const fs=require('node:fs'),a=require('node:assert/strict'),record=JSON.parse(process.env.REVIEW_PREVIOUS);
+          a.ok(record.stateId,'no previous stable package exists; reconcile failed first mirror explicitly');
+          for(const key of ['stateId','runId'])fs.appendFileSync(process.env.GITHUB_OUTPUT,key+'='+require('./tools/staging/review-flow.cjs').positive(record[key])+'\n');
+          JS
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ steps.previous.outputs.stateId }}
+          run-id: ${{ steps.previous.outputs.runId }}
+          github-token: ${{ github.token }}
+          path: staging-reports/previous
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.promote.outputs.recovery_artifact }}
+          path: staging-reports/current
+      - id: recovery
+        name: Authenticate the exact previous recovery artifact
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const fs=require('node:fs'),flow=require('./tools/staging/review-flow.cjs'),previous=JSON.parse(process.env.REVIEW_PREVIOUS),state=JSON.parse(fs.readFileSync('staging-reports/previous/recovery.json'));
+            flow.recoveryArtifact(state,previous,(await github.rest.actions.getArtifact({...context.repo,artifact_id:flow.positive(state.packageArtifactId)})).data);
+            for(const key of ['packageArtifactId','sourceCommit','publicDigest'])core.setOutput(key,state[key]);
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ steps.recovery.outputs.packageArtifactId }}
+          run-id: ${{ steps.previous.outputs.runId }}
+          github-token: ${{ github.token }}
+          path: staging-rollback
+      - name: Verify previous bytes and reject an independently moved stable alias
+        run: |
+          node tools/staging/review-flow.cjs recovery staging-rollback staging-reports/previous/recovery.json
+          node tools/staging/review-flow.cjs prior "$REVIEW_STABLE" staging-reports/current/recovery.json
+      - name: Restore Cloudflare after a failed Pages mirror
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: 4.147.0
+          command: pages deploy staging-rollback/public --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=staging --commit-hash=${{ steps.recovery.outputs.sourceCommit }} --commit-dirty=false
+      - name: Verify the restored permanent Cloudflare address
+        env:
+          SITE_CANDIDATE_SHA: ${{ steps.recovery.outputs.sourceCommit }}
+          SITE_EXPECTED_PUBLIC_DIGEST: ${{ steps.recovery.outputs.publicDigest }}
+          SITE_ARTIFACT_ID: ''
+          SITE_UPLOAD_DIGEST: ''
+          SITE_STAGING_STABLE: 'true'
+        run: node tools/staging/review-flow.cjs http-ready staging-rollback "$REVIEW_STABLE" staging-reports/mirror-rollback-http.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-staging-mirror-recovery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: staging-reports/
+          if-no-files-found: error
+          retention-days: 90
   status-comment:
     needs:
       [
@@ -516,6 +650,7 @@ jobs:
         promote,
         pages,
         merge-admission,
+        mirror-recovery,
       ]
     if: always() && needs.target.result == 'success'
     runs-on: ubuntu-24.04
@@ -547,7 +682,7 @@ jobs:
               else if(preview&&n.smoke.result!=='success')status='Hosted smoke failed; no accepted update.';
               else if(preview)status=process.env.REVIEW_PROTOTYPE==='true'?'Prototype build/package and HTTP identity passed. Source, issue and browser admission deferred until visual approval.':'Minimal hosted smoke passed. Staging regression has not run.';
               else if(n.full.result!=='success')status='Bounded staging regression failed or is incomplete; staging was not promoted.';
-              else if(n.promote.result==='success')status='Bounded staging regression and stable verification passed; Cloudflare staging promoted. '+(n.pages.result==='success'?'Pages staging mirror verified: '+n.pages.outputs.page_url+'staging/':n.pages.result==='skipped'?'Pages staging activation pending.':'Pages staging mirror failed; inspect recovery evidence.');
+              else if(n.promote.result==='success')status='Bounded staging regression and stable verification passed; Cloudflare staging promoted. '+(n.pages.result==='success'?'Pages staging mirror verified: '+n.pages.outputs.page_url+'staging/':n.pages.result==='skipped'?'Pages staging activation pending.':'Pages staging mirror failed. '+(n['mirror-recovery'].result==='success'?'Previous Cloudflare staging restored and verified.':'Inspect both-host recovery evidence before another update.'));
               else status='Bounded staging regression passed, but promotion failed.'+(n.promote.outputs.rollback==='success'?' Previous staging restored and verified.':' Check recovery evidence.');
             }
             await require('./tools/staging/review-flow.cjs').updateComment(github,context,{source:process.env.REVIEW_SOURCE,url:n.publish.outputs.url||'',alias:preview?(n.publish.outputs.alias||''):(n.promote.result==='success'?n.promote.outputs.stable:''),status,run:`https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`});

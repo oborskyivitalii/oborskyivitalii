@@ -370,6 +370,7 @@ jobs:
           path: quality-reports/
           retention-days: 30
   native:
+    name: Native ${{ matrix.platform }}
     if: inputs.validation_level == 'production' && inputs.full
     needs: build
     strategy:

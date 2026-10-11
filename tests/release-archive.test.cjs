@@ -7,43 +7,7 @@ const fs = require('node:fs'),
 const archive = require('../tools/release/archive.cjs'),
   artifact = require('../tools/quality/artifact.cjs');
 const fixture = require('./fixtures/delivery.cjs');
-function evidence(m) {
-  const identity = {
-    schema: 1,
-    pass: true,
-    variant: require('../tools/quality/common.cjs').variant(m),
-  };
-  for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit', 'artifactDigest'])
-    identity[key] = m[key];
-  const external = {
-    ...identity,
-    independentReview: { pass: true, reviewer: 'fixture reviewer', record: 'fixture review' },
-  };
-  for (const key of ['iosSafari', 'androidChrome'])
-    external[key] = {
-      pass: true,
-      reviewer: 'fixture reviewer',
-      record: 'fixture observation',
-      device: 'fixture device',
-      os: 'fixture OS',
-      browser: 'fixture browser',
-    };
-  return {
-    gate: {
-      ...identity,
-      kind: 'hosted-gate',
-      profile: 'staging',
-      hostedOrigin: 'https://candidate.invalid',
-      jobs: Object.fromEntries(
-        ['build', 'static', 'linux', 'native', 'performance', 'captures', 'host'].map((name) => [
-          name,
-          { result: 'success' },
-        ])
-      ),
-    },
-    external,
-  };
-}
+const evidence = fixture.fullProof;
 function python(...args) {
   return cp.spawnSync('python3', ['tools/release/package.py', ...args], { encoding: 'utf8' });
 }
