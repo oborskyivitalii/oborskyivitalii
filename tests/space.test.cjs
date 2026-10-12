@@ -687,7 +687,11 @@ test('all five worlds share bounded symbol geometry in distinct deterministic sp
   const mutated = common('index');
   mutated[0].center[0] = 10000;
   mutated[0].rootCenter[1] = 10000;
-  assert.deepEqual(common('index'), untouched, 'returned models cannot mutate authored shared slots');
+  assert.deepEqual(
+    common('index'),
+    untouched,
+    'returned models cannot mutate authored shared slots'
+  );
   assert.deepEqual(
     composition(common('index', true)),
     composition(untouched),
@@ -695,7 +699,10 @@ test('all five worlds share bounded symbol geometry in distinct deterministic sp
   );
 });
 test('visible attention and line-chart landmarks move among distinct reading regions on every route', () => {
-  for (const [width, height] of [[1440, 900], [390, 844]]) {
+  for (const [width, height] of [
+    [1440, 900],
+    [390, 844],
+  ]) {
     const landmarks = ['shared-0-8', 'shared-1-0'];
     const rows = model.routeOrder.map((page) => {
       const world = model.worldFor(page, width <= 640);
@@ -711,13 +718,22 @@ test('visible attention and line-chart landmarks move among distinct reading reg
         const xs = vertices.map((point) => point[0]);
         const ys = vertices.map((point) => point[1]);
         assert.ok(ink.length > 20, page + ' landmark still submits visible geometry');
-        assert.ok(Math.max(...ink.map((shape) => shape.alpha)) > 0.2, page + ' visible ink contrast');
+        assert.ok(
+          Math.max(...ink.map((shape) => shape.alpha)) > 0.2,
+          page + ' visible ink contrast'
+        );
         assert.ok(Math.max(...xs) - Math.min(...xs) > view.focal * 0.1, 'readable landmark width');
-        assert.ok(Math.max(...ys) - Math.min(...ys) > view.focal * 0.08, 'readable landmark height');
+        assert.ok(
+          Math.max(...ys) - Math.min(...ys) > view.focal * 0.08,
+          'readable landmark height'
+        );
         const visibleVertices = vertices.filter(
           ([x, y]) => x >= 0 && x <= width && y >= 0 && y <= height
         );
-        assert.ok(visibleVertices.length / vertices.length > 0.55, 'visible placement is not offscreen');
+        assert.ok(
+          visibleVertices.length / vertices.length > 0.55,
+          'visible placement is not offscreen'
+        );
         const region = (coordinate, origin) =>
           coordinate < origin - view.focal * 0.065
             ? -1
@@ -743,7 +759,10 @@ test('visible attention and line-chart landmarks move among distinct reading reg
         );
       }
       const xs = positions.map(({ point }) => point[0]);
-      assert.ok(Math.max(...xs) - Math.min(...xs) > width * 0.25, 'same-side jitter is insufficient');
+      assert.ok(
+        Math.max(...xs) - Math.min(...xs) > width * 0.25,
+        'same-side jitter is insufficient'
+      );
       const depths = positions.map(({ depth }) => depth);
       assert.ok(Math.max(...depths) - Math.min(...depths) > 2, 'landmark camera distances vary');
       for (let i = 0; i < positions.length; i++) {
@@ -779,9 +798,18 @@ test('Home, Writing and Credits attention glyphs clear the observed desktop fore
       } else if (page === 'writing') {
         assert.ok(Math.min(...ys) >= 80, 'glyphs clear the fixed desktop header');
       } else {
-        assert.ok(Math.min(...xs) > width * 0.62, 'glyphs clear the Credits foreground text column');
-        assert.ok(Math.min(...ys) > height * 0.5, 'Credits expression occupies the lower right field');
-        assert.ok(Math.max(...ys) < height * 0.8, 'Credits expression remains within the reading field');
+        assert.ok(
+          Math.min(...xs) > width * 0.62,
+          'glyphs clear the Credits foreground text column'
+        );
+        assert.ok(
+          Math.min(...ys) > height * 0.5,
+          'Credits expression occupies the lower right field'
+        );
+        assert.ok(
+          Math.max(...ys) < height * 0.8,
+          'Credits expression remains within the reading field'
+        );
       }
     }
   }
@@ -798,10 +826,19 @@ test('Credits lower-right attention remains legible within the narrow viewport t
     const points = glyphs.flatMap((shape) => shape.points);
     const visible = points.filter(([x, y]) => x >= 0 && x <= width && y >= 0 && y <= height);
     assert.ok(glyphs.length > 40, 'narrow expression remains rendered');
-    assert.ok(visible.length / points.length > 0.95, 'at least 95% of glyph vertices stay on screen');
-    assert.ok(Math.max(...glyphs.map((shape) => shape.alpha)) > 0.2, 'glyph contrast remains visible');
+    assert.ok(
+      visible.length / points.length > 0.95,
+      'at least 95% of glyph vertices stay on screen'
+    );
+    assert.ok(
+      Math.max(...glyphs.map((shape) => shape.alpha)) > 0.2,
+      'glyph contrast remains visible'
+    );
     assert.ok(Math.min(...points.map(([x]) => x)) > width * 0.5, 'glyphs remain in the right half');
-    assert.ok(Math.min(...points.map(([, y]) => y)) > height * 0.5, 'glyphs remain in the lower half');
+    assert.ok(
+      Math.min(...points.map(([, y]) => y)) > height * 0.5,
+      'glyphs remain in the lower half'
+    );
   }
 });
 test('route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose', () => {

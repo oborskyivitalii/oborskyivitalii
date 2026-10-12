@@ -782,6 +782,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-76/2026-10-11-preview.md](review/issue-76/2026-10-11-preview.md) | Issue76 source-grounded preview analysis, self-review, acceptance and exact delivery observations. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-76/2026-10-12-admission.md](review/issue-76/2026-10-12-admission.md) | Issue76 independently reviewed exact Color runtime admission and controller-only staging integration prerequisite. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 

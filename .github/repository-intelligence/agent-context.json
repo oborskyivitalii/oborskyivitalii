@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f99679882a0f4af8dee70a9ab45baad05be699a7a1e602bdb30f631148a725ca",
+    "digest": "018e8365701480137111a7b3228517f73c05c7b5a9b0ad82c9e154ca92569c81",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -151,12 +151,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "3c151644e1fb1bf282479ccb32d6018d938cd2246f553b424f24ec0828bda717"
+        "sha256": "f6a58106a2e48dcb590d4c3bc4c46a45a9713a72de564afaaa6896f493c8d94f"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "93597b63946882ee34e4f7269e3c6218d0bc37e64f5df45e59e4816762794d12"
+        "sha256": "8a35cdb299361efd81902df41e966d8d14e3328f8475507dc059d04eef87b087"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -271,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "80ccec3be587bb28e64399ce621f90d5e360d7852c900030b77ed01b436e1243"
+        "sha256": "83ccd25848a04810fc0d0d19e9cb0385d06b2ee29f904c2b9617da780d7514dc"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -1140,7 +1140,12 @@
       {
         "path": "review/issue-76/2026-10-11-preview.md",
         "identity_mode": "content",
-        "sha256": "0291e4011fcdb4b6d01e731d5a9b04e2e82820929cb662f9580d7a8c775d03a6"
+        "sha256": "87df259de608d613044fce2aabf6854f3931d1647397dc5529dfeda0cfb8c26d"
+      },
+      {
+        "path": "review/issue-76/2026-10-12-admission.md",
+        "identity_mode": "content",
+        "sha256": "b01f2a233b01796d575d21d187a7d00eb2faa0bf91c00d79730f0f9fa9dd5e5f"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5305,7 +5310,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "7bc043c6e0430fea0971a97948482c743c5585dc55066702b2d668e577d7f050"
+        "sha256": "60c0047f3a395809b2ff6986b648eda46a8bed4ce3fb029f392cf8a5dafd1727"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5490,7 +5495,7 @@
       {
         "path": "tests/space.test.cjs",
         "identity_mode": "content",
-        "sha256": "f77b6333f198b0ecf607049d1e24fbc9eae30ff9d0c5c0b5a8936158efac1383"
+        "sha256": "9730f948cc10b6307933b6de534011e128529e8152250de834fe0322fa0544c1"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -5835,7 +5840,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "700ad28ecbdf7bd00abfbfbe72a730ee76901f1cb0562250811e238e6f0c6474"
+        "sha256": "4104901dab91a172803133b2e2030c3dd59e136cb8680dd682af16e72521b8da"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6020,7 +6025,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "7aad90d601b29719f532b7b46cb01b735b7ebdc343f25ba63363290e29c70055"
+        "sha256": "d055adbff04d1f9ffb915c97436f5681fe29a77837f52b648f1169775e0a1d77"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -9061,6 +9066,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 76 — 2026-10-11 preview analysis and self-review"
+    },
+    {
+      "path": "review/issue-76/2026-10-12-admission.md",
+      "kind": "file",
+      "purpose": "Issue76 independently reviewed exact Color runtime admission and controller-only staging integration prerequisite.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue76 — 12 October 2026 Color admission review"
     },
     {
       "path": "review/public-responses-20261006/README.md",
