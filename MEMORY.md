@@ -17,9 +17,10 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   Continuation corrects image-load smoke, frozen translation lineage and selected
   platform event formats; original failed CI remains failed. Fresh-head results
   belong in the live PR; source limits and separate owner decisions remain.
-  Native history follow-up captures focus before inert/departure, suppresses
-  transient history writes and preserves interrupted focus; fresh hosted
-  acceptance follows the failed7b28592 Back-focus observation.
+  Native history captures focus before inert/departure and preserves interrupted
+  focus. Managed hosted `27717ab` passed all article/Color cases; its Basic source
+  timed out. The measured isolated two-worker Space/executive-first route retains
+  all cases/budgets; fresh scheduler-head CI results belong in the live PR.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from

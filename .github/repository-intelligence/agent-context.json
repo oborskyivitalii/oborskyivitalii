@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "368795426cac330d00ab12b0972fdb2b29338c68a74de30341652a127b0cf0ab",
+    "digest": "40b324ed24cf24f740cecff63cf6e7dc5abf7c43dcf53180fb141825dd24b05b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5feceb5a00cab44fcf22ee92f3c0407ac21d711d04c16c13631062d0c740baa1"
+        "sha256": "3ef0c37552e9f82667c4baaa2bf561c19c57550790147cc88dd48e4fa1f707ca"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e10fe6b7ed0051d019e9b563e89cfd4eddf673822933f80927fc8e4bd94a4fb6"
+        "sha256": "ae4b1309f94ced2e6ca891fc1a7f7627887b34c3eb63bf63fe8fe7590f3161a9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0e8b30069da67b935fce0a19a46589c192928fbdf2e0c2a6685255af3b5ad84c"
+        "sha256": "371dd12e16e305fa28b059e72b43b8c4c081eb4abda89c6c72268e448ca2efa0"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -525,7 +525,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "7469a8b70daa2e8c400b245adee08b4e78cf637773b825992f3f3df0d389d086"
+        "sha256": "2395814da876f186cdca4a0e3c8e2041c2e349ef6ddc3b78860917f28ec82f5a"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -835,7 +835,7 @@
       {
         "path": "review/issue-5/2026-10-12-execution.md",
         "identity_mode": "content",
-        "sha256": "3fff6af17484ec58a3e07738b79a7b57625b4b4f759f9df6bebd6556ba56c867"
+        "sha256": "ecfb4033e98881191fa64811a33fa95b0f7d05b3a7197e43eae0e6482c3a8215"
       },
       {
         "path": "review/issue-5/2026-10-12-image-load-regression.json.gz",
@@ -845,7 +845,7 @@
       {
         "path": "review/issue-5/2026-10-12-independent-implementation.md",
         "identity_mode": "content",
-        "sha256": "411c198ae58dfd2659cf7ccc82856ae8cdc4f5a7ce412d71052c877d43f85f00"
+        "sha256": "71169b1532cc89d50259fe020cfedaa70c4809482dc15455bd3ec8b9741149d1"
       },
       {
         "path": "review/issue-5/2026-10-12-migration-inventory.json",
@@ -861,6 +861,11 @@
         "path": "review/issue-5/2026-10-12-secret-checksum-proof.json",
         "identity_mode": "content",
         "sha256": "5d51732cbd69e60b991d041f8b574133abd5032f63c2f8020bafd6146e2bbddd"
+      },
+      {
+        "path": "review/issue-5/2026-10-12-source-scheduler-diagnostic.json.gz",
+        "identity_mode": "content",
+        "sha256": "a4d1e6ca123c5b47c5966a71cd6238ad1f2ef35e08925411405f75adf9413522"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5790,7 +5795,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "06183221022dce4f7a11fc4f40ee8106fd7f33f3f9d26adc904a0e213bc4d7d9"
+        "sha256": "d0d4d60674e74d92f07eace1e281070bc5b977ff3c708026ec9cc0a94e372c09"
       },
       {
         "path": "tests/test_code_style.py",
@@ -6425,7 +6430,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "1dd4aeb73ac1658ae27c17f81975fa662112003282f6f6bf245b528f664f8c38"
+        "sha256": "bda492d55c17126f5cb2d60531820e873babe7cbbc3df5bc351e939f05e7b434"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -8858,6 +8863,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-12-secret-checksum-proof.json"
+    },
+    {
+      "path": "review/issue-5/2026-10-12-source-scheduler-diagnostic.json.gz",
+      "kind": "file",
+      "purpose": "Compressed exact27717ab source scheduler diagnostic metadata, full TAP/stderr and API prototype; preserves CLI2 timeout and API priority2 pass, separate from clean-head CI admission.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-12-execution.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-12-source-scheduler-diagnostic.json.gz"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",

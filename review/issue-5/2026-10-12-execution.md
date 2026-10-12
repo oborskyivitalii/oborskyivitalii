@@ -264,3 +264,34 @@ entries. All prior records, scanner rules and the complexity cap remain; no
 unknown secret or wildcard disposition is admitted. Final source, RI/CI,
 formatted owners and generated artifacts are checked before publication of
 the follow-up commit; its clean-head CI is recorded in the live PR.
+
+### Source scheduler follow-up from 27717ab
+
+Exact `27717ab` / tree `18e4f6ec` owning38275661202/38275683555 and navigation
+38275661203 passed. Hosted38275661643 passed exact HTTP, four ordinary cells,
+all five article cases and two-width Color on managed Chromium153.0.8010.12.
+The immutable preview is `https://578f5008.oborskyi-author-ci-staging.pages.dev`;
+public digest `8cf2b9dda7eb77f1453011fd3160257ce60719f096d0e40f0765c99635c74ce6`.
+Its successful smoke artifact11758504642 was independently inspected. These
+results establish the corrected native history in that source-qualified preview;
+they do not promote stable staging or satisfy editorial/device/release gates.
+
+Basic38275662062 failed the unchanged 180-second source bound. Partial TAP
+cannot supply complete case accounting, despite the observed passing cases.
+Actual Basic worker capacity was not retained and remains unknown. A diagnostic
+with only an explicit two-worker CLI cap also timed out: Node CLI sorts files,
+leaving the expensive Space suite late. Neither failure is relabeled or retried
+as admission.
+
+The materially different API-order diagnostic starts selected Space/executive
+first, with the same 59-module inventory, two isolated file workers and serial
+per-file defaults. It passed 670/670 in 168.230 seconds, with zero failed, cancelled,
+skipped or todo cases and clean `27717ab` before/after. This measured experiment
+motivates a maintained internal worker, explicit failure exit codes and awaited
+built-in TAP completion; it is not CI admission. The 180-second and 16MiB bounds,
+selector, existing cases, immutable fixtures and strict accounting remain.
+[Full scheduler diagnostic observations](2026-10-12-source-scheduler-diagnostic.json.gz)
+retain both results, actual source, module order, complete captured output and
+the prototype's plain-pipe caveat; the maintained worker awaits its pipeline.
+Fresh CI on the scheduler commit owns its final result. Runtime/public bytes,
+every Color tuple and publisher content are unchanged by this scheduling work.

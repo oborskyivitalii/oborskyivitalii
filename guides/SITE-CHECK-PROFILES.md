@@ -34,6 +34,14 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
+Selected Node source files execute in isolated processes with two file workers;
+tests within a file retain their serial default. The stable sorted selection is
+reported separately from execution order: selected Space and executive suites
+start first, then the remaining selected files. This overlaps measured expensive
+work rather than leaving Space at the end of CLI discovery. Every selected case,
+the 180-second process limit, 16MiB output bound, clean-source checks and complete
+zero-skip accounting remain. Reports retain the worker limit, execution order and
+observed host parallelism; timing is evidence for that run, not a speed guarantee.
 After visual approval mark the PR ready; deferred source/RI jobs use distinct
 names, so their skips cannot impersonate required admission contexts. `/stage`
 requires real successful latest raw-head source/RI/issue jobs. Explicit

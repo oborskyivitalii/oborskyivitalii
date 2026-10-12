@@ -316,8 +316,25 @@ test('selected execution keeps real process failure and accounting evidence with
       return { status: 0, stdout: tap() };
     },
   });
-  assert.deepEqual(called, ['--test', '--test-reporter=tap', 'tests/content.test.cjs']);
+  assert.deepEqual(called, [
+    path.join(root, 'tools/quality/source-tests.cjs'),
+    '--worker',
+    'tests/content.test.cjs',
+  ]);
   assert.equal(success.total, 2);
+  assert.equal(success.workerLimit, 2);
+  assert.ok(success.availableParallelism >= 1);
+  const modules = ['tests/content.test.cjs', 'tests/executive.test.cjs', 'tests/space.test.cjs'];
+  const original = [...modules];
+  assert.deepEqual(runner.executionOrder(modules), [modules[2], modules[1], modules[0]]);
+  assert.deepEqual(modules, original, 'scheduling never changes the selected inventory');
+  for (const invalid of [
+    [modules[2], modules[1]],
+    [modules[2], modules[2], modules[0]],
+    [modules[2], modules[1], 'tests/unselected.test.cjs'],
+  ]) {
+    assert.throws(() => runner.validateExecutionOrder(modules, invalid), /duplicate|inventory/);
+  }
   assert.throws(
     () =>
       runner.run(root, plan, {
@@ -365,6 +382,104 @@ test('selected execution keeps real process failure and accounting evidence with
     ]).plan,
     true
   );
+});
+
+test('isolated source workers retain file order, intra-file defaults and real failure accounting', (t) => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'source-worker-contract-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(directory, 'tests'));
+  const prelude =
+    "const test = require('node:test');\n" + "const assert = require('node:assert/strict');\n";
+  const passSource =
+    prelude +
+    "require('node:fs').writeFileSync(__filename + '.pid', String(process.pid));\n" +
+    'assert.equal(globalThis.workerFixture, undefined);\n' +
+    'globalThis.workerFixture = true;\n' +
+    'let active = false;\n' +
+    "test('first serial observation', async () => {\n" +
+    '  assert.equal(active, false);\n' +
+    '  active = true;\n' +
+    '  await new Promise(resolve => setImmediate(resolve));\n' +
+    '  active = false;\n' +
+    '});\n' +
+    "test('second serial observation', () => assert.equal(active, false));\n";
+  const fixtures = [
+    { name: 'pass', source: passSource, status: 0 },
+    {
+      name: 'failure',
+      source:
+        prelude +
+        "test('intentional failed observation', () => assert.fail('owned worker failure'));\n",
+      status: 1,
+      reject: /owned worker failure/,
+    },
+    {
+      name: 'crash',
+      source: "throw new Error('owned file crash');\n",
+      status: 1,
+      reject: /owned file crash|testCodeFailure/,
+    },
+    {
+      name: 'empty',
+      source: '// no named tests\n',
+      status: 0,
+      reject: /empty selected test module/,
+    },
+    {
+      name: 'skip',
+      source: prelude + "test('declared skipped observation', { skip: true }, () => {});\n",
+      status: 0,
+      reject: /not all selected source tests passed|skipped/,
+    },
+  ];
+  const environment = { ...process.env };
+  delete environment.NODE_TEST_CONTEXT;
+  for (const fixture of fixtures) {
+    const modules =
+      fixture.name === 'pass'
+        ? ['tests/executive.test.cjs', 'tests/space.test.cjs']
+        : ['tests/' + fixture.name + '.test.cjs'];
+    for (const file of modules) {
+      const label = path.basename(file).replace('.test.cjs', '');
+      fs.writeFileSync(
+        path.join(directory, file),
+        fixture.source.replaceAll('serial observation', label + ' serial observation')
+      );
+    }
+    let observed;
+    const execute = (argv) => {
+      observed = cp.spawnSync(process.execPath, argv, {
+        cwd: directory,
+        env: environment,
+        encoding: 'utf8',
+        timeout: 180000,
+        maxBuffer: 16 * 1024 * 1024,
+      });
+      return observed;
+    };
+    const plan = { profile: 'production', modules, baselineFiles: [] };
+    if (fixture.reject) {
+      assert.throws(() => runner.run(directory, plan, { execute }), fixture.reject);
+    } else {
+      const result = runner.run(directory, plan, { execute });
+      assert.equal(result.total, 4);
+      assert.equal(result.passed, 4);
+      assert.equal(result.workerLimit, 2);
+      assert.deepEqual(result.executionOrder, [modules[1], modules[0]]);
+      assert.ok(
+        observed.stdout.indexOf('# Subtest: first space serial observation') <
+          observed.stdout.indexOf('# Subtest: first executive serial observation'),
+        'the API executes priority files in the supplied order'
+      );
+      const pids = modules.map((file) =>
+        Number(fs.readFileSync(path.join(directory, file + '.pid'), 'utf8'))
+      );
+      assert.equal(new Set(pids).size, modules.length, 'each file owns a fresh Node process');
+      assert.ok(pids.every((pid) => pid > 0 && pid !== process.pid));
+    }
+    assert.equal(observed.error, undefined, fixture.name + ' child completed');
+    assert.equal(observed.status, fixture.status, fixture.name + ' retains its real exit status');
+  }
 });
 
 test('an empty selected file cannot masquerade as one passing Node test wrapper', (t) => {

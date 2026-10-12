@@ -702,6 +702,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-5/2026-10-12-migration-inventory.json](review/issue-5/2026-10-12-migration-inventory.json) | Exact UA/SCC component/file Git and byte inventory, selected adaptations, deferred scope and cross-repository closure/upgrade decisions. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/2026-10-12-native-history-browser.json.gz](review/issue-5/2026-10-12-native-history-browser.json.gz) | Compressed final native-history article journey five-case and Color two-width observations with exact prepared-source/artifact identity and declared review browser. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
 | [review/issue-5/2026-10-12-secret-checksum-proof.json](review/issue-5/2026-10-12-secret-checksum-proof.json) | Exact reviewed public article/producer checksum locations and bounded Base64-scope scanner evidence; does not exempt unknown credentials or whole source files. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
+| [review/issue-5/2026-10-12-source-scheduler-diagnostic.json.gz](review/issue-5/2026-10-12-source-scheduler-diagnostic.json.gz) | Compressed exact27717ab source scheduler diagnostic metadata, full TAP/stderr and API prototype; preserves CLI2 timeout and API priority2 pass, separate from clean-head CI admission. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
 
 ## review/issue-5/pmday-candidate/
 

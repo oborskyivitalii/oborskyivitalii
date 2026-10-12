@@ -430,3 +430,20 @@ Color navigation/fingerprints match actual bytes; prior five families/ten tuples
 remain identical. Only the final156 exact entries were appended; intermediate
 proof did not authorize ledger additions. Findings SHA256:
 `0277f3cd0f7863597ef5dae5d3c4047f50b0ae3fde3afdbfc5f938850bcfc777`.
+
+### F24 — bounded source scheduler
+
+Independent `ci_review` verified all four selected profile plans against `27717ab`:
+PR59/staging54/production57/diagnostic18 inventories are identical. The API
+worker changes execution order only, starting selected Space/executive first
+with two process-isolated workers and serial per-file defaults. Exact set and
+uniqueness checks prevent omission or duplication. The 180-second/16MiB limits,
+clean guards and complete zero-fail/skip/cancel/todo accounting are unchanged.
+
+API failures set exit status 1; TAP pipeline completion is awaited without
+force-exit or filters. Independent actual-child fixtures confirm isolated state,
+serial defaults, failed/crashed exits and rejected empty/skipped reports. All 12
+earlier profile cases remain plus one meaningful worker regression; independently
+rerun 13/13 passed. Runtime, public output, publisher data, every Color tuple and
+the registry remain byte-identical to `27717ab`. The passing 670-case prototype is
+explicitly diagnostic; fresh CI must admit the authored worker and new case.

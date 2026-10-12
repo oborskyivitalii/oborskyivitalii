@@ -5,6 +5,7 @@ const fs = require('node:fs'),
   cp = require('node:child_process'),
   assert = require('node:assert/strict');
 const REGISTRY = 'tools/quality/test-profiles.json';
+const WORKER_LIMIT = 2;
 function safePath(value, { pattern = false } = {}) {
   assert.equal(typeof value, 'string', 'path must be text');
   assert.ok(
@@ -348,10 +349,10 @@ function requireClean(root) {
     'source tests require clean checkout'
   );
 }
-function run(root, plan, options = {}) {
-  assert.ok(Array.isArray(plan.modules), 'missing selected modules');
-  assert.equal(new Set(plan.modules).size, plan.modules.length, 'duplicate selected source module');
-  for (const file of plan.modules) {
+function validateModules(root, modules) {
+  assert.ok(Array.isArray(modules), 'missing selected modules');
+  assert.equal(new Set(modules).size, modules.length, 'duplicate selected source module');
+  for (const file of modules) {
     safePath(file);
     assert.ok(
       /^tests\/(?:[^/]+\/)*[^/]+\.test\.cjs$/.test(file),
@@ -360,6 +361,45 @@ function run(root, plan, options = {}) {
     const stat = fs.lstatSync(path.join(root, file));
     assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'selected source module must be regular');
   }
+}
+function validateExecutionOrder(modules, order) {
+  assert.ok(Array.isArray(order), 'missing source execution order');
+  assert.equal(new Set(order).size, order.length, 'duplicate source execution module');
+  assert.deepEqual([...order].sort(), [...modules].sort(), 'source execution inventory differs');
+}
+function executionOrder(modules) {
+  const priority = ['tests/space.test.cjs', 'tests/executive.test.cjs'];
+  const order = [
+    ...priority.filter((file) => modules.includes(file)),
+    ...modules.filter((file) => !priority.includes(file)),
+  ];
+  validateExecutionOrder(modules, order);
+  return order;
+}
+async function worker(modules, root = process.cwd()) {
+  validateModules(root, modules);
+  assert.ok(modules.length > 0, 'empty source worker inventory');
+  const { run: runTests } = require('node:test');
+  const { tap } = require('node:test/reporters');
+  const { pipeline } = require('node:stream/promises');
+  const stream = runTests({
+    files: modules.map((file) => path.resolve(root, file)),
+    cwd: root,
+    concurrency: WORKER_LIMIT,
+    isolation: 'process',
+    only: false,
+    watch: false,
+  });
+  stream.on('test:fail', () => {
+    process.exitCode = 1;
+  });
+  stream.on('error', () => {
+    process.exitCode = 1;
+  });
+  await pipeline(stream.compose(tap), process.stdout, { end: false });
+}
+function run(root, plan, options = {}) {
+  validateModules(root, plan.modules);
   if (options.requireClean) requireClean(root);
   if (!plan.modules.length) {
     assert.equal(plan.profile, 'pr', 'empty routine profile');
@@ -385,7 +425,9 @@ function run(root, plan, options = {}) {
         maxBuffer: 16 * 1024 * 1024,
         timeout: 180000,
       }));
-  const argv = ['--test', '--test-reporter=tap', ...plan.modules],
+  // The CLI sorts file arguments; the API preserves this measured work order.
+  const order = executionOrder(plan.modules);
+  const argv = [__filename, '--worker', ...order],
     started = Date.now(),
     result = execute(argv);
   const output = result.stdout || '',
@@ -411,6 +453,9 @@ function run(root, plan, options = {}) {
     ...counts,
     elapsedMs: Date.now() - started,
     argv,
+    workerLimit: WORKER_LIMIT,
+    executionOrder: order,
+    availableParallelism: require('node:os').availableParallelism(),
   };
 }
 function argumentsFor(argv) {
@@ -444,11 +489,18 @@ function main(argv = process.argv.slice(2)) {
   return result;
 }
 if (require.main === module) {
-  try {
-    main();
-  } catch (error) {
+  const reportFailure = (error) => {
     console.error(error.message);
     process.exitCode = 1;
+  };
+  if (process.argv[2] === '--worker') {
+    worker(process.argv.slice(3)).catch(reportFailure);
+  } else {
+    try {
+      main();
+    } catch (error) {
+      reportFailure(error);
+    }
   }
 }
 module.exports = {
@@ -461,6 +513,10 @@ module.exports = {
   readChangedPaths,
   select,
   accounting,
+  validateModules,
+  validateExecutionOrder,
+  executionOrder,
+  worker,
   run,
   argumentsFor,
   requireClean,

@@ -1261,6 +1261,12 @@
       "role": "history",
       "owner": "review/issue-5/2026-10-12-execution.md"
     },
+    "review/issue-5/2026-10-12-source-scheduler-diagnostic.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed exact27717ab source scheduler diagnostic metadata, full TAP/stderr and API prototype; preserves CLI2 timeout and API priority2 pass, separate from clean-head CI admission.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-12-execution.md"
+    },
     "review/issue-5/pmday-candidate": {
       "kind": "directory",
       "purpose": "Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate.",
