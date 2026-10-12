@@ -74,6 +74,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-65](review/issue-65) | Harness simplification evidence and independent review under issue65. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-69](review/issue-69) | Issue69 exact-main plan, implementation self-review and inert scoped browser/cost evidence; independent/device/delivery gates remain external. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-72](review/issue-72) | Issue72 dated self-analysis, execution and remaining acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-76](review/issue-76) | Issue76 dated preview analysis, review and current-source evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/public-responses-20261006](review/public-responses-20261006) | Exact before/after public response prose and reconciliation records. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/reading-backdrops-20261006](review/reading-backdrops-20261006) | Content-sized reading backdrop correction evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/repository-maintenance-20261007](review/repository-maintenance-20261007) | Byte-exact pre-cleanup agent guide and its provenance note. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -199,6 +200,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-65.json](.github/acceptance/issue-65.json) | Issue65 AC01-AC09 source checks with separate review, live and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-69.json](.github/acceptance/issue-69.json) | Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-72.json](.github/acceptance/issue-72.json) | Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-76.json](.github/acceptance/issue-76.json) | Issue76 preview-first interaction, continuous scene ink, repeat reading entry and shared composition AC mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## .github/repository-intelligence/
 
@@ -774,6 +776,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-72/2026-10-11-pages-basepath.md](review/issue-72/2026-10-11-pages-basepath.md) | Isolated preparation, focused evidence and trusted-main integration prerequisites for configured Pages project-base compatibility. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-72/2026-10-11-pages-validator-recovery.md](review/issue-72/2026-10-11-pages-validator-recovery.md) | Failed two-host evidence, strict motion-validator compatibility and authenticated failed-first Pages recovery preparation. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-72/2026-10-11-review.md](review/issue-72/2026-10-11-review.md) | Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+
+## review/issue-76/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-76/2026-10-12-admission.md](review/issue-76/2026-10-12-admission.md) | Issue76 independently reviewed exact Color runtime admission and controller-only staging integration prerequisite. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/public-responses-20261006/
 

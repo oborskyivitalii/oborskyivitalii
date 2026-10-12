@@ -103,7 +103,9 @@
         "review/issue-69/2026-10-11-paced-transitions-evidence.tar.gz",
         "review/issue-69/2026-10-11-paced-security-proof.json.gz",
         "review/issue-69/2026-10-11-pacing-harness.md",
-        "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz"
+        "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
+        ".github/acceptance/issue-76.json",
+        "review/issue-76/2026-10-12-admission.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -471,7 +473,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "86ac7359349d18bd918dac8b4168c685d2c2871b02d7f4092e4748811fcbe52c",
+    "digest": "4425afd34dfeb3411105190e510f0fc714280fa2fb2e7e8b649791a8ed21fd42",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -550,6 +552,10 @@
         "sha256": "8e4128b77f18d94b6506b2c830bb4f7b41e84759adf1e3bf79415bcfd41b5262"
       },
       {
+        "path": ".github/acceptance/issue-76.json",
+        "sha256": "4237f57d6c94efedb0a03b794d48dab655b2ba58c5dbdb396ad8805bd7e68873"
+      },
+      {
         "path": ".github/code-style.json",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
       },
@@ -567,7 +573,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6b1c0d1e2541a3c028d76c162f85ff215b61633eddd40367f57b92b922d0df02"
+        "sha256": "2b7ff7998df02480296bcd1395d4d78ed359113ace42b2b1c21e48e034f950d9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

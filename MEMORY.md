@@ -1,8 +1,13 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-11**.
+Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 ## Snapshot
+
+- 12October: user approved issue76 / PR77 preview for main and stable staging.
+  Exact new Color recognition needs a controller-only companion first because
+  Pages smoke consumes protected main. Public main bytes remain unchanged.
+  Current runtime preview sourcebcfcfe8 is not yet staged or merged.
 
 - Main is `8389eb0145940c0f269fc7240d854a5b38c64c08` after reviewed
   [PR75](https://github.com/oborskyivitalii/oborskyivitalii/pull/75), full tree
