@@ -7,146 +7,86 @@
     {
       "id": "AC01",
       "intent": "Inventory pinned migration components, provenance, licenses and reviewed upgrade procedure.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "INVENTORY"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Complete current catalog and regenerated navigation views. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "CURRENT-RI"],
+      "gates": ["INVENTORY"]
     },
     {
       "id": "AC02",
       "intent": "Build the real PMDay article into full site HTML and visually reviewed article PDF with source/artifact manifests.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "ARTICLE"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER", "DELIVERY"],
+      "gates": ["ARTICLE"]
     },
     {
       "id": "AC03",
       "intent": "Exclude drafts and review bundles from default public output; reject unsupported features and unsafe resources.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "ISOLATION"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER"],
+      "gates": ["ISOLATION"]
     },
     {
       "id": "AC04",
       "intent": "Use a minimal pinned dependency closure, bounded selected CI and two distinct profile/upgrade cases.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "DEPENDENCIES"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. Current source-qualified RI/CI coupling and declared selectors. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "DELIVERY", "RI-CI"],
+      "gates": ["DEPENDENCIES"]
     },
     {
       "id": "AC05",
       "intent": "Reconcile site/UA/Subprime ownership, compatibility gaps and separate upstream/deck decisions.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "CROSS-REPO"
-      ]
+      "automated_scope": "Complete current catalog and regenerated navigation views. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["CROSS-REPO"]
     },
     {
       "id": "AC06",
       "intent": "Demonstrate blueprint, whole-text review, manuscript/adaptation and feedback workflow on PMDay.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "EDITORIAL"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER"],
+      "gates": ["EDITORIAL"]
     },
     {
       "id": "AC07",
       "intent": "Preserve legacy catalog records and distinct article/content-edition/render-artifact/event/adaptation identities.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "IDENTITIES"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER"],
+      "gates": ["IDENTITIES"]
     },
     {
       "id": "AC08",
       "intent": "Deliver complete article documents inside the five-scene coherent artifact with persistent reader, native fallback and retained immutable closure.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "READER"
-      ]
+      "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["BASIC", "READER", "DELIVERY"],
+      "gates": ["READER"]
     },
     {
       "id": "AC09",
       "intent": "Verify profile-driven LinkedIn/Medium HTML/MD/TXT/copy-ready/upload kits on two profiles and inspect actual candidates.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "PLATFORMS"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER"],
+      "gates": ["PLATFORMS"]
     },
     {
       "id": "AC10",
       "intent": "Preserve observed publication history and enable site-first canonical only for an exact production-served accepted edition.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "PUBLICATION"
-      ]
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["PUBLISHER", "READER", "DELIVERY"],
+      "gates": ["PUBLICATION"]
     },
     {
       "id": "AC11",
       "intent": "Map CS01–CS10, maintain RI/CI/test inventories and obtain independent implementation/export review.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "INDEPENDENT"
-      ]
+      "automated_scope": "The documented bounded CS01/CS03 source and agent routing subset. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["STYLE-GUARD", "CURRENT-RI", "RI-CI", "PUBLISHER", "READER", "DELIVERY"],
+      "gates": ["INDEPENDENT"]
     },
     {
       "id": "AC12",
       "intent": "Keep one #5 execution PR, exact-source evidence and accepted changed-surface staging; reconcile original intent and remaining decisions.",
-      "automated_scope": "Initial P0 mapping: existing Basic and bounded code-style checks establish only their documented current-source subset. Publisher/reader/profile-specific checks are added as their executable contracts land; the criterion stays open while implementation and its review gate are pending.",
-      "checks": [
-        "BASIC",
-        "STYLE-GUARD"
-      ],
-      "gates": [
-        "DELIVERY"
-      ]
+      "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": ["BASIC", "CURRENT-RI", "RI-CI", "PUBLISHER", "READER", "DELIVERY"],
+      "gates": ["DELIVERY"]
     }
   ],
   "checks": {
@@ -156,6 +96,26 @@
     "STYLE-GUARD": {
       "kind": "unittest",
       "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PUBLISHER": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_publisher_contracts"
+    },
+    "READER": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_reader_and_generation"
+    },
+    "DELIVERY": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_delivery"
     }
   },
   "gates": {

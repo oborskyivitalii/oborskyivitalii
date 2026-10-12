@@ -23,10 +23,14 @@ function identities(base, parts) {
     effects: parts.map((p) => p.effect),
   };
   const versions = Object.fromEntries(
-    snapshot.routes.map((id) => [
-      id,
-      artifact.digest('color:' + base.routes[id].version + ':' + fingerprint),
-    ])
+    snapshot.routes
+      .map((id) => [id, artifact.digest('color:' + base.routes[id].version + ':' + fingerprint)])
+      .concat(
+        Object.entries(base.articles || {}).map(([key, article]) => [
+          'article:' + key,
+          artifact.digest('color:' + article.version + ':' + fingerprint),
+        ])
+      )
   );
   return { variant, versions };
 }
@@ -34,6 +38,9 @@ function render(html, base, identity) {
   html = html.replaceAll(base.engine, identity.variant.fingerprint);
   for (const id of snapshot.routes)
     html = html.replaceAll(base.routes[id].version, identity.versions[id]);
+  for (const [key, article] of Object.entries(base.articles || {})) {
+    html = html.replaceAll(article.version, identity.versions['article:' + key]);
+  }
   assert.deepEqual(
     [...html.matchAll(/<meta name="site-variant" content="([^"]*)"\s*\/?\s*>/g)].map(
       (match) => match[1]
@@ -75,8 +82,17 @@ function decoratePublic(dir) {
       render(fs.readFileSync(path.join(dir, base.routes[id].url), 'utf8'), base, identity),
     ])
   );
-  fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
-  fs.rmSync(path.join(dir, 'snapshots'), { recursive: true });
+  const articles = Object.fromEntries(
+    Object.entries(base.articles || {}).map(([key, article]) => [
+      key,
+      {
+        alias: render(fs.readFileSync(path.join(dir, article.alias), 'utf8'), base, identity),
+        snapshot: render(fs.readFileSync(path.join(dir, article.url), 'utf8'), base, identity),
+      },
+    ])
+  );
+  // Earlier immutable documents keep their original runtime closure beside the
+  // new Color generation; decorating current aliases does not prune history.
   for (const [name, text] of Object.entries(scripts)) {
     write(dir, name, text);
     write(dir, 'runtime/' + identity.variant.fingerprint + '/' + name, text);
@@ -86,6 +102,7 @@ function decoratePublic(dir) {
     engine: identity.variant.fingerprint,
     variant: identity.variant,
     routes: {},
+    ...(base.articles ? { articles: {} } : {}),
   };
   for (const id of snapshot.routes) {
     const url = 'snapshots/' + identity.versions[id] + '/' + id + '.html';
@@ -96,6 +113,18 @@ function decoratePublic(dir) {
       version: identity.versions[id],
       url,
       sha256: artifact.digest(pages[id]),
+    };
+  }
+  for (const [key, article] of Object.entries(base.articles || {})) {
+    const version = identity.versions['article:' + key];
+    const url = 'article-snapshots/' + version + '/' + path.posix.basename(article.alias);
+    write(dir, article.alias, articles[key].alias);
+    write(dir, url, articles[key].snapshot);
+    revision.articles[key] = {
+      ...article,
+      version,
+      url,
+      sha256: artifact.digest(articles[key].snapshot),
     };
   }
   revision.content = artifact.digest(JSON.stringify(identity.versions));

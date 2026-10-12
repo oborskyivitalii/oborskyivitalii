@@ -38,6 +38,7 @@ jobs:
       - name: Install the locked source-quality toolchain
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
       - name: Check maintained formatting

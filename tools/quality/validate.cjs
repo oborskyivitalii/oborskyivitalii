@@ -596,6 +596,7 @@ function aggregate({
   assert.match(m.artifactDigest, /^[0-9a-f]{64}$/);
   assert.equal(m.candidateCommit, m.sourceCommit, 'candidate/source mismatch');
   assert.equal(sizes.artifactDigest, m.artifactDigest);
+  require('./artifact.cjs').validateArticleSizes(sizes, m);
   assert.equal(sizes.pass, true);
   assert.equal(sizes.rows.length, budgets.routes.length);
   for (const route of budgets.routes) {

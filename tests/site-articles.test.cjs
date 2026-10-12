@@ -1,0 +1,580 @@
+'use strict';
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const os = require('node:os');
+const cp = require('node:child_process');
+const vm = require('node:vm');
+const build = require('../tools/site/build.cjs');
+const snapshot = require('../tools/site/snapshot.cjs');
+const artifact = require('../tools/quality/artifact.cjs');
+const repo = path.resolve(__dirname, '..');
+const png = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
+  'base64'
+);
+
+function write(root, relative, bytes) {
+  const file = path.join(root, relative);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, bytes);
+}
+function json(root, relative, value) {
+  write(root, relative, JSON.stringify(value, null, 2) + '\n');
+}
+function fixture(t) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'site-articles-'));
+  for (const relative of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
+    fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
+    fs.cpSync(path.join(repo, relative), path.join(root, relative), {
+      recursive: true,
+    });
+  }
+  fs.rmSync(path.join(root, 'site/publications'), {
+    recursive: true,
+    force: true,
+  });
+  fs.rmSync(path.join(root, 'site/assets/publications'), {
+    recursive: true,
+    force: true,
+  });
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  return root;
+}
+function publication(root, id = 'reader-profile', language = 'en') {
+  const directory = `site/publications/${id}`;
+  const manuscript =
+    '# Reader profile\n\nA full article.\n\n## First section\n\n' +
+    '![A pixel](asset:pixel)\n\n## Second section\n\n[Research](https://example.com/source)\n';
+  const metadata = {
+    schema: 1,
+    id,
+    slug: id,
+    title: 'Reader profile',
+    summary: 'A complete bounded article.',
+    authors: [{ name: 'Vitalii Oborskyi' }],
+    language,
+    topic: 'systems',
+    owner: { repository: 'oborskyivitalii/oborskyivitalii', path: directory },
+    status: 'draft',
+    source: `manuscript.${language}.md`,
+    edition: 'reader-first',
+    profile: 'profile.json',
+    rights: {
+      status: 'review-pending',
+      notice: 'Review pending.',
+      references: [],
+    },
+    references: [{ id: 'research', url: 'https://example.com/source' }],
+    assets: [
+      {
+        id: 'pixel',
+        path: `site/assets/publications/${id}/pixel.png`,
+        sha256: build.sha(png),
+        width: 1,
+        height: 1,
+        alt: 'A pixel',
+        caption: 'A bounded figure.',
+        credit: 'Author.',
+      },
+    ],
+    platforms: {
+      linkedin: { mode: 'equivalent-rendition' },
+      medium: { mode: 'equivalent-rendition' },
+    },
+    canonical: null,
+  };
+  const edition = {
+    schema: 1,
+    id: 'reader-first',
+    articleId: id,
+    language,
+    kind: 'full-article',
+    source: {
+      path: metadata.source,
+      sha256: build.sha(manuscript),
+      commit: null,
+      blob: null,
+    },
+    owner: 'site',
+    derivation: null,
+    rights: 'review-pending',
+  };
+  edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
+    metadata,
+    edition.source
+  );
+  write(root, `${directory}/${metadata.source}`, manuscript);
+  write(root, metadata.assets[0].path, png);
+  const launch = 'Read this authored article and its source references.\n';
+  write(root, `${directory}/launch-post.${language}.md`, launch);
+  json(root, `${directory}/profile.json`, {
+    schema: 1,
+    id,
+    platforms: {
+      linkedin: { formats: ['txt'], relationship: 'equivalent-rendition' },
+      medium: { formats: ['txt'], relationship: 'equivalent-rendition' },
+    },
+    launch: { source: `launch-post.${language}.md`, sha256: build.sha(launch) },
+    seo: { title: metadata.title, summary: metadata.summary },
+    assets: {
+      cover: { omitReason: 'This fixture uses an authored plain text profile.' },
+      hero: { omitReason: 'This fixture uses an authored plain text profile.' },
+    },
+    limits: {},
+  });
+  json(root, `${directory}/publication.json`, metadata);
+  json(root, `${directory}/editions/reader-first.json`, edition);
+  return { directory, metadata, edition, manuscript };
+}
+function preview(root, ids = ['reader-profile'], options = {}) {
+  return build.build({
+    root,
+    output: path.join(root, 'candidate'),
+    cacheFile: path.join(root, 'candidate.cache.json'),
+    candidateArticles: ids,
+    ...options,
+  });
+}
+function html(root, name, directory = 'candidate') {
+  return fs.readFileSync(path.join(root, directory, name), 'utf8');
+}
+function accept(root, record) {
+  const git = (args) => cp.execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  git(['init', '-q']);
+  git(['config', 'user.name', 'Article fixture']);
+  git(['config', 'user.email', 'fixture@example.invalid']);
+  git(['add', 'site/publications', 'site/assets/publications']);
+  git(['commit', '-qm', 'Accept fixture source']);
+  record.metadata.status = 'accepted';
+  record.metadata.rights.status = 'accepted';
+  record.edition.rights = 'accepted';
+  record.edition.source.commit = git(['rev-parse', 'HEAD']);
+  record.edition.source.blob = git([
+    'rev-parse',
+    `HEAD:${record.directory}/${record.metadata.source}`,
+  ]);
+  json(root, `${record.directory}/publication.json`, record.metadata);
+  json(root, `${record.directory}/editions/reader-first.json`, record.edition);
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, 'site/content/catalog.json')));
+  const existing = Object.values(catalog.records)[0];
+  catalog.records['publication-99'] = {
+    kind: 'local-article',
+    article: record.metadata.id,
+    edition: {
+      ...existing.edition,
+      name: record.metadata.title,
+      url: `articles/${record.metadata.slug}.html`,
+      inLanguage: record.metadata.language,
+    },
+    editions: [],
+    discussions: [],
+    presentation: {
+      topic: 'systems',
+      kind: 'Article',
+      publisher: 'Author site',
+    },
+  };
+  delete catalog.records['publication-99'].edition.datePublished;
+  delete catalog.records['publication-99'].edition.dateModified;
+  catalog.structuredOrder.push({ record: 'publication-99' });
+  json(root, 'site/content/catalog.json', catalog);
+}
+
+test('default output excludes draft body, catalog descriptors, files and assets; preview selection is explicit', (t) => {
+  const root = fixture(t);
+  publication(root);
+  const ordinary = build.build({ root });
+  assert.deepEqual(Object.keys(ordinary.routes), snapshot.routes);
+  assert.deepEqual(ordinary.articles, {});
+  assert.ok(!Object.keys(ordinary.files).some((name) => /article|publications/.test(name)));
+  assert.doesNotMatch(html(root, 'writing.html', 'docs'), /Reader profile/);
+  assert.throws(
+    () => build.build({ root, candidateArticles: ['reader-profile'] }),
+    /isolated preview/
+  );
+  assert.throws(() => preview(root, ['missing-profile']), /missing article/);
+  const candidate = preview(root);
+  assert.deepEqual(Object.keys(candidate.routes), snapshot.routes, 'five rooms remain unchanged');
+  assert.equal(Object.keys(candidate.articles).length, 1);
+  const revision = snapshot.verify(path.join(root, 'candidate'), {
+    files: candidate.files,
+  });
+  assert.equal(revision.preview, true);
+  assert.match(html(root, 'writing.html'), /articles\/reader-profile\.html/);
+  assert.match(html(root, 'articles/reader-profile.html'), /noindex,nofollow/);
+  assert.doesNotMatch(html(root, 'articles/reader-profile.html'), /datePublished|rel="canonical"/);
+});
+
+test('nested article native HTML keeps Writing shell, TOC, figures, language, sources and immutable closure', (t) => {
+  const root = fixture(t);
+  publication(root, 'uk-profile', 'uk');
+  const result = preview(root, ['uk-profile']);
+  const document = html(root, 'articles/uk-profile.html');
+  assert.match(document, /<html lang="uk">/);
+  assert.match(document, /data-page="writing" data-article="uk-profile:uk"/);
+  assert.equal((document.match(/id="space-canvas"/g) || []).length, 1);
+  assert.equal((document.match(/class="site-header(?:\s|")/g) || []).length, 1);
+  assert.match(document, /href="\.\.\/writing\.html" aria-current="page"/);
+  assert.match(document, /href="#first-section"/);
+  assert.match(document, /src="\.\.\/article-media\/[a-f0-9]{64}\/pixel.png"/);
+  assert.match(document, /width="1" height="1"/);
+  assert.match(document, /A bounded figure/);
+  assert.match(document, /Sources and edition/);
+  assert.match(document, /meta name="site-base" content="\.\.\/"/);
+  snapshot.verify(path.join(root, 'candidate'), { files: result.files });
+});
+
+test('article changes, slug rename and deletion have cold/incremental equality without retaining candidates', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  const before = preview(root);
+  record.metadata.slug = 'renamed-reader';
+  json(root, `${record.directory}/publication.json`, record.metadata);
+  const after = preview(root);
+  assert.ok(after.removed.includes('articles/reader-profile.html'));
+  assert.ok(!after.files['articles/reader-profile.html']);
+  assert.notDeepEqual(after.files, before.files);
+  const cold = preview(root, ['reader-profile'], { all: true });
+  assert.deepEqual(cold.files, after.files);
+  preview(root, ['reader-profile'], { check: true });
+  fs.rmSync(path.join(root, record.directory), { recursive: true });
+  const deleted = preview(root, []);
+  assert.deepEqual(deleted.articles, {});
+  assert.ok(!Object.keys(deleted.files).some((name) => name.startsWith('article-')));
+});
+
+test('accepted articles survive retention and edition derivation after rename with original immutable bytes', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  accept(root, record);
+  const before = build.build({ root });
+  const publicDir = path.join(root, 'docs');
+  const original = artifact.manifest(publicDir);
+  require('../tools/site/retain.cjs').retain(publicDir, original, path.join(root, 'site/retained'));
+  record.metadata.slug = 'new-accepted-reader';
+  json(root, `${record.directory}/publication.json`, record.metadata);
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, 'site/content/catalog.json')));
+  catalog.records['publication-99'].edition.url = 'articles/new-accepted-reader.html';
+  json(root, 'site/content/catalog.json', catalog);
+  const after = build.build({ root });
+  assert.ok(!after.files['articles/reader-profile.html']);
+  for (const name of Object.keys(before.files).filter(snapshot.immutable))
+    assert.equal(after.files[name], before.files[name], name);
+  snapshot.verify(publicDir, { files: after.files });
+  const directory = path.join(root, 'edition-test');
+  fs.cpSync(publicDir, path.join(directory, 'public'), { recursive: true });
+  const source = {
+    schema: 1,
+    sourceCommit: record.edition.source.commit,
+    ...artifact.manifest(path.join(directory, 'public')),
+  };
+  json(root, 'edition-test/artifact.json', source);
+  const staged = require('../tools/staging/edition.cjs').build(directory);
+  assert.equal(Object.keys(staged.components.articles).length, 1);
+  snapshot.verify(path.join(directory, 'public'), staged);
+  for (const name of Object.keys(before.files).filter(snapshot.immutable))
+    assert.equal(staged.files[name].sha256, before.files[name], name);
+});
+
+test('article identity verifier rejects unknown rooms, candidate production, corrupt assets and omitted snapshots', (t) => {
+  const root = fixture(t);
+  publication(root);
+  const result = preview(root);
+  const revisionFile = path.join(root, 'candidate/site-revision.json');
+  const original = JSON.parse(fs.readFileSync(revisionFile));
+  for (const change of [
+    (revision) => {
+      revision.articles['reader-profile:en'].scene = 'sixth';
+    },
+    (revision) => {
+      delete revision.preview;
+    },
+    (revision) => {
+      revision.articles['reader-profile:en'].url = 'articles/other.html';
+    },
+  ]) {
+    const revision = structuredClone(original);
+    change(revision);
+    fs.writeFileSync(revisionFile, JSON.stringify(revision));
+    assert.throws(() => snapshot.verify(path.join(root, 'candidate'), { files: result.files }));
+  }
+  fs.writeFileSync(revisionFile, JSON.stringify(original));
+  const asset = original.articles['reader-profile:en'].assets[0];
+  fs.writeFileSync(path.join(root, 'candidate', asset), 'corrupt');
+  assert.throws(
+    () => snapshot.verify(path.join(root, 'candidate'), { files: result.files }),
+    /asset digest/
+  );
+});
+
+test('UTF-8 article limits reject oversized Unicode documents without replacing the prior generation', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  const before = preview(root);
+  record.manuscript += '\n\n' + 'Ж'.repeat(40000) + '\n';
+  record.edition.source.sha256 = build.sha(record.manuscript);
+  record.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
+    record.metadata,
+    record.edition.source
+  );
+  write(root, `${record.directory}/${record.metadata.source}`, record.manuscript);
+  json(root, `${record.directory}/editions/reader-first.json`, record.edition);
+  assert.throws(() => preview(root), /Article HTML byte budget/);
+  const actual = artifact.manifest(path.join(root, 'candidate'));
+  for (const [name, digest] of Object.entries(before.files))
+    assert.equal(actual.files[name].sha256, digest);
+});
+
+test('explicit pinned translations emit reciprocal language alternates without inferring topic equivalence', (t) => {
+  const root = fixture(t);
+  const original = publication(root);
+  const translated = publication(root, 'translated-profile', 'uk');
+  translated.metadata.translationOf = {
+    articleId: original.metadata.id,
+    editionId: original.metadata.edition,
+    sourceSha256: original.edition.source.sha256,
+  };
+  json(root, `${translated.directory}/publication.json`, translated.metadata);
+  preview(root, ['reader-profile', 'translated-profile']);
+  assert.match(
+    html(root, 'articles/reader-profile.html'),
+    /rel="alternate" hreflang="uk" href="\.\.\/articles\/translated-profile\.html"/
+  );
+  assert.match(
+    html(root, 'articles/translated-profile.html'),
+    /rel="alternate" hreflang="en" href="\.\.\/articles\/reader-profile\.html"/
+  );
+  delete translated.metadata.translationOf;
+  json(root, `${translated.directory}/publication.json`, translated.metadata);
+  preview(root, ['reader-profile', 'translated-profile']);
+  assert.doesNotMatch(html(root, 'articles/reader-profile.html'), /rel="alternate"/);
+  assert.doesNotMatch(html(root, 'articles/translated-profile.html'), /rel="alternate"/);
+});
+
+test('finite registry changes invalidate every embedded article snapshot without an immutable name collision', (t) => {
+  const root = fixture(t);
+  const first = publication(root);
+  publication(root, 'second-profile');
+  const before = preview(root, ['reader-profile', 'second-profile']);
+  const priorPath = before.articles['second-profile:en'].snapshot;
+  const priorBytes = html(root, priorPath);
+  require('../tools/site/retain.cjs').retain(
+    path.join(root, 'candidate'),
+    artifact.manifest(path.join(root, 'candidate')),
+    path.join(root, 'site/retained')
+  );
+  first.manuscript += '\nA changed first article.\n';
+  first.edition.source.sha256 = build.sha(first.manuscript);
+  first.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
+    first.metadata,
+    first.edition.source
+  );
+  write(root, `${first.directory}/${first.metadata.source}`, first.manuscript);
+  json(root, `${first.directory}/editions/reader-first.json`, first.edition);
+  const after = preview(root, ['reader-profile', 'second-profile']);
+  assert.notEqual(
+    after.articles['second-profile:en'].version,
+    before.articles['second-profile:en'].version
+  );
+  assert.equal(html(root, priorPath), priorBytes, 'retained old registry remains immutable');
+  const removed = preview(root, ['second-profile']);
+  assert.notEqual(
+    removed.articles['second-profile:en'].version,
+    after.articles['second-profile:en'].version
+  );
+  assert.deepEqual(preview(root, ['second-profile'], { all: true }).files, removed.files);
+});
+
+test('local catalog selection requires an accepted source and preserves undated preparation without inventing dates', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  accept(root, record);
+  const result = build.build({ root });
+  assert.equal(Object.keys(result.articles).length, 1);
+  assert.doesNotMatch(
+    html(root, 'articles/reader-profile.html', 'docs'),
+    /datePublished|dateModified/
+  );
+  const catalog = JSON.parse(fs.readFileSync(path.join(root, 'site/content/catalog.json')));
+  catalog.records['publication-99'].edition.datePublished = '2026-10-12';
+  json(root, 'site/content/catalog.json', catalog);
+  assert.throws(() => build.build({ root }), /observed publication event/);
+  delete catalog.records['publication-99'];
+  catalog.structuredOrder = catalog.structuredOrder.filter(
+    (row) => row.record !== 'publication-99'
+  );
+  json(root, 'site/content/catalog.json', catalog);
+  assert.deepEqual(
+    build.build({ root }).articles,
+    {},
+    'uncatalogued accepted source is not a public selection'
+  );
+});
+
+test('project-base routing and history use distinct finite article keys while scene itinerary stays five rooms', () => {
+  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+  const context = {
+    URL,
+    entry: new URL('https://author.invalid/project/articles/reader-profile.html'),
+    directory: new URL('https://author.invalid/project/'),
+    embedded: null,
+    routes: snapshot.routes,
+    articles: {
+      'reader-profile:en': {
+        url: 'articles/reader-profile.html',
+        snapshot: `article-snapshots/${'a'.repeat(64)}/reader-profile.html`,
+      },
+    },
+    page: 'article:reader-profile:en',
+    document: { activeElement: { id: 'article-title' } },
+    window: {
+      location: {
+        href: 'https://author.invalid/project/articles/reader-profile.html#first-section',
+      },
+      scrollX: 0,
+      scrollY: 725,
+    },
+    history: {
+      state: {},
+      replaceState(state) {
+        this.state = state;
+      },
+    },
+  };
+  const functions =
+    source.slice(
+      source.indexOf('  function routeFor('),
+      source.indexOf('  // The scroll/flight itinerary')
+    ) +
+    source.slice(source.indexOf('  function save('), source.indexOf('  function revisionValid('));
+  vm.runInNewContext(functions + '\nglobalThis.api={routeFor,address,save};', context);
+  assert.equal(
+    context.api.routeFor(new URL(context.window.location.href)),
+    'article:reader-profile:en'
+  );
+  assert.equal(
+    context.api.routeFor(new URL('https://author.invalid/project/writing.html?topic=systems')),
+    'writing'
+  );
+  assert.equal(
+    context.api.routeFor(new URL('https://author.invalid/other/articles/reader-profile.html')),
+    null
+  );
+  const snapshotURL = new URL(
+    'https://author.invalid/project/' +
+      context.articles['reader-profile:en'].snapshot +
+      '#second-section'
+  );
+  assert.equal(
+    context.api.address(snapshotURL, 'article:reader-profile:en').href,
+    'https://author.invalid/project/articles/reader-profile.html#second-section'
+  );
+  context.api.save();
+  assert.equal(context.history.state.site.page, 'article:reader-profile:en');
+  assert.equal(context.history.state.site.focus, 'article-title');
+  assert.deepEqual(Array.from(context.history.state.site.scroll), [0, 725]);
+});
+
+test('article mounts replace language, canonical, alternates and JSON-LD and archive mounts remove stale article head', () => {
+  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+  const metadata = source.match(/ {2}const metadata =\s*([\s\S]*?);\n {2}function/)[1];
+  const head = [];
+  const node = (name) => ({
+    name,
+    remove() {
+      head.splice(head.indexOf(this), 1);
+    },
+  });
+  const content = {
+    replaceChildren(main) {
+      this.main = main;
+    },
+  };
+  const context = {
+    content,
+    page: 'writing',
+    serial: 1,
+    metadata: vm.runInNewContext(metadata),
+    presentation: null,
+    scrollEntry: { destroy() {}, mount() {} },
+    window: {
+      SiteArchive: { destroy() {}, mount() {} },
+      dispatchEvent() {},
+      SiteScene: null,
+    },
+    document: {
+      body: { dataset: { page: 'writing' } },
+      documentElement: { lang: 'en' },
+      head: {
+        querySelectorAll(selector) {
+          assert.match(selector, /link\[rel="alternate"\]/);
+          assert.match(selector, /script\[type="application\/ld\+json"\]/);
+          return [...head];
+        },
+        append(...nodes) {
+          head.push(...nodes);
+        },
+      },
+      querySelector: () => null,
+      querySelectorAll: () => [],
+      getElementById: () => null,
+    },
+    restoreScroll() {},
+    rebaseResources() {},
+    mountEndpoint() {},
+    CustomEvent: class {
+      constructor(name, options) {
+        this.type = name;
+        this.detail = options.detail;
+      }
+    },
+    URL,
+  };
+  const start = source.indexOf('  function mountNative(');
+  const end = source.indexOf('  function prepare(', start);
+  vm.runInNewContext(source.slice(start, end) + '\nglobalThis.mountNative=mountNative;', context);
+  const ukHead = ['canonical-uk', 'alternate-en', 'jsonld-uk'].map(node);
+  const article = {
+    page: 'article:translated-profile:uk',
+    scene: 'writing',
+    article: 'translated-profile:uk',
+    lang: 'uk',
+    title: 'Українська стаття',
+    main: {},
+    footer: {},
+    fallback: {},
+    metadata: ukHead,
+  };
+  context.mountNative(
+    article,
+    new URL('https://author.invalid/project/articles/translated-profile.html'),
+    null
+  );
+  assert.equal(context.document.documentElement.lang, 'uk');
+  assert.equal(context.document.body.dataset.page, 'writing');
+  assert.equal(context.document.body.dataset.article, 'translated-profile:uk');
+  assert.deepEqual(
+    head.map((entry) => entry.name),
+    ['canonical-uk', 'alternate-en', 'jsonld-uk']
+  );
+  context.mountNative(
+    {
+      ...article,
+      page: 'writing',
+      article: undefined,
+      lang: 'en',
+      title: 'Writing',
+      metadata: [node('jsonld-archive')],
+    },
+    new URL('https://author.invalid/project/writing.html'),
+    null
+  );
+  assert.equal(context.document.documentElement.lang, 'en');
+  assert.equal(context.document.body.dataset.article, undefined);
+  assert.deepEqual(
+    head.map((entry) => entry.name),
+    ['jsonld-archive']
+  );
+});

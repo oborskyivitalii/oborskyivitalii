@@ -27,6 +27,92 @@ test('HTML reconciliation accepts source spelling changes while preserving inlin
 });
 test('executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy', () =>
   assert.equal(require('../tools/check_site_seo.cjs').verify().pass, true));
+test('article producer metadata reconciliation reverses only exact approved compact JSON-LD bytes', () => {
+  const { restoreStructuredMetadata, restore } = require('../tools/check_site_seo.cjs');
+  const path = require('node:path');
+  for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
+    const html = readHTML(path.join(__dirname, '../docs/' + page + '.html'));
+    const block = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+    assert.ok(block, 'live page contains its reviewed structured metadata');
+    const compact = block[1];
+    const restored = restoreStructuredMetadata(html, page);
+    const reviewed = restored.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
+    assert.notEqual(reviewed, compact, 'the fixture exercises actual compact metadata');
+    assert.deepEqual(
+      JSON.parse(reviewed),
+      JSON.parse(compact),
+      'approved serialization preserves all values'
+    );
+    assert.equal(
+      restoreStructuredMetadata(restored, page),
+      restored,
+      'reviewed bytes remain stable'
+    );
+    const data = JSON.parse(compact);
+    const reordered = {
+      name: data.name,
+      ...Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'name')),
+    };
+    const variants = [
+      compact.replace('https://schema.org', 'https://unapproved.example/schema'),
+      compact.replace(/"inLanguage":\s*"en"/, '"inLanguage":"uk"'),
+      compact.replace('{', '{"unapprovedClaim":true,'),
+      compact.replace('{', '{broken,'),
+      compact.replace(/"@type"\s*:/, '"@type":"Injected", "@type":'),
+      '\n' + JSON.stringify(reordered) + '\n  ',
+      compact.replace(/"@type"\s*:/, '"@type" : '),
+    ];
+    for (const changed of variants) {
+      assert.notEqual(changed, compact, 'negative fixture changes the actual metadata bytes');
+      const altered = html.replace(block[1], () => changed);
+      assert.equal(
+        restoreStructuredMetadata(altered, page),
+        altered,
+        'undeclared bytes remain visible'
+      );
+      assert.notEqual(
+        restore(altered, page),
+        restore(html, page),
+        'undeclared metadata fails frozen parity'
+      );
+    }
+  }
+});
+test('article metadata reconciliation rejects missing, duplicate and relocated owners and preserves unrelated tags', () => {
+  const { restoreStructuredMetadata, restore } = require('../tools/check_site_seo.cjs');
+  const html = readHTML(require('node:path').join(__dirname, '../docs/index.html'));
+  const block = html.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/)[0];
+  for (const altered of [
+    html.replace(block, ''),
+    html.replace(block, block + ' ' + block),
+    html.replace(block, '').replace('<body data-page="index">', '$&' + block),
+  ]) {
+    assert.throws(() => restoreStructuredMetadata(altered, 'index'), /[Ss]tructured metadata/);
+  }
+  for (const metadata of [
+    '<script type="application/json" id="site-documents">{}</script>',
+    '<script type="application/json" id="site-documents">{"undeclared:en":{}}</script>',
+    '<meta name="site-base" content="./">',
+    '<meta name="site-article" content="undeclared:en">',
+  ]) {
+    assert.throws(
+      () => restore(html.replace('</head>', metadata + '</head>'), 'index'),
+      /Undeclared article/
+    );
+  }
+  for (const metadata of [
+    '<meta name="unapproved-metadata" content="changed claim">',
+    '<script type="application/json" id="another-index">{"claim":"unapproved"}</script>',
+  ]) {
+    const altered = html.replace('</head>', metadata + '</head>');
+    assert.ok(restoreStructuredMetadata(altered, 'index').includes(metadata));
+    assert.notEqual(
+      restore(altered, 'index'),
+      restore(html, 'index'),
+      'unrelated metadata is never stripped'
+    );
+  }
+});
 test('critical media reconciliation admits only exact Home head ownership, bytes and original order', (t) => {
   const path = require('node:path'),
     os = require('node:os'),
@@ -58,7 +144,7 @@ test('critical media reconciliation admits only exact Home head ownership, bytes
   assert.ok(restoreCriticalMedia(extra, 'index').includes(unrelated));
   assert.notEqual(restore(extra, 'index'), restore(html, 'index'), 'unrelated CSS stays in parity');
   for (const changed of [
-    html.replace('"@type": "ProfilePage"', '"@type": "OtherPage"'),
+    html.replace(/"@type":\s*"ProfilePage"/, '"@type":"OtherPage"'),
     html.replace('Portrait of Vitalii Oborskyi', 'Portrait of another person'),
     html.replace('height="721"', 'height="722"'),
   ])

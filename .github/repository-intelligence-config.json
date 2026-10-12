@@ -25,8 +25,8 @@
         "quality gates",
         "security audit",
         "performance budget",
-        "\u043f\u0430\u0439\u043f\u043b\u0430\u0439\u043d \u0440\u0435\u043b\u0456\u0437\u0443",
-        "\u043f\u0435\u0440\u0435\u0432\u0456\u0440\u043a\u0438 \u043f\u0435\u0440\u0435\u0434 \u0440\u0435\u043b\u0456\u0437\u043e\u043c"
+        "пайплайн релізу",
+        "перевірки перед релізом"
       ]
     },
     {
@@ -36,88 +36,50 @@
         "visual review",
         "design proposal",
         "portrait cutout",
-        "\u0432\u0456\u0437\u0443\u0430\u043b\u044c\u043d\u0438\u0439 \u0441\u0442\u0438\u043b\u044c",
-        "\u0434\u0438\u0437\u0430\u0439\u043d \u0441\u0430\u0439\u0442\u0443",
-        "\u0444\u043e\u0442\u043e"
+        "візуальний стиль",
+        "дизайн сайту",
+        "фото"
       ]
     },
     {
       "concern": "search discoverability and topic map",
       "path": "guides/SITE-SEO.md",
-      "queries": [
-        "SEO",
-        "keywords",
-        "search visibility",
-        "\u043a\u043b\u044e\u0447\u043e\u0432\u0456 \u0441\u043b\u043e\u0432\u0430",
-        "\u043e\u043f\u0442\u0438\u043c\u0456\u0437\u0430\u0446\u0456\u044f \u0441\u0430\u0439\u0442\u0443"
-      ]
+      "queries": ["SEO", "keywords", "search visibility", "ключові слова", "оптимізація сайту"]
     },
     {
       "concern": "agent operation",
       "path": "AGENTS.md",
-      "queries": ["agent workflow", "\u0430\u0433\u0435\u043d\u0442"]
+      "queries": ["agent workflow", "агент"]
     },
     {
       "concern": "task intake and closure",
       "path": "CONTRIBUTING.md",
-      "queries": [
-        "issue workflow",
-        "backlog",
-        "\u0456\u0448\u044c\u044e",
-        "\u0431\u0435\u043a\u043b\u043e\u0433"
-      ]
+      "queries": ["issue workflow", "backlog", "ішью", "беклог"]
     },
     {
       "concern": "author profile entry point",
       "path": "README.md",
-      "queries": [
-        "author",
-        "about",
-        "\u043f\u0440\u043e\u0444\u0456\u043b\u044c",
-        "\u043f\u0440\u043e \u0430\u0432\u0442\u043e\u0440\u0430"
-      ]
+      "queries": ["author", "about", "профіль", "про автора"]
     },
     {
       "concern": "milestone sequence",
       "path": "guides/SITE-ROADMAP.md",
-      "queries": [
-        "roadmap",
-        "milestones",
-        "\u043f\u043b\u0430\u043d \u0441\u0430\u0439\u0442\u0443"
-      ]
+      "queries": ["roadmap", "milestones", "план сайту"]
     },
     {
       "concern": "publication priorities and migration issue routes",
       "path": "guides/SITE-ROADMAP.md",
-      "queries": [
-        "publication",
-        "pmday",
-        "publisher",
-        "pdf",
-        "quartz",
-        "\u043f\u0443\u0431\u043b\u0456\u043a\u0430\u0446\u0456\u044f",
-        "\u043f\u0434\u0444"
-      ]
+      "queries": ["publication", "pmday", "publisher", "pdf", "quartz", "публікація", "пдф"]
     },
     {
       "concern": "canonical research ownership",
       "path": "guides/REPOSITORIES.md",
-      "queries": [
-        "cross repository",
-        "research owners",
-        "migration",
-        "\u043c\u0456\u0433\u0440\u0430\u0446\u0456\u044f",
-        "\u0434\u043e\u0441\u043b\u0456\u0434\u0436\u0435\u043d\u043d\u044f"
-      ]
+      "queries": ["cross repository", "research owners", "migration", "міграція", "дослідження"]
     },
     {
       "concern": "navigation projection",
       "path": ".github/REPOSITORY-INTELLIGENCE.md",
-      "queries": [
-        "repository intelligence",
-        "RI adapter",
-        "\u043d\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u044f \u0440\u0435\u043f\u043e"
-      ]
+      "queries": ["repository intelligence", "RI adapter", "навігація репо"]
     },
     {
       "concern": "static site source, engine contract and incremental generation",
@@ -127,8 +89,8 @@
         "site source",
         "engine implementation",
         "snapshot pinning",
-        "\u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043d\u043d\u044f \u0442\u0435\u043a\u0441\u0442\u0443",
-        "\u0440\u0443\u0448\u0456\u0439 \u0441\u0430\u0439\u0442\u0443"
+        "редагування тексту",
+        "рушій сайту"
       ]
     },
     {
@@ -139,9 +101,9 @@
         "Cloudflare Web Analytics",
         "Search Console",
         "visitor measurement",
-        "\u0430\u043d\u0430\u043b\u0456\u0442\u0438\u043a\u0430 \u0441\u0430\u0439\u0442\u0443",
-        "\u0432\u0456\u0434\u0432\u0456\u0434\u0443\u0432\u0430\u0447\u0456",
-        "\u043f\u043e\u0448\u0443\u043a\u043e\u0432\u0438\u0439 \u0433\u0440\u0430\u0444"
+        "аналітика сайту",
+        "відвідувачі",
+        "пошуковий граф"
       ]
     },
     {
@@ -151,10 +113,10 @@
         "session memory",
         "current work",
         "handoff",
-        "\u043f\u0430\u043c\u02bc\u044f\u0442\u044c",
-        "\u043f\u0430\u043c\u044f\u0442\u044c",
-        "\u043f\u043e\u0442\u043e\u0447\u043d\u0438\u0439 \u0441\u0442\u0430\u043d",
-        "\u043d\u0430\u0441\u0442\u0443\u043f\u043d\u0430 \u0441\u0435\u0441\u0456\u044f"
+        "памʼять",
+        "память",
+        "поточний стан",
+        "наступна сесія"
       ]
     },
     {
@@ -165,10 +127,10 @@
         "file inventory",
         "root files",
         "repo structure",
-        "\u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430 \u0440\u0435\u043f\u043e",
-        "\u0456\u043d\u0434\u0435\u043a\u0441 \u0440\u0435\u043f\u043e",
-        "\u043a\u0430\u0442\u0430\u043b\u043e\u0433\u0438",
-        "\u0444\u0430\u0439\u043b\u0438 \u0432 \u043a\u043e\u0440\u0435\u043d\u0456"
+        "структура репо",
+        "індекс репо",
+        "каталоги",
+        "файли в корені"
       ]
     },
     {
@@ -178,8 +140,8 @@
         "acceptance criteria",
         "AC mapping",
         "deterministic tests",
-        "\u0430\u043a\u0441\u0435\u043f\u0442\u0430\u043d\u0441",
-        "\u043a\u0440\u0438\u0442\u0435\u0440\u0456\u0457 \u043f\u0440\u0438\u0439\u043c\u0430\u043d\u043d\u044f",
+        "аксептанс",
+        "критерії приймання",
         "policy"
       ]
     },
@@ -190,12 +152,12 @@
         "Astra",
         "review handoff",
         "analysis tasks",
-        "\u0440\u0435\u0432\u02bc\u044e",
-        "\u0430\u043d\u0430\u043b\u0456\u0437",
-        "\u0437\u0430\u0432\u0434\u0430\u043d\u043d\u044f \u0441\u043e\u043b\u0443",
+        "ревʼю",
+        "аналіз",
+        "завдання солу",
         "Sol",
         "execution plan",
-        "\u043f\u043b\u0430\u043d \u0434\u043b\u044f \u0441\u043e\u043b"
+        "план для сол"
       ]
     },
     {
@@ -205,8 +167,8 @@
         "bootstrap prompt",
         "project description",
         "ChatGPT project",
-        "\u0431\u0443\u0442\u0441\u0442\u0440\u0430\u043f",
-        "\u043e\u043f\u0438\u0441 \u043f\u0440\u043e\u0435\u043a\u0442\u0443"
+        "бутстрап",
+        "опис проекту"
       ]
     },
     {
@@ -219,11 +181,11 @@
         "staging regression",
         "production regression",
         "duplicate tests",
-        "\u0442\u0435\u0441\u0442\u0438",
-        "\u0441\u043c\u043e\u0443\u043a",
-        "\u0440\u0435\u0433\u0440\u0435\u0441\u0456\u044f",
-        "\u0434\u0443\u0431\u043b\u0456\u043a\u0430\u0442\u0438 \u0442\u0435\u0441\u0442\u0456\u0432",
-        "\u043e\u043f\u0442\u0438\u043c\u0456\u0437\u0430\u0446\u0456\u044f \u0442\u0435\u0441\u0442\u0456\u0432"
+        "тести",
+        "смоук",
+        "регресія",
+        "дублікати тестів",
+        "оптимізація тестів"
       ]
     },
     {
@@ -234,10 +196,23 @@
         "coding standards",
         "refactoring",
         "content engine separation",
-        "\u0441\u0442\u0438\u043b\u044c \u043a\u043e\u0434\u0443",
-        "\u043a\u043e\u0434 \u0441\u0442\u0430\u0439\u043b",
-        "\u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433",
-        "\u043f\u0440\u0430\u0432\u0438\u043b\u0430 \u043d\u0430\u043f\u0438\u0441\u0430\u043d\u043d\u044f \u043a\u043e\u0434\u0443"
+        "стиль коду",
+        "код стайл",
+        "рефакторинг",
+        "правила написання коду"
+      ]
+    },
+    {
+      "concern": "full authored articles and reusable publication workflow",
+      "path": "guides/ARTICLE-WORKFLOW.md",
+      "queries": [
+        "article authoring",
+        "full articles",
+        "LinkedIn adaptation",
+        "publication events",
+        "підготовка статей",
+        "повні статті",
+        "редакційний процес"
       ]
     }
   ],
@@ -420,6 +395,36 @@
       "read": ["guides/CODE-STYLE.md"],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
+    },
+    {
+      "concern": "authored article publisher and Writing reader",
+      "paths": [
+        "site/publications/",
+        "site/article-preview.json",
+        "site/assets/publications/",
+        "tools/publishing/",
+        "tools/site/articles.cjs",
+        "tests/publishing",
+        "tests/site-articles.test.cjs",
+        "tests/article-",
+        "guides/ARTICLE-WORKFLOW.md",
+        "tests/test_issue5_acceptance.py",
+        ".github/acceptance/issue-5.json",
+        "tools/site/offline.cjs",
+        "tools/site/standalone.cjs",
+        "tools/quality/candidate-source.cjs",
+        "tools/quality/article-browser.cjs",
+        "tests/local-catalog-relationships.test.cjs",
+        "tests/site-transaction.test.cjs"
+      ],
+      "commands": [
+        "node --test tests/publishing.test.cjs tests/publishing-history.test.cjs tests/publishing-profile.test.cjs tests/publishing-safety.test.cjs tests/publishing-print.test.cjs",
+        "node --test tests/site-articles.test.cjs tests/site-transaction.test.cjs tests/article-offline.test.cjs tests/local-catalog-relationships.test.cjs tests/article-budgets.test.cjs tests/article-browser-evidence.test.cjs tests/article-candidate-source.test.cjs tests/article-delivery.test.cjs",
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-5.json --report /tmp/issue-5-acceptance.json"
+      ],
+      "read": ["guides/ARTICLE-WORKFLOW.md", "site/README.md", "guides/SITE-CHECK-PROFILES.md"],
+      "workflow": ".github/workflows/issue-acceptance.yml",
+      "note": "Prepare the locked build-only toolchain before selected source checks. Actual PDF/native-editor/browser/rights/publication evidence and controller promotion remain separate; this route does not publish."
     }
   ]
 }

@@ -38,6 +38,11 @@ module.exports = function () {
     '.section-note',
     '.next-route > p',
     '.next-route > a',
+    '.article-intro > *',
+    '.article-toc',
+    '.article-body > *',
+    '.article-sources',
+    '.article-list',
   ].join(',');
   const routeTargets = `${targets},.archive-filters,.section-nav,.topic-nav`;
   const separatorTargets = [

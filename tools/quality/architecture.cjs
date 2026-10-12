@@ -10,6 +10,7 @@ const sourceRoots = [
   'site/effects',
   'site/integrations',
   'tools/site',
+  'tools/publishing',
 ];
 const pureOwners = new Set([
   'site/engine/math.cjs',
@@ -167,7 +168,7 @@ function readSources(root = repositoryRoot) {
     for (const entry of fs.readdirSync(path.join(root, name), { withFileTypes: true })) {
       const child = name + '/' + entry.name;
       if (entry.isSymbolicLink()) throw Error('Symlink authored source: ' + child);
-      if (entry.isDirectory()) directory(child);
+      if (entry.isDirectory() && entry.name !== 'node_modules') directory(child);
       else if (/\.(?:cjs|mjs|js)$/.test(child))
         sources[child] = fs.readFileSync(path.join(root, child), 'utf8');
     }

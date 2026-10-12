@@ -93,6 +93,7 @@ function validateHost(report, manifest, hostedURL) {
   }
 }
 function validateSizes(sizes, manifest) {
+  require('./artifact.cjs').validateArticleSizes(sizes, manifest);
   assert.equal(sizes.pass, true);
   assert.equal(sizes.artifactDigest, manifest.artifactDigest);
   assert.deepEqual(sizes.files, manifest.files, 'size report inventory differs from artifact');

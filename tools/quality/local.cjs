@@ -190,6 +190,10 @@ function gate(directory, { profile = 'local' } = {}) {
     );
     assert.equal(manifest.candidateCommit, manifest.sourceCommit);
     artifact.checkSize(path.join(directory, 'public'));
+    require('./candidate-source.cjs').verifyCandidateSource(
+      path.join(directory, 'public'),
+      manifest
+    );
     checkPublicScripts(path.join(directory, 'public'), {
       routes: require('../site/snapshot.cjs').routes.map((id) => ({ id, url: id + '.html' })),
     });

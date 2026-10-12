@@ -7,12 +7,39 @@
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
   const entry = new URL(window.location.href);
-  const directory = new URL('.', entry);
+  const directory = new URL(
+    document.querySelector('meta[name="site-base"]')?.content || '.',
+    entry
+  );
+  const documentIndex = document.getElementById('site-documents');
+  const articles = documentIndex ? JSON.parse(documentIndex.textContent) : {};
+  const embeddedAssetURLs = new Map();
+  let embeddedAssetsReady = null;
+  if (embedded?.assets) {
+    for (const image of document.querySelectorAll('img[data-offline-resource]')) {
+      const name = image.getAttribute('data-offline-resource');
+      const value = image.getAttribute('src');
+      if (embeddedAssetURLs.has(name) && embeddedAssetURLs.get(name) !== value) return;
+      embeddedAssetURLs.set(name, value);
+    }
+  }
+  if (Object.keys(articles).length > 50) return;
+  for (const [key, article] of Object.entries(articles)) {
+    if (
+      !/^[a-z][a-z0-9-]{0,79}:(?:en|uk)$/.test(key) ||
+      !/^articles\/[a-z][a-z0-9-]{0,79}\.html$/.test(article.url) ||
+      (article.snapshot &&
+        !/^article-snapshots\/[a-f0-9]{64}\/[a-z][a-z0-9-]{0,79}\.html$/.test(article.snapshot))
+    )
+      return;
+  }
   const shellEngine = document.querySelector('meta[name="site-engine"]')?.content;
   const initialVersion = document.querySelector('meta[name="site-route"]')?.content;
-  const initialPage = document.body.dataset.page;
+  const initialPage = document.body.dataset.article
+    ? 'article:' + document.body.dataset.article
+    : document.body.dataset.page;
   let pinned = null;
-  let page = document.body.dataset.page,
+  let page = initialPage,
     serial = 0,
     request = null,
     transition = null,
@@ -24,7 +51,12 @@
     lastWheel = -Infinity,
     lastWheelDirection = 0,
     lastKey = null;
-  if (!routes.includes(page) || !window.fetch || !window.DOMParser || !window.history.pushState)
+  if (
+    !(routes.includes(page) || articles[page.slice(8)]) ||
+    !window.fetch ||
+    !window.DOMParser ||
+    !window.history.pushState
+  )
     return;
   const cache = new Map();
   const content = document.createElement('div');
@@ -35,6 +67,14 @@
   const main = document.querySelector('main'),
     footer = document.querySelector('footer');
   if (!main || !footer) return;
+  // History changes the document's base URL. Preserve each persistent header
+  // destination, then keep its native relative link correct for every mount.
+  const headerURLs = new Map(
+    [...document.querySelectorAll('.site-header a[href]')].map((link) => [
+      link,
+      new URL(link.getAttribute('href'), entry),
+    ])
+  );
   main.before(content);
   content.append(main, footer);
   const frame = document.createElement('div');
@@ -50,20 +90,56 @@
   // The exact Home media fallback travels with the verified route head, including
   // CSS-unavailable navigation. Other routes remove it with their prior metadata.
   const metadata =
-    'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"],link[rel="canonical"],script[type="application/ld+json"],style[data-critical-media]';
-  function extract(doc, immutable = false) {
-    const next = doc.body.dataset.page;
+    'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"],meta[name="robots"],meta[name="site-article"],meta[name="site-route"],link[rel="canonical"],link[rel="alternate"],script[type="application/ld+json"],style[data-critical-media]';
+  function resolveResources(data, sourceURL) {
+    for (const root of [data.main, data.footer, data.fallback, ...data.metadata])
+      for (const element of [root, ...root.querySelectorAll('[href],[src]')])
+        for (const attribute of ['href', 'src']) {
+          const value = element.getAttribute(attribute);
+          if (value && !/^(?:https:|mailto:|#|data:)/.test(value))
+            element.setAttribute(attribute, new URL(value, sourceURL).href);
+        }
+  }
+  function rebaseResources(data, url) {
+    if (embedded) return;
+    const depth = url.pathname.slice(directory.pathname.length).split('/').length - 1;
+    for (const root of [data.main, data.footer, data.fallback])
+      for (const element of [root, ...root.querySelectorAll('[href],[src]')])
+        for (const attribute of ['href', 'src']) {
+          const value = element.getAttribute(attribute);
+          if (!value || /^(?:mailto:|#|data:)/.test(value)) continue;
+          const target = new URL(value, data.sourceURL || entry);
+          if (target.origin !== entry.origin || !target.pathname.startsWith(directory.pathname))
+            continue;
+          const relative =
+            '../'.repeat(Math.max(0, depth)) + target.pathname.slice(directory.pathname.length);
+          element.setAttribute(attribute, (relative || './') + target.search + target.hash);
+        }
+  }
+  function extract(doc, immutable = false, sourceURL = null) {
+    const scene = doc.body.dataset.page;
+    const article = doc.body.dataset.article;
+    const next = article ? 'article:' + article : scene;
     const main = doc.querySelector('main'),
       footer = doc.querySelector('footer'),
       fallback = doc.querySelector('.space-fallback');
-    if (!routes.includes(next) || !main || !footer || !fallback)
+    if (
+      !routes.includes(scene) ||
+      (article && (!articles[article] || scene !== 'writing')) ||
+      !main ||
+      !footer ||
+      !fallback
+    )
       throw Error('Incomplete site route');
     const version = doc.querySelector('meta[name="site-route"]')?.content,
       engine = doc.querySelector('meta[name="site-engine"]')?.content;
     const data = {
       page: next,
+      scene,
+      article,
       version,
       engine,
+      sourceURL: sourceURL || window.location.href,
       title: doc.title,
       lang: doc.documentElement.lang,
       main: main.cloneNode(true),
@@ -71,13 +147,7 @@
       fallback: fallback.cloneNode(true),
       metadata: [...doc.head.querySelectorAll(metadata)].map((node) => node.cloneNode(true)),
     };
-    if (immutable)
-      for (const root of [data.main, data.footer, data.fallback])
-        for (const el of root.querySelectorAll('[href],[src]'))
-          for (const attribute of ['href', 'src']) {
-            const value = el.getAttribute(attribute);
-            if (value?.startsWith('../../')) el.setAttribute(attribute, value.slice(6));
-          }
+    if (immutable) resolveResources(data, sourceURL);
     return data;
   }
   cache.set(page, extract(document));
@@ -85,14 +155,23 @@
     if (url.origin !== entry.origin) return null;
     if (embedded) {
       if (url.pathname === entry.pathname)
-        return routes.includes(url.searchParams.get('view'))
+        return routes.includes(url.searchParams.get('view')) ||
+          (url.searchParams.get('view')?.startsWith('article:') &&
+            Object.hasOwn(embedded.pages, url.searchParams.get('view')))
           ? url.searchParams.get('view')
           : document.body.dataset.entryPage;
       return (
-        routes.find((name) => new URL(embedded.files[name], directory).pathname === url.pathname) ||
-        null
+        Object.keys(embedded.files).find(
+          (name) => new URL(embedded.files[name], directory).pathname === url.pathname
+        ) || null
       );
     }
+    const article = Object.entries(articles).find(([, descriptor]) =>
+      [descriptor.url, descriptor.snapshot]
+        .filter(Boolean)
+        .some((file) => new URL(file, directory).pathname === url.pathname)
+    );
+    if (article) return 'article:' + article[0];
     return (
       routes.find((name) =>
         [name, name + '.html', ...(name === 'index' ? ['./'] : [])].some(
@@ -102,7 +181,13 @@
     );
   }
   function address(url, next) {
-    if (!embedded) return url;
+    if (!embedded) {
+      if (!next.startsWith('article:')) return url;
+      const result = new URL(articles[next.slice(8)].url, directory);
+      result.search = url.search;
+      result.hash = url.hash;
+      return result;
+    }
     const result = new URL(entry);
     result.search = url.search;
     result.hash = url.hash;
@@ -119,7 +204,15 @@
     if (routeFor(new URL(window.location.href)) !== page) return;
     try {
       history.replaceState(
-        { ...history.state, site: { page, scroll: [window.scrollX, window.scrollY] } },
+        {
+          ...history.state,
+          site: {
+            page,
+            scroll: [window.scrollX, window.scrollY],
+            focus:
+              document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
+          },
+        },
         '',
         window.location.href
       );
@@ -149,7 +242,28 @@
       )
         return false;
     }
-    return revision.routes[initialPage].version === initialVersion;
+    const articleRows = revision.articles || {};
+    if (Object.keys(articleRows).length !== Object.keys(articles).length) return false;
+    for (const [key, data] of Object.entries(articleRows)) {
+      if (
+        !articles[key] ||
+        data.scene !== 'writing' ||
+        data.alias !== articles[key].url ||
+        data.articleId !== key.split(':')[0] ||
+        !/^[a-z][a-z0-9-]{0,79}$/.test(data.contentEdition) ||
+        !/^[a-f0-9]{64}$/.test(data.sourceSha256) ||
+        !/^[a-f0-9]{64}$/.test(data.semanticSha256) ||
+        !/^[a-f0-9]{64}$/.test(data.version) ||
+        !/^[a-f0-9]{64}$/.test(data.sha256) ||
+        data.url !== `article-snapshots/${data.version}/${data.alias.split('/').pop()}` ||
+        (articles[key].snapshot && data.url !== articles[key].snapshot)
+      )
+        return false;
+    }
+    const initial = initialPage.startsWith('article:')
+      ? articleRows[initialPage.slice(8)]
+      : revision.routes[initialPage];
+    return initial?.version === initialVersion;
   }
   async function pin(signal) {
     if (pinned) return;
@@ -167,7 +281,7 @@
       )
         throw Error('Revision unavailable');
       const bytes = await response.text();
-      if (bytes.length > 32000) throw Error('Revision too large');
+      if (new TextEncoder().encode(bytes).byteLength > 32000) throw Error('Revision too large');
       revision = JSON.parse(bytes);
     }
     if (!revisionValid(revision)) throw Error('Site snapshot changed');
@@ -181,13 +295,72 @@
       [...new Uint8Array(digest)].map((x) => x.toString(16).padStart(2, '0')).join('') === hash
     );
   }
+  async function verifyEmbeddedAssets() {
+    if (!embedded?.assets) return;
+    if (!embeddedAssetsReady)
+      embeddedAssetsReady = (async () => {
+        const entries = Object.entries(embedded.assets);
+        if (entries.length > 50 || entries.length !== embeddedAssetURLs.size)
+          throw Error('Embedded asset inventory differs');
+        for (const [name, asset] of entries) {
+          const value = embeddedAssetURLs.get(name);
+          if (
+            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.png$/.test(name) ||
+            asset.mime !== 'image/png' ||
+            asset.sha256 !== name.split('/')[1] ||
+            !Number.isSafeInteger(asset.bytes) ||
+            asset.bytes < 1 ||
+            asset.bytes > 2000000 ||
+            typeof value !== 'string' ||
+            !/^data:image\/png;base64,[A-Za-z0-9+/]*={0,2}$/.test(value) ||
+            value.length > 4 * Math.ceil(asset.bytes / 3) + 22
+          )
+            throw Error('Invalid embedded article resource');
+          const raw = window.atob(value.slice(22));
+          if (raw.length !== asset.bytes) throw Error('Embedded asset byte length differs');
+          const bytes = Uint8Array.from(raw, (character) => character.charCodeAt(0));
+          const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+          const hash = [...new Uint8Array(digest)]
+            .map((byte) => byte.toString(16).padStart(2, '0'))
+            .join('');
+          if (hash !== asset.sha256) throw Error('Embedded article asset bytes changed');
+        }
+      })();
+    await embeddedAssetsReady;
+  }
+  function hydrateEmbeddedImages(result, descriptor) {
+    const used = new Set();
+    for (const image of result.main.querySelectorAll('img[src]')) {
+      const name = image.getAttribute('src');
+      if (!name.startsWith('article-media/')) continue;
+      if (!descriptor.assets.includes(name) || !embeddedAssetURLs.has(name))
+        throw Error('Unknown embedded article image');
+      image.setAttribute('src', embeddedAssetURLs.get(name));
+      used.add(name);
+    }
+    if (used.size !== descriptor.assets.length)
+      throw Error('Embedded article image closure differs');
+  }
   async function read(next, signal) {
     await pin(signal);
+    if (embedded && next.startsWith('article:')) await verifyEmbeddedAssets();
     if (cache.has(next)) return cache.get(next);
     let html;
-    if (embedded) html = embedded.pages[next];
-    else {
-      const response = await fetch(new URL(pinned.routes[next].url, directory), {
+    const descriptor = next.startsWith('article:')
+      ? pinned.articles[next.slice(8)]
+      : pinned.routes[next];
+    const sourceURL = new URL(descriptor.url, directory);
+    if (embedded) {
+      html = embedded.pages[next];
+      if (
+        typeof html !== 'string' ||
+        (next.startsWith('article:') &&
+          (new TextEncoder().encode(html).byteLength > 100000 ||
+            !(await matchesBytes(html, descriptor.sha256))))
+      )
+        throw Error('Embedded document bytes changed');
+    } else {
+      const response = await fetch(sourceURL, {
         signal,
         credentials: 'same-origin',
       });
@@ -198,17 +371,27 @@
       )
         throw Error('Route unavailable');
       html = await response.text();
-      if (html.length > 100000 || !(await matchesBytes(html, pinned.routes[next].sha256)))
+      if (
+        new TextEncoder().encode(html).byteLength > 100000 ||
+        !(await matchesBytes(html, descriptor.sha256))
+      )
         throw Error('Snapshot bytes changed');
     }
-    const result = extract(new DOMParser().parseFromString(html, 'text/html'), !embedded);
+    const result = extract(
+      new DOMParser().parseFromString(html, 'text/html'),
+      !embedded,
+      sourceURL
+    );
+    if (embedded && next.startsWith('article:')) hydrateEmbeddedImages(result, descriptor);
     if (
       result.page !== next ||
       result.engine !== shellEngine ||
-      result.version !== pinned.routes[next].version
+      result.version !== descriptor.version
     )
       throw Error('Unexpected route/version');
     cache.set(next, result);
+    const cachedArticles = [...cache.keys()].filter((key) => key.startsWith('article:'));
+    if (cachedArticles.length > 10) cache.delete(cachedArticles[0]);
     return result;
   }
   function clearText() {
@@ -553,8 +736,11 @@
       data.main.setAttribute('data-route-blocks', 'holding');
       data.footer.setAttribute('data-route-blocks', 'holding');
     }
+    rebaseResources(data, url);
     content.replaceChildren(data.main, data.footer);
-    document.body.dataset.page = data.page;
+    document.body.dataset.page = data.scene || data.page;
+    if (data.article) document.body.dataset.article = data.article;
+    else delete document.body.dataset.article;
     page = data.page;
     if (document.documentElement.lang !== data.lang) document.documentElement.lang = data.lang;
     document.title = data.title;
@@ -563,8 +749,14 @@
     const fallback = document.querySelector('.space-fallback');
     if (fallback) fallback.replaceWith(data.fallback);
     for (const link of document.querySelectorAll('.site-header a')) {
-      const target = new URL(link.href, window.location.href);
-      if (routeFor(target) === page) link.setAttribute('aria-current', 'page');
+      const target = headerURLs.get(link) || new URL(link.href, window.location.href);
+      if (target.origin === entry.origin && target.pathname.startsWith(directory.pathname)) {
+        const depth = url.pathname.slice(directory.pathname.length).split('/').length - 1;
+        const relative =
+          '../'.repeat(Math.max(0, depth)) + target.pathname.slice(directory.pathname.length);
+        link.setAttribute('href', (relative || './') + target.search + target.hash);
+      }
+      if (routeFor(target) === (data.scene || page)) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     }
     span('mount-dom');
@@ -620,7 +812,9 @@
   ) {
     const next = routeFor(url);
     if (!next) return;
-    const direction = routes.indexOf(next) >= routes.indexOf(page) ? 1 : -1;
+    const nextScene = routes.includes(next) ? next : 'writing';
+    const currentScene = routes.includes(page) ? page : 'writing';
+    const direction = routes.indexOf(nextScene) >= routes.indexOf(currentScene) ? 1 : -1;
     const own = ++serial;
     interrupt();
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
@@ -642,7 +836,7 @@
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);
-      let animate = !initial && next !== page && motionAllowed();
+      let animate = !initial && nextScene !== currentScene && motionAllowed();
       let blocks = animate && (presentation?.contentFlight?.() ?? true);
       if (blocks) {
         const result = await scrollEntry?.depart?.(direction, own);
@@ -651,7 +845,7 @@
       animate = animate && motionAllowed();
       if (own !== serial) return;
       await flight(
-        next,
+        nextScene,
         animate,
         () => {
           const start = window.SiteEngineStages ? performance.now() : 0;
@@ -684,7 +878,16 @@
       else scrollEntry?.cancelRoute?.();
       if (own === serial) {
         arriveEndpoint();
-        content.querySelector('main').focus({ preventScroll: true });
+        const savedFocus = pop ? history.state?.site?.focus : null;
+        const focused = savedFocus
+          ? document.getElementById(savedFocus) ||
+            [...content.querySelectorAll('a[href]')].find(
+              (link) => link.getAttribute('href') === savedFocus || link.href === savedFocus
+            )
+          : null;
+        (focused || content.querySelector('main')).focus({
+          preventScroll: true,
+        });
         scrollEntry?.resume();
         announcement.textContent = data.title;
         save();

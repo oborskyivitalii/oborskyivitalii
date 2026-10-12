@@ -128,6 +128,7 @@ jobs:
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
+      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype != 'true' && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -137,6 +138,9 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install the locked article parser for admitted article previews
+        if: needs.target.outputs.prototype != 'true'
+        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
       - name: Targeted controller checks and one immutable public build
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"

@@ -4,18 +4,16 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 ## Snapshot
 
-- Main checkpoint is `fd3dea5b2271123468560e1eb4dc3f0aa056b6b2` after PR78.
-  Its tree equals admitted sourcebe6439b; ordinary run38234626344 passed the
-  bounded gate, Cloudflare stable and Pages mirror, then fresh Staging admission.
-- [#76 / PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77)
-  implements outside Appearance dismissal, continuous prepared-room fades,
-  repeatable downward entry and five distinct shared fractal compositions.
-  The user approved corrected previewbcfcfe8 / run38224107735 on12October
-  and explicitly authorized main plus stable staging. Admission-only follow-up
-  preserves its authored/generated public bytes. PR78 supplied the necessary
-  exact Color registry on protected main without changing that main's site.
-  Runtime PR77 updates from this checkpoint for its own fresh admission;
-  final tested source/tree, both-host runs and merge identity belong in #76.
+- Verified main is `cc115c4241197d59205934bdc18f209109d5ee87`, after PR77
+  merged the approved scene fades, repeated downward entry and shared compositions.
+  PR78's ordinary both-host admission remains historical evidence; live owner #76
+  holds exact final runtime admission and merge evidence.
+- [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79)
+  owns article authoring, publisher/export and the Writing reader. The real PMDay
+  article from #2 is its end-to-end deliverable, with separate editorial, rights,
+  device and actual publication gates. Source, article PDF and platform kits stay
+  explicit review candidates; production is disabled and canonical/date pending.
+  Versioned inventory, source and independent reviews are in `review/issue-5/`.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -67,21 +65,25 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #76 / PR77 | Approved runtime promotion through fresh source/hosted checks and ordinary two-host staging; verify final state, source/tree and closure in the live issue. |
+| #76 / merged PR77 | Runtime is merged on verified main; original remaining device/lifecycle/visual gates and exact admission evidence stay in the live owner. |
 | #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
 | #72 | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
 | #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |
 | #41 / Draft PR68 | Separate editorial and author-first intent; no task merge is inferred. |
 | #39 / Draft PR40 | Canonical Pages/domain preparation and original release decisions. |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates. |
-| #7 / #5 / #6 / #2 / #11 | Rights, editions, adapters and post-launch guides. |
+| #5 / PR79 and #2 | Complete exact-source implementation checks and candidate preview; reconcile separate editorial, rights, publication and upstream decisions. |
+| #7 / #6 / #11 | Rights, editions and post-launch guides. |
 
 ## Next session
 
-1. Revalidate current main, issue76/PR77 and their exact admission/merge evidence.
-2. Treat the live owner as final authority for completion after this checkpoint.
-3. Preserve the approved public edition and current source/tree/package binding.
-4. Keep older device/lifecycle/cost/rights/release gates and failed attempts honest.
+1. Revalidate main and PR79 raw head, working tree, checks and candidate preview.
+2. Continue #5 in PR79; use #2 as the useful article deliverable, retaining its
+   separate original acceptance and accepted recording increment.
+3. Read exact-source execution, migration inventory and independent reviews in
+   `review/issue-5/`; keep browser/PDF fallback limits and failed attempts honest.
+4. Preserve source/tree/package bindings. Merge, production, external publication
+   and UA/deck/Subprime disposition retain their applicable owner decisions.
 
 ## Maintenance
 

@@ -68,6 +68,13 @@ async function check(directory, value, fetcher = fetch) {
           record.files[name].sha256,
           'wrong Pages bytes: ' + name
         );
+        if (name.endsWith('.png')) {
+          assert.match(
+            response.headers?.get('content-type') || '',
+            /image\/png/i,
+            'PNG content type ' + name
+          );
+        }
         return { file: name, sha256: artifact.digest(bytes), status: response.status };
       })
     );
@@ -83,6 +90,19 @@ async function check(directory, value, fetcher = fetch) {
     const { response, bytes } = await request(base + url, base, fetcher);
     assert.equal(response.status, 200);
     assert.equal(artifact.digest(bytes), record.files[file].sha256);
+  }
+  const articles = Object.values(record.staging.components.articles || {});
+  for (const article of articles) {
+    for (const file of [article.alias, article.url]) {
+      const name = 'staging/' + file;
+      const { response, bytes } = await request(base + '/' + name, base, fetcher);
+      assert.equal(response.status, 200, 'Pages article deep link unavailable');
+      assert.equal(
+        artifact.digest(bytes),
+        record.files[name].sha256,
+        'Pages article deep link differs'
+      );
+    }
   }
   const missing = await request(base + '/staging/__delivery_missing', base, fetcher);
   assert.equal(missing.response.status, 404, 'Pages converted a missing route to Home');
@@ -100,6 +120,7 @@ async function check(directory, value, fetcher = fetch) {
     staging: true,
     query: true,
     actual404: true,
+    ...(articles.length ? { articleDocuments: articles.length, articleDeepLinks: true } : {}),
   };
 }
 

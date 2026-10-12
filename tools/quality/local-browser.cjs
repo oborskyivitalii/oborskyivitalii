@@ -445,7 +445,7 @@ async function main() {
     { server, url } = await start();
   const rows = [],
     pw = toolRequire('playwright');
-  let browser, pass;
+  let browser, pass, articles;
   try {
     browser = await pw.chromium.launch(launchOptions('chromium'));
     for (const width of [1440, 390])
@@ -454,6 +454,18 @@ async function main() {
         rows.push(row);
         console.log('Preview smoke:', width, mode, row.pass ? 'pass' : row.error);
       }
+    if (Object.keys(manifest.components.articles || {}).length) {
+      articles = await require('./article-browser.cjs').articleJourney(
+        url,
+        manifest.components.articles,
+        { browser }
+      );
+      require('./article-browser.cjs').validateArticleJourney(
+        articles,
+        manifest.components.articles,
+        { engine: manifest.components.engine, baseURL: url }
+      );
+    }
     pass = rows.length === 4 && rows.every((row) => row.pass);
     report(
       'preview-smoke',
@@ -466,6 +478,7 @@ async function main() {
         widths: [1440, 390],
         modes: ['normal', 'no-canvas'],
         rows,
+        ...(articles ? { articles } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },

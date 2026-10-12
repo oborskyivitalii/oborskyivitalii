@@ -8,23 +8,25 @@ const { catalog, catalogCounts, routeInput, fragment, validateFragment } = requi
 const { contentLabel } = require('./render-content.cjs');
 const { scriptJSON, stableTagEndings } = require('./html.cjs');
 const { renderPage, validateCriticalMedia } = require('./render-page.cjs');
+const articles = require('./articles.cjs');
 const defaultRoot = path.resolve(__dirname, '../..');
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
 const criticalMediaSource = 'site/engine/critical-media.css';
 const criticalMediaMarker = '/* {{CRITICAL_MEDIA}} */\n';
 
-function files(dir, base = dir) {
+function files(dir, base = dir, ignored = []) {
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir)
     .sort()
     .flatMap((name) => {
+      if (ignored.includes(name)) return [];
       const file = path.join(dir, name),
         stat = fs.lstatSync(file);
       if (stat.isSymbolicLink()) throw Error('Symlink source/output: ' + file);
       return stat.isDirectory()
-        ? files(file, base)
+        ? files(file, base, ignored)
         : [path.relative(base, file).split(path.sep).join('/')];
     });
 }
@@ -168,6 +170,10 @@ function styles(root) {
   );
 }
 
+function sceneMedia(root) {
+  return files(path.join(root, 'site/assets')).filter((name) => !name.startsWith('publications/'));
+}
+
 function fileDigests(root, names) {
   return Object.fromEntries(
     names.sort().map((name) => [name, sha(fs.readFileSync(path.join(root, name)))])
@@ -220,7 +226,7 @@ function retain(root, put) {
     throw Error('Incomplete retained snapshot inputs');
   for (const [name, hash] of Object.entries(manifest.files)) {
     if (
-      !/^(?:runtime|media|snapshots)\/[a-f0-9]{64}\/[a-z0-9.-]+$/.test(name) ||
+      !require('./snapshot.cjs').immutable(name) ||
       sha(fs.readFileSync(path.join(directory, name))) !== hash
     )
       throw Error('Invalid retained immutable file ' + name);
@@ -230,7 +236,13 @@ function retain(root, put) {
 function fingerprints(root, config, c = catalog(root)) {
   const producers = files(path.join(root, 'tools/site'))
     .map((x) => 'tools/site/' + x)
-    .concat('tools/build_scene_fallbacks.cjs');
+    .concat(
+      'tools/build_scene_fallbacks.cjs',
+      files(path.join(root, 'tools/publishing'), undefined, ['node_modules']).map(
+        (x) => 'tools/publishing/' + x
+      ),
+      ['package.json', 'package-lock.json'].filter((name) => fs.existsSync(path.join(root, name)))
+    );
   return {
     contract: config.contract,
     variant: sha(json({ id: 'base', contract: 1 })),
@@ -255,7 +267,7 @@ function fingerprints(root, config, c = catalog(root)) {
       json(
         fileDigests(
           root,
-          files(path.join(root, 'site/assets')).map((x) => 'site/assets/' + x)
+          sceneMedia(root).map((x) => 'site/assets/' + x)
         )
       )
     ),
@@ -301,7 +313,13 @@ function validCache(file) {
   }
 }
 function outputLock(result) {
-  return { schema: 1, components: result.components, routes: result.routes, files: result.files };
+  return {
+    schema: 1,
+    components: result.components,
+    routes: result.routes,
+    ...(Object.keys(result.articles || {}).length ? { articles: result.articles } : {}),
+    files: result.files,
+  };
 }
 function finish(root, output, cacheFile, temporary, result, check, lockFile) {
   if (check) {
@@ -312,27 +330,190 @@ function finish(root, output, cacheFile, temporary, result, check, lockFile) {
         sha(fs.readFileSync(path.join(output, name))) !== result.files[name]
     );
     if (stale.length) throw Error('Generated-only output is stale: ' + stale.join(', '));
-    if (
-      !fs.existsSync(lockFile) ||
-      read(root, 'site/output-lock.json') !== json(outputLock(result))
-    )
+    if (!fs.existsSync(lockFile) || fs.readFileSync(lockFile, 'utf8') !== json(outputLock(result)))
       throw Error('Generated output lock is stale');
   } else {
-    const backup = output + '.previous';
-    if (fs.existsSync(backup)) throw Error('Unresolved previous generation ' + backup);
-    if (fs.existsSync(output)) fs.renameSync(output, backup);
-    try {
-      fs.renameSync(temporary, output);
-    } catch (error) {
-      if (fs.existsSync(backup)) fs.renameSync(backup, output);
-      throw error;
-    }
-    fs.rmSync(backup, { recursive: true, force: true });
-    fs.mkdirSync(path.dirname(cacheFile), { recursive: true });
-    fs.writeFileSync(cacheFile, json(result));
-    fs.writeFileSync(lockFile, json(outputLock(result)));
+    require('./transaction.cjs').commitGeneration({
+      output,
+      temporary,
+      cacheFile,
+      lockFile,
+      cacheBytes: json(result),
+      lockBytes: json(outputLock(result)),
+    });
   }
 }
+function prepareArticles(root, selectedArticles, components, versioned) {
+  for (const article of selectedArticles) {
+    article.input = articles.input(root, article);
+    article.inputDigests = fileDigests(root, article.input.inputs);
+    if (
+      article.inputDigests[article.source.path] !== article.source.sha256 ||
+      article.assets.some((asset) => article.inputDigests[asset.path] !== asset.digest) ||
+      Object.values(article.adaptations || {}).some(
+        (adaptation) => article.inputDigests[adaptation.source.path] !== adaptation.source.sha256
+      )
+    )
+      throw Error('Article source changed during compilation');
+    article.version = sha(
+      json({
+        components,
+        key: article.key,
+        inputs: article.inputDigests,
+        rendered: sha(article.input.main),
+        metadata: article.metadata,
+        versioned,
+      })
+    );
+    article.snapshot = `article-snapshots/${article.version}/${path.posix.basename(article.url)}`;
+  }
+  // Every document embeds the finite registry. Derive its identity from the
+  // independent content versions first, avoiding a circular snapshot hash.
+  const articleRegistry = sha(
+    json(
+      selectedArticles.map((article) => ({
+        key: article.key,
+        url: article.url,
+        contentVersion: article.version,
+      }))
+    )
+  );
+  for (const article of selectedArticles) {
+    article.version = sha(json({ contentVersion: article.version, registry: articleRegistry }));
+    article.snapshot = `article-snapshots/${article.version}/${path.posix.basename(article.url)}`;
+  }
+}
+
+function emitArticles({
+  root,
+  config,
+  definitions,
+  components,
+  selectedArticles,
+  api,
+  measurement,
+  put,
+  result,
+  versioned,
+  preview,
+}) {
+  for (const article of selectedArticles) {
+    const input = article.input;
+    const version = article.version;
+    api ??= model(root, definitions);
+    let html = render(
+      root,
+      config.routes.find((route) => route.id === 'writing'),
+      input,
+      api,
+      measurement.head
+    );
+    if (versioned) html = versionHTML(html, version, components);
+    html = articles.attachHead(html, article, selectedArticles, preview);
+    html = articles.documentIndex(html, selectedArticles);
+    const alias = articles.rebase(html, article.url);
+    if (Buffer.byteLength(alias, 'utf8') > 100000)
+      throw Error('Article HTML byte budget ' + article.key);
+    put(article.url, alias);
+    const snapshot = article.snapshot;
+    const snapshotBytes = articles.rebase(
+      articles.immutableLinks(html, selectedArticles),
+      snapshot
+    );
+    if (Buffer.byteLength(snapshotBytes, 'utf8') > 100000)
+      throw Error('Article snapshot byte budget ' + article.key);
+    put(snapshot, snapshotBytes);
+    for (const asset of article.assets) {
+      if (asset.bytes.length > 2000000) throw Error('Article asset byte budget ' + asset.id);
+      put(articles.assetName(asset), asset.bytes);
+    }
+    result.articles[article.key] = {
+      version,
+      url: article.url,
+      snapshot,
+      sha256: result.files[snapshot],
+      inputs: input.inputs,
+      assets: article.assets.map(articles.assetName),
+      candidate: article.candidate,
+      articleId: article.metadata.id,
+      contentEdition: article.edition.id,
+      sourceSha256: article.source.sha256,
+      semanticSha256: article.edition.semanticSha256,
+    };
+  }
+}
+
+function emitRevision({ root, components, selectedArticles, result, temporary, put, preview }) {
+  const engine = runtimeVersion(components);
+  for (const name of ['theme.js', 'space.js', 'archive.js', 'navigation.js', 'styles.css'])
+    put(`runtime/${engine}/${name}`, fs.readFileSync(path.join(temporary, name)));
+  for (const name of sceneMedia(root).filter((x) => x !== 'nojekyll'))
+    put(
+      `media/${components.assets}/${name}`,
+      fs.readFileSync(path.join(root, 'site/assets', name))
+    );
+  const revision = {
+    schema: 1,
+    contract: components.contract,
+    variant: { id: 'base', contract: 1, fingerprint: components.variant },
+    engine,
+    scenes: components.scenes,
+    assets: components.assets,
+    mediaFiles: require('./snapshot.cjs').mediaFiles,
+    content: sha(
+      json(
+        Object.fromEntries(
+          [...Object.entries(result.routes), ...Object.entries(result.articles)].map(
+            ([id, route]) => [id, route.version]
+          )
+        )
+      )
+    ),
+    routes: Object.fromEntries(
+      Object.entries(result.routes).map(([id, route]) => [
+        id,
+        {
+          version: route.version,
+          url: `snapshots/${route.version}/${route.url}`,
+          sha256: route.snapshotSHA,
+        },
+      ])
+    ),
+    ...(selectedArticles.length
+      ? {
+          articles: Object.fromEntries(
+            Object.entries(result.articles).map(([key, article]) => [
+              key,
+              {
+                version: article.version,
+                url: article.snapshot,
+                sha256: article.sha256,
+                alias: article.url,
+                scene: 'writing',
+                assets: article.assets,
+                candidate: article.candidate,
+                articleId: article.articleId,
+                contentEdition: article.contentEdition,
+                sourceSha256: article.sourceSha256,
+                semanticSha256: article.semanticSha256,
+              },
+            ])
+          ),
+        }
+      : {}),
+    ...(preview ? { preview: true } : {}),
+  };
+  retain(root, put);
+  put('site-revision.json', json(revision));
+  if (Buffer.byteLength(json(revision), 'utf8') > 32000) throw Error('Revision byte budget');
+}
+
+function verifyArticleInputs(root, selectedArticles) {
+  for (const article of selectedArticles)
+    if (json(fileDigests(root, article.input.inputs)) !== json(article.inputDigests))
+      throw Error('Article source changed during generation');
+}
+
 function build({
   root = defaultRoot,
   output = path.join(root, 'docs'),
@@ -340,17 +521,27 @@ function build({
   all = false,
   check = false,
   versioned = true,
+  candidateArticles = [],
+  lockFile = candidateArticles.length
+    ? output + '.output-lock.json'
+    : path.join(root, 'site/output-lock.json'),
 } = {}) {
+  if (candidateArticles.length && path.resolve(output) === path.join(root, 'docs'))
+    throw Error('Candidate articles require an isolated preview output');
   const { config, definitions } = configuration(root),
     c = catalog(root),
     components = fingerprints(root, config, c);
+  const selectedArticles = articles.select(root, candidateArticles, c);
+  require('./validate-catalog.cjs').validateLocalCatalog(c, (id) =>
+    selectedArticles.find((article) => article.metadata.id === id && !article.candidate)
+  );
+  prepareArticles(root, selectedArticles, components, versioned);
   const measurement = require('./analytics.cjs').compile(
     root,
     config.routes.map((route) => route.url)
   );
   const previous = !all && !check ? validCache(cacheFile) : null;
-  const lockFile = path.join(root, 'site/output-lock.json'),
-    trusted = validCache(lockFile);
+  const trusted = validCache(lockFile);
   const parent = path.dirname(output);
   fs.mkdirSync(parent, { recursive: true });
   const temporary = fs.mkdtempSync(path.join(parent, '.site-build-'));
@@ -361,6 +552,7 @@ function build({
     removed: [],
     components,
     routes: {},
+    articles: {},
     files: {},
   };
   const put = (name, bytes) => {
@@ -384,6 +576,12 @@ function build({
             schema: input.schema,
             rendered: sha(input.main),
             versioned,
+            articles: selectedArticles.map((article) => ({
+              key: article.key,
+              url: article.url,
+              snapshot: article.snapshot,
+              ...(route.id === 'writing' ? { metadata: article.metadata } : {}),
+            })),
           })
         );
       const old = previous?.routes[route.id],
@@ -400,8 +598,10 @@ function build({
         result.reused.push(route.id);
       } else {
         api ??= model(root, definitions);
+        input.main = articles.listing(input.main, selectedArticles, route.id);
         html = render(root, route, input, api, measurement.head);
         if (versioned) html = versionHTML(html, version, components);
+        html = articles.documentIndex(html, selectedArticles, candidateArticles.length > 0);
         result.built.push(route.id);
       }
       put(route.url, html);
@@ -413,10 +613,23 @@ function build({
       };
       if (versioned) {
         const name = `snapshots/${version}/${route.url}`;
-        put(name, snapshotHTML(html));
+        put(name, snapshotHTML(articles.immutableLinks(html, selectedArticles)));
         result.routes[route.id].snapshotSHA = result.files[name];
       }
     }
+    emitArticles({
+      root,
+      config,
+      definitions,
+      components,
+      selectedArticles,
+      api,
+      measurement,
+      put,
+      result,
+      versioned,
+      preview: candidateArticles.length > 0,
+    });
     for (const name of ['theme.js', 'archive.js']) put(name, read(root, 'site/engine/' + name));
     put(
       'navigation.js',
@@ -425,51 +638,24 @@ function build({
     );
     put('styles.css', styles(root));
     put('space.js', runtime(root, definitions));
-    for (const name of files(path.join(root, 'site/assets')))
+    for (const name of sceneMedia(root))
       put(
         name === 'nojekyll' ? '.nojekyll' : 'assets/' + name,
         fs.readFileSync(path.join(root, 'site/assets', name))
       );
     for (const [name, bytes] of Object.entries(measurement.assets)) put(name, bytes);
-    if (versioned) {
-      const engine = runtimeVersion(components);
-      for (const name of ['theme.js', 'space.js', 'archive.js', 'navigation.js', 'styles.css'])
-        put(`runtime/${engine}/${name}`, fs.readFileSync(path.join(temporary, name)));
-      for (const name of files(path.join(root, 'site/assets')).filter((x) => x !== 'nojekyll'))
-        put(
-          `media/${components.assets}/${name}`,
-          fs.readFileSync(path.join(root, 'site/assets', name))
-        );
-      const revision = {
-        schema: 1,
-        contract: components.contract,
-        variant: { id: 'base', contract: 1, fingerprint: components.variant },
-        engine,
-        scenes: components.scenes,
-        assets: components.assets,
-        mediaFiles: require('./snapshot.cjs').mediaFiles,
-        content: sha(
-          json(
-            Object.fromEntries(
-              Object.entries(result.routes).map(([id, route]) => [id, route.version])
-            )
-          )
-        ),
-        routes: Object.fromEntries(
-          Object.entries(result.routes).map(([id, route]) => [
-            id,
-            {
-              version: route.version,
-              url: `snapshots/${route.version}/${route.url}`,
-              sha256: route.snapshotSHA,
-            },
-          ])
-        ),
-      };
-      retain(root, put);
-      put('site-revision.json', json(revision));
-    }
+    if (versioned)
+      emitRevision({
+        root,
+        components,
+        selectedArticles,
+        result,
+        temporary,
+        put,
+        preview: candidateArticles.length > 0,
+      });
     result.removed = files(output).filter((name) => !Object.hasOwn(result.files, name));
+    verifyArticleInputs(root, selectedArticles);
     finish(root, output, cacheFile, temporary, result, check, lockFile);
     return result;
   } finally {
@@ -486,7 +672,10 @@ if (require.main === module) {
     if (r.status !== 0) throw Error('Invalid changed baseline');
   } else if (args.length > 1 || !['--all', '--check', undefined].includes(args[0]))
     throw Error('Usage: node tools/site/build.cjs [--all | --changed BASE | --check]');
-  const result = build({ all: args[0] === '--all', check: args[0] === '--check' });
+  const result = build({
+    all: args[0] === '--all',
+    check: args[0] === '--check',
+  });
   console.log(
     JSON.stringify({ built: result.built, reused: result.reused, removed: result.removed })
   );

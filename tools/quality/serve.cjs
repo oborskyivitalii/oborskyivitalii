@@ -13,6 +13,7 @@ const types = {
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
   '.jpg': 'image/jpeg',
+  '.png': 'image/png',
   '.jpeg': 'image/jpeg',
 };
 const cache = new Map();

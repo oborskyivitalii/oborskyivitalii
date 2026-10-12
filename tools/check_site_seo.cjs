@@ -105,6 +105,83 @@ const positioning = JSON.parse(
 const sitecase = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-sitecase-amendment.json'), 'utf8')
 );
+const structuredMetadata = new Map();
+
+function approvedStructuredMetadata(page) {
+  if (structuredMetadata.has(page)) return structuredMetadata.get(page);
+  const frozen = cp.execFileSync('git', ['show', baseline + ':docs/' + page + '.html'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+  const sources = [frozen];
+  for (const record of [amendment, issue48, issue61, positioning, sitecase]) {
+    for (const change of record.changes.filter((change) => change.page === page)) {
+      for (const version of ['before', 'after']) {
+        if (!change[version].includes('<script type="application/ld+json">')) continue;
+        assert.equal(
+          crypto.createHash('sha256').update(change[version]).digest('hex'),
+          change[version + 'SHA256'],
+          'structured metadata amendment snapshot integrity'
+        );
+        sources.push(change[version]);
+      }
+    }
+  }
+  const encodings = new Map();
+  for (const source of sources) {
+    const blocks = normalizeHTML(source).matchAll(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g
+    );
+    for (const [block, data] of blocks) {
+      // Parse only immutable approved input. Current metadata must match this
+      // exact compact encoding, including property order and surrounding bytes.
+      const compact = block.replace(
+        data,
+        () =>
+          /^\s*/.exec(data)[0] +
+          require('./site/html.cjs').scriptJSON(JSON.parse(data), 0) +
+          /\s*$/.exec(data)[0]
+      );
+      assert.ok(
+        !encodings.has(compact) || encodings.get(compact) === block,
+        'Ambiguous approved structured metadata encoding'
+      );
+      encodings.set(block, block);
+      encodings.set(compact, block);
+    }
+  }
+  structuredMetadata.set(page, encodings);
+  return encodings;
+}
+
+function restoreStructuredMetadata(html, page) {
+  const heads = [...html.matchAll(/<head>[\s\S]*?<\/head>/g)];
+  assert.equal(heads.length, 1, 'One structured metadata document head');
+  assert.doesNotMatch(
+    html,
+    /<script\b[^>]*\bid="site-documents"/,
+    'Undeclared article document index in frozen public routes'
+  );
+  assert.doesNotMatch(
+    html,
+    /<meta\b[^>]*\bname="site-(?:article|base)"/,
+    'Undeclared article metadata in frozen public routes'
+  );
+  const blocks = [
+    ...html.matchAll(/<script\b[^>]*\btype="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g),
+  ];
+  assert.equal(blocks.length, 1, 'One declared structured metadata block');
+  assert.ok(
+    heads[0][0].includes(blocks[0][0]),
+    'Structured metadata belongs inside the document head'
+  );
+  const approved = approvedStructuredMetadata(page).get(blocks[0][0]);
+  // Unknown current bytes stay visible to the outer frozen comparison. They
+  // cannot disappear through parsing or a semantic equality shortcut.
+  return approved ? html.replace(blocks[0][0], () => approved) : html;
+}
+
 function restoreContentAmendment(html, page, record = amendment) {
   for (const change of record.changes.filter((c) => c.page === page)) {
     for (const version of ['before', 'after'])
@@ -284,6 +361,7 @@ function restoreApprovedContent(html, page) {
 }
 function restore(html, page) {
   html = normalizeHTML(strip(require('./build_site_previews.cjs').sourceForPreview(html)));
+  html = restoreStructuredMetadata(html, page);
   html = restoreCriticalMedia(html, page);
   // Authored-effects identity is build metadata. Only these exact production
   // values are reversible; a different variant/contract still fails comparison.
@@ -372,6 +450,7 @@ function verify() {
               'matching section/local-nav order',
               'wordmark dot',
               'exact same-owner generated critical media fallback in Home head',
+              'exact compact encoding of immutable approved structured metadata',
             ]
           : [
               ...(page === 'research'
@@ -380,6 +459,7 @@ function verify() {
               ...(titleCopy[page] ? ['exact decorative title-line wrapper'] : []),
               ...(page === 'writing' ? ['exact accessible canonical formula description'] : []),
               'wordmark dot',
+              'exact compact encoding of immutable approved structured metadata',
             ]),
       ],
     });
@@ -389,7 +469,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order and all other raw metadata remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
@@ -400,5 +480,6 @@ module.exports = {
   restoreContentAmendment,
   restoreRefactorPresentation,
   restoreCriticalMedia,
+  restoreStructuredMetadata,
   normalizeHTML,
 };

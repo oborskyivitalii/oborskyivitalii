@@ -33,6 +33,8 @@ function fixture(t) {
     'tools/site',
     'tools/build_scene_fallbacks.cjs',
     'tools/build_site_previews.cjs',
+    'tools/quality/artifact.cjs',
+    'tools/quality/budgets.json',
   ]) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
@@ -309,6 +311,7 @@ test('old analytics bytes and route dependencies survive a token rotation; forge
 });
 test('all fifteen standalone exports and their inert route payloads remove enabled tracking and verification', (t) => {
   const dir = fixture(t);
+  assert.equal(fs.existsSync(path.join(dir, 'tools/publishing')), false);
   configure(dir, enabled());
   b.build({ root: dir });
   const exported = require(path.join(dir, 'tools/build_site_previews.cjs')).buildPreviews(),
@@ -321,7 +324,14 @@ test('all fifteen standalone exports and their inert route payloads remove enabl
       html,
       /cloudflareinsights|analytics\.js|data-site-analytics|google-site-verification|verification-fixture/
     );
-    if (name.endsWith('interactive.html')) assert.match(html, /id="site-pages"/);
+    if (name.endsWith('interactive.html')) {
+      const payload = JSON.parse(
+        html.match(/<script type="application\/json" id="site-pages">([\s\S]*?)<\/script>/)[1]
+      );
+      assert.deepEqual(Object.keys(payload.pages), snapshot.routes);
+      assert.equal(payload.revision.articles, undefined);
+      assert.equal(payload.assets, undefined);
+    }
   }
 });
 test('analytics and unknown component changes force the full advisory scope without skipping checks', () => {

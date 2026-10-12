@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
-    "date": "2026-10-11",
-    "summary": "Rebase approved overlapping block phases and fixed reading camera onto reviewed main75 dual-runtime Color validation and authenticated unaccepted first-Pages recovery. Preserve every source/check/profile case and original budget; retain both motion branches, exact ledger entries, authored catalogs and current controls. Refresh exact coupled source identities after independent review; ordinary both-host admission, whole manual/device gates and production decisions remain separate."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
+    "date": "2026-10-12",
+    "summary": "Register site-owned publication adapters, explicit isolated candidate preview, native Writing article reader/offline exports and strict conditional article browser/source identity controls. Preserve current five-route source/hosted profiles, original bounds and Draft deferral; owning issue5 selects reusable behavior while independent/editorial/rights/device/merge/publication observations remain separate."
   },
   "layers": [
     {
@@ -106,7 +106,14 @@
         "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
         ".github/acceptance/issue-76.json",
         "review/issue-76/2026-10-11-preview.md",
-        "review/issue-76/2026-10-12-admission.md"
+        "review/issue-76/2026-10-12-admission.md",
+        ".github/acceptance/issue-5.json",
+        "tests/test_issue5_acceptance.py",
+        "review/issue-5/2026-10-12-execution.md",
+        "review/issue-5/2026-10-12-article-source.md",
+        "review/issue-5/2026-10-12-independent-implementation.md",
+        "review/issue-5/2026-10-12-migration-inventory.json",
+        "guides/ARTICLE-WORKFLOW.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -166,7 +173,24 @@
         "tools/quality/transition-pacing.cjs",
         "tests/color-motion-contract.test.cjs",
         "tools/quality/color-motion-contract.cjs",
-        "tools/quality/block-flight.cjs"
+        "tools/quality/block-flight.cjs",
+        "tools/quality/article-browser.cjs",
+        "tools/quality/candidate-source.cjs",
+        "tests/article-browser-evidence.test.cjs",
+        "tests/article-budgets.test.cjs",
+        "tests/article-delivery.test.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/local-browser.cjs",
+        "tools/quality/hosted.cjs",
+        "tests/article-candidate-source.test.cjs",
+        "review/issue-5/2026-10-12-color-runtime.md",
+        "review/issue-5/2026-10-12-color-runtime-first-failure.json",
+        "review/issue-5/2026-10-12-color-runtime-browser.json.gz",
+        "review/issue-5/2026-10-12-secret-checksum-proof.json",
+        "tools/quality/secrets-publication.json",
+        "review/issue-5/2026-10-12-color-runtime-final-browser.json.gz",
+        "review/issue-5/2026-10-12-color-runtime-f20-browser.json.gz",
+        "review/issue-5/2026-10-12-color-article-reader.json.gz"
       ],
       "checks": [
         "acceptance-policy",
@@ -289,7 +313,34 @@
         "tests/build-cohesion.test.cjs",
         "tests/camera-view.test.cjs",
         "tests/architecture.test.cjs",
-        "tests/refactor-metrics.test.cjs"
+        "tests/refactor-metrics.test.cjs",
+        "tools/site/articles.cjs",
+        "tools/site/offline.cjs",
+        "tools/site/standalone.cjs",
+        "tools/site/transaction.cjs",
+        "tests/site-articles.test.cjs",
+        "tests/site-transaction.test.cjs",
+        "tests/article-offline.test.cjs",
+        "tests/local-catalog-relationships.test.cjs",
+        "tools/publishing/article.cjs",
+        "tools/publishing/ast.mjs",
+        "tools/publishing/kit.cjs",
+        "tools/publishing/events.cjs",
+        "tools/publishing/history.cjs",
+        "tools/publishing/profile.cjs",
+        "tools/publishing/print.mjs",
+        "tools/publishing/print-resource.cjs",
+        "tools/publishing/semantic.cjs",
+        "tools/publishing/site-event.cjs",
+        "tools/publishing/provenance.cjs",
+        "tools/publishing/safety.cjs",
+        "tools/publishing/text.cjs",
+        "tools/publishing/cli.cjs",
+        "tests/publishing.test.cjs",
+        "tests/publishing-profile.test.cjs",
+        "tests/publishing-history.test.cjs",
+        "tests/publishing-print.test.cjs",
+        "tests/publishing-safety.test.cjs"
       ],
       "checks": [
         "authored-dependencies",
@@ -474,7 +525,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "d061f55906a1cd82589b5601faf0807c7f993a8fcd7155a8b44197e894f91c93",
+    "digest": "2e4e097f3236058070a1d4563c2ba0d951838171b83cbb45a24174e2a86642bf",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -519,6 +570,10 @@
       {
         "path": ".github/acceptance/issue-48.json",
         "sha256": "396f294f03202b08853cb1257aaab5a33e98595a110476512b72abef023936d8"
+      },
+      {
+        "path": ".github/acceptance/issue-5.json",
+        "sha256": "194cee19a24153e290b22c7fc08cc081e1ee70097888a3fdeb60bdcd0ab204b3"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -566,19 +621,19 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
+        "sha256": "3deea8819278567d0f382181bcb253b0f85d39897cee0d87c6cda15de942f489"
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "41a8c2a0fcb29fa5cea9ffcbc3f4e1202107f76459e995d4110e20cf1fa87dcc"
+        "sha256": "da877cb42def13b40a7c10c67236414b503660d46ea5a153b0fd8025c101c8c3"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "f6a58106a2e48dcb590d4c3bc4c46a45a9713a72de564afaaa6896f493c8d94f"
+        "sha256": "c6354826ba5816410576b691c436e95ba399e7d6185222e270b0aa84e6b714c6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "18892853d182eb1fbde7ffcdb9db67592592bb7da94fd44a9c86f547d1759265"
+        "sha256": "50b25e12dcc6e959ff0855333ea3cdaa44edf5df53497dbdeef564d1f4ba4af3"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -602,11 +657,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "1d10da8fab52b26f301beb72d2e3fc91234cadae9f3f8ff1e93333f95023a412"
+        "sha256": "6ab9c5f99087455096d8b379103bd74aefdc3c25cf47bb115af5589119f702d4"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "81f5dde08d3736e28e35812a219a69344698a40ee89a62febb2d4c0bee29b594"
+        "sha256": "02e5ac6d27d33d88ec0ce6772b74d68f8d8d685eabdede20c0c74d5982deff81"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -634,7 +689,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "ce94492fdc830316fcb0ffae3745f6b721781fe8bc2cd49c323e9677f5e79358"
+        "sha256": "fd0bab456f443b6c46409afcd4427c2a1b069f1d1c09f3a61e3d6a1807240233"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -666,7 +721,7 @@
       },
       {
         "path": "guides/CODE-STYLE.md",
-        "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
+        "sha256": "05c0a63a3f79929530fbbdee644a188a65e6296d00b5c374ba69fbd959d46d92"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
@@ -686,7 +741,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "4cb3c4387db2a6a6fe499e408356d0949c170ed50e68df9c8181861aa4c1e838"
+        "sha256": "7c8fbad5e9e2876f26a58ef333458de135e193c9e82c077babb4cf6a292313dc"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -731,6 +786,10 @@
       {
         "path": "tests/test_issue58_acceptance.py",
         "sha256": "b971868d02730e3ddf4f3371114e4541c3558f084b4587aab84cb24806ff44b8"
+      },
+      {
+        "path": "tests/test_issue5_acceptance.py",
+        "sha256": "00f9e7553bcd835395a2906dcfde464c2022f36b7d2b57fcaea808b2c5d27580"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -786,7 +845,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "ae166064cd711058c8c7623c6d9f1783e9b71c178104251fa1725a98791b2052"
+        "sha256": "0bd6065b5c78f6d02144d6af4681091cda36bf8143b0ffac00965a74a4777e20"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -794,15 +853,15 @@
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "2bb651840081b46212ae60071f06699ec62edbbf5463192363623739a79f9d38"
+        "sha256": "dee905c800efedea5cfaa107af5519676ebd7adabd497628b55e20841104baf8"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "97414d60b5c4baddf78086d946d221d86b389205f6e39e76c72f9b08890435d6"
+        "sha256": "c634fdfaa5f61cbc563cfc8d53d52661ad6443500bdfcce81540bd3b5b1c5450"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "12afa0f09db2f7574398bcb1331d7edf4df08e8720b5cfa2492879a305e1db3c"
+        "sha256": "3f84aae1378036eeb9ad4f0d3b84851a6cd597444f6889e5414518c8c16ebe1c"
       },
       {
         "path": "tools/repository_intelligence.py",

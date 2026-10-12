@@ -41,6 +41,7 @@ async function verify(base, profile, manifest, fetcher = fetch) {
     if (file.endsWith('.css')) assert.match(mime, /text\/css/i);
     if (file.endsWith('.json')) assert.match(mime, /application\/json/i);
     if (file.endsWith('.svg')) assert.match(mime, /image\/svg\+xml/i);
+    if (file.endsWith('.png')) assert.match(mime, /image\/png/i);
     const robots = headers.get('x-robots-tag') || '';
     if (profile === 'staging') {
       assert.match(robots, /noindex/i);

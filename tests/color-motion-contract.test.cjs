@@ -162,8 +162,8 @@ function evidence(id) {
   }
   return value;
 }
-test('only the six reviewed plain/staging runtime tuples select a camera and flight contract', () => {
-  for (const family of ['legacy', 'fixed', 'issue76'])
+test('only the eight reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+  for (const family of ['legacy', 'fixed', 'issue76', 'issue5'])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
         selected = manifest(id);
@@ -174,7 +174,7 @@ test('only the six reviewed plain/staging runtime tuples select a camera and fli
       );
       assert.equal(gate.aggregate(evidence(id)).pass, true);
     }
-  for (const id of ['fixed-plain', 'issue76-plain']) {
+  for (const id of ['fixed-plain', 'issue76-plain', 'issue5-plain']) {
     const copy = motion.reviewedRuntime(id);
     copy.files['space.js'] = '0'.repeat(64);
     assert.equal(motion.select(manifest(id)).id, id);
@@ -197,7 +197,13 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
       m.files['runtime/' + m.variant.fingerprint + '/styles.css'].sha256 = '0'.repeat(64);
     },
   ];
-  for (const id of ['fixed-plain', 'issue76-plain', 'issue76-staging']) {
+  for (const id of [
+    'fixed-plain',
+    'issue76-plain',
+    'issue76-staging',
+    'issue5-plain',
+    'issue5-staging',
+  ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
       mutate(value);
@@ -223,7 +229,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
       assert.equal(contexts, 0, 'unreviewed tuple cannot launch a browser context');
     }
   }
-  for (const id of ['fixed-staging', 'issue76-staging']) {
+  for (const id of ['fixed-staging', 'issue76-staging', 'issue5-staging']) {
     const staged = manifest(id);
     delete staged.edition;
     assert.throws(() => motion.select(staged), /edition differs/);
@@ -258,8 +264,37 @@ test('issue76 rejects mixed reviewed bytes and editions in both canonical and im
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
   }
 });
+test('issue5 rejects prior navigation or reading CSS and mismatched plain/staging editions', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-' + edition;
+    const previous = motion.reviewedRuntime('issue76-' + edition);
+    for (const name of ['navigation.js', 'styles.css']) {
+      for (const paths of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (paths !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (paths !== 'canonical') {
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        }
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const otherEdition = edition === 'plain' ? 'staging' : 'plain';
+    const other = motion.reviewedRuntime('issue5-' + otherEdition);
+    const mixedStyle = manifest(id);
+    mixedStyle.files['styles.css'].sha256 = other.files['styles.css'];
+    assert.throws(() => motion.select(mixedStyle), /Color bytes/);
+    const wrongEdition = manifest(id);
+    if (edition === 'plain') {
+      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+    } else {
+      delete wrongEdition.edition;
+    }
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
 test('full Color aggregation preserves all twelve engine, viewport and theme cells for reviewed contracts', () => {
-  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain']) {
+  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain', 'issue5-plain']) {
     const value = evidence(id),
       report = value.reports.at(-1),
       model = report.rows[0],
@@ -298,7 +333,14 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
   }
 });
 test('reviewed report guard branches reject wrong planes, moving reading cameras and false contract claims', () => {
-  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain', 'issue76-staging']) {
+  for (const id of [
+    'legacy-plain',
+    'fixed-plain',
+    'issue76-plain',
+    'issue76-staging',
+    'issue5-plain',
+    'issue5-staging',
+  ]) {
     const value = evidence(id),
       report = value.reports.at(-1);
     assert.equal(stage.validateColor(report, value.manifest), 2);

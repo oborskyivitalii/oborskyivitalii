@@ -836,6 +836,110 @@ test('closed secret ledgers admit only exact reviewed path, rule and hashed valu
   }
 });
 
+test('public npm integrity dispositions require the exact inventory path, ledger and current lock proof', () => {
+  const crypto = require('node:crypto');
+  const {
+    loadSecretReviews,
+    reviewedSecretFinding,
+    publicationIntegrityProof,
+  } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  const inventoryFile = 'tools/publishing/toolchain/licenses.json';
+  const directory = path.join(f.directory, 'tools/publishing/toolchain');
+  fs.mkdirSync(directory, { recursive: true });
+  const integrity =
+    'sha512-' +
+    crypto
+      .createHash('sha512')
+      .update('Public controlled npm registry integrity fixture')
+      .digest('base64');
+  const hash = crypto.createHash('sha1').update(integrity).digest('hex');
+  const lock = {
+    lockfileVersion: 3,
+    packages: {
+      '': { name: 'fixture' },
+      'node_modules/fixture-package': { version: '1.0.0', integrity },
+    },
+  };
+  const lockBytes = JSON.stringify(lock);
+  const inventory = {
+    schema: 1,
+    dependencyLockSha256: crypto.createHash('sha256').update(lockBytes).digest('hex'),
+    packages: [
+      {
+        name: 'fixture-package',
+        location: 'node_modules/fixture-package',
+        version: '1.0.0',
+        integrity,
+      },
+    ],
+  };
+  const writeInventory = (value) =>
+    fs.writeFileSync(path.join(f.directory, inventoryFile), JSON.stringify(value));
+  try {
+    fs.writeFileSync(path.join(directory, 'package-lock.json'), lockBytes);
+    writeInventory(inventory);
+    f.reviews[3].findings.push(f.entry(inventoryFile, 'Base64 High Entropy String', hash));
+    f.write(3);
+    const finding = { type: 'Base64 High Entropy String', hashed_secret: hash };
+    const reviewed = loadSecretReviews(f.directory);
+    const proof = publicationIntegrityProof(f.directory);
+    assert.equal(proof.size, 1);
+    assert.equal(reviewedSecretFinding(inventoryFile, finding, reviewed, proof), true);
+    assert.equal(
+      reviewedSecretFinding(inventoryFile, finding, reviewed),
+      false,
+      'a ledger alone cannot supply the current dependency proof'
+    );
+    assert.equal(
+      reviewedSecretFinding(
+        inventoryFile,
+        { ...finding, hashed_secret: 'b'.repeat(40) },
+        reviewed,
+        proof
+      ),
+      false
+    );
+    for (const mutate of [
+      (value) => {
+        value.dependencyLockSha256 = 'a'.repeat(64);
+      },
+      (value) => {
+        value.packages[0].version = '2.0.0';
+      },
+      (value) => {
+        value.packages[0].integrity = 'sha512-' + Buffer.from('unproved value').toString('base64');
+      },
+      (value) => {
+        value.packages[0].location = 'node_modules/other';
+      },
+      (value) => {
+        value.packages.push(structuredClone(value.packages[0]));
+      },
+    ]) {
+      const value = structuredClone(inventory);
+      mutate(value);
+      writeInventory(value);
+      assert.throws(() => publicationIntegrityProof(f.directory), /integrity|inventory/);
+    }
+    writeInventory(inventory);
+    for (const index of [0, 1, 2]) {
+      f.reviews[3].findings = [];
+      f.write(3);
+      f.reviews[index].findings = [f.entry(inventoryFile, finding.type, hash)];
+      f.write(index);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+      f.reviews[index].findings = [];
+      f.write(index);
+    }
+    f.reviews[3].findings = [f.entry('review/arbitrary-integrity.json', finding.type, hash)];
+    f.write(3);
+    assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
 test('secret ledgers reject malformed metadata and non-exact or non-checksum companion records', () => {
   const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
   const f = secretReviewFixture();

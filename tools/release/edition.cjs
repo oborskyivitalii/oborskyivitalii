@@ -4,7 +4,16 @@ const fs = require('node:fs');
 const path = require('node:path');
 const edition = require('../site/edition.cjs');
 const snapshot = require('../site/snapshot.cjs');
-const origin = 'https://vitaliioborskyi.ai';
+const publicationPolicy = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '../../site/publications/policy.json'), 'utf8')
+);
+assert.equal(publicationPolicy.schema, 1);
+assert.deepEqual(Object.keys(publicationPolicy).sort(), ['productionOrigin', 'schema']);
+const publicationOrigin = new URL(publicationPolicy.productionOrigin);
+assert.equal(publicationOrigin.protocol, 'https:');
+assert.equal(publicationOrigin.origin, publicationPolicy.productionOrigin);
+assert.equal(publicationOrigin.username + publicationOrigin.password, '');
+const origin = publicationOrigin.origin;
 const notFound =
   '<!doctype html><html lang="en"><meta charset="utf-8">' +
   '<meta name="viewport" content="width=device-width,initial-scale=1">' +
@@ -18,20 +27,42 @@ const sitemap =
   snapshot.routes.map((id) => '<url><loc>' + routeURL(id) + '</loc></url>').join('') +
   '</urlset>\n';
 
-function render(html, id) {
+function documentURL(id, articles = {}) {
+  if (!id.startsWith('article:')) return routeURL(id);
+  const article = articles[id.slice('article:'.length)];
+  assert.ok(article, 'unknown production article');
+  assert.match(article.alias, /^articles\/[a-z][a-z0-9-]{0,79}\.html$/);
+  assert.notEqual(article.candidate, true, 'candidate article cannot be indexed');
+  return origin + '/' + article.alias;
+}
+
+function sitemapFor(articles = {}) {
+  const articleURLs = Object.keys(articles)
+    .sort()
+    .map((key) => documentURL('article:' + key, articles));
+  return sitemap.replace(
+    '</urlset>',
+    articleURLs.map((url) => '<url><loc>' + url + '</loc></url>').join('') + '</urlset>'
+  );
+}
+
+function render(html, id, articles = {}) {
   assert.doesNotMatch(html, /name="site-environment"/, 'edition already applied');
   assert.doesNotMatch(html, /class="site-environment"/);
   html = edition.compactData(html);
   html = html.replace(/<meta name="robots"[^>]*>/g, '');
+  html = html.replace(/<link rel="canonical"[^>]*>/g, '');
+  html = html.replace(/<meta property="og:url"[^>]*>/g, '');
+  const canonical = documentURL(id, articles);
   return html.replace(
     '</head>',
     '<meta name="robots" content="index,follow">\n' +
       '<meta name="site-environment" content="production">\n' +
       '<link rel="canonical" href="' +
-      routeURL(id) +
+      canonical +
       '">\n' +
       '<meta property="og:url" content="' +
-      routeURL(id) +
+      canonical +
       '">\n</head>'
   );
 }
@@ -39,21 +70,29 @@ function render(html, id) {
 function build(directory) {
   const record = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
   assert.equal(record.components.variant?.id || 'base', 'base', 'Color remains staging-only');
+  assert.notEqual(
+    record.components.preview,
+    true,
+    'candidate article preview cannot become production'
+  );
+  const articles = record.components.articles || {};
+  const productionSitemap = sitemapFor(articles);
   return edition.build(directory, {
     edition: { id: 'production', indexable: true, origin },
     css: '',
-    inputs: { origin, robots, sitemap, notFound },
-    render,
-    files: { 'robots.txt': robots, 'sitemap.xml': sitemap, '404.html': notFound },
+    inputs: { origin, robots, sitemap: productionSitemap, notFound },
+    render: (html, id) => render(html, id, articles),
+    files: { 'robots.txt': robots, 'sitemap.xml': productionSitemap, '404.html': notFound },
   });
 }
 
 function verify(directory, record) {
   assert.deepEqual(record.edition, { id: 'production', indexable: true, origin });
   assert.equal(record.components.variant?.id || 'base', 'base');
+  assert.notEqual(record.components.preview, true, 'preview in production');
   for (const [name, bytes] of Object.entries({
     'robots.txt': robots,
-    'sitemap.xml': sitemap,
+    'sitemap.xml': sitemapFor(record.components.articles || {}),
     '404.html': notFound,
   }))
     assert.equal(fs.readFileSync(path.join(directory, 'public', name), 'utf8'), bytes);
@@ -62,6 +101,15 @@ function verify(directory, record) {
       const html = fs.readFileSync(path.join(directory, 'public', file), 'utf8');
       assert.match(html, /name="robots" content="index,follow"/);
       assert.ok(html.includes('<link rel="canonical" href="' + routeURL(id) + '">'));
+      assert.doesNotMatch(html, /class="site-environment"|name="robots" content="noindex/);
+    }
+  }
+  for (const [key, article] of Object.entries(record.components.articles || {})) {
+    const canonical = documentURL('article:' + key, record.components.articles);
+    for (const file of [article.alias, article.url]) {
+      const html = fs.readFileSync(path.join(directory, 'public', file), 'utf8');
+      assert.match(html, /name="robots" content="index,follow"/);
+      assert.ok(html.includes('<link rel="canonical" href="' + canonical + '">'));
       assert.doesNotMatch(html, /class="site-environment"|name="robots" content="noindex/);
     }
   }
@@ -75,4 +123,15 @@ if (require.main === module) {
     verify(directory, JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json'))));
   else throw Error('Usage: edition.cjs build|verify DIRECTORY');
 }
-module.exports = { origin, routeURL, notFound, robots, sitemap, render, build, verify };
+module.exports = {
+  origin,
+  routeURL,
+  documentURL,
+  notFound,
+  robots,
+  sitemap,
+  sitemapFor,
+  render,
+  build,
+  verify,
+};

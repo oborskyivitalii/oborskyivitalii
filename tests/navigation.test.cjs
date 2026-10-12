@@ -249,6 +249,7 @@ function routeHarness({ holdDeparture = false } = {}) {
     arriveEndpoint() {},
     mountEndpoint() {},
     restoreScroll() {},
+    rebaseResources() {},
   };
   const start = source.indexOf('  async function navigate('),
     end = source.indexOf('  document.body.dataset.entryPage = page;', start);
@@ -530,6 +531,7 @@ function routeHeadHarness(candidate = source) {
     cache: new Map(),
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
     restoreScroll() {},
+    rebaseResources() {},
     URL,
     CustomEvent: class CustomEvent {},
   };
@@ -807,4 +809,59 @@ test('one public block control delegates persistence and refreshes all block mot
       assert.equal(refreshed, writes.length, 'each setter has one motion lifecycle owner');
     }
   }
+});
+
+test('verified snapshot resources regain native root and nested article links at mount', () => {
+  const entry = new URL('https://fixture.test/project/writing.html');
+  const directory = new URL('.', entry);
+  const element = (attributes = {}, children = []) => ({
+    attributes: { ...attributes },
+    getAttribute(name) {
+      return this.attributes[name] || null;
+    },
+    setAttribute(name, value) {
+      this.attributes[name] = value;
+    },
+    querySelectorAll() {
+      return children;
+    },
+  });
+  const context = { URL, entry, directory, embedded: null };
+  vm.runInNewContext(
+    section('rebaseResources', 'extract') + '\nglobalThis.rebase=rebaseResources;',
+    context
+  );
+  for (const [alias, prefix] of [
+    ['credits.html', ''],
+    ['articles/reader.html', '../'],
+  ]) {
+    const credits = element({ href: '../../credits.html' });
+    const research = element({ href: '../../research.html#ua-advisors' });
+    const image = element({ src: '../../article-media/verified/diagram.png' });
+    const external = element({ href: 'https://external.test/article' });
+    const outside = element({ href: 'https://fixture.test/other/article.html' });
+    const anchor = element({ href: '#section' });
+    const inline = element({ src: 'data:image/png;base64,AA==' });
+    const canonical = element({ href: 'https://fixture.test/project/articles/reader.html' });
+    const data = {
+      sourceURL: new URL('snapshots/verified/credits.html', directory),
+      main: element({}, [research, image, external, outside, anchor, inline]),
+      footer: element({}, [credits]),
+      fallback: element(),
+      metadata: [canonical],
+    };
+    context.rebase(data, new URL(alias, directory));
+    assert.equal(credits.attributes.href, prefix + 'credits.html');
+    assert.equal(research.attributes.href, prefix + 'research.html#ua-advisors');
+    assert.equal(image.attributes.src, prefix + 'article-media/verified/diagram.png');
+    assert.equal(external.attributes.href, 'https://external.test/article');
+    assert.equal(outside.attributes.href, 'https://fixture.test/other/article.html');
+    assert.equal(anchor.attributes.href, '#section');
+    assert.equal(inline.attributes.src, 'data:image/png;base64,AA==');
+    assert.equal(canonical.attributes.href, 'https://fixture.test/project/articles/reader.html');
+  }
+  context.embedded = {};
+  const footerLink = element({ href: '?view=credits' });
+  context.rebase({ footer: element({}, [footerLink]) }, entry);
+  assert.equal(footerLink.attributes.href, '?view=credits', 'offline query links stay native');
 });

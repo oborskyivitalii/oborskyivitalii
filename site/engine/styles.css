@@ -1532,3 +1532,90 @@ body[data-page='writing'] #archive-results {
     break-inside: avoid;
   }
 }
+
+/* Native article reading uses the existing Writing room and shared paper tokens. */
+.article-reader {
+  max-width: 860px;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+.article-reader article,
+.article-list {
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+.article-intro h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+.article-summary {
+  font-size: 1.2rem;
+}
+.article-toc,
+.article-sources {
+  margin-block: 2.5rem;
+}
+.article-body {
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.article-body h2,
+.article-body h3 {
+  margin-top: 2.5rem;
+  scroll-margin-top: 6rem;
+}
+.article-body figure {
+  margin: 2rem 0;
+}
+.article-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.article-body figcaption {
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+.article-body pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid currentColor;
+}
+.article-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.article-body th,
+.article-body td {
+  padding: 0.5rem;
+  border: 1px solid currentColor;
+  text-align: left;
+}
+.article-list {
+  margin-block: 2rem;
+}
+.article-list li + li {
+  margin-top: 1.5rem;
+}
+@media print {
+  .article-reader {
+    max-width: none;
+    padding-top: 0;
+  }
+  .article-reader article {
+    padding: 0;
+    background: transparent;
+  }
+  .article-toc {
+    break-after: page;
+  }
+  .article-body figure {
+    break-inside: avoid;
+  }
+  .article-body h2,
+  .article-body h3 {
+    break-after: avoid;
+  }
+}

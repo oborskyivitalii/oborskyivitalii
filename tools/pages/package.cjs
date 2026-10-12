@@ -42,7 +42,12 @@ function read(directory) {
 
 function checkStaging(directory, record) {
   assert.deepEqual(record.edition, { id: 'staging', indexable: false, analytics: false });
-  for (const file of Object.keys(record.files).filter((name) => name.endsWith('.html'))) {
+  const revision = record.components;
+  const documents = snapshot.routes.flatMap((id) => [id + '.html', revision.routes[id].url]);
+  documents.push(
+    ...Object.values(revision.articles || {}).flatMap((article) => [article.alias, article.url])
+  );
+  for (const file of documents) {
     const html = fs.readFileSync(path.join(directory, 'public', file), 'utf8');
     assert.match(html, /name="robots" content="noindex,nofollow"/);
     assert.match(html, /class="site-environment"[^>]*>STAGING/);
@@ -116,6 +121,11 @@ function build(
   if (production) {
     assert.equal(prefix, '/', 'production Pages requires origin root');
     assert.equal(production.edition?.id || 'production', 'production');
+    assert.notEqual(
+      production.components.preview,
+      true,
+      'candidate preview cannot occupy production root'
+    );
     require('../release/archive.cjs').tag(productionTag);
   } else {
     assert.equal(productionTag, null, 'production tag without an admitted artifact');

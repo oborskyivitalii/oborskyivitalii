@@ -74,6 +74,7 @@ function type(file) {
   if (file.endsWith('.svg')) return /image\/svg\+xml/i;
   if (file.endsWith('.webp')) return /image\/webp/i;
   if (file.endsWith('.jpg')) return /image\/jpeg/i;
+  if (file.endsWith('.png')) return /image\/png/i;
   return /application\/json/i;
 }
 async function httpSmoke(base, record, fetcher = fetch) {
@@ -360,7 +361,7 @@ async function fallbacks(browser, base) {
   }
   return rows;
 }
-async function browserSmoke(base) {
+async function browserSmoke(base, articles = {}) {
   const { toolRequire, launchOptions } = require('../quality/common.cjs'),
     pw = toolRequire('playwright'),
     browser = await pw.chromium.launch(launchOptions('chromium'));
@@ -376,6 +377,15 @@ async function browserSmoke(base) {
         views,
         fallback,
         archive: await archive(page, base),
+        ...(Object.keys(articles).length
+          ? {
+              articles: await require('../quality/article-browser.cjs').articleJourney(
+                base,
+                articles,
+                { browser }
+              ),
+            }
+          : {}),
         limits: [
           'Headless Linux browser and viewport emulation, not physical phones.',
           'HTTP byte checks retain external publisher/contact targets; no external site is clicked.',
@@ -408,7 +418,7 @@ async function main() {
   };
   try {
     result.http = await httpSmoke(base, record);
-    result.browser = await browserSmoke(base);
+    result.browser = await browserSmoke(base, record.source.components?.articles || {});
     result.pass = true;
   } catch (e) {
     result.error = e.message;
@@ -423,4 +433,4 @@ if (require.main === module)
     console.error(e.message);
     process.exitCode = 1;
   });
-module.exports = { origin, responseHeaders, request, httpSmoke, sceneState, browserSmoke };
+module.exports = { origin, responseHeaders, request, type, httpSmoke, sceneState, browserSmoke };

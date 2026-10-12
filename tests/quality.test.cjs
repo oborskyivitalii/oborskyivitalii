@@ -151,7 +151,21 @@ function fixture() {
     }))
   );
   return {
-    manifest: { ...identity, components: { variant }, sourceDirty: false },
+    manifest: {
+      ...identity,
+      components: { variant },
+      sourceDirty: false,
+      files: Object.fromEntries(
+        budgets.routes.map((route) => [
+          route + '.html',
+          {
+            sha256: 'e'.repeat(64),
+            raw: 50000,
+            gzip: 10000,
+          },
+        ])
+      ),
+    },
     sizes: {
       pass: true,
       artifactDigest: identity.artifactDigest,
@@ -628,7 +642,14 @@ function fullFixture() {
     { ...identity, pass: true, kind: 'motion', ...motionFixture() }
   );
   x.manifest.files = Object.fromEntries(
-    budgets.routes.map((route) => [route + '.html', { sha256: 'd'.repeat(64) }])
+    budgets.routes.map((route) => [
+      route + '.html',
+      {
+        sha256: 'd'.repeat(64),
+        raw: 50000,
+        gzip: 10000,
+      },
+    ])
   );
   const capture = {
     ...identity,

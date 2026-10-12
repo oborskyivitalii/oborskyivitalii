@@ -28,16 +28,23 @@ function component(templates, name, values) {
 
 function editionLinks(templates, record, catalog) {
   return record.editions
-    .map((edition) =>
-      component(templates, 'edition-link', {
+    .map((edition) => {
+      const date = edition.datePublished || edition.dateModified;
+      const local = record.kind === 'local-article';
+      const label = local
+        ? contentLabel(catalog, 'edition.relationship.' + edition.relationship) +
+          (date ? contentLabel(catalog, 'edition.date-separator') : '')
+        : contentLabel(catalog, 'edition.link');
+      return component(templates, 'edition-link', {
         URL: escapeAttribute(edition.url),
         TITLE: escapeAttribute(edition.name),
         PLATFORM: escapeText(edition.platform),
-        LABEL: escapeText(contentLabel(catalog, 'edition.link')),
-        DATE: escapeText(dateLabel(edition.datePublished || edition.dateModified, catalog)),
-        EDITED: edition.datePublished ? '' : escapeText(contentLabel(catalog, 'edition.edited')),
-      })
-    )
+        LABEL: escapeText(label),
+        DATE: date ? escapeText(dateLabel(date, catalog)) : '',
+        EDITED:
+          date && !edition.datePublished ? escapeText(contentLabel(catalog, 'edition.edited')) : '',
+      });
+    })
     .join('');
 }
 
@@ -45,17 +52,19 @@ function publication(templates, record, variant, catalog, linked) {
   const language = record.edition.inLanguage;
   const date = record.edition.datePublished || record.edition.dateModified;
   const title = escapeText(record.edition.name);
-  return component(templates, 'publication', {
+  const rendered = component(templates, 'publication', {
     LANGUAGE: language,
     ARCHIVE_ATTRIBUTES:
       variant === 'archive'
-        ? `data-topic="${record.presentation.topic}" data-year="${date.slice(0, 4)}"`
+        ? `data-topic="${record.presentation.topic}"${date ? ` data-year="${date.slice(0, 4)}"` : ''}`
         : '',
-    DATE: date,
-    DATE_LABEL: escapeText(
-      dateLabel(date, catalog, record.septemberStyle) +
-        (record.edition.datePublished ? '' : contentLabel(catalog, 'edition.edited'))
-    ),
+    DATE: date || '',
+    DATE_LABEL: date
+      ? escapeText(
+          dateLabel(date, catalog, record.septemberStyle) +
+            (record.edition.datePublished ? '' : contentLabel(catalog, 'edition.edited'))
+        )
+      : '',
     LANGUAGE_BADGE: component(templates, 'language-badge', {
       LANGUAGE_ATTRIBUTE: language === 'uk' ? 'lang="uk"' : '',
       LABEL: escapeText(contentLabel(catalog, 'language.' + language)),
@@ -65,7 +74,10 @@ function publication(templates, record, variant, catalog, linked) {
     URL: escapeAttribute(record.edition.url),
     TITLE:
       language === 'uk'
-        ? component(templates, 'publication-title', { LANGUAGE: language, TITLE: title })
+        ? component(templates, 'publication-title', {
+            LANGUAGE: language,
+            TITLE: title,
+          })
         : title,
     EDITION_LINKS: linked || record.homeEditionLink ? editionLinks(templates, record, catalog) : '',
     DISCUSSION_LINKS: linked
@@ -85,6 +97,9 @@ function publication(templates, record, variant, catalog, linked) {
           })
         : '',
   });
+  // An accepted local preparation can precede its first observed publication.
+  // Keep the existing dated template bytes; omit only its empty date element.
+  return date ? rendered : rendered.replace(/<time datetime="">\s*<\/time\s*>/, '');
 }
 
 function discussionRows(templates, catalog, dependencies) {
