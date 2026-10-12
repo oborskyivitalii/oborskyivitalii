@@ -13,8 +13,10 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   Exact first-preview source17dec258 passed prototype build/package and HTTP
   identity in run38173287281; clean local #76 policy passed. On12October the
   maintainer found the A=SOFTMAX landmark and line chart still in the same
-  screen regions across pages. AC04 visual acceptance is pending correction in
-  the same Draft PR. No merge or stable promotion.
+  screen regions across pages. A corrected five-room layout is in that Draft
+  PR; its first cloud preview exposed Home portrait/Writing header occlusion,
+  and the current follow-up corrects those two placements. AC04 still awaits
+  final exact-preview visual acceptance. No merge or stable promotion.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from

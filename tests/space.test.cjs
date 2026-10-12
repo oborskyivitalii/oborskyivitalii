@@ -750,6 +750,31 @@ test('visible attention and line-chart landmarks move among distinct reading reg
     }
   }
 });
+test('Home and Writing attention glyphs clear the observed foreground at desktop reading entry', () => {
+  const width = 1350;
+  const height = 894;
+  for (const page of ['index', 'writing']) {
+    const world = model.worldFor(page);
+    const pose = model.poses[model.initialPoses[page]];
+    for (let time = 0; time < model.LOOP_MS; time += 1000) {
+      // Amber strokes are the recognizable expression. Its cyan rear support
+      // may pass behind paper; it cannot stand in for visible formula glyphs.
+      const glyphs = model
+        .projectedWorld(world, pose, width, height, time)
+        .filter((shape) => shape.object === 'shared-0-8' && shape.color === 'amber');
+      const points = glyphs.flatMap((shape) => shape.points);
+      assert.ok(glyphs.length > 40, 'recognizable attention expression remains rendered');
+      const xs = points.map(([x]) => x);
+      const ys = points.map(([, y]) => y);
+      if (page === 'index') {
+        assert.ok(Math.min(...xs) > width * 0.65, 'glyphs remain beside the left hero text');
+        assert.ok(Math.max(...ys) < height * 0.35, 'glyphs remain above the portrait region');
+      } else {
+        assert.ok(Math.min(...ys) >= 80, 'glyphs clear the fixed desktop header');
+      }
+    }
+  }
+});
 test('route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose', () => {
   const p = visit();
   p.settle();
