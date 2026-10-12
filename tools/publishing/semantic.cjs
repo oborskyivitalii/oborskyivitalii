@@ -44,6 +44,9 @@ function semanticDigest(metadata, source, assets = metadata.assets) {
       credit: asset.credit,
     })),
   };
+  if (metadata.translationOf !== undefined) {
+    identity.translationOf = metadata.translationOf;
+  }
   return digest(identity);
 }
 

@@ -329,6 +329,23 @@ test('selected execution keeps real process failure and accounting evidence with
     () => runner.run(root, plan, { execute: () => ({ status: 0, stdout: tap({ skipped: 1 }) }) }),
     /skipped/
   );
+  assert.throws(
+    () =>
+      runner.run(root, plan, {
+        execute: () => ({
+          status: null,
+          error: new Error('spawnSync ETIMEDOUT'),
+          stdout: '# Subtest: last observed contract\nnot ok 1 - last observed contract\n',
+          stderr: 'retained child diagnostic',
+        }),
+      }),
+    (error) => {
+      assert.match(error.message, /ETIMEDOUT/);
+      assert.match(error.message, /retained child diagnostic/);
+      assert.match(error.message, /last observed contract/);
+      return true;
+    }
+  );
   assert.throws(() => runner.run(root, { ...plan, modules: [] }));
   assert.throws(
     () => runner.argumentsFor(['--profile', 'production', '--profile', 'staging']),

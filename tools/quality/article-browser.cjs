@@ -63,7 +63,7 @@ async function settled(page, key, timeout) {
   );
 }
 
-async function articleHead(page, key, descriptor, descriptors) {
+async function articleHead(page, key, descriptor, descriptors, timeout) {
   const head = await inspectHead(page);
   const language = key.split(':').at(-1);
   assert.equal(head.key, key, 'article metadata key');
@@ -102,6 +102,12 @@ async function articleHead(page, key, descriptor, descriptors) {
     await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
     false,
     'article horizontal overflow'
+  );
+  // Router readiness precedes image loading on a real hosted origin.
+  await page.waitForFunction(
+    () => [...document.querySelectorAll('.article-body img')].every((image) => image.complete),
+    null,
+    { timeout }
   );
   for (const image of await page.locator('.article-body img').evaluateAll((images) =>
     images.map((image) => ({
@@ -205,7 +211,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await articleLink.click();
     await settled(page, 'article:' + key, timeout);
     await preserveShell(page);
-    const head = await articleHead(page, key, descriptor, descriptors);
+    const head = await articleHead(page, key, descriptor, descriptors, timeout);
     await page.goBack();
     await settled(page, 'writing', timeout);
     await preserveShell(page);
@@ -228,7 +234,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await settled(page, 'article:' + key, timeout);
     await preserveShell(page);
     assert.deepEqual(
-      await articleHead(page, key, descriptor, descriptors),
+      await articleHead(page, key, descriptor, descriptors, timeout),
       head,
       'Forward restored article head'
     );
@@ -243,7 +249,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await settled(page, 'article:' + key, timeout);
     assert.equal(new URL(page.url()).hash, fragment, 'deep refresh retained anchor');
     assert.deepEqual(
-      await articleHead(page, key, descriptor, descriptors),
+      await articleHead(page, key, descriptor, descriptors, timeout),
       head,
       'native refresh and persistent navigation agree on the complete article head'
     );
@@ -348,7 +354,7 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
   page.on('pageerror', (error) => errors.push(error.message));
   try {
     await page.goto(urls.alias);
-    const head = await articleHead(page, key, descriptor, descriptors);
+    const head = await articleHead(page, key, descriptor, descriptors, timeout);
     assert.ok(await page.locator('.article-body').innerText(), 'fallback retains full article');
     const anchor = page.locator('.article-toc a[href^="#"]').first();
     const fragment = await anchor.getAttribute('href');

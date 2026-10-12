@@ -36,6 +36,7 @@ test('article producer metadata reconciliation reverses only exact approved comp
     assert.ok(block, 'live page contains its reviewed structured metadata');
     const compact = block[1];
     const restored = restoreStructuredMetadata(html, page);
+    const preserved = restore(html, page);
     const reviewed = restored.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
     assert.notEqual(reviewed, compact, 'the fixture exercises actual compact metadata');
     assert.deepEqual(
@@ -70,11 +71,7 @@ test('article producer metadata reconciliation reverses only exact approved comp
         altered,
         'undeclared bytes remain visible'
       );
-      assert.notEqual(
-        restore(altered, page),
-        restore(html, page),
-        'undeclared metadata fails frozen parity'
-      );
+      assert.notEqual(restore(altered, page), preserved, 'undeclared metadata fails frozen parity');
     }
   }
 });
@@ -82,6 +79,7 @@ test('article metadata reconciliation rejects missing, duplicate and relocated o
   const { restoreStructuredMetadata, restore } = require('../tools/check_site_seo.cjs');
   const html = readHTML(require('node:path').join(__dirname, '../docs/index.html'));
   const block = html.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/)[0];
+  const preserved = restore(html, 'index');
   for (const altered of [
     html.replace(block, ''),
     html.replace(block, block + ' ' + block),
@@ -106,11 +104,7 @@ test('article metadata reconciliation rejects missing, duplicate and relocated o
   ]) {
     const altered = html.replace('</head>', metadata + '</head>');
     assert.ok(restoreStructuredMetadata(altered, 'index').includes(metadata));
-    assert.notEqual(
-      restore(altered, 'index'),
-      restore(html, 'index'),
-      'unrelated metadata is never stripped'
-    );
+    assert.notEqual(restore(altered, 'index'), preserved, 'unrelated metadata is never stripped');
   }
 });
 test('critical media reconciliation admits only exact Home head ownership, bytes and original order', (t) => {
@@ -125,6 +119,7 @@ test('critical media reconciliation admits only exact Home head ownership, bytes
     css = fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8'),
     block = '<style data-critical-media>\n' + css + '</style>',
     preserved = restoreCriticalMedia(html, 'index');
+  const parity = restore(html, 'index');
   assert.equal(preserved, html.replace(block + ' ', ''), 'only the exact generated block reverses');
   for (const changed of [
     html.replace(block, block + ' ' + block),
@@ -142,13 +137,13 @@ test('critical media reconciliation admits only exact Home head ownership, bytes
   const unrelated = '<style>.unrelated{color:red}</style> ',
     extra = html.replace('<script src="theme.js"></script>', '$& ' + unrelated);
   assert.ok(restoreCriticalMedia(extra, 'index').includes(unrelated));
-  assert.notEqual(restore(extra, 'index'), restore(html, 'index'), 'unrelated CSS stays in parity');
+  assert.notEqual(restore(extra, 'index'), parity, 'unrelated CSS stays in parity');
   for (const changed of [
     html.replace(/"@type":\s*"ProfilePage"/, '"@type":"OtherPage"'),
     html.replace('Portrait of Vitalii Oborskyi', 'Portrait of another person'),
     html.replace('height="721"', 'height="722"'),
   ])
-    assert.notEqual(restore(changed, 'index'), restore(html, 'index'));
+    assert.notEqual(restore(changed, 'index'), parity);
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'critical-media-seo-')),
     owner = path.join(directory, 'site/engine/critical-media.css');
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
@@ -236,10 +231,11 @@ test('approved contact and decorative title reconciliation retain changed destin
   }
   for (const page of ['research', 'writing', 'talks']) {
     const source = readHTML(path.join(__dirname, '../docs/' + page + '.html'));
+    const preservedTitle = restore(source, page);
     assert.ok(source.includes('class="reading-title"'));
     assert.notEqual(
       restore(source.replace('class="reading-title"', 'class="other-title"'), page),
-      restore(source, page)
+      preservedTitle
     );
     assert.notEqual(
       restore(
@@ -249,7 +245,7 @@ test('approved contact and decorative title reconciliation retain changed destin
         ),
         page
       ),
-      restore(source, page)
+      preservedTitle
     );
     const layered = source.includes('class="reading-title-ink"')
       ? source
@@ -257,14 +253,10 @@ test('approved contact and decorative title reconciliation retain changed destin
           /(<span class="reading-title">)([\s\S]*?)(<\/span>)/,
           '$1<span class="reading-title-ink">$2</span>$3'
         );
-    assert.equal(
-      restore(layered, page),
-      restore(source, page),
-      'approved ink wrapper retains exact copy'
-    );
+    assert.equal(restore(layered, page), preservedTitle, 'approved ink wrapper retains exact copy');
     assert.notEqual(
       restore(layered.replace('class="reading-title-ink"', 'class="other-ink"'), page),
-      restore(source, page),
+      preservedTitle,
       'unsupported ink wrapper identity'
     );
     assert.notEqual(
@@ -275,7 +267,7 @@ test('approved contact and decorative title reconciliation retain changed destin
         ),
         page
       ),
-      restore(source, page),
+      preservedTitle,
       'changed layered title copy'
     );
   }
@@ -306,6 +298,7 @@ test('response reconciliation rejects missing people, sources and stronger parti
     );
   }
   const research = readHTML(path.join(__dirname, '../docs/research.html'));
+  const preservedResearch = restore(research, 'research');
   for (const source of [
     'https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g',
     'https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/',
@@ -319,13 +312,13 @@ test('response reconciliation rejects missing people, sources and stronger parti
         research.replace(matthew, matthew.replace(source, 'https://www.linkedin.com/posts/other')),
         'research'
       ),
-      restore(research, 'research'),
+      preservedResearch,
       'reshare chain and older context survive'
     );
   }
   assert.notEqual(
     restore(research.replace('>Advisors &amp; responses</a>', '>Trusted by</a>'), 'research'),
-    restore(research, 'research'),
+    preservedResearch,
     'changed navigation claim'
   );
 });
@@ -344,12 +337,17 @@ test('issue48 amendment reverses only declared theory and Matthew changes', () =
       ['research', 'lenses'],
     ]
   );
+  const pages = new Map();
   for (const change of original) {
     assert.equal(
       normalizeHTML(restoreContentAmendment(change.after, change.page, record)),
       normalizeHTML(change.before)
     );
-    const html = readHTML(path.join(__dirname, '../docs/' + change.page + '.html'));
+    if (!pages.has(change.page)) {
+      const html = readHTML(path.join(__dirname, '../docs/' + change.page + '.html'));
+      pages.set(change.page, { html, preserved: restore(html, change.page) });
+    }
+    const { html, preserved } = pages.get(change.page);
     const after = normalizeHTML(change.after);
     assert.ok(html.includes(after));
     const mutation =
@@ -359,7 +357,7 @@ test('issue48 amendment reverses only declared theory and Matthew changes', () =
     assert.notEqual(mutation, after);
     assert.notEqual(
       restore(html.replace(after, mutation), change.page),
-      restore(html, change.page),
+      preserved,
       'changed association/attribution is not silently reversed'
     );
     const corrupt = JSON.parse(JSON.stringify(record));
@@ -523,12 +521,17 @@ test('practical positioning allowances reject unsupported claims, status and con
       'main/tools/site/build.cjs',
     ],
   ];
+  const pages = new Map();
   for (const [page, from, to] of mutations) {
-    const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));
+    if (!pages.has(page)) {
+      const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));
+      pages.set(page, { html, preserved: restore(html, page) });
+    }
+    const { html, preserved } = pages.get(page);
     assert.ok(html.includes(from), 'mutation input exists');
     assert.notEqual(
       restore(html.replace(from, to), page),
-      restore(html, page),
+      preserved,
       'unapproved copy/source/contact change cannot disappear through restoration'
     );
   }

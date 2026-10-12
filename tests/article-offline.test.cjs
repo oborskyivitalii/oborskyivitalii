@@ -166,7 +166,12 @@ test.before(() => {
     editionId: english.metadata.edition,
     sourceSha256: english.edition.source.sha256,
   };
+  ukrainian.edition.semanticSha256 = publisher.semanticDigest(
+    ukrainian.metadata,
+    ukrainian.edition.source
+  );
   json(root, ukrainian.directory + '/publication.json', ukrainian.metadata);
+  json(root, ukrainian.directory + '/editions/offline-first.json', ukrainian.edition);
   const accepted = publication(root, 'offline-undated', 'en', 'ACCEPTED_UNDATED_BODY_3');
   acceptUndated(root, accepted);
   builder.build({ root, all: true });

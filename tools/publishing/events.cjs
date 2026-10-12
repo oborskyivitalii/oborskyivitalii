@@ -80,8 +80,14 @@ function artifactRecord(root, event, directory) {
   ) {
     throw new Error('Publication render artifact manifest is forged or mismatched');
   }
-  const documentPath = event.platform === 'site' ? 'article.html' : `${event.platform}.html`;
-  if (artifact.documentPath !== documentPath) {
+  const platformDocuments = [
+    `${event.platform}.html`,
+    `${event.platform}.md`,
+    `${event.platform}.txt`,
+    `${event.platform}-copy-ready.html`,
+  ];
+  const documentPath = artifact.documentPath;
+  if (!platformDocuments.includes(documentPath)) {
     throw new Error('Publication event names the wrong platform output');
   }
   const record = manifest.outputs.find((output) => output.path === documentPath);
@@ -89,7 +95,7 @@ function artifactRecord(root, event, directory) {
     throw new Error('Publication artifact does not declare its document output');
   }
   const actual = readSource(root, `${path.posix.dirname(artifact.manifestPath)}/${documentPath}`, {
-    maxBytes: 5_000_000,
+    maxBytes: documentPath.endsWith('-copy-ready.html') ? 32_000_000 : 5_000_000,
   });
   if (actual.sha256 !== record.sha256 || actual.bytes.length !== record.bytes) {
     throw new Error('Publication artifact document bytes are corrupt');

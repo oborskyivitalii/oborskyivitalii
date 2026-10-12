@@ -481,39 +481,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/2a34c34118bf22ebf9f07eed5ad1141c26bc91c1e1db7e32466aca46ef106ecc": {
+    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436": {
       "kind": "directory",
-      "purpose": "Generated content-addressed shared runtime closure for the current native site rendition.",
+      "purpose": "Generated immutable af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436 for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/2a34c34118bf22ebf9f07eed5ad1141c26bc91c1e1db7e32466aca46ef106ecc/archive.js": {
+    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/archive.js": {
       "kind": "file",
-      "purpose": "Generated content-addressed shared runtime closure for the current native site rendition.",
+      "purpose": "Generated immutable archive.js for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/2a34c34118bf22ebf9f07eed5ad1141c26bc91c1e1db7e32466aca46ef106ecc/navigation.js": {
+    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/navigation.js": {
       "kind": "file",
-      "purpose": "Generated content-addressed shared runtime closure for the current native site rendition.",
+      "purpose": "Generated immutable navigation.js for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/2a34c34118bf22ebf9f07eed5ad1141c26bc91c1e1db7e32466aca46ef106ecc/space.js": {
+    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/space.js": {
       "kind": "file",
-      "purpose": "Generated content-addressed shared runtime closure for the current native site rendition.",
+      "purpose": "Generated immutable space.js for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/2a34c34118bf22ebf9f07eed5ad1141c26bc91c1e1db7e32466aca46ef106ecc/styles.css": {
+    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/styles.css": {
       "kind": "file",
-      "purpose": "Generated content-addressed shared runtime closure for the current native site rendition.",
+      "purpose": "Generated immutable styles.css for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/2a34c34118bf22ebf9f07eed5ad1141c26bc91c1e1db7e32466aca46ef106ecc/theme.js": {
+    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/theme.js": {
       "kind": "file",
-      "purpose": "Generated content-addressed shared runtime closure for the current native site rendition.",
+      "purpose": "Generated immutable theme.js for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -565,6 +565,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/1ace66e099dbfde7922affe5d66a521f0314442b7dfd5c4c18963c114e001a05": {
+      "kind": "directory",
+      "purpose": "Generated immutable 1ace66e099dbfde7922affe5d66a521f0314442b7dfd5c4c18963c114e001a05 for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1ace66e099dbfde7922affe5d66a521f0314442b7dfd5c4c18963c114e001a05/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable research.html for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2965d36d6e87a8b51c4139c055aaf1d3e82dd2f5909237b10f039085bcf95ae3": {
+      "kind": "directory",
+      "purpose": "Generated immutable 2965d36d6e87a8b51c4139c055aaf1d3e82dd2f5909237b10f039085bcf95ae3 for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2965d36d6e87a8b51c4139c055aaf1d3e82dd2f5909237b10f039085bcf95ae3/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable index.html for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -577,30 +601,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/62825fa3fabef54fd897b46c1a74610c86fb9fcb55363e8bb795688d6bb0211a": {
-      "kind": "directory",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/62825fa3fabef54fd897b46c1a74610c86fb9fcb55363e8bb795688d6bb0211a/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/775905569adb7acb2b609dcbd3e34864a82bbac77dd87a500861438ce8029c56": {
-      "kind": "directory",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/775905569adb7acb2b609dcbd3e34864a82bbac77dd87a500861438ce8029c56/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -610,6 +610,18 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7e07a833b7d9866404d574a71340265cd9deb724b942fa863c8e3a94bc2d8e51": {
+      "kind": "directory",
+      "purpose": "Generated immutable 7e07a833b7d9866404d574a71340265cd9deb724b942fa863c8e3a94bc2d8e51 for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7e07a833b7d9866404d574a71340265cd9deb724b942fa863c8e3a94bc2d8e51/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable writing.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -637,15 +649,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/98b517533aa30113d46bcdf01f50e06e1e6f34465a9913cad3b870562a759225": {
+    "docs/snapshots/af1d60b40e4f27adc0e0cf2faa2a1643613e1d7300f86c9d85ae0f5872bdaa2e": {
       "kind": "directory",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
+      "purpose": "Generated immutable af1d60b40e4f27adc0e0cf2faa2a1643613e1d7300f86c9d85ae0f5872bdaa2e for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/98b517533aa30113d46bcdf01f50e06e1e6f34465a9913cad3b870562a759225/writing.html": {
+    "docs/snapshots/af1d60b40e4f27adc0e0cf2faa2a1643613e1d7300f86c9d85ae0f5872bdaa2e/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
+      "purpose": "Generated immutable talks.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -661,27 +673,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e051ab2f2cec7cc6292c0ac97e1eeb26880c5e030642db07b36ec61946484e13": {
+    "docs/snapshots/facbf848db4ccc557960c58bbce32dce1eb0da96397196c0ecc40116d71d0106": {
       "kind": "directory",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
+      "purpose": "Generated immutable facbf848db4ccc557960c58bbce32dce1eb0da96397196c0ecc40116d71d0106 for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e051ab2f2cec7cc6292c0ac97e1eeb26880c5e030642db07b36ec61946484e13/index.html": {
+    "docs/snapshots/facbf848db4ccc557960c58bbce32dce1eb0da96397196c0ecc40116d71d0106/credits.html": {
       "kind": "file",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f25549249225e6479f009d3693d60d9d39f11e80133658e4200cad86e4cd4fab": {
-      "kind": "directory",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/f25549249225e6479f009d3693d60d9d39f11e80133658e4200cad86e4cd4fab/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable five-route snapshot closure for the current native site rendition.",
+      "purpose": "Generated immutable credits.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1195,6 +1195,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-12-color-runtime-continuation.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed independently byte-reviewed continuation Color runtime observations at 1440/390; explicit review browser and prepared-source identities remain separate from current hosted admission.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-12-execution.md"
+    },
     "review/issue-5/2026-10-12-color-runtime-f20-browser.json.gz": {
       "kind": "file",
       "purpose": "Compressed exact-source Color observations for the F20 safety-corrected producer at1440/390, current plain/project-base staging identity and unchanged runtime bytes/guards.",
@@ -1224,6 +1230,12 @@
       "purpose": "Dated issue5 implementation route, acceptance boundaries and code-style evidence plan.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-12-image-load-regression.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed original/fixed delayed-image and broken-image observations with explicit transient source/artifact fingerprints and review-only browser.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-12-execution.md"
     },
     "review/issue-5/2026-10-12-independent-implementation.md": {
       "kind": "file",

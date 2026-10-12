@@ -398,7 +398,9 @@ function run(root, plan, options = {}) {
     result.status,
     0,
     'selected source test process failed: ' +
-      (result.error?.message || result.stderr || failures || output.slice(-4000) || result.status)
+      [result.error?.message, result.stderr, failures || output.slice(-4000), result.status]
+        .filter((value) => value !== undefined && value !== null && value !== '')
+        .join('\n')
   );
   const counts = accounting(result.stdout || '', { modules: plan.modules, root });
   if (options.requireClean) requireClean(root);

@@ -6,6 +6,7 @@ const test = require('node:test'),
   vm = require('node:vm');
 const sourceFile = process.env.SITE_SPACE_SOURCE || path.join(__dirname, '../docs/space.js');
 const source = fs.readFileSync(sourceFile, 'utf8'),
+  script = new vm.Script(source, { filename: sourceFile }),
   model = require(sourceFile);
 function visit(options = {}) {
   const events = {},
@@ -254,7 +255,7 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  vm.runInNewContext(source, { document, window, localStorage });
+  script.runInNewContext({ document, window, localStorage });
   const api = {
     window,
     document,

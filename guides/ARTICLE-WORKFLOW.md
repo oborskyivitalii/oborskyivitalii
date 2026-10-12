@@ -14,7 +14,7 @@ Blueprints and review documents do not enter reader output.
 
 Content edition records contain source identity and substantive derivation only.
 Their canonical semantic SHA256 also pins title, summary, authors, language,
-research references, ordered figure bytes/alt/caption/credit and rights notice.
+research references, declared translation lineage, ordered figure bytes/alt/caption/credit and rights notice.
 Observation state, canonical URL, formatting profile and independently authored
 platform revisions are excluded. A meaningful metadata or figure change needs a
 new edition. `semanticDigest` and `adaptationDigest` in the publisher calculate
@@ -86,7 +86,7 @@ and document hashes. A site event binds the coherent production site artifact an
 actual reader alias under `site/publications/policy.json`, not print-review HTML.
 Commit/tree, content/semantic edition, complete public inventory and observed
 HTTP/URL/digest inspection must match. A platform event binds its distribution
-candidate and declared actual inspection; native-copy equivalence remains a
+candidate's declared HTML, Markdown, TXT or copy-ready document and actual inspection; native-copy equivalence remains a
 separate explicit editorial observation. Canonical and actual dates stay pending
 until matching observed events. Appending uses exclusive creation. The history
 checker compares committed events and frozen editions against their original Git

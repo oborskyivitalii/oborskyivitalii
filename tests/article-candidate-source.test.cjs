@@ -8,10 +8,10 @@ const artifact = require('../tools/quality/artifact.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const { verifyCandidateSource } = require('../tools/quality/candidate-source.cjs');
 const repo = path.resolve(__dirname, '..');
+let prepared;
 
-function fixture(t, layers = []) {
+test.before(() => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'article-candidate-source-'));
-  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   for (const relative of [
     'site',
     'tools/site',
@@ -35,7 +35,7 @@ function fixture(t, layers = []) {
     cacheFile: path.join(root, 'cache.json'),
     candidateArticles: candidates,
   });
-  let record = {
+  const record = {
     schema: 1,
     sourceCommit: 'a'.repeat(40),
     sourceTree: 'b'.repeat(40),
@@ -46,6 +46,20 @@ function fixture(t, layers = []) {
   };
   record.components = snapshot.verify(output, record);
   fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(record, null, 2) + '\n');
+  prepared = { root, record };
+});
+
+test.after(() => {
+  if (prepared) fs.rmSync(prepared.root, { recursive: true, force: true });
+});
+
+function fixture(t, layers = []) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'article-candidate-source-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.cpSync(prepared.root, root, { recursive: true });
+  const directory = path.join(root, 'artifact');
+  const output = path.join(directory, 'public');
+  let record = structuredClone(prepared.record);
   for (const layer of layers) record = require(`../tools/staging/${layer}.cjs`).build(directory);
   return { root, output, record };
 }
@@ -86,7 +100,10 @@ test('a real candidate rejects missing, null, empty or string declarations befor
     all: true,
     cacheFile: path.join(f.root, 'ordinary-cache.json'),
   });
-  const ordinary = { ...artifact.manifest(ordinaryOutput), articleCandidates: [] };
+  const ordinary = {
+    ...artifact.manifest(ordinaryOutput),
+    articleCandidates: [],
+  };
   ordinary.components = snapshot.verify(ordinaryOutput, ordinary);
   assert.equal(
     verifyCandidateSource(ordinaryOutput, ordinary, { repoRoot: f.root }),

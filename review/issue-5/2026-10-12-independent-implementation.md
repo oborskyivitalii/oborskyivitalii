@@ -370,3 +370,34 @@ article PDF matches that kit exactly. Its current standalone selects the final
 1,118,006 bytes / 494,844 gzip bytes within the original budget. The earlier
 file-URL observations remain qualified by their earlier source; final source
 binding and human/live gates remain pending as already stated.
+
+## Continuation review from PR head 5a84ef6
+
+Independent publisher review (`publisher_review` agent) reproduced two further
+P2 gaps in the current implementation, then implemented and verified narrow fixes:
+
+| ID | Finding and concrete check | AC | Disposition |
+| --- | --- | --- | --- |
+| F21 | A real committed accepted Ukrainian edition could retarget or remove its valid translation source while keeping the frozen semantic digest. | AC07, AC10 | Declared translation lineage now contributes to semantic identity; real Git frozen retarget/removal rejects. Undeclared ordinary article digests retain compatibility. |
+| F22 | A supported TXT-only committed distribution kit could render successfully but no publication event could bind its selected output. | AC07, AC09, AC10 | Events accept only declared HTML/MD/TXT/copy-ready outputs of the matching platform and verify exact bytes. Missing, unrelated, cross-platform and corrupt outputs reject; existing kit bounds remain. |
+
+Both focused maintained regressions passed; whole-source CI is separate.
+The prior speculative source-attribution concern was inspected as a declared
+observed-artifact trust boundary, without a demonstrated new contract failure.
+No additional print/history blocker was found in this bounded review.
+
+Independent CI/checksum review (`ci_review` agent) proved all150 new scanner
+findings as exact generated public checksums, with39 unique values and no
+exceptions. Every64hex value was recovered from the current indicated line by
+its hashed-secret SHA1, then independently rederived as runtime/route/content/
+producer identity or actual document/payload/output SHA256. All40 public files,
+29 preview input/output identities and five inert payload copies were verified.
+Only these150 exact path/rule/hashed-value entries were appended; prior records,
+scanner rules and current-lock requirements were preserved.
+
+The continuation Color family admits two new exact producer identities. Its
+five actual plain/staged runtime files match the earlier issue5 family
+byte-for-byte. All four historical families/eight tuples and selector/flight/
+resource guards remain unchanged. Independent comparison also rederived the
+base runtime identity from current producer fingerprints. Actual browser,
+current CI, native device and release decisions remain separate observations.

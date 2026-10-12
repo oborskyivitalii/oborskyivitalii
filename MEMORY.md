@@ -14,6 +14,9 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   device and actual publication gates. Source, article PDF and platform kits stay
   explicit review candidates; production is disabled and canonical/date pending.
   Versioned inventory, source and independent reviews are in `review/issue-5/`.
+  Continuation corrects image-load smoke, frozen translation lineage and selected
+  platform event formats; original failed CI remains failed. Fresh-head results
+  belong in the live PR; source limits and separate owner decisions remain.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -78,6 +81,8 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 ## Next session
 
 1. Revalidate main and PR79 raw head, working tree, checks and candidate preview.
+   Use the execution continuation section and its current CI links; do not reuse
+   the failed 5a84ef6 source/preview attempts as admission.
 2. Continue #5 in PR79; use #2 as the useful article deliverable, retaining its
    separate original acceptance and accepted recording increment.
 3. Read exact-source execution, migration inventory and independent reviews in

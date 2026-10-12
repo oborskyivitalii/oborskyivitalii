@@ -525,7 +525,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "2e4e097f3236058070a1d4563c2ba0d951838171b83cbb45a24174e2a86642bf",
+    "digest": "0307d49ba7e4eac0c1a159c90b5f40ce5411467f0a569bc05ccb0b2f1a91145d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -629,7 +629,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "c6354826ba5816410576b691c436e95ba399e7d6185222e270b0aa84e6b714c6"
+        "sha256": "2720b8d07eb85ae3721f0646a3f244ec25f58cf793e53d447d31b7cb21eb09c6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -741,11 +741,11 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "7c8fbad5e9e2876f26a58ef333458de135e193c9e82c077babb4cf6a292313dc"
+        "sha256": "b2f05f8f2aa306b2cf35337c327ae9df786a0021973c9272e22820fc9b7d415f"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "57248b59a7193577fd6891f18213d8e17d105ba369131426b7c0e6d2a56d4c4a"
+        "sha256": "06183221022dce4f7a11fc4f40ee8106fd7f33f3f9d26adc904a0e213bc4d7d9"
       },
       {
         "path": "tests/test_code_style.py",
@@ -849,7 +849,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "5ac8e2db0f445bf54c37bcab73cb496f36edfcb24ff9ecba700cff02b4c6ac3c"
+        "sha256": "1dd4aeb73ac1658ae27c17f81975fa662112003282f6f6bf245b528f664f8c38"
       },
       {
         "path": "tools/quality/staging-gate.cjs",

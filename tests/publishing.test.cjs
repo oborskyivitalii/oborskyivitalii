@@ -8,7 +8,7 @@ const crypto = require('node:crypto');
 const { compile, loadArticle, enumerateArticles } = require('../tools/publishing/article.cjs');
 const { semanticDigest, adaptationDigest } = require('../tools/publishing/semantic.cjs');
 const { renderKit, verifyKit } = require('../tools/publishing/kit.cjs');
-const { appendPublicationEvent } = require('../tools/publishing/events.cjs');
+const { appendPublicationEvent, validateEvent } = require('../tools/publishing/events.cjs');
 const { execFileSync } = require('node:child_process');
 
 const repo = path.resolve(__dirname, '..');
@@ -457,9 +457,15 @@ test('a new authored LinkedIn edition leaves full source and its prior edition u
   });
 });
 
-test('translation declares and validates a distinct-language exact edition family', async () => {
+test('translation validates its edition family and freezes its declared derivation', async () => {
   await withFixture(async (root) => {
     const original = fixture(root, 'original-article', { figure: false });
+    const second = fixture(root, 'second-original', { figure: false });
+    const secondSource = '# Test article\n\nA different source argument.\n';
+    write(root, `${second.directory}/manuscript.en.md`, secondSource);
+    second.edition.source.sha256 = hash(secondSource);
+    second.edition.semanticSha256 = semanticDigest(second.metadata, second.edition.source);
+    json(root, `${second.directory}/editions/first-edition.json`, second.edition);
     const translation = fixture(root, 'ukrainian-article', { figure: false });
     const source = '# Українська стаття\n\nПовний переклад аргументу.\n';
     fs.renameSync(
@@ -470,7 +476,11 @@ test('translation declares and validates a distinct-language exact edition famil
     const translatedEdition = {
       ...translation.edition,
       language: 'uk',
-      source: { ...translation.edition.source, path: 'manuscript.uk.md', sha256: hash(source) },
+      source: {
+        ...translation.edition.source,
+        path: 'manuscript.uk.md',
+        sha256: hash(source),
+      },
     };
     const metadata = {
       ...translation.metadata,
@@ -499,14 +509,172 @@ test('translation declares and validates a distinct-language exact edition famil
       loadArticle(root, 'ukrainian-article').metadata.translationOf.articleId,
       'original-article'
     );
-    json(root, `${translation.directory}/publication.json`, {
+    const invalidMetadata = {
       ...metadata,
-      translationOf: { ...metadata.translationOf, sourceSha256: 'f'.repeat(64) },
+      translationOf: {
+        ...metadata.translationOf,
+        sourceSha256: 'f'.repeat(64),
+      },
+    };
+    json(root, `${translation.directory}/publication.json`, invalidMetadata);
+    json(root, `${translation.directory}/editions/first-edition.json`, {
+      ...translatedEdition,
+      semanticSha256: semanticDigest(invalidMetadata, translatedEdition.source),
     });
     assert.throws(
       () => loadArticle(root, 'ukrainian-article'),
       /distinct-language selected content edition/
     );
+    const selected = [
+      original,
+      second,
+      {
+        directory: translation.directory,
+        metadata,
+        edition: translatedEdition,
+      },
+    ];
+    for (const article of selected) {
+      article.metadata.status = 'accepted';
+      article.metadata.rights.status = 'accepted';
+      article.edition.rights = 'accepted';
+      json(root, `${article.directory}/publication.json`, article.metadata);
+      json(root, `${article.directory}/editions/first-edition.json`, article.edition);
+    }
+    const git = (arguments_) =>
+      execFileSync('git', arguments_, { cwd: root, encoding: 'utf8' }).trim();
+    git(['init', '-q']);
+    git(['config', 'user.name', 'Translation edition test']);
+    git(['config', 'user.email', 'translation-test@example.invalid']);
+    git(['add', '-A']);
+    git(['commit', '-qm', 'Commit translation sources']);
+    const commit = git(['rev-parse', 'HEAD']);
+    for (const article of selected) {
+      article.edition.source.commit = commit;
+      article.edition.source.blob = git([
+        'rev-parse',
+        `${commit}:${article.directory}/${article.metadata.source}`,
+      ]);
+      json(root, `${article.directory}/editions/first-edition.json`, article.edition);
+    }
+    git(['add', '-A']);
+    git(['commit', '-qm', 'Freeze translation editions']);
+    const frozen = loadArticle(root, 'ukrainian-article');
+    assert.equal(frozen.source.state, 'committed');
+    assert.equal(frozen.historyProof.frozenEditionCount, 1);
+    const editionPath = path.join(root, `${translation.directory}/editions/first-edition.json`);
+    const frozenBytes = fs.readFileSync(editionPath);
+    const retargeted = {
+      ...metadata,
+      translationOf: {
+        articleId: second.metadata.id,
+        editionId: second.edition.id,
+        sourceSha256: second.edition.source.sha256,
+      },
+    };
+    const removed = { ...metadata };
+    delete removed.translationOf;
+    for (const changed of [retargeted, removed]) {
+      json(root, `${translation.directory}/publication.json`, changed);
+      assert.throws(() => loadArticle(root, 'ukrainian-article'), /semantic identity drifted/);
+      assert.deepEqual(fs.readFileSync(editionPath), frozenBytes);
+    }
+    json(root, `${translation.directory}/publication.json`, metadata);
+    assert.equal(loadArticle(root, 'ukrainian-article').edition.id, frozen.edition.id);
+  });
+});
+
+test('platform events bind the declared document formats of real committed kits', async () => {
+  await withFixture(async (root) => {
+    const { directory, metadata, edition } = fixture(root, 'platform-event', { figure: false });
+    const git = (arguments_) =>
+      execFileSync('git', arguments_, { cwd: root, encoding: 'utf8' }).trim();
+    git(['init', '-q']);
+    git(['config', 'user.name', 'Platform event test']);
+    git(['config', 'user.email', 'platform-event@example.invalid']);
+    git(['add', 'site']);
+    git(['commit', '-qm', 'Commit platform source']);
+    const commit = git(['rev-parse', 'HEAD']);
+    edition.source.commit = commit;
+    edition.source.blob = git(['rev-parse', `${commit}:${directory}/manuscript.en.md`]);
+    edition.rights = 'accepted';
+    metadata.status = 'accepted';
+    metadata.rights.status = 'accepted';
+    json(root, `${directory}/publication.json`, metadata);
+    json(root, `${directory}/editions/first-edition.json`, edition);
+    git(['add', 'site']);
+    git(['commit', '-qm', 'Freeze platform edition']);
+    const eventFor = (kit, documentPath, platform = 'linkedin') => {
+      const output = kit.manifest.outputs.find((item) => item.path === documentPath);
+      const manifestPath = path.relative(root, path.join(kit.directory, 'manifest.json'));
+      const url = `https://example.com/${platform}/fixture-publication`;
+      return {
+        schema: 1,
+        id: 'plain-text-publication',
+        articleId: metadata.id,
+        kind: 'publication',
+        platform,
+        url,
+        occurredAt: '2026-10-12T00:00:00Z',
+        editionId: edition.id,
+        artifact: {
+          kind: 'distribution-kit',
+          id: kit.manifest.artifactId,
+          manifestPath,
+          manifestSha256: hash(fs.readFileSync(path.join(root, manifestPath))),
+          documentPath,
+        },
+        inspection: {
+          kind: 'platform-published',
+          url,
+          observedAt: '2026-10-12T00:01:00Z',
+          httpStatus: 200,
+          documentSha256: output?.sha256 || 'f'.repeat(64),
+          evidence: ['https://example.com/fixture-inspection'],
+        },
+      };
+    };
+    const plain = await renderKit(root, metadata.id);
+    assert.equal(plain.manifest.source.state, 'committed');
+    appendPublicationEvent(root, metadata.id, eventFor(plain, 'linkedin.txt'));
+    assert.equal(loadArticle(root, metadata.id).events[0].artifact.documentPath, 'linkedin.txt');
+    assert.throws(
+      () => validateEvent(root, directory, eventFor(plain, 'linkedin.html')),
+      /does not declare its document output/
+    );
+    const profilePath = `${directory}/profile.json`;
+    const profile = JSON.parse(fs.readFileSync(path.join(root, profilePath)));
+    for (const platform of ['linkedin', 'medium']) {
+      profile.platforms[platform].formats = ['html', 'md', 'txt', 'copy-ready'];
+    }
+    json(root, profilePath, profile);
+    const complete = await renderKit(root, metadata.id);
+    for (const platform of ['linkedin', 'medium']) {
+      for (const suffix of ['.html', '.md', '.txt', '-copy-ready.html']) {
+        validateEvent(root, directory, eventFor(complete, `${platform}${suffix}`, platform));
+      }
+    }
+    for (const documentPath of [
+      'medium.txt',
+      'medium-copy-ready.html',
+      'article.html',
+      'cover.png',
+      'seo.json',
+      'medium-upload-kit.json',
+      'INSTRUCTIONS.md',
+    ]) {
+      assert.throws(
+        () => validateEvent(root, directory, eventFor(complete, documentPath)),
+        /wrong platform output/
+      );
+    }
+    const documentPath = path.join(complete.directory, 'linkedin.txt');
+    const originalBytes = fs.readFileSync(documentPath);
+    const corruptEvent = eventFor(complete, 'linkedin.txt');
+    fs.appendFileSync(documentPath, 'Corrupt platform bytes.\n');
+    assert.throws(() => validateEvent(root, directory, corruptEvent), /document bytes are corrupt/);
+    fs.writeFileSync(documentPath, originalBytes);
+    assert.doesNotThrow(() => validateEvent(root, directory, corruptEvent));
   });
 });
 

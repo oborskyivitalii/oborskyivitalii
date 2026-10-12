@@ -149,3 +149,75 @@ in one route. Full HTML/PDF/platform/offline outputs and meaningful negatives ar
 reviewable; independent findings were corrected. Exact clean-source checks and
 candidate preview are recorded in the PR. The issues retain separate editorial,
 rights, upstream, device and actual-publication decisions.
+
+## PR79 continuation — 12 October
+
+Revalidated raw head `5a84ef65fa4e188c6fe9366dc03e9aedde851f2d` against main
+`cc115c4241197d59205934bdc18f209109d5ee87`, a clean new checkout, live #5,
+current PR discussion and workflow results. Navigation38266043335 and owning
+acceptance38266043268 passed. Basic38266044217 failed its unchanged180-second
+source bound; preview38266044015 passed four existing smoke cases and exact
+hosted bytes, then failed an immediate image-completion assertion. These runs
+remain failed historical attempts.
+
+The collector now waits within the existing journey timeout for image loading
+before requiring positive native dimensions. A real browser experiment held
+PNG responses for five seconds: original collector failed, corrected collector
+passed the390px article journey, and a broken PNG still failed. The observation
+used the already declared review-only Chromium153, not managed-browser admission.
+Its exact transient source/artifact fingerprints were retained outside the checkout;
+final hosted CI still has its own required source identity.
+
+Pristine test preparations are copied into isolated mutable fixtures for article
+and candidate-source suites. Their explicit cold/incremental/retention and source
+reconstruction proofs remain;14 cases passed in13.886seconds. Frozen translation
+pinning required corresponding unpublished offline fixture bookkeeping; all13
+offline cases then passed. Timeout errors now retain bounded partial TAP and
+stderr without accepting incomplete execution.
+
+Independent review found and fixed F21 translation lineage and F22 selected
+platform document events, with real committed negative cases. Code owners are
+`semantic.cjs`, `events.cjs`, `article-browser.cjs`, source diagnostics and tests;
+CS01–CS10 routing and original source/runtime/resource budgets remain. Ordinary
+documents/previews, output lock, path catalog and RI/CI are regenerated. The new
+Color identities retain all five runtime bytes and every historical tuple;33
+source cases passed after the explicit fixture identity refresh.
+
+One broad prepared-source attempt ran59 modules in146.147seconds but failed:
+13 offline fixture pins and two stale Color tuple expectations. Its665/650/15
+accounting is diagnostic, not acceptance. All15 causes were individually corrected
+and targeted suites passed. The next clean-head source/owning/hosted runs provide
+the final evidence; a passing plan or the earlier651-case run cannot substitute.
+
+#5 retains all original criteria and AC01–AC12; #2 retains separate AC01–AC06
+and accepted recording AC07–AC08. The PMDay source/PDF/platform candidates remain
+prepared editorial material with pending rights/canonical/dates. Public posting,
+production activation, upstream disposition, stable promotion and merge decisions
+are not supplied by this engineering continuation.
+
+[Delayed/broken image phase observations](2026-10-12-image-load-regression.json.gz)
+and [refreshed Color/staging browser observations](2026-10-12-color-runtime-continuation.json.gz)
+retain exact observed fingerprints and the declared review-only browser. Both
+Color widths1440/390 passed; all prior runtime files and flight/resource guards
+were preserved. These local observations do not claim a managed hosted CI pass.
+
+CI cost follow-up preserves the complete source selector and180-second bound.
+The unchanged source of each executive negative loop now has one restored
+baseline per page/test:55 duplicate restorations removed, with every mutated
+input and assertion still executed. Space precompiles its immutable script once,
+then executes each visit in a fresh isolated VM context and globals. No scene,
+mutable context, draw result or test case is shared/removed. The serial prechange
+pair passed70/70 in207.090seconds; this diagnostic pair is not the parallel PR
+profile. Current-source CI determines whether the unchanged PR bound is met.
+
+The optimized serial executive/space pair passed70/70 with no failures/skips:
+195.297seconds versus207.090seconds before (5.7% aggregate reduction). Executive
+case time improved17.6%; Space did not show a measured speed improvement, so
+none is claimed. Independent AST review confirmed unchanged cases, assertion/
+mutation sites, input loops and fresh contexts. Source selector/budgets remain.
+Current focused publisher/offline/selection passed38/38; RI regressions28/28,
+Color admission33/33, Basic, formatting/ownership and lint passed. Security
+scanners passed with zero untriaged findings after exact153 new public-checksum
+entries (150 generated values plus three independently reviewed Color identities).
+These are prepared-source checks; clean-head CI and hosted smoke remain the next
+required evidence, with all original human/merge/publication gates retained.
