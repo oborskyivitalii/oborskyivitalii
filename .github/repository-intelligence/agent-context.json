@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c79a6a0307655262d692e47358e5ce12c013cd01bd1c2b4fee68715e8c3cc71f",
+    "digest": "0cf55d77afda9eb79b1d5cf08a993727e37072fe1d14cfa6f8307c04e88d236e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "675c1fdbd04dd9fed028ee1ca5604543131e0ec4ff3d13ca2d30272df2a36286"
+        "sha256": "70069f4faed713358404e59341b7905fa238e2247b9eeb10e7afe5a366ceabba"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3e3a6f36613f9eaeadec2b4d4d10f3e72d5ed54978450dc925e71a52feb7394b"
+        "sha256": "7adbfe369843605f4e48dacd827a25e7bae3cd8f8d159564f9af8ba322f46e22"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -800,12 +800,12 @@
       {
         "path": "review/issue-5/2026-10-12-ci-followup-evidence.json.gz",
         "identity_mode": "content",
-        "sha256": "29401ad80c73c655c188558d3f7ad876b86e52dfa10f5e0dc98b9e95430e7acc"
+        "sha256": "c11f9af2386beafc8823a7ccf85e104bb776c43a229437b0c0c8dd42c9782873"
       },
       {
         "path": "review/issue-5/2026-10-12-ci-followup.md",
         "identity_mode": "content",
-        "sha256": "dccc419f386404ffafd2be03c144b0b4d9d92a6863d3d8ea9cd2054278d34a09"
+        "sha256": "af51854f5d90e955c00cf21307f1cef60f9f06fd064f81661e3910318c96efca"
       },
       {
         "path": "review/issue-5/2026-10-12-color-article-reader.json.gz",
@@ -855,7 +855,7 @@
       {
         "path": "review/issue-5/2026-10-12-independent-ci-followup.md",
         "identity_mode": "content",
-        "sha256": "bffea634fc3e69cb75c4385360ba1acbea851fc21ac9c0139465cc357d56396c"
+        "sha256": "97d514e570a33f6cbf8ad38bb4d2c62e42ab669af24bb1f9accabd76dd953ff5"
       },
       {
         "path": "review/issue-5/2026-10-12-independent-implementation.md",
@@ -5785,7 +5785,7 @@
       {
         "path": "tests/staging-gate.test.cjs",
         "identity_mode": "content",
-        "sha256": "fc5d85c43caf88fb3786bf868404d72d4e2bcb936006d44aa5508e837b723e7b"
+        "sha256": "6274ccad0b819c280b9926d5da90b0c4024c0dd4e89d3ba4066a9147b1c6fa16"
       },
       {
         "path": "tests/staging-regression.test.cjs",
@@ -6450,7 +6450,7 @@
       {
         "path": "tools/quality/staging-gate.cjs",
         "identity_mode": "content",
-        "sha256": "dee905c800efedea5cfaa107af5519676ebd7adabd497628b55e20841104baf8"
+        "sha256": "27a64369fbe06b0be5b3497e0c96c52ba5b40733c755ea20b543480299792ca5"
       },
       {
         "path": "tools/quality/staging-regression.cjs",

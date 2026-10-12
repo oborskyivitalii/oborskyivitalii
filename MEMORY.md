@@ -23,14 +23,14 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   qualified. Prepared two-CPU source passes683/683 in169.262s after replacing local
   dependency symlinks with real directories; exact clean-head CI and hosted/
   staging admission belong to the live PR. The failed local attempt is retained.
-  Managed242 Basic passes683/683; its preview exposes native smooth-scroll
-  departure drift. The bounded instant cancellation and pre-layout collector
-  capture are prepared; native-failure fallback and zero pre-router layout reads
-  are checked. Cleanad212 source passes686/686 in130.019s and managed preview
-  passes all article/Color cases. Its bounded stage fails temporary analytics
-  closure and Writing TBT301.5/200; exact closure and viewport-batch corrections
-  are prepared; whole two-CPU source689/689 passes175.205s. Original limits
-  and fresh exact-head admission remain in the PR.
+  Clean1e15 source passes689/689 in100.936s and managed article/Color/history
+  preview passes. Its bounded stage source652/652 and109 repository checks,
+  static/host/browser/performance all pass; Writing TBT129.5/200. The final
+  aggregate fails only its omitted five article observations. F30 corrects that
+  conditional count, with focused11/11 passing and unchanged runtime/budgets.
+  Originalad212 analytics/TBT301.5 and1e15 aggregate failures remain failed;
+  retained-data revalidation is separate from fresh final-source CI/preview and
+  full controller admission. Actual final results belong in the live PR.
   Native history captures focus before inert/departure and preserves interrupted
   focus. Managed hosted `27717ab` passed all article/Color cases; its Basic source
   timed out. The measured isolated two-worker Space/executive-first route retains
@@ -84,17 +84,17 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 ## Open work
 
-| Owner | Next acceptance route |
-| --- | --- |
-| #76 / merged PR77 | Runtime is merged on verified main; original remaining device/lifecycle/visual gates and exact admission evidence stay in the live owner. |
-| #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
-| #72 | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
-| #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |
-| #41 / Draft PR68 | Separate editorial and author-first intent; no task merge is inferred. |
-| #39 / Draft PR40 | Canonical Pages/domain preparation and original release decisions. |
-| #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates. |
-| #5 / PR79 and #2 | Complete exact-source implementation checks and candidate preview; reconcile separate editorial, rights, publication and upstream decisions. |
-| #7 / #6 / #11 | Rights, editions and post-launch guides. |
+| Owner                     | Next acceptance route                                                                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| #76 / merged PR77         | Runtime is merged on verified main; original remaining device/lifecycle/visual gates and exact admission evidence stay in the live owner.     |
+| #69 / merged PR71         | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge.                      |
+| #72                       | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
+| #49 / Draft PR53          | Fragment-flight visual/source acceptance at its current head.                                                                                 |
+| #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
+| #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
+| #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
+| #5 / PR79 and #2          | Complete exact-source implementation checks and candidate preview; reconcile separate editorial, rights, publication and upstream decisions.  |
+| #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
 
 ## Next session
 

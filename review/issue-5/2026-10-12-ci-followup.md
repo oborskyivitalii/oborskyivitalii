@@ -16,11 +16,11 @@ Finish the authorized publisher/PMDay implementation and its current-source
 checks. The two issues keep their original acceptance, independent editorial,
 rights, device, upstream and actual-publication decisions.
 
-| ID | Evidence and implication | AC | Treatment |
-| --- | --- | --- | --- |
-| CI01 | Basic38275662062 reaches the complete source selection, then times out at180,000ms with550 reported passing cases and no complete TAP footer. | AC04, AC11, AC12 | Preserve the selected files and assertions; reduce repeated parser/fixture work and start long modules earlier. |
-| CI02 | Independent clean-head `build_site_bundle.py --check` rejects the general offline manifest after the runtime/previews changed. | AC08, AC11 | Regenerate through its existing deterministic generator; inspect exact new checksum dispositions. |
-| F25 | Actual native scroll queues a350ms save while outgoing route blocks hide an offscreen focused archive control before content becomes inert. The timer replaces the captured focus with null; actual Back restores main instead of the control. | AC08, AC11, AC12 | Freeze history writes during the actual departing/inert phase; retain newer deliberate focus during an asynchronous read. |
+| ID   | Evidence and implication                                                                                                                                                                                                                       | AC               | Treatment                                                                                                                 |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| CI01 | Basic38275662062 reaches the complete source selection, then times out at180,000ms with550 reported passing cases and no complete TAP footer.                                                                                                  | AC04, AC11, AC12 | Preserve the selected files and assertions; reduce repeated parser/fixture work and start long modules earlier.           |
+| CI02 | Independent clean-head `build_site_bundle.py --check` rejects the general offline manifest after the runtime/previews changed.                                                                                                                 | AC08, AC11       | Regenerate through its existing deterministic generator; inspect exact new checksum dispositions.                         |
+| F25  | Actual native scroll queues a350ms save while outgoing route blocks hide an offscreen focused archive control before content becomes inert. The timer replaces the captured focus with null; actual Back restores main instead of the control. | AC08, AC11, AC12 | Freeze history writes during the actual departing/inert phase; retain newer deliberate focus during an asynchronous read. |
 
 The earlier `7b28592` Basic38270688879 passed665/665 in125.320seconds. That
 successful observation does not admit the changed `27717ab` source. Its actual
@@ -146,10 +146,10 @@ Native scroll eases through successive positions during the asynchronous read;
 this is departure drift, not remount clamping. The exact focus/actionability
 initiator is inferred rather than proved by that checkpoint.
 
-| ID | Evidence | Correction and remaining check |
-| --- | --- | --- |
-| F26 | Managed same-height progressive native scroll before mount; explicit native-smooth old/new reproduction | Copy ordinary viewport or same-page unavailable departure history before interrupt; use the existing instant native helper once after interrupt. Fresh read-time controls/scroll still win at the existing final save. |
-| F27 | Collector geometry reads before expected activation capture; an actual adverse fixture changes scroll/focus on its first layout read | Copy primitive expected scroll/focus before all diagnostic geometry; original strict2px/2000ms assertion retained. |
+| ID  | Evidence                                                                                                                             | Correction and remaining check                                                                                                                                                                                         |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| F26 | Managed same-height progressive native scroll before mount; explicit native-smooth old/new reproduction                              | Copy ordinary viewport or same-page unavailable departure history before interrupt; use the existing instant native helper once after interrupt. Fresh read-time controls/scroll still win at the existing final save. |
+| F27 | Collector geometry reads before expected activation capture; an actual adverse fixture changes scroll/focus on its first layout read | Copy primitive expected scroll/focus before all diagnostic geometry; original strict2px/2000ms assertion retained.                                                                                                     |
 
 The [CSSOM View scrolling algorithm](https://drafts.csswg.org/cssom-view/#perform-a-scroll)
 describes cancelling an ongoing smooth scroll before an instant scroll. This
@@ -263,9 +263,9 @@ corrected analytics passes11/11 and separate peer case1/1. It checks all15
 exports, dependency bytes, isolation and cleanup before an injected browser
 boundary, without claiming fixture output is actual browser evidence.
 
-| ID | Preserved failure/evidence | Bounded correction and remaining admission |
-| --- | --- | --- |
-| F28 | Actual temporary-source missing dependency before browser article collection | Close the exact offline→artifact→budgets chain; fresh full bounded functional collection remains required. |
+| ID  | Preserved failure/evidence                                                                     | Bounded correction and remaining admission                                                                                                    |
+| --- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| F28 | Actual temporary-source missing dependency before browser article collection                   | Close the exact offline→artifact→budgets chain; fresh full bounded functional collection remains required.                                    |
 | F29 | Writing mobile TBT301.5ms exceeds the original200ms; Research111.5ms, Writing LCP2238.1ms/CLS0 | Snapshot native Y and viewport height once after reading cleanup, before per-unit DOM writes; fresh same-budget measurement remains required. |
 
 The actual timeline has no V8 Profile/ProfileChunk samples. Explicit layout
@@ -313,14 +313,62 @@ format/Basic/lint/security and fresh exact-head managed preview then same-budget
 stage are still separate delivery results. The actual301.5ms TBT failure remains
 failed until a new source-bound measurement establishes the correction's outcome.
 
+## F30 — complete article coverage in the staging aggregate
+
+Clean published `1e15f5b3` / tree `7e37ec91` passes actual Basic/source
+`38296000120`:689/689 in100.936s,59modules, two workers, all nonpass counts zero.
+Navigation and both owning-policy runs pass; all12 criteria have automated-pass
+with human gates still pending. Managed preview `38295999783` passes four route
+journeys, two Color cases and five article observations in Chromium153.0.8010.12.
+Its65-file artifact `4d0d79de` is independently reconstructed from primary source.
+
+Actual controller run `38296697030` remains **FAILED**. Build passes652/652
+selected cases in145.947s and109 repository cases in15.703s. Static, host and
+browser/performance jobs all succeed. Strict child validation confirms four
+normal/five-room journeys, two no-Canvas journeys, two navigation cases, ten
+capability cases, seven analytics fixtures and five article observations.
+Two route motion samples, eight windows, four cold/warm flights and two single
+mobile Lighthouse trials pass the unchanged limits: Research TBT71.5ms,
+Writing129.5ms against200ms; respective LCP2119.9385/2151.1205ms and both CLS0.
+These are individual staging trials, not production-release medians.
+
+The final aggregate fails only because `expectedCoverage` omits the
+`articleObservations:5` key that strict `validateFunctional` returns after
+validating the representative article. F30 adds that conditional exact count;
+the empty-catalog shape and every other count, report/source guard and budget
+remain unchanged. The bounded profile still exercises one representative even
+when multiple editions are available. One new aggregate regression covers
+zero/one/two documents in base and Color, preserves all five-room coverage and
+rejects omitted/incorrect summary counts and missing/duplicate actual rows.
+Focused gate/article checks pass11/11 in344.387ms; scoped format/lint pass.
+
+Original raw reports, both Lighthouse JSON reports, artifact identities and the
+failed gate/log are retained in `viewport1e15OriginalStageGateFailure`; original
+preview and CI evidence are in `viewport1e15HostedSuccess`. The original38
+records remain exact. Revalidating retained measurements uses the reviewed
+validator with its own source digest while preserving the original measurement
+source/tree/artifact/target; it does not relabel the failed run or supply a new
+observation/admission. Fresh final-source CI/preview and the existing full bounded
+controller route remain required. No runtime/public/Color/ledger changes,
+budget changes, stable promotion, merge or production are part of F30.
+
+Independent pure-aggregate revalidation passes on the unchanged authentic raw
+inputs; old-source failure is independently reproduced. Validator `27a64369`
+and regression `6274ccad` are bound in `articleCoverageF30RetainedRevalidation`,
+with original job/report identities, four verified Lighthouse trace/network
+files and explicit historical-only/no-admission qualifications. Genuine focused
+TAP is retained in `articleCoverageF30FocusedTests`. The original controller run
+and gate remain failed; this does not impersonate a new hosted gate result.
+
 ## Tasks and acceptance evidence
 
-| Task | Owner paths | Check | Status |
-| --- | --- | --- | --- |
-| CI01 | SEO/parity/Space fixture and source controller | Exact parser/error/cache negatives; actual isolated order/failure cleanup; full two-CPU source selection | 683/683 prepared source passes in169.262s; clean-head CI pending |
-| CI02 | General offline handoff manifest | Existing generator/check; exact bytes and checksum review | Regenerated and exact checksums independently proved; final scanner/RI binding pending |
-| CI03 | Profile registry, RI/CI and delivery records | Complete inventory, independent review and exact-head source/hosted checks | Pending final source commit |
-| F25 | Authored navigation, existing navigation/article fixtures and Color source contract | Old actual native-scroll/Back failure; held timer/read/retarget cases; independent current-runtime browser observation | Source and new prepared/review-only browser proof pass; exact hosted admission remains required |
+| Task | Owner paths                                                                         | Check                                                                                                | Status                                                                                             |
+| ---- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| CI01 | SEO/parity/Space fixture and source controller                                      | Exact parser/error/cache negatives; actual isolated order/failure cleanup; complete source selection | Actual1e15 passes689/689 in100.936s; current validator follow-up needs fresh final-source CI       |
+| CI02 | General offline handoff manifest                                                    | Existing generator/check; exact bytes and checksum review                                            | Regenerated, independently proved and actual1e15 scanner checks pass; F30 does not change outputs  |
+| CI03 | Profile registry, RI/CI and delivery records                                        | Complete inventory, independent review and exact-head source/hosted checks                           | Actual1e15 source/preview pass; F30 final-source controller evidence remains required              |
+| F25  | Authored navigation, existing navigation/article fixtures and Color source contract | Old actual native-scroll/Back failure; held timer/read/retarget cases; managed browser observations  | Managed1e15 article/Color/history and bounded functional cases pass; original failures retained    |
+| F30  | Staging expected coverage and aggregate regression                                  | Exact0/1/2 catalogs, base/Color and failed summary/raw-row inputs                                    | Focused11/11 passes; retained-data revalidation and fresh controller admission recorded separately |
 
 The whole-source measurement is complete before publication of this correction;
 fresh GitHub Basic/navigation/owning/hosted checks then bind the exact clean head.

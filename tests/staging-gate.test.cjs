@@ -3,6 +3,159 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const gate = require('../tools/quality/staging-gate.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+
+function articleAggregateFixture(count, color) {
+  const f = fixture.aggregateFixture(color);
+  if (!count) return f;
+  const manifest = f.manifest;
+  const hosted = f.reports.find((report) => report.kind === 'hosted');
+  const assets = [
+    'styles.css',
+    'theme.js',
+    'space.js',
+    'archive.js',
+    'navigation.js',
+    'assets/favicon.svg',
+  ];
+  const addFile = (file) => {
+    if (!manifest.files[file]) {
+      manifest.files[file] = { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 };
+      hosted.rows.push({
+        file,
+        status: 200,
+        sha256: manifest.files[file].sha256,
+        url: fixture.target + '/' + file,
+        mime: file.endsWith('.html')
+          ? 'text/html'
+          : file.endsWith('.svg')
+            ? 'image/svg+xml'
+            : 'application/javascript',
+      });
+    }
+    return manifest.files[file];
+  };
+  assets.forEach(addFile);
+  manifest.components.articles = {};
+  f.sizes.articleRows = [];
+  for (let index = 0; index < count; index++) {
+    const key = 'sample-' + index + ':en';
+    const alias = 'articles/sample-' + index + '-en.html';
+    const record = addFile(alias);
+    manifest.components.articles[key] = {
+      alias,
+      assets: [],
+      version: String(index + 1).repeat(64),
+      candidate: true,
+    };
+    f.sizes.articleRows.push({
+      key,
+      alias,
+      ...record,
+      svgNodes: 1,
+      assets,
+      totalGzipBytes:
+        record.gzip + assets.reduce((total, name) => total + manifest.files[name].gzip, 0),
+    });
+  }
+  const keys = Object.keys(manifest.components.articles);
+  const key = keys[0];
+  const head = {
+    key,
+    lang: 'en',
+    routeVersion: manifest.components.articles[key].version,
+    engine: manifest.components.engine,
+    title: 'Controlled article fixture',
+    description: 'Validator input, not a browser observation.',
+    author: 'Fixture author',
+    robots: 'noindex,nofollow',
+    canonical: [],
+    alternates: [],
+    schemas: [
+      {
+        '@type': 'Article',
+        headline: 'Controlled article fixture',
+        author: { '@type': 'Person', name: 'Fixture author' },
+        inLanguage: 'en',
+      },
+    ],
+  };
+  const normalChecks = Object.fromEntries(
+    [
+      'metadataTransition',
+      'filtersBackForward',
+      'focusAndScrollHistory',
+      'persistentCanvas',
+      'nativeAnchors',
+      'deepRefresh',
+      'readingBlocks',
+      'routeDeparture',
+      'rapidCancellation',
+      'assetsDecoded',
+    ].map((name) => [name, true])
+  );
+  f.reports.find((report) => report.kind === 'stage-functional').articles = {
+    kind: 'bounded-article-journey',
+    browser: 'Controlled validator fixture, not a browser observation',
+    documents: [key],
+    availableDocuments: keys,
+    observations: [
+      ...[1440, 390].map((width) => ({
+        key,
+        width,
+        mode: 'normal',
+        head: structuredClone(head),
+        reading: { entered: ['section'], departed: ['section'], maxEntering: 1, maxRoute: 1 },
+        checks: { ...normalChecks, basePath: '/author/' },
+      })),
+      ...['off', 'no-canvas', 'no-js'].map((mode) => ({
+        key,
+        width: 390,
+        mode,
+        head: structuredClone(head),
+        checks: {
+          nativeReading: true,
+          anchors: true,
+          writingLink: true,
+          singleCanvas: true,
+          basePath: '/author/',
+        },
+      })),
+    ],
+  };
+  return f;
+}
+
+test('staging aggregate preserves exact bounded article coverage for empty and larger catalogs', () => {
+  for (const color of [false, true]) {
+    const legacy = gate.aggregate(fixture.aggregateFixture(color)).coverage.functional;
+    for (const count of [0, 1, 2]) {
+      const f = articleAggregateFixture(count, color);
+      const result = gate.aggregate(f);
+      const { articleObservations, ...fiveRoomCoverage } = result.coverage.functional;
+      assert.deepEqual(fiveRoomCoverage, legacy, 'all existing five-room coverage is retained');
+      assert.equal(articleObservations ?? 0, count ? 5 : 0);
+      assert.equal(Object.hasOwn(result.coverage.functional, 'articleObservations'), count > 0);
+      for (const observedCount of count ? [undefined, 0, 4, 6, 10] : [0, 5]) {
+        const invalid = structuredClone(result);
+        if (observedCount === undefined) delete invalid.coverage.functional.articleObservations;
+        else invalid.coverage.functional.articleObservations = observedCount;
+        assert.throws(() => gate.validateGate(f.manifest, invalid, f.hostedURL));
+      }
+      if (!count) continue;
+      for (const change of [
+        (report) => delete report.articles,
+        (report) => report.articles.observations.pop(),
+        (report) =>
+          report.articles.observations.push(structuredClone(report.articles.observations[0])),
+      ]) {
+        const invalid = articleAggregateFixture(count, color);
+        change(invalid.reports.find((report) => report.kind === 'stage-functional'));
+        assert.throws(() => gate.aggregate(invalid));
+      }
+    }
+  }
+});
+
 test('complete selected hosted automation creates only an explicitly staging gate', () => {
   for (const color of [false, true]) {
     const f = fixture.aggregateFixture(color),

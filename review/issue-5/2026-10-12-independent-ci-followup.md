@@ -397,3 +397,66 @@ TBT admission, and authorized controller staging remain pending observations.
 No performance, editorial, rights, device, upstream, merge or publication gate
 is closed by these focused checks. This supplement is the only repository file
 written by this peer reviewer in this review phase.
+
+## 2026-10-12 independent F30 aggregate coverage review
+
+Role: independent review by `registry_ri_integration`, which authored neither
+F30's validator correction nor its regression fixture. This supplement reviews
+the dirty prepared follow-up after published `1e15f5b3`, with staging gate
+`27a64369` and fixture `6274ccad`. It is distinct from the earlier reviews and
+the new implementation author's role. Full identities, original report hashes,
+logged job outcomes and the separate retained-data revalidation are preserved
+with the [diagnostic owner](2026-10-12-ci-followup-evidence.json.gz). The owning
+#5/PR79 retain their original AC11/AC12 and human/delivery gates.
+
+The correction adds only the missing conditional expected summary field:
+`articleObservations:5` when the manifest's article catalog is nonempty. The
+strict browser validator already exercises one representative article in five
+width/mode cases, including when two documents are available; the expectation
+therefore is five, not five times the catalog size. An empty catalog preserves
+the original absent-key shape. All five-room, navigation, failure, analytics,
+performance, Color, hosted and resource-budget expectations remain unchanged.
+Actual article inventory, metadata, selected representative, exact case order,
+reading behavior and source/runtime checks remain mandatory.
+
+The new controlled aggregate fixture explicitly identifies itself as validator
+input rather than browser evidence. It checks empty, one- and two-document
+catalogs for both base and Color, preserves the original room coverage, and
+rejects missing/zero/incorrect aggregate counts plus absent, removed or duplicate
+raw article observations. The owner reports **11/11** focused gate/article tests
+passing in 344.387ms, with pinned format and scoped lint passing. This reviewer
+inspected the final diff and those source identities; the owner-run result is
+not represented as another independent test execution.
+
+This reviewer independently verified the authentic 65-file public inventory and
+64-file hosted inventory from managed bounded run `38296697030`, attempt 1, at
+source `1e15f5b3`, tree `7e37ec91`, artifact `4d0d79de` and immutable host
+`610f3678.oborskyi-author-ci-staging.pages.dev`. Genuine logged build/static/host/
+staging outcomes and source checks are success. The existing strict child
+validators pass four normal journeys/twenty route observations, two no-Canvas
+journeys/ten observations, five article observations, two navigation cases,
+ten failures, seven analytics fixtures, two Color widths, eight motion windows,
+four cold/warm flights and two individual mobile Lighthouse trials. Both raw
+Lighthouse JSON metric sets agree with their report, and all four compressed
+trace/network identities and lengths were independently checked. Writing TBT
+is **129.5ms**, Research TBT **71.5ms**, under the unchanged **200ms** limit;
+these are single selected trials, not production release medians.
+
+Using the exact published old gate bytes in memory, pure aggregation reproduces
+the original failure: the only coverage difference is `articleObservations:5`.
+Using the reviewed F30 bytes, pure aggregation and gate validation pass on the
+same unchanged inputs. Five mutated summary counts and three missing/duplicate
+raw-evidence mutations still fail. The external proof retains full validator
+and input identities; every original input, failed release manifest and raw
+measurement remains byte-identical. No browser, Lighthouse trial or CLI that
+writes a replacement release manifest was run by this reviewer.
+
+This is **historical diagnostic revalidation only**. The original workflow/gate
+remains failed and none of its observations is rebound to the follow-up source.
+The retained-raw guidance in SITE-CHECK-PROFILES is diagnostic-scoped and does
+not override controller admission. Root retains the decision to publish this
+validator-only follow-up, run fresh mandatory current-source CI/preview and use
+the existing complete bounded staging controller. No partial-job retry, manual
+admission rewrite, new performance promise, budget change, merge, production
+activation or editorial/rights/device/publication acceptance is supplied by
+this supplement. No correctness blocker was found in the bounded F30 review.
