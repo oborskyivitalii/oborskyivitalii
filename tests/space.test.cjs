@@ -735,6 +735,13 @@ test('visible attention and line-chart landmarks move among distinct reading reg
     for (let landmark = 0; landmark < landmarks.length; landmark++) {
       const positions = rows.map((row) => row[landmark]);
       assert.ok(new Set(positions.map(({ slot }) => slot)).size >= 3, 'genuine region relocation');
+      if (width > 640 && landmark === 0) {
+        assert.equal(
+          new Set(positions.map(({ slot }) => slot)).size,
+          5,
+          'every primary attention expression has its own desktop reading region'
+        );
+      }
       const xs = positions.map(({ point }) => point[0]);
       assert.ok(Math.max(...xs) - Math.min(...xs) > width * 0.25, 'same-side jitter is insufficient');
       const depths = positions.map(({ depth }) => depth);
@@ -750,10 +757,10 @@ test('visible attention and line-chart landmarks move among distinct reading reg
     }
   }
 });
-test('Home and Writing attention glyphs clear the observed foreground at desktop reading entry', () => {
+test('Home, Writing and Credits attention glyphs clear the observed desktop foreground', () => {
   const width = 1350;
   const height = 894;
-  for (const page of ['index', 'writing']) {
+  for (const page of ['index', 'writing', 'credits']) {
     const world = model.worldFor(page);
     const pose = model.poses[model.initialPoses[page]];
     for (let time = 0; time < model.LOOP_MS; time += 1000) {
@@ -769,10 +776,32 @@ test('Home and Writing attention glyphs clear the observed foreground at desktop
       if (page === 'index') {
         assert.ok(Math.min(...xs) > width * 0.65, 'glyphs remain beside the left hero text');
         assert.ok(Math.max(...ys) < height * 0.35, 'glyphs remain above the portrait region');
-      } else {
+      } else if (page === 'writing') {
         assert.ok(Math.min(...ys) >= 80, 'glyphs clear the fixed desktop header');
+      } else {
+        assert.ok(Math.min(...xs) > width * 0.62, 'glyphs clear the Credits foreground text column');
+        assert.ok(Math.min(...ys) > height * 0.5, 'Credits expression occupies the lower right field');
+        assert.ok(Math.max(...ys) < height * 0.8, 'Credits expression remains within the reading field');
       }
     }
+  }
+});
+test('Credits lower-right attention remains legible within the narrow viewport throughout its loop', () => {
+  const width = 390;
+  const height = 844;
+  const world = model.worldFor('credits', true);
+  const pose = model.poses[model.initialPoses.credits];
+  for (let time = 0; time < model.LOOP_MS; time += 1000) {
+    const glyphs = model
+      .projectedWorld(world, pose, width, height, time)
+      .filter((shape) => shape.object === 'shared-0-8' && shape.color === 'amber');
+    const points = glyphs.flatMap((shape) => shape.points);
+    const visible = points.filter(([x, y]) => x >= 0 && x <= width && y >= 0 && y <= height);
+    assert.ok(glyphs.length > 40, 'narrow expression remains rendered');
+    assert.ok(visible.length / points.length > 0.95, 'at least 95% of glyph vertices stay on screen');
+    assert.ok(Math.max(...glyphs.map((shape) => shape.alpha)) > 0.2, 'glyph contrast remains visible');
+    assert.ok(Math.min(...points.map(([x]) => x)) > width * 0.5, 'glyphs remain in the right half');
+    assert.ok(Math.min(...points.map(([, y]) => y)) > height * 0.5, 'glyphs remain in the lower half');
   }
 });
 test('route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose', () => {
