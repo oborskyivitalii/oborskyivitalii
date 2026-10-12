@@ -30,6 +30,8 @@ freshness alone is insufficient.
 | `content/pages/<id>/*.json`, `content/shared/*.json` | Bounded text, attributes, URLs and explicit template/block references | That route or shared header/footer |
 | `templates/pages/<id>/*.html`, `templates/components/*.html` | Page-specific semantic layout and reusable publication/discussion markup | Declared route compositions |
 | `content/catalog.json` | Primary editions, bounded alternates/discussions, presentation records, topics and labels; five featured selections | Writing; selected featured records also Home and shared labels |
+| `publications/<id>/` | Authored article metadata, blueprint, manuscript, profile/adaptation and observed edition records under [ARTICLE-WORKFLOW](../guides/ARTICLE-WORKFLOW.md) | Validated article model; explicit candidate or eligible public document selection |
+| `../tools/publishing/` | Build-only Markdown AST, provenance and PDF/platform adapters with a pinned toolchain | Article model and separate review kits; no browser parser or second deploy pipeline |
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
