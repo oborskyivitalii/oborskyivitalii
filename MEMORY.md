@@ -1,17 +1,20 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-11**.
+Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 ## Snapshot
 
 - Main is `7b0d5b68a922eea64d77f50f574f50e1bf184571` after merged PR71
-  and the preceding PR75 controller. Live refs verified on11October.
+  and the preceding PR75 controller. Live refs verified on12October.
 - New [#76](https://github.com/oborskyivitalii/oborskyivitalii/issues/76) preview
   branch `work/issue-76-scene-scroll-preview` implements outside Appearance
   dismissal, continuous room visibility, repeatable downward entry and five
   shared compositions in [Draft PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77).
-  First prototype run38173013744 passed build/package and HTTP identity;
-  final metadata freshness follow-up is pending. No merge or stable promotion.
+  Exact first-preview source17dec258 passed prototype build/package and HTTP
+  identity in run38173287281; clean local #76 policy passed. On12October the
+  maintainer found the A=SOFTMAX landmark and line chart still in the same
+  screen regions across pages. AC04 visual acceptance is pending correction in
+  the same Draft PR. No merge or stable promotion.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from

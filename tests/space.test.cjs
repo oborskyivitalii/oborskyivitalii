@@ -643,7 +643,7 @@ test('all five worlds share bounded symbol geometry in distinct deterministic sp
       assert.ok(object.scale > 0 && object.scale <= 1.2, 'no enlarged instance or geometry budget');
       assert.ok(
         Math.hypot(...object.center.map((value, axis) => value - object.rootCenter[axis])) < 22,
-        'composition stays beside its existing room anchors'
+        'composition stays beside its bounded shared pair anchors'
       );
     }
     for (let j = 0; j < i; j++) {
@@ -683,6 +683,72 @@ test('all five worlds share bounded symbol geometry in distinct deterministic sp
     first,
     'unknown routes retain the explicit Home fallback'
   );
+  const untouched = common('index');
+  const mutated = common('index');
+  mutated[0].center[0] = 10000;
+  mutated[0].rootCenter[1] = 10000;
+  assert.deepEqual(common('index'), untouched, 'returned models cannot mutate authored shared slots');
+  assert.deepEqual(
+    composition(common('index', true)),
+    composition(untouched),
+    'returned models cannot contaminate another detail variant'
+  );
+});
+test('visible attention and line-chart landmarks move among distinct reading regions on every route', () => {
+  for (const [width, height] of [[1440, 900], [390, 844]]) {
+    const landmarks = ['shared-0-8', 'shared-1-0'];
+    const rows = model.routeOrder.map((page) => {
+      const world = model.worldFor(page, width <= 640);
+      const pose = model.poses[model.initialPoses[page]];
+      const view = model.cameraView(pose, width, height);
+      const shapes = model.projectedWorld(world, pose, width, height, 0);
+      return landmarks.map((name) => {
+        const object = world.objects.find((object) => object.name === name);
+        const center = view.camera(model.loopTransform(object, 0).center);
+        const point = view.project(center);
+        const ink = shapes.filter((shape) => shape.object === name);
+        const vertices = ink.flatMap((shape) => shape.points);
+        const xs = vertices.map((point) => point[0]);
+        const ys = vertices.map((point) => point[1]);
+        assert.ok(ink.length > 20, page + ' landmark still submits visible geometry');
+        assert.ok(Math.max(...ink.map((shape) => shape.alpha)) > 0.2, page + ' visible ink contrast');
+        assert.ok(Math.max(...xs) - Math.min(...xs) > view.focal * 0.1, 'readable landmark width');
+        assert.ok(Math.max(...ys) - Math.min(...ys) > view.focal * 0.08, 'readable landmark height');
+        const visibleVertices = vertices.filter(
+          ([x, y]) => x >= 0 && x <= width && y >= 0 && y <= height
+        );
+        assert.ok(visibleVertices.length / vertices.length > 0.55, 'visible placement is not offscreen');
+        const region = (coordinate, origin) =>
+          coordinate < origin - view.focal * 0.065
+            ? -1
+            : coordinate > origin + view.focal * 0.065
+              ? 1
+              : 0;
+        return {
+          point,
+          depth: center[2],
+          slot: [region(point[0], view.origin[0]), region(point[1], view.origin[1])].join(','),
+        };
+      });
+    });
+    assert.equal(new Set(rows.map((row) => row.map(({ slot }) => slot).join('/'))).size, 5);
+    for (let landmark = 0; landmark < landmarks.length; landmark++) {
+      const positions = rows.map((row) => row[landmark]);
+      assert.ok(new Set(positions.map(({ slot }) => slot)).size >= 3, 'genuine region relocation');
+      const xs = positions.map(({ point }) => point[0]);
+      assert.ok(Math.max(...xs) - Math.min(...xs) > width * 0.25, 'same-side jitter is insufficient');
+      const depths = positions.map(({ depth }) => depth);
+      assert.ok(Math.max(...depths) - Math.min(...depths) > 2, 'landmark camera distances vary');
+      for (let i = 0; i < positions.length; i++) {
+        for (let j = 0; j < i; j++) {
+          const distance = Math.hypot(
+            ...positions[i].point.map((coordinate, axis) => coordinate - positions[j].point[axis])
+          );
+          assert.ok(distance > width * 0.055, 'every route has meaningfully different placement');
+        }
+      }
+    }
+  }
 });
 test('route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose', () => {
   const p = visit();

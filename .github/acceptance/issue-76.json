@@ -28,7 +28,7 @@
     {
       "id": "AC04",
       "intent": "Keep a deterministic distinct arrangement of shared fractal vocabulary on every route within existing bounds.",
-      "automated_scope": "SCENE verifies distinct deterministic shared centers/depth/rotation/scale and preserved symbol/count/detail grammar; BASIC measures all-route finite model and current generated fallback/size bounds. Actual composition is reviewed in the preview.",
+      "automated_scope": "SCENE verifies preserved symbol/count/detail grammar and projected Softmax-attention/line-chart landmarks at desktop and mobile reading poses: distinct screen regions across all routes, sufficient spread, visible ink and varying depth. BASIC measures all-route finite model and current generated fallback/size bounds. Foreground occlusion and actual composition remain preview observations.",
       "checks": ["SCENE", "BASIC"],
       "gates": ["VISUAL"]
     },
