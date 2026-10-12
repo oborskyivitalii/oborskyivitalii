@@ -17,6 +17,12 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   Continuation corrects image-load smoke, frozen translation lineage and selected
   platform event formats; original failed CI remains failed. Fresh-head results
   belong in the live PR; source limits and separate owner decisions remain.
+  A further continuation guards visibility-only departure focus, retains all
+  selected cases with bounded parser/fixture reuse and explicit abort cleanup,
+  and restores the general offline manifest; dated CI reports keep failures
+  qualified. Prepared two-CPU source passes683/683 in169.262s after replacing local
+  dependency symlinks with real directories; exact clean-head CI and hosted/
+  staging admission belong to the live PR. The failed local attempt is retained.
   Native history captures focus before inert/departure and preserves interrupted
   focus. Managed hosted `27717ab` passed all article/Color cases; its Basic source
   timed out. The measured isolated two-worker Space/executive-first route retains

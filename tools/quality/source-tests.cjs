@@ -349,9 +349,15 @@ function requireClean(root) {
     'source tests require clean checkout'
   );
 }
-function validateModules(root, modules) {
+function validateExecutionOrder(modules, order) {
+  assert.ok(Array.isArray(order), 'missing source execution order');
+  assert.equal(new Set(order).size, order.length, 'duplicate source execution module');
+  assert.deepEqual([...order].sort(), [...modules].sort(), 'source execution inventory differs');
+}
+function executionOrder(root, modules) {
   assert.ok(Array.isArray(modules), 'missing selected modules');
   assert.equal(new Set(modules).size, modules.length, 'duplicate selected source module');
+  const sizes = new Map();
   for (const file of modules) {
     safePath(file);
     assert.ok(
@@ -360,46 +366,63 @@ function validateModules(root, modules) {
     );
     const stat = fs.lstatSync(path.join(root, file));
     assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'selected source module must be regular');
+    sizes.set(file, stat.size);
   }
-}
-function validateExecutionOrder(modules, order) {
-  assert.ok(Array.isArray(order), 'missing source execution order');
-  assert.equal(new Set(order).size, order.length, 'duplicate source execution module');
-  assert.deepEqual([...order].sort(), [...modules].sort(), 'source execution inventory differs');
-}
-function executionOrder(modules) {
   const priority = ['tests/space.test.cjs', 'tests/executive.test.cjs'];
-  const order = [
-    ...priority.filter((file) => modules.includes(file)),
-    ...modules.filter((file) => !priority.includes(file)),
-  ];
-  validateExecutionOrder(modules, order);
-  return order;
+  const rank = (file) => {
+    const index = priority.indexOf(file);
+    return index < 0 ? priority.length : index;
+  };
+  // Measured long suites start first; size orders the remaining selected files.
+  // Both are deterministic scheduling heuristics, not duration guarantees.
+  const ordered = [...modules].sort(
+    (first, second) =>
+      rank(first) - rank(second) ||
+      sizes.get(second) - sizes.get(first) ||
+      (first < second ? -1 : first > second ? 1 : 0)
+  );
+  validateExecutionOrder(modules, ordered);
+  return ordered;
 }
-async function worker(modules, root = process.cwd()) {
-  validateModules(root, modules);
-  assert.ok(modules.length > 0, 'empty source worker inventory');
+function executeSelected(root, modules) {
+  assert.ok(modules.length > 0, 'missing selected execution modules');
+  assert.deepEqual(modules, executionOrder(root, modules), 'selected execution order mismatch');
   const { run: runTests } = require('node:test');
   const { tap } = require('node:test/reporters');
-  const { pipeline } = require('node:stream/promises');
+  const controller = new AbortController();
+  let reporter;
+  const failed = () => {
+    process.exitCode = 1;
+  };
+  const abort = () => {
+    failed();
+    controller.abort();
+    reporter?.resume();
+  };
+  process.once('SIGTERM', abort);
+  process.once('SIGINT', abort);
+  process.stdout.once('error', abort);
+  const cleanup = () => {
+    process.removeListener('SIGTERM', abort);
+    process.removeListener('SIGINT', abort);
+    process.stdout.removeListener('error', abort);
+  };
   const stream = runTests({
     files: modules.map((file) => path.resolve(root, file)),
-    cwd: root,
     concurrency: WORKER_LIMIT,
     isolation: 'process',
-    only: false,
-    watch: false,
+    signal: controller.signal,
   });
-  stream.on('test:fail', () => {
-    process.exitCode = 1;
+  stream.on('test:fail', failed);
+  stream.on('test:summary', ({ success }) => {
+    if (!success) failed();
   });
-  stream.on('error', () => {
-    process.exitCode = 1;
-  });
-  await pipeline(stream.compose(tap), process.stdout, { end: false });
+  stream.on('error', abort);
+  reporter = stream.compose(tap);
+  reporter.on('error', abort).on('end', cleanup).on('close', cleanup).pipe(process.stdout);
 }
 function run(root, plan, options = {}) {
-  validateModules(root, plan.modules);
+  const ordered = executionOrder(root, plan.modules);
   if (options.requireClean) requireClean(root);
   if (!plan.modules.length) {
     assert.equal(plan.profile, 'pr', 'empty routine profile');
@@ -425,9 +448,7 @@ function run(root, plan, options = {}) {
         maxBuffer: 16 * 1024 * 1024,
         timeout: 180000,
       }));
-  // The CLI sorts file arguments; the API preserves this measured work order.
-  const order = executionOrder(plan.modules);
-  const argv = [__filename, '--worker', ...order],
+  const argv = [__filename, '--execute', ...ordered],
     started = Date.now(),
     result = execute(argv);
   const output = result.stdout || '',
@@ -452,10 +473,10 @@ function run(root, plan, options = {}) {
     pass: true,
     ...counts,
     elapsedMs: Date.now() - started,
-    argv,
+    executionOrder: ordered,
     workerLimit: WORKER_LIMIT,
-    executionOrder: order,
     availableParallelism: require('node:os').availableParallelism(),
+    argv,
   };
 }
 function argumentsFor(argv) {
@@ -489,18 +510,12 @@ function main(argv = process.argv.slice(2)) {
   return result;
 }
 if (require.main === module) {
-  const reportFailure = (error) => {
+  try {
+    if (process.argv[2] === '--execute') executeSelected(process.cwd(), process.argv.slice(3));
+    else main();
+  } catch (error) {
     console.error(error.message);
     process.exitCode = 1;
-  };
-  if (process.argv[2] === '--worker') {
-    worker(process.argv.slice(3)).catch(reportFailure);
-  } else {
-    try {
-      main();
-    } catch (error) {
-      reportFailure(error);
-    }
   }
 }
 module.exports = {
@@ -513,12 +528,10 @@ module.exports = {
   readChangedPaths,
   select,
   accounting,
-  validateModules,
-  validateExecutionOrder,
-  executionOrder,
-  worker,
   run,
   argumentsFor,
   requireClean,
+  executionOrder,
+  validateExecutionOrder,
   main,
 };

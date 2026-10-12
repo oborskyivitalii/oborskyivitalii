@@ -47,6 +47,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: '1420a74b6ad087c9e639c239d1ca860f4708c881ff435b4b3b2f994080f1c358',
   },
+  issue5Departure: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: '7ae5bf170b71969aed8bd4ed71738e11857b89036cc0e1a5a7607fce2a5749f6',
+  },
 };
 const runtimes = [
   {
@@ -131,6 +138,20 @@ const runtimes = [
     family: 'issue5History',
     edition: 'staging',
     fingerprint: 'fe21d1d32c68ef39ed1ff6476310f96ddb724190db0bdc42890f4814ab09a45f',
+    styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
+  },
+  {
+    id: 'issue5-departure-plain',
+    family: 'issue5Departure',
+    edition: 'plain',
+    fingerprint: '9f04d35b2c92b9f6298b65fff35a843dc55a6e25bf7a9927251cd6f7892ed3f9',
+    styles: '02bee22b9ed7e3ad06b6a23b54bb881e36e2484ba7c8b1a0e6de2e93527373aa',
+  },
+  {
+    id: 'issue5-departure-staging',
+    family: 'issue5Departure',
+    edition: 'staging',
+    fingerprint: 'de4bc3cb43106d8b2900a5ef5c6a9327a2571da106d483f33b792cafee6f3531',
     styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
   },
 ];
@@ -241,4 +262,11 @@ function rowPlan(width, rows) {
     plannedDurationMs: rows ? contract.rows.phaseMs : 0,
   };
 }
-module.exports = { select, reviewedRuntime, flightCheck, validateFlight, contract, rowPlan };
+module.exports = {
+  select,
+  reviewedRuntime,
+  flightCheck,
+  validateFlight,
+  contract,
+  rowPlan,
+};

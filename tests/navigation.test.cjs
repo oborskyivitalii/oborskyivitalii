@@ -170,19 +170,24 @@ function routeHarness({
     sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
     readStarted = new Promise((resolve) => (resolveRead = resolve)),
     readGate = new Promise((resolve) => (releaseRead = resolve));
-  const node = (id = 'main', href = null) => ({
-    id,
-    inContent: true,
-    href: href ? new URL(href, 'https://fixture.test/').href : null,
-    getAttribute: (name) => (name === 'href' ? href : null),
-    setAttribute() {},
-    focus() {
-      context.document.activeElement = this;
-    },
-  });
+  const node = (id = 'main', href = null) => {
+    const attributes = new Map();
+    return {
+      id,
+      inContent: true,
+      href: href ? new URL(href, 'https://fixture.test/').href : null,
+      getAttribute: (name) => (name === 'href' ? href : (attributes.get(name) ?? null)),
+      setAttribute: (name, value) => attributes.set(name, value),
+      removeAttribute: (name) => attributes.delete(name),
+      focus() {
+        context.document.activeElement = this;
+      },
+    };
+  };
   const routeMain = (next) => ({
     ...node(),
     links: next === 'writing' ? [node('article-sample-en', 'articles/sample-en.html')] : [],
+    controls: next === 'writing' ? [node('archive-topic'), node('archive-language')] : [],
   });
   function blurContentFocus() {
     if (context.document.activeElement?.inContent) {
@@ -214,14 +219,17 @@ function routeHarness({
     mount() {},
     resume() {},
     settle() {},
-    cancelRoute() {},
+    cancelRoute() {
+      content.main.removeAttribute('data-route-blocks');
+    },
     async depart(direction, navigationId) {
       calls.push({ kind: 'departure', direction, navigationId });
+      content.main.setAttribute('data-route-blocks', 'departing');
+      if (blurDeparture) blurContentFocus();
       if (holdDeparture && navigationId === 1) {
         resolveDeparture();
         await departureGate;
       }
-      if (blurDeparture) blurContentFocus();
       return { completed: true };
     },
     prepareArrival(direction, navigationId) {
@@ -300,7 +308,9 @@ function routeHarness({
       querySelector: () => null,
       querySelectorAll: () => [],
       getElementById: (id) =>
-        [content.main, ...content.main.links].find((element) => element.id === id) || null,
+        [content.main, ...content.main.links, ...content.main.controls].find(
+          (element) => element.id === id
+        ) || null,
     },
     history,
     performance: { now: () => clock++ },
@@ -368,6 +378,7 @@ function routeHarness({
   );
   return {
     navigate: context.navigate,
+    content,
     calls,
     probes,
     assigned,
@@ -456,6 +467,86 @@ test('departure visibility cannot erase the focus saved for Back', async () => {
   assert.equal(h.document.activeElement.id, 'article-sample-en');
   assert.equal(h.window.scrollY, 705);
   assert.deepEqual(h.assigned, []);
+});
+test('a departing visibility scroll-save tick cannot erase offscreen control focus before inert', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdDeparture: true, blurDeparture: true });
+  h.window.location.href += '?topic=systems&language=en';
+  h.focus('archive-topic');
+  h.window.scrollY = 5722;
+  h.scheduleScrollSave();
+  const navigation = h.navigate(new URL('https://fixture.test/talks.html'));
+  await h.departureStarted;
+  assert.equal(h.content.inert, false, 'visibility departure precedes inert flight');
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), 'departing');
+  assert.equal(h.document.activeElement, h.document.body, 'hidden control lost native focus');
+  const departure = h.historyEntries[0].state;
+  assert.equal(departure.site.focus, 'archive-topic');
+  const writes = h.historyWrites.length;
+  h.runTimer(350);
+  assert.equal(h.historyWrites.length, writes, 'departure cannot replace captured reading state');
+  assert.deepEqual(h.historyEntries[0].state, departure);
+  h.releaseDeparture();
+  await navigation;
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'archive-topic');
+  assert.equal(h.window.scrollY, 5722);
+  assert.equal(new URL(h.window.location.href).search, '?topic=systems&language=en');
+  assert.equal(h.historyEntries.length, 2);
+  assert.deepEqual(h.assigned, []);
+  assert.equal(h.tasks.size, 0);
+});
+test('hidden departure retarget preserves captured focus while explicit read-time controls and scroll still win', async () => {
+  for (const explicitFocus of [false, true]) {
+    const h = routeHarness({
+      initialPage: 'writing',
+      holdDeparture: true,
+      blurDeparture: true,
+      holdRead: true,
+    });
+    h.focus('archive-topic');
+    h.window.scrollY = 5722;
+    const stale = h.navigate(new URL('https://fixture.test/talks.html'));
+    await h.departureStarted;
+    assert.equal(h.content.inert, false);
+    const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+    await h.readStarted;
+    assert.equal(
+      h.content.main.getAttribute('data-route-blocks'),
+      null,
+      'interruption restored native visibility'
+    );
+    if (explicitFocus) {
+      h.focus('archive-language');
+      h.window.scrollY = 5750;
+      const writes = h.historyWrites.length;
+      h.scheduleScrollSave();
+      h.runTimer(350);
+      assert.equal(
+        h.historyWrites.length,
+        writes + 1,
+        'ordinary asynchronous reading remains saveable'
+      );
+      assert.equal(h.historyEntries[0].state.site.focus, 'archive-language');
+    }
+    h.releaseRead();
+    await latest;
+    h.releaseDeparture();
+    await stale;
+    const focus = explicitFocus ? 'archive-language' : 'archive-topic';
+    const scroll = explicitFocus ? 5750 : 5722;
+    assert.deepEqual(h.historyEntries[0].state.site, {
+      page: 'writing',
+      scroll: [0, scroll],
+      focus,
+    });
+    assert.equal(h.historyEntries.length, 2, 'stale departure never enters history');
+    assert.equal(h.historyEntries[1].state.site.page, 'article:sample:en');
+    await h.travel(-1);
+    assert.equal(h.document.activeElement.id, focus);
+    assert.equal(h.window.scrollY, scroll);
+    assert.deepEqual(h.assigned, []);
+    assert.equal(h.tasks.size, 0);
+  }
 });
 test('an inert scroll-save tick and rapid unmounted retarget retain the departure link', async () => {
   const h = routeHarness({ initialPage: 'writing', holdScene: true });
@@ -833,6 +924,7 @@ function sequenceHarness() {
     setAttribute() {},
     removeAttribute() {},
     querySelector: () => ({
+      getAttribute: () => null,
       focus() {
         events.push('focus');
       },
@@ -900,7 +992,7 @@ function sequenceHarness() {
   const end = source.indexOf('  document.body.dataset.entryPage', start);
   vm.runInNewContext(
     `let page='index',serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;
-    ${section('departureFocus', 'push')}
+    ${section('departureUnavailable', 'push')}
     ${source.slice(start, end)}
     globalThis.currentPage=value=>page=value;
     globalThis.go=navigate;

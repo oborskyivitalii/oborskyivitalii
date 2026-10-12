@@ -461,15 +461,17 @@
     {
       "path": "tests/executive.test.cjs",
       "language": "javascript",
-      "purpose": "Current SEO/source reconciliation negative cases and semantic Day/Night contrast; first case duplicates standalone SEO positive verifier",
+      "purpose": "Current SEO/editorial reconciliation and Day/Night semantic contrast negatives; primary HTML exact-input cache/batch bounds, parser-coverage failures and raw/inline-byte preservation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; current issue5 retains all editorial and baseline checks and adds bounded normalization/cache/batch negatives with primary-parser dependencies selected explicitly",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
+        "tools/quality/format-parity.py",
+        "tools/quality/format-parity.cjs",
         "tools/site/render-page.cjs",
         "site/engine/critical-media.css",
         "site/engine/styles.css",
@@ -479,7 +481,9 @@
         "review/issue-41/content-amendment.json",
         "review/issue-48/content-amendment.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "site/engine/scroll-entry.css",
+        "tools/staging/color.cjs"
       ]
     },
     {
@@ -591,7 +595,7 @@
     {
       "path": "tests/navigation.test.cjs",
       "language": "javascript",
-      "purpose": "Shared yielded route mounting, outgoing-block/camera-restoration/incoming-block sequencing, serial cancellation, native landing/head/history and instant fallback",
+      "purpose": "Shared yielded route mounting, outgoing-block/camera-restoration/incoming-block sequencing, serial cancellation, native landing/head/history and instant fallback; held departure/inert queued-save suppression and readable focus/scroll changes during asynchronous retargeting",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -830,7 +834,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds",
+      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds; exhaustive finite Canvas argument/type/position rejection before drawing side effects with reusable VM preparation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -873,7 +877,7 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging browser/performance selections, registry coupling, canonical media route/history negatives, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
+      "purpose": "Exact bounded staging browser/performance selections, registry coupling, canonical media route/history negatives, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets. Current runtime/effects/Color producer identity is compared against exact preserved/current tuples.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -895,7 +899,15 @@
         "tests/fixtures/staging-evidence.cjs",
         ".github/workflows/site-release-checks.yml",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "site/engine/navigation.js",
+        "tools/staging/color.cjs",
+        "tools/site/effects.cjs",
+        "site/effects/**",
+        "site/engine/**",
+        "site/scenes/**",
+        "site/site.json",
+        "docs/site-revision.json"
       ]
     },
     {
@@ -952,16 +964,17 @@
     {
       "path": "tests/test-profile-selection.test.cjs",
       "language": "javascript",
-      "purpose": "Complete test registry and bounded source selection, conservative changed-source fallback and strict failed/skipped/TAP accounting.",
+      "purpose": "Complete registry/exact-source selection and strict TAP accounting; actual Space/executive priority, remaining size/lexical order, two isolated workers, serial-case defaults, abort/error reporting and original-deadline cleanup",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain current profile control",
+      "disposition": "retain all profile/selection and actual-process contracts, including priority and size/lexical order, worker limit and available parallelism reporting, isolated globals and serial-case defaults, assertion/rejection/uncaught failure, original-timeout abort cleanup and incomplete/empty execution negatives; native post-result process.exit accounting limitation remains outside the early-exit claim",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/test-profile-selection.test.cjs",
         "tools/quality/source-tests.cjs",
-        "tools/quality/test-profiles.json"
+        "tools/quality/test-profiles.json",
+        "tools/quality/local.cjs"
       ]
     },
     {
@@ -1319,7 +1332,7 @@
     {
       "path": "tests/format-parity.test.cjs",
       "language": "javascript",
-      "purpose": "Source-language semantic equivalence and behavior-change rejection across JS/Python/JSON/YAML/CSS/HTML",
+      "purpose": "Source-language semantic equivalence and behavior-change rejection across JS/Python/JSON/YAML/CSS/HTML, preserving exact parser failures before/after mixed-language requests",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1591,7 +1604,7 @@
     {
       "path": "tests/color-motion-contract.test.cjs",
       "language": "javascript",
-      "purpose": "Exact reviewed legacy/fixed Color runtime dispatch, strict reading/block/spatial guards and malformed or substituted evidence negatives.",
+      "purpose": "Exact reviewed legacy/fixed/departure Color family dispatch, complete preserved tuple inventory, strict reading/block/spatial guards and malformed or substituted evidence negatives.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

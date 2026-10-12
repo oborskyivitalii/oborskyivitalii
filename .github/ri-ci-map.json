@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
     "date": "2026-10-12",
-    "summary": "Register site-owned publication adapters, explicit isolated candidate preview, native Writing article reader/offline exports and strict conditional article browser/source identity controls. Preserve current five-route source/hosted profiles, original bounds and Draft deferral; owning issue5 selects reusable behavior while independent/editorial/rights/device/merge/publication observations remain separate."
+    "summary": "Register site-owned publication adapters, native article reader/offline exports and exact conditional article identity controls. Current issue5 follow-up preserves selection, prior Color families and original limits while adding bounded primary-parser/cache/batch diagnostics, Space/executive execution priority followed by size/lexical order through two isolated workers with abort/error cleanup, finite Canvas fixture guards and departing native history/focus correction. Source/profile checks remain separate from actual hosted, independent, editorial, rights, device, merge and publication evidence."
   },
   "layers": [
     {
@@ -113,7 +113,10 @@
         "review/issue-5/2026-10-12-article-source.md",
         "review/issue-5/2026-10-12-independent-implementation.md",
         "review/issue-5/2026-10-12-migration-inventory.json",
-        "guides/ARTICLE-WORKFLOW.md"
+        "guides/ARTICLE-WORKFLOW.md",
+        "review/issue-5/2026-10-12-ci-followup.md",
+        "review/issue-5/2026-10-12-ci-followup-evidence.json.gz",
+        "review/issue-5/2026-10-12-independent-ci-followup.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -144,7 +147,7 @@
     },
     {
       "id": "test-profile-selection",
-      "purpose": "Canonical test inventory/source allocation, selected staging evidence and reviewed source-scanner controls; explicit cheap unconditional negatives verify source/expiry/coverage and exact selection.",
+      "purpose": "Canonical source/test lifecycle allocation, staging/scanner controls and complete accounting; Space/executive priority precedes remaining size/lexical order through two isolated public Node workers with serial-case defaults, actual failure reporting and original-deadline abort cleanup. Native Color families remain explicit and source-bound.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
         "tests/fixtures/staging-evidence.cjs",
@@ -272,7 +275,7 @@
     },
     {
       "id": "maintained-source-quality",
-      "purpose": "Current complete formatting/lint coverage and original budgets, with immutable R2 mechanical checkpoint reobserved separately from intentional later refactoring.",
+      "purpose": "Complete maintained formatting/lint coverage and original bounds; unchanged primary parser contracts, language-local imports and exact diagnostics plus bounded exact-input SEO normalization/cache/verified-snapshot batches preserve semantic checks while reducing repeated work. Immutable mechanical checkpoints remain separate from later behavior changes.",
       "paths": [
         "tools/quality/format.cjs",
         "tools/quality/format-scope.json",
@@ -285,7 +288,9 @@
         "tests/format-parity.test.cjs",
         "tests/test_issue58_acceptance.py",
         "tools/quality/phase-checkpoint.cjs",
-        "tests/phase-checkpoint.test.cjs"
+        "tests/phase-checkpoint.test.cjs",
+        "tools/check_site_seo.cjs",
+        "tests/executive.test.cjs"
       ],
       "checks": [
         "maintained-format-check",
@@ -525,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "663ba71e4f5deb45b0dd1696d12a68aa25ebdbd6369405096bc566ca00c59a2c",
+    "digest": "7f0bcbf0dce4e57e33d71a2573cbcc4736bb21e0e04dfdf68f5d4a70e73a8d36",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -629,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "3ef0c37552e9f82667c4baaa2bf561c19c57550790147cc88dd48e4fa1f707ca"
+        "sha256": "5a59e8da960bc2c55d64604bacd7ef1fff1ed9b9ee727a8c42cdbcaefdd15938"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -741,11 +746,11 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "50350e0f93398151526d3c7bf822e6d8264f6896122f7611bc3b01deeb4f05e4"
+        "sha256": "611b7cdf5bbe9387a2994b87f88ec3f0b2724607106f0723d59033d85df4e40d"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "d0d4d60674e74d92f07eace1e281070bc5b977ff3c708026ec9cc0a94e372c09"
+        "sha256": "2d7a691297c59f1f2a7ed7d1e1b428acbd5df021c92fea5328d22814173275c9"
       },
       {
         "path": "tests/test_code_style.py",
@@ -849,7 +854,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "bda492d55c17126f5cb2d60531820e873babe7cbbc3df5bc351e939f05e7b434"
+        "sha256": "7f3e7928f0c4df40ba42e0e5ef064bc8e1599bd89341c4d9347b008ea900d20d"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -861,7 +866,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "3f84aae1378036eeb9ad4f0d3b84851a6cd597444f6889e5414518c8c16ebe1c"
+        "sha256": "1e1aaef309d318765c3bc8e30b430b7c5f4a465cbe6d434c52c826d860e95904"
       },
       {
         "path": "tools/repository_intelligence.py",

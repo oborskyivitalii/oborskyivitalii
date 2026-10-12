@@ -10,7 +10,6 @@ const fs = require('node:fs'),
 const root = path.resolve(__dirname, '..'),
   baseline = '0333c4d2b2318850fd56312d83fb63ca468f01a4';
 const { helperContracts } = require('./quality/format-parity.cjs');
-const normalizedHTML = new Map();
 const voidTags = new Set([
   'area',
   'base',
@@ -30,41 +29,118 @@ const voidTags = new Set([
 const escapeHTML = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-function normalizeHTML(html) {
-  if (normalizedHTML.has(html)) return normalizedHTML.get(html);
-  const [events] = helperContracts([{ language: 'html', source: html }]);
-  const stack = [];
-  const result = events
-    .map(([kind, value, attrs]) => {
-      if (kind === 'start') {
-        if (!voidTags.has(value)) stack.push(value);
-        const attributes = attrs.map(([name, attribute]) =>
-          attribute === null ? name : `${name}="${escapeHTML(attribute).replace(/"/g, '&quot;')}"`
-        );
-        return `<${value}${attributes.length ? ' ' + attributes.join(' ') : ''}>`;
-      }
-      if (kind === 'end') {
-        if (stack.at(-1) === value) stack.pop();
-        return `</${value}>`;
-      }
-      if (kind === 'text') return escapeHTML(value);
-      if (kind === 'raw') {
-        return ['script', 'style'].includes(stack.at(-1)) ? value : escapeHTML(value);
-      }
-      if (kind === 'comment') return `<!--${value}-->`;
-      if (kind === 'declaration') return `<!${value}>`;
-      if (kind === 'processing-instruction') return `<?${value}>`;
-      throw Error('Unsupported SEO HTML contract event: ' + kind);
-    })
-    .join('');
-  for (const input of [html, result]) {
-    if (!normalizedHTML.has(input) && normalizedHTML.size >= 128) {
-      normalizedHTML.delete(normalizedHTML.keys().next().value);
-    }
-    normalizedHTML.set(input, result);
+function createHTMLNormalizer(parser = helperContracts) {
+  const normalizedHTML = new Map();
+  const normalizedHTMLLimit = { entries: 128, bytes: 4 * 1024 * 1024 };
+  let normalizedHTMLBytes = 0;
+  function cachedResult(html) {
+    if (!normalizedHTML.has(html)) return;
+    const cached = normalizedHTML.get(html);
+    normalizedHTML.delete(html);
+    normalizedHTML.set(html, cached);
+    return cached.result;
   }
-  return result;
+  function renderHTML(events) {
+    assert.ok(Array.isArray(events), 'SEO HTML contract events must be an array');
+    const stack = [];
+    return events
+      .map(([kind, value, attrs]) => {
+        if (kind === 'start') {
+          if (!voidTags.has(value)) stack.push(value);
+          const attributes = attrs.map(([name, attribute]) =>
+            attribute === null ? name : `${name}="${escapeHTML(attribute).replace(/"/g, '&quot;')}"`
+          );
+          return `<${value}${attributes.length ? ' ' + attributes.join(' ') : ''}>`;
+        }
+        if (kind === 'end') {
+          if (stack.at(-1) === value) stack.pop();
+          return `</${value}>`;
+        }
+        if (kind === 'text') return escapeHTML(value);
+        if (kind === 'raw') {
+          return ['script', 'style'].includes(stack.at(-1)) ? value : escapeHTML(value);
+        }
+        if (kind === 'comment') return `<!--${value}-->`;
+        if (kind === 'declaration') return `<!${value}>`;
+        if (kind === 'processing-instruction') return `<?${value}>`;
+        throw Error('Unsupported SEO HTML contract event: ' + kind);
+      })
+      .join('');
+  }
+  function parseHTML(inputs) {
+    const contracts = parser(inputs.map((source) => ({ language: 'html', source })));
+    assert.ok(Array.isArray(contracts), 'SEO HTML contracts must be an array');
+    assert.equal(contracts.length, inputs.length, 'Complete SEO HTML contract coverage');
+    // Render every row before adding any new cache entry. A malformed later
+    // contract cannot leave a partially validated batch in the cache.
+    return Array.from(contracts, renderHTML);
+  }
+  function rememberResult(input, result) {
+    for (const value of new Set([input, result])) cacheNormalizedHTML(value, result);
+  }
+  function normalizeHTML(html) {
+    assert.equal(typeof html, 'string', 'SEO HTML input must be a string');
+    const cached = cachedResult(html);
+    if (cached !== undefined) return cached;
+    const [result] = parseHTML([html]);
+    rememberResult(html, result);
+    return result;
+  }
+  function normalizeMany(inputs) {
+    assert.ok(Array.isArray(inputs), 'SEO HTML batch must be an array');
+    assert.ok(inputs.length <= normalizedHTMLLimit.entries, 'SEO HTML batch entry bound');
+    let bytes = 0;
+    for (const input of inputs) {
+      assert.equal(typeof input, 'string', 'SEO HTML batch inputs must be strings');
+      bytes += Buffer.byteLength(input, 'utf8');
+    }
+    assert.ok(bytes <= normalizedHTMLLimit.bytes, 'SEO HTML batch UTF-8 byte bound');
+    const results = new Map();
+    const missing = [];
+    for (const input of inputs) {
+      if (results.has(input)) continue;
+      const cached = cachedResult(input);
+      if (cached !== undefined) results.set(input, cached);
+      else {
+        results.set(input, undefined);
+        missing.push(input);
+      }
+    }
+    if (missing.length) {
+      const rendered = parseHTML(missing);
+      for (let index = 0; index < missing.length; index++) {
+        results.set(missing[index], rendered[index]);
+        rememberResult(missing[index], rendered[index]);
+      }
+    }
+    return inputs.map((input) => results.get(input));
+  }
+  function cacheNormalizedHTML(input, result) {
+    const bytes = Buffer.byteLength(input, 'utf8') + Buffer.byteLength(result, 'utf8');
+    if (bytes > normalizedHTMLLimit.bytes) return;
+    const previous = normalizedHTML.get(input);
+    if (previous) {
+      normalizedHTMLBytes -= previous.bytes;
+      normalizedHTML.delete(input);
+    }
+    while (
+      normalizedHTML.size >= normalizedHTMLLimit.entries ||
+      normalizedHTMLBytes + bytes > normalizedHTMLLimit.bytes
+    ) {
+      const oldest = normalizedHTML.keys().next().value;
+      normalizedHTMLBytes -= normalizedHTML.get(oldest).bytes;
+      normalizedHTML.delete(oldest);
+    }
+    normalizedHTML.set(input, { result, bytes });
+    normalizedHTMLBytes += bytes;
+  }
+  return Object.freeze({
+    normalizeHTML,
+    normalizeMany,
+    cacheStats: () => Object.freeze({ entries: normalizedHTML.size, bytes: normalizedHTMLBytes }),
+  });
 }
+const { normalizeHTML, normalizeMany } = createHTMLNormalizer();
 // Exact maintainer-approved contact replacement; unrelated copy stays frozen.
 const contactPrevious =
   '<div class="booking-placeholder"><h3>Book a conversation</h3><p>Direct booking will be available here. In the meantime, message me on LinkedIn to arrange a conversation.</p><a class="button" href="https://www.linkedin.com/in/vitaliioborskyi/">Arrange a conversation on LinkedIn <span aria-hidden="true">↗</span></a></div>';
@@ -129,10 +205,8 @@ function approvedStructuredMetadata(page) {
     }
   }
   const encodings = new Map();
-  for (const source of sources) {
-    const blocks = normalizeHTML(source).matchAll(
-      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g
-    );
+  for (const source of normalizeMany(sources)) {
+    const blocks = source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g);
     for (const [block, data] of blocks) {
       // Parse only immutable approved input. Current metadata must match this
       // exact compact encoding, including property order and surrounding bytes.
@@ -183,17 +257,25 @@ function restoreStructuredMetadata(html, page) {
 }
 
 function restoreContentAmendment(html, page, record = amendment) {
-  for (const change of record.changes.filter((c) => c.page === page)) {
+  const changes = record.changes.filter((change) => change.page === page);
+  for (const change of changes) {
     for (const version of ['before', 'after'])
       assert.equal(
         crypto.createHash('sha256').update(change[version]).digest('hex'),
         change[version + 'SHA256'],
         'amendment snapshot integrity'
       );
-    html = normalizeHTML(html).replace(normalizeHTML(change.after), normalizeHTML(change.before));
+  }
+  // Only independent, hash-verified snapshots share one parser invocation.
+  // The evolving current document still receives its full original comparison
+  // after every replacement; it cannot become an approved snapshot.
+  const snapshots = normalizeMany(changes.flatMap((change) => [change.after, change.before]));
+  for (let index = 0; index < changes.length; index++) {
+    html = normalizeHTML(html).replace(snapshots[index * 2], snapshots[index * 2 + 1]);
   }
   return html;
 }
+
 const strip = (html) =>
   html.replace(/<svg class="space-fallback"[\s\S]*?<\/svg>/, '[same-world decorative fallback]');
 function restoreFormatterBlockSeams(html, page) {
@@ -474,6 +556,7 @@ function verify() {
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
 module.exports = {
+  createHTMLNormalizer,
   verify,
   restore,
   restoreApprovedContent,
@@ -482,4 +565,5 @@ module.exports = {
   restoreCriticalMedia,
   restoreStructuredMetadata,
   normalizeHTML,
+  normalizeMany,
 };

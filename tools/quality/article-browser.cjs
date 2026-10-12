@@ -173,6 +173,122 @@ async function observeReading(page) {
   });
 }
 
+function installArticleHistoryDiagnostics(anchor, scope = window) {
+  scope.__articleHistoryCleanup?.();
+  const document = scope.document;
+  const content = document.querySelector('#site-content');
+  const state = { samples: [], dropped: 0 };
+  let phase = 'waiting';
+  const box = (selector) => {
+    const rect = document.querySelector(selector)?.getBoundingClientRect();
+    return rect ? { top: rect.top, bottom: rect.bottom, height: rect.height } : null;
+  };
+  const snapshot = (kind, saved = null) => ({
+    kind,
+    time: scope.performance.now(),
+    scroll: scope.scrollY,
+    height: document.documentElement.scrollHeight,
+    maxScroll: Math.max(0, document.documentElement.scrollHeight - scope.innerHeight),
+    viewportHeight: scope.innerHeight,
+    focus: document.activeElement?.id || null,
+    page: document.body.dataset.page,
+    article: document.body.dataset.article || null,
+    inert: content.inert,
+    busy: content.hasAttribute('aria-busy'),
+    history: scope.structuredClone(scope.history.state?.site || null),
+    saved: scope.structuredClone(saved),
+    main: box('main'),
+    articleList: box('.article-list'),
+    footer: box('#site-content footer'),
+    waiting: document.querySelectorAll('[data-scroll-entry="waiting"]').length,
+    entering: document.querySelectorAll('[data-scroll-entry="entering"]').length,
+  });
+  const record = (kind, saved) => {
+    if (state.samples.length >= 24) {
+      state.dropped++;
+      return null;
+    }
+    const row = snapshot(kind, saved);
+    state.samples.push(row);
+    return row;
+  };
+  const activate = () => {
+    phase = 'departure';
+    state.activation = record('activation') || snapshot('activation');
+    scope.__articleArchiveDeparture = {
+      scroll: scope.scrollY,
+      focus: document.activeElement?.id,
+    };
+  };
+  const pop = (event) => {
+    phase = 'back';
+    const saved = event.state?.site || null;
+    state.popstate = record('back-popstate', saved) || snapshot('back-popstate', saved);
+  };
+  const mount = (event) => {
+    if (phase === 'departure') {
+      phase = 'article';
+      record('article-mount');
+    } else if (phase === 'back' || event.detail?.page === 'writing') {
+      phase = 'back';
+      record('back-mount');
+    }
+  };
+  const ready = () => {
+    if (phase === 'back' && !state.restoration)
+      state.restoration = record('back-page-ready') || snapshot('back-page-ready');
+  };
+  const scroll = (event) => {
+    if (phase === 'departure' || phase === 'back') {
+      const row = record('native-scroll');
+      if (row) row.trusted = event.isTrusted;
+    }
+  };
+  const observer = new scope.MutationObserver((changes) => {
+    if (
+      phase === 'departure' &&
+      !state.cleanup &&
+      changes.some((change) => change.oldValue && !change.target.hasAttribute('data-scroll-entry'))
+    ) {
+      state.cleanup = record('reading-cleanup') || snapshot('reading-cleanup');
+    }
+  });
+  observer.observe(content, {
+    subtree: true,
+    attributes: true,
+    attributeOldValue: true,
+    attributeFilter: ['data-scroll-entry'],
+  });
+  anchor.addEventListener('click', activate, { capture: true, once: true });
+  scope.addEventListener('popstate', pop, { capture: true, once: true });
+  scope.addEventListener('site:page-mount', mount);
+  scope.addEventListener('site:page-ready', ready);
+  scope.addEventListener('scroll', scroll);
+  scope.__articleHistoryDiagnostics = state;
+  scope.__articleHistorySnapshot = () => snapshot('checkpoint');
+  scope.__articleHistoryCleanup = () => {
+    observer.disconnect();
+    anchor.removeEventListener('click', activate, true);
+    scope.removeEventListener('popstate', pop, true);
+    scope.removeEventListener('site:page-mount', mount);
+    scope.removeEventListener('site:page-ready', ready);
+    scope.removeEventListener('scroll', scroll);
+  };
+}
+
+function articleHistoryCheckpoint(scope = window) {
+  return {
+    url: scope.location.href,
+    departure: scope.__articleArchiveDeparture,
+    history: scope.structuredClone(scope.history.state?.site || null),
+    focus: scope.document.activeElement?.id,
+    scroll: scope.scrollY,
+    busy: scope.document.querySelector('#site-content')?.hasAttribute('aria-busy'),
+    historyDiagnostics: scope.__articleHistoryDiagnostics,
+    geometry: scope.__articleHistorySnapshot?.(),
+  };
+}
+
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
@@ -207,18 +323,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await articleLink.scrollIntoViewIfNeeded();
     const archiveFocus = await articleLink.getAttribute('id');
     assert.ok(archiveFocus, 'article link has a stable history focus identity');
-    await articleLink.evaluate((anchor) => {
-      anchor.addEventListener(
-        'click',
-        () => {
-          window.__articleArchiveDeparture = {
-            scroll: scrollY,
-            focus: document.activeElement?.id,
-          };
-        },
-        { capture: true, once: true }
-      );
-    });
+    await articleLink.evaluate(installArticleHistoryDiagnostics);
     await articleLink.click();
     const departure = await page.evaluate(() => window.__articleArchiveDeparture);
     assert.equal(departure?.focus, archiveFocus, 'actual article activation focus');
@@ -244,6 +349,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       Math.abs((await page.evaluate(() => scrollY)) - archiveScroll) <= 2,
       'Back restored archive native scroll position'
     );
+    await page.evaluate(() => window.__articleHistoryCleanup?.());
     await page.goForward();
     await settled(page, 'article:' + key, timeout);
     await preserveShell(page);
@@ -348,18 +454,10 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       },
     };
   } catch (error) {
-    error.articleCheckpoint = await page
-      .evaluate(() => ({
-        url: location.href,
-        departure: window.__articleArchiveDeparture,
-        history: history.state?.site,
-        focus: document.activeElement?.id,
-        scroll: scrollY,
-        busy: document.querySelector('#site-content')?.hasAttribute('aria-busy'),
-      }))
-      .catch(() => null);
+    error.articleCheckpoint = await page.evaluate(articleHistoryCheckpoint).catch(() => null);
     throw error;
   } finally {
+    await page.evaluate(() => window.__articleHistoryCleanup?.()).catch(() => null);
     await context.close();
   }
 }
@@ -573,4 +671,11 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
   return { documents: 1, observations: cases.length };
 }
 
-module.exports = { articleURLs, inspectHead, articleJourney, validateArticleJourney };
+module.exports = {
+  articleURLs,
+  inspectHead,
+  installArticleHistoryDiagnostics,
+  articleHistoryCheckpoint,
+  articleJourney,
+  validateArticleJourney,
+};

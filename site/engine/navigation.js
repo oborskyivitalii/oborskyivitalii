@@ -201,7 +201,7 @@
       .filter((route, index, list) => route && list.indexOf(route) === index)
   );
   function save(fallbackFocus = null) {
-    if (content.inert || routeFor(new URL(window.location.href)) !== page) return;
+    if (departureUnavailable() || routeFor(new URL(window.location.href)) !== page) return;
     try {
       history.replaceState(
         {
@@ -223,10 +223,16 @@
       /* Native navigation still works. */
     }
   }
+  function departureUnavailable() {
+    return (
+      content.inert ||
+      content.querySelector('main')?.getAttribute('data-route-blocks') === 'departing'
+    );
+  }
   function departureFocus() {
     // Retargeting an unmounted flight can leave its departure link blurred by
-    // inert. Keep that entry's captured focus unless the reader focused a control.
-    return content.inert &&
+    // visibility or inert. Keep captured focus unless the reader focused a control.
+    return departureUnavailable() &&
       history.state?.site?.page === page &&
       (!document.activeElement || document.activeElement === document.body)
       ? history.state.site.focus

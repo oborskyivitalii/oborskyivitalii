@@ -478,7 +478,7 @@ test('project-base routing and history use distinct finite article keys while sc
       },
     },
     page: 'article:reader-profile:en',
-    content: { inert: false },
+    content: { inert: false, querySelector: () => ({ getAttribute: () => null }) },
     document: { activeElement: { id: 'article-title' } },
     window: {
       location: {

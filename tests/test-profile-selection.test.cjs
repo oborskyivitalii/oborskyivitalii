@@ -317,16 +317,17 @@ test('selected execution keeps real process failure and accounting evidence with
     },
   });
   assert.deepEqual(called, [
-    path.join(root, 'tools/quality/source-tests.cjs'),
-    '--worker',
+    require.resolve('../tools/quality/source-tests.cjs'),
+    '--execute',
     'tests/content.test.cjs',
   ]);
   assert.equal(success.total, 2);
+  assert.deepEqual(success.executionOrder, plan.modules);
   assert.equal(success.workerLimit, 2);
   assert.ok(success.availableParallelism >= 1);
   const modules = ['tests/content.test.cjs', 'tests/executive.test.cjs', 'tests/space.test.cjs'];
   const original = [...modules];
-  assert.deepEqual(runner.executionOrder(modules), [modules[2], modules[1], modules[0]]);
+  assert.deepEqual(runner.executionOrder(root, modules), [modules[2], modules[1], modules[0]]);
   assert.deepEqual(modules, original, 'scheduling never changes the selected inventory');
   for (const invalid of [
     [modules[2], modules[1]],
@@ -381,6 +382,154 @@ test('selected execution keeps real process failure and accounting evidence with
       '--plan',
     ]).plan,
     true
+  );
+});
+
+test('size scheduling executes the exact selected inventory with lexical ties and isolated bounded processes', (t) => {
+  const f = fixture(t),
+    files = ['tests/aaa-tie.test.cjs', 'tests/bbb-tie.test.cjs', 'tests/zzz-large.test.cjs'],
+    observed = path.join(f.directory, 'observed.jsonl');
+  const source = `
+'use strict';
+const test = require('node:test'), assert = require('node:assert/strict'), fs = require('node:fs'), path = require('node:path');
+const file = path.basename(__filename);
+const observe = kind => fs.appendFileSync(${JSON.stringify(observed)}, JSON.stringify({kind,file,pid:process.pid})+'\\n');
+observe('start');
+test(file, async () => {
+  assert.equal(globalThis.issue5OtherModule, undefined, 'test modules keep independent global state');
+  globalThis.issue5OtherModule = file;
+  await new Promise(resolve => setTimeout(resolve, 50));
+  observe('finish');
+});
+`;
+  for (const file of files)
+    f.write(file, source + (file.includes('large') ? '//' + 'x'.repeat(6000) : ''));
+  let output;
+  const environment = { ...process.env };
+  delete environment.NODE_TEST_CONTEXT;
+  const result = runner.run(
+    f.directory,
+    { profile: 'production', modules: files },
+    {
+      execute: (argv) => {
+        output = cp.spawnSync(process.execPath, argv, {
+          cwd: f.directory,
+          env: environment,
+          encoding: 'utf8',
+          timeout: 10000,
+        });
+        return output;
+      },
+    }
+  );
+  assert.deepEqual(result.modules, files, 'canonical selected inventory stays stable');
+  assert.deepEqual(result.executionOrder, [files[2], files[0], files[1]]);
+  assert.equal(new Set(result.executionOrder).size, files.length);
+  assert.equal(result.total, files.length);
+  assert.equal(result.passed, files.length);
+  const captions = [...output.stdout.matchAll(/^# Subtest: (.+)$/gm)].map((match) => match[1]);
+  assert.deepEqual(
+    captions,
+    result.executionOrder.map((file) => path.basename(file)),
+    'actual primary runner preserves supplied order'
+  );
+  const events = fs
+    .readFileSync(observed, 'utf8')
+    .trim()
+    .split('\n')
+    .map((line) => JSON.parse(line));
+  const active = new Set(),
+    pids = new Set();
+  for (const event of events) {
+    pids.add(event.pid);
+    if (event.kind === 'start') active.add(event.pid);
+    else assert.ok(active.delete(event.pid), 'each finish belongs to a started process');
+    assert.ok(active.size <= 2, 'only two selected test processes run together');
+  }
+  assert.equal(active.size, 0);
+  assert.equal(pids.size, files.length, 'every selected module owns a distinct process');
+  assert.ok(!pids.has(process.pid));
+  for (const invalid of [[files[0], files[0]], ['../escape.test.cjs'], ['tests/not-a-test.cjs']])
+    assert.throws(
+      () => runner.run(f.directory, { profile: 'production', modules: invalid }),
+      /duplicate|unsafe|unsupported/
+    );
+  const linked = 'tests/linked.test.cjs';
+  fs.symlinkSync(path.join(f.directory, files[0]), path.join(f.directory, linked));
+  assert.throws(
+    () => runner.run(f.directory, { profile: 'production', modules: [linked] }),
+    /regular/
+  );
+});
+test('ordered process execution preserves real failures and rejects exit before any case completes', (t) => {
+  const f = fixture(t),
+    file = 'tests/content.test.cjs',
+    plan = { profile: 'production', modules: [file] };
+  for (const [source, message] of [
+    [
+      "const test=require('node:test');test('actual failure',()=>{throw Error('observable original failure');});\n",
+      /observable original failure/,
+    ],
+    [
+      "const test=require('node:test');test('async rejection',async()=>{throw Error('observable rejected promise');});\n",
+      /observable rejected promise/,
+    ],
+    [
+      "const test=require('node:test');test('uncaught callback',async()=>{setTimeout(()=>{throw Error('observable uncaught callback');},0);await new Promise(resolve=>setTimeout(resolve,50));});\n",
+      /observable uncaught callback/,
+    ],
+  ]) {
+    f.write(file, source);
+    assert.throws(() => runner.run(f.directory, plan), message);
+  }
+  f.write(
+    file,
+    "const test=require('node:test');test('partial real case',()=>{process.exit(0);});\n"
+  );
+  assert.throws(
+    () => runner.run(f.directory, plan),
+    /selected source test process failed|empty selected test module|no actual named|missing\/duplicate Node|not all selected/
+  );
+});
+
+test('ordered execution aborts and reaps isolated children on the original parent timeout signal', (t) => {
+  const f = fixture(t),
+    file = 'tests/content.test.cjs',
+    pidFile = path.join(f.directory, 'child.pid');
+  f.write(
+    file,
+    `const fs=require('node:fs'),test=require('node:test');fs.writeFileSync(${JSON.stringify(pidFile)},String(process.pid));test('bounded pending case',async()=>{await new Promise(resolve=>setTimeout(resolve,30000));});\n`
+  );
+  let observed;
+  const environment = { ...process.env };
+  delete environment.NODE_TEST_CONTEXT;
+  assert.throws(
+    () =>
+      runner.run(
+        f.directory,
+        { profile: 'production', modules: [file] },
+        {
+          execute: (argv) => {
+            observed = cp.spawnSync(process.execPath, argv, {
+              cwd: f.directory,
+              env: environment,
+              encoding: 'utf8',
+              timeout: 1000,
+            });
+            return observed;
+          },
+        }
+      ),
+    /ETIMEDOUT/
+  );
+  assert.equal(observed.error.code, 'ETIMEDOUT');
+  assert.notEqual(observed.status, 0);
+  const pid = Number(fs.readFileSync(pidFile, 'utf8'));
+  assert.ok(Number.isSafeInteger(pid) && pid > 0);
+  assert.throws(
+    () => process.kill(pid, 0),
+    (error) => error.code === 'ESRCH',
+    'aborted isolated child is no longer alive'
   );
 });
 

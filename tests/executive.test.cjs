@@ -4,6 +4,120 @@ const test = require('node:test'),
   fs = require('node:fs');
 const { normalizeHTML } = require('../tools/check_site_seo.cjs');
 const readHTML = (file) => normalizeHTML(fs.readFileSync(file, 'utf8'));
+test('normalization cache keeps recent exact inputs within entry and UTF-8 bounds without caching failures', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  let calls = 0;
+  const cache = createHTMLNormalizer((requests) => {
+    calls++;
+    if (requests[0].source === 'invalid') throw Error('Invalid fixture HTML');
+    return [[['text', requests[0].source]]];
+  });
+  cache.normalizeHTML('hot exact bytes');
+  for (let index = 0; index < 140; index++) {
+    cache.normalizeHTML('cold exact bytes ' + index);
+    cache.normalizeHTML('hot exact bytes');
+  }
+  assert.equal(calls, 141, 'recent exact inputs survive newer unique candidates');
+  assert.equal(cache.normalizeHTML('changed exact bytes'), 'changed exact bytes');
+  assert.equal(calls, 142, 'changed bytes always receive fresh validation');
+  for (let attempt = 0; attempt < 2; attempt++)
+    assert.throws(() => cache.normalizeHTML('invalid'), /Invalid fixture HTML/);
+  assert.equal(calls, 144, 'failed normalization is never reused');
+  const oversized = '€'.repeat(800000);
+  assert.ok(oversized.length * 2 < 4 * 1024 * 1024);
+  assert.ok(Buffer.byteLength(oversized, 'utf8') * 2 > 4 * 1024 * 1024);
+  for (let attempt = 0; attempt < 2; attempt++)
+    assert.equal(cache.normalizeHTML(oversized), oversized);
+  assert.equal(calls, 146, 'oversized UTF-8 entries bypass the cache');
+  assert.ok(cache.cacheStats().entries <= 128);
+  assert.ok(cache.cacheStats().bytes <= 4 * 1024 * 1024);
+  assert.ok(Object.isFrozen(cache.cacheStats()), 'cache statistics cannot mutate owned state');
+  cache.normalizeHTML('cold exact bytes 0');
+  assert.equal(calls, 147, 'old unused inputs are evicted within the original entry bound');
+});
+test('HTML batch normalization preserves order and bounds original UTF-8 requests before deduplication', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  const requests = [];
+  const cache = createHTMLNormalizer((rows) => {
+    requests.push(rows);
+    return rows.map(({ source }) => [['text', source]]);
+  });
+  assert.deepEqual(cache.normalizeMany([]), []);
+  assert.equal(requests.length, 0, 'empty batches do not start a parser');
+  for (const invalid of [null, 'html', [null], [1], Array(129).fill('same')])
+    assert.throws(() => cache.normalizeMany(invalid), /SEO HTML batch/);
+  const unicode = '€'.repeat(700000);
+  assert.ok(unicode.length * 2 < 4 * 1024 * 1024);
+  assert.throws(() => cache.normalizeMany([unicode, unicode]), /UTF-8 byte bound/);
+  assert.equal(requests.length, 0, 'invalid original inputs fail before parser invocation');
+  assert.deepEqual(cache.normalizeMany(['second', 'first', 'second']), [
+    'second',
+    'first',
+    'second',
+  ]);
+  assert.deepEqual(
+    requests[0].map(({ source }) => source),
+    ['second', 'first']
+  );
+  assert.deepEqual(cache.normalizeMany(['first', 'changed first', 'second']), [
+    'first',
+    'changed first',
+    'second',
+  ]);
+  assert.deepEqual(
+    requests[1].map(({ source }) => source),
+    ['changed first']
+  );
+  assert.equal(cache.normalizeHTML('changed first'), 'changed first');
+  assert.equal(requests.length, 2, 'single and batch calls share only exact validated bytes');
+});
+test('HTML batch normalization never caches partial or malformed parser coverage', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  let mode = 'not-array';
+  const requests = [];
+  const cache = createHTMLNormalizer((rows) => {
+    requests.push(rows);
+    if (mode === 'not-array') return null;
+    if (mode === 'incomplete') return [[['text', rows[0].source]]];
+    if (mode === 'malformed') return [[['text', rows[0].source]], [['unsupported', 'bad']]];
+    if (mode === 'sparse') {
+      const contracts = Array(rows.length);
+      contracts[0] = [['text', rows[0].source]];
+      return contracts;
+    }
+    return rows.map(({ source }) => [['text', source]]);
+  });
+  for (const failure of ['not-array', 'incomplete', 'malformed', 'sparse']) {
+    mode = failure;
+    assert.throws(() => cache.normalizeMany(['valid first', 'later row']), /SEO HTML/);
+    assert.deepEqual(cache.cacheStats(), { entries: 0, bytes: 0 });
+  }
+  mode = 'valid';
+  assert.deepEqual(cache.normalizeMany(['valid first', 'later row']), ['valid first', 'later row']);
+  assert.equal(requests.length, 5);
+  assert.ok(
+    requests.every((rows) => rows.length === 2),
+    'every failed row is parsed again'
+  );
+});
+test('batched primary HTML contracts equal separate parsing and retain raw script/style and inline bytes', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  const inputs = [
+    '<!doctype html><!-- exact comment --><p title="A &amp; B">Left <em>middle</em> right.</p>',
+    '<script type="application/json">{"key": 1, "entity": "&amp;"}</script><style>p > em { color: red; }</style>',
+    '<input disabled /><p title="A &amp; B">Left<em>middle</em> right.</p>',
+  ];
+  const batch = createHTMLNormalizer();
+  const separate = createHTMLNormalizer();
+  const expected = inputs.map((input) => separate.normalizeHTML(input));
+  assert.deepEqual(batch.normalizeMany(inputs), expected);
+  assert.notEqual(expected[0].replace(/^.*?<p/, '<p'), expected[2].replace(/^.*?<p/, '<p'));
+  assert.ok(expected[1].includes('{"key": 1, "entity": "&amp;"}'));
+  const invalid = inputs[0].replace('title=', 'title="duplicate" title=');
+  const cold = createHTMLNormalizer();
+  assert.throws(() => cold.normalizeMany([inputs[1], invalid]), /Duplicate HTML attribute/);
+  assert.deepEqual(cold.cacheStats(), { entries: 0, bytes: 0 });
+});
 test('HTML reconciliation accepts source spelling changes while preserving inline separators, attributes and raw bytes', () => {
   const original =
     '<p data-label="A &amp; B">Left <strong>middle</strong> right.</p><input disabled><script type="application/json">{"x": 1}</script>';

@@ -1,7 +1,11 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { validateArticleJourney } = require('../tools/quality/article-browser.cjs');
+const {
+  validateArticleJourney,
+  installArticleHistoryDiagnostics,
+  articleHistoryCheckpoint,
+} = require('../tools/quality/article-browser.cjs');
 const stage = require('../tools/quality/staging-regression.cjs');
 const fixture = require('./fixtures/staging-evidence.cjs');
 
@@ -222,4 +226,123 @@ test('the staging collector exercises articles only on its admitted Chromium and
       }
     }
   }
+});
+
+test('bounded article history diagnostics retain original Back state and geometry without changing native owners', () => {
+  const listeners = new Map();
+  const anchorListeners = new Map();
+  const events = (target) => ({
+    addEventListener(type, callback, options) {
+      const rows = target.get(type) || [];
+      rows.push({ callback, once: options?.once === true });
+      target.set(type, rows);
+    },
+    removeEventListener(type, callback) {
+      target.set(
+        type,
+        (target.get(type) || []).filter((row) => row.callback !== callback)
+      );
+    },
+  });
+  const emit = (target, type, event = {}) => {
+    for (const row of [...(target.get(type) || [])]) {
+      row.callback(event);
+      if (row.once)
+        target.set(
+          type,
+          target.get(type).filter((next) => next !== row)
+        );
+    }
+  };
+  let observer;
+  let reads = 0;
+  const content = { inert: false, hasAttribute: () => false };
+  const rect = { top: 105, bottom: 4472, height: 4367 };
+  const element = {
+    getBoundingClientRect() {
+      reads++;
+      return rect;
+    },
+  };
+  const scope = {
+    ...events(listeners),
+    performance: { now: () => 100 },
+    scrollY: 3770,
+    innerHeight: 844,
+    structuredClone,
+    location: { href: baseURL + '/writing?topic=systems&language=en' },
+    history: { state: { site: { page: 'writing', scroll: [0, 0], focus: null } } },
+    scrollTo() {
+      assert.fail('an observational diagnostic cannot scroll');
+    },
+    document: {
+      documentElement: { scrollHeight: 4666 },
+      activeElement: { id: 'article-link-representative-en' },
+      body: { dataset: { page: 'writing' } },
+      querySelector: (selector) => (selector === '#site-content' ? content : element),
+      querySelectorAll: () => [],
+    },
+    MutationObserver: class {
+      constructor(callback) {
+        this.callback = callback;
+        observer = this;
+      }
+      observe(target, options) {
+        assert.equal(target, content);
+        assert.deepEqual(options.attributeFilter, ['data-scroll-entry']);
+      }
+      disconnect() {
+        this.disconnected = true;
+      }
+    },
+  };
+  const anchor = events(anchorListeners);
+  const originalHistory = scope.history;
+  const originalScroll = scope.scrollTo;
+  installArticleHistoryDiagnostics(anchor, scope);
+  emit(anchorListeners, 'click');
+  assert.deepEqual(scope.__articleArchiveDeparture, {
+    scroll: 3770,
+    focus: 'article-link-representative-en',
+  });
+  scope.scrollY = 3733;
+  observer.callback([{ oldValue: 'waiting', target: { hasAttribute: () => false } }]);
+  assert.equal(scope.__articleHistoryDiagnostics.cleanup.scroll, 3733);
+  const diagnostic = scope.__articleHistoryDiagnostics;
+  for (let index = 0; index < 50; index++) emit(listeners, 'scroll', { isTrusted: true });
+  assert.equal(diagnostic.samples.length, 24);
+  assert.ok(diagnostic.dropped > 0);
+  const boundedReads = reads;
+  emit(listeners, 'scroll', { isTrusted: true });
+  assert.equal(reads, boundedReads, 'samples beyond the bound do not force layout');
+  emit(listeners, 'site:page-mount');
+  const popped = {
+    page: 'writing',
+    scroll: [0, 3770],
+    focus: 'article-link-representative-en',
+  };
+  scope.scrollY = 3607;
+  scope.history.state.site = { ...popped, scroll: [0, 3607] };
+  scope.document.documentElement.scrollHeight = 4451;
+  emit(listeners, 'site:page-mount', { detail: { page: 'writing' } });
+  emit(listeners, 'site:page-ready');
+  emit(listeners, 'popstate', { state: { site: popped } });
+  popped.scroll[1] = 3607;
+  assert.equal(diagnostic.popstate.saved.scroll[1], 3770, 'original saved Back position');
+  assert.equal(diagnostic.restoration.scroll, 3607, 'actual native restoration');
+  assert.equal(diagnostic.restoration.maxScroll, 3607, 'restoration maximum explains clamp');
+  const completedReads = reads;
+  emit(listeners, 'scroll', { isTrusted: true });
+  emit(listeners, 'site:page-ready');
+  assert.equal(reads, completedReads, 'completed critical snapshots do not repeat layout');
+  const checkpoint = articleHistoryCheckpoint(scope);
+  assert.equal(checkpoint.history.scroll[1], 3607);
+  assert.equal(checkpoint.historyDiagnostics.popstate.saved.scroll[1], 3770);
+  assert.equal(checkpoint.geometry.maxScroll, 3607);
+  scope.__articleHistoryCleanup();
+  assert.equal(observer.disconnected, true);
+  assert.ok([...listeners.values(), ...anchorListeners.values()].every((rows) => !rows.length));
+  assert.equal(scope.history, originalHistory);
+  assert.equal(scope.scrollTo, originalScroll);
+  assert.equal(content.inert, false);
 });

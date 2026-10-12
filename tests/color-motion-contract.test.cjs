@@ -12,7 +12,11 @@ function manifest(id) {
   const value = fixture.manifest(),
     runtime = motion.reviewedRuntime(id);
   value.variant = runtime.variant;
-  value.components = { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant };
+  value.components = {
+    contract: 1,
+    engine: runtime.variant.fingerprint,
+    variant: runtime.variant,
+  };
   if (runtime.edition === 'staging')
     value.edition = { id: 'staging', indexable: false, analytics: false };
   for (const [name, sha256] of Object.entries(runtime.files))
@@ -56,7 +60,12 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
                 separator: 'bottom',
                 separatorSource: 'unit',
                 borderOwner: '2',
-                separatorPaint: { width: 1, length: 300, style: 'solid', color: 'rgb(20, 30, 40)' },
+                separatorPaint: {
+                  width: 1,
+                  length: 300,
+                  style: 'solid',
+                  color: 'rgb(20, 30, 40)',
+                },
               },
             ]
           : []),
@@ -82,10 +91,26 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
     },
     { stage: 'holding', cameraStage: 'center', framing: 0.4, units: [] },
     { stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
-    { kind: 'mount', stage: 'holding', cameraStage: 'transit', framing: 1, units: [] },
+    {
+      kind: 'mount',
+      stage: 'holding',
+      cameraStage: 'transit',
+      framing: 1,
+      units: [],
+    },
     { stage: 'holding', cameraStage: 'restore', framing: 0.4, units: [] },
-    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 200 * sign) },
-    { stage: 'arriving', cameraStage: 'settled', framing: 0, units: units('arriving', 20 * sign) },
+    {
+      stage: 'arriving',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('arriving', 200 * sign),
+    },
+    {
+      stage: 'arriving',
+      cameraStage: 'settled',
+      framing: 0,
+      units: units('arriving', 20 * sign),
+    },
   ].map((sample, index) => ({
     kind: 'progress',
     progress: index / 8,
@@ -95,7 +120,11 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
     travel: sample.cameraStage === 'transit' ? 'flying' : 'settled',
     borderSources:
       sample.stage === 'departing' || sample.stage === 'arriving'
-        ? [{ sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }] }]
+        ? [
+            {
+              sides: [{ owner: '2', side: 'bottom', color: 'rgba(0, 0, 0, 0)' }],
+            },
+          ]
         : [],
     ...sample,
   }));
@@ -162,8 +191,16 @@ function evidence(id) {
   }
   return value;
 }
-test('only the eight reviewed plain/staging runtime tuples select a camera and flight contract', () => {
-  for (const family of ['legacy', 'fixed', 'issue76', 'issue5'])
+test('only the fourteen reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+  for (const family of [
+    'legacy',
+    'fixed',
+    'issue76',
+    'issue5',
+    'issue5-continuation',
+    'issue5-history',
+    'issue5-departure',
+  ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
         selected = manifest(id);
@@ -203,6 +240,8 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-staging',
     'issue5-plain',
     'issue5-staging',
+    'issue5-departure-plain',
+    'issue5-departure-staging',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -257,7 +296,11 @@ test('issue76 rejects mixed reviewed bytes and editions in both canonical and im
     }
     const wrongEdition = manifest(id);
     if (id === 'issue76-plain') {
-      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+      wrongEdition.edition = {
+        id: 'staging',
+        indexable: false,
+        analytics: false,
+      };
     } else {
       delete wrongEdition.edition;
     }
@@ -286,7 +329,11 @@ test('issue5 rejects prior navigation or reading CSS and mismatched plain/stagin
     assert.throws(() => motion.select(mixedStyle), /Color bytes/);
     const wrongEdition = manifest(id);
     if (edition === 'plain') {
-      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+      wrongEdition.edition = {
+        id: 'staging',
+        indexable: false,
+        analytics: false,
+      };
     } else {
       delete wrongEdition.edition;
     }
