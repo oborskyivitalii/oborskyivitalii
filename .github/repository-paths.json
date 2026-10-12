@@ -481,37 +481,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d": {
+    "docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0": {
       "kind": "directory",
       "purpose": "Generated immutable browser runtime edition; regenerate through the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/archive.js": {
+    "docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable browser runtime asset; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/navigation.js": {
+    "docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable browser runtime asset; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/space.js": {
+    "docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/space.js": {
       "kind": "file",
       "purpose": "Generated immutable browser runtime asset; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/styles.css": {
+    "docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable browser runtime asset; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/theme.js": {
+    "docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable browser runtime asset; exact bytes owned by the authored site builder.",
       "role": "generated",
@@ -565,25 +565,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b": {
+    "docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645": {
       "kind": "directory",
       "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9": {
-      "kind": "directory",
-      "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9/writing.html": {
+    "docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
@@ -601,6 +589,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479": {
+      "kind": "directory",
+      "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -613,18 +613,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b": {
-      "kind": "directory",
-      "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -634,6 +622,18 @@
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e": {
+      "kind": "directory",
+      "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -661,25 +661,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352": {
+    "docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431": {
       "kind": "directory",
       "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352/index.html": {
+    "docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431/research.html": {
       "kind": "file",
       "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d": {
+    "docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a": {
       "kind": "directory",
       "purpose": "Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d/credits.html": {
+    "docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
@@ -6735,7 +6735,7 @@
     },
     "site/engine/navigation.js": {
       "kind": "file",
-      "purpose": "Persistent header/Canvas route mounting, exact pinned snapshots and history fallback.",
+      "purpose": "Persistent native route/history mounting with exact snapshots; capture departure before layout, cancel inherited smooth scrolling before asynchronous read within native-failure cleanup/fallback, and preserve deliberate read-time focus/scroll changes.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -7365,7 +7365,7 @@
     },
     "tests/article-browser-evidence.test.cjs": {
       "kind": "file",
-      "purpose": "Mandatory conditional five-case native article browser evidence, exact article/lang/engine/version/base identity and omitted/duplicated/false-case negatives.",
+      "purpose": "Mandatory conditional article identity/evidence negatives and bounded history diagnostics; primitive activation capture must precede geometry/layout reads that can change the departure state.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -7449,7 +7449,7 @@
     },
     "tests/color-motion-contract.test.cjs": {
       "kind": "file",
-      "purpose": "Exact Color family/tuple inventory and malformed/substituted identity negatives, including preserved prior runtime families and current departure-history admission.",
+      "purpose": "Exact eight-family/sixteen-tuple Color inventory, preserved prior identities and malformed/substituted runtime/evidence negatives including native smooth-scroll correction.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -7575,7 +7575,7 @@
     },
     "tests/navigation.test.cjs": {
       "kind": "file",
-      "purpose": "Permanent native route/history/focus and serial interruption checks, including queued-save suppression through held departing/inert phases and deliberate readable-state changes during asynchronous reads.",
+      "purpose": "Permanent native history/focus and interruption checks: smooth-scroll cancellation before read, native-throw cleanup/fallback, matching saved hidden/inert retarget state, queued-save suppression and deliberate readable-state input preservation.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -7737,7 +7737,7 @@
     },
     "tests/staging-regression.test.cjs": {
       "kind": "file",
-      "purpose": "Selected hosted matrix, real measurement contracts and omitted/malformed/failed evidence negative fixtures.",
+      "purpose": "Bounded hosted selection and real evidence negatives; authored runtime/effects identity must match preserved/current Color tuples including native smooth-scroll/capture-before-layout correction.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -8223,7 +8223,7 @@
     },
     "tools/quality/article-browser.cjs": {
       "kind": "file",
-      "purpose": "Conditional finite native article browser journey and strict positive evidence completeness/identity validation.",
+      "purpose": "Conditional finite native article journeys with primitive activation capture before geometry/layout, bounded native history diagnostics and strict evidence completeness/identity validation.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -8301,7 +8301,7 @@
     },
     "tools/quality/color-motion-contract.cjs": {
       "kind": "file",
-      "purpose": "Exact reviewed Color artifact-family dispatch and strict motion/reading guards, preserving prior families while admitting the source-bound native departure-history correction.",
+      "purpose": "Exact reviewed Color dispatch across eight families/sixteen plain-staging tuples; preserve fourteen prior tuples while admitting source-bound native smooth-scroll cancellation and capture-before-layout runtime.",
       "role": "validator",
       "owner": "guides/SITE-STAGING.md"
     },

@@ -191,7 +191,7 @@ function evidence(id) {
   }
   return value;
 }
-test('only the fourteen reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+test('only the sixteen reviewed plain/staging runtime tuples select a camera and flight contract', () => {
   for (const family of [
     'legacy',
     'fixed',
@@ -200,6 +200,7 @@ test('only the fourteen reviewed plain/staging runtime tuples select a camera an
     'issue5-continuation',
     'issue5-history',
     'issue5-departure',
+    'issue5-smooth',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -242,6 +243,8 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue5-staging',
     'issue5-departure-plain',
     'issue5-departure-staging',
+    'issue5-smooth-plain',
+    'issue5-smooth-staging',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);

@@ -135,6 +135,110 @@ The independent source/controller/collector review and48 RI/CI regressions
 passed before the run. Final report/catalog refresh, formatting/scanners and
 clean published-source source/owning/hosted admission remain their own results.
 
+## Managed242 failure and bounded native correction
+
+Published242 source Basic38284606215 passes683/683 in165.190s with two workers;
+navigation38284605155 and both owning runs38284605176/38284683092 pass.
+Its managed preview38284605794 remains failed. Artifact11763360562 preserves
+the first1440px article Back failure on candidate83a005df: activation2297,
+saved/pop/Back2004, with correct focus and unchanged height3197/max2297.
+Native scroll eases through successive positions during the asynchronous read;
+this is departure drift, not remount clamping. The exact focus/actionability
+initiator is inferred rather than proved by that checkpoint.
+
+| ID | Evidence | Correction and remaining check |
+| --- | --- | --- |
+| F26 | Managed same-height progressive native scroll before mount; explicit native-smooth old/new reproduction | Copy ordinary viewport or same-page unavailable departure history before interrupt; use the existing instant native helper once after interrupt. Fresh read-time controls/scroll still win at the existing final save. |
+| F27 | Collector geometry reads before expected activation capture; an actual adverse fixture changes scroll/focus on its first layout read | Copy primitive expected scroll/focus before all diagnostic geometry; original strict2px/2000ms assertion retained. |
+
+The [CSSOM View scrolling algorithm](https://drafts.csswg.org/cssom-view/#perform-a-scroll)
+describes cancelling an ongoing smooth scroll before an instant scroll. This
+8October2026 editor draft is a supporting mechanism reference, not browser
+acceptance. The corrected runtime adds one bounded call to the existing native
+helper, with no new timer/RAF or CSS preference mutation. Matching saved departure
+history is used only for unavailable same-page retargets; popped destination
+history cannot replace the outgoing viewport. Ordinary changes during a read
+remain saveable. Two new actual-harness cases fail242 and pass the correction;
+all46 mapped navigation cases and the scoped article-history case pass.
+
+Independent collector review reproduces the bad measurement order. The adverse
+fixture fails committed242 with3607/changed-by-layout versus original3770/link;
+all4 current evidence cases pass after the correction. An initial scratch import
+failure was setup-only and is not the negative behavior proof.
+
+The bounded native browser proof starts an actual smooth scroll and delays only
+the selected article snapshot450ms. The source-exact old242 runtime reproduces
+2297→2004 and strict timeout; new runtime preserves2297 through saved/pop/Back
+and passes the original2px/2000ms check. Geometry and focus match. No scroll,
+history or RAF override is used. These are explicitly review-only153.0.8010.0
+observations, not managed or clean-head admission. The older artifact preparation
+remains qualified as exact runtime bytes rather than exact242 artifact production.
+
+Authored owners regenerate default documents, previews and the actual offline
+bundle. A distinct`issue5Smooth` family binds this correction's plain/staging
+bytes, preserving all seven prior families/fourteen tuples; the existing complete
+positive/wrong-byte guards cover sixteen tuples. Scoped Color/staging cases pass
+24/24. Independent current checksum proof verifies another184 exact public findings
+(44 values/30 paths), preserving1186 prior objects and appending only those184
+for1370 unique records. The actual58-entry ZIP is2,368,353 bytes; primary
+documents, five embedded payload hashes and all65 staged files reproduce.
+The87 raw CI findings remain on their existing derived verification route and
+are excluded from this append. Final source/RI/scanners and exact-head managed
+hosted/staging results are the next admission steps; prior failures stay failed.
+
+## Final native boundary and nonintrusive collector
+
+The earlier46-case/prototype composition and checksum record above remain
+historical prepared observations. A final regression exposed an exception path:
+the new native restore initially sat outside the existing error boundary.
+Moving that synchronous call inside the existing `try`, before the first await,
+preserves ordinary HTML fallback and finally cleanup when native scroll throws.
+The unsafe preparation fails that case; final authored navigation `9d4d243f`
+passes all47 mapped navigation cases and the scoped article-history case.
+Query/fragment, no history/flight commit, and busy/inert/route/timer cleanup
+are checked rather than inferred.
+
+The collector now makes activation primitive-only: time, scroll and focus with
+no rectangle or scroll-height read before the router cancels native motion.
+The strengthened existing adverse fixture proves both read counts stay zero,
+live values remain unchanged at activation, and later geometry can change live
+values without changing the expected departure. All4 evidence cases pass;
+the strict browser assertion and24-sample cap remain unchanged. The first
+formatter invocation used default settings; the pinned repository settings
+restored the narrow change before proof/admission. The intermediate stale-line
+checksum helper rejection remains a preparation failure, not scanner admission.
+
+Final composition binds base `2708a2e1`, navigation `f60f16a7`, plain `dc829c53`
+and staging `95b145ea`; all14 published historical tuples remain exact and the
+16-tuple Color/staging source selection passes24/24. The final review-only
+native proof uses those runtime bytes and final collector `c16fbd05`, preserving
+2297px through activation/save/pop/Back with unchanged geometry and original
+2px/2000ms assertion. It remains explicit Chromium153 review-only observation,
+not managed hosted, clean-source, physical-device or publication acceptance.
+
+The final default ZIP has 58 entries, 2368388 bytes and SHA256 `a2ee4a92` (full identity in the generated manifest and retained proof).
+Fresh individually proved checksum findings remain184/44values/30paths;
+Independent final derivation verifies the exact184 additions and preserves all
+1186 published prior objects. The applied publication ledger has1370 unique
+entries; the other three ledgers and scanner rules are unchanged. Source proof
+`8e1b0ae4` and pre-application proposal `f14e094a` bind this final generation,
+not the earlier unpublished prototype.
+The whole selected source run, final RI/scanners and exact-head managed preview
+then authorized controller staging remain separate delivery observations.
+
+## Final complete prepared-source result
+
+All686 cases in59 selected modules pass in179,167ms on two CPUs, with zero
+failures, skips, cancellations or TODOs. Exact prepared index `bb7404b2` and69
+selected/critical source fingerprints are retained in `finalNative686FullPass`.
+The original180,000ms/16MiB bound, two isolated workers and complete selected
+case set remain. This observation has a narrow timing margin and makes no speed
+guarantee; fresh clean-head CI remains the delivery source result.
+Final direct RI/CI was fresh before that run. Subsequent edits only record this
+outcome and regenerate metadata; they do not change the checked runtime/test
+program. Final Basic/format/lint/security and exact-head managed admission then
+controller staging remain separate observations.
+
 ## Tasks and acceptance evidence
 
 | Task | Owner paths | Check | Status |
@@ -144,7 +248,7 @@ clean published-source source/owning/hosted admission remain their own results.
 | CI03 | Profile registry, RI/CI and delivery records | Complete inventory, independent review and exact-head source/hosted checks | Pending final source commit |
 | F25 | Authored navigation, existing navigation/article fixtures and Color source contract | Old actual native-scroll/Back failure; held timer/read/retarget cases; independent current-runtime browser observation | Source and new prepared/review-only browser proof pass; exact hosted admission remains required |
 
-The whole-source measurement must finish before publication of this correction;
+The whole-source measurement is complete before publication of this correction;
 fresh GitHub Basic/navigation/owning/hosted checks then bind the exact clean head.
 Existing controller staging remains a separate observed step. No merge,
 production activation, external post or upstream disposition is supplied by CI.

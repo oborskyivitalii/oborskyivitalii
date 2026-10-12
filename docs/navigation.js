@@ -1402,6 +1402,13 @@ window.SiteScrollEntry=(function () {
       ? history.state.site.focus
       : undefined;
   }
+  function departurePosition() {
+    const saved =
+      departureUnavailable() && history.state?.site?.page === page
+        ? history.state.site.scroll
+        : null;
+    return [saved?.[0] ?? window.scrollX, saved?.[1] ?? window.scrollY];
+  }
   function saveDeparture(destination, pop, initial, fallbackFocus) {
     if (!pop && !initial && destination.href !== window.location.href) save(fallbackFocus);
   }
@@ -2001,6 +2008,7 @@ window.SiteScrollEntry=(function () {
     const currentScene = routes.includes(page) ? page : 'writing';
     const direction = routes.indexOf(nextScene) >= routes.indexOf(currentScene) ? 1 : -1;
     const interruptedFocus = departureFocus();
+    const interruptedPosition = departurePosition();
     const own = ++serial;
     interrupt();
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
@@ -2019,6 +2027,9 @@ window.SiteScrollEntry=(function () {
     const timeout = window.setTimeout(() => controller.abort(), 8000);
     content.setAttribute('aria-busy', 'true');
     try {
+      // Stop a native smooth focus/anchor scroll inherited from activation.
+      // Fresh reading input during the asynchronous read still reaches saveDeparture.
+      restoreScroll(interruptedPosition[0], interruptedPosition[1]);
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);

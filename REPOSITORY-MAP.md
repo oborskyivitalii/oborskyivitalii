@@ -38,19 +38,19 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d](docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d) | Generated immutable browser runtime edition; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0](docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0) | Generated immutable browser runtime edition; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b](docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9](docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645](docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479](docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b](docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e](docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352](docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d](docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431](docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a](docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a) | Generated immutable exact-route HTML snapshot directory; regenerate through the authored site builder. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -279,15 +279,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/
+## docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/archive.js](docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/archive.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/navigation.js](docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/navigation.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/space.js](docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/space.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/styles.css](docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/styles.css) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/theme.js](docs/runtime/c32097fa36598b2fea92e1af6882d877063dd06dc03fb6e88b3d3eeb2559b40d/theme.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/archive.js](docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/archive.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/navigation.js](docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/navigation.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/space.js](docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/space.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/styles.css](docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/styles.css) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/theme.js](docs/runtime/2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0/theme.js) | Generated immutable browser runtime asset; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
 ## docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 
@@ -299,17 +299,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b/
+## docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b/talks.html](docs/snapshots/1bf1a9f6a3819d9d476e1ea288d073d7eb284f6b20bfcad0f748f5aa6bcb194b/talks.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9/writing.html](docs/snapshots/2feb0312fa1a47bdf3d2d3ad632ae2bbc72cf22743bd5239fd7a6af895c643c9/writing.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645/talks.html](docs/snapshots/3b8e5d437526b14bd9543fa9437a74a0860812c83c14fd7e609e3570bd7bb645/talks.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -317,23 +311,29 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479/writing.html](docs/snapshots/7199177f05999292bf566b2728e15cc8112bf7b5d07988304b95f598c87dc479/writing.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b/research.html](docs/snapshots/7e5d26c86d78d33d6adfdaf9d2cd56bc2b21843216ca734269f3cefa318c2a9b/research.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e/index.html](docs/snapshots/90742ffdc873ff33bab7293ff18b8f24fe99d9c14c12b0d7025719977a74402e/index.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/
 
@@ -347,17 +347,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352/
+## docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352/index.html](docs/snapshots/ef2546e1f4d7c69f93379b01491b4b2c6feb7b8ce5ae42f8d45c20e3ade7c352/index.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431/research.html](docs/snapshots/bda489d4f09c15fc0bc39c8b2629d0457a1f9a3d082e28e7bffab515be70b431/research.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d/
+## docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d/credits.html](docs/snapshots/f4fe29df931c018c78e3fa5a857c771efc636256a36f04804fe87bc061391c6d/credits.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a/credits.html](docs/snapshots/eff33ec1dfeb244f81f60ac0ceacbf20e4c509d31b773522b0be3ce17882861a/credits.html) | Generated immutable exact-route HTML snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -1681,7 +1681,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/engine/critical-media.css](site/engine/critical-media.css) | Single authored responsive portrait rule; generated Home fallback and ordinary stylesheet preserve the same CSS bytes and normal selector order. | source | [site/README.md](site/README.md) |
 | [site/engine/lifecycle.cjs](site/engine/lifecycle.cjs) | Single scene lifecycle/RAF, displayed-phase freeze and native-scroll progress. | source | [site/README.md](site/README.md) |
 | [site/engine/math.cjs](site/engine/math.cjs) | Pure finite vector and transform math used by world projection. | source | [site/README.md](site/README.md) |
-| [site/engine/navigation.js](site/engine/navigation.js) | Persistent header/Canvas route mounting, exact pinned snapshots and history fallback. | source | [site/README.md](site/README.md) |
+| [site/engine/navigation.js](site/engine/navigation.js) | Persistent native route/history mounting with exact snapshots; capture departure before layout, cancel inherited smooth scrolling before asynchronous read within native-failure cleanup/fallback, and preserve deliberate read-time focus/scroll changes. | source | [site/README.md](site/README.md) |
 | [site/engine/projection.cjs](site/engine/projection.cjs) | Camera/depth projection and visibility/detail calculations. | source | [site/README.md](site/README.md) |
 | [site/engine/reading-surfaces.css](site/engine/reading-surfaces.css) | Single authored reading-backdrop paint: shared paper, opacity, crisp edges, outer corners and paint-only placement across routes and renditions. | source | [site/README.md](site/README.md) |
 | [site/engine/renderer.cjs](site/engine/renderer.cjs) | Ordered Canvas commands, projected facets, adjacent-line batching and exact per-paint state deduplication with custom/formula invalidation. | source | [site/README.md](site/README.md) |
@@ -1881,7 +1881,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/analytics.test.cjs](tests/analytics.test.cjs) | Behavioral/adversarial tests and fixtures for analytics. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/architecture.test.cjs](tests/architecture.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/archive.test.cjs](tests/archive.test.cjs) | Behavioral/adversarial tests and fixtures for archive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/article-browser-evidence.test.cjs](tests/article-browser-evidence.test.cjs) | Mandatory conditional five-case native article browser evidence, exact article/lang/engine/version/base identity and omitted/duplicated/false-case negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/article-browser-evidence.test.cjs](tests/article-browser-evidence.test.cjs) | Mandatory conditional article identity/evidence negatives and bounded history diagnostics; primitive activation capture must precede geometry/layout reads that can change the departure state. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/article-budgets.test.cjs](tests/article-budgets.test.cjs) | Article HTML/UTF8/transfer size completeness and wrong-source/missing evidence negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/article-candidate-source.test.cjs](tests/article-candidate-source.test.cjs) | Cold explicit candidate artifact reconstruction across plain/Color/staging layers, source mutations and missing/null/empty/forged candidate declaration negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/article-delivery.test.cjs](tests/article-delivery.test.cjs) | Exact article transport/Color/Pages/staging/production identities, PNG MIME, retention and rejected preview promotion. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1895,7 +1895,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/color-motion-contract.test.cjs](tests/color-motion-contract.test.cjs) | Exact Color family/tuple inventory and malformed/substituted identity negatives, including preserved prior runtime families and current departure-history admission. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/color-motion-contract.test.cjs](tests/color-motion-contract.test.cjs) | Exact eight-family/sixteen-tuple Color inventory, preserved prior identities and malformed/substituted runtime/evidence negatives including native smooth-scroll correction. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content-migration.test.cjs](tests/content-migration.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content-rendering.test.cjs](tests/content-rendering.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1913,7 +1913,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/native-display.test.cjs](tests/native-display.test.cjs) | Behavioral/adversarial tests and fixtures for native display. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation-fixtures.test.cjs](tests/navigation-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/navigation.test.cjs](tests/navigation.test.cjs) | Permanent native route/history/focus and serial interruption checks, including queued-save suppression through held departing/inert phases and deliberate readable-state changes during asynchronous reads. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/navigation.test.cjs](tests/navigation.test.cjs) | Permanent native history/focus and interruption checks: smooth-scroll cancellation before read, native-throw cleanup/fallback, matching saved hidden/inert retarget state, queued-save suppression and deliberate readable-state input preservation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/pages-delivery.test.cjs](tests/pages-delivery.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/phase-checkpoint.test.cjs](tests/phase-checkpoint.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1940,7 +1940,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/site-transaction.test.cjs](tests/site-transaction.test.cjs) | Public tree/cache/mandatory lock transaction and complete independent rollback failures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/space.test.cjs](tests/space.test.cjs) | Permanent spatial/clock/flight and composition fixtures with reusable VM source preparation and exhaustive finite Canvas-argument/type/position checks before drawing side effects. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging-gate.test.cjs](tests/staging-gate.test.cjs) | Exact source/origin/artifact/job/report completeness and staging-versus-full-production rejection fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/staging-regression.test.cjs](tests/staging-regression.test.cjs) | Selected hosted matrix, real measurement contracts and omitted/malformed/failed evidence negative fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/staging-regression.test.cjs](tests/staging-regression.test.cjs) | Bounded hosted selection and real evidence negatives; authored runtime/effects identity must match preserved/current Color tuples including native smooth-scroll/capture-before-layout correction. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging-reporting.test.cjs](tests/staging-reporting.test.cjs) | Behavioral/adversarial tests and fixtures for staging reporting. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging-trust.test.cjs](tests/staging-trust.test.cjs) | Behavioral/adversarial tests and fixtures for staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/staging.test.cjs](tests/staging.test.cjs) | Behavioral/adversarial tests and fixtures for staging. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2050,7 +2050,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/advisory-exceptions.json](tools/quality/advisory-exceptions.json) | Quality/release configuration: advisory exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/analytics-browser.cjs](tools/quality/analytics-browser.cjs) | Maintained quality/check helper for analytics browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/architecture.cjs](tools/quality/architecture.cjs) | Issue58 checkpoint, authored architecture or bounded comparable resource evidence control. | validator | [tools/quality/README.md](tools/quality/README.md) |
-| [tools/quality/article-browser.cjs](tools/quality/article-browser.cjs) | Conditional finite native article browser journey and strict positive evidence completeness/identity validation. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tools/quality/article-browser.cjs](tools/quality/article-browser.cjs) | Conditional finite native article journeys with primitive activation capture before geometry/layout, bounded native history diagnostics and strict evidence completeness/identity validation. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/artifact.cjs](tools/quality/artifact.cjs) | Exact public artifact manifest/digest, byte verification and configured size budgets. | source | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/bandit-policy.json](tools/quality/bandit-policy.json) | 32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/bandit-triage.cjs](tools/quality/bandit-triage.cjs) | Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -2063,7 +2063,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/cause-probe.cjs](tools/quality/cause-probe.cjs) | Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/cold-native-probe.cjs](tools/quality/cold-native-probe.cjs) | Maintained quality/check helper for cold native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/color-browser.cjs](tools/quality/color-browser.cjs) | Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
-| [tools/quality/color-motion-contract.cjs](tools/quality/color-motion-contract.cjs) | Exact reviewed Color artifact-family dispatch and strict motion/reading guards, preserving prior families while admitting the source-bound native departure-history correction. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/quality/color-motion-contract.cjs](tools/quality/color-motion-contract.cjs) | Exact reviewed Color dispatch across eight families/sixteen plain-staging tuples; preserve fourteen prior tuples while admitting source-bound native smooth-scroll cancellation and capture-before-layout runtime. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality/common.cjs](tools/quality/common.cjs) | Maintained quality/check helper for common; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/deploy-pages.example.yml](tools/quality/deploy-pages.example.yml) | Quality/release configuration: deploy pages.example; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/display-probe.cjs](tools/quality/display-probe.cjs) | Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |

@@ -54,6 +54,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: '7ae5bf170b71969aed8bd4ed71738e11857b89036cc0e1a5a7607fce2a5749f6',
   },
+  issue5Smooth: {
+    behavior: 'fixed-blocks',
+    baseEngine: '2708a2e1f0ec3fcfb4f37fafce3bf4bec6f7811c98d6a7312e097092fc377ed0',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'f60f16a7c7293c0b9d801546a53f5ce13d2443bf06cc3c6cd15d2a032a71123e',
+  },
 };
 const runtimes = [
   {
@@ -152,6 +159,20 @@ const runtimes = [
     family: 'issue5Departure',
     edition: 'staging',
     fingerprint: 'de4bc3cb43106d8b2900a5ef5c6a9327a2571da106d483f33b792cafee6f3531',
+    styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
+  },
+  {
+    id: 'issue5-smooth-plain',
+    family: 'issue5Smooth',
+    edition: 'plain',
+    fingerprint: 'dc829c53956977cfc7783375668bc3c2fff3fdbda9efb02f77e49a8a348cf978',
+    styles: '02bee22b9ed7e3ad06b6a23b54bb881e36e2484ba7c8b1a0e6de2e93527373aa',
+  },
+  {
+    id: 'issue5-smooth-staging',
+    family: 'issue5Smooth',
+    edition: 'staging',
+    fingerprint: '95b145ea1b981045847944ae3234bce094b73e109c93a08b30b3c447c7261a99',
     styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
   },
 ];

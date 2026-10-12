@@ -144,6 +144,7 @@ function routeHarness({
   holdScene = false,
   holdRead = false,
   blurDeparture = false,
+  failNativeScroll = false,
   initialPage = 'index',
 } = {}) {
   const calls = [],
@@ -154,7 +155,8 @@ function routeHarness({
     listeners = new Map(),
     historyEntries = [],
     historyWrites = [],
-    blurredFocus = [];
+    blurredFocus = [],
+    nativeScrollCalls = [];
   let timer = 0,
     clock = 10,
     historyIndex = 0,
@@ -164,7 +166,8 @@ function routeHarness({
     resolveRead,
     releaseRead,
     resolveDeparture,
-    releaseDeparture;
+    releaseDeparture,
+    nativeSmooth = null;
   const departureStarted = new Promise((resolve) => (resolveDeparture = resolve)),
     departureGate = new Promise((resolve) => (releaseDeparture = resolve)),
     sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
@@ -204,9 +207,17 @@ function routeHarness({
       if (value) blurContentFocus();
     },
     style: {},
+    attributes: new Map(),
     main: routeMain(initialPage),
-    setAttribute() {},
-    removeAttribute() {},
+    setAttribute(name, value) {
+      this.attributes.set(name, value);
+    },
+    removeAttribute(name) {
+      this.attributes.delete(name);
+    },
+    hasAttribute(name) {
+      return this.attributes.has(name);
+    },
     replaceChildren(main) {
       this.main = main;
     },
@@ -246,6 +257,14 @@ function routeHarness({
     },
     scrollX: 0,
     scrollY: 0,
+    scrollTo({ left, top, behavior }) {
+      assert.equal(behavior, 'instant', 'native restoration explicitly cancels smooth scrolling');
+      nativeScrollCalls.push({ left, top, behavior });
+      if (failNativeScroll) throw Error('native scroll unavailable');
+      nativeSmooth = null;
+      window.scrollX = left;
+      window.scrollY = top;
+    },
     setTimeout(fn, delay) {
       tasks.set(++timer, fn);
       timerDelays.set(timer, delay);
@@ -354,10 +373,6 @@ function routeHarness({
     releaseTail() {},
     arriveEndpoint() {},
     mountEndpoint() {},
-    restoreScroll(left, top) {
-      window.scrollX = left;
-      window.scrollY = top;
-    },
     rebaseResources() {},
   };
   context.document.activeElement = context.document.body;
@@ -370,7 +385,7 @@ function routeHarness({
   vm.runInNewContext(
     `let page=${JSON.stringify(initialPage)},serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null;
     ${section('save', 'push')}
-    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}
+    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${section('restoreScroll', 'endpointProbe')}${flightSource}
     ${section('mount', 'prepare')}${source.slice(start, end)}
     ${source.slice(scrollStart, scrollEnd)}
     globalThis.navigate=navigate;`,
@@ -391,9 +406,19 @@ function routeHarness({
     releaseRead,
     historyEntries,
     historyWrites,
+    nativeScrollCalls,
     blurredFocus,
     document: context.document,
     window,
+    beginSmooth(top) {
+      nativeSmooth = top;
+    },
+    advanceSmooth() {
+      if (nativeSmooth === null) return false;
+      window.scrollY = nativeSmooth;
+      listeners.get('scroll')?.();
+      return true;
+    },
     scheduleScrollSave: () => listeners.get('scroll')(),
     runTimer(delay) {
       const [id, callback] = [...tasks].find(([key]) => timerDelays.get(key) === delay) || [];
@@ -415,6 +440,98 @@ function routeHarness({
     },
   };
 }
+test('an early native scroll failure uses ordinary HTML fallback and releases navigation ownership', async () => {
+  const h = routeHarness({ initialPage: 'writing', failNativeScroll: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 2297;
+  const destination = new URL(
+    'https://fixture.test/articles/sample-en.html?source=archive#section'
+  );
+  await assert.doesNotReject(h.navigate(destination));
+  assert.deepEqual(h.assigned, [destination.href]);
+  assert.deepEqual(h.nativeScrollCalls, [{ left: 0, top: 2297, behavior: 'instant' }]);
+  assert.equal(h.content.hasAttribute('aria-busy'), false);
+  assert.equal(h.content.inert, false);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+  assert.equal(h.historyEntries.length, 1, 'failed boundary does not enter route history');
+  assert.deepEqual(h.calls, [], 'failed boundary cannot begin departure or a camera flight');
+  assert.equal(h.tasks.size, 0, 'the native failure releases its abort timer');
+});
+test('inherited native smooth scrolling stops at navigation while deliberate read-time input still wins', async () => {
+  for (const explicitInput of [false, true]) {
+    const h = routeHarness({ initialPage: 'writing', holdRead: true });
+    h.focus('article-sample-en');
+    h.window.scrollY = 2297;
+    h.beginSmooth(2004);
+    const navigation = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+    await h.readStarted;
+    assert.equal(h.advanceSmooth(), false, 'the inherited native animation was cancelled');
+    assert.equal(h.window.scrollY, 2297);
+    assert.deepEqual(h.nativeScrollCalls, [{ left: 0, top: 2297, behavior: 'instant' }]);
+    if (explicitInput) {
+      h.focus('archive-language');
+      h.beginSmooth(2350);
+      assert.equal(
+        h.advanceSmooth(),
+        true,
+        'new native input during asynchronous reading remains live'
+      );
+      h.runTimer(350);
+      assert.equal(h.historyEntries[0].state.site.scroll[1], 2350);
+    }
+    h.releaseRead();
+    await navigation;
+    const expected = explicitInput ? 2350 : 2297;
+    assert.equal(h.historyEntries[0].state.site.scroll[1], expected);
+    await h.travel(-1);
+    assert.equal(h.window.scrollY, expected);
+    assert.equal(
+      h.document.activeElement.id,
+      explicitInput ? 'archive-language' : 'article-sample-en'
+    );
+    assert.deepEqual(h.assigned, []);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+test('hidden and inert retarget restore matching saved departure instead of transient viewport coordinates', async () => {
+  for (const hidden of [true, false]) {
+    const h = routeHarness({
+      initialPage: 'writing',
+      holdDeparture: hidden,
+      blurDeparture: hidden,
+      holdScene: !hidden,
+      holdRead: true,
+    });
+    h.focus('archive-topic');
+    h.window.scrollX = 13;
+    h.window.scrollY = 5722;
+    const stale = h.navigate(new URL('https://fixture.test/talks.html'));
+    await (hidden ? h.departureStarted : h.sceneStarted);
+    const saved = h.historyEntries[0].state;
+    h.window.scrollX = 17;
+    h.window.scrollY = 2004;
+    const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+    await h.readStarted;
+    assert.equal(h.window.scrollX, 13);
+    assert.equal(
+      h.window.scrollY,
+      5722,
+      'retarget restored the captured outgoing reading position'
+    );
+    h.releaseRead();
+    await latest;
+    if (hidden) h.releaseDeparture();
+    else h.finishScene();
+    await stale;
+    assert.deepEqual(h.historyEntries[0].state, saved);
+    assert.equal(h.historyEntries.length, 2);
+    await h.travel(-1);
+    assert.equal(h.window.scrollY, 5722);
+    assert.equal(h.document.activeElement.id, 'archive-topic');
+    assert.deepEqual(h.assigned, []);
+    assert.equal(h.tasks.size, 0);
+  }
+});
 test('article Back restores the archive link and scroll captured before inert blurs content focus', async () => {
   const h = routeHarness({ initialPage: 'writing' });
   h.window.location.href += '?topic=systems&language=en';
@@ -969,6 +1086,10 @@ function sequenceHarness() {
     },
     address: (url) => url,
     save() {},
+    restoreScroll(left, top) {
+      context.window.scrollX = left;
+      context.window.scrollY = top;
+    },
     arriveEndpoint() {},
     clearText() {},
     releaseEndpoint() {},
@@ -977,6 +1098,8 @@ function sequenceHarness() {
     announcement: {},
     content,
     window: {
+      scrollX: 0,
+      scrollY: 0,
       location: {
         href: 'https://site.test/index.html',
         assign() {

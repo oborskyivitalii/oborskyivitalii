@@ -185,3 +185,131 @@ verified the bounded fix, and checked the continuation's contracts, immutable
 composition and cost-controller boundaries. Prepared mechanisms pass their
 scoped checks; final current-source timing, checksum/RI/security, hosted delivery
 and the original human decisions remain separate requirements.
+
+## Prepared followup after published 242
+
+This additional independent review inspects published `242a4da3`, tree `d0c635bf`,
+and its explicitly dirty prepared followup. Staged bytes match inspected source:
+navigation `2ce14b3`, navigation fixture `fe063d7`, collector `2ab10f6`, collector
+fixture `cfbf1d2` and Color contract `407a2075`. Exact fingerprints and individually
+qualified observations remain in the generated manifests and retained diagnostic
+owner. This reviewer implemented none of these changes and writes only this report.
+
+Published 242 Basic run 38284606215 passes 683/683 in 165.190s with two workers
+and four available CPUs; navigation and both owning runs also pass. Its managed
+preview run 38284605794 failed. The inspected 1440px checkpoint retains activation
+2297, saved/pop/Back 2004 and correct focus, with unchanged height 3197 and maximum
+2297. Progressive trusted native scroll during reading establishes departure
+drift rather than remount clamping. The particular focus/actionability initiator
+is inferred. That failed run remains failed and does not satisfy the condition
+for subsequent controller staging.
+
+| ID | Evidence and bounded correction | Independent disposition |
+| --- | --- | --- |
+| F26, P2 | Inherited native smooth motion changes the outgoing viewport during asynchronous reading. Capture the live viewport, or matching same-page saved position while content is unavailable, before interrupt; immediately use the existing instant native helper once. | Prepared source and focused regressions pass; fresh clean-head managed admission remains required. |
+| F27, P2 | Root identified diagnostic layout reads preceding the expected departure capture. The independent adverse proof changes live scroll/focus on the first geometry read. Copy the primitive expected values before all diagnostic geometry. | Bad order independently reproduced on 242; the corrected existing adverse fixture passes without changing the strict assertion. |
+
+The F26 boundary adds no request-wide freeze, timer, RAF, CSS mutation or second
+scroll owner. The final departure save remains after the asynchronous read;
+subsequent deliberate controls and native scrolling still win. Matching saved
+history is used only for unavailable content with the same current page, preserving
+hidden/inert retargets rather than taking a different popped page's position.
+The harness now exercises the authored instant helper, not its former stub.
+This reviewer independently ran the two changed navigation cases and changed
+collector case: 3/3 pass in 107ms, with zero failures, skips, cancellations or TODOs.
+The owner's 46 mapped navigation cases and 24 Color/staging cases are separate
+reported results, not a full-suite replay by this reviewer.
+
+The inspected native old/new records use the same explicit smooth-scroll API,
+immediate programmatic article activation, 450ms delay of only the selected
+snapshot response and review-only Chromium 153.0.8010.0 at 1440px. They contain
+no scroll/history/RAF overrides. Old runtime `de4bc3` saves and restores 2004 and
+times out; new `afa716b7` retains 2297 through save/pop/Back and passes the original
+2px/2000ms check, with the same geometry and final focus. These records demonstrate
+the bounded mechanism; they do not supply managed-hosted or device acceptance.
+F27 retains the 24-sample cap, one-shot captures and cleanup ownership.
+
+Independent composition verifies the fresh 65-file artifact and source-exact
+navigation: base `0cda056d`, plain `3b2bc389`, staging `afa716b7`, composed navigation
+`4a6204e0` containing authored `2ce14b3`. The distinct `issue5Smooth` family adds
+two tuples; all seven prior families and fourteen tuples retain their exact fields
+and order. Existing admission guards remain byte-identical. Sixteen positive and
+304 bounded negative selector observations pass.
+
+The concrete checksum proposal independently preserves all 1,186 prior finding
+objects and appends only 184 proved public IDs, totaling 1,370 unique entries.
+All current paths/types/lines/scanner SHA1 IDs match source-derived values:
+32 document, 102 preview, 18 output-lock, 28 offline and 4 Color findings across
+30 paths and 44 values. Primary reconstruction reproduces 40 documents, 17 previews
+and their five inert payload hashes, and the 58-entry ZIP of 2,368,353 bytes with
+its manifest. Derived RI/CI findings are excluded from this publication proposal
+and retain their existing verification route. An initial helper proposal could
+not admit those derived CI rows or omitted payload hashes; the corrected concrete
+proposal and independent primary derivation resolve that preparation defect.
+Root owns applying the exact proposal, retaining its proof and final scanner/RI
+binding; this reviewer did not edit a ledger.
+
+No new source blocker remains in this bounded review. The combined changed-source
+run, fresh RI/scanners and exact-head Basic/owning/navigation/managed preview,
+then authorized controller staging, remain separate delivery observations.
+Historical PMDay kit/PDF producer and review-only qualifications remain unchanged.
+All twelve whole #5 criteria stay open; #2 AC01–06 stay open and recording AC07/08
+remain checked. Editorial, rights, platform/device, upstream, merge and publication
+decisions are not supplied by these prepared checks.
+
+## Final prepared boundary and collector amendment
+
+The preceding unpublished Smooth draft is superseded by another dirty prepared
+phase after the same published 242 baseline. Inspected staged and working bytes
+match: navigation `9d4d24`, navigation fixture `55013d`, primitive collector
+`c16fbd` and collector fixture `d02d16`. Pinned formatting was restored after a
+temporary default-configuration rewrite; the new cap branch has expanded braces.
+The earlier draft's artifact and checksum assent remain qualified to that draft.
+
+The native instant restore is now the first statement inside the existing try,
+before the first await. Cancellation remains synchronous; a native exception
+reaches ordinary HTML fallback and finally cleanup instead of escaping navigation.
+The added meaningful regression verifies the destination query/fragment, no added
+history or flight, and released busy/inert/route/timer ownership. The owner reports
+47 mapped navigation cases passing. This reviewer inspected the relocation and
+independently ran the native-throw case and amended collector case: 2/2 pass,
+zero failed/skipped/cancelled/TODO cases, in 332ms. That selected run preceded
+the mechanical pinned-format restoration; its unchanged behavior and expanded
+cap braces were inspected afterward. No complete suite or new browser campaign
+was performed by this reviewer.
+
+F27 is tightened further: activation only copies primitive time/scroll/focus and
+adds that row under the existing 24-sample cap. It does not call snapshot/record
+or read scroll height/rectangles before the application's document listener owns
+the native cancellation boundary. The adverse existing fixture asserts zero of
+both layout-read kinds and unchanged live scroll/focus at activation; later
+cleanup geometry changes the live values while the original expected departure
+remains retained. Other bounded geometry snapshots, one-shot captures, cleanup
+and the original 2px/2000ms assertion remain. This removes the diagnostic delay
+left by the preceding capture-first draft without adding a timer or handler.
+
+Regeneration reports base `2708a2`, plain `dc829c`, staging `95b145` and composed
+navigation `f60f16`, with 65 files. Final artifact/checksum derivation and exact-head
+delivery remain pending at this supplement. The ledger has returned to the
+published 1,186-entry prefix for a fresh proposal, replacing the unpublished
+184-row draft rather than treating unused draft checksums as final history.
+The failed managed 242 run and all original human/issue gates retain their prior
+dispositions. Root owns the final source/scanner/RI/controller observations;
+this reviewer writes only this report and now holds further writes.
+
+The final concrete delegated checksum review assents to the refreshed proposal
+`f14e094a`, finding proof `8e1b0ae4`, bound to the dirty prepared 242 phase with
+authored navigation `9d4d24` and primitive collector `c16fbd`. The exact published
+1,186 finding objects remain the prefix; only the current 184 public IDs produce
+1,370 unique entries, with no RI/CI or superseded prototype additions. Independent
+primary reconstruction verifies 40 documents, 17 previews, five inert payload
+hashes and the 58-entry ZIP of 2,368,388 bytes (`a2ee4a92`), plus its manifest and
+the fresh 65-file composed artifact. All fourteen published prior tuples remain
+exact. The retained `nativeFinal9dChecksumFindings` record preserves this proof
+and the pre-application proposal identity; earlier unpublished proofs remain
+superseded. Root reports applying only those 184 rows with updated new-row reasons
+and scope, preserving the prefix and three other ledgers. This reviewer performed
+no additional checks after that application and did not edit any ledger.
+Final RI/security, the complete changed-source run and clean-head managed/controller
+admission remain their own pending observations. This report is staged; all further
+repository/index writes by this reviewer are held.

@@ -23,6 +23,11 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   qualified. Prepared two-CPU source passes683/683 in169.262s after replacing local
   dependency symlinks with real directories; exact clean-head CI and hosted/
   staging admission belong to the live PR. The failed local attempt is retained.
+  Managed242 Basic passes683/683; its preview exposes native smooth-scroll
+  departure drift. The bounded instant cancellation and pre-layout collector
+  capture are prepared; native-failure fallback and zero pre-router layout reads
+  are checked. Final prepared two-CPU source passes686/686 in179.167s at
+  original limits; latest exact-head admission belongs to the live PR.
   Native history captures focus before inert/departure and preserves interrupted
   focus. Managed hosted `27717ab` passed all article/Color cases; its Basic source
   timed out. The measured isolated two-worker Space/executive-first route retains

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
     "date": "2026-10-12",
-    "summary": "Register site-owned publication adapters, native article reader/offline exports and exact conditional article identity controls. Current issue5 follow-up preserves selection, prior Color families and original limits while adding bounded primary-parser/cache/batch diagnostics, Space/executive execution priority followed by size/lexical order through two isolated workers with abort/error cleanup, finite Canvas fixture guards and departing native history/focus correction. Source/profile checks remain separate from actual hosted, independent, editorial, rights, device, merge and publication evidence."
+    "summary": "Register site-owned publication adapters, native article/offline delivery and exact conditional article controls. Preserve selection, bounds and fourteen prior Color tuples; the eighth family admits sixteen exact tuples for departure capture before layout and inherited native smooth-scroll cancellation before asynchronous read, within existing native-failure cleanup/fallback while preserving deliberate user input. Browser diagnostics capture primitive activation before geometry. Source scheduling, two isolated workers, abort/error cleanup, bounded parser/cache/batch and Canvas guards remain unchanged. Automated source/hosted observations stay separate from independent, editorial, rights, device, merge and publication decisions."
   },
   "layers": [
     {
@@ -147,7 +147,7 @@
     },
     {
       "id": "test-profile-selection",
-      "purpose": "Canonical source/test lifecycle allocation, staging/scanner controls and complete accounting; Space/executive priority precedes remaining size/lexical order through two isolated public Node workers with serial-case defaults, actual failure reporting and original-deadline abort cleanup. Native Color families remain explicit and source-bound.",
+      "purpose": "Canonical source/test allocation, staging/scanner controls and complete accounting; Space/executive priority, remaining size/lexical order and two isolated Node workers retain serial defaults, failure reporting and original-deadline abort cleanup. Native capture before geometry/layout, smooth-scroll cancellation with native-failure fallback and eight Color families/sixteen tuples remain explicit and source-bound.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
         "tests/fixtures/staging-evidence.cjs",
@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "7f0bcbf0dce4e57e33d71a2573cbcc4736bb21e0e04dfdf68f5d4a70e73a8d36",
+    "digest": "f14aa0961bc6946eb09356ddc819f2ff22f2598fbfa07ec86647b0a0e5fdac26",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -634,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "5a59e8da960bc2c55d64604bacd7ef1fff1ed9b9ee727a8c42cdbcaefdd15938"
+        "sha256": "5961e568ec93ae00c0bdacb535847bed15e1d3266dcf407ee771bf2f65761905"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -746,7 +746,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "611b7cdf5bbe9387a2994b87f88ec3f0b2724607106f0723d59033d85df4e40d"
+        "sha256": "63bb5c1d646eea74f89678788a332b1ed24f46657022b2ff638a061517df5e57"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -866,7 +866,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "1e1aaef309d318765c3bc8e30b430b7c5f4a465cbe6d434c52c826d860e95904"
+        "sha256": "3064beac90e456e34f27a9c21cbcd151e54ae6192fa3a572a1f23403fc1cb9ce"
       },
       {
         "path": "tools/repository_intelligence.py",

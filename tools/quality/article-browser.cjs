@@ -18,7 +18,11 @@ function articleURLs(baseURL, descriptor) {
     assert.ok(url.pathname.startsWith(base.pathname), 'article URL left selected base');
     urls[name] = url.href;
   }
-  return { ...urls, writing: new URL('writing.html', base).href, base: base.href };
+  return {
+    ...urls,
+    writing: new URL('writing.html', base).href,
+    base: base.href,
+  };
 }
 
 async function inspectHead(page) {
@@ -136,7 +140,12 @@ async function preserveShell(page) {
 
 async function observeReading(page) {
   await page.evaluate(() => {
-    window.__articleReading = { entered: [], departed: [], maxEntering: 0, maxRoute: 0 };
+    window.__articleReading = {
+      entered: [],
+      departed: [],
+      maxEntering: 0,
+      maxRoute: 0,
+    };
     const main = document.querySelector('main.article-reader');
     window.__articleObserver = new MutationObserver((changes) => {
       const state = window.__articleReading;
@@ -214,11 +223,22 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
   };
   const activate = () => {
     phase = 'departure';
-    state.activation = record('activation') || snapshot('activation');
     scope.__articleArchiveDeparture = {
       scroll: scope.scrollY,
       focus: document.activeElement?.id,
     };
+    // Capture primitives before the navigation owner cancels native smooth scroll.
+    // Geometry reads here could advance the viewport before that boundary.
+    state.activation = {
+      kind: 'activation',
+      time: scope.performance.now(),
+      ...scope.__articleArchiveDeparture,
+    };
+    if (state.samples.length < 24) {
+      state.samples.push(state.activation);
+    } else {
+      state.dropped++;
+    }
   };
   const pop = (event) => {
     phase = 'back';
@@ -363,7 +383,9 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     const fragment = await anchorLink.getAttribute('href');
     assert.ok(fragment && fragment.length > 1, 'native article TOC anchor');
     await anchorLink.click();
-    await page.waitForFunction((hash) => location.hash === hash, fragment, { timeout });
+    await page.waitForFunction((hash) => location.hash === hash, fragment, {
+      timeout,
+    });
     assert.equal(await page.locator(fragment).count(), 1, 'TOC target exists');
     await page.reload();
     await settled(page, 'article:' + key, timeout);

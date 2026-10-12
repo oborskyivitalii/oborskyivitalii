@@ -86,7 +86,10 @@ function observed() {
 }
 
 test('article evidence is conditional and complete without changing the five-room stage matrix', () => {
-  assert.deepEqual(validateArticleJourney(undefined, {}), { documents: 0, observations: 0 });
+  assert.deepEqual(validateArticleJourney(undefined, {}), {
+    documents: 0,
+    observations: 0,
+  });
   assert.deepEqual(validateArticleJourney(observed(), descriptors, { engine, baseURL }), {
     documents: 1,
     observations: 5,
@@ -211,10 +214,17 @@ test('the staging collector exercises articles only on its admitted Chromium and
         calls,
         articles ? [{ engine: 'chromium', url: baseURL, source: manifest }] : []
       );
-      const report = { ...fixture.identity(manifest), kind: 'stage-functional', ...detail };
+      const report = {
+        ...fixture.identity(manifest),
+        kind: 'stage-functional',
+        ...detail,
+      };
       if (fails) {
         assert.deepEqual(detail.startupFailures, [
-          { engine: 'chromium', error: 'controlled article collection failure' },
+          {
+            engine: 'chromium',
+            error: 'controlled article collection failure',
+          },
         ]);
         assert.throws(() => stage.validateFunctional(report, manifest), /require actual browser/);
       } else {
@@ -256,11 +266,19 @@ test('bounded article history diagnostics retain original Back state and geometr
   };
   let observer;
   let reads = 0;
+  let heightReads = 0;
+  let documentHeight = 4666;
+  let activationLayoutPending = true;
   const content = { inert: false, hasAttribute: () => false };
   const rect = { top: 105, bottom: 4472, height: 4367 };
   const element = {
     getBoundingClientRect() {
       reads++;
+      if (activationLayoutPending) {
+        activationLayoutPending = false;
+        scope.scrollY = 3607;
+        scope.document.activeElement = { id: 'changed-by-layout' };
+      }
       return rect;
     },
   };
@@ -271,12 +289,22 @@ test('bounded article history diagnostics retain original Back state and geometr
     innerHeight: 844,
     structuredClone,
     location: { href: baseURL + '/writing?topic=systems&language=en' },
-    history: { state: { site: { page: 'writing', scroll: [0, 0], focus: null } } },
+    history: {
+      state: { site: { page: 'writing', scroll: [0, 0], focus: null } },
+    },
     scrollTo() {
       assert.fail('an observational diagnostic cannot scroll');
     },
     document: {
-      documentElement: { scrollHeight: 4666 },
+      documentElement: {
+        get scrollHeight() {
+          heightReads++;
+          return documentHeight;
+        },
+        set scrollHeight(value) {
+          documentHeight = value;
+        },
+      },
       activeElement: { id: 'article-link-representative-en' },
       body: { dataset: { page: 'writing' } },
       querySelector: (selector) => (selector === '#site-content' ? content : element),
@@ -305,9 +333,26 @@ test('bounded article history diagnostics retain original Back state and geometr
     scroll: 3770,
     focus: 'article-link-representative-en',
   });
+  assert.equal(reads, 0, 'activation does not read rectangles before navigation');
+  assert.equal(heightReads, 0, 'activation does not read scroll height before navigation');
+  assert.equal(scope.scrollY, 3770, 'activation preserves the live viewport');
+  assert.equal(scope.document.activeElement.id, 'article-link-representative-en');
+  assert.deepEqual(scope.__articleHistoryDiagnostics.activation, {
+    kind: 'activation',
+    time: 100,
+    scroll: 3770,
+    focus: 'article-link-representative-en',
+  });
+  scope.document.activeElement = { id: 'article-link-representative-en' };
   scope.scrollY = 3733;
   observer.callback([{ oldValue: 'waiting', target: { hasAttribute: () => false } }]);
   assert.equal(scope.__articleHistoryDiagnostics.cleanup.scroll, 3733);
+  assert.equal(scope.scrollY, 3607, 'later geometry reads exercise the adverse fixture');
+  assert.equal(scope.document.activeElement.id, 'changed-by-layout');
+  assert.deepEqual(scope.__articleArchiveDeparture, {
+    scroll: 3770,
+    focus: 'article-link-representative-en',
+  });
   const diagnostic = scope.__articleHistoryDiagnostics;
   for (let index = 0; index < 50; index++) emit(listeners, 'scroll', { isTrusted: true });
   assert.equal(diagnostic.samples.length, 24);
