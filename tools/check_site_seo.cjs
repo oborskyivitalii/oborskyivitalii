@@ -139,9 +139,9 @@ function approvedStructuredMetadata(page) {
       const compact = block.replace(
         data,
         () =>
-          /^\s*/.exec(data)[0] +
+          data.match(/^\s*/)[0] +
           require('./site/html.cjs').scriptJSON(JSON.parse(data), 0) +
-          /\s*$/.exec(data)[0]
+          data.match(/\s*$/)[0]
       );
       assert.ok(
         !encodings.has(compact) || encodings.get(compact) === block,
