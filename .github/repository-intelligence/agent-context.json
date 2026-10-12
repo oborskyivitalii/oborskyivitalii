@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b5deef682ab6731faba4047fa4a6039774b13fed00325f641cf07fd5b66a096b",
+    "digest": "b264fba414a7bf3715e472096e067b82730cbf798a654401625e1f3643bf9372",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -120,6 +120,11 @@
         "sha256": "8e4128b77f18d94b6506b2c830bb4f7b41e84759adf1e3bf79415bcfd41b5262"
       },
       {
+        "path": ".github/acceptance/issue-76.json",
+        "identity_mode": "content",
+        "sha256": "4237f57d6c94efedb0a03b794d48dab655b2ba58c5dbdb396ad8805bd7e68873"
+      },
+      {
         "path": ".github/code-style.json",
         "identity_mode": "content",
         "sha256": "7f275850381b10adcc9cce83ecc8969fbbdd0d267ac565141c5bfef11fd4a7fc"
@@ -146,12 +151,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6b1c0d1e2541a3c028d76c162f85ff215b61633eddd40367f57b92b922d0df02"
+        "sha256": "2b7ff7998df02480296bcd1395d4d78ed359113ace42b2b1c21e48e034f950d9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4421e81db6457eff286dfad1823c24ed60d7d526c56f8d4243870462a6591ee6"
+        "sha256": "97c02c513a6535cb1e1dce16e0bfed7547c648ccb2c96bbe4edfd166c918ccaf"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -266,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "1373adfbd343e0576ad24e71faab7fbccdfeaf62f046c4f42163a671ad772672"
+        "sha256": "b893bf5ffa8e3a1e2ace6d7b577450142bb60daf7effa6885a1347cc2d7bba28"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -1131,6 +1136,11 @@
         "path": "review/issue-72/2026-10-11-review.md",
         "identity_mode": "content",
         "sha256": "9056307668b9d8a848e81c40dd0c1b59fb5a5291016296691377d88569cdb176"
+      },
+      {
+        "path": "review/issue-76/2026-10-12-admission.md",
+        "identity_mode": "content",
+        "sha256": "b01f2a233b01796d575d21d187a7d00eb2faa0bf91c00d79730f0f9fa9dd5e5f"
       },
       {
         "path": "review/public-responses-20261006/README.md",
@@ -5295,7 +5305,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "7bc043c6e0430fea0971a97948482c743c5585dc55066702b2d668e577d7f050"
+        "sha256": "60c0047f3a395809b2ff6986b648eda46a8bed4ce3fb029f392cf8a5dafd1727"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5825,7 +5835,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "700ad28ecbdf7bd00abfbfbe72a730ee76901f1cb0562250811e238e6f0c6474"
+        "sha256": "4104901dab91a172803133b2e2030c3dd59e136cb8680dd682af16e72521b8da"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6010,7 +6020,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "7aad90d601b29719f532b7b46cb01b735b7ebdc343f25ba63363290e29c70055"
+        "sha256": "b41250024275a1cd848ef528a33405d937d8b7ac81cd1bbb02fb3ec76c36d49e"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -6796,6 +6806,17 @@
         "AGENTS.md"
       ],
       "title": "issue-72.json"
+    },
+    {
+      "path": ".github/acceptance/issue-76.json",
+      "kind": "file",
+      "purpose": "Issue76 preview-first interaction, continuous scene ink, repeat reading entry and shared composition AC mapping.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-76.json"
     },
     {
       "path": ".github/code-style.json",
@@ -9029,6 +9050,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 72 — 2026-10-11 independent review and corrections"
+    },
+    {
+      "path": "review/issue-76/2026-10-12-admission.md",
+      "kind": "file",
+      "purpose": "Issue76 independently reviewed exact Color runtime admission and controller-only staging integration prerequisite.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue76 — 12 October 2026 Color admission review"
     },
     {
       "path": "review/public-responses-20261006/README.md",
@@ -20936,6 +20968,16 @@
       "path": "review/issue-72",
       "kind": "directory",
       "purpose": "Issue72 dated self-analysis, execution and remaining acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-76",
+      "kind": "directory",
+      "purpose": "Issue76 dated preview analysis, review and current-source evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

@@ -162,21 +162,23 @@ function evidence(id) {
   }
   return value;
 }
-test('only the four reviewed plain/staging runtime tuples select a camera and flight contract', () => {
-  for (const family of ['legacy', 'fixed'])
+test('only the six reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+  for (const family of ['legacy', 'fixed', 'issue76'])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
         selected = manifest(id);
       assert.equal(motion.select(selected).id, id);
       assert.equal(
         motion.flightCheck(selected),
-        family === 'fixed' ? 'blockFlight' : 'spatialFlight'
+        family === 'legacy' ? 'spatialFlight' : 'blockFlight'
       );
       assert.equal(gate.aggregate(evidence(id)).pass, true);
     }
-  const copy = motion.reviewedRuntime('fixed-plain');
-  copy.files['space.js'] = '0'.repeat(64);
-  assert.equal(motion.select(manifest('fixed-plain')).id, 'fixed-plain');
+  for (const id of ['fixed-plain', 'issue76-plain']) {
+    const copy = motion.reviewedRuntime(id);
+    copy.files['space.js'] = '0'.repeat(64);
+    assert.equal(motion.select(manifest(id)).id, id);
+  }
 });
 test('unknown, conflicting, mixed or merely marked runtime identities fail before browser execution', async () => {
   const mutations = [
@@ -195,39 +197,73 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
       m.files['runtime/' + m.variant.fingerprint + '/styles.css'].sha256 = '0'.repeat(64);
     },
   ];
-  for (const mutate of mutations) {
-    const value = manifest('fixed-plain');
-    mutate(value);
-    assert.throws(() => motion.select(value));
-    const invalidEvidence = evidence('fixed-plain');
-    mutate(invalidEvidence.manifest);
-    assert.throws(() => gate.aggregate(invalidEvidence));
-    let contexts = 0;
-    await assert.rejects(() =>
-      color.scenario(
-        {
-          newContext() {
-            contexts++;
+  for (const id of ['fixed-plain', 'issue76-plain', 'issue76-staging']) {
+    for (const mutate of mutations) {
+      const value = manifest(id);
+      mutate(value);
+      assert.throws(() => motion.select(value));
+      const invalidEvidence = evidence(id);
+      mutate(invalidEvidence.manifest);
+      assert.throws(() => gate.aggregate(invalidEvidence));
+      let contexts = 0;
+      await assert.rejects(() =>
+        color.scenario(
+          {
+            newContext() {
+              contexts++;
+            },
           },
-        },
-        'https://controlled.invalid',
-        value,
-        'chromium',
-        390,
-        'light'
-      )
-    );
-    assert.equal(contexts, 0, 'unreviewed tuple cannot launch a browser context');
+          'https://controlled.invalid',
+          value,
+          'chromium',
+          390,
+          'light'
+        )
+      );
+      assert.equal(contexts, 0, 'unreviewed tuple cannot launch a browser context');
+    }
   }
-  const staged = manifest('fixed-staging');
-  delete staged.edition;
-  assert.throws(() => motion.select(staged), /edition differs/);
+  for (const id of ['fixed-staging', 'issue76-staging']) {
+    const staged = manifest(id);
+    delete staged.edition;
+    assert.throws(() => motion.select(staged), /edition differs/);
+  }
 });
-test('full Color aggregation preserves all twelve engine, viewport and theme cells for both contracts', () => {
-  for (const id of ['legacy-plain', 'fixed-plain']) {
+test('issue76 rejects mixed reviewed bytes and editions in both canonical and immutable paths', () => {
+  for (const id of ['issue76-plain', 'issue76-staging']) {
+    for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
+      const previous = motion.reviewedRuntime(
+        name === 'styles.css'
+          ? id === 'issue76-plain'
+            ? 'fixed-staging'
+            : 'fixed-plain'
+          : 'fixed-plain'
+      );
+      for (const paths of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (paths !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (paths !== 'canonical') {
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        }
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const wrongEdition = manifest(id);
+    if (id === 'issue76-plain') {
+      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+    } else {
+      delete wrongEdition.edition;
+    }
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
+test('full Color aggregation preserves all twelve engine, viewport and theme cells for reviewed contracts', () => {
+  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain']) {
     const value = evidence(id),
       report = value.reports.at(-1),
-      model = report.rows[0];
+      model = report.rows[0],
+      fixed = motion.select(value.manifest).behavior === 'fixed-blocks';
     report.kind = 'color-functional';
     report.rows = ['chromium', 'firefox', 'webkit'].flatMap((engine) =>
       [1440, 390].flatMap((width) =>
@@ -236,7 +272,7 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
           engine,
           width,
           theme,
-          ...(id === 'fixed-plain' ? { flight: blockSamples(width) } : {}),
+          ...(fixed ? { flight: blockSamples(width) } : {}),
         }))
       )
     );
@@ -252,8 +288,7 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
       (r) => (r.rows[0].motionContract = motion.reviewedRuntime('legacy-staging')),
       (r) => (r.rows[0].flight = []),
     ];
-    if (id === 'fixed-plain')
-      invalid.push((r) => (r.rows[0].home.scroll.samples[0].camera = 'moving'));
+    if (fixed) invalid.push((r) => (r.rows[0].home.scroll.samples[0].camera = 'moving'));
     else invalid.push((r) => (r.rows[0].flight[0].plane.flightDepth = -1));
     for (const mutate of invalid) {
       const copy = structuredClone(report);
@@ -262,8 +297,8 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     }
   }
 });
-test('both report guard branches reject wrong planes, moving reading cameras and false contract claims', () => {
-  for (const id of ['legacy-plain', 'fixed-plain']) {
+test('reviewed report guard branches reject wrong planes, moving reading cameras and false contract claims', () => {
+  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain', 'issue76-staging']) {
     const value = evidence(id),
       report = value.reports.at(-1);
     assert.equal(stage.validateColor(report, value.manifest), 2);
@@ -273,7 +308,7 @@ test('both report guard branches reject wrong planes, moving reading cameras and
       (r) => (r.rows[0].checks[motion.flightCheck(value.manifest)] = false),
       (r) => (r.rows[0].flight = []),
     ];
-    if (id === 'fixed-plain')
+    if (motion.select(value.manifest).behavior === 'fixed-blocks')
       invalid.push(
         (r) => (r.rows[0].home.scroll.samples[2].camera = 'moving'),
         (r) => (r.rows[0].home.scroll.samples[3].y = 999),

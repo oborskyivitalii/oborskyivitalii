@@ -1,5 +1,5 @@
 'use strict';
-// Transitional controller compatibility for two reviewed Color runtimes.
+// Transitional controller compatibility for reviewed Color runtime families.
 // Fingerprints alone cannot authorize a branch: the verified runtime bytes must
 // also match. New runtime bytes require a separately reviewed contract update.
 const assert = require('node:assert/strict');
@@ -8,14 +8,23 @@ const families = {
   legacy: {
     behavior: 'following-spatial',
     baseEngine: 'fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4',
+    theme: 'b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee',
     space: 'e8fad3a3b68c999c67597617de862036ec7a9e835e39fc1a737ea4522c0ff6d6',
     navigation: '63460e40eb0ee7d2e2d3001365bc2e85b88edb964cbd34852a7d58c58eafe6e4',
   },
   fixed: {
     behavior: 'fixed-blocks',
     baseEngine: 'b7db2524761e66f58160f2af8d245fdbc55d275ccc0a649673bb8afc53d5c9cc',
+    theme: 'b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee',
     space: '0107d6fc8c2ae706a562d6d80423af35c2ceb3c2459981b25dae9e897865feb4',
     navigation: 'f801bba9717cf262bee2c8d2ee529d4b1b995c8b3984e7a72a4619288a9910f2',
+  },
+  issue76: {
+    behavior: 'fixed-blocks',
+    baseEngine: '8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
 };
 const runtimes = [
@@ -47,6 +56,20 @@ const runtimes = [
     fingerprint: '7ffe1583b7fdb3f2858fba4ff294dea55e5ab2a80229b81210cf1005f4b8038e',
     styles: '545b7cb79e15706a80087ebc5cf5139b0c4af564d47f141b7a1ede0915c18a97',
   },
+  {
+    id: 'issue76-plain',
+    family: 'issue76',
+    edition: 'plain',
+    fingerprint: '57999380a42cf44132b21d6d1a11fdb814abeaaac38ff3e25311ad6cd38052f8',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
+    id: 'issue76-staging',
+    family: 'issue76',
+    edition: 'staging',
+    fingerprint: '49ab29ede2d117832a79151f02da524001024fa2109f79a9b55b7921bbb3dbd6',
+    styles: '545b7cb79e15706a80087ebc5cf5139b0c4af564d47f141b7a1ede0915c18a97',
+  },
 ];
 function reviewedRuntime(id) {
   const runtime = runtimes.find((item) => item.id === id);
@@ -65,7 +88,7 @@ function reviewedRuntime(id) {
     },
     files: {
       'styles.css': runtime.styles,
-      'theme.js': 'b6df1591a86ce1f18662e26679926f5433febd935c453952f2443f78f2c0e0ee',
+      'theme.js': family.theme,
       'space.js': family.space,
       'archive.js': '1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad',
       'navigation.js': family.navigation,
