@@ -15,7 +15,6 @@ module.exports = function (api) {
     poses,
     initialPoses,
     routeOrder,
-    roomSpacing,
     worldFor,
     projectedWorld,
     paintShapes,
@@ -257,14 +256,28 @@ module.exports = function (api) {
     // Its logical source page may still be several rooms away from that paint.
     if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
     const targetIndex = routeOrder.indexOf(travel.toPage);
-    const near = Math.max(
-      Math.min(...travel.fromRooms, targetIndex),
-      Math.min(
-        Math.max(...travel.fromRooms, targetIndex) - 1,
-        Math.floor((24 - pose.position[2]) / roomSpacing)
-      )
-    );
+    const first = Math.min(...travel.fromRooms, targetIndex),
+      last = Math.max(...travel.fromRooms, targetIndex);
+    let near = first;
+    while (near < last - 1 && pose.position[2] < readingPose(routeOrder[near + 1]).position[2])
+      near++;
     return [near, Math.min(near + 1, routeOrder.length - 1)];
+  }
+  function roomVisibility(name, pose) {
+    const index = routeOrder.indexOf(name),
+      depth = readingPose(name).position[2],
+      cameraDepth = pose.position[2];
+    // Each room has zero ink at its neighboring reading anchors and full ink
+    // at its own. The pair switches only where the departing weight is zero.
+    // Real route anchors include their differing opening-pose depths.
+    if (cameraDepth > depth) {
+      if (index === 0) return 1;
+      const previous = readingPose(routeOrder[index - 1]).position[2];
+      return smooth(clamp((previous - cameraDepth) / (previous - depth)));
+    }
+    if (index === routeOrder.length - 1) return 1;
+    const next = readingPose(routeOrder[index + 1]).position[2];
+    return smooth(clamp((cameraDepth - next) / (depth - next)));
   }
   function visibleRooms() {
     if (!journey || journeyStage() === 'restore') {
@@ -287,6 +300,8 @@ module.exports = function (api) {
     const names = travelRoomIndices(journey, current).map((index) => routeOrder[index]);
     const active = [...new Set(names)];
     const shapes = active.flatMap((name) => {
+      const opacity = roomVisibility(name, current);
+      if (opacity === 0) return [];
       // Entire room envelope behind the camera cannot contribute geometry.
       const local = translatePose(current, -roomOffset(name));
       const forward = api.normalize(sub(local.target, local.position));
@@ -303,6 +318,8 @@ module.exports = function (api) {
         false
       ).map((shape) => {
         shape.room = room;
+        shape.alpha *= opacity;
+        if (shape.edgeAlpha !== undefined) shape.edgeAlpha *= opacity;
         return shape;
       });
     });
@@ -369,6 +386,10 @@ module.exports = function (api) {
         detailTier,
         journey,
         paintedRooms: [...new Set(geometry.map((shape) => shape.room.name))],
+        roomVisibility: (!journey || journeyStage() === 'restore'
+          ? [page]
+          : travelRoomIndices(journey, current).map((index) => routeOrder[index])
+        ).map((name) => ({ route: name, opacity: roomVisibility(name, current) })),
         ordinaryShapes: geometry.length,
         customShapes: custom.length,
       });
@@ -745,7 +766,11 @@ module.exports = function (api) {
       // Probe costs remain part of input-to-ready evidence.
       if (journey) {
         try {
-          for (const route of new Set([...fromRooms.map((index) => routeOrder[index]), page]))
+          for (const route of new Set([
+            ...fromRooms.map((index) => routeOrder[index]),
+            ...travelRoomIndices(journey, from).map((index) => routeOrder[index]),
+            page,
+          ]))
             roomFor(route);
         } catch {
           fail();

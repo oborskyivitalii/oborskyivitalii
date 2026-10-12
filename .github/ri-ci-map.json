@@ -105,6 +105,7 @@
         "review/issue-69/2026-10-11-pacing-harness.md",
         "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
         ".github/acceptance/issue-76.json",
+        "review/issue-76/2026-10-11-preview.md",
         "review/issue-76/2026-10-12-admission.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
@@ -473,7 +474,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4425afd34dfeb3411105190e510f0fc714280fa2fb2e7e8b649791a8ed21fd42",
+    "digest": "d061f55906a1cd82589b5601faf0807c7f993a8fcd7155a8b44197e894f91c93",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -573,7 +574,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2b7ff7998df02480296bcd1395d4d78ed359113ace42b2b1c21e48e034f950d9"
+        "sha256": "f6a58106a2e48dcb590d4c3bc4c46a45a9713a72de564afaaa6896f493c8d94f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -685,7 +686,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "3752097ae41ff15f596c5cf08f4bb11c4369031f26f078c9ef06e44fe502479b"
+        "sha256": "4cb3c4387db2a6a6fe499e408356d0949c170ed50e68df9c8181861aa4c1e838"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -801,7 +802,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8c1c1f9a7a0942bc8f01d9a7e64a13d4eac09bed3471686b6f14b27552350729"
+        "sha256": "12afa0f09db2f7574398bcb1331d7edf4df08e8720b5cfa2492879a305e1db3c"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -5,7 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const { test } = require('node:test');
 const { spawnSync } = require('node:child_process');
-const source = fs.readFileSync(path.join(__dirname, '../docs/theme.js'), 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '../site/engine/theme.js'), 'utf8');
 
 function visit(hour, options = {}) {
   let now = new Date(2026, 9, 1, hour, 0, 0).getTime();
@@ -28,7 +28,12 @@ function visit(hour, options = {}) {
         document.activeElement = summary;
       },
     },
-    appearance = { open: false, querySelector: () => summary, addEventListener() {} };
+    appearance = {
+      open: false,
+      querySelector: () => summary,
+      contains: (target) => [appearance, summary, control].includes(target),
+      addEventListener() {},
+    };
   const document = {
     readyState: 'loading',
     hidden: false,
@@ -81,6 +86,9 @@ function visit(hour, options = {}) {
     summary,
     key(key) {
       documentEvents.keydown?.({ key });
+    },
+    click(target, detail = {}) {
+      documentEvents.click?.({ target, ...detail });
     },
     theme: () => document.documentElement.dataset.theme,
     saved: () => saved,
@@ -189,6 +197,30 @@ test('Escape closes Appearance when a Safari mouse click leaves focus in the pag
   page.document.activeElement = main;
   page.key('Escape');
   assert.equal(page.document.activeElement, main);
+});
+
+test('Appearance dismisses outside mouse, touch and keyboard clicks without moving page focus', () => {
+  const page = visit(12, { appearance: true });
+  const outside = {};
+  page.document.activeElement = outside;
+  for (const detail of [{ pointerType: 'mouse' }, { pointerType: 'touch' }, { detail: 0 }]) {
+    page.appearance.open = true;
+    page.click(outside, detail);
+    assert.equal(page.appearance.open, false);
+    assert.equal(page.document.activeElement, outside, 'outside activation keeps its own focus');
+  }
+  for (const target of [page.control, page.summary, page.appearance]) {
+    page.appearance.open = true;
+    page.click(target);
+    assert.equal(
+      page.appearance.open,
+      true,
+      'inside controls and native summary keep their action'
+    );
+  }
+  page.appearance.open = false;
+  page.click(outside);
+  assert.equal(page.appearance.open, false, 'dismissal cannot reopen a closed panel');
 });
 
 test('the same instant follows different visitor time zones', () => {

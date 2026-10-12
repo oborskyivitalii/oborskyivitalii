@@ -24,6 +24,14 @@ function compact(svg) {
     / ((?:stroke|fill)-opacity|stroke-width)="([\d.]+)"/g,
     (_, name, value) => ` ${name}="${String(Number(value)).replace(/^0\./, '.')}"`
   );
+  // A zero-alpha edge has no stroke paint. Keep its fill and geometry, but
+  // discard the inert width and inherited/accent stroke from the static SVG.
+  svg = svg.replace(/<path\b[^>]* stroke-opacity="0"[^>]*>/g, (path) =>
+    path
+      .replace(/ stroke="var\(--systems\)"/, '')
+      .replace(/ stroke-opacity="0"/, ' stroke="none"')
+      .replace(/ stroke-width="[^"]+"/, '')
+  );
   return svg
     .replace(/ stroke="var\(--accent\)"/g, '')
     .replace(

@@ -60,6 +60,7 @@ window.SiteScrollEntry=(function () {
   const knownRecords = new Map();
   const separators = new Map();
   const active = new Map();
+  const pendingReading = new Map();
   const listeners = [];
   let root = null;
   let footer = null;
@@ -77,6 +78,10 @@ window.SiteScrollEntry=(function () {
   let routePrepared = null;
   let holdTask = null;
   let nextUnitId = 0;
+  let readingDistance = 0;
+  let readingDuration = 700;
+  let readingStagger = 80;
+  let readingBorders = [];
   const routeActive = new Set();
   const clock = () => window.performance?.now() ?? Date.now();
 
@@ -86,8 +91,9 @@ window.SiteScrollEntry=(function () {
   }
   function clearState(element) {
     clearSeparators('reading', element);
-    window.clearTimeout(active.get(element));
+    window.clearTimeout(active.get(element)?.timer);
     active.delete(element);
+    pendingReading.delete(element);
     element.removeAttribute('data-scroll-entry');
     element.removeAttribute('data-scroll-delay');
   }
@@ -96,11 +102,8 @@ window.SiteScrollEntry=(function () {
     if (!record) return;
     record.done = true;
     clearState(element);
-    observer?.unobserve(element);
-    if (observer && [...records.values()].every((record) => record.done)) {
-      observer.disconnect();
-      observer = null;
-    }
+    // Keep the native shell observed: a later complete exit below the viewport
+    // arms its next ordinary downward entry without measuring every scroll.
   }
   function disconnect() {
     generation++;
@@ -193,8 +196,8 @@ window.SiteScrollEntry=(function () {
         record = { done: false, ink: null, id: String(++nextUnitId) };
         knownRecords.set(element, record);
       }
-      // Changing a responsive group never replays content already read through
-      // its parent or children. Unseen below-fold groups remain eligible.
+      // A responsive group first settles visible content read through its
+      // parent or children. Below-fold groups keep their repeatable entry.
       if (
         previous.some(
           ([other, state]) =>
@@ -219,6 +222,7 @@ window.SiteScrollEntry=(function () {
     routeUnits.clear();
     for (const element of nextRecords) records.set(element, recordFor(element));
     for (const element of nextUnits) routeUnits.set(element, recordFor(element));
+    readingBorders = readingBorders.filter((model) => records.has(model.owner));
   }
   function wrapInk(element, record) {
     // Inline text needs one movable layer; publication/grid children stay intact.
@@ -726,36 +730,103 @@ window.SiteScrollEntry=(function () {
     cancelRoute();
     settle();
   }
+  function armReading(unit, borders, pageBottom) {
+    const { element, record, native, visible } = unit;
+    if (
+      !visible ||
+      readingDistance <= 0 ||
+      native.top < window.innerHeight ||
+      native.bottom + window.scrollY + readingDistance + 32 >= pageBottom ||
+      (document.activeElement && element.contains(document.activeElement))
+    ) {
+      finish(element);
+      return;
+    }
+    record.done = false;
+    if (!record.ink) wrapInk(element, record);
+    attachSeparators(borders, 'reading', element);
+    element.setAttribute('data-scroll-entry', 'waiting');
+  }
+  function startReading(element, index, own) {
+    const started = clock();
+    element.setAttribute('data-scroll-delay', String(index));
+    element.setAttribute('data-scroll-entry', 'entering');
+    // An event normally releases the state. This one-shot fallback also
+    // releases it if a stylesheet is replaced or an animation is cancelled.
+    const timer = window.setTimeout(() => {
+      if (own !== generation) return;
+      finish(element);
+      // A missing animation event releases queued native content too; failure
+      // cannot grow into successive watchdog-length waves.
+      for (const queued of pendingReading.keys()) finish(queued);
+    }, 2000);
+    active.set(element, {
+      timer,
+      started,
+      plannedDurationMs: readingDuration + index * readingStagger,
+    });
+  }
+  function drainReading(own) {
+    if (own !== generation || suspended || !allowed()) return;
+    const measured = [...pendingReading].map(([element, index]) => ({
+      element,
+      index,
+      rect: element.getBoundingClientRect(),
+    }));
+    for (const { element, index, rect } of measured) {
+      if (
+        direction <= 0 ||
+        clock() < jumpUntil ||
+        rect.bottom <= 0 ||
+        rect.top >= window.innerHeight
+      ) {
+        finish(element);
+        continue;
+      }
+      if (active.size >= 6) break;
+      pendingReading.delete(element);
+      startReading(element, index, own);
+    }
+  }
   function enter(entries, own) {
     if (own !== generation || suspended || !allowed()) return;
+    const pageBottom = document.documentElement.scrollHeight;
     const siblings = new Map();
     for (const entry of entries) {
       const element = entry.target;
       const record = records.get(element);
-      if (!entry.isIntersecting || !record || record.done || active.has(element)) continue;
-      observer?.unobserve(element);
-      if (
-        direction <= 0 ||
-        clock() < jumpUntil ||
-        entry.boundingClientRect.top < window.innerHeight * 0.25 ||
-        active.size >= 6
-      ) {
+      if (!record) continue;
+      if (!entry.isIntersecting) {
+        if (entry.boundingClientRect.top >= window.innerHeight && direction < 0) {
+          clearState(element);
+          const rect = entry.boundingClientRect;
+          armReading(
+            {
+              element,
+              record,
+              native: rect,
+              rect: { top: rect.top, bottom: rect.bottom },
+              visible: element.getClientRects().length > 0,
+            },
+            readingBorders,
+            pageBottom
+          );
+        } else if (active.has(element) || pendingReading.has(element)) finish(element);
+        continue;
+      }
+      if (record.done || active.has(element) || pendingReading.has(element)) continue;
+      if (direction <= 0 || clock() < jumpUntil) {
         finish(element);
         continue;
       }
       const group = element.parentElement;
       const index = Math.min(2, siblings.get(group) || 0);
       siblings.set(group, index + 1);
-      element.setAttribute('data-scroll-delay', String(index));
-      element.setAttribute('data-scroll-entry', 'entering');
-      // An event normally releases the state. This one-shot fallback also
-      // releases it if a stylesheet is replaced or an animation is cancelled.
-      const timer = window.setTimeout(() => {
-        if (own === generation) finish(element);
-      }, 2000);
-      active.set(element, timer);
+      // Dense native rows retain their next reveal instead of permanently
+      // consuming excess shells. The existing six-active bound stays intact.
+      if (active.size >= 6) pendingReading.set(element, index);
+      else startReading(element, index, own);
     }
-    if ([...records.values()].every((record) => record.done)) disconnect();
   }
   function releaseReadingStates() {
     for (const element of records.keys()) {
@@ -774,16 +845,20 @@ window.SiteScrollEntry=(function () {
       else releaseReadingStates();
       return;
     }
-    const distance = Number.parseFloat(
-      window.getComputedStyle(root).getPropertyValue('--scroll-entry-distance')
-    );
+    const style = window.getComputedStyle(root);
+    const distance = Number.parseFloat(style.getPropertyValue('--scroll-entry-distance'));
     if (!Number.isFinite(distance) || distance <= 0) return;
-    const height = window.innerHeight;
+    readingDistance = distance;
+    const duration = Number.parseFloat(style.getPropertyValue('--block-motion-duration'));
+    const stagger = Number.parseFloat(style.getPropertyValue('--block-motion-stagger'));
+    readingDuration =
+      Number.isFinite(duration) && duration >= 450 && duration <= 700 ? duration : 700;
+    readingStagger = Number.isFinite(stagger) && stagger >= 0 && stagger <= 120 ? stagger : 80;
     const scrollY = window.scrollY;
-    const pageBottom = document.documentElement.scrollHeight;
     // Batch native reads before any transient layer/state writes. The last
     // block stays steady when its moving ink/paper would grow scroll overflow.
     releaseReadingStates();
+    const pageBottom = document.documentElement.scrollHeight;
     const measured = [...records].map(([element, record]) => {
       const rect = element.getBoundingClientRect();
       return {
@@ -802,31 +877,26 @@ window.SiteScrollEntry=(function () {
       };
     });
     const borders = measureSeparators(measured);
+    // Native side paint and ownership are measured together after cleanup.
+    // Repeated crossings reuse them until reflow/theme/layout reconciliation,
+    // even while a sibling still suppresses another side of the same source.
+    readingBorders = borders;
     const own = generation;
     observer = new window.IntersectionObserver(
       guarded((entries) => enter(entries, own)),
       {
-        rootMargin: `0px 0px -${Math.round(height * 0.1)}px 0px`,
+        rootMargin: '0px',
         threshold: 0.001,
       }
     );
     for (const { element, record, rect, native, visible } of measured) {
-      if (active.has(element)) finish(element);
-      if (record.done) continue;
       if (!visible) {
         clearState(element);
         continue;
       }
-      if (native.top < height || rect.bottom + scrollY + distance + 32 >= pageBottom) {
-        finish(element);
-        continue;
-      }
-      if (!record.ink) wrapInk(element, record);
-      attachSeparators(borders, 'reading', element);
-      element.setAttribute('data-scroll-entry', 'waiting');
+      armReading({ element, record, native, rect, visible }, borders, pageBottom);
       observer.observe(element);
     }
-    if (![...records.values()].some((record) => !record.done)) disconnect();
     previousY = scrollY;
   }
   function deferReconcile() {
@@ -867,6 +937,8 @@ window.SiteScrollEntry=(function () {
     clearSeparators('reading');
     clearSeparators('route');
     nextUnitId = 0;
+    readingDistance = 0;
+    readingBorders = [];
     root = null;
     footer = null;
   }
@@ -899,7 +971,14 @@ window.SiteScrollEntry=(function () {
       } else {
         if (event.animationName !== 'scroll-entry-rise') return;
         const element = event.target.closest('[data-scroll-entry]');
-        if (element && active.has(element)) finish(element);
+        const entry = active.get(element);
+        if (entry) {
+          // An old queued completion cannot settle this retained shell's new
+          // reveal before its own duration and sibling delay have elapsed.
+          if (clock() - entry.started < entry.plannedDurationMs - 8) return;
+          finish(element);
+          drainReading(generation);
+        }
       }
     });
     listen(root, 'animationend', animationFinished);
@@ -920,13 +999,17 @@ window.SiteScrollEntry=(function () {
       guarded(() => {
         const next = window.scrollY;
         const delta = next - previousY;
-        direction = Math.sign(delta);
+        // Duplicate browser scroll notifications must not erase the last real
+        // direction before the asynchronous observer receives its crossing.
+        if (delta !== 0) direction = Math.sign(delta);
         previousY = next;
         if (Math.abs(delta) > Math.max(480, window.innerHeight * 0.75)) {
           jumpUntil = clock() + 250;
           for (const element of active.keys()) finish(element);
+          for (const element of pendingReading.keys()) finish(element);
         } else if (direction < 0) {
           for (const element of active.keys()) finish(element);
+          for (const element of pendingReading.keys()) finish(element);
         }
       }),
       { passive: true }

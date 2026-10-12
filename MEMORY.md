@@ -4,15 +4,18 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 ## Snapshot
 
-- 12October: user approved issue76 / PR77 preview for main and stable staging.
-  Exact new Color recognition needs a controller-only companion first because
-  Pages smoke consumes protected main. Public main bytes remain unchanged.
-  Current runtime preview sourcebcfcfe8 is not yet staged or merged.
-
-- Main is `8389eb0145940c0f269fc7240d854a5b38c64c08` after reviewed
-  [PR75](https://github.com/oborskyivitalii/oborskyivitalii/pull/75), full tree
-  `a945b1e610f4c1e551ee8847be647179855259b3`, exactly equal to tested raw head
-  `82d5572fbfd45b462d4c1fb37a246698e4393456`. Revalidate live tip.
+- Main checkpoint is `fd3dea5b2271123468560e1eb4dc3f0aa056b6b2` after PR78.
+  Its tree equals admitted sourcebe6439b; ordinary run38234626344 passed the
+  bounded gate, Cloudflare stable and Pages mirror, then fresh Staging admission.
+- [#76 / PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77)
+  implements outside Appearance dismissal, continuous prepared-room fades,
+  repeatable downward entry and five distinct shared fractal compositions.
+  The user approved corrected previewbcfcfe8 / run38224107735 on12October
+  and explicitly authorized main plus stable staging. Admission-only follow-up
+  preserves its authored/generated public bytes. PR78 supplied the necessary
+  exact Color registry on protected main without changing that main's site.
+  Runtime PR77 updates from this checkpoint for its own fresh admission;
+  final tested source/tree, both-host runs and merge identity belong in #76.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -20,27 +23,29 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 - Its ordinary postmerge identity38167640337/1 failed `missing staging admission`.
   Main navigation38167640287 passed. The approved bootstrap is not a green
   postmerge admission result. Earlier bootstrap and stage failures stay failed.
-- [#69](https://github.com/oborskyivitalii/oborskyivitalii/issues/69) remains in
-  [PR71](https://github.com/oborskyivitalii/oborskyivitalii/pull/71), undergoing
-  rebase from raw `fa95fc3516392f6c36991f40d455ec5516291960` onto current main.
-  Raw fa95 source484/484 and bounded source463/463 passed; stage38161511583 failed
-  trusted-main legacy Color expectations after Pages deployment/HTTP passed.
-- Cloudflare recovery114538536517 restored prior stable sourcec08741db.
-  First Pages publication remains explicitly unaccepted with no prior accepted
-  baseline. PR75 authenticates that exact package only as failed-first recovery.
+- #69 / PR71 code is integrated into main. Earlier failed stage38161511583
+  remains failed historical evidence; its remaining physical/lifecycle/full-cost
+  acceptance stays separate from merge and the new #76 preview.
+- Historical recovery114538536517 restored sourcec08741db. PR78 now has the
+  first successful ordinary both-host admission; earlier failures stay failed.
 - Production is disabled. Official project-base Pages configuration works;
   complete administration, stable accepted revision and production remain distinct.
 
 ## Decisions
+
+- Issue76 preview-first phase is visually approved. The12October instruction
+  authorizes ready-source checks, ordinary stable staging and merge of the
+  unchanged admitted tree. Repeated downward re-entry replaces one-shot reading;
+  existing fallbacks, resource limits and production boundary stay.
 
 - At21:20 Europe/Warsaw on11October the maintainer answered **«Ок давай»** to
   concrete one-time PR75 controller integration before ordinary two-host staging,
   followed by PR71 rebase, fresh staging and merge after its successful admission.
   This new scoped decision is recorded in live #72/#69. No standing waiver,
   protection change, relabelled failure or production/domain/DNS activation follows.
-- The earlier one-time PR74 decision is exhausted and separate. PR71 still needs
-  real ready raw-head source/RI/owning checks, owner `/stage` while open,
-  successful Cloudflare plus Pages, unchanged admitted-tree merge and identity.
+- Earlier one-time controller decisions are exhausted and separate. Current
+  runtime promotion requires real raw-head source/RI/owning checks, owner `/stage`
+  while open, both publishers, fresh admission and unchanged-tree merge identity.
 - All five routes retain root CSS timing and Block transitions control:700ms
   overlapping rows in fixed1000ms block phases, camera400/1000/350ms, total3750ms.
   Credits shares blocks/fractal flight; neutral separators and interactive focus,
@@ -62,8 +67,9 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #69 / PR71 | Finish current rebase, exact native source/RI/owning checks, actual both-host staging, unchanged-tree merge and ordinary postmerge identity. Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate. |
-| #72 | Current-controller both-host stable acceptance/recovery, strict additional admission setting and remaining whole criteria. PR75 integration is observed under its scoped decision; ordinary admission remains pending. |
+| #76 / PR77 | Approved runtime promotion through fresh source/hosted checks and ordinary two-host staging; verify final state, source/tree and closure in the live issue. |
+| #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
+| #72 | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
 | #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |
 | #41 / Draft PR68 | Separate editorial and author-first intent; no task merge is inferred. |
 | #39 / Draft PR40 | Canonical Pages/domain preparation and original release decisions. |
@@ -72,14 +78,10 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 ## Next session
 
-1. Revalidate main, PR71 head/checks and live #69/#72. Their latest evidence
-   supersedes this dated preparation; preserve failed attempts and recovery.
-2. Freeze reviewed combined source with original runtime bytes and both guard
-   branches; verify catalog/profile/ledger preservation and fresh generated RI/CI.
-3. Obtain real exact-head checks and a new complete two-host `/stage`, then merge
-   only its unchanged admitted tree and verify actual postmerge identity.
-4. Tick only whole criteria with every original gate verified; keep unresolved
-   device/lifecycle/cost/rights/production obligations and umbrella issues open.
+1. Revalidate current main, issue76/PR77 and their exact admission/merge evidence.
+2. Treat the live owner as final authority for completion after this checkpoint.
+3. Preserve the approved public edition and current source/tree/package binding.
+4. Keep older device/lifecycle/cost/rights/release gates and failed attempts honest.
 
 ## Maintenance
 

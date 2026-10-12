@@ -55,7 +55,16 @@
       refresh();
     });
     const appearance = document.querySelector?.('.appearance');
-    if (appearance)
+    if (appearance) {
+      document.addEventListener(
+        'click',
+        (event) => {
+          // Click also covers touch and keyboard activation. Capture dismissal
+          // before a page control handles navigation or stops propagation.
+          if (appearance.open && !appearance.contains(event.target)) appearance.open = false;
+        },
+        true
+      );
       document.addEventListener('keydown', (event) => {
         // Safari mouse activation may leave focus outside the open details.
         if (event.key === 'Escape' && appearance.open) {
@@ -63,6 +72,7 @@
           appearance.querySelector('summary').focus();
         }
       });
+    }
     const header = document.querySelector?.('.site-header');
     if (header) {
       const clearance = () =>
