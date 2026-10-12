@@ -239,6 +239,80 @@ outcome and regenerate metadata; they do not change the checked runtime/test
 program. Final Basic/format/lint/security and exact-head managed admission then
 controller staging remain separate observations.
 
+## Managed ad212 admission and original-budget stage failures
+
+Clean source `ad212096` / tree `52f29d83` passes Basic38290118159:
+686/686 in59 modules,130,019ms with two workers; navigation38290117033
+and owning38290117010/38290133931 pass. Managed preview38290117530 passes
+all4 normal/no-Canvas journeys,2 Color cases and5 article observations
+(1440/390 normal plus390 Off/no-Canvas/no-JS) on Chromium153.0.8010.12.
+The65-file artifact is independently reconstructed from the primary clean source,
+including actual native body/head/descriptors/assets, with digest `c9c1134a`.
+This establishes the native correction's managed proof; PDF/editorial/device
+and actual publication remain separate.
+
+Bounded stage38290814111 remains failed. Its selected source passes649/649
+in54 modules142,025ms, plus109 repository cases; host/static gates also pass.
+The functional report retains6 journeys,2 navigation and10 failure fixtures,
+but Chromium exits before analytics/article collection. Its temporary analytics
+source tree omits `quality/artifact.cjs` and `budgets.json`, now required by
+`site/offline.cjs`; the resulting missing-module error is the actual startup
+cause rather than a failed article navigation. The cold fixture fix copies
+only those two canonical owners. Exactad source fails the new cold case;
+corrected analytics passes11/11 and separate peer case1/1. It checks all15
+exports, dependency bytes, isolation and cleanup before an injected browser
+boundary, without claiming fixture output is actual browser evidence.
+
+| ID | Preserved failure/evidence | Bounded correction and remaining admission |
+| --- | --- | --- |
+| F28 | Actual temporary-source missing dependency before browser article collection | Close the exact offline→artifact→budgets chain; fresh full bounded functional collection remains required. |
+| F29 | Writing mobile TBT301.5ms exceeds the original200ms; Research111.5ms, Writing LCP2238.1ms/CLS0 | Snapshot native Y and viewport height once after reading cleanup, before per-unit DOM writes; fresh same-budget measurement remains required. |
+
+The actual timeline has no V8 Profile/ProfileChunk samples. Explicit layout
+stacks identify168 `armReading` style/layout events totaling25.422ms raw;
+42 of those DCL-path pairs cost14.426ms on Writing. The shared guarded callback
+reads `window.innerHeight` and `scrollY` per unit after earlier ink/separator/state
+writes, defeating its existing native measurement batch. Direct Writing bootstrap
+calls `save`, so the native-cancellation call inside `navigate` is not a cause.
+The132ms Lighthouse task is simulated; its actual RunTask65.874ms includes
+navigation evaluation24.956ms and DOMContentLoaded36.029ms. These observations
+support a specific read/write fix, not exclusive sampled CPU attribution or a
+performance guarantee; unchanged Space frames also contribute to the audit.
+
+Final ScrollEntry `ff058c81` passes a fresh batch snapshot to both callers.
+Reconcile captures after cleanup/clamp and uses the same Y for `previousY`;
+enter snapshots its native viewport before processing IO entries. Eligibility,
+focus/visibility, last-block overflow protection, direction/stagger/six-active
+bound and existing watchdogs retain their original conditions and values.
+Two adverse cases fail exactad and pass the correction (one Y/height read and
+zero post-write flushes); mapped ScrollEntry/navigation passes66/66. Separate
+peer review verifies both cases and their original-source failures. No timer,
+RAF, CSS, animation duration, metric budget or profile is changed.
+
+A distinct ninth Color family/18 tuples binds base `a63e6d65`, composed navigation
+`7d8d577c`, plain `695f497e` and staging `cdff9548`, preserving every16 published
+historical tuples. Default source owners regenerate all documents, previews and
+the actual ZIP. Existing complete Color/stage guards pass24/24; fresh checksum
+proof independently verifies184 current public findings/44values/30paths,
+preserving the1370 published prefix for1554 total; proof `d6ac61cf` and concrete
+proposal `d838a6db` are retained. Three other ledgers remain unchanged. The58-entry
+ZIP is2,368,582bytes/SHA `ae8efdbe`. Complete689 selected-source accounting,
+final RI/scanners and managed
+preview then bounded stage remain required. The original failed run stays failed.
+
+## Complete viewport/closure prepared-source verification
+
+Current prepared index `faf07d7c` passes all689 cases in59 modules in175,205ms
+on two CPUs, with no failures/skips/cancellations/TODOs and the unchanged
+180,000ms/16MiB parent limits. The retained `readingViewport689FullPass` record
+contains complete TAP/accounting and current selected-source fingerprints.
+The cold analytics case and both viewport probes participate in this full result;
+previous focused author66/66 observations were stdout-only, not invented TAP files.
+All subsequent edits only record this result and rebuild its metadata. Final
+format/Basic/lint/security and fresh exact-head managed preview then same-budget
+stage are still separate delivery results. The actual301.5ms TBT failure remains
+failed until a new source-bound measurement establishes the correction's outcome.
+
 ## Tasks and acceptance evidence
 
 | Task | Owner paths | Check | Status |

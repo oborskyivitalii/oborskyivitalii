@@ -243,6 +243,8 @@ async function run(browser, engine, selection = cases(engine)) {
       'tools/site',
       'tools/build_scene_fallbacks.cjs',
       'tools/build_site_previews.cjs',
+      'tools/quality/artifact.cjs',
+      'tools/quality/budgets.json',
     ]) {
       fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
       fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });

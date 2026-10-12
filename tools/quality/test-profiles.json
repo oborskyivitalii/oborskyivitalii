@@ -255,7 +255,7 @@
     {
       "path": "tests/analytics.test.cjs",
       "language": "javascript",
-      "purpose": "Consent/disabled/vendor and executable-boundary analytics generation; stable source retention",
+      "purpose": "Analytics generation/consent/vendor and executable-boundary negatives; actual cold five-route/offline dependency preparation, canonical artifact/budget copies, export isolation and context/temp cleanup",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -275,7 +275,9 @@
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
         "site/integrations/**",
-        "site/site.json"
+        "site/site.json",
+        "tools/quality/analytics-browser.cjs",
+        "tools/quality/budgets.json"
       ]
     },
     {
@@ -877,7 +879,7 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging selection, registry coupling, canonical media/history negatives, retained original traces/motion/failure evidence and metric budgets; current native smooth-scroll/capture-before-layout runtime/effects identity matches the eight-family/sixteen-tuple reviewed Color inventory",
+      "purpose": "Exact bounded staging selection, registry/media/history coupling, retained original traces/motion/failure evidence and metric budgets; current viewport-batched runtime/effects identity matches the nine-family/eighteen-tuple reviewed Color inventory",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1604,7 +1606,7 @@
     {
       "path": "tests/color-motion-contract.test.cjs",
       "language": "javascript",
-      "purpose": "Exact reviewed eight-family/sixteen-tuple Color dispatch, preservation of all fourteen prior tuples, strict reading/block/spatial guards and malformed/substituted evidence negatives including native smooth-scroll runtime",
+      "purpose": "Exact nine-family/eighteen-tuple Color dispatch, preservation of all sixteen published tuples, strict reading/block/spatial guards and malformed/substituted evidence negatives including viewport-batched reading",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1631,7 +1633,7 @@
     {
       "path": "tests/scroll-entry.test.cjs",
       "language": "javascript",
-      "purpose": "Repeat ordinary downward re-entry on stable shells, native block route phases, bounded lifecycle/resources and readable motion/focus/jump fallback",
+      "purpose": "Repeat native downward re-entry and route phases, bounded lifecycle/resources and focus/jump fallback; post-cleanup native viewport snapshots shared before per-unit writes preserve eligibility and final-shell safety",
       "owner": "site/README.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

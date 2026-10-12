@@ -198,16 +198,15 @@ owner. This reviewer implemented none of these changes and writes only this repo
 Published 242 Basic run 38284606215 passes 683/683 in 165.190s with two workers
 and four available CPUs; navigation and both owning runs also pass. Its managed
 preview run 38284605794 failed. The inspected 1440px checkpoint retains activation
-2297, saved/pop/Back 2004 and correct focus, with unchanged height 3197 and maximum
-2297. Progressive trusted native scroll during reading establishes departure
+2297, saved/pop/Back 2004 and correct focus, with unchanged height 3197 and maximum 2297. Progressive trusted native scroll during reading establishes departure
 drift rather than remount clamping. The particular focus/actionability initiator
 is inferred. That failed run remains failed and does not satisfy the condition
 for subsequent controller staging.
 
-| ID | Evidence and bounded correction | Independent disposition |
-| --- | --- | --- |
-| F26, P2 | Inherited native smooth motion changes the outgoing viewport during asynchronous reading. Capture the live viewport, or matching same-page saved position while content is unavailable, before interrupt; immediately use the existing instant native helper once. | Prepared source and focused regressions pass; fresh clean-head managed admission remains required. |
-| F27, P2 | Root identified diagnostic layout reads preceding the expected departure capture. The independent adverse proof changes live scroll/focus on the first geometry read. Copy the primitive expected values before all diagnostic geometry. | Bad order independently reproduced on 242; the corrected existing adverse fixture passes without changing the strict assertion. |
+| ID      | Evidence and bounded correction                                                                                                                                                                                                                                    | Independent disposition                                                                                                         |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| F26, P2 | Inherited native smooth motion changes the outgoing viewport during asynchronous reading. Capture the live viewport, or matching same-page saved position while content is unavailable, before interrupt; immediately use the existing instant native helper once. | Prepared source and focused regressions pass; fresh clean-head managed admission remains required.                              |
+| F27, P2 | Root identified diagnostic layout reads preceding the expected departure capture. The independent adverse proof changes live scroll/focus on the first geometry read. Copy the primitive expected values before all diagnostic geometry.                           | Bad order independently reproduced on 242; the corrected existing adverse fixture passes without changing the strict assertion. |
 
 The F26 boundary adds no request-wide freeze, timer, RAF, CSS mutation or second
 scroll owner. The final departure save remains after the asynchronous read;
@@ -313,3 +312,88 @@ no additional checks after that application and did not edit any ledger.
 Final RI/security, the complete changed-source run and clean-head managed/controller
 admission remain their own pending observations. This report is staged; all further
 repository/index writes by this reviewer are held.
+
+## 2026-10-12 independent supplement after the failed ad212 stage
+
+Role: independent peer review by `registry_ri_integration`, which authored neither
+the analytics fixture correction nor the ScrollEntry performance patch. The
+earlier reviewer authored this new ScrollEntry patch after the reviews above;
+those earlier independence statements remain scoped to their recorded phases.
+This supplement inspects explicitly dirty prepared source after published
+`ad212096`: ScrollEntry `ff058c81`, its fixture `fab40ff9`, analytics collector
+`f9ef6e82` and analytics fixture `ccc44590`. Exact source identities are retained
+with the [diagnostic owner](2026-10-12-ci-followup-evidence.json.gz). The owning
+[#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5) and
+[PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) retain AC04,
+AC08, AC11 and AC12 and all prior human/source/delivery qualifications.
+
+Managed bounded stage run `38290814111` failed at that published source. Its
+functional report contains the cold analytics startup failure
+`Cannot find module '../quality/artifact.cjs'`, with the temporary offline and
+preview producer in the require stack. Analytics rows are empty and conditional
+article collection did not complete; the final functional error about missing
+actual article evidence does not replace the earlier startup cause. Its Writing
+mobile performance report independently records TBT **301.5ms > 200ms**. Both
+original failures remain failed in `publishedAd212StageFailure`.
+
+The failed Writing raw trace contains **168 complete typed events** with
+`armReading` on their direct stack: 84 `UpdateLayoutTree` and 84 `Layout`, totaling
+**25.422ms**. This reviewer derived those counts and durations directly from the
+retained compressed trace, independently of sampled CPU profile attribution.
+That is an observed opportunity to remove repeated viewport reads, not a measured
+TBT saving or a performance pass for the prepared patch. The original TBT budget,
+selection and CPU-rate contract remain unchanged.
+
+The analytics correction copies exactly the missing canonical `artifact.cjs` and
+`budgets.json` owners into its existing temporary source package. The actual
+dependency chain is preview producer → offline module → artifact → budgets; no
+publisher or toolchain directory is copied. The new regression performs a real
+cold build and all fifteen offline exports before a controlled browser boundary,
+checks exact copied bytes and analytics isolation, and verifies context and
+temporary-directory cleanup. An assertion raised inside `goto` cannot silently
+pass because the returned error must match the distinct boundary sentinel.
+This reviewer independently ran that one case: **1/1 pass**, zero failures,
+skips, cancellations or TODOs, in 707ms. It proves preparation/cleanup and cannot
+authorize actual browser evidence.
+
+ScrollEntry now releases transient reading states before capturing native
+`scrollY` and `innerHeight`, then measures native rectangles/page extent and arms
+the batch with that single snapshot. `previousY` uses the same post-cleanup
+position. The observer callback also shares one snapshot before its per-unit
+writes. Both `armReading` callers are updated; eligibility retains visibility,
+focus, distance, native top and the same bottom + Y + distance + 32 safety guard.
+Existing IO rectangles, `clearState`/`getClientRects` ordering, focus/filter/theme/
+reflow/re-entry paths, direction/jump gates, six-active limit, stagger, timers and
+watchdogs remain. No new cache survives a callback or reconciliation.
+
+The two new adversarial viewport probes independently pass **2/2**, with zero
+nonpass cases, in 109ms. They verify post-cleanup clamp coordinates, one native
+Y/height read before arming writes, final-shell safety, downward re-entry and
+bounded watchdogs. In a fresh process, this reviewer injected the exact published
+ad212 factory bytes into only the process module cache and ran those same tests:
+**0/2 pass**. Old reconciliation reads Y/height six/six times with three post-write
+flushes; reverse-entry reads four/nine times with two flushes. The corrected
+source reads each once with zero post-write flushes. No repository source was
+edited by that negative check. This is bounded mechanism evidence, not a replay
+of the whole source suite or a new browser performance campaign.
+
+The regenerated prepared summary reports base `a63e6d65`, composed navigation
+`7d8d577c`, plain `695f497e`, staging `cdff9548` and a 65-file artifact
+`6dd1a82c`. The new `issue5Viewport` family adds two tuples while the eight
+published families/sixteen tuples remain exact. Delegated concrete checksum
+review assents to proof `d6ac61cf` and proposal `d838a6db`: 184 public findings,
+44 values and 30 paths, independently derived from 40 documents, 17 previews,
+five inert payloads, the 58-entry ZIP of 2,368,582 bytes (`ae8efdbe`) and the
+65-file artifact. Root reports applying only those approved 184 findings after
+the exact published 1,370-entry prefix, yielding 1,554; the three other ledgers
+and prior finding objects remain preserved. RI/CI and unused prototype findings
+are outside that proposal. This reviewer did not derive that checksum proposal
+or edit a ledger; its independent delegated assent and root application are
+distinct from the peer checks executed above.
+
+No correctness blocker was found in this narrow source review. Final RI/scanner
+binding, complete changed-source accounting, exact-head managed functional and
+TBT admission, and authorized controller staging remain pending observations.
+No performance, editorial, rights, device, upstream, merge or publication gate
+is closed by these focused checks. This supplement is the only repository file
+written by this peer reviewer in this review phase.

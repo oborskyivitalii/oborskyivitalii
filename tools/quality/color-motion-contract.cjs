@@ -61,6 +61,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: 'f60f16a7c7293c0b9d801546a53f5ce13d2443bf06cc3c6cd15d2a032a71123e',
   },
+  issue5Viewport: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'a63e6d65c5437c80391655159ef802d162bf565033cba453be9abbbcc7eae787',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: '7d8d577ced2dfd8e9662ec2d0dedc010df1989f2f80d86a06fd139e44fed5e7c',
+  },
 };
 const runtimes = [
   {
@@ -173,6 +180,20 @@ const runtimes = [
     family: 'issue5Smooth',
     edition: 'staging',
     fingerprint: '95b145ea1b981045847944ae3234bce094b73e109c93a08b30b3c447c7261a99',
+    styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
+  },
+  {
+    id: 'issue5-viewport-plain',
+    family: 'issue5Viewport',
+    edition: 'plain',
+    fingerprint: '695f497e5cb6ebd6b7b4320583b951c00dcc963c1cbcf8ccef1406ef0d01a79d',
+    styles: '02bee22b9ed7e3ad06b6a23b54bb881e36e2484ba7c8b1a0e6de2e93527373aa',
+  },
+  {
+    id: 'issue5-viewport-staging',
+    family: 'issue5Viewport',
+    edition: 'staging',
+    fingerprint: 'cdff9548271f4dc89def0455f4b564f49b22331aafcbccb9d3e39d97767e9233',
     styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
   },
 ];

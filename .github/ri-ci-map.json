@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
     "date": "2026-10-12",
-    "summary": "Register site-owned publication adapters, native article/offline delivery and exact conditional article controls. Preserve selection, bounds and fourteen prior Color tuples; the eighth family admits sixteen exact tuples for departure capture before layout and inherited native smooth-scroll cancellation before asynchronous read, within existing native-failure cleanup/fallback while preserving deliberate user input. Browser diagnostics capture primitive activation before geometry. Source scheduling, two isolated workers, abort/error cleanup, bounded parser/cache/batch and Canvas guards remain unchanged. Automated source/hosted observations stay separate from independent, editorial, rights, device, merge and publication decisions."
+    "summary": "Preserve site-owned publication adapters, native article/offline delivery and exact conditional controls. Current prepared source closes cold analytics preparation with two canonical dependencies and batches reading viewport snapshots after cleanup before per-unit writes. Selection, limits and sixteen published Color tuples remain; the ninth family admits eighteen exact tuples. Native capture/cancellation/fallback, isolated source scheduling, parser/cache/batch and Canvas guards remain. Actual managed functional/TBT admission and independent, editorial, rights, device, merge and publication decisions stay separate from focused source observations."
   },
   "layers": [
     {
@@ -147,7 +147,7 @@
     },
     {
       "id": "test-profile-selection",
-      "purpose": "Canonical source/test allocation, staging/scanner controls and complete accounting; Space/executive priority, remaining size/lexical order and two isolated Node workers retain serial defaults, failure reporting and original-deadline abort cleanup. Native capture before geometry/layout, smooth-scroll cancellation with native-failure fallback and eight Color families/sixteen tuples remain explicit and source-bound.",
+      "purpose": "Canonical source/test allocation, bounded staging/scanner controls and complete accounting; exact isolated execution/cleanup and native history/analytics cold-preparation/viewport snapshot routes remain explicit. Nine source-bound Color families/eighteen tuples preserve all sixteen published tuples and original performance/evidence limits.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
         "tests/fixtures/staging-evidence.cjs",
@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "f14aa0961bc6946eb09356ddc819f2ff22f2598fbfa07ec86647b0a0e5fdac26",
+    "digest": "ae87bb6db9eaaf25f1838f69fd615de7f62018291a88addc6997f2eaafe5a0cf",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -634,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "5961e568ec93ae00c0bdacb535847bed15e1d3266dcf407ee771bf2f65761905"
+        "sha256": "447f205fe44e31eb62255f804659da280b6bedd90c722bac9266e59d1c8aa217"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -746,7 +746,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "63bb5c1d646eea74f89678788a332b1ed24f46657022b2ff638a061517df5e57"
+        "sha256": "14a6c4e1f9c450fd2c6e471b65e4a5daec65b75cc455c1fcb1203fd3d13a9132"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -866,7 +866,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "3064beac90e456e34f27a9c21cbcd151e54ae6192fa3a572a1f23403fc1cb9ce"
+        "sha256": "dda7db21cdc2a563f53d29d83900031ac210daebb5096b215a512dc52057e30a"
       },
       {
         "path": "tools/repository_intelligence.py",

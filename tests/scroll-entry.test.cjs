@@ -261,6 +261,118 @@ test('reconciliation snapshots native page extent once for all reading candidate
   assert.equal(h.state(20), 'waiting');
 });
 
+function nativeViewportProbe(h, { scrollY = 0, cleanupScrollY = null } = {}) {
+  let position = scrollY;
+  const height = h.window.innerHeight;
+  let scrollReads = 0;
+  let heightReads = 0;
+  let readsAfterWrites = 0;
+  let dirty = false;
+  let cleaned = false;
+  function flush() {
+    if (!dirty) return;
+    readsAfterWrites++;
+    position += 800;
+    dirty = false;
+  }
+  Object.defineProperties(h.window, {
+    scrollY: {
+      get() {
+        scrollReads++;
+        flush();
+        return position;
+      },
+      set(value) {
+        position = value;
+      },
+    },
+    innerHeight: {
+      get() {
+        heightReads++;
+        flush();
+        return height;
+      },
+    },
+  });
+  for (const element of [h.root, ...h.elements]) {
+    // Native geometry does not call the JavaScript viewport accessors. Model
+    // that boundary separately so the probe counts the controller's reads.
+    element.getBoundingClientRect = () => ({
+      top: element.top - position,
+      bottom: element.top + element.height - position,
+      left: 0,
+      right: 100,
+      width: 100,
+      height: element.height,
+    });
+    const setAttribute = element.setAttribute;
+    const removeAttribute = element.removeAttribute;
+    element.setAttribute = (name, value) => {
+      setAttribute(name, value);
+      if (name === 'data-scroll-entry' && value === 'waiting') dirty = true;
+    };
+    element.removeAttribute = (name) => {
+      removeAttribute(name);
+      if (!cleaned && cleanupScrollY !== null && name === 'data-scroll-entry') {
+        position = cleanupScrollY;
+        cleaned = true;
+      }
+    };
+  }
+  return {
+    counts: () => ({ scroll: scrollReads, height: heightReads, afterWrites: readsAfterWrites }),
+    position: () => position,
+    reset() {
+      scrollReads = heightReads = readsAfterWrites = 0;
+      dirty = false;
+    },
+  };
+}
+
+test('reconciliation snapshots the viewport after cleanup and before arming multiple shells', () => {
+  const h = harness({ count: 6 });
+  const probe = nativeViewportProbe(h, { scrollY: 200, cleanupScrollY: 0 });
+  h.elements[4].top = 11570;
+  h.elements[5].top = 11600;
+  h.window.emit('resize');
+  h.task(0);
+  assert.deepEqual(probe.counts(), { scroll: 1, height: 1, afterWrites: 0 });
+  assert.equal(probe.position(), 0, 'cleanup clamps before the native measurement batch');
+  assert.equal(h.state(0), undefined, 'the first fold stays native');
+  assert.equal(h.state(1), 'waiting', 'the first below-fold shell remains eligible');
+  assert.equal(h.state(4), 'waiting', 'the last safe shell uses the post-cleanup document offset');
+  assert.equal(h.state(5), undefined, 'the final overflow-risk shell remains native');
+  assert.equal(h.observers.at(-1).observed.size, 6, 'all shells keep their native observer');
+});
+
+test('reverse-entry callbacks share one viewport snapshot and retain bounded downward reveals', () => {
+  const h = harness({ count: 6 });
+  const probe = nativeViewportProbe(h);
+  h.elements[1].top = 1400;
+  h.elements[2].top = 1500;
+  h.elements[4].top = 11570;
+  h.elements[5].top = 11600;
+  h.scroll(500);
+  h.scroll(400);
+  probe.reset();
+  h.leave([0, 1, 2, 4, 5]);
+  assert.deepEqual(probe.counts(), { scroll: 1, height: 1, afterWrites: 0 });
+  assert.equal(probe.position(), 400, 'later DOM writes cannot advance the sampled viewport');
+  assert.equal(h.state(0), undefined);
+  assert.equal(h.state(1), 'waiting');
+  assert.equal(h.state(4), 'waiting');
+  assert.equal(h.state(5), undefined);
+  probe.reset();
+  h.scroll(800);
+  h.tick(1000);
+  h.intersect([1, 2]);
+  assert.equal(h.state(1), 'entering');
+  assert.equal(h.state(2), 'entering');
+  assert.equal(h.elements[1].attributes.get('data-scroll-delay'), '0');
+  assert.equal(h.elements[2].attributes.get('data-scroll-delay'), '1');
+  assert.equal(h.tasks.size, 2, 'two reveals retain only their existing bounded watchdogs');
+});
+
 test('entry repeats on every full downward re-entry and never animates upward', () => {
   const h = harness();
   for (let pass = 0; pass < 4; pass++) {

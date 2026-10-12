@@ -334,6 +334,80 @@ test('all fifteen standalone exports and their inert route payloads remove enabl
     }
   }
 });
+test('analytics browser cold preparation owns the complete five-route offline dependency closure', async () => {
+  const collector = require('../tools/quality/analytics-browser.cjs');
+  const producer = require('../tools/build_site_previews.cjs');
+  const boundary = 'controlled cold-preparation boundary; no browser execution';
+  let preparedDirectory,
+    contexts = 0,
+    closed = 0;
+  const page = {
+    setDefaultTimeout(value) {
+      assert.equal(value, 6000);
+    },
+    setDefaultNavigationTimeout(value) {
+      assert.equal(value, 30000);
+    },
+    on() {},
+    async goto(url) {
+      const file = require('node:url').fileURLToPath(url);
+      preparedDirectory = path.dirname(path.dirname(file));
+      for (const owner of ['tools/quality/artifact.cjs', 'tools/quality/budgets.json'])
+        assert.deepEqual(
+          fs.readFileSync(path.join(preparedDirectory, owner)),
+          fs.readFileSync(path.join(root, owner)),
+          'copied canonical offline dependency ' + owner
+        );
+      assert.equal(fs.existsSync(path.join(preparedDirectory, 'tools/publishing')), false);
+      assert.equal(fs.existsSync(path.join(preparedDirectory, 'tools/quality/toolchain')), false);
+      assert.match(
+        fs.readFileSync(path.join(preparedDirectory, 'docs/index.html'), 'utf8'),
+        /data-site-analytics/
+      );
+      const names = snapshot.routes.flatMap((route) => [
+        producer.filename(route, 'light'),
+        producer.filename(route, 'dark'),
+        producer.interactiveFilename(route),
+      ]);
+      assert.equal(names.length, 15);
+      for (const name of names) {
+        const html = fs.readFileSync(path.join(preparedDirectory, 'review', name), 'utf8');
+        assert.doesNotMatch(html, /cloudflareinsights|analytics\.js|data-site-analytics/);
+        if (name.endsWith('interactive.html')) {
+          const payload = JSON.parse(
+            html.match(/<script type="application\/json" id="site-pages">([\s\S]*?)<\/script>/)[1]
+          );
+          assert.deepEqual(Object.keys(payload.pages), snapshot.routes);
+          assert.equal(payload.revision.articles, undefined);
+          assert.equal(payload.assets, undefined);
+        }
+      }
+      throw Error(boundary);
+    },
+  };
+  const browser = {
+    async newContext() {
+      contexts++;
+      return {
+        newPage: async () => page,
+        async route() {},
+        async close() {
+          closed++;
+        },
+      };
+    },
+  };
+  const rows = await collector.run(browser, 'chromium', [
+    { engine: 'chromium', entry: 'index', mode: 'offline' },
+  ]);
+  assert.equal(contexts, 1, 'cold preparation completed before the browser boundary');
+  assert.equal(closed, 1);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].pass, false, 'this preparation fixture cannot authorize browser evidence');
+  assert.equal(rows[0].error, boundary);
+  assert.ok(preparedDirectory);
+  assert.equal(fs.existsSync(preparedDirectory), false, 'the prepared source copy was removed');
+});
 test('analytics and unknown component changes force the full advisory scope without skipping checks', () => {
   const { config } = b.configuration(root),
     components = b.fingerprints(root, config),

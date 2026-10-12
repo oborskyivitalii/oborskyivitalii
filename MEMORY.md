@@ -26,8 +26,11 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   Managed242 Basic passes683/683; its preview exposes native smooth-scroll
   departure drift. The bounded instant cancellation and pre-layout collector
   capture are prepared; native-failure fallback and zero pre-router layout reads
-  are checked. Final prepared two-CPU source passes686/686 in179.167s at
-  original limits; latest exact-head admission belongs to the live PR.
+  are checked. Cleanad212 source passes686/686 in130.019s and managed preview
+  passes all article/Color cases. Its bounded stage fails temporary analytics
+  closure and Writing TBT301.5/200; exact closure and viewport-batch corrections
+  are prepared; whole two-CPU source689/689 passes175.205s. Original limits
+  and fresh exact-head admission remain in the PR.
   Native history captures focus before inert/departure and preserves interrupted
   focus. Managed hosted `27717ab` passed all article/Color cases; its Basic source
   timed out. The measured isolated two-worker Space/executive-first route retains
