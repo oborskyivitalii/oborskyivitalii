@@ -205,10 +205,24 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     const articleLink = page.locator('.article-list a[href="' + descriptor.alias + '"]');
     assert.equal(await articleLink.count(), 1, 'Writing lists the admitted article');
     await articleLink.scrollIntoViewIfNeeded();
-    const archiveScroll = await page.evaluate(() => scrollY);
     const archiveFocus = await articleLink.getAttribute('id');
     assert.ok(archiveFocus, 'article link has a stable history focus identity');
+    await articleLink.evaluate((anchor) => {
+      anchor.addEventListener(
+        'click',
+        () => {
+          window.__articleArchiveDeparture = {
+            scroll: scrollY,
+            focus: document.activeElement?.id,
+          };
+        },
+        { capture: true, once: true }
+      );
+    });
     await articleLink.click();
+    const departure = await page.evaluate(() => window.__articleArchiveDeparture);
+    assert.equal(departure?.focus, archiveFocus, 'actual article activation focus');
+    const archiveScroll = departure.scroll;
     await settled(page, 'article:' + key, timeout);
     await preserveShell(page);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
@@ -333,6 +347,18 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
         basePath: new URL(urls.base).pathname,
       },
     };
+  } catch (error) {
+    error.articleCheckpoint = await page
+      .evaluate(() => ({
+        url: location.href,
+        departure: window.__articleArchiveDeparture,
+        history: history.state?.site,
+        focus: document.activeElement?.id,
+        scroll: scrollY,
+        busy: document.querySelector('#site-content')?.hasAttribute('aria-busy'),
+      }))
+      .catch(() => null);
+    throw error;
   } finally {
     await context.close();
   }

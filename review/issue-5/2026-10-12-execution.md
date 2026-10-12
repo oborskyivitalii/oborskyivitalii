@@ -221,3 +221,46 @@ scanners passed with zero untriaged findings after exact153 new public-checksum
 entries (150 generated values plus three independently reviewed Color identities).
 These are prepared-source checks; clean-head CI and hosted smoke remain the next
 required evidence, with all original human/merge/publication gates retained.
+
+### Native history follow-up from 7b28592
+
+Clean-head owning38270824805/navigation38270687779 and Basic38270688879
+passed. The59-module additional-source selector ran665/665 cases in125.320seconds
+under the unchanged180-second bound. Hosted38270688307 passed exact HTTP bytes
+and all four ordinary smoke cases, then failed article Back focus/scroll at the
+unchanged2-second/2px predicate. It remains a failed hosted attempt, not admission.
+
+Independent native-history investigation reproduced the ordering defect in
+actual authored functions: departure save happened after content became inert,
+which can blur an in-content link to BODY. A real browser inert/layout check
+confirmed native focus loss. Departure state now saves before visibility/inert;
+inert timer writes cannot overwrite it. Interrupted unmounted travel retains
+its matching entry's focus only as fallback; newly focused controls win. Initial,
+pop/history, delayed350ms save and rapid retarget regressions pass (23 navigation
+cases). Collector samples the actual activation event after browser actionability
+scrolling, preserving strict focus,2px and2-second checks, and retains failed
+article checkpoint diagnostics.
+
+New Color history identities bind the changed navigation bytes explicitly.
+Every prior family/tuple and all other runtime files remain; actual browser
+observations and fresh clean-head hosted evidence have their own source limits.
+
+[Native history browser observations](2026-10-12-native-history-browser.json.gz)
+passed all five article cases (1440/390 normal;390 Off/no-Canvas/no-JS) plus
+Color1440/390 at the corrected history runtime. Actual reading/focus/scroll,
+query/head/anchors and cancellation checks passed. Prepared-source and explicit
+review-browser limits remain; new clean-head hosted admission is still required.
+
+The final history capture helpers preserve the independently reviewed ordering
+and conditions while keeping the pinned complexity cap: lint passes with no new
+warnings or exceptions. Navigation/fixture cases pass42/42 and article cases
+11/11; the article save harness explicitly models non-inert ordinary content.
+Final browser observations above were repeated after that source refactor.
+All five earlier Color families/ten tuples remain unchanged; the new history
+tuple binds the corrected navigation, with the other four runtime files retained.
+
+Independent final checksum proof authorizes exactly156 new public-hash ledger
+entries. All prior records, scanner rules and the complexity cap remain; no
+unknown secret or wildcard disposition is admitted. Final source, RI/CI,
+formatted owners and generated artifacts are checked before publication of
+the follow-up commit; its clean-head CI is recorded in the live PR.

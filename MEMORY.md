@@ -17,6 +17,9 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   Continuation corrects image-load smoke, frozen translation lineage and selected
   platform event formats; original failed CI remains failed. Fresh-head results
   belong in the live PR; source limits and separate owner decisions remain.
+  Native history follow-up captures focus before inert/departure, suppresses
+  transient history writes and preserves interrupted focus; fresh hosted
+  acceptance follows the failed7b28592 Back-focus observation.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from

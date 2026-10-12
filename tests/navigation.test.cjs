@@ -139,27 +139,74 @@ test('navigation flight forwards native endpoint, history and fragment landing i
     assert.deepEqual(h.commits, ['writing']);
   }
 });
-function routeHarness({ holdDeparture = false } = {}) {
+function routeHarness({
+  holdDeparture = false,
+  holdScene = false,
+  holdRead = false,
+  blurDeparture = false,
+  initialPage = 'index',
+} = {}) {
   const calls = [],
     probes = [],
     assigned = [],
-    tasks = new Map();
+    tasks = new Map(),
+    timerDelays = new Map(),
+    listeners = new Map(),
+    historyEntries = [],
+    historyWrites = [],
+    blurredFocus = [];
   let timer = 0,
     clock = 10,
+    historyIndex = 0,
+    inert = false,
+    finishScene,
+    resolveScene,
+    resolveRead,
+    releaseRead,
     resolveDeparture,
     releaseDeparture;
   const departureStarted = new Promise((resolve) => (resolveDeparture = resolve)),
-    departureGate = new Promise((resolve) => (releaseDeparture = resolve));
-  const node = () => ({ setAttribute() {}, focus() {} });
+    departureGate = new Promise((resolve) => (releaseDeparture = resolve)),
+    sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
+    readStarted = new Promise((resolve) => (resolveRead = resolve)),
+    readGate = new Promise((resolve) => (releaseRead = resolve));
+  const node = (id = 'main', href = null) => ({
+    id,
+    inContent: true,
+    href: href ? new URL(href, 'https://fixture.test/').href : null,
+    getAttribute: (name) => (name === 'href' ? href : null),
+    setAttribute() {},
+    focus() {
+      context.document.activeElement = this;
+    },
+  });
+  const routeMain = (next) => ({
+    ...node(),
+    links: next === 'writing' ? [node('article-sample-en', 'articles/sample-en.html')] : [],
+  });
+  function blurContentFocus() {
+    if (context.document.activeElement?.inContent) {
+      blurredFocus.push(context.document.activeElement.id);
+      context.document.activeElement = context.document.body;
+    }
+  }
   const content = {
-    inert: false,
+    get inert() {
+      return inert;
+    },
+    set inert(value) {
+      inert = value;
+      if (value) blurContentFocus();
+    },
     style: {},
+    main: routeMain(initialPage),
     setAttribute() {},
     removeAttribute() {},
     replaceChildren(main) {
       this.main = main;
     },
     querySelector: () => content.main,
+    querySelectorAll: () => content.main.links,
   };
   const scrollEntry = {
     suspend() {},
@@ -174,6 +221,7 @@ function routeHarness({ holdDeparture = false } = {}) {
         resolveDeparture();
         await departureGate;
       }
+      if (blurDeparture) blurContentFocus();
       return { completed: true };
     },
     prepareArrival(direction, navigationId) {
@@ -184,12 +232,22 @@ function routeHarness({ holdDeparture = false } = {}) {
     },
   };
   const window = {
-    location: { href: 'https://fixture.test/index.html', assign: (url) => assigned.push(url) },
-    setTimeout(fn) {
+    location: {
+      href: `https://fixture.test/${initialPage}.html`,
+      assign: (url) => assigned.push(url),
+    },
+    scrollX: 0,
+    scrollY: 0,
+    setTimeout(fn, delay) {
       tasks.set(++timer, fn);
+      timerDelays.set(timer, delay);
       return timer;
     },
-    clearTimeout: (id) => tasks.delete(id),
+    clearTimeout(id) {
+      tasks.delete(id);
+      timerDelays.delete(id);
+    },
+    addEventListener: (name, listener) => listeners.set(name, listener),
     dispatchEvent() {},
     SiteEngineProbe: (event) => probes.push(event),
     SiteScene: {
@@ -198,8 +256,33 @@ function routeHarness({ holdDeparture = false } = {}) {
       detachTravel() {},
       navigate(next, animate, update, landing, metadata) {
         calls.push({ kind: 'scene', next, animate, landing, navigationId: metadata.navigationId });
-        update(1);
+        if (holdScene && metadata.navigationId === 1) {
+          finishScene = () => update(1);
+          resolveScene();
+          update(0);
+        } else update(1);
       },
+    },
+  };
+  historyEntries.push({
+    url: window.location.href,
+    state: { unrelated: 'retained', site: { page: initialPage, scroll: [0, 0] } },
+  });
+  const history = {
+    get state() {
+      return historyEntries[historyIndex].state;
+    },
+    pushState(state, unused, url) {
+      const entry = { url: String(url), state: JSON.parse(JSON.stringify(state)) };
+      historyEntries.splice(++historyIndex, Infinity, entry);
+      window.location.href = entry.url;
+      historyWrites.push({ kind: 'push', ...entry });
+    },
+    replaceState(state, unused, url) {
+      const entry = { url: String(url), state: JSON.parse(JSON.stringify(state)) };
+      historyEntries[historyIndex] = entry;
+      window.location.href = entry.url;
+      historyWrites.push({ kind: 'replace', ...entry });
     },
   };
   const context = {
@@ -211,14 +294,15 @@ function routeHarness({ holdDeparture = false } = {}) {
     announcement: {},
     document: {
       hidden: false,
-      body: { dataset: { page: 'index' } },
+      body: { dataset: { page: initialPage } },
       documentElement: { lang: 'en', scrollHeight: 1200 },
       head: { querySelectorAll: () => [], append() {} },
       querySelector: () => null,
       querySelectorAll: () => [],
-      getElementById: () => null,
+      getElementById: (id) =>
+        [content.main, ...content.main.links].find((element) => element.id === id) || null,
     },
-    history: { pushState() {}, replaceState() {} },
+    history,
     performance: { now: () => clock++ },
     AbortController,
     CustomEvent: class {
@@ -231,33 +315,54 @@ function routeHarness({ holdDeparture = false } = {}) {
     innerHeight: 600,
     metadata: 'fixture-metadata',
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
-    routeFor: (url) => url.pathname.slice(1).replace('.html', ''),
+    routeFor: (url) =>
+      url.pathname === '/articles/sample-en.html'
+        ? 'article:sample:en'
+        : url.pathname.slice(1).replace('.html', ''),
     address: (url) => url,
-    read: async (next) => ({
-      page: next,
-      title: next,
-      lang: 'en',
-      main: node(),
-      footer: node(),
-      metadata: [],
-    }),
+    async read(next) {
+      if (holdRead && next.startsWith('article:')) {
+        resolveRead();
+        await readGate;
+      }
+      return {
+        page: next,
+        scene: next.startsWith('article:') ? 'writing' : next,
+        article: next.startsWith('article:') ? next.slice(8) : null,
+        title: next,
+        lang: 'en',
+        main: routeMain(next),
+        footer: node(),
+        metadata: [],
+      };
+    },
     prepare: (data) => data,
-    save() {},
-    clearText() {},
+    clearText() {
+      content.inert = false;
+    },
     releaseEndpoint() {},
     releaseTail() {},
     arriveEndpoint() {},
     mountEndpoint() {},
-    restoreScroll() {},
+    restoreScroll(left, top) {
+      window.scrollX = left;
+      window.scrollY = top;
+    },
     rebaseResources() {},
   };
+  context.document.activeElement = context.document.body;
   const start = source.indexOf('  async function navigate('),
-    end = source.indexOf('  document.body.dataset.entryPage = page;', start);
+    end = source.indexOf('  document.body.dataset.entryPage = page;', start),
+    scrollStart = source.indexOf('  // One write after a gesture'),
+    scrollEnd = source.indexOf("  window.addEventListener('site:motion-preference'", scrollStart);
   assert.ok(start > 0 && end > start, 'missing authored navigation lifecycle boundary');
+  assert.ok(scrollStart > 0 && scrollEnd > scrollStart, 'missing authored scroll-save boundary');
   vm.runInNewContext(
-    `let page='index',serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null;
+    `let page=${JSON.stringify(initialPage)},serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null;
+    ${section('save', 'push')}
     ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}
     ${section('mount', 'prepare')}${source.slice(start, end)}
+    ${source.slice(scrollStart, scrollEnd)}
     globalThis.navigate=navigate;`,
     context
   );
@@ -269,8 +374,129 @@ function routeHarness({ holdDeparture = false } = {}) {
     tasks,
     departureStarted,
     releaseDeparture,
+    sceneStarted,
+    finishScene: () => finishScene(),
+    readStarted,
+    releaseRead,
+    historyEntries,
+    historyWrites,
+    blurredFocus,
+    document: context.document,
+    window,
+    scheduleScrollSave: () => listeners.get('scroll')(),
+    runTimer(delay) {
+      const [id, callback] = [...tasks].find(([key]) => timerDelays.get(key) === delay) || [];
+      assert.ok(callback, 'expected queued timer with delay ' + delay);
+      window.clearTimeout(id);
+      callback();
+    },
+    focus(id) {
+      const target = context.document.getElementById(id);
+      assert.ok(target, 'expected focusable fixture ' + id);
+      target.focus();
+    },
+    travel(delta) {
+      historyIndex += delta;
+      assert.ok(historyEntries[historyIndex], 'expected native history entry');
+      const entry = historyEntries[historyIndex];
+      window.location.href = entry.url;
+      return context.navigate(new URL(entry.url), { pop: true, position: entry.state.site.scroll });
+    },
   };
 }
+test('article Back restores the archive link and scroll captured before inert blurs content focus', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  h.window.location.href += '?topic=systems&language=en';
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  assert.deepEqual(h.blurredFocus, ['article-sample-en']);
+  assert.deepEqual(h.historyEntries[0].state, {
+    unrelated: 'retained',
+    site: { page: 'writing', scroll: [0, 705], focus: 'article-sample-en' },
+  });
+  const articleState = h.historyEntries[1].state;
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  assert.equal(h.window.scrollY, 705);
+  assert.equal(new URL(h.window.location.href).search, '?topic=systems&language=en');
+  assert.equal(h.historyEntries.length, 2, 'pop navigation never creates a replacement entry');
+  assert.deepEqual(h.historyEntries[1].state, articleState);
+  await h.travel(1);
+  assert.equal(h.document.body.dataset.article, 'sample:en');
+  assert.equal(h.document.activeElement.id, articleState.site.focus);
+  assert.equal(h.window.scrollY, articleState.site.scroll[1]);
+  assert.deepEqual(h.assigned, []);
+});
+test('initial navigation replaces the entry without storing departure state or pushing history', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'), { initial: true });
+  assert.equal(h.historyEntries.length, 1);
+  assert.deepEqual(
+    h.historyWrites.map((entry) => entry.kind),
+    ['replace', 'replace']
+  );
+  assert.deepEqual(h.historyEntries[0].state.site, {
+    page: 'article:sample:en',
+    scroll: [0, 0],
+    focus: 'main',
+  });
+  assert.deepEqual(h.assigned, []);
+});
+test('departure visibility cannot erase the focus saved for Back', async () => {
+  const h = routeHarness({ initialPage: 'writing', blurDeparture: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/research.html'));
+  assert.deepEqual(h.blurredFocus, ['article-sample-en']);
+  assert.equal(h.historyEntries[0].state.site.focus, 'article-sample-en');
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  assert.equal(h.window.scrollY, 705);
+  assert.deepEqual(h.assigned, []);
+});
+test('an inert scroll-save tick and rapid unmounted retarget retain the departure link', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdScene: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  h.scheduleScrollSave();
+  const stale = h.navigate(new URL('https://fixture.test/research.html'));
+  await h.sceneStarted;
+  const departure = h.historyEntries[0].state;
+  const writes = h.historyWrites.length;
+  h.runTimer(350);
+  assert.equal(h.historyWrites.length, writes, 'inert cannot replace the captured departure entry');
+  assert.deepEqual(h.historyEntries[0].state, departure);
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  h.finishScene();
+  await stale;
+  assert.equal(h.historyEntries.length, 2, 'the interrupted destination never enters history');
+  assert.deepEqual(h.historyEntries[0].state, departure);
+  assert.equal(h.historyEntries[1].state.site.page, 'article:sample:en');
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  assert.equal(h.window.scrollY, 705);
+  assert.deepEqual(h.assigned, []);
+  assert.equal(h.tasks.size, 0);
+});
+test('explicit focus during a retargeted read replaces the captured departure focus', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdScene: true, holdRead: true });
+  h.focus('article-sample-en');
+  const stale = h.navigate(new URL('https://fixture.test/research.html'));
+  await h.sceneStarted;
+  const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.readStarted;
+  h.document.activeElement = { id: 'appearance', getAttribute: () => null };
+  h.releaseRead();
+  await latest;
+  h.finishScene();
+  await stale;
+  assert.equal(h.historyEntries[0].state.site.focus, 'appearance');
+  assert.equal(h.historyEntries.length, 2);
+  assert.deepEqual(h.assigned, []);
+});
 test('router-owned navigation IDs follow departure, native arrival preparation, camera and completion', async () => {
   const h = routeHarness();
   for (const [next, direction, position] of [
@@ -674,6 +900,7 @@ function sequenceHarness() {
   const end = source.indexOf('  document.body.dataset.entryPage', start);
   vm.runInNewContext(
     `let page='index',serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;
+    ${section('departureFocus', 'push')}
     ${source.slice(start, end)}
     globalThis.currentPage=value=>page=value;
     globalThis.go=navigate;

@@ -481,42 +481,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436": {
-      "kind": "directory",
-      "purpose": "Generated immutable af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436 for the current site artifact; regenerate from the authored site owner.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable archive.js for the current site artifact; regenerate from the authored site owner.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable navigation.js for the current site artifact; regenerate from the authored site owner.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable space.js for the current site artifact; regenerate from the authored site owner.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable styles.css for the current site artifact; regenerate from the authored site owner.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/af3a14857c7bb84dc91c9f06da5825daace4f5d66e629205633ecdc7886e6436/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable theme.js for the current site artifact; regenerate from the authored site owner.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -553,6 +517,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e": {
+      "kind": "directory",
+      "purpose": "Generated immutable e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable archive.js for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable navigation.js for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable space.js for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable styles.css for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/e9b83a6e561336d27ddeb1865284183f73dc669db08842a17d67312abbc1110e/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable theme.js for the current site artifact; regenerate from the authored site owner.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -565,27 +565,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1ace66e099dbfde7922affe5d66a521f0314442b7dfd5c4c18963c114e001a05": {
+    "docs/snapshots/238bae06f7c0916a784cd6885ea323d72088748e33b6b00d3d3f7d3216498c93": {
       "kind": "directory",
-      "purpose": "Generated immutable 1ace66e099dbfde7922affe5d66a521f0314442b7dfd5c4c18963c114e001a05 for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable 238bae06f7c0916a784cd6885ea323d72088748e33b6b00d3d3f7d3216498c93 for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1ace66e099dbfde7922affe5d66a521f0314442b7dfd5c4c18963c114e001a05/research.html": {
+    "docs/snapshots/238bae06f7c0916a784cd6885ea323d72088748e33b6b00d3d3f7d3216498c93/credits.html": {
       "kind": "file",
-      "purpose": "Generated immutable research.html for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable credits.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2965d36d6e87a8b51c4139c055aaf1d3e82dd2f5909237b10f039085bcf95ae3": {
+    "docs/snapshots/384314ccf9627aece640d0b11cfa8368c6680c6804b2cb49fd4ad51f0d3dbed2": {
       "kind": "directory",
-      "purpose": "Generated immutable 2965d36d6e87a8b51c4139c055aaf1d3e82dd2f5909237b10f039085bcf95ae3 for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable 384314ccf9627aece640d0b11cfa8368c6680c6804b2cb49fd4ad51f0d3dbed2 for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2965d36d6e87a8b51c4139c055aaf1d3e82dd2f5909237b10f039085bcf95ae3/index.html": {
+    "docs/snapshots/384314ccf9627aece640d0b11cfa8368c6680c6804b2cb49fd4ad51f0d3dbed2/writing.html": {
       "kind": "file",
-      "purpose": "Generated immutable index.html for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable writing.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -613,15 +613,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7e07a833b7d9866404d574a71340265cd9deb724b942fa863c8e3a94bc2d8e51": {
+    "docs/snapshots/870cb34efb44010518cdeee178fd830cd93beed9daf65ee4e3cf898a6191a06f": {
       "kind": "directory",
-      "purpose": "Generated immutable 7e07a833b7d9866404d574a71340265cd9deb724b942fa863c8e3a94bc2d8e51 for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable 870cb34efb44010518cdeee178fd830cd93beed9daf65ee4e3cf898a6191a06f for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/7e07a833b7d9866404d574a71340265cd9deb724b942fa863c8e3a94bc2d8e51/writing.html": {
+    "docs/snapshots/870cb34efb44010518cdeee178fd830cd93beed9daf65ee4e3cf898a6191a06f/talks.html": {
       "kind": "file",
-      "purpose": "Generated immutable writing.html for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable talks.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -649,15 +649,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/af1d60b40e4f27adc0e0cf2faa2a1643613e1d7300f86c9d85ae0f5872bdaa2e": {
+    "docs/snapshots/970d1fde888d2e346a5ea468e391c90d3a0d0175e7f06c70e6e27afb0ccc926f": {
       "kind": "directory",
-      "purpose": "Generated immutable af1d60b40e4f27adc0e0cf2faa2a1643613e1d7300f86c9d85ae0f5872bdaa2e for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable 970d1fde888d2e346a5ea468e391c90d3a0d0175e7f06c70e6e27afb0ccc926f for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/af1d60b40e4f27adc0e0cf2faa2a1643613e1d7300f86c9d85ae0f5872bdaa2e/talks.html": {
+    "docs/snapshots/970d1fde888d2e346a5ea468e391c90d3a0d0175e7f06c70e6e27afb0ccc926f/index.html": {
       "kind": "file",
-      "purpose": "Generated immutable talks.html for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable index.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -673,15 +673,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/facbf848db4ccc557960c58bbce32dce1eb0da96397196c0ecc40116d71d0106": {
+    "docs/snapshots/bddd8876ee52cc7e8c93b7163cbcae4f040f2d4604b43f6c96ff19cc66250fd5": {
       "kind": "directory",
-      "purpose": "Generated immutable facbf848db4ccc557960c58bbce32dce1eb0da96397196c0ecc40116d71d0106 for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable bddd8876ee52cc7e8c93b7163cbcae4f040f2d4604b43f6c96ff19cc66250fd5 for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/facbf848db4ccc557960c58bbce32dce1eb0da96397196c0ecc40116d71d0106/credits.html": {
+    "docs/snapshots/bddd8876ee52cc7e8c93b7163cbcae4f040f2d4604b43f6c96ff19cc66250fd5/research.html": {
       "kind": "file",
-      "purpose": "Generated immutable credits.html for the current site artifact; regenerate from the authored site owner.",
+      "purpose": "Generated immutable research.html for the current site artifact; regenerate from the authored site owner.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1248,6 +1248,12 @@
       "purpose": "Exact UA/SCC component/file Git and byte inventory, selected adaptations, deferred scope and cross-repository closure/upgrade decisions.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-12-native-history-browser.json.gz": {
+      "kind": "file",
+      "purpose": "Compressed final native-history article journey five-case and Color two-width observations with exact prepared-source/artifact identity and declared review browser.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-12-execution.md"
     },
     "review/issue-5/2026-10-12-secret-checksum-proof.json": {
       "kind": "file",

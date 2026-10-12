@@ -1364,8 +1364,8 @@ window.SiteScrollEntry=(function () {
       .map((link) => routeFor(new URL(link.href, entry)))
       .filter((route, index, list) => route && list.indexOf(route) === index)
   );
-  function save() {
-    if (routeFor(new URL(window.location.href)) !== page) return;
+  function save(fallbackFocus = null) {
+    if (content.inert || routeFor(new URL(window.location.href)) !== page) return;
     try {
       history.replaceState(
         {
@@ -1374,7 +1374,10 @@ window.SiteScrollEntry=(function () {
             page,
             scroll: [window.scrollX, window.scrollY],
             focus:
-              document.activeElement?.id || document.activeElement?.getAttribute?.('href') || null,
+              document.activeElement?.id ||
+              document.activeElement?.getAttribute?.('href') ||
+              fallbackFocus ||
+              null,
           },
         },
         '',
@@ -1383,6 +1386,18 @@ window.SiteScrollEntry=(function () {
     } catch {
       /* Native navigation still works. */
     }
+  }
+  function departureFocus() {
+    // Retargeting an unmounted flight can leave its departure link blurred by
+    // inert. Keep that entry's captured focus unless the reader focused a control.
+    return content.inert &&
+      history.state?.site?.page === page &&
+      (!document.activeElement || document.activeElement === document.body)
+      ? history.state.site.focus
+      : undefined;
+  }
+  function saveDeparture(destination, pop, initial, fallbackFocus) {
+    if (!pop && !initial && destination.href !== window.location.href) save(fallbackFocus);
   }
   function push(url) {
     save();
@@ -1979,6 +1994,7 @@ window.SiteScrollEntry=(function () {
     const nextScene = routes.includes(next) ? next : 'writing';
     const currentScene = routes.includes(page) ? page : 'writing';
     const direction = routes.indexOf(nextScene) >= routes.indexOf(currentScene) ? 1 : -1;
+    const interruptedFocus = departureFocus();
     const own = ++serial;
     interrupt();
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
@@ -2000,6 +2016,10 @@ window.SiteScrollEntry=(function () {
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);
+      const destination = address(url, next);
+      // Departure visibility and inert can both blur native links. Capture
+      // reading state before either owner makes the outgoing content inaccessible.
+      saveDeparture(destination, pop, initial, interruptedFocus);
       let animate = !initial && nextScene !== currentScene && motionAllowed();
       let blocks = animate && (presentation?.contentFlight?.() ?? true);
       if (blocks) {
@@ -2013,9 +2033,7 @@ window.SiteScrollEntry=(function () {
         animate,
         () => {
           const start = window.SiteEngineStages ? performance.now() : 0;
-          const destination = address(url, next);
           if (!pop && !initial && destination.href !== window.location.href) {
-            save();
             history.pushState({ site: { page: next, scroll: [0, 0] } }, '', destination);
           } else if (initial)
             history.replaceState({ site: { page: next, scroll: [0, 0] } }, '', destination);

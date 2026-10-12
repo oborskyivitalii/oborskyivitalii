@@ -401,3 +401,32 @@ byte-for-byte. All four historical families/eight tuples and selector/flight/
 resource guards remain unchanged. Independent comparison also rederived the
 base runtime identity from current producer fingerprints. Actual browser,
 current CI, native device and release decisions remain separate observations.
+
+### F23 — native departure focus
+
+Independent `history_focus` agent reproduced an in-content article link losing
+its focus when flight sets inert before the later history save. The new real
+function harness fails the old source with null focus rather than the archive
+link. The narrow source fix saves before departure/inert, suppresses inert
+writes, preserves interrupted matching-entry focus as fallback and gives actual
+new control focus priority. Its23 navigation cases pass, including Back/Forward,
+initial, delayed saves and rapid retargeting. This addresses AC08/AC11; physical
+Safari/iPad, managed hosted admission and release decisions remain separate.
+
+Independent `ci_review` compared the final helper expressions and call order
+against the reviewed inline fix: no behavioral change or new mutable state.
+`departureFocus` captures before interruption; `saveDeparture` retains initial,
+pop and same-address exclusions after the fresh read/serial gate. Pinned lint
+has zero new warnings; actual navigation/fixture and article cases pass42/42
+and11/11. The final prepared browser observations bind the updated source and
+new Color tuple, retaining every prior family/tuple and strict budgets.
+
+Final frozen-source checksum review independently proved156 exact scanner
+findings (43 unique public values, no credentials/exceptions). Each indicated
+line recovered one64hex value matching its scanner SHA1; runtime/route/content,
+producer, actual documents/payloads and previews were rederived. All40 public
+files,29 preview fields and five inert payload copies were checked. The new
+Color navigation/fingerprints match actual bytes; prior five families/ten tuples
+remain identical. Only the final156 exact entries were appended; intermediate
+proof did not authorize ledger additions. Findings SHA256:
+`0277f3cd0f7863597ef5dae5d3c4047f50b0ae3fde3afdbfc5f938850bcfc777`.

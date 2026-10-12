@@ -493,6 +493,8 @@ async function main() {
         variant,
         rows,
         error: error.message,
+        ...(error.articleCheckpoint ? { articleCheckpoint: error.articleCheckpoint } : {}),
+        ...(error.articleObservations ? { articles: error.articleObservations } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },
