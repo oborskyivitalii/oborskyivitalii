@@ -141,16 +141,47 @@ jobs:
       - name: Install the locked article parser for admitted article previews
         if: needs.target.outputs.prototype != 'true'
         run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - id: content_baseline
+        name: Select a trusted earlier generation for authored content updates
+        if: needs.target.outputs.mode == 'preview' && needs.target.outputs.prototype != 'true'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          CONTENT_BRANCH: ${{ github.event.pull_request.head.ref }}
+          CONTENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        with:
+          script: |
+            const fs=require('node:fs'),path=require('node:path');
+            const selection=await require('./tools/quality/content-baseline.cjs').select({
+              github,repo:context.repo,branch:process.env.CONTENT_BRANCH,
+              candidate:process.env.SITE_CANDIDATE_SHA,base:process.env.CONTENT_BASE_SHA,
+              root:process.cwd(),
+              temporaryRoot:process.env.RUNNER_TEMP,
+            });
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'content-baseline-selection.json'),JSON.stringify(selection,null,2)+'\n');
+            for(const key of ['mode','directory','artifactDigest','generationSha256','sourceCommit'])
+              core.setOutput(key,selection[key]||'');
+            core.info(JSON.stringify(selection));
       - name: Targeted controller checks and one immutable public build
+        env:
+          CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
+          CONTENT_BASELINE: ${{ steps.content_baseline.outputs.directory }}
+          CONTENT_BASELINE_DIGEST: ${{ steps.content_baseline.outputs.artifactDigest }}
+          CONTENT_GENERATION_SHA256: ${{ steps.content_baseline.outputs.generationSha256 }}
+          CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
         run: |
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
-          if [ "${{ needs.target.outputs.prototype }}" != true ]; then
+          if [ "${{ needs.target.outputs.prototype }}" != true ] && [ "$CONTENT_MODE" != content ]; then
             node --test tests/review-flow.test.cjs tests/preview-smoke.test.cjs
             if [ "$(node tools/staging/review-flow.cjs variant)" = color ]; then
               node --test tests/color-build.test.cjs
             fi
           fi
-          node tools/quality/artifact.cjs build color-artifact
+          if [ "$CONTENT_MODE" = content ]; then
+            node tools/quality/source-tests.cjs --profile content --base "$CONTENT_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean
+            node tools/quality/artifact.cjs build color-artifact --content-baseline "$CONTENT_BASELINE" --generation-sha256 "$CONTENT_GENERATION_SHA256" --baseline-digest "$CONTENT_BASELINE_DIGEST"
+          else
+            node tools/quality/artifact.cjs build color-artifact
+          fi
       - id: rendition
         name: Select the supported source rendition and bind its visual identity
         run: |
@@ -289,6 +320,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ needs.target.outputs.source }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -311,6 +343,19 @@ jobs:
       - name: Minimal two-width hosted rendition smoke
         if: needs.target.outputs.prototype != 'true'
         run: node tools/quality/local-browser.cjs --smoke
+      - name: Install the locked parser for the issue-5 local diagnostic
+        if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
+      - name: Exercise genuine content release on an isolated local fixture
+        if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        run: node tools/quality/content-fixture.cjs "$RUNNER_TEMP/content-fixture-report.json"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        with:
+          name: site-content-fixture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/content-fixture-report.json
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
@@ -330,6 +375,7 @@ jobs:
       full: true
       profile: staging
       automated_only: true
+      content_fixture: ${{ needs.target.outputs.number == '79' }}
       public_variant: ${{ needs.build.outputs.variant }}
       base_url: ${{ needs.publish.outputs.url }}
       public_artifact_id: ${{ needs.build.outputs.public_artifact }}
@@ -348,6 +394,7 @@ jobs:
       full: true
       profile: staging
       automated_only: true
+      content_fixture: ${{ needs.target.outputs.number == '79' }}
       public_variant: ${{ needs.build.outputs.variant }}
       base_url: ${{ needs.publish.outputs.url }}
       public_artifact_id: ${{ needs.build.outputs.public_artifact }}

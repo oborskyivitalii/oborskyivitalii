@@ -19,9 +19,10 @@
     const controls = Object.fromEntries(
       ['topic', 'year', 'language'].map((key) => [key, document.getElementById(`archive-${key}`)])
     );
-    const rows = [...document.querySelectorAll('li.publication')];
-    const groups = [...document.querySelectorAll('.archive-group')];
-    const years = [...document.querySelectorAll('.archive-year')];
+    const results = document.getElementById('archive-results');
+    const rows = [...results.querySelectorAll('li.publication')];
+    const groups = [...results.querySelectorAll('.archive-group')];
+    const years = [...results.querySelectorAll('.archive-year')];
     const topics = [...controls.topic.options]
       .map((option) => option.value)
       .filter((value) => value !== 'all');
@@ -50,8 +51,8 @@
           ? value
           : 'all';
       }
-      const topic = window.location.hash.match(/^#topic-([a-z][a-z0-9-]*?)(?:-(\d{4}))?$/);
-      const year = window.location.hash.match(/^#year-(\d{4})$/);
+      const topic = window.location.hash.match(/^#topic-([a-z][a-z0-9-]*?)(?:-(\d{4}|undated))?$/);
+      const year = window.location.hash.match(/^#year-(\d{4}|undated)$/);
       if (topic && topics.includes(topic[1])) {
         controls.topic.value = topic[1];
         if (yearValues.includes(topic[2])) controls.year.value = topic[2];
@@ -104,7 +105,7 @@
       }
       heading.hidden = false;
       heading.textContent = `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}`;
-      countLabel.textContent = countText('count', count);
+      countLabel.textContent = countText(count === rows.length ? 'print' : 'count', count);
       document.getElementById('archive-empty').hidden = count !== 0;
       emit('site:archive-layout', {});
       if (lastTopic !== controls.topic.value || reason === 'initial' || reason === 'reset') {

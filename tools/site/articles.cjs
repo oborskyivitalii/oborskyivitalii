@@ -130,17 +130,22 @@ function input(root, article) {
   };
 }
 
-function attachHead(html, article, index, preview) {
+function alternates(article, index) {
   const metadata = article.metadata;
   const pair = (translated, original) =>
     translated.metadata.translationOf?.articleId === original.metadata.id &&
     translated.metadata.translationOf.editionId === original.metadata.edition &&
     translated.metadata.translationOf.sourceSha256 === original.source.sha256;
-  const alternates = index.filter(
+  return index.filter(
     (other) =>
       other.metadata.language !== metadata.language &&
       (pair(article, other) || pair(other, article))
   );
+}
+
+function attachHead(html, article, index, preview) {
+  const metadata = article.metadata;
+  const translated = alternates(article, index);
   const head = [
     `<meta name="site-article" content="${escapeAttribute(article.key)}">`,
     ...(preview ? ['<meta name="robots" content="noindex,nofollow">'] : []),
@@ -150,7 +155,7 @@ function attachHead(html, article, index, preview) {
           `<meta property="og:url" content="${escapeAttribute(metadata.canonical)}">`,
         ]
       : []),
-    ...alternates.map(
+    ...translated.map(
       (other) => `<link rel="alternate" hreflang="${other.metadata.language}" href="${other.url}">`
     ),
   ].join('\n');
@@ -187,8 +192,9 @@ function documentIndex(html, articles, preview = false) {
 }
 
 function listing(main, articles, scene = 'writing') {
-  if (scene !== 'writing' || !articles.length) return main;
-  const cards = articles
+  const candidates = articles.filter((article) => article.candidate);
+  if (scene !== 'writing' || !candidates.length) return main;
+  const cards = candidates
     .map(
       (article) =>
         `<li><a id="article-link-${article.metadata.id}-${article.metadata.language}" href="${article.url}" lang="${article.metadata.language}">${escapeText(article.metadata.title)}</a>` +
@@ -199,7 +205,7 @@ function listing(main, articles, scene = 'writing') {
     .join('\n');
   const content =
     `<section class="article-list wrap" aria-labelledby="article-list-heading">` +
-    `<h2 id="article-list-heading">Full articles</h2><ul>${cards}</ul></section>`;
+    `<h2 id="article-list-heading">Test article previews</h2><ul>${cards}</ul></section>`;
   return main.replace(/<\/main\s*>/, content + '</main>');
 }
 
@@ -230,6 +236,7 @@ module.exports = {
   input,
   summary,
   attachHead,
+  alternates,
   documentIndex,
   listing,
   rebase,

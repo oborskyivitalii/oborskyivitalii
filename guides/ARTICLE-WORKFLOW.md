@@ -4,6 +4,13 @@ Issue #5 owns the reusable publisher; each publication keeps its editorial and
 rights owner (PMDay: issue #2). This workflow prepares review candidates. It does
 not publish the site or post to LinkedIn or Medium.
 
+On 13 October the author deferred the real PMDay article until its author-approved
+chapters are supplied. The existing PMDay manuscript, blueprint and exports are
+technical test artifacts for the publisher. They do not establish editorial
+acceptance of issue #2. Its accepted recording increment remains separate.
+The [content release guide](SITE-CONTENT-RELEASE.md) explains automatic Writing
+registration and verified platform reuse when adding an article or external link.
+
 ## Contract and verification design
 
 One `site/publications/<id>/manuscript.<language>.md` owns the full article.

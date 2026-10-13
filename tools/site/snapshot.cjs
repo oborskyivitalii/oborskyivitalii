@@ -49,6 +49,27 @@ function inventory(names, requiredMedia = legacyMediaFiles, edition = null, arti
     );
   return true;
 }
+function verifyDocumentContract(html, revision, key = null, article = null) {
+  if (revision.navigation === undefined) return;
+  assert.ok(
+    html.includes('name="site-article-renderer" content="1"'),
+    'current document renderer compatibility'
+  );
+  if (!article) {
+    assert.ok(!html.includes('id="site-documents"'), 'hosted platform registry is external');
+    return;
+  }
+  const index = html.match(
+    /<script type="application\/json" id="site-documents">([\s\S]*?)<\/script>/
+  );
+  assert.ok(index, 'article boot descriptor missing');
+  assert.deepEqual(
+    JSON.parse(index[1]),
+    { [key]: { url: article.alias, snapshot: article.url } },
+    'article boot descriptor differs from current snapshot'
+  );
+}
+
 function verify(dir, record) {
   const files = record.files;
   const read = (name) => fs.readFileSync(path.join(dir, name));
@@ -93,6 +114,12 @@ function verify(dir, record) {
   assert.deepEqual(revision.edition, record.edition, 'edition manifest differs from runtime');
   assert.equal(revision.schema, 1);
   assert.equal(revision.contract, 1);
+  if (revision.navigation !== undefined)
+    assert.deepEqual(
+      revision.navigation,
+      { contract: 1, articleRenderer: 1 },
+      'navigation/renderer compatibility contract'
+    );
   for (const key of ['engine', 'scenes', 'assets', 'content'])
     assert.match(revision[key], /^[a-f0-9]{64}$/);
   assert.deepEqual(Object.keys(revision.routes), routes);
@@ -121,6 +148,7 @@ function verify(dir, record) {
     const html = read(id + '.html').toString();
     assert.ok(html.includes(`name="site-engine" content="${revision.engine}"`));
     assert.ok(html.includes(`name="site-route" content="${route.version}"`));
+    verifyDocumentContract(html, revision);
     for (const name of runtimeFiles)
       assert.ok(
         html.includes(`="runtime/${revision.engine}/${name}"`),
@@ -144,6 +172,7 @@ function verify(dir, record) {
       );
       assert.ok(html.includes(`name="site-engine" content="${revision.engine}"`));
       assert.ok(html.includes(`name="site-route" content="${article.version}"`));
+      verifyDocumentContract(html, revision, key, article);
     }
     for (const name of article.assets) {
       assert.match(name, /^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*$/);

@@ -173,9 +173,31 @@ function validateLocalEdition(edition, record, primary) {
   validateLocalEventReferences(edition, !translation);
   validateBodyEquivalence(edition);
 }
+function writingEntries(c) {
+  const topics = c.archive.topics;
+  return c.structuredOrder
+    .map(({ record: id }, order) => {
+      const record = c.records[id];
+      const date = record.edition.datePublished || record.edition.dateModified;
+      return { id, record, year: date ? date.slice(0, 4) : 'undated', order };
+    })
+    .sort((left, right) => {
+      if (left.year !== right.year) {
+        if (left.year === 'undated') return 1;
+        if (right.year === 'undated') return -1;
+        return right.year.localeCompare(left.year);
+      }
+      return (
+        topics.indexOf(left.record.presentation.topic) -
+          topics.indexOf(right.record.presentation.topic) || left.order - right.order
+      );
+    });
+}
+
 function catalogCounts(c) {
-  const primary = Object.values(c.records).map((r) => r.edition),
-    linked = Object.values(c.records).flatMap((r) => [r.edition, ...(r.editions || [])]),
+  const entries = writingEntries(c);
+  const primary = entries.map(({ record }) => record.edition),
+    linked = entries.flatMap(({ record }) => [record.edition, ...(record.editions || [])]),
     distinctLinked = [...new Map(linked.map((edition) => [edition.url, edition])).values()];
   const count = (rows) => ({
     total: rows.length,
@@ -186,15 +208,9 @@ function catalogCounts(c) {
     primary: count(primary),
     linked: count(distinctLinked),
     years: Object.fromEntries(
-      [
-        ...new Set(
-          primary
-            .filter((e) => e.datePublished || e.dateModified)
-            .map((e) => (e.datePublished || e.dateModified).slice(0, 4))
-        ),
-      ].map((year) => [
+      [...new Set(entries.map((entry) => entry.year))].map((year) => [
         year,
-        primary.filter((e) => (e.datePublished || e.dateModified || '').startsWith(year)).length,
+        entries.filter((entry) => entry.year === year).length,
       ])
     ),
   };
@@ -280,6 +296,10 @@ function validateLabels(c) {
     ...['index', 'research', 'writing', 'talks', 'credits'].map((x) => 'route.' + x),
     'archive.count',
     'archive.print',
+    'archive.year',
+    'archive.undated',
+    'archive.records',
+    'archive.browse',
     'edition.link',
     'edition.edited',
     'discussion.link',
@@ -545,4 +565,11 @@ function validateLocalCatalog(c, resolveArticle) {
   return c;
 }
 
-module.exports = { validateCatalog, validateLocalCatalog, catalogCounts, editionURL, validateDate };
+module.exports = {
+  validateCatalog,
+  validateLocalCatalog,
+  writingEntries,
+  catalogCounts,
+  editionURL,
+  validateDate,
+};

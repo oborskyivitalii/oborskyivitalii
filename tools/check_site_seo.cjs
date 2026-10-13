@@ -181,7 +181,155 @@ const positioning = JSON.parse(
 const sitecase = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-sitecase-amendment.json'), 'utf8')
 );
+const writingCatalog = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-5/writing-catalog-amendment.json'), 'utf8')
+);
 const structuredMetadata = new Map();
+const writingProducerInputs = [
+  'tools/site/content.cjs',
+  'tools/site/validate-catalog.cjs',
+  'tools/site/render-records.cjs',
+  'tools/site/render-content.cjs',
+  'tools/site/html.cjs',
+  'site/templates/components/archive-option.html',
+  'site/templates/components/archive-navigation-link.html',
+  'site/templates/components/archive-topic-landing.html',
+  'site/templates/components/archive-group.html',
+  'site/templates/components/archive-year.html',
+  'site/templates/components/publication.html',
+  'site/templates/components/publication-title.html',
+  'site/templates/components/language-badge.html',
+  'site/templates/components/edition-link.html',
+  'site/templates/components/discussion-link.html',
+].sort();
+
+function verifyWritingProducers(projectRoot = root, bindings = writingCatalog.producerInputs) {
+  assert.ok(bindings && typeof bindings === 'object', 'Reviewed Writing producer identity');
+  assert.deepEqual(
+    Object.keys(bindings).sort(),
+    writingProducerInputs,
+    'Exact bounded Writing producer inventory'
+  );
+  for (const file of writingProducerInputs) {
+    const absolute = path.join(projectRoot, file);
+    const stat = fs.lstatSync(absolute);
+    assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'Authored Writing producer file: ' + file);
+    assert.match(bindings[file], /^[a-f0-9]{64}$/, 'Writing producer SHA256');
+    assert.equal(
+      crypto.createHash('sha256').update(fs.readFileSync(absolute)).digest('hex'),
+      bindings[file],
+      'Writing producer changed outside its reviewed catalog frame: ' + file
+    );
+  }
+}
+
+function writingCatalogViews(projectRoot = root, catalog) {
+  verifyWritingProducers(projectRoot);
+  const content = require('./site/content.cjs');
+  const validated = require('./site/validate-catalog.cjs');
+  const selected = validated.validateCatalog(catalog || content.catalog(projectRoot));
+  const entries = validated.writingEntries(selected);
+  const route = require(path.join(projectRoot, 'site/routes.json')).routes.find(
+    (route) => route.id === 'writing'
+  );
+  return {
+    entries,
+    schema: content.routeInput(projectRoot, route, selected).schema,
+    views: require('./site/render-records.cjs').archiveViews(
+      content.loadComponents(projectRoot),
+      selected,
+      entries
+    ),
+  };
+}
+
+function writingRegion(html, tag, owner, replace) {
+  const openings = [...html.matchAll(new RegExp('<' + tag + '\\b[^>]*>', 'g'))].filter(
+    ([opening]) => owner.test(opening)
+  );
+  assert.equal(openings.length, 1, 'One generated Writing region owner: ' + owner);
+  const opening = openings[0];
+  const start = opening.index + opening[0].length;
+  const tags = new RegExp('</?' + tag + '\\b[^>]*>', 'g');
+  tags.lastIndex = start;
+  let depth = 1;
+  let closing;
+  for (let match; (match = tags.exec(html)); ) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) {
+      closing = match;
+      break;
+    }
+  }
+  assert.ok(closing, 'Complete generated Writing region: ' + owner);
+  return (
+    html.slice(0, start) + replace(html.slice(start, closing.index)) + html.slice(closing.index)
+  );
+}
+
+function restoreWritingCatalog(html, options = {}) {
+  html = normalizeHTML(html);
+  const current = writingCatalogViews(options.projectRoot, options.catalog);
+  for (const [key, tag, owner, hasAllOption] of [
+    ['ARCHIVE_TOPIC_NAV', 'nav', /\bclass="topic-nav wrap"/],
+    ['ARCHIVE_YEAR_NAV', 'nav', /\bclass="section-nav"/],
+    ['ARCHIVE_TOPIC_OPTIONS', 'select', /\bid="archive-topic"/, true],
+    ['ARCHIVE_YEAR_OPTIONS', 'select', /\bid="archive-year"/, true],
+    ['ARCHIVE_LANGUAGE_OPTIONS', 'select', /\bid="archive-language"/, true],
+    ['ARCHIVE_TOPIC_LANDINGS', 'div', /\bclass="archive-landings"/],
+    ['ARCHIVE_RESULTS', 'div', /\bid="archive-results"/],
+  ]) {
+    html = writingRegion(html, tag, owner, (body) => {
+      const all = hasAllOption ? body.match(/^<option value="all">[^<]*<\/option>/)?.[0] : '';
+      if (hasAllOption) assert.ok(all, 'Writing filter retains its authored All option');
+      const prefix = all || '';
+      assert.equal(
+        normalizeHTML(body.slice(prefix.length)).trim(),
+        normalizeHTML(current.views[key]).trim(),
+        'Writing generated view differs from its validated catalog: ' + key
+      );
+      return prefix + normalizeHTML(writingCatalog.generatedViews[key]);
+    });
+  }
+  html = writingRegion(html, 'p', /\bid="archive-count"/, (body) => {
+    const count = body.match(/^(\d+)([^<]*)$/);
+    assert.ok(count, 'Writing count remains a plain generated number');
+    assert.equal(
+      Number(count[1]),
+      current.entries.length,
+      'Writing count matches displayed entries'
+    );
+    return writingCatalog.count + count[2];
+  });
+  return html;
+}
+
+function restoreWritingMetadata(html, options = {}) {
+  const current = writingCatalogViews(options.projectRoot, options.catalog);
+  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.equal(blocks.length, 1, 'One Writing collection metadata block');
+  const block = blocks[0];
+  const { scriptJSON } = require('./site/html.cjs');
+  const encodings = [
+    { indentation: 0, prefix: '', suffix: '' },
+    { indentation: 2, prefix: '', suffix: '' },
+    { indentation: 0, prefix: '\n', suffix: '\n  ' },
+    { indentation: 2, prefix: '\n', suffix: '\n  ' },
+  ];
+  const encoding = encodings.find(
+    ({ indentation, prefix, suffix }) =>
+      block[1] === prefix + scriptJSON(current.schema, indentation) + suffix
+  );
+  assert.ok(encoding, 'Writing metadata matches its exact validated catalog encoding');
+  const restored = structuredClone(current.schema);
+  restored.mainEntity = writingCatalog.structuredData.mainEntity;
+  return html.replace(block[0], () =>
+    block[0].replace(
+      block[1],
+      () => encoding.prefix + scriptJSON(restored, encoding.indentation) + encoding.suffix
+    )
+  );
+}
 
 function approvedStructuredMetadata(page) {
   if (structuredMetadata.has(page)) return structuredMetadata.get(page);
@@ -230,6 +378,7 @@ function approvedStructuredMetadata(page) {
 }
 
 function restoreStructuredMetadata(html, page) {
+  if (page === 'writing') html = restoreWritingMetadata(html);
   const heads = [...html.matchAll(/<head>[\s\S]*?<\/head>/g)];
   assert.equal(heads.length, 1, 'One structured metadata document head');
   assert.doesNotMatch(
@@ -394,6 +543,10 @@ function restoreCriticalMedia(html, page, projectRoot = root) {
 }
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
+  if (page === 'writing') {
+    html = restoreWritingCatalog(html);
+    html = restoreContentAmendment(html, page, writingCatalog);
+  }
   // This successor uses current template bytes, before historical presentation reversal.
   html = restoreContentAmendment(html, page, sitecase);
   html = restoreContentAmendment(html, page, positioning);
@@ -450,6 +603,7 @@ function restore(html, page) {
   html = html.replace(/<head>[\s\S]*?<\/head>/, (head) =>
     head
       .replace(/<meta name="site-(?:engine|route|contract)" content="[^"]+"> ?/g, '')
+      .replace('<meta name="site-article-renderer" content="1"> ', '')
       .replace(/<meta name="site-effects-contract" content="1"> ?/g, '')
       .replace(/<meta name="site-variant" content="base"> ?/g, '')
   );
@@ -540,6 +694,11 @@ function verify() {
                 : []),
               ...(titleCopy[page] ? ['exact decorative title-line wrapper'] : []),
               ...(page === 'writing' ? ['exact accessible canonical formula description'] : []),
+              ...(page === 'writing'
+                ? [
+                    'catalog-derived article rows, controls, groups, count and ItemList with exact generated-view proof',
+                  ]
+                : []),
               'wordmark dot',
               'exact compact encoding of immutable approved structured metadata',
             ]),
@@ -551,7 +710,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order and all other raw metadata remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after proving the seven catalog-generated Writing regions, simple count and ItemList against current validated data and reversing the exact hashed Issue5 frame amendment; then reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams and exact compact encodings of immutable approved JSON-LD blocks are reversible. Inline separators, attributes/order and all other raw metadata remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
@@ -564,6 +723,9 @@ module.exports = {
   restoreRefactorPresentation,
   restoreCriticalMedia,
   restoreStructuredMetadata,
+  restoreWritingCatalog,
+  restoreWritingMetadata,
+  verifyWritingProducers,
   normalizeHTML,
   normalizeMany,
 };

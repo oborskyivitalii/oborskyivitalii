@@ -11,6 +11,7 @@ const snapshot = require('../tools/site/snapshot.cjs');
 const preview = require('../tools/build_site_previews.cjs');
 const publisher = require('../tools/publishing/article.cjs');
 const repo = path.resolve(__dirname, '..');
+const { legacyCatalog } = require('./fixtures/catalog.cjs');
 const pixel = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
   'base64'
@@ -157,6 +158,8 @@ test.before(() => {
     fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
     fs.cpSync(path.join(repo, relative), path.join(root, relative), { recursive: true });
   }
+  // Do not inherit real accepted records after replacing their source tree.
+  json(root, 'site/content/catalog.json', legacyCatalog(repo));
   fs.rmSync(path.join(root, 'site/publications'), { recursive: true, force: true });
   fs.rmSync(path.join(root, 'site/assets/publications'), { recursive: true, force: true });
   const english = publication(root, 'offline-english', 'en', 'EN_BODY_OWNER_1');
@@ -239,8 +242,16 @@ test('ordinary offline payloads exclude all article bodies, descriptors, indexes
   const bytes = JSON.stringify(ordinary);
   assert.doesNotMatch(
     bytes,
-    /EN_BODY_OWNER_1|UK_BODY_OWNER_2|ACCEPTED_UNDATED_BODY_3|site-documents|site-article|data-article|article-media/
+    /EN_BODY_OWNER_1|UK_BODY_OWNER_2|ACCEPTED_UNDATED_BODY_3|site-documents|data-article|article-media/
   );
+  for (const html of Object.values(ordinary.pages)) {
+    assert.doesNotMatch(html, /name="site-article"/, 'ordinary payload has no article identity');
+    assert.match(
+      html,
+      /name="site-article-renderer" content="1"/,
+      'ordinary payload retains the shared renderer compatibility contract'
+    );
+  }
   assert.match(bytes, /hosted edition/);
 });
 

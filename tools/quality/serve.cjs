@@ -17,8 +17,8 @@ const types = {
   '.jpeg': 'image/jpeg',
 };
 const cache = new Map();
-function start() {
-  if (process.env.SITE_TEST_BASE_URL) {
+function start({ publicDir = root, localOnly = false } = {}) {
+  if (process.env.SITE_TEST_BASE_URL && !localOnly) {
     const url = require('./hosted-origin.cjs').target(
       process.env.SITE_TEST_BASE_URL,
       process.env.SITE_TEST_PROFILE
@@ -33,8 +33,8 @@ function start() {
       res.writeHead(400).end();
       return;
     }
-    const file = path.resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
-    if (!file.startsWith(root + path.sep)) {
+    const file = path.resolve(publicDir, '.' + (pathname === '/' ? '/index.html' : pathname));
+    if (!file.startsWith(publicDir + path.sep)) {
       res.writeHead(403).end();
       return;
     }

@@ -4,14 +4,51 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const cp = require('node:child_process');
 const artifact = require('../tools/quality/artifact.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const { verifyCandidateSource } = require('../tools/quality/candidate-source.cjs');
+const { legacyCatalog, legacySource } = require('./fixtures/catalog.cjs');
 const repo = path.resolve(__dirname, '..');
 let prepared;
 
+function frozenTechnicalArticle(root) {
+  const owners = [
+    'site/publications/pmday-two-shifts',
+    'site/assets/publications/pmday-two-shifts',
+  ];
+  // This temporary technical example is intentionally frozen. Author edits,
+  // acceptance and later publication events remain solely in their real owner.
+  for (const owner of owners) fs.rmSync(path.join(root, owner), { recursive: true, force: true });
+  const names = cp
+    .execFileSync('git', ['ls-tree', '-r', '--name-only', legacySource, '--', ...owners], {
+      cwd: repo,
+      encoding: 'utf8',
+      env: { ...process.env, GIT_NO_LAZY_FETCH: '1' },
+    })
+    .trim()
+    .split('\n');
+  assert.ok(names.length > 0, 'frozen technical article has complete declared owners');
+  for (const name of names) {
+    const target = path.join(root, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(
+      target,
+      cp.execFileSync('git', ['show', legacySource + ':' + name], {
+        cwd: repo,
+        env: { ...process.env, GIT_NO_LAZY_FETCH: '1' },
+      })
+    );
+  }
+}
+
 test.before(() => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'article-candidate-source-'));
+  // Selected authored candidates can later become accepted frozen editions.
+  // Local Git objects preserve their real commit/blob provenance in isolation.
+  cp.execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', repo, root], {
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
   for (const relative of [
     'site',
     'tools/site',
@@ -24,6 +61,13 @@ test.before(() => {
       filter: (file) => !file.split(path.sep).includes('node_modules'),
     });
   }
+  // Preserve all copied publication owners, but keep this external archive
+  // fixture independent of future accepted owners requiring their Git history.
+  fs.writeFileSync(
+    path.join(root, 'site/content/catalog.json'),
+    JSON.stringify(legacyCatalog(repo), null, 2) + '\n'
+  );
+  frozenTechnicalArticle(root);
   const directory = path.join(root, 'artifact');
   const output = path.join(directory, 'public');
   const candidates = artifact.previewSelection('true', root);

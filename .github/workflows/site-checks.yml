@@ -45,8 +45,33 @@ jobs:
         run: node tools/quality/format.cjs --check
       - name: Check authored dependency and ownership boundaries
         run: node tools/quality/architecture.cjs
+      - id: content_baseline
+        name: Select only a source-admitted earlier generation for authored content
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          CONTENT_BRANCH: ${{ github.event.pull_request.head.ref }}
+        with:
+          script: |
+            const fs=require('node:fs'),path=require('node:path');
+            const selection=await require('./tools/quality/content-baseline.cjs').select({
+              github,repo:context.repo,branch:process.env.CONTENT_BRANCH,
+              candidate:process.env.SITE_CANDIDATE_SHA,base:process.env.SITE_BASE_SHA,
+              workflow:'site-checks.yml',root:process.cwd(),
+              temporaryRoot:process.env.RUNNER_TEMP,
+            });
+            fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'content-baseline-selection.json'),JSON.stringify(selection,null,2)+'\n');
+            for(const key of ['mode','directory','artifactDigest','generationSha256','sourceCommit'])
+              core.setOutput(key,selection[key]||'');
+            core.info(JSON.stringify(selection));
       - name: Minimal source, route, script and size checks
-        run: node tools/quality/local.cjs --package quality-artifact
+        env:
+          CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
+          CONTENT_BASELINE: ${{ steps.content_baseline.outputs.directory }}
+          CONTENT_BASELINE_DIGEST: ${{ steps.content_baseline.outputs.artifactDigest }}
+          CONTENT_GENERATION_SHA256: ${{ steps.content_baseline.outputs.generationSha256 }}
+          CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
+        run: node tools/quality/local.cjs --ci-package quality-artifact
       - name: Check complete maintained and generated lint coverage
         env:
           SITE_ARTIFACT_MANIFEST: quality-artifact/artifact.json
@@ -54,12 +79,10 @@ jobs:
       - name: Run only additional source tests owned by the current PR changes
         env:
           SITE_SOURCE_EVENT: ${{ github.event_name }}
-        run: |
-          if [ "$SITE_SOURCE_EVENT" = pull_request ]; then
-            node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean
-          else
-            node tools/quality/source-tests.cjs --profile staging --require-clean
-          fi
+          CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
+          CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
+          SITE_SOURCE_MANIFEST: quality-artifact/artifact.json
+        run: node tools/quality/source-tests.cjs --ci-profile --require-clean
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: public

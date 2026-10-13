@@ -163,6 +163,129 @@ function check() {
   console.log(JSON.stringify(result));
   return result;
 }
+
+function checkContent({ out, contentBaseline, base }) {
+  const sourceTests = require('./source-tests.cjs');
+  sourceTests.requireClean(root);
+  const head = cp
+    .execFileSync('git', ['rev-parse', 'HEAD'], {
+      cwd: root,
+      encoding: 'utf8',
+    })
+    .trim();
+  const trusted = artifact.trustedContentBaseline(contentBaseline);
+  assert.equal(trusted.record.sourceCommit, base, 'content diff must start at trusted baseline');
+  const plan = sourceTests.select(root, 'content', { base, head });
+  const source = sourceTests.run(root, plan, { requireClean: true });
+  assert.equal(source.pass, true, 'mandatory content source checks must pass');
+  const record = artifact.build(out, { contentBaseline });
+  require('./candidate-source.cjs').verifyCandidateSource(path.join(out, 'public'), record);
+  const config = require('../site/build.cjs').configuration(root).config;
+  const uniqueScripts = checkPublicScripts(path.join(out, 'public'), config);
+  const sizes = artifact.checkSize(path.join(out, 'public'));
+  const catalog = require('../site/build.cjs').catalog(root);
+  const total = require('../site/validate-catalog.cjs').catalogCounts(catalog).primary.total;
+  const writing = fs.readFileSync(path.join(out, 'public/writing.html'), 'utf8');
+  assert.equal(
+    [...writing.matchAll(/<li class="publication"/g)].length,
+    total,
+    'Writing displayed entries equal the catalog count'
+  );
+  const result = {
+    profile: 'content',
+    pass: true,
+    sourceTests: source,
+    platform: {
+      status: 'reused',
+      engine: record.contentRelease.engine,
+      baselineArtifactDigest: contentBaseline.expectedArtifactDigest,
+      baselineGenerationSha256: contentBaseline.expectedGenerationSha256,
+    },
+    checks: [
+      'exact current content source',
+      'trusted unchanged platform',
+      'complete current and retained snapshot closure',
+      'public script syntax',
+      'Writing entries and count',
+      'size budgets',
+    ],
+    uniqueScripts,
+    maxHtmlBytes: Math.max(...sizes.rows.map((row) => row.raw)),
+    deploymentAuthorized: false,
+  };
+  fs.writeFileSync(
+    path.join(out, 'artifact.json'),
+    JSON.stringify({ ...record, contentChecks: result }, null, 2) + '\n'
+  );
+  console.log(JSON.stringify(result));
+  return result;
+}
+
+function contentArguments(argv) {
+  const names = {
+    '--content-baseline': 'directory',
+    '--generation-sha256': 'expectedGenerationSha256',
+    '--baseline-digest': 'expectedArtifactDigest',
+  };
+  const options = { out: path.resolve(argv[0]), contentBaseline: {} };
+  for (let index = 1; index < argv.length; index += 2) {
+    const option = argv[index];
+    const value = argv[index + 1];
+    if (!value || value.startsWith('--')) throw Error('Missing content Basic argument ' + option);
+    if (option === '--content-base' && !options.base) options.base = value;
+    else if (!names[option] || Object.hasOwn(options.contentBaseline, names[option]))
+      throw Error('Unknown or duplicate content Basic argument ' + option);
+    else options.contentBaseline[names[option]] = value;
+  }
+  if (!options.base || Object.keys(options.contentBaseline).length !== 3)
+    throw Error('Content Basic requires an exact source base and trusted artifact baseline');
+  return options;
+}
+
+function ciPackage(
+  out,
+  {
+    environment = process.env,
+    contentCheck = checkContent,
+    platformCheck = check,
+    artifactBuild = artifact.build,
+  } = {}
+) {
+  assert.ok(typeof out === 'string' && out.length > 0, 'CI Basic requires an output directory');
+  const mode = environment.CONTENT_MODE || 'platform';
+  assert.ok(['content', 'platform'].includes(mode), 'unknown CI Basic content mode');
+  if (mode === 'content') {
+    const options = {
+      out,
+      base: environment.CONTENT_BASE_SHA,
+      contentBaseline: {
+        directory: environment.CONTENT_BASELINE,
+        expectedGenerationSha256: environment.CONTENT_GENERATION_SHA256,
+        expectedArtifactDigest: environment.CONTENT_BASELINE_DIGEST,
+      },
+    };
+    assert.ok(
+      typeof options.contentBaseline.directory === 'string' &&
+        options.contentBaseline.directory.length > 0,
+      'content CI Basic requires its trusted baseline directory'
+    );
+    assert.match(
+      options.base || '',
+      /^[a-f0-9]{40}$/,
+      'content CI Basic requires an exact source base'
+    );
+    for (const field of ['expectedGenerationSha256', 'expectedArtifactDigest'])
+      assert.match(
+        options.contentBaseline[field] || '',
+        /^[a-f0-9]{64}$/,
+        'content CI Basic requires trusted baseline digests'
+      );
+    return contentCheck(options);
+  }
+  platformCheck();
+  return artifactBuild(out);
+}
+
 function gate(directory, { profile = 'local' } = {}) {
   const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
   artifact.verify(path.join(directory, 'public'), manifest);
@@ -179,7 +302,7 @@ function gate(directory, { profile = 'local' } = {}) {
       '',
       'package proof requires clean source'
     );
-    run('tools/site/build.cjs', ['--check']);
+    if (!manifest.contentRelease) run('tools/site/build.cjs', ['--check']);
     assert.equal(
       manifest.sourceCommit,
       cp.execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
@@ -214,7 +337,11 @@ function gate(directory, { profile = 'local' } = {}) {
   };
   if (profile === 'package')
     Object.assign(result, {
-      checks: ['generated source', 'artifact snapshot integrity', 'size budgets'],
+      checks: [
+        manifest.contentRelease ? 'verified current content source' : 'generated source',
+        'artifact snapshot integrity',
+        'size budgets',
+      ],
       sourceTestsRun: false,
       fullGate: false,
       productionEligible: false,
@@ -227,7 +354,10 @@ function gate(directory, { profile = 'local' } = {}) {
 }
 if (require.main === module) {
   try {
-    if (process.argv[2] === '--gate' || process.argv[2] === '--package-gate')
+    if (process.argv[2] === '--ci-package') ciPackage(path.resolve(process.argv[3]));
+    else if (process.argv[2] === '--content-package')
+      checkContent(contentArguments(process.argv.slice(3)));
+    else if (process.argv[2] === '--gate' || process.argv[2] === '--package-gate')
       gate(path.resolve(process.argv[3]), {
         profile: process.argv[2] === '--package-gate' ? 'package' : 'local',
       });
@@ -242,4 +372,4 @@ if (require.main === module) {
     process.exitCode = 1;
   }
 }
-module.exports = { check, gate, finiteGeometry };
+module.exports = { check, checkContent, contentArguments, ciPackage, gate, finiteGeometry };

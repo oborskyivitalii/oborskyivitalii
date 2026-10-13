@@ -167,6 +167,219 @@ test('unknown changed source conservatively selects every permanent JS and never
   ])
     assert.throws(() => runner.select(root, 'pr', { changedPaths: [bad] }), /unsafe path/);
 });
+test('authored content selection retains all mandatory safety modules and rejects mixed or generated-only changes', () => {
+  const registry = runner.loadRegistry(root);
+  const authored = [
+    'site/content/catalog.json',
+    'site/content/pages/writing/section-1.json',
+    'site/publications/example/manuscript.md',
+    'site/assets/publications/example/figure.svg',
+    'docs/writing.html',
+    'site/output-lock.json',
+    'MEMORY.md',
+    'REPOSITORY-MAP.md',
+    '.github/repository-intelligence/agent-context.json',
+  ];
+  const plan = runner.select(root, 'content', { changedPaths: authored });
+  assert.deepEqual(plan.modules, [...registry.source_profiles.content.mandatory_files].sort());
+  assert.equal(plan.classification.mode, 'content');
+  assert.deepEqual(plan.baselineFiles, []);
+  assert.equal(plan.baselineCommand, null);
+  const pr = runner.select(root, 'pr', { changedPaths: authored });
+  assert.deepEqual(
+    pr.modules,
+    plan.modules.filter((file) => !pr.baselineFiles.includes(file))
+  );
+  assert.ok(!pr.modules.includes('tests/space.test.cjs'));
+  for (const changed of [
+    'site/engine/navigation.js',
+    'site/templates/pages/writing/section-1.html',
+    'tools/site/build.cjs',
+    '.github/workflows/site-checks.yml',
+    'site/content/site.json',
+    'site/content/pages/research/metadata.json',
+    'site/content/pages/talks/talks.json',
+    'site/publications/example/executable.cjs',
+    'site/assets/publications/example/active.js',
+    'unknown-owner.json',
+  ]) {
+    assert.throws(
+      () => runner.select(root, 'content', { changedPaths: [...authored, changed] }),
+      /rejects/
+    );
+    assert.equal(
+      runner.select(root, 'pr', { changedPaths: [...authored, changed] }).classification.mode,
+      'platform'
+    );
+  }
+  for (const changedPaths of [[], ['docs/writing.html']])
+    assert.throws(() => runner.select(root, 'content', { changedPaths }), /rejects/);
+});
+test('publication inventory bookkeeping admits only article-owned entries without changing platform owners', () => {
+  const registry = runner.loadRegistry(root);
+  const before = {
+    schema_version: 1,
+    entries: {
+      'site/engine/navigation.js': {
+        kind: 'file',
+        owner: 'site/README.md',
+        role: 'source',
+        purpose: 'Existing platform owner',
+      },
+    },
+  };
+  const after = structuredClone(before);
+  after.entries['site/publications/new-article/manuscript.md'] = {
+    kind: 'file',
+    owner: 'guides/ARTICLE-WORKFLOW.md',
+    role: 'source',
+    purpose: 'New authored article',
+  };
+  after.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'] = {
+    kind: 'file',
+    owner: 'site/README.md',
+    role: 'generated',
+    purpose: 'New Writing snapshot',
+  };
+  assert.equal(runner.publicationInventoryCompatible(registry, before, after), true);
+  for (const mutate of [
+    (value) => {
+      value.entries['site/engine/navigation.js'].owner = 'guides/ARTICLE-WORKFLOW.md';
+    },
+    (value) => {
+      value.entries['site/publications/new-article/active.cjs'] =
+        value.entries['site/publications/new-article/manuscript.md'];
+    },
+    (value) => {
+      value.entries['site/publications/new-article/manuscript.md'].owner = 'MEMORY.md';
+    },
+    (value) => {
+      value.schema_version = 2;
+    },
+    (value) => {
+      value.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'].owner = 'MEMORY.md';
+    },
+    (value) => {
+      value.entries['docs/snapshots/' + 'a'.repeat(64) + '/writing.html'].role = 'source';
+    },
+  ]) {
+    const invalid = structuredClone(after);
+    mutate(invalid);
+    assert.equal(runner.publicationInventoryCompatible(registry, before, invalid), false);
+  }
+  assert.equal(
+    runner.classifyContent(registry, ['site/content/catalog.json', '.github/repository-paths.json'])
+      .mode,
+    'platform',
+    'unbound inventory change cannot select content'
+  );
+});
+test('RI coupling permits only derived identity recalculation while retaining all policy and routes', () => {
+  const before = {
+    schema_version: 1,
+    review: { issue: 'stable owner' },
+    layers: ['unchanged'],
+    checks: ['unchanged'],
+    reviewed_source_identity: {
+      algorithm: 'sha256-path-content-map-v1',
+      digest: 'a'.repeat(64),
+      inputs: [{ path: '.github/repository-paths.json', sha256: 'b'.repeat(64) }],
+    },
+  };
+  const after = structuredClone(before);
+  after.reviewed_source_identity.digest = 'c'.repeat(64);
+  after.reviewed_source_identity.inputs[0].sha256 = 'd'.repeat(64);
+  assert.equal(runner.riIdentityCompatible(before, after), true);
+  for (const mutate of [
+    (value) => {
+      value.checks = [];
+    },
+    (value) => {
+      value.layers = [];
+    },
+    (value) => {
+      value.review.issue = 'another owner';
+    },
+    (value) => {
+      value.reviewed_source_identity.inputs.push({
+        path: 'tools/new-policy.cjs',
+        sha256: 'e'.repeat(64),
+      });
+    },
+    (value) => {
+      value.reviewed_source_identity.digest = 'malformed';
+    },
+  ]) {
+    const invalid = structuredClone(after);
+    mutate(invalid);
+    assert.equal(runner.riIdentityCompatible(before, invalid), false);
+  }
+});
+test('content safety inventory cannot silently omit modules or admit diagnostics', (t) => {
+  const f = fixture(t);
+  f.registry.source_profiles.content.mandatory_files.pop();
+  assert.throws(
+    () => runner.validateRegistry(f.directory, f.registry),
+    /mandatory content inventory/
+  );
+  f.registry = runner.loadRegistry(root);
+  const diagnostic = f.registry.tests.find((row) => row.lifecycle === 'diagnostic');
+  diagnostic.profiles.push('content');
+  f.registry.source_profiles.content.mandatory_files.push(diagnostic.path);
+  assert.throws(
+    () => runner.validateRegistry(f.directory, f.registry),
+    /content modules must retain/
+  );
+});
+test('unconditional CI dispatcher accepts only complete execution for its actual content plan', () => {
+  const plan = { modules: ['tests/content.test.cjs'], changedPaths: ['site/content/catalog.json'] };
+  const record = {
+    contentChecks: {
+      pass: true,
+      sourceTests: {
+        profile: 'content',
+        status: 'passed',
+        pass: true,
+        total: 2,
+        passed: 2,
+        failed: 0,
+        cancelled: 0,
+        skipped: 0,
+        todo: 0,
+        ...plan,
+      },
+    },
+  };
+  assert.equal(runner.verifyContentExecution(plan, record).executionReusedWithinJob, true);
+  for (const changed of [
+    { modules: [] },
+    { changedPaths: [] },
+    { pass: false },
+    { total: 0, passed: 0 },
+    { skipped: 1 },
+    { todo: 1 },
+    { cancelled: 1 },
+    { failed: 1 },
+    { profile: 'pr' },
+    { status: 'planned' },
+    { passed: 1 },
+  ])
+    assert.throws(() =>
+      runner.verifyContentExecution(plan, {
+        contentChecks: {
+          pass: true,
+          sourceTests: { ...record.contentChecks.sourceTests, ...changed },
+        },
+      })
+    );
+  assert.throws(() => runner.verifyContentExecution(plan, {}));
+  assert.equal(runner.argumentsFor(['--ci-profile', '--require-clean']).ciProfile, true);
+  assert.throws(
+    () => runner.argumentsFor(['--ci-profile', '--profile', 'content']),
+    /bound workflow/
+  );
+  assert.throws(() => runner.ciProfile(root, {}, { CONTENT_MODE: 'skip' }), /unknown CI/);
+});
 test('future declared permanent modules enter production/staging and their own changed test route automatically', (t) => {
   const f = fixture(t),
     row = {

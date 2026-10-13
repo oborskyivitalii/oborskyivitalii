@@ -191,7 +191,7 @@ function evidence(id) {
   }
   return value;
 }
-test('only the eighteen reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+test('only the twenty reviewed plain/staging runtime tuples select a camera and flight contract', () => {
   for (const family of [
     'legacy',
     'fixed',
@@ -202,6 +202,7 @@ test('only the eighteen reviewed plain/staging runtime tuples select a camera an
     'issue5-departure',
     'issue5-smooth',
     'issue5-viewport',
+    'issue5-content',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -248,6 +249,8 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue5-smooth-staging',
     'issue5-viewport-plain',
     'issue5-viewport-staging',
+    'issue5-content-plain',
+    'issue5-content-staging',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -548,4 +551,69 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   unknown.files['styles.css'].sha256 = '0'.repeat(64);
   await assert.rejects(() => color.settled(page, 'research', unknown), /Color bytes/);
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
+});
+
+test('content registry runtime tuples reproduce the complete current plain and staging byte closure', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const os = require('node:os');
+  const build = require('../tools/site/build.cjs');
+  const artifact = require('../tools/quality/artifact.cjs');
+  const colorBuild = require('../tools/staging/color.cjs');
+  const stagingBuild = require('../tools/staging/edition.cjs');
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'content-color-contract-'));
+  try {
+    const plainDirectory = path.join(directory, 'plain');
+    const publicDirectory = path.join(plainDirectory, 'public');
+    build.build({
+      output: publicDirectory,
+      all: true,
+      cacheFile: path.join(directory, 'cache.json'),
+      lockFile: path.join(directory, 'lock.json'),
+    });
+    const source = {
+      schema: 1,
+      sourceCommit: '1'.repeat(40),
+      ...artifact.manifest(publicDirectory),
+    };
+    fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
+    const plain = colorBuild.build(plainDirectory);
+    assert.equal(motion.select(plain).id, 'issue5-content-plain');
+    const stagingDirectory = path.join(directory, 'staging');
+    fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
+    const staged = stagingBuild.build(stagingDirectory);
+    assert.equal(motion.select(staged).id, 'issue5-content-staging');
+    for (const record of [plain, staged]) {
+      assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
+      assert.equal(
+        record.variant.baseEngine,
+        motion.reviewedRuntime('issue5-content-plain').variant.baseEngine
+      );
+    }
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('content registry admission rejects older article navigation, archive counting and substituted bytes', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-content-' + edition;
+    const previous = motion.reviewedRuntime('issue5-viewport-' + edition);
+    for (const name of ['navigation.js', 'archive.js']) {
+      for (const location of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (location !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (location !== 'canonical')
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const foreign = manifest(id);
+    foreign.variant.baseEngine = previous.variant.baseEngine;
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+    const corrupt = manifest(id);
+    corrupt.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(corrupt), /Color bytes/);
+  }
 });

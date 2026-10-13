@@ -68,6 +68,14 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: '7d8d577ced2dfd8e9662ec2d0dedc010df1989f2f80d86a06fd139e44fed5e7c',
   },
+  issue5Content: {
+    behavior: 'fixed-blocks',
+    baseEngine: '0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'b798fd75ba58f2b4e4cfec97b0c65275f3ffd006b23c04f4d53d9273c19b9c2a',
+    archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
+  },
 };
 const runtimes = [
   {
@@ -196,6 +204,20 @@ const runtimes = [
     fingerprint: 'cdff9548271f4dc89def0455f4b564f49b22331aafcbccb9d3e39d97767e9233',
     styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
   },
+  {
+    id: 'issue5-content-plain',
+    family: 'issue5Content',
+    edition: 'plain',
+    fingerprint: '89c395df74b1e626735d0757f9572836fd2d3365b2deefe31b7ca46982cd219e',
+    styles: '02bee22b9ed7e3ad06b6a23b54bb881e36e2484ba7c8b1a0e6de2e93527373aa',
+  },
+  {
+    id: 'issue5-content-staging',
+    family: 'issue5Content',
+    edition: 'staging',
+    fingerprint: 'dfa648a40b6218f1a6b881db08c518af0b7f50a22dd06994eb988a9c947146b7',
+    styles: 'b6751a18bfbba5ece49027c981018d10ba8537e4abf123921556615351e82363',
+  },
 ];
 function reviewedRuntime(id) {
   const runtime = runtimes.find((item) => item.id === id);
@@ -216,7 +238,8 @@ function reviewedRuntime(id) {
       'styles.css': runtime.styles,
       'theme.js': family.theme,
       'space.js': family.space,
-      'archive.js': '1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad',
+      'archive.js':
+        family.archive || '1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad',
       'navigation.js': family.navigation,
     },
   };

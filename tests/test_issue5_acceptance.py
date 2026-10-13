@@ -69,6 +69,37 @@ class Issue5AcceptanceTests(unittest.TestCase):
             10,
         )
 
+    def test_writing_catalog_contracts(self):
+        self.run_node_contracts(
+            [
+                "tests/content-rendering.test.cjs",
+                "tests/content.test.cjs",
+                "tests/archive.test.cjs",
+                "tests/local-catalog-relationships.test.cjs",
+            ],
+            30,
+        )
+
+    def test_content_release_contracts(self):
+        self.run_node_contracts(
+            [
+                "tests/content-release.test.cjs",
+                "tests/article-candidate-source.test.cjs",
+                "tests/site-articles.test.cjs",
+            ],
+            20,
+        )
+
+    def test_content_check_selection(self):
+        self.run_node_contracts(
+            [
+                "tests/content-baseline.test.cjs",
+                "tests/content-fixture.test.cjs",
+                "tests/test-profile-selection.test.cjs",
+            ],
+            10,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

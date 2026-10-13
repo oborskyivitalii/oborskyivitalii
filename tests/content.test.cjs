@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { normalizeHTML } = require('../tools/check_site_seo.cjs');
+const { nextRecordId, nextYear } = require('./fixtures/catalog.cjs');
 const root = path.resolve(__dirname, '../docs');
 const pages = Object.fromEntries(
   ['index', 'research', 'writing', 'talks', 'credits'].map((name) => [
@@ -30,6 +31,50 @@ const plainTitle = (html) =>
       /&(amp|quot|apos|lt|gt);/g,
       (_, entity) => ({ amp: '&', quot: '"', apos: "'", lt: '<', gt: '>' })[entity]
     );
+
+function assertWritingCollection(catalog, html, collection) {
+  const { escapeAttribute } = require('../tools/site/html.cjs');
+  const rows = articleRows(html);
+  const items = collection.itemListElement;
+  const recordsByHref = new Map(
+    Object.values(catalog.records).map((record) => [escapeAttribute(record.edition.url), record])
+  );
+  assert.equal(rows.length, recordsByHref.size);
+  assert.equal(items.length, rows.length);
+  assert.equal(collection.numberOfItems, rows.length);
+  assert.deepEqual(
+    items.map(({ item }) => escapeAttribute(item.url)),
+    rows.map((row) => row[2].match(/class="publication-title" href="([^"]+)"/)[1])
+  );
+  assert.deepEqual(
+    items.map((item) => item.position),
+    rows.map((_, index) => index + 1)
+  );
+  for (let index = 0; index < rows.length; index++) {
+    const row = rows[index];
+    const href = row[2].match(/class="publication-title" href="([^"]+)"/)[1];
+    const record = recordsByHref.get(href);
+    assert.ok(record, href);
+    const item = items[index].item;
+    assert.deepEqual(item, record.edition, 'complete primary edition/byline identity: ' + href);
+    const title = row[2].match(/class="publication-title" href="[^"]+">([\s\S]*?)<\/a>/)[1];
+    assert.equal(item.name, plainTitle(title), href);
+    assert.equal(item.inLanguage, row[1]);
+    const date = record.edition.datePublished || record.edition.dateModified;
+    const time = row[2].match(/<time datetime="([^"]+)">([\s\S]*?)<\/time>/);
+    if (date) {
+      assert.ok(time, 'dated primary edition retains its time element');
+      assert.equal(time[1], date);
+      if (!record.edition.datePublished) assert.match(time[2], /· edited/);
+    } else {
+      assert.equal(record.kind, 'local-article', 'only declared local preparation is undated');
+      assert.equal(time, null, 'undated preparation does not invent a publication date');
+      assert.equal(item.datePublished, undefined);
+      assert.equal(item.dateModified, undefined);
+    }
+  }
+  return { rows, items };
+}
 
 test('selected Home responses link to the complete Research inventory with preserved evidence', () => {
   const names = {
@@ -284,27 +329,7 @@ test('language-labelled editions match article schema and retain the original pr
     if (row[1] === 'uk') assert.ok(row[2].includes('<span lang="uk">'));
   }
   const items = schema(pages.writing).mainEntity.itemListElement;
-  assert.equal(items.length, rows.length);
-  assert.deepEqual(
-    items.map((item) => item.item.url),
-    rows.map((row) => row[2].match(/class="publication-title" href="([^"]+)"/)[1])
-  );
-  assert.deepEqual(
-    items.map((item) => item.position),
-    rows.map((_, index) => index + 1)
-  );
-  for (const row of rows) {
-    const url = row[2].match(/class="publication-title" href="([^"]+)"/)[1];
-    const item = items.find((i) => i.item.url === url)?.item;
-    assert.ok(item, url);
-    const title = row[2].match(/class="publication-title" href="[^"]+">([\s\S]*?)<\/a>/)[1];
-    assert.equal(item.name, plainTitle(title), url);
-    assert.equal(item.author.name, 'Vitalii Oborskyi');
-    assert.equal(item.inLanguage, row[1]);
-    const date = row[2].match(/datetime="([^"]+)"/)[1];
-    assert.equal(item[row[2].includes('· edited') ? 'dateModified' : 'datePublished'], date);
-    if (row[2].includes('· edited')) assert.equal(item.datePublished, undefined);
-  }
+  assertWritingCollection(catalog, pages.writing, schema(pages.writing).mainEntity);
   const featured = articleRows(pages.index);
   assert.equal(featured.length, 5);
   assert.ok(featured.every((r) => r[1] === 'en'));
@@ -528,7 +553,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   }
 });
 
-test('Writing intro and archive counters derive from the same catalog under edition and language changes', () => {
+test('Writing counts the rendered article collection and keeps alternate platforms inside their row', () => {
   const projectRoot = path.resolve(root, '..');
   const { catalog, routeInput } = require('../tools/site/content.cjs');
   const { validateCatalog, catalogCounts } = require('../tools/site/validate-catalog.cjs');
@@ -538,38 +563,24 @@ test('Writing intro and archive counters derive from the same catalog under edit
     validateCatalog(candidate);
     const rendered = routeInput(projectRoot, route, candidate);
     const html = normalizeHTML(rendered.main);
-    const intro = html.match(
-      /<p class="hero-description">(\d+) primary archive records: (\d+) English and (\d+) Ukrainian[.;] (\d+) linked platform editions/
-    );
-    const archive = html.match(
-      /<p id="archive-count"[^>]*>(\d+) primary archive records · (\d+) EN \/ (\d+) UA\.<\/p>/
-    );
-    const editions = html.match(
-      /The catalog links (\d+) platform editions \((\d+) EN \/ (\d+) UA\)/
-    );
-    assert.ok(intro && archive && editions, 'all declared count presentations render');
-    const observed = {
-      intro: intro.slice(1).map(Number),
-      primary: archive.slice(1).map(Number),
-      linked: editions.slice(1).map(Number),
-    };
+    const archive = html.match(/<p id="archive-count"[^>]*>(\d+) articles<\/p>/);
+    assert.ok(archive, 'a simple generated count renders without authored count prose');
+    const rows = articleRows(html);
     const counts = catalogCounts(candidate);
-    assert.deepEqual(observed.intro, [
-      counts.primary.total,
-      counts.primary.en,
-      counts.primary.uk,
-      counts.linked.total,
-    ]);
-    assert.deepEqual(observed.primary, [
-      counts.primary.total,
-      counts.primary.en,
-      counts.primary.uk,
-    ]);
-    assert.deepEqual(observed.linked, [counts.linked.total, counts.linked.en, counts.linked.uk]);
-    assert.equal(rendered.schema.mainEntity.numberOfItems, counts.primary.total);
-    assert.equal(rendered.schema.mainEntity.itemListElement.length, counts.primary.total);
-    assert.doesNotMatch(html, /\{\{CATALOG_|27 primary archive records: 20 English/);
-    return observed;
+    assert.equal(Number(archive[1]), rows.length);
+    assert.equal(rows.length, counts.primary.total);
+    assert.equal(rendered.schema.mainEntity.numberOfItems, rows.length);
+    assert.deepEqual(
+      rendered.schema.mainEntity.itemListElement.map((entry) =>
+        require('../tools/site/html.cjs').escapeAttribute(entry.item.url)
+      ),
+      rows.map((row) => row[2].match(/<a class="publication-title" href="([^"]+)"/)[1])
+    );
+    assert.doesNotMatch(html, /\{\{CATALOG_|primary archive records|The catalog links/);
+    return {
+      primary: [counts.primary.total, counts.primary.en, counts.primary.uk],
+      linked: [counts.linked.total, counts.linked.en, counts.linked.uk],
+    };
   };
   const before = readCounts(original);
   const languageChange = structuredClone(original);
@@ -587,7 +598,10 @@ test('Writing intro and archive counters derive from the same catalog under edit
   ]);
   const alternateChange = structuredClone(original);
   const target = Object.values(alternateChange.records).find(
-    (record) => record.editions.length < 2 && record.edition.inLanguage === 'en'
+    (record) =>
+      record.kind !== 'local-article' &&
+      record.editions.length < 2 &&
+      record.edition.inLanguage === 'en'
   );
   target.editions.push({
     ...target.edition,
@@ -608,11 +622,92 @@ test('Writing intro and archive counters derive from the same catalog under edit
     before.linked[2],
   ]);
   const duplicate = structuredClone(alternateChange);
-  duplicate.records['publication-19'].editions.push(structuredClone(target.editions.at(-1)));
+  const duplicateTarget = Object.values(duplicate.records).find(
+    (record) =>
+      record.kind !== 'local-article' &&
+      record.edition.url !== target.edition.url &&
+      record.editions.length < 2
+  );
+  duplicateTarget.editions.push(structuredClone(target.editions.at(-1)));
   assert.throws(
     () => validateCatalog(duplicate),
     /Duplicate edition URL/,
     'duplicated links cannot inflate the catalog'
+  );
+});
+
+test('the ordinary Writing collection accepts undated multi-author local editions and escaped query URLs', () => {
+  const projectRoot = path.resolve(root, '..');
+  const content = require('../tools/site/content.cjs');
+  const { validateLocalCatalog } = require('../tools/site/validate-catalog.cjs');
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const catalog = content.catalog(projectRoot);
+  const existingModels = new Map(
+    require('../tools/site/articles.cjs')
+      .select(projectRoot, [], catalog)
+      .map((article) => [article.metadata.id, article])
+  );
+  const originalCount = Object.keys(catalog.records).length;
+  const year = nextYear(catalog);
+  const authors = [
+    { '@type': 'Person', name: 'First declared author', url: 'https://author.example/first' },
+    { '@type': 'Person', name: 'Second declared author', url: 'https://author.example/second' },
+  ];
+  const local = {
+    kind: 'local-article',
+    article: 'multi-author-test',
+    edition: {
+      '@type': 'Article',
+      name: 'An accepted preparation without an observed publication date',
+      url: 'articles/multi-author-test.html',
+      inLanguage: 'en',
+      author: authors,
+    },
+    editions: [],
+    discussions: [],
+    presentation: { topic: 'systems', kind: 'Article', publisher: 'Author site' },
+  };
+  const localRecord = nextRecordId(catalog);
+  catalog.records[localRecord] = local;
+  catalog.structuredOrder.push({ record: localRecord });
+  const query = structuredClone(catalog.records['publication-01']);
+  query.edition.name = 'A dated external article with query parameters';
+  query.edition.url = 'https://example.test/article?a=1&b=2';
+  query.edition.datePublished = year + '-01-01';
+  const queryRecord = nextRecordId(catalog);
+  catalog.records[queryRecord] = query;
+  catalog.structuredOrder.push({ record: queryRecord });
+  const accepted = {
+    metadata: {
+      id: local.article,
+      status: 'accepted',
+      title: local.edition.name,
+      language: local.edition.inLanguage,
+      authors,
+    },
+    url: local.edition.url,
+    source: { state: 'committed', sha256: 'a'.repeat(64) },
+    edition: { id: 'first-preparation' },
+    events: [],
+  };
+  validateLocalCatalog(catalog, (id) => (id === local.article ? accepted : existingModels.get(id)));
+  const rendered = content.routeInput(projectRoot, route, catalog);
+  const html = normalizeHTML(rendered.main);
+  const { rows, items } = assertWritingCollection(catalog, html, rendered.schema.mainEntity);
+  assert.equal(rows.length, originalCount + 2);
+  assert.match(
+    html,
+    new RegExp('id="archive-count"[^>]*>' + (originalCount + 2) + ' articles</p>')
+  );
+  assert.match(html, /href="https:\/\/example\.test\/article\?a=1&amp;b=2"/);
+  assert.match(html, /id="year-undated"/);
+  const item = items.find(({ item }) => item.url === local.edition.url).item;
+  assert.deepEqual(item.author, authors);
+  assert.equal(item.datePublished, undefined);
+  assert.equal(item.dateModified, undefined);
+  assert.equal(
+    items.find(({ item }) => item.url === query.edition.url).item.url,
+    query.edition.url
   );
 });
 

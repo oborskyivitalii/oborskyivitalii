@@ -4,11 +4,14 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path'),
   os = require('node:os'),
+  cp = require('node:child_process'),
   { pathToFileURL } = require('node:url');
 const { root } = require('./common.cjs'),
   { routes } = require('../site/snapshot.cjs');
 const model = 'enabled source fixture; vendor stubbed';
-const primaryCount = Object.keys(require('../../site/content/catalog.json').records).length;
+const primaryCount = require('../site/validate-catalog.cjs').writingEntries(
+  require('../site/content.cjs').catalog(root)
+).length;
 const settings = {
   schema: 1,
   provider: 'cloudflare',
@@ -168,9 +171,12 @@ async function scenario(browser, dir, producer, s) {
       );
       if (id === 'writing') {
         await page.locator('#archive-topic').selectOption('systems');
-        assert.ok((await page.locator('li.publication:visible').count()) > 0);
+        assert.ok((await page.locator('#archive-results li.publication:visible').count()) > 0);
         await page.locator('.filter-reset').evaluate((el) => el.click());
-        assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
+        assert.equal(
+          await page.locator('#archive-results li.publication:visible').count(),
+          primaryCount
+        );
       }
       await vendorState(page, s.mode);
     }
@@ -238,9 +244,15 @@ async function run(browser, engine, selection = cases(engine)) {
   const selected = selectedCases(engine, selection);
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-analytics-browser-'));
   try {
+    // Live accepted articles retain their frozen commits in a read-only shared
+    // object store; fixture settings and generated files stay isolated.
+    cp.execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', root, dir], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
     for (const name of [
       'site',
       'tools/site',
+      'tools/publishing',
       'tools/build_scene_fallbacks.cjs',
       'tools/build_site_previews.cjs',
       'tools/quality/artifact.cjs',

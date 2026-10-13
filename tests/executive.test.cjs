@@ -153,17 +153,39 @@ test('article producer metadata reconciliation reverses only exact approved comp
     const preserved = restore(html, page);
     const reviewed = restored.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
     assert.notEqual(reviewed, compact, 'the fixture exercises actual compact metadata');
-    assert.deepEqual(
-      JSON.parse(reviewed),
-      JSON.parse(compact),
-      'approved serialization preserves all values'
-    );
-    assert.equal(
-      restoreStructuredMetadata(restored, page),
-      restored,
-      'reviewed bytes remain stable'
-    );
     const data = JSON.parse(compact);
+    const reviewedData = JSON.parse(reviewed);
+    if (page === 'writing') {
+      const approved = require('../review/issue-5/writing-catalog-amendment.json');
+      assert.deepEqual(reviewedData.mainEntity, approved.structuredData.mainEntity);
+      const { mainEntity: liveCollection, ...liveMetadata } = data;
+      const { mainEntity: historicalCollection, ...reviewedMetadata } = reviewedData;
+      assert.deepEqual(
+        reviewedMetadata,
+        liveMetadata,
+        'only Writing collection values are restored'
+      );
+      if (JSON.stringify(liveCollection) !== JSON.stringify(historicalCollection)) {
+        assert.throws(
+          () => restoreStructuredMetadata(restored, page),
+          /Writing metadata matches/,
+          'historical reconciliation output cannot pass as live current collection metadata'
+        );
+      } else {
+        assert.equal(
+          restoreStructuredMetadata(restored, page),
+          restored,
+          'reviewed bytes remain stable'
+        );
+      }
+    } else {
+      assert.deepEqual(reviewedData, data, 'approved serialization preserves all values');
+      assert.equal(
+        restoreStructuredMetadata(restored, page),
+        restored,
+        'reviewed bytes remain stable'
+      );
+    }
     const reordered = {
       name: data.name,
       ...Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'name')),
@@ -180,12 +202,21 @@ test('article producer metadata reconciliation reverses only exact approved comp
     for (const changed of variants) {
       assert.notEqual(changed, compact, 'negative fixture changes the actual metadata bytes');
       const altered = html.replace(block[1], () => changed);
-      assert.equal(
-        restoreStructuredMetadata(altered, page),
-        altered,
-        'undeclared bytes remain visible'
-      );
-      assert.notEqual(restore(altered, page), preserved, 'undeclared metadata fails frozen parity');
+      if (page === 'writing') {
+        assert.throws(() => restoreStructuredMetadata(altered, page), /Writing metadata matches/);
+        assert.throws(() => restore(altered, page), /Writing metadata matches/);
+      } else {
+        assert.equal(
+          restoreStructuredMetadata(altered, page),
+          altered,
+          'undeclared bytes remain visible'
+        );
+        assert.notEqual(
+          restore(altered, page),
+          preserved,
+          'undeclared metadata fails frozen parity'
+        );
+      }
     }
   }
 });
@@ -621,7 +652,7 @@ test('practical positioning allowances reject unsupported claims, status and con
     ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
     ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
     ['talks', 'index.html#contact', 'https://unapproved.example/book'],
-    ['writing', '29 primary archive records', '27 primary archive records'],
+    ['writing', '29 articles</p>', '27 articles</p>'],
     ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
     ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
     [
@@ -643,11 +674,19 @@ test('practical positioning allowances reject unsupported claims, status and con
     }
     const { html, preserved } = pages.get(page);
     assert.ok(html.includes(from), 'mutation input exists');
-    assert.notEqual(
-      restore(html.replace(from, to), page),
-      preserved,
-      'unapproved copy/source/contact change cannot disappear through restoration'
-    );
+    if (page === 'writing') {
+      assert.throws(
+        () => restore(html.replace(from, to), page),
+        /count matches displayed entries/,
+        'an altered count cannot be normalized as catalog output'
+      );
+    } else {
+      assert.notEqual(
+        restore(html.replace(from, to), page),
+        preserved,
+        'unapproved copy/source/contact change cannot disappear through restoration'
+      );
+    }
   }
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock', () => {

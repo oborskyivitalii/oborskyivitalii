@@ -56,7 +56,7 @@ function publication(templates, record, variant, catalog, linked) {
     LANGUAGE: language,
     ARCHIVE_ATTRIBUTES:
       variant === 'archive'
-        ? `data-topic="${record.presentation.topic}"${date ? ` data-year="${date.slice(0, 4)}"` : ''}`
+        ? `data-topic="${record.presentation.topic}" data-year="${date ? date.slice(0, 4) : 'undated'}"`
         : '',
     DATE: date || '',
     DATE_LABEL: date
@@ -125,4 +125,76 @@ function discussionRows(templates, catalog, dependencies) {
     .join('\n');
 }
 
-module.exports = { publication, discussionRows, dateLabel };
+function archiveViews(templates, catalog, entries) {
+  const years = [...new Set(entries.map((entry) => entry.year))];
+  const topics = catalog.archive.topics;
+  const yearLabel = (year) =>
+    year === 'undated' ? contentLabel(catalog, 'archive.undated') : year;
+  const topicLabel = (topic) => contentLabel(catalog, 'topic.' + topic);
+  const option = (value, label) =>
+    component(templates, 'archive-option', {
+      VALUE: escapeAttribute(value),
+      LABEL: escapeText(label),
+    });
+  const navigation = (value, label, attribute) =>
+    component(templates, 'archive-navigation-link', {
+      URL: escapeAttribute('#' + value),
+      FILTER_ATTRIBUTE: attribute,
+      LABEL: escapeText(label),
+    });
+  return {
+    ARCHIVE_TOPIC_NAV: topics
+      .map((topic) =>
+        navigation('topic-' + topic, topicLabel(topic), ` data-filter-topic="${topic}"`)
+      )
+      .join(''),
+    ARCHIVE_YEAR_NAV: years.map((year) => navigation('year-' + year, yearLabel(year), '')).join(''),
+    ARCHIVE_TOPIC_OPTIONS: topics.map((topic) => option(topic, topicLabel(topic))).join(''),
+    ARCHIVE_YEAR_OPTIONS: years.map((year) => option(year, yearLabel(year))).join(''),
+    ARCHIVE_LANGUAGE_OPTIONS: catalog.archive.languages
+      .map((language) => option(language, contentLabel(catalog, 'language.' + language)))
+      .join(''),
+    ARCHIVE_TOPIC_LANDINGS: topics
+      .map((topic) => {
+        const first = entries.find((entry) => entry.record.presentation.topic === topic);
+        return component(templates, 'archive-topic-landing', {
+          TOPIC: escapeAttribute(topic),
+          LABEL: escapeText(topicLabel(topic)),
+          URL: escapeAttribute(first ? `#topic-${topic}-${first.year}` : '#archive-results'),
+          BROWSE: escapeText(contentLabel(catalog, 'archive.browse')),
+        });
+      })
+      .join(''),
+    ARCHIVE_RESULTS: years
+      .map((year) => {
+        const rows = entries.filter((entry) => entry.year === year);
+        const groups = topics
+          .map((topic) => {
+            const selected = rows.filter((entry) => entry.record.presentation.topic === topic);
+            if (!selected.length) return '';
+            return component(templates, 'archive-group', {
+              TOPIC: escapeAttribute(topic),
+              YEAR: escapeAttribute(year),
+              LABEL: escapeText(topicLabel(topic)),
+              ROWS: selected
+                .map(({ record }) => publication(templates, record, 'archive', catalog, true))
+                .join('\n'),
+            });
+          })
+          .join('');
+        return component(templates, 'archive-year', {
+          YEAR: escapeAttribute(year),
+          LANDING_LABEL: escapeText(
+            yearLabel(year) + (year === 'undated' ? '' : contentLabel(catalog, 'archive.year'))
+          ),
+          LABEL: escapeText(yearLabel(year)),
+          COUNT: rows.length,
+          RECORDS_LABEL: escapeText(contentLabel(catalog, 'archive.records')),
+          GROUPS: groups,
+        });
+      })
+      .join(''),
+  };
+}
+
+module.exports = { publication, discussionRows, dateLabel, archiveViews };

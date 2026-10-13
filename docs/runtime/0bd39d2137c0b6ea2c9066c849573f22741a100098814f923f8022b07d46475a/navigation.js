@@ -1422,6 +1422,9 @@ window.SiteScrollEntry=(function () {
     if (
       revision?.schema !== 1 ||
       revision.contract !== 1 ||
+      revision.navigation?.contract !== 1 ||
+      revision.navigation?.articleRenderer !== 1 ||
+      Object.keys(revision.navigation).length !== 2 ||
       revision.engine !== shellEngine ||
       Object.keys(revision.routes || {}).length !== routes.length
     )
@@ -1437,12 +1440,15 @@ window.SiteScrollEntry=(function () {
         return false;
     }
     const articleRows = revision.articles || {};
-    if (Object.keys(articleRows).length !== Object.keys(articles).length) return false;
+    if (Object.keys(articleRows).length > 50) return false;
+    const aliases = new Set();
     for (const [key, data] of Object.entries(articleRows)) {
       if (
-        !articles[key] ||
+        !/^[a-z][a-z0-9-]{0,79}:(?:en|uk)$/.test(key) ||
+        !data ||
         data.scene !== 'writing' ||
-        data.alias !== articles[key].url ||
+        !/^articles\/[a-z][a-z0-9-]{0,79}\.html$/.test(data.alias) ||
+        aliases.has(data.alias) ||
         data.articleId !== key.split(':')[0] ||
         !/^[a-z][a-z0-9-]{0,79}$/.test(data.contentEdition) ||
         !/^[a-f0-9]{64}$/.test(data.sourceSha256) ||
@@ -1450,9 +1456,21 @@ window.SiteScrollEntry=(function () {
         !/^[a-f0-9]{64}$/.test(data.version) ||
         !/^[a-f0-9]{64}$/.test(data.sha256) ||
         data.url !== `article-snapshots/${data.version}/${data.alias.split('/').pop()}` ||
-        (articles[key].snapshot && data.url !== articles[key].snapshot)
+        !Array.isArray(data.assets) ||
+        data.assets.length > 50 ||
+        new Set(data.assets).size !== data.assets.length ||
+        data.assets.some(
+          (name) => !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*$/.test(name)
+        ) ||
+        (data.candidate === true && revision.preview !== true)
       )
         return false;
+      aliases.add(data.alias);
+    }
+    if (embedded) {
+      if (Object.keys(articleRows).length !== Object.keys(articles).length) return false;
+      for (const [key, data] of Object.entries(articleRows))
+        if (articles[key]?.url !== data.alias || articles[key]?.snapshot !== data.url) return false;
     }
     const initial = initialPage.startsWith('article:')
       ? articleRows[initialPage.slice(8)]
@@ -1478,8 +1496,23 @@ window.SiteScrollEntry=(function () {
       if (new TextEncoder().encode(bytes).byteLength > 32000) throw Error('Revision too large');
       revision = JSON.parse(bytes);
     }
+    if (signal?.aborted) throw Error('Revision request cancelled');
+    // A completed first gesture owns one immutable registry for this session.
+    // A concurrent cancelled request cannot replace a newer pinned revision.
+    if (pinned) return;
     if (!revisionValid(revision)) throw Error('Site snapshot changed');
+    if (!embedded)
+      for (const [key, data] of Object.entries(revision.articles || {}))
+        articles[key] = { url: data.alias, snapshot: data.url };
     pinned = revision;
+  }
+  function articleTarget(url) {
+    return (
+      !embedded &&
+      url.origin === entry.origin &&
+      url.pathname.startsWith(directory.pathname) &&
+      /^articles\/[a-z][a-z0-9-]{0,79}\.html$/.test(url.pathname.slice(directory.pathname.length))
+    );
   }
   async function matchesBytes(html, hash) {
     if (!window.crypto?.subtle || !window.TextEncoder)
@@ -2004,8 +2037,8 @@ window.SiteScrollEntry=(function () {
     url,
     { pop = false, position = null, initial = false, input = null } = {}
   ) {
-    const next = routeFor(url);
-    if (!next) return;
+    let next = routeFor(url);
+    if (!navigableDestination(url, next)) return;
     const nextScene = routes.includes(next) ? next : 'writing';
     const currentScene = routes.includes(page) ? page : 'writing';
     const direction = routes.indexOf(nextScene) >= routes.indexOf(currentScene) ? 1 : -1;
@@ -2032,6 +2065,7 @@ window.SiteScrollEntry=(function () {
       // Stop a native smooth focus/anchor scroll inherited from activation.
       // Fresh reading input during the asynchronous read still reaches saveDeparture.
       restoreScroll(interruptedPosition[0], interruptedPosition[1]);
+      next = await admittedDestination(url, next, controller.signal);
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);
@@ -2105,7 +2139,7 @@ window.SiteScrollEntry=(function () {
         scrollEntry?.cancelRoute?.();
         scrollEntry?.settle();
         releaseTail();
-        window.location.assign(address(url, next).href);
+        window.location.assign(nativeDestination(url, next));
       }
     } finally {
       window.clearTimeout(timeout);
@@ -2116,6 +2150,19 @@ window.SiteScrollEntry=(function () {
         clearText();
       }
     }
+  }
+  function navigableDestination(url, next) {
+    return next || articleTarget(url);
+  }
+  async function admittedDestination(url, next, signal) {
+    if (next) return next;
+    await pin(signal);
+    const admitted = routeFor(url);
+    if (!admitted) throw Error('Article is absent from the pinned revision');
+    return admitted;
+  }
+  function nativeDestination(url, next) {
+    return next ? address(url, next).href : url.href;
   }
   document.body.dataset.entryPage = page;
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -2135,7 +2182,7 @@ window.SiteScrollEntry=(function () {
       return;
     const url = new URL(link.href, window.location.href),
       next = routeFor(url);
-    if (!next) return;
+    if (!navigableDestination(url, next)) return;
     if (next === page && request) {
       event.preventDefault();
       navigate(url);

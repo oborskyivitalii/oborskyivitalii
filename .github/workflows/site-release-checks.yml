@@ -23,6 +23,10 @@ on:
         description: Full hosted automation; separate from physical/review acceptance
         type: boolean
         default: false
+      content_fixture:
+        description: Explicit local synthetic content diagnostic; never publication or release evidence
+        type: boolean
+        default: false
       public_artifact_id:
         description: Reuse the immutable basic-build artifact without rebuilding
         type: string
@@ -85,6 +89,10 @@ on:
         default: release
       automated_only:
         description: Full hosted automation; separate from physical/review acceptance
+        type: boolean
+        default: false
+      content_fixture:
+        description: Explicit local synthetic content diagnostic; never publication or release evidence
         type: boolean
         default: false
       public_artifact_id:
@@ -304,6 +312,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -347,7 +356,9 @@ jobs:
           PYTHON
       - name: Install the pinned Node toolchain
         timeout-minutes: 3
-        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
       - name: Install Ubuntu engine dependencies without prior launch
         timeout-minutes: 5
         run: tools/quality/toolchain/node_modules/.bin/playwright install-deps chromium firefox webkit
@@ -392,6 +403,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -405,6 +417,7 @@ jobs:
       - name: Install pinned native engines
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           node tools/quality/toolchain/node_modules/playwright/cli.js install $SITE_AUDIT_ENGINES
         env:
           # CLI uses separate engine arguments, unlike the runner's comma list.
@@ -516,6 +529,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
@@ -529,11 +543,22 @@ jobs:
       - name: Install locked bounded staging browser tools
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium firefox
       - name: Verify the unchanged package and run representative browser and performance regression
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/quality/staging-regression.cjs
+      - name: Exercise genuine content release on an isolated local fixture
+        if: inputs.content_fixture
+        run: node tools/quality/content-fixture.cjs "$RUNNER_TEMP/content-fixture-report.json"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && inputs.content_fixture
+        with:
+          name: site-content-fixture-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/content-fixture-report.json
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:

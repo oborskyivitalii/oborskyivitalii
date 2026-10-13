@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-12**.
+Dated continuity, not live authority. Last verified: **2026-10-13**.
 
 ## Snapshot
 
@@ -9,32 +9,24 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   PR78's ordinary both-host admission remains historical evidence; live owner #76
   holds exact final runtime admission and merge evidence.
 - [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79)
-  owns article authoring, publisher/export and the Writing reader. The real PMDay
-  article from #2 is its end-to-end deliverable, with separate editorial, rights,
-  device and actual publication gates. Source, article PDF and platform kits stay
-  explicit review candidates; production is disabled and canonical/date pending.
-  Versioned inventory, source and independent reviews are in `review/issue-5/`.
-  Continuation corrects image-load smoke, frozen translation lineage and selected
-  platform event formats; original failed CI remains failed. Fresh-head results
-  belong in the live PR; source limits and separate owner decisions remain.
-  A further continuation guards visibility-only departure focus, retains all
-  selected cases with bounded parser/fixture reuse and explicit abort cleanup,
-  and restores the general offline manifest; dated CI reports keep failures
-  qualified. Prepared two-CPU source passes683/683 in169.262s after replacing local
-  dependency symlinks with real directories; exact clean-head CI and hosted/
-  staging admission belong to the live PR. The failed local attempt is retained.
-  Clean1e15 source passes689/689 in100.936s and managed article/Color/history
-  preview passes. Its bounded stage source652/652 and109 repository checks,
-  static/host/browser/performance all pass; Writing TBT129.5/200. The final
-  aggregate fails only its omitted five article observations. F30 corrects that
-  conditional count, with focused11/11 passing and unchanged runtime/budgets.
-  Originalad212 analytics/TBT301.5 and1e15 aggregate failures remain failed;
-  retained-data revalidation is separate from fresh final-source CI/preview and
-  full controller admission. Actual final results belong in the live PR.
-  Native history captures focus before inert/departure and preserves interrupted
-  focus. Managed hosted `27717ab` passed all article/Color cases; its Basic source
-  timed out. The measured isolated two-worker Space/executive-first route retains
-  all cases/budgets; fresh scheduler-head CI results belong in the live PR.
+  remains the sole publisher/content-release route. Baseline was raw `e830752f`
+  (tree `b3e197df`); its earlier successful source/preview/stage runs are historical
+  evidence and do not admit the new 13 October implementation.
+  Author deferred the real PMDay article until author-approved chapters exist;
+  current manuscript/blueprint/exports are test artifacts. #2 AC01–AC06 stay open,
+  accepted recording AC07/AC08 preserved. No real article publication inferred.
+  New AC13–AC15: automatic Writing collection/count; independent verified content
+  release; formal content/platform CI selection. Writing currently has 29 public
+  records, alternate links count once; draft fixture stays outside the public count.
+  Raw platform now `0bd39d21`; two new closed Color tuples preserve 18 historical
+  ones. Independent source/byte review and focused suites pass; exact final-source
+  Basic/source/RI/owning/hosted evidence must be checked in the live PR.
+  Commands/trust are in `guides/SITE-CONTENT-RELEASE.md`; continuation and review
+  in `review/issue-5/2026-10-13-content-release.md`. Normal content Basic/preview
+  can reuse only compatible, source-admitted complete CI generations. Missing,
+  incompatible or nonancestor baselines select explicit full builds. Prior served
+  decorated immutable closure is retained; delivery edition banners still rebind
+  source heads. Stable staging/production gates and original budgets remain.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -93,7 +85,7 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 | #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
 | #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
-| #5 / PR79 and #2          | Complete exact-source implementation checks and candidate preview; reconcile separate editorial, rights, publication and upstream decisions.  |
+| #5 / PR79 and #2          | Finish current-source content-release checks/preview; real article #2 is deferred, with original editorial/rights/publication decisions preserved.  |
 | #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
 
 ## Next session
@@ -101,8 +93,8 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 1. Revalidate main and PR79 raw head, working tree, checks and candidate preview.
    Use the execution continuation section and its current CI links; do not reuse
    the failed 5a84ef6 source/preview attempts as admission.
-2. Continue #5 in PR79; use #2 as the useful article deliverable, retaining its
-   separate original acceptance and accepted recording increment.
+2. Continue #5 in PR79; use PMDay only as a technical test artifact. Real #2
+   authoring waits for supplied chapters; preserve its accepted recording increment.
 3. Read exact-source execution, migration inventory and independent reviews in
    `review/issue-5/`; keep browser/PDF fallback limits and failed attempts honest.
 4. Preserve source/tree/package bindings. Merge, production, external publication

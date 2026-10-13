@@ -4,6 +4,7 @@ const test = require('node:test'),
   fs = require('node:fs'),
   path = require('node:path'),
   os = require('node:os'),
+  cp = require('node:child_process'),
   vm = require('node:vm');
 const root = path.resolve(__dirname, '..'),
   b = require('../tools/site/build.cjs'),
@@ -39,6 +40,10 @@ function fixture(t) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
+  fs.writeFileSync(
+    path.join(dir, 'site/content/catalog.json'),
+    JSON.stringify(require('./fixtures/catalog.cjs').legacyCatalog(root), null, 2) + '\n'
+  );
   configure(dir, disabled());
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
@@ -358,7 +363,25 @@ test('analytics browser cold preparation owns the complete five-route offline de
           fs.readFileSync(path.join(root, owner)),
           'copied canonical offline dependency ' + owner
         );
-      assert.equal(fs.existsSync(path.join(preparedDirectory, 'tools/publishing')), false);
+      for (const owner of [
+        'tools/publishing/article.cjs',
+        'tools/publishing/toolchain/package-lock.json',
+      ])
+        assert.deepEqual(
+          fs.readFileSync(path.join(preparedDirectory, owner)),
+          fs.readFileSync(path.join(root, owner)),
+          'copied canonical publication dependency ' + owner
+        );
+      assert.equal(
+        cp
+          .execFileSync('git', ['rev-parse', '--show-toplevel'], {
+            cwd: preparedDirectory,
+            encoding: 'utf8',
+          })
+          .trim(),
+        preparedDirectory,
+        'cold collector retains an isolated explicit Git root'
+      );
       assert.equal(fs.existsSync(path.join(preparedDirectory, 'tools/quality/toolchain')), false);
       assert.match(
         fs.readFileSync(path.join(preparedDirectory, 'docs/index.html'), 'utf8'),

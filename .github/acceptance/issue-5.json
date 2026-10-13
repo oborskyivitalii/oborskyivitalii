@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Build the real PMDay article into full site HTML and visually reviewed article PDF with source/artifact manifests.",
-      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "automated_scope": "Owner decision 13 October: real PMDay authoring is deferred pending author-approved chapters; current PMDay-labelled files are technical test artifacts, not editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
       "checks": ["PUBLISHER", "READER", "DELIVERY"],
       "gates": ["ARTICLE"]
     },
@@ -42,7 +42,7 @@
     {
       "id": "AC06",
       "intent": "Demonstrate blueprint, whole-text review, manuscript/adaptation and feedback workflow on PMDay.",
-      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "automated_scope": "Owner decision 13 October: real PMDay authoring is deferred pending author-approved chapters; current PMDay-labelled files are technical test artifacts, not editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
       "checks": ["PUBLISHER"],
       "gates": ["EDITORIAL"]
     },
@@ -76,7 +76,7 @@
     },
     {
       "id": "AC11",
-      "intent": "Map CS01–CS10, maintain RI/CI/test inventories and obtain independent implementation/export review.",
+      "intent": "Map CS01\u2013CS10, maintain RI/CI/test inventories and obtain independent implementation/export review.",
       "automated_scope": "The documented bounded CS01/CS03 source and agent routing subset. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
       "checks": ["STYLE-GUARD", "CURRENT-RI", "RI-CI", "PUBLISHER", "READER", "DELIVERY"],
       "gates": ["INDEPENDENT"]
@@ -87,6 +87,27 @@
       "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
       "checks": ["BASIC", "CURRENT-RI", "RI-CI", "PUBLISHER", "READER", "DELIVERY"],
       "gates": ["DELIVERY"]
+    },
+    {
+      "id": "AC13",
+      "intent": "One displayed Writing collection drives automatic cards, groups, filters, JSON-LD and simple article count; alternate platform links count once and drafts stay separate.",
+      "automated_scope": "Catalog add/remove, new-year, local undated and alternate-platform cases compare rendered cards, controls, count and ItemList. Archive filters/history/print and exact producer-bound SEO amendment reject mismatches. Hosted reader acceptance remains separately mapped in AC08/AC12.",
+      "checks": ["WRITING-CATALOG", "READER"],
+      "gates": []
+    },
+    {
+      "id": "AC14",
+      "intent": "Release article/catalog content independently using a verified unchanged platform and a coherent complete package.",
+      "automated_scope": "Trusted baseline lock/inventory/platform, source-qualified live generation, independent article route identities, old decorated immutable closure and tampered/missing/incompatible baseline rejection. Raw content changes affect only dependent documents; existing edition source binding may rewrite final aliases without recompiling platform. Hosted staging acceptance remains separately mapped in AC08/AC12.",
+      "checks": ["CONTENT-RELEASE", "READER", "DELIVERY"],
+      "gates": []
+    },
+    {
+      "id": "AC15",
+      "intent": "Formally classify content versus platform changes and preserve required source/hosted/release gates and original budgets.",
+      "automated_scope": "Exact ancestor/source/run/tree/archive admission, Draft-only negative, content versus unknown/runtime/template/policy cases, permanent mandatory content suites and ordinary workflow routes. Current runtime PR retains applicable platform regression. No successful packaging is relabeled source, staging, publication or production acceptance.",
+      "checks": ["CONTENT-CI", "RI-CI", "CURRENT-RI"],
+      "gates": []
     }
   ],
   "checks": {
@@ -116,6 +137,18 @@
     "DELIVERY": {
       "kind": "unittest",
       "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_delivery"
+    },
+    "WRITING-CATALOG": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_writing_catalog_contracts"
+    },
+    "CONTENT-RELEASE": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_release_contracts"
+    },
+    "CONTENT-CI": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_check_selection"
     }
   },
   "gates": {
@@ -125,7 +158,7 @@
     },
     "ARTICLE": {
       "kind": "human",
-      "description": "Inspect #2:AC01–AC03 blueprint/manuscript/deck/source consistency, complete native HTML, all article PDF pages and figures and manifest identities. Article PDF and deck PDF stay separate candidates."
+      "description": "Inspect #2:AC01\u2013AC03 blueprint/manuscript/deck/source consistency, complete native HTML, all article PDF pages and figures and manifest identities. Article PDF and deck PDF stay separate candidates."
     },
     "ISOLATION": {
       "kind": "human",
@@ -157,11 +190,11 @@
     },
     "PUBLICATION": {
       "kind": "human",
-      "description": "Verify append-only observed events, preservation of historical originals and absence of fabricated live canonical/date/state. Actual #2:AC04–AC06 publication/rights/upstream decisions remain pending until separately observed."
+      "description": "Verify append-only observed events, preservation of historical originals and absence of fabricated live canonical/date/state. Actual #2:AC04\u2013AC06 publication/rights/upstream decisions remain pending until separately observed."
     },
     "INDEPENDENT": {
       "kind": "human",
-      "description": "Independent architecture/export review of exact implementation and applicable CS01–CS10 plus RI/CI/source-profile dispositions. Bounded guard success alone is insufficient."
+      "description": "Independent architecture/export review of exact implementation and applicable CS01\u2013CS10 plus RI/CI/source-profile dispositions. Bounded guard success alone is insufficient."
     },
     "DELIVERY": {
       "kind": "merge",

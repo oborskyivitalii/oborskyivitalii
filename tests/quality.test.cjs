@@ -261,6 +261,12 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
       fs.readFileSync(path.join(root, '.github/workflows/' + id + '.yml'), 'utf8'),
     ])
   );
+  const diagnosticCollision = structuredClone(sources);
+  diagnosticCollision['site-release-checks'] = diagnosticCollision['site-release-checks'].replace(
+    'site-content-fixture-${{ inputs.profile }}-',
+    'site-content-fixture-'
+  );
+  assert.throws(() => workflow.check(root, diagnosticCollision), /collision/);
   sources['site-checks'] = sources['site-checks'].replace(
     'site-gate-basic-',
     'site-gate-full-staging-'

@@ -2,7 +2,6 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
 const path = require('node:path');
 const {
   validateCatalog,
@@ -12,7 +11,7 @@ const {
 const { publication } = require('../tools/site/render-records.cjs');
 const { loadComponents, routeInput } = require('../tools/site/content.cjs');
 const root = path.resolve(__dirname, '..');
-const legacy = JSON.parse(fs.readFileSync(path.join(root, 'site/content/catalog.json'), 'utf8'));
+const legacy = require('./fixtures/catalog.cjs').legacyCatalog(root);
 const fullSource = 'a'.repeat(64);
 const adaptationSource = 'b'.repeat(64);
 const translatedSource = 'c'.repeat(64);
@@ -221,6 +220,21 @@ test('local catalog supports three distinct pinned relationships and undated acc
   assert.match(rendered, /LinkedIn authored adaptation · 1 Oct 2026/);
   assert.match(rendered, /Author site translation<\/a>/);
   assert.doesNotMatch(rendered, /datetime=""|Invalid Date/);
+  const route = require('../site/routes.json').routes.find((entry) => entry.id === 'writing');
+  const writing = routeInput(root, route, input.catalog);
+  const normalized = require('../tools/site/html.cjs').stableTagEndings(writing.main);
+  assert.equal(writing.schema.mainEntity.numberOfItems, 31);
+  assert.equal([...normalized.matchAll(/<li class="publication"/g)].length, 31);
+  assert.match(normalized, /id="archive-count"[^>]*>31 articles<\/p>/);
+  assert.match(normalized, /<option value="undated">Publication date not recorded<\/option>/);
+  assert.match(normalized, /id="year-undated" class="year-landing">Publication date not recorded/);
+  assert.equal(normalized.split(`href="${input.original.edition.url}"`).length - 1, 1);
+  assert.equal(
+    writing.schema.mainEntity.itemListElement.filter(
+      (entry) => entry.item.url === input.original.edition.url
+    ).length,
+    1
+  );
   assert.throws(() => validateLocalCatalog(input.catalog), /selected article source models/);
 });
 

@@ -137,7 +137,7 @@ function fallback(api, page) {
   // Keep the established bounded SVG rendition and exact coordinates.
   return require('./fallback.cjs').fromModel(api, page);
 }
-function render(root, route, input, api, measurement = '') {
+function render(root, route, input, api, measurement = '', fallbackHTML = null) {
   const c = catalog(root);
   return renderPage({
     route,
@@ -150,7 +150,7 @@ function render(root, route, input, api, measurement = '') {
     },
     headerHTML: fragment(root, 'site/content/shared/header.json', c).html,
     footerHTML: fragment(root, 'site/content/shared/footer.json', c).html,
-    fallbackHTML: fallback(api, route.id),
+    fallbackHTML: fallbackHTML ?? fallback(api, route.id),
     routeLabel: contentLabel(c, 'route.' + route.id),
   });
 }
@@ -199,7 +199,7 @@ function versionHTML(html, version, components) {
   if ([...html.matchAll(headEnd)].length !== 1) throw Error('Expected one document head');
   html = html.replace(
     headEnd,
-    `  <meta name="site-engine" content="${engine}">\n  <meta name="site-route" content="${version}">\n  <meta name="site-contract" content="${components.contract}">\n  <meta name="site-variant" content="base">\n</head>`
+    `  <meta name="site-engine" content="${engine}">\n  <meta name="site-route" content="${version}">\n  <meta name="site-contract" content="${components.contract}">\n  <meta name="site-article-renderer" content="1">\n  <meta name="site-variant" content="base">\n</head>`
   );
   for (const name of ['theme.js', 'space.js', 'archive.js', 'navigation.js', 'styles.css'])
     html = html.replaceAll(`="${name}"`, `="runtime/${engine}/${name}"`);
@@ -293,6 +293,16 @@ function fingerprints(root, config, c = catalog(root)) {
         ),
       })
     ),
+    pageTemplates: sha(
+      json(
+        fileDigests(
+          root,
+          files(path.join(root, 'site/templates/pages')).map(
+            (name) => 'site/templates/pages/' + name
+          )
+        )
+      )
+    ),
     analytics: sha(
       json(
         fileDigests(root, [
@@ -343,7 +353,15 @@ function finish(root, output, cacheFile, temporary, result, check, lockFile) {
     });
   }
 }
-function prepareArticles(root, selectedArticles, components, versioned) {
+function documentComponents(components) {
+  // Page templates are a platform-release admission boundary. Each document
+  // already hashes only its own template inputs for ordinary incremental builds.
+  const shared = { ...components };
+  delete shared.pageTemplates;
+  return shared;
+}
+
+function prepareArticles(root, selectedArticles, components, versioned, preview) {
   for (const article of selectedArticles) {
     article.input = articles.input(root, article);
     article.inputDigests = fileDigests(root, article.input.inputs);
@@ -357,30 +375,44 @@ function prepareArticles(root, selectedArticles, components, versioned) {
       throw Error('Article source changed during compilation');
     article.version = sha(
       json({
-        components,
+        components: documentComponents(components),
         key: article.key,
         inputs: article.inputDigests,
         rendered: sha(article.input.main),
         metadata: article.metadata,
+        alternates: articles.alternates(article, selectedArticles).map((alternate) => ({
+          language: alternate.metadata.language,
+          url: alternate.url,
+        })),
+        preview,
         versioned,
       })
     );
     article.snapshot = `article-snapshots/${article.version}/${path.posix.basename(article.url)}`;
   }
-  // Every document embeds the finite registry. Derive its identity from the
-  // independent content versions first, avoiding a circular snapshot hash.
-  const articleRegistry = sha(
-    json(
-      selectedArticles.map((article) => ({
-        key: article.key,
-        url: article.url,
-        contentVersion: article.version,
-      }))
-    )
+  // Reciprocal translation links intentionally share a finite dependency group.
+  // Unrelated publications never participate in another article's identity.
+  const contentVersions = new Map(
+    selectedArticles.map((article) => [article.key, article.version])
   );
   for (const article of selectedArticles) {
-    article.version = sha(json({ contentVersion: article.version, registry: articleRegistry }));
-    article.snapshot = `article-snapshots/${article.version}/${path.posix.basename(article.url)}`;
+    const related = new Set([article]);
+    for (const member of related)
+      for (const alternate of articles.alternates(member, selectedArticles)) related.add(alternate);
+    if (related.size > 1) {
+      article.version = sha(
+        json({
+          contentVersion: contentVersions.get(article.key),
+          translations: [...related]
+            .map((member) => ({
+              key: member.key,
+              contentVersion: contentVersions.get(member.key),
+            }))
+            .sort((left, right) => left.key.localeCompare(right.key)),
+        })
+      );
+      article.snapshot = `article-snapshots/${article.version}/${path.posix.basename(article.url)}`;
+    }
   }
 }
 
@@ -396,33 +428,55 @@ function emitArticles({
   result,
   versioned,
   preview,
+  previous,
+  trusted,
+  output,
+  contentOnly,
 }) {
   for (const article of selectedArticles) {
     const input = article.input;
     const version = article.version;
-    api ??= model(root, definitions);
-    let html = render(
-      root,
-      config.routes.find((route) => route.id === 'writing'),
-      input,
-      api,
-      measurement.head
-    );
-    if (versioned) html = versionHTML(html, version, components);
-    html = articles.attachHead(html, article, selectedArticles, preview);
-    html = articles.documentIndex(html, selectedArticles);
-    const alias = articles.rebase(html, article.url);
-    if (Buffer.byteLength(alias, 'utf8') > 100000)
-      throw Error('Article HTML byte budget ' + article.key);
-    put(article.url, alias);
-    const snapshot = article.snapshot;
-    const snapshotBytes = articles.rebase(
-      articles.immutableLinks(html, selectedArticles),
-      snapshot
-    );
-    if (Buffer.byteLength(snapshotBytes, 'utf8') > 100000)
-      throw Error('Article snapshot byte budget ' + article.key);
-    put(snapshot, snapshotBytes);
+    const reusable =
+      previous?.articles?.[article.key]?.version === version &&
+      trusted?.articles?.[article.key]?.version === version &&
+      [article.url, article.snapshot].every(
+        (name) =>
+          previous.files[name] === trusted.files[name] &&
+          fs.existsSync(path.join(output, name)) &&
+          sha(fs.readFileSync(path.join(output, name))) === trusted.files[name]
+      );
+    if (reusable) {
+      put(article.url, fs.readFileSync(path.join(output, article.url)));
+      put(article.snapshot, fs.readFileSync(path.join(output, article.snapshot)));
+      result.reusedArticles.push(article.key);
+    } else {
+      if (!contentOnly) api ??= model(root, definitions);
+      let html = render(
+        root,
+        config.routes.find((route) => route.id === 'writing'),
+        input,
+        api,
+        measurement.head,
+        contentOnly ? baselineFallback(output, 'writing') : null
+      );
+      if (versioned) html = versionHTML(html, version, components);
+      html = articles.attachHead(html, article, selectedArticles, preview);
+      // Hosted documents carry only their own boot identity. The first user
+      // navigation pins the complete verified registry from site-revision.json.
+      html = articles.documentIndex(html, [article]);
+      const alias = articles.rebase(html, article.url);
+      if (Buffer.byteLength(alias, 'utf8') > 100000)
+        throw Error('Article HTML byte budget ' + article.key);
+      put(article.url, alias);
+      const snapshotBytes = articles.rebase(
+        articles.immutableLinks(html, selectedArticles),
+        article.snapshot
+      );
+      if (Buffer.byteLength(snapshotBytes, 'utf8') > 100000)
+        throw Error('Article snapshot byte budget ' + article.key);
+      put(article.snapshot, snapshotBytes);
+      result.builtArticles.push(article.key);
+    }
     for (const asset of article.assets) {
       if (asset.bytes.length > 2000000) throw Error('Article asset byte budget ' + asset.id);
       put(articles.assetName(asset), asset.bytes);
@@ -430,8 +484,8 @@ function emitArticles({
     result.articles[article.key] = {
       version,
       url: article.url,
-      snapshot,
-      sha256: result.files[snapshot],
+      snapshot: article.snapshot,
+      sha256: result.files[article.snapshot],
       inputs: input.inputs,
       assets: article.assets.map(articles.assetName),
       candidate: article.candidate,
@@ -455,6 +509,7 @@ function emitRevision({ root, components, selectedArticles, result, temporary, p
   const revision = {
     schema: 1,
     contract: components.contract,
+    navigation: { contract: 1, articleRenderer: 1 },
     variant: { id: 'base', contract: 1, fingerprint: components.variant },
     engine,
     scenes: components.scenes,
@@ -514,6 +569,118 @@ function verifyArticleInputs(root, selectedArticles) {
       throw Error('Article source changed during generation');
 }
 
+function baselineFallback(output, route) {
+  const html = fs.readFileSync(path.join(output, route + '.html'), 'utf8');
+  const matches = [...html.matchAll(/<svg\b[^>]*\bclass="space-fallback"[^>]*>[\s\S]*?<\/svg>/g)];
+  if (matches.length !== 1) throw Error('Content baseline fallback is incomplete');
+  return matches[0][0];
+}
+
+function verifyContentBaseline(output, previous, trusted, components, versioned) {
+  if (
+    !versioned ||
+    !previous ||
+    !trusted ||
+    json(previous.components) !== json(components) ||
+    json(trusted.components) !== json(components) ||
+    json(previous.files) !== json(trusted.files)
+  )
+    throw Error('Content release requires a verified matching platform baseline');
+  if (json(files(output)) !== json(Object.keys(trusted.files).sort()))
+    throw Error('Content baseline public inventory differs');
+  for (const [name, digest] of Object.entries(trusted.files))
+    if (sha(fs.readFileSync(path.join(output, name))) !== digest)
+      throw Error('Content baseline bytes differ: ' + name);
+  const revision = require('./snapshot.cjs').verify(output, { files: trusted.files });
+  if (revision.engine !== runtimeVersion(components) || revision.navigation?.articleRenderer !== 1)
+    throw Error('Content baseline runtime contract differs');
+}
+
+function emitRoutes({
+  root,
+  config,
+  definitions,
+  catalog,
+  components,
+  selectedArticles,
+  measurement,
+  previous,
+  trusted,
+  contentOnly,
+  versioned,
+  preview,
+  result,
+  put,
+  output,
+}) {
+  let api;
+  for (const route of config.routes) {
+    const input = routeInput(root, route, catalog);
+    input.main = articles.listing(input.main, selectedArticles, route.id);
+    const pageInputs = input.inputs.concat(route.id === 'index' ? [criticalMediaSource] : []),
+      version = sha(
+        json({
+          components: documentComponents(components),
+          route,
+          inputs: fileDigests(root, pageInputs),
+          records: input.records,
+          discussions: input.discussions,
+          schema: input.schema,
+          rendered: sha(input.main),
+          versioned,
+          preview: preview,
+          linkedArticles: selectedArticles
+            .filter((article) => input.main.includes(`href="${article.url}`))
+            .map((article) => ({ key: article.key, snapshot: article.snapshot })),
+        })
+      );
+    const old = previous?.routes[route.id],
+      file = path.join(output, route.url);
+    let html;
+    if (
+      old?.version === version &&
+      trusted?.routes[route.id]?.version === version &&
+      previous.files[route.url] === trusted.files[route.url] &&
+      fs.existsSync(file) &&
+      sha(fs.readFileSync(file)) === trusted.files[route.url]
+    ) {
+      html = fs.readFileSync(file, 'utf8');
+      result.reused.push(route.id);
+    } else {
+      if (!contentOnly) api ??= model(root, definitions);
+      html = render(
+        root,
+        route,
+        input,
+        api,
+        measurement.head,
+        contentOnly ? baselineFallback(output, route.id) : null
+      );
+      if (versioned) html = versionHTML(html, version, components);
+      html = articles.documentIndex(html, [], preview);
+      result.built.push(route.id);
+    }
+    put(route.url, html);
+    result.routes[route.id] = {
+      version,
+      url: route.url,
+      inputs: pageInputs,
+      records: Object.keys(input.records),
+    };
+    if (versioned) {
+      const name = `snapshots/${version}/${route.url}`;
+      put(name, snapshotHTML(articles.immutableLinks(html, selectedArticles)));
+      result.routes[route.id].snapshotSHA = result.files[name];
+    }
+  }
+  return api;
+}
+
+function retainContentBaseline(output, trusted, put) {
+  for (const name of Object.keys(trusted.files).filter(require('./snapshot.cjs').immutable))
+    put(name, fs.readFileSync(path.join(output, name)));
+}
+
 function build({
   root = defaultRoot,
   output = path.join(root, 'docs'),
@@ -521,6 +688,7 @@ function build({
   all = false,
   check = false,
   versioned = true,
+  contentOnly = false,
   candidateArticles = [],
   lockFile = candidateArticles.length
     ? output + '.output-lock.json'
@@ -535,13 +703,14 @@ function build({
   require('./validate-catalog.cjs').validateLocalCatalog(c, (id) =>
     selectedArticles.find((article) => article.metadata.id === id && !article.candidate)
   );
-  prepareArticles(root, selectedArticles, components, versioned);
+  prepareArticles(root, selectedArticles, components, versioned, candidateArticles.length > 0);
   const measurement = require('./analytics.cjs').compile(
     root,
     config.routes.map((route) => route.url)
   );
   const previous = !all && !check ? validCache(cacheFile) : null;
   const trusted = validCache(lockFile);
+  if (contentOnly) verifyContentBaseline(output, previous, trusted, components, versioned);
   const parent = path.dirname(output);
   fs.mkdirSync(parent, { recursive: true });
   const temporary = fs.mkdtempSync(path.join(parent, '.site-build-'));
@@ -549,6 +718,8 @@ function build({
     schema: 1,
     built: [],
     reused: [],
+    builtArticles: [],
+    reusedArticles: [],
     removed: [],
     components,
     routes: {},
@@ -556,67 +727,36 @@ function build({
     files: {},
   };
   const put = (name, bytes) => {
+    if (
+      result.files[name] &&
+      result.files[name] !== sha(bytes) &&
+      require('./snapshot.cjs').immutable(name)
+    )
+      throw Error('Immutable content baseline collision: ' + name);
     const target = path.join(temporary, name);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, bytes);
     result.files[name] = sha(bytes);
   };
-  let api;
   try {
-    for (const route of config.routes) {
-      const input = routeInput(root, route, c),
-        pageInputs = input.inputs.concat(route.id === 'index' ? [criticalMediaSource] : []),
-        version = sha(
-          json({
-            components,
-            route,
-            inputs: fileDigests(root, pageInputs),
-            records: input.records,
-            discussions: input.discussions,
-            schema: input.schema,
-            rendered: sha(input.main),
-            versioned,
-            articles: selectedArticles.map((article) => ({
-              key: article.key,
-              url: article.url,
-              snapshot: article.snapshot,
-              ...(route.id === 'writing' ? { metadata: article.metadata } : {}),
-            })),
-          })
-        );
-      const old = previous?.routes[route.id],
-        file = path.join(output, route.url);
-      let html;
-      if (
-        old?.version === version &&
-        trusted?.routes[route.id]?.version === version &&
-        previous.files[route.url] === trusted.files[route.url] &&
-        fs.existsSync(file) &&
-        sha(fs.readFileSync(file)) === trusted.files[route.url]
-      ) {
-        html = fs.readFileSync(file, 'utf8');
-        result.reused.push(route.id);
-      } else {
-        api ??= model(root, definitions);
-        input.main = articles.listing(input.main, selectedArticles, route.id);
-        html = render(root, route, input, api, measurement.head);
-        if (versioned) html = versionHTML(html, version, components);
-        html = articles.documentIndex(html, selectedArticles, candidateArticles.length > 0);
-        result.built.push(route.id);
-      }
-      put(route.url, html);
-      result.routes[route.id] = {
-        version,
-        url: route.url,
-        inputs: pageInputs,
-        records: Object.keys(input.records),
-      };
-      if (versioned) {
-        const name = `snapshots/${version}/${route.url}`;
-        put(name, snapshotHTML(articles.immutableLinks(html, selectedArticles)));
-        result.routes[route.id].snapshotSHA = result.files[name];
-      }
-    }
+    if (contentOnly) retainContentBaseline(output, trusted, put);
+    const api = emitRoutes({
+      root,
+      config,
+      definitions,
+      catalog: c,
+      components,
+      selectedArticles,
+      measurement,
+      previous,
+      trusted,
+      contentOnly,
+      versioned,
+      preview: candidateArticles.length > 0,
+      result,
+      put,
+      output,
+    });
     emitArticles({
       root,
       config,
@@ -629,21 +769,35 @@ function build({
       result,
       versioned,
       preview: candidateArticles.length > 0,
+      previous,
+      trusted,
+      output,
+      contentOnly,
     });
-    for (const name of ['theme.js', 'archive.js']) put(name, read(root, 'site/engine/' + name));
-    put(
-      'navigation.js',
-      `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
-        read(root, 'site/engine/navigation.js')
-    );
-    put('styles.css', styles(root));
-    put('space.js', runtime(root, definitions));
-    for (const name of sceneMedia(root))
+    if (contentOnly) {
+      const platformFiles = ['theme.js', 'archive.js', 'navigation.js', 'styles.css', 'space.js'];
+      for (const name of platformFiles) put(name, fs.readFileSync(path.join(output, name)));
+    } else {
+      for (const name of ['theme.js', 'archive.js']) put(name, read(root, 'site/engine/' + name));
       put(
-        name === 'nojekyll' ? '.nojekyll' : 'assets/' + name,
-        fs.readFileSync(path.join(root, 'site/assets', name))
+        'navigation.js',
+        `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
+          read(root, 'site/engine/navigation.js')
       );
-    for (const [name, bytes] of Object.entries(measurement.assets)) put(name, bytes);
+      put('styles.css', styles(root));
+      put('space.js', runtime(root, definitions));
+    }
+    for (const name of sceneMedia(root)) {
+      const target = name === 'nojekyll' ? '.nojekyll' : 'assets/' + name;
+      put(
+        target,
+        fs.readFileSync(
+          path.join(contentOnly ? output : root, contentOnly ? target : 'site/assets/' + name)
+        )
+      );
+    }
+    for (const [name, bytes] of Object.entries(measurement.assets))
+      put(name, contentOnly ? fs.readFileSync(path.join(output, name)) : bytes);
     if (versioned)
       emitRevision({
         root,
@@ -698,4 +852,5 @@ module.exports = {
   versionHTML,
   snapshotHTML,
   stableTagEndings,
+  outputLock,
 };

@@ -10,6 +10,7 @@ const build = require('../tools/site/build.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
 const artifact = require('../tools/quality/artifact.cjs');
 const repo = path.resolve(__dirname, '..');
+const { legacyCatalog } = require('./fixtures/catalog.cjs');
 const png = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
   'base64'
@@ -34,6 +35,8 @@ test.before(() => {
       recursive: true,
     });
   }
+  // Synthetic article cases own their complete catalog/source inventory.
+  json(source, 'site/content/catalog.json', legacyCatalog(repo));
   fs.rmSync(path.join(source, 'site/publications'), {
     recursive: true,
     force: true,
@@ -403,7 +406,7 @@ test('explicit pinned translations emit reciprocal language alternates without i
   assert.doesNotMatch(html(root, 'articles/translated-profile.html'), /rel="alternate"/);
 });
 
-test('finite registry changes invalidate every embedded article snapshot without an immutable name collision', (t) => {
+test('editing or removing one article preserves unrelated article and platform snapshots', (t) => {
   const root = fixture(t, { cold: true });
   const first = publication(root);
   publication(root, 'second-profile');
@@ -424,13 +427,20 @@ test('finite registry changes invalidate every embedded article snapshot without
   write(root, `${first.directory}/${first.metadata.source}`, first.manuscript);
   json(root, `${first.directory}/editions/reader-first.json`, first.edition);
   const after = preview(root, ['reader-profile', 'second-profile']);
-  assert.notEqual(
+  assert.equal(
     after.articles['second-profile:en'].version,
     before.articles['second-profile:en'].version
   );
+  for (const route of snapshot.routes.filter((route) => route !== 'writing')) {
+    assert.equal(after.routes[route].version, before.routes[route].version, route);
+    assert.equal(after.files[route + '.html'], before.files[route + '.html'], route);
+  }
+  assert.equal(after.files[priorPath], before.files[priorPath]);
+  assert.deepEqual(after.builtArticles, ['reader-profile:en']);
+  assert.deepEqual(after.reusedArticles, ['second-profile:en']);
   assert.equal(html(root, priorPath), priorBytes, 'retained old registry remains immutable');
   const removed = preview(root, ['second-profile']);
-  assert.notEqual(
+  assert.equal(
     removed.articles['second-profile:en'].version,
     after.articles['second-profile:en'].version
   );
@@ -628,4 +638,254 @@ test('article mounts replace language, canonical, alternates and JSON-LD and arc
     head.map((entry) => entry.name),
     ['jsonld-archive']
   );
+});
+
+test('adding an unrelated article rebuilds Writing and the new article only', (t) => {
+  const root = fixture(t, { cold: true });
+  publication(root);
+  const before = preview(root);
+  const beforeArticle = html(root, before.articles['reader-profile:en'].snapshot);
+  publication(root, 'another-profile');
+  const after = preview(root, ['reader-profile', 'another-profile']);
+  assert.deepEqual(after.built, ['writing']);
+  assert.deepEqual(after.reused, ['index', 'research', 'talks', 'credits']);
+  assert.deepEqual(after.builtArticles, ['another-profile:en']);
+  assert.deepEqual(after.reusedArticles, ['reader-profile:en']);
+  assert.equal(html(root, before.articles['reader-profile:en'].snapshot), beforeArticle);
+  for (const [name, digest] of Object.entries(before.files))
+    if (/^(?:runtime|media|assets)\//.test(name) || snapshot.runtimeFiles.includes(name))
+      assert.equal(after.files[name], digest, name);
+  assert.doesNotMatch(html(root, 'research.html'), /site-documents|another-profile/);
+  assert.doesNotMatch(html(root, 'articles/reader-profile.html'), /another-profile/);
+  snapshot.verify(path.join(root, 'candidate'), { files: after.files });
+});
+
+function manifestHarness({
+  initialPage = 'research',
+  initialVersion = 'a'.repeat(64),
+  embedded = null,
+} = {}) {
+  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+  const manifest = {
+    schema: 1,
+    contract: 1,
+    navigation: { contract: 1, articleRenderer: 1 },
+    engine: 'e'.repeat(64),
+    routes: Object.fromEntries(
+      snapshot.routes.map((route) => [
+        route,
+        {
+          version: 'a'.repeat(64),
+          sha256: 'b'.repeat(64),
+          url: `snapshots/${'a'.repeat(64)}/${route}.html`,
+        },
+      ])
+    ),
+    articles: {
+      'reader-profile:en': {
+        alias: 'articles/reader-profile.html',
+        scene: 'writing',
+        articleId: 'reader-profile',
+        contentEdition: 'reader-first',
+        sourceSha256: 'c'.repeat(64),
+        semanticSha256: 'd'.repeat(64),
+        version: 'f'.repeat(64),
+        sha256: 'b'.repeat(64),
+        url: `article-snapshots/${'f'.repeat(64)}/reader-profile.html`,
+        assets: [],
+        candidate: false,
+      },
+    },
+  };
+  let current = manifest;
+  let requests = 0;
+  let missing = false;
+  const context = {
+    embedded,
+    articles: initialPage.startsWith('article:')
+      ? {
+          [initialPage.slice(8)]: {
+            url: 'articles/reader-profile.html',
+            snapshot: manifest.articles['reader-profile:en'].url,
+          },
+        }
+      : {},
+    routes: snapshot.routes,
+    shellEngine: manifest.engine,
+    initialPage,
+    initialVersion,
+    entry: new URL('https://author.invalid/project/research.html'),
+    directory: new URL('https://author.invalid/project/'),
+    document: { body: { dataset: {} } },
+    URL,
+    TextEncoder,
+    async fetch(url) {
+      requests++;
+      return {
+        ok: !missing,
+        url: url.href,
+        headers: { get: () => 'application/json' },
+        text: async () => JSON.stringify(current),
+      };
+    },
+  };
+  const functions = source.slice(
+    source.indexOf('  function revisionValid('),
+    source.indexOf('  async function matchesBytes(')
+  );
+  const routing = source.slice(
+    source.indexOf('  function routeFor('),
+    source.indexOf('  // The scroll/flight itinerary')
+  );
+  vm.runInNewContext(
+    `let pinned=null;${functions}${routing}
+globalThis.api={revisionValid,pin,routeFor,articleTarget,pinned:()=>pinned};`,
+    context
+  );
+  return {
+    manifest,
+    api: context.api,
+    requests: () => requests,
+    change: (value) => {
+      current = value;
+    },
+    missing: () => {
+      missing = true;
+    },
+    articles: context.articles,
+    context,
+  };
+}
+
+test('unchanged open platform pages admit new article registry once and pin it for later navigation', async () => {
+  const h = manifestHarness();
+  const url = new URL('https://author.invalid/project/articles/reader-profile.html');
+  assert.equal(h.requests(), 0, 'no idle fetch');
+  assert.equal(h.api.routeFor(url), null, 'the HTML carries no global article registry');
+  assert.equal(h.api.articleTarget(url), true);
+  assert.equal(
+    h.api.articleTarget(new URL('https://author.invalid/other/articles/reader-profile.html')),
+    false
+  );
+  await h.api.pin();
+  assert.equal(h.api.routeFor(url), 'article:reader-profile:en');
+  const pinned = h.api.pinned();
+  h.change({ ...h.manifest, engine: '0'.repeat(64), articles: {} });
+  await h.api.pin();
+  assert.equal(h.requests(), 1);
+  assert.equal(h.api.pinned(), pinned, 'an active session retains its admitted registry');
+  assert.equal(h.api.routeFor(url), 'article:reader-profile:en');
+});
+
+test('manifest pin rejects missing, incompatible, stale, duplicate and unsafe article descriptors', async () => {
+  const original = manifestHarness().manifest;
+  for (const change of [
+    (manifest) => {
+      delete manifest.navigation;
+    },
+    (manifest) => {
+      manifest.navigation.articleRenderer = 2;
+    },
+    (manifest) => {
+      manifest.engine = '0'.repeat(64);
+    },
+    (manifest) => {
+      manifest.routes.research.version = '0'.repeat(64);
+    },
+    (manifest) => {
+      manifest.articles['reader-profile:en'].alias = '../foreign.html';
+    },
+    (manifest) => {
+      manifest.articles['reader-profile:en'].url = 'articles/reader-profile.html';
+    },
+    (manifest) => {
+      manifest.articles['another-profile:en'] = structuredClone(
+        manifest.articles['reader-profile:en']
+      );
+    },
+    (manifest) => {
+      manifest.articles['reader-profile:en'].assets = ['../unsafe.png'];
+    },
+    (manifest) => {
+      manifest.articles['reader-profile:en'].candidate = true;
+    },
+  ]) {
+    const h = manifestHarness();
+    const changed = structuredClone(original);
+    change(changed);
+    h.change(changed);
+    await assert.rejects(h.api.pin(), /Site snapshot changed/);
+    assert.equal(h.api.pinned(), null);
+    assert.deepEqual(Object.keys(h.articles), []);
+  }
+  const missing = manifestHarness();
+  missing.missing();
+  await assert.rejects(missing.api.pin(), /Revision unavailable/);
+  const changedArticle = manifestHarness({
+    initialPage: 'article:reader-profile:en',
+    initialVersion: '0'.repeat(64),
+  });
+  await assert.rejects(changedArticle.api.pin(), /Site snapshot changed/);
+  const removedArticle = manifestHarness({
+    initialPage: 'article:reader-profile:en',
+    initialVersion: 'f'.repeat(64),
+  });
+  removedArticle.change({ ...removedArticle.manifest, articles: {} });
+  await assert.rejects(removedArticle.api.pin(), /Site snapshot changed/);
+  const cancelled = manifestHarness();
+  await assert.rejects(cancelled.api.pin({ aborted: true }), /cancelled/);
+  assert.equal(cancelled.api.pinned(), null);
+});
+
+test('unknown local article navigation falls back once when its manifest is unavailable or incompatible', async () => {
+  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+  for (const mode of ['missing', 'incompatible', 'absent']) {
+    const h = manifestHarness();
+    if (mode === 'missing') h.missing();
+    if (mode === 'incompatible') h.change({ ...h.manifest, engine: '0'.repeat(64) });
+    if (mode === 'absent') h.change({ ...h.manifest, articles: {} });
+    const assigned = [];
+    let reads = 0;
+    const busy = new Set();
+    Object.assign(h.context, {
+      departureFocus: () => null,
+      departurePosition: () => [0, 0],
+      interrupt() {},
+      releaseEndpoint() {},
+      releaseTail() {},
+      clearText() {},
+      restoreScroll() {},
+      read: () => {
+        reads++;
+        throw Error('unexpected snapshot read');
+      },
+      scrollEntry: { cancelRoute() {}, settle() {} },
+      content: {
+        setAttribute: (name) => busy.add(name),
+        removeAttribute: (name) => busy.delete(name),
+      },
+      window: {
+        setTimeout: () => 1,
+        clearTimeout() {},
+        location: { assign: (url) => assigned.push(url) },
+      },
+      AbortController,
+    });
+    const navigation = source.slice(
+      source.indexOf('  async function navigate('),
+      source.indexOf('  document.body.dataset.entryPage = page;')
+    );
+    vm.runInNewContext(
+      `let page='research',serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;${navigation}
+globalThis.navigate=navigate;`,
+      h.context
+    );
+    const destination = new URL(
+      'https://author.invalid/project/articles/reader-profile.html#first-section'
+    );
+    await h.context.navigate(destination);
+    assert.deepEqual(assigned, [destination.href], mode);
+    assert.equal(reads, 0, 'failed manifests cannot authorize a snapshot fetch');
+    assert.equal(busy.size, 0, 'native fallback releases the busy state');
+  }
 });

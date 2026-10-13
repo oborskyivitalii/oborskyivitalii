@@ -15,7 +15,7 @@ const {
 const flightDetail = require('./flight-detail.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const catalog = require('../../site/content/catalog.json'),
-  primaryCount = Object.keys(catalog.records).length;
+  primaryCount = require('../site/validate-catalog.cjs').writingEntries(catalog).length;
 const selectedResponses = ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'];
 const completeResponses = [
   'Markus Kopko',
@@ -138,6 +138,66 @@ async function routeBytes(context, url, manifest) {
     })
   );
 }
+function contentDocuments(manifest) {
+  if (!manifest.contentRelease) return null;
+  assert.equal(manifest.contentRelease.kind, 'content-release');
+  const changed = manifest.contentRelease.builtArticles;
+  assert.ok(Array.isArray(changed) && changed.length <= 50, 'bounded changed article inventory');
+  assert.equal(new Set(changed).size, changed.length, 'duplicate changed article smoke target');
+  for (const key of changed)
+    assert.ok(
+      Object.hasOwn(manifest.components.articles || {}, key),
+      'missing changed article descriptor'
+    );
+  return changed;
+}
+
+async function contentJourney(browser, baseURL, manifest) {
+  const documents = contentDocuments(manifest);
+  assert.ok(documents, 'content journey needs explicit content release');
+  const writing = [];
+  for (const width of [1440, 390]) {
+    const context = await browser.newContext({
+      viewport: { width, height: 900 },
+      javaScriptEnabled: false,
+    });
+    try {
+      const page = await context.newPage();
+      const response = await page.goto(baseURL.replace(/\/$/, '') + '/writing.html');
+      await verifyResponse(response, baseURL, manifest, new Set());
+      assert.equal(await page.locator('h1').count(), 1, 'no-JS Writing main heading');
+      const count = await page.locator('#archive-results li.publication').count();
+      assert.equal(count, primaryCount, 'no-JS Writing complete catalog rows');
+      const label = (await page.locator('#archive-count').textContent()).trim();
+      assert.equal(Number(label.match(/^\d+/)?.[0]), count, 'no-JS count matches actual cards');
+      assert.equal(
+        await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
+        false,
+        'no-JS Writing overflow'
+      );
+      writing.push({ width, mode: 'no-js', count, label, completeCatalog: true });
+    } finally {
+      await context.close();
+    }
+  }
+  const articles = [];
+  const descriptors = manifest.components.articles || {};
+  for (const key of documents) {
+    const ordered = Object.fromEntries([
+      [key, descriptors[key]],
+      ...Object.entries(descriptors).filter(([other]) => other !== key),
+    ]);
+    const observation = await require('./article-browser.cjs').articleJourney(baseURL, ordered, {
+      browser,
+    });
+    require('./article-browser.cjs').validateArticleJourney(observation, ordered, {
+      engine: manifest.components.engine,
+      baseURL,
+    });
+    articles.push(observation);
+  }
+  return { kind: 'content-smoke', writing, documents, articles, fullGate: false };
+}
 async function responseNames(page, route) {
   const selector =
     route === 'index'
@@ -218,25 +278,33 @@ async function discussionNavigation(page, url) {
 async function writingControls(page) {
   await page.locator('#archive-topic').selectOption('systems');
   assert.ok(
-    (await page.locator('li.publication:visible').count()) > 0,
+    (await page.locator('#archive-results li.publication:visible').count()) > 0,
     'Writing filter has results'
   );
   await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
   await page.emulateMedia({ media: 'print' });
+  const printedCount = await page.locator('#archive-results li.publication:visible').count();
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    printedCount,
     primaryCount,
     'print shows all primary records and their edition links'
   );
-  assert.match(
-    await page.locator('#archive-count').textContent(),
-    /their linked platform editions shown for printing/
+  const printLabel = await page.locator('#archive-count').evaluate((element) => ({
+    actual: element.textContent.trim(),
+    template: element.dataset.print,
+  }));
+  assert.equal(
+    printLabel.actual,
+    printLabel.template
+      .replaceAll('{count}', String(printedCount))
+      .replaceAll('{total}', String(primaryCount)),
+    'Writing print count matches its current authored label and displayed rows'
   );
   await page.emulateMedia({ media: 'screen' });
   await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
   await page.locator('.filter-reset').evaluate((el) => el.click());
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#archive-results li.publication:visible').count(),
     primaryCount,
     'Writing Reset retains every primary record'
   );
@@ -445,7 +513,7 @@ async function main() {
     { server, url } = await start();
   const rows = [],
     pw = toolRequire('playwright');
-  let browser, pass, articles;
+  let browser, pass, articles, content;
   try {
     browser = await pw.chromium.launch(launchOptions('chromium'));
     for (const width of [1440, 390])
@@ -466,6 +534,7 @@ async function main() {
         { engine: manifest.components.engine, baseURL: url }
       );
     }
+    if (contentDocuments(manifest)) content = await contentJourney(browser, url, manifest);
     pass = rows.length === 4 && rows.every((row) => row.pass);
     report(
       'preview-smoke',
@@ -479,6 +548,7 @@ async function main() {
         modes: ['normal', 'no-canvas'],
         rows,
         ...(articles ? { articles } : {}),
+        ...(content ? { content } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },
@@ -522,4 +592,7 @@ module.exports = {
   state,
   artifactFile,
   verifyResponse,
+  contentDocuments,
+  contentJourney,
+  writingControls,
 };
