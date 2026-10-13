@@ -5,7 +5,7 @@ Execution: [PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79).
 Reviewer: `independent_content_review`, a separate agent inspecting the implementation;
 this is independent source/architecture review, not human editorial or device acceptance.
 
-Inspected state: explicitly dirty prepared worktree on
+Initial inspected state: explicitly dirty prepared worktree on
 `e830752f58535c9e2226550a9661ee51c745bdb3`, whose committed tree is
 `b3e197dfa681702d9f14a74ac93da6e433de20e4`. Neither that baseline's green CI nor this
 review establishes clean final-head admission. The inspected current platform engine is
@@ -46,7 +46,11 @@ authoring fixtures were inspected as outputs; no production or browser surface w
 | F15 | `analytics-browser.cjs:10–15,174–178,240–265`, `analytics.test.cjs:341–413` | The executed future-local probe exposed the actual analytics browser diagnostic compiling its live catalog in a temporary root without Git provenance. A shared local clone preserves real commit/blob objects before the existing live owner copy and build. Its count uses the canonical validated collection and queries only archive rows; no legacy external seed or publisher bypass masks the live diagnostic. | AC13, AC15 | Resolved in source; the cold-preparation test stops at an explicit browser boundary and cannot claim browser acceptance. |
 | F16 | `offline.cjs:104–115`, `analytics-browser.cjs:249–277`, `analytics.test.cjs:360–398`, `site-release-checks.yml:312–360,403–420,529–546` | A canonical native article activates the offline producer's publishing adapter, which was absent from its cold copy. The collector copies that canonical owner and installed locked parser closure. Linux/native/staging callers fetch source history and install the parser from its lock; tests require exact owner/lock bytes and an isolated Git root. | AC15 | Resolved in source and the owning agent's observed-publication cold probe, with the canonical hyperlink retained. |
 | F17 | `site-release-checks.yml:558`, `quality.test.cjs:264–272`, `staging-regression.test.cjs:20–28` | New synthetic diagnostic uploads initially collided across release profiles, and the live Color staging fixture still expected an older reviewed runtime. Upload names now include the profile; stripping it triggers the unchanged namespace guard. The fixture selects the exact current content family while preserving descriptor/native/variant/hash negatives and every historical admission tuple. | AC11, AC15 | Resolved; owning agent reports 32/32 focused checks and 70/70 unique namespaces. |
-| F18 | `issue-acceptance.yml:36–54`, `test_issue5_acceptance.py:72–80`, `check_site_seo.cjs:12,70–74`, `format-parity.cjs:151–168`, `ri-ci-map.json:252–269,432–465,655–656` | Actual clean-head owning CI exposed a missing installer dependency: WritingCatalog's canonical SEO parity spawns the quality venv Python, but issue5 installed only the publisher AST toolchain. A separate Python installer now covers issue5/41/58 using the existing exact Ruff/PyYAML pins; issue41/58 alone retain quality npm, and publisher npm stays issue5-only. Strict helper failure, clean/source binding, checks, limits and pending human gates remain unchanged. | AC11, AC13, AC15 | Resolved in source; owning agent reports the exact failed check 1/1 passed. RI input identity and exact new-head owning CI must be refreshed. |
+| F18 | `issue-acceptance.yml:36–54`, `test_issue5_acceptance.py:72–80`, `check_site_seo.cjs:12,70–74`, `format-parity.cjs:151–168`, `ri-ci-map.json:252–269,432–465,655–656` | Actual clean-head owning CI exposed a missing installer dependency: WritingCatalog's canonical SEO parity spawns the quality venv Python, but issue5 installed only the publisher AST toolchain. A separate Python installer covers issue5/41/58 using the existing exact Ruff/PyYAML pins; issue41/58 alone retain quality npm, and publisher npm stays issue5-only. Strict helper failure, clean/source binding, checks, limits and pending human gates remain unchanged. | AC11, AC13, AC15 | Resolved in source and actual 50dda owning CI: all ten check rows passed, with twelve human gates still pending. |
+| F19 | `check_site_seo.cjs:246–265`, `security-rules.yml`, versioned first Semgrep failure | The first labeled-stage static scan matched its broad shell-exec sink against a pure RegExp loop. A one-line `html.matchAll(tags)` iteration replaces `tags.exec(html)` while preserving the global regex's starting index, nesting depth, first balanced close, replacement span and assertions. The regex's mutated lastIndex is not observed later. | AC11, AC13, AC15 | Resolved in source; this reviewer executed seventeen exact before/after output/failure comparisons. Owner reports 53/53 focused checks; targeted Semgrep scanned the changed file with zero findings/errors. No rule, exemption, coverage threshold or budget changed. |
+| F20 | `generated-checksums.cjs:104–150,623–769`, `scanners.cjs:603–637`, `site-release-checks.yml:280–285` | Manual ledger entries for regenerated checksums would force ordinary content changes back onto the platform route. Automatic authority now requires complete canonical generation/preview/offline freshness, explicit computed fields, every occurrence in an approved span, exact path/type/hash/line and unchanged source/file bytes. Only the private factory can mint authority. The heavy static caller installs the existing locked publisher parser; Basic/Preview do not invoke this cold proof. | AC11, AC15 | Resolved in source; genuine current proof admits all 186 new generated candidates. Wrong owner, rule, line, stale/forged proof, arbitrary filename, extra JSON and same-value prose/payload negatives reject automatic authority. |
+| F21 | `generated-checksums.cjs:152–166,209–460`, `quality-sources.test.cjs:1284–1517` | Selected-only publisher proof initially stranded retained frozen v1 fields after v2. Current strict publisher validation proves local source/semantic/adaptation/asset/translation/launch fields and exact committed Git pins. Retained records require exact ancestral bytes and a complete selecting context validated by current code. Inert blob extraction preserves regular Git modes, existing asset bounds and additive shared-commit dependency caches. The original 50-article, 200-record and 100 edition/event-changing-commit limits remain; metadata-only changes do not consume the last limit. | AC14, AC15 | Resolved in source and executed synthetic probes: accepted versions/adaptations survive 101 metadata changes; two owners sharing a freeze commit work; historical 120000 PNG blobs reject. Preparatory/orphan/incomplete historical contexts receive no automatic authority. |
+| F22 | `generated-checksums.cjs:168–197,281–319,388–393`, `quality-sources.test.cjs:1455–1488` | Inherited Git routing could redirect temporary config/ref operations into the original repository. A further independently demonstrated `GIT_CONFIG` variant survived the first fix. Final code rejects routing/configuration variables before publisher collection and sanitizes private subprocess environments, including case-insensitive configuration prefixes. Hooks/templates are disabled and historical checkout is absent. | AC11, AC15 | Resolved at final helper `56e34f3b…`; owned-fixture negatives preserve outside configuration and original HEAD/config bytes. No unsafe environment probe was run against the repository. |
 
 No unresolved source-design blocker remains in the final inspected diff after these
 follow-up fixes. Complete current-head check execution remains pending. This review does
@@ -54,8 +58,8 @@ not mark release, editorial or physical-device criteria complete.
 
 ## Source and byte evidence
 
-Prepared-source review digest: `72b43424da046bfc3f8078498e68c8bd1d8155c42c13484dfc2985c7d2741428`.
-It is SHA256 of compact JSON of sorted `{path, sha256}` records for the 69 changed/deleted
+Prepared-source review digest: `2f56bafa00895750f34e81cc7d39d1e26a17ffe339563c6f22d5beb0b1d92612`.
+It is SHA256 of compact JSON of sorted `{path, sha256}` records for the 73 changed/deleted
 authored paths under `site/`, `tools/`, `tests/`, `guides/`, `.github/workflows/` and
 `.github/acceptance/`, plus `review/issue-5/writing-catalog-amendment.json`; deleted paths
 have `null` hashes. The comparison anchor remains
@@ -65,6 +69,17 @@ and this review file are excluded. Subsequent source edits invalidate this revie
 The initial 68-path digest `f7e073750e657cf85e0c453cc1ef434b764814320fcc5bd17adf1de9f0deece8`
 was the reviewed implementation subsequently committed as `a775acde6e328eafd752ff5713d3f1b59001fb4d`;
 the new workflow dependency correction supersedes that review scope without changing the platform engine.
+The installer scope digest `72b43424da046bfc3f8078498e68c8bd1d8155c42c13484dfc2985c7d2741428`
+was subsequently committed as `50dda95157d1994b0d935135bf8ff905910fcd05`.
+The earlier 69-path iterator scope was
+`fb7c8bf05c9c44772fea5366d366d1dc2d26d624a46f7279cbbf8a76bfa7db54`; its checker SHA256 remains
+`5cce1e0c85a7d6034f700711a687dcda6bfc5c1688104b9fab12fab0e3be6a7b`.
+The final 73-path scope additionally includes F20–F22's maintained proof, scanner/test/profile,
+locked static installer, guide and exact literal-ledger changes. Final helper SHA256 is
+`56e34f3bf3cbc8db1ac6d3a04d955ec835db6c3cb48844b315bd9fad781182e6`, scanner SHA256
+`fddd39af2a298641c6077f9742c9db897cfff8f399e503ff9fff6eff03639470`, and maintained test SHA256
+`2e3fc6122f4713e15ade24502cfc7e92131bdd5f3decf415048a2e6dfbe99700`.
+This final prepared worktree is on 50dda; no complete corrected-head CI is claimed.
 
 The reviewer actually executed read-only `artifact.verify`, Color `motion.select` and a
 current-source platform-fingerprint comparison on both complete refreshed artifacts:
@@ -141,6 +156,136 @@ editorial or synthetic-journey acceptance here. Exact new-head source/owning CI 
 requested staging diagnostic remain pending. In particular, a775's failed owning admission
 prevents it from qualifying as a reusable baseline despite its green Basic source run.
 
+## Actual managed follow-up on 50dda
+
+The owner reports Basic source CI passed 727/727 on clean
+`50dda95157d1994b0d935135bf8ff905910fcd05`, tree
+`0ac31dacd4c4cf4e9ee94d7b725f7ad07c1a52d4`. The reviewer opened the original owning report
+from [run 38402723810](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38402723810),
+JSON SHA256 `169375ed4d2c9dcb63187ac91614e44b30acae4ca192115d59de85fbec620321`.
+It binds that clean source, has all ten check rows passed and `automation_pass=true`, while
+all twelve manual gates remain pending and `ready_for_issue_closure=false`.
+
+The reviewer independently compared the original Ready fixture ZIP member with
+[2026-10-13-content-browser-first.json.gz](2026-10-13-content-browser-first.json.gz).
+Both contain exact raw JSON SHA256
+`acf3b56a4727123ca70580d34cc9b1642b7dfac8f15240b1ac0a7e31db5e249c` from
+[Ready preview run 38402724256](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38402724256).
+The uploaded ZIP SHA256 is `b468188e516c0e7b58cdca95e47d28ec278e51390a6c70569a26ed70b5249809`.
+The earlier local parsed view, SHA256 `d13f19c1cd6960c717b6ed892d05854df4cf0acc1b195f92c410b4189b85f588`,
+is semantically equal and is not the raw artifact identity.
+
+This actual managed Chromium 153.0.8010.12 report records seven successful synthetic cases:
+Writing without JavaScript at 1440 and 390 widths showed 29 rows and `29 articles`; the
+synthetic article passed desktop/mobile normal, Off, no-Canvas and no-JS observations.
+Its genuine content release rebuilt Writing and one synthetic article, reused four routes
+and the `0bd39d21…` platform, and retained the prior immutable files. Parent source is clean
+50dda, but the fixture itself declares `syntheticFixture=true`, `fixtureSourceDirty=true`,
+`fullGate=false`, `productionEligible=false` and `deploymentAuthorized=false`.
+These are real automated observations of an isolated fixture, not a publication, production
+qualification, physical-device observation or human editorial review.
+
+The first [labeled-stage run 38403412354](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38403412354)
+correctly failed its aggregate because the static Semgrep scan reported one finding.
+The reviewer verified the original archive's `semgrep.json` equals the versioned
+[2026-10-13-semgrep-first-failure.json.gz](2026-10-13-semgrep-first-failure.json.gz): raw JSON
+SHA256 `51975e27993c092ca95848e10d6de102fabea286816252035489184787dea215`, ZIP SHA256
+`fab36138e2e2e1eb451df8a7c568f9b7baf160bc69448120d4e8ad7ff636704e`.
+It scanned 242 files, had zero scanner errors and exactly one `node-shell-injection` result
+at the pure RegExp `tags.exec(html)` on line 257. Its normalized local view's different
+SHA256 `f1526ed16311505d68cb4526b11e67c6e3d8ab8757cd1f189de2f16a495db34f`
+does not replace that raw identity.
+
+The owner reports that run's source passed 690/690 Node and 109/109 Python cases, and its
+host and bounded browser/performance jobs passed. The reviewer also verified the original
+`stage-functional.json` member, SHA256
+`b6744b4ee266ce06775645d4965c56e3496912b2f5ff8abe1cc65ff9f36182e9`, in ZIP
+`ba585a58a93e501f66b9b7ff2d49f078e1fe2156dacc0e836afa6c7fb3e17069`.
+It binds 50dda, records thirty passing route observations across Chromium/Firefox, two
+navigation cases, ten failure cases, seven stubbed analytics cases and five article
+observations, with staging scope and no full/production qualification. A second exact raw
+stage fixture member, SHA256 `1a8f3593a774209f18b449ef48e6207b10e9f2e3f23b33bd04ca35fbbe140702`,
+in ZIP `55783ec34ce16bc2a389dcd66ae9adcfad57174bf2fdf0139c16294cdf22ad45` independently
+records the same seven successful synthetic cases. Passing components do not turn the
+failed first-stage aggregate into a pass.
+
+For F19 this reviewer executed seventeen before/after comparisons on Node 24.19.0,
+using the exact 50dda function and the corrected function. Nested/sibling/empty regions,
+nonmatching prefix tags, select/ol/p regions and missing, duplicate, malformed or incomplete
+owners produced identical output, callback counts and exact assertion failures. The
+temporary global regex lastIndex is not consumed after iteration, so matchAll's cloned
+iterator has no observable difference. The owner reports 53/53 Writing/executive checks;
+the reviewer opened the targeted scan showing zero findings, zero errors and the changed
+source file actually scanned. The security rules are byte-unchanged against 50dda.
+Fresh complete static/source/owning and staged aggregate evidence must bind the corrected
+head; the earlier successful component reports are not silently relabeled.
+
+## Checksum and ordinary-edit follow-up
+
+A later local full-security attempt passed Semgrep/Bandit and exposed 219 untriaged
+Hex High Entropy candidates. This is separate from the failed actual first-stage scan,
+which stopped at F19. The reviewer independently joined the hashed-only inventory to
+186 recomputed generated candidates and 33 authored/evidence/pin constants. Ten redacted
+snapshot paths in the initial provenance view were resolved only through the exact current
+revision, then matched by file, finding hash and line. No unknown remainder was approved.
+
+The final `secrets-publication.json` appends only those 33 literal objects: 31 SHA256
+constants and two existing Git comparison pins. All 1,554 previous objects are exactly
+preserved; the ledger now contains 1,587. Its SHA256 is
+`9739824fe976c72be8b7515df1d73671da02bdadbd07fadf2e1ba118fe029eba`.
+The reviewer recomputed the amendment's before/after text hashes and all fifteen producer
+hashes, verified the e830 comparison commit, and compared the current Color engine,
+variant declarations and ten runtime-file hashes against the complete reviewed artifacts.
+The 186 generated findings were not added to any literal ledger. Other literal ledgers,
+scanner rules, coverage requirements, budgets and content classification were unchanged.
+
+Automatic proof covers finite named canonical docs/lock/v11 preview fields and locally
+recomputed publisher fields. It binds every occurrence, so copying a known value into
+unapproved prose, an extra field, external URL or authored asset basename revokes its
+automatic authority. Exact rule/line/path, private factory branding, current source plus
+HEAD/tree identity and unchanged file bytes are checked. Pure collectors cannot mint an
+admission proof. Historical literal dispositions retain their existing path/type/value
+semantics; rejection by the new automatic proof does not silently revoke those old reviews.
+
+Current publisher validation proves source/semantic/adaptation derivation fields, declared
+local asset hashes, local translation pins, launch bytes and committed source commit/blob
+identities. A retained frozen edition needs exact historical record bytes, actual selecting
+metadata and a complete context accepted by the current publisher. Historical files are
+inert inputs; current code and the locked parser execute. Missing nonselecting metadata is
+skipped, while malformed selected context fails. Preparatory/orphan/incomplete historical
+records, external references/rights hashes and publication evidence constants remain
+outside automatic authority and require their own review. This is the explicitly chosen
+compatibility boundary, not a promise to repair arbitrary old publication history.
+
+The independent review team executed the final maintained accepted-v1/adaptation-to-v2
+case with 101 metadata-only commits and routing/configuration negatives. It verified
+unchanged original fixture HEAD/config and outside configuration. The owning agent reports
+27/27 quality-source checks, zero lint errors/warnings and a targeted Semgrep scan with zero
+findings/errors and three files scanned. Separate executed probes showed two owners sharing
+one historical freeze context both retain their four source/semantic/Git field locations,
+while a historical 120000 asset with valid PNG blob bytes is rejected before regularization.
+The original publisher's finite history limits remain; no new 100-metadata-edit limit exists.
+
+This reviewer additionally executed a complete isolated producer/private-proof diagnostic
+on final helper `56e34f3b…`. It retained accepted v1/v2 records and adaptations, applied 101
+metadata-only commits, changed the manuscript and launch, then made a further real adaptation
+edit with its own committed source and edition. A native catalog entry produced thirty
+static Writing rows and `30 articles`. Genuine content release rebuilt Writing plus that
+article, reused Home/Research/Talks/Credits and runtime `0bd39d21…`, and retained 38 baseline
+files. After canonical preview/offline generation, actual Detect-secrets returned 27
+publisher findings across seven JSON owners; the full branded proof admitted all 27 without
+consulting a literal ledger. The copied ledger and repository ledger remained byte-identical.
+The proof covered 42 owners/338 computed IDs. Local diagnostic report SHA256 is
+`0bc696107757cad18573578fd15b4cd34839b3be5fc6ea3dd69b020098ce1a84`, and original scan SHA256 is
+`d08faf1fb57791427ad5da818f553ea58853b01e3d04b39832d725f7e2d5e71e`.
+This isolated dirty fixture explicitly denies full-gate, production and deployment eligibility;
+it does not qualify the current PR head, hosted CDN, physical devices or editorial publication.
+
+The complete cold checksum proof runs only in the existing heavy security route. Ordinary
+Basic/Preview content checks do not gain a hidden full build. New helper/policy/ledger edits
+continue to select the platform route. Final corrected-head source/owning/static and staged
+aggregate CI remains pending; passing prepared tests and this diagnostic do not replace it.
+
 ## Decisions and remaining execution
 
 The accepted implementation preserves static no-JS HTML and a complete deployment.
@@ -162,8 +307,8 @@ arbitrary archived HTML as trusted authored content.
 
 | Task | Owner paths / expected behavior | Check | Status |
 | --- | --- | --- | --- |
-| T01 | Root source, regenerated outputs, RI/catalog/map and current acceptance policy | Final clean-head Basic/source/RI/style/owning checks | Pending final exact-source execution evidence |
-| T02 | Actual PR candidate Writing and reader | Hosted navigation/count plus no-JS Writing at both widths; each rebuilt article's existing capability journeys | Pending hosted evidence |
+| T01 | Root source, regenerated outputs, RI/catalog/map and current acceptance policy | Final clean-head Basic/source/RI/style/owning checks | 50dda CI recorded; corrected-head complete evidence pending |
+| T02 | Actual PR candidate Writing and reader | Hosted navigation/count plus no-JS Writing at both widths; each rebuilt article's existing capability journeys | 50dda hosted and seven-case synthetic evidence recorded; corrected-head aggregate pending |
 | T03 | Owning issue/PR review anchor and source mapping | Link this independent review, clear stale ticks and keep original human gates separate | Pending root reconciliation |
 
 `local-browser.cjs:535` conditionally runs the extra content journey only for a manifest

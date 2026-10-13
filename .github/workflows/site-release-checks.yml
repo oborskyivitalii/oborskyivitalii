@@ -280,6 +280,7 @@ jobs:
       - name: Install locked tools
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
       - name: Verify artifact and scanner fixtures

@@ -132,5 +132,95 @@ Ready-event preview does not request the optional label diagnostic. After new
 source/RI/owning admission, the existing stage-regression label route must run
 the actual managed synthetic content journey, with no promotion.
 
+## 50dda admission, managed content and scanner correction
+
+`50dda95157d1994b0d935135bf8ff905910fcd05` / tree
+`0ac31dacd4c4cf4e9ee94d7b725f7ad07c1a52d4` has successful
+[Basic/source727](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38402725121),
+[owning all ten checks](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38402723810),
+[navigation](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38402723946)
+and [actual preview](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38402724256).
+Its [managed content diagnostic](2026-10-13-content-browser-first.json.gz) passes
+seven actual Chromium cases: Writing without JavaScript at1440/390 shows29
+complete public entries; the changed synthetic article passes normal1440/390,
+Off, noCanvas and noJS. Genuine content generation rebuilds Writing and one
+synthetic article, reuses the other four routes and frozen platform0bd. The
+report explicitly denies full gate, production and deployment authorization.
+
+The [labeled staging run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38403412354)
+passes source690/690 Node +109/109 Python, hosted identity, bounded browser
+and performance, and its separate seven-case content fixture. Its aggregate
+gate correctly fails: Semgrep catches the balanced SEO parser RegExp.exec
+as its broad shell-exec sink. The [exact scanner report](2026-10-13-semgrep-first-failure.json.gz)
+retains one finding, zero errors and242 scanned files; raw JSON SHA256
+`51975e27993c092ca95848e10d6de102fabea286816252035489184787dea215`.
+The one-line matchAll correction preserves the same start index, nested depth
+and failure branches, without suppressions or rule changes. Focused53/53,
+targeted Semgrep zero findings/errors with nonempty coverage, and independent
+17-case old/new equivalence pass. All fifteen producer inputs and raw0bd
+platform bytes stay frozen. New exact-source CI and scanner/stage admission
+must confirm this correction; the failed50dda stage is not reclassified.
+
+## Generated checksum admission
+
+The first full prepared security run after the iterator correction passes
+Semgrep with zero findings/errors across 242 files and unchanged Bandit triage
+(36 raw reviewed findings, zero errors). Its downstream secret scan correctly
+fails on 219 untriaged Hex High Entropy candidates. Independent producer review
+identifies 217 public SHA256 checksums and two occurrences of the frozen e830
+Git comparison pin; there are no unknown credentials or other finding types.
+This failed preparation is not a CI or staging pass.
+
+Authored evidence/constants/pins retain exact path/type/hashed-value dispositions
+in the existing publication ledger, with all prior records preserved. Generated
+checksums use a bounded canonical proof: current build and maintained preview
+producer freshness, explicit fingerprint/digest fields, exact occurrence/line
+and file-byte binding. Unknown, stale, wrong-path/type and copied-to-prose
+values fail. Strict publisher validation additionally proves locally recomputable
+edition source/semantic/derivation, local asset and profile launch-source fields; external
+reference and rights evidence remains individually reviewed. Retained frozen
+editions require exact Git bytes and a historically selecting context passing the
+complete current publisher validator; preparatory/orphan/incomplete contexts do
+not establish authority. The proof has no
+ledger writes and does not change the conservative
+policy classifier. Ordinary future content updates therefore do not require new
+manual dispositions for their regenerated identities. The heavy security route
+owns the cold proof; Basic/Preview retain their verified generation reuse.
+
+Prepared Basic passes. Maintained lint passes 265 sources with zero warnings;
+current locked dependency admission covers 88 Python dependencies and 71 publisher
+dependencies, retaining the existing reviewed npm exception. These prepared
+observations and the new proof's independent review/negatives must be followed
+by fresh published-source security, CI and labeled-stage admission.
+
+The final maintained checksum suite passes 27/27 in 11.19s, including accepted
+v1→v2 with a retained adaptation, updated launch/source pins, 101 metadata-only
+commits, a prepared record before its later valid selection, inactive draft
+exclusion and stale-source rejection. Scoped ESLint has zero errors/warnings;
+targeted Semgrep has zero findings/errors and scans all three changed JS owners.
+Its earlier HTML-RegExp partial parser error is corrected without exclusion.
+Inherited Git routing and config injection, including `GIT_CONFIG` and its
+prefix/case variants, reject before publisher execution and are stripped from
+private Git operations. The owned negative verifies outside config bytes and
+original HEAD/config remain unchanged. Historical data uses regular Git blobs,
+never checkout filters, hooks or historical code.
+
+Independent current-source probes verify two owners sharing one historical
+freeze commit and reject a historical symlink-mode asset even when its blob
+contains valid PNG bytes. These are field-collection observations, separate from
+whole-factory and CI admission. Their inspected helper SHA256 is
+`56e34f3bf3cbc8db1ac6d3a04d955ec835db6c3cb48844b315bd9fad781182e6`.
+
+Final prepared working-tree checks pass: full Semgrep scans 243 files with zero
+findings/errors; unchanged Bandit triage admits all 36 reviewed raw findings;
+the secret scan admits all 5043 candidates, including 262 factory-proved generated
+occurrences across 33 files/292 IDs. Maintained lint scans 266 sources with no
+warnings, repository regressions pass 109/109, and style guard, formatter,
+current RI and coupling verification pass. These are prepared observations at
+the reviewed 73-path authored digest
+`2f56bafa00895750f34e81cc7d39d1e26a17ffe339563c6f22d5beb0b1d92612`;
+the package/report still records dirty parent 50dda and cannot supply clean-head
+CI admission. Publishing the exact tree and fresh CI remain the next steps.
+
 AC13–AC15 remain unchecked pending exact-source completion. Original human,
 editorial, rights, actual publication, upstream and merge gates stay separate.

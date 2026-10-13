@@ -706,7 +706,7 @@
     {
       "path": "tests/quality-sources.test.cjs",
       "language": "javascript",
-      "purpose": "Active authored Color scanner closure and fail-visible exact Bandit review/coverage/source/expiry plus verified public checksum-only admission",
+      "purpose": "Active authored Color scanner closure, exact Bandit review and producer-verified checksum admission with stale, unknown and wrong-field rejection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -715,6 +715,7 @@
       "inputs": [
         "tests/quality-sources.test.cjs",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "site/effects/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",

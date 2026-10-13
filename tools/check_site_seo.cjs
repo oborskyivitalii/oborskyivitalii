@@ -254,7 +254,7 @@ function writingRegion(html, tag, owner, replace) {
   tags.lastIndex = start;
   let depth = 1;
   let closing;
-  for (let match; (match = tags.exec(html)); ) {
+  for (const match of html.matchAll(tags)) {
     depth += match[0].startsWith('</') ? -1 : 1;
     if (depth === 0) {
       closing = match;

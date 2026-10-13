@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8beeb54170aeb5764775e1b1ca3432863962e4883fddf818ac0ac0db3e354d70",
+    "digest": "99c2c5188b406732d9f2d119b2797c04ae3d744d94071d36861bffa04f9da8f2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -142,7 +142,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "46e733cd7d0d9154c0a2e9b718b29bea7477b7b6cc1c4560dd956c01e928fabc"
+        "sha256": "92de1375495d2c7a23afe0611d8ad21e7354531f09699762d01d865bf81e05c9"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2eb85f3b3b832697928bb3b6b3d585a80696b7aad24c19cbb52c6b1d7e7c1708"
+        "sha256": "b3bdd76270798569b3867238c2a83ae0defc71c1d71a7e514bba414873c72e04"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bc1848f38737426a4f3eb866e7210c105c09087495371d5deb37b964ec60e4a2"
+        "sha256": "12399cb10c8b17a51e3ebc94a5f9fac243bfb51a037bc959c241cdfa7f60adbd"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -236,7 +236,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "d891b6950e15c08e0d5c70b20c802b1a0bb1f9690246e9b7a39e65682b55b0b8"
+        "sha256": "5dcf5b1e142dee3a53ac246d8dc87393cfed8a7dbdd86fd4e029936441721725"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "30bf10570921991b081278893fa8444d438d31ecb46aee82f8ac66bb70c112ec"
+        "sha256": "9446724be34aec6bba21c95194d42fc8eb629ad9075c987647ea6b02767ca8fa"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -530,7 +530,7 @@
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
         "identity_mode": "content",
-        "sha256": "8e140e096b648773ae1296f1cc3aa1914dd3670b518b7b8a22f914998e1e482f"
+        "sha256": "2485e40e2dd1bdb8f6b2629d807a38cbfb46595c5592b59e3c6d48fd386e43fc"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -893,14 +893,19 @@
         "sha256": "a9002f16f07389668751b39245cb2299b1ccd2efad1ac4f15849871f452a454c"
       },
       {
+        "path": "review/issue-5/2026-10-13-content-browser-first.json.gz",
+        "identity_mode": "content",
+        "sha256": "39db790242b50d0a8e028a5707fe2cc1586295dc5ebe2ff3c3f7eca2431de137"
+      },
+      {
         "path": "review/issue-5/2026-10-13-content-release.md",
         "identity_mode": "content",
-        "sha256": "cd767bc2453bffcd48f96a948aea1ba0c74ce10cdd665ab6572cebe2bf427a0f"
+        "sha256": "cd4aa1bb0853df70bbe8f4923c3e836637501ef482ca92de37f11dfca919c51f"
       },
       {
         "path": "review/issue-5/2026-10-13-independent-content-review.md",
         "identity_mode": "content",
-        "sha256": "988c8694385efb69fd34b1b75fe7b678d965316db6c2b310f1900b4cb89bc39c"
+        "sha256": "3de930cd5c0d4e4fdfda8984d64c375680cd6a56fc0a7991571e84e67663bdaa"
       },
       {
         "path": "review/issue-5/2026-10-13-local-source-failure.log.gz",
@@ -916,6 +921,11 @@
         "path": "review/issue-5/2026-10-13-owning-first-failure.json.gz",
         "identity_mode": "content",
         "sha256": "1f94658e6cef56106c5db27005bc2dfc3d797d8dc00cb787cd148834adc2f5e1"
+      },
+      {
+        "path": "review/issue-5/2026-10-13-semgrep-first-failure.json.gz",
+        "identity_mode": "content",
+        "sha256": "ff59f5f71c097b65a45da9f14cb858eee84fec39ac97962d8e412550536d273d"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5775,7 +5785,7 @@
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "2a386d9a0e1315d99891ea52cf08b2d4f69a8e609f540cafdff0c24122ad0b30"
+        "sha256": "2e3fc6122f4713e15ade24502cfc7e92131bdd5f3decf415048a2e6dfbe99700"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -6090,7 +6100,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "2fa7e3b95feea9141086b277d20c8f807f2f0589cd81f1cfde36ed8845b3d8c2"
+        "sha256": "5cce1e0c85a7d6034f700711a687dcda6bfc5c1688104b9fab12fab0e3be6a7b"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -6383,6 +6393,11 @@
         "sha256": "1f3cdc1bd8606f1cf718d65b4d1ed709dfeeb5d557122d4f0a85fc3c62b9c912"
       },
       {
+        "path": "tools/quality/generated-checksums.cjs",
+        "identity_mode": "content",
+        "sha256": "56e34f3bf3cbc8db1ac6d3a04d955ec835db6c3cb48844b315bd9fad781182e6"
+      },
+      {
         "path": "tools/quality/geometry.cjs",
         "identity_mode": "content",
         "sha256": "b9c9b24a0b9abb6b53d295870c596a8321e6c733c6d44e5a6abef01fbfbc67eb"
@@ -6475,7 +6490,7 @@
       {
         "path": "tools/quality/scanners.cjs",
         "identity_mode": "content",
-        "sha256": "94c6d6234d209189eaa31d2e61b284b1285852e99dd39006fc5c3103e209011a"
+        "sha256": "fddd39af2a298641c6077f9742c9db897cfff8f399e503ff9fff6eff03639470"
       },
       {
         "path": "tools/quality/scroll-browser.cjs",
@@ -6490,7 +6505,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "866039ed1ecbab741824158ec3d5cff74dd5e5affb6c6abb64ef8e72eb365107"
+        "sha256": "9739824fe976c72be8b7515df1d73671da02bdadbd07fadf2e1ba118fe029eba"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6545,7 +6560,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "8e4e6c10cd93b39bf169ac3c2a86581506c44d8744c231450c350a3b452cdade"
+        "sha256": "a2a3f7a993aa2887aed75942a03d61a29d348c1b3df06f2278797e33bdf628ed"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6853,7 +6868,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "46e733cd7d0d9154c0a2e9b718b29bea7477b7b6cc1c4560dd956c01e928fabc"
+    "config_sha256": "92de1375495d2c7a23afe0611d8ad21e7354531f09699762d01d865bf81e05c9"
   },
   "owners": [
     {
@@ -9044,6 +9059,17 @@
       "title": "2026-10-13-color-runtime.json"
     },
     {
+      "path": "review/issue-5/2026-10-13-content-browser-first.json.gz",
+      "kind": "file",
+      "purpose": "Exact actual50dda managed synthetic content report: seven browser cases, verified platform reuse, explicit diagnostic and no publication/deployment claims.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-13-content-release.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-13-content-browser-first.json.gz"
+    },
+    {
       "path": "review/issue-5/2026-10-13-content-release.md",
       "kind": "file",
       "purpose": "Issue5 Writing/content-release continuation, immutable semantic amendment or exact-source review evidence.",
@@ -9097,6 +9123,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-13-owning-first-failure.json.gz"
+    },
+    {
+      "path": "review/issue-5/2026-10-13-semgrep-first-failure.json.gz",
+      "kind": "file",
+      "purpose": "Exact failed50dda Semgrep report: one regular-expression exec sink finding, no scanner errors, nonempty coverage; retained without bypass.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-13-content-release.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-13-semgrep-first-failure.json.gz"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",
@@ -21122,6 +21159,17 @@
       "title": "functional.cjs"
     },
     {
+      "path": "tools/quality/generated-checksums.cjs",
+      "kind": "file",
+      "purpose": "Canonical producer-verified generated checksum admission with exact path, type, occurrence and field binding; stale or unknown values fail.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "generated-checksums.cjs"
+    },
+    {
       "path": "tools/quality/geometry.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -23707,6 +23755,7 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/bandit-policy.json",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "tools/quality/secrets-baseline.json",
         "tests/quality-sources.test.cjs",
         "tools/quality/secrets-reviewed.json",

@@ -76,6 +76,37 @@ Standalone HTML/ZIP exports intentionally embed all routes. Generate those revie
 or downloadable renditions separately when needed; they are not an unavoidable
 part of a verified online content release.
 
+## Generated checksums and secret findings
+
+The maintained heavy security route uses `tools/quality/generated-checksums.cjs`
+to prove named checksums in current canonical `docs/`, `site/output-lock.json`
+and the maintained v11 static/offline preview outputs. Admission first requires
+complete canonical generation freshness. Only declared engine, content, route and
+file SHA fields, generated `site-engine`/`site-route` metadata and recomputed inert
+payload route hashes belong to this proof. A finding must match its exact generated
+path, `Hex High Entropy String` type and current literal hashed identity.
+
+An ordinary content update therefore needs no new manual entropy-ledger entry for
+these producer fields. This is not a file-wide checksum exclusion: unknown fields
+or values, extra metadata, stale output and wrong paths or finding types fail.
+The existing publisher validator also proves locally recomputable edition source,
+semantic and adaptation derivation hashes, local asset hashes and the profile's
+launch-source hash.
+Ordinary manuscript/adaptation/launch edits therefore do not require ledger edits
+for those exact fields. This checksum proof does not grant editorial acceptance.
+Retained frozen editions can use their exact Git bytes and a historical selecting
+context that passes the complete current publisher validator. Preparatory,
+never-selected or incomplete historical contexts do not provide that authority.
+External reference/rights hashes, evidence constants and unproved historical
+records continue to need their exact reviewed disposition; neither a familiar
+value nor an archived filename establishes admission.
+
+This complete producer proof runs in the existing heavy static, staging and
+production security route. Basic and preview content checks do not invoke its
+cold generation check. Changes to this policy, its helper or the reviewed ledgers
+select the platform profile. Proof of a checksum establishes its producer identity,
+not editorial acceptance, staging success or publication authorization.
+
 ## CI and publication
 
 The normal PR flow selects content reuse only from a compatible earlier immutable

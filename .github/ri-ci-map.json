@@ -123,7 +123,9 @@
         "review/issue-5/2026-10-13-independent-content-review.md",
         "review/issue-5/2026-10-13-local-source-failure.log.gz",
         "review/issue-5/2026-10-13-local-source-second-failure.log.gz",
-        "review/issue-5/2026-10-13-owning-first-failure.json.gz"
+        "review/issue-5/2026-10-13-owning-first-failure.json.gz",
+        "review/issue-5/2026-10-13-semgrep-first-failure.json.gz",
+        "review/issue-5/2026-10-13-content-browser-first.json.gz"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -166,6 +168,7 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/local.cjs",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "tools/quality/secrets-baseline.json",
         "tools/quality/secrets-reviewed.json",
         "tools/quality/source-tests.cjs",
@@ -546,7 +549,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "cb26e77bcfe9d383bf3df7dac1215c0cb31162916335e69e5351824ae1ed8fa4",
+    "digest": "edbc9626ef7f9b740d72802811d0a1a22d76d9f5b37f88ae7b07fcf27527fb59",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -642,7 +645,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "46e733cd7d0d9154c0a2e9b718b29bea7477b7b6cc1c4560dd956c01e928fabc"
+        "sha256": "92de1375495d2c7a23afe0611d8ad21e7354531f09699762d01d865bf81e05c9"
       },
       {
         "path": ".github/repository-layout.json",
@@ -650,7 +653,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2eb85f3b3b832697928bb3b6b3d585a80696b7aad24c19cbb52c6b1d7e7c1708"
+        "sha256": "b3bdd76270798569b3867238c2a83ae0defc71c1d71a7e514bba414873c72e04"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -710,7 +713,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "d891b6950e15c08e0d5c70b20c802b1a0bb1f9690246e9b7a39e65682b55b0b8"
+        "sha256": "5dcf5b1e142dee3a53ac246d8dc87393cfed8a7dbdd86fd4e029936441721725"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -882,7 +885,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8e4e6c10cd93b39bf169ac3c2a86581506c44d8744c231450c350a3b452cdade"
+        "sha256": "a2a3f7a993aa2887aed75942a03d61a29d348c1b3df06f2278797e33bdf628ed"
       },
       {
         "path": "tools/repository_intelligence.py",

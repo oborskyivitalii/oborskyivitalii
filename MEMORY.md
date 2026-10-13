@@ -19,10 +19,19 @@ Dated continuity, not live authority. Last verified: **2026-10-13**.
   release; formal content/platform CI selection. Writing currently has 29 public
   records, alternate links count once; draft fixture stays outside the public count.
   Raw platform now `0bd39d21`; two new closed Color tuples preserve 18 historical
-  ones. First published a775 Basic CI passes727/727 and navigation/preview smoke pass.
-  Owning CI38399835242 failed only missing SEO Python environment; narrow
-  installer correction is prepared. Its exact failed report is versioned. New
-  source/RI/owning CI and managed content diagnostic remain required.
+  ones. 50dda source727, RI, owning and actualpreview pass; managedcontent7cases
+  prove Writing+onearticle rebuilt, fourroutes/platform reused and noJS29rows.
+  Boundedstage source690/Python109, browser/performance pass; aggregatefails
+  solelySemgrep RegExp.exec falsepositive. One-line matchAll correction is
+  reviewed with53focusedcases+17equivalencecases. Full prepared security next
+  exposed219 public checksum candidates; bounded canonical generated proof and
+  exact authored/evidence dispositions preserve future content-only releases.
+  Prepared checksum27, lint and scoped Semgrep pass; frozen v1/v2+adaptation,
+  launch, 101 metadata edits, shared-context and symlink/config rejection pass.
+  Final agent proof review, full security243/Bandit36/secrets5043, lint266 and
+  repository109 pass in prepared source; exact new-head CI/stage rerun remain.
+  Earlier a775owning
+  and50ddastatic failures are versioned.
   Commands/trust are in `guides/SITE-CONTENT-RELEASE.md`; continuation and review
   in `review/issue-5/2026-10-13-content-release.md`. Normal content Basic/preview
   can reuse only compatible, source-admitted complete CI generations. Missing,

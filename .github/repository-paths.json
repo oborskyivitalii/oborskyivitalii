@@ -1297,6 +1297,12 @@
       "role": "history",
       "owner": "review/issue-5/2026-10-13-content-release.md"
     },
+    "review/issue-5/2026-10-13-content-browser-first.json.gz": {
+      "kind": "file",
+      "purpose": "Exact actual50dda managed synthetic content report: seven browser cases, verified platform reuse, explicit diagnostic and no publication/deployment claims.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-13-content-release.md"
+    },
     "review/issue-5/2026-10-13-content-release.md": {
       "kind": "file",
       "purpose": "Issue5 Writing/content-release continuation, immutable semantic amendment or exact-source review evidence.",
@@ -1324,6 +1330,12 @@
     "review/issue-5/2026-10-13-owning-first-failure.json.gz": {
       "kind": "file",
       "purpose": "Exact first published owning-acceptance failure at a775: canonical SEO Python dependency missing; retained with original source/run/check evidence.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-13-content-release.md"
+    },
+    "review/issue-5/2026-10-13-semgrep-first-failure.json.gz": {
+      "kind": "file",
+      "purpose": "Exact failed50dda Semgrep report: one regular-expression exec sink finding, no scanner errors, nonempty coverage; retained without bypass.",
       "role": "history",
       "owner": "review/issue-5/2026-10-13-content-release.md"
     },
@@ -8590,6 +8602,12 @@
     "tools/quality/scanners.cjs": {
       "kind": "file",
       "purpose": "Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/generated-checksums.cjs": {
+      "kind": "file",
+      "purpose": "Canonical producer-verified generated checksum admission with exact path, type, occurrence and field binding; stale or unknown values fail.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },

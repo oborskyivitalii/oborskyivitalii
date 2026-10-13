@@ -408,6 +408,7 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/bandit-policy.json",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "tools/quality/secrets-baseline.json",
         "tests/quality-sources.test.cjs",
         "tools/quality/secrets-reviewed.json",

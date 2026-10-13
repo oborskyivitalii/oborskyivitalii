@@ -600,11 +600,18 @@ function security() {
       verifiedChecksumIds([coupling.digest, ...coupling.inputs.map((x) => x.sha256)]),
     ],
   ]);
+  const generatedChecksums = require('./generated-checksums.cjs');
+  const generatedProof = generatedChecksums.proveGeneratedChecksums(root);
+  const generatedAdmitted = generatedChecksums.admitGeneratedChecksumFindings(
+    secrets.results,
+    generatedProof
+  );
   for (const [file, findings] of Object.entries(secrets.results))
     for (const finding of findings) {
       const provedChecksum = verifiedChecksumFinding(file, finding, proved);
       if (
         !provedChecksum &&
+        !generatedAdmitted.has(generatedChecksums.findingKey(file, finding)) &&
         !reviewedSecretFinding(file, finding, reviewed, publicationIntegrities)
       )
         newFindings.push({ file, type: finding.type, hash: finding.hashed_secret });
@@ -625,6 +632,8 @@ function security() {
     secrets: {
       trackedTextFiles: text.length,
       reviewedCandidates: Object.values(secrets.results).flat().length,
+      generatedCandidates: generatedAdmitted.size,
+      generatedChecksumProof: generatedProof.detail,
     },
     historyScan: false,
   };
