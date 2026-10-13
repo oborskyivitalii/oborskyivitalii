@@ -122,7 +122,8 @@
         "guides/SITE-CONTENT-RELEASE.md",
         "review/issue-5/2026-10-13-independent-content-review.md",
         "review/issue-5/2026-10-13-local-source-failure.log.gz",
-        "review/issue-5/2026-10-13-local-source-second-failure.log.gz"
+        "review/issue-5/2026-10-13-local-source-second-failure.log.gz",
+        "review/issue-5/2026-10-13-owning-first-failure.json.gz"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -545,7 +546,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ab615425f7601430018a18f2f8303f0419842eb4ebac377d52054c4c907dd6d8",
+    "digest": "cb26e77bcfe9d383bf3df7dac1215c0cb31162916335e69e5351824ae1ed8fa4",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -649,11 +650,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "fe4ebfb190e88a7ad8f60e2e51e4c44a7bcbc55b4be760ba47d132d96519d917"
+        "sha256": "2eb85f3b3b832697928bb3b6b3d585a80696b7aad24c19cbb52c6b1d7e7c1708"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "50b25e12dcc6e959ff0855333ea3cdaa44edf5df53497dbdeef564d1f4ba4af3"
+        "sha256": "ec51d835a4e72a884dd36d83f8f18a517741532ef9ce0fe1b2b1a67ecd9c4724"
       },
       {
         "path": ".github/workflows/navigation.yml",

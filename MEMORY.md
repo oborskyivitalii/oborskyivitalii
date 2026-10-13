@@ -19,8 +19,10 @@ Dated continuity, not live authority. Last verified: **2026-10-13**.
   release; formal content/platform CI selection. Writing currently has 29 public
   records, alternate links count once; draft fixture stays outside the public count.
   Raw platform now `0bd39d21`; two new closed Color tuples preserve 18 historical
-  ones. Independent source/byte review and focused suites pass; exact final-source
-  Basic/source/RI/owning/hosted evidence must be checked in the live PR.
+  ones. First published a775 Basic CI passes727/727 and navigation/preview smoke pass.
+  Owning CI38399835242 failed only missing SEO Python environment; narrow
+  installer correction is prepared. Its exact failed report is versioned. New
+  source/RI/owning CI and managed content diagnostic remain required.
   Commands/trust are in `guides/SITE-CONTENT-RELEASE.md`; continuation and review
   in `review/issue-5/2026-10-13-content-release.md`. Normal content Basic/preview
   can reuse only compatible, source-admitted complete CI generations. Missing,

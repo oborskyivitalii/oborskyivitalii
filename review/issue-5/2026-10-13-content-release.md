@@ -106,5 +106,31 @@ The first prepared repository run found the new operator guide missing from the
 active Markdown inventory (109 cases, one error). Its link route is now declared;
 the final current-source repository run must verify that correction.
 
+## First published execution and installer correction
+
+Published implementation `a775acde6e328eafd752ff5713d3f1b59001fb4d`, tree
+`817033e5ed0ae65c8c66cc1efcab783e2c1fc796`, is byte-identical to the prepared
+local tree; the authenticated GitHub API published it after normal push lacked
+credentials. Its [Basic/source CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38399836195)
+passes 727/727 additional cases in 162883ms, within the original 180-second bound.
+[Navigation/RI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38399835354)
+and [actual preview smoke](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38399835864)
+pass. The local supplementary source attempt reached the unchanged time bound
+and remains failed; it is not substituted for this CI observation.
+
+The [first owning CI](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38399835242)
+failed only WRITING-CATALOG: its installer omitted the canonical quality Python
+environment now needed by SEO parity. The [exact failed report](2026-10-13-owning-first-failure.json.gz)
+retains that failure (raw JSON SHA256
+`a750f69fd1a487cfe70dbaea134898563f5125590cb4ef13ba84f1740767b982`).
+The narrow workflow correction installs the existing pinned Ruff/PyYAML venv
+for issue5, preserves the npm guards, all assertions and budgets, and awaits
+new exact-head CI. The local clean-head policy at a775 passes all ten check
+groups; original twelve human gates remain pending.
+
+Ready-event preview does not request the optional label diagnostic. After new
+source/RI/owning admission, the existing stage-regression label route must run
+the actual managed synthetic content journey, with no promotion.
+
 AC13–AC15 remain unchecked pending exact-source completion. Original human,
 editorial, rights, actual publication, upstream and merge gates stay separate.

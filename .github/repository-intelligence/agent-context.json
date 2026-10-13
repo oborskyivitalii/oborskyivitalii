@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "84e9229aaac0fe0fd1d295d162c18320ce3014f8c1a49d2d61004cba0a64e31f",
+    "digest": "8beeb54170aeb5764775e1b1ca3432863962e4883fddf818ac0ac0db3e354d70",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,17 +156,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fe4ebfb190e88a7ad8f60e2e51e4c44a7bcbc55b4be760ba47d132d96519d917"
+        "sha256": "2eb85f3b3b832697928bb3b6b3d585a80696b7aad24c19cbb52c6b1d7e7c1708"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d989375197fcb30387fe35990f7ecda141a36dea0b28f22f9900e7327ea274c9"
+        "sha256": "bc1848f38737426a4f3eb866e7210c105c09087495371d5deb37b964ec60e4a2"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "50b25e12dcc6e959ff0855333ea3cdaa44edf5df53497dbdeef564d1f4ba4af3"
+        "sha256": "ec51d835a4e72a884dd36d83f8f18a517741532ef9ce0fe1b2b1a67ecd9c4724"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "0869ede91619361c9bbf15a8ecfbecf727b5ec3f8e00efc75ce6134f9c077964"
+        "sha256": "30bf10570921991b081278893fa8444d438d31ecb46aee82f8ac66bb70c112ec"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -895,12 +895,12 @@
       {
         "path": "review/issue-5/2026-10-13-content-release.md",
         "identity_mode": "content",
-        "sha256": "5e4f022b8d1896d964399e7ba73f3e8def85f64f28c16c4eb745abe9b354b84e"
+        "sha256": "cd767bc2453bffcd48f96a948aea1ba0c74ce10cdd665ab6572cebe2bf427a0f"
       },
       {
         "path": "review/issue-5/2026-10-13-independent-content-review.md",
         "identity_mode": "content",
-        "sha256": "d79c34ed076efc8fef6853ed38e978a317c5ce7c1a1249f77245b3919c1a04c4"
+        "sha256": "988c8694385efb69fd34b1b75fe7b678d965316db6c2b310f1900b4cb89bc39c"
       },
       {
         "path": "review/issue-5/2026-10-13-local-source-failure.log.gz",
@@ -911,6 +911,11 @@
         "path": "review/issue-5/2026-10-13-local-source-second-failure.log.gz",
         "identity_mode": "content",
         "sha256": "0716dd69b0796ebf950511fb7a4b02b7e6f75edca6a72f531ba3449f733964ee"
+      },
+      {
+        "path": "review/issue-5/2026-10-13-owning-first-failure.json.gz",
+        "identity_mode": "content",
+        "sha256": "1f94658e6cef56106c5db27005bc2dfc3d797d8dc00cb787cd148834adc2f5e1"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -9081,6 +9086,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-13-local-source-second-failure.log.gz"
+    },
+    {
+      "path": "review/issue-5/2026-10-13-owning-first-failure.json.gz",
+      "kind": "file",
+      "purpose": "Exact first published owning-acceptance failure at a775: canonical SEO Python dependency missing; retained with original source/run/check evidence.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-13-content-release.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-13-owning-first-failure.json.gz"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",

@@ -1321,6 +1321,12 @@
       "role": "history",
       "owner": "review/issue-5/2026-10-13-content-release.md"
     },
+    "review/issue-5/2026-10-13-owning-first-failure.json.gz": {
+      "kind": "file",
+      "purpose": "Exact first published owning-acceptance failure at a775: canonical SEO Python dependency missing; retained with original source/run/check evidence.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-13-content-release.md"
+    },
     "review/issue-5/pmday-candidate": {
       "kind": "directory",
       "purpose": "Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate.",

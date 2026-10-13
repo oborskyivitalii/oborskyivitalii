@@ -46,6 +46,7 @@ authoring fixtures were inspected as outputs; no production or browser surface w
 | F15 | `analytics-browser.cjs:10–15,174–178,240–265`, `analytics.test.cjs:341–413` | The executed future-local probe exposed the actual analytics browser diagnostic compiling its live catalog in a temporary root without Git provenance. A shared local clone preserves real commit/blob objects before the existing live owner copy and build. Its count uses the canonical validated collection and queries only archive rows; no legacy external seed or publisher bypass masks the live diagnostic. | AC13, AC15 | Resolved in source; the cold-preparation test stops at an explicit browser boundary and cannot claim browser acceptance. |
 | F16 | `offline.cjs:104–115`, `analytics-browser.cjs:249–277`, `analytics.test.cjs:360–398`, `site-release-checks.yml:312–360,403–420,529–546` | A canonical native article activates the offline producer's publishing adapter, which was absent from its cold copy. The collector copies that canonical owner and installed locked parser closure. Linux/native/staging callers fetch source history and install the parser from its lock; tests require exact owner/lock bytes and an isolated Git root. | AC15 | Resolved in source and the owning agent's observed-publication cold probe, with the canonical hyperlink retained. |
 | F17 | `site-release-checks.yml:558`, `quality.test.cjs:264–272`, `staging-regression.test.cjs:20–28` | New synthetic diagnostic uploads initially collided across release profiles, and the live Color staging fixture still expected an older reviewed runtime. Upload names now include the profile; stripping it triggers the unchanged namespace guard. The fixture selects the exact current content family while preserving descriptor/native/variant/hash negatives and every historical admission tuple. | AC11, AC15 | Resolved; owning agent reports 32/32 focused checks and 70/70 unique namespaces. |
+| F18 | `issue-acceptance.yml:36–54`, `test_issue5_acceptance.py:72–80`, `check_site_seo.cjs:12,70–74`, `format-parity.cjs:151–168`, `ri-ci-map.json:252–269,432–465,655–656` | Actual clean-head owning CI exposed a missing installer dependency: WritingCatalog's canonical SEO parity spawns the quality venv Python, but issue5 installed only the publisher AST toolchain. A separate Python installer now covers issue5/41/58 using the existing exact Ruff/PyYAML pins; issue41/58 alone retain quality npm, and publisher npm stays issue5-only. Strict helper failure, clean/source binding, checks, limits and pending human gates remain unchanged. | AC11, AC13, AC15 | Resolved in source; owning agent reports the exact failed check 1/1 passed. RI input identity and exact new-head owning CI must be refreshed. |
 
 No unresolved source-design blocker remains in the final inspected diff after these
 follow-up fixes. Complete current-head check execution remains pending. This review does
@@ -53,12 +54,17 @@ not mark release, editorial or physical-device criteria complete.
 
 ## Source and byte evidence
 
-Prepared-source review digest: `f7e073750e657cf85e0c453cc1ef434b764814320fcc5bd17adf1de9f0deece8`.
-It is SHA256 of compact JSON of sorted `{path, sha256}` records for the 68 changed/deleted
+Prepared-source review digest: `72b43424da046bfc3f8078498e68c8bd1d8155c42c13484dfc2985c7d2741428`.
+It is SHA256 of compact JSON of sorted `{path, sha256}` records for the 69 changed/deleted
 authored paths under `site/`, `tools/`, `tests/`, `guides/`, `.github/workflows/` and
 `.github/acceptance/`, plus `review/issue-5/writing-catalog-amendment.json`; deleted paths
-have `null` hashes. `site/output-lock.json`, generated public/offline outputs, the RI views
+have `null` hashes. The comparison anchor remains
+`e830752f58535c9e2226550a9661ee51c745bdb3`, including the already committed implementation
+and its later installer correction. `site/output-lock.json`, generated public/offline outputs, the RI views
 and this review file are excluded. Subsequent source edits invalidate this review identity.
+The initial 68-path digest `f7e073750e657cf85e0c453cc1ef434b764814320fcc5bd17adf1de9f0deece8`
+was the reviewed implementation subsequently committed as `a775acde6e328eafd752ff5713d3f1b59001fb4d`;
+the new workflow dependency correction supersedes that review scope without changing the platform engine.
 
 The reviewer actually executed read-only `artifact.verify`, Color `motion.select` and a
 current-source platform-fingerprint comparison on both complete refreshed artifacts:
@@ -93,6 +99,47 @@ and exposed the namespace/stale Color/analytics failures above. Focused correcti
 turn those failed attempts into accepted complete execution. All reports remain prepared-source observations,
 not accepted clean-head CI. Final Basic, source, RI/style/owning and hosted checks remain
 the root execution owner's responsibility.
+
+## Actual CI follow-up on a775
+
+The implementation was committed as `a775acde6e328eafd752ff5713d3f1b59001fb4d`, tree
+`817033e5ed0ae65c8c66cc1efcab783e2c1fc796`. The execution owner reports actual Basic source
+CI passed 727/727 cases in 162883 milliseconds, with the three explicitly excluded baseline
+files unchanged, and navigation/RI passed. This is actual CI evidence for a775 rather than
+the earlier failed local attempts; it does not qualify the later installer head automatically.
+
+The reviewer independently opened a normalized local copy of the owner's downloaded report from
+[owning CI run 38399835242, attempt 1](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38399835242).
+That normalized copy's JSON SHA256 is
+`8b3eb9bb1697fa9bc85babeb3ab969662cfca7be572c7e88a6a2f7d825d96dff`.
+The owner then preserved the exact original ZIP member in
+[2026-10-13-owning-first-failure.json.gz](2026-10-13-owning-first-failure.json.gz).
+The reviewer independently verified its decompressed bytes equal the original raw member,
+whose JSON SHA256 is
+`a750f69fd1a487cfe70dbaea134898563f5125590cb4ef13ba84f1740767b982`.
+Both copies parse to the same complete report; the normalized copy is not the raw-byte artifact identity.
+It binds the clean a775 commit/tree above, `evidence_valid=true`, `automation_pass=false`
+and `ready_for_issue_closure=false`. Nine check rows passed; only `WRITING-CATALOG` failed,
+with the canonical `tools/quality/toolchain/venv/bin/python` spawn returning `ENOENT`.
+The reviewer traced that failure to F18's installer omission, not a weakened semantic check.
+The immutable failed run remains recorded; it is not retroactively marked successful.
+
+The selected-policy Python installer correction is source-reviewed. Its exact Ruff 0.16.10
+and PyYAML 6.0.3 pins match the existing quality requirement owner, use `--no-deps`, and
+create the exact interpreter path required by the HTML parity helper. No browser/scanner
+or extra quality npm closure is introduced for issue5. The helper's strict missing-interpreter
+failure remains intact. The owner reports the previously failed WritingCatalog unittest
+passed 1/1 in 2.821 seconds, plus pinned formatting/YAML/guard checks. The changed workflow
+is already in the RI live-overlay layer and reviewed-input identity; its fresh digest and
+normal unconditional coupling verification are required before the next clean commit.
+
+The owner also reports build/publish/smoke passed in
+[preview run 38399835864](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38399835864).
+The Ready event did not select the separate staging-evidence diagnostic. This reviewer has
+not opened a managed content-fixture report from that run, so it supplies no extra device,
+editorial or synthetic-journey acceptance here. Exact new-head source/owning CI and the
+requested staging diagnostic remain pending. In particular, a775's failed owning admission
+prevents it from qualifying as a reusable baseline despite its green Basic source run.
 
 ## Decisions and remaining execution
 
