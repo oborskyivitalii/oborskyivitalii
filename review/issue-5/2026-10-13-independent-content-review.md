@@ -51,6 +51,7 @@ authoring fixtures were inspected as outputs; no production or browser surface w
 | F20 | `generated-checksums.cjs:104–150,623–769`, `scanners.cjs:603–637`, `site-release-checks.yml:280–285` | Manual ledger entries for regenerated checksums would force ordinary content changes back onto the platform route. Automatic authority now requires complete canonical generation/preview/offline freshness, explicit computed fields, every occurrence in an approved span, exact path/type/hash/line and unchanged source/file bytes. Only the private factory can mint authority. The heavy static caller installs the existing locked publisher parser; Basic/Preview do not invoke this cold proof. | AC11, AC15 | Resolved in source; genuine current proof admits all 186 new generated candidates. Wrong owner, rule, line, stale/forged proof, arbitrary filename, extra JSON and same-value prose/payload negatives reject automatic authority. |
 | F21 | `generated-checksums.cjs:152–166,209–460`, `quality-sources.test.cjs:1284–1517` | Selected-only publisher proof initially stranded retained frozen v1 fields after v2. Current strict publisher validation proves local source/semantic/adaptation/asset/translation/launch fields and exact committed Git pins. Retained records require exact ancestral bytes and a complete selecting context validated by current code. Inert blob extraction preserves regular Git modes, existing asset bounds and additive shared-commit dependency caches. The original 50-article, 200-record and 100 edition/event-changing-commit limits remain; metadata-only changes do not consume the last limit. | AC14, AC15 | Resolved in source and executed synthetic probes: accepted versions/adaptations survive 101 metadata changes; two owners sharing a freeze commit work; historical 120000 PNG blobs reject. Preparatory/orphan/incomplete historical contexts receive no automatic authority. |
 | F22 | `generated-checksums.cjs:168–197,281–319,388–393`, `quality-sources.test.cjs:1455–1488` | Inherited Git routing could redirect temporary config/ref operations into the original repository. A further independently demonstrated `GIT_CONFIG` variant survived the first fix. Final code rejects routing/configuration variables before publisher collection and sanitizes private subprocess environments, including case-insensitive configuration prefixes. Hooks/templates are disabled and historical checkout is absent. | AC11, AC15 | Resolved at final helper `56e34f3b…`; owned-fixture negatives preserve outside configuration and original HEAD/config bytes. No unsafe environment probe was run against the repository. |
+| F23 | `navigation.yml:25–30,41–42`, `article.cjs:330–342`, actual ebd Navigation failure | Navigation also runs the new publisher checksum regression but omitted its parser installer. It now runs the existing locked `npm ci --prefix tools/publishing/toolchain --ignore-scripts` after pinned Node, before unchanged profile/gate tests. Read-only permissions, full history, Draft condition, clean-source checks and five-minute budget remain. | AC11, AC15 | Source fix acceptable; owner reports local 70/70. Actual ebd failed 69/70 for missing parser; fresh corrected-head CI remains pending. |
 
 No unresolved source-design blocker remains in the final inspected diff after these
 follow-up fixes. Complete current-head check execution remains pending. This review does
@@ -58,8 +59,8 @@ not mark release, editorial or physical-device criteria complete.
 
 ## Source and byte evidence
 
-Prepared-source review digest: `2f56bafa00895750f34e81cc7d39d1e26a17ffe339563c6f22d5beb0b1d92612`.
-It is SHA256 of compact JSON of sorted `{path, sha256}` records for the 73 changed/deleted
+Prepared-source review digest: `4c0418ad7c4d0994ebda18fc89e9a720465be7e8d3fd2a250bb64c5bd0d96b86`.
+It is SHA256 of compact JSON of sorted `{path, sha256}` records for the 74 changed/deleted
 authored paths under `site/`, `tools/`, `tests/`, `guides/`, `.github/workflows/` and
 `.github/acceptance/`, plus `review/issue-5/writing-catalog-amendment.json`; deleted paths
 have `null` hashes. The comparison anchor remains
@@ -74,12 +75,15 @@ was subsequently committed as `50dda95157d1994b0d935135bf8ff905910fcd05`.
 The earlier 69-path iterator scope was
 `fb7c8bf05c9c44772fea5366d366d1dc2d26d624a46f7279cbbf8a76bfa7db54`; its checker SHA256 remains
 `5cce1e0c85a7d6034f700711a687dcda6bfc5c1688104b9fab12fab0e3be6a7b`.
-The final 73-path scope additionally includes F20–F22's maintained proof, scanner/test/profile,
+The preceding 73-path scope, `2f56bafa00895750f34e81cc7d39d1e26a17ffe339563c6f22d5beb0b1d92612`,
+was committed as `ebd668955293918f69b040b7a70df04c29630bd9`. It includes F20–F22's maintained proof, scanner/test/profile,
 locked static installer, guide and exact literal-ledger changes. Final helper SHA256 is
 `56e34f3bf3cbc8db1ac6d3a04d955ec835db6c3cb48844b315bd9fad781182e6`, scanner SHA256
 `fddd39af2a298641c6077f9742c9db897cfff8f399e503ff9fff6eff03639470`, and maintained test SHA256
 `2e3fc6122f4713e15ade24502cfc7e92131bdd5f3decf415048a2e6dfbe99700`.
-This final prepared worktree is on 50dda; no complete corrected-head CI is claimed.
+The current 74-path scope adds only F23's Navigation installer, SHA256
+`9949c0a29dd2a8885374b4ae523edef0caab355263ce66fd53efcd4fcf8b11ef`.
+This prepared worktree is on ebd; no complete corrected-head CI is claimed.
 
 The reviewer actually executed read-only `artifact.verify`, Color `motion.select` and a
 current-source platform-fingerprint comparison on both complete refreshed artifacts:
@@ -287,6 +291,20 @@ continue to select the platform route. Final corrected-head source/owning/static
 aggregate CI remains pending; passing prepared tests and this diagnostic do not replace it.
 
 ## Decisions and remaining execution
+
+On clean `ebd668955293918f69b040b7a70df04c29630bd9`, tree
+`9ee56a2c2e1613eeef2d746f232f8ee4cfd6be92`, actual
+[Navigation run 38422593047](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38422593047)
+failed 69/70 solely at the publisher regression with the explicit missing-dependencies error.
+The reviewer opened the connector-decoded log, SHA256
+`0561726d892075593b4409cefb9fbb61db372044e142e1a6120830512b675578`; this is not a raw ZIP claim.
+The owner reports Basic passed 732/732 in 108950 ms; the reviewer verified its clean, passing
+release-manifest bytes against the original ZIP member (JSON SHA256
+`289bbe913dab03f83133cc8f184fa4738b1d70a43dc3f4150a0ed36e3db8c203`).
+The exact owning ZIP member, JSON SHA256
+`cb96f1817822e7ab826421811a3b57940d6d1aac48c1057a268ecc0d6f15d1d3`,
+has ten passed checks, fifteen automated-pass criteria and twelve pending gates, with closure false.
+Those ebd successes do not erase its Navigation failure or admit the new installer head.
 
 The accepted implementation preserves static no-JS HTML and a complete deployment.
 Raw generation reuse does not imply every final hosted alias remains byte-identical:

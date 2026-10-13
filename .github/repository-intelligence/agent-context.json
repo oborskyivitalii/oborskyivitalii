@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "99c2c5188b406732d9f2d119b2797c04ae3d744d94071d36861bffa04f9da8f2",
+    "digest": "e18e2cd2118515852fe648347d59c8e02e002e8676e0dee7f7189fa43476729b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "12399cb10c8b17a51e3ebc94a5f9fac243bfb51a037bc959c241cdfa7f60adbd"
+        "sha256": "14b06b66ddeda18b3ffb0660bf57821ff7a49d67a37c57e810eef5ec2a395f29"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -171,7 +171,7 @@
       {
         "path": ".github/workflows/navigation.yml",
         "identity_mode": "content",
-        "sha256": "7483e65af4d73989ca47f924ac39f4391f101ecc4e70ee6e0e0ac2893031a675"
+        "sha256": "9949c0a29dd2a8885374b4ae523edef0caab355263ce66fd53efcd4fcf8b11ef"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9446724be34aec6bba21c95194d42fc8eb629ad9075c987647ea6b02767ca8fa"
+        "sha256": "99dfe3580ffe47ca0d9409cb68a93a5484b1ec8c624d68c9e28398e888a265c0"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -900,12 +900,12 @@
       {
         "path": "review/issue-5/2026-10-13-content-release.md",
         "identity_mode": "content",
-        "sha256": "cd4aa1bb0853df70bbe8f4923c3e836637501ef482ca92de37f11dfca919c51f"
+        "sha256": "e16ef98dc252a6dbc391c0317f43c3391053daa02c6dbf66ece34d4e3d408102"
       },
       {
         "path": "review/issue-5/2026-10-13-independent-content-review.md",
         "identity_mode": "content",
-        "sha256": "3de930cd5c0d4e4fdfda8984d64c375680cd6a56fc0a7991571e84e67663bdaa"
+        "sha256": "b20649ddf332211b308ea30d2935a72d995cb3f4ed1eaa622d9f7468cccbb5dd"
       },
       {
         "path": "review/issue-5/2026-10-13-local-source-failure.log.gz",

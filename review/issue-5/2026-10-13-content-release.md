@@ -224,3 +224,25 @@ CI admission. Publishing the exact tree and fresh CI remain the next steps.
 
 AC13–AC15 remain unchecked pending exact-source completion. Original human,
 editorial, rights, actual publication, upstream and merge gates stay separate.
+
+## Navigation dependency follow-up on ebd6689
+
+The exact published source `ebd668955293918f69b040b7a70df04c29630bd9`
+(tree `9ee56a2c2e1613eeef2d746f232f8ee4cfd6be92`) passed
+[Basic/source](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38422593855):
+732/732 cases across 62 modules, zero failures/skips/cancellations/TODOs,
+108950 ms within the unchanged 180000 ms budget.
+[Owning checks](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38422593177)
+passed all ten mapped checks; automated AC01–AC15 passed, while twelve
+explicit manual gates kept closure false.
+
+[Navigation](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38422593047)
+failed one of its seventy profile/control cases: the strict publisher-checksum
+regression requires the locked Markdown AST parser, which that workflow had
+not installed. Its other 69 cases passed. This failed run remains failed.
+The narrow correction adds `npm ci --prefix tools/publishing/toolchain --ignore-scripts`
+after the existing pinned Node setup. The same seventy-case command passes
+locally (13502 ms); no product source, scanner rule, test selection or budget
+changed. The new exact published head still requires complete CI and staging
+admission. PMDay remains a technical fixture and the original manual gates
+remain open.

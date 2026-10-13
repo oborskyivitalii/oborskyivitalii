@@ -30,8 +30,9 @@ Dated continuity, not live authority. Last verified: **2026-10-13**.
   launch, 101 metadata edits, shared-context and symlink/config rejection pass.
   Final agent proof review, full security243/Bandit36/secrets5043, lint266 and
   repository109 pass in prepared source; exact new-head CI/stage rerun remain.
-  Earlier a775owning
-  and50ddastatic failures are versioned.
+  Published ebd source732 and owning10 pass; Navigation69/70 fails only
+  missing locked publisher install. Narrow installer correction passes70 locally;
+  fresh complete CI/stage pending. Earlier failures remain source-specific.
   Commands/trust are in `guides/SITE-CONTENT-RELEASE.md`; continuation and review
   in `review/issue-5/2026-10-13-content-release.md`. Normal content Basic/preview
   can reuse only compatible, source-admitted complete CI generations. Missing,
