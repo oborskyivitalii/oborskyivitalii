@@ -4,7 +4,7 @@ Owning issue: https://github.com/oborskyivitalii/oborskyivitalii/issues/41 .
 Dependencies: #7 publication rights, #1 first launch. Execution: one new Draft PR
 following merged PR67. Root self-analysis; separate implementation and independent
 review identities are recorded below. Baseline main93a818d, tree dc4323f37467157ee8e1b9c8ba9752bb889acbfb.
-Current prepared changes are dirty until the final commit and CI evidence are linked.
+Draft PR68 records current source and CI/preview pointers at the live issue anchor.
 
 ## Intent and acceptance
 
@@ -36,6 +36,7 @@ changes to the fractal scene, transition effect, palette, routes or budgets.
 | F03 | site/retained manifest and two prior snapshots | Old downloadable Home/Research snapshots also contain cards. Withdraw precisely these two unlaunched snapshots and manifest entries from the active carry-forward; Git/review history remains intact. Preserve every other retained byte. | AD04 |
 | F04 | shared acknowledgement layout | Use existing two-column ack-grid for launch-safe Home and the original three-column layout for the review candidate. Natural card height and existing typography; no empty placeholder. | AD05 |
 | F05 | site/engine/lifecycle.cjs | Native-scroll camera motion has one owner. Keep each route's opening camera through scroll/filter/reflow/history while preserving separate navigation flights and document bottom reach. | SC01–03 |
+| F06 | Credits display-preferences JSON | Initial hosted review found a stale description of scroll-driven camera motion. Correct precisely that paragraph to describe the steady opening view and retained navigation flight/fade; preserve all other Credits content. | SC01–03 |
 
 The section-level explanation is present once on Home and once on Research:
 “These entries document public discussions and specific contributions to the
@@ -51,6 +52,7 @@ individuals’ organizations.” Existing advisor grouping remains separate.
 | T03 | Retained source manifest: withdraw only old Home/Research snapshots; regenerate docs/ and output lock canonically. | Prepared |
 | T04 | Lifecycle steady camera, existing maintained behavioral/browser fixtures updated to assert native scrolling without camera movement. | Implemented |
 | T05 | Exact successor amendment restores only authorized fragments before frozen historical semantic checks. Source policy preserves original evidence and separate review gates. | Implemented |
+| T05a | Credits display-preferences paragraph agrees with the changed camera behavior; existing finite renderer and exact amendment own the correction. | Implemented |
 | T06 | Basic, pinned formatting, applicable source checks, RI/CI mapping, owning acceptance, ordinary PR preview/smoke; focused desktop/mobile Day/Night review. | Local verification completed; required clean CI/PR smoke pending |
 
 Review sources use the identical finite schema/template/text/attributes/urls
@@ -135,3 +137,21 @@ Required final clean source checks, immutable normal preview and source-bound
 CI run links are reconciled at the live issue/PR anchor after commit. This
 versioned record does not invent its own future commit or CI result. Original
 AC02–AC06 stay open, and no merge/stable promotion/production launch occurs.
+
+The first published candidate dbe2393/treebbfd passed owning acceptance35/35,
+Basic/source368/368, navigation and pinned Chromium153 hosted smoke at1440/390
+normal/no-Canvas. Actual hosted desktop1363×936 Day review confirmed Home's
+two-card layout, Home→Research acknowledgement anchor, Research→Home About and
+About→Credits built-with-ai reading/link behavior. That inspection discovered the
+stale Credits display-preferences description; initial green automation is not
+acceptance of that wording. A bounded JSON/fragment correction and regenerated
+review/public outputs follow in the same PR. Final current-source evidence and
+actual issue checkboxes are reconciled at the live issue anchor.
+
+The corrected Credits paragraph passed8/8 supplemental cases across both
+compositions,1440/390 and Day/Night, with natural16px wrapping and no overflow,
+clipping or runtime errors. Eight additional captures and the distinct
+creditsAmendment observation preserve the provenance of the original20 captures.
+The updated full review export is732063bytes, SHA256
+d9b16478957bf4002a4f23d85de6b5c450f9f40616d18a88a3e3f6f31faab4c8;
+the earlier732018byte artifact remains initial evidence, not the final deliverable.
