@@ -15,17 +15,17 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "b2fb97a37b75c9514a0ec4cf3bb80a1a41018ec13e557190eb77824544f8d004",
+  "content": "cf05cc0c65f0fa6ed33b008a3786c3ea0fb90e5f2f4079c9a9130401ab7eae57",
   "routes": {
     "index": {
-      "version": "670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee",
-      "url": "snapshots/670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee/index.html",
-      "sha256": "ba73252cdf72ae54b5ac8d70c0fc29e98fe0c21d80d5ebe55769fccb134427d0"
+      "version": "6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62",
+      "url": "snapshots/6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62/index.html",
+      "sha256": "1d13e761bea66fbed7a9b7c76f34ebb421dc17108e4ec33fa9d69ab528de82b9"
     },
     "research": {
-      "version": "ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788",
-      "url": "snapshots/ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788/research.html",
-      "sha256": "feca38475a9f8442a58299b2be80afddf83cdc60fcae14add964c38eda5b70cf"
+      "version": "6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3",
+      "url": "snapshots/6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3/research.html",
+      "sha256": "5d02225b293c63670fefbeba6bc3c21ee54e7d8a02cc8e7ac3533aa5bc202b33"
     },
     "writing": {
       "version": "c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428",
@@ -38,9 +38,9 @@
       "sha256": "79b8e4c72c8413349bd8310add43fb1afa279279f89e547d35df9a7beda6e4da"
     },
     "credits": {
-      "version": "0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb",
-      "url": "snapshots/0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb/credits.html",
-      "sha256": "b8e572507633ab897fd425190acd8b95f072e57fb7a4239758e7137d4f77924e"
+      "version": "59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e",
+      "url": "snapshots/59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e/credits.html",
+      "sha256": "73e88cb1ffafc6c286232ae1990a991826be47b942901813e0660d0fb65ccf89"
     }
   }
 }

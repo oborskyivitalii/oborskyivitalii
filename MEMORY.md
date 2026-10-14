@@ -1,12 +1,12 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-12**.
+Dated continuity, not live authority. Last verified: **2026-10-14**.
 
 ## Snapshot
 
-- Main checkpoint is `fd3dea5b2271123468560e1eb4dc3f0aa056b6b2` after PR78.
-  Its tree equals admitted sourcebe6439b; ordinary run38234626344 passed the
-  bounded gate, Cloudflare stable and Pages mirror, then fresh Staging admission.
+- Main checkpoint is `cc115c4241197d59205934bdc18f209109d5ee87` after PR77.
+  Its tree equals admitted `0820a951b17f375bca61aea4e70785dbb9376468`;
+  ordinary run38239942377 passed both-host staging and fresh admission.
 - [#76 / PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77)
   implements outside Appearance dismissal, continuous prepared-room fades,
   repeatable downward entry and five distinct shared fractal compositions.
@@ -14,8 +14,8 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   and explicitly authorized main plus stable staging. Admission-only follow-up
   preserves its authored/generated public bytes. PR78 supplied the necessary
   exact Color registry on protected main without changing that main's site.
-  Runtime PR77 updates from this checkpoint for its own fresh admission;
-  final tested source/tree, both-host runs and merge identity belong in #76.
+  Runtime PR77 is merged at the current main checkpoint; its exact
+  source/tree, both-host runs and remaining acceptance belong in live #76.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -32,6 +32,11 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
   complete administration, stable accepted revision and production remain distinct.
 
 ## Decisions
+
+- On14October the maintainer requested PR68 rebase onto current main and a
+  fresh Draft preview. Preserve exact author-first and public-discussion content,
+  import main runtime/controllers unchanged and regenerate outputs. Current
+  evidence belongs in #41 and its dated rebase record; no merge/stable request.
 
 - Issue76 preview-first phase is visually approved. The12October instruction
   authorizes ready-source checks, ordinary stable staging and merge of the
@@ -67,18 +72,18 @@ Dated continuity, not live authority. Last verified: **2026-10-12**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #76 / PR77 | Approved runtime promotion through fresh source/hosted checks and ordinary two-host staging; verify final state, source/tree and closure in the live issue. |
+| #76 / merged PR77 | Current main contains the admitted runtime; original remaining device/review acceptance stays in the live issue. |
 | #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
 | #72 | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
 | #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |
-| #41 / Draft PR68 | Separate editorial and author-first intent; no task merge is inferred. |
+| #41 / Draft PR68 | Owner-authorized main rebase and fresh prototype preview; verify new source/preview in live issue, preserve pending original/manual gates. |
 | #39 / Draft PR40 | Canonical Pages/domain preparation and original release decisions. |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates. |
 | #7 / #5 / #6 / #2 / #11 | Rights, editions, adapters and post-launch guides. |
 
 ## Next session
 
-1. Revalidate current main, issue76/PR77 and their exact admission/merge evidence.
+1. Revalidate current main, issue41/PR68 and their new source/preview evidence.
 2. Treat the live owner as final authority for completion after this checkpoint.
 3. Preserve the approved public edition and current source/tree/package binding.
 4. Keep older device/lifecycle/cost/rights/release gates and failed attempts honest.

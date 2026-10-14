@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
-    "date": "2026-10-11",
-    "summary": "Rebase approved overlapping block phases and fixed reading camera onto reviewed main75 dual-runtime Color validation and authenticated unaccepted first-Pages recovery. Preserve every source/check/profile case and original budget; retain both motion branches, exact ledger entries, authored catalogs and current controls. Refresh exact coupled source identities after independent review; ordinary both-host admission, whole manual/device gates and production decisions remain separate."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/41",
+    "date": "2026-10-14",
+    "summary": "Owner-authorized PR68 rebase imports pinned current main runtime, controls, producer, workflows and quality helpers unchanged. Preserve exact editorial amendments, historical evidence and two scoped retained snapshot withdrawals. Reconcile 44 existing criteria, negative tests, catalog and coupled RI routes; fresh Draft preview packaging/HTTP is separate from ready source admission, browser/device review, staging and release."
   },
   "layers": [
     {
@@ -106,7 +106,13 @@
         "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
         ".github/acceptance/issue-76.json",
         "review/issue-76/2026-10-11-preview.md",
-        "review/issue-76/2026-10-12-admission.md"
+        "review/issue-76/2026-10-12-admission.md",
+        "review/issue-41/2026-10-10-arkadiy-content.md",
+        "review/issue-41/2026-10-10-arkadiy-amendment.json",
+        "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+        "review/issue-41/2026-10-10-editorial-browser.md",
+        "review/issue-41/2026-10-10-editorial-correction-review.md",
+        "review/issue-41/2026-10-14-rebase-preview.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -474,7 +480,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "d061f55906a1cd82589b5601faf0807c7f993a8fcd7155a8b44197e894f91c93",
+    "digest": "4a16ca92a2b4f72fa5ddaa530f732e7acdb3181244e7b9f885f8c548ede86a86",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -510,7 +516,7 @@
       },
       {
         "path": ".github/acceptance/issue-41.json",
-        "sha256": "5d79585dcd7bc927487b381769352becd9900715b3c8ca5dd9b75e06ae4ec3d5"
+        "sha256": "4e78be182f598830e7e52b200fa5317cb402c2f3fe1f8083a4fcbfe81bddb0da"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -566,7 +572,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
+        "sha256": "03372e9198b59b6bc69895e4c767488b5d379788e22f9ec9ffb22b43fd62a9b2"
       },
       {
         "path": ".github/repository-layout.json",
@@ -574,7 +580,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "f6a58106a2e48dcb590d4c3bc4c46a45a9713a72de564afaaa6896f493c8d94f"
+        "sha256": "4e63e26db3d070893371f3be46999e4d468046a96fffa6f79b807c44d826d1bd"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -714,7 +720,7 @@
       },
       {
         "path": "tests/test_issue41_acceptance.py",
-        "sha256": "809977718e2c32a2a7f62fedbd2f42f82419fbc37b0a75b6c6eb9c4a96f005ee"
+        "sha256": "c086083d7f1ef3950e7f9a6aea92da7372d18e71c65bd2544f398d11fb9b3245"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -802,7 +808,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "12afa0f09db2f7574398bcb1331d7edf4df08e8720b5cfa2492879a305e1db3c"
+        "sha256": "c9f6a07c443c78082c3fc52a754b365ce449f47d12f6a2d30dd62d5ce062ed5d"
       },
       {
         "path": "tools/repository_intelligence.py",

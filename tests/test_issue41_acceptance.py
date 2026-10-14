@@ -10,6 +10,10 @@ the historical hidden-card decision without claiming new personal approval.
 The author-first Home successor reverses five exact fragments before those
 historical checks; its current role, opportunity and claim boundaries are tested
 separately without changing any existing criterion or manual gate.
+The 2026-10-14 maintainer-requested rebase imports the exact current main runtime
+and workflow sources while preserving the complete prior editorial content.
+Historical bases and amendments remain immutable; current scope is checked
+against the separately pinned main and prior PR sources.
 Source reading, editorial/independent review, browser observations and merge
 are separate gates; structural copy assertions do not prove factual truth.
 """
@@ -40,6 +44,38 @@ ARKADIY_TOPIC = 'review/issue-41/2026-10-10-arkadiy-topic-amendment.json'
 ARKADIY_TOPIC_BASE = 'ca4ee44e50c70cb036ccca3fa6d97d7108ecd423'
 AUTHOR_FIRST = 'review/issue-41/2026-10-10-author-first-amendment.json'
 AUTHOR_FIRST_BASE = 'e9d273af872e442785a9f183cf23fc31bc877d52'
+REBASE_MAIN = 'cc115c4241197d59205934bdc18f209109d5ee87'
+REBASE_EDITORIAL_HEAD = 'd8f63d63cb3280242d3e9d075404d8d4caa32842'
+REBASE_EDITORIAL_PATHS = {
+    *[
+        f'site/content/pages/index/{block}.json'
+        for block in ['hero', 'help', 'about', 'contact', 'main']
+    ],
+    'site/content/pages/index/acknowledgements.json',
+    'site/content/pages/research/acknowledgements.json',
+    'site/content/pages/credits/main.json',
+    'site/templates/pages/index/acknowledgements.html',
+    'site/templates/pages/research/acknowledgements.html',
+}
+REBASE_CRITERIA = {'AC05', 'AC16', 'AC24', 'AC33', 'AC34', 'AC35', 'AC39', 'AC42', 'AC43', 'AC44'}
+REBASE_SCOPE = (
+    'The 14 October 2026 maintainer-requested rebase supersedes the older current-runtime '
+    'freeze only: runtime, scenes, routes, producer, templates outside the ten existing '
+    'editorial owners, and all workflows must match pinned main '
+    'cc115c4241197d59205934bdc18f209109d5ee87. The ten existing authored editorial owners '
+    'remain byte-exact to prior PR68 head d8f63d63cb3280242d3e9d075404d8d4caa32842; '
+    'historical amendment bases, fragments and proof destinations are unchanged. '
+    'Only the two already withdrawn historical retained snapshots remain absent; every '
+    'other main retained input is preserved. Canonical generation and exact whole-page '
+    'restoration protect current main semantics; only generated route identities vary. '
+    'Current main named stationary-camera, flight, history and lifecycle cases are reused '
+    'without changing their behavior or budgets. All 44 criterion IDs, intents, check/gate '
+    'mappings, 28 named checks and nine gate objects remain intact. Current main scheduling '
+    'applies: Draft prototype validates package/public/snapshot/script/HTTP identity; '
+    'source, RI, owning-policy and hosted-browser admission remains deferred until ready. '
+    'A fresh Draft preview supplies no readiness, independent/human, device, rights, '
+    'staging, merge, production or whole-issue closure acceptance.'
+)
 ARKADIY_PROFILE = 'https://www.linkedin.com/in/arkadiydobkin/'
 PUBLIC_RESPONSES_NOTE = (
     'These entries summarize public discussions of specific publications. They do not imply '
@@ -457,6 +493,65 @@ process.stdout.write(JSON.stringify({pages,baseline,changes:record.changes.map(c
     )
 
 
+def git_source_blobs(ref, prefixes):
+    rows = subprocess.check_output(['git', 'ls-tree', '-r', '-z', ref, '--', *prefixes], cwd=ROOT)
+    return {
+        path.decode(): metadata.split()[2].decode()
+        for row in rows.split(b'\0')
+        if row
+        for metadata, path in [row.split(b'\t', 1)]
+    }
+
+
+def working_source_blobs(prefixes):
+    files = set()
+    for prefix in prefixes:
+        owner = ROOT / prefix
+        if owner.is_dir():
+            files.update(path for path in owner.rglob('*') if path.is_file())
+        elif owner.is_file():
+            files.add(owner)
+    result = {}
+    for path in files:
+        content = path.read_bytes()
+        blob = b'blob ' + str(len(content)).encode() + b'\0' + content
+        result[str(path.relative_to(ROOT))] = hashlib.sha1(blob).hexdigest()
+    return result
+
+
+def validate_rebase_sources(actual, expected):
+    require(actual.keys() == expected.keys(), 'undeclared or missing rebase source owner')
+    require(actual == expected, 'rebase changed protected main or exact editorial source bytes')
+
+
+def rebased_semantic_projection():
+    """Restore only the eight admitted editorial fragments onto current main."""
+    script = r"""
+const fs = require('node:fs');
+const cp = require('node:child_process');
+const {normalizeHTML,restoreContentAmendment} = require('./tools/check_site_seo.cjs');
+const {sourceForPreview} = require('./tools/build_site_previews.cjs');
+const normalize = html => normalizeHTML(sourceForPreview(html));
+const records = ['author-first','arkadiy-topic','arkadiy'].map(name =>
+  require('./review/issue-41/2026-10-10-'+name+'-amendment.json'));
+const pages = {}, baseline = {};
+for(const page of ['index','research','writing','talks','credits']) {
+  pages[page] = normalize(fs.readFileSync('docs/'+page+'.html','utf8'));
+  for(const record of records) pages[page] = restoreContentAmendment(pages[page],page,record);
+  baseline[page] = normalize(cp.execFileSync('git',[
+    'show',process.argv[1]+':docs/'+page+'.html'
+  ],{encoding:'utf8'}));
+  for(const state of [pages,baseline]) {
+    const identity = /<meta name="site-route" content="[a-f0-9]{64}">/g;
+    if([...state[page].matchAll(identity)].length !== 1) throw Error('one route identity');
+    state[page] = state[page].replace(identity,'[generated route identity]');
+  }
+}
+process.stdout.write(JSON.stringify({pages,baseline}));
+"""
+    return json.loads(subprocess.check_output(['node', '-e', script, REBASE_MAIN], cwd=ROOT))
+
+
 def arkadiy_projection():
     """Render canonical sources and compare immutable original/previous compositions."""
     script = r"""
@@ -857,50 +952,29 @@ class Issue41ImplementationTests(unittest.TestCase):
         amendment = json.loads((ROOT / ARKADIY).read_text())
         changes = amendment['runtimeChanges']
         self.assertEqual([row['path'] for row in changes], ['site/engine/lifecycle.cjs'])
-        admitted = {row['path']: row for row in changes}
-        entries = subprocess.check_output(
-            ['git', 'ls-tree', '-r', '-z', RUNTIME_BASE, '--', *UNCHANGED], cwd=ROOT
-        )
-        files = [r.split(b'\t', 1)[1].decode() for r in entries.split(b'\0') if r]
-        self.assertGreater(len(files), 10)
-        actual = set()
-        for prefix in UNCHANGED:
-            target = ROOT / prefix
-            if target.is_dir():
-                actual.update(str(p.relative_to(ROOT)) for p in target.rglob('*') if p.is_file())
-            else:
-                actual.add(prefix)
-        self.assertEqual(set(files), actual)
-        for path in files:
-            current = (ROOT / path).read_bytes()
-            expected = subprocess.check_output(['git', 'show', f'{RUNTIME_BASE}:{path}'], cwd=ROOT)
-            if path in admitted:
-                change = admitted[path]
-                self.assertEqual(hashlib.sha256(expected).hexdigest(), change['beforeSHA256'])
-                self.assertEqual(hashlib.sha256(current).hexdigest(), change['afterSHA256'])
-                self.assertNotEqual(
-                    current, expected, 'authorized scroll removal must be substantive'
+        # The older scroll-camera successor is immutable historical evidence;
+        # it must not replace the newer accepted main renderer or controller.
+        for change in changes:
+            for ref, state in [(RUNTIME_BASE, 'before'), (AUTHOR_FIRST_BASE, 'after')]:
+                content = subprocess.check_output(
+                    ['git', 'show', f"{ref}:{change['path']}"], cwd=ROOT
                 )
-                continue
-            if path == '.github/workflows/issue-acceptance.yml':
-                # Raw-head CI initially failed with ENOENT for the existing
-                # format-parity Python owner: only issue58 installed its tools.
-                # Admit exactly this installation selector/name repair; the
-                # pinned commands, other steps, triggers and all gates remain
-                # in the whole-file byte comparison below.
-                before = (
-                    b'      - name: Install pinned tools for the selected refactoring policy\n'
-                    b"        if: env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json'\n"
-                )
-                after = (
-                    b'      - name: Install pinned tools for selected acceptance policies\n'
-                    b'        if: >-\n'
-                    b"          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json' ||\n"
-                    b"          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json'\n"
-                )
-                self.assertEqual(expected.count(before), 1, 'one immutable setup selector')
-                expected = expected.replace(before, after)
-            self.assertEqual(current, expected, path)
+                self.assertEqual(hashlib.sha256(content).hexdigest(), change[state + 'SHA256'])
+        expected = git_source_blobs(REBASE_MAIN, UNCHANGED)
+        actual = working_source_blobs(UNCHANGED)
+        self.assertGreater(len(expected), 10)
+        validate_rebase_sources(actual, expected)
+        mutations = [
+            lambda rows: rows.update({'site/engine/lifecycle.cjs': '0' * 40}),
+            lambda rows: rows.update({'.github/workflows/issue-acceptance.yml': '0' * 40}),
+            lambda rows: rows.pop('site/engine/navigation.js'),
+            lambda rows: rows.update({'site/engine/undeclared.js': '0' * 40}),
+        ]
+        for index, mutate in enumerate(mutations):
+            rows = actual.copy()
+            mutate(rows)
+            with self.subTest(mutation=index), self.assertRaises(ValueError):
+                validate_rebase_sources(rows, expected)
 
     def test_arkadiy_canonical_copy_preserves_topics_public_sources_and_formulation_provenance(
         self,
@@ -1118,8 +1192,8 @@ class Issue41ImplementationTests(unittest.TestCase):
         node_suite_checks(
             'tests/space.test.cjs',
             [
-                'native scroll keeps each route camera steady while bounded ambient motion continues',
-                'Writing filters and reflow preserve the steady route view',
+                'all routes keep a stationary reading camera through forward and reverse native scroll',
+                'Writing filters, reflow and empty restoration retain its stationary reading pose',
             ],
         )
 
@@ -1128,7 +1202,7 @@ class Issue41ImplementationTests(unittest.TestCase):
             'tests/space.test.cjs',
             [
                 'route flights use one canvas and global space; retarget, Off and hidden preserve the painted pose',
-                'history and fragment landings fly to the steady route view independently of native offset',
+                'history and fragment landings use the fixed destination pose before native content mount',
             ],
         )
         node_suite_checks(
@@ -1145,7 +1219,7 @@ class Issue41ImplementationTests(unittest.TestCase):
                 'Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print',
                 'reduced overrides saved On; Off persists; hidden and print pause without elapsed-time catch-up',
                 'delayed CSS cannot partially activate; post-activation draw failure stops once',
-                'rapid scroll reversal cannot move a steady camera on any route',
+                'all routes keep a stationary reading camera through forward and reverse native scroll',
             ],
         )
 
@@ -1255,41 +1329,39 @@ class Issue41ImplementationTests(unittest.TestCase):
                 'existing local anchors remain stable',
             )
             restored['index'] = restored['index'].replace(change['after'], change['before'])
-        # The content-addressed route hash changes with Home copy. Admit only
-        # that existing generated identity; metadata and raw JSON-LD stay exact.
-        route_identity = r'<meta name="site-route" content="[a-f0-9]{64}">'
-        baseline = dict(projection['baseline'])
-        for pages in [restored, baseline]:
-            self.assertEqual(len(re.findall(route_identity, pages['index'])), 1)
-            pages['index'] = re.sub(
-                route_identity, '[generated Home route identity]', pages['index']
-            )
-        self.assertEqual(restored, baseline, 'only five declared Home fragments change')
+        # Rebase imports main's current shell, effects and fallback geometry.
+        # Reverse all existing editorial successors before comparing complete
+        # pages with that exact main; only generated route identities may differ.
+        rebased = rebased_semantic_projection()
+        self.assertEqual(rebased['pages'], rebased['baseline'], 'undeclared current-main semantics')
 
         mutable = {
             f'site/content/pages/index/{block}.json'
             for block in ['hero', 'help', 'about', 'contact', 'main']
         }
-        # The output lock is generated from those owners; all other site source
-        # and retained bytes, including metadata, templates and runtime, stay exact.
-        source_rows = subprocess.check_output(
-            ['git', 'ls-tree', '-r', AUTHOR_FIRST_BASE, '--', 'site'], cwd=ROOT, text=True
-        ).splitlines()
-        protected = set()
-        for row in source_rows:
-            metadata, path = row.split('\t', 1)
-            if path in mutable or path == 'site/output-lock.json':
-                continue
-            protected.add(path)
-            content = (ROOT / path).read_bytes()
-            git_blob = b'blob ' + str(len(content)).encode() + b'\0' + content
-            self.assertEqual(hashlib.sha1(git_blob).hexdigest(), metadata.split()[2], path)
-        self.assertTrue(protected)
-        self.assertEqual(
-            {str(path.relative_to(ROOT)) for path in (ROOT / 'site').rglob('*') if path.is_file()},
-            protected | mutable | {'site/output-lock.json'},
-            'no undeclared source owner or generated source is introduced',
-        )
+        expected_sources = git_source_blobs(REBASE_MAIN, ['site'])
+        editorial_sources = git_source_blobs(REBASE_EDITORIAL_HEAD, ['site'])
+        for path in REBASE_EDITORIAL_PATHS | {'site/retained/manifest.json'}:
+            expected_sources[path] = editorial_sources[path]
+        historical = json.loads((ROOT / ARKADIY).read_text())
+        for row in historical['withdrawnRetained']:
+            expected_sources.pop('site/retained/' + row['path'])
+        actual_sources = working_source_blobs(['site'])
+        # Canonical freshness/build checks bind the generated lock separately.
+        self.assertIn('site/output-lock.json', actual_sources)
+        expected_sources.pop('site/output-lock.json')
+        actual_sources.pop('site/output-lock.json')
+        validate_rebase_sources(actual_sources, expected_sources)
+        mutations = [
+            lambda rows: rows.update({'site/content/pages/index/hero.json': '0' * 40}),
+            lambda rows: rows.update({'site/templates/shell.html': '0' * 40}),
+            lambda rows: rows.update({'site/content/undeclared.json': '0' * 40}),
+        ]
+        for index, mutate in enumerate(mutations):
+            rows = actual_sources.copy()
+            mutate(rows)
+            with self.subTest(mutation=index), self.assertRaises(ValueError):
+                validate_rebase_sources(rows, expected_sources)
         for path in mutable:
             prior = json.loads(
                 subprocess.check_output(['git', 'show', f'{AUTHOR_FIRST_BASE}:{path}'], cwd=ROOT)
@@ -1308,19 +1380,24 @@ class Issue41ImplementationTests(unittest.TestCase):
             )
         policy_path = '.github/acceptance/issue-41.json'
         prior_policy = json.loads(
-            subprocess.check_output(['git', 'show', f'{AUTHOR_FIRST_BASE}:{policy_path}'], cwd=ROOT)
+            subprocess.check_output(
+                ['git', 'show', f'{REBASE_EDITORIAL_HEAD}:{policy_path}'], cwd=ROOT
+            )
         )
         current_policy = json.loads((ROOT / policy_path).read_text())
-        self.assertEqual(current_policy['criteria'][:35], prior_policy['criteria'])
+        self.assertEqual(len(current_policy['criteria']), 44)
+        for before, after in zip(prior_policy['criteria'], current_policy['criteria']):
+            expected_scope = before['automated_scope']
+            if before['id'] in REBASE_CRITERIA:
+                expected_scope += ' ' + REBASE_SCOPE
+            self.assertEqual(after['automated_scope'], expected_scope)
+            self.assertEqual(
+                {key: value for key, value in after.items() if key != 'automated_scope'},
+                {key: value for key, value in before.items() if key != 'automated_scope'},
+                'criterion IDs, intents, named checks and manual gates remain exact',
+            )
         self.assertEqual(current_policy['gates'], prior_policy['gates'])
-        self.assertEqual(
-            {key: current_policy['checks'][key] for key in prior_policy['checks']},
-            prior_policy['checks'],
-        )
-        self.assertEqual(
-            set(current_policy['checks']) - set(prior_policy['checks']),
-            {'AUTHOR-POSITIONING', 'AP-AMENDMENT', 'AP-NEGATIVES'},
-        )
+        self.assertEqual(current_policy['checks'], prior_policy['checks'])
 
     def test_author_first_role_funnel_guarantee_endorsement_and_contact_regressions_fail(self):
         home = positioning_projection(AUTHOR_FIRST, False, False)['pages']['index']

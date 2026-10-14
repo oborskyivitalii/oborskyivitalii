@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -105,13 +105,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -123,7 +123,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -135,13 +135,19 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-76.json": {
+      "kind": "file",
+      "purpose": "Issue76 preview-first interaction, continuous scene ink, repeat reading entry and shared composition AC mapping.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -469,6 +475,78 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -478,6 +556,102 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3": {
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/86d5ce9d287a27e651471d794cb635aef8ee87aad00e0b6166f7d1a1f2c1fdf0": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/86d5ce9d287a27e651471d794cb635aef8ee87aad00e0b6166f7d1a1f2c1fdf0/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -907,11 +1081,533 @@
       "role": "history",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "review/issue-41/2026-10-10-arkadiy-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-arkadiy-browser.md": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-arkadiy-content.md": {
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-arkadiy-topic-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue41 dated topic-first editorial correction and exact-source acceptance/review evidence; replaces the earlier hidden composition without changing the scroll camera.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-author-first-amendment.json": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first-baseline-inventory.json": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first-browser.md": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first-review.md": {
+      "kind": "file",
+      "purpose": "Independent AI exact-scope and rendered review of the author-first amendment; human/release approval remains separate.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-author-first.md": {
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/2026-10-10-editorial-browser.md": {
+      "kind": "file",
+      "purpose": "Issue41 dated topic-first editorial correction and exact-source acceptance/review evidence; replaces the earlier hidden composition without changing the scroll camera.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-editorial-correction-review.md": {
+      "kind": "file",
+      "purpose": "Issue41 independent review of the owner-directed canonical topic-first correction, public sources, exact current copy, visual evidence and preserved acceptance gates.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-review.md": {
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-10-scroll-camera.md": {
+      "kind": "file",
+      "purpose": "Issue41 authored fixed-camera reading behavior, exact source and focused check evidence.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/2026-10-14-rebase-preview.md": {
+      "kind": "file",
+      "purpose": "Dated owner-authorized PR68 rebase resolution, imported main identity, current-source verification and Draft preview boundary.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-41/arkadiy-review": {
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures": {
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/browser-observations.json": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/credits-review-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-index-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/launch-safe-research-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-index-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-1440-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-390-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-1440-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-390-card.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/captures/review-research-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/index": {
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/index/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/index/acknowledgements.json": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/research": {
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/research/acknowledgements.html": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/arkadiy-review/research/acknowledgements.json": {
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md"
+    },
+    "review/issue-41/author-first-captures": {
+      "kind": "directory",
+      "purpose": "Focused ordinary Color Home desktop/mobile Day/Night observations and lossless section captures.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/browser-observations.json": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-1440-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-day-390-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-1440-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-acknowledgements.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-contact.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-help.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
+    "review/issue-41/author-first-captures/index-night-390-hero.webp": {
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md"
+    },
     "review/issue-41/content-amendment.json": {
       "kind": "file",
       "purpose": "Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate.",
       "role": "history",
       "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-41/editorial-captures": {
+      "kind": "directory",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/browser-observations.json": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-day-1440-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-day-390-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-night-1440-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-night-390-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/index-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-day-1440-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-day-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-day-390-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-day-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-night-1440-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-night-1440.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-night-390-record.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
+    },
+    "review/issue-41/editorial-captures/research-night-390.webp": {
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md"
     },
     "review/issue-41/source-inventory.json": {
       "kind": "file",
@@ -987,7 +1683,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -1428,6 +2124,24 @@
       "purpose": "Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-76": {
+      "kind": "directory",
+      "purpose": "Issue76 dated preview analysis, review and current-source evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-76/2026-10-11-preview.md": {
+      "kind": "file",
+      "purpose": "Issue76 source-grounded preview analysis, self-review, acceptance and exact delivery observations.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-76/2026-10-12-admission.md": {
+      "kind": "file",
+      "purpose": "Issue76 independently reviewed exact Color runtime admission and controller-only staging integration prerequisite.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -6291,7 +7005,7 @@
     },
     "site/engine/lifecycle.cjs": {
       "kind": "file",
-      "purpose": "Single scene lifecycle/RAF, displayed-phase freeze and native-scroll progress.",
+      "purpose": "Single scene lifecycle/RAF, fixed route reading camera and separate page-to-page flights.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -6494,30 +7208,6 @@
       "owner": "site/README.md"
     },
     "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
-      "kind": "file",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
-      "kind": "directory",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
-      "kind": "file",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
-      "kind": "directory",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md"
-    },
-    "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
       "role": "history",
@@ -7113,7 +7803,7 @@
     },
     "tests/space.test.cjs": {
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for space.",
+      "purpose": "Behavioral fixed-camera native reading, route flights and lifecycle/freeze tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -8178,222 +8868,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    ".github/acceptance/issue-76.json": {
-      "kind": "file",
-      "purpose": "Issue76 preview-first interaction, continuous scene ink, repeat reading entry and shared composition AC mapping.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-76": {
-      "kind": "directory",
-      "purpose": "Issue76 dated preview analysis, review and current-source evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-76/2026-10-11-preview.md": {
-      "kind": "file",
-      "purpose": "Issue76 source-grounded preview analysis, self-review, acceptance and exact delivery observations.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/86d5ce9d287a27e651471d794cb635aef8ee87aad00e0b6166f7d1a1f2c1fdf0": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/86d5ce9d287a27e651471d794cb635aef8ee87aad00e0b6166f7d1a1f2c1fdf0/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "review/issue-76/2026-10-12-admission.md": {
-      "kind": "file",
-      "purpose": "Issue76 independently reviewed exact Color runtime admission and controller-only staging integration prerequisite.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
     }
   }
 }

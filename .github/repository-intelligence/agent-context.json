@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6f9c705a4a895da05783c3f4ecd7728dde08dbe03c29f3c385db3adb55d87e91",
+    "digest": "a388a4afad7352d847c86281c17005af28cefc86df2d9df214731386cf513476",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-41.json",
         "identity_mode": "content",
-        "sha256": "5d79585dcd7bc927487b381769352becd9900715b3c8ca5dd9b75e06ae4ec3d5"
+        "sha256": "4e78be182f598830e7e52b200fa5317cb402c2f3fe1f8083a4fcbfe81bddb0da"
       },
       {
         "path": ".github/acceptance/issue-45.json",
@@ -137,7 +137,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
+        "sha256": "03372e9198b59b6bc69895e4c767488b5d379788e22f9ec9ffb22b43fd62a9b2"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -151,12 +151,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f6a58106a2e48dcb590d4c3bc4c46a45a9713a72de564afaaa6896f493c8d94f"
+        "sha256": "4e63e26db3d070893371f3be46999e4d468046a96fffa6f79b807c44d826d1bd"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c3efa50ed241e664c5ae3d7c450eb37f93f36fcfbbcf42a580c46e4e31ac3143"
+        "sha256": "52d6cdf898744972b6a4377c65724f402d28ecebeb0d0ea8062425ba76454ab1"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -271,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "83ccd25848a04810fc0d0d19e9cb0385d06b2ee29f904c2b9617da780d7514dc"
+        "sha256": "fe61716b10c3668f1a859480c7c702b13a20665825e75d1915e28a561f576e02"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -320,12 +320,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "3167b610c1f203c523f58b794dd5d3ad3477d16aca71333f43434b06dc58ac2b"
+        "sha256": "49fc6edc94c40661a2e451d838fa893a068d8afceb8ff7cc0043539f50065eb8"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "26e0feb7cf9c5cea3ad501b70396eaf9d89c2aaab12febaa931338532cdeb893"
+        "sha256": "d3bc3eb0ba043bcee184fe46be1d3cec5f2f61bc15eac6e54a6f77ef6bea003b"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -355,7 +355,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "e4400d8237499679ddba06999b8a3f24f0f8d17971d265af53e86c813366cff1"
+        "sha256": "365271015f1f39bb98f100bb7145ac06fb706a1548e8a394b2c23895bd548550"
       },
       {
         "path": "docs/runtime/8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d/archive.js",
@@ -410,12 +410,7 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "471605a4d9353290fab7ffe92130d59f9dbc69f80d64afd17b0b03a5f0617426"
-      },
-      {
-        "path": "docs/snapshots/0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb/credits.html",
-        "identity_mode": "content",
-        "sha256": "b8e572507633ab897fd425190acd8b95f072e57fb7a4239758e7137d4f77924e"
+        "sha256": "063b83d799b67a05c26ce47c25c3c209e30fb6acd6b1f437a96e1b8dc263bf7e"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -423,9 +418,19 @@
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
       },
       {
-        "path": "docs/snapshots/670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee/index.html",
+        "path": "docs/snapshots/59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e/credits.html",
         "identity_mode": "content",
-        "sha256": "ba73252cdf72ae54b5ac8d70c0fc29e98fe0c21d80d5ebe55769fccb134427d0"
+        "sha256": "73e88cb1ffafc6c286232ae1990a991826be47b942901813e0660d0fb65ccf89"
+      },
+      {
+        "path": "docs/snapshots/6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62/index.html",
+        "identity_mode": "content",
+        "sha256": "1d13e761bea66fbed7a9b7c76f34ebb421dc17108e4ec33fa9d69ab528de82b9"
+      },
+      {
+        "path": "docs/snapshots/6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3/research.html",
+        "identity_mode": "content",
+        "sha256": "5d02225b293c63670fefbeba6bc3c21ee54e7d8a02cc8e7ac3533aa5bc202b33"
       },
       {
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
@@ -443,24 +448,9 @@
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
       },
       {
-        "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
-        "identity_mode": "content",
-        "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
-      },
-      {
-        "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
-        "identity_mode": "content",
-        "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
-      },
-      {
         "path": "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428/writing.html",
         "identity_mode": "content",
         "sha256": "5783f299370d1a55b9e36c0dd534345964f6b822d24b7ad7e2ea9ef0f34eab2c"
-      },
-      {
-        "path": "docs/snapshots/ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788/research.html",
-        "identity_mode": "content",
-        "sha256": "feca38475a9f8442a58299b2be80afddf83cdc60fcae14add964c38eda5b70cf"
       },
       {
         "path": "docs/space.js",
@@ -520,7 +510,7 @@
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "20d658138ec1a33112704a723ab6748b3f43e2f46b91ec6766a4149b2aaec5d5"
+        "sha256": "0c573d66ef75e79ceb472dd98fcee421ff9160635828a3f23a90f2e7e82bfc5a"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
@@ -535,12 +525,12 @@
       {
         "path": "guides/SITE-SEO.md",
         "identity_mode": "content",
-        "sha256": "0fdae538c48f47f0707e5d78267b2c0f7a3bd846423ea2fb6c582ba0026254fd"
+        "sha256": "3e9920720d4d84f865c5a873e1488f7a10d3bdeba6f9bd335422f0802e746021"
       },
       {
         "path": "guides/SITE-SOURCE-AUDIT.md",
         "identity_mode": "content",
-        "sha256": "e59ff9566eb472c84a2ec5a5e38097512b99f7a11741834f96e0c4b7a86518aa"
+        "sha256": "bf17a37a314475f52ef8afe6209bcaa9f87bc8844ab94b8c733d15ec5cb8c4e7"
       },
       {
         "path": "guides/SITE-STAGING.md",
@@ -748,9 +738,414 @@
         "sha256": "18e16092886b63870053ba7da5e6f1b3a4bbf73073f14c740ab63684589295b4"
       },
       {
+        "path": "review/issue-41/2026-10-10-arkadiy-amendment.json",
+        "identity_mode": "content",
+        "sha256": "82221ec42f8581a35fed7fc4ef2ed3a79a97a588878b855b2f75835c5f1d57d1"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-arkadiy-browser.md",
+        "identity_mode": "content",
+        "sha256": "f131d030be2328614f08b1737e46680f025ef66954882dee1541196356078cc1"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-arkadiy-content.md",
+        "identity_mode": "content",
+        "sha256": "e0dd6e207b4f60178fa91ec89f2a8b650b001f3ff9d7be1a3ce0fbb2b290f911"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+        "identity_mode": "content",
+        "sha256": "2022f352456ca68354a98a456b0155f656c8d53b922f60ce521b7e68b5696fed"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-author-first-amendment.json",
+        "identity_mode": "content",
+        "sha256": "00b9925072c70efba63102c7f2b22a1474c6f693f976621a8b5267b348902c4c"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-author-first-baseline-inventory.json",
+        "identity_mode": "content",
+        "sha256": "00bfcef8205cdb6a58bb9cc26a2b290874a7c4d71ca6c79d3c7f58fd3cbcbcab"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-author-first-browser.md",
+        "identity_mode": "content",
+        "sha256": "4ea570097b612a4717f96b119051c30b443a24341a122d77efaa71ecbb93ff85"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-author-first-review.md",
+        "identity_mode": "content",
+        "sha256": "d3cc1d1a2d69771b13c66bb3008c61e1a6acf65e9b661c6747bab8785d47a7ce"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-author-first.md",
+        "identity_mode": "content",
+        "sha256": "7fdf168cf1750fca08abe1d5a5e13b40a7ce10af899e8efdf11e16acf7fefb69"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-editorial-browser.md",
+        "identity_mode": "content",
+        "sha256": "a1418bdb04b9de0927ebf9b73969acace41e3bd65ce33f6fd48ead0d9b55a5a0"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-editorial-correction-review.md",
+        "identity_mode": "content",
+        "sha256": "378ab343ff2f38ecb72d63fdeaf28ba04dac1b697d1d4f457ee91b89a066a165"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-review.md",
+        "identity_mode": "content",
+        "sha256": "a5b92c2fa15983ea87b50351256154a0d4871603ae0de879c91fcc90da8d8bc6"
+      },
+      {
+        "path": "review/issue-41/2026-10-10-scroll-camera.md",
+        "identity_mode": "content",
+        "sha256": "0691b3a33f6436f1309ca85551415f46136b788ff7e4e1cbeb9dd235e650bd13"
+      },
+      {
+        "path": "review/issue-41/2026-10-14-rebase-preview.md",
+        "identity_mode": "content",
+        "sha256": "8b09b80516f6b188f0f610fceabcc2dd28af799df08a861099fe721ab8584bee"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/browser-observations.json",
+        "identity_mode": "content",
+        "sha256": "9638ba3297d6358b6f6e3490dcc01879fccc269b36f78acaa14b8d00fa9bb863"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "cde0cbdb64da8d9be595514a7a109aa3890226199f9548175ba88c6eca067e4e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "2f6f84ca84686fd3493bd3ef3d77ac2787a52068945b9aa711e5bc7dfac86d38"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "0673ea0943d19fb85b99201aacfe308400d61d7d69501ae7419c8dd65dffba06"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "52c2ccb7305a56a97d928e4e38fc382a7c48ab6773524223c59664228e75f95a"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "cde0cbdb64da8d9be595514a7a109aa3890226199f9548175ba88c6eca067e4e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "2f6f84ca84686fd3493bd3ef3d77ac2787a52068945b9aa711e5bc7dfac86d38"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "0673ea0943d19fb85b99201aacfe308400d61d7d69501ae7419c8dd65dffba06"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/credits-review-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "52c2ccb7305a56a97d928e4e38fc382a7c48ab6773524223c59664228e75f95a"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "7d64544a27fa5d2e1c5b7a820968a8912243b8290cb4aa661b40ee7a3ace348e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "3bb7a8964ce3d9b99c87c138f4d901d4bf4d6235231c5959b8a968c0917bb497"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "bfc5722d912098ca32afe38165a66e7cef6f4ce61624e615321294d335d6f20b"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "20cd3b944ae6e6cce5cbdefeb5ccb66dcf96439de3f6a4c5ff9844ec1e9e81c4"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "6c983ff7c2b23a4261d79cfa86117dc02f6131d4a9a3f5372ca6667912315488"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "f0146cc7c3bafdcca273f0041c8a42b708e6434c47476ed3de990a6e45acc252"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "6fc10f0ba118b3d45852ed2a6a5fa29c2ba4d9b58153a40240a91d71f7eb73b9"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "7293f484327d2aa6fe604ef5f92625097fa312c6c34528f3a8f56d3abdd01159"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-index-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "f2ab751e9f4b7547fc8cf622caa214ca6471a124e1edc3fe23e784d47fbb9b26"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-index-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "be9b7b810e7fbdb55411bbb365ee512e41c0f05746d5ebf87b46d9415643728c"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-index-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "9fcd4897ba32496840d385a6ca4b1910406a0973359621b03e93ae7febf0edad"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-index-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "bcb50d1ea3bbe0cd4dfe4bb9d04a617568988a404dc6378cd1028c67f7345318"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-day-1440-card.webp",
+        "identity_mode": "content",
+        "sha256": "24fc53133b682a92d32b6a9b9386581b5c7fac1a67230feeb4749fd2dfc6f0ea"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "7c633b314ab10fd9b5886ef1b276c2c8085ed731313d776b48d72f2a23fab07c"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-day-390-card.webp",
+        "identity_mode": "content",
+        "sha256": "513a543cc7314fdad1658451d7851d01f02cbf3c20212fdd3b50a27b04623bea"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "8c87eabbf7e07f7a8af8ce1a5089d3ebd47be2d4887b802a175e7a4e77e53afb"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-night-1440-card.webp",
+        "identity_mode": "content",
+        "sha256": "29302d41f5bc214d268e266357f5501fd2bdc8d94585fbaf9a28ba4400a31c3e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "45a971288e2484d990bc2c8b6227f1f891c4b7e6357292f6d2708f85f2602ed4"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-night-390-card.webp",
+        "identity_mode": "content",
+        "sha256": "6d0e5f0baa8fa7e6aea0d06c5a4f0f3bcb6c69b941eab79b48247fb8cfbeae4c"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/captures/review-research-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "61596ca6c4b277691d916bf4d5b12f25122171cf8f30d1c6a0a37320fda74d6e"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/index/acknowledgements.html",
+        "identity_mode": "content",
+        "sha256": "759c9ef0192668b0da7061cbb7ba3db6210b6b5d31ba2e8558fc0c62ccc715a6"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/index/acknowledgements.json",
+        "identity_mode": "content",
+        "sha256": "538366181a406aa726b9910526ab4583a3807ce99205810d9ab701ed42b71d83"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/research/acknowledgements.html",
+        "identity_mode": "content",
+        "sha256": "d14a1bf6f6c5f15234b7716bee095e949a9b2faf9b156d6b29b67dd2fa182943"
+      },
+      {
+        "path": "review/issue-41/arkadiy-review/research/acknowledgements.json",
+        "identity_mode": "content",
+        "sha256": "607d0e1e9a60eba4a75855e147955895e572f1dafecb1e48a1f30bf5632047b9"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/browser-observations.json",
+        "identity_mode": "content",
+        "sha256": "51cad2916f72a44feca52b82077d4ca4f30c5515e0374629767696ef74bb53b9"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-1440-acknowledgements.webp",
+        "identity_mode": "content",
+        "sha256": "844cf5240a69f09fe4c22b3929d5db571a7d493ee33fdad025b755ed2e962b7f"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-1440-contact.webp",
+        "identity_mode": "content",
+        "sha256": "968404398efb6c0e03aa81c6aafed752c8146e73a0fc198436b7d25b128c1b7d"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-1440-help.webp",
+        "identity_mode": "content",
+        "sha256": "392a00606cfc67c58412a86d8e37b0cd0332516acb79fcc18329f3d13adc8f56"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-1440-hero.webp",
+        "identity_mode": "content",
+        "sha256": "b60bc9a3acefa33b93e6bcbdd2a27a316e4d1f01d2822cd561fc107bf9285822"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-390-acknowledgements.webp",
+        "identity_mode": "content",
+        "sha256": "d09dd8bc044faeff71bca9db91058333ca6163dc8f5882143b966d65925a8696"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-390-contact.webp",
+        "identity_mode": "content",
+        "sha256": "5f32efba4fe801decda20e58b0d7b2a780119a46f772e8743ed4a37367c35122"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-390-help.webp",
+        "identity_mode": "content",
+        "sha256": "2e5cc23e24ec9f0055b37f88a3bff34fc1ec37940f3ad3ab1a6b66bfcec544b9"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-day-390-hero.webp",
+        "identity_mode": "content",
+        "sha256": "9c4f66d0b852d3f1af7d83dff5f5aaf85bd8e70f31a3ec07aaca64b5b8205b8f"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-1440-acknowledgements.webp",
+        "identity_mode": "content",
+        "sha256": "8cab777b4eaa9b89a31be04c0f2e0fc8062ecedf82120bf0c6f3edaee0ba73f4"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-1440-contact.webp",
+        "identity_mode": "content",
+        "sha256": "1b0ea2a7a13e6ab96e46ac35a912a5999bf3ca9ea4c8c25163101cb793655238"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-1440-help.webp",
+        "identity_mode": "content",
+        "sha256": "32d4e87b57c07e93eb506f80c0b0f7cd8502a626596273e941d4b6239a8ead59"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-1440-hero.webp",
+        "identity_mode": "content",
+        "sha256": "14dff492e21ede9f941acac401bcadb4e417f1c6910488cbf993ab2617b00982"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-390-acknowledgements.webp",
+        "identity_mode": "content",
+        "sha256": "889f451ef455d5bb250e09c59ae13e15786a8d5bc9ee76ee593101744a981528"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-390-contact.webp",
+        "identity_mode": "content",
+        "sha256": "54352cf1ffb86ec1b8efca3ae5594724306f4551239a45310ea9f2b94a404a3d"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-390-help.webp",
+        "identity_mode": "content",
+        "sha256": "3ac7023c84c962b9183156105f34483235300ffa60a9917937b52b01fae2dd80"
+      },
+      {
+        "path": "review/issue-41/author-first-captures/index-night-390-hero.webp",
+        "identity_mode": "content",
+        "sha256": "fdd0a30aa80c616638bb0e84b9771b7a5ad7ef1fc79e77872dc50eacc7f73555"
+      },
+      {
         "path": "review/issue-41/content-amendment.json",
         "identity_mode": "content",
         "sha256": "e73b0b0e754d238b5e42046ab6c11997ba0ecf5a059318cb2a6cd683f4742b7a"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/browser-observations.json",
+        "identity_mode": "content",
+        "sha256": "98393a4ef19f2eebf4611241006bd2037af6ccb7b797ec20c67520927b950dbb"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-day-1440-record.webp",
+        "identity_mode": "content",
+        "sha256": "ae06bd73fc001c4b14a4ac15ad48d31e8e58ba270f6c0ba8691e1cd01b0d4514"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "78ad0727d05f5a9d5de97bd25354fa2be483be55aafa70f70c52075e0991d28b"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-day-390-record.webp",
+        "identity_mode": "content",
+        "sha256": "f9b9647f856cf7f41beb3504ab2ec704c07afb95c7f2584e1a11ec5d1c89285f"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "36e55c7a4d584c843569bf873b5339dabdd4b7ea24ccf104c4d8f02856046f75"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-night-1440-record.webp",
+        "identity_mode": "content",
+        "sha256": "acd9c79f0c607e2028c5f796bdc5eb1e97bfe88ed7bc89b575f9073ae6159da3"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "c6c1ed4843b28f76044505921adee2215aeac5fc3c56a8dd9fa2dfeece897b02"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-night-390-record.webp",
+        "identity_mode": "content",
+        "sha256": "f8ad59ba1f5ad13ff6cb48fa6e056fc680c136f51c4109382a46b78cbc57d98f"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/index-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "f181a3c664b01b8735048ce2aecb8f1b6a68c34b052e594edb6747c9fa6fd5e3"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-day-1440-record.webp",
+        "identity_mode": "content",
+        "sha256": "2efcf3f2f54fd2e643111361535043887530dc3b2e6b17afadd1fb7436342e83"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-day-1440.webp",
+        "identity_mode": "content",
+        "sha256": "9b88b636c9ba91af2aa747ce59b79cbc1165581831c9ca1bdbb6124a371a8160"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-day-390-record.webp",
+        "identity_mode": "content",
+        "sha256": "dc3a1a93244e169fb2f5d50ff417ad5b87cf609b27ba0f47d462e82923388bc4"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-day-390.webp",
+        "identity_mode": "content",
+        "sha256": "da22b54626711d8092eb6694c85d030f25dd29e5c844438c61aabe84f2b8f9f3"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-night-1440-record.webp",
+        "identity_mode": "content",
+        "sha256": "da47664d45ccbdea7799c33bd6aead8e3e2c8d0144ec7377359931b7a9645147"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-night-1440.webp",
+        "identity_mode": "content",
+        "sha256": "d2f5481dec863be471ea4ed9f6e27a1c6c819ba95a0e7f60414a59063deb5b1f"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-night-390-record.webp",
+        "identity_mode": "content",
+        "sha256": "26c315c2782af80347e3cfae06bc11f23e4b1eb54687a7c8f8a102ad91d81394"
+      },
+      {
+        "path": "review/issue-41/editorial-captures/research-night-390.webp",
+        "identity_mode": "content",
+        "sha256": "4c17ca7d5714e2e51ac9e954fe86a68ec107b92e52a428c0feb3dcbdb75f10e4"
       },
       {
         "path": "review/issue-41/source-inventory.json",
@@ -4070,22 +4465,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "bdbe6b35e3faf0fc9ff7bfd10e47402f055a8b90c273a8acdeac056e64cac441"
+        "sha256": "c23c32806e7dc2d37a6cf83eda815e01f091e830008ddb1e70ad5d2ec5dcb950"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "a28751a5c426b131328a1aeb4a0a6c75e368b1319fe15a5f784b81e6d5d2eb8a"
+        "sha256": "fef251b27d932f8e540db2df368973b618ae9277b733dcbee39c7e094b479580"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "31df0d9565793400c8dd56adcce447e08a98abb2188ad4da536291001ddce741"
+        "sha256": "d7372f9f61897dab93cf408334b0d3bb027212e2a51cf8d1d7a845aad881b426"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "67a7480f96d04ace295c668054b184914ceae92b30674580db3a16df04cbb308"
+        "sha256": "2d37621d31013920ef1b19d9799f36b82ad36e98b3ff94b5da1bc42767d4d60e"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -4095,27 +4490,27 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "1823d7bb74a7a653b90244e757ca3130a7c01c3d3f62537460cc725754938fa8"
+        "sha256": "f379c351d236a39f09bc896c21ed854280d6eb5ad4f24b284efec52df3754d51"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "f9087ee1f805bea8900539a1e95acea3d14d80e8cc990d077ee6b17061b92a7b"
+        "sha256": "044e98b2cb063598c7b379614e68c22948c33bf89e2aaf13f0ebeeba2856d5a3"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "fa654bea53ebefaaae700dd1ce49c61f70da050d803e6c7f2b7f8f87c8d617b3"
+        "sha256": "3c5aece241af2cc1a419edd6c4378a63d9548c0aba2454ecf0ed17c63dcd4b54"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "65056788e9362d508983204f2234b4d01ae603e2e10f628ad94f5e5a450c0ce5"
+        "sha256": "4c90e1e2bc7a7ef9390c8dd28fe83d35d3e2cc317f076fbb3b693498c218ffba"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "8a5297e072bafeb4bab2d973fa475f617606b40a092118b54ff712e811819d17"
+        "sha256": "9180100d64cad9534360204596c62256f9a2b40cb26ee0cf94a09943a01378eb"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
@@ -4125,7 +4520,7 @@
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "da9bc99deedb65fc5e9f3ff17dd57846a50a19ee7317c4018eeb372d24f87b27"
+        "sha256": "cf476e87411127b3dfc47a0c6c09bf6a4ed03082996590b6df5dbc0176f63f69"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
@@ -4140,7 +4535,7 @@
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "94ea18fff3a82de054f853f800a3f849192503f94248eb70f63d442d0ab239eb"
+        "sha256": "0d36fdee8941ea5d530a84d776b579626838af9176f6ce5083b119813275b6f1"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
@@ -4155,7 +4550,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "f13783cfe87ab0653d539c6ff462ab389ce849b5296010dd4509709eb7c6ab23"
+        "sha256": "37390d1339ea819b3d12f0a6342175903ee17a3605b23ca3618031d067c0fa92"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -4210,7 +4605,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "f8fb66171d7f007adc62b856c30e9f61f8c74dc6d5b11da2d081ece6b93fd858"
+        "sha256": "e18cbcb808f8204971f71179ba409f8ceaca8c08b6a2d80ae976569369a1254f"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -4750,7 +5145,7 @@
       {
         "path": "site/content/pages/credits/main.json",
         "identity_mode": "content",
-        "sha256": "793b4964f23b84a3f4371dd10c3ec50e51dcd9195bda4894e1f821efcdc67bc5"
+        "sha256": "a7edc5c2f442403d8560050c71892564a3225997fc5cdaf598e7e408189dc60a"
       },
       {
         "path": "site/content/pages/credits/metadata.json",
@@ -4760,32 +5155,32 @@
       {
         "path": "site/content/pages/index/about.json",
         "identity_mode": "content",
-        "sha256": "9df3c00e6b5299b3083c3fa8237440228e7aafa4edcb8d5c42e961f7c62fc12b"
+        "sha256": "e216d331b23ebef8b1d6897bb66790fb9a14113a6986637376208432c71545ef"
       },
       {
         "path": "site/content/pages/index/acknowledgements.json",
         "identity_mode": "content",
-        "sha256": "8fed1590dd318882de2be332d13a8780bc91d2d96a2b92bae18d0053114c120d"
+        "sha256": "1e0420c20d78020d6b239727d87fb0f41953bfc1291e8e87bca2240b0590e967"
       },
       {
         "path": "site/content/pages/index/contact.json",
         "identity_mode": "content",
-        "sha256": "9041a7c800077c2a9df033a2cba95ab4607028b5de10a82afa59ab5a2385fce5"
+        "sha256": "2970236d14440430a0da5470960fc706367c27da4af255bbbc9756427460d4b7"
       },
       {
         "path": "site/content/pages/index/help.json",
         "identity_mode": "content",
-        "sha256": "2fddeaac967bcf1286c8113173284f07e60baa76ab8307172bbafd8ac1ac8649"
+        "sha256": "e3a5007df5c6bf93f550585081722e0a197fa9299be35fa090316896be00053f"
       },
       {
         "path": "site/content/pages/index/hero.json",
         "identity_mode": "content",
-        "sha256": "717f96efd2f829275da7981e455309af2d6f27f17fde4910d514497d74651022"
+        "sha256": "4bc0154a11b04d4cfc80ac7fc5eddad0bcd79db88ac18759b9bbabb7b8b3a400"
       },
       {
         "path": "site/content/pages/index/main.json",
         "identity_mode": "content",
-        "sha256": "8709c546052fef74ca280654bfbd6fef107439df1e79a8cb05175645c97f717a"
+        "sha256": "7112c8cd147fc5a1f21f2cb1022fadc95df50acc9cc1df155dc78b9fd548784a"
       },
       {
         "path": "site/content/pages/index/metadata.json",
@@ -4805,7 +5200,7 @@
       {
         "path": "site/content/pages/research/acknowledgements.json",
         "identity_mode": "content",
-        "sha256": "f2b12935aa11e41ccd721fd62d93bfda79abd76d00fe4f8fec380d394188f408"
+        "sha256": "af8f4040b2cc391f47f87e44575fa8835d4aca7d13eb956fca559f7d185ed33a"
       },
       {
         "path": "site/content/pages/research/intro.json",
@@ -4985,12 +5380,12 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "a7e12a8614cd07bfc33104ea85882507ee659cc01acd875375d386cfce136b23"
+        "sha256": "0259d44dfd8aaa17c0be5b858dbae07f85fb618b906709f48c3e457e2174cd1c"
       },
       {
         "path": "site/retained/manifest.json",
         "identity_mode": "content",
-        "sha256": "d42ad72f92a74c22795ca1dd4c98f2eaa49a798599469088491ef8bcefc10b47"
+        "sha256": "5bb6503889b235b9d2043c0587d991a9a022f3acb08088900d82f9afdd05f1f4"
       },
       {
         "path": "site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -5051,16 +5446,6 @@
         "path": "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
         "identity_mode": "content",
         "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736"
-      },
-      {
-        "path": "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
-        "identity_mode": "content",
-        "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
-      },
-      {
-        "path": "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
-        "identity_mode": "content",
-        "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
       },
       {
         "path": "site/routes.json",
@@ -5135,7 +5520,7 @@
       {
         "path": "site/templates/pages/index/acknowledgements.html",
         "identity_mode": "content",
-        "sha256": "013726bcf6cf5f03a06b16ac56044ba2e28132572765079a110b850c23231769"
+        "sha256": "97436129684d0f2f2a7cd5919644cb3974a8c60f9617ea84cfab5c8e1aa4bd70"
       },
       {
         "path": "site/templates/pages/index/contact.html",
@@ -5170,7 +5555,7 @@
       {
         "path": "site/templates/pages/research/acknowledgements.html",
         "identity_mode": "content",
-        "sha256": "cbc4842ee10d4c05ce5996ef240cd92587848d4b80fc2523656b1f124e549bda"
+        "sha256": "cd6491ea29207447e1c3aa8fd5473241adf0169710639bf251100135ca601d35"
       },
       {
         "path": "site/templates/pages/research/intro.html",
@@ -5325,7 +5710,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "c17eecef5c55c4d6ae5ab698f006c0be2b2bd09d4c5f584ca4efd7f1b337f938"
+        "sha256": "15b851dc71cb26afe451aa2309547391667ffc1fed3ab388f8236564a29e2639"
       },
       {
         "path": "tests/effects.test.cjs",
@@ -5555,7 +5940,7 @@
       {
         "path": "tests/test_issue41_acceptance.py",
         "identity_mode": "content",
-        "sha256": "809977718e2c32a2a7f62fedbd2f42f82419fbc37b0a75b6c6eb9c4a96f005ee"
+        "sha256": "c086083d7f1ef3950e7f9a6aea92da7372d18e71c65bd2544f398d11fb9b3245"
       },
       {
         "path": "tests/test_issue45_acceptance.py",
@@ -5735,7 +6120,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "af21b592bd6db9e085df2596c9d19328d3eba600a2644f597a52549f3b909373"
+        "sha256": "8370cfae6d6cbf119217434c939fa5ea91cc95429cbb3477ad899bfaafa182a1"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -6075,7 +6460,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "12afa0f09db2f7574398bcb1331d7edf4df08e8720b5cfa2492879a305e1db3c"
+        "sha256": "c9f6a07c443c78082c3fc52a754b365ce449f47d12f6a2d30dd62d5ce062ed5d"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6353,7 +6738,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
+    "config_sha256": "03372e9198b59b6bc69895e4c767488b5d379788e22f9ec9ffb22b43fd62a9b2"
   },
   "owners": [
     {
@@ -6580,6 +6965,18 @@
         "код стайл",
         "рефакторинг",
         "правила написання коду"
+      ]
+    },
+    {
+      "concern": "current author-first Home positioning and retained public-discussion boundaries",
+      "path": "guides/SITE-CONTENT-REVIEW.md",
+      "queries": [
+        "author-first",
+        "professional contribution",
+        "public responses",
+        "Arkadiy",
+        "позиціонування автора",
+        "публічна дискусія"
       ]
     }
   ],
@@ -7462,17 +7859,6 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb/credits.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -7484,15 +7870,37 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee/index.html",
+      "path": "docs/snapshots/59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e/credits.html",
       "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62/index.html",
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3/research.html",
+      "kind": "file",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
     },
     {
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
@@ -7528,28 +7936,6 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
       "path": "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428/writing.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -7559,17 +7945,6 @@
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788/research.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
     },
     {
       "path": "docs/space.js",
@@ -8199,6 +8574,710 @@
       "title": "Issue 41 — staging security follow-up, 9 October 2026"
     },
     {
+      "path": "review/issue-41/2026-10-10-arkadiy-amendment.json",
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-arkadiy-amendment.json"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-10 Arkadiy and stationary-scroll browser review"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "kind": "file",
+      "purpose": "Issue41 review-only consent-pending content sources, visual captures and dated exact-source evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue41 — 10 October 2026: Arkadiy discussion copy and reading camera"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-arkadiy-topic-amendment.json",
+      "kind": "file",
+      "purpose": "Issue41 dated topic-first editorial correction and exact-source acceptance/review evidence; replaces the earlier hidden composition without changing the scroll camera.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-arkadiy-topic-amendment.json"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-author-first-amendment.json",
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-author-first-amendment.json"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-author-first-baseline-inventory.json",
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-10-author-first-baseline-inventory.json"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-author-first-browser.md",
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-10 author-first Home browser review"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-author-first-review.md",
+      "kind": "file",
+      "purpose": "Independent AI exact-scope and rendered review of the author-first amendment; human/release approval remains separate.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-10 author-first independent review"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-author-first.md",
+      "kind": "file",
+      "purpose": "Dated same-PR author-first scope, source inventory and acceptance evidence; excluded from public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue41 — 2026-10-10 author-first positioning"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-editorial-browser.md",
+      "kind": "file",
+      "purpose": "Issue41 dated topic-first editorial correction and exact-source acceptance/review evidence; replaces the earlier hidden composition without changing the scroll camera.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-10 topic-led editorial browser review"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-editorial-correction-review.md",
+      "kind": "file",
+      "purpose": "Issue41 independent review of the owner-directed canonical topic-first correction, public sources, exact current copy, visual evidence and preserved acceptance gates.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — independent editorial correction review, 10 October 2026"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-review.md",
+      "kind": "file",
+      "purpose": "Issue41 exact-source review and rendered evidence, excluded from default public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue41 — independent source and policy review, 10 October 2026"
+    },
+    {
+      "path": "review/issue-41/2026-10-10-scroll-camera.md",
+      "kind": "file",
+      "purpose": "Issue41 authored fixed-camera reading behavior, exact source and focused check evidence.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 41 — 2026-10-10 scroll camera continuation"
+    },
+    {
+      "path": "review/issue-41/2026-10-14-rebase-preview.md",
+      "kind": "file",
+      "purpose": "Dated owner-authorized PR68 rebase resolution, imported main identity, current-source verification and Draft preview boundary.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "PR68 rebase and refreshed Draft preview — 14 October 2026"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/browser-observations.json",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-observations.json"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-launch-safe-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-launch-safe-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/credits-review-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "credits-review-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-index-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-index-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-index-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-index-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-index-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-research-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-research-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-research-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/launch-safe-research-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch-safe-research-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-index-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-index-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-index-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-index-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-index-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-index-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-index-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-index-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-day-1440-card.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-day-1440-card.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-day-390-card.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-day-390-card.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-night-1440-card.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-night-1440-card.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-night-390-card.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-night-390-card.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures/review-research-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review-research-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/index/acknowledgements.html",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "acknowledgements.html"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/index/acknowledgements.json",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "acknowledgements.json"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/research/acknowledgements.html",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "acknowledgements.html"
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/research/acknowledgements.json",
+      "kind": "file",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "acknowledgements.json"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/browser-observations.json",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-observations.json"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-1440-acknowledgements.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-1440-acknowledgements.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-1440-contact.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-1440-contact.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-1440-help.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-1440-help.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-1440-hero.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-1440-hero.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-390-acknowledgements.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-390-acknowledgements.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-390-contact.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-390-contact.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-390-help.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-390-help.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-day-390-hero.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-390-hero.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-1440-acknowledgements.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-1440-acknowledgements.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-1440-contact.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-1440-contact.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-1440-help.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-1440-help.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-1440-hero.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-1440-hero.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-390-acknowledgements.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-390-acknowledgements.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-390-contact.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-390-contact.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-390-help.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-390-help.webp"
+    },
+    {
+      "path": "review/issue-41/author-first-captures/index-night-390-hero.webp",
+      "kind": "file",
+      "purpose": "Focused author-first ordinary Home browser evidence with exact source and viewport limits.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-390-hero.webp"
+    },
+    {
       "path": "review/issue-41/content-amendment.json",
       "kind": "file",
       "purpose": "Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate.",
@@ -8208,6 +9287,193 @@
         "AGENTS.md"
       ],
       "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/browser-observations.json",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "browser-observations.json"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-day-1440-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-1440-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-day-390-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-390-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-night-1440-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-1440-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-night-390-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-390-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/index-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index-night-390.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-day-1440-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-day-1440-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-day-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-day-1440.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-day-390-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-day-390-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-day-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-day-390.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-night-1440-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-night-1440-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-night-1440.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-night-1440.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-night-390-record.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-night-390-record.webp"
+    },
+    {
+      "path": "review/issue-41/editorial-captures/research-night-390.webp",
+      "kind": "file",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research-night-390.webp"
     },
     {
       "path": "review/issue-41/source-inventory.json",
@@ -17397,7 +18663,7 @@
     {
       "path": "site/engine/lifecycle.cjs",
       "kind": "file",
-      "purpose": "Single scene lifecycle/RAF, displayed-phase freeze and native-scroll progress.",
+      "purpose": "Single scene lifecycle/RAF, fixed route reading camera and separate page-to-page flights.",
       "role": "source",
       "owner": "site/README.md",
       "instructions": [
@@ -17668,28 +18934,6 @@
         "AGENTS.md"
       ],
       "title": "credits.html"
-    },
-    {
-      "path": "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
-      "kind": "file",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
-      "path": "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
-      "kind": "file",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
     },
     {
       "path": "site/routes.json",
@@ -18640,7 +19884,7 @@
     {
       "path": "tests/space.test.cjs",
       "kind": "file",
-      "purpose": "Behavioral/adversarial tests and fixtures for space.",
+      "purpose": "Behavioral fixed-camera native reading, route flights and lifecycle/freeze tests.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -20661,16 +21905,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -20681,9 +21915,29 @@
       ]
     },
     {
-      "path": "docs/snapshots/670ece9c05fae99f93bf6dadc23939a00fb19337c33db6fdc6ea88383c43f9ee",
+      "path": "docs/snapshots/59805b6bacdcf6cdb03e183b1c4a52e6de68653a6bf70d10357ce0cd6319982e",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/6810870ebe02f5809621012ae112b90d14699251084d811762288c1bb942de62",
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/6b012cd827d70585fb9d5b00c6ca0b5859c7c25d5c03ace4f93a6e4273fb98c3",
+      "kind": "directory",
+      "purpose": "Generated immutable route/runtime output from the current canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -20721,37 +21975,7 @@
       ]
     },
     {
-      "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/c8208bce363a2b08b794182f0d43f4916f17d5dd21682548d1d97bf6d43df428",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/ddccd577113119cb2af9d51c6e4d049d25955bce76b7e6a51ba8d6ee9fdeb788",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
@@ -20896,6 +22120,66 @@
       "purpose": "Dated source inventory and content-authority analysis for the same-PR Sol handoff.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41/arkadiy-review",
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/captures",
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/index",
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41/arkadiy-review/research",
+      "kind": "directory",
+      "purpose": "Issue41 inactive historical review-only composition and captures, superseded by the owner-directed canonical topic-first editorial records; excluded from the active public build.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-arkadiy-content.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41/author-first-captures",
+      "kind": "directory",
+      "purpose": "Focused ordinary Color Home desktop/mobile Day/Night observations and lossless section captures.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-author-first.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-41/editorial-captures",
+      "kind": "directory",
+      "purpose": "Issue41 topic-first canonical editorial record browser captures and exact artifact/source observations; historical evidence, not an active content owner.",
+      "role": "history",
+      "owner": "review/issue-41/2026-10-10-editorial-browser.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -21632,26 +22916,6 @@
     },
     {
       "path": "site/retained/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68",
-      "kind": "directory",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "site/retained/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946",
-      "kind": "directory",
-      "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
-      "role": "history",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "site/retained/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7",
       "kind": "directory",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
       "role": "history",
