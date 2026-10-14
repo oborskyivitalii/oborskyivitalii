@@ -143,6 +143,16 @@ separately from typed staging gate reports and cannot replace their evidence.
 This explicit diagnostic does not add another full browser matrix or change
 the existing job/performance budgets.
 
+The same admitted PR79 browser jobs also execute `article-print.cjs` against the
+technical article fixture. It invokes the ordinary publisher CLI with `--pdf`,
+verifies the complete kit and PDF/manifest pair, and rejects review-only or
+mismatched browser/toolchain/source identities. The separate `site-article-print-*`
+artifact contains the actual PDF and source-bound report; typed site gate reports
+are unchanged. Existing synthetic print tests remain the cheap failure-contract
+suite, while real rendering uses the already installed managed Chromium once.
+Clean-checkout evidence preserves the draft's declared source status and cannot
+establish editorial, actual-publication, merge or permanent-staging acceptance.
+
 The existing analytics cold collector also keeps its live catalog in an
 isolated shared Git clone. Its offline producer receives the canonical
 publication adapter and locked parser dependency closure, so frozen accepted

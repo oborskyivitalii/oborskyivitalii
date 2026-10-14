@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e18e2cd2118515852fe648347d59c8e02e002e8676e0dee7f7189fa43476729b",
+    "digest": "7d99a9a3305579294ba3931bd947f6686b26e55ff4058f63a88ecf65e10fd8f5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b3bdd76270798569b3867238c2a83ae0defc71c1d71a7e514bba414873c72e04"
+        "sha256": "3289d9eb67cd3b8fb3717b060e2688124cd819e63100fa63d67d27c21cab2719"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "14b06b66ddeda18b3ffb0660bf57821ff7a49d67a37c57e810eef5ec2a395f29"
+        "sha256": "28c26fa1365394344489421b6e72724e9028dc031cf04ecdb11219ead4d0e0fc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -201,7 +201,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "e801ad1f5170e85e438ea8b2c38119acc72f120680e3b10794d9dcda7b80c30e"
+        "sha256": "febba073d58a998f9bd3289bd31c1fee69aff05194cee2bc5c07139b1d1f282b"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -236,7 +236,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "5dcf5b1e142dee3a53ac246d8dc87393cfed8a7dbdd86fd4e029936441721725"
+        "sha256": "bdbcd121973206be631b0b8503804b640636c283680cb51e2739ef60acc6f126"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "99dfe3580ffe47ca0d9409cb68a93a5484b1ec8c624d68c9e28398e888a265c0"
+        "sha256": "69db9cc603e8fb3617a8331acea97f330432e0ceb9298eff622e8bfc2be1f9cd"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -500,7 +500,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "9963d16d3582d5778be9429fe35e4dcfaa3c97772f0036c4a6f33b29619d2890"
+        "sha256": "20a7b5e6f83a837e567d021c14829920ea81660c41519d44a9013d7766b7368b"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -525,7 +525,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "a30f21248d34b3ce301e676c7a2c2b3f4d926d6f59d14a521c6c77a38e6c2e6b"
+        "sha256": "b3740abde3829496bdb54a47345d1c6bb62de20681ee1afaf21ef11cf23f91e1"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -926,6 +926,11 @@
         "path": "review/issue-5/2026-10-13-semgrep-first-failure.json.gz",
         "identity_mode": "content",
         "sha256": "ff59f5f71c097b65a45da9f14cb858eee84fec39ac97962d8e412550536d273d"
+      },
+      {
+        "path": "review/issue-5/2026-10-14-managed-print.md",
+        "identity_mode": "content",
+        "sha256": "312e9da6b399749ea7ddeccb9012d9d65334fe504d89ba315fac93ea8226402b"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5765,7 +5770,7 @@
       {
         "path": "tests/publishing-print.test.cjs",
         "identity_mode": "content",
-        "sha256": "40089667707bc6358605bba162c3ce25b0f829acc880d3a70f865a17391f456a"
+        "sha256": "a72bcf571392323872198c4908988e68c8c0da902f5c7c50c02a4cde38f35ca2"
       },
       {
         "path": "tests/publishing-profile.test.cjs",
@@ -6248,6 +6253,11 @@
         "sha256": "c16fbd059f5767f588ef8fdb0a4e0ed8176701e2bce7f6d9e421b6e7b85b72f2"
       },
       {
+        "path": "tools/quality/article-print.cjs",
+        "identity_mode": "content",
+        "sha256": "2e653cb850c0ed19dc00bafea5308459e5cca77d5c7bed9e968b1978da617961"
+      },
+      {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
         "sha256": "1db4fd8670b00654647467741c30cd05fbbf5836b4431ad45e65efadbd174cd4"
@@ -6560,7 +6570,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "a2a3f7a993aa2887aed75942a03d61a29d348c1b3df06f2278797e33bdf628ed"
+        "sha256": "f31e6d3720025744e58a8af19871bf01142696b508de3916c26b7aaec01dd1d1"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -9134,6 +9144,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-13-semgrep-first-failure.json.gz"
+    },
+    {
+      "path": "review/issue-5/2026-10-14-managed-print.md",
+      "kind": "file",
+      "purpose": "Issue5 managed PDF completion scope, exact-source rendering evidence, independent review and visual verification; no publication or stable promotion.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 5 - managed article PDF export"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",
@@ -20838,6 +20859,17 @@
         "AGENTS.md"
       ],
       "title": "article-browser.cjs"
+    },
+    {
+      "path": "tools/quality/article-print.cjs",
+      "kind": "file",
+      "purpose": "Explicit normal-CLI managed Chromium article PDF export, complete-kit and exact source/browser/toolchain identity verification with separate review artifacts.",
+      "role": "validator",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-print.cjs"
     },
     {
       "path": "tools/quality/artifact.cjs",

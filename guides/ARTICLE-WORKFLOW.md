@@ -132,8 +132,28 @@ environment because its CDN returned invalid empty archives. The inspected PDF
 candidate therefore uses an explicit review producer with the exact npm
 `@sparticuz/chromium` 153.0.0 archive, actual Chromium 153.0.8010.0 and recorded
 archive/package/binary hashes. It is marked `reviewOnly`; the default adapter has
-no browser substitution. A managed-browser job still needs its own successful
-installation and exact-source proof. PDF bytes are not claimed reproducible.
+no browser substitution. This historical candidate does not prove the normal
+managed-browser path. PDF bytes are not claimed reproducible.
+
+The explicit managed diagnostic runs the ordinary publisher CLI, then verifies
+the complete kit and actual PDF/manifest pair against the locked Playwright,
+Chromium version/revision, browser executable and source checksums:
+
+```sh
+node tools/publishing/toolchain/node_modules/playwright/cli.js install chromium
+node tools/quality/article-print.cjs pmday-two-shifts /tmp/article-print-review
+```
+
+It requires a clean exact checkout and preserves the fixture's declared
+`working-tree-review` provenance. Its separate report binds that checkout's commit
+and tree; it does not invent frozen commit/blob pins or editorial acceptance.
+The output directory contains the PDF, print manifest, kit manifest and report.
+The PR79 preview smoke and its explicitly selected bounded regression reuse their
+existing managed browser installation and upload these files as a separate
+`site-article-print-*` artifact. Draft prototypes defer this check. It does not
+change public output, stage aliases, browser matrices or existing job budgets.
+Exact successful run and visual-inspection status belong to
+[the managed-print record](../review/issue-5/2026-10-14-managed-print.md).
 
 `tools/publishing/origin.json` and `NOTICE.md` name the minimal extracted UA helper
 baseline, hashes, licenses and site changes. The Quartz bootstrap and Thinking

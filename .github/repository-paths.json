@@ -9078,6 +9078,18 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "tools/quality/article-print.cjs": {
+      "kind": "file",
+      "purpose": "Explicit normal-CLI managed Chromium article PDF export, complete-kit and exact source/browser/toolchain identity verification with separate review artifacts.",
+      "role": "validator",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-5/2026-10-14-managed-print.md": {
+      "kind": "file",
+      "purpose": "Issue5 managed PDF completion scope, exact-source rendering evidence, independent review and visual verification; no publication or stable promotion.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

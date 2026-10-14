@@ -553,6 +553,16 @@ jobs:
       - name: Exercise genuine content release on an isolated local fixture
         if: inputs.content_fixture
         run: node tools/quality/content-fixture.cjs "$RUNNER_TEMP/content-fixture-report.json"
+      - name: Export and verify the article PDF with locked managed Chromium
+        if: inputs.content_fixture
+        run: node tools/quality/article-print.cjs pmday-two-shifts "$RUNNER_TEMP/article-print"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && inputs.content_fixture
+        with:
+          name: site-article-print-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/article-print/
+          if-no-files-found: error
+          retention-days: 30
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always() && inputs.content_fixture
         with:

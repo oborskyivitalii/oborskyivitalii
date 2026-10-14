@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
-    "date": "2026-10-13",
-    "summary": "Issue5 automatic Writing collection/count and independent content release: verified unchanged platform, exact source-qualified baseline and retained decorated immutable closure; formal source-admitted content CI selection. Current runtime changes retain applicable full checks and budgets; PMDay is a test artifact and original editorial/publication gates remain open."
+    "date": "2026-10-14",
+    "summary": "Issue5 managed PDF completion: existing managed-browser jobs run normal publisher CLI and verify exact print source/toolchain/output; automatic Writing/content-release controls and original publication/release gates remain."
   },
   "layers": [
     {
@@ -125,7 +125,8 @@
         "review/issue-5/2026-10-13-local-source-second-failure.log.gz",
         "review/issue-5/2026-10-13-owning-first-failure.json.gz",
         "review/issue-5/2026-10-13-semgrep-first-failure.json.gz",
-        "review/issue-5/2026-10-13-content-browser-first.json.gz"
+        "review/issue-5/2026-10-13-content-browser-first.json.gz",
+        "review/issue-5/2026-10-14-managed-print.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -364,7 +365,8 @@
         "tools/site/content-release.cjs",
         "tools/site/public-artifact.cjs",
         "tests/content-release.test.cjs",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "tools/quality/article-print.cjs"
       ],
       "checks": [
         "authored-dependencies",
@@ -549,7 +551,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "feea2682a2f9e2727748ced4657100d2baac9b81048e3dcdb83b3b629b19e743",
+    "digest": "e44693d5cc8fbcb287480a17ab2a01da0d046ef5807f04595ade2335b277d647",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -653,7 +655,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b3bdd76270798569b3867238c2a83ae0defc71c1d71a7e514bba414873c72e04"
+        "sha256": "3289d9eb67cd3b8fb3717b060e2688124cd819e63100fa63d67d27c21cab2719"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -685,7 +687,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "e801ad1f5170e85e438ea8b2c38119acc72f120680e3b10794d9dcda7b80c30e"
+        "sha256": "febba073d58a998f9bd3289bd31c1fee69aff05194cee2bc5c07139b1d1f282b"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -713,7 +715,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "5dcf5b1e142dee3a53ac246d8dc87393cfed8a7dbdd86fd4e029936441721725"
+        "sha256": "bdbcd121973206be631b0b8503804b640636c283680cb51e2739ef60acc6f126"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -749,7 +751,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "a30f21248d34b3ce301e676c7a2c2b3f4d926d6f59d14a521c6c77a38e6c2e6b"
+        "sha256": "b3740abde3829496bdb54a47345d1c6bb62de20681ee1afaf21ef11cf23f91e1"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -885,7 +887,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "a2a3f7a993aa2887aed75942a03d61a29d348c1b3df06f2278797e33bdf628ed"
+        "sha256": "f31e6d3720025744e58a8af19871bf01142696b508de3916c26b7aaec01dd1d1"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -1756,7 +1756,7 @@
     {
       "path": "tests/publishing-print.test.cjs",
       "language": "javascript",
-      "purpose": "Print source/resource limits, provenance, typed CLI and PDF/manifest rollback negatives; actual visual PDF remains separate",
+      "purpose": "Print resource/provenance/transaction and managed-evidence rejection cases; real default-browser export remains a separate explicit browser diagnostic",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1766,7 +1766,8 @@
         "tests/publishing-print.test.cjs",
         "tools/publishing/**",
         "site/templates/articles/**",
-        "site/engine/article-print.css"
+        "site/engine/article-print.css",
+        "tools/quality/article-print.cjs"
       ]
     },
     {

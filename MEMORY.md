@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-13**.
+Dated continuity, not live authority. Last verified: **2026-10-14**.
 
 ## Snapshot
 
@@ -9,36 +9,23 @@ Dated continuity, not live authority. Last verified: **2026-10-13**.
   PR78's ordinary both-host admission remains historical evidence; live owner #76
   holds exact final runtime admission and merge evidence.
 - [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79)
-  remains the sole publisher/content-release route. Baseline was raw `e830752f`
-  (tree `b3e197df`); its earlier successful source/preview/stage runs are historical
-  evidence and do not admit the new 13 October implementation.
-  Author deferred the real PMDay article until author-approved chapters exist;
-  current manuscript/blueprint/exports are test artifacts. #2 AC01–AC06 stay open,
-  accepted recording AC07/AC08 preserved. No real article publication inferred.
-  New AC13–AC15: automatic Writing collection/count; independent verified content
-  release; formal content/platform CI selection. Writing currently has 29 public
-  records, alternate links count once; draft fixture stays outside the public count.
-  Raw platform now `0bd39d21`; two new closed Color tuples preserve 18 historical
-  ones. 50dda source727, RI, owning and actualpreview pass; managedcontent7cases
-  prove Writing+onearticle rebuilt, fourroutes/platform reused and noJS29rows.
-  Boundedstage source690/Python109, browser/performance pass; aggregatefails
-  solelySemgrep RegExp.exec falsepositive. One-line matchAll correction is
-  reviewed with53focusedcases+17equivalencecases. Full prepared security next
-  exposed219 public checksum candidates; bounded canonical generated proof and
-  exact authored/evidence dispositions preserve future content-only releases.
-  Prepared checksum27, lint and scoped Semgrep pass; frozen v1/v2+adaptation,
-  launch, 101 metadata edits, shared-context and symlink/config rejection pass.
-  Final agent proof review, full security243/Bandit36/secrets5043, lint266 and
-  repository109 pass in prepared source; exact new-head CI/stage rerun remain.
-  Published ebd source732 and owning10 pass; Navigation69/70 fails only
-  missing locked publisher install. Narrow installer correction passes70 locally;
-  fresh complete CI/stage pending. Earlier failures remain source-specific.
-  Commands/trust are in `guides/SITE-CONTENT-RELEASE.md`; continuation and review
-  in `review/issue-5/2026-10-13-content-release.md`. Normal content Basic/preview
-  can reuse only compatible, source-admitted complete CI generations. Missing,
-  incompatible or nonancestor baselines select explicit full builds. Prior served
-  decorated immutable closure is retained; delivery edition banners still rebind
-  source heads. Stable staging/production gates and original budgets remain.
+  is the sole publisher/content-release route. Verified baseline raw head
+  `8200297c41aa673017fe69cb797e9e5a0cc63311`, main `cc115c42`.
+  Baseline source732, navigation70, owning10, managed preview and bounded
+  regression38425085186 pass; no stable promotion, merge or production follows.
+  Writing29, automatic collection/count and independent verified content reuse
+  AC13-AC15 are accepted on that baseline. Earlier failed attempts remain failed.
+  The author on14October requested completion of the remaining managed PDF proof;
+  permanent staging is not required now. Local Chromium install again returned
+  invalid empty archives; default CLI correctly rejects the missing browser.
+  A separate normal-CLI print diagnostic is being wired into the existing managed
+  browser jobs, with exact checkout/browser/toolchain/source report and PDF pair.
+  New-source CI and visual PDF proof are pending; no alternative producer or
+  relaxed budget is admitted. Continue via `review/issue-5/2026-10-14-managed-print.md`.
+  Real PMDay waits for author-approved chapters; present manuscript/blueprint/
+  exports remain technical fixtures. #2 AC01-AC06 and original human/publication
+  gates remain open; accepted recording AC07/AC08 is preserved.
+  Commands/trust: `guides/ARTICLE-WORKFLOW.md`, `guides/SITE-CONTENT-RELEASE.md`.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -103,8 +90,8 @@ Dated continuity, not live authority. Last verified: **2026-10-13**.
 ## Next session
 
 1. Revalidate main and PR79 raw head, working tree, checks and candidate preview.
-   Use the execution continuation section and its current CI links; do not reuse
-   the failed 5a84ef6 source/preview attempts as admission.
+   Read the14October managed-print continuation and exact current CI links;
+   do not reuse historical or failed attempts as current admission.
 2. Continue #5 in PR79; use PMDay only as a technical test artifact. Real #2
    authoring waits for supplied chapters; preserve its accepted recording increment.
 3. Read exact-source execution, migration inventory and independent reviews in

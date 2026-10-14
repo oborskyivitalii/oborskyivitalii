@@ -604,3 +604,119 @@ test('relative CLI kit paths reach the named missing managed browser failure wit
     await assert.rejects(fs.stat(target), { code: 'ENOENT' });
   }
 });
+
+function managedEvidenceFixture() {
+  const expected = {
+    articleId: 'print-fixture',
+    editionId: 'review-edition',
+    selection: 'draft',
+    repositoryRoot: '/repository',
+    source: {
+      path: 'site/publications/print-fixture/manuscript.en.md',
+      sha256: '1'.repeat(64),
+      commit: null,
+      blob: null,
+      state: 'working-tree-review',
+    },
+    browser: {
+      version: '153.0.8010.0',
+      revision: '1234',
+      executableSha256: '2'.repeat(64),
+    },
+    toolchain: { playwrightVersion: '1.63.0', lockSha256: '3'.repeat(64) },
+  };
+  const kit = {
+    kind: 'article-render-artifact',
+    articleId: expected.articleId,
+    contentEdition: expected.editionId,
+    selection: 'draft',
+    source: { ...expected.source },
+    producer: { dependencyLockSha256: expected.toolchain.lockSha256 },
+    artifactId: '4'.repeat(64),
+  };
+  const printed = {
+    kind: 'article-pdf',
+    articleId: expected.articleId,
+    editionId: expected.editionId,
+    repositoryRoot: expected.repositoryRoot,
+    source: {
+      ...expected.source,
+      path: path.resolve(expected.repositoryRoot, expected.source.path),
+    },
+    render: {
+      browser: {
+        name: 'chromium',
+        ...expected.browser,
+        managedBrowser: true,
+        reviewOnly: false,
+      },
+      toolchain: { ...expected.toolchain },
+    },
+    pdf: { bytes: 2048, pages: 1, sha256: '5'.repeat(64) },
+    artifactId: '6'.repeat(64),
+  };
+  return { kit, printed, expected };
+}
+
+test('managed evidence binds the exact toolchain while preserving an unfrozen draft identity', () => {
+  const { validateEvidence } = require('../tools/quality/article-print.cjs');
+  const { kit, printed, expected } = managedEvidenceFixture();
+  const result = validateEvidence(kit, printed, expected);
+  assert.equal(result.selection, 'draft');
+  assert.deepEqual(result.source, expected.source);
+  assert.equal(result.source.state, 'working-tree-review');
+  assert.equal(result.source.commit, null);
+  assert.equal(result.source.blob, null);
+  assert.equal(result.browser.managedBrowser, true);
+  assert.equal(result.pdf.sha256, printed.pdf.sha256);
+});
+
+test('managed evidence rejects alternate browsers and mismatched binary, lock, edition and source', async (t) => {
+  const { validateEvidence } = require('../tools/quality/article-print.cjs');
+  for (const [name, mutate, message] of [
+    ['unmanaged', ({ printed }) => (printed.render.browser.managedBrowser = false), /managed/],
+    ['review-only', ({ printed }) => (printed.render.browser.reviewOnly = true), /review/],
+    ['wrong browser', ({ printed }) => (printed.render.browser.name = 'firefox'), /Chromium/],
+    [
+      'alternate package',
+      ({ printed }) => (printed.render.browser.package = { name: '@sparticuz/chromium' }),
+      /alternate/,
+    ],
+    ['wrong version', ({ printed }) => (printed.render.browser.version = '152.0.0.0'), /version/],
+    ['missing revision', ({ printed }) => (printed.render.browser.revision = null), /revision/],
+    [
+      'changed executable',
+      ({ printed }) => (printed.render.browser.executableSha256 = 'f'.repeat(64)),
+      /executableSha256/,
+    ],
+    [
+      'wrong Playwright',
+      ({ printed }) => (printed.render.toolchain.playwrightVersion = '1.62.0'),
+      /toolchain/,
+    ],
+    [
+      'wrong PDF lock',
+      ({ printed }) => (printed.render.toolchain.lockSha256 = 'f'.repeat(64)),
+      /toolchain/,
+    ],
+    [
+      'wrong kit lock',
+      ({ kit }) => (kit.producer.dependencyLockSha256 = 'f'.repeat(64)),
+      /toolchain/,
+    ],
+    ['wrong PDF source', ({ printed }) => (printed.source.sha256 = 'f'.repeat(64)), /source/],
+    ['wrong kit source', ({ kit }) => (kit.source.sha256 = 'f'.repeat(64)), /source/],
+    ['wrong edition', ({ printed }) => (printed.editionId = 'another-edition'), /edition/],
+    ['forged source pin', ({ printed }) => (printed.source.commit = 'f'.repeat(40)), /source/],
+    ['accepted draft', ({ kit }) => (kit.selection = 'accepted'), /publication status/],
+  ]) {
+    await t.test(name, () => {
+      const candidate = managedEvidenceFixture();
+      mutate(candidate);
+      assert.throws(
+        () => validateEvidence(candidate.kit, candidate.printed, candidate.expected),
+        message
+      );
+    });
+  }
+});
