@@ -412,3 +412,16 @@ contribution summaries, their exact public-record links, formulation provenance,
 research statuses and publication identities are preserved. Upstream UA/Subprime
 claims and protocols are unchanged. This is the maintainer's explicitly requested
 bounded profile context, not new research evidence integration.
+
+## Arkadiy discussion presentation — 2026-10-10
+
+The owner supplied revised Home/Research wording distinguishing the public
+Thinking Systems reading recommendation and two conditional propositions from
+the separately acknowledged earlier formulation influence. Original exact public
+post/profile/provenance URLs are retained in the review-only bounded source
+snapshots. The ordinary site composition omits both separate Arkadiy cards until
+a new owner confirmation of consent; old unlaunched retained Home/Research
+snapshots are withdrawn too. The article and upstream research record remain
+unchanged. A review preview or owner approval of copy is not third-party consent.
+No private messages, permission text, photographs or organizational logos are
+added. See [the task and evidence](../review/issue-41/2026-10-10-arkadiy-content.md).
