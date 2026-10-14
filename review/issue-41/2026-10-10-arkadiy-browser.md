@@ -1,5 +1,7 @@
 # Issue 41 — 2026-10-10 Arkadiy and stationary-scroll browser review
 
+> **Historical content composition — superseded on 10 October 2026.** The owner’s later topic-first editorial correction replaces the hidden/default-card-free and separate active review rendition described below. Current canonical Home/Research include the bounded article-discussion records; the original observations remain historical evidence. See [current task correction](2026-10-10-arkadiy-content.md) and [current ordinary-build observations](2026-10-10-editorial-browser.md). Camera changes remain in effect.
+
 Owning issue: [#41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41).
 Owning execution and accepted scope: [content amendment](2026-10-10-arkadiy-content.md).
 Reviewer role: delegated execution QA; self-verification, not independent editorial approval.

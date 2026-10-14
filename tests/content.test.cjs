@@ -33,11 +33,12 @@ const plainTitle = (html) =>
 
 test('selected Home responses link to the complete Research inventory with preserved evidence', () => {
   const names = {
-    index: ['Matthew Skelton', 'Markus Kopko'],
+    index: ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'],
     research: [
       'Markus Kopko',
       'Otman Basir, Ph.D.',
       'Maximiliano Armesto',
+      'Arkadiy Dobkin',
       'Christophe Kolb &amp; Taller',
       'Rod Montgomery',
       'Michael Risch',
@@ -49,11 +50,11 @@ test('selected Home responses link to the complete Research inventory with prese
   const articles = (html) => [...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map((m) => m[0]);
   const links = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
   for (const page of ['index', 'research']) {
-    const entries = [
-      ...section(page).matchAll(
-        /<h3><a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a>(?:<span class="advisor-role">[^<]+<\/span>)?<\/h3><p class="person-context">([^<]+)<\/p>/g
-      ),
-    ];
+    const entries = articles(section(page)).map((card) => {
+      const identity = card.match(/<a href="(https:\/\/www.linkedin.com\/in\/[^"]+)">([^<]+)<\/a>/);
+      assert.ok(identity, 'every card retains one explicit source profile');
+      return identity;
+    });
     assert.deepEqual(
       entries.map((e) => e[2]),
       names[page]
@@ -65,7 +66,7 @@ test('selected Home responses link to the complete Research inventory with prese
     );
     assert.equal(
       (section(page).match(/https:\/\/www.linkedin.com\/posts\//g) || []).length,
-      page === 'index' ? 2 : 10
+      page === 'index' ? 3 : 11
     );
   }
   const previous = normalizeHTML(
@@ -86,10 +87,6 @@ test('selected Home responses link to the complete Research inventory with prese
   );
   for (const article of articles(previous)) {
     const profile = article.match(/<h3><a href="([^"]+)"/)[1];
-    if (profile === 'https://www.linkedin.com/in/arkadiydobkin/') {
-      assert.ok(!current.some((entry) => entry.includes(profile)), 'pending card is omitted');
-      continue;
-    }
     const replacement = current.find((a) => a.includes('href="' + profile + '"'));
     assert.ok(replacement, 'all other people survive');
     assert.deepEqual(
@@ -97,11 +94,11 @@ test('selected Home responses link to the complete Research inventory with prese
       links(article),
       'all contribution and provenance links survive'
     );
-    if (!/markuskleinpmp|otman-basir-ba1258178/.test(profile))
+    if (!/arkadiydobkin|markuskleinpmp|otman-basir-ba1258178/.test(profile))
       assert.equal(replacement, article, 'unrelated response claims remain exact');
   }
   for (const article of articles(section('index'))) {
-    const name = article.match(/<h3><a[^>]+>([^<]+)<\/a><\/h3>/)[1];
+    const name = article.match(/<a href="https:\/\/www.linkedin.com\/in\/[^"]+">([^<]+)<\/a>/)[1];
     const complete = articles(section('research')).find((a) => a.includes('>' + name + '</a>'));
     assert.deepEqual(
       links(article),
@@ -162,103 +159,72 @@ test('selected Home responses link to the complete Research inventory with prese
   }
 });
 
-test('review-only response sources preserve caveats and provenance while public composition omits pending cards', () => {
+test('canonical topic-first public records preserve bounded copy, source bylines and separate provenance', () => {
   const projectRoot = path.resolve(root, '..');
   const { catalog, fragment } = require('../tools/site/content.cjs');
-  const { documentTemplate, renderSlots } = require('../tools/site/render-content.cjs');
   const currentCatalog = catalog(projectRoot);
-  const institutionalNote =
-    'These entries document public discussions and specific contributions to the research. They do not imply endorsement, adoption, or formal involvement by the individuals’ organizations.';
+  const note =
+    'These entries summarize public discussions of specific publications. They do not imply endorsement of this website, the research programme as a whole, or the author’s services. Organizational affiliations are provided for identification only.';
   const profile = 'https://www.linkedin.com/in/arkadiydobkin/';
   const originalPost =
     'https://www.linkedin.com/posts/arkadiydobkin_uncertainty-architecture-thinking-systems-activity-7500661925790240768--I1H';
   const provenance =
     'https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/main/content/research/notes/thinking-systems-formulation-provenance-arkadiy-dobkin.md';
-  const cards = (html) =>
-    [...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map((entry) => entry[0]);
-  const review = {};
+  const cards = (html) => [...html.matchAll(/<article>[\s\S]*?<\/article>/g)].map((row) => row[0]);
+  const expected = {
+    index: '<h3>Thinking Systems — public discussion</h3>',
+    research: '<h3>Thinking Systems: runtime control and differentiation</h3>',
+  };
+  const sections = {};
   for (const page of ['index', 'research']) {
     const sourcePath = `site/content/pages/${page}/acknowledgements.json`;
-    const candidatePath = path.join(projectRoot, 'review/issue-41/arkadiy-review', page);
-    const candidate = JSON.parse(
-      fs.readFileSync(path.join(candidatePath, 'acknowledgements.json'), 'utf8')
-    );
-    const candidateTemplate = fs.readFileSync(
-      path.join(candidatePath, 'acknowledgements.html'),
-      'utf8'
-    );
+    const html = normalizeHTML(fragment(projectRoot, sourcePath, currentCatalog).html);
+    sections[page] = html;
+    assert.equal(cards(html).length, page === 'index' ? 3 : 8);
     assert.equal(
-      documentTemplate(candidate, sourcePath),
-      `site/templates/pages/${page}/acknowledgements.html`
+      html,
+      pages[page].match(/<section[^>]*\bid="acknowledgements"[\s\S]*?<\/section>/)[0]
     );
-    const publicSection = normalizeHTML(fragment(projectRoot, sourcePath, currentCatalog).html);
-    review[page] = normalizeHTML(
-      renderSlots(candidateTemplate, candidate, currentCatalog, sourcePath)
-    );
-    assert.equal(cards(publicSection).length, page === 'index' ? 2 : 7);
-    assert.equal(cards(review[page]).length, page === 'index' ? 3 : 8);
+    assert.equal(html.split(note).length - 1, 1, 'one section-level boundary');
+    assert.ok(cards(html).every((card) => !card.includes(note)));
+    const card = cards(html).find((row) => row.includes(profile));
+    assert.ok(card.includes(expected[page]), 'the publication/topic is the heading');
+    assert.ok(card.includes(`href="${originalPost}">Read the original post ↗</a>`));
     assert.doesNotMatch(
-      publicSection,
-      /Arkadiy|arkadiydobkin|7500661925790240768|formulation-provenance-arkadiy/
+      card,
+      /<h3><a|<blockquote|<q>|<img|<svg|advisor-role|style=|endorsed|validated|backed by|partner|approved/i
     );
-    assert.doesNotMatch(
-      fs.readFileSync(path.join(projectRoot, sourcePath), 'utf8'),
-      /Arkadiy|arkadiy/
-    );
-    assert.deepEqual(
-      cards(review[page]).filter((card) => !card.includes(profile)),
-      cards(publicSection),
-      'all unrelated response/advisor cards remain identical in both compositions'
-    );
-    for (const section of [publicSection, review[page]]) {
-      assert.equal(section.split(institutionalNote).length - 1, 1, 'one boundary note per section');
-      for (const card of cards(section)) {
-        assert.ok(
-          !card.includes(institutionalNote),
-          'boundary is section-level, never person-specific'
-        );
-      }
+    assert.ok(card.includes(`<a href="${profile}">Arkadiy Dobkin</a> · EPAM founder`));
+    assert.ok(card.includes('<em>Thinking Systems</em>'));
+    if (page === 'research') {
+      assert.ok(card.includes('<h4>Formulation provenance</h4>'));
+      assert.ok(card.includes(`href="${provenance}">Read the formulation provenance ↗</a>`));
+      assert.ok(
+        card.indexOf('<h4>Formulation provenance') > card.indexOf('Read the original post')
+      );
     }
-    const arkadiy = cards(review[page]).find((card) => card.includes(profile));
-    assert.ok(arkadiy.includes('Principal Founder &amp; Executive Chairman, EPAM'));
-    assert.ok(arkadiy.includes(`href="${originalPost}"`), 'exact public post survives');
-    assert.doesNotMatch(
-      arkadiy,
-      /<blockquote|<img|advisor-role|endorsed|validated|backed by|partner/i
-    );
-    assert.ok(!pages[page].includes(profile), 'generated default never hides the card in markup');
   }
-  assert.match(review.index, /public response to <em>Thinking Systems<\/em>/);
-  assert.match(review.index, /two propositions: AI could expand the range of problems/);
-  assert.match(
-    review.index,
-    /control architectures may become a lasting source of differentiation/
+  assert.ok(
+    sections.index.includes(
+      'In his public response to <em>Thinking Systems</em>, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.'
+    )
   );
-  assert.match(review.index, /Read the original discussion ↗/);
-  const [advisors, publicResponses] = review.research.split(
+  const [advisors, responses] = sections.research.split(
     '<h3 class="context-heading">Public responses</h3>'
   );
-  assert.ok(!advisors.includes(profile), 'Arkadiy never enters the formal advisor group');
-  assert.ok(publicResponses.includes('Public discussion · Thinking Systems'));
-  assert.match(publicResponses, /two further perspectives to the discussion/);
-  assert.match(publicResponses, /First, model-mediated systems may expand/);
-  assert.match(
-    publicResponses,
-    /Second, as foundation models and generic agent infrastructure commoditize/
-  );
-  assert.match(publicResponses, /architectures may remain a significant source of differentiation/);
-  assert.match(
-    publicResponses,
-    /<p>These perspectives extend the discussion beyond runtime engineering/
-  );
-  assert.match(publicResponses, /<strong>Formulation provenance:<\/strong>/);
-  assert.match(
-    publicResponses,
-    /The terminology used in <em>Thinking Systems<\/em> was influenced by an earlier conversation/
-  );
-  assert.match(publicResponses, /Read Arkadiy’s original post ↗/);
+  assert.ok(!advisors.includes(profile));
+  assert.equal(cards(advisors).length, 2);
+  assert.equal(cards(responses).length, 6);
+  assert.ok(responses.includes('Public response by <a'));
   assert.ok(
-    publicResponses.includes(`href="${provenance}">Read the formulation provenance ↗</a>`)
+    responses.includes(
+      'In a public LinkedIn post about <em>Thinking Systems</em>, Dobkin recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.'
+    )
+  );
+  assert.ok(
+    responses.includes(
+      'The published article separately credits an earlier exchange with Dobkin for helping shape the <em>Thinking Systems</em> formulation.'
+    )
   );
 });
 
