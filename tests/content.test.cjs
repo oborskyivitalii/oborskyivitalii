@@ -753,10 +753,32 @@ test('Home provides the agreed reader path, precise public actions and a real co
     'contact',
   ]);
   assert.match(home, /<h1 id="author-name">AI tools everywhere\./);
-  assert.ok(home.includes('Vitalii Oborskyi · Delivery leader, researcher &amp; author.'));
+  assert.ok(
+    home.includes(
+      'Vitalii Oborskyi · Enterprise delivery leader &amp; independent research author.'
+    )
+  );
+  assert.ok(home.indexOf('class="hero-lead"') < home.indexOf('class="hero-actions"'));
   for (const person of ['Matthew Skelton', 'Markus Kopko'])
     assert.ok(home.includes(`>${person}</a></h3>`));
-  assert.ok(home.includes('href="#contact">Discuss your AI challenge'));
+  assert.ok(home.includes('href="#contact">Start a conversation'));
+  assert.ok(home.includes('href="#help">Where I contribute</a>'));
+  assert.ok(home.includes('Where I work<br>and contribute.'));
+  for (const domain of [
+    'AI-assisted delivery<br>transformation and verification.',
+    'Enterprise AI governance<br>and agentic operating models.',
+    'Engineering leadership,<br>organizational capability and applied research.',
+  ])
+    assert.ok(home.includes('<h3>' + domain + '</h3>'), domain);
+  const contact = home.match(/<section[^>]*\bid="contact"[\s\S]*?<\/section>/)[0];
+  assert.ok(
+    contact.indexOf('enterprise leadership opportunities') <
+      contact.indexOf('selected advisory work')
+  );
+  assert.ok(contact.includes('research collaboration'));
+  assert.ok(
+    contact.includes('selected advisory work where my experience and research may be relevant')
+  );
   assert.ok(
     home.includes('href="https://calendar.app.google/zy9rAnUcoWygSdxH7">Book a conversation')
   );
@@ -764,14 +786,15 @@ test('Home provides the agreed reader path, precise public actions and a real co
   // Generated decorative coordinates/opacity decimals are not author claims.
   assert.doesNotMatch(
     home.replace(/<svg\b[\s\S]*?<\/svg>/g, ''),
-    /href="#"|Trusted by|CPC|RankSpot|4400|4,400/
+    /href="#"|Trusted by|CPC|RankSpot|4400|4,400|established consultancy|consulting firm|service packages|guaranteed outcomes/
   );
   for (const text of [
     'human understanding, verification and ownership',
     'human roles, evidence, decision authority and corrective action',
     'hypotheses to test in context',
     'Much remains to develop and test',
-    'Potential outputs, depending on the agreed scope',
+    'Examples of work, depending on the role, organization and agreed scope',
+    'Research, publications, talks and practical engineering experiments.',
   ])
     assert.ok(home.includes(text), text);
   for (const page of Object.values(pages))

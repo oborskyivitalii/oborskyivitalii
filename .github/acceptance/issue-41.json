@@ -248,6 +248,69 @@
       "automated_scope": "Current lifecycle tests exercise Off/reduced/hidden/print, delayed CSS, Canvas failure and rapid scroll reversal without moving the steady view or creating a new loop. Existing route-flight/history contracts and CS01/04/05/06/07/08/09/10 checks remain applicable. Human review covers unautomated architecture/readability and actual current-source profile evidence; guard success does not establish all style or release requirements.",
       "checks": ["STEADY-LIFECYCLE", "ROUTE-FLIGHT", "CODE-STYLE"],
       "gates": ["AD-REVIEW", "AD-BROWSER"]
+    },
+    {
+      "id": "AC36",
+      "intent": "AP01 — Author-first identity: enterprise leadership and independent research precede potential commercial engagement.",
+      "automated_scope": "Current generated Home preserves the problem-led H1, identifies enterprise delivery leadership and independent research before the contribution and contact paths, and keeps Research and Writing ahead of public responses. Exact five-fragment restoration binds current bytes to e9d273a; editorial assessment of the professional identity and hierarchy remains separate.",
+      "checks": ["AUTHOR-POSITIONING", "AP-AMENDMENT", "SEO"],
+      "gates": ["EDITORIAL", "SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC37",
+      "intent": "AP02 — Accurate career positioning without an established consultancy or final consulting decision.",
+      "automated_scope": "Current role, duration and portfolio wording is preserved, while contribution domains and possible outputs depend on role, organization and agreed scope. Meaningful negative fixtures reject consultancy packages, guarantees, unsupported endorsements and loss of organizational capability. The checks cannot authenticate biography or select a future career model; source/editorial review retains that boundary.",
+      "checks": ["AUTHOR-POSITIONING", "AP-NEGATIVES", "AP-AMENDMENT"],
+      "gates": ["SOURCE-EDITORIAL", "EDITORIAL"]
+    },
+    {
+      "id": "AC38",
+      "intent": "AP03 — Keep leadership opportunities, research collaboration and selected advisory conversations accessible.",
+      "automated_scope": "Current Contact explicitly invites enterprise leadership opportunities, research collaboration and selected advisory where experience and research are relevant, with the existing conversation label, booking, email and profile destinations. Negatives reject removed opportunity paths and substituted booking. Actual readability and navigation remain current-source browser/editorial observations.",
+      "checks": ["AUTHOR-POSITIONING", "AP-NEGATIVES", "CONTENT-LINKS"],
+      "gates": ["EDITORIAL", "POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC39",
+      "intent": "AP04 — Preserve research integrity, technical substance, original materials and evidence boundaries.",
+      "automated_scope": "The bounded successor changes only five Home copy owners; all other site sources and all non-Home page semantics remain exact to e9d273a, including research projects, publication/source/edition identities, research caveats, topic language and JSON-LD. Existing admissions, discussion and SEO checks remain unchanged. Byte preservation does not establish research validity or new scientific acceptance.",
+      "checks": ["AP-AMENDMENT", "ADMISSIONS", "DISCUSSIONS", "SEO"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC40",
+      "intent": "AP05 — Preserve Dobkin public contribution without commercial or institutional endorsement.",
+      "automated_scope": "Current Home and Research acknowledgement sources/templates remain byte-exact to e9d273a with topic headings, public-source bylines, qualified propositions, separate formulation provenance and the one section-level website/programme/services boundary. Negatives reject a contact CTA in responses and unsupported sponsor/endorsement claims. The retained Option A requires actual revised hierarchy review; source status stays public source verified, owner editorial inclusion instructed, new personal website approval unconfirmed, with no rights clearance and issue7 open.",
+      "checks": ["AD-COPY", "AD-AMENDMENT", "AD-NEGATIVES", "AP-AMENDMENT", "AP-NEGATIVES"],
+      "gates": ["AD-EDITORIAL", "AD-BROWSER"]
+    },
+    {
+      "id": "AC41",
+      "intent": "AP06 — Preserve practical credibility through the AI-assisted site case and supported experience.",
+      "automated_scope": "Current About retains the human-directed AI-assisted delivery statement and the existing Credits built-with-ai destination; career durations and portfolio responsibility survive. Credits source/page semantics and immutable proof destinations remain exact. Existing site-case evidence checks are evaluated after reversing the new Home successor. Source/editorial review distinguishes the site demonstration from an enterprise methodology or productivity validation.",
+      "checks": ["AUTHOR-POSITIONING", "AP-AMENDMENT", "SITECASE-PROVENANCE"],
+      "gates": ["SOURCE-EDITORIAL"]
+    },
+    {
+      "id": "AC42",
+      "intent": "AP07 — Preserve SEO, routes, navigation, anchors, source links and contact destinations.",
+      "automated_scope": "All five metadata owners, catalog, routes, templates and non-Home generated page semantics remain exact to e9d273a. The five Home fragments retain their IDs and href destinations; only the local help navigation label changes. Existing local resource/ARIA/fragment and SEO checks apply. Matching current-head generation/freshness and ordinary PR checks provide independent execution evidence; no ranking improvement is asserted.",
+      "checks": ["AP-AMENDMENT", "SEO", "CONTENT-LINKS"],
+      "gates": ["POSITIONING-BROWSER"]
+    },
+    {
+      "id": "AC43",
+      "intent": "AP08 — Keep the revised Home coherent and readable on desktop/mobile in Day and Night.",
+      "automated_scope": "Maintained content/link checks preserve the reader path, controls and destinations; unchanged camera/route-flight/lifecycle checks retain stationary scrolling and route motion. Automation alone cannot assess the revised hierarchy. The existing browser gates must record actual corrected-source Home desktop and narrow Day/Night observations, including hero, contribution domains, public responses, Contact, bottom reach and absence of clipping or horizontal overflow. Ordinary PR smoke remains at its existing 1440/390 normal/no-Canvas cases and budgets; no new full performance, physical-device or release claim is supplied.",
+      "checks": ["CONTENT-LINKS", "SCROLL-CAMERA", "ROUTE-FLIGHT", "STEADY-LIFECYCLE"],
+      "gates": ["EDITORIAL", "POSITIONING-BROWSER", "AD-BROWSER"]
+    },
+    {
+      "id": "AC44",
+      "intent": "AP09 — Reconcile bounded scope, exact source/evidence and the same issue/PR criterion state.",
+      "automated_scope": "AC01–AC35, their 25 named checks and all nine gate objects remain unchanged; append only AC36–AC44/AP01–AP09 and three bounded checks. Exact amendment, protected sources and meaningful negatives support the authorized five-owner copy scope. Apply CS01/CS02/CS05/CS08/CS09/CS10 to content/check ownership and focused formatting; unchanged CSS/runtime preserve CS03/CS06/CS07 boundaries, with CS04/readability and unautomated rules reviewed independently. Current mandatory CI, immutable preview/digests, rendered placement decision, file/check outcomes and actual issue checkboxes must be reconciled honestly. Historical evidence remains dated; pending original review/rights/device/merge gates retain their owners. No new performance matrix, staging, merge, production decision, rights clearance or whole-issue closure is supplied.",
+      "checks": ["AP-AMENDMENT", "AP-NEGATIVES", "RUNTIME-SCOPE", "CODE-STYLE", "SEO"],
+      "gates": ["POSITIONING-REVIEW", "AD-REVIEW"]
     }
   ],
   "checks": {
@@ -350,6 +413,18 @@
     "STEADY-LIFECYCLE": {
       "kind": "unittest",
       "test": "test_issue41_acceptance.Issue41ImplementationTests.test_steady_camera_preserves_motion_controls_failure_and_scroll_reversal"
+    },
+    "AUTHOR-POSITIONING": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_author_first_identity_domains_opportunities_and_bounded_claims"
+    },
+    "AP-AMENDMENT": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_author_first_amendment_binds_five_fragments_and_preserves_protected_sources"
+    },
+    "AP-NEGATIVES": {
+      "kind": "unittest",
+      "test": "test_issue41_acceptance.Issue41ImplementationTests.test_author_first_role_funnel_guarantee_endorsement_and_contact_regressions_fail"
     }
   },
   "gates": {

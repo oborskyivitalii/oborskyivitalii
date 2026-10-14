@@ -103,6 +103,29 @@ prior-permission blocker. Affected criteria are reopened; current implementation
 checks and review require matching current-source evidence in the live owning issue. Camera/Credits
 behavior remains unchanged, and no merge or production launch is authorized.
 
+## Issue #41 author-first review — 2026-10-10
+
+The [current amendment and task](../review/issue-41/2026-10-10-author-first.md)
+continue Draft PR #68; only affected service-first positioning is superseded.
+Review the complete Home: leadership/research identity, contribution domains
+with concrete role/organization/scope-qualified examples, and leadership,
+collaboration and selected-advisory contact opportunities. Preserve factual
+career scope, Corning and the AI-assisted site case. No new business, employer,
+partnership or outcome claim; private circumstances/permission status stay off-site.
+
+Judge Home Option A on the actual corrected desktop/mobile Day/Night hierarchy.
+Research/Writing precede neutral public records; About separates them from Contact.
+If the corrected composition still suggests a commercial recommendation, record
+the reason before the authorized summary Option B. Keep exact Research discussion
+and separate provenance; public-source inclusion is not personal/institutional approval.
+
+The [five-fragment successor](../review/issue-41/2026-10-10-author-first-amendment.json)
+is reversed before earlier amendments; metadata, topic substance, links, routes,
+graphics, runtime and gate/budget owners remain protected. AP01–AP09 map to
+AC36–AC44. Reopened boxes require current-source evidence; the live issue owns
+CI, immutable preview and actual checkboxes. Original pending/rights/release
+criteria are not completed by this correction.
+
 ## Historical review evidence
 
 The [original content review](../review/root-history-20261007/SITE-CONTENT-REVIEW.md)
