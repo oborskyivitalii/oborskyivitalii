@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7d99a9a3305579294ba3931bd947f6686b26e55ff4058f63a88ecf65e10fd8f5",
+    "digest": "8406dc9ce0c6e8852d1e0880485379167a8f90e490ee17c6b3033b646eb029b7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "3289d9eb67cd3b8fb3717b060e2688124cd819e63100fa63d67d27c21cab2719"
+        "sha256": "9425cbd373f15f9132fad5b664e3814c49f1225d9d77c2e86e77e1bde483f5ce"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "28c26fa1365394344489421b6e72724e9028dc031cf04ecdb11219ead4d0e0fc"
+        "sha256": "f292089e95ac1faa1c4075cb2ae56dc80a6a4e6af8350fda80fd8e62e48a6605"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "69db9cc603e8fb3617a8331acea97f330432e0ceb9298eff622e8bfc2be1f9cd"
+        "sha256": "9891d5fb13056381ef6568a8d6944e09a3ec347f74c42bb9c5efea7980fcae05"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -500,7 +500,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "20a7b5e6f83a837e567d021c14829920ea81660c41519d44a9013d7766b7368b"
+        "sha256": "7f0edba57984a4ea2f58768b419d6a7ecea4bf4e8ee122efc64a5cbfc9027818"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -928,9 +928,14 @@
         "sha256": "ff59f5f71c097b65a45da9f14cb858eee84fec39ac97962d8e412550536d273d"
       },
       {
+        "path": "review/issue-5/2026-10-14-managed-print-evidence.zip",
+        "identity_mode": "content",
+        "sha256": "cef0043242f64abe30b22e16105ddf181599619a4b209cb82076e27a62de98cc"
+      },
+      {
         "path": "review/issue-5/2026-10-14-managed-print.md",
         "identity_mode": "content",
-        "sha256": "312e9da6b399749ea7ddeccb9012d9d65334fe504d89ba315fac93ea8226402b"
+        "sha256": "e342c9cd8a194e600db7b95d49e93ec38e2cb3ed92b0bf65f6f1ef93f0ffdd07"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -9144,6 +9149,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-13-semgrep-first-failure.json.gz"
+    },
+    {
+      "path": "review/issue-5/2026-10-14-managed-print-evidence.zip",
+      "kind": "file",
+      "purpose": "Unmodified GitHub artifact11885112971 from run38547576489: real managed article PDF, exact print and kit manifests and clean-source report for d0250b7; technical draft only.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-14-managed-print-evidence.zip"
     },
     {
       "path": "review/issue-5/2026-10-14-managed-print.md",

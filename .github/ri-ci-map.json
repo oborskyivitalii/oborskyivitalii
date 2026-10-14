@@ -126,7 +126,8 @@
         "review/issue-5/2026-10-13-owning-first-failure.json.gz",
         "review/issue-5/2026-10-13-semgrep-first-failure.json.gz",
         "review/issue-5/2026-10-13-content-browser-first.json.gz",
-        "review/issue-5/2026-10-14-managed-print.md"
+        "review/issue-5/2026-10-14-managed-print.md",
+        "review/issue-5/2026-10-14-managed-print-evidence.zip"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -551,7 +552,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "e44693d5cc8fbcb287480a17ab2a01da0d046ef5807f04595ade2335b277d647",
+    "digest": "03e86166e25b2ce504ab86bbe0320b5ceca1c292f17f392ed56093bd3bd7e3d3",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -655,7 +656,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "3289d9eb67cd3b8fb3717b060e2688124cd819e63100fa63d67d27c21cab2719"
+        "sha256": "9425cbd373f15f9132fad5b664e3814c49f1225d9d77c2e86e77e1bde483f5ce"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

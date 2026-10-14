@@ -9090,6 +9090,12 @@
       "purpose": "Issue5 managed PDF completion scope, exact-source rendering evidence, independent review and visual verification; no publication or stable promotion.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-14-managed-print-evidence.zip": {
+      "kind": "file",
+      "purpose": "Unmodified GitHub artifact11885112971 from run38547576489: real managed article PDF, exact print and kit manifests and clean-source report for d0250b7; technical draft only.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

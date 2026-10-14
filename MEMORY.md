@@ -15,13 +15,18 @@ Dated continuity, not live authority. Last verified: **2026-10-14**.
   regression38425085186 pass; no stable promotion, merge or production follows.
   Writing29, automatic collection/count and independent verified content reuse
   AC13-AC15 are accepted on that baseline. Earlier failed attempts remain failed.
-  The author on14October requested completion of the remaining managed PDF proof;
-  permanent staging is not required now. Local Chromium install again returned
-  invalid empty archives; default CLI correctly rejects the missing browser.
-  A separate normal-CLI print diagnostic is being wired into the existing managed
-  browser jobs, with exact checkout/browser/toolchain/source report and PDF pair.
-  New-source CI and visual PDF proof are pending; no alternative producer or
-  relaxed budget is admitted. Continue via `review/issue-5/2026-10-14-managed-print.md`.
+  On14October the author requested managed PDF completion without permanent
+  staging. Implementation `d0250b7` has source749/749, navigation and owning
+  checks green. Preview38547576489 successfully ran the ordinary --pdf CLI on
+  managed Chromium153.0.8010.12/revision1243 and Playwright1.63.0; report before/
+  after binds its clean exact head/tree, managedBrowser true/reviewOnly false.
+  The actual five-page A4 PDF was inspected; no clipping or overlap was observed.
+  Original artifact11885112971 and its PDF/manifests/report are retained unchanged
+  in `review/issue-5/2026-10-14-managed-print-evidence.zip`. Earlier alternative
+  Chromium and failed local CDN attempts remain historical, not managed proof.
+  The explicit diagnostic now runs in existing browser jobs, preserving budgets
+  and public/runtime bytes. Final evidence-only tip/checks are in live PR79;
+  continue via `review/issue-5/2026-10-14-managed-print.md`.
   Real PMDay waits for author-approved chapters; present manuscript/blueprint/
   exports remain technical fixtures. #2 AC01-AC06 and original human/publication
   gates remain open; accepted recording AC07/AC08 is preserved.

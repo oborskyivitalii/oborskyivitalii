@@ -154,6 +154,8 @@ existing managed browser installation and upload these files as a separate
 change public output, stage aliases, browser matrices or existing job budgets.
 Exact successful run and visual-inspection status belong to
 [the managed-print record](../review/issue-5/2026-10-14-managed-print.md).
+The 14 October run completed the normal managed export and all-page visual review;
+its original PDF, manifests and report are retained in the linked evidence ZIP.
 
 `tools/publishing/origin.json` and `NOTICE.md` name the minimal extracted UA helper
 baseline, hashes, licenses and site changes. The Quartz bootstrap and Thinking
