@@ -170,3 +170,42 @@ actual issue/PR checkbox reconciliation remain for the owning flow. Prior green
 e9d checks cannot prove the successor. Original AC02–AC06 and separate human,
 rights/device/merge/release gates remain pending; this review closes neither #41
 nor #7 and authorizes no merge, staging promotion or production activation.
+
+## 2026-10-10 addendum — current RI owner correction
+
+Navigation run [38049033304](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38049033304),
+associated with PR source `2425cc4e298b46f95b5b1035f8ee636e6d66554c`
+(tree `d40d368c9b9d6a23604c36a65d472b7c76a9930d`), exposed a real
+configured-owner defect. The fetched job log for `114204261298` records
+`RootLayoutTests.test_current_guide_owners_and_configured_routes_are_live`
+rejecting the dated author-first task as a historical current owner; 15 tests ran
+with one error. The earlier read-only catalog review missed that role/owner
+incompatibility. Its no-defect finding is superseded for this configured locator.
+The original review body and its source/evidence bindings remain historical.
+
+The sole configuration change points the same author-first concern and queries
+from `review/issue-41/2026-10-10-author-first.md` to the maintained
+`guides/SITE-CONTENT-REVIEW.md`. An independent byte comparison confirmed this
+single path substitution: old config SHA-256
+`a509b616b59c961faec8dae289493edcf144298b95ae61caa7b46fe175d32d25`,
+corrected config `e9d1e496f18d71eb19b3182e5ead47b5c6e4f82e8c2f05fc860044d2e3a9de74`.
+The guide is a live, self-owned `guide` catalog entry, contains the current
+author-first/source/acceptance route, and links the dated task as evidence.
+The task keeps its `history` role. No validator, guard, catalog-role or test
+requirement is relaxed.
+
+Independently reproduced the original failure using the committed configuration
+through the unchanged validator, without editing repository files. The corrected
+configuration passes that same check. Three targeted RootLayout tests passed
+(0.036 seconds), including stale/historical-owner and canonical-guide-role
+negatives. The root execution agent separately reports the full existing
+RootLayout suite passed 15/15. Validator SHA-256 remains
+`15bc9ae64f548f9906738ef31b2c0726f65d70cd1d21a68d33a464ed3c186af1`;
+test owner remains `8af16dcbe4310d9e67be23354346a1a6d479538723c56ecbb529294bb6b52e39`.
+
+The content, runtime, ordinary public artifact, sixteen captures and Option A
+assessment are unchanged. This addendum and owner locator require regenerated
+RI/coupling and a new clean-head mandatory CI run; those final identities/results
+belong to the live issue/PR. The failed Navigation run is retained as failed
+evidence and is not replaced by local green tests or earlier successful workflows.
+No human/rights/merge/release gate is completed by this correction.
