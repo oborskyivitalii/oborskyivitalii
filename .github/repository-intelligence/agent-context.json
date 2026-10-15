@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "27549d5a500f55e9aa8c8afb6c4e96312da55f8f188723c5e7d7d71e9a64408c",
+    "digest": "ea739920e73cb0517469841ecf4e7996eb3105a9f53fd6faf8797ea0702f762c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "65831d16552820b8459a35ccc13dc08a44a07ad67c21ff44d3e53d86e1e1a792"
+        "sha256": "092338af896ac32aa3b3e2ff0a0aa09137864f8f0b358c2c2fe44db682778553"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -500,7 +500,7 @@
       {
         "path": "drafts/pmday-article-draft.en.md",
         "identity_mode": "content",
-        "sha256": "30ab15f770281c07f95a2d46acbaaf0fe253dc536920dbf6c7be772505691c1f"
+        "sha256": "59aa526fcfa4fb29d12ad22abbf2d88d882910839155fefa708f9bd445f911ff"
       },
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
@@ -650,7 +650,7 @@
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
         "identity_mode": "content",
-        "sha256": "feb0e77a73b3afca383c219c50c3cc5b10cef36555c1df7c5477e7f7c985f862"
+        "sha256": "30acc2fc58d229e15d1b3010bfcc044de911eb2f1e63d01b3a03d3005dee4b5e"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -8223,7 +8223,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "When We Delegate Thinking"
+      "title": "AI Changes Both Sides of Software Engineering"
     },
     {
       "path": "guides/ARTICLE-WORKFLOW.md",

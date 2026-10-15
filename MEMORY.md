@@ -30,6 +30,10 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   On15October the author confirmed English/usual audience and supplied the real
   PMDay reflection/writing-printing/cognitive-delegation→HOW/WHAT arc. First real
   editorial draft: `drafts/pmday-article-draft.en.md`; author review is pending.
+  Revision0.2 fixes the selected title, AI Changes Both Sides of Software
+  Engineering, and expands HOW into flow, vendor proposals/recovery and user
+  value. Vendor primary sources include Anthropic Scion13October; reported
+  success, local hypotheses and operational ownership remain distinct.
   Present selected manuscript/blueprint/exports remain technical fixtures.
   #2 AC01-AC06/human/publication gates stay open; recording AC07/AC08 preserved.
   Commands/trust: `guides/ARTICLE-WORKFLOW.md`, `guides/SITE-CONTENT-RELEASE.md`.
@@ -91,7 +95,7 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 | #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
 | #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
-| #5 / PR79 and #2          | Publisher technical evidence is retained; review the first real English PMDay editorial draft, then iterate its prose/figures before any accepted edition. |
+| #5 / PR79 and #2          | Publisher technical evidence is retained; review the revised English PMDay editorial draft, then iterate its prose/figures before any accepted edition. |
 | #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
 
 ## Next session
