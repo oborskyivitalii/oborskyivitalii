@@ -154,3 +154,12 @@ this candidate README; continue from this addendum and the draft rather than
 reassembling the obsolete prose. Recording AC07/AC08 and #5 technical evidence
 retain their original separate scope. No merge, stable staging, production or
 external posting is performed or authorised by this handoff.
+
+
+### Editorial revision 0.6 supersedes 0.5 — direct UA presentation review, 15 October 2026
+
+The previous 'Editorial revision 0.5' section above remains **historical evidence only**, not instructions to assemble five screenshots. The currently selected input is [draft 0.6](../../../drafts/pmday-article-draft.en.md). The new [dated review and self-check handoff](../2026-10-15-editorial-draft.md#editorial-revision-06--visual-deck-audit-and-assembly-decision-15-october-2026) records the direct 15-slide visual comparison, source/metric guardrails and remaining checks.
+
+**Current default:** seven screenshots, **3 / 5 / 7 / 9 / 10 / 12 / 14**. This adds the testable SDLC-equilibrium step and requirements boundary, substitutes post-release learning slide 14 for slide 13, and keeps the dense evidence slide 4 in prose/citations only. Page-to-asset correspondence, alt/captions, source hash, export commands, preservation rules and six ordered assembly tasks are in draft 0.6 itself. Planned PNG names in the draft are *not* a statement that images have been committed.
+
+Canonical manuscript and all earlier r2 PDFs/kits remain unchanged by this editorial change. No current-source full checks, new figure rights decision or site/production publication has been completed. For the next Sol/Astra pass: read the latest draft, regenerate the seven exact PDF pages, migrate reader-only prose, produce new edition, and verify rights/CI/hosted/mobile/PDF before requesting author acceptance.
