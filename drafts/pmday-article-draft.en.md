@@ -1,9 +1,9 @@
-> **Editorial revision 0.5 — 15 October 2026. Assembly input, not a published edition.**
-> The author requested that the sharper chat proposal be entered into PR #79, with more actual presentation screenshots and explicit instructions for Astra or Sol. This revision replaces the previous draft 0.4 as the next editorial input. The currently rendered `r2` manuscript and its existing PDF/kit are not this revision.
+> **Editorial revision 0.6 — 15 October 2026. Assembly input, not a published edition.**
+> Following a direct visual review of all 15 pages of the pinned UA PMDay v35 presentation, this revision sharpens the article's evidence about code structure, restores the search for an SDLC equilibrium, makes the requirements boundary and post-release reassessment explicit, and changes the screenshot plan from five to **seven** actual slides (3, 5, 7, 9, 10, 12, 14). This supersedes draft 0.5 as the next editorial input. The rendered `r2` manuscript and its existing PDF/kit are **not** this revision.
 >
 > Editorial owner: [issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2). Execution: [PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79), publisher owner [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5). Inspected PR head: `0a0acbf56941e3c04a24ff1362c9b47b071b5b58`; main: `9b82f382d080f879528fac8bba94b3656ce14521`. Revalidate before assembly.
 >
-> Reader prose is bounded by the `ARTICLE START` / `ARTICLE END` comments. The five `ASSEMBLY FIG` comments and the assembly appendix are instructions, not article prose. Copy only reader prose into the canonical manuscript and replace the five markers with declared figures. [Versioned review and handoff](../review/issue-2/pmday-candidate-20261015/README.md#editorial-revision-05--screenshot-assembly-handoff).
+> Reader prose is bounded by the `ARTICLE START` / `ARTICLE END` comments. The seven `ASSEMBLY FIG` comments and the assembly appendix are instructions, not article prose. Copy only reader prose into the canonical manuscript and replace the seven markers with declared full-slide figures. [Versioned review and handoff](../review/issue-2/pmday-candidate-20261015/README.md#editorial-revision-05--screenshot-assembly-handoff).
 
 <!-- ARTICLE START -->
 
@@ -69,7 +69,9 @@ That is not “humans disappeared.” It is a redesign of the surrounding system
 
 ## 3. The scarce resource is understanding
 
-The fifth slide in the presentation shows generation rising while a team's capacity to comprehend its output remains nearly flat. The gap grows.
+Faster generation changes more than the amount of code a team has to read. It may change the structure of what the team must own. In a longitudinal matched-control study, [Agarwal, He and Vasilescu](https://arxiv.org/html/2601.13597v2) estimated post-agent-adoption increases of **34.85% in SonarQube code complexity** for agent-first repositories and **42.87%** for repositories with earlier AI-IDE exposure. These are statistical estimates of a static-analysis metric—not measurements of human understanding—and the study reports design limitations. Separately, [GitClear's 2026 observational report](https://www.gitclear.com/the_ai_code_quality_maintainability_gap) found duplicated code blocks **81% higher than its 2023 baseline**. It is a vendor-run, cross-period industry signal, not proof that AI alone caused the change.
+
+Those results give us a reason to measure maintainability, not a new law of cognition. The fifth slide in the presentation shows generation rising while a team's capacity to comprehend its output remains nearly flat. The gap grows.
 
 It is an overload scenario, not a measured law of human cognition. Better tools, architecture and learning can move the comprehension line. The point is to ask whether our actual delivery model does so—or merely assumes that somebody will keep up.
 
@@ -115,6 +117,14 @@ AI can be central to that capability. The adoption trial should demonstrate reco
 
 **A plan that works only while the agent keeps succeeding is not a complete operating plan.**
 
+### Finding a new SDLC equilibrium
+
+The answer is not to defend yesterday's process or demand that reviewers somehow read ten times faster. We need a new sustainable balance between generation, verification, integration and the team's ability to support what ships.
+
+That balance is a hypothesis to test. Start by watching review age, batch size, work in progress, rework, release stability and recovery without AI. Small batches, WIP limits, trusted specifications, AI-assisted review and living ownership maps are candidate countermeasures, **not proven universal fixes**. A smaller queue may solve a flow problem while leaving an expertise problem untouched. Judge experiments by end-to-end delivery, maintainability, team load and full cost—not by how many pull requests the agent produces.
+
+<!-- ASSEMBLY FIG-03: v35 slide 7, New SDLC Equilibrium; place after this paragraph and before section 4. Exact output and guards in appendix. -->
+
 ## 4. More software is not more value
 
 Suppose we solve the capacity problem. Ideas can reach users far faster.
@@ -131,7 +141,7 @@ The [NBER study](https://www.nber.org/papers/w35275) reports rising low-usage sh
 
 Even perceived speed and value differ. [METR's May 2026 survey](https://metr.org/blog/2026-05-11-ai-usage-survey/) of 349 technical workers reported median speed gains of 3×, versus 1.4–2× work-value gains across different question formulations. These were self-reports from a convenience sample, not measured delivery effects.
 
-Customers also have work to do. They must discover a feature, understand it and sometimes reorganise a process around it. **Our ability to ship twenty-five times as many changes would not give them twenty-five times as much attention.**
+Customers also have work to do. They must discover a feature, understand it and sometimes reorganise a process around it. **Even if we could ship twenty-five times as many changes, customers would not gain twenty-five times as much attention.**
 
 [Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) found that people can favour capability before use but give usability more weight afterwards. An attractive feature list and a satisfying product are not the same thing.
 
@@ -149,9 +159,13 @@ In [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/un
 
 Two differently worded answers may both be correct. An invented recovery step and an unauthorised disclosure are not merely more variations.
 
-Requirements must distinguish acceptable behaviour from uncertainty that calls for clarification, and from outcomes that must be prevented. The assistant may explain approved recovery steps, ask for missing information or escalate conflicting guidance. It must not disclose restricted material or bypass authorisation.
+Requirements must distinguish acceptable behaviour from uncertainty that calls for clarification, and from outcomes that must be prevented. Given different inputs, context, data and permissions, the assistant may explain approved recovery steps, ask for missing information or escalate conflicting guidance. It must not disclose restricted material or bypass authorisation.
 
-Identity, permissions and transaction rules remain exact obligations. A model's involvement does not turn them into suggestions.
+A conventional requirement may specify a path: in a given state, pressing A must open window B. With model judgment, we often have to define a **space of acceptable answers and actions**, its boundary cases and explicit prohibitions. This is not permission to be vague. Inputs multiplied by context, data and permissions create combinations that a handful of happy-path prompts will not cover. Product and domain owners still owe testable semantic criteria, examples and counterexamples. Identity, permissions and transaction rules remain exact obligations.
+
+<!-- ASSEMBLY FIG-04: v35 slide 9, Requirements Become Boundaries; insert here before the evaluation subsection. Exact output and guards in appendix. -->
+
+There is another uncomfortable consequence: behaviour may change without a code commit. The model, retrieval material, provider or routing can change while our source stays the same. A passing evaluation is evidence about the tested conditions, not a permanent warranty.
 
 ### The reassuring average
 
@@ -173,7 +187,7 @@ There is uncertainty in the rate too. Four failures in 200 independent, represen
 
 A curated *Golden Set* probes known requirements and difficult cases. A representative sample helps estimate frequencies. Repeating a convenient prompt does not establish coverage, and an evaluator—human or model—can itself misjudge the result.
 
-<!-- ASSEMBLY FIG-03: insert the complete screenshot of v35 slide 10 here, after the sampling caveat and before the Ready / Done / Release table. See the assembly instructions below. -->
+<!-- ASSEMBLY FIG-05: v35 slide 10, One Green Test Proves Almost Nothing; insert here after the sampling caveat, before the Ready / Done / Release table. Exact output and guards in appendix. -->
 
 This calls for three distinct decisions:
 
@@ -193,13 +207,13 @@ A semantic checker can be wrong. Asking another model whether the first one beha
 
 After deployment, we need to observe outcomes and control health, compare them against limits, and enable authorised intervention. Someone must be able to narrow the task, disable a tool or suspend a path—and establish that the intervention worked. [NIST's AI Risk Management Framework](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) likewise includes monitoring, recovery and mechanisms to disengage or deactivate systems that depart from intended use.
 
-<!-- ASSEMBLY FIG-04: insert the complete screenshot of v35 slide 12 here, replacing the existing runtime-control redraw. See the assembly instructions below. -->
+<!-- ASSEMBLY FIG-06: v35 slide 12, Production Needs a Control Loop; replace the existing runtime-control redraw. Exact output and guards in appendix. -->
 
 A dashboard without the ability to stop harm is an observation mechanism, not a complete control system. “Human in the loop” is not enough when the person lacks information, authority or time.
 
 **And rollback cannot undisclose a credential.**
 
-The full cost includes tokens, evaluations, retries and human response capacity. If effective control cannot operate before the consequence, narrow the responsibility. That is an engineering decision, not a failure of ambition.
+The full cost includes tokens, evaluations, retries and human response capacity. If control cannot operate before the consequence, depends on people who will not be available or makes the use case economically infeasible, **narrow, redesign or reject that AI path**. Adding another model as a checker is not a substitute for a control that can actually work. Rejecting one unsafe design is an engineering decision, not a failure of ambition.
 
 ## 6. Engineering rigor moves. It does not disappear.
 
@@ -211,11 +225,15 @@ Consider a simple dependency: an agent introduces a critical component in a lang
 
 Product and domain owners define useful outcomes and acceptable boundaries. Engineering and QA establish how those commitments are implemented and tested. Service owners need the ability to act in production. Delivery leadership connects these decisions, dependencies and capacities; it cannot replace them with a faster status report.
 
-<!-- ASSEMBLY FIG-05: insert the complete screenshot of v35 slide 13 here, after the expertise-gap example and role paragraph. See the assembly instructions below. -->
+These are distinct but connected research directions: [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) explores AI-assisted delivery risks; [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) examines consequential model judgment and operational control.
 
 Start with one bounded workflow. Establish the baseline, useful outcome, delegated authority and prohibited results. Measure elapsed time, human effort, rework, stability and full operating cost—not generated volume alone.
 
 Then rehearse failure. Demonstrate how the team detects a problem, contains it and verifies recovery when the preferred automated path does not work. Reassess after material changes to the model, data or authority.
+
+**Release does not close the laboratory.** Production outcomes and incidents must feed the next decision: do the original assumptions, tests, monitoring and delegated limits still hold? The team may have to update the evaluation set, tighten authority or change the workflow—while continuing to meet its delivery and service commitments.
+
+<!-- ASSEMBLY FIG-07: v35 slide 14, Engineering Rigor Moves — It Doesn't Disappear; place before the final two-paragraph conclusion. Exact output and guards in appendix. -->
 
 I am optimistic about what this makes possible: useful software we could not previously afford, less drudgery, better testing and faster repair. I do not want to protect unnecessary work from automation. I want us to know which necessary capabilities our new workflow actually preserves.
 
@@ -227,130 +245,176 @@ Writing allowed ideas to outlive their authors. We are now expanding how much wo
 
 ## Assembly instructions for Astra / Sol — not article text
 
-### Scope and source of truth
+### Source of truth and non-negotiable scope
 
-Use the reader prose above, not the older draft 0.4 or the currently rendered r2 text. Keep the six chapters, the hook, the restored quantitative evidence, the review/ownership argument, the documentation trust problem, the failure scenario and the sharp conclusion. Do not make another global softening rewrite while assembling the page. This is the author's requested next draft, not permission to publish or merge.
+- Treat **reader text between ARTICLE START and ARTICLE END** as editorial revision **0.6**, replacing draft 0.5 and rendered article revision r2 for the *next* candidate. Keep the six-chapter structure, sharp opening and closing, restored numbers with limitations, fallibility/recovery argument, new equilibrium subsection, precise requirements boundary and after-release control. Do not globally compress/soften again.
+- \`site/publications/pmday-ai-both-sides/manuscript.en.md\` is the **future canonical reader manuscript**. This excluded \`drafts/\` file is an editorial input, not a published source. Migrate prose and figures there under an explicitly new content edition; follow current \`guides/ARTICLE-WORKFLOW.md\` and the owning #2/#5 acceptance routes.
+- Seven \`ASSEMBLY FIG\` markers are machine/editor handoff instructions **not reader prose**. Replace each at its exact position with a registered, accessible figure asset. Include the existing original cover only where the established editorial profile calls for it; no duplicate poster or generic redraws.
+- The **seven required slide screenshots** are **3, 5, 7, 9, 10, 12, 14**. Slide 13 is removed from the required body set in favour of 14. Slides 4 (too dense), 6, 8, 11, 13 and 15 are not additional default body screenshots. Do not silently reduce the seven back to five or expand to all 15.
+- Keep the opening **single** linked Slides PDF plus the Ukrainian recording. Do not reinstate embedded PDF viewer, source-1/source-2 index, machine edition footer, or visual duplications. Sources belong next to the claims they support.
 
-The assembly target is `site/publications/pmday-ai-both-sides/manuscript.en.md`; the blueprint, media declarations, edition and exports must follow it. This draft is an excluded editorial input, not a second published source. Leave the frozen `pmday-two-shifts` technical fixture and earlier editions/artifact bytes intact.
+### Verified exact deck input and extraction
 
-### Exact presentation edition
+- **Original deck:** \`UncertaintyArchitectureGroup/uncertainty-architecture\` PR #113, commit \`22639d311d5fb46a23f3d5cdd819800dbe1169d9\`, \`assets/presentations/pmday-2026/ai-changes-both-sides.pptx\`.
+- **Site-owned 15-page v35 review PDF:** \`site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf\`, identical article copy \`site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf\`. **Exact PDF SHA-256:** \`b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782\` (663,363 bytes).
+- **Deck identity/rights:** \`site/publications/pmday-two-shifts/deck-review.json\` and upstream \`assets/presentations/pmday-2026/{README.md,EVIDENCE.md}\`. This is an **exact verified review PDF**, *not* yet accepted as the final event-presented release, and not a declaration that third-party assets are cleared for article publication. Owner decisions under #2/#7/UA133 still apply.
+- **Page indices:** 1-based visible pages **3, 5, 7, 9, 10, 12, 14**, zero-based PyMuPDF indices **2, 4, 6, 8, 9, 11, 13**. They were visually reviewed in the PDF rendition. Use *direct full-page rasterisation* of this exact pinned PDF: no PowerPoint re-export, no AI-generated diagram, no colour/number/text alteration. Preserve original frame, slide titles, caveats and slide numbers.
+- **Reproducible export:** require source digest first, open with PyMuPDF, then for each target page run \`page.get_pixmap(matrix=fitz.Matrix(2,2), colorspace=fitz.csRGB, alpha=False).save(output_path)\`. This yields approximately **1920 × 1080 RGB PNG** at 144 dpi for the 960 × 540 PDF layout. If PyMuPDF is unavailable, use Poppler with verified full-frame parity; prior Poppler PNG output had been truncated in the review environment. A broken raster must fail rather than be accepted.
+- Record each generated file's source PDF SHA-256, page, output path, renderer/version, dimensions, byte length, SHA-256 and rights/credits decision in the existing article asset/provenance manifest. The screenshot filenames below are **planned outputs**, not files silently claimed to be committed in this editorial-only revision. Generate them in the **same** PR during actual assembly; do not depend on this ChatGPT session's sandbox paths.
 
-Export screenshots from the existing PDF, not from a recreated slide, a different PowerPoint export or an AI-generated imitation:
+### Figure contract: exact placements, alt text, captions and guards
 
-- PDF owner: `site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf`.
-- The real article already holds the identical copy at `site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf`.
-- PDF SHA-256: `b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782`; 663,363 bytes; 15 pages; v35 **review** edition.
-- Binding: `site/publications/pmday-two-shifts/deck-review.json`. Upstream source: `UncertaintyArchitectureGroup/uncertainty-architecture` at `22639d311d5fb46a23f3d5cdd819800dbe1169d9`, `assets/presentations/pmday-2026/README.md` and `EVIDENCE.md`.
-- Page numbers below are **one-based slide/PDF numbers**, including the title page. For PyMuPDF or another zero-based API use 2, 4, 9, 11 and 12 respectively.
-- Existing slide/notes/third-party provenance and publication gates still apply. Do not call this the verified exact event-presented edition: that equivalence remains unestablished.
 
-These five PDF pages were locally rendered and visually inspected for this editorial placement decision. That is not inspection of a newly assembled article, a new rights approval or managed-CI evidence. The PNG names below are planned assembly outputs; they have not been added to the repository by this draft edit.
+#### FIG-01 — slide 3: SDLC bottleneck
 
-### Five required screenshots and exact placements
+**Full slide title:** We Accelerated a Step. Not the System.
 
-The default body visual set is **five full-slide screenshots: 3, 5, 10, 12, 13**, plus the existing cover where the current profile calls for it. Do not also retain the three old body diagrams or add a second presentation poster. More screenshots here replace/extend the explanatory visual set; they are not an excuse to expand the prose or dump the whole deck into the article.
+**Source-page preview:** [Open the exact pinned PDF at page 3](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=3). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png` (new file, not yet committed).
 
-#### FIG-01 — SDLC bottleneck / slide 3
+**Placement:** Immediately after the 8 → 100 generation illustration in chapter 2, before the empirical NBER/DORA evidence.
 
-**Exact slide title:** We Accelerated a Step. Not the System.
+**Keep legible:** Intent → Design → Code → Review → Test → Integrate → Deploy → Operate; BEFORE 8 / 8 / 8 and AFTER AI 100 / 8 / 8; +92 unfinished changes/week; Theory of Constraints conclusion; scenario assumptions.
 
-**Placement:** the marker in chapter 2, immediately after the eight-to-one-hundred synthetic example and the sentence about producing unfinished work. This is the specific SDLC bottleneck screenshot requested by the author. It replaces the old `delivery-queue` figure rather than sitting beside it.
+**Alt:** PMDay slide 3: code-generation capacity increases to 100 changes a week, but review and integration remain at eight; 92 uncompleted changes accumulate in the illustrative push system.
 
-**What must be visible:** the complete Intent → Design → Code → Review → Test → Integrate → Deploy → Operate chain; BEFORE 8 / 8 / 8; AFTER AI 100 / 8 / 8; backlog +92 unfinished/week; Theory of Constraints takeaway; fixed-capacity/comparable-work and push-system caveats.
+**Caption:** Accelerating code generation is not the same as accelerating delivery. Illustrative fixed-capacity scenario; PMDay v35, slide 3.
 
-**Planned asset:** `pmday-slide-03`; PNG `site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png`.
+**Interpretation guard:** The 8/100/+92 values are synthetic comparable-work rates, assuming all generated changes enter the queue and no work is discarded. Do not present them as observed throughput or as an AI-effect estimate. Replace the old delivery-queue diagram.
 
-**Alt:** “PMDay slide 3: code capacity rises from 8 to 100 changes per week while review and integration remain at 8; the illustrative push-system backlog grows by 92 per week.”
+#### FIG-02 — slide 5: Generation vs. comprehension
 
-**Reader caption:** “Accelerating code generation does not automatically accelerate delivery. This synthetic team still delivers eight comparable changes per week; admitting all generated work adds ninety-two unfinished changes. PMDay v35, slide 3.”
+**Full slide title:** The New Scarcity Is Human Comprehension
 
-**Guard:** these are synthetic capacities, not measured AI productivity. Preserve units and the no-WIP-limit/no-discarded-work assumption; do not relabel the backlog as released features or defects.
+**Source-page preview:** [Open the exact pinned PDF at page 5](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=5). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png` (new file, not yet committed).
 
-#### FIG-02 — generation versus comprehension / slide 5
+**Placement:** After the first paragraphs of chapter 3, directly following the disclaimer that the graph is an illustrative overload scenario.
 
-**Exact slide title:** The New Scarcity Is Human Comprehension
+**Keep legible:** Rising generation and flatter team-comprehension curves, potential gap, Adoption/time axis, three diagnostic questions and the full hypothetical-scenario caveat.
 
-**Placement:** the marker near the opening of chapter 3, after the paragraph explicitly explaining that this is an overload scenario rather than a measured law. Remove the previous `two-shifts` matrix from the body; chapter 1 already distinguishes HOW and WHAT in prose.
+**Alt:** PMDay slide 5: illustrative generation output grows faster than team comprehension, showing a possible—not measured—comprehension gap.
 
-**What must be visible:** the rising generation curve, almost-flat comprehension line, potential gap, Adoption / time axis, the three questions on the right and the complete illustrative-overload disclaimer at the bottom.
+**Caption:** The potential comprehension gap is a scenario, not a measured cognitive ceiling. PMDay v35, slide 5.
 
-**Planned asset:** `pmday-slide-05`; PNG `site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png`.
+**Interpretation guard:** Do not attribute the drawing to Agarwal, GitClear, NBER or any real dataset. The flat curve is an assumption; learning and tools may change it. The five-year question is not a forecast.
 
-**Alt:** “PMDay slide 5: an illustrative rising generation curve separates from a nearly flat team comprehension line, highlighting a potential comprehension gap rather than measured human limits.”
+#### FIG-03 — slide 7: Search for SDLC equilibrium
 
-**Reader caption:** “A possible overload pattern, not a biological limit or measured forecast. Better tools and learning can increase comprehension capacity; the delivery model must demonstrate that they do. PMDay v35, slide 5.”
+**Full slide title:** We Are Searching for a New SDLC Equilibrium
 
-**Guard:** never attribute these curves to NBER, GitClear or another study. The horizontal line is a scenario assumption, not a claim that people cannot improve. Keep the five-year question a question, not a prediction.
+**Source-page preview:** [Open the exact pinned PDF at page 7](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=7). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png` (new file, not yet committed).
 
-#### FIG-03 — average success, severity and uncertainty / slide 10
+**Placement:** After the new 'Finding a new SDLC equilibrium' subsection at the end of chapter 3, before chapter 4.
 
-**Exact slide title:** One Green Test Proves Almost Nothing
+**Keep legible:** Old equilibrium / Today / New equilibrium; Watch / Measure versus Explore / Test; flow/review, maintainability, production and team/ownership metrics; candidate countermeasures disclaimer and the bottom delivery/quality/full-cost/team-health line.
 
-**Placement:** the marker in chapter 5, after the Wilson-interval and Golden-Set paragraphs, before “This calls for three distinct decisions.” Keep the small outcome table and its surrounding explanation as accessible reader text; do not force readers to extract the values from an image.
+**Alt:** PMDay slide 7: teams measure flow, maintainability, production and recovery while experimenting with candidate controls to find a sustainable AI-assisted SDLC equilibrium.
 
-**What must be visible:** the schematic contract-boundary picture, the illustrative n = 200 chart, 196 / 3 / 1 outcomes, 4 / 200 = 2%, 95% Wilson interval, critical-breach release block and Golden Set / representative sample distinction.
+**Caption:** Search for a sustainable workflow, not a return to the old one: measure outcomes and test countermeasures. Proposed measures are not proven fixes. PMDay v35, slide 7.
 
-**Planned asset:** `pmday-slide-10`; PNG `site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png`.
+**Interpretation guard:** Keep experimental nature, all categories and workload/health caveat. Do not state spec-first, disposable code, AI review or WIP limits are validated solutions in this author's setting.
 
-**Alt:** “PMDay slide 10: 196 acceptable responses, three incorrect instructions and one privacy leak in a synthetic sample of 200; the prohibited leak blocks release despite 98% acceptable responses.”
+#### FIG-04 — slide 9: Requirements as boundaries
 
-**Reader caption:** “The average cannot cancel the consequence. This synthetic evaluation separates failure frequency, sampling uncertainty and a prohibited disclosure that blocks release under the agreed rule. PMDay v35, slide 10.”
+**Full slide title:** Requirements Become Boundaries
 
-**Guard:** both the upper distribution and the lower sample are illustrative, not observed product results. The Wilson interval depends on independent representative observations and a stable target distribution; a curated Golden Set does not establish a production failure rate. Do not imply that every possible defect mandates the same release decision.
+**Source-page preview:** [Open the exact pinned PDF at page 9](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=9). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png` (new file, not yet committed).
 
-#### FIG-04 — operational control loop / slide 12
+**Placement:** In chapter 5 after the passage contrasting fixed paths with acceptable response spaces, before 'The reassuring average'.
 
-**Exact slide title:** Production Needs a Control Loop
+**Keep legible:** BEFORE Press A → Window B; NOW input intents × context × data × permissions, acceptable Answer/Clarify/Escalate area, contextual boundary cases, prohibited unauthorized disclosure, and 'more combinations' coverage warning.
 
-**Placement:** the marker under “Control must reach the consequence,” after the paragraph about authorised intervention and NIST, before the dashboard/HITL criticism. Replace the old `runtime-control` figure; do not redraw the slide into another generic loop.
+**Alt:** PMDay slide 9: traditional exact-path requirements contrast with a space of acceptable responses—answer, clarify or escalate—bounded by context, permissions and forbidden disclosure.
 
-**What must be visible:** proposal, fallible semantic check, permission/approval check before delivery, denial/safe-fallback path, observation of all paths and control health, comparison with limits, authorised correction, stop/narrow/disable actions, human authority and the latency/people/full-cost/external-change footer.
+**Caption:** Model-dependent behaviour demands precise boundaries, examples, prohibitions and coverage across contexts—not a single canonical wording. PMDay v35, slide 9.
 
-**Planned asset:** `pmday-slide-12`; PNG `site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png`.
+**Interpretation guard:** The drawn geometry is schematic, not a statistical probability/distance model; do not imply all business rules become probabilistic or that ISO references are a certification claim. Include semantic coverage challenge.
 
-**Alt:** “PMDay slide 12: a model proposal passes semantic and permission checks before delivery, with denial or fallback on failure; observation, authorised correction and human intervention form the operating control loop.”
+#### FIG-05 — slide 10: Failure evidence and prohibited result
 
-**Reader caption:** “Control must act before irreversible consequences and remain operable after deployment. Permission enforcement, denial, fallback and effective intervention are distinct from telemetry. PMDay v35, slide 12.”
+**Full slide title:** One Green Test Proves Almost Nothing
 
-**Guard:** semantic checks remain fallible; permissions must be enforced before disclosure/action. Do not crop away fallback, human capacity or the warning that feedback cannot undo an irreversible effect. The prose supplies the requirement to verify that intervention worked; the diagram is not evidence that any actual implementation is safe.
+**Source-page preview:** [Open the exact pinned PDF at page 10](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=10). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png` (new file, not yet committed).
 
-#### FIG-05 — delivery roles and expertise dependency / slide 13
+**Placement:** In chapter 5, after the synthetic 200-case table, Wilson interval and Golden Set versus representative sample explanation; before Ready/Done/Release table.
 
-**Exact slide title:** The Roles Move With the System
+**Keep legible:** All response classes and n=200 results (196 acceptable, 3 incorrect recovery instructions, 1 unauthorized disclosure), 4/200 = 2%, Wilson interval, critical breach blocks release under defined rule, Golden Set versus representative sample.
 
-**Placement:** the marker in chapter 6, after the unfamiliar-language dependency example and the paragraph allocating responsibilities, before the bounded-workflow recommendation.
+**Alt:** PMDay slide 10: in 200 synthetic responses, 196 are acceptable, three instructions are incorrect and one disclosure violates a release prohibition despite a 98% acceptable average.
 
-**What must be visible:** both HOW and WHAT columns, the New balance / New work rows, delivery operating-model responsibility, and the complete lower chain: unfamiliar language → critical component → review/recovery gap.
+**Caption:** The average cannot cancel a forbidden consequence. Synthetic evaluation, sample uncertainty and a specific release-blocking rule. PMDay v35, slide 10.
 
-**Planned asset:** `pmday-slide-13`; PNG `site/assets/publications/pmday-ai-both-sides/pmday-slide-13.png`.
+**Interpretation guard:** All values synthetic. Wilson calculation assumes independent representative draws; Golden Set is curated and cannot estimate production prevalence. Keep accessible body outcome table, not just the image.
 
-**Alt:** “PMDay slide 13: HOW and WHAT shifts create different delivery responsibilities; code introduced in an unfamiliar language can become a critical dependency without adequate review or recovery capability.”
+#### FIG-06 — slide 12: Operational control
 
-**Reader caption:** “The work moves beyond implementation: capacity, expertise, evaluation and response must have owners. An unfamiliar-language component illustrates a new review and recovery dependency. PMDay v35, slide 13.”
+**Full slide title:** Production Needs a Control Loop
 
-**Guard:** preserve both dimensions. The expertise chain is an example, not a measured incident, and project management coordinates decisions rather than acquiring the domain, risk or service owner's authority.
+**Source-page preview:** [Open the exact pinned PDF at page 12](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=12). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png` (new file, not yet committed).
 
-### Visual economy and accessibility
+**Placement:** In chapter 5 under 'Control must reach the consequence', after pre-delivery guard and intervention discussion, before dashboard/HITL criticism.
 
-Use the five placements above; do not silently reduce the set back to three generic diagrams. Slide 4 is intentionally not another body screenshot: it is dense and would repeat the concise research evidence. Slides 8–9 are explained in chapter 5; slide 11 is represented by the accessible Ready / Done / Release table. Slide 6 would repeat the incident narrative, and slide 14 would repeat the closing action. Add no extra screenshots without a concrete readability reason and an explicit editorial decision.
+**Keep legible:** Proposal → fallible semantic check → enforced permissions/approval before delivery; deny/safe-fallback path; observations of allowed and rejected paths; comparison to agreed limits; authorised correction; stop/narrow/disable actions; latency, people, cost and external-change footer.
 
-Render full pages directly from the pinned PDF, initially at about 1920px width, preserving the entire frame, title, slide number, captions and caveats. Never use ImageGen for these screenshots; never redraw or retouch their quantitative content. Record renderer/version/settings and each resulting PNG's dimensions, bytes and SHA-256. Retain the current cover masters and their separate provenance.
+**Alt:** PMDay slide 12: a model proposal is checked before consequential action; failed checks take a denial or fallback route, while monitoring and authorised intervention support ongoing control.
 
-Check desktop and narrow-screen readability. Keep the essential information in the article prose/tables; small image text is not a substitute. Use existing native full-size-image behaviour where available and keep the single opening Slides PDF / Recording paragraph. Do not restore the embedded PDF viewer, add a second poster or multiply the declared PDF-source links merely to provide enlargement. Captions identify page numbers for the existing full-deck link. Preserve aspect ratio, resource budgets and no-JS reading; if a figure is too small in the article PDF, give it a readable full-width placement rather than clipping disclaimers.
+**Caption:** Effective control spans permission enforcement, safe fallback and verified intervention, not observation alone. PMDay v35, slide 12.
 
-### Source and evidence safeguards
+**Interpretation guard:** A semantic checker may be wrong and cannot replace permission enforcement. Feedback cannot reverse an irreversible disclosure. Do not imply the diagram proves any system is safe. Replace the generic runtime-control redraw.
 
-The restored NBER numbers and marketplace pairs inherit the pinned presentation evidence register's September-edition audit. The preceding editorial review could inspect the current abstract but fresh full-PDF access returned 403; this edit makes no new full-paper verification claim. Reconcile the exact September source before publication acceptance, or explicitly retain the inherited-audit limitation. Do not silently replace the numbers with an older paper version.
+#### FIG-07 — slide 14: Delivery and continuing laboratory
 
-Keep changed LOC, commits and releases as different observational outcomes, not a conversion funnel. Keep marketplace cohort/three-month/proxy limits, DORA's association-not-causation caveat, METR's self-report/convenience-sample limits, Scion's vendor-reported infrastructure scope and the synthetic evaluation's assumptions. No new upstream research finding is introduced by screenshot reuse.
+**Full slide title:** Engineering Rigor Moves — It Doesn’t Disappear
 
-Named source hyperlinks stay beside their claims. Do not restore the technical source-1…25 bibliography or introduce filler merely to keep now-unused reference declarations. Reconcile the new edition's reference list with its actual prose, preserving older edition/source records. Retain accurate UA/Subprime further-reading links and the current rights notice in the assembled rendition without turning the article into an evidence register.
+**Source-page preview:** [Open the exact pinned PDF at page 14](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=14). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png` (new file, not yet committed).
 
-### Ordered assembly and verification handoff
+**Placement:** Late chapter 6, after the new 'Release does not close the laboratory' paragraph and before the two-paragraph conclusion.
 
-1. Revalidate PR #79, its current head and the owning #2/#5 decisions. Read this whole draft, the existing blueprint and article workflow. Rebuild/verify RI and run the required current-source checks; this connector-only draft edit does not claim those checks or fresh RI output. No new path or runtime change is included here.
-2. Verify the pinned PDF digest, extract the five full-page PNGs, and visually compare each with its numbered PDF page. Declare the new media, captions, alt text, ordering and per-item provenance in the real article's existing owners; register new paths through the current repository catalog/RI route.
-3. Move only the bounded reader prose into the canonical manuscript, replace all five `ASSEMBLY FIG` comments with declared `asset:` figures, and remove this metadata/appendix and every editorial comment. Update the blueprint. Do not copy this complete file blindly into the publisher: its instructions are not reader content and its raw comments are not supported article markup.
-4. Replace the three old displayed body diagrams in the new rendition, but preserve their historical files/editions and the frozen fixture. Create a new semantic content edition instead of relabelling r2. Reconcile publication/profile references, source rights and image upload order for the actual new edition.
-5. Run `node tools/quality/local.cjs`, mapped article/source/edition/media checks and RI build/verify on the full checkout; run applicable RI/CI and guard checks without relaxing limits. Generate article HTML/PDF and the platform kit through the existing publisher. Verify asset order, exact source/manifest identities, all five screenshots, links, no unresolved markers, and absence of editorial-only material in every rendition.
-6. Inspect the assembled article on desktop/mobile and every PDF page, including image captions/footers. Obtain required independent/editorial/rights/device review; record actual check source/run IDs in the existing review and PR. #2 AC01–AC06 remain open until their whole conditions pass; recording AC07/AC08 and the #5 technical fixture retain their separate scope. No merge, stable-stage promotion, production or external posting follows from this draft handoff.
+**Keep legible:** Delivery Plan → Build → Verify → Ship; hypothesis + approved limits → bounded experiment → measure/compare → decide/adapt loop, feedback from production outcomes/incidents, planning/daily/review/release/operations ownership, both HOW/WHAT, full operating cost and the final responsibility statement.
+
+**Alt:** PMDay slide 14: normal delivery obligations continue alongside a bounded experiment and reassessment loop fed by production outcomes, incidents and authorised release decisions.
+
+**Caption:** Keep delivery commitments while the learning loop remains open after release. Production outcomes can change future evidence, control and authority decisions. PMDay v35, slide 14.
+
+**Interpretation guard:** Do not turn an iterative cycle into a waterfall or let PM coordination override product, risk or service authority. Unlike the prior figure plan, slide 13 is not required as an additional screenshot; its expertise-gap example stays in prose.
+
+### Readable editorial reference table (not article prose)
+
+| Ordered figure | Slide source | Reader section | Replaces / adds |
+| --- | --- | --- | --- |
+| 01 | [v35 slide 3](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=3) | 2 — SDLC bottleneck | Replace old delivery-queue diagram |
+| 02 | [v35 slide 5](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=5) | 3 — comprehension gap | Replaces two-shifts matrix as body image |
+| 03 | [v35 slide 7](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=7) | 3 — new equilibrium | New visual |
+| 04 | [v35 slide 9](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=9) | 5 — requirements boundary | New visual |
+| 05 | [v35 slide 10](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=10) | 5 — evaluation and release | New visual (keep accessible text table) |
+| 06 | [v35 slide 12](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=12) | 5 — pre-action / runtime control | Replace runtime-control diagram |
+| 07 | [v35 slide 14](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=14) | 6 — delivery and learning | Replace slide-13 plan |
+
+### Evidence and claim audit
+
+- **NBER**: retain the original link \`https://www.nber.org/papers/w35275\`, 25.5× changed lines, 3.4× commits, 1.3× releases with study/outcome/sampling qualifiers. Changed lines must never be called shipped features; the customer-attention sentence is explicitly hypothetical.
+- **Agarwal et al.**: Table 2 at \`https://arxiv.org/html/2601.13597v2\`: code complexity **+34.85% (agent-first / AF)**, **+42.87% (IDE-first / IF)** after observable agent adoption in a matched-control, staggered-DiD study. These are **Sona​rQube static-analysis complexity estimates**, not measured human comprehension, measured individual developer productivity or a laboratory randomised trial. The paper reports concerning isolated pre-treatment coefficients. Do not silently convert the 34.85/42.87 numbers into a universal effect.
+- **GitClear**: 2026 report \`https://www.gitclear.com/the_ai_code_quality_maintainability_gap\`, **+81% code-block duplication relative to the 2023 baseline** on a reported historical corpus. Distinguish GitClear edition/baseline, industry association and possible confounders from Agarwal's matched analysis; this article does not claim either study proves a universal AI-causality law. Slide 4 is research context, *not* a seventh/eighth extra body image.
+- **DORA**: adoption association with delivery performance **and** instability; do not convert respondent share to uplift size or association to experimental causation. **Comprehension slide 5** is explicitly hypothetical. **200-case evaluation slide 10** is synthetic, with independently sampled representative-draw assumptions for Wilson interval.
+- **Requirements and operational safeguards**: schematic geometry on slide 9 is not a probability distribution. Separate fallible semantic checks from enforced permissions. Never imply rollback can undo disclosure; if feasible control cannot be implemented, the draft explicitly allows narrowing, redesigning or rejecting the AI route.
+- **Research ownership**: site article describes two directions and links canonical [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) and [Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis). Do not silently modify UA/Subprime research registries or overstate research maturity.
+
+### Visual and publication guardrails
+
+1. Full-slide captures, not crops of graphs or remade quantitative figures. Preserve original typography and all on-screen caveats even when converting to efficient web encodings. If mobile text is too small, support enlarging through the already-linked deck PDF, without adding new PDF viewer machinery or breaking no-JS reading.
+2. Keep seven **body figures** in the agreed order (plus the existing cover where applicable). Maintain body accessibility: factual numbers also appear as searchable prose/table content, meaningful English alt text and captions with edition + slide number. Decorative repetition and a second presentation poster are prohibited.
+3. Review desktop (~1440px), mobile (~390px), no-JS HTML, generated article PDF **all pages**, LinkedIn/Medium rendition image order/alt/credits, links and resource budgets. Do not break the site's **single** Slides PDF link policy, canonical Writing counter/catalog or content-release separation.
+4. Do not reuse review-only source/PDF/kit SHA records as proof for revision 0.6. Generate a **new** semantically distinct article edition and export manifest; preserve r2 as earlier history, plus frozen \`pmday-two-shifts\` technical fixture.
+5. Rights/provenance gate: evidence of the exact PDF and image extraction is not equivalent to permission to publish/relicense all graphics or to transfer upstream material. Preserve explicit #2/#7/UA133 gates and author approval.
+
+### Ordered execution and acceptance for Sol / Astra
+
+| Step | Work and expected check | Required evidence |
+| --- | --- | --- |
+| T01 | Recover exact current main/PR79 refs; read root/scoped AGENTS, RI map, #2/#5/#7 and edition rules. Re-validate 0.6 editorial input and current source before implementation. | Raw source SHA, owner/ref, file-scope route |
+| T02 | Export exactly seven real pages from pinned PDF; declare graphics, captions, accessible order, copyright/provenance. Remove superseded body figures from the future edition, retain covers. | Image hashes/dimensions, source PDF SHA, 7/7 pages visually compared |
+| T03 | Integrate **only ARTICLE START–END reader prose**, excluding assembly comments; register seven figures and active presentation/recording links in canonical manuscript/blueprint. Keep manuscript itself readable without images. | Six chapters, 7/7 placements and source link coverage |
+| T04 | Regenerate article HTML/PDF, site and LinkedIn/Medium publication candidates from a new content edition, not by patching generated outputs. | Exact-source manifests, edition, exported figures in order |
+| T05 | Run \`node tools/quality/local.cjs\`, mapped publisher/article/rights/SEO checks, full-source RI \`build\` + \`verify\`, relevant tests and hosting/profile checks; visually inspect site and PDF for mobile/desktop with the new figures. | Per-check exact-source results, negative cases, PDF/page and browser observations |
+| T06 | Independent editorial/quantitative/visual/rights review; record remaining #2:AC01–AC06 and #5 acceptance without inventing final publication or upstream transfer decisions. | Versioned review artifact, PR + issue evidence/checkboxes, author decisions pending |
+
+**Do not merge, stage/promote, publish or post externally as a byproduct of this draft update.** PR79 remains the implementation route, issue #2 the article/editorial owner and issue #5 the publisher owner. Fresh acceptance applies only to the assembled new edition, never to earlier r2 green checks.
