@@ -466,3 +466,10 @@ continued independent guards and blocking aggregate status for both profiles.
 No test inventory, browser/performance budget, public/runtime byte or human gate
 is changed. CS01/CS04/CS05/CS08/CS10 apply to the existing source/preflight owners;
 current-source checks and another ordinary stage are required before admission.
+
+The first clean-head owning check caught a repair integration regression before
+Ready/staging: importing source limits eagerly made the independent package-only
+CLI require a source runner absent from its deliberately minimal checkout. The
+limits are now loaded only inside prepublication; lightweight package generation
+keeps its original dependency boundary. The existing real edition/package CLI
+test verifies that boundary, alongside the timeout/reporting regression.

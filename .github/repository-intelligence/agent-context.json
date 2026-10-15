@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b724e6d4ec945fe594d069d09c775c53a4e63511e7497dae05d6694ea4bd4828",
+    "digest": "a15b7ba16d688479481b25457e31a116ecbf6bbdf623ae1ba5886e3eb645b4a7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f945f0e844e851bbef7e259a461f165165893d8607f2816376c1559cf9d96c67"
+        "sha256": "afee6fd3374b746a8833aa6e7ae83773f43f717ec33dbb9dea65acca05cba49b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -795,7 +795,7 @@
       {
         "path": "review/issue-39/2026-10-15-publication-test-review.md",
         "identity_mode": "content",
-        "sha256": "9d56a0382978405c1847d74020c32e29ff6c32810b25dea4d7bc7c7e7422d360"
+        "sha256": "ecb490852f0d5046a335060faa5f750bb5a41d8afb3f6adddfd96ba5e083cee5"
       },
       {
         "path": "review/issue-39/2026-10-15-release-issue-audit.md",
@@ -6115,7 +6115,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "0e01a6f0f76fcd8c1d62ad77105fd20b03d6b31e5a6d2801c566d5187d092d7e"
+        "sha256": "948a7b4694ae4dcf77668f512be86f694e7cb00438bd4e299650a515af021d61"
       },
       {
         "path": "tools/quality/motion.cjs",
