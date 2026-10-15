@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
-    "date": "2026-10-11",
-    "summary": "Rebase approved overlapping block phases and fixed reading camera onto reviewed main75 dual-runtime Color validation and authenticated unaccepted first-Pages recovery. Preserve every source/check/profile case and original budget; retain both motion branches, exact ledger entries, authored catalogs and current controls. Refresh exact coupled source identities after independent review; ordinary both-host admission, whole manual/device gates and production decisions remain separate."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
+    "date": "2026-10-15",
+    "summary": "Integrate the verified shared prepublication, strict validator/scanner and frozen publication record guards with full issue39 licensing, production Color, migration, archive and source-bound rights preparation. Preserve exact public feature bytes and all external release decisions."
   },
   "layers": [
     {
@@ -104,12 +104,17 @@
         "review/issue-69/2026-10-11-paced-security-proof.json.gz",
         "review/issue-69/2026-10-11-pacing-harness.md",
         "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
-        ".github/acceptance/issue-39.json",
-        "tests/test_issue39_acceptance.py",
-        "review/issue-39/2026-10-15-controller-compatibility.md",
         ".github/acceptance/issue-76.json",
         "review/issue-76/2026-10-11-preview.md",
         "review/issue-76/2026-10-12-admission.md",
+        ".github/acceptance/issue-39.json",
+        "tests/test_issue39_acceptance.py",
+        "review/issue-39/2026-10-07-analysis.md",
+        "review/issue-39/2026-10-15-production-plan.md",
+        "review/issue-39/2026-10-15-release-issue-audit.md",
+        "review/issue-39/2026-10-15-implementation.md",
+        "review/issue-39/2026-10-15-licensing-proposal.md",
+        "review/issue-39/2026-10-15-controller-compatibility.md",
         "review/issue-39/2026-10-15-license-tuples.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
@@ -126,6 +131,10 @@
       "paths": [
         ".github/acceptance/issue-33.json",
         ".github/repository-layout.json",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
         "tests/test_issue33_acceptance.py",
         "tests/test_repository_test_selection.py",
         "tests/test_root_layout.py",
@@ -219,7 +228,7 @@
     },
     {
       "id": "github-live-overlay-ci-boundary",
-      "purpose": "CI entrypoints, including bounded explicit-label Writing attribution, index exact-source report routes; live issue/review/check/deployment and diagnostic versus admission remain external observations.",
+      "purpose": "CI entrypoints and production preparation contracts route source/profile and owning-policy checks; authenticated Pages migration, rights inventory and retained editions do not establish live owner, licensing, settings or publication acceptance.",
       "paths": [
         ".github/workflows/issue-acceptance.yml",
         ".github/workflows/site-browser-gate-probe.yml",
@@ -238,7 +247,45 @@
         ".github/workflows/site-pages.yml",
         ".github/workflows/site-production.yml",
         ".github/workflows/site-release-candidate.yml",
-        ".github/workflows/site-staging-merge.yml"
+        ".github/workflows/site-staging-merge.yml",
+        ".github/workflows/site-pages-migration.yml",
+        "guides/SITE-PRODUCTION.md",
+        "guides/SITE-RIGHTS.md",
+        "site/content/production-social.json",
+        "site/rights.json",
+        "tools/pages/migration.cjs",
+        "tools/pages/unpack.py",
+        "tools/pages/controller.cjs",
+        "tools/pages/http.cjs",
+        "tools/release/rights.cjs",
+        "tools/release/controller.cjs",
+        "tools/release/archive.cjs",
+        "tools/release/actions.cjs",
+        "tools/release/edition.cjs",
+        "tools/release/edition-archive.cjs",
+        "tools/release/live.cjs",
+        "tools/site/edition-retention.cjs",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html",
+        "tools/check_site_seo.cjs",
+        "tests/executive.test.cjs",
+        "tests/site-engine.test.cjs",
+        "site/content/pages/credits/main.json",
+        "site/templates/pages/credits/main.html",
+        "site/engine/styles.css",
+        "docs/styles.css",
+        "tools/site/edition.cjs",
+        "tools/staging/color.cjs",
+        "tests/edition-retention.test.cjs",
+        "tests/pages-migration.test.cjs",
+        "tests/release-rights.test.cjs",
+        "tests/release-controller.test.cjs",
+        "tests/release-archive.test.cjs",
+        "tests/pages-delivery.test.cjs",
+        "tests/fixtures/delivery.cjs",
+        "tools/release/rights-record.cjs",
+        "tools/quality/analytics-browser.cjs",
+        "tests/analytics.test.cjs"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
     },
@@ -481,7 +528,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "34dfdeca97d20307afc5abd74e4e98846ffbf71f70a7dde8ebb0b598a2c75dc2",
+    "digest": "29b5301f04e0d3f285ae69ae3ff4804a5e76e097ffc9bb86b71ac9a9ef63dd74",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -517,7 +564,7 @@
       },
       {
         "path": ".github/acceptance/issue-39.json",
-        "sha256": "20935309b5576bd48f3b011fd55f7836e17d02febbea284c607aade947287379"
+        "sha256": "7a78216c56b6016caa217552e9caf0b6e36f640f298a5e2747185d55e834722e"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -577,15 +624,15 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
+        "sha256": "f7a04f4359d830921238c888a5ef9d79b446ceb9c668c7f8d901d0177e22a09e"
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "41a8c2a0fcb29fa5cea9ffcbc3f4e1202107f76459e995d4110e20cf1fa87dcc"
+        "sha256": "98408ac46b10ac077ede1d010a21b0ef95ef46cc848beec87474f7ce7fb8e164"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "629ff6256980a9e7eb8680d1a892a10b19c3d02947f94a4e7fa79299df9fff0f"
+        "sha256": "dafd8b93f4c1bb8700f4fc2c07a606601e4864e14e45b39ee85c076b147b538e"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -601,7 +648,7 @@
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
-        "sha256": "989e16cce13d998dc070f98908a3e3e21b5dca794b5c850540cb5879f85c0533"
+        "sha256": "f8523ff0e3a09ec141f81d1450cd5fdb390dfaee24c5279c2e171bac75a3f8f8"
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
@@ -632,20 +679,24 @@
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
+        "path": ".github/workflows/site-pages-migration.yml",
+        "sha256": "9f3dc5bf781d3323e6f2563bc15953815789a9bd3736c32d0569f2bf83f5680c"
+      },
+      {
         "path": ".github/workflows/site-pages.yml",
-        "sha256": "4bcd0e1763163cc5645d99fb51639eae6b253d4625880dee85426329cf6a3e58"
+        "sha256": "e8b779d14519aed2653f5cb04bf86c90a36faae9cd1652f8a1e0c44e29ed778c"
       },
       {
         "path": ".github/workflows/site-production.yml",
-        "sha256": "eb7bce17608f70403b8fdc621d5b462b990190cb463a317f489b402defcf1b8a"
+        "sha256": "83a2e3e4dd55e234f98a8198b9af6fabb131c5ff755a18fe2376f0e39b0ab3aa"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "a48798ce8f37f03574d9eeb1298bf458edd88bfe422d7318f44330db03faad5d"
+        "sha256": "ee7a0ed63007ccccc8f72bb3dfbfef5037c5449d158529c0e1267727799f04c1"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "0c6cf1a15c6859ad70c0025439d0effcd607f4d64bed562213b0fb1096f77eca"
+        "sha256": "36c8bf5dc66ddb18f53f2194f3c2b4c0d4cefc38ac71e6b36d9eee897d3138ab"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -669,7 +720,7 @@
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "01b7051da63ca5473ad0e3774bdceab010c48e28933a670fada9ff7d94463339"
+        "sha256": "663a9d493914270419d3aedd0f27e7dfcae00b5816028c3deb05159935a744d5"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -697,11 +748,11 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "24c7ef1b6dd7ec9ffb5a452269b85697276ed1c2372e1bae9fdc079b511605f2"
+        "sha256": "9d4ffdccaacca069c17ea77ff9ca9b37d7a5c31d3b4803a0452aae9816760c76"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "808cd6871fe2fa0242a85dd5e8174d88c02177b7f1bf79123017bc0edfb057df"
+        "sha256": "c0e2e7b92fe526a8ed7b808b4e0e13c5f9b1caab10c13366765dfb95a1e813de"
       },
       {
         "path": "tests/test_code_style.py",
@@ -725,7 +776,7 @@
       },
       {
         "path": "tests/test_issue39_acceptance.py",
-        "sha256": "ed2c0a95e9210077e96db937f1aafdd902fde69d2468df02a1570f59c478cf3f"
+        "sha256": "8996b600eca66c51def14117ccffdd1814dcab6143b8d89536441b4a45cb8935"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -789,7 +840,7 @@
       },
       {
         "path": "tools/check_repository_layout.py",
-        "sha256": "15bc9ae64f548f9906738ef31b2c0726f65d70cd1d21a68d33a464ed3c186af1"
+        "sha256": "bb72d6bd8f5d8d2eea158023168ddd7ff99fc37513d9a51e45273caddd18c42b"
       },
       {
         "path": "tools/check_ri_ci.py",
@@ -817,7 +868,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "c70ce96340dc7d3ed7be87ac7e6a76fec66ff96cc80c22bf03f4228728b0e999"
+        "sha256": "8f67ede176aa897fc72da59e6d9afc66dd094377e978521dd96cf4f0313dc296"
       },
       {
         "path": "tools/repository_intelligence.py",

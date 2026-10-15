@@ -226,6 +226,28 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   assert.equal(result.status, 'not-applicable');
   assert.equal(result.total, 0);
 });
+test('authored legal and edition changes directly select publication record coverage', () => {
+  for (const changed of [
+    'LICENSING.md',
+    'LICENSE-CODE.md',
+    'LICENSE-CONTENT.md',
+    'NOTICE.md',
+    'tools/release/rights.cjs',
+    'tools/release/edition.cjs',
+    'tools/staging/edition.cjs',
+    'site/rights.json',
+    'site/content/pages/credits/main.json',
+    'tools/site/legal.cjs',
+    '.github/workflows/site-pages.yml',
+  ]) {
+    const plan = runner.select(root, 'pr', { changedPaths: [changed] });
+    assert.ok(
+      plan.modules.includes('tests/publication-records.test.cjs'),
+      changed + ' must select the actual publication producer and frozen-record checks'
+    );
+    assert.deepEqual(plan.conservativeFallback, [], changed + ' has direct declared ownership');
+  }
+});
 test('unknown changed source conservatively selects every permanent JS and never promotes historical snapshots', () => {
   const plan = runner.select(root, 'pr', { changedPaths: ['new-engine-extension.js'] });
   assert.deepEqual(plan.conservativeFallback, ['new-engine-extension.js']);

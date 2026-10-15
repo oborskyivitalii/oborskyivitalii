@@ -1,166 +1,368 @@
-"""Issue39's narrow controller dependency; full launch acceptance stays in PR40."""
+"""Issue #39 production preparation; live release decisions remain separate."""
 
+import copy
 import hashlib
+import importlib.util
 import json
 import re
 import subprocess
 import unittest
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "cc115c4241197d59205934bdc18f209109d5ee87"
-# Live issue39 names finite hosting and first-publication record compatibility.
-CONSUMER_AMENDMENTS = {
-    "tools/staging/package.cjs",
-    "tools/staging/hosted.cjs",
-    "tools/staging/review-flow.cjs",
-    "tools/pages/package.cjs",
-    "tools/pages/controller.cjs",
-    "tools/pages/http.cjs",
-    ".github/workflows/site-checks.yml",
-    ".github/workflows/site-color-review.yml",
-    ".github/workflows/site-release-candidate.yml",
-    ".github/workflows/site-release-checks.yml",
+BASE = "ec9b8361b619f1042bce5a3ec224d3e0c9054b01"
+CURRENT_MAIN = "cc115c4241197d59205934bdc18f209109d5ee87"
+PLAN = "guides/github-pages-domains.json"
+SNAPSHOT = "review/issue-39/2026-10-07-provider-inventory.json"
+RULE_HOSTS = {"vitaliioborskyi.com", "www.vitaliioborskyi.com"}
+LEGAL_CSS = b"""
+/* Full legal copies remain readable when expanded on narrow screens. */
+.legal-notices pre {
+  max-inline-size: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
-FROZEN_RIGHTS_OWNER = "tools/release/rights-record.cjs"
-PROTECTED = (
-    "site",
-    "docs",
-    "tools/site",
-    "tools/staging",
-    "tools/pages",
-    "tools/release",
-    ".github/workflows",
-    "tools/build_scene_fallbacks.cjs",
-    "tools/build_site_previews.cjs",
-    "tools/build_site_bundle.py",
-)
+"""
 
 
-def git(*arguments):
-    return subprocess.check_output(["git", *arguments], cwd=ROOT)
+def node_contracts(case, modules):
+    """Reuse the maintained runner's 180-second/16-MiB bound and TAP accounting."""
+    script = """
+const runner = require('./tools/quality/source-tests.cjs');
+const report = runner.run(process.cwd(), {
+  profile: 'issue39',
+  modules: JSON.parse(process.argv[1]),
+});
+process.stdout.write(JSON.stringify(report));
+"""
+    result = subprocess.run(
+        ["node", "-e", script, json.dumps(modules)],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=190,
+    )
+    case.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    report = json.loads(result.stdout)
+    case.assertEqual(report["status"], "passed")
+    case.assertEqual(report["modules"], modules)
+    case.assertGreater(report["total"], 0)
+    case.assertEqual(report["passed"], report["total"])
+    for key in ("failed", "cancelled", "skipped", "todo"):
+        case.assertEqual(report[key], 0)
 
 
-def protected_paths():
-    exports = git("ls-tree", "-r", "--name-only", BASE, "--", "review").decode().splitlines()
-    return (*PROTECTED, *(name for name in exports if name.startswith("review/site-v1-")))
+def read(path):
+    return json.loads((ROOT / path).read_text())
+
+
+def validate_plan(plan):
+    """Admit this finite desired topology; no provider API calls are performed."""
+    if (plan["schema"], plan["issue"], plan["phase"]) != (1, 39, "prepare-only"):
+        raise ValueError("Preparation scope")
+    if (
+        plan["canonical_origin"] != "https://vitaliioborskyi.ai"
+        or plan["canonical_host"] != "vitaliioborskyi.ai"
+    ):
+        raise ValueError("Canonical origin")
+    github = plan["github"]
+    if (
+        github["repository"] != "oborskyivitalii/oborskyivitalii"
+        or github["publishing_source"] != "GitHub Actions"
+    ):
+        raise ValueError("GitHub source")
+    if (
+        github["custom_domain"] != plan["canonical_host"]
+        or github["environment"] != "github-pages"
+        or github["allowed_branch"] != "main"
+    ):
+        raise ValueError("GitHub production control")
+    if (
+        github["ownership_txt_value"] is not None
+        or github["pages_settings_verified"]
+        or github["production_activated"]
+    ):
+        raise ValueError("Unobserved ownership or activation")
+    if github["ownership_txt_name"] != "_github-pages-challenge-oborskyivitalii.vitaliioborskyi.ai":
+        raise ValueError("Ownership name")
+    expected = {
+        "vitaliioborskyi.ai": {
+            ("A", "@", f"185.199.{octet}.153", False, 1) for octet in range(108, 112)
+        }
+        | {("CNAME", "www", "oborskyivitalii.github.io", False, 1)},
+        "vitaliioborskyi.com": {("A", name, "192.0.2.1", True, 1) for name in ["@", "www"]},
+    }
+    if set(plan["dns"]) != set(expected):
+        raise ValueError("DNS zones")
+    for zone, records in plan["dns"].items():
+        actual = [(r["type"], r["name"], r["content"], r["proxied"], r["ttl"]) for r in records]
+        if len(actual) != len(expected[zone]) or set(actual) != expected[zone]:
+            raise ValueError("Finite DNS topology")
+    redirect = plan["com_redirect"]
+    rule = redirect["rule"]
+    if redirect["phase"] != "http_request_dynamic_redirect" or redirect["applied"]:
+        raise ValueError("Redirect scope")
+    if (
+        rule["expression"]
+        != '(http.host eq "vitaliioborskyi.com" or http.host eq "www.vitaliioborskyi.com")'
+    ):
+        raise ValueError("Redirect hosts")
+    value = rule["action_parameters"]["from_value"]
+    if rule["action"] != "redirect" or not rule["enabled"] or value["status_code"] != 301:
+        raise ValueError("Permanent redirect")
+    if (
+        value["target_url"]
+        != {"expression": 'concat("https://vitaliioborskyi.ai", http.request.uri.path)'}
+        or value["preserve_query_string"] is not True
+    ):
+        raise ValueError("Lossless redirect")
+    if plan["activation_applied"] or plan["analytics_activation"]:
+        raise ValueError("Activation claim")
+    order = plan["activation_order"]
+    required = [
+        "prepare-repository",
+        "github-generate-ownership-txt",
+        "cloudflare-add-verification-txt",
+        "github-verify-ownership",
+        "implement-exact-artifact-pages-workflow",
+        "admit-production-artifact-and-owner-release",
+        "github-set-actions-source-and-custom-domain",
+        "cloudflare-apply-ai-routing-dns",
+        "github-wait-certificate-and-enforce-https",
+        "publish-admitted-artifact-and-verify-ai",
+        "cloudflare-check-com-certificate-and-apply-redirect",
+        "verify-all-hosts-and-existing-staging",
+    ]
+    if order != required:
+        raise ValueError("Ownership/admission/routing order")
+
+
+def planned_redirect(plan, source):
+    """Interpret only the finite planned CF fields for URL fixture expectations."""
+    validate_plan(plan)
+    url = urlsplit(source)
+    if url.scheme not in {"http", "https"} or url.netloc not in RULE_HOSTS:
+        raise ValueError("Outside finite redirect hosts")
+    # A fragment is not sent to HTTP; tests do not invent server-side fragment handling.
+    return 301, urlunsplit(("https", plan["canonical_host"], url.path or "/", url.query, ""))
 
 
 class Issue39AcceptanceTests(unittest.TestCase):
-    def test_current_main_public_and_producer_bytes_are_preserved(self):
-        paths = protected_paths()
+    def test_provider_snapshot_records_observations_and_unknown_admin_state(self):
+        data = read(SNAPSHOT)
+        self.assertEqual((data["schema"], data["issue"], data["source_commit"]), (1, 39, BASE))
+        self.assertEqual(data["repository"], "oborskyivitalii/oborskyivitalii")
+        self.assertFalse(data["github"]["pages_administration"]["available_via_plugin"])
+        self.assertEqual(
+            data["github"]["pages_administration"]["live_pages_settings"], "unobserved"
+        )
+        self.assertFalse(data["github"]["active_pages_deploy_workflow"])
+        self.assertEqual(
+            {z["name"] for z in data["cloudflare"]["zones"]},
+            {"vitaliioborskyi.ai", "vitaliioborskyi.com"},
+        )
+        for zone in data["cloudflare"]["zones"]:
+            self.assertEqual(zone["status"], "active")
+            self.assertEqual(zone["dns_records"], [])
+            self.assertEqual(zone["redirect_entrypoint"], "absent")
+            self.assertEqual((zone["page_rules_count"], zone["worker_routes_count"]), (0, 0))
+            self.assertTrue(zone["universal_ssl_enabled"])
+            self.assertEqual(zone["universal_certificate_status"], "active")
+        self.assertTrue(data["mutations"])
+        self.assertFalse(any(data["mutations"].values()))
+        self.assertIn("no write attempted", data["cloudflare"]["capabilities"]["dns_edit"])
+
+    def test_finite_dns_and_redirect_contract(self):
+        validate_plan(read(PLAN))
+
+    def test_bad_origin_proxy_hosts_query_and_order_are_rejected(self):
+        original = read(PLAN)
+        mutations = [
+            lambda p: p.update(canonical_origin="http://vitaliioborskyi.ai"),
+            lambda p: p.update(canonical_origin="https://vitaliioborskyi.ai/oborskyivitalii"),
+            lambda p: p["dns"]["vitaliioborskyi.ai"][0].update(proxied=True),
+            lambda p: p["dns"]["vitaliioborskyi.ai"][0].update(content="192.0.2.1"),
+            lambda p: p["dns"]["vitaliioborskyi.com"][0].update(proxied=False),
+            lambda p: p["dns"]["vitaliioborskyi.ai"][0].update(name="*"),
+            lambda p: p["dns"]["vitaliioborskyi.ai"].append(
+                copy.deepcopy(p["dns"]["vitaliioborskyi.ai"][0])
+            ),
+            lambda p: p["com_redirect"]["rule"].update(
+                expression='http.host contains "vitaliioborskyi"'
+            ),
+            lambda p: p["com_redirect"]["rule"]["action_parameters"]["from_value"].update(
+                preserve_query_string=False
+            ),
+            lambda p: p["com_redirect"]["rule"]["action_parameters"]["from_value"].update(
+                status_code=302
+            ),
+            lambda p: p["github"].update(publishing_source="Deploy from a branch"),
+            lambda p: p["github"].update(ownership_txt_value="invented-challenge"),
+            lambda p: p.update(activation_applied=True),
+            lambda p: p["activation_order"].reverse(),
+        ]
+        for index, mutate in enumerate(mutations):
+            with self.subTest(mutation=index):
+                changed = copy.deepcopy(original)
+                mutate(changed)
+                with self.assertRaises(ValueError):
+                    validate_plan(changed)
+
+    def test_planned_redirect_fixtures_preserve_path_and_query(self):
+        plan = read(PLAN)
+        for host in RULE_HOSTS:
+            for scheme in ["http", "https"]:
+                for suffix in [
+                    "/",
+                    "/writing.html?topic=systems&language=uk",
+                    "/research.html",
+                    "/media/example%20file.svg?x=1&x=2",
+                    "/writing.html?empty=&encoded=%2F%3F",
+                ]:
+                    self.assertEqual(
+                        planned_redirect(plan, f"{scheme}://{host}{suffix}"),
+                        (301, f"https://vitaliioborskyi.ai{suffix}"),
+                    )
+        for source in [
+            "https://vitaliioborskyi.ai/",
+            "https://www.vitaliioborskyi.ai/",
+            "https://evilvitaliioborskyi.com/",
+            "https://vitaliioborskyi.com.evil.test/",
+            "https://user@vitaliioborskyi.com/",
+            "ftp://vitaliioborskyi.com/",
+        ]:
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                planned_redirect(plan, source)
+
+    def test_current_main_authored_edition_and_runtime_bytes_are_preserved(self):
+        # The 2026-10-15 implementation decision permits changed delivery owners
+        # and generated identities. The later approved licensing selection names
+        # exact Credits owners and one legal-copy wrapping rule below. Keep every
+        # other authored/runtime byte and the complete retained history unchanged.
+        runtime = [
+            "docs/" + name
+            for name in ("styles.css", "theme.js", "space.js", "archive.js", "navigation.js")
+        ]
+        protected = ["site", *runtime]
+        changed_configuration = {"site/analytics.json", "site/output-lock.json"}
+        additions = {
+            "site/content/production-social.json",
+            "site/rights.json",
+            "site/templates/components/legal-notices.html",
+        }
+        legal_amendments = {
+            # Selected in live #7/#39 licensing-selection-20261015; all other
+            # original tokens and routes remain protected by the baseline below.
+            'site/content/pages/credits/main.json': "4d3b70b91dca37af7dd67a9b3de9b5a8e8f48825b689f982d046539f3e8f69a2",
+            'site/templates/pages/credits/main.html': "14e369575829e251620e2b3ca3400c7c4c6b02f9d81876e33a83540070437e0c",
+        }
+        entries = subprocess.check_output(
+            ["git", "ls-tree", "-r", CURRENT_MAIN, "--", *protected],
+            cwd=ROOT,
+            text=True,
+        ).splitlines()
+        self.assertGreater(len(entries), 100)
         baseline = {}
-        records = git("ls-tree", "-rz", BASE, "--", *paths).split(b"\0")
-        for record in filter(None, records):
-            metadata, filename = record.split(b"\t", 1)
-            mode, kind, object_id = metadata.decode().split()
+        for entry in entries:
+            metadata, name = entry.split("\t")
+            mode, kind, blob = metadata.split()
             self.assertEqual((mode, kind), ("100644", "blob"))
-            baseline[filename.decode()] = object_id
-
-        actual = {}
-        for source in paths:
-            owner = ROOT / source
-            self.assertFalse(owner.is_symlink(), source)
-            for ancestor in owner.parents:
-                if ancestor == ROOT:
-                    break
-                self.assertFalse(ancestor.is_symlink(), source)
-            files = owner.rglob("*") if owner.is_dir() else [owner]
-            for filename in files:
-                self.assertFalse(filename.is_symlink(), str(filename))
-                if filename.is_file():
-                    self.assertEqual(filename.stat().st_mode & 0o111, 0)
-                    relative = filename.relative_to(ROOT).as_posix()
-                    raw = filename.read_bytes()
-                    actual[relative] = hashlib.sha1(
-                        b"blob " + str(len(raw)).encode() + b"\0" + raw,
-                        usedforsecurity=False,
-                    ).hexdigest()
-        self.assertEqual(len(baseline), 607, "pinned protected main inventory changed")
-        self.assertTrue(CONSUMER_AMENDMENTS.issubset(baseline))
+            baseline[name] = blob
+        current = set()
+        for parent in protected:
+            owner = ROOT / parent
+            paths = [owner] if owner.is_file() else owner.rglob("*")
+            for path in paths:
+                self.assertFalse(path.is_symlink(), str(path))
+                if path.is_file():
+                    current.add(path.relative_to(ROOT).as_posix())
+        self.assertEqual(current, set(baseline) | additions)
+        for name, blob in baseline.items():
+            self.assertFalse((ROOT / name).is_symlink(), name)
+            if name in changed_configuration:
+                continue
+            data = (ROOT / name).read_bytes()
+            if name in legal_amendments:
+                self.assertEqual(hashlib.sha256(data).hexdigest(), legal_amendments[name], name)
+                continue
+            if name in {"site/engine/styles.css", "docs/styles.css"}:
+                self.assertEqual(data.count(LEGAL_CSS), 1, name)
+                data = data.replace(LEGAL_CSS, b"", 1)
+            actual = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+            self.assertEqual(actual, blob, name)
+        credits_path = "site/content/pages/credits/main.json"
+        original_credits = json.loads(
+            subprocess.check_output(
+                ["git", "show", CURRENT_MAIN + ":" + credits_path], cwd=ROOT, text=True
+            )
+        )
+        current_credits = read(credits_path)
+        for key, value in original_credits["text"].items():
+            if key not in {"T006", "T012"}:
+                self.assertEqual(current_credits["text"][key], value, key)
+        for key, value in original_credits["urls"].items():
+            self.assertEqual(current_credits["urls"][key], value, key)
+        self.assertEqual(current_credits["attributes"], original_credits["attributes"])
+        component = ROOT / "site/templates/components/legal-notices.html"
         self.assertEqual(
-            set(actual),
-            set(baseline) | {FROZEN_RIGHTS_OWNER},
-            "protected inventory differs beyond the named shared frozen verifier",
+            hashlib.sha256(component.read_bytes()).hexdigest(),
+            "5014d96005546362b44cd9191e1c0d6fcd904bdb2553b8453ead6d6e9cad6148",
         )
-        self.assertEqual(
-            {
-                name: value
-                for name, value in actual.items()
-                if name not in CONSUMER_AMENDMENTS | {FROZEN_RIGHTS_OWNER}
-            },
-            {name: value for name, value in baseline.items() if name not in CONSUMER_AMENDMENTS},
-            "compatibility changed a byte outside the named hosting/Pages consumers",
+        analytics = read("site/analytics.json")
+        self.assertEqual(analytics["provider"], "cloudflare")
+        self.assertIs(analytics["enabled"], True)
+        self.assertEqual(analytics["siteURL"], "https://vitaliioborskyi.ai/")
+        self.assertRegex(analytics["token"], r"^[a-f0-9]{32}$")
+
+    def test_production_color_seo_retention_rights_and_analytics_contracts(self):
+        node_contracts(
+            self,
+            [
+                "tests/release-controller.test.cjs",
+                "tests/release-archive.test.cjs",
+                "tests/color-motion-contract.test.cjs",
+                "tests/edition-retention.test.cjs",
+                "tests/release-rights.test.cjs",
+                "tests/analytics.test.cjs",
+            ],
         )
 
-    def test_frozen_publication_records_and_actual_legacy_pages_bytes(self):
-        result = subprocess.run(
-            ["node", "--test", "--test-reporter=tap", "tests/publication-records.test.cjs"],
-            cwd=ROOT,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-            timeout=60,
+    def test_pages_migration_authenticates_settings_source_and_recovery(self):
+        node_contracts(
+            self,
+            ["tests/pages-migration.test.cjs", "tests/pages-delivery.test.cjs"],
         )
-        self.assertEqual(result.returncode, 0, result.stdout)
-        for name in (
-            "known licensed publications require frozen rights by actual runtime bytes even through default API",
-            "staging retains exact frozen license records for default and finite proxy packages",
-            "frozen reports reject rehashed source, edition, scope, notice and full-copy substitutions",
-            "Pages requires modern records and binds root and staging reports in the published receipt",
-            "both controller extraction routes retain the validated frozen report and every source byte",
-            "default Pages output and historical verification preserve actual pinned-main bytes",
-        ):
-            self.assertIn("# Subtest: " + name + "\n", result.stdout)
-        for label in ("fail", "cancelled", "skipped", "todo"):
-            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
-        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
-        passed = re.search(r"(?m)^# pass ([1-9][0-9]*)$", result.stdout)
-        self.assertIsNotNone(total, result.stdout)
-        self.assertIsNotNone(passed, result.stdout)
-        self.assertEqual(total.group(1), passed.group(1), result.stdout)
 
-    def test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes(self):
-        result = subprocess.run(
-            ["node", "--test", "--test-reporter=tap", "tests/staging.test.cjs"],
-            cwd=ROOT,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-            timeout=60,
-        )
-        self.assertEqual(result.returncode, 0, result.stdout)
-        for name in (
-            "default staging host generation and archived legacy verification preserve exact pinned-main bytes",
-            "versioned snapshot proxy policy binds only admitted immutable HTML and preserves source bytes",
-            "snapshot proxy policy rejects missing flags, mutated rules and inconsistent source or package records",
-        ):
-            self.assertIn("# Subtest: " + name + "\n", result.stdout)
-        for label in ("fail", "cancelled", "skipped", "todo"):
-            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
-        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
-        passed = re.search(r"(?m)^# pass ([1-9][0-9]*)$", result.stdout)
-        self.assertIsNotNone(total, result.stdout)
-        self.assertIsNotNone(passed, result.stdout)
-        self.assertEqual(total.group(1), passed.group(1), result.stdout)
-
-    def test_current_selector_and_bounded_negative_guards(self):
-        result = subprocess.run(
-            ["node", "--test", "--test-reporter=tap", "tests/color-motion-contract.test.cjs"],
-            cwd=ROOT,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-            timeout=60,
-        )
-        self.assertEqual(result.returncode, 0, result.stdout)
-        for label in ("fail", "cancelled", "skipped", "todo"):
-            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
-        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
-        self.assertIsNotNone(total, result.stdout)
+    def test_operator_routes_and_policy_keep_external_gates_pending(self):
+        path = ROOT / "tools/issue_acceptance.py"
+        spec = importlib.util.spec_from_file_location("issue39_acceptance", path)
+        module = importlib.util.module_from_spec(spec)
+        exec(compile(path.read_bytes(), str(path), "exec"), module.__dict__)
+        policy, _ = module.load_policy(ROOT / ".github/acceptance/issue-39.json")
+        self.assertEqual(policy["issue"], 39)
+        self.assertEqual([c["id"] for c in policy["criteria"]], [f"AC{i:02}" for i in range(1, 6)])
+        self.assertEqual(policy["gates"]["LIVE-DOMAINS"]["kind"], "human")
+        self.assertIn("LIVE-DOMAINS", policy["criteria"][-1]["gates"])
+        for criterion in policy["criteria"]:
+            self.assertTrue(criterion["gates"], criterion["id"])
+        self.assertEqual(policy["gates"]["PRODUCTION-ADMISSION"]["kind"], "human")
+        self.assertEqual(policy["gates"]["OWNER-SETTINGS"]["kind"], "human")
+        self.assertEqual(policy["gates"]["REVIEW"]["kind"], "human")
+        self.assertEqual(policy["gates"]["MERGE"]["kind"], "merge")
+        guide = (ROOT / "guides/SITE-PRODUCTION.md").read_text()
+        for url in [
+            "https://github.com/settings/pages",
+            "https://github.com/oborskyivitalii/oborskyivitalii/settings/pages",
+            "https://github.com/oborskyivitalii/oborskyivitalii/settings/environments",
+        ]:
+            self.assertIn(url, guide)
+        # These assertions prove routes/policy structure, not usefulness or actual UI completion.
+        analysis = (ROOT / "review/issue-39/2026-10-07-analysis.md").read_text()
+        self.assertIn("issues/39", analysis)
+        self.assertIn(BASE, analysis)
+        self.assertRegex(analysis, r"(?m)^## Sol tasks$")
 
     def test_flight_resource_telemetry_preserves_original_failure(self):
         result = subprocess.run(
@@ -187,42 +389,14 @@ class Issue39AcceptanceTests(unittest.TestCase):
         self.assertIsNotNone(passed, result.stdout)
         self.assertEqual(total.group(1), passed.group(1), result.stdout)
 
-    def test_recorded_license_tuples_match_closed_selector(self):
-        proof = ROOT / "review/issue-39/2026-10-15-license-tuples.json"
-        record = json.loads(proof.read_text())
-        self.assertEqual(record["kind"], "issue39-licensed-color-byte-proof")
-        self.assertEqual(
-            [row["id"] for row in record["families"]],
-            ["issue39-licensed-plain", "issue39-licensed-staging"],
-        )
-        for row in record["families"]:
-            self.assertTrue(row["sourceObservation"]["sourceDirty"])
-            self.assertFalse(row["extraLicensePaths"])
-            self.assertTrue(row["mainArtifactAndSnapshotValidatorsPass"])
-            self.assertLessEqual(row["creditsBytes"], 100000)
-            self.assertEqual(set(row["embeddedLegal"]), {"scope", "code", "content", "notices"})
-            for file in (*row["files"].values(), *row["embeddedLegal"].values()):
-                self.assertRegex(file["sha256"], r"^[a-f0-9]{64}$")
-                self.assertGreater(file["raw"], 0)
-            for file in row["files"].values():
-                self.assertTrue(file["canonicalAndImmutableBytesEqual"])
-            for file in row["embeddedLegal"].values():
-                self.assertTrue(file["aliasAndSnapshotFullTextEqual"])
+    def test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes(self):
         result = subprocess.run(
             [
                 "node",
-                "-e",
-                (
-                    "const a=require('node:assert/strict'),m=require('./tools/quality/color-motion-contract.cjs'),"
-                    "p=require('./review/issue-39/2026-10-15-license-tuples.json');"
-                    "for(const row of p.families){const files={};"
-                    "for(const [name,value] of Object.entries(row.files))"
-                    "for(const key of [name,'runtime/'+row.variant.fingerprint+'/'+name])files[key]=value;"
-                    "const candidate={variant:row.variant,components:{contract:1,engine:row.variant.fingerprint,"
-                    "variant:row.variant},files,...(row.edition?{edition:row.edition}:{})};"
-                    "a.equal(m.select(candidate).id,row.id);}"
-                    "console.log(JSON.stringify(p.families.map(row=>row.id)));"
-                ),
+                "--test",
+                "--test-reporter=tap",
+                "tests/staging.test.cjs",
+                "tests/review-flow.test.cjs",
             ],
             cwd=ROOT,
             text=True,
@@ -232,7 +406,21 @@ class Issue39AcceptanceTests(unittest.TestCase):
             timeout=60,
         )
         self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertEqual(json.loads(result.stdout), [row["id"] for row in record["families"]])
+        for name in (
+            "default staging host generation and archived legacy verification preserve exact pinned-main bytes",
+            "versioned snapshot proxy policy binds only admitted immutable HTML and preserves source bytes",
+            "snapshot proxy policy rejects missing flags, mutated rules and inconsistent source or package records",
+            "selected snapshot proxy staging requires zero redirects and exact immutable response bodies",
+            "finite snapshot proxy preview observes direct 200 and exact immutable bodies before admission",
+        ):
+            self.assertIn("# Subtest: " + name + "\n", result.stdout)
+        for label in ("fail", "cancelled", "skipped", "todo"):
+            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
+        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
+        passed = re.search(r"(?m)^# pass ([1-9][0-9]*)$", result.stdout)
+        self.assertIsNotNone(total, result.stdout)
+        self.assertIsNotNone(passed, result.stdout)
+        self.assertEqual(total.group(1), passed.group(1), result.stdout)
 
 
 if __name__ == "__main__":

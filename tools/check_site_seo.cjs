@@ -105,6 +105,133 @@ const positioning = JSON.parse(
 const sitecase = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-sitecase-amendment.json'), 'utf8')
 );
+// Maintainer-selected #7/#39 successor on 15 October. The historical SEO
+// baseline stays unchanged; only these reviewed legal owners may reverse.
+const licensingBaseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
+const licensingSources = {
+  'LICENSING.md': 'c4d21fff6a6c6578a45f35f49d01a5430690b5d17afdcdeb20fd62090bba2828',
+  'LICENSE-CODE.md': 'cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30',
+  'LICENSE-CONTENT.md': '9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94',
+  'NOTICE.md': 'a3f13709836ed8f7f097daa0059da951e160af54032855318a10b58cd4546470',
+  'site/content/pages/credits/main.json':
+    '4d3b70b91dca37af7dd67a9b3de9b5a8e8f48825b689f982d046539f3e8f69a2',
+  'site/templates/pages/credits/main.html':
+    '14e369575829e251620e2b3ca3400c7c4c6b02f9d81876e33a83540070437e0c',
+  'site/templates/components/legal-notices.html':
+    '5014d96005546362b44cd9191e1c0d6fcd904bdb2553b8453ead6d6e9cad6148',
+};
+const licensingCSS = `
+/* Full legal copies remain readable when expanded on narrow screens. */
+.legal-notices pre {
+  max-inline-size: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+`;
+function historicalSource(file) {
+  return cp.execFileSync('git', ['show', licensingBaseline + ':' + file], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+}
+function licensingAmendment(sourceRoot) {
+  for (const [file, expected] of Object.entries(licensingSources)) {
+    const owner = path.join(sourceRoot, file);
+    assert.ok(!fs.lstatSync(owner).isSymbolicLink(), 'canonical licensing source required');
+    assert.equal(
+      crypto.createHash('sha256').update(fs.readFileSync(owner)).digest('hex'),
+      expected,
+      'unreviewed licensing source: ' + file
+    );
+  }
+  const before = JSON.parse(historicalSource('site/content/pages/credits/main.json'));
+  const after = JSON.parse(
+    fs.readFileSync(path.join(sourceRoot, 'site/content/pages/credits/main.json'), 'utf8')
+  );
+  const text = (record, key) => escapeHTML(record.text[key]);
+  const paragraph = (record, key) => '<p>' + text(record, key) + '</p>';
+  const link = (url, label) => '<a href="' + after.urls[url] + '">' + text(after, label) + '</a>';
+  const anchor = (key) => paragraph(before, key);
+  return {
+    full: normalizeHTML(require('./site/legal.cjs').compile(sourceRoot).html),
+    changes: [
+      [anchor('T004') + ' ' + paragraph(after, 'T051'), anchor('T004')],
+      [
+        '<h2>' +
+          text(after, 'T005') +
+          '</h2> ' +
+          paragraph(after, 'T006') +
+          ' ' +
+          paragraph(after, 'T043') +
+          ' <p>' +
+          link('U010', 'T044') +
+          text(after, 'T048') +
+          link('U011', 'T045') +
+          text(after, 'T049') +
+          link('U012', 'T046') +
+          text(after, 'T050') +
+          link('U013', 'T047') +
+          '</p>',
+        '<h2>' + text(before, 'T005') + '</h2> ' + paragraph(before, 'T006'),
+      ],
+      [anchor('T008') + ' ' + paragraph(after, 'T052'), anchor('T008')],
+      [
+        paragraph(after, 'T012') +
+          ' <h2>' +
+          text(after, 'T057') +
+          '</h2> <p>' +
+          text(after, 'T058') +
+          link('U016', 'T059') +
+          '</p>',
+        paragraph(before, 'T012'),
+      ],
+      [
+        anchor('T014') +
+          ' ' +
+          paragraph(after, 'T053') +
+          ' <p>' +
+          link('U014', 'T054') +
+          text(after, 'T056') +
+          link('U015', 'T055') +
+          '</p>',
+        anchor('T014'),
+      ],
+    ].map(([current, previous]) => [normalizeHTML(current), normalizeHTML(previous)]),
+  };
+}
+function restoreApprovedLicensing(html, page, sourceRoot = root, required = false) {
+  if (page !== 'credits') return html;
+  html = normalizeHTML(html);
+  // Historical fragments remain valid inputs for the older amendment tests.
+  // Current copies must carry the complete selected successor, never a partial
+  // or relocated notice or a changed third-party/source attribution.
+  if (
+    !required &&
+    !/(?:class="legal-notices"|href="#license-|licensed under CC BY 4\.0)/.test(html)
+  )
+    return html;
+  const amendment = licensingAmendment(sourceRoot);
+  assert.equal(html.split(amendment.full).length, 2, 'exact approved licensing fragment required');
+  const replaceOnce = (current, previous) => {
+    assert.equal(html.split(current).length, 2, 'exact approved licensing fragment required');
+    html = html.replace(current, () => previous);
+  };
+  for (const [current, previous] of amendment.changes) replaceOnce(current, previous);
+  replaceOnce(' ' + amendment.full + ' </main>', ' </main>');
+  return html;
+}
+function verifyApprovedLicensingCSS(sourceRoot = root) {
+  for (const file of ['site/engine/styles.css', 'docs/styles.css']) {
+    const current = fs.readFileSync(path.join(sourceRoot, file), 'utf8');
+    assert.equal(current.split(licensingCSS).length, 2, 'one exact legal wrapping rule: ' + file);
+    assert.equal(
+      current.replace(licensingCSS, ''),
+      historicalSource(file),
+      'unrelated stylesheet change outside approved licensing: ' + file
+    );
+  }
+}
 function restoreContentAmendment(html, page, record = amendment) {
   for (const change of record.changes.filter((c) => c.page === page)) {
     for (const version of ['before', 'after'])
@@ -235,6 +362,7 @@ function restoreCriticalMedia(html, page, projectRoot = root) {
 }
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
+  html = restoreApprovedLicensing(html, page);
   // This successor uses current template bytes, before historical presentation reversal.
   html = restoreContentAmendment(html, page, sitecase);
   html = restoreContentAmendment(html, page, positioning);
@@ -335,6 +463,7 @@ function restore(html, page) {
 }
 function verify() {
   const rows = [];
+  verifyApprovedLicensingCSS();
   for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
     const file = 'docs/' + page + '.html';
     const source = fs.readFileSync(path.join(root, file), 'utf8');
@@ -344,7 +473,15 @@ function verify() {
       maxBuffer: 1024 * 1024,
     });
     assert.equal(
-      restore(source, page),
+      restore(
+        restoreApprovedLicensing(
+          require('./build_site_previews.cjs').sourceForPreview(source),
+          page,
+          root,
+          true
+        ),
+        page
+      ),
       normalizeHTML(strip(old)),
       'undeclared semantic/source change: ' + file
     );
@@ -362,6 +499,11 @@ function verify() {
         ]
           .filter((change) => change.page === page)
           .map((change) => change.intent),
+        ...(page === 'credits'
+          ? [
+              'exact #7/#39 selected licensing paragraphs, links, full texts and legal-only wrapping CSS',
+            ]
+          : []),
         ...(page === 'index'
           ? [
               'three selected public responses with complete Research deep link',
@@ -389,7 +531,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing the exact hashed Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 then original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after reversing exact hash-bound Issue39/7 licensing fragments and full texts, then Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 and original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. The three legal wrapping declarations are the only allowed stylesheet delta from cc115c4. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
@@ -400,5 +542,7 @@ module.exports = {
   restoreContentAmendment,
   restoreRefactorPresentation,
   restoreCriticalMedia,
+  restoreApprovedLicensing,
+  verifyApprovedLicensingCSS,
   normalizeHTML,
 };

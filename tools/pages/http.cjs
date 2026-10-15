@@ -87,10 +87,12 @@ async function check(directory, value, fetcher = fetch) {
     assertContentType(file, response.headers.get('content-type'));
     assert.equal(artifact.digest(bytes), record.files[file].sha256);
   }
-  const missing = await request(base + '/staging/__delivery_missing', base, fetcher);
-  assert.equal(missing.response.status, 404, 'Pages converted a missing route to Home');
-  assertContentType('404.html', missing.response.headers.get('content-type'));
-  assert.equal(artifact.digest(missing.bytes), record.files['404.html'].sha256);
+  for (const missingPath of ['/__delivery_missing', '/staging/__delivery_missing']) {
+    const missing = await request(base + missingPath, base, fetcher);
+    assert.equal(missing.response.status, 404, 'Pages converted a missing route to Home');
+    assertContentType('404.html', missing.response.headers.get('content-type'));
+    assert.equal(artifact.digest(missing.bytes), record.files['404.html'].sha256);
+  }
   return {
     schema: 1,
     kind: 'pages-http',

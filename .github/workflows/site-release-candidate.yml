@@ -20,6 +20,8 @@ jobs:
       public_id: ${{ steps.public.outputs.artifact-id }}
       upload_digest: ${{ steps.public.outputs.artifact-digest }}
       digest: ${{ steps.identity.outputs.digest }}
+      rights_digest: ${{ steps.rights.outputs.digest }}
+      rights_policy_status: ${{ steps.rights.outputs.policy_status }}
       package_id: ${{ steps.package.outputs.artifact-id }}
     env:
       SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
@@ -50,8 +52,15 @@ jobs:
       - name: Freeze a separate production edition before tests
         run: |
           node tools/quality/artifact.cjs build quality-artifact
-          node tools/release/edition.cjs build quality-artifact
+          node tools/staging/color.cjs quality-artifact
+          node tools/release/edition.cjs build quality-artifact color
           node tools/release/edition.cjs verify quality-artifact
+      - id: rights
+        name: Inventory rights and notices on the frozen production edition
+        run: |
+          node tools/release/rights.cjs build quality-artifact
+          node tools/release/rights.cjs verify quality-artifact quality-artifact/rights.json
+          node -e "const r=require('./quality-artifact/rights.json');require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+r.inventoryDigest+'\npolicy_status='+r.policy.status+'\n')"
       - name: Complete host-independent production guards before candidate upload
         if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}
         run: node tools/quality/local.cjs --prepublication production quality-artifact --report quality-reports/prepublication.json
@@ -169,8 +178,10 @@ jobs:
           PUBLIC_ID: ${{ needs.build.outputs.public_id }}
           PUBLIC_DIGEST: ${{ needs.build.outputs.digest }}
           UPLOAD_DIGEST: ${{ needs.build.outputs.upload_digest }}
+          RIGHTS_DIGEST: ${{ needs.build.outputs.rights_digest }}
+          RIGHTS_POLICY_STATUS: ${{ needs.build.outputs.rights_policy_status }}
         run: |
           node - <<'JS'
           require('node:fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-            'Prepared prospective production bytes; production remains inactive.\n\n'+JSON.stringify({candidate_sha:process.env.SITE_CANDIDATE_SHA,base_url:process.env.CANDIDATE_URL,public_artifact_id:process.env.PUBLIC_ID,public_run_id:process.env.GITHUB_RUN_ID,public_digest:process.env.PUBLIC_DIGEST,public_upload_digest:process.env.UPLOAD_DIGEST},null,2)+'\n');
+            'Prepared prospective production Color bytes; production remains inactive.\n\n'+JSON.stringify({candidate_sha:process.env.SITE_CANDIDATE_SHA,public_variant:'color',base_url:process.env.CANDIDATE_URL,public_artifact_id:process.env.PUBLIC_ID,public_run_id:process.env.GITHUB_RUN_ID,public_digest:process.env.PUBLIC_DIGEST,public_upload_digest:process.env.UPLOAD_DIGEST,rights_inventory_digest:process.env.RIGHTS_DIGEST,rights_policy_status:process.env.RIGHTS_POLICY_STATUS},null,2)+'\n');
           JS

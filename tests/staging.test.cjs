@@ -596,7 +596,10 @@ function fetchFixture(f, options = {}) {
         'cache-control': staging.policyHeaders(u.pathname.slice(1))['Cache-Control'],
         'x-content-type-options': 'nosniff',
       };
-    if (u.pathname.endsWith('.html'))
+    if (
+      u.pathname.endsWith('.html') &&
+      !(options.proxySnapshots && u.pathname.startsWith('/snapshots/'))
+    )
       return new Response(null, {
         status: 301,
         headers: { location: u.pathname.slice(0, -5) + (options.dropQuery ? '' : u.search) },
@@ -619,7 +622,10 @@ function fetchFixture(f, options = {}) {
     headers['content-type'] = extensions[path.extname(file)];
     const bytes = fs.readFileSync(path.join(f.out, 'public', file));
     return new Response(
-      options.tamper && file === 'styles.css' ? Buffer.from('bad bytes') : bytes,
+      (options.tamper && file === 'styles.css') ||
+      (options.tamperSnapshot && file.startsWith('snapshots/'))
+        ? Buffer.from('bad bytes')
+        : bytes,
       { status: missing && !options.spa ? 404 : 200, headers }
     );
   };
@@ -679,6 +685,39 @@ test('real-HTTP smoke model checks every served byte, extensionless query redire
       { spa: true },
     ])
       await assert.rejects(() => hosted.httpSmoke(base, record, fetchFixture(f, options)));
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
+test('selected snapshot proxy staging requires zero redirects and exact immutable response bodies', async () => {
+  const f = fixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected, {
+        hostPolicy: staging.hostPolicies.snapshotProxy,
+      }),
+      base = 'https://preview.unit-test-staging.pages.dev',
+      result = await hosted.httpSmoke(base, record, fetchFixture(f, { proxySnapshots: true })),
+      snapshots = result.files.filter((row) => row.file.startsWith('snapshots/'));
+    assert.ok(snapshots.length > 0);
+    for (const row of snapshots) {
+      assert.equal(row.status, 200);
+      assert.equal(row.redirects, 0);
+      assert.equal(row.url, base + '/' + row.file);
+      assert.equal(row.sha256, record.source.files[row.file].sha256);
+    }
+    await assert.rejects(
+      () => hosted.httpSmoke(base, record, fetchFixture(f)),
+      /immutable snapshot proxy redirected/
+    );
+    await assert.rejects(
+      () =>
+        hosted.httpSmoke(
+          base,
+          record,
+          fetchFixture(f, { proxySnapshots: true, tamperSnapshot: true })
+        ),
+      /hosted bytes differ snapshots\//
+    );
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }

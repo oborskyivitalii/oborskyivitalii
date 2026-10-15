@@ -4,13 +4,14 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const artifact = require('../quality/artifact.cjs');
+const rights = require('./rights.cjs');
 
 function tag(value) {
   assert.match(value, /^prod-\d{4}-\d{2}-\d{2}\.[1-9]\d*$/);
   return value;
 }
 
-function candidate(publicRecord, gate, evidence) {
+function candidate(publicRecord, gate, evidence, rightsReport) {
   assert.equal(publicRecord.sourceDirty, false);
   for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit'])
     assert.match(publicRecord[key], /^[a-f0-9]{40}$/);
@@ -21,11 +22,15 @@ function candidate(publicRecord, gate, evidence) {
     'staging edition cannot be released'
   );
   require('../quality/promotion.cjs').validate(publicRecord, gate, evidence, {});
+  rights.acceptance(publicRecord, rightsReport, evidence);
   return true;
 }
 
 function create(publicRecord, gate, evidence, options) {
-  candidate(publicRecord, gate, evidence);
+  assert.ok(Buffer.isBuffer(options.rightsReportBytes), 'frozen rights report bytes required');
+  const rightsReport = JSON.parse(options.rightsReportBytes);
+  rights.publication(publicRecord, rightsReport, 'production');
+  candidate(publicRecord, gate, evidence, rightsReport);
   tag(options.tag);
   assert.match(
     options.runURL,
@@ -41,6 +46,10 @@ function create(publicRecord, gate, evidence, options) {
     sourceCommit: publicRecord.sourceCommit,
     sourceTree: publicRecord.sourceTree,
     publicDigest: publicRecord.artifactDigest,
+    rights: {
+      inventoryDigest: rightsReport.inventoryDigest,
+      reportSHA256: artifact.digest(options.rightsReportBytes),
+    },
     packageDigest: options.packageDigest,
     createdAt: options.createdAt,
     validationRun: options.runURL,
@@ -51,11 +60,37 @@ function create(publicRecord, gate, evidence, options) {
   };
 }
 
+function verifyRights(directory, record) {
+  assert.match(record.rights?.reportSHA256, /^[a-f0-9]{64}$/, 'archived rights report required');
+  assert.match(record.rights.inventoryDigest, /^[a-f0-9]{64}$/);
+  const rightsBytes = fs.readFileSync(path.join(directory, 'rights.json'));
+  assert.equal(
+    artifact.digest(rightsBytes),
+    record.rights.reportSHA256,
+    'archived rights bytes changed'
+  );
+  const rightsReport = JSON.parse(rightsBytes);
+  assert.equal(
+    rightsReport.inventoryDigest,
+    record.rights.inventoryDigest,
+    'archived rights inventory differs'
+  );
+  rights.acceptance(record.public, rightsReport, record.evidence);
+  return rightsReport;
+}
+
 function verify(directory, record, packageBytes) {
   assert.equal(record.schema, 1);
   assert.equal(record.kind, 'production-archive');
   tag(record.tag);
-  candidate(record.public, record.gate, record.evidence);
+  const rightsReport = verifyRights(directory, record);
+  rights.verifyArchived(
+    path.join(directory, 'public'),
+    record.public,
+    rightsReport,
+    record.rights.inventoryDigest
+  );
+  candidate(record.public, record.gate, record.evidence, rightsReport);
   assert.equal(record.sourceCommit, record.public.sourceCommit);
   assert.equal(record.sourceTree, record.public.sourceTree);
   assert.equal(record.publicDigest, record.public.artifactDigest);
@@ -95,6 +130,7 @@ function immutable(existing, desired) {
     'release tag already belongs to another source'
   );
   assert.equal(existing.publicDigest, desired.publicDigest, 'release bytes cannot be replaced');
+  assert.deepEqual(existing.rights, desired.rights, 'release rights cannot be replaced');
   assert.equal(
     existing.packageDigest,
     desired.packageDigest,
@@ -110,4 +146,4 @@ if (require.main === module) {
   verify(directory, JSON.parse(fs.readFileSync(recordFile)), fs.readFileSync(packageFile));
 }
 
-module.exports = { tag, candidate, create, verify, transition, immutable };
+module.exports = { tag, candidate, create, verifyRights, verify, transition, immutable };

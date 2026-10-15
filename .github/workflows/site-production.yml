@@ -20,7 +20,7 @@ on:
         type: string
         default: ''
       release_evidence:
-        description: Source-bound independent/device/rights JSON records (publish only)
+        description: Exact-source independent/device/rights JSON; rights.inventoryDigest must match the frozen candidate (publish only)
         type: string
         default: ''
 permissions:
@@ -176,7 +176,7 @@ jobs:
           permission-contents: write
           permission-workflows: write
           permission-metadata: read
-      - name: Verify full/external admission and upload recoverable draft archive assets
+      - name: Verify full/external admission and prepare the frozen archive locally
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
@@ -184,6 +184,12 @@ jobs:
           script: await require('./tools/release/actions.cjs').prepareArchive(github,context)
       - name: Compose production root with the unchanged accepted staging subtree
         run: node -e "require('./tools/release/actions.cjs').compose()"
+      - name: Verify complete local composition before writing draft archive assets
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
+        with:
+          script: await require('./tools/release/actions.cjs').publishPreparedArchive(github,context)
       - name: Retain the complete next combined site before touching live Pages
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:

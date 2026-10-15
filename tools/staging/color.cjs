@@ -1,10 +1,11 @@
 'use strict';
-// Explicit staging rendition of the authored Color effects. Production stays base.
+// Explicit authored Color rendition; staging and production editions bind it separately.
 const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path');
 const artifact = require('../quality/artifact.cjs'),
   snapshot = require('../site/snapshot.cjs');
+const retention = require('../site/edition-retention.cjs');
 function authoredEffects() {
   return require('../site/effects.cjs').descriptors();
 }
@@ -75,6 +76,7 @@ function decoratePublic(dir) {
       render(fs.readFileSync(path.join(dir, base.routes[id].url), 'utf8'), base, identity),
     ])
   );
+  const retained = retention.capture(dir, base);
   fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
   fs.rmSync(path.join(dir, 'snapshots'), { recursive: true });
   for (const [name, text] of Object.entries(scripts)) {
@@ -100,6 +102,7 @@ function decoratePublic(dir) {
   }
   revision.content = artifact.digest(JSON.stringify(identity.versions));
   write(dir, 'site-revision.json', JSON.stringify(revision, null, 2) + '\n');
+  retention.restore(dir, retained);
   return { base, revision };
 }
 function build(directory) {

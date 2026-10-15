@@ -212,6 +212,7 @@ function httpObservation(file, result, expected) {
     file,
     url: result.url,
     status: result.response.status,
+    redirects: result.redirects,
     sha256: digest(result.bytes),
     expectedSha256: expected,
     headers: Object.fromEntries(
@@ -234,6 +235,9 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
     'site-revision.json',
     '_staging/revision.json',
     ...['space.js', 'navigation.js', 'styles.css'].map((x) => 'runtime/' + runtime + '/' + x),
+    ...(record.hostPolicy === pkg.hostPolicies.snapshotProxy
+      ? Object.keys(record.source.files).filter((file) => file.startsWith('snapshots/'))
+      : []),
   ];
   const work = names.map(async (file) => {
     try {
@@ -241,10 +245,15 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
       if (observation)
         observation.rows.push(httpObservation(file, result, record.files[file].sha256));
       assert.equal(result.response.status, 200, file);
-      hosted.responseHeaders(result.response.headers, file.startsWith('runtime/'));
+      if (record.hostPolicy === pkg.hostPolicies.snapshotProxy && file.startsWith('snapshots/'))
+        assert.equal(result.redirects, 0, 'immutable snapshot proxy redirected ' + file);
+      hosted.responseHeaders(
+        result.response.headers,
+        require('../site/snapshot.cjs').immutable(file)
+      );
       assertContentType(file, result.response.headers.get('content-type'));
       sameBytes(digest(result.bytes), record.files[file].sha256, file);
-      return { file, sha256: digest(result.bytes), status: 200 };
+      return { file, sha256: digest(result.bytes), status: 200, redirects: result.redirects };
     } catch (error) {
       if (observation) observation.failed(error, file);
       throw error;

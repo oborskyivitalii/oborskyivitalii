@@ -24,9 +24,11 @@ function releaseFixture(t) {
   const temp = fixture.temporary(t);
   const source = fixture.source(temp, 'production');
   source.record = edition.build(source.directory);
-  const proof = fixture.fullProof(source.record);
+  const rights = fixture.rightsInventory(source, true);
+  const proof = fixture.fullProof(source.record, rights.report);
   const directory = path.join(temp, 'assets');
   fs.mkdirSync(directory);
+  fs.copyFileSync(source.directory + '/rights.json', directory + '/rights.json');
   cp.execFileSync('python3', [
     'tools/release/package.py',
     'pack',
@@ -59,7 +61,7 @@ function releaseFixture(t) {
     }
   );
   fs.writeFileSync(directory + '/archive.json', JSON.stringify(record, null, 2) + '\n');
-  return { temp, directory, source, proof, record };
+  return { temp, directory, source, proof, record, rights };
 }
 
 function live(record) {
@@ -75,6 +77,77 @@ function live(record) {
     retained: true,
   };
 }
+
+test('production draft archive writes wait for complete local Pages and licensing verification', (t) => {
+  const f = releaseFixture(t);
+  const directory = path.join(f.temp, 'action-order');
+  fs.mkdirSync(directory);
+  fs.cpSync(f.source.directory, path.join(directory, 'production-source'), { recursive: true });
+  fs.cpSync(f.directory, path.join(directory, 'release-assets'), { recursive: true });
+  const stage = fixture.staging(path.join(f.temp, 'action-stage'));
+  pages.build(stage.directory, path.join(directory, 'pages-previous/pages-package'));
+  const combinedDirectory = path.join(directory, 'pages-package');
+  const combined = pages.build(
+    stage.directory,
+    combinedDirectory,
+    f.source.directory,
+    f.record.tag,
+    null,
+    '/',
+    { productionRightsDigest: f.record.rights.inventoryDigest }
+  );
+  const script = `
+    const assert=require('node:assert/strict');
+    const actions=require(process.argv[1]);
+    if(process.argv[2]==='verify') actions.verifyPreparedArchive();
+    else {
+      let calls=0;
+      const provider=new Proxy({}, {get(){calls+=1;throw Error('provider reached before local rejection')}});
+      (async()=>{
+        await assert.rejects(actions.publishPreparedArchive(provider,{}));
+        assert.equal(calls,0,'local failure reached provider authentication/mutation');
+      })().catch(error=>{console.error(error);process.exitCode=1});
+    }
+  `;
+  const run = (mode) =>
+    cp.spawnSync(
+      process.execPath,
+      ['-e', script, path.join(__dirname, '../tools/release/actions.cjs'), mode],
+      {
+        cwd: directory,
+        encoding: 'utf8',
+        timeout: 30000,
+      }
+    );
+  let result = run('verify');
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  const packageFile = path.join(combinedDirectory, 'pages-package.json');
+  const original = fs.readFileSync(packageFile);
+  for (const mutate of [
+    (record) => {
+      delete record.rights;
+    },
+    (record) => {
+      record.rights.root.legalCopies.code.sha256 = 'f'.repeat(64);
+    },
+    (record) => {
+      record.root.sourceTree = 'f'.repeat(40);
+    },
+    (record) => {
+      record.state.production.tag = 'prod-2026-10-12.2';
+    },
+  ]) {
+    const invalid = structuredClone(combined);
+    mutate(invalid);
+    fs.writeFileSync(packageFile, JSON.stringify(invalid));
+    result = run('reject-before-provider');
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+  }
+  fs.writeFileSync(packageFile, original);
+  fs.rmSync(path.join(directory, 'production-source/rights.json'));
+  result = run('reject-before-provider');
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+});
 
 function github(immutable = true) {
   const state = {
@@ -257,6 +330,195 @@ test('production metadata is a separately hashed edition and Pages preserves its
   assert.throws(() => edition.verify(f.source.directory, f.source.record));
 });
 
+test('production admission requires the exact rights inventory and an actual recorded owner policy', (t) => {
+  const temp = fixture.temporary(t);
+  const source = fixture.source(temp, 'pending-rights');
+  source.record = edition.build(source.directory);
+  const pending = fixture.rightsInventory(source);
+  let proof = fixture.fullProof(source.record, pending.report);
+  const item = { id: 41, digest: proof.gate.githubArtifact.uploadDigest, expired: false };
+  const admit = () => controller.admission(source.directory, proof.gate, proof.external, item);
+  assert.throws(admit, /maintainer reuse policy remains pending/);
+  const confirmed = fixture.rightsInventory(source, true);
+  proof = fixture.fullProof(source.record, confirmed.report);
+  assert.equal(admit().artifactDigest, source.record.artifactDigest);
+  for (const key of ['reviewer', 'record', 'inventoryDigest']) {
+    const original = proof.external.rights[key];
+    delete proof.external.rights[key];
+    assert.throws(admit, /rights/);
+    proof.external.rights[key] = original;
+  }
+  proof.external.rights.inventoryDigest = 'f'.repeat(64);
+  assert.throws(admit, /rights digest differs/);
+  proof.external.rights.inventoryDigest = confirmed.report.inventoryDigest;
+  fs.appendFileSync(path.join(source.directory, 'rights.json'), 'corrupted');
+  assert.throws(admit);
+});
+
+test('explicit production Color preserves approved runtime and rejects a different selected variant', (t) => {
+  const temp = fixture.temporary(t),
+    source = fixture.source(temp, 'production-color'),
+    color = require('../tools/staging/color.cjs').build(source.directory),
+    before = fs.readFileSync(source.directory + '/public/research.html', 'utf8');
+  assert.throws(() => edition.build(source.directory), /wrong production rendition/);
+  assert.throws(() => edition.build(source.directory, 'other'), /explicit production rendition/);
+  source.record = edition.build(source.directory, 'color');
+  assert.equal(edition.verify(source.directory, source.record), true);
+  assert.equal(
+    require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
+    'issue39-licensed-production'
+  );
+  assert.notEqual(source.record.variant.fingerprint, color.variant.fingerprint);
+  for (const name of require('../tools/site/snapshot.cjs').runtimeFiles)
+    assert.deepEqual(source.record.files[name], color.files[name], 'approved runtime ' + name);
+  const after = fs.readFileSync(source.directory + '/public/research.html', 'utf8');
+  assert.equal(after.match(/<body[\s\S]*$/)[0], before.match(/<body[\s\S]*$/)[0]);
+  const analytics = (html) =>
+    [
+      ...html.matchAll(/<script data-site-analytics="cloudflare" src="([^"]+)" defer><\/script>/g),
+    ].map((match) => [match[0], match[1]]);
+  assert.equal(analytics(before).length, require('../site/analytics.json').enabled ? 1 : 0);
+  assert.deepEqual(analytics(after), analytics(before), 'production retains the selected loader');
+  for (const [, name] of analytics(before))
+    assert.deepEqual(source.record.files[name], color.files[name], 'analytics bytes remain exact');
+  assert.doesNotThrow(() => artifact.checkSize(source.directory + '/public'));
+  const base = fixture.source(temp, 'wrong-base');
+  assert.throws(() => edition.build(base.directory, 'color'), /wrong production rendition/);
+  const staged = fixture.staging(temp, true);
+  assert.throws(() => edition.build(staged.directory, 'color'), /already applied/);
+  const report = fixture.rightsInventory(source, true).report,
+    summaryFile = path.join(temp, 'candidate-summary.md'),
+    workflow = fs.readFileSync(
+      path.join(__dirname, '../.github/workflows/site-release-candidate.yml'),
+      'utf8'
+    ),
+    summaryStep = workflow.slice(
+      workflow.indexOf(
+        '      - name: Show exact inputs for the existing full candidate validation\n'
+      )
+    ),
+    bindings = Object.fromEntries(
+      [...summaryStep.matchAll(/^ {10}([A-Z_]+): \$\{\{ ([^}]+) \}\}$/gm)].map(
+        ([, name, value]) => [name, value]
+      )
+    );
+  assert.deepEqual(bindings, {
+    CANDIDATE_URL: 'needs.publish.outputs.url',
+    PUBLIC_ID: 'needs.build.outputs.public_id',
+    PUBLIC_DIGEST: 'needs.build.outputs.digest',
+    UPLOAD_DIGEST: 'needs.build.outputs.upload_digest',
+    RIGHTS_DIGEST: 'needs.build.outputs.rights_digest',
+    RIGHTS_POLICY_STATUS: 'needs.build.outputs.rights_policy_status',
+  });
+  const summaryScript = summaryStep.match(/node - <<'JS'\n([\s\S]*?)\n {10}JS/)[1],
+    expectedInputs = {
+      candidate_sha: source.record.sourceCommit,
+      public_variant: 'color',
+      base_url: 'https://candidate.invalid/frozen-edition/',
+      public_artifact_id: '123',
+      public_run_id: '456',
+      public_digest: source.record.artifactDigest,
+      public_upload_digest: 'sha256:' + 'c'.repeat(64),
+      rights_inventory_digest: report.inventoryDigest,
+      rights_policy_status: report.policy.status,
+    };
+  cp.execFileSync(process.execPath, ['-e', summaryScript], {
+    env: {
+      ...process.env,
+      GITHUB_STEP_SUMMARY: summaryFile,
+      SITE_CANDIDATE_SHA: expectedInputs.candidate_sha,
+      CANDIDATE_URL: expectedInputs.base_url,
+      PUBLIC_ID: expectedInputs.public_artifact_id,
+      GITHUB_RUN_ID: expectedInputs.public_run_id,
+      PUBLIC_DIGEST: expectedInputs.public_digest,
+      UPLOAD_DIGEST: expectedInputs.public_upload_digest,
+      RIGHTS_DIGEST: expectedInputs.rights_inventory_digest,
+      RIGHTS_POLICY_STATUS: expectedInputs.rights_policy_status,
+    },
+  });
+  const summary = fs.readFileSync(summaryFile, 'utf8');
+  assert.deepEqual(JSON.parse(summary.slice(summary.indexOf('{'))), expectedInputs);
+});
+
+test('production social metadata binds all five routes to the shipped JPEG and rejects omissions or changed bytes', (t) => {
+  const temp = fixture.temporary(t),
+    source = fixture.source(temp, 'production-social');
+  source.record = edition.build(source.directory);
+  const bytes = fs.readFileSync(source.directory + '/public/' + edition.social.file);
+  assert.equal(bytes.readUInt16BE(0), 0xffd8, 'actual JPEG signature');
+  let dimensions;
+  for (let offset = 2; offset < bytes.length; ) {
+    assert.equal(bytes[offset], 0xff);
+    const marker = bytes[offset + 1],
+      length = bytes.readUInt16BE(offset + 2);
+    if ([0xc0, 0xc1, 0xc2].includes(marker)) {
+      dimensions = [bytes.readUInt16BE(offset + 7), bytes.readUInt16BE(offset + 5)];
+      break;
+    }
+    assert.ok(length > 1);
+    offset += 2 + length;
+  }
+  assert.deepEqual(dimensions, [edition.social.width, edition.social.height]);
+  assert.equal(edition.social.type, 'image/jpeg');
+  for (const id of require('../tools/site/snapshot.cjs').routes) {
+    for (const name of [id + '.html', source.record.components.routes[id].url]) {
+      const file = source.directory + '/public/' + name,
+        original = fs.readFileSync(file, 'utf8');
+      for (const attribute of ['property="og:image"', 'name="twitter:image"']) {
+        assert.ok(
+          original.includes(
+            attribute + ' content="' + edition.origin + '/' + edition.social.file + '"'
+          )
+        );
+        fs.writeFileSync(file, original.replace(attribute, 'name="missing-image"'));
+        assert.throws(() => edition.verify(source.directory, source.record), /social image/);
+        fs.writeFileSync(file, original);
+      }
+      fs.writeFileSync(
+        file,
+        original.replace(
+          '</head>',
+          '<meta property="og:image" content="https://attacker.invalid/image.jpg"></head>'
+        )
+      );
+      assert.throws(() => edition.verify(source.directory, source.record));
+      fs.writeFileSync(file, original);
+    }
+  }
+  fs.writeFileSync(source.directory + '/public/' + edition.social.file, bytes.subarray(0, 100));
+  assert.throws(() => edition.verify(source.directory, source.record), /social image/);
+});
+
+test('live production social metadata requires the exact reachable JPEG with its declared HTTP MIME', async (t) => {
+  const temp = fixture.temporary(t),
+    source = fixture.source(temp, 'live-social');
+  require('../tools/staging/color.cjs').build(source.directory);
+  source.record = edition.build(source.directory, 'color');
+  const record = { public: source.record, publicDigest: source.record.artifactDigest };
+  function fetcher(imageType) {
+    return async (url) => {
+      const name = new URL(url).pathname.slice(1) || 'index.html',
+        file = path.join(source.directory, 'public', name),
+        found = fs.existsSync(file);
+      const mime =
+        name === edition.social.file
+          ? imageType
+          : require('../tools/quality/serve.cjs').canonicalType(found ? name : '404.html');
+      return new Response(found ? fs.readFileSync(file) : 'Missing', {
+        status: found ? 200 : 404,
+        headers: { 'content-type': mime },
+      });
+    };
+  }
+  const observation = await releaseLive.check(source.directory, record, fetcher('image/jpeg'));
+  assert.equal(observation.pass, true);
+  assert.equal(observation.publicDigest, source.record.artifactDigest);
+  await assert.rejects(
+    () => releaseLive.check(source.directory, record, fetcher('text/plain')),
+    /incorrect Content-Type.*\.jpg|social image MIME/
+  );
+});
+
 test('archive uploads bind all raw evidence and become immutable only after retained live observations', async (t) => {
   const f = releaseFixture(t),
     api = github();
@@ -297,10 +559,53 @@ test('archive uploads bind all raw evidence and become immutable only after reta
     fs.readFileSync(f.temp + '/restored/public.tar.gz'),
     fs.readFileSync(f.directory + '/public.tar.gz')
   );
+  assert.deepEqual(
+    fs.readFileSync(f.temp + '/restored/rights.json'),
+    fs.readFileSync(f.directory + '/rights.json')
+  );
+  assert.equal(f.record.rights.inventoryDigest, f.proof.external.rights.inventoryDigest);
+  assert.equal(
+    f.record.rights.reportSHA256,
+    artifact.digest(fs.readFileSync(f.directory + '/rights.json'))
+  );
   fs.appendFileSync(f.directory + '/public.tar.gz', 'tamper');
   await assert.rejects(
     controller.publishArchive(api, context, f.directory, f.record, activation, api),
     /cannot be replaced/
+  );
+});
+
+test('a changed rights release asset fails before any publication or historical restoration', async (t) => {
+  const f = releaseFixture(t);
+  const api = github();
+  const rightsFile = path.join(f.directory, 'rights.json');
+  const rightsBytes = fs.readFileSync(rightsFile);
+  fs.appendFileSync(rightsFile, ' ');
+  await assert.rejects(
+    controller.publishArchive(api, context, f.directory, f.record, null, api),
+    /archived rights bytes changed/
+  );
+  assert.equal(api.state.refs.size, 0);
+  fs.writeFileSync(rightsFile, rightsBytes);
+  await controller.publishArchive(api, context, f.directory, f.record, null, api);
+  const observations = Buffer.from('fixture observations');
+  const activation = {
+    tag: f.record.tag,
+    packageDigest: f.record.packageDigest,
+    productionDeploymentId: 900,
+    observationsDigest: artifact.digest(observations),
+    observation: live(f.record),
+  };
+  fs.writeFileSync(path.join(f.directory, 'observations.tar.gz'), observations);
+  fs.writeFileSync(path.join(f.directory, 'activation.json'), JSON.stringify(activation));
+  await controller.publishArchive(api, context, f.directory, f.record, activation, api);
+  const item = api.state.assets.find((asset) => asset.name === 'rights.json');
+  item.bytes = Buffer.concat([item.bytes, Buffer.from(' ')]);
+  item.size = item.bytes.length;
+  item.digest = 'sha256:' + artifact.digest(item.bytes);
+  await assert.rejects(
+    controller.restoreArchive(api, context, f.record.tag, path.join(f.temp, 'changed-rights')),
+    /archived rights bytes changed/
   );
 });
 

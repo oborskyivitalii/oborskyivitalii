@@ -239,6 +239,49 @@
         "\u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433",
         "\u043f\u0440\u0430\u0432\u0438\u043b\u0430 \u043d\u0430\u043f\u0438\u0441\u0430\u043d\u043d\u044f \u043a\u043e\u0434\u0443"
       ]
+    },
+    {
+      "path": "guides/SITE-PRODUCTION.md",
+      "concern": "GitHub Pages production custom domain and canonical redirect readiness",
+      "queries": [
+        "production domain",
+        "custom domain",
+        "GitHub Pages",
+        "vitaliioborskyi.ai",
+        "vitaliioborskyi.com",
+        "domain redirect",
+        "домен",
+        "домени",
+        "гітхаб пейджес"
+      ]
+    },
+    {
+      "concern": "release-bound rights inventory, provenance and site reuse-policy decision",
+      "path": "guides/SITE-RIGHTS.md",
+      "queries": [
+        "site licensing",
+        "rights inventory",
+        "reuse license",
+        "copyright",
+        "\u043b\u0456\u0446\u0435\u043d\u0437\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u0430\u0439\u0442\u0443",
+        "\u043f\u0440\u0430\u0432\u0430 \u043d\u0430 \u043c\u0430\u0442\u0435\u0440\u0456\u0430\u043b\u0438",
+        "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f"
+      ]
+    },
+    {
+      "concern": "personal-site code and content licensing, exclusions and attribution notices",
+      "path": "LICENSING.md",
+      "queries": [
+        "site licensing",
+        "code license",
+        "content license",
+        "Apache-2.0",
+        "CC BY 4.0",
+        "copyright",
+        "\u043b\u0456\u0446\u0435\u043d\u0437\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u0430\u0439\u0442\u0443",
+        "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f \u043a\u043e\u0434\u0443",
+        "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0443"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -420,6 +463,47 @@
       "read": ["guides/CODE-STYLE.md"],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
+    },
+    {
+      "concern": "production preparation, canonical Pages migration and release-bound rights inventory",
+      "paths": [
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "site/content/production-social.json",
+        "site/rights.json",
+        "tools/pages/",
+        "tools/release/",
+        "tools/site/edition-retention.cjs",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html",
+        "tools/check_site_seo.cjs",
+        "tests/executive.test.cjs",
+        "tests/site-engine.test.cjs",
+        "site/content/pages/credits/main.json",
+        "site/templates/pages/credits/main.html",
+        "site/engine/styles.css",
+        "docs/styles.css",
+        "tests/edition-retention.test.cjs",
+        "tests/pages-migration.test.cjs",
+        "tests/release-rights.test.cjs",
+        ".github/workflows/site-pages-migration.yml",
+        "guides/SITE-PRODUCTION.md",
+        "guides/SITE-RIGHTS.md"
+      ],
+      "commands": [
+        "node --test tests/executive.test.cjs tests/site-engine.test.cjs tests/edition-retention.test.cjs tests/pages-migration.test.cjs tests/release-rights.test.cjs tests/release-controller.test.cjs tests/release-archive.test.cjs",
+        "node tools/quality/local.cjs"
+      ],
+      "read": [
+        "LICENSING.md",
+        "guides/SITE-PRODUCTION.md",
+        "guides/SITE-RIGHTS.md",
+        "guides/SITE-RELEASE-GATES.md"
+      ],
+      "workflow": ".github/workflows/site-checks.yml",
+      "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
     }
   ]
 }

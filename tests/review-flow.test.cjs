@@ -437,7 +437,14 @@ function fetchFixture(f, mutation) {
   return async (url) => {
     const u = new URL(url);
     let file = u.pathname.slice(1) || 'index.html';
-    if (u.pathname.endsWith('.html'))
+    if (
+      u.pathname.endsWith('.html') &&
+      !(
+        f.record.hostPolicy === pkg.hostPolicies.snapshotProxy &&
+        u.pathname.startsWith('/snapshots/') &&
+        mutation !== 'snapshot-redirect'
+      )
+    )
       return new Response(null, { status: 301, headers: { location: u.pathname.slice(0, -5) } });
     if (
       !fs.existsSync(path.join(f.out, 'public', file)) &&
@@ -454,7 +461,8 @@ function fetchFixture(f, mutation) {
     };
     if (mutation === 'robots') headers['x-robots-tag'] = 'noindex';
     const bytes =
-      mutation === 'runtime' && file.endsWith('/space.js')
+      (mutation === 'runtime' && file.endsWith('/space.js')) ||
+      (mutation === 'snapshot' && file.startsWith('snapshots/'))
         ? Buffer.from('wrong tested engine')
         : fs.readFileSync(path.join(f.out, 'public', file));
     return new Response(bytes, { status: missing ? 404 : 200, headers });
@@ -500,6 +508,45 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
       /wrong served bytes/
     );
     await assert.rejects(() => flow.quickHttp(base, f.record, fetchFixture(f, 'robots')));
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
+test('finite snapshot proxy preview observes direct 200 and exact immutable bodies before admission', async () => {
+  const f = packageFixture();
+  try {
+    f.out = path.join(f.dir, 'proxy-package');
+    f.record = pkg.build(
+      path.join(f.dir, 'input'),
+      f.out,
+      {},
+      {
+        hostPolicy: pkg.hostPolicies.snapshotProxy,
+      }
+    );
+    const base = 'https://abcdefgh.' + flow.project + '.pages.dev',
+      result = await flow.quickHttp(base, f.record, fetchFixture(f)),
+      snapshots = Object.keys(f.record.source.files).filter((file) =>
+        file.startsWith('snapshots/')
+      );
+    assert.ok(snapshots.length > 0);
+    assert.deepEqual(
+      result.rows.filter((row) => snapshots.includes(row.file)).map((row) => row.file),
+      snapshots
+    );
+    for (const row of result.rows.filter((row) => snapshots.includes(row.file))) {
+      assert.equal(row.status, 200);
+      assert.equal(row.redirects, 0);
+      assert.equal(row.sha256, f.record.source.files[row.file].sha256);
+    }
+    await assert.rejects(
+      () => flow.quickHttp(base, f.record, fetchFixture(f, 'snapshot-redirect')),
+      /immutable snapshot proxy redirected/
+    );
+    await assert.rejects(
+      () => flow.quickHttp(base, f.record, fetchFixture(f, 'snapshot')),
+      /wrong served bytes.*snapshots\//
+    );
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }

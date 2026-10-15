@@ -38,5 +38,12 @@ function build(directory) {
   });
 }
 
-if (require.main === module) console.log(JSON.stringify(build(path.resolve(process.argv[2]))));
+if (require.main === module) {
+  const directory = path.resolve(process.argv[2]);
+  const record = build(directory);
+  // The protected-main workflow uploads this entire directory immediately
+  // after invoking this candidate entrypoint. Freeze notices before that upload.
+  require('../release/rights.cjs').write(directory, { requireCheckout: true });
+  console.log(JSON.stringify(record));
+}
 module.exports = { render, build };

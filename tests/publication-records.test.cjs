@@ -211,8 +211,7 @@ test('prepublication preserves distinct child runner stderr and command-level fa
 
 test('preflight edition guard accepts production bytes on either host profile and rejects coverage-edition mismatches', (t) => {
   const directory = delivery.temporary(t);
-  const production = delivery.source(directory, 'production');
-  production.record = require('../tools/release/edition.cjs').build(production.directory);
+  const production = delivery.production(directory);
   const stage = delivery.staging(directory);
   for (const [level, source] of [
     ['production', production],
@@ -257,7 +256,7 @@ test('known licensed publications require frozen rights by actual runtime bytes 
     fs.rmSync(path.join(source.directory, 'rights.json'));
     assert.throws(
       () => staging.build(source.directory, path.join(temp, 'missing-' + edition)),
-      /rights record required/
+      /rights record required|rights\.json/
     );
     for (const alter of [
       (record) => {
@@ -281,7 +280,7 @@ test('known licensed publications require frozen rights by actual runtime bytes 
       fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(record));
       assert.throws(
         () => staging.build(source.directory, path.join(temp, 'opt-out')),
-        /rights record required|conflicting tested runtime identity/
+        /rights record required|rights\.json|conflicting tested runtime identity/
       );
     }
   }
@@ -309,21 +308,9 @@ test('staging retains exact frozen license records for default and finite proxy 
     stale.rightsDigest = '0'.repeat(64);
     assert.throws(() => staging.verify(directory, stale), /rights digest differs/);
   }
-  const cli = path.join(temp, 'cli');
-  cp.execFileSync(process.execPath, ['tools/staging/package.cjs', 'build', source.directory, cli], {
-    stdio: 'pipe',
-    env: fixtureEnvironment(source, {
-      ...process.env,
-      SITE_CANDIDATE_SHA: 'f'.repeat(40),
-      SITE_EXPECTED_PUBLIC_DIGEST: '0'.repeat(64),
-      SITE_ARTIFACT_ID: '999',
-      SITE_UPLOAD_DIGEST: 'sha256:' + '0'.repeat(64),
-    }),
-  });
-  assert.deepEqual(
-    JSON.parse(fs.readFileSync(path.join(cli, 'staging-package.json'))).rights,
-    source.report
-  );
+  // The real clean-checkout CLI chain and its source/report failures belong to
+  // release-rights.test.cjs: publication actual edition and package CLIs.
+  // These synthetic identities exercise the package API and frozen sidecars.
 });
 
 test('rehashed public revision metadata cannot relabel exact licensed runtime bytes as historical base', (t) => {
@@ -451,7 +438,7 @@ test('Pages requires modern records and binds root and staging reports in the pu
   fs.rmSync(path.join(source.directory, 'rights.json'));
   assert.throws(
     () => pages.build(source.directory, path.join(temp, 'missing')),
-    /rights record required/
+    /rights record required|rights\.json/
   );
   fixture.save(source);
   const directory = path.join(temp, 'pages');
@@ -465,6 +452,27 @@ test('Pages requires modern records and binds root and staging reports in the pu
     root: source.report.inventoryDigest,
   });
   assert.equal(pages.verify(directory, record), true);
+  const receiptPath = path.join(directory, 'public/_delivery/state.json');
+  const originalReceipt = fs.readFileSync(receiptPath);
+  const inventedProduction = structuredClone(record);
+  inventedProduction.state.production = {
+    tag: 'prod-2026-10-15.1',
+    sourceCommit: record.root.sourceCommit,
+    publicDigest: record.root.artifactDigest,
+  };
+  try {
+    fs.writeFileSync(receiptPath, JSON.stringify(inventedProduction.state));
+    const rehashed = artifact.manifest(path.join(directory, 'public'));
+    inventedProduction.files = rehashed.files;
+    inventedProduction.packageDigest = rehashed.artifactDigest;
+    assert.throws(
+      () => pages.verify(directory, inventedProduction),
+      /wrong publication edition/,
+      'a coherently rehashed receipt cannot promote staging bytes to production'
+    );
+  } finally {
+    fs.writeFileSync(receiptPath, originalReceipt);
+  }
   const missing = structuredClone(record);
   delete missing.rights;
   assert.throws(() => pages.verify(directory, missing), /rights record required/);
@@ -487,7 +495,7 @@ test('Pages requires modern records and binds root and staging reports in the pu
 test('modern staging can preserve an accepted historical production root without inventing its rights', (t) => {
   const temp = delivery.temporary(t);
   const source = fixture.fixture(temp);
-  const production = delivery.source(temp, 'production', 'c'.repeat(40));
+  const production = fixture.historical(temp, 'production');
   const directory = path.join(temp, 'combined');
   const record = pages.build(
     source.directory,
@@ -532,21 +540,9 @@ test('both controller extraction routes retain the validated frozen report and e
 
 test('default Pages output and historical verification preserve actual pinned-main bytes', (t) => {
   const temp = delivery.temporary(t);
-  const stage = delivery.staging(temp, true);
-  const production = delivery.source(temp, 'production', 'c'.repeat(40));
-  const previous = path.join(temp, 'previous');
-  const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
-  for (const name of [
-    'tools/pages/package.cjs',
-    'tools/quality/artifact.cjs',
-    'tools/quality/budgets.json',
-    'tools/site/snapshot.cjs',
-    'tools/release/archive.cjs',
-  ]) {
-    const file = path.join(previous, name);
-    fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.writeFileSync(file, cp.execFileSync('git', ['show', baseline + ':' + name]));
-  }
+  const stage = fixture.historical(temp, 'staging', { staging: true, color: true });
+  const production = fixture.historical(temp, 'production');
+  const previous = stage.baselineRoot;
   for (const [name, prefix, prod] of [
     ['initial', '/', false],
     ['project', '/author/', false],

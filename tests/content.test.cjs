@@ -232,7 +232,21 @@ test('research theories retain project alignment and explicit association on nar
 });
 
 test('English UI has distinct useful metadata and non-executable accurate page schemas', () => {
-  const titles = [];
+  const titles = [],
+    analytics = require('../tools/site/analytics.cjs'),
+    config = analytics.validate(require('../site/analytics.json')),
+    measurement = analytics.compile(
+      path.join(root, '..'),
+      require('../site/routes.json').routes.map((route) => route.url)
+    ),
+    loaders = Object.entries(measurement.assets),
+    revision = require('../docs/site-revision.json');
+  assert.equal(loaders.length, config.enabled ? 1 : 0, 'exact optional analytics loader');
+  for (const [name, bytes] of loaders) {
+    assert.match(name, /^runtime\/[a-f0-9]{64}\/analytics\.js$/);
+    assert.equal(fs.readFileSync(path.join(root, name), 'utf8'), bytes);
+    assert.equal(require('../tools/quality/artifact.cjs').digest(bytes), name.split('/')[1]);
+  }
   for (const html of Object.values(pages)) {
     assert.ok(html.includes('<html lang="en">'));
     assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
@@ -248,10 +262,25 @@ test('English UI has distinct useful metadata and non-executable accurate page s
       /name="keywords"|rel="canonical"|hreflang=|property="og:url"|property="og:image"|noindex/
     );
     const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
-    assert.equal(scripts.length, 5);
-    assert.equal(
-      scripts.filter((s) => /^ src="runtime\/[a-f0-9]{64}\/theme\.js"$/.test(s[1])).length,
-      1
+    assert.equal(scripts.length, 5 + loaders.length);
+    const analyticsScripts = scripts.filter((s) => s[1].includes('data-site-analytics='));
+    assert.deepEqual(
+      analyticsScripts.map((s) => [s[1], s[2]]),
+      loaders.map(([name]) => [' data-site-analytics="cloudflare" src="' + name + '" defer', ''])
+    );
+    assert.deepEqual(
+      scripts
+        .filter((s) => s[1] !== ' type="application/ld+json"' && !analyticsScripts.includes(s))
+        .map((s) => [s[1], s[2]]),
+      ['theme.js', 'space.js', 'archive.js', 'navigation.js'].map((name) => [
+        ' src="runtime/' +
+          revision.engine +
+          '/' +
+          name +
+          '"' +
+          (name === 'theme.js' ? '' : ' defer'),
+        '',
+      ])
     );
     assert.equal(scripts.filter((s) => s[1] === ' type="application/ld+json"').length, 1);
     const data = schema(html);

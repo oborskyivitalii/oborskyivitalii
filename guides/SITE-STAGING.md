@@ -25,6 +25,9 @@ mechanics; a historical accepted run does not admit a later candidate.
 
 ## Deployment flow
 
+Custom-domain production planning is in [SITE-PRODUCTION](SITE-PRODUCTION.md).
+The Cloudflare controller below remains the preview/staging route.
+
 | Trigger | Address | Checks |
 | --- | --- | --- |
 | Open/update a same-repository Draft PR | `https://pr-N.oborskyi-author-ci-staging.pages.dev` and an immutable version URL | Generated output, public script syntax, package/snapshot/size integrity and bounded HTTP identity. Source/lint/RI/acceptance and browser admission are deferred visibly. |
@@ -63,6 +66,17 @@ badge, HTML `noindex,nofollow`, no production analytics SDK or verification toke
 Its CSS uses existing theme tokens. JSON-LD formatting is compacted without
 changing data to retain the original HTML budget. Removing staging metadata
 requires a separately frozen production artifact before full tests.
+
+PR40 publication packaging explicitly selects `immutable-snapshot-proxy-v1` in
+its existing package CLI, alongside clean-checkout rights verification. The policy
+adds source-derived exact same-site200 rules only for admitted immutable snapshot
+HTML; public source files, aliases, headers and performance budgets stay unchanged.
+Default and explicit-legacy APIs and archived legacy verification retain their
+original behavior. Draft HTTP verification observes every selected snapshot's
+200, zero redirects, exact body, MIME and immutable cache policy. The existing
+staging HTTP inventory checks those same conditions on its original requests.
+These HTTP observations add no requests or allowances to measured flight windows;
+local fixtures cannot establish actual Cloudflare behavior or native performance.
 
 The reusable workflow distinguishes `validation_level` from hosted `profile`.
 The owner staging controller selects `validation_level: staging`,

@@ -6,6 +6,7 @@ const { documentTemplate, renderSlots } = require('./render-content.cjs');
 const recordsRenderer = require('./render-records.cjs');
 const { validateFragment, substitute, escapeText, escapeAttribute } = require('./html.cjs');
 const { validateCatalog, catalogCounts, editionURL } = require('./validate-catalog.cjs');
+const legal = require('./legal.cjs');
 const read = (root, name) => fs.readFileSync(path.join(root, name), 'utf8');
 const load = (root, name) => JSON.parse(read(root, name));
 function catalog(root) {
@@ -92,6 +93,11 @@ function routeInput(root, route, c) {
       '{{DISCUSSION_ROWS}}',
       recordsRenderer.discussionRows(components, c, discussionDependencies)
     );
+  if (route.id === 'credits') {
+    const notices = legal.compile(root);
+    main = legal.attach(main, notices);
+    inputs.push(...notices.inputs);
+  }
   validateFragment(main, route.id);
   const schema = structuredClone(meta.structuredData);
   if (meta.catalogList) {

@@ -165,7 +165,7 @@ async function previousPublication(
   assert.equal(run.head_branch, 'main');
   assert.equal(run.actor?.login, context.repo.owner);
   assert.ok(
-    ['site-color-review.yml', 'site-production.yml'].some(
+    ['site-color-review.yml', 'site-production.yml', 'site-pages-migration.yml'].some(
       (name) => run.path === '.github/workflows/' + name
     )
   );
@@ -198,13 +198,7 @@ async function previousPublication(
     false,
     'previous Pages recovery expired; reconcile before publication'
   );
-  const record = {
-    runId,
-    attempt,
-    artifactId: item.id,
-    uploadDigest: item.digest,
-    state,
-  };
+  const record = { runId, attempt, artifactId: item.id, uploadDigest: item.digest, state };
   if (failedInitial) {
     require('../staging/trust.cjs').digest(item.digest);
     artifactIdentity(item, run, item.id, item.digest, matches[0].name);
@@ -267,11 +261,13 @@ function retained(directory, previousRecord, uploadBytes = null) {
   if (previousRecord.accepted === false) {
     assert.equal(previousRecord.recoveryKind, 'failed-initial-staging');
     assert.ok(Buffer.isBuffer(uploadBytes), 'failed first recovery requires its exact upload ZIP');
+  }
+  if (Buffer.isBuffer(uploadBytes)) {
     const artifact = require('../quality/artifact.cjs');
     assert.equal(
       artifact.digest(uploadBytes),
       require('../staging/trust.cjs').digest(previousRecord.uploadDigest),
-      'failed first recovery upload changed'
+      'retained recovery upload changed'
     );
     assert.deepEqual(
       uploadedInventory(uploadBytes),
@@ -283,8 +279,10 @@ function retained(directory, previousRecord, uploadBytes = null) {
           Object.entries(record.files).map(([name, info]) => ['public/' + name, info.sha256])
         ),
       },
-      'failed first recovery differs from its authenticated ZIP'
+      'retained recovery differs from its authenticated ZIP'
     );
+  }
+  if (previousRecord.accepted === false) {
     assert.equal(
       record.files['_delivery/state.json'].sha256,
       previousRecord.receiptDigest,
@@ -320,11 +318,12 @@ function sourceFromPackage(directory, output) {
     path.join(output, 'artifact.json'),
     JSON.stringify(staged.source, null, 2) + '\n'
   );
-  if (staged.rights)
+  if (staged.rights) {
     fs.writeFileSync(
       path.join(output, 'rights.json'),
       JSON.stringify(staged.rights, null, 2) + '\n'
     );
+  }
   return staged.source;
 }
 
@@ -341,11 +340,12 @@ function stagingFromPages(directory, output) {
     path.join(output, 'artifact.json'),
     JSON.stringify(record.staging, null, 2) + '\n'
   );
-  if (record.rights?.staging)
+  if (record.rights?.staging) {
     fs.writeFileSync(
       path.join(output, 'rights.json'),
       JSON.stringify(record.rights.staging, null, 2) + '\n'
     );
+  }
   require('./package.cjs').checkStaging(output, record.staging);
   return record.staging;
 }

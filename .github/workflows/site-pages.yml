@@ -154,12 +154,13 @@ jobs:
           RELEASE_PUBLIC_DIGEST: ${{ steps.production.outputs.digest }}
           RELEASE_SOURCE: ${{ steps.production.outputs.source }}
         run: |
-          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern public.tar.gz --pattern archive.json --dir production-release
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern public.tar.gz --pattern archive.json --pattern rights.json --dir production-release
           node -e "const r=require('./production-release/archive.json'),a=require('node:assert/strict');a.equal(r.tag,process.env.RELEASE_TAG);a.equal(r.publicDigest,process.env.RELEASE_PUBLIC_DIGEST);a.equal(r.sourceCommit,process.env.RELEASE_SOURCE);require('node:fs').appendFileSync(process.env.GITHUB_ENV,'RELEASE_PACKAGE_DIGEST='+r.packageDigest+'\n')"
       - name: Extract and verify the production archive
         if: steps.production.outputs.tag != ''
         run: |
           python3 tools/release/package.py unpack production-release/public.tar.gz production-source "$RELEASE_PACKAGE_DIGEST"
+          cp production-release/rights.json production-source/rights.json
           node -e "require('./tools/release/archive.cjs').verify('production-source',require('./production-release/archive.json'),require('node:fs').readFileSync('production-release/public.tar.gz'))"
       - name: Compose staging while preserving accepted production file hashes
         env:
@@ -168,7 +169,8 @@ jobs:
         run: |
           node - <<'JS'
           const pkg=require('./tools/pages/package.cjs');
-          pkg.build('staging-source','pages-package',process.env.RELEASE_TAG?'production-source':null,process.env.RELEASE_TAG||null,{kind:'ci-pages',runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,controller:process.env.GITHUB_SHA},new URL(process.env.PAGES_BASE_URL).pathname);
+          const archive=process.env.RELEASE_TAG?require('./production-release/archive.json'):null;
+          pkg.build('staging-source','pages-package',archive?'production-source':null,process.env.RELEASE_TAG||null,{kind:'ci-pages',runId:process.env.GITHUB_RUN_ID,attempt:process.env.GITHUB_RUN_ATTEMPT,controller:process.env.GITHUB_SHA},new URL(process.env.PAGES_BASE_URL).pathname,{productionRightsDigest:archive?.rights.inventoryDigest});
           require('node:fs').mkdirSync('pages-reports',{recursive:true});
           JS
       - name: Retain the complete new package before touching the live site

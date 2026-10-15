@@ -447,6 +447,123 @@ test('practical positioning allowances reject unsupported claims, status and con
     );
   }
 });
+test('selected licensing reverses only exact Credits fragments and complete inline owners', (t) => {
+  const path = require('node:path'),
+    cp = require('node:child_process'),
+    os = require('node:os'),
+    projectRoot = path.resolve(__dirname, '..'),
+    { restoreApprovedLicensing, restore } = require('../tools/check_site_seo.cjs'),
+    legal = require('../tools/site/legal.cjs'),
+    html = readHTML(path.join(projectRoot, 'docs/credits.html')),
+    main = (source) => source.match(/<main\b[\s\S]*?<\/main>/)[0],
+    previous = cp.execFileSync(
+      'git',
+      ['show', 'cc115c4241197d59205934bdc18f209109d5ee87:docs/credits.html'],
+      { cwd: projectRoot, encoding: 'utf8' }
+    ),
+    full = normalizeHTML(legal.compile(projectRoot).html);
+  assert.equal(
+    restoreApprovedLicensing(main(html), 'credits'),
+    normalizeHTML(main(previous)),
+    'all unchanged Credits content and links survive the selected legal successor'
+  );
+  for (const page of ['index', 'research', 'writing', 'talks']) {
+    const source = readHTML(path.join(projectRoot, 'docs/' + page + '.html'));
+    assert.equal(restoreApprovedLicensing(source, page), source, 'other routes have no allowance');
+  }
+  for (const [from, to] of [
+    ['diagrams are licensed under CC BY 4.0', 'diagrams are licensed under CC BY-SA 4.0'],
+    ['is licensed under Apache-2.0.', 'is licensed under a proprietary license.'],
+    ['href="#license-code"', 'href="#license-content"'],
+    ['The Subprime Code Crisis uses CC BY-SA 4.0.', 'The Subprime Code Crisis uses CC BY 4.0.'],
+    ['Staging and review editions disable tracking.', 'Staging editions track every visitor.'],
+    [full, ''],
+    [full, full + ' ' + full],
+    [full, full.replace('Version 2.0, January 2004', 'Incomplete code license')],
+  ]) {
+    assert.ok(html.includes(from), 'the negative fixture changes real licensed content');
+    assert.throws(
+      () => restoreApprovedLicensing(html.replace(from, to), 'credits', projectRoot, true),
+      /exact approved licensing fragment/,
+      'policy, link, full-copy and analytics changes cannot disappear through restoration'
+    );
+  }
+  const relocated = html.replace(' ' + full, '').replace('<h1>', full + ' <h1>');
+  assert.throws(
+    () => restoreApprovedLicensing(relocated, 'credits', projectRoot, true),
+    /exact approved licensing fragment/,
+    'the full copy has one approved location inside Credits'
+  );
+  for (const [from, to] of [
+    ['The author supplied the source photograph', 'The photographer assigned all rights'],
+    ['I direct its architecture', 'AI autonomously directs its architecture'],
+    ['<meta name="author" content="Vitalii Oborskyi">', '<meta name="author" content="Other">'],
+  ]) {
+    assert.ok(html.includes(from));
+    const changed = () => restore(html.replace(from, to), 'credits');
+    if (from.startsWith('The author')) {
+      assert.throws(changed, /exact approved licensing fragment/);
+    } else {
+      assert.notEqual(changed(), restore(html, 'credits'), 'unrelated copy/metadata stay visible');
+    }
+  }
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'licensed-seo-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const sources = [
+    ...Object.values(legal.sources),
+    legal.template,
+    'site/content/pages/credits/main.json',
+    'site/templates/pages/credits/main.html',
+  ];
+  for (const name of sources) {
+    const target = path.join(directory, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.copyFileSync(path.join(projectRoot, name), target);
+  }
+  for (const name of sources) {
+    const target = path.join(directory, name),
+      bytes = fs.readFileSync(target);
+    fs.appendFileSync(target, '\nUnreviewed successor.\n');
+    assert.throws(
+      () => restoreApprovedLicensing(html, 'credits', directory, true),
+      /unreviewed licensing source/,
+      'current authored inputs cannot silently redefine an approved allowance'
+    );
+    fs.writeFileSync(target, bytes);
+  }
+});
+test('legal wrapping admits exactly three declarations and preserves every other CSS byte', (t) => {
+  const path = require('node:path'),
+    os = require('node:os'),
+    projectRoot = path.resolve(__dirname, '..'),
+    { verifyApprovedLicensingCSS } = require('../tools/check_site_seo.cjs'),
+    directory = fs.mkdtempSync(path.join(os.tmpdir(), 'licensed-css-seo-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const sources = ['site/engine/styles.css', 'docs/styles.css'];
+  for (const name of sources) {
+    fs.mkdirSync(path.dirname(path.join(directory, name)), { recursive: true });
+    fs.copyFileSync(path.join(projectRoot, name), path.join(directory, name));
+  }
+  verifyApprovedLicensingCSS(directory);
+  for (const name of sources) {
+    const target = path.join(directory, name),
+      original = fs.readFileSync(target, 'utf8');
+    for (const changed of [
+      original.replace('max-inline-size: 100%;', 'max-inline-size: 99%;'),
+      original.replace('.legal-notices pre {', '.credits-page pre {'),
+      original + '\n.legal-notices pre { display: none; }\n',
+      original.replace('--paper: #f3f1ea;', '--paper: #ffffff;'),
+    ]) {
+      assert.notEqual(changed, original, 'the negative fixture changes actual CSS');
+      fs.writeFileSync(target, changed);
+      assert.throws(
+        () => verifyApprovedLicensingCSS(directory),
+        /exact legal wrapping rule|unrelated stylesheet change/
+      );
+      fs.writeFileSync(target, original);
+    }
+  }
+});
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock', () => {
   const css = fs.readFileSync(require('node:path').join(__dirname, '../docs/styles.css'), 'utf8');
   const lum = (hex) =>

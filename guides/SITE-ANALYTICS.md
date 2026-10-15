@@ -31,9 +31,13 @@ graph from analytics counters. See #8's decision record and the existing SEO pla
 
 ## Implemented source contract
 
-Edit **`site/analytics.json`**, never generated `docs/` HTML. Its committed defaults
-are `enabled: false`, `siteURL: null`, `token: null` and
-`searchConsoleVerification: null`. `schema: 1` and `provider: "cloudflare"` are
+Edit **`site/analytics.json`**, never generated `docs/` HTML. On 15 October the
+owner's Cloudflare Web Analytics site was registered for `vitaliioborskyi.ai`
+with automatic injection off; the returned public beacon identifier and exact
+`https://vitaliioborskyi.ai/` URL are configured with `enabled: true` for the first
+release. No production deployment or visitor counts are established by this
+preparation. `searchConsoleVerification` remains null pending owner access.
+`schema: 1` and `provider: "cloudflare"` are
 finite. Unknown fields, wrong types, malformed tokens or incomplete activation
 fail before the last coherent public output is replaced.
 

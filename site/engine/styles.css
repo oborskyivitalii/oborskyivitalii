@@ -1532,3 +1532,10 @@ body[data-page='writing'] #archive-results {
     break-inside: avoid;
   }
 }
+
+/* Full legal copies remain readable when expanded on narrow screens. */
+.legal-notices pre {
+  max-inline-size: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

@@ -39,7 +39,7 @@ jobs:
       full: true
       profile: staging
       base_url: ${{ inputs.base_url }}
-      public_variant: base
+      public_variant: color
       public_artifact_id: ${{ inputs.public_artifact_id }}
       public_run_id: ${{ inputs.public_run_id }}
       public_digest: ${{ inputs.public_digest }}

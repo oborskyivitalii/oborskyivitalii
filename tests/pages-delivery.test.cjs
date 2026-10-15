@@ -50,7 +50,7 @@ test('Pages initial root is staging and subsequent staging changes preserve ever
   const initial = pkg.build(stage.directory, path.join(temp, 'initial'));
   assert.equal(initial.state.production, null);
   assert.deepEqual(initial.root.files, stage.record.files);
-  const production = fixture.source(temp, 'production', 'c'.repeat(40));
+  const production = fixture.production(temp, 'production', 'c'.repeat(40));
   const directory = path.join(temp, 'combined');
   const record = pkg.build(stage.directory, directory, production.directory, 'prod-2026-10-11.1');
   assert.deepEqual(pkg.subtree(record.files, 'staging/'), stage.record.files);
@@ -261,7 +261,7 @@ test('Pages project recovery retains its prefix and cannot compose an accepted p
     () => controller.retained(directory, { state: { ...record.state, basePath: '/other/' } }),
     /receipt/
   );
-  const production = fixture.source(temp, 'production', 'c'.repeat(40));
+  const production = fixture.production(temp, 'production', 'c'.repeat(40));
   assert.throws(
     () =>
       pkg.build(
@@ -675,6 +675,12 @@ test('failed first Pages recovery requires the exact upload, receipt and current
   const substituted = structuredClone(f.record);
   substituted.root.sourceTree = substituted.staging.sourceTree = 'e'.repeat(40);
   fs.writeFileSync(metadata, JSON.stringify(substituted, null, 2) + '\n');
+  assert.throws(
+    () => controller.retained(f.directory, previous, f.upload),
+    /rights source\/artifact differs/
+  );
+  const extraMetadata = { ...f.record, unauthenticatedMetadata: 'substituted' };
+  fs.writeFileSync(metadata, JSON.stringify(extraMetadata, null, 2) + '\n');
   assert.throws(() => controller.retained(f.directory, previous, f.upload), /authenticated ZIP/);
   fs.writeFileSync(metadata, original);
   await assert.rejects(
