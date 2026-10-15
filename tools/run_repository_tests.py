@@ -27,7 +27,7 @@ def selected_modules(tests_directory):
 
 
 @contextlib.contextmanager
-def enduring_suite(tests_directory):
+def enduring_suite(tests_directory, module_counts=None):
     tests_directory = Path(tests_directory).resolve()
     paths = selected_modules(tests_directory)
     previous_path = list(sys.path)
@@ -45,7 +45,12 @@ def enduring_suite(tests_directory):
             sys.modules[name] = module
             # Execute current bytes rather than reusable same-timestamp bytecode.
             exec(compile(path.read_bytes(), str(path), "exec", dont_inherit=True), module.__dict__)
-            suite.addTests(loader.loadTestsFromModule(module))
+            module_suite = loader.loadTestsFromModule(module)
+            if module_counts is not None:
+                module_counts[path.relative_to(tests_directory).as_posix()] = (
+                    module_suite.countTestCases()
+                )
+            suite.addTests(module_suite)
         yield suite, paths
     finally:
         sys.path[:] = previous_path
@@ -57,11 +62,13 @@ def enduring_suite(tests_directory):
 
 
 def run(tests_directory, stream=None):
-    with enduring_suite(tests_directory) as (suite, paths):
+    module_counts = {}
+    with enduring_suite(tests_directory, module_counts) as (suite, paths):
         expected = suite.countTestCases()
         result = unittest.TextTestRunner(stream=stream, verbosity=1).run(suite)
         passed = (
             expected > 0
+            and all(count > 0 for count in module_counts.values())
             and result.testsRun == expected
             and result.wasSuccessful()
             and not result.skipped
@@ -71,6 +78,7 @@ def run(tests_directory, stream=None):
         return {
             "pass": passed,
             "modules": [path.relative_to(tests_directory).as_posix() for path in paths],
+            "module_counts": module_counts,
             "tests_expected": expected,
             "tests_run": result.testsRun,
             "failures": len(result.failures),

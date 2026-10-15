@@ -450,6 +450,7 @@ function fetchFixture(f, mutation) {
       'x-robots-tag': 'noindex, nofollow',
       'x-content-type-options': 'nosniff',
       'cache-control': pkg.policyHeaders(file)['Cache-Control'],
+      'content-type': require('../tools/quality/serve.cjs').canonicalType(file),
     };
     if (mutation === 'robots') headers['x-robots-tag'] = 'noindex';
     const bytes =
@@ -468,6 +469,32 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
     assert.equal(result.sourceCommit, source);
     assert.equal(result.actual404, true);
     assert.equal(result.variant.id, 'base');
+    const observed = (match, mime) => async (url) => {
+      const response = await fetchFixture(f)(url);
+      if (response.status !== 301 && match(new URL(url))) {
+        if (mime === null) response.headers.delete('content-type');
+        else response.headers.set('content-type', mime);
+      }
+      return response;
+    };
+    for (const match of [
+      (url) => url.pathname === '/research',
+      (url) => url.pathname.endsWith('/space.js'),
+      (url) => url.pathname === '/',
+      (url) => url.pathname.includes('__pr_preview_missing_'),
+    ])
+      for (const mime of [null, '', 'text/plain'])
+        await assert.rejects(flow.quickHttp(base, f.record, observed(match, mime)), /Content-Type/);
+    assert.equal(
+      (
+        await flow.quickHttp(
+          base,
+          f.record,
+          observed((url) => url.pathname.endsWith('.js'), 'application/javascript; charset=UTF-8')
+        )
+      ).actual404,
+      true
+    );
     await assert.rejects(
       () => flow.quickHttp(base, f.record, fetchFixture(f, 'runtime')),
       /wrong served bytes/

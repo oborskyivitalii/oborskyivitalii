@@ -137,41 +137,41 @@ class RICICouplingTests(unittest.TestCase):
 
     def test_staging_and_production_share_actual_ri_freshness_preflight(self):
         workflow = (REPO / ".github/workflows/site-release-checks.yml").read_text()
-        start = workflow.index("      - name: Validate exact source and regressions\n")
-        end = workflow.index("      - ", start + 8)
-        script = workflow[start:end]
-        command = "check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify"
-
-        def unconditionally_verified(body):
-            depth = 0
-            depths = []
-            for raw in body.splitlines():
-                line = raw.strip()
-                if line.startswith("if ["):
-                    depth += 1
-                elif line == "fi":
-                    depth -= 1
-                elif line == command:
-                    depths.append(depth)
-            return depths == [0]
-
-        self.assertTrue(unconditionally_verified(script))
-        line = "          " + command + "\n"
-        self.assertFalse(unconditionally_verified(script.replace(line, "")))
-        self.assertFalse(
-            unconditionally_verified(
-                script.replace(
-                    line,
-                    '          if [ "$SITE_VALIDATION_LEVEL" = production ]; then\n'
-                    + "  "
-                    + line
-                    + "          fi\n",
-                )
-            )
+        self.assertEqual(workflow.count("        id: source_checks\n"), 1)
+        self.assertIn(
+            'run: node tools/quality/local.cjs --prepublication "$SITE_VALIDATION_LEVEL"',
+            workflow,
         )
-        self.assertFalse(
-            unconditionally_verified(script.replace(line, line.rstrip() + " || true\n"))
+        # Inspect the real owner's selected commands without executing its guards.
+        # Both levels must reach RI exactly once, independently of other failures.
+        script = """
+const local=require('./tools/quality/local.cjs'),p=require('node:path');
+const reports=['staging','production'].map(level=>{
+ const result=local.prepublication(level,process.argv[1],{
+  report:p.join(process.argv[1],level+'.json'),
+  execute:()=>({status:1,stdout:'',stderr:'controlled independent failure'})
+ });
+ return result.checks.filter(row=>row.id==='ri').map(row=>row.command);
+});
+console.log(JSON.stringify(reports));
+"""
+        result = subprocess.run(
+            ["node", "-e", script, str(self.root)],
+            cwd=REPO,
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=20,
         )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        command = [
+            "python3",
+            "tools/repository_intelligence.py",
+            "--config",
+            ".github/repository-intelligence-config.json",
+            "verify",
+        ]
+        self.assertEqual(json.loads(result.stdout), [[command], [command]])
 
     def test_verified_definition_and_source_identity_are_deterministic(self):
         first = ci.verify(self.root)

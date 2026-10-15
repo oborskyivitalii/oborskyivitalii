@@ -1,75 +1,69 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-15** (finite snapshot host-policy preparation).
+Dated continuity, not live authority. Last verified: **2026-10-15** (publication-guard consolidation, verification pending).
 
 ## Snapshot
 
-- Main baseline is `cc115c4`. [PR80](https://github.com/oborskyivitalii/oborskyivitalii/pull/80)
-  is the narrow #39 controller dependency of continuing
-  [PR40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40) licensing/release execution.
-  Its published9dc1b84/tree541f3f30 remains unmerged; revalidate live head/state.
-- Ordinary38703875419 (source7141fbb) failed cold Research3383ms>3200ms.
-  Changed-method38708680860 (source9dc1b84) collected ResourceTiming correctly:
-  Research cold/warm3004.3/2451.2ms passed, cold Writing3382.9ms>3200ms failed.
-  Stable publishers/admission did not pass. Earlier failures remain failed.
-- The [same-owner review](review/issue-39/2026-10-15-controller-compatibility.md#finite-snapshot-proxy-controller-preparation)
-  records actual artifacts, timing limits and the dated live39 scope recorded
-  before the new source preparation. Even hypothetically removing the entire
-  152.7ms pre-fetch interval yields3230.2ms, still above3200ms; actual redirect
-  contribution, provider fault and a complete runtime fix remain unmeasured.
-- Current source preparation permits only `tools/staging/package.cjs` as a named
-  producer amendment: all607 inventory paths/modes and606 other protected blobs
-  stay exact. Legacy default package/output bytes are compared with actual pinned
-  main producer. New finite proxy mode is explicit API-only and not deployed.
-- Production/domain/DNS remain paused for licensed-content permanent staging and
-  owner review. No bootstrap merge, provider action or unchanged-runtime retry
-  is authorized by this source preparation.
+- Protected main remains pinned to `cc115c4241197d59205934bdc18f209109d5ee87`.
+  [PR80](https://github.com/oborskyivitalii/oborskyivitalii/pull/80) is the Draft
+  preparatory controller/test dependency of continuing [PR40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40).
+  Published `628a9616` is historical relative to the current local consolidation;
+  revalidate live heads, checks and Draft state before remote work.
+- The user paused publication attempts for comprehensive staging/production guard
+  review and repair. The [consolidated review](review/issue-39/2026-10-15-publication-test-review.md)
+  owns the complete source/host matrix, findings, command routes and pending proof.
+  Latest local checkpoint integrates reviewed browser, runner, scanner and report
+  branches; exact final source, RI, security triage and preflight remain pending.
+- Shared frozen rights verifier is exact blob `26d3a27e3c736ed038023e6905a26bb67981a278`,
+  SHA-256 `a75627387167bfc822f78b2cfaae6fdeecbbc970621dcfcecca7c435b6b10ca8`.
+  It reads frozen bytes, not today's legal owners, and retains `approvalPass: false`.
+- Ordinary `38703875419` and changed-method `38708680860` remain failed.
+  The latter cold Writing `3382.9ms > 3200ms` failure is unchanged; no fresh
+  ordinary/native admission, stable publisher success or performance fix is claimed.
+- No merge, provider, production, domain or DNS operation is part of this local
+  preparation. Licensed permanent staging and exact-edition owner review remain later.
 
 ## Decisions
 
-- The maintainer selected Apache-2.0 for original engineering and CC BY4.0 for
-  original editorial material, full copies/notices on existing Credits anchors.
-  Upstream Subprime/UA repositories retain their own licenses and exceptions.
-- PR40 retains the full execution policy and original ACs/gates. PR80's narrow
-  mapping now covers only the named host-policy extension and behavioral proof,
-  preserving all original criterion IDs and external review/release obligations.
-- Default/explicit `legacy` API builds emit the canonical historical record with
-  no hostPolicy field. Explicit fourth options select immutable-snapshot-proxy-v1
-  and its exact record flag plus source-derived \_redirects; no CLI/env/default switch.
-- Rules are exact sorted admitted current/retained snapshot paths only: HTML to
-  extensionless sibling, index to its hash-directory. Unknown/missing policy,
-  malformed/reordered/extra/rerouted rules and honest rehash tampering fail closed.
-  Public aliases, SEO, body/runtime bytes, headers and cryptographic checks remain.
-- Existing evidence-only staging-regression label event can validate future Root
-  proxy via PR merge-ref validator/exact raw artifact without stable promotion.
-  Ordinary /stage still uses protected main's legacy verifier before deployment.
-  Its integration boundary requires a concrete applicable maintainer decision;
-  previous one-time exceptions are exhausted and are not reused.
-- Post-window ResourceTiming remains bounded diagnostic evidence, with unchanged
-  cold/warm contexts,3750ms presentation plan,3200ms equivalent execution limit,
-  original callback/preparation/paint-gap budgets and no cache warming/allowance.
-- Permanent Cloudflare staging is
-  `https://staging.oborskyi-author-ci-staging.pages.dev`; Pages uses its configured
-  project prefix. Preparation, preview, admission, merge and production are distinct.
+- Apache-2.0 covers original engineering and CC BY4.0 original editorial material,
+  with explicit portrait/identity/third-party/historical and upstream exceptions.
+  Mechanical records never supply exact-edition human rights/editorial acceptance.
+- Source-derived finite snapshot proxy is explicit; default legacy output and
+  genuine historical verification stay exact. Known licensed Color families require
+  records even through default APIs, using actual revision and reviewed runtime bytes.
+- Frozen reports survive staging/Pages composition and both extraction routes;
+  Pages receipts bind root/staging inventory digests. An accepted historical root
+  may remain reportless while a new licensed staging subtree records its rights.
+- Existing `local.cjs --prepublication` orchestrates host-independent guards on one
+  frozen artifact before explicit stable/evidence or production candidate upload.
+  Independent failures and blocked dependencies stay visible; final source/public
+  hashes are rechecked. Draft preview stays bounded; original job/runtime budgets remain.
+- The selected current owning policy is a separate exact clean-source local command.
+  Ordinary `/stage` additionally enforces latest raw-head Basic/RI/owning admission
+  before build/upload. Preflight does not assert that unrelated numeric policies ran.
+- Same-job duplicate source execution is removed from the reusable build; its
+  `source_checks` output now names prepublication. Separate authenticated static/native
+  consumers remain mandatory; no untrusted presence flag or proof reuse is introduced.
 
 ## Open work
 
-| Owner                              | Next acceptance route                                                                                                                                                                                                                         |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| #39 / PR80                         | Freeze finite host-policy preparation with legacy output/606-blob proofs, owning/full-source/security/independent checks; obtain concrete applicable controller integration decision, with no deployment inferred.                            |
-| #39 / PR40                         | Reconcile frozen dependency in isolated rehearsal, retain full policy/licenses/SEO, explicitly select proxy mode and obtain actual changed-implementation hosted200/body/performance evidence, then permanent staging links for owner review. |
-| #72                                | Preserve revision/update/recovery evidence; remaining administration/archive/lifecycle/release gates stay separate.                                                                                                                           |
-| Closed #69 / #76                   | Carry applicable physical-device, native-find/bfcache and full-cost duties under #13; no automatic reopening or repeated merge.                                                                                                               |
-| #49 / Draft PR53; #41 / Draft PR68 | Separate optional/editorial work; preserve current content/SEO without importing those drafts or making launch dependencies.                                                                                                                  |
-| #1 / #7 / #8 / #13 / #36 / #45     | Original rights, production, indexing/analytics, visual/device/full-cost/recovery gates require whole acceptance.                                                                                                                             |
+| Owner | Next acceptance route |
+| --- | --- |
+| #39 / PR80 | Finish narrow publisher MIME follow-on, consolidate report/RI, review exact secrets/Bandit candidates, freeze clean source, run one real staging preflight and selected owning mapping, then reconcile independent review and actual native admission separately. |
+| #39 / PR40 | After the guard review and applicable controller integration, preserve full production policy/licenses/SEO and explicitly selected proxy/edition records; obtain changed-content permanent staging and owner review before production. |
+| #72 | Preserve exact archive/recovery evidence and original administration/lifecycle/release gates. |
+| #1 / #7 / #8 / #13 / #36 / #45 | Preserve original rights, production, indexing/analytics, visual/device/full-cost and recovery acceptance. |
+| #49 / PR53; #41 / PR68 | Optional/editorial work remains separate from current production preparation. |
 
 ## Next session
 
-1. Revalidate live main, PR80/PR40 exact heads, issue scope and active checks.
-2. Preserve all failed native artifacts and the named606-blob/default-output boundary.
-3. Keep source-only host feasibility separate from deployed behavior/performance.
-4. Do not rerun the unchanged old runtime seeking a favorable staging result.
-5. Complete licensed-content permanent staging/owner review before production.
+1. Revalidate exact live main/PR80/PR40 refs and the user publication pause.
+2. Read the consolidated review and actual current source; retain all prior failed runs.
+3. Preserve the source-bound complete guard inventory, original performance budgets
+   and explicit distinction among coverage level, artifact edition and host profile.
+4. Complete local review/pre-scan/freeze before a single actual full preflight;
+   diagnostic fixture success cannot replace live/native/device or owner acceptance.
+5. Keep production/domain/DNS paused until licensed permanent staging and owner review.
 
 ## Maintenance
 

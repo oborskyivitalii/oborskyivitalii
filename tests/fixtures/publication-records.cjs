@@ -1,0 +1,185 @@
+'use strict';
+// Synthetic publication metadata exercises consumers, not actual rights approval.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const delivery = require('./delivery.cjs');
+const artifact = require('../../tools/quality/artifact.cjs');
+const snapshot = require('../../tools/site/snapshot.cjs');
+const motion = require('../../tools/quality/color-motion-contract.cjs');
+const frozen = require('../../tools/release/rights-record.cjs');
+const root = path.resolve(__dirname, '../..');
+const legalCSS =
+  '\n/* Full legal copies remain readable when expanded on narrow screens. */\n' +
+  '.legal-notices pre {\n  max-inline-size: 100%;\n  white-space: pre-wrap;\n' +
+  '  overflow-wrap: anywhere;\n}\n';
+
+function digest(report) {
+  const body = { ...report };
+  delete body.inventoryDigest;
+  report.inventoryDigest = artifact.digest(JSON.stringify(body));
+  return report;
+}
+
+function save(source) {
+  source.expected = {
+    sourceCommit: source.record.sourceCommit,
+    publicDigest: source.record.artifactDigest,
+    artifactId: '123',
+    uploadDigest: 'sha256:' + 'c'.repeat(64),
+  };
+  fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
+  fs.writeFileSync(path.join(source.directory, 'rights.json'), JSON.stringify(source.report));
+  fs.mkdirSync(path.join(source.directory, 'gate'), { recursive: true });
+  fs.writeFileSync(
+    path.join(source.directory, 'gate/release-manifest.json'),
+    JSON.stringify({
+      ...source.record,
+      schema: 1,
+      kind: 'pr-gate',
+      profile: 'local',
+      pass: true,
+      jobs: { build: { result: 'success' } },
+      githubArtifact: {
+        id: source.expected.artifactId,
+        uploadDigest: source.expected.uploadDigest,
+      },
+    })
+  );
+}
+
+function fixture(parent, modern = true, staging = true) {
+  const source = staging ? delivery.staging(parent, modern) : delivery.source(parent, 'plain');
+  if (!staging && modern) {
+    source.record = require('../../tools/staging/color.cjs').build(source.directory);
+  }
+  const publicDirectory = path.join(source.directory, 'public');
+  const revisionFile = path.join(publicDirectory, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  if (modern) {
+    const runtime = motion.reviewedRuntime('issue39-licensed-' + (staging ? 'staging' : 'plain'));
+    const oldEngine = revision.engine;
+    const reading =
+      '\n' + fs.readFileSync(path.join(root, 'site/engine/reading-surfaces.css'), 'utf8') + '\n';
+    const cssFile = path.join(publicDirectory, 'styles.css');
+    const css = fs.readFileSync(cssFile, 'utf8');
+    assert.equal(css.split(reading).length, 2);
+    fs.writeFileSync(cssFile, css.replace(reading, legalCSS + reading));
+    fs.renameSync(
+      path.join(publicDirectory, 'runtime', oldEngine),
+      path.join(publicDirectory, 'runtime', runtime.variant.fingerprint)
+    );
+    fs.copyFileSync(
+      cssFile,
+      path.join(publicDirectory, 'runtime', runtime.variant.fingerprint, 'styles.css')
+    );
+    for (const name of Object.keys(source.record.files).filter((name) => name.endsWith('.html'))) {
+      const file = path.join(publicDirectory, name);
+      fs.writeFileSync(
+        file,
+        fs.readFileSync(file, 'utf8').replaceAll(oldEngine, runtime.variant.fingerprint)
+      );
+    }
+    revision.engine = runtime.variant.fingerprint;
+    revision.variant = runtime.variant;
+    source.record.variant = runtime.variant;
+  }
+  const texts = Object.fromEntries(
+    Object.keys(frozen.legalSources).map((id) => [
+      id,
+      'Controlled fixture ' + id + ' legal text with <escaped> & complete bytes.\n',
+    ])
+  );
+  const escape = (text) =>
+    text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  const copies = Object.entries(texts)
+    .map(
+      ([id, text]) =>
+        '<details id="license-' +
+        id +
+        '"><summary>Fixture</summary><pre><code>' +
+        escape(text) +
+        '</code></pre></details>'
+    )
+    .join('\n');
+  for (const name of ['credits.html', revision.routes.credits.url]) {
+    const file = path.join(publicDirectory, name);
+    fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('</body>', copies + '\n</body>'));
+  }
+  for (const id of snapshot.routes) {
+    revision.routes[id].sha256 = artifact.digest(
+      fs.readFileSync(path.join(publicDirectory, revision.routes[id].url))
+    );
+  }
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  Object.assign(source.record, artifact.manifest(publicDirectory));
+  source.record.components = snapshot.verify(publicDirectory, source.record);
+  if (modern)
+    assert.equal(
+      motion.select(source.record).id,
+      'issue39-licensed-' + (staging ? 'staging' : 'plain')
+    );
+  const licenses = {
+    'original-code': 'Apache-2.0',
+    'original-text': 'CC-BY-4.0',
+    'original-nonbrand-diagrams': 'CC-BY-4.0',
+  };
+  source.report = digest({
+    schema: 1,
+    kind: 'release-rights',
+    inventoryPass: true,
+    approvalPass: false,
+    ...Object.fromEntries(
+      ['sourceCommit', 'sourceTree', 'candidateCommit', 'artifactDigest'].map((key) => [
+        key,
+        source.record[key],
+      ])
+    ),
+    edition: source.record.edition || null,
+    files: source.record.files,
+    policy: {
+      status: 'confirmed-by-maintainer',
+      scope: Object.keys(licenses),
+      decision: {
+        reviewer: 'fixture reviewer',
+        record: 'fixture policy decision',
+        decidedAt: '2026-10-15',
+        selection: 'explicit-licenses',
+        licenses,
+      },
+    },
+    bases: {
+      'original-code': { license: 'Apache-2.0' },
+      'original-text': { license: 'CC-BY-4.0' },
+      'original-diagram': { license: 'CC-BY-4.0' },
+      'identity-branding': {},
+      'portrait-source': {},
+      'portrait-derivative': {},
+    },
+    legalCopies: Object.fromEntries(
+      Object.entries(frozen.legalSources).map(([id, name]) => [
+        id,
+        {
+          source: name,
+          anchor: 'license-' + id,
+          sha256: artifact.digest(texts[id]),
+        },
+      ])
+    ),
+    notices: Object.entries(frozen.legalSources).map(([id, name]) => ({
+      path: name,
+      sha256: artifact.digest(texts[id]),
+    })),
+    publicNotices: ['credits.html', revision.routes.credits.url],
+    materials: {
+      scope: 'linked-metadata-only',
+      hostedEditions: [],
+      linkedEditionCount: 0,
+    },
+    linkedPublications: {},
+  });
+  save(source);
+  return source;
+}
+
+module.exports = { fixture, digest, save };

@@ -55,10 +55,18 @@ jobs:
           SITE_SOURCE_EVENT: ${{ github.event_name }}
         run: |
           if [ "$SITE_SOURCE_EVENT" = pull_request ]; then
-            node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean
+            node tools/quality/source-tests.cjs --profile pr --base "$SITE_BASE_SHA" --head "$SITE_CANDIDATE_SHA" --require-clean --report quality-reports/source-tests.json
           else
-            node tools/quality/source-tests.cjs --profile staging --require-clean
+            node tools/quality/source-tests.cjs --profile staging --require-clean --report quality-reports/source-tests.json
           fi
+      - name: Retain exact source-test accounting and failure streams
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-source-tests-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 30
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: public

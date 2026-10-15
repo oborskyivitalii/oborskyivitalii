@@ -9,8 +9,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "cc115c4241197d59205934bdc18f209109d5ee87"
-# Live issue39: staging-snapshot-proxy-preparation-20261015 permits this owner only.
-HOST_POLICY_AMENDMENT = "tools/staging/package.cjs"
+# Live issue39 names finite hosting and first-publication record compatibility.
+CONSUMER_AMENDMENTS = {
+    "tools/staging/package.cjs",
+    "tools/staging/hosted.cjs",
+    "tools/staging/review-flow.cjs",
+    "tools/pages/package.cjs",
+    "tools/pages/controller.cjs",
+    "tools/pages/http.cjs",
+    ".github/workflows/site-checks.yml",
+    ".github/workflows/site-color-review.yml",
+    ".github/workflows/site-release-candidate.yml",
+    ".github/workflows/site-release-checks.yml",
+}
+FROZEN_RIGHTS_OWNER = "tools/release/rights-record.cjs"
 PROTECTED = (
     "site",
     "docs",
@@ -65,13 +77,49 @@ class Issue39AcceptanceTests(unittest.TestCase):
                         usedforsecurity=False,
                     ).hexdigest()
         self.assertEqual(len(baseline), 607, "pinned protected main inventory changed")
-        self.assertIn(HOST_POLICY_AMENDMENT, baseline)
-        self.assertEqual(set(actual), set(baseline), "protected main path inventory changed")
+        self.assertTrue(CONSUMER_AMENDMENTS.issubset(baseline))
         self.assertEqual(
-            {name: value for name, value in actual.items() if name != HOST_POLICY_AMENDMENT},
-            {name: value for name, value in baseline.items() if name != HOST_POLICY_AMENDMENT},
-            "compatibility changed a byte outside the named staging host-policy amendment",
+            set(actual),
+            set(baseline) | {FROZEN_RIGHTS_OWNER},
+            "protected inventory differs beyond the named shared frozen verifier",
         )
+        self.assertEqual(
+            {
+                name: value
+                for name, value in actual.items()
+                if name not in CONSUMER_AMENDMENTS | {FROZEN_RIGHTS_OWNER}
+            },
+            {name: value for name, value in baseline.items() if name not in CONSUMER_AMENDMENTS},
+            "compatibility changed a byte outside the named hosting/Pages consumers",
+        )
+
+    def test_frozen_publication_records_and_actual_legacy_pages_bytes(self):
+        result = subprocess.run(
+            ["node", "--test", "--test-reporter=tap", "tests/publication-records.test.cjs"],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=60,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout)
+        for name in (
+            "known licensed publications require frozen rights by actual runtime bytes even through default API",
+            "staging retains exact frozen license records for default and finite proxy packages",
+            "frozen reports reject rehashed source, edition, scope, notice and full-copy substitutions",
+            "Pages requires modern records and binds root and staging reports in the published receipt",
+            "both controller extraction routes retain the validated frozen report and every source byte",
+            "default Pages output and historical verification preserve actual pinned-main bytes",
+        ):
+            self.assertIn("# Subtest: " + name + "\n", result.stdout)
+        for label in ("fail", "cancelled", "skipped", "todo"):
+            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
+        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
+        passed = re.search(r"(?m)^# pass ([1-9][0-9]*)$", result.stdout)
+        self.assertIsNotNone(total, result.stdout)
+        self.assertIsNotNone(passed, result.stdout)
+        self.assertEqual(total.group(1), passed.group(1), result.stdout)
 
     def test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes(self):
         result = subprocess.run(

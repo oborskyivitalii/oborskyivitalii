@@ -137,9 +137,21 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Authenticate the exact checked-out candidate
+        id: source_identity
+        run: test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        if: needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
+        with:
+          python-version: 3.12.14
+      - name: Install locked prepublication tools for an explicit staging attempt
+        if: needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
       - name: Targeted controller checks and one immutable public build
         run: |
-          test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           if [ "${{ needs.target.outputs.prototype }}" != true ]; then
             node --test tests/review-flow.test.cjs tests/preview-smoke.test.cjs
             if [ "$(node tools/staging/review-flow.cjs variant)" = color ]; then
@@ -152,6 +164,17 @@ jobs:
         run: |
           node tools/staging/review-flow.cjs rendition color-artifact
           node tools/staging/edition.cjs color-artifact
+      - name: Complete host-independent staging guards before candidate upload
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
+        run: node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json
+      - name: Retain all prepublication observations even when a guard fails
+        if: ${{ always() && (needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true') }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-prepublication-staging-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 90
       - id: public
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:

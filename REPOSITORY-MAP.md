@@ -646,6 +646,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-39/2026-10-15-controller-compatibility.md](review/issue-39/2026-10-15-controller-compatibility.md) | Narrow exact-main compatibility dependency plan, unresolved final licensing tuple inputs and ordinary two-host admission/merge boundaries. | draft | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-39/2026-10-15-license-tuples.json](review/issue-39/2026-10-15-license-tuples.json) | Independent exact canonical/immutable runtime and full embedded license byte proof from explicitly dirty root-produced diagnostic artifacts; not clean-source admission. | history | [review/issue-39/2026-10-15-controller-compatibility.md](review/issue-39/2026-10-15-controller-compatibility.md) |
+| [review/issue-39/2026-10-15-publication-test-review.md](review/issue-39/2026-10-15-publication-test-review.md) | Consolidated issue39 staging/production guard review: exact source/profile/workflow matrices, concrete repairs, independent evidence, pending native/publication limits and preserved failures. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-41/
 
@@ -1822,6 +1823,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview.test.cjs](tests/preview.test.cjs) | Behavioral/adversarial tests and fixtures for preview. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/prototype-admission.test.cjs](tests/prototype-admission.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/publication-records.test.cjs](tests/publication-records.test.cjs) | Mandatory exact licensed-family records, frozen substitutions, Pages receipt/extraction and actual pinned-main legacy byte regressions. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/quality-sources.test.cjs](tests/quality-sources.test.cjs) | Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/refactor-metrics.test.cjs](tests/refactor-metrics.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1878,6 +1880,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [tests/fixtures/delivery.cjs](tests/fixtures/delivery.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/fixtures/publication-records.cjs](tests/fixtures/publication-records.cjs) | Explicit synthetic licensed runtime and bounded legal-copy fixtures for consumer failures; never actual edition rights acceptance. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/fixtures/staging-evidence.cjs](tests/fixtures/staging-evidence.cjs) | Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## tools/
@@ -2012,6 +2015,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/release/live.cjs](tools/release/live.cjs) | Exact live production edition, Pages, browser and passive-scan acceptance bound to frozen archive identity. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/release/package.py](tools/release/package.py) | Immutable production archive identity and deterministic bounded extraction. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/release/passive.cjs](tools/release/passive.cjs) | Pinned bounded passive ZAP plan and explicit origin/risk classification without external-host crawling. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/release/rights-record.cjs](tools/release/rights-record.cjs) | Source-independent frozen publication license metadata, exact full-copy hashes and archived artifact binding shared with the Root rights compiler. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 
 ## tools/site/
 

@@ -198,7 +198,13 @@ async function previousPublication(
     false,
     'previous Pages recovery expired; reconcile before publication'
   );
-  const record = { runId, attempt, artifactId: item.id, uploadDigest: item.digest, state };
+  const record = {
+    runId,
+    attempt,
+    artifactId: item.id,
+    uploadDigest: item.digest,
+    state,
+  };
   if (failedInitial) {
     require('../staging/trust.cjs').digest(item.digest);
     artifactIdentity(item, run, item.id, item.digest, matches[0].name);
@@ -314,6 +320,11 @@ function sourceFromPackage(directory, output) {
     path.join(output, 'artifact.json'),
     JSON.stringify(staged.source, null, 2) + '\n'
   );
+  if (staged.rights)
+    fs.writeFileSync(
+      path.join(output, 'rights.json'),
+      JSON.stringify(staged.rights, null, 2) + '\n'
+    );
   return staged.source;
 }
 
@@ -330,6 +341,11 @@ function stagingFromPages(directory, output) {
     path.join(output, 'artifact.json'),
     JSON.stringify(record.staging, null, 2) + '\n'
   );
+  if (record.rights?.staging)
+    fs.writeFileSync(
+      path.join(output, 'rights.json'),
+      JSON.stringify(record.rights.staging, null, 2) + '\n'
+    );
   require('./package.cjs').checkStaging(output, record.staging);
   return record.staging;
 }

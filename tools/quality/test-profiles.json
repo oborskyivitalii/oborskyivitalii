@@ -275,7 +275,8 @@
         "tools/build_site_previews.cjs",
         "tools/build_scene_fallbacks.cjs",
         "site/integrations/**",
-        "site/site.json"
+        "site/site.json",
+        "tools/quality/analytics-browser.cjs"
       ]
     },
     {
@@ -668,7 +669,12 @@
         "site/**/*.css",
         "tools/quality/security-rules.yml",
         "tools/quality/exceptions.json",
-        "tools/quality/secrets-reviewed-checksums.json"
+        "tools/quality/secrets-reviewed-checksums.json",
+        "tools/quality/serve.cjs",
+        "tools/quality/hosted.cjs",
+        "tools/quality/advisory-exceptions.json",
+        "tools/quality/toolchain/requirements.txt",
+        "tools/quality/toolchain/package-lock.json"
       ]
     },
     {
@@ -699,7 +705,8 @@
         "tools/check_site_contrast.cjs",
         ".github/workflows/**",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -737,7 +744,8 @@
         "tools/quality/artifact.cjs",
         "tools/staging/package.cjs",
         "tools/staging/**",
-        ".github/workflows/**"
+        ".github/workflows/**",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -863,7 +871,8 @@
         "tools/staging/review-flow.cjs",
         "tools/staging/state.cjs",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -942,13 +951,14 @@
         "tools/staging/package.cjs",
         "tools/staging/hosted.cjs",
         "tools/staging/state.cjs",
-        "tools/staging/**"
+        "tools/staging/**",
+        "tools/quality/serve.cjs"
       ]
     },
     {
       "path": "tests/test-profile-selection.test.cjs",
       "language": "javascript",
-      "purpose": "Complete test registry and bounded source selection, conservative changed-source fallback and strict failed/skipped/TAP accounting.",
+      "purpose": "Complete test registry, bounded source selection, strict named Basic/profile accounting and explicit raw/structured failure reports with clean-source and write-failure negatives.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -957,6 +967,7 @@
       "inputs": [
         "tests/test-profile-selection.test.cjs",
         "tools/quality/source-tests.cjs",
+        "tools/quality/local.cjs",
         "tools/quality/test-profiles.json"
       ]
     },
@@ -1046,13 +1057,13 @@
     {
       "path": "tests/test_repository_test_selection.py",
       "language": "python",
-      "purpose": "Permanent discovery includes current/future generic modules and excludes numeric task snapshots without weakening runner accounting",
+      "purpose": "Permanent discovery includes current/future generic modules, rejects individually empty modules in mixed suites and preserves combined-run lifecycle/accounting while numeric task snapshots stay separate",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": ["tests/test_repository_test_selection.py"]
+      "inputs": ["tests/test_repository_test_selection.py", "tools/run_repository_tests.py"]
     },
     {
       "path": "tests/test_ri_ci.py",
@@ -1533,7 +1544,8 @@
         "site/effects/environment.css",
         ".github/workflows/site-pages.yml",
         "tests/fixtures/delivery.cjs",
-        "tools/site/edition.cjs"
+        "tools/site/edition.cjs",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -1667,6 +1679,33 @@
         "tests/staging-regression.test.cjs",
         "tools/staging/package.cjs",
         "tests/staging.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/publication-records.test.cjs",
+      "language": "javascript",
+      "purpose": "Frozen source/edition/artifact-bound publication records, actual rendered copies, mandatory exact licensed families, Pages receipts/extraction, and pinned-main legacy Pages byte parity; explicit prepublication failure collection, dependency blocking, source/artifact immutability and pre-upload workflow ordering",
+      "owner": "guides/SITE-STAGING.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent frozen-record, metadata opt-out, receipt and actual legacy byte failure surfaces; synthetic fixtures cannot grant rights approval",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/publication-records.test.cjs",
+        "tests/fixtures/publication-records.cjs",
+        "tests/fixtures/delivery.cjs",
+        "tools/release/rights-record.cjs",
+        "tools/staging/package.cjs",
+        "tools/pages/**",
+        "tools/quality/color-motion-contract.cjs",
+        "site/engine/reading-surfaces.css",
+        "tools/quality/local.cjs",
+        "tools/quality/scanners.cjs",
+        "tools/quality/source-tests.cjs",
+        ".github/workflows/site-checks.yml",
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-release-candidate.yml",
+        ".github/workflows/site-release-checks.yml"
       ]
     }
   ]

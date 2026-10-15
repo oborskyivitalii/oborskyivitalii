@@ -633,6 +633,41 @@ test('real-HTTP smoke model checks every served byte, extensionless query redire
     assert.equal(result.actual404, true);
     assert.equal(result.queryRedirect, true);
     assert.equal(result.files.length, Object.keys(f.source.files).length);
+    const observed = (match, mime) => async (url) => {
+      const response = await fetchFixture(f)(url);
+      if (response.status !== 301 && match(new URL(url))) {
+        if (mime === null) response.headers.delete('content-type');
+        else response.headers.set('content-type', mime);
+      }
+      return response;
+    };
+    for (const match of [
+      (url) => url.pathname.endsWith('.jpg'),
+      (url) => url.pathname.endsWith('.webp'),
+      (url) => url.pathname === '/',
+      (url) => url.search.includes('topic=systems'),
+      (url) => url.pathname.includes('__staging_missing_'),
+    ])
+      for (const mime of [null, '', 'text/plain'])
+        await assert.rejects(hosted.httpSmoke(base, record, observed(match, mime)), /Content-Type/);
+    await assert.rejects(
+      hosted.httpSmoke(
+        base,
+        record,
+        observed((url) => url.pathname.endsWith('.jpg'), 'image/jpeg.evil')
+      ),
+      /Content-Type/
+    );
+    assert.equal(
+      (
+        await hosted.httpSmoke(
+          base,
+          record,
+          observed((url) => url.pathname.endsWith('.js'), 'application/javascript; charset=UTF-8')
+        )
+      ).actual404,
+      true
+    );
     assert.equal(
       (await hosted.httpSmoke(base, record, fetchFixture(f, { noStore404: true }))).actual404,
       true

@@ -447,12 +447,12 @@
       "test_name": "exec_used",
       "severity": "MEDIUM",
       "confidence": "HIGH",
-      "source_sha256": "0ef371fa128a18469f4a9e73702fe7fbcdea21cf1927c1e69d576f28fc1560c0",
+      "source_sha256": "389d90fd8fd02a4587e3cf3c5543ffe00cde1caee8614e88a262d72dbb12924d",
       "line_sha256": "89fa75f59abab5d7ce014aeb6d5011418469cdd1f62f8c167b147165d9955086",
       "owner": ".github/ACCEPTANCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Current repository-owned module/test bytes are deliberately compiled and executed to avoid stale Python bytecode. The repository test loader owns this trust boundary; policy supplies bounded selectors rather than executable text. This is developer tooling, not an interpreter for hostile candidate code. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged."
+      "rationale": "Current repository-owned module/test bytes are deliberately compiled and executed to avoid stale Python bytecode. The repository test loader owns this trust boundary; policy supplies bounded selectors rather than executable text. This is developer tooling, not an interpreter for hostile candidate code. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 2026-10-15: revalidated against actual pinned Bandit1.9.4 after per-module test-count accounting was added. The exact exec expression AST, line, rule, severity, confidence and repository-owned test-loader trust boundary are unchanged; the added counts do not introduce executable inputs."
     },
     {
       "path": "tools/check_code_style.py",

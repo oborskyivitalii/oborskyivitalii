@@ -173,6 +173,36 @@ function checkLinks(dir) {
     }
   }
 }
+function publicationRequired(source, revision) {
+  // Derive the discriminator from verified public bytes. Optional manifest
+  // metadata cannot relabel a licensed Color artifact as a historical family.
+  const motion = require('../quality/color-motion-contract.cjs');
+  const licensed = ['issue39-licensed-plain', 'issue39-licensed-staging'].map(
+    motion.reviewedRuntime
+  );
+  const knownBytes = licensed.some(
+    (runtime) =>
+      runtime.variant.fingerprint === revision.engine ||
+      Object.entries(runtime.files).every(
+        ([name, sha256]) => source.files?.[name]?.sha256 === sha256
+      )
+  );
+  const actual = { components: revision };
+  if (!knownBytes && require('../quality/common.cjs').variant(actual).id !== 'color') return false;
+  const candidate = { ...source, components: revision };
+  const runtime = motion.select(candidate);
+  return licensed.some((reviewed) => reviewed.id === runtime.id);
+}
+function publicationRights(publicDirectory, source, report, revision) {
+  const actualRevision = revision || snapshot.verify(publicDirectory, source);
+  if (!publicationRequired(source, actualRevision) && report === undefined) return null;
+  assert.ok(report, 'licensed publication rights record required');
+  assert.deepEqual(source.components, actualRevision, 'publication runtime metadata differs');
+  const rights = require('../release/rights-record.cjs');
+  rights.publication(source, report);
+  rights.copies(publicDirectory, source, report);
+  return report;
+}
 function build(input, out, expected = {}, options = {}) {
   assert.ok(options && typeof options === 'object' && !Array.isArray(options));
   assert.ok(
@@ -186,7 +216,15 @@ function build(input, out, expected = {}, options = {}) {
     gate = JSON.parse(fs.readFileSync(path.join(input, 'gate/release-manifest.json')));
   sourceGate(source, gate, expected);
   artifact.verify(path.join(input, 'public'), source);
-  snapshot.verify(path.join(input, 'public'), source);
+  const publicDirectory = path.join(input, 'public');
+  const revision = snapshot.verify(publicDirectory, source);
+  const rightsFile = path.join(input, 'rights.json');
+  const rights = publicationRights(
+    publicDirectory,
+    source,
+    fs.existsSync(rightsFile) ? JSON.parse(fs.readFileSync(rightsFile)) : undefined,
+    revision
+  );
   checkLinks(path.join(input, 'public'));
   fs.mkdirSync(out, { recursive: true });
   assert.equal(fs.readdirSync(out).length, 0, 'staging output must be empty');
@@ -208,6 +246,7 @@ function build(input, out, expected = {}, options = {}) {
       hostFiles: Object.keys(extra).sort(),
       files: combined.files,
       packageDigest: combined.artifactDigest,
+      ...(rights ? { rights, rightsDigest: rights.inventoryDigest } : {}),
     };
   fs.writeFileSync(path.join(out, 'staging-package.json'), JSON.stringify(record, null, 2) + '\n');
   verify(out, record, expected);
@@ -245,7 +284,14 @@ function verify(dir, record, expected = {}) {
       text,
       'host configuration changed ' + file
     );
-  snapshot.verify(target, record.source);
+  const revision = snapshot.verify(target, record.source);
+  if (Object.hasOwn(record, 'rights') || Object.hasOwn(record, 'rightsDigest'))
+    assert.equal(
+      record.rightsDigest,
+      record.rights?.inventoryDigest,
+      'staging rights digest differs'
+    );
+  publicationRights(target, record.source, record.rights, revision);
   checkLinks(target);
   return true;
 }
@@ -280,6 +326,8 @@ module.exports = {
   sourceGate,
   additions,
   checkLinks,
+  publicationRequired,
+  publicationRights,
   build,
   verify,
   expectedEnvironment,

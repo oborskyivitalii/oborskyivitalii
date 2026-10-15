@@ -195,47 +195,8 @@ function validateCriticalMediaJourney(journey, width) {
 }
 function validateFailure(row) {
   clean(row, 'capability fixture');
-  const checks = row.checks,
-    before = checks?.evidence?.before,
-    after = checks?.evidence?.after;
-  assert.ok(before && after, 'missing actual failure-state observations');
-  for (const s of [before, after]) {
-    assert.equal(s.h1, 1);
-    assert.equal(s.overflow, false);
-    assert.ok(Number.isInteger(s.paints) && s.paints >= 0);
-    assert.ok(Number.isInteger(s.callbacks) && s.callbacks >= 0);
-  }
-  const fallback = ['no-js', 'no-raf', 'no-match-media', 'css-blocked'].includes(row.mode),
-    frozen = fallback || ['reduced', 'draw-fault', 'context-loss'].includes(row.mode);
-  if (frozen)
-    for (const key of ['phase', 'camera', 'paints', 'callbacks'])
-      assert.equal(after[key], before[key], `unsettled ${row.mode} ${key}`);
-  if (fallback) {
-    assert.equal(checks.fallback, true);
-    for (const s of [before, after]) {
-      assert.equal(s.ready, false);
-      assert.equal(s.fallback, true);
-      assert.equal(s.motion.hidden || s.motion.disabled, true);
-      assert.equal(s.paints, 0);
-      assert.equal(s.callbacks, 0);
-    }
-  } else if (row.mode === 'reduced') {
-    assert.equal(checks.reducedFreeze, true);
-    assert.equal(after.ready, true);
-    assert.equal(after.motion.disabled, true);
-    assert.match(after.motion.label, /reduced/);
-  } else if (['draw-fault', 'context-loss'].includes(row.mode)) {
-    assert.equal(checks.boundedFailure, true);
-    assert.equal(checks.synthetic, true);
-    assert.equal(after.ready, false);
-    assert.equal(after.fallback, true);
-    assert.equal(after.motion.disabled, true);
-    assert.match(after.motion.label, /unavailable/);
-  } else {
-    assert.equal(checks.positiveProbe, true);
-    assert.equal(after.ready, true);
-    assert.ok(after.paints > before.paints, 'failure fixture did not observe an actual new paint');
-  }
+  const checks = row.checks;
+  require('./validate.cjs').functionalFailure(row.mode, checks);
   if (row.mode === 'css-delayed') assert.equal(checks.beforeCSSNoPaint, true);
   if (row.mode === 'css-blocked')
     validateCriticalMediaJourney(checks.criticalMediaJourney, row.width);
@@ -433,6 +394,7 @@ function validateMeasurement(row, kind, zero = false) {
     'callbackBusyPercent',
   ])
     assert.deepEqual(row[key], expected[key], 'declared ' + key + ' differs from actual samples');
+  assert.equal(row.state, 'active', 'staging measurement lacks an active renderer');
   if (zero) {
     assert.equal(row.callbacks, 0, kind + ' callbacks');
     assert.equal(row.paints, 0, kind + ' paints');
@@ -443,7 +405,6 @@ function validateMeasurement(row, kind, zero = false) {
     );
   } else {
     assert.ok(row.paints >= budgets.motion.minimumPaints, 'unobserved active motion');
-    assert.notEqual(row.state, 'fallback');
   }
 }
 function validatePerformance(report) {
@@ -568,7 +529,6 @@ function validateFlight(row, selected) {
   assert.deepEqual(row.errors, []);
   validateFlightSetup(row.setup, selected);
   validateMeasurement(row, 'flight');
-  require('./validate.cjs').transition(row);
   assert.equal(row.transitionPhase, selected.phase, 'unobserved cold/warm flight phase');
   const targetModels = row.rawPreparation.filter(
     (sample) => sample.kind === 'model' && sample.route === selected.to
@@ -579,6 +539,9 @@ function validateFlight(row, selected) {
       'cold flight did not observe destination model construction'
     );
   else assert.equal(targetModels.length, 0, 'warm flight reconstructed its destination model');
+  // Integrity and actual cache state must pass before a completed observation
+  // can be classified as a budget failure eligible for further collection.
+  require('./validate.cjs').transition(row);
 }
 function validateColor(report, manifest) {
   const variant = common.variant(manifest),
@@ -1068,6 +1031,7 @@ async function selectedFlights(browser, url, helpers = {}) {
       for (const planned of flightCases().filter((row) => row.to === destination)) {
         selected = planned;
         measured = false;
+        setup = null;
         setup = await api.setup(pair.page, selected);
         const row = await api.measure(pair, selected, setup);
         rows.push(row);
@@ -1077,7 +1041,9 @@ async function selectedFlights(browser, url, helpers = {}) {
         } catch (error) {
           row.pass = false;
           row.error = error.message;
-          throw error;
+          const budgetFailure = require('./validate.cjs').performanceBudgetFailure(error);
+          if (!budgetFailure) throw error;
+          row.validationFailure = budgetFailure;
         }
         if (selected.phase === 'cold') await api.restore(pair);
       }

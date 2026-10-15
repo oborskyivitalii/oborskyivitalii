@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const artifact = require('../quality/artifact.cjs');
 const pkg = require('./package.cjs');
+const { assertContentType } = require('../quality/serve.cjs');
 
 function origin(value) {
   const url = new URL(value);
@@ -63,6 +64,7 @@ async function check(directory, value, fetcher = fetch) {
       names.slice(start, start + 4).map(async (name) => {
         const { response, bytes } = await request(base + '/' + name, base, fetcher);
         assert.equal(response.status, 200, 'Pages file unavailable: ' + name);
+        assertContentType(name, response.headers.get('content-type'));
         assert.equal(
           artifact.digest(bytes),
           record.files[name].sha256,
@@ -82,10 +84,12 @@ async function check(directory, value, fetcher = fetch) {
   ]) {
     const { response, bytes } = await request(base + url, base, fetcher);
     assert.equal(response.status, 200);
+    assertContentType(file, response.headers.get('content-type'));
     assert.equal(artifact.digest(bytes), record.files[file].sha256);
   }
   const missing = await request(base + '/staging/__delivery_missing', base, fetcher);
   assert.equal(missing.response.status, 404, 'Pages converted a missing route to Home');
+  assertContentType('404.html', missing.response.headers.get('content-type'));
   assert.equal(artifact.digest(missing.bytes), record.files['404.html'].sha256);
   return {
     schema: 1,

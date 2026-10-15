@@ -59,11 +59,11 @@ function checks(mode, route) {
         ),
       },
     };
-  if (['no-js', 'no-canvas', 'no-raf', 'no-match-media', 'css-blocked'].includes(mode))
-    return { fallback: true };
-  if (mode === 'reduced') return { reducedFreeze: true };
-  if (['draw-fault', 'context-loss'].includes(mode)) return { boundedFailure: true };
-  return { positiveProbe: true, ...(mode === 'css-delayed' ? { beforeCSSNoPaint: true } : {}) };
+  return require('./fixtures/staging-evidence.cjs').failureRow({
+    mode: mode === 'no-canvas' ? 'no-raf' : mode,
+    route,
+    width: 320,
+  }).checks;
 }
 function fixture() {
   const modes = [
@@ -282,6 +282,26 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     /geometry objects/
   );
 });
+test('full failure evidence rejects painted fallbacks, moving freezes and inactive positive probes', () => {
+  const cases = [
+    ['no-canvas', (checks) => (checks.evidence.after.paints = 1)],
+    ['no-js', (checks) => delete checks.evidence],
+    ['no-raf', (checks) => (checks.evidence.after.fallback = false)],
+    ['reduced', (checks) => (checks.evidence.after.phase = 'moving')],
+    ['reduced', (checks) => (checks.evidence.after.motion.label = 'Motion: off')],
+    ['draw-fault', (checks) => (checks.evidence.after.ready = true)],
+    ['context-loss', (checks) => delete checks.synthetic],
+    ['blocked-storage', (checks) => (checks.evidence.after.paints = checks.evidence.before.paints)],
+    ['missing-hasOwn', (checks) => (checks.evidence.after.overflow = true)],
+    ['css-delayed', (checks) => (checks.beforeCSSNoPaint = false)],
+  ];
+  for (const [mode, mutate] of cases) {
+    const x = fixture(),
+      row = x.reports[3].rows.find((candidate) => candidate.mode === mode);
+    mutate(row.checks);
+    assert.throws(() => aggregate(x), undefined, mode);
+  }
+});
 function lighthouseFixture() {
   return {
     rows: budgets.routes.flatMap((route) =>
@@ -320,10 +340,22 @@ test('Lighthouse uses all three metric medians and rejects missing/mislabeled ru
   const fail = structuredClone(r);
   fail.rows[1].metrics['largest-contentful-paint'].numericValue = 10000;
   assert.throws(() => lighthouse(fail));
+  for (const mutate of [
+    (x) => (x.rows[0].run = 0),
+    (x) => (x.rows[0].run = 4),
+    (x) => (x.rows[0].run = '1'),
+    (x) => (x.rows[0].route = 'unknown'),
+    (x) => (x.rows[0].metrics['total-blocking-time'].numericValue = -1),
+    (x) => (x.rows[0].metrics['cumulative-layout-shift'].numericValue = NaN),
+  ]) {
+    const malformed = structuredClone(r);
+    mutate(malformed);
+    assert.throws(() => lighthouse(malformed));
+  }
 });
 function measurement(kind, startMs = 0) {
   const zero = ['off', 'reduced'].includes(kind),
-    elapsedMs = kind === 'idle' ? 30000 : 1000;
+    elapsedMs = kind === 'idle' ? 30000 : kind === 'scroll' ? 4000 : 1000;
   return {
     kind,
     elapsedMs,
@@ -333,11 +365,13 @@ function measurement(kind, startMs = 0) {
     rawFrames: zero
       ? []
       : [{ time: startMs + 1, started: startMs + 1, duration: 10, painted: true }],
+    rawLongTasks: [],
     paintRateHz: zero ? 0 : 1000 / elapsedMs,
     paintIntervalsMs: { count: 0, p50: null, p95: null, max: null },
     paintCallbackMs: { p50: zero ? null : 10, p95: zero ? null : 10, max: zero ? null : 10 },
     callbackBusyPercent: zero ? 0 : (10 / elapsedMs) * 100,
     state: 'active',
+    motion: kind === 'off' ? 'Motion: off' : kind === 'reduced' ? 'Motion: reduced' : 'Motion: on',
   };
 }
 function flightMeasurement(slow = false, to = 'research', from = 'index', width = 1440) {
@@ -409,6 +443,13 @@ test('motion requires positive paints, every profile, real raw samples and settl
     (x) => (x.samples[0].positiveProbe = false),
     (x) => x.samples.pop(),
     (x) => (x.samples[0].measurements[2].callbacks = 1),
+    (x) => (x.samples[0].measurements[2].motion = 'Motion: still (device)'),
+    (x) => (x.samples[0].measurements[3].motion = 'Motion: off'),
+    (x) => (x.samples[0].measurements[2].state = 'fallback'),
+    (x) => (x.samples[0].measurements[0].state = 'fallback'),
+    (x) => delete x.samples[0].measurements[0].state,
+    (x) => delete x.samples[0].measurements[0].rawLongTasks,
+    (x) => x.samples[0].measurements[0].rawLongTasks.push({ start: -1, duration: 10 }),
     (x) => (x.samples[2].measurements[0].paintCallbackMs.p95 = 40),
     (x) => (x.samples[2].measurements[0].rawFrames[0].duration = 1000),
     (x) => (x.samples[0].measurements[0].paintIntervalsMs.p95 = 1),
@@ -855,6 +896,10 @@ function colorFixture() {
     motionContract,
     kind: 'color-functional',
     pass: true,
+    browsers: ['chromium', 'firefox', 'webkit'].map((engine) => ({
+      engine,
+      version: 'controlled fixture',
+    })),
     rows,
   });
   return evidence;
@@ -862,6 +907,13 @@ function colorFixture() {
 test('full macOS policy keeps twelve travel Color cells with ordinary paint including WebKit', () => {
   assert.equal(aggregate(colorFixture()).pass, true);
   const mutations = [
+    (report) => delete report.browsers,
+    (report) => report.browsers.pop(),
+    (report) => (report.browsers[0].engine = 'unknown'),
+    (report) => (report.browsers[0] = structuredClone(report.browsers[1])),
+    (report) => (report.browsers[0].version = ''),
+    (report) => (report.browsers[0].version = '  '),
+    (report) => (report.browsers[0].version = 153),
     (report) => (report.rows = report.rows.filter((row) => row.engine !== 'webkit')),
     (report) => (report.rows[0].checks.blockFlight = false),
     (report) => (report.rows[0] = structuredClone(report.rows[1])),
@@ -928,6 +980,18 @@ test('full hosted evidence cannot use local measurements, a missing file or anot
     x.profile = 'staging';
     x.jobs.host = { result: 'success' };
     for (const r of x.reports) r.target = x.hostedURL;
+    for (const file of [
+      'portrait.jpg',
+      'portrait.webp',
+      'image.png',
+      'favicon.ico',
+      'robots.txt',
+      'sitemap.xml',
+      'opaque',
+    ]) {
+      x.manifest.files[file] = { sha256: 'e'.repeat(64) };
+      x.reports.find((r) => r.kind === 'captures').public_sources['docs/' + file] = 'e'.repeat(64);
+    }
     x.reports.push({
       ...identity,
       variant: x.manifest.variant,
@@ -943,12 +1007,31 @@ test('full hosted evidence cannot use local measurements, a missing file or anot
         url: x.hostedURL + '/' + file,
         status: 200,
         sha256: info.sha256,
+        mime: require('../tools/quality/serve.cjs').canonicalType(file),
       })),
     });
     return x;
   };
   assert.equal(aggregate(make()).kind, 'hosted-gate');
   assert.equal(aggregate(make(true)).kind, 'hosted-gate');
+  for (const file of [
+    'portrait.jpg',
+    'portrait.webp',
+    'image.png',
+    'favicon.ico',
+    'robots.txt',
+    'sitemap.xml',
+    'opaque',
+  ])
+    for (const mime of [undefined, '', 'text/html']) {
+      const x = make();
+      x.reports.at(-1).rows.find((row) => row.file === file).mime = mime;
+      assert.throws(() => aggregate(x), /Content-Type/);
+    }
+  const canonical = make();
+  canonical.reports.at(-1).rows[0].url = canonical.hostedURL + '/';
+  canonical.reports.at(-1).rows[1].url = canonical.hostedURL + '/research';
+  assert.equal(aggregate(canonical).kind, 'hosted-gate');
   for (const target of [null, 'https://other.invalid/site']) {
     const x = make(true);
     x.reports.find((r) => r.kind === 'color-functional').target = target;
@@ -963,6 +1046,10 @@ test('full hosted evidence cannot use local measurements, a missing file or anot
       ).target = null),
     (x) => (x.jobs.host.result = 'skipped'),
     (x) => (x.reports.at(-1).rows[0].sha256 = '0'.repeat(64)),
+    (x) => (x.reports.at(-1).rows[0].url = x.hostedURL + '/writing.html'),
+    (x) => (x.reports.at(-1).rows[0].url = x.hostedURL + '/missing.html'),
+    (x) => (x.reports.at(-1).rows[0].mime = 'text/plain'),
+    (x) => delete x.reports.at(-1).rows[0].mime,
     (x) => (x.hostedURL = null),
     (x) => (x.full = false),
   ]) {

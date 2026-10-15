@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
-      "automated_scope": "This controller-compatibility dependency records exact main cc115c4241197d59205934bdc18f209109d5ee87 and preserves all 607 protected paths and modes plus all 606 blobs outside the sole tools/staging/package.cjs host-policy amendment authorized by issue39 staging-snapshot-proxy-preparation-20261015. Its actual legacy-default hosting output remains byte exact; the separately checked finite proxy mode supplies no provider inventory, hosted performance acceptance or domain observation. Those remain external or with execution PR40.",
+      "automated_scope": "This controller dependency pins protected main cc115c4241197d59205934bdc18f209109d5ee87: all 607 original paths/modes and 597 blobs outside the six named staging/Pages consumers and four explicit prepublication/source-report workflow owners remain exact. The sole new protected path is the shared source-independent tools/release/rights-record.cjs verifier. Actual legacy-default staging and Pages outputs are compared byte-for-byte with the pinned main producers. Finite proxy and frozen publication source checks supply no provider inventory, native performance acceptance or domain observation; those remain external or in PR40.",
       "checks": ["PRESERVATION", "HOST-POLICY"],
       "gates": ["LIVE-INVENTORY"]
     },
@@ -21,8 +21,15 @@
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "All 607 protected main paths/modes and 606 unamended blobs remain exact; only tools/staging/package.cjs may implement the dated finite host-policy amendment. Behavioral checks compare actual legacy-default hosting bytes with pinned main and exercise explicit versioned same-site immutable-snapshot 200 proxy validation and arbitrary-policy rejection. Public aliases, SEO, public snapshot/runtime bytes, workflows and default legacy generation remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission. The quality-only flight collector reads bounded same-origin ResourceTiming after the original measurement window, retains raw response and preparation intervals, rejects malformed/missing/overflow evidence and preserves the original cold/warm setup and latency failure. Neither host-policy source checks nor telemetry turn prior failed staging runs into admission or prove the 3200 ms budget passes.",
-      "checks": ["PRESERVATION", "HOST-POLICY", "SELECTOR", "PROOF", "FLIGHT-TELEMETRY"],
+      "automated_scope": "All 607 protected main paths/modes and 597 unamended blobs remain exact; the named tools/staging/package.cjs and tools/pages/{package,controller}.cjs consumers implement only finite hosting and first-staging frozen-record compatibility, with the single shared tools/release/rights-record.cjs verifier. Known exact issue39 licensed plain/staging Color families require a source/tree/edition/artifact-bound frozen record even through default API; the discriminator derives from actual verified revision bytes and the existing closed selector. Every supplied record is checked, including both rendered full legal copies, scope/licenses/exceptions and approvalPass=false. Pages preserves nested reports, records their receipt digests, and restores sidecars through both extraction routes. Genuine historical reportless families retain exact default output and independent frozen recovery. Behavioral checks compare actual legacy-default hosting bytes with pinned main and exercise explicit versioned same-site immutable-snapshot 200 proxy validation and arbitrary-policy rejection. Public aliases, SEO, public snapshot/runtime bytes and default legacy generation remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission. The quality-only flight collector reads bounded same-origin ResourceTiming after the original measurement window, retains raw response and preparation intervals, rejects malformed/missing/overflow evidence and preserves the original cold/warm setup and latency failure. Neither host-policy source checks nor telemetry turn prior failed staging runs into admission or prove the 3200 ms budget passes. The later authorized comprehensive guard review adds an existing-local.cjs prepublication mode and pre-upload ordering in the four named workflows. Independent source/Python/style/RI/scanner/selftest/artifact/edition/rights/package failures are retained, dependency-blocked checks stay failed, and final source/manifest/public digests are rechecked. Normal Draft preview remains lightweight; host/native/live gates stay later and mandatory. Actual analytics hosted/offline fixture construction includes declared legal-owner dependencies without inventing them for historical producers. The explicitly named tools/staging/hosted.cjs, tools/staging/review-flow.cjs and tools/pages/http.cjs HTTP consumers reuse the shared finite MIME guard and actual-helper wrong/missing/alias/query/404 negatives; no runtime/public body changes or relaxed transport policy are permitted.",
+      "checks": [
+        "PRESERVATION",
+        "HOST-POLICY",
+        "SELECTOR",
+        "PROOF",
+        "FLIGHT-TELEMETRY",
+        "PUBLICATION-RECORDS"
+      ],
       "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
     },
     {
@@ -65,7 +72,9 @@
       "kind": "unittest",
       "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
     },
-    "BASIC": { "kind": "node-basic" },
+    "BASIC": {
+      "kind": "node-basic"
+    },
     "RI": {
       "kind": "unittest",
       "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
@@ -73,6 +82,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PUBLICATION-RECORDS": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_frozen_publication_records_and_actual_legacy_pages_bytes"
     }
   },
   "gates": {
@@ -98,7 +111,7 @@
     },
     "REVIEW": {
       "kind": "human",
-      "description": "Independent exact-source review of selector tuples, all 606 unamended protected blobs, the sole package host-policy exception, actual legacy-default byte parity, finite proxy security and the current-main deployment boundary; review scope, CS01/CS04/CS05/CS08/CS09/CS10 and actual issue39/PR40/dependency-PR links. Source checks are not a maintainer decision."
+      "description": "Independent exact-source review of selector tuples, all 597 unamended protected blobs, the six named staging/Pages consumer exceptions, four explicit prepublication/source-report workflow owners and shared frozen verifier, actual staging/Pages legacy-default byte parity, missing/rehashed/metadata-opt-out license failures, finite proxy security and the current-main deployment boundary; review scope, CS01/CS04/CS05/CS08/CS09/CS10 and actual issue39/PR40/dependency-PR links. Source checks are not a maintainer decision."
     },
     "STAGING": {
       "kind": "human",
