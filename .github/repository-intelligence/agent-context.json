@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a15b7ba16d688479481b25457e31a116ecbf6bbdf623ae1ba5886e3eb645b4a7",
+    "digest": "688292d3fdc599d57a9382a9445e24a5471601fba400761bed79b4c3b1962019",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "afee6fd3374b746a8833aa6e7ae83773f43f717ec33dbb9dea65acca05cba49b"
+        "sha256": "b4bb7a9394729173567a7044e555bed501cc8e444a7d1d444c7d428533a364e8"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
