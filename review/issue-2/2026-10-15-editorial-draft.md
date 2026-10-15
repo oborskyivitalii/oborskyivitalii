@@ -320,3 +320,41 @@ The13-page review PDF and both platform kits are verified; all pages and origina
 figures inspected. Final source/RI/issue and hosted identities are in the live PR.
 Original #2AC01-AC06 and #5AC01-AC12 whole review/publication gates remain open;
 accepted recording scope is unchanged. No merge/stable/production/external post.
+
+
+## Editorial revision 0.6 — visual deck audit and assembly decision (15 October 2026)
+
+**Owner and authorization:** #2 editorial article, executed within PR #79 / #5. Maintainer approved rewriting draft 0.5 based on direct viewing of UA v35 slide content and asked for precise slide materials/instructions for Sol or Astra. No request to publish or merge. Inspected parent PR head `344a66820649d31b84eb958980373607a45be7d5`; revised draft commited at `14b1d5f6b1053fd6f43028dd142c5560e550afc7` with a markdown-cleanup follow-up at `026abe978748f559f1e93a4fdced2b76cb7acb61`. The live branch must be rechecked at assembly.
+
+**Primary editorial input:** [revision 0.6, excluded draft](../../drafts/pmday-article-draft.en.md), with ARTICLE START/END reader boundaries and seven numbered figure markers. **Canonical article manuscript remains r2** in `site/publications/pmday-ai-both-sides/manuscript.en.md` until Sol/Astra assembles a new version; previous PDF, kit, and published/catalog records have **not** been replaced.
+
+### Exact inspected material and evidence
+
+- UA PR113 v35 source commit `22639d311d5fb46a23f3d5cdd819800dbe1169d9`, 15-slide site-owned review PDF `site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf`, SHA-256 `b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782`, 663363 bytes. Locally opened/rasterised and visually reviewed all 15 slide pages; the agreed seven pages were re-exported from the exact PDF in 1920×1080 PNG previews. The local preview ZIP is **not** a repository asset and cannot be required for continuation: full reconstruction input, zero-based indices, renderer parameters and guardrails are embedded in the draft.
+- New quantitative references inspected: [Agarwal et al., Table 2](https://arxiv.org/html/2601.13597v2) (+34.85% agent-first and +42.87% IDE-first static code complexity after observable agent adoption, not measured human comprehension), and [GitClear 2026](https://www.gitclear.com/the_ai_code_quality_maintainability_gap) (+81% duplicated blocks versus 2023 baseline, observational vendor research). These are not used to assign a numerical value to the slide-5 hypothetical curve. Existing NBER/DORA/METR and the synthetic 200-response contract retain distinct qualifiers.
+
+### Findings, decisions, and dispositions
+
+| ID | Finding / #2 AC impact | Decision and status |
+| --- | --- | --- |
+| F05 | Draft explained review pressure but not constructive adaptation; AC01 | Add short testable 'new SDLC equilibrium' subsection: what to measure versus candidate experiments. **Accepted in draft 0.6**. |
+| F06 | Evidence linked volume to releases but understated structural complexity; AC02 | Add matched-study complexity and GitClear observational signal with different denominators/methods, no causality overclaim. **Accepted in draft**. |
+| F07 | Requirements boundary was too compressed; AC01 | Explain acceptable response/action space versus exact permissions and combinations; show slide 9. **Accepted in draft**. |
+| F08 | Reassessment without code change and infeasible-control veto were weak; AC01 | Add model/retrieval/routing drift and explicit narrow/redesign/reject decision. **Accepted in draft**. |
+| F09 | Closing flow underplayed operational learning; AC01 | State that production incidents update assumptions and evaluation while delivery commitments continue; use slide 14 instead of 13. **Accepted in draft**. |
+| F10 | Visual evidence insufficient and under-specified; AC01/AC03 | Select **seven full-screen captures of slides 3, 5, 7, 9, 10, 12, 14** with exact placement, alt, caption, no-crop and evidence guards. **Specified only**; PNGs/media declarations and new article edition still pending. |
+
+No chart content, source deck or UA research evidence was modified. Slide 4 remains research context rather than another dense screenshot. Slide 13's expertise dependency remains in prose, not a body image. Slide 11 remains an accessible Ready/Done/Release table. The original article title, six chapters, key argument, opening hook and closing responsibility line remain intact; approximately 3,000 reader words in revision 0.6 before assembly.
+
+### Verification actually performed and limitations
+
+**Draft static/self-checks:** six numbered reader chapters; seven ARTICLE-scoped figure markers `01–07` in required order; seven one-to-one figure specification entries `03/05/07/09/10/12/14`; one opening Slides PDF link; no `sandbox:` path or review PNG falsely claimed to be committed; no new rights/publication claim; direct source URL for every newly introduced evidence statement. Local full PDF SHA and page count validated; the seven PNG preview exports have real source pages and fixed dimensions.
+
+**Not executed on this exact GitHub source:** full local checkout and `node tools/quality/local.cjs`, tracked-path/RI build/verify, publisher tests, actual article HTML/PDF, hosted mobile/Safari review, independent scientific/editorial/rights/device acceptance or new production artifacts. Existing green r2 checks **do not cover** revision 0.6. Draft editing can invalidate generated repository intelligence and must be reconciled during assembly; old green results cannot be recycled.
+
+### Next Sol/Astra route
+
+1. Read root/scoped AGENTS, README, MEMORY, REPOSITORY-MAP, current #2/#5/#7, and latest PR79 head; keep this same PR and follow original #2 AC01–AC06 and #5 gates.
+2. Re-export and commit the seven source-PDF screenshots, register attribution/rights and verify full-page readability. **Use the draft's per-figure contract as authority; don't substitute a generated schematic**.
+3. Integrate the **ARTICLE START/END prose only** into canonical manuscript; bind seven images; generate a *new* article edition, PDF and LinkedIn/Medium kits (previous r2 stays historical). Retain existing one PDF + one recording link, original covers and accessibility.
+4. Execute the named checks and independent editorial/visual rights review; update issue checkboxes only for whole gates proven on new head. Keep PR unmerged and publication separate pending author/rights/site decisions.
