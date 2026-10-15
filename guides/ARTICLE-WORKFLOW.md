@@ -32,6 +32,15 @@ The optional `presentation` declaration pins one article-local PDF (maximum2MB),
 its poster, title and HTTPS source. The site offers an on-demand, hash-verified
 PDF viewer with native open/download links, cancellation and object-URL cleanup.
 Print/platform kits retain the poster/source link and a separate `presentation.pdf`.
+An optional profile `reader` policy can select `presentation: "links"` instead:
+the manuscript then supplies exactly one named link to the declared PDF source
+and omits its poster figure. The native site rewrites that link to the pinned
+same-origin PDF; print/platform exports retain the compact manuscript links and
+the separate PDF. `references: "inline"` omits the generated ID bibliography and
+edition identifier when every declared reference already has a named manuscript
+link. The reader still shows the publication's rights notice; manifests retain
+the complete edition, source and provenance records. Unselected policies retain
+the existing viewer and source-list behavior.
 No author-supplied HTML or general iframe channel is enabled. Small declared PDF
 resources can travel in bounded offline exports; a complete article plus deck
 that exceeds the existing800KB gzip limit is rejected with a hosted-edition route.

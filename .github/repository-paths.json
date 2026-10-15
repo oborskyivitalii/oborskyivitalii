@@ -481,42 +481,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496": {
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/archive.js": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/space.js": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/styles.css": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/theme.js": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -553,6 +517,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0": {
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/archive.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/space.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/styles.css": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/theme.js": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -565,63 +565,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1341bf9806f2933ba9383a2e842ef11ffcb9b43f2d79a17b8897f4a015f7a58c": {
+    "docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495": {
       "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/1341bf9806f2933ba9383a2e842ef11ffcb9b43f2d79a17b8897f4a015f7a58c/talks.html": {
+    "docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495/credits.html": {
       "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2ece61b0f98a92d7e464c5da98547c10ec0ca669c77cc6102f9b1fe5bfa09cf1": {
+    "docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0": {
       "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/2ece61b0f98a92d7e464c5da98547c10ec0ca669c77cc6102f9b1fe5bfa09cf1/index.html": {
+    "docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0/index.html": {
       "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/319d6b293d6fe1f69ba933ff65611e3026cfc263fadf335a91072951fbb1d0ec": {
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/319d6b293d6fe1f69ba933ff65611e3026cfc263fadf335a91072951fbb1d0ec/writing.html": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/41ef775dd6198a32ca90062165d9e31fad54dfbadad6e0a3b9a088e2194ab8f7": {
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/41ef775dd6198a32ca90062165d9e31fad54dfbadad6e0a3b9a088e2194ab8f7/credits.html": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/512ca4a6e4c3bd28ea28aac6a6bfe366a2d79392a7d715140c9298b3f3760d2b": {
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/512ca4a6e4c3bd28ea28aac6a6bfe366a2d79392a7d715140c9298b3f3760d2b/research.html": {
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -637,6 +601,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438": {
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438/research.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -646,6 +622,18 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a": {
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a/writing.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -670,6 +658,18 @@
     "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538": {
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538/talks.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -994,6 +994,12 @@
     "review/issue-2/pmday-candidate-20261015/publication-kit.zip": {
       "kind": "file",
       "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/reader-links-observations.json": {
+      "kind": "file",
+      "purpose": "Current r2 local review-browser observations: one native verified PDF link, no inline viewer or source-ID bibliography, two widths with and without JavaScript.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -7033,6 +7039,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json": {
+      "kind": "file",
+      "purpose": "PMDay readable review revision: immutable content identity, manuscript hash and pending rights decision.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015.json": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides-en-review-20261015.json.",
@@ -7342,6 +7354,12 @@
     "site/templates/articles/print.html": {
       "kind": "file",
       "purpose": "Semantic standalone print template with explicit metadata, provenance and approved local resources.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/templates/articles/sources.html": {
+      "kind": "file",
+      "purpose": "Default native article bibliography, edition identity and credits; inline-reference profiles use their authored source links.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

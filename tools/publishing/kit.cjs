@@ -189,6 +189,15 @@ async function writePlatform(root, staging, article, platform, assets, printTemp
   return { transformation: transformations[0], omissions };
 }
 
+function mediumUploadAssets(article, assets) {
+  if (article.profile.reader?.presentation !== 'links') {
+    return assets;
+  }
+  const figures = article.adaptations.medium?.model.figures || article.model.figures;
+  const posterId = article.presentation.poster.id;
+  return figures.includes(posterId) ? assets : assets.filter((asset) => asset.id !== posterId);
+}
+
 async function renderKit(
   root,
   articleId,
@@ -277,7 +286,7 @@ async function renderKit(
           },
         ]
       : [];
-    if (article.presentation) {
+    if (article.presentation && article.profile.reader?.presentation !== 'links') {
       omissions.push({
         scope: 'print and platform',
         feature: 'Interactive presentation viewer',
@@ -328,6 +337,7 @@ async function renderKit(
     const canonical = observedCanonical
       ? article.metadata.canonical
       : 'pending: verify the accepted live site page first';
+    const uploadAssets = mediumUploadAssets(article, assets);
     const instructions = [
       `# ${article.metadata.title} — distribution review candidate`,
       '',
@@ -345,7 +355,7 @@ async function renderKit(
       'LinkedIn: inspect the selected adaptation or equivalent rendition, including every heading source.',
       'Record actual native-editor changes and observed publication as a separate event.',
       '',
-      ...assets.map((asset) => `${asset.uploadPath} — ${asset.caption} (${asset.credit})`),
+      ...uploadAssets.map((asset) => `${asset.uploadPath} — ${asset.caption} (${asset.credit})`),
       '',
       `Rights: ${article.metadata.rights.notice}`,
       '',
@@ -358,7 +368,7 @@ async function renderKit(
           schema: 1,
           articleId,
           contentEdition: article.edition.id,
-          images: assets.map((asset) => ({
+          images: uploadAssets.map((asset) => ({
             id: asset.id,
             path: asset.uploadPath,
             sha256: asset.sha256,

@@ -97,6 +97,50 @@ function characterLimits(profile, article) {
   }
 }
 
+function namedLink(link, reference) {
+  return (
+    link.url === reference.url &&
+    typeof link.text === 'string' &&
+    link.text.trim() !== '' &&
+    link.text.trim() !== reference.id &&
+    link.text.trim() !== reference.url
+  );
+}
+
+function readerSelection(profile, article) {
+  if (profile.reader === undefined) {
+    return;
+  }
+  const reader = object(profile.reader, ['references', 'presentation'], 'reader');
+  if (
+    Object.keys(reader).length === 0 ||
+    (reader.references !== undefined && reader.references !== 'inline') ||
+    (reader.presentation !== undefined && reader.presentation !== 'links')
+  ) {
+    throw new Error('Invalid profile reader selection');
+  }
+  const links = article.model?.links || [];
+  if (
+    reader.references === 'inline' &&
+    article.metadata.references.some(
+      (reference) => !links.some((link) => namedLink(link, reference))
+    )
+  ) {
+    throw new Error('Inline references require a named manuscript link for every source');
+  }
+  if (reader.presentation === 'links') {
+    const deck = article.presentation;
+    if (
+      !deck ||
+      links.filter((link) => namedLink(link, { url: deck.sourceUrl })).length !== 1 ||
+      links.filter((link) => link.url === deck.sourceUrl).length !== 1 ||
+      article.model.figures.includes(deck.poster.id)
+    ) {
+      throw new Error('Linked presentation requires exactly one named PDF link and no poster');
+    }
+  }
+}
+
 function assetSelection(root, article, selection, role) {
   object(selection, ['id', 'omitReason'], role);
   if (Object.keys(selection).length !== 1) {
@@ -132,7 +176,7 @@ function loadProfile(root, article) {
   const input = readSource(root, profilePath, { maxBytes: 100_000 });
   const profile = object(
     JSON.parse(utf8(input.bytes, 'source')),
-    ['schema', 'id', 'platforms', 'launch', 'seo', 'assets', 'limits'],
+    ['schema', 'id', 'platforms', 'launch', 'seo', 'assets', 'limits', 'reader'],
     'record'
   );
   if (profile.schema !== 1 || !idPattern.test(text(profile.id, 80, 'id'))) {
@@ -159,6 +203,7 @@ function loadProfile(root, article) {
   }
   text(utf8(launch.bytes, 'launch post'), 50_000, 'launch post');
   characterLimits(profile, article);
+  readerSelection(profile, article);
   object(profile.assets, assetRoles, 'assets');
   const furniture = { seo: { ...profile.seo } };
   const inputs = [profilePath, launchPath];

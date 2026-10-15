@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1386f1a99c9c0257b560e625fa973b44070bf8a80bf72750bd5009057e394d59",
+    "digest": "56c2a3dbfc32f331ed073ca194f8158eaa27ec1bf5979b481d3bc43860cc843a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7eecc3763333d1c43b1a627d26b61fa4c8bc23d8eac93139c1dc1c2dd4937df9"
+        "sha256": "e2dd1492aa3aef0c4c0b3aa5188a52e2b3d19d3e60270c077383b6cad09da3f3"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "179fd260ad92eacda2850b4e793c8455f90f05a65fd2e5e81976e6c8b7a28c44"
+        "sha256": "7d9df9df10db8dce18e691b5fb55b63d9252f9726995e2ff87244965835e7c50"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cf590171484f2f1b8de2a988db88cfc175804af950f859b1790dd9a689130cc4"
+        "sha256": "0044b8e0965fe98d96bf593cc117f0fc1b0331ee6130b4401845ee4e291d28e0"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -325,12 +325,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "edc8310ff1a03f0c69054e0ea54a113dce9b887da6313f35510bf47624e53209"
+        "sha256": "2bb6d45d2ad42257c77860d12fa1422a60f5e32a0aca47cdab4f6b566e69282e"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "6c223437c5bd9276e63adfc3c2563d9a72f2ac62756b211b5c253e1fc57fc1ac"
+        "sha256": "eaaa0d9dd84f54c00b7968622e655c667f0bc7f92acbe7b339b40d19ff5a9e27"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -360,32 +360,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "4503b8784ecb20755a5d82e6cb2190af34de4f697c40684ed554e7e87186b016"
-      },
-      {
-        "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/archive.js",
-        "identity_mode": "content",
-        "sha256": "10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe"
-      },
-      {
-        "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/navigation.js",
-        "identity_mode": "content",
-        "sha256": "9c2fc563685f648ec8382ca66319813382e5ddff59d2e11d551aadd5d6dd5d76"
-      },
-      {
-        "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/space.js",
-        "identity_mode": "content",
-        "sha256": "0f48b353a4d326c14ad74d76084b1ecdca9000fb277cc68d861029bb7fc91ae2"
-      },
-      {
-        "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/styles.css",
-        "identity_mode": "content",
-        "sha256": "9eeaea20d8b103a1d1eee745690961cecd20b0b25fd38edf206bd6d65feb76a1"
-      },
-      {
-        "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/theme.js",
-        "identity_mode": "content",
-        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
+        "sha256": "915911495809027895e937a7d56e5f985747ef45aad1062b17393d10c9ac80c5"
       },
       {
         "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
@@ -413,34 +388,44 @@
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
+        "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/archive.js",
+        "identity_mode": "content",
+        "sha256": "10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe"
+      },
+      {
+        "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/navigation.js",
+        "identity_mode": "content",
+        "sha256": "9c2fc563685f648ec8382ca66319813382e5ddff59d2e11d551aadd5d6dd5d76"
+      },
+      {
+        "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/space.js",
+        "identity_mode": "content",
+        "sha256": "0f48b353a4d326c14ad74d76084b1ecdca9000fb277cc68d861029bb7fc91ae2"
+      },
+      {
+        "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/styles.css",
+        "identity_mode": "content",
+        "sha256": "9eeaea20d8b103a1d1eee745690961cecd20b0b25fd38edf206bd6d65feb76a1"
+      },
+      {
+        "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/theme.js",
+        "identity_mode": "content",
+        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
+      },
+      {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "8fa95810f09a3dd15a11f253ded37fb7e57a5de52c1531edd3dfca35d5f9b722"
+        "sha256": "4d5f02f976692f5ab7055857e31e3c1b479b9bf2c9acae10527e14ed089c1be3"
       },
       {
-        "path": "docs/snapshots/1341bf9806f2933ba9383a2e842ef11ffcb9b43f2d79a17b8897f4a015f7a58c/talks.html",
+        "path": "docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495/credits.html",
         "identity_mode": "content",
-        "sha256": "3104251bf7af64243eede77d8005164a5bb82dc10af6d89de90779795d7ab94e"
+        "sha256": "665732180d18f15ea7b02543f51962409b2f582faa81f7436f307cce751ed4f7"
       },
       {
-        "path": "docs/snapshots/2ece61b0f98a92d7e464c5da98547c10ec0ca669c77cc6102f9b1fe5bfa09cf1/index.html",
+        "path": "docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0/index.html",
         "identity_mode": "content",
-        "sha256": "d22cac4679761b40b2c69d9a384aaae99a26817094100864c4d68d813fe45b97"
-      },
-      {
-        "path": "docs/snapshots/319d6b293d6fe1f69ba933ff65611e3026cfc263fadf335a91072951fbb1d0ec/writing.html",
-        "identity_mode": "content",
-        "sha256": "128f4f0f892950f7a037f60b1f69dbb4fb53b0ee7ff016db7a3ab5437ff4e619"
-      },
-      {
-        "path": "docs/snapshots/41ef775dd6198a32ca90062165d9e31fad54dfbadad6e0a3b9a088e2194ab8f7/credits.html",
-        "identity_mode": "content",
-        "sha256": "e529bc28a23fed723de187998a30681d7725aaf753506653b8c92d3bff2784be"
-      },
-      {
-        "path": "docs/snapshots/512ca4a6e4c3bd28ea28aac6a6bfe366a2d79392a7d715140c9298b3f3760d2b/research.html",
-        "identity_mode": "content",
-        "sha256": "ee60bdd9128089cd591c416a393fdaa784629f75bca497bebd68390b4bcf524e"
+        "sha256": "c4df49478bbd59120276119c1c69ae437e12e024ca003eefe8f8a05c71b46b45"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -448,9 +433,19 @@
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
       },
       {
+        "path": "docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438/research.html",
+        "identity_mode": "content",
+        "sha256": "d1d94676487ab21b0ac4c320947d9c053a76b4cad722a5415ba77fbcf2eecb20"
+      },
+      {
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
         "identity_mode": "content",
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
+      },
+      {
+        "path": "docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a/writing.html",
+        "identity_mode": "content",
+        "sha256": "f052c610fcab0738c7d5be3d447248acb34b89be4e1a86c0054ca5d753461d6f"
       },
       {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -461,6 +456,11 @@
         "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html",
         "identity_mode": "content",
         "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
+      },
+      {
+        "path": "docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538/talks.html",
+        "identity_mode": "content",
+        "sha256": "b9a8fc90f3a951e773644cdb3e5dbca696b76a45e3892833615415144b469710"
       },
       {
         "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
@@ -480,7 +480,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "fc6a38cf2f634a832ed4854d99150652eea891e593666ad51e3a39f0ba4a2d91"
+        "sha256": "e511af46eeb698a6757044ca11c2b48651191cc000f5431632690158f738fcbd"
       },
       {
         "path": "docs/theme.js",
@@ -490,7 +490,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "3bcce0495e2207a581107020cba7ee7ccc0fead039e557d650c3b9b5c5a3699c"
+        "sha256": "e3f5fb5f2a460985da16db3b428e146bc6d67b64d30719693973d0a9d98bc331"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -505,7 +505,7 @@
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "1d245c9f33e87e02b80e8bd20df0b284b23de8b10e19d25c6ab0581e5789b76b"
+        "sha256": "03eeba23e99581a6c10620674e8eb411af97239f850da7d9149b982d7f62eeab"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -655,7 +655,7 @@
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
-        "sha256": "93460dd1a4aa19f4e0c1919582714455f552c8e59a5e82b5f0d37851b484478a"
+        "sha256": "ec0bafe50999d1544d7e0ff797da69a37764190d4f60a393a3f9f3260608e271"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -665,12 +665,17 @@
       {
         "path": "review/issue-2/pmday-candidate-20261015/article.pdf",
         "identity_mode": "content",
-        "sha256": "2efc7d8cb6e2a559724db5d3022c3b48d9d67fddcb215e01c57be20a024aeb8a"
+        "sha256": "1f34fc12423864a188e5cada2201090a7bacd8a7924a2dffbf10a1ccbe99ff71"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/publication-kit.zip",
         "identity_mode": "content",
-        "sha256": "fa2f802b2f4fee5aaf86c92b462844efadeb75d046227a651d11af75743fb850"
+        "sha256": "ab74259d3d6a7e757c4fbaad58682cda999ae9ef8b8997a78c3f7d3d1af7d0a0"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
+        "identity_mode": "content",
+        "sha256": "8e762766b814c219bbebc369bc2b82dfcb55d08b0fd1a0e85c8c7f201f675e6c"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/social-covers.zip",
@@ -980,7 +985,7 @@
       {
         "path": "review/issue-5/2026-10-15-presentation-review.md",
         "identity_mode": "content",
-        "sha256": "533984d0b7e0d7d63c4fb6552a90e13c1b38b1d6161e2d32d1663782ab8cc71c"
+        "sha256": "001b63ef37c600684573b099d4c898f068679aece0478f88baa7e5bf330ab332"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5300,12 +5305,17 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "333eb89058061930260d89a45e820cbe2218358ca4a69dff00ad6e36c81f4366"
+        "sha256": "513cd801a32fa844405bf824d5437c65058ad8500770b64ea8343e412de1274b"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
         "identity_mode": "content",
         "sha256": "83def81ab47208a5064a60df6b8438321829c3aa8699902ee5a1cbce271938af"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
+        "identity_mode": "content",
+        "sha256": "61a3be8ffe62009e0b0d8bcd8c58db0f8e7d925fcd995d21b845c8232833fc81"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015.json",
@@ -5320,17 +5330,17 @@
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "dfb8f635b80875cd63e650f50476de58db861cd1ea6d9d2cf819e82055904626"
+        "sha256": "01d3360b7a19ef3ce4a3aa2d941e5f7f92512dba7ecbcdb7bdaf1240c82e367a"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "74c2c9782fbcb0be874476cf88535a1442daa4e602eb8ed54e4621a795db91c0"
+        "sha256": "439a540adf1abcc1d3e9e49e8fccc61147829fd6e89066dce60107a5a5ded7b7"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "ba7e28f153bc13d2981897ad076e30085ba4bbc80197cde456a9a3f156a19aae"
+        "sha256": "354f8b9f65e877e1c0a3743f00f5cf494808457b8272ad17ba6f18b594ecbc42"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -5483,6 +5493,11 @@
         "sha256": "cd16823cecfdf3db4fba3223e5283c6d1dd8d7b3396eafeff73c1a4ece09ef3b"
       },
       {
+        "path": "site/templates/articles/sources.html",
+        "identity_mode": "content",
+        "sha256": "6a58d340022fcf974254f54b9b453b78845136dbe18c13dd90b42f02748a3889"
+      },
+      {
         "path": "site/templates/components/archive-group.html",
         "identity_mode": "content",
         "sha256": "2a197f958f96ccc453c64b265432284fe77ebae952b5e7eee33b5c7f73b49250"
@@ -5555,7 +5570,7 @@
       {
         "path": "site/templates/pages/article.html",
         "identity_mode": "content",
-        "sha256": "f20523f95e686d836a08e77494db244579bdef2bc83c1d32926c5259ab78ffe5"
+        "sha256": "1583cdf13065312e6e2b10240d4628715d38b7ab7592797d66cb99e94cb0385a"
       },
       {
         "path": "site/templates/pages/credits/main.html",
@@ -5760,7 +5775,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "cdc35799dcec63803ece08e551ad87ec79be5e5837ffc6381cad6bdc52f0f604"
+        "sha256": "86822d19869d714d794d2bbd52714dd516da144ce96394ac284f3a0f62b584be"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -5920,7 +5935,7 @@
       {
         "path": "tests/publishing-profile.test.cjs",
         "identity_mode": "content",
-        "sha256": "fd5b92e081671e17be3e62b654c192fd209427388953022b3dc9a8e9fc91c54b"
+        "sha256": "b2abf37ac96fe035fb553bf51ddee0b6e23719acf88f611b472bc921796c7f87"
       },
       {
         "path": "tests/publishing-safety.test.cjs",
@@ -5930,7 +5945,7 @@
       {
         "path": "tests/publishing.test.cjs",
         "identity_mode": "content",
-        "sha256": "8972c6cdf918b796a95e6000bdacf3bcba2de514a635d213da60bd16db1fef9a"
+        "sha256": "a67d28dd0343644e9eee4325be9f5b28fb917ecf299aeb7dad508e46617a8155"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5985,7 +6000,7 @@
       {
         "path": "tests/site-articles.test.cjs",
         "identity_mode": "content",
-        "sha256": "53377fb5fc74dc28c1c62a9ef4b8743b6fce51faafacb01b6b76f2e79a2d589f"
+        "sha256": "61e6c78ea5f615f23f48ebc6a7853d8367b1817cd0646a7439db478346e0b4fa"
       },
       {
         "path": "tests/site-engine.test.cjs",
@@ -6015,7 +6030,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "c140eaaee75d173d84592b128991de332de8a4b6c4f39a8d8397a0cded4e2362"
+        "sha256": "447fdc212c7f5a5705da11ee283ee6e80cdb7d245f9cd1d14cb11987773cb01d"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -6310,7 +6325,7 @@
       {
         "path": "tools/publishing/kit.cjs",
         "identity_mode": "content",
-        "sha256": "f2f757b7703d1bf62e92de1bd24e5818a4bbb52d3d3a17f939b9bbb91ee8352f"
+        "sha256": "7aa9545731284dc5d8e0e82499e18665efe6eedf880330ff55c18613b33ab2f6"
       },
       {
         "path": "tools/publishing/origin.json",
@@ -6335,7 +6350,7 @@
       {
         "path": "tools/publishing/profile.cjs",
         "identity_mode": "content",
-        "sha256": "28e0b5c6503c2fb74f70db9e56e8ba0bcdf4dd924d9bee196675b67c1c7f6a93"
+        "sha256": "b9dfca03026e5f3374183161041b2365b7e8758d4283f7da346ec136b6589170"
       },
       {
         "path": "tools/publishing/provenance.cjs",
@@ -6470,7 +6485,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "60ee4bee1f5b629ed7997139fdc17cc1ac231cfc4036f7a0507225992b7c966b"
+        "sha256": "9e7954644774fd401d4f58ed1b6d17925d0831a119f4a07aaa3296c602e27ba9"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6670,7 +6685,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d685ec68d1114aa9bcfc37dbeff3800327f1a119846c7da04417fa1423731734"
+        "sha256": "60e45f6a8cf9c3a5590a78568ae356ed15f4fa2a6cf7f8be1f7a8bd25d636a8d"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -6870,7 +6885,7 @@
       {
         "path": "tools/site/articles.cjs",
         "identity_mode": "content",
-        "sha256": "28fefd85ca954054e4bfd77595262f226605959595b9a9a6b087d3da6a03e646"
+        "sha256": "334d99a1f55bbe3da00e48dfd14ce61987fa38d9fe5df0bf79d21dd7a566d0d0"
       },
       {
         "path": "tools/site/build.cjs",
@@ -8053,61 +8068,6 @@
       "title": "research.html"
     },
     {
-      "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/archive.js",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "archive.js"
-    },
-    {
-      "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/navigation.js",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "navigation.js"
-    },
-    {
-      "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/space.js",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "space.js"
-    },
-    {
-      "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/styles.css",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "styles.css"
-    },
-    {
-      "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496/theme.js",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "theme.js"
-    },
-    {
       "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -8163,6 +8123,61 @@
       "title": "theme.js"
     },
     {
+      "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/archive.js",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive.js"
+    },
+    {
+      "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/navigation.js",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "navigation.js"
+    },
+    {
+      "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/space.js",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "space.js"
+    },
+    {
+      "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/styles.css",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "styles.css"
+    },
+    {
+      "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/theme.js",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "theme.js"
+    },
+    {
       "path": "docs/site-revision.json",
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -8174,42 +8189,9 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/1341bf9806f2933ba9383a2e842ef11ffcb9b43f2d79a17b8897f4a015f7a58c/talks.html",
+      "path": "docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495/credits.html",
       "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/2ece61b0f98a92d7e464c5da98547c10ec0ca669c77cc6102f9b1fe5bfa09cf1/index.html",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
-    },
-    {
-      "path": "docs/snapshots/319d6b293d6fe1f69ba933ff65611e3026cfc263fadf335a91072951fbb1d0ec/writing.html",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/41ef775dd6198a32ca90062165d9e31fad54dfbadad6e0a3b9a088e2194ab8f7/credits.html",
-      "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -8218,15 +8200,15 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/512ca4a6e4c3bd28ea28aac6a6bfe366a2d79392a7d715140c9298b3f3760d2b/research.html",
+      "path": "docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0/index.html",
       "kind": "file",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
+      "title": "index.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -8240,6 +8222,17 @@
       "title": "writing.html"
     },
     {
+      "path": "docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438/research.html",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
+    },
+    {
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -8249,6 +8242,17 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
+    },
+    {
+      "path": "docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a/writing.html",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -8271,6 +8275,17 @@
         "AGENTS.md"
       ],
       "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538/talks.html",
+      "kind": "file",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
@@ -8733,6 +8748,17 @@
         "AGENTS.md"
       ],
       "title": "publication-kit.zip"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
+      "kind": "file",
+      "purpose": "Current r2 local review-browser observations: one native verified PDF link, no inline viewer or source-ID bibliography, two widths with and without JavaScript.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-links-observations.json"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/social-covers.zip",
@@ -18932,6 +18958,17 @@
       "title": "PMDay article — final manuscript candidate"
     },
     {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
+      "kind": "file",
+      "purpose": "PMDay readable review revision: immutable content identity, manuscript hash and pending rights decision.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261015-r2.json"
+    },
+    {
       "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015.json",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides-en-review-20261015.json.",
@@ -19315,6 +19352,17 @@
         "AGENTS.md"
       ],
       "title": "print.html"
+    },
+    {
+      "path": "site/templates/articles/sources.html",
+      "kind": "file",
+      "purpose": "Default native article bibliography, edition identity and credits; inline-reference profiles use their authored source links.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "sources.html"
     },
     {
       "path": "site/templates/components/archive-group.html",
@@ -22817,9 +22865,9 @@
       ]
     },
     {
-      "path": "docs/runtime/c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+      "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62",
       "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22827,9 +22875,9 @@
       ]
     },
     {
-      "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62",
+      "path": "docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22847,9 +22895,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/1341bf9806f2933ba9383a2e842ef11ffcb9b43f2d79a17b8897f4a015f7a58c",
+      "path": "docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495",
       "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22857,39 +22905,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/2ece61b0f98a92d7e464c5da98547c10ec0ca669c77cc6102f9b1fe5bfa09cf1",
+      "path": "docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0",
       "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/319d6b293d6fe1f69ba933ff65611e3026cfc263fadf335a91072951fbb1d0ec",
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/41ef775dd6198a32ca90062165d9e31fad54dfbadad6e0a3b9a088e2194ab8f7",
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/512ca4a6e4c3bd28ea28aac6a6bfe366a2d79392a7d715140c9298b3f3760d2b",
-      "kind": "directory",
-      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22907,9 +22925,29 @@
       ]
     },
     {
+      "path": "docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438",
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a",
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22930,6 +22968,16 @@
       "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538",
+      "kind": "directory",
+      "purpose": "Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [

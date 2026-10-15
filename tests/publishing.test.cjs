@@ -892,7 +892,56 @@ test('presentation binds PDF bytes, poster identity and edition semantics', asyn
     assert.ok(loadArticle(root, metadata.id).inputs.includes(metadata.presentation.pdf.path));
     const kit = await renderKit(root, metadata.id);
     assert.deepEqual(fs.readFileSync(path.join(kit.directory, 'presentation.pdf')), bytes);
+    const defaultUploads = JSON.parse(
+      fs.readFileSync(path.join(kit.directory, 'medium-upload-kit.json'), 'utf8')
+    );
+    assert.deepEqual(
+      defaultUploads.images.map((image) => image.id),
+      ['example']
+    );
     await verifyKit(kit.directory);
+    const manuscriptPath = `${directory}/${metadata.source}`;
+    const manuscript = fs
+      .readFileSync(path.join(root, manuscriptPath), 'utf8')
+      .replace(
+        '![One pixel](asset:example)',
+        `[Presentation slides (PDF)](${metadata.presentation.sourceUrl}) · ` +
+          '[Recording in Ukrainian](https://youtu.be/example)'
+      );
+    write(root, manuscriptPath, manuscript);
+    edition.source.sha256 = hash(manuscript);
+    edition.semanticSha256 = semanticDigest(metadata, edition.source);
+    json(root, `${directory}/editions/${edition.id}.json`, edition);
+    const profilePath = `${directory}/profile.json`;
+    const profile = JSON.parse(fs.readFileSync(path.join(root, profilePath), 'utf8'));
+    profile.reader = { references: 'inline', presentation: 'links' };
+    json(root, profilePath, profile);
+    const linkedKit = await renderKit(root, metadata.id);
+    for (const file of ['article.html', 'print.html', 'linkedin.html', 'medium.html']) {
+      const rendered = fs.readFileSync(path.join(linkedKit.directory, file), 'utf8');
+      assert.equal((rendered.match(/href="https:\/\/example.com\/slides.pdf"/g) || []).length, 1);
+      assert.equal((rendered.match(/href="https:\/\/youtu.be\/example"/g) || []).length, 1);
+      assert.doesNotMatch(rendered, /figure-example|presentation-toggle|presentation-viewer/);
+    }
+    assert.ok(
+      !linkedKit.manifest.omissions.some((omission) =>
+        omission.feature.includes('Interactive presentation viewer')
+      )
+    );
+    assert.deepEqual(fs.readFileSync(path.join(linkedKit.directory, 'presentation.pdf')), bytes);
+    const linkedUploads = JSON.parse(
+      fs.readFileSync(path.join(linkedKit.directory, 'medium-upload-kit.json'), 'utf8')
+    );
+    assert.deepEqual(linkedUploads.images, []);
+    assert.doesNotMatch(
+      fs.readFileSync(path.join(linkedKit.directory, 'INSTRUCTIONS.md'), 'utf8'),
+      /images\/01-example\.png/
+    );
+    for (const file of ['images/01-example.png', 'cover.png', 'hero.png']) {
+      assert.deepEqual(fs.readFileSync(path.join(linkedKit.directory, file)), png);
+      assert.ok(linkedKit.manifest.outputs.some((output) => output.path === file));
+    }
+    await verifyKit(linkedKit.directory);
     metadata.presentation.poster = 'missing';
     assert.throws(() => loadPresentation(root, metadata, metadata.assets), /poster/);
     metadata.presentation.poster = 'example';

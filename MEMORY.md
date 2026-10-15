@@ -18,7 +18,8 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   Three original diagrams, landscape/square ImageGen covers and pinned v35 deck
   accompany it. `pmday-two-shifts` remains the frozen technical fixture.
   Default production catalog excludes both review candidates; explicit preview
-  includes them. Lazy verified PDF viewer retains open/download fallback.
+  includes them. Author feedback replaces the real article's embedded PDF with one native
+  PDF/recording link paragraph; all sources stay inline with a short further-reading note.
   Review PDF/platform kit and limitations are in
   `review/issue-2/pmday-candidate-20261015/`; dated review owns check results.
   Local review browser is not managed-CI proof. Historic managed fixture proof
@@ -86,7 +87,7 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 | #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
 | #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
-| #5 / PR79 and #2          | Publisher technical evidence is retained; review the completed real article/PDF/social-cover candidate and hosted preview; author/device/rights/publication decisions remain. |
+| #5 / PR79 and #2          | Publisher technical evidence is retained; review the revised readable article/PDF candidate and hosted preview; author/rights/publication decisions remain. |
 | #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
 
 ## Next session

@@ -84,6 +84,15 @@ const families = {
     navigation: 'c6b943e797d98d4001a726a22b728d49fa2b81ca1da5a421017d0e8e3e7b51ef',
     archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
   },
+  // Reviewed 2026-10-15: reader-link producers changed; the five runtime files did not.
+  issue5ReaderLinks: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'c6b943e797d98d4001a726a22b728d49fa2b81ca1da5a421017d0e8e3e7b51ef',
+    archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
+  },
 };
 const runtimes = [
   {
@@ -238,6 +247,20 @@ const runtimes = [
     family: 'issue5Presentation',
     edition: 'staging',
     fingerprint: '7e29127b8945042693b0f4e3441dea57a257b95cf82d92d60a53c8b59a24cba3',
+    styles: '1807811a0be488799b26fc953210d78d2a66626d8466d9d6fa345855697e7a6b',
+  },
+  {
+    id: 'issue5-reader-links-plain',
+    family: 'issue5ReaderLinks',
+    edition: 'plain',
+    fingerprint: 'f6840a34e158431bdbb8ca4a3701267e876a6ba96260208d512456834bf7e563',
+    styles: 'c8fe7b17aebfc8890d7e6711c11c4c19f0dcee1c5fdc912abc64554f47293819',
+  },
+  {
+    id: 'issue5-reader-links-staging',
+    family: 'issue5ReaderLinks',
+    edition: 'staging',
+    fingerprint: '59bfc6f8f2f2e88059cbffdf2b49fd3222624b27d786019418bc14e379ef8a85',
     styles: '1807811a0be488799b26fc953210d78d2a66626d8466d9d6fa345855697e7a6b',
   },
 ];

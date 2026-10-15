@@ -269,6 +269,78 @@ test('nested article native HTML keeps Writing shell, TOC, figures, language, so
   snapshot.verify(path.join(root, 'candidate'), { files: result.files });
 });
 
+test('links-only reader keeps one local PDF and recording link without duplicate source scaffolding', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  const sourceUrl = 'https://example.com/slides.pdf';
+  const recordingUrl = 'https://youtu.be/example';
+  const bytes = fs.readFileSync(
+    path.join(repo, 'site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf')
+  );
+  record.metadata.presentation = {
+    title: 'The presentation behind this article',
+    poster: 'pixel',
+    pdf: {
+      path: 'site/assets/publications/reader-profile/slides.pdf',
+      sha256: build.sha(bytes),
+    },
+    sourceUrl,
+  };
+  record.metadata.references.push(
+    { id: 'source-1', url: sourceUrl },
+    { id: 'source-2', url: recordingUrl }
+  );
+  record.manuscript = record.manuscript.replace(
+    '![A pixel](asset:pixel)',
+    `[PMDay slides (PDF)](${sourceUrl}) · [Recording in Ukrainian](${recordingUrl})`
+  );
+  record.edition.source.sha256 = build.sha(record.manuscript);
+  record.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
+    record.metadata,
+    record.edition.source
+  );
+  write(root, `${record.directory}/${record.metadata.source}`, record.manuscript);
+  write(root, record.metadata.presentation.pdf.path, bytes);
+  json(root, `${record.directory}/publication.json`, record.metadata);
+  json(root, `${record.directory}/editions/reader-first.json`, record.edition);
+  const profilePath = `${record.directory}/profile.json`;
+  const profile = JSON.parse(fs.readFileSync(path.join(root, profilePath), 'utf8'));
+  profile.reader = { references: 'inline', presentation: 'links' };
+  json(root, profilePath, profile);
+  const result = preview(root);
+  const document = html(root, 'articles/reader-profile.html');
+  const pdfPath = `article-media/${build.sha(bytes)}/slides.pdf`;
+  assert.equal((document.match(new RegExp(`href="\\.\\./${pdfPath}"`, 'g')) || []).length, 1);
+  assert.equal((document.match(new RegExp(`href="${recordingUrl}"`, 'g')) || []).length, 1);
+  assert.doesNotMatch(
+    document,
+    /presentation-toggle|presentation-viewer|<iframe|figure-pixel|Sources and edition|Content edition:|source-[12]</
+  );
+  assert.match(document, /Review pending\./);
+  assert.match(document, /href="https:\/\/example.com\/source">Research/);
+  assert.deepEqual(fs.readFileSync(path.join(root, 'candidate', pdfPath)), bytes);
+  snapshot.verify(path.join(root, 'candidate'), { files: result.files });
+
+  delete profile.reader;
+  json(root, profilePath, profile);
+  record.manuscript = record.manuscript.replace(
+    `[PMDay slides (PDF)](${sourceUrl}) · [Recording in Ukrainian](${recordingUrl})`,
+    '![A pixel](asset:pixel)'
+  );
+  record.edition.source.sha256 = build.sha(record.manuscript);
+  record.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
+    record.metadata,
+    record.edition.source
+  );
+  write(root, `${record.directory}/${record.metadata.source}`, record.manuscript);
+  json(root, `${record.directory}/editions/reader-first.json`, record.edition);
+  preview(root);
+  const legacy = html(root, 'articles/reader-profile.html');
+  assert.match(legacy, /presentation-toggle/);
+  assert.match(legacy, /figure-pixel/);
+  assert.match(legacy, /Sources and edition/);
+});
+
 test('article changes, slug rename and deletion have cold/incremental equality without retaining candidates', (t) => {
   const root = fixture(t, { cold: true });
   const record = publication(root);

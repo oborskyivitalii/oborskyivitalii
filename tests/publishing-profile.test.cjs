@@ -218,3 +218,64 @@ test('profile text and numeric bounds cannot expand or hide authored sources', a
   write(inputs.root, inputs.launchPath, oversizedLaunch);
   assert.throws(() => loadProfile(inputs.root, inputs.article), /byte limit/);
 });
+
+test('inline reader sources require named manuscript coverage and reject unknown policy', async (t) => {
+  const inputs = await fixture(t);
+  const reference = { id: 'source-1', url: 'https://example.com/research' };
+  inputs.article.metadata.references = [reference];
+  inputs.article.model = {
+    links: [{ url: reference.url, text: 'The underlying research' }],
+    figures: [],
+  };
+  inputs.profile.reader = { references: 'inline' };
+  saveProfile(inputs.root, inputs.article.metadata.id, inputs.profile);
+  assert.equal(loadProfile(inputs.root, inputs.article).profile.reader.references, 'inline');
+  for (const links of [
+    [],
+    [{ url: reference.url, text: reference.id }],
+    [{ url: reference.url, text: reference.url }],
+    [{ url: reference.url, text: ' ' }],
+  ]) {
+    inputs.article.model.links = links;
+    assert.throws(() => loadProfile(inputs.root, inputs.article), /named manuscript link/);
+  }
+  for (const reader of [
+    {},
+    null,
+    [],
+    { references: 'hidden' },
+    { presentation: 'iframe' },
+    { omitRights: true },
+  ]) {
+    inputs.profile.reader = reader;
+    saveProfile(inputs.root, inputs.article.metadata.id, inputs.profile);
+    assert.throws(() => loadProfile(inputs.root, inputs.article), /profile reader/i);
+  }
+});
+
+test('links-only presentations require one named PDF link and no displayed poster', async (t) => {
+  const inputs = await fixture(t);
+  const sourceUrl = 'https://example.com/slides.pdf';
+  inputs.article.presentation = { sourceUrl, poster: { id: 'diagram' } };
+  inputs.article.model = {
+    links: [{ url: sourceUrl, text: 'PMDay slides (PDF)' }],
+    figures: [],
+  };
+  inputs.profile.reader = { presentation: 'links' };
+  saveProfile(inputs.root, inputs.article.metadata.id, inputs.profile);
+  assert.equal(loadProfile(inputs.root, inputs.article).profile.reader.presentation, 'links');
+  for (const links of [
+    [],
+    [{ url: sourceUrl, text: sourceUrl }],
+    [...inputs.article.model.links, ...inputs.article.model.links],
+  ]) {
+    inputs.article.model.links = links;
+    assert.throws(() => loadProfile(inputs.root, inputs.article), /exactly one named PDF/);
+  }
+  inputs.article.model.links = [{ url: sourceUrl, text: 'PMDay slides (PDF)' }];
+  inputs.article.model.figures = ['diagram'];
+  assert.throws(() => loadProfile(inputs.root, inputs.article), /no poster/);
+  inputs.article.model.figures = [];
+  delete inputs.article.presentation;
+  assert.throws(() => loadProfile(inputs.root, inputs.article), /exactly one named PDF/);
+});

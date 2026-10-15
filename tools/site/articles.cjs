@@ -107,14 +107,7 @@ function input(root, article) {
         )
         .join('\n'),
       BODY: presentationBody(root, article),
-      RIGHTS: escapeText(metadata.rights.notice),
-      EDITION: escapeText(metadata.edition),
-      SOURCES: metadata.references
-        .map(
-          (reference) =>
-            `<li><a href="${escapeAttribute(reference.url)}">${escapeText(reference.id)}</a></li>`
-        )
-        .join('\n'),
+      SOURCES: sourceDetails(root, article),
     },
     'article reader'
   );
@@ -129,16 +122,50 @@ function input(root, article) {
     schema: { '@context': 'https://schema.org', ...summary(article) },
     inputs: article.inputs.concat(
       'site/templates/pages/article.html',
-      ...(article.presentation ? ['site/templates/articles/presentation.html'] : [])
+      ...(article.profile.reader?.references === 'inline'
+        ? []
+        : ['site/templates/articles/sources.html']),
+      ...(article.presentation && article.profile.reader?.presentation !== 'links'
+        ? ['site/templates/articles/presentation.html']
+        : [])
     ),
     records: {},
     discussions: {},
   };
 }
 
+function sourceDetails(root, article) {
+  const metadata = article.metadata;
+  const rights = escapeText(metadata.rights.notice);
+  if (article.profile.reader?.references === 'inline') {
+    return `<p class="article-sources">${rights}</p>`;
+  }
+  return substitute(
+    fs.readFileSync(path.join(root, 'site/templates/articles/sources.html'), 'utf8'),
+    {
+      RIGHTS: rights,
+      EDITION: escapeText(metadata.edition),
+      SOURCES: metadata.references
+        .map(
+          (reference) =>
+            `<li><a href="${escapeAttribute(reference.url)}">${escapeText(reference.id)}</a></li>`
+        )
+        .join('\n'),
+    },
+    'article sources'
+  );
+}
+
 function presentationBody(root, article) {
   const deck = article.presentation;
   if (!deck) return article.html;
+  if (article.profile.reader?.presentation === 'links') {
+    const source = `href="${escapeAttribute(deck.sourceUrl)}"`;
+    if (article.html.split(source).length !== 2) {
+      throw Error('Linked presentation requires exactly one PDF link in the reader');
+    }
+    return article.html.replace(source, `href="${escapeAttribute(deck.file.url)}"`);
+  }
   const marker = '<figure id="figure-' + deck.poster.id + '">';
   const start = article.html.indexOf(marker);
   const end = article.html.indexOf('</figure>', start);

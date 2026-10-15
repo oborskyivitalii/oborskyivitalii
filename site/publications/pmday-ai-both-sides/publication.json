@@ -17,10 +17,10 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261015",
+  "edition": "pmday-ai-both-sides-en-review-20261015-r2",
   "rights": {
     "status": "review-pending",
-    "notice": "Article by Vitalii Oborskyi. Original explanatory diagrams and AI-generated editorial cover prepared for this edition. Publication-specific rights review remains pending. Linked sources and the presentation retain their own notices and credits.",
+    "notice": "Article and original diagrams by Vitalii Oborskyi. Cover illustration created with AI. The presentation and linked sources retain their own credits and notices.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"

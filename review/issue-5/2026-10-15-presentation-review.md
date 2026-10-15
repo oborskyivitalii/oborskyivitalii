@@ -124,3 +124,67 @@ Viewer lifecycle, navigation harness and contents numbering findings are fixed;
 original social covers are downloadable separately. Fresh final CI/preview links
 belong in both live owners. Review-only PDF/browser and native-device limits are
 explicit. No merge, stable-stage promotion or production/external release.
+
+## Reader revision after author feedback — 15 October 2026
+
+Input: the author reviewed immutable preview `ac5b73ac` at raw source
+`713e0d50adf66b59e3c81155da17fb215a8ef53f`. The embedded presentation did not
+work in their browser; they rejected its duplicated introduction and the
+generated `source-1` through `source-25` bibliography. This supersedes the
+earlier request to embed slides for this article. The same #2/#5 execution
+route and original acceptance gates remain.
+
+Independent reader review inspected the whole manuscript. A separate adapter
+review traced the duplication to automatic viewer replacement, an authored
+presentation block and an unconditional metadata bibliography. The revised
+article uses one ordinary named PDF/recording paragraph, with the PDF URL
+rewritten to the verified same-origin immutable PDF in the native reader.
+There is no embedded PDF or poster in this edition. The existing shared viewer
+capability and its historical/default tests remain available to other articles.
+
+The finite optional `profile.reader` policy selects `presentation: links` and
+`references: inline`. Inline references must cover every declared metadata
+source with meaningful link text. Metadata IDs, edition identities and pending
+rights decisions stay in their canonical manifests; the reader footer keeps a
+short attribution. Missing/duplicated presentation links, missing source links
+and unsupported policy values are rejected instead of silently losing evidence.
+
+The editorial pass preserves all six chapters, three diagrams and all 25 source
+URLs. It removes repeated framing/cautions, explains Golden Set at first use,
+shortens the conclusion and replaces the duplicated bibliography with two
+further-reading paragraphs. Reader text falls from 3,148 to 2,783 words (11.6%).
+No new research claims or source URLs are introduced. The source remains a
+review candidate: `pmday-ai-both-sides-en-review-20261015-r2`; the earlier
+edition record is preserved.
+
+CS01/02/04: manuscript and explicit reader policy own content choices; adapters
+and templates consume validated inputs. CS03/05: no inline styles or runtime
+changes; focused source formatting. CS06/07: no new browser state, fetch loop or
+resource budget. CS08–CS10: current profile/renderer and no-JS checks, bounded
+style guard, independent reading/export review and regenerated RI/CI mapping.
+Current-source local/hosted results and the final immutable preview belong in
+the live PR79/#2/#5 records. Earlier embedded-viewer evidence above is historical,
+not evidence for this different presentation choice.
+
+Revision verification: independent scoped adapter/code review found no blocking
+defect; profile/publisher/site/offline checks passed 51/51. A second pass corrected
+the Medium upload instructions so the unused slide poster is not assigned a
+nonexistent body position; the complete declared resource inventory remains.
+The publishing suite passed 14/14 and final touched JS lint reported zero errors
+or warnings. Local Basic passed its 25 focused checks and ordinary package,
+geometry, syntax and size checks; the bounded style guard passed.
+
+Four direct-reader observations (1440/390 with/without JS) verified one same-origin
+PDF link serving the exact original deck SHA256, one recording link, no inline
+viewer or technical bibliography, no horizontal overflow or page errors. The
+current diagnostic is `reader-links-observations.json` in the article candidate.
+All 12 revised article PDF pages and every kit/source/producer checksum were
+independently inspected; the candidate README owns exact current identities.
+
+The producer-only change alters the generated runtime descriptor even though
+all five JS/CSS files are byte-identical to `713e0d50`. Independent cold generation
+confirmed this and added the separate `issue5ReaderLinks` plain/staging pair,
+preserving all 22 earlier tuples and 11 families. Focused Color/build/staging
+checks passed 32/32 and checksum guards passed 8/8; exactly three public checksum
+dispositions were appended. This is not a new security scan or runtime speed
+measurement. Fresh hosted/source acceptance remains separately recorded in PR79.
