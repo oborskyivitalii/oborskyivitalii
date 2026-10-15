@@ -4,6 +4,7 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path');
 const { performance } = require('node:perf_hooks');
+const { assertContentType } = require('../quality/serve.cjs');
 const pkg = require('./package.cjs'),
   hosted = require('./hosted.cjs'),
   { digest } = require('../quality/artifact.cjs');
@@ -241,6 +242,7 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
         observation.rows.push(httpObservation(file, result, record.files[file].sha256));
       assert.equal(result.response.status, 200, file);
       hosted.responseHeaders(result.response.headers, file.startsWith('runtime/'));
+      assertContentType(file, result.response.headers.get('content-type'));
       sameBytes(digest(result.bytes), record.files[file].sha256, file);
       return { file, sha256: digest(result.bytes), status: 200 };
     } catch (error) {
@@ -263,6 +265,7 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
     observation.rows.push(httpObservation('/', root, record.files['index.html'].sha256));
   assert.equal(root.response.status, 200);
   hosted.responseHeaders(root.response.headers);
+  assertContentType('index.html', root.response.headers.get('content-type'));
   sameBytes(digest(root.bytes), record.files['index.html'].sha256, '/');
   const missing = await hosted.request(
     base + '/__pr_preview_missing_' + record.source.sourceCommit,
@@ -273,6 +276,7 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
     observation.rows.push(httpObservation('404.html', missing, record.files['404.html'].sha256));
   assert.equal(missing.response.status, 404);
   hosted.responseHeaders(missing.response.headers);
+  assertContentType('404.html', missing.response.headers.get('content-type'));
   sameBytes(digest(missing.bytes), record.files['404.html'].sha256, '404.html');
   return {
     rows,

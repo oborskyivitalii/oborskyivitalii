@@ -2,12 +2,13 @@
 const fs = require('node:fs'),
   path = require('node:path'),
   cp = require('node:child_process'),
-  os = require('node:os');
+  os = require('node:os'),
+  assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '../..'),
   tools = path.resolve(process.env.SITE_AUDIT_TOOLS || path.join(__dirname, 'toolchain')),
   out = path.resolve(process.env.SITE_REPORT_DIR || path.join(os.tmpdir(), 'site-quality'));
 fs.mkdirSync(out, { recursive: true });
-function run(command, args, accepted = [0]) {
+function run(command, args, accepted = [0], observed = () => {}) {
   const r = cp.spawnSync(command, args, {
     cwd: root,
     encoding: 'utf8',
@@ -20,6 +21,11 @@ function run(command, args, accepted = [0]) {
       RUFF_CACHE_DIR: path.join(out, 'ruff-cache'),
     },
   });
+  observed({
+    tool: path.basename(command),
+    exitStatus: r.status,
+    signal: r.signal || null,
+  });
   if (!accepted.includes(r.status))
     throw Error(`${path.basename(command)} exit ${r.status}: ${r.stderr?.slice(-1500) || r.error}`);
   return r.stdout;
@@ -29,6 +35,197 @@ const binary = (name) =>
 const py = (name) =>
   path.join(tools, 'venv', process.platform === 'win32' ? 'Scripts' : 'bin', name);
 const read = (file) => JSON.parse(fs.readFileSync(path.join(out, file), 'utf8'));
+function storedReport(execute, command, args, file, redact, accepted = [0]) {
+  let toolError;
+  try {
+    execute(command, args, accepted);
+  } catch (error) {
+    toolError = error;
+  }
+  let report;
+  try {
+    report = read(file);
+    redact(report);
+    fs.writeFileSync(path.join(out, file), JSON.stringify(report, null, 2));
+  } catch (error) {
+    if (toolError)
+      throw Error(toolError.message + '; raw report: ' + error.message, {
+        cause: error,
+      });
+    throw error;
+  }
+  if (toolError) throw toolError;
+  return report;
+}
+function collectEngines(engines, directory = out) {
+  assert.ok(Array.isArray(engines) && engines.length, 'missing scanner engines');
+  assert.equal(new Set(engines.map((engine) => engine.name)).size, engines.length);
+  const outcomes = [],
+    values = {};
+  for (const engine of engines) {
+    const outcome = {
+      name: engine.name,
+      pass: false,
+      commands: [],
+      rawReports: [],
+    };
+    for (const file of engine.reports) {
+      assert.equal(path.basename(file), file, 'invalid scanner report path');
+      fs.rmSync(path.join(directory, file), { force: true });
+    }
+    try {
+      values[engine.name] = engine.run((command, args, accepted) =>
+        run(command, args, accepted, (result) => outcome.commands.push(result))
+      );
+      outcome.pass = true;
+    } catch (error) {
+      outcome.error = error.message;
+    }
+    for (const file of engine.reports) {
+      const absolute = path.join(directory, file);
+      if (fs.existsSync(absolute)) {
+        const bytes = fs.readFileSync(absolute);
+        outcome.rawReports.push({
+          file,
+          bytes: bytes.length,
+          sha256: require('./artifact.cjs').digest(bytes),
+        });
+      }
+    }
+    outcomes.push(outcome);
+  }
+  if (outcomes.some((engine) => !engine.pass)) {
+    const error = Error(
+      'Scanner engines failed: ' +
+        outcomes
+          .filter((engine) => !engine.pass)
+          .map((engine) => engine.name)
+          .join(', ')
+    );
+    error.detail = { engines: outcomes };
+    throw error;
+  }
+  return { engines: outcomes, values };
+}
+function pinnedPythonRequirements(text) {
+  const pins = new Map();
+  for (const line of text
+    .split(/\r?\n/)
+    .map((value) => value.trim())
+    .filter((value) => value && !value.startsWith('#'))) {
+    const match = line.match(/^([A-Za-z0-9][A-Za-z0-9_.-]*)==([A-Za-z0-9][A-Za-z0-9_.+!-]*)$/);
+    assert.ok(match, 'Python advisory inputs require exact name==version pins');
+    const name = match[1].toLowerCase().replace(/[-_.]+/g, '-');
+    assert.ok(!pins.has(name), 'duplicate Python advisory input: ' + name);
+    pins.set(name, match[2]);
+  }
+  assert.ok(pins.size, 'empty Python advisory input');
+  return pins;
+}
+function admitPythonAdvisories(report, requirements) {
+  const pins = pinnedPythonRequirements(requirements);
+  assert.ok(
+    Array.isArray(report?.dependencies) && report.dependencies.length,
+    'missing Python advisory coverage'
+  );
+  const observed = new Set();
+  for (const dependency of report.dependencies) {
+    assert.ok(
+      dependency && typeof dependency.name === 'string',
+      'invalid Python advisory dependency'
+    );
+    const name = dependency.name.toLowerCase().replace(/[-_.]+/g, '-');
+    assert.ok(pins.has(name), 'unknown Python advisory dependency: ' + name);
+    assert.ok(!observed.has(name), 'duplicate Python advisory dependency: ' + name);
+    observed.add(name);
+    assert.ok(
+      !Object.hasOwn(dependency, 'skip_reason'),
+      'skipped Python advisory dependency: ' + name
+    );
+    assert.equal(dependency.version, pins.get(name), 'Python advisory version mismatch: ' + name);
+    assert.ok(Array.isArray(dependency.vulns), 'missing Python vulnerability result: ' + name);
+    assert.equal(dependency.vulns.length, 0, 'Python advisory findings: ' + name);
+  }
+  assert.deepEqual(
+    [...observed].sort(),
+    [...pins.keys()].sort(),
+    'incomplete Python advisory coverage'
+  );
+  return { dependencies: pins.size };
+}
+function admitNpmAdvisories(
+  npm,
+  {
+    projectRoot = root,
+    toolchain = tools,
+    exceptions = require('./advisory-exceptions.json'),
+    now = new Date(),
+  } = {}
+) {
+  assert.ok(npm && !npm.error && npm.metadata, 'npm advisory feed failure');
+  assert.ok(
+    npm.metadata.dependencies &&
+      typeof npm.metadata.dependencies === 'object' &&
+      !Array.isArray(npm.metadata.dependencies) &&
+      Number.isInteger(npm.metadata.dependencies.total) &&
+      npm.metadata.dependencies.total > 0,
+    'missing npm dependency coverage'
+  );
+  assert.ok(
+    Number.isInteger(npm.metadata.vulnerabilities?.total) &&
+      npm.metadata.vulnerabilities.total >= 0,
+    'invalid npm advisory counts'
+  );
+  const leaf = [];
+  for (const value of Object.values(npm.vulnerabilities || {}))
+    for (const item of value.via || []) if (typeof item === 'object') leaf.push(item);
+  const lock = JSON.parse(fs.readFileSync(path.join(toolchain, 'package-lock.json')));
+  for (const finding of leaf) {
+    const exception = exceptions.find(
+      (entry) => entry.url === finding.url && entry.package === finding.name
+    );
+    assert.ok(exception, 'Untriaged npm advisory ' + finding.url);
+    assert.ok(
+      /^\d{4}-\d{2}-\d{2}$/.test(exception.expires) &&
+        Number.isFinite(Date.parse(exception.expires)) &&
+        new Date(exception.expires).toISOString().slice(0, 10) === exception.expires,
+      'invalid npm advisory review expiry'
+    );
+    assert.ok(new Date(exception.expires) >= now, 'expired npm advisory review');
+    assert.equal(
+      lock.packages['node_modules/' + exception.package]?.version,
+      exception.version,
+      'npm advisory version changed'
+    );
+    assert.equal(
+      require('./artifact.cjs').digest(
+        fs.readFileSync(path.join(projectRoot, exception.reviewedSource))
+      ),
+      exception.reviewedSourceSha256,
+      'Advisory reachability review is stale'
+    );
+    for (const [file, expectedHash] of Object.entries(exception.reviewedMaterials))
+      assert.equal(
+        require('./artifact.cjs').digest(fs.readFileSync(path.join(projectRoot, file))),
+        expectedHash,
+        'Advisory reviewed config/lock changed'
+      );
+    assert.equal(
+      require('./artifact.cjs').digest(fs.readFileSync(path.join(toolchain, 'package-lock.json'))),
+      exception.reviewedMaterials['tools/quality/toolchain/package-lock.json'],
+      'Installed toolchain differs from reviewed lock'
+    );
+  }
+  assert.ok(
+    npm.metadata.vulnerabilities.total === 0 || leaf.length > 0,
+    'Unresolved npm advisory chain'
+  );
+  return {
+    dependencies: npm.metadata.dependencies,
+    findings: npm.metadata.vulnerabilities.total,
+    reviewed: [...new Set(leaf.map((item) => item.url))],
+  };
+}
 // The same manifest owns the browser effect import closure and build identity.
 // Missing active sources must fail coverage rather than quietly shrink the scan.
 const { effectSources: authoredRuntimeSources, effectInputs } = require('../site/effects.cjs');
@@ -392,78 +589,106 @@ function lint() {
     run('git', ['ls-files', 'site', 'tools']).trim().split('\n')
   );
   const javascript = [...inventory.byLanguage.js, ...generatedJavaScript(root)];
-  run(
-    binary('eslint'),
-    [
-      '--config',
-      'tools/quality/eslint.config.cjs',
-      '--no-ignore',
-      '--no-inline-config',
-      ...javascript,
-      '--format',
-      'json',
-      '--output-file',
-      path.join(out, 'eslint.json'),
-    ],
-    [0, 1]
-  );
-  const eslint = read('eslint.json');
-  lintSourceCoverage(eslint, javascript);
-  lintEffectCoverage(eslint, offlineRuntime);
-  const warnings = eslint.flatMap((f) =>
-    f.messages
-      .filter((m) => m.severity === 1)
-      .map((m) => ({
-        file: path.relative(root, f.filePath).split(path.sep).join('/'),
-        rule: m.ruleId,
-        message: m.message,
-      }))
-  );
-  reviewComplexity(warnings, require('./exceptions.json'));
-  run(process.execPath, ['tools/quality/stylelint.cjs']);
-  const css = read('stylelint.json');
   const python = inventory.byLanguage.python;
-  const ruffArguments = [
-    'check',
-    '--no-cache',
-    '--isolated',
-    '--no-respect-gitignore',
-    '--ignore-noqa',
-    '--select',
-    'E4,E7,E9,F,I',
-    ...python,
-  ];
-  const ruff = JSON.parse(run(py('ruff'), [...ruffArguments, '--output-format', 'json'], [0, 1]));
-  fs.writeFileSync(path.join(out, 'ruff.json'), JSON.stringify(ruff, null, 2));
-  const pythonFiles = lintFileCoverage(
-    run(py('ruff'), [
-      'check',
-      '--no-cache',
-      '--isolated',
-      '--no-respect-gitignore',
-      '--show-files',
-      ...python,
-    ])
-      .trim()
-      .split('\n')
-      .filter(Boolean),
-    python,
-    'Ruff'
-  );
-  fs.writeFileSync(
-    path.join(out, 'ruff-coverage.json'),
-    JSON.stringify(pythonFiles, null, 2) + '\n'
-  );
-  if (!Array.isArray(ruff) || ruff.length)
-    throw Error('Ruff correctness findings or invalid report');
+  const result = collectEngines([
+    {
+      name: 'eslint',
+      reports: ['eslint.json'],
+      run: (run) => {
+        run(
+          binary('eslint'),
+          [
+            '--config',
+            'tools/quality/eslint.config.cjs',
+            '--no-ignore',
+            '--no-inline-config',
+            ...javascript,
+            '--format',
+            'json',
+            '--output-file',
+            path.join(out, 'eslint.json'),
+          ],
+          [0, 1]
+        );
+        const eslint = read('eslint.json');
+        lintSourceCoverage(eslint, javascript);
+        lintEffectCoverage(eslint, offlineRuntime);
+        const warnings = eslint.flatMap((f) =>
+          f.messages
+            .filter((m) => m.severity === 1)
+            .map((m) => ({
+              file: path.relative(root, f.filePath).split(path.sep).join('/'),
+              rule: m.ruleId,
+              message: m.message,
+            }))
+        );
+        reviewComplexity(warnings, require('./exceptions.json'));
+        return { report: eslint, warnings };
+      },
+    },
+    {
+      name: 'stylelint',
+      reports: ['stylelint.json'],
+      run: (run) => {
+        run(process.execPath, ['tools/quality/stylelint.cjs']);
+        return read('stylelint.json');
+      },
+    },
+    {
+      name: 'ruff',
+      reports: ['ruff.json', 'ruff-coverage.json'],
+      run: (run) => {
+        const ruffArguments = [
+          'check',
+          '--no-cache',
+          '--isolated',
+          '--no-respect-gitignore',
+          '--ignore-noqa',
+          '--select',
+          'E4,E7,E9,F,I',
+          ...python,
+        ];
+        const ruff = JSON.parse(
+          run(py('ruff'), [...ruffArguments, '--output-format', 'json'], [0, 1])
+        );
+        fs.writeFileSync(path.join(out, 'ruff.json'), JSON.stringify(ruff, null, 2));
+        const pythonFiles = lintFileCoverage(
+          run(py('ruff'), [
+            'check',
+            '--no-cache',
+            '--isolated',
+            '--no-respect-gitignore',
+            '--show-files',
+            ...python,
+          ])
+            .trim()
+            .split('\n')
+            .filter(Boolean),
+          python,
+          'Ruff'
+        );
+        fs.writeFileSync(
+          path.join(out, 'ruff-coverage.json'),
+          JSON.stringify(pythonFiles, null, 2) + '\n'
+        );
+        if (!Array.isArray(ruff) || ruff.length)
+          throw Error('Ruff correctness findings or invalid report');
+        return pythonFiles;
+      },
+    },
+  ]);
+  const eslint = result.values.eslint.report,
+    css = result.values.stylelint,
+    pythonFiles = result.values.ruff;
   return {
+    engines: result.engines,
     scannedFiles: eslint.length + css.length + pythonFiles.length,
     sourceInventory: inventory.files,
     javascriptFiles: javascript,
     effectSources: offlineRuntime,
     cssFiles: css.map((row) => path.relative(root, row.source).split(path.sep).join('/')),
     pythonFiles,
-    warnings,
+    warnings: result.values.eslint.warnings,
     tools: {
       eslint: run(binary('eslint'), ['--version']).trim(),
       stylelint: run(binary('stylelint'), ['--version']).trim(),
@@ -475,254 +700,300 @@ function security() {
   const offlineRuntime = authoredRuntime(
     run('git', ['ls-files', 'site', 'tools']).trim().split('\n')
   );
-  // Files are scanned at their real paths, including inline HTML. Reports retain
-  // coverage/errors. Source snippets are removed before artifact upload.
-  run(py('semgrep'), [
-    'scan',
-    '--config',
-    'tools/quality/security-rules.yml',
-    '--metrics',
-    'off',
-    '--disable-version-check',
-    '--jobs',
-    '1',
-    '--max-target-bytes',
-    '5000000',
-    '--json',
-    '--output',
-    path.join(out, 'semgrep.json'),
-    'docs',
-    'site',
-    'tools',
-    '.github/workflows',
-    ...offlineRuntime,
-  ]);
-  const semgrep = read('semgrep.json');
-  for (const finding of semgrep.results || []) if (finding.extra) delete finding.extra.lines;
-  fs.writeFileSync(path.join(out, 'semgrep.json'), JSON.stringify(semgrep, null, 2));
-  if (semgrep.results?.length || semgrep.errors?.length || !semgrep.paths?.scanned?.length)
-    throw Error('Semgrep findings, errors, or empty coverage');
-  const scanned = new Set(semgrep.paths.scanned),
-    expected = [
-      ...new Set([
-        ...run('git', ['ls-files', 'docs', 'site', 'tools', '.github/workflows'])
-          .trim()
-          .split('\n')
-          .filter((f) => /\.(?:js|cjs|mjs|html|py)$/.test(f) || f.startsWith('.github/workflows/')),
-        ...offlineRuntime,
-      ]),
-    ];
-  for (const file of expected) if (!scanned.has(file)) throw Error('Unscanned source ' + file);
-  run(
-    py('bandit'),
-    [
-      '-r',
-      'tools',
-      '-x',
-      'tools/quality/toolchain/venv',
-      '-f',
-      'json',
-      '-o',
-      path.join(out, 'bandit.json'),
-    ],
-    [0, 1]
-  );
-  const bandit = read('bandit.json');
-  for (const finding of bandit.results || []) delete finding.code;
-  fs.writeFileSync(path.join(out, 'bandit.json'), JSON.stringify(bandit, null, 2));
-  let banditReview;
-  try {
-    banditReview = require('./bandit-triage.cjs').admit(
-      root,
-      bandit,
-      expected.filter((file) => file.endsWith('.py')),
-      {
-        rawReportSha256: require('./artifact.cjs').digest(
-          fs.readFileSync(path.join(out, 'bandit.json'))
+  const expected = [
+    ...new Set([
+      ...run('git', ['ls-files', 'docs', 'site', 'tools', '.github/workflows'])
+        .trim()
+        .split('\n')
+        .filter(
+          (file) => /\.(?:js|cjs|mjs|html|py)$/.test(file) || file.startsWith('.github/workflows/')
         ),
-      }
-    );
-  } catch (error) {
-    fs.writeFileSync(
-      path.join(out, 'bandit-triage.json'),
-      JSON.stringify(
-        {
-          schema: 1,
-          kind: 'bandit-triage',
-          pass: false,
-          rawFindings: bandit.results?.length ?? null,
-          error: error.message,
-        },
-        null,
-        2
-      )
-    );
-    throw error;
-  }
-  fs.writeFileSync(path.join(out, 'bandit-triage.json'), JSON.stringify(banditReview, null, 2));
-  if (bandit.errors?.length || banditReview.untriagedFindings || !bandit.metrics?._totals?.loc)
-    throw Error('Bandit coverage or finding');
-  for (const file of expected.filter((x) => x.endsWith('.py')))
-    if (!bandit.metrics[file] && !bandit.metrics['./' + file])
-      throw Error('Bandit missed tracked Python ' + file);
-  const tracked = run('git', ['ls-files', '-z']).split('\0').filter(Boolean),
-    text = tracked.filter((f) => {
-      const bytes = fs.readFileSync(path.join(root, f));
-      return !bytes.includes(0) && !f.endsWith('.gz');
-    });
-  const secrets = JSON.parse(run(py('detect-secrets'), ['scan', '--no-verify', ...text]));
-  fs.writeFileSync(path.join(out, 'detect-secrets.json'), JSON.stringify(secrets, null, 2));
-  const reviewed = loadSecretReviews(),
-    publicationIntegrities = publicationIntegrityProof(),
-    newFindings = [];
-  const navigationFile = '.github/repository-intelligence/agent-context.json';
-  run(py('python'), [
-    'tools/repository_intelligence.py',
-    '--config',
-    '.github/repository-intelligence-config.json',
-    'verify',
+      ...offlineRuntime,
+    ]),
+  ];
+  const result = collectEngines([
+    {
+      name: 'semgrep',
+      reports: ['semgrep.json'],
+      run: (run) => {
+        // Files are scanned at their real paths, including inline HTML. Reports retain
+        // coverage/errors. Source snippets are removed before artifact upload.
+        const semgrep = storedReport(
+          run,
+          py('semgrep'),
+          [
+            'scan',
+            '--config',
+            'tools/quality/security-rules.yml',
+            '--metrics',
+            'off',
+            '--disable-version-check',
+            '--jobs',
+            '1',
+            '--max-target-bytes',
+            '5000000',
+            '--json',
+            '--output',
+            path.join(out, 'semgrep.json'),
+            'docs',
+            'site',
+            'tools',
+            '.github/workflows',
+            ...offlineRuntime,
+          ],
+          'semgrep.json',
+          (report) => {
+            for (const finding of report.results || [])
+              if (finding.extra) delete finding.extra.lines;
+          }
+        );
+        if (semgrep.results?.length || semgrep.errors?.length || !semgrep.paths?.scanned?.length)
+          throw Error('Semgrep findings, errors, or empty coverage');
+        const scanned = new Set(semgrep.paths.scanned);
+        for (const file of expected)
+          if (!scanned.has(file)) throw Error('Unscanned source ' + file);
+        return { files: semgrep.paths.scanned, rules: 8, errors: 0, expected };
+      },
+    },
+    {
+      name: 'bandit',
+      reports: ['bandit.json', 'bandit-triage.json'],
+      run: (run) => {
+        const bandit = storedReport(
+          run,
+          py('bandit'),
+          [
+            '-r',
+            'tools',
+            '-x',
+            'tools/quality/toolchain/venv',
+            '-f',
+            'json',
+            '-o',
+            path.join(out, 'bandit.json'),
+          ],
+          'bandit.json',
+          (report) => {
+            for (const finding of report.results || []) delete finding.code;
+          },
+          [0, 1]
+        );
+        let banditReview;
+        try {
+          banditReview = require('./bandit-triage.cjs').admit(
+            root,
+            bandit,
+            expected.filter((file) => file.endsWith('.py')),
+            {
+              rawReportSha256: require('./artifact.cjs').digest(
+                fs.readFileSync(path.join(out, 'bandit.json'))
+              ),
+            }
+          );
+        } catch (error) {
+          fs.writeFileSync(
+            path.join(out, 'bandit-triage.json'),
+            JSON.stringify(
+              {
+                schema: 1,
+                kind: 'bandit-triage',
+                pass: false,
+                rawFindings: bandit.results?.length ?? null,
+                error: error.message,
+              },
+              null,
+              2
+            )
+          );
+          throw error;
+        }
+        fs.writeFileSync(
+          path.join(out, 'bandit-triage.json'),
+          JSON.stringify(banditReview, null, 2)
+        );
+        if (
+          bandit.errors?.length ||
+          banditReview.untriagedFindings ||
+          !bandit.metrics?._totals?.loc
+        )
+          throw Error('Bandit coverage or finding');
+        for (const file of expected.filter((x) => x.endsWith('.py')))
+          if (!bandit.metrics[file] && !bandit.metrics['./' + file])
+            throw Error('Bandit missed tracked Python ' + file);
+        return {
+          loc: bandit.metrics._totals.loc,
+          findings: banditReview.untriagedFindings,
+          rawFindings: banditReview.rawFindings,
+          reviewedFindings: banditReview.reviewedFindings,
+          policySha256: banditReview.policySha256,
+        };
+      },
+    },
+    {
+      name: 'secrets',
+      reports: ['detect-secrets.json'],
+      run: (run) => {
+        const tracked = run('git', ['ls-files', '-z']).split('\0').filter(Boolean),
+          text = tracked.filter((f) => {
+            const bytes = fs.readFileSync(path.join(root, f));
+            return !bytes.includes(0) && !f.endsWith('.gz');
+          });
+        const secrets = JSON.parse(run(py('detect-secrets'), ['scan', '--no-verify', ...text]));
+        fs.writeFileSync(path.join(out, 'detect-secrets.json'), JSON.stringify(secrets, null, 2));
+        const reviewed = loadSecretReviews(),
+          publicationIntegrities = publicationIntegrityProof(),
+          newFindings = [];
+        const navigationFile = '.github/repository-intelligence/agent-context.json';
+        run(py('python'), [
+          'tools/repository_intelligence.py',
+          '--config',
+          '.github/repository-intelligence-config.json',
+          'verify',
+        ]);
+        const navigation = JSON.parse(fs.readFileSync(path.join(root, navigationFile))),
+          publicHashes = [
+            navigation.source_identity.digest,
+            navigation.producer.sha256,
+            navigation.producer.config_sha256,
+            ...navigation.source_identity.inputs.map((x) => x.sha256).filter(Boolean),
+          ];
+        run(py('python'), ['tools/check_ri_ci.py', 'verify']);
+        const coupling = JSON.parse(
+          fs.readFileSync(path.join(root, '.github/ri-ci-map.json'))
+        ).reviewed_source_identity;
+        const proved = new Map([
+          [navigationFile, verifiedChecksumIds(publicHashes)],
+          [
+            '.github/ri-ci-map.json',
+            verifiedChecksumIds([coupling.digest, ...coupling.inputs.map((x) => x.sha256)]),
+          ],
+        ]);
+        const generatedChecksums = require('./generated-checksums.cjs');
+        const generatedProof = generatedChecksums.proveGeneratedChecksums(root);
+        const generatedAdmitted = generatedChecksums.admitGeneratedChecksumFindings(
+          secrets.results,
+          generatedProof
+        );
+        for (const [file, findings] of Object.entries(secrets.results))
+          for (const finding of findings) {
+            const provedChecksum = verifiedChecksumFinding(file, finding, proved);
+            if (
+              !provedChecksum &&
+              !generatedAdmitted.has(generatedChecksums.findingKey(file, finding)) &&
+              !reviewedSecretFinding(file, finding, reviewed, publicationIntegrities)
+            )
+              newFindings.push({
+                file,
+                type: finding.type,
+                hash: finding.hashed_secret,
+              });
+          }
+        if (newFindings.length)
+          throw Error(
+            `${newFindings.length} untriaged secret candidates; see hashed-only detect-secrets.json`
+          );
+        return {
+          trackedTextFiles: text.length,
+          reviewedCandidates: Object.values(secrets.results).flat().length,
+          generatedCandidates: generatedAdmitted.size,
+          generatedChecksumProof: generatedProof.detail,
+        };
+      },
+    },
   ]);
-  const navigation = JSON.parse(fs.readFileSync(path.join(root, navigationFile))),
-    publicHashes = [
-      navigation.source_identity.digest,
-      navigation.producer.sha256,
-      navigation.producer.config_sha256,
-      ...navigation.source_identity.inputs.map((x) => x.sha256).filter(Boolean),
-    ];
-  run(py('python'), ['tools/check_ri_ci.py', 'verify']);
-  const coupling = JSON.parse(
-    fs.readFileSync(path.join(root, '.github/ri-ci-map.json'))
-  ).reviewed_source_identity;
-  const proved = new Map([
-    [navigationFile, verifiedChecksumIds(publicHashes)],
-    [
-      '.github/ri-ci-map.json',
-      verifiedChecksumIds([coupling.digest, ...coupling.inputs.map((x) => x.sha256)]),
-    ],
-  ]);
-  const generatedChecksums = require('./generated-checksums.cjs');
-  const generatedProof = generatedChecksums.proveGeneratedChecksums(root);
-  const generatedAdmitted = generatedChecksums.admitGeneratedChecksumFindings(
-    secrets.results,
-    generatedProof
-  );
-  for (const [file, findings] of Object.entries(secrets.results))
-    for (const finding of findings) {
-      const provedChecksum = verifiedChecksumFinding(file, finding, proved);
-      if (
-        !provedChecksum &&
-        !generatedAdmitted.has(generatedChecksums.findingKey(file, finding)) &&
-        !reviewedSecretFinding(file, finding, reviewed, publicationIntegrities)
-      )
-        newFindings.push({ file, type: finding.type, hash: finding.hashed_secret });
-    }
-  if (newFindings.length)
-    throw Error(
-      `${newFindings.length} untriaged secret candidates; see hashed-only detect-secrets.json`
-    );
   return {
-    semgrep: { files: semgrep.paths.scanned, rules: 8, errors: 0, expected },
-    bandit: {
-      loc: bandit.metrics._totals.loc,
-      findings: banditReview.untriagedFindings,
-      rawFindings: banditReview.rawFindings,
-      reviewedFindings: banditReview.reviewedFindings,
-      policySha256: banditReview.policySha256,
-    },
-    secrets: {
-      trackedTextFiles: text.length,
-      reviewedCandidates: Object.values(secrets.results).flat().length,
-      generatedCandidates: generatedAdmitted.size,
-      generatedChecksumProof: generatedProof.detail,
-    },
+    engines: result.engines,
+    semgrep: result.values.semgrep,
+    bandit: result.values.bandit,
+    secrets: result.values.secrets,
     historyScan: false,
   };
 }
 function advisories() {
   const publicationToolchain = path.join(root, 'tools/publishing/toolchain');
-  const publicationAudit = JSON.parse(
-    run(
-      process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      ['audit', '--prefix', publicationToolchain, '--json'],
-      [0, 1]
-    )
-  );
-  fs.writeFileSync(
-    path.join(out, 'publication-npm-audit.json'),
-    JSON.stringify(publicationAudit, null, 2)
-  );
-  if (
-    publicationAudit.error ||
-    !publicationAudit.metadata?.dependencies ||
-    publicationAudit.metadata.vulnerabilities?.total !== 0
-  )
-    throw Error('Publication dependency advisory feed failed or has an unreviewed finding');
-  const npm = JSON.parse(
-    run(
-      process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      ['audit', '--prefix', path.join(tools), '--json'],
-      [0, 1]
-    )
-  );
-  fs.writeFileSync(path.join(out, 'npm-audit.json'), JSON.stringify(npm, null, 2));
-  if (npm.error || !npm.metadata) throw Error('npm advisory feed failure');
-  const exceptions = require('./advisory-exceptions.json'),
-    leaf = [];
-  for (const value of Object.values(npm.vulnerabilities || {}))
-    for (const item of value.via || []) if (typeof item === 'object') leaf.push(item);
-  const lock = JSON.parse(fs.readFileSync(path.join(tools, 'package-lock.json')));
-  for (const finding of leaf) {
-    const exception = exceptions.find((x) => x.url === finding.url && x.package === finding.name);
-    if (
-      !exception ||
-      new Date(exception.expires) < new Date() ||
-      lock.packages['node_modules/' + exception.package]?.version !== exception.version
-    )
-      throw Error('Untriaged/expired npm advisory ' + finding.url);
-    const hash = require('./artifact.cjs').digest(
-      fs.readFileSync(path.join(root, exception.reviewedSource))
-    );
-    if (hash !== exception.reviewedSourceSha256)
-      throw Error('Advisory reachability review is stale');
-    for (const [file, expectedHash] of Object.entries(exception.reviewedMaterials))
-      if (require('./artifact.cjs').digest(fs.readFileSync(path.join(root, file))) !== expectedHash)
-        throw Error('Advisory reviewed config/lock changed');
-    if (
-      require('./artifact.cjs').digest(fs.readFileSync(path.join(tools, 'package-lock.json'))) !==
-      exception.reviewedMaterials['tools/quality/toolchain/package-lock.json']
-    )
-      throw Error('Installed toolchain differs from reviewed lock');
-  }
-  if (npm.metadata.vulnerabilities.total > 0 && leaf.length === 0)
-    throw Error('Unresolved npm advisory chain');
-  run(py('pip-audit'), [
-    '-r',
-    'tools/quality/toolchain/requirements.txt',
-    '--no-deps',
-    '--disable-pip',
-    '--format',
-    'json',
-    '--output',
-    path.join(out, 'pip-audit.json'),
+  const result = collectEngines([
+    {
+      name: 'npm',
+      reports: ['npm-audit.json'],
+      run: (run) => {
+        const npm = JSON.parse(
+          run(
+            process.platform === 'win32' ? 'npm.cmd' : 'npm',
+            ['audit', '--prefix', tools, '--json'],
+            [0, 1]
+          )
+        );
+        fs.writeFileSync(path.join(out, 'npm-audit.json'), JSON.stringify(npm, null, 2));
+        return admitNpmAdvisories(npm);
+      },
+    },
+    {
+      name: 'publicationNpm',
+      reports: ['publication-npm-audit.json'],
+      run: (run) => {
+        const npm = JSON.parse(
+          run(
+            process.platform === 'win32' ? 'npm.cmd' : 'npm',
+            ['audit', '--prefix', publicationToolchain, '--json'],
+            [0, 1]
+          )
+        );
+        fs.writeFileSync(
+          path.join(out, 'publication-npm-audit.json'),
+          JSON.stringify(npm, null, 2)
+        );
+        const admitted = admitNpmAdvisories(npm, {
+          toolchain: publicationToolchain,
+          exceptions: [],
+        });
+        assert.equal(admitted.findings, 0, 'Publication dependency advisory finding');
+        return {
+          dependencies: admitted.dependencies,
+          lockSha256: require('./artifact.cjs').digest(
+            fs.readFileSync(path.join(publicationToolchain, 'package-lock.json'))
+          ),
+        };
+      },
+    },
+    {
+      name: 'pip',
+      reports: ['pip-audit.json'],
+      run: (run) => {
+        run(py('pip-audit'), [
+          '-r',
+          'tools/quality/toolchain/requirements.txt',
+          '--no-deps',
+          '--disable-pip',
+          '--format',
+          'json',
+          '--output',
+          path.join(out, 'pip-audit.json'),
+        ]);
+        return admitPythonAdvisories(
+          read('pip-audit.json'),
+          fs.readFileSync(path.join(root, 'tools/quality/toolchain/requirements.txt'), 'utf8')
+        );
+      },
+    },
   ]);
-  const python = read('pip-audit.json');
-  if (!python.dependencies?.length || python.dependencies.some((x) => x.vulns?.length))
-    throw Error('Python advisories or missing coverage');
   return {
+    engines: result.engines,
     feedDate: new Date().toISOString(),
-    npm: npm.metadata.dependencies,
-    npmFindingCount: npm.metadata.vulnerabilities.total,
-    reviewedNpmAdvisories: [...new Set(leaf.map((x) => x.url))],
-    pythonDependencies: python.dependencies.length,
+    npm: result.values.npm.dependencies,
+    npmFindingCount: result.values.npm.findings,
+    reviewedNpmAdvisories: result.values.npm.reviewed,
+    pythonDependencies: result.values.pip.dependencies,
     runtimeDependencies: 'none',
-    publicationDependencies: publicationAudit.metadata.dependencies,
-    publicationLockSha256: require('./artifact.cjs').digest(
-      fs.readFileSync(path.join(publicationToolchain, 'package-lock.json'))
-    ),
+    publicationDependencies: result.values.publicationNpm.dependencies,
+    publicationLockSha256: result.values.publicationNpm.lockSha256,
   };
 }
 function main(kind = process.argv[2]) {
   try {
+    const identity = require('./common.cjs').identity();
+    for (const key of ['sourceCommit', 'sourceTree', 'candidateCommit'])
+      assert.match(identity[key], /^[a-f0-9]{40}$/, 'invalid scanner source identity');
+    assert.match(identity.artifactDigest, /^[a-f0-9]{64}$/, 'invalid scanner artifact identity');
     const detail =
       kind === 'lint'
         ? lint()
@@ -735,12 +1006,21 @@ function main(kind = process.argv[2]) {
               })();
     require('./common.cjs').report(kind, { detail });
   } catch (e) {
-    require('./common.cjs').report(kind, { error: e.message }, false);
+    require('./common.cjs').report(
+      kind,
+      { error: e.message, ...(e.detail ? { detail: e.detail } : {}) },
+      false
+    );
     throw e;
   }
 }
 if (require.main === module) main();
 module.exports = {
+  main,
+  collectEngines,
+  pinnedPythonRequirements,
+  admitPythonAdvisories,
+  admitNpmAdvisories,
   authoredRuntimeSources,
   authoredRuntime,
   lintEffectCoverage,

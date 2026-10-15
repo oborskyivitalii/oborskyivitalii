@@ -162,6 +162,17 @@ history. Writing observations use the canonical displayed-entry collection.
 
 ## Bounded staging regression
 
+Explicit stable-staging/evidence and prospective-production preparation first
+run `local.cjs --prepublication` on the exact frozen artifact before deployable
+upload. It orchestrates the existing source, Python, style/RI, scanner and
+artifact/edition/rights/package owners, retains independent failures and checks
+source/public immutability again at the end. The staging source allocation is
+Basic plus the nonbaseline staging suites; production runs its complete source
+allocation once. Missing artifact prerequisites block their dependent checks.
+This is a preparation order within the existing profiles, not a replacement
+gate or permission to deploy. Host/native/live assertions still follow, using
+the same artifact. Normal Draft preview remains bounded.
+
 Issue #45 uses the existing Writing diagnostic workflow's separate
 `site-reading-clarity-evidence` label job for a bounded Chromium comparison of
 heading geometry and actual formula captures. It does not run paired performance

@@ -35,7 +35,16 @@ function staging(parent, color = false) {
   return result;
 }
 function response(url, bytes, status = 200) {
-  return { url, status, arrayBuffer: async () => Buffer.from(bytes) };
+  return {
+    url,
+    status,
+    headers: new Headers({
+      'content-type': require('../../tools/quality/serve.cjs').canonicalType(
+        status === 404 ? '404.html' : new URL(url).pathname
+      ),
+    }),
+    arrayBuffer: async () => Buffer.from(bytes),
+  };
 }
 function fullProof(record) {
   const identity = {

@@ -163,6 +163,30 @@ node tools/quality/lighthouse.cjs
 node tools/quality/motion.cjs
 ```
 
+The scanner categories run every independent engine and then fail the category if
+any engine failed. Each engine records its actual command exits, error and current
+raw-report digests; stale raw files are removed before it starts. Invalid source or
+artifact prerequisites block scanning. A skipped or unrun engine is never clean.
+Semgrep/Bandit snippets are removed from retained JSON even after a tool error.
+
+Python advisory coverage requires the entire tracked requirements file: plain exact
+`name==version` pins, unique after case and `[-_.]` normalization. The report must
+contain every pinned name/version exactly once, without unknown, skipped, malformed
+or vulnerable records. Empty or incomplete coverage and tool/feed errors fail.
+The existing npm exception stays bound to its reviewed URL/package/version,
+source/config/lock bytes and valid unexpired review date.
+
+Use one complete `SITE_AUDIT_TOOLS` directory containing the tracked npm lock
+installation (`npm ci --ignore-scripts`) and a `venv` installed from the entire
+tracked `requirements.txt`. Both local preflight and CI use these same inputs;
+a Ruff-only environment is insufficient for security and advisory checks.
+
+The loopback server, hosted collector, staging/full aggregates and Pages HTTP
+checks share `serve.cjs` MIME admission for every inventory file. Header checks
+include JPEG/WebP/PNG/ICO images and production robots/sitemap, root HTML and
+extensionless opaque bytes. Accepted aliases are limited to JavaScript, ICO and
+XML media types; missing or substituted media types fail even when bytes match.
+
 Full regression retains Linux Chromium/Firefox 260 functional / 8 navigation /
 26 analytics cases plus native macOS WebKit 130/4/13, totalling 390/12/39.
 Windows Chromium/Firefox 40/8/26 and original Linux Color12 stay supplemental.

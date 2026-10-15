@@ -477,6 +477,33 @@ function select(root, profile, options = {}) {
     taskSnapshots: 'selected owning issue policy only',
   };
 }
+function requireNonemptySuites(tap) {
+  const active = [];
+  let completed = null;
+  for (const line of tap.split(/\r?\n/)) {
+    const caption = line.match(/^([ ]*)# Subtest: (.+)$/);
+    if (caption) {
+      const indent = caption[1].length;
+      if (active.length) active.at(-1).children++;
+      active.push({ indent, name: caption[2], children: 0 });
+      completed = null;
+      continue;
+    }
+    const outcome = line.match(/^([ ]*)(?:not )?ok [0-9]+(?: |$)/);
+    if (outcome) {
+      const index = active.findLastIndex((entry) => entry.indent === outcome[1].length);
+      completed = index < 0 ? null : active[index];
+      if (index >= 0) active.length = index;
+      continue;
+    }
+    const suite = line.match(/^([ ]*)type: ['"]suite['"]$/);
+    if (suite)
+      assert.ok(
+        completed && suite[1].length === completed.indent + 2 && completed.children > 0,
+        'empty Node suite cannot establish selected test coverage: ' + completed?.name
+      );
+  }
+}
 function accounting(tap, { modules = [], root = '' } = {}) {
   const captions = [...tap.matchAll(/^# Subtest: (.+)\r?$/gm)].map((match) => match[1].trim());
   assert.ok(captions.length > 0, 'no actual named Node test cases');
@@ -485,6 +512,7 @@ function accounting(tap, { modules = [], root = '' } = {}) {
     !captions.some((caption) => wrappers.has(caption)),
     'empty selected test module reported only a file wrapper'
   );
+  requireNonemptySuites(tap);
   const keys = ['tests', 'pass', 'fail', 'cancelled', 'skipped', 'todo'],
     values = {};
   for (const key of keys) {
@@ -589,7 +617,18 @@ function executeSelected(root, modules) {
   reporter = stream.compose(tap);
   reporter.on('error', abort).on('end', cleanup).on('close', cleanup).pipe(process.stdout);
 }
-function run(root, plan, options = {}) {
+function executeSource(root, argv) {
+  const environment = { ...process.env };
+  delete environment.NODE_TEST_CONTEXT;
+  return cp.spawnSync(process.execPath, argv, {
+    cwd: root,
+    env: environment,
+    encoding: 'utf8',
+    maxBuffer: 16 * 1024 * 1024,
+    timeout: 180000,
+  });
+}
+function executePlan(root, plan, options = {}) {
   const ordered = executionOrder(root, plan.modules);
   if (options.requireClean) requireClean(root);
   if (!plan.modules.length) {
@@ -604,18 +643,7 @@ function run(root, plan, options = {}) {
         'No additional Node target; local source smoke and applicable Python/owning-issue checks retain their own evidence.',
     };
   }
-  const environment = { ...process.env };
-  delete environment.NODE_TEST_CONTEXT;
-  const execute =
-    options.execute ||
-    ((argv) =>
-      cp.spawnSync(process.execPath, argv, {
-        cwd: root,
-        env: environment,
-        encoding: 'utf8',
-        maxBuffer: 16 * 1024 * 1024,
-        timeout: 180000,
-      }));
+  const execute = options.execute || ((argv) => executeSource(root, argv));
   const argv = [__filename, '--execute', ...ordered],
     started = Date.now(),
     result = execute(argv);
@@ -647,12 +675,122 @@ function run(root, plan, options = {}) {
     argv,
   };
 }
+function sourceIdentity(root) {
+  return {
+    sourceCommit: git(root, ['rev-parse', 'HEAD']).trim(),
+    sourceTree: git(root, ['rev-parse', 'HEAD^{tree}']).trim(),
+    sourceDirty: git(root, ['status', '--porcelain', '--untracked-files=all']).trim() !== '',
+  };
+}
+function reportPaths(root, file) {
+  assert.ok(typeof file === 'string' && file && !file.includes('\0'), 'report path required');
+  const json = path.resolve(file);
+  assert.ok(json.endsWith('.json'), 'source test report must end in .json');
+  const prefix = json.slice(0, -'.json'.length),
+    files = { json, tap: prefix + '.tap', stderr: prefix + '.stderr' };
+  for (const destination of Object.values(files)) {
+    const relative = path.relative(root, destination);
+    if (relative !== '..' && !relative.startsWith('..' + path.sep) && !path.isAbsolute(relative))
+      git(root, ['check-ignore', '--', relative]);
+    if (fs.existsSync(destination))
+      assert.ok(!fs.lstatSync(destination).isSymbolicLink(), 'symlink source test report');
+  }
+  return files;
+}
+function run(root, plan, options = {}) {
+  if (!Object.hasOwn(options, 'report')) return executePlan(root, plan, options);
+  const files = reportPaths(root, options.report),
+    report = {
+      schema: 1,
+      kind: 'source-tests',
+      profile: plan.profile,
+      modules: plan.modules,
+      cleanSourceRequired: options.requireClean === true,
+      status: 'failed',
+      pass: false,
+      files,
+    };
+  let result, failure;
+  const writeRaw = (child = {}) => {
+    fs.mkdirSync(path.dirname(files.json), { recursive: true });
+    fs.writeFileSync(files.tap, child.stdout || '');
+    fs.writeFileSync(files.stderr, child.stderr || '');
+  };
+  try {
+    report.source = sourceIdentity(root);
+    result = executePlan(root, plan, {
+      ...options,
+      execute(argv) {
+        const child = (options.execute || ((args) => executeSource(root, args)))(argv);
+        report.execution = {
+          argv,
+          status: child.status,
+          signal: child.signal || null,
+          error: child.error
+            ? { name: child.error.name, message: child.error.message, code: child.error.code }
+            : null,
+          timeoutMs: 180000,
+          maxBufferBytes: 16 * 1024 * 1024,
+          stdoutBytes: Buffer.byteLength(child.stdout || ''),
+          stderrBytes: Buffer.byteLength(child.stderr || ''),
+        };
+        report.observedAccounting = Object.fromEntries(
+          ['tests', 'pass', 'fail', 'cancelled', 'skipped', 'todo'].map((key) => [
+            key,
+            [...(child.stdout || '').matchAll(new RegExp('^# ' + key + ' (\\d+)\\r?$', 'gm'))].map(
+              (match) => Number(match[1])
+            ),
+          ])
+        );
+        // Persist complete bounded child streams before status/accounting can throw.
+        writeRaw(child);
+        return child;
+      },
+    });
+  } catch (error) {
+    failure = error;
+  }
+  try {
+    report.sourceAfter = sourceIdentity(root);
+    if (!failure)
+      assert.deepEqual(report.sourceAfter, report.source, 'source changed during tests');
+    if (!report.execution) writeRaw();
+  } catch (error) {
+    failure ||= error;
+  }
+  if (result) report.result = result;
+  if (!failure) {
+    report.status = result.status;
+    report.pass = result.pass;
+  } else report.error = { name: failure.name, message: failure.message.slice(0, 8000) };
+  try {
+    fs.writeFileSync(files.json, JSON.stringify(report, null, 2) + '\n');
+  } catch (error) {
+    failure = error;
+    report.status = 'failed';
+    report.pass = false;
+    report.reportWriteError = { name: error.name, message: error.message };
+  }
+  if (failure) {
+    failure.report = report;
+    throw failure;
+  }
+  return result;
+}
 function argumentsFor(argv) {
   const options = {};
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
     assert.ok(
-      ['--profile', '--base', '--head', '--require-clean', '--plan', '--ci-profile'].includes(flag),
+      [
+        '--profile',
+        '--base',
+        '--head',
+        '--require-clean',
+        '--plan',
+        '--ci-profile',
+        '--report',
+      ].includes(flag),
       'unknown source-test argument ' + flag
     );
     const key = flag.slice(2).replace(/-([a-z])/g, (_, x) => x.toUpperCase());
@@ -669,6 +807,7 @@ function argumentsFor(argv) {
       !options.profile && !options.base && !options.head && !options.plan,
       'CI profile uses only the bound workflow environment'
     );
+  assert.ok(!(options.plan && options.report), '--report requires execution, not --plan');
   return options;
 }
 function verifyContentExecution(plan, record) {
@@ -695,8 +834,8 @@ function verifyContentExecution(plan, record) {
 function ciProfile(root, options, environment = process.env) {
   const mode = environment.CONTENT_MODE || 'platform';
   assert.ok(['content', 'platform'].includes(mode), 'unknown CI content mode');
-  if (options.requireClean) requireClean(root);
   if (mode === 'content') {
+    if (options.requireClean) requireClean(root);
     const plan = select(root, 'content', {
       base: environment.CONTENT_BASE_SHA,
       head: environment.SITE_CANDIDATE_SHA,
@@ -711,7 +850,39 @@ function ciProfile(root, options, environment = process.env) {
       environment.CONTENT_BASE_SHA,
       'content execution baseline differs'
     );
-    return verifyContentExecution(plan, record);
+    const result = verifyContentExecution(plan, record);
+    if (options.report) {
+      const files = reportPaths(root, options.report);
+      const report = JSON.parse(fs.readFileSync(files.json));
+      assert.equal(report.kind, 'source-tests', 'content source report kind differs');
+      assert.equal(report.pass, true, 'content source report did not pass');
+      assert.equal(
+        report.cleanSourceRequired,
+        true,
+        'content source report did not bind clean source'
+      );
+      assert.deepEqual(
+        report.source,
+        sourceIdentity(root),
+        'content source report identity differs'
+      );
+      assert.deepEqual(report.sourceAfter, report.source, 'content source report changed source');
+      assert.deepEqual(report.files, files, 'content source report destinations differ');
+      assert.deepEqual(
+        report.result,
+        record.contentChecks.sourceTests,
+        'content source report execution differs'
+      );
+      assert.equal(report.execution?.status, 0, 'content source process did not pass');
+      const tap = fs.readFileSync(files.tap, 'utf8');
+      const stderr = fs.readFileSync(files.stderr, 'utf8');
+      assert.equal(report.execution.stdoutBytes, Buffer.byteLength(tap));
+      assert.equal(report.execution.stderrBytes, Buffer.byteLength(stderr));
+      const counts = accounting(tap, { modules: plan.modules, root });
+      for (const [key, value] of Object.entries(counts))
+        assert.equal(report.result[key], value, 'content source raw accounting differs');
+    }
+    return result;
   }
   const profile = environment.SITE_SOURCE_EVENT === 'pull_request' ? 'pr' : 'staging';
   const plan = select(root, profile, {
@@ -729,7 +900,7 @@ function main(argv = process.argv.slice(2)) {
     return result;
   }
   const plan = select(root, options.profile, options);
-  if (options.requireClean) requireClean(root);
+  if (options.requireClean && options.plan) requireClean(root);
   const result = options.plan
     ? { ...plan, status: 'planned', pass: null }
     : run(root, plan, options);
@@ -741,6 +912,7 @@ if (require.main === module) {
     if (process.argv[2] === '--execute') executeSelected(process.cwd(), process.argv.slice(3));
     else main();
   } catch (error) {
+    if (error.report) console.log(JSON.stringify(error.report));
     console.error(error.message);
     process.exitCode = 1;
   }
@@ -763,6 +935,8 @@ module.exports = {
   requireClean,
   executionOrder,
   validateExecutionOrder,
+  sourceIdentity,
+  reportPaths,
   main,
   ciProfile,
   verifyContentExecution,

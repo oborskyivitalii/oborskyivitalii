@@ -734,7 +734,12 @@
         "tools/quality/secrets-publication.json",
         "tools/publishing/toolchain/package.json",
         "tools/publishing/toolchain/package-lock.json",
-        "tools/publishing/toolchain/licenses.json"
+        "tools/publishing/toolchain/licenses.json",
+        "tools/quality/serve.cjs",
+        "tools/quality/hosted.cjs",
+        "tools/quality/advisory-exceptions.json",
+        "tools/quality/toolchain/requirements.txt",
+        "tools/quality/toolchain/package-lock.json"
       ]
     },
     {
@@ -765,7 +770,8 @@
         "tools/check_site_contrast.cjs",
         ".github/workflows/**",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -803,7 +809,8 @@
         "tools/quality/artifact.cjs",
         "tools/staging/package.cjs",
         "tools/staging/**",
-        ".github/workflows/**"
+        ".github/workflows/**",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -929,7 +936,8 @@
         "tools/staging/review-flow.cjs",
         "tools/staging/state.cjs",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -1004,7 +1012,7 @@
     {
       "path": "tests/staging.test.cjs",
       "language": "javascript",
-      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
+      "purpose": "Exact hosted package/headers/routing/rollback, pinned legacy-default hosting bytes, finite versioned immutable-snapshot proxy rejection, source leases, retained inputs and browser-visible recovery contract",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1016,13 +1024,14 @@
         "tools/staging/package.cjs",
         "tools/staging/hosted.cjs",
         "tools/staging/state.cjs",
-        "tools/staging/**"
+        "tools/staging/**",
+        "tools/quality/serve.cjs"
       ]
     },
     {
       "path": "tests/test-profile-selection.test.cjs",
       "language": "javascript",
-      "purpose": "Complete registry/exact-source selection and strict TAP accounting; actual Space/executive priority, remaining size/lexical order, two isolated workers, serial-case defaults, abort/error reporting and original-deadline cleanup",
+      "purpose": "Complete registry/exact-source selection and strict TAP accounting; actual Space/executive priority, remaining size/lexical order, two isolated workers, serial-case defaults, abort/error reporting and original-deadline cleanup; complete test registry, bounded source selection, strict named Basic/profile accounting and explicit raw/structured failure reports with clean-source and write-failure negatives.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1121,13 +1130,13 @@
     {
       "path": "tests/test_repository_test_selection.py",
       "language": "python",
-      "purpose": "Permanent discovery includes current/future generic modules and excludes numeric task snapshots without weakening runner accounting",
+      "purpose": "Permanent discovery includes current/future generic modules, rejects individually empty modules in mixed suites and preserves combined-run lifecycle/accounting while numeric task snapshots stay separate",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": ["tests/test_repository_test_selection.py"]
+      "inputs": ["tests/test_repository_test_selection.py", "tools/run_repository_tests.py"]
     },
     {
       "path": "tests/test_ri_ci.py",
@@ -1290,7 +1299,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1609,7 +1618,8 @@
         "site/effects/environment.css",
         ".github/workflows/site-pages.yml",
         "tests/fixtures/delivery.cjs",
-        "tools/site/edition.cjs"
+        "tools/site/edition.cjs",
+        "tools/quality/serve.cjs"
       ]
     },
     {
@@ -2055,6 +2065,54 @@
         ".github/workflows/site-color-review.yml",
         ".github/workflows/site-release-checks.yml",
         "tests/fixtures/catalog.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue39_acceptance.py",
+      "language": "python",
+      "purpose": "Issue39 controller dependency preserves all 607 protected main paths/modes and 606 blobs outside the sole package host-policy amendment, verifies actual legacy-default byte parity and finite snapshot proxy rejection, binds licensing tuples and preserves strict selector/telemetry/readiness failures; actual both-host admission remains external.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue39 compatibility phase only; PR40 retains the full licensing/production mapping after rebase",
+      "surviving_route": ".github/acceptance/issue-39.json",
+      "inputs": [
+        "tests/test_issue39_acceptance.py",
+        ".github/acceptance/issue-39.json",
+        "tests/color-motion-contract.test.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "review/issue-39/2026-10-15-license-tuples.json",
+        "tools/quality/staging-regression.cjs",
+        "tests/staging-regression.test.cjs",
+        "tools/staging/package.cjs",
+        "tests/staging.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/publication-records.test.cjs",
+      "language": "javascript",
+      "purpose": "Frozen source/edition/artifact-bound publication records, actual rendered copies, mandatory exact licensed families, Pages receipts/extraction, and pinned-main legacy Pages byte parity; explicit prepublication failure collection, dependency blocking, source/artifact immutability and pre-upload workflow ordering",
+      "owner": "guides/SITE-STAGING.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent frozen-record, metadata opt-out, receipt and actual legacy byte failure surfaces; synthetic fixtures cannot grant rights approval",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/publication-records.test.cjs",
+        "tests/fixtures/publication-records.cjs",
+        "tests/fixtures/delivery.cjs",
+        "tools/release/rights-record.cjs",
+        "tools/staging/package.cjs",
+        "tools/pages/**",
+        "tools/quality/color-motion-contract.cjs",
+        "site/engine/reading-surfaces.css",
+        "tools/quality/local.cjs",
+        "tools/quality/scanners.cjs",
+        "tools/quality/source-tests.cjs",
+        ".github/workflows/site-checks.yml",
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-release-candidate.yml",
+        ".github/workflows/site-release-checks.yml"
       ]
     }
   ]

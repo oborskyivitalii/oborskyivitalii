@@ -188,3 +188,28 @@ preserving all 22 earlier tuples and 11 families. Focused Color/build/staging
 checks passed 32/32 and checksum guards passed 8/8; exactly three public checksum
 dispositions were appended. This is not a new security scan or runtime speed
 measurement. Fresh hosted/source acceptance remains separately recorded in PR79.
+
+### Synchronization with the controller/test foundation
+
+While preparing the revised preview, main advanced from `cc115c42` to
+`9b82f382d080f879528fac8bba94b3656ce14521` (PR80, issue39). The old candidate
+could not launch ordinary PR checks while its real base conflicts remained.
+The same PR79 now incorporates that exact main through a reviewed merge;
+there is no competing publication route or release authorization.
+
+Independent owners reconcile the new prepublication/rights/source-report and
+scanner checks with PR79 content reuse, article closure, managed fixture print
+and browser diagnostics. All 26 runtime tuples from both branches remain.
+The generated runtime's five JS/CSS files and publisher export inputs remain
+unchanged by this merge; the reviewed article PDF/kit retain their identities.
+
+Integration exposed an actual backward-compatibility gap: adding article cache
+headers unconditionally changed archived no-article host packages. Header
+selection now follows the verified file inventory, retaining exact historical
+headers for packages without article resources and immutable cache rules for
+current or retained article media/snapshots. A real retained-only PDF fixture
+checks this boundary. Strict shared MIME failures keep their substantive checks.
+Historical licensed/Pages fixtures consume their actual pinned baseline bytes
+and producers; new article-aware output is not misrepresented as that baseline.
+Source-runner and scanner orchestration fixtures preserve both branches' failure
+cases and complete raw reports. Final integrated results belong in live PR79.

@@ -240,37 +240,69 @@ function selectedCases(engine, selection = cases(engine)) {
     );
   return selection;
 }
+function fixtureInputs(sourceRoot = root) {
+  const inputs = [
+    'site',
+    'tools/site',
+    'tools/build_scene_fallbacks.cjs',
+    'tools/build_site_previews.cjs',
+  ];
+  const legalModule = path.join(sourceRoot, 'tools/site/legal.cjs');
+  if (fs.existsSync(legalModule)) {
+    assert.ok(
+      fs.lstatSync(legalModule).isFile() && !fs.lstatSync(legalModule).isSymbolicLink(),
+      'regular legal producer required'
+    );
+    const owners = Object.values(require(legalModule).sources);
+    assert.ok(owners.length > 0 && owners.length <= 16, 'bounded declared legal owners required');
+    assert.equal(new Set(owners).size, owners.length, 'duplicate declared legal owner');
+    for (const name of owners) {
+      assert.ok(
+        typeof name === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.-]*$/.test(name),
+        'root legal owner path required'
+      );
+      const file = path.join(sourceRoot, name);
+      assert.ok(
+        fs.lstatSync(file).isFile() && !fs.lstatSync(file).isSymbolicLink(),
+        'regular declared legal owner required'
+      );
+      inputs.push(name);
+    }
+  }
+  return inputs;
+}
+
+function buildFixture(dir, sourceRoot = root) {
+  const inputs = fixtureInputs(sourceRoot);
+  // Accepted articles keep their frozen commit objects while all fixture writes
+  // remain isolated. Validate declared legal owners before creating any output.
+  if (fs.existsSync(path.join(sourceRoot, '.git'))) {
+    cp.execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', sourceRoot, dir], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+  }
+  if (fs.existsSync(path.join(sourceRoot, 'tools/publishing'))) {
+    inputs.push('tools/publishing', 'tools/quality/artifact.cjs', 'tools/quality/budgets.json');
+  }
+  for (const name of inputs) {
+    fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
+    fs.cpSync(path.join(sourceRoot, name), path.join(dir, name), { recursive: true });
+  }
+  fs.writeFileSync(path.join(dir, 'site/analytics.json'), JSON.stringify(settings, null, 2) + '\n');
+  require(path.join(sourceRoot, 'tools/site/build.cjs')).build({ root: dir, all: true });
+  const producer = require(path.join(dir, 'tools/build_site_previews.cjs'));
+  for (const [name, bytes] of Object.entries(producer.buildPreviews())) {
+    fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
+    fs.writeFileSync(path.join(dir, name), bytes);
+  }
+  return producer;
+}
+
 async function run(browser, engine, selection = cases(engine)) {
   const selected = selectedCases(engine, selection);
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-analytics-browser-'));
   try {
-    // Live accepted articles retain their frozen commits in a read-only shared
-    // object store; fixture settings and generated files stay isolated.
-    cp.execFileSync('git', ['clone', '--shared', '--no-checkout', '--quiet', root, dir], {
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-    for (const name of [
-      'site',
-      'tools/site',
-      'tools/publishing',
-      'tools/build_scene_fallbacks.cjs',
-      'tools/build_site_previews.cjs',
-      'tools/quality/artifact.cjs',
-      'tools/quality/budgets.json',
-    ]) {
-      fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
-      fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
-    }
-    fs.writeFileSync(
-      path.join(dir, 'site/analytics.json'),
-      JSON.stringify(settings, null, 2) + '\n'
-    );
-    require('../site/build.cjs').build({ root: dir, all: true });
-    const producer = require(path.join(dir, 'tools/build_site_previews.cjs'));
-    for (const [name, bytes] of Object.entries(producer.buildPreviews())) {
-      fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
-      fs.writeFileSync(path.join(dir, name), bytes);
-    }
+    const producer = buildFixture(dir);
     const rows = [];
     for (const s of selected) {
       rows.push(await scenario(browser, dir, producer, s));
@@ -283,7 +315,7 @@ async function run(browser, engine, selection = cases(engine)) {
     fs.rmSync(dir, { recursive: true, force: true });
   }
 }
-module.exports = { run, cases, selectedCases, checks, modes, model };
+module.exports = { run, cases, selectedCases, checks, modes, model, fixtureInputs, buildFixture };
 if (require.main === module)
   (async () => {
     const { toolRequire, launchOptions, save } = require('./common.cjs'),

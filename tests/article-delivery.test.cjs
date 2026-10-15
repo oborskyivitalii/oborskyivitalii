@@ -219,6 +219,39 @@ test('staging package admits article inventory and enforces immutable PNG/HTML c
   assert.match(stagePackage.policyHeaders(article.alias)['Cache-Control'], /no-cache/);
   assert.match(stagePackage.headers, /\/article-media\/\*/);
   assert.match(stagePackage.headers, /\/article-snapshots\/\*/);
+  const retainedInput = path.join(directory, 'retained-only-input');
+  const retainedPublic = path.join(retainedInput, 'public');
+  fs.cpSync(path.resolve(__dirname, '../docs'), retainedPublic, { recursive: true });
+  const pdf = fs.readFileSync(
+    path.resolve(__dirname, '../site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf')
+  );
+  const retainedPDF = `article-media/${artifact.digest(pdf)}/retained.pdf`;
+  fs.mkdirSync(path.dirname(path.join(retainedPublic, retainedPDF)), { recursive: true });
+  fs.writeFileSync(path.join(retainedPublic, retainedPDF), pdf);
+  const retainedSource = {
+    schema: 1,
+    sourceDirty: false,
+    sourceCommit: record.sourceCommit,
+    candidateCommit: record.candidateCommit,
+    sourceTree: record.sourceTree,
+    ...artifact.manifest(retainedPublic),
+  };
+  retainedSource.components = snapshot.verify(retainedPublic, retainedSource);
+  assert.equal(Object.keys(retainedSource.components.articles || {}).length, 0);
+  assert.equal(snapshot.immutable(retainedPDF), true);
+  fs.writeFileSync(path.join(retainedInput, 'artifact.json'), JSON.stringify(retainedSource));
+  fs.mkdirSync(path.join(retainedInput, 'gate'));
+  fs.writeFileSync(
+    path.join(retainedInput, 'gate/release-manifest.json'),
+    JSON.stringify(gate(retainedSource))
+  );
+  const retainedOutput = path.join(directory, 'retained-only-package');
+  const retainedPackage = stagePackage.build(retainedInput, retainedOutput);
+  assert.equal(stagePackage.verify(retainedOutput, retainedPackage), true);
+  const retainedHeaders = fs.readFileSync(path.join(retainedOutput, 'public/_headers'), 'utf8');
+  assert.match(retainedHeaders, /\/article-media\/\*/);
+  assert.match(retainedHeaders, /\/article-snapshots\/\*/);
+  assert.deepEqual(fs.readFileSync(path.join(retainedOutput, 'public', retainedPDF)), pdf);
   const result = await hosted.httpSmoke(
     'https://candidate.invalid',
     packageRecord,
@@ -231,7 +264,7 @@ test('staging package admits article inventory and enforces immutable PNG/HTML c
       packageRecord,
       transport(output, '/', true, true)
     ),
-    /content type/
+    /Content-Type/
   );
 });
 
@@ -251,7 +284,7 @@ test('Pages article documents and PNGs stay inside a project/staging base with n
   assert.equal(urls.writing, base + '/staging/writing.html');
   await assert.rejects(
     pagesHTTP.check(output, base, transport(output, '/project/', true)),
-    /PNG content type/
+    /Content-Type/
   );
 });
 

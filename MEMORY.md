@@ -4,10 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 
 ## Snapshot
 
-- Verified main is `cc115c4241197d59205934bdc18f209109d5ee87`, after PR77
-  merged the approved scene fades, repeated downward entry and shared compositions.
-  PR78's ordinary both-host admission remains historical evidence; live owner #76
-  holds exact final runtime admission and merge evidence.
+- Live main advanced to `9b82f382d080f879528fac8bba94b3656ce14521` during
+  PR79 revision work: PR80 integrates the #39 controller/test foundation.
+  PR79 synchronizes that exact main while preserving its publisher/content route.
+  PR40 owns subsequent licensed preview/staging/production preparation; exact
+  source/native/scanner results remain in live #39 and its versioned review.
 - [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79)
   also owns execution for article [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
   On15October the author requested the completed six-chapter English article,
@@ -45,6 +46,11 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   complete administration, stable accepted revision and production remain distinct.
 
 ## Decisions
+
+- Issue39 records Apache-2.0 implementation and CC BY4.0 original editorial
+  licensing with explicit identity/third-party/upstream exceptions. PR40 owns
+  feature delivery; license choice does not establish exact-edition rights,
+  editorial/device acceptance or production activation. Preserve those gates.
 
 - Issue76 preview-first phase is visually approved. The12October instruction
   authorizes ready-source checks, ordinary stable staging and merge of the
@@ -93,6 +99,7 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 ## Next session
 
 1. Revalidate main, PR79 raw head, clean source, current checks and preview.
+   Read main's #39 publication-test/controller review for merged guard behavior.
 2. Read `review/issue-2/2026-10-15-editorial-draft.md` and the candidate README.
    Real article authoring is resumed; do not restore the obsolete deferral.
 3. Continue in the same PR79 with issue5 policy and issue2 editorial acceptance.

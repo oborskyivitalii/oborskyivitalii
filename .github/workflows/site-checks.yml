@@ -82,7 +82,15 @@ jobs:
           CONTENT_MODE: ${{ steps.content_baseline.outputs.mode }}
           CONTENT_BASE_SHA: ${{ steps.content_baseline.outputs.sourceCommit }}
           SITE_SOURCE_MANIFEST: quality-artifact/artifact.json
-        run: node tools/quality/source-tests.cjs --ci-profile --require-clean
+        run: node tools/quality/source-tests.cjs --ci-profile --require-clean --report quality-reports/source-tests.json
+      - name: Retain exact source-test accounting and failure streams
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-source-tests-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 30
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: public

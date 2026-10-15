@@ -163,82 +163,14 @@ function clean(row, label) {
   assert.deepEqual(row.errors, [], `${label} runtime errors`);
   assert.deepEqual(row.externalRequests, [], `${label} external requests`);
 }
-function validateCriticalMediaJourney(journey, width) {
-  assert.ok(Array.isArray(journey?.states), 'missing CSS-blocked route observations');
-  assert.deepEqual(
-    journey.states.map((state) => state.page),
-    ['research', 'index', 'research', 'index'],
-    'incomplete CSS-blocked route and history journey'
-  );
-  assert.equal(journey.history, true, 'missing CSS-blocked history observation');
-  assert.equal(journey.documentPreserved, true, 'CSS-blocked journey replaced the document');
-  const css =
-    '\n' + fs.readFileSync(path.join(common.root, 'site/engine/critical-media.css'), 'utf8');
-  for (const state of journey.states) {
-    assert.equal(state.documentPreserved, true, 'CSS-blocked route replaced the document');
-    assert.equal(state.criticalMediaOutsideHead, 0, 'critical media outside the document head');
-    assert.equal(state.overflow, false, 'CSS-blocked route overflow');
-    if (state.page === 'research') {
-      assert.deepEqual(state.criticalMedia, [], 'critical media retained on Research');
-      assert.equal(state.portrait, null, 'unexpected Research portrait');
-    } else {
-      assert.deepEqual(state.criticalMedia, [css], 'missing or changed canonical Home media CSS');
-      assert.equal(state.portrait?.viewportWidth, width, 'wrong observed portrait viewport');
-      assert.ok(
-        Number.isFinite(state.portrait.width) &&
-          state.portrait.width > 0 &&
-          state.portrait.width <= width + 1,
-        'unbounded CSS-blocked Home portrait'
-      );
-    }
-  }
-}
 function validateFailure(row) {
   clean(row, 'capability fixture');
   const checks = row.checks,
-    before = checks?.evidence?.before,
-    after = checks?.evidence?.after;
-  assert.ok(before && after, 'missing actual failure-state observations');
-  for (const s of [before, after]) {
-    assert.equal(s.h1, 1);
-    assert.equal(s.overflow, false);
-    assert.ok(Number.isInteger(s.paints) && s.paints >= 0);
-    assert.ok(Number.isInteger(s.callbacks) && s.callbacks >= 0);
-  }
-  const fallback = ['no-js', 'no-raf', 'no-match-media', 'css-blocked'].includes(row.mode),
-    frozen = fallback || ['reduced', 'draw-fault', 'context-loss'].includes(row.mode);
-  if (frozen)
-    for (const key of ['phase', 'camera', 'paints', 'callbacks'])
-      assert.equal(after[key], before[key], `unsettled ${row.mode} ${key}`);
-  if (fallback) {
-    assert.equal(checks.fallback, true);
-    for (const s of [before, after]) {
-      assert.equal(s.ready, false);
-      assert.equal(s.fallback, true);
-      assert.equal(s.motion.hidden || s.motion.disabled, true);
-      assert.equal(s.paints, 0);
-      assert.equal(s.callbacks, 0);
-    }
-  } else if (row.mode === 'reduced') {
-    assert.equal(checks.reducedFreeze, true);
-    assert.equal(after.ready, true);
-    assert.equal(after.motion.disabled, true);
-    assert.match(after.motion.label, /reduced/);
-  } else if (['draw-fault', 'context-loss'].includes(row.mode)) {
-    assert.equal(checks.boundedFailure, true);
-    assert.equal(checks.synthetic, true);
-    assert.equal(after.ready, false);
-    assert.equal(after.fallback, true);
-    assert.equal(after.motion.disabled, true);
-    assert.match(after.motion.label, /unavailable/);
-  } else {
-    assert.equal(checks.positiveProbe, true);
-    assert.equal(after.ready, true);
-    assert.ok(after.paints > before.paints, 'failure fixture did not observe an actual new paint');
-  }
+    validator = require('./validate.cjs');
+  validator.functionalFailure(row.mode, checks);
   if (row.mode === 'css-delayed') assert.equal(checks.beforeCSSNoPaint, true);
   if (row.mode === 'css-blocked')
-    validateCriticalMediaJourney(checks.criticalMediaJourney, row.width);
+    validator.validateCriticalMediaJourney(checks.criticalMediaJourney, row.width);
 }
 function validateJourney(journey, manifest) {
   const variant = common.variant(manifest);
@@ -439,6 +371,7 @@ function validateMeasurement(row, kind, zero = false) {
     'callbackBusyPercent',
   ])
     assert.deepEqual(row[key], expected[key], 'declared ' + key + ' differs from actual samples');
+  assert.equal(row.state, 'active', 'staging measurement lacks an active renderer');
   if (zero) {
     assert.equal(row.callbacks, 0, kind + ' callbacks');
     assert.equal(row.paints, 0, kind + ' paints');
@@ -449,7 +382,6 @@ function validateMeasurement(row, kind, zero = false) {
     );
   } else {
     assert.ok(row.paints >= budgets.motion.minimumPaints, 'unobserved active motion');
-    assert.notEqual(row.state, 'fallback');
   }
 }
 function validatePerformance(report) {
@@ -574,7 +506,6 @@ function validateFlight(row, selected) {
   assert.deepEqual(row.errors, []);
   validateFlightSetup(row.setup, selected);
   validateMeasurement(row, 'flight');
-  require('./validate.cjs').transition(row);
   assert.equal(row.transitionPhase, selected.phase, 'unobserved cold/warm flight phase');
   const targetModels = row.rawPreparation.filter(
     (sample) => sample.kind === 'model' && sample.route === selected.to
@@ -585,6 +516,9 @@ function validateFlight(row, selected) {
       'cold flight did not observe destination model construction'
     );
   else assert.equal(targetModels.length, 0, 'warm flight reconstructed its destination model');
+  // Integrity and actual cache state must pass before a completed observation
+  // can be classified as a budget failure eligible for further collection.
+  require('./validate.cjs').transition(row);
 }
 function validateColor(report, manifest) {
   const variant = common.variant(manifest),
@@ -819,9 +753,168 @@ async function openFlightPair(browser, url) {
     throw error;
   }
 }
+function flightResourceTiming({ startMs, endMs, destination }) {
+  const directory = new URL('.', location.href),
+    revision = new URL('site-revision.json', directory),
+    snapshots = new URL('snapshots/', directory),
+    entries = performance.getEntriesByType('resource').filter((entry) => {
+      if (entry.initiatorType !== 'fetch' || entry.startTime < startMs || entry.startTime > endMs)
+        return false;
+      const url = new URL(entry.name);
+      return (
+        url.origin === directory.origin &&
+        (url.pathname === revision.pathname ||
+          (url.pathname.startsWith(snapshots.pathname) &&
+            url.pathname.endsWith('/' + destination + '.html')))
+      );
+    });
+  if (entries.length > 2) throw Error('overflowing current-flight resource timing');
+  return {
+    schema: 1,
+    documentURL: location.href,
+    collectedAtMs: performance.now(),
+    entries: entries.map((entry) => ({
+      name: entry.name,
+      initiatorType: entry.initiatorType,
+      startTime: entry.startTime,
+      duration: entry.duration,
+      fetchStart: entry.fetchStart,
+      requestStart: entry.requestStart,
+      responseStart: entry.responseStart,
+      responseEnd: entry.responseEnd,
+      responseStatus: entry.responseStatus,
+      transferSize: entry.transferSize,
+      encodedBodySize: entry.encodedBodySize,
+      decodedBodySize: entry.decodedBodySize,
+    })),
+  };
+}
+function validateFlightResource(entry, row, directory) {
+  const revision = new URL('site-revision.json', directory),
+    snapshots = new URL('snapshots/', directory);
+  assert.ok(typeof entry.name === 'string' && entry.name.length <= 2048);
+  const url = new URL(entry.name),
+    [version, file, ...extra] = url.pathname.slice(snapshots.pathname.length).split('/'),
+    snapshot =
+      url.pathname.startsWith(snapshots.pathname) &&
+      /^[a-f0-9]{64}$/.test(version) &&
+      file === row.to + '.html' &&
+      extra.length === 0;
+  assert.equal(url.origin, directory.origin, 'cross-origin flight resource timing');
+  assert.ok(!url.username && !url.password, 'credential-bearing flight resource timing');
+  assert.ok(!url.search && !url.hash && (url.href === revision.href || snapshot));
+  assert.equal(entry.initiatorType, 'fetch');
+  for (const key of [
+    'startTime',
+    'duration',
+    'fetchStart',
+    'requestStart',
+    'responseStart',
+    'responseEnd',
+  ])
+    assert.ok(Number.isFinite(entry[key]) && entry[key] >= 0, 'invalid resource timing ' + key);
+  assert.ok(
+    entry.startTime >= row.window.startMs &&
+      entry.startTime <= entry.fetchStart &&
+      entry.fetchStart <= entry.responseEnd &&
+      (entry.requestStart === 0 ||
+        (entry.fetchStart <= entry.requestStart && entry.requestStart <= entry.responseEnd)) &&
+      (entry.responseStart === 0 ||
+        ((entry.requestStart || entry.fetchStart) <= entry.responseStart &&
+          entry.responseStart <= entry.responseEnd)) &&
+      entry.startTime <= entry.responseEnd &&
+      entry.responseEnd <= row.window.endMs,
+    'resource timing outside the current flight or unordered'
+  );
+  assert.ok(
+    Math.abs(entry.duration - (entry.responseEnd - entry.startTime)) <= 1e-8,
+    'resource duration differs from raw endpoints'
+  );
+  assert.ok(
+    Number.isInteger(entry.responseStatus) &&
+      (entry.responseStatus === 0 || (entry.responseStatus >= 100 && entry.responseStatus <= 599)),
+    'invalid resource response status'
+  );
+  for (const key of ['transferSize', 'encodedBodySize', 'decodedBodySize'])
+    assert.ok(
+      Number.isSafeInteger(entry[key]) && entry[key] >= 0 && entry[key] <= budgets.assetRawBytes,
+      'invalid or overflowing resource size ' + key
+    );
+}
+function flightReadTiming(evidence, row, documentURL) {
+  assert.equal(evidence.schema, 1, 'missing current-flight resource timing');
+  assert.ok(
+    Number.isFinite(evidence.collectedAtMs) &&
+      evidence.collectedAtMs <= Number.MAX_SAFE_INTEGER &&
+      evidence.collectedAtMs >= row.window.endMs,
+    'resource timing must follow the measured window'
+  );
+  const directory = new URL('.', documentURL),
+    current = new URL(evidence.documentURL),
+    revision = new URL('site-revision.json', directory);
+  assert.ok(
+    !directory.username && !directory.password && !current.username && !current.password,
+    'credential-bearing resource timing document'
+  );
+  assert.equal(current.origin, directory.origin, 'resource timing changed document origin');
+  assert.equal(new URL('.', current).href, directory.href, 'resource timing changed directory');
+  assert.ok(Array.isArray(evidence.entries) && evidence.entries.length <= 2);
+  const names = new Set();
+  for (const entry of evidence.entries) {
+    validateFlightResource(entry, row, directory);
+    assert.ok(!names.has(entry.name), 'duplicate current-flight resource timing');
+    names.add(entry.name);
+  }
+  const starts = row.rawChoreography.filter((event) => event.kind === 'navigation-start'),
+    preparations = row.rawPreparation.filter(
+      (event) => event.kind === 'route' && event.page === row.to
+    );
+  assert.ok(
+    starts.length <= 1 && preparations.length <= 1,
+    'ambiguous current-flight read interval'
+  );
+  const navigationStartMs = starts[0]?.time ?? null,
+    preparationStartMs = preparations[0]?.start ?? null,
+    lastResponseEndMs = evidence.entries.length
+      ? Math.max(...evidence.entries.map((entry) => entry.responseEnd))
+      : null;
+  if (row.pass) {
+    assert.equal(
+      evidence.entries.length,
+      row.transitionPhase === 'cold' ? 2 : 0,
+      'missing or unexpected cold/warm fetch timing'
+    );
+    if (row.transitionPhase === 'cold')
+      assert.ok(names.has(revision.href), 'cold flight lacks revision fetch timing');
+  }
+  assert.ok(
+    preparationStartMs === null ||
+      lastResponseEndMs === null ||
+      lastResponseEndMs <= preparationStartMs,
+    'resource response completed after route preparation'
+  );
+  return {
+    navigationStartMs,
+    preparationStartMs,
+    navigationToPreparationMs:
+      navigationStartMs === null || preparationStartMs === null
+        ? null
+        : preparationStartMs - navigationStartMs,
+    lastResponseEndMs,
+    navigationToLastResponseEndMs:
+      navigationStartMs === null || lastResponseEndMs === null
+        ? null
+        : lastResponseEndMs - navigationStartMs,
+    responseEndToPreparationMs:
+      lastResponseEndMs === null || preparationStartMs === null
+        ? null
+        : preparationStartMs - lastResponseEndMs,
+  };
+}
 async function measureFlight(pair, selected, setup) {
   const { page, errors } = pair,
-    from = await page.locator('body').getAttribute('data-page');
+    from = await page.locator('body').getAttribute('data-page'),
+    documentURL = page.url();
   let failure;
   await page.evaluate((destination) => {
     window.__qualityMotion.frames = [];
@@ -853,7 +946,7 @@ async function measureFlight(pair, selected, setup) {
       state: document.querySelector('.space-scene').dataset.state,
     };
   });
-  return {
+  const row = {
     from,
     to: selected.to,
     width: 390,
@@ -864,6 +957,25 @@ async function measureFlight(pair, selected, setup) {
     pass: !failure,
     ...(failure ? { error: failure } : {}),
   };
+  try {
+    // Read the browser's existing resource records only after readiness/error
+    // and the original end timestamp/raw samples have already been captured.
+    // No request, listener, polling, cache mutation or measured work is added.
+    const evidence = await page.evaluate(flightResourceTiming, {
+      startMs: data.start,
+      endMs: data.end,
+      destination: selected.to,
+    });
+    row.resourceTiming = {
+      ...evidence,
+      readInterval: flightReadTiming(evidence, row, documentURL),
+    };
+  } catch (error) {
+    row.resourceTiming = { schema: 1, error: error.message };
+    row.pass = false;
+    row.error = [failure, 'resource timing: ' + error.message].filter(Boolean).join('; ');
+  }
+  return row;
 }
 async function restoreFlightIndex(pair) {
   await pair.page
@@ -905,6 +1017,7 @@ async function selectedFlights(browser, url, helpers = {}) {
       for (const planned of flightCases().filter((row) => row.to === destination)) {
         selected = planned;
         measured = false;
+        setup = null;
         setup = await api.setup(pair.page, selected);
         const row = await api.measure(pair, selected, setup);
         rows.push(row);
@@ -914,7 +1027,9 @@ async function selectedFlights(browser, url, helpers = {}) {
         } catch (error) {
           row.pass = false;
           row.error = error.message;
-          throw error;
+          const budgetFailure = require('./validate.cjs').performanceBudgetFailure(error);
+          if (!budgetFailure) throw error;
+          row.validationFailure = budgetFailure;
         }
         if (selected.phase === 'cold') await api.restore(pair);
       }
@@ -1093,6 +1208,8 @@ module.exports = {
   flightSetupSample,
   waitForFlightSetup,
   openFlightPair,
+  flightResourceTiming,
+  flightReadTiming,
   measureFlight,
   restoreFlightIndex,
   selectedFlights,

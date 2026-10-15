@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
-    "date": "2026-10-15",
-    "summary": "Issue2/5 PMDay article and presentation: existing publisher, offline and browser routes cover declared PDF identity, lazy viewing and cleanup. Source/RI and original publication/release gates remain."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
+    "date": "2026-10-11",
+    "summary": "Rebase approved overlapping block phases and fixed reading camera onto reviewed main75 dual-runtime Color validation and authenticated unaccepted first-Pages recovery. Preserve every source/check/profile case and original budget; retain both motion branches, exact ledger entries, authored catalogs and current controls. Refresh exact coupled source identities after independent review; ordinary both-host admission, whole manual/device gates and production decisions remain separate."
   },
   "layers": [
     {
@@ -104,9 +104,13 @@
         "review/issue-69/2026-10-11-paced-security-proof.json.gz",
         "review/issue-69/2026-10-11-pacing-harness.md",
         "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
+        ".github/acceptance/issue-39.json",
+        "tests/test_issue39_acceptance.py",
+        "review/issue-39/2026-10-15-controller-compatibility.md",
         ".github/acceptance/issue-76.json",
         "review/issue-76/2026-10-11-preview.md",
         "review/issue-76/2026-10-12-admission.md",
+        "review/issue-39/2026-10-15-license-tuples.json",
         ".github/acceptance/issue-5.json",
         "tests/test_issue5_acceptance.py",
         "review/issue-5/2026-10-12-execution.md",
@@ -158,7 +162,7 @@
     },
     {
       "id": "test-profile-selection",
-      "purpose": "Canonical source/test allocation, bounded staging/scanner controls and complete accounting; exact isolated execution/cleanup and native history/analytics cold-preparation/viewport snapshot routes remain explicit. Ten source-bound Color families/twenty tuples preserve all eighteen historical tuples and original performance/evidence limits.",
+      "purpose": "Canonical source/test allocation, content and platform execution, bounded staging/scanner controls and complete source-qualified accounting; closed runtime families and original performance/evidence limits remain.",
       "paths": [
         "guides/SITE-CHECK-PROFILES.md",
         "tests/fixtures/staging-evidence.cjs",
@@ -170,7 +174,6 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/local.cjs",
         "tools/quality/scanners.cjs",
-        "tools/quality/generated-checksums.cjs",
         "tools/quality/secrets-baseline.json",
         "tools/quality/secrets-reviewed.json",
         "tools/quality/source-tests.cjs",
@@ -189,6 +192,10 @@
         "tests/color-motion-contract.test.cjs",
         "tools/quality/color-motion-contract.cjs",
         "tools/quality/block-flight.cjs",
+        "tools/release/rights-record.cjs",
+        "tests/publication-records.test.cjs",
+        "tests/fixtures/publication-records.cjs",
+        "tools/quality/generated-checksums.cjs",
         "tools/quality/article-browser.cjs",
         "tools/quality/candidate-source.cjs",
         "tests/article-browser-evidence.test.cjs",
@@ -552,7 +559,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "cf7e8ef4d85bf6feef725d85424fb105a168fb21f2cb14f92fff2c2547fc27c6",
+    "digest": "604e533664555a20a71392235b89a9e400634175cff63eca53c2a5c755da8049",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -585,6 +592,10 @@
       {
         "path": ".github/acceptance/issue-36.json",
         "sha256": "e69f1f6189b2e9114f533cbd188882a37b1f3b1f1994ce43dc699d197970bd0f"
+      },
+      {
+        "path": ".github/acceptance/issue-39.json",
+        "sha256": "20935309b5576bd48f3b011fd55f7836e17d02febbea284c607aade947287379"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -656,7 +667,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "e2dd1492aa3aef0c4c0b3aa5188a52e2b3d19d3e60270c077383b6cad09da3f3"
+        "sha256": "aa3f1a6c54693439656c7651d951cb57e4241650e869ecd9ebd79a806cae8964"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -684,11 +695,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "17e72611d0b2a62d8f30f94f9a8b4dfc0d2a534f61b724fce79b2d49a805f1f4"
+        "sha256": "865be255654dc4adfc5c9b7bcc2307b2457a8607fbdffe9feda80f3beaea4b32"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "febba073d58a998f9bd3289bd31c1fee69aff05194cee2bc5c07139b1d1f282b"
+        "sha256": "7804ab8888f723ddaabd9b06dca2c9b6996725f05c186dfbb9e57ad455c409e7"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -712,11 +723,11 @@
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "aeb1ccb99dfe714d5f2c5cafa8f597c254ada5f5a0e3323e7a5b45df71ea2d15"
+        "sha256": "a48798ce8f37f03574d9eeb1298bf458edd88bfe422d7318f44330db03faad5d"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "bdbcd121973206be631b0b8503804b640636c283680cb51e2739ef60acc6f126"
+        "sha256": "95296a0c4bfc26e451429b68ed1254d0611061355ee3fe9f89cf658f5ebf0171"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -752,7 +763,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "b3740abde3829496bdb54a47345d1c6bb62de20681ee1afaf21ef11cf23f91e1"
+        "sha256": "8ebe6a8f845be547ad5e7e0f66e19ec1617fa83c3546acc5cb0c577a4a121822"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -764,15 +775,15 @@
       },
       {
         "path": "tests/staging-gate.test.cjs",
-        "sha256": "6274ccad0b819c280b9926d5da90b0c4024c0dd4e89d3ba4066a9147b1c6fa16"
+        "sha256": "c81d6a456d3abd0e942fb38ae916fbaa940724cceb704854dd8833db9e19c403"
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "447fdc212c7f5a5705da11ee283ee6e80cdb7d245f9cd1d14cb11987773cb01d"
+        "sha256": "69ba6e2af55406b8ce49a34979df620424e45c4a9fb4eaf2e5f23b494bd00510"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "551a3de973a64a7a40ad99deb7f95d5b5af07dd2d7b9fa4b2d273afe32a111d9"
+        "sha256": "88b98a2d439af0b8c6ea04f85d010635710e538f667fdddc39e5757323e343c5"
       },
       {
         "path": "tests/test_code_style.py",
@@ -793,6 +804,10 @@
       {
         "path": "tests/test_issue36_acceptance.py",
         "sha256": "1a5ee8a94ccb5977da5bace47d0a64277a59fcb045881dfd7ff7b00ff8ad8b00"
+      },
+      {
+        "path": "tests/test_issue39_acceptance.py",
+        "sha256": "ed2c0a95e9210077e96db937f1aafdd902fde69d2468df02a1570f59c478cf3f"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -844,11 +859,11 @@
       },
       {
         "path": "tests/test_repository_test_selection.py",
-        "sha256": "617a31ea1f62d89910c0eb5a41668b470238bf12259b4e5fa72ddc651637a9cf"
+        "sha256": "6ecf4e89609e0bb2d40983c8b871a4eb8cd3fd72181c3dc583951ba03d3aff75"
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "9a5240a85621c518f89d7faa28e6512ef76d076ae9eba66e0381c0382d6ab09a"
+        "sha256": "de8bd9678186feb952ae01163826286947ce22422ccd0597345081a7615f9b1c"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -872,23 +887,23 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "53ddf42593b0528bf77c112c4f0f71d17b218c440aee40a448e1bfe35a99ede3"
+        "sha256": "9899913ac23279c47a8b595722892a7672aa176274ddb1c7be51178e97b9e20c"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "d3c206efdfa6bff783ab8c02dfb59e4e9289cb38c3e9413b477d909568414191"
+        "sha256": "7c0a0be6c24f620ff16dcc9b6edbdb059a9fa80dbdfa880519f77057465ef3ae"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "27a64369fbe06b0be5b3497e0c96c52ba5b40733c755ea20b543480299792ca5"
+        "sha256": "2c40d0f2e149b53bb9714bb16998a23758f53e2b686c6873e6e2c02d384814d7"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "c634fdfaa5f61cbc563cfc8d53d52661ad6443500bdfcce81540bd3b5b1c5450"
+        "sha256": "b53214233c764fdcea9f118a6def023bbf33b381d0fad7e4e158220ba0df4f37"
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "f31e6d3720025744e58a8af19871bf01142696b508de3916c26b7aaec01dd1d1"
+        "sha256": "6cd32fcfce75fa3cf616b0fb12d0d8b4950853e1b4ae2101f20376ab90c471a4"
       },
       {
         "path": "tools/repository_intelligence.py",
@@ -896,7 +911,7 @@
       },
       {
         "path": "tools/run_repository_tests.py",
-        "sha256": "0ef371fa128a18469f4a9e73702fe7fbcdea21cf1927c1e69d576f28fc1560c0"
+        "sha256": "389d90fd8fd02a4587e3cf3c5543ffe00cde1caee8614e88a262d72dbb12924d"
       }
     ]
   }

@@ -5,6 +5,7 @@ const fs = require('node:fs'),
   { digest } = require('./artifact.cjs');
 const { target } = require('./hosted-origin.cjs'),
   { report } = require('./common.cjs');
+const { assertContentType } = require('./serve.cjs');
 async function request(url, base, fetcher = fetch) {
   let next = new URL(url);
   const scope = new URL(base + '/');
@@ -36,12 +37,7 @@ async function verify(base, profile, manifest, fetcher = fetch) {
     assert.equal(result.response.status, 200, file + ' status');
     assert.equal(digest(result.bytes), info.sha256, 'wrong served edition: ' + file);
     const mime = headers.get('content-type') || '';
-    if (file.endsWith('.html')) assert.match(mime, /text\/html/i);
-    if (file.endsWith('.js')) assert.match(mime, /(?:application|text)\/javascript/i);
-    if (file.endsWith('.css')) assert.match(mime, /text\/css/i);
-    if (file.endsWith('.json')) assert.match(mime, /application\/json/i);
-    if (file.endsWith('.svg')) assert.match(mime, /image\/svg\+xml/i);
-    if (file.endsWith('.png')) assert.match(mime, /image\/png/i);
+    assertContentType(file, mime);
     const robots = headers.get('x-robots-tag') || '';
     if (profile === 'staging') {
       assert.match(robots, /noindex/i);
@@ -59,12 +55,14 @@ async function verify(base, profile, manifest, fetcher = fetch) {
   const root = await request(base + '/', base, fetcher);
   assert.equal(root.response.status, 200);
   assert.equal(digest(root.bytes), manifest.files['index.html'].sha256);
+  assertContentType('index.html', root.response.headers.get('content-type'));
   const missing = await request(
     base + '/__quality_missing_' + manifest.sourceCommit,
     base,
     fetcher
   );
   assert.equal(missing.response.status, 404, 'unknown route must be 404');
+  assertContentType('404.html', missing.response.headers.get('content-type'));
   return {
     target: base,
     profile,

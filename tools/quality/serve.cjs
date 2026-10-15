@@ -4,6 +4,7 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
+const assert = require('node:assert/strict');
 const root = path.resolve(process.env.SITE_PUBLIC_DIR || path.join(__dirname, '../../docs'));
 const types = {
   '.json': 'application/json; charset=utf-8',
@@ -13,11 +14,41 @@ const types = {
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
   '.jpg': 'image/jpeg',
-  '.png': 'image/png',
   '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.ico': 'image/x-icon',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
+  '.pdf': 'application/pdf',
 };
+function canonicalType(file) {
+  if (file.endsWith('/')) return types['.html'];
+  return types[path.extname(file).toLowerCase()] || 'application/octet-stream';
+}
+function assertContentType(file, value) {
+  assert.equal(typeof value, 'string', 'missing Content-Type: ' + file);
+  assert.match(
+    value.trim(),
+    /^[a-z0-9!#$&^_.+-]+\/[a-z0-9!#$&^_.+-]+(?:[ \t]*;[^\r\n]*)?$/i,
+    'invalid Content-Type: ' + file
+  );
+  const observed = value.split(';', 1)[0].trim().toLowerCase();
+  const expected = canonicalType(file).split(';', 1)[0];
+  const aliases = {
+    'text/javascript': ['application/javascript'],
+    'image/x-icon': ['image/vnd.microsoft.icon'],
+    'application/xml': ['text/xml'],
+  };
+  assert.ok(
+    [expected, ...(aliases[expected] || [])].includes(observed),
+    'incorrect Content-Type for ' + file + ': ' + value
+  );
+  return observed;
+}
 const cache = new Map();
-function start({ publicDir = root, localOnly = false } = {}) {
+function start(options = {}) {
+  const { publicDir = root, localOnly = false } =
+    typeof options === 'string' ? { publicDir: options, localOnly: true } : options;
   if (process.env.SITE_TEST_BASE_URL && !localOnly) {
     const url = require('./hosted-origin.cjs').target(
       process.env.SITE_TEST_BASE_URL,
@@ -25,6 +56,7 @@ function start({ publicDir = root, localOnly = false } = {}) {
     );
     return Promise.resolve({ server: { close() {} }, url });
   }
+  const directory = path.resolve(publicDir);
   const server = http.createServer((req, res) => {
     let pathname;
     try {
@@ -33,8 +65,8 @@ function start({ publicDir = root, localOnly = false } = {}) {
       res.writeHead(400).end();
       return;
     }
-    const file = path.resolve(publicDir, '.' + (pathname === '/' ? '/index.html' : pathname));
-    if (!file.startsWith(publicDir + path.sep)) {
+    const file = path.resolve(directory, '.' + (pathname === '/' ? '/index.html' : pathname));
+    if (!file.startsWith(directory + path.sep)) {
       res.writeHead(403).end();
       return;
     }
@@ -50,7 +82,7 @@ function start({ publicDir = root, localOnly = false } = {}) {
       gzip = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
     const body = gzip ? entry.gzip : entry.raw;
     res.writeHead(200, {
-      'Content-Type': types[path.extname(file)] || 'application/octet-stream',
+      'Content-Type': canonicalType(file),
       'Content-Length': body.length,
       'Cache-Control': 'no-store',
       ...(gzip ? { 'Content-Encoding': 'gzip', Vary: 'Accept-Encoding' } : {}),
@@ -63,4 +95,4 @@ function start({ publicDir = root, localOnly = false } = {}) {
     )
   );
 }
-module.exports = { start };
+module.exports = { start, canonicalType, assertContentType };

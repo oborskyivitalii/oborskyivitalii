@@ -1,0 +1,369 @@
+# Issue 39 — narrow licensing controller compatibility preparation
+
+Owning issue: [#39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39).
+Main execution: [PR40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40).
+Role: implementation and byte audit of separately produced licensing artifacts;
+the original preparation and telemetry implementation reviews are self-review.
+Independent reviews and actual admission are recorded separately below.
+Baseline main: `cc115c4241197d59205934bdc18f209109d5ee87`, tree
+`0820a951b17f375bca61aea4e70785dbb9376468`.
+Prepared branch: `work/issue39-license-controller-compat`. The original local
+preparation established no remote ref or merge. The later published dependency
+is [PR80](https://github.com/oborskyivitalii/oborskyivitalii/pull/80); its current
+admission failures, post-window diagnostics and later named host-policy
+preparation are recorded below.
+
+## Intent, scope and pending decisions
+
+The maintainer approved Apache-2.0 for original engineering and CC BY 4.0 for
+original editorial material, then requested changed-content review on permanent
+staging before resuming production. PR40 remains the licensing/release execution
+owner. The initial registry and telemetry increments added exact reviewed future Color
+identities and post-window evidence while preserving every current-main public,
+authored-site, producer, hosting, workflow and existing export byte. The later
+finite host-policy scope below permits exactly one named producer amendment:
+`tools/staging/package.cjs`; all other606 protected blobs and all607 inventory
+paths/modes remain exact. Default legacy hosting output remains byte-identical.
+
+Original AC01-AC05 remain mapped. AC02/AC05 and all applicable human/live gates
+stay pending; source fixtures cannot complete a domain, licensing, device or
+production criterion. Applicable CS01/CS04/CS05/CS08/CS09/CS10 require narrow
+ownership, explicit immutable identities, readable tests and independent review.
+
+The selected policy describes this compatibility phase only. It does not retire
+or weaken PR40's full implementation policy: when PR40 rebases, retain its
+complete production/rights/SEO/migration mapping and reconcile this dependency's
+historical evidence rather than replacing the main execution tests with this
+preparation subset.
+
+## Exact source findings
+
+| Finding                                                                                 | Implication                                                                                                                                                                  |
+| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Main Pages smoke calls `local-browser.identity` then its protected-main Color selector. | New licensing fingerprints need exact registration before ordinary two-host staging.                                                                                         |
+| Cloudflare promotion's bounded gate does not call the selector.                         | A known unknown tuple can reach actual Pages publication before smoke rejects it; do not use a knowingly failing `/stage` as diagnosis.                                      |
+| Main snapshot inventory admits only existing five-route/media/runtime namespaces.       | Extra `licenses/*.txt` paths require a producer-validator change and invalidate a registry-only dependency.                                                                  |
+| Main does not enforce a closed set of revision metadata keys.                           | An optional finite legal declaration for full escaped license copies embedded in existing Credits HTML can pass the unchanged main package validator.                        |
+| Every producer change participates in source/runtime fingerprinting.                    | Adding snapshot/legal producer hooks to this dependency changes its public identity and defeats the unchanged-main-family ordinary staging route. Keep such changes in PR40. |
+
+The selected technical delivery embeds complete scope, Apache, CC BY
+and notices text on the existing Credits route, with real internal anchors and
+same-artifact source/hash validation in PR40. It creates no new public paths and
+must satisfy the unchanged HTML/transfer/geometry budgets. This record evaluates
+the technical boundary; the legal/editorial treatment stays in #7/PR40.
+
+## Exact licensing identities and independently checked bytes
+
+| Input                                                                | Observed exact value                                                                                                                  |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Licensing diagnostic provenance                                      | Base source3fabf507/tree d3eea61e; original `sourceDirty:true` is retained                                                            |
+| Base engine                                                          | 53bb494ae3b2bc9ea5b838755ee5b2b9c48fab7183fc6c53a2461dc44dbb004f                                                                      |
+| Plain Color fingerprint                                              | 3f806604b25fb2f7f8fa04c9a2338c6dc8780a8e6894e7300fb0a28c272e7827                                                                      |
+| Staging Color fingerprint                                            | 79a40d3f5166b1ac87575db60bd9f24bcaef768d8158b7a963ae181ec58e777b                                                                      |
+| Canonical and immutable styles/theme/space/archive/navigation hashes | All ten actual files per edition independently hashed and compared byte-for-byte; [inert exact proof](2026-10-15-license-tuples.json) |
+| Complete embedded license copies                                     | Four decoded blocks equal their authored files on both alias and snapshot; eight full-copy source/alias/snapshot comparisons pass     |
+| Public inventory and Credits size                                    | Plain41files/83949bytes; staging30files/83959bytes; no new `licenses/` paths                                                          |
+
+The registry adds exactly `issue39-licensed-plain` and
+`issue39-licensed-staging`, with all five canonical/immutable file hashes and
+unchanged fixed-block behavior. No production identity, unknown fingerprint or
+runtime-declared compatibility escape is accepted. Strict byte/edition checks,
+original cases and timing/resource budgets remain unchanged.
+
+The independently read diagnostics are not relabeled clean measurements. Main's
+unchanged artifact/snapshot validators accept both actual byte inventories; the
+new closed selector matches both. PR40 must regenerate/check its final committed
+source and actual hosted artifact against these same identities. If any producer,
+CSS or runtime input changes, stop and rederive/review exact tuples before staging.
+
+## Concrete ordinary route after derivation
+
+1. Preserve the exact licensed source/bytes reviewed above while finalizing
+   PR40. Reconcile final committed source and generated artifact identities.
+2. Keep only the two literal identities and proportional selector negatives here.
+   Preserve current main public/producer/export bytes. Complete local/owning/RI
+   checks and independent source review; publish this concrete dependency for
+   review under issue39 with exactly one `Refs #39` policy-selection line.
+3. Once ready, require actual current-head Basic, RI and owning acceptance,
+   ordinary owner `/stage`, complete bounded regression, both stable publishers
+   and fresh Staging admission. Its public edition remains the known main
+   `issue76-staging` family. This is ordinary admission, not a bootstrap exception.
+4. Apply the applicable maintainer merge decision to that admitted dependency
+   tree; retain exact source/tree, both-host evidence and postmerge identity.
+   The licensing/staging instruction is not recorded here as a separate explicit
+   main-merge or bootstrap decision. Existing historical exceptions are exhausted.
+5. Rebase PR40, preserve its complete execution policy and rerun current-source
+   checks and ordinary two-host staging for the new licensed edition. Resolve its
+   actual security/performance failures; the registry fix does not accept them.
+6. Supply the exact deployed source and permanent links for owner content review.
+   Production, domain binding, DNS and public release remain paused.
+
+If new public paths remain required, stop this registry-only route. Prepare the
+actual expanded controller/producer change and its changed public identities for
+review; obtain a concrete scoped integration decision rather than silently
+stripping files, broadening inventory or inventing ordinary acceptance.
+
+## Evidence and remaining gates
+
+| AC   | Preparation check                                                                       | Remaining                                                                                      |
+| ---- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| AC01 | Exact-main public/producer/export inventory equality                                    | Live refs/provider inventory                                                                   |
+| AC02 | Manual-only pending in this phase                                                       | Original topology/settings/migration/redirect acceptance in PR40                               |
+| AC03 | Two literal tuples, actual byte/full-license proof and expanded bounded rejection cases | Final licensing source reconciliation, independent code review and full external release gates |
+| AC04 | Basic, style, policy/registry/catalog/RI mapping                                        | Actual dependency PR, current-head CI, both-host staging, maintainer merge decision            |
+| AC05 | Manual-only pending in this phase                                                       | Actual custom-domain/public acceptance in PR40                                                 |
+
+No workflow/provider execution, source admission, remote ref, new license grant,
+ordinary staging success, merge, issue closure or production activation is
+established by this prepared document or policy.
+
+Initial local preparation checks: exact current-main byte preservation and all eight
+then-existing Color selector/aggregation/negative cases passed, Basic's fourteen source
+cases plus ten Color cases pass, and the bounded style guard passes 89 files.
+Pinned Prettier3.6.2 and Ruff0.16.10 format the changed owned source. The first
+wrapper observation failed because Node's default reporter was not TAP; explicit
+`--test-reporter=tap` fixed only report parsing, preserving all executed guards.
+These dirty-worktree observations are preparation evidence, not clean-head CI or
+future licensing-family acceptance. Final exact-source results belong below once
+the actual tuple and remote dependency exist.
+
+Final local registry preparation verifies nine Color selector/aggregation cases,
+including every canonical/immutable runtime-file absence/substitution for both
+licensed tuples and rejection of a production edition. Three owning task cases,
+all seven mapped checks, Basic14/Color10, style89, RI28/coupling20, pinned changed
+source formatting, ESLint and Ruff pass. The original AC02/AC05 remain
+manual-only pending and every human/live/merge gate remains distinct.
+
+A separate scratch transformation of this dependency's unchanged main public
+bytes still selects `issue76-staging` / `49ab29ede2d117832a79151f02da524001024fa2109f79a9b55b7921bbb3dbd6`.
+Both actual licensed artifacts pass the unchanged main artifact/snapshot and
+local-link/anchor validators plus the two new selector tuples. No producer,
+workflow, publisher, public inventory vocabulary or release semantics change in
+this dependency. Independent security review and actual clean
+published-head CI/ordinary both-host admission remain required before readiness
+and the applicable merge decision.
+
+## Independent implementation review
+
+The separate read-only reviewer inspected clean source
+`e6595b7b98aa35bee8f0dace7971b3c5dd536af3`, tree
+`1f98da53079980ee9f7ffe34bf117e288e703bef`, while main remained cc115c4.
+All607 protected path/mode/blob records match main exactly. The reviewer matched
+both actual diagnostic packages to the inert proof, unchanged main validators and
+new literal selector, rejected46 actual-manifest mutations, and passed all three
+owning tests. No code correction was requested. This is independent code/byte
+review, not physical-device, clean licensing-candidate CI, ordinary admission,
+maintainer merge or production acceptance. Later ledger/evidence-only updates
+preserve these reviewed registry/runtime/test bytes and record their own checks.
+
+## Scoped secret-finding review
+
+The independent security reviewer used pinned detect-secrets1.5.0 on976 tracked
+text files. Its preparation scan retained4644 raw findings:3325 exact reviewed
+records and1319 verified RI/coupling records, with zero unreviewed findings after
+triage. Only25 exact records were added to this dependency's publication ledger:
+19 byte-proof JSON observations,5 literal registry hashes and1 immutable Git
+baseline. All50 prior publication records are preserved; total75. No PR40-wide
+ledger import, wildcard/entropy suppression or public/source exclusion was added.
+The reviewer independently checked original diagnostic manifest/artifact hashes,
+all canonical/immutable runtime pairs and all four legal-source owner hashes.
+This source-only review does not admit hosting, native devices or production.
+
+## Post-flight diagnosis after the failed ordinary PR80 stage
+
+Source `7141fbbbaf123185b568add42b5a5103c3bc7468`, tree
+`762d478cde495d701404fbc0ff4dc70d907b3523`, passed its reported native source,
+navigation and owning checks before ordinary
+[run38703875419](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38703875419).
+That run **failed** the selected input-to-ready guard. Its
+[artifact11958206039](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38703875419/artifacts/11958206039)
+ZIP SHA256 is `1c567394bbeb126af53d7dcbdadeadb326d8717bf01614dc9d1f5568f8607afb`.
+The exact artifact/public digest is
+`b72a1147d306f521e1bd75311edfc9e8051842988f0f24d2eb9f1fd3a03d5f4f`;
+its immutable target was `https://55688ec4.oborskyi-author-ci-staging.pages.dev`.
+Functional and Color smoke passed. Only the first cold Home-to-Research flight
+was collected; later flights and Lighthouse were not reached. Stable promotion,
+Pages mirror and Staging admission did not succeed.
+
+| Raw same-document observation         | Failed PR80 run     | Earlier run38696533108 |
+| ------------------------------------- | ------------------- | ---------------------- |
+| Navigation start to route preparation | 899.8ms             | 116.9ms                |
+| Departure presentation                | 1053.9ms            | 1078.1ms               |
+| Camera presentation                   | 1778.7ms            | 1783.3ms               |
+| Arrival presentation                  | 1025.1ms            | 1039.9ms               |
+| Raw input-to-ready                    | 4875ms              | 4126.4ms               |
+| Verified equivalent readiness         | **3383ms > 3200ms** | 2634.4ms               |
+
+Recomputation from native raw choreography verifies `4875 - 3750 + 2258 = 3383`.
+Both navigation timestamps use the same document's `performance.now()`; driver
+polling is outside that arithmetic. The extra wait precedes departure, within
+`read(next)`: revision pinning, snapshot fetch/body read, SHA256 verification,
+parsing and extraction all precede the existing route-preparation event. The
+preparation interval grew by782.9ms while later phases became slightly faster.
+Raw callbacks continued during the wait. No cancelled camera or watchdog phase
+was credited, and the other measured transition limits passed.
+
+Neither run recorded ResourceTiming for these flights. The earlier Lighthouse
+traces describe separate later page loads. A network cause, crypto/parsing cause,
+runtime defect or clock defect is therefore **not established**. The earlier run
+also ultimately failed its Writing Lighthouse TBT; neither failure is accepted
+or retried unchanged to obtain a favorable number.
+
+The necessary changed method stays in the existing
+`tools/quality/staging-regression.cjs` collector and
+`tests/staging-regression.test.cjs` suite. After the original readiness/error
+observation, end timestamp, raw samples and metric summary are captured, one
+separate page evaluation reads existing `PerformanceResourceTiming` entries.
+There are no new requests, listeners, timers, polls, DOM/layout reads, buffer
+clears or cache warming. The existing fresh destination contexts and cold/warm
+pair, CPU rate, selectors, browser concurrency, budgets and metric calculations
+remain unchanged; all607 protected public/producer path/mode/blob records retain
+their original main identities.
+
+`resourceTiming` schema1 contains the current document URL, collection time and
+at most two current-window same-origin `fetch` entries: `site-revision.json` and
+the selected route's finite `snapshots/<64hex>/<route>.html`. It preserves raw
+start/duration/fetch/request/response endpoints, response status and transferred,
+encoded and decoded sizes. Credential-bearing URLs, invalid paths, duplicates,
+overflow, nonfinite/unordered/out-of-window times and invalid/overflowing sizes
+fail visibly rather than being truncated. A completed cold flight requires both
+fetch records; warm flights retain zero records. Failed/incomplete flights may
+have fewer records and missing preparation endpoints remain explicit `null`.
+Zero status or transfer size remains a raw observation, not proof of wire latency.
+
+The derived `readInterval` uses the existing navigation-start and route-preparation
+records. `responseEndToPreparationMs` measures the gap after the final recorded
+response body completion; it can include verification, parsing, extraction and
+scheduling, and does not claim to isolate any one of them. Request/response
+endpoints reveal the observed fetch intervals separately. These diagnostics never
+subtract new allowances from input-to-ready or convert a failed guard to a pass.
+Invalid telemetry retains the original measured raw row and fails visibly.
+
+Applicable CS01/CS04/CS05/CS07/CS08/CS09/CS10 are covered by the existing source
+owners, finite evidence boundary, unchanged measurement path, meaningful failure
+cases, pinned formatter/lint, bounded style guard and owning-policy mapping.
+Focused tests exercise current-window filtering, overflow/field/path/credential
+negatives, cold/warm observations, collection after the original raw window,
+readiness-error evidence retention and the still-failing3383ms arithmetic. A
+local browser API microfixture could not launch because the pinned Chromium
+executable was absent; no browser/profile evidence follows from that attempt.
+
+Independent review of the first staged implementation found two invalid-record
+holes: a zero-phase record could place fetchStart after responseEnd, and URL
+credentials were not rejected. Both are corrected with explicit negative cases.
+The review outcome, final local checks and exact clean source identity must be
+recorded after the final source freeze. Native telemetry and a fresh changed-method
+ordinary stage remain pending; this source-only diagnostic is not admission,
+merge, a bootstrap exception, production activation or issue closure.
+
+Local telemetry preparation checks pass36 staging/gate/profile cases, Basic14 and
+Color10 source cases, pinned changed-source ESLint/Prettier and the89-file bounded
+style guard. The owning AC03 `FLIGHT-TELEMETRY` check runs the maintained staging
+suite and verifies the three new behavioral cases with no skipped or failed case;
+its source method passed. The eight-check phase map retains all five original ACs
+and eight human/live/merge gates. Both changed collector/test owners are existing
+catalog/profile paths; the owning issue39 profile now explicitly watches them.
+RI/coupling, final owning results and security review follow the frozen source;
+these local preparation observations do not replace new native staging evidence.
+
+## Finite snapshot proxy controller preparation
+
+The [dated scope recorded before edits](https://github.com/oborskyivitalii/oborskyivitalii/issues/39)
+is the live issue39 top block `staging-snapshot-proxy-preparation-20261015`.
+It authorizes source preparation under the same PR80 dependency and PR40 execution
+owner, with a single named producer exception. It does not authorize a bootstrap
+merge, provider action or another unchanged-runtime staging attempt.
+
+Changed-method ordinary
+[run38708680860](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38708680860)
+used source `9dc1b84daeeb73da70cc025e3d61c994d72ec3b9`, tree
+`541f3f30cccfc665b60547f3232507e24fd40783`, and **failed**. Native
+[artifact11959778829](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38708680860/artifacts/11959778829)
+shows correct post-window collection: Research cold/warm equivalent readiness
+3004.3/2451.2ms passed; cold Writing4620.9ms raw /3382.9ms equivalent exceeded3200ms.
+Writing navigation-to-preparation525.8ms included revision158.3ms, gap24.5ms,
+snapshot318.9ms and post-response20.8ms. Hosted evidence confirms immutable `.html`
+requests finish at extensionless paths. Exact redirect-time allocation and a
+provider fault remain unproven. Stable publishers/admission did not pass.
+
+The official [Pages redirects](https://developers.cloudflare.com/pages/configuration/redirects/)
+and [serving rules](https://developers.cloudflare.com/pages/configuration/serving-pages/)
+document same-site200 proxying and automatic HTML canonicalization. The inspected
+[Cloudflare Pages handler](https://github.com/cloudflare/workers-sdk/blob/b81efbcb22d2f90d22d3d144b059e99873831002/packages/pages-shared/asset-server/handler.ts),
+blob `febaf781d6ce104fb7741e0f534410681a2a99c6`, processes custom200 rules before
+asset lookup. An extensionless target uses the existing `.html` asset without a
+browser redirect. An index target must be its containing directory, rather than
+`/index` or `/index.html`, which would cause another canonicalization redirect.
+This source inspection establishes a supported mechanism; it is not deployed
+behavior or a passing performance measurement.
+
+`tools/staging/package.cjs` now verifies two canonical record forms:
+
+| Form                          | Generation and verification                                                                                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Legacy                        | Default and explicit `legacy` API generation retain the historical record with no `hostPolicy` field and exact original host additions. Existing records/archives remain verifiable. |
+| `immutable-snapshot-proxy-v1` | Only explicit fourth API options select this mode. The record carries that exact `hostPolicy`; `_redirects` is generated solely from admitted immutable snapshot HTML inventory.     |
+
+The API is `build(input, output, expected, { hostPolicy: 'immutable-snapshot-proxy-v1' })`.
+There is no new CLI/environment/default switch. Rules contain exact sorted paths,
+a single final newline and status200. Every current or retained admitted snapshot
+gets one source-exact rule; non-index destinations are extensionless siblings,
+index destinations the exact hash-directory ending in `/`. No wildcard, external
+origin, SPA fallback, public alias, query-based rule, arbitrary file or runtime
+rewrite is admitted. Existing headers, noindex, immutable cache scope, source
+pinning, artifact/gate checks and public link verification remain unchanged.
+
+Unknown/null policies, a present noncanonical legacy flag, a proxy file with no
+new-mode flag, missing files/rules, duplicates, reordering, status/target/source
+substitutions and extra deployment inputs are rejected. Recomputing file/package
+hashes honestly cannot authorize altered rules: verification derives the complete
+allowed host inventory and exact bytes again from the admitted source. New hosting
+metadata has a new package/upload identity; HTML/runtime bytes and hashes remain
+unchanged. The new mode creates no extensionless source files and changes no
+`site-revision.json` route URL or cryptographic body verification.
+
+The preservation amendment keeps all607 baseline paths/modes and compares all606
+non-amended blobs exactly; only `tools/staging/package.cjs` may differ. Behavioral
+`HOST-POLICY` evidence replaces byte equality for that named owner. A real pinned
+main CLI replay loads the original package/artifact/snapshot/budget sources and
+compares actual generated legacy package-record bytes, digests and every public
+output byte for current, legacy-media and formula-media fixtures. New-mode tests
+cover retained snapshots and strict honestly rehashed rule/source/record failures.
+Original AC01-AC05 and every human/live/merge gate remain; PR40's complete execution
+policy stays separate. No whole release criterion is completed by this preparation.
+
+The existing owner `staging-regression` label route can later provide evidence-only
+Root validation using its PR merge-ref validator and exact raw-source artifact.
+It requires the actual authorized label event; a persistent label on synchronize
+is insufficient. This route has no stable promotion/Pages/admission claim. Ordinary
+owner `/stage` still uses protected main's predeploy verifier, which currently
+rejects `_redirects`; integration needs its concrete applicable maintainer decision
+if ordinary admission cannot be earned. No historical waiver is reused.
+
+Even hypothetically removing the entire152.7ms pre-fetch interval yields3230.2ms
+from the failed sample, still above3200ms; the actual redirect contribution is
+unmeasured. This is **not sufficient** to claim3200ms acceptance. Future Root must explicitly select
+the mode, prove actual hosted200/no-redirect/exact-body behavior and pass fresh
+unchanged-budget native checks. No cache warming, probe allowance, metric relaxation,
+new workflow, Worker, provider edit or runtime performance change is included.
+
+Applicable CS01/CS04/CS05/CS07/CS08/CS09/CS10 map to the existing producer/test owners,
+finite source-derived policy, default legacy byte proof, meaningful adverse cases,
+pinned formatter/lint, bounded style guard and unchanged measurement semantics.
+Initial local preparation passes all15 maintained staging tests and the five
+owning source methods, pinned source ESLint/Prettier and the89-file style guard.
+Independent exact-source/security review, final RI/owning/full-source validation,
+clean source identity and eventual native evidence follow the final freeze. These
+source results do not change any failed run or supply integration/publication approval.
+
+Initial independent producer review also reproduced the unchanged host-file
+SHA256/raw metadata in both frozen5October and6October legacy archive records,
+and generated the five exact current snapshot rules from the retained native
+PR40 and licensing diagnostic artifacts. These were read-only source/host-rule
+observations, not new provider or performance runs. The actual policy/wrapper
+checks preserve that distinction and leave admission/integration pending.
+The independent preservation walk also matched612 protected path/mode/blob
+records outside the intentionally amended package owner against the published
+9dc1b84 source, including public/export/workflow, cache/header, budget/validator,
+telemetry and selector owners. This expanded independent set is separate from
+the maintained607-path inventory /606 unchanged-blob proof against pinned main.

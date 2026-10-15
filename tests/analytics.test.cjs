@@ -444,3 +444,61 @@ test('analytics and unknown component changes force the full advisory scope with
     assert.equal(policy.propose(components, next).scope, 'full');
   assert.equal(policy.propose(components, components).evidenceReuse, false);
 });
+
+test('actual analytics browser fixture builds its real hosted and offline producer dependency closure', (t) => {
+  const fixture = require('../tools/quality/analytics-browser.cjs');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'analytics-real-fixture-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const inputs = fixture.fixtureInputs();
+  assert.deepEqual(inputs.slice(0, 4), [
+    'site',
+    'tools/site',
+    'tools/build_scene_fallbacks.cjs',
+    'tools/build_site_previews.cjs',
+  ]);
+  const producer = fixture.buildFixture(dir);
+  b.build({ root: dir, check: true });
+  const manifest = artifact.manifest(path.join(dir, 'docs'));
+  snapshot.verify(path.join(dir, 'docs'), manifest);
+  for (const id of snapshot.routes) {
+    assert.ok(fs.existsSync(path.join(dir, 'docs', id + '.html')));
+    const file = producer.interactiveFilename(id);
+    assert.ok(
+      fs.existsSync(path.join(dir, 'review', file)),
+      'actual offline fixture missing ' + file
+    );
+  }
+  const legalModule = path.join(root, 'tools/site/legal.cjs');
+  if (fs.existsSync(legalModule)) {
+    const legal = require(legalModule);
+    assert.deepEqual(inputs.slice(4), Object.values(legal.sources));
+    const credits = fs.readFileSync(path.join(dir, 'docs/credits.html'), 'utf8');
+    for (const name of Object.values(legal.sources)) {
+      const bytes = fs.readFileSync(path.join(root, name));
+      assert.ok(fs.readFileSync(path.join(dir, name)).equals(bytes));
+      assert.ok(credits.includes(require('../tools/site/html.cjs').escapeText(bytes.toString())));
+    }
+  } else {
+    assert.equal(inputs.length, 4, 'legacy producer has no declared legal owner');
+  }
+});
+
+test('actual analytics browser fixture refuses a declared legal owner that is missing or a symlink', (t) => {
+  const fixture = require('../tools/quality/analytics-browser.cjs');
+  const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'analytics-missing-legal-'));
+  t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
+  const sourceRoot = path.join(parent, 'source');
+  fs.mkdirSync(path.join(sourceRoot, 'tools/site'), { recursive: true });
+  fs.writeFileSync(
+    path.join(sourceRoot, 'tools/site/legal.cjs'),
+    "module.exports={sources:{code:'LICENSE-CODE.md'}};\n"
+  );
+  assert.throws(() => fixture.buildFixture(path.join(parent, 'missing'), sourceRoot), /ENOENT/);
+  assert.equal(fs.existsSync(path.join(parent, 'missing/docs')), false);
+  fs.symlinkSync(path.join(root, 'LICENSE-CODE.md'), path.join(sourceRoot, 'LICENSE-CODE.md'));
+  assert.throws(
+    () => fixture.buildFixture(path.join(parent, 'symlink'), sourceRoot),
+    /regular declared legal owner/
+  );
+  assert.equal(fs.existsSync(path.join(parent, 'symlink/docs')), false);
+});

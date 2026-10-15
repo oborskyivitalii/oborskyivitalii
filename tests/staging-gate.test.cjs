@@ -227,6 +227,35 @@ test('Color evidence cannot disappear or describe a different rendition', () => 
     assert.throws(() => gate.aggregate(f));
   }
 });
+test('staging aggregate requires exact MIME for every image, robots, sitemap and opaque asset', () => {
+  const types = {
+    'portrait.jpg': 'image/jpeg',
+    'portrait.webp': 'image/webp',
+    'image.png': 'image/png',
+    'favicon.ico': 'image/x-icon',
+    'robots.txt': 'text/plain',
+    'sitemap.xml': 'application/xml',
+    opaque: 'application/octet-stream',
+  };
+  const f = fixture.aggregateFixture();
+  for (const [file, mime] of Object.entries(types)) {
+    f.manifest.files[file] = { sha256: 'e'.repeat(64), raw: 5, gzip: 3 };
+    f.reports[0].rows.push({
+      file,
+      mime,
+      status: 200,
+      sha256: 'e'.repeat(64),
+      url: f.hostedURL + '/' + file,
+    });
+  }
+  assert.equal(gate.aggregate(f).pass, true);
+  for (const file of Object.keys(types))
+    for (const mime of [undefined, '', 'text/html']) {
+      const copy = structuredClone(f);
+      copy.reports[0].rows.find((row) => row.file === file).mime = mime;
+      assert.throws(() => gate.aggregate(copy), /Content-Type/);
+    }
+});
 test('staging promotion consumers must reject malformed or reclassified gate summaries', () => {
   const f = fixture.aggregateFixture(),
     original = gate.aggregate(f);

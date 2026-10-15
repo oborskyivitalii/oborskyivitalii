@@ -134,6 +134,48 @@ class RepositoryTestSelectionTests(unittest.TestCase):
             self.assertEqual(cli.returncode, 1, cli.stderr)
             self.assertFalse(json.loads(cli.stdout)["pass"])
 
+    def test_one_active_module_cannot_mask_a_selected_empty_module(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            log = root / "executions.txt"
+            (root / "test_active.py").write_text(
+                "import unittest\nfrom pathlib import Path\n"
+                "class Active(unittest.TestCase):\n"
+                "    def test_one(self):\n"
+                f"        with Path({str(log)!r}).open('a') as stream:\n"
+                "            stream.write('one execution\\n')\n"
+            )
+            (root / "test_empty.py").write_text("# accidentally emptied permanent module\n")
+            result = runner.run(root, io.StringIO())
+            self.assertFalse(result["pass"])
+            self.assertEqual(result["modules"], ["test_active.py", "test_empty.py"])
+            self.assertEqual(result["module_counts"], {"test_active.py": 1, "test_empty.py": 0})
+            self.assertEqual((result["tests_expected"], result["tests_run"]), (1, 1))
+            self.assertEqual(log.read_text().splitlines(), ["one execution"])
+            cli = subprocess.run(
+                [sys.executable, str(SOURCE), "--tests", str(root)],
+                capture_output=True,
+                text=True,
+                timeout=20,
+            )
+            self.assertEqual(cli.returncode, 1, cli.stderr)
+            self.assertFalse(json.loads(cli.stdout)["pass"])
+
+    def test_import_failure_still_rejects_the_selected_suite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "test_broken.py").write_text("raise ImportError('controlled import failure')\n")
+            with self.assertRaisesRegex(ImportError, "controlled import failure"):
+                runner.run(root, io.StringIO())
+            cli = subprocess.run(
+                [sys.executable, str(SOURCE), "--tests", str(root)],
+                capture_output=True,
+                text=True,
+                timeout=20,
+            )
+            self.assertEqual(cli.returncode, 1)
+            self.assertIn("controlled import failure", cli.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -85,15 +85,7 @@ function validateHost(report, manifest, hostedURL) {
       row.file,
       'served redirect changed artifact identity'
     );
-    const types = {
-      '.html': /text\/html/i,
-      '.js': /(?:application|text)\/javascript/i,
-      '.css': /text\/css/i,
-      '.json': /application\/json/i,
-      '.svg': /image\/svg\+xml/i,
-    };
-    if (types[path.extname(row.file)])
-      assert.match(row.mime, types[path.extname(row.file)], 'missing hosted MIME evidence');
+    require('./serve.cjs').assertContentType(row.file, row.mime);
   }
 }
 function validateSizes(sizes, manifest) {

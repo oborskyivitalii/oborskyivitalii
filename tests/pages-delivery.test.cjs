@@ -90,6 +90,22 @@ test('Pages HTTP checks exact root, staging, queries, all assets and an actual 4
     result.rows.length,
     Object.keys(record.files).filter((name) => !name.endsWith('.nojekyll')).length
   );
+  for (const extension of ['.jpg', '.webp']) {
+    const file = Object.keys(record.files).find((name) => name.endsWith(extension));
+    assert.ok(file, 'real package image fixture missing: ' + extension);
+    for (const mime of [null, '', 'text/plain'])
+      await assert.rejects(
+        http.check(directory, 'https://author.invalid/', async (url) => {
+          const response = await hosted(directory)(url);
+          if (new URL(url).pathname === '/' + file) {
+            if (mime === null) response.headers.delete('content-type');
+            else response.headers.set('content-type', mime);
+          }
+          return response;
+        }),
+        /Content-Type/
+      );
+  }
   for (const bad of [
     'http://author.invalid/',
     'https://author.invalid/project/',
