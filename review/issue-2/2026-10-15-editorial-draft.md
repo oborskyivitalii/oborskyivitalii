@@ -220,3 +220,52 @@ Prepared-source Basic25/25, style101files/0legacy occurrences, RI28/28 and
 RI/CI20/20 regression cases pass. Projection and coupling freshness, Markdown
 link integrity and whitespace are checked before committing. No new tests,
 public outputs, article renders or browser runs for this excluded prose revision.
+
+## Revision 0.4 — concise authorial essay and presentation placement
+
+Prepared from `4d5bcdb7c0b30bd7ba5926007fc24e3752242905`. The author approved
+the proposed shorter, more direct treatment and requested the complete rewritten
+draft in chat, with the presentation placed near the opening. Existing title,
+English audience, two HOW/WHAT lenses, review/ownership and documentation-trust
+arguments remain. Six chapters replace eleven; editorial visual notes remain
+explicitly separate from reader prose. Presentation is a link block after the
+opening, using the existing pinned v35 review PDF plus the Ukrainian recording.
+No iframe, reader implementation or accepted deck edition is implied.
+
+Source intake: the existing v35 README at UA commit
+`22639d311d5fb46a23f3d5cdd819800dbe1169d9` and Anthropic's13October Scion account
+were reread. The former retains its existing version-specific NBER evidence;
+the NBER landing page returned403 today. Do not claim a newly audited paper or
+promote exact figures beyond that evidence. Scion remains vendor-reported,
+with checkout performance distinguished from delivery/value and retained human
+design/intent review. No new research source, upstream doctrine change or
+independent review is introduced. The author's explicit rewrite request supplies
+the substantive editorial decision. AC01–AC06 remain open; AC07/AC08 unchanged.
+
+### Revision0.4 self-review and verification
+
+Root self-review confirms the six-chapter narrative retains both independent
+HOW/WHAT dimensions, a balanced Scion example, knowledge transfer alongside
+inspection, explanation fidelity versus requirement correctness, user adoption
+costs and counterexamples, and runtime authority/evidence/fallback/intervention.
+Responsibility is not described as automatically transferred to vendors; no
+universal legal claim is made. Synthetic quantities are labelled. Formal
+responsibility can remain without understanding; manual inspection of every
+line is not prescribed as the only ownership mechanism. The stronger voice
+does not promote hypotheses into measured findings. No independent review claimed.
+
+Reader text before sources is3,070whitespace-delimited words, including visual
+notes and link labels/URLs as stored; this is an approximate editorial measure.
+Markdown AST validation found six numbered chapters, three proposed visuals,
+42HTTPS links and zero unresolved reference links. The opening PDF URL points
+to the unchanged existing deck at the baseline commit; no new slide export or
+visual acceptance was performed. Final card/thumbnail and diagram rendering
+remain future layout work, with accepted deck selection still required.
+
+Prepared-source Basic25/25 and generated-output/syntax/geometry/budget checks
+pass. RI/CI coupling verifies15checks across13layers with unchanged digest
+`2568206d5188008e8f3e2d1babf00f3d9fb0904ff1ac0de30b886d47ee290048`.
+Whitespace and RI projection freshness are reconciled after this record.
+No new tests or runtime/browser/PDF campaign is warranted for excluded prose.
+Original whole AC01–AC06 remain pending author/editorial, source/rights/deck,
+rendered-edition and publication gates; recording AC07/AC08 remain unchanged.

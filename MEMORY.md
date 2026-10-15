@@ -30,10 +30,11 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   On15October the author confirmed English/usual audience and supplied the real
   PMDay reflection/writing-printing/cognitive-delegation→HOW/WHAT arc. First real
   editorial draft: `drafts/pmday-article-draft.en.md`; author review is pending.
-  Revision0.3 retains the selected title, AI Changes Both Sides of Software
-  Engineering. HOW now includes review as knowledge/ownership formation and
-  generated documentation as a representation requiring verification. Site draft
-  uses contextual hyperlinks; platform adaptations and author acceptance pending.
+  Revision0.4 retains AI Changes Both Sides of Software Engineering, rewritten
+  as six chapters with three visual proposals and about3,100words before sources.
+  Opening links the pinned v35 review PDF and Ukrainian recording. HOW retains
+  review/ownership and documentation verification; WHAT retains runtime control.
+  Contextual hyperlinks remain; platform adaptations and author acceptance pending.
   Present selected manuscript/blueprint/exports remain technical fixtures.
   #2 AC01-AC06/human/publication gates stay open; recording AC07/AC08 preserved.
   Commands/trust: `guides/ARTICLE-WORKFLOW.md`, `guides/SITE-CONTENT-RELEASE.md`.
