@@ -2,6 +2,8 @@
 
 Execution: PR #79; article owner #2; publisher owner #5.
 
+> **Pending editorial successor:** [draft revision 0.5](../../../drafts/pmday-article-draft.en.md) and its five-slide assembly brief are recorded below. The PDF/kit identities on this page still describe the unchanged rendered r2, not that new draft.
+
 - `article.pdf`: 12-page full English article, readability revision `r2`, with
   four displayed figures and one compact presentation/recording link paragraph.
 - `publication-kit.zip`: verified HTML/Markdown/TXT/copy-ready LinkedIn and Medium
@@ -80,3 +82,75 @@ They cover 1440px and 390px with and without JavaScript, one same-origin PDF lin
 with exact original bytes, one recording link, no embedded viewer or technical
 bibliography, no horizontal overflow and no page errors. This is a local
 review-browser diagnostic of the prepared source, not hosted CI acceptance.
+
+## Editorial revision 0.5 — screenshot assembly handoff
+
+**15 October 2026; author-requested next draft, not a regenerated artifact.**
+Owning issue: [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
+Execution remains [PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79),
+primary publisher owner #5. Reviewer: drafting assistant, self-review only;
+no new independent, human or publication acceptance is claimed.
+Inspected head: `0a0acbf56941e3c04a24ff1362c9b47b071b5b58`,
+tree `1e33741c9052901c3f185648cb1658c26e6aeb7b`; main `9b82f382`.
+
+### Intent and decisions
+
+The author explicitly requested entering the sharper chat proposal into the
+existing PR draft and using more actual presentation screenshots, specifically
+the SDLC bottleneck slide, with instructions for Astra/Sol. The updated
+[draft revision 0.5](../../../drafts/pmday-article-draft.en.md) is the next assembly
+input. It supersedes the older draft 0.4 for that purpose. The canonical manuscript,
+PDF, kit, cover files and the frozen technical fixture remain unchanged in this
+edit; the artifact identities and earlier reviews above still describe r2 only.
+The current preview therefore does not yet display revision 0.5.
+
+### Findings and dispositions
+
+| ID | Finding / AC | Disposition |
+| --- | --- | --- |
+| F01 | Earlier shortening weakened the evidence and authorial argument; #2 AC01/AC02 | Restored the agreed chat prose, quantitative evidence and qualifications in the excluded draft; approximately 2,544 reader words, six chapters. |
+| F02 | Generic diagrams underused the selected deck; #2 AC01/AC03 | Five numbered placements select full v35 slides 3, 5, 10, 12 and 13, with source pin, page indices, asset names, alt text, captions and no-crop/interpretation guards in the draft. |
+| F03 | Draft and existing rendered r2 could be confused; #2 AC04/AC05 | Explicit reader/assembly boundaries and an ordered same-PR handoff; no publication or regenerated-image claim. |
+| F04 | New draft/review bytes invalidate RI freshness; repository protocol | Full-source runner and RI regeneration remain pending. Do not carry forward earlier green checks as checks of this edit. |
+
+### Materials and actual checks
+
+Read the current draft, candidate/artifact route, owning issue, repository
+instructions/map and exact deck-review identity. Locally extracted the PDF from
+historical managed public-review artifact `11978557714` (run `38746661454`), then
+matched its 663,363 bytes and SHA-256
+`b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782`
+to the current pinned deck-review record. Rendered and visually inspected all
+five selected pages with PyMuPDF; the source PDF is unchanged. This establishes
+screenshot selection and page identity, not new article-layout acceptance.
+
+Local draft-only checks passed: six numbered reader chapters; five ordered
+placement markers matching five assembly specifications; one opening PDF link;
+no sandbox/local attachment URLs in the draft; preserved NBER figure tuple;
+reader/assembly separation. The prior sharper proposal remains the prose base;
+only figure instructions, emphasis and the unambiguous NBER link label changed.
+The NBER exact-figure audit is inherited from the pinned presentation evidence,
+not a new successful full-PDF retrieval.
+
+No full repository checkout is available in this connector session; source
+archive access failed. `node tools/quality/local.cjs`, mapped repository tests,
+RI build/verify and new hosted/article/PDF checks were not run. Generated RI
+views were not manually edited. Fresh RI and full-source checks are required
+before readiness; no current-head all-green result is asserted.
+
+### Astra / Sol tasks and acceptance
+
+| Task | Owner / check | Status |
+| --- | --- | --- |
+| T01 | Full checkout, live refs, RI build/verify and applicable source checks | Pending; first assembly action |
+| T02 | Draft appendix → five exact PDF-page PNGs, media/provenance/catalog declarations | Pending; no new PNGs committed by this edit |
+| T03 | Reader-only prose → canonical manuscript and blueprint; new semantic edition, historical r2 preserved | Pending |
+| T04 | Publisher HTML/PDF/platform kit, five-image order, links, source/manifest and desktop/mobile/PDF visual comparison | Pending |
+| T05 | Independent/editorial/rights/device review and actual #2 AC01–AC06 decisions | Open; author requested draft integration, not publication |
+
+The complete per-figure and ordered implementation instructions live in the draft
+itself, not just this chat. Existing MEMORY already routes the next session to
+this candidate README; continue from this addendum and the draft rather than
+reassembling the obsolete prose. Recording AC07/AC08 and #5 technical evidence
+retain their original separate scope. No merge, stable staging, production or
+external posting is performed or authorised by this handoff.
