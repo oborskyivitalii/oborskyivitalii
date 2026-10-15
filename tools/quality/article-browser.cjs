@@ -341,6 +341,15 @@ async function presentationJourney(page) {
   return frame.getAttribute('src');
 }
 
+async function articleAnchorCount(page, fragment) {
+  return page
+    .locator('[id]')
+    .evaluateAll(
+      (elements, id) => elements.filter((element) => element.id === id).length,
+      decodeURIComponent(fragment.slice(1))
+    );
+}
+
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
@@ -432,7 +441,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await page.waitForFunction((hash) => location.hash === hash, fragment, {
       timeout,
     });
-    assert.equal(await page.locator(fragment).count(), 1, 'TOC target exists');
+    assert.equal(await articleAnchorCount(page, fragment), 1, 'TOC target exists');
     await page.reload();
     await settled(page, 'article:' + key, timeout);
     assert.equal(new URL(page.url()).hash, fragment, 'deep refresh retained anchor');
@@ -745,6 +754,7 @@ module.exports = {
   inspectHead,
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
+  articleAnchorCount,
   articleJourney,
   validateArticleJourney,
 };

@@ -80,6 +80,21 @@ guards remain. Root independently reviewed that comparison and boundary;
 content-baseline/profile-selection checks pass30/30, including both previously
 failing scenarios with all real artwork/provenance present. Reflexivity, new/
 changed/deleted unsupported rows and unsupported changed source are exercised.
+The `d501d6ce` source CI subsequently passed754/754 (62modules,170920ms under
+the original180000ms limit); navigation and all15 automated issue criteria
+passed. Its hosted four room cases passed, but article smoke correctly failed
+an observer bug: a valid numeric-leading HTML heading ID was used as a raw CSS
+selector. The observer now compares decoded literal IDs over a static `[id]`
+selection and retains the exact count1 assertion. Missing/duplicate and numeric,
+punctuation and Unicode targets have negative/positive regressions. Runtime,
+article, PDF and public layout bytes are unchanged by this observer correction.
+The full real-article journey passes all5original cases before the next hosted
+run: normal1440/390, Off390, no-Canvas390 and no-JS390. Both normal cases include
+numeric TOC/deep refresh/history and PDF keyboard/close/navigation cleanup.
+The review Chromium153.0.8010.0 observation is retained in the candidate bundle;
+it is local diagnostic evidence, not a managed hosted CI pass.
+The native15-page PDF viewer was also visibly painted and closed in the actual
+hosted Chrome preview; physical Safari/iPad remains a separate device gate.
 Final current-source CI/preview results belong in the live owners.
 
 ## Style and acceptance mapping

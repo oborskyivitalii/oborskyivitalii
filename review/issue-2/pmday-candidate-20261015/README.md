@@ -9,6 +9,8 @@ Execution: PR #79; article owner #2; publisher owner #5.
 - `social-covers.zip`: original landscape and square upload masters, provenance
   and a verified byte/hash manifest. These larger upload images are separate
   from the efficient site/platform-rendition images in the publication kit.
+- `article-journey-observations.json`: full five-case real-article local browser
+  diagnostic after the literal heading-ID observer correction.
 - `viewer-observations.json`: local Chromium 153.0.8010.0 review observations.
 
 ## Artifact identity and independent review

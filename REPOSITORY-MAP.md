@@ -637,6 +637,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-2/pmday-candidate-20261015/README.md](review/issue-2/pmday-candidate-20261015/README.md) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-2/pmday-candidate-20261015/article-journey-observations.json](review/issue-2/pmday-candidate-20261015/article-journey-observations.json) | Local review Chromium full real-article five-case journey evidence; not hosted CI admission. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015/article.pdf](review/issue-2/pmday-candidate-20261015/article.pdf) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015/publication-kit.zip](review/issue-2/pmday-candidate-20261015/publication-kit.zip) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015/social-covers.zip](review/issue-2/pmday-candidate-20261015/social-covers.zip) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |

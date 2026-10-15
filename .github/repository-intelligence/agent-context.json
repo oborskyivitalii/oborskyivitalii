@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e60b981a3bd86d34e5304fd2342c320963405580b7c7c991de0122276214fb4d",
+    "digest": "1386f1a99c9c0257b560e625fa973b44070bf8a80bf72750bd5009057e394d59",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "fcf97f72ac55ad625feb8788a7510cabef2270c897ca62ca1948038537e6fb29"
+        "sha256": "7eecc3763333d1c43b1a627d26b61fa4c8bc23d8eac93139c1dc1c2dd4937df9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ac9529b58c2d651f2353eae61823332b5e4208fb95a265347b7bda16685a4d88"
+        "sha256": "179fd260ad92eacda2850b4e793c8455f90f05a65fd2e5e81976e6c8b7a28c44"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -655,7 +655,12 @@
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
-        "sha256": "65f95307d17a8c1d2594b30fd68cfa18bb77ce4dbc2ed373f4778dc3abf78c98"
+        "sha256": "93460dd1a4aa19f4e0c1919582714455f552c8e59a5e82b5f0d37851b484478a"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
+        "identity_mode": "content",
+        "sha256": "6f000529d9d8db97246cf1bba159e84f9521f4b500996241bb3c3d7106ba4299"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/article.pdf",
@@ -975,7 +980,7 @@
       {
         "path": "review/issue-5/2026-10-15-presentation-review.md",
         "identity_mode": "content",
-        "sha256": "293604b8b4bf069a6ff75892e9c7cdef289e7199f6074bb16d9bf06442420bd2"
+        "sha256": "533984d0b7e0d7d63c4fb6552a90e13c1b38b1d6161e2d32d1663782ab8cc71c"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5685,7 +5690,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "d02d1632ebd29250a2cad976556aa7ffb6e2231278bf9bf9fd21e7d2bc1b29ab"
+        "sha256": "8e2b19ecddd3815b63001590250b6ea6386d2202e52640df4d94eeb0c8270525"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -6395,7 +6400,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "5277bdb3efb5cf3ff2d01b91a806aeab70a8b2941ca32e382dc674efcf5061a7"
+        "sha256": "34a184d465300e3febf12bc37180258b922e4942f2e2b42f05ac4ee8bef8c667"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -8695,6 +8700,17 @@
         "AGENTS.md"
       ],
       "title": "PMDay article candidate — 15 October 2026"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
+      "kind": "file",
+      "purpose": "Local review Chromium full real-article five-case journey evidence; not hosted CI admission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-journey-observations.json"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/article.pdf",

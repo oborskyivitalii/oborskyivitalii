@@ -5,6 +5,7 @@ const {
   validateArticleJourney,
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
+  articleAnchorCount,
 } = require('../tools/quality/article-browser.cjs');
 const stage = require('../tools/quality/staging-regression.cjs');
 const fixture = require('./fixtures/staging-evidence.cjs');
@@ -84,6 +85,33 @@ function observed() {
     ],
   };
 }
+
+test('article anchor lookup accepts numeric HTML IDs and literal CSS punctuation', async () => {
+  const numeric = '1-when-ideas-outlive-their-authors';
+  const punctuated = '2-section:"quoted"[detail]';
+  const unicode = '3-розділ';
+  const elements = [{ id: numeric }, { id: punctuated }, { id: unicode }];
+  const page = {
+    locator(selector) {
+      assert.equal(selector, '[id]', 'HTML fragment text never becomes a CSS selector');
+      return {
+        async evaluateAll(inspect, id) {
+          return inspect(elements, id);
+        },
+      };
+    },
+  };
+  assert.equal(await articleAnchorCount(page, '#' + numeric), 1);
+  assert.equal(await articleAnchorCount(page, '#' + encodeURIComponent(punctuated)), 1);
+  assert.equal(await articleAnchorCount(page, '#' + encodeURIComponent(unicode)), 1);
+  assert.equal(await articleAnchorCount(page, '#missing'), 0);
+  elements.push({ id: numeric });
+  assert.equal(
+    await articleAnchorCount(page, '#' + numeric),
+    2,
+    'duplicate targets remain visible'
+  );
+});
 
 test('article evidence is conditional and complete without changing the five-room stage matrix', () => {
   assert.deepEqual(validateArticleJourney(undefined, {}), {

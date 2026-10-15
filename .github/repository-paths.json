@@ -979,6 +979,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-2/pmday-candidate-20261015/article-journey-observations.json": {
+      "kind": "file",
+      "purpose": "Local review Chromium full real-article five-case journey evidence; not hosted CI admission.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-2/pmday-candidate-20261015/article.pdf": {
       "kind": "file",
       "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
