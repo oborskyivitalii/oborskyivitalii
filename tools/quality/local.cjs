@@ -7,7 +7,8 @@ const fs = require('node:fs'),
   assert = require('node:assert/strict'),
   vm = require('node:vm');
 const root = path.resolve(__dirname, '../..'),
-  artifact = require('./artifact.cjs');
+  artifact = require('./artifact.cjs'),
+  sourceTests = require('./source-tests.cjs');
 function run(file, args = []) {
   const result = cp.spawnSync(process.execPath, [file, ...args], { cwd: root, encoding: 'utf8' });
   if (result.status !== 0) throw Error(result.stderr || result.stdout || String(result.error));
@@ -15,7 +16,7 @@ function run(file, args = []) {
 }
 function tests(files) {
   const tap = run('--test', ['--test-reporter=tap', ...files]),
-    counts = require('./source-tests.cjs').accounting(tap, { modules: files, root });
+    counts = sourceTests.accounting(tap, { modules: files, root });
   const result = {
     files,
     total: counts.total,
@@ -271,15 +272,7 @@ function prepublication(level, directory, options = {}) {
     SITE_VALIDATION_LEVEL: level,
   };
   const execute =
-    options.execute ||
-    ((command, args) =>
-      cp.spawnSync(command, args, {
-        cwd: root,
-        env: environment,
-        encoding: 'utf8',
-        timeout: 180000,
-        maxBuffer: 16 * 1024 * 1024,
-      }));
+    options.execute || ((command, args, execution) => cp.spawnSync(command, args, execution));
   const checks = [];
   function check(id, command, args, dependencies = []) {
     const blocked = dependencies.filter(
@@ -290,9 +283,21 @@ function prepublication(level, directory, options = {}) {
       return;
     }
     const started = Date.now();
+    // The reporting wrapper must outlive its own bounded test child so timeout
+    // cleanup and original TAP/stderr can finish before the outer deadline.
+    const timeoutMs =
+      id === 'source-tests'
+        ? sourceTests.executionLimits.timeoutMs + sourceTests.executionLimits.reportGraceMs
+        : 180000;
     let result;
     try {
-      result = execute(command, args);
+      result = execute(command, args, {
+        cwd: root,
+        env: environment,
+        encoding: 'utf8',
+        timeout: timeoutMs,
+        maxBuffer: 16 * 1024 * 1024,
+      });
     } catch (error) {
       result = { status: null, error, stdout: '', stderr: error.message };
     }
@@ -307,6 +312,10 @@ function prepublication(level, directory, options = {}) {
       status: result.status === 0 && !result.error ? 'passed' : 'failed',
       exitCode: result.status ?? null,
       signal: result.signal || null,
+      error: result.error
+        ? { name: result.error.name, message: result.error.message, code: result.error.code }
+        : null,
+      timeoutMs,
       elapsedMs: Date.now() - started,
       stdout,
       stderr,

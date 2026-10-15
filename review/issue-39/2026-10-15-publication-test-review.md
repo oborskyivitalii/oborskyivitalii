@@ -439,3 +439,30 @@ allowance or scan target. Focused47 source cases and an actual pinned two-file
 Semgrep scan pass with zero findings/errors. The refreshed maintained RI/CI map
 is formatted after regeneration. These corrections require a fresh final clean
 preflight; they do not relabel the failed8786df6 report.
+
+### First native prepublication: nested source deadline repair
+
+Ordinary PR40 stage [38739388574](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38739388574)
+tested source `1f791427` through merged controller `9b82f38` and failed before any
+candidate upload. Its retained artifact 11976016447 records 25/26 passing guard
+families. The outer source command reached 180103ms and SIGTERM/ETIMEDOUT; its
+stdout is empty and no inner source-runner report/TAP exists. All security,
+advisory, rights, package and immutable-source checks passed. Browser/native
+performance, stable promotion and Pages did not execute.
+
+Independent review found the reporting wrapper and its own test child both had
+180-second timers. The inner timer starts after selection/source authentication,
+so the outer one can terminate owned cleanup and diagnostics first. This does
+not prove an inner suite timeout. The exact-head Ready source run passed 590
+cases in 117.3 seconds; the earlier complete staging profile passed 573 locally
+in 132.4 seconds. Both original failures and source identities remain preserved.
+
+The repair exports the existing source execution limits from their owner and
+gives only the prepublication source wrapper 30 seconds of bounded startup,
+cleanup and reporting grace. The inner limit remains 180 seconds, other guards
+retain 180 seconds, and outer timeout/error metadata is recorded. A focused
+regression exercises an inner timeout, preserved original TAP/stderr/report,
+continued independent guards and blocking aggregate status for both profiles.
+No test inventory, browser/performance budget, public/runtime byte or human gate
+is changed. CS01/CS04/CS05/CS08/CS10 apply to the existing source/preflight owners;
+current-source checks and another ordinary stage are required before admission.

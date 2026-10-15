@@ -16,8 +16,13 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge
 - Independent replay of the actual rebased artifact through new-main consumers
   accepted the five proxy rules, licensed runtime, Pages composition and both
   frozen-rights extraction paths. This is source/artifact proof, not hosted proof.
-- PR40 still needs actual Ready source/smoke checks and ordinary two-host staging
-  while open. Revalidate live PR/head/runs before acting; local notes are not status.
+- PR40 Ready head `1f791427` passed actual source/navigation/owning and hosted smoke.
+  Ordinary stage 38739388574 then failed before upload: 25/26 source families pass,
+  but equal outer/inner 180-second deadlines killed source reporting first.
+  Artifact 11976016447 retains the failure; browser/performance did not run.
+- The current harness repair keeps the inner 180-second limit and grants only its
+  outer reporting wrapper 30 seconds of startup/cleanup/report grace. Source and
+  native evidence must be refreshed after this change; prior failures stay failed.
 - Ordinary runs 38703875419 and 38708680860 remain failed. Writing equivalent
   readiness 3382.9ms exceeded 3200ms; original budgets and cold/warm setup remain.
 - Live rulesets contain only strict protect-main with source/navigation contexts;
@@ -57,8 +62,9 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge
 ## Next session
 
 1. Revalidate main, PR40 head/Draft state, required checks, owner decisions and runs.
-2. Continue the ordinary open-PR staging route; no repeated unchanged-runtime run
-   or stale preview report supplies fresh admission.
+2. Finish the bounded source-timeout ownership repair, refresh Ready evidence,
+   then continue ordinary open-PR staging. Preserve the failed preflight and all
+   source-runner diagnostics; do not substitute a stale preview for admission.
 3. Supply both stable URLs and exact served identity for maintainer review before
    production/domain/DNS activation. Actual issue/PR observations supersede this note.
 4. After admitted merge, freeze one production candidate and finish actual release

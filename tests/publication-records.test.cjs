@@ -209,6 +209,74 @@ test('prepublication preserves distinct child runner stderr and command-level fa
   assert.equal(fs.readFileSync(wrapper.stderr, 'utf8'), 'distinct CLI error summary');
 });
 
+test('prepublication preserves inner source timeout evidence before its distinct outer deadline', (t) => {
+  const directory = delivery.temporary(t),
+    runner = require('../tools/quality/source-tests.cjs');
+  assert.equal(runner.executionLimits.timeoutMs, 180000);
+  for (const level of ['staging', 'production']) {
+    let runnerReport;
+    let sourceDeadline;
+    const otherDeadlines = [];
+    const result = local.prepublication(level, path.join(directory, 'artifact'), {
+      report: path.join(directory, level, 'preflight.json'),
+      identify: () => ({
+        sourceCommit: process.env.SITE_CANDIDATE_SHA || 'a'.repeat(40),
+        sourceTree: 'b'.repeat(40),
+        sourceDirty: false,
+      }),
+      execute: (_command, args, execution) => {
+        if (args[0] !== 'tools/quality/source-tests.cjs') {
+          otherDeadlines.push(execution.timeout);
+          return { status: 0, stdout: '', stderr: '' };
+        }
+        sourceDeadline = execution.timeout;
+        assert.ok(execution.timeout > runner.executionLimits.timeoutMs);
+        runnerReport = args[args.indexOf('--report') + 1];
+        let failure;
+        try {
+          runner.run(
+            path.resolve(__dirname, '..'),
+            { profile: level, modules: ['tests/analytics.test.cjs'] },
+            {
+              report: runnerReport,
+              execute: () => ({
+                status: null,
+                signal: 'SIGTERM',
+                error: Object.assign(new Error('owned source timeout'), { code: 'ETIMEDOUT' }),
+                stdout: 'original partial child TAP\n',
+                stderr: 'original inner timeout stderr\n',
+              }),
+            }
+          );
+        } catch (error) {
+          failure = error;
+        }
+        assert.ok(failure?.report, 'inner failure must finish writing its report');
+        return { status: 1, stdout: JSON.stringify(failure.report), stderr: failure.message };
+      },
+    });
+    assert.equal(result.pass, false, 'a reported inner timeout remains blocking');
+    assert.deepEqual(
+      result.checks.filter((row) => !row.pass).map((row) => row.id),
+      ['source-tests']
+    );
+    assert.equal(sourceDeadline, 210000);
+    assert.ok(otherDeadlines.length > 0);
+    assert.ok(otherDeadlines.every((timeout) => timeout === 180000));
+    const raw = JSON.parse(fs.readFileSync(runnerReport, 'utf8')),
+      wrapper = result.checks.find((row) => row.id === 'source-tests');
+    assert.equal(raw.pass, false);
+    assert.equal(raw.execution.timeoutMs, 180000);
+    assert.equal(raw.execution.error.code, 'ETIMEDOUT');
+    assert.equal(fs.readFileSync(raw.files.tap, 'utf8'), 'original partial child TAP\n');
+    assert.equal(fs.readFileSync(raw.files.stderr, 'utf8'), 'original inner timeout stderr\n');
+    assert.deepEqual(JSON.parse(fs.readFileSync(wrapper.stdout, 'utf8')), raw);
+    assert.equal(wrapper.timeoutMs, 210000);
+    assert.equal(result.checks.find((row) => row.id === 'security').pass, true);
+    assert.equal(result.checks.find((row) => row.id === 'unchanged-source').pass, true);
+  }
+});
+
 test('preflight edition guard accepts production bytes on either host profile and rejects coverage-edition mismatches', (t) => {
   const directory = delivery.temporary(t);
   const production = delivery.production(directory);

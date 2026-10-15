@@ -97,6 +97,13 @@ registered permanent JavaScript not already checked in the baseline, and
 `python3 tools/run_repository_tests.py`. Lint/security/advisories run in the
 static job. The browser job runs `staging-regression.cjs`:
 
+The source runner owns its fixed 180-second child limit and bounded raw output.
+Prepublication allows that reporting wrapper 30 additional seconds for startup,
+owned child cleanup and report persistence. Other guard commands retain their
+180-second limit. An inner timeout remains a failed check; the extra wrapper
+time preserves its TAP/stderr and report instead of racing them. Both deadlines
+are separate from browser/performance budgets and do not change selected tests.
+
 Its bounded matrix covers Chromium/Firefox all-route journeys, no-Canvas and
 representative navigation/failure/analytics fixtures, conditional Color smoke,
 Research/Writing CPU ×4 windows, four flights and two mobile Lighthouse trials.

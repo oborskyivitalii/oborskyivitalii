@@ -528,7 +528,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "29b5301f04e0d3f285ae69ae3ff4804a5e76e097ffc9bb86b71ac9a9ef63dd74",
+    "digest": "aaa91c5b8433cbe1bdd9fb24f2c130cfaca84f917de26dea14530fd0737ce696",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -852,11 +852,11 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "8645e35652cb334ea53c6826cd3007b7d38cd0f11e4c1e8e3b0725c2bc5f79d0"
+        "sha256": "0e01a6f0f76fcd8c1d62ad77105fd20b03d6b31e5a6d2801c566d5187d092d7e"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "a7ff380673836bc6eac9ea61116eaf55bac9dc0f5f60b4f07c73bfe40887f302"
+        "sha256": "2b67f103a239dca4062949cfe90e36868c0bcb43769c58b56ead749ff72b4247"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
