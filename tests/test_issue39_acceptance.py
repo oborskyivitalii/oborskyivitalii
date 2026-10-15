@@ -75,6 +75,31 @@ class Issue39AcceptanceTests(unittest.TestCase):
         total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
         self.assertIsNotNone(total, result.stdout)
 
+    def test_flight_resource_telemetry_preserves_original_failure(self):
+        result = subprocess.run(
+            ["node", "--test", "--test-reporter=tap", "tests/staging-regression.test.cjs"],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=60,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout)
+        for name in (
+            "post-flight resource collection selects only the two current same-origin fetches without truncating overflow",
+            "flight fetch evidence separates response completion from preparation and rejects invalid unbounded records",
+            "flight driver collects resources only after the original window and preserves the native latency failure",
+        ):
+            self.assertIn("# Subtest: " + name + "\n", result.stdout)
+        for label in ("fail", "cancelled", "skipped", "todo"):
+            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
+        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
+        passed = re.search(r"(?m)^# pass ([1-9][0-9]*)$", result.stdout)
+        self.assertIsNotNone(total, result.stdout)
+        self.assertIsNotNone(passed, result.stdout)
+        self.assertEqual(total.group(1), passed.group(1), result.stdout)
+
     def test_recorded_license_tuples_match_closed_selector(self):
         proof = ROOT / "review/issue-39/2026-10-15-license-tuples.json"
         record = json.loads(proof.read_text())

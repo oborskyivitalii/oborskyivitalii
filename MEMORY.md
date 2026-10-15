@@ -1,92 +1,71 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-15** (local compatibility preparation).
+Dated continuity, not live authority. Last verified: **2026-10-15** (PR80 diagnostic preparation).
 
 ## Snapshot
 
-- Local #39 compatibility dependency starts at main `cc115c4`; [preparation](review/issue-39/2026-10-15-controller-compatibility.md)
-  preserves all public/producer bytes and registers two independently byte-checked
-  licensed plain/staging tuples. Final source/CI, ordinary admission and merge
-  remain pending; PR40 keeps full execution ownership.
-
-- Earlier checkpoint was `fd3dea5b2271123468560e1eb4dc3f0aa056b6b2` after PR78.
-  Its tree equals admitted sourcebe6439b; ordinary run38234626344 passed the
-  bounded gate, Cloudflare stable and Pages mirror, then fresh Staging admission.
-- [#76 / PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77)
-  implements outside Appearance dismissal, continuous prepared-room fades,
-  repeatable downward entry and five distinct shared fractal compositions.
-  The user approved corrected previewbcfcfe8 / run38224107735 on12October
-  and explicitly authorized main plus stable staging. Admission-only follow-up
-  preserves its authored/generated public bytes. PR78 supplied the necessary
-  exact Color registry on protected main without changing that main's site.
-  Runtime PR77 updates from this checkpoint for its own fresh admission;
-  final tested source/tree, both-host runs and merge identity belong in #76.
-- PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
-  owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
-  independent native ZIP/file/contract audit passed. These are separate from
-  ordinary Staging admission. Site/runtime/build bytes were unchanged from main.
-- Its ordinary postmerge identity38167640337/1 failed `missing staging admission`.
-  Main navigation38167640287 passed. The approved bootstrap is not a green
-  postmerge admission result. Earlier bootstrap and stage failures stay failed.
-- #69 / PR71 code is integrated into main. Earlier failed stage38161511583
-  remains failed historical evidence; its remaining physical/lifecycle/full-cost
-  acceptance stays separate from merge and the new #76 preview.
-- Historical recovery114538536517 restored sourcec08741db. PR78 now has the
-  first successful ordinary both-host admission; earlier failures stay failed.
-- Production is disabled. Official project-base Pages configuration works;
-  complete administration, stable accepted revision and production remain distinct.
+- Main baseline is `cc115c4`. [PR80](https://github.com/oborskyivitalii/oborskyivitalii/pull/80)
+  supplies the narrow #39 licensing controller compatibility dependency for
+  [PR40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40). It preserves
+  all607 protected public/producer path/mode/blob records and registers two
+  independently byte-checked licensed plain/staging Color tuples.
+- PR80 source `7141fbbbaf123185b568add42b5a5103c3bc7468`, tree `762d478c`, had
+  passing reported native source/navigation/owning checks. Its ordinary owner
+  stage38703875419 **failed**: cold Home-to-Research equivalent readiness3383ms
+  exceeds3200ms. Functional/Color smoke passed; later flights/Lighthouse were
+  not reached. Stable promotion, Pages and Staging admission remain incomplete.
+- The [same-owner review](review/issue-39/2026-10-15-controller-compatibility.md#post-flight-diagnosis-after-the-failed-ordinary-pr80-stage)
+  records exact native artifact11958206039, raw timing localization and limits.
+  The extra wait is before route preparation. Network versus verification/parsing
+  remains unobserved; no runtime or clock defect is established.
+- A quality-only post-flight ResourceTiming collector is locally prepared for
+  the necessary changed-method diagnosis. It adds no measured work, request,
+  cache warming, timer, poll or allowance. Original3383ms rejection stays failed.
+  Final source checks, independent/security review and new native evidence remain
+  separate; do not reuse7141 checks as acceptance of this changed source.
+- Production remains paused for approved licensing/content review on permanent
+  staging. No merge, bootstrap, domain, DNS or production decision is inferred.
 
 ## Decisions
 
-- Issue76 preview-first phase is visually approved. The12October instruction
-  authorizes ready-source checks, ordinary stable staging and merge of the
-  unchanged admitted tree. Repeated downward re-entry replaces one-shot reading;
-  existing fallbacks, resource limits and production boundary stay.
-
-- At21:20 Europe/Warsaw on11October the maintainer answered **«Ок давай»** to
-  concrete one-time PR75 controller integration before ordinary two-host staging,
-  followed by PR71 rebase, fresh staging and merge after its successful admission.
-  This new scoped decision is recorded in live #72/#69. No standing waiver,
-  protection change, relabelled failure or production/domain/DNS activation follows.
-- Earlier one-time controller decisions are exhausted and separate. Current
-  runtime promotion requires real raw-head source/RI/owning checks, owner `/stage`
-  while open, both publishers, fresh admission and unchanged-tree merge identity.
-- All five routes retain root CSS timing and Block transitions control:700ms
-  overlapping rows in fixed1000ms block phases, camera400/1000/350ms, total3750ms.
-  Credits shares blocks/fractal flight; neutral separators and interactive focus,
-  interrupted-room continuity and reduced/Off fallbacks remain.
-- Delay/final-envelope CSS serialization admits at most0.001ms; duration, first
-  delay, order, overlap and peer/layer equality remain strict. Raw readiness,
-  frozen equivalence and original execution/resource budgets remain unchanged.
-- Closed Color selection binds exact reviewed plain/staging runtime hashes before
-  browser execution. Legacy moving/spatial and fixed reading/native-block guards
-  stay separate; failed checks cannot retry or fall back to another contract.
+- The maintainer selected Apache-2.0 for original engineering and CC BY4.0 for
+  original editorial material, including complete copies/notices on existing
+  Credits anchors. Upstream Subprime/UA repositories retain their own licenses.
+- PR40 remains full licensing/release execution. PR80's narrow policy does not
+  replace PR40's five original ACs or complete production/rights/SEO mapping.
+- Main's public/producer bytes and ordinary controller admission remain required.
+  Earlier one-time controller exceptions are exhausted. A failed run cannot be
+  relabeled success, bypassed, repeated unchanged or repaired by raising budgets.
+- All routes retain700ms overlapping rows in fixed1000ms block phases and
+  camera400/1000/350ms, total3750ms. Raw readiness and frozen legacy equivalence,
+  callback, preparation, paint-gap and resource bounds stay unchanged.
+- Post-flight schema1 records at most2 current same-origin revision/snapshot
+  fetches on the existing performance clock. Response completion-to-preparation
+  can include digest, parsing, extraction and scheduling; raw zero transfer/status
+  does not establish wire latency. Invalid/overflowing evidence fails visibly.
 - Permanent Cloudflare staging is
-  `https://staging.oborskyi-author-ci-staging.pages.dev`; Pages staging uses the
-  configured project prefix. Additional required Staging admission administration
-  remains pending. Existing strict contexts and production-root boundary remain.
-- Duplicate #70 stays consolidated in #69 with all nine original criteria.
-  PR71 is the sole runtime execution route; PR53/68 work was not imported.
+  `https://staging.oborskyi-author-ci-staging.pages.dev`; Pages uses its configured
+  project prefix. Both-host publication and fresh admission remain distinct.
 
 ## Open work
 
-| Owner | Next acceptance route |
-| --- | --- |
-| #76 / PR77 | Approved runtime promotion through fresh source/hosted checks and ordinary two-host staging; verify final state, source/tree and closure in the live issue. |
-| #69 / merged PR71 | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge. |
-| #72 | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
-| #49 / Draft PR53 | Fragment-flight visual/source acceptance at its current head. |
-| #41 / Draft PR68 | Separate editorial and author-first intent; no task merge is inferred. |
-| #39 / Draft PR40 | Canonical Pages/domain preparation and original release decisions. |
-| #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates. |
-| #7 / #5 / #6 / #2 / #11 | Rights, editions, adapters and post-launch guides. |
+| Owner                          | Next acceptance route                                                                                                                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| #39 / PR80                     | Freeze quality-only telemetry source, mapped checks and reviews; obtain exact-source changed-method native evidence; resolve actual failure and earn ordinary both-host admission before applicable merge decision. |
+| #39 / PR40                     | Preserve full execution policy, licensing bytes and SEO; integrate admitted compatibility dependency, regenerate exact source/artifact and give permanent staging links for owner review.                           |
+| #72                            | Preserve established revision/update/recovery evidence; complete remaining administration, archive and release/lifecycle gates.                                                                                     |
+| Closed #69 / #76               | Keep applicable physical-device, native-find/bfcache and full-cost duties under release umbrella #13; no automatic reopening or repeated merge.                                                                     |
+| #49 / Draft PR53               | Separate optional fragment-flight work; no launch dependency inferred.                                                                                                                                              |
+| #41 / Draft PR68               | Preserve current content/SEO; separate draft editorial work is not automatically imported.                                                                                                                          |
+| #1 / #7 / #8 / #13 / #36 / #45 | Original rights, live production, indexing/analytics, visual/device/full-cost/recovery gates stay open until whole criteria pass.                                                                                   |
 
 ## Next session
 
-1. Revalidate current main, issue76/PR77 and their exact admission/merge evidence.
-2. Treat the live owner as final authority for completion after this checkpoint.
-3. Preserve the approved public edition and current source/tree/package binding.
-4. Keep older device/lifecycle/cost/rights/release gates and failed attempts honest.
+1. Revalidate live main, PR80/PR40 exact heads, issue scope and active checks.
+2. Preserve the failed38703875419 artifact and unchanged public/producer inventory.
+3. Finish exact-source telemetry evidence before attributing the pre-route delay.
+4. Keep source tests, hosted diagnostics, admission, merge and production separate.
+5. Resume licensed-content permanent staging review before any production action.
 
 ## Maintenance
 

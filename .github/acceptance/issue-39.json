@@ -21,8 +21,8 @@
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "Exact main public, authored-site, producer, hosting and workflow bytes remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission.",
-      "checks": ["PRESERVATION", "SELECTOR", "PROOF"],
+      "automated_scope": "Exact main public, authored-site, producer, hosting and workflow bytes remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission. The quality-only flight collector reads bounded same-origin ResourceTiming after the original measurement window, retains raw response and preparation intervals, rejects malformed/missing/overflow evidence and preserves the original cold/warm setup and latency failure; this source check cannot turn an earlier failed staging run into admission.",
+      "checks": ["PRESERVATION", "SELECTOR", "PROOF", "FLIGHT-TELEMETRY"],
       "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
     },
     {
@@ -52,6 +52,10 @@
     "PROOF": {
       "kind": "unittest",
       "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_recorded_license_tuples_match_closed_selector"
+    },
+    "FLIGHT-TELEMETRY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_flight_resource_telemetry_preserves_original_failure"
     },
     "STYLE": {
       "kind": "unittest",
@@ -94,7 +98,7 @@
     },
     "STAGING": {
       "kind": "human",
-      "description": "Ready exact head must obtain actual source/RI/owning checks, owner /stage, bounded unchanged-budget regression, both stable publishers and fresh Staging admission using the unchanged main public family. Preview evidence alone does not admit merge."
+      "description": "Ready exact head must obtain actual source/RI/owning checks, owner /stage, bounded unchanged-budget regression, both stable publishers and fresh Staging admission using the unchanged main public family. Preview evidence alone does not admit merge. Post-window ResourceTiming is diagnostic evidence; original latency/performance and cold-cache requirements remain mandatory, and prior failed runs remain failed."
     },
     "MERGE": {
       "kind": "merge",

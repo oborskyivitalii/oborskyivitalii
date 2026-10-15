@@ -1651,7 +1651,7 @@
     {
       "path": "tests/test_issue39_acceptance.py",
       "language": "python",
-      "purpose": "Issue39 controller dependency preserves exact main public/producer/export bytes, binds independently checked licensing tuples and reuses strict Color selector negatives; actual both-host admission remains external.",
+      "purpose": "Issue39 controller dependency preserves exact main public/producer/export bytes, binds independently checked licensing tuples, reuses strict selector negatives and verifies bounded post-flight ResourceTiming while retaining original readiness failures; actual both-host admission remains external.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
@@ -1662,7 +1662,9 @@
         ".github/acceptance/issue-39.json",
         "tests/color-motion-contract.test.cjs",
         "tools/quality/color-motion-contract.cjs",
-        "review/issue-39/2026-10-15-license-tuples.json"
+        "review/issue-39/2026-10-15-license-tuples.json",
+        "tools/quality/staging-regression.cjs",
+        "tests/staging-regression.test.cjs"
       ]
     }
   ]

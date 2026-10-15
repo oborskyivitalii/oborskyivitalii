@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2a60b3f05103b7caddb4fd37eb1d7b05e6c2207b21a41f0a2e878fd69b7dfaa2",
+    "digest": "21439e1993f068f5af4d6a831f0d594c8e13deaf53a338dc7549e69c82df2b7a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "04eb080ca0441cd42045c62716c85b7a09f15c4711905d1f9ec93541bd17be0c"
+        "sha256": "1e8ade865e311eaf01d327c994d6754011db82303ec431801bda31b757c7dd94"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "388b237cce9f8ce69b69f616901e45cb8934cd472164ab54b40ebdd12e64c943"
+        "sha256": "d01d788c45525b8e5ee448a31feedbe94bff7426d01bf81bc8db8f307734e160"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "90759a662453b37b4e25e0bdcb0058c6bf99cb672b7a6befebc9c37b84ce9445"
+        "sha256": "8d3a52237d5b491770d3b1230f2ab0bbcb79e6ef8581d0ca1ce6963ce044daa9"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-39/2026-10-15-controller-compatibility.md",
         "identity_mode": "content",
-        "sha256": "82b183c95681ba9f4c1af17d2ae70c23f75b2dc62811d475c880d98c8b8a6b7e"
+        "sha256": "ea8a29e4697f32d89cd145cb04fdd4a54615fe902c8e002b56098e7d72fb2210"
       },
       {
         "path": "review/issue-39/2026-10-15-license-tuples.json",
@@ -5520,7 +5520,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "4cb3c4387db2a6a6fe499e408356d0949c170ed50e68df9c8181861aa4c1e838"
+        "sha256": "71b71cdf9c5109420f217553e61935f021053c8556bb03c92cd0090ce1779be8"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -5570,7 +5570,7 @@
       {
         "path": "tests/test_issue39_acceptance.py",
         "identity_mode": "content",
-        "sha256": "3328ed8cc89f4c0725c1c7385302d227a23f33aa4aee7e8315ef5d1c758b1350"
+        "sha256": "964176728df87564bbfe21888e7c9abfb9210aa6a60329c564e35d88a432378e"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -6080,7 +6080,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "97414d60b5c4baddf78086d946d221d86b389205f6e39e76c72f9b08890435d6"
+        "sha256": "8d0db52a97a62ab2dbb49c6858e14ba2b2cb88b0037bdabca53c829d10338182"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -6095,7 +6095,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "2df4c886d1814f61020a3901b478bd11fac05d9bbf41a867f09c39829d86c3fa"
+        "sha256": "74fbde65c40d1489132f2f160f1282dce47db038d13da9bbaad34b834ac2f328"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
