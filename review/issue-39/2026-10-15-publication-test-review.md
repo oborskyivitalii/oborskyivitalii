@@ -153,7 +153,7 @@ production origin, staging noindex/badges and disabled staging analytics.
 | G05 / P1 | Source/static/package failures can occur after deployable artifact upload: `site-color-review` upload precedes package checks; reusable source step continues before upload/static; production candidate uploads before package gate. | Existing `local.cjs --prepublication` orchestration and named workflow steps; source/static/frozen-artifact/package validation before first deployable upload. Bind real native artifact IDs immediately after upload; never invent them locally. | Controller proposed patch32focused pass and actual ready/reusable CI --report plus always-upload are wired in that patch. G11 failure-condition repair is frozen in d6e1764; final orchestration/integration checks remain pending; Draft feedback stays narrow. |
 | G06 / P1 | Paused Root feature release `prepareArchive` can remotely upload draft assets before local combined Pages compose detects a failure. | Existing release/actions/controller: complete local archive/package/Pages preparation before remote publish phase; retain live leases immediately before mutation. | Root-only follow-up implements local compose before remote draft upload; actual child-process five-fault zero-provider probes and97/97 seven-suite diagnostic pass. Root source independently closed at bd779000, with final CLI identity-fixture follow-up7416e1e also closed. Do not import Root production features into PR80. |
 | G07 / P1 | Some full browser validators did not independently reconstruct complete provenance/counts; bounded performance collection aborted later original cases on a verified earlier budget failure. | Existing full validator, Color and staging regression owners: strict provenance/row identities/metric reconstruction; continue remaining original cases only after validated budget failure with renderer/probe validity, preserving final failure. | Browser branch a05f9c above; renderer and rawPreparation repairs independently cleared at a05f9c with46focused. Integrated source/hosted checks pending. |
-| G08 / P1 | Image MIME maps were permissive, Pages transport lacked equivalent MIME enforcement, local fixture missed PNG/ICO/XML/TXT; actual staging httpSmoke retained an independent JPEG-suffix rule and review-flow.quickHttp accepted same-byte text/plain. | Existing `serve.cjs` MIME owner shared across hosted/stage/full/Pages/loopback and actual staging httpSmoke/review-flow.quickHttp; real same-byte wrong/missing header negatives. | Closed in clean9a27d455 with34 actual staging/review-flow cases, including wrong/missing MIME and JS-alias positive. Issue39 staging-guard-mime-scope-20261015 permits only two additional named publisher consumers; policy explicitly names tools/pages/http.cjs as the tenth amended owner and preserves597 other original blobs. Final combined scan/preflight/native proof pending; no provider MIME claim. |
+| G08 / P1 | Image MIME maps were permissive, Pages transport lacked equivalent MIME enforcement, local fixture missed PNG/ICO/XML/TXT; actual staging httpSmoke retained an independent JPEG-suffix rule and review-flow.quickHttp accepted same-byte text/plain. | Existing `serve.cjs` MIME owner shared across hosted/stage/full/Pages/loopback and actual staging httpSmoke/review-flow.quickHttp; real same-byte wrong/missing header negatives. | Closed in clean9a27d455 with34 actual staging/review-flow cases, including wrong/missing MIME and JS-alias positive. Issue39 staging-guard-mime-scope-20261015 permits only two additional named publisher consumers; policy preserves598 other original blobs. Final combined scan/preflight/native proof pending; no provider MIME claim. |
 | G09 / P1 | `pip-audit` partial/skipped graph coverage could be nonempty yet admitted; scanner engines stopped after an earlier independent failure. | Existing scanner/advisory owners: exact actual installed/locked package coverage, fail missing/skipped; collect independent engine outcomes while aggregate remains red. Preserve current exceptions. | Static repairs frozen in9a27d455 atop195ca3b. Final combined pinned scan/advisory/preflight proof pending. |
 | G10 / P1 | At clean13e632c, rawPreparation.start numeric strings and missing/invalid/Infinity/negative/out-of-window rawPreparation.time pass stage flight validation. Type coercion/missing timestamp checks could classify malformed evidence as budget-only. | Existing flight validator: finite numeric start/time and measured-window containment before typed budget classification; include slow-plus-invalid negatives. | Repaired at a05f9c:21 field mutations plus slow-invalid abort negatives;46focused passes. Independent latest-tip review closed; integrated proof pending. |
 | G11 / P1 | Proposed workflow preflight steps retain default success() semantics: an earlier artifact/rendition/edition/reused-byte failure skips preflight, so local dependency-blocked/independent-failure tests do not cover actual CI behavior. | Existing workflow steps: bounded failure-status override with authentication/cancellation boundaries, then retain failed/dependency-blocked reports; regress actual invocation condition as well as upload order. | Frozen d6e1764 uses !cancelled() plus successful authenticated source_identity, with staging/evidence mode guard. Builder/preflight failures remain red; upload skips. Workflow-condition negatives cover source-auth binding/status override/order; independent orchestration/combined proof pending. |
@@ -374,3 +374,68 @@ from the known native performance failures and from the paused licensing feature
 Repairs reuse the existing runners, workflows, archive and receipt owners. All
 original case families and budgets remain; only final exact integrated checks
 and native evidence can advance the next publication step.
+
+## Reconnect continuation: final independent guard cases
+
+A separate read-only review of the consolidated guard checkpoint found two
+additional reproducible acceptance gaps. These belong to this same PR80/#39
+review and preserve all original public bytes, scenario families and budgets.
+
+| Finding | Reproduction and correction | Evidence and limits |
+| --- | --- | --- |
+| G13 / P2: suite-only Node coverage | A selected file containing only an empty describe suite passed alongside a real test from another file. The existing TAP accounting now rejects empty suites, including nested empty suites, while retaining valid nested leaf tests and the same single process, limits and report shape. | Frozen c8a2d17: 19 focused cases, Basic 24, pinned lint/format/style; separate independent reviewer replayed LF/CRLF, nested/sibling and diagnostic-text cases. |
+| G14 / P1: full CSS-blocked route evidence | The full aggregate accepted removal or empty/false criticalMediaJourney in all six existing CSS-blocked Home rows. The existing staging validator is now shared through the full validator owner and required for those exact producer rows, including route/Back, document/head CSS and bounded portrait evidence. | Frozen cf575d0: 41 focused cases, Basic 24, pinned lint/format/style; independent full six-row deletion and malformed replacements now reject. No case, width, engine or threshold changed. |
+
+The integrated guard source retains 45 permanent Node modules: staging selects
+42 additional modules and delegates exactly theme/archive/flight to Basic;
+production selects all 45 without a second Basic test execution. Seven enduring
+Python modules remain combined once. The 18 diagnostic and 16 task-snapshot
+modules retain their existing explicit routes. New tests stay in their existing
+permanent owners; no module is promoted solely to increase the count.
+
+Exact scanner review also confirms that the one public Git baseline in the
+historical Pages fixture is metadata rather than a credential. The sole changed
+Bandit exec source retains the identical repository-owned compilation/execution
+boundary and line; its added per-module accounting is explicitly re-reviewed as
+a behavioral change. Existing findings, severity, rule, expiry and historical
+ledgers remain visible. The actual pinned scan must still pass on final source.
+
+The final local prepublication run and owning acceptance are recorded against
+the clean integrated commit in the live PR. Component results above are not a
+claim that this final run, native staging or production passed. The original
+Writing latency and Lighthouse failures remain unresolved until fresh matching
+hosted evidence passes the original budgets. Further source changes invalidate
+prior clean-source evidence.
+
+## Full local diagnostic and reconciled dependencies
+
+The first complete clean staging prepublication run at8786df6 remains failed.
+It executed all26 source/artifact/scanner/package check families, with22 passing
+and four failing: source529/530, enduring Python110/111, maintained map formatting
+and Semgrep. This was a local diagnostic with no provider mutation. Artifact,
+edition/record, exact source/public digests, packaging, lint, all pinned advisory
+coverage, Bandit36 reviewed findings and exact secret triage passed separately.
+
+The source failure was a stale full Color fixture: twelve original rows still
+carried Chromium-only smoke metadata. Its correction supplies the original
+three-browser provenance and full coverage flags, preserving validator strictness
+and all mutation negatives. The enduring RI test still named the removed
+duplicate shell step; it now executes the actual shared prepublication entry
+point for both levels and proves that independent RI/RI-CI failures propagate
+with each real verifier selected exactly once and raw stderr retained.
+
+The owning policy separately exposed an incomplete preservation amendment list.
+The already reviewed Pages HTTP MIME consumer is now named explicitly alongside
+the other five staging/Pages consumers and four workflow owners. All607 original
+paths/modes remain; all597 other original blobs remain exact. This replaces the
+current-state598 summary while preserving the earlier dated checkpoints as
+history. Only the existing named MIME consumer is added, not a directory-wide
+or arbitrary future exception.
+
+Semgrep's unchanged subprocess rule classified four new RegExp.exec calls as
+shell execution. Equivalent String.match calls preserve their exact parser
+behavior and make the distinction explicit without modifying any security rule,
+allowance or scan target. Focused47 source cases and an actual pinned two-file
+Semgrep scan pass with zero findings/errors. The refreshed maintained RI/CI map
+is formatted after regeneration. These corrections require a fresh final clean
+preflight; they do not relabel the failed8786df6 report.

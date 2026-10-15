@@ -308,6 +308,33 @@ function select(root, profile, options = {}) {
     taskSnapshots: 'selected owning issue policy only',
   };
 }
+function requireNonemptySuites(tap) {
+  const active = [];
+  let completed = null;
+  for (const line of tap.split(/\r?\n/)) {
+    const caption = line.match(/^([ ]*)# Subtest: (.+)$/);
+    if (caption) {
+      const indent = caption[1].length;
+      if (active.length) active.at(-1).children++;
+      active.push({ indent, name: caption[2], children: 0 });
+      completed = null;
+      continue;
+    }
+    const outcome = line.match(/^([ ]*)(?:not )?ok [0-9]+(?: |$)/);
+    if (outcome) {
+      const index = active.findLastIndex((entry) => entry.indent === outcome[1].length);
+      completed = index < 0 ? null : active[index];
+      if (index >= 0) active.length = index;
+      continue;
+    }
+    const suite = line.match(/^([ ]*)type: ['"]suite['"]$/);
+    if (suite)
+      assert.ok(
+        completed && suite[1].length === completed.indent + 2 && completed.children > 0,
+        'empty Node suite cannot establish selected test coverage: ' + completed?.name
+      );
+  }
+}
 function accounting(tap, { modules = [], root = '' } = {}) {
   const captions = [...tap.matchAll(/^# Subtest: (.+)\r?$/gm)].map((match) => match[1].trim());
   assert.ok(captions.length > 0, 'no actual named Node test cases');
@@ -316,6 +343,7 @@ function accounting(tap, { modules = [], root = '' } = {}) {
     !captions.some((caption) => wrappers.has(caption)),
     'empty selected test module reported only a file wrapper'
   );
+  requireNonemptySuites(tap);
   const keys = ['tests', 'pass', 'fail', 'cancelled', 'skipped', 'todo'],
     values = {};
   for (const key of keys) {

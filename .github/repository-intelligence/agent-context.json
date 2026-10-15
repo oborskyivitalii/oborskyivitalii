@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e8932396dde73da88810e12738a687b0d3f7678e12a1cbc6d84045c6ea2d27ae",
+    "digest": "683fd7ab223aca1f1d852b152c5552ff2dc3ce0c180cd2fea165f68dee72c73c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "d7141fd6062f895c50f21eefec68dbf2cbbc7e613e4fb07ce67502ce794b37e7"
+        "sha256": "20935309b5576bd48f3b011fd55f7836e17d02febbea284c607aade947287379"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3c637c85b097abc1cea49047189b5cf221e2faa1bb382a78af5e6e4caa2ec559"
+        "sha256": "98f95faeba3d05f9ce12e973afa93271a1ac8035d00c94cc359982def6cda7c4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f680eb2c4580b0ebe60dd2544f93c5fcd4fcb94958d1d1a22ed39d20077680ce"
+        "sha256": "dae1e7a97730da34bdbe7c48fc54fdef09997219fd68ac33ea62fa1c0a53c7ab"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -710,7 +710,7 @@
       {
         "path": "review/issue-39/2026-10-15-publication-test-review.md",
         "identity_mode": "content",
-        "sha256": "faabeb375a8c1d7f9f69066723f7b61a5bbc4fa54893f2e23601d26b5028ed47"
+        "sha256": "39210df0a60e326608b4c9cdb8018d3dc7e91012d404983ce9e68d82b00bc52e"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5330,7 +5330,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "bbb3a323d0d7bbfef99636e283548c56ce1db0a3f06bcf84939d0b0dc8b93968"
+        "sha256": "c6d3d43864554e178dea4aeeb3379e004a176c45e7eeae49a424228f09194ebc"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5470,7 +5470,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "968526996649a1839c1819dfe60c1dbcd4eb6a6c7424847b35cde03d08d4ef2e"
+        "sha256": "8c4fdbc89b3a63387f59e003a6523459e581b61f5ebdc5b8763692e294c3d165"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5555,7 +5555,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "318cfb202163c68c84ff4d1de334bbcea874adf97a0567055eecaf5415ec152f"
+        "sha256": "808cd6871fe2fa0242a85dd5e8174d88c02177b7f1bf79123017bc0edfb057df"
       },
       {
         "path": "tests/test_code_style.py",
@@ -5655,7 +5655,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "726c1b59369601c4c1f1ea18baa367519ffcbd65a802284febe2e269db98357c"
+        "sha256": "de8bd9678186feb952ae01163826286947ce22422ccd0597345081a7615f9b1c"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -6085,7 +6085,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "be1db9d0da3c3a563cb77c42388a9e376b510e6790224eec9ebf93a3987fbfdf"
+        "sha256": "a7ff380673836bc6eac9ea61116eaf55bac9dc0f5f60b4f07c73bfe40887f302"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -6095,7 +6095,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "02083a52e835675d51322219ca83e0ecbf930b0de75763b8f9e5ec516e0ffd47"
+        "sha256": "fd16c4dabce4fbf1e2c10f531eb8d1763895b71fe5e6532de08466819367ca68"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -6150,7 +6150,7 @@
       {
         "path": "tools/quality/validate.cjs",
         "identity_mode": "content",
-        "sha256": "708394e4212083a1013ba25e33cd81dd19fba0222a83811287ffa30cd42f5433"
+        "sha256": "aed4cb7ef03537b5c4f91ae3865694ce449388c4cac9ec4f7f68aaf2eca51830"
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",

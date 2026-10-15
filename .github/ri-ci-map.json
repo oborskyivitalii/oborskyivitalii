@@ -481,7 +481,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "b225d270851548826d939081acf341de565a66e3091655beb864d46da81bf486",
+    "digest": "34dfdeca97d20307afc5abd74e4e98846ffbf71f70a7dde8ebb0b598a2c75dc2",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -517,7 +517,7 @@
       },
       {
         "path": ".github/acceptance/issue-39.json",
-        "sha256": "d7141fd6062f895c50f21eefec68dbf2cbbc7e613e4fb07ce67502ce794b37e7"
+        "sha256": "20935309b5576bd48f3b011fd55f7836e17d02febbea284c607aade947287379"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -701,7 +701,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "318cfb202163c68c84ff4d1de334bbcea874adf97a0567055eecaf5415ec152f"
+        "sha256": "808cd6871fe2fa0242a85dd5e8174d88c02177b7f1bf79123017bc0edfb057df"
       },
       {
         "path": "tests/test_code_style.py",
@@ -777,7 +777,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "726c1b59369601c4c1f1ea18baa367519ffcbd65a802284febe2e269db98357c"
+        "sha256": "de8bd9678186feb952ae01163826286947ce22422ccd0597345081a7615f9b1c"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -805,7 +805,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "be1db9d0da3c3a563cb77c42388a9e376b510e6790224eec9ebf93a3987fbfdf"
+        "sha256": "a7ff380673836bc6eac9ea61116eaf55bac9dc0f5f60b4f07c73bfe40887f302"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -813,7 +813,7 @@
       },
       {
         "path": "tools/quality/staging-regression.cjs",
-        "sha256": "02083a52e835675d51322219ca83e0ecbf930b0de75763b8f9e5ec516e0ffd47"
+        "sha256": "fd16c4dabce4fbf1e2c10f531eb8d1763895b71fe5e6532de08466819367ca68"
       },
       {
         "path": "tools/quality/test-profiles.json",

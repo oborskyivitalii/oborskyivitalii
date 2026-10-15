@@ -719,6 +719,80 @@ test('complete controlled full-release fixture passes, missing native/capture/de
     assert.throws(() => aggregate(x));
   }
 });
+test('full CSS-blocked Home evidence requires the complete original route and history journey', () => {
+  const selectedRows = (evidence) =>
+      evidence.reports
+        .filter((report) => report.kind === 'functional' && !report.smoke)
+        .flatMap((report) =>
+          report.rows
+            .filter((row) => row.mode === 'css-blocked' && row.route === 'index')
+            .map((row) => ({ platform: report.environment.platform, row }))
+        ),
+    complete = fullFixture();
+  // The original browser producer records this journey only from Home.
+  for (const report of complete.reports.filter((report) => report.kind === 'functional'))
+    for (const row of report.rows)
+      if (row.mode === 'css-blocked' && row.route !== 'index')
+        delete row.checks.criticalMediaJourney;
+  assert.equal(aggregate(complete).pass, true);
+  assert.equal(selectedRows(complete).length, 6);
+  for (const { platform, row } of selectedRows(complete)) {
+    const evidence = structuredClone(complete),
+      selected = selectedRows(evidence).find(
+        (candidate) =>
+          candidate.platform === platform &&
+          candidate.row.engine === row.engine &&
+          candidate.row.theme === row.theme
+      ).row;
+    delete selected.checks.criticalMediaJourney;
+    assert.throws(
+      () => aggregate(evidence),
+      /missing CSS-blocked route observations/,
+      platform + '/' + row.engine + '/' + row.theme
+    );
+  }
+  const mutations = [
+    ['false journey', (checks) => (checks.criticalMediaJourney = false)],
+    ['empty journey', (checks) => (checks.criticalMediaJourney = {})],
+    ['empty states', (checks) => (checks.criticalMediaJourney.states = [])],
+    ['missing route', (checks) => checks.criticalMediaJourney.states.pop()],
+    ['wrong route', (checks) => (checks.criticalMediaJourney.states[0].page = 'index')],
+    ['missing Back', (checks) => (checks.criticalMediaJourney.history = false)],
+    ['new document', (checks) => (checks.criticalMediaJourney.documentPreserved = false)],
+    [
+      'route document',
+      (checks) => (checks.criticalMediaJourney.states[3].documentPreserved = false),
+    ],
+    ['missing CSS', (checks) => (checks.criticalMediaJourney.states[1].criticalMedia = [])],
+    ['changed CSS', (checks) => (checks.criticalMediaJourney.states[1].criticalMedia[0] += '\n')],
+    [
+      'CSS outside head',
+      (checks) => (checks.criticalMediaJourney.states[1].criticalMediaOutsideHead = 1),
+    ],
+    ['overflow', (checks) => (checks.criticalMediaJourney.states[3].overflow = true)],
+    ['missing portrait', (checks) => (checks.criticalMediaJourney.states[1].portrait = null)],
+    ['zero portrait', (checks) => (checks.criticalMediaJourney.states[3].portrait.width = 0)],
+    [
+      'nonfinite portrait',
+      (checks) => (checks.criticalMediaJourney.states[3].portrait.width = Infinity),
+    ],
+    [
+      'unbounded portrait',
+      (checks) => (checks.criticalMediaJourney.states[3].portrait.width = 828),
+    ],
+    [
+      'wrong viewport',
+      (checks) => (checks.criticalMediaJourney.states[3].portrait.viewportWidth = 1440),
+    ],
+    ['Research portrait', (checks) => (checks.criticalMediaJourney.states[0].portrait = {})],
+  ];
+  for (const [label, mutate] of mutations) {
+    const evidence = structuredClone(complete),
+      selected = selectedRows(evidence).at(-1).row;
+    mutate(selected.checks);
+    assert.throws(() => aggregate(evidence), undefined, label);
+  }
+});
 test('full coverage requires complete macOS WebKit and Linux Chromium/Firefox without accepting GTK or smoke substitutes', () => {
   const get = (x, platform) =>
       x.reports.find((r) => r.kind === 'functional' && r.environment.platform === platform),

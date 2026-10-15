@@ -443,7 +443,37 @@ function functionalFailure(mode, checks) {
     assert.ok(after.paints > before.paints, 'failure fixture did not observe an actual new paint');
   }
 }
-function functionalChecks(mode, route, checks) {
+function validateCriticalMediaJourney(journey, width) {
+  assert.ok(Array.isArray(journey?.states), 'missing CSS-blocked route observations');
+  assert.deepEqual(
+    journey.states.map((state) => state.page),
+    ['research', 'index', 'research', 'index'],
+    'incomplete CSS-blocked route and history journey'
+  );
+  assert.equal(journey.history, true, 'missing CSS-blocked history observation');
+  assert.equal(journey.documentPreserved, true, 'CSS-blocked journey replaced the document');
+  const css =
+    '\n' + fs.readFileSync(path.resolve(__dirname, '../../site/engine/critical-media.css'), 'utf8');
+  for (const state of journey.states) {
+    assert.equal(state.documentPreserved, true, 'CSS-blocked route replaced the document');
+    assert.equal(state.criticalMediaOutsideHead, 0, 'critical media outside the document head');
+    assert.equal(state.overflow, false, 'CSS-blocked route overflow');
+    if (state.page === 'research') {
+      assert.deepEqual(state.criticalMedia, [], 'critical media retained on Research');
+      assert.equal(state.portrait, null, 'unexpected Research portrait');
+    } else {
+      assert.deepEqual(state.criticalMedia, [css], 'missing or changed canonical Home media CSS');
+      assert.equal(state.portrait?.viewportWidth, width, 'wrong observed portrait viewport');
+      assert.ok(
+        Number.isFinite(state.portrait.width) &&
+          state.portrait.width > 0 &&
+          state.portrait.width <= width + 1,
+        'unbounded CSS-blocked Home portrait'
+      );
+    }
+  }
+}
+function functionalChecks(mode, route, checks, width) {
   assert.ok(checks, 'missing functional assertions');
   if (mode === 'normal') {
     for (const key of [
@@ -462,6 +492,8 @@ function functionalChecks(mode, route, checks) {
     scrollSyncEvidence(checks.scrollSync, route);
   } else functionalFailure(mode, checks);
   if (mode === 'css-delayed') assert.equal(checks.beforeCSSNoPaint, true);
+  if (mode === 'css-blocked' && route === 'index')
+    validateCriticalMediaJourney(checks.criticalMediaJourney, width);
 }
 function functional(r, platform, engines, smoke) {
   assert.equal(r.environment.platform, platform);
@@ -510,7 +542,7 @@ function functional(r, platform, engines, smoke) {
           assert.equal(row.pass, true, row.error);
           assert.deepEqual(row.errors, []);
           assert.deepEqual(row.externalRequests, []);
-          functionalChecks(mode, route, row.checks);
+          functionalChecks(mode, route, row.checks, row.width);
         }
   navigation(r, engines);
   analytics(r, engines);
@@ -988,6 +1020,7 @@ module.exports = {
   performanceBudgetFailure,
   functional,
   functionalFailure,
+  validateCriticalMediaJourney,
   aggregate,
   scanner,
   sourceReport,

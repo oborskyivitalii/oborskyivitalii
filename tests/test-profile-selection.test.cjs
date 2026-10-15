@@ -442,6 +442,38 @@ test('an empty selected file cannot masquerade as one passing Node test wrapper'
   );
 });
 
+test('a suite-only selected module cannot borrow passing leaf cases from another module or sibling', (t) => {
+  const f = fixture(t),
+    empty = 'tests/content.test.cjs',
+    active = 'tests/archive.test.cjs',
+    plan = { profile: 'production', modules: [empty, active] };
+  f.write(active, "require('node:test')('actual leaf case', () => {});\n");
+  for (const body of [
+    "require('node:test').describe('empty suite', () => {});\n",
+    "const {describe}=require('node:test');describe('outer suite', () => {describe('empty inner', () => {});});\n",
+    "const {describe,it}=require('node:test');describe('outer suite', () => {it('real sibling', () => {});describe('empty inner', () => {});});\n",
+  ]) {
+    f.write(empty, body);
+    assert.throws(() => runner.run(f.directory, plan), /empty Node suite/);
+  }
+});
+
+test('nested nonempty suites retain actual leaf accounting without interpreting names or stdout as metadata', (t) => {
+  const f = fixture(t),
+    file = 'tests/content.test.cjs';
+  f.write(
+    file,
+    "const {describe,it}=require('node:test');describe(\"type: 'suite'\", () => {describe('inner', () => {it('first leaf', () => {console.log(\"type: 'suite'\");});});it('second leaf', () => {});});\n"
+  );
+  const result = runner.run(f.directory, {
+    profile: 'production',
+    modules: [file],
+  });
+  assert.equal(result.pass, true);
+  assert.equal(result.total, 2);
+  assert.equal(result.passed, 2);
+});
+
 test('nested future test modules are inventoried while fixture helpers remain helper files', (t) => {
   const f = fixture(t),
     file = 'tests/nested/future-contract.test.cjs';
@@ -486,6 +518,10 @@ test('Basic delegates strict named accounting and rejects an empty file beside a
   const mixed = execute([empty, active]);
   assert.equal(mixed.status, 1);
   assert.match(mixed.stderr, /empty selected test module/);
+  fs.writeFileSync(empty, "require('node:test').describe('empty baseline suite', () => {});\n");
+  const suiteOnly = execute([empty, active]);
+  assert.equal(suiteOnly.status, 1);
+  assert.match(suiteOnly.stderr, /empty Node suite/);
   const complete = execute([active]);
   assert.equal(complete.status, 0, complete.stderr);
   assert.deepEqual(JSON.parse(complete.stdout), {

@@ -2,6 +2,7 @@
 
 import importlib.util
 import json
+import shlex
 import subprocess
 import tempfile
 import unittest
@@ -137,41 +138,97 @@ class RICICouplingTests(unittest.TestCase):
 
     def test_staging_and_production_share_actual_ri_freshness_preflight(self):
         workflow = (REPO / ".github/workflows/site-release-checks.yml").read_text()
-        self.assertEqual(workflow.count("        id: source_checks\n"), 1)
-        self.assertIn(
-            'run: node tools/quality/local.cjs --prepublication "$SITE_VALIDATION_LEVEL"',
-            workflow,
+        start = workflow.index(
+            "      - name: Complete host-independent guards before candidate upload or hosted jobs\n"
         )
-        # Inspect the real owner's selected commands without executing its guards.
-        # Both levels must reach RI exactly once, independently of other failures.
+        end = workflow.index("      - ", start + 8)
+        step = workflow[start:end].splitlines()
+        self.assertEqual(
+            step[1:3],
+            [
+                "        id: source_checks",
+                "        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}",
+            ],
+        )
+        self.assertEqual(len(step), 4, "preflight cannot be optional or shell-wrapped")
+        self.assertTrue(step[3].startswith("        run: "))
+        argv = shlex.split(step[3].removeprefix("        run: "))
+        self.assertEqual(
+            argv,
+            [
+                "node",
+                "tools/quality/local.cjs",
+                "--prepublication",
+                "$SITE_VALIDATION_LEVEL",
+                "quality-artifact",
+                "--report",
+                "quality-reports/prepublication.json",
+            ],
+        )
+        self.assertIn("  SITE_VALIDATION_LEVEL: ${{ inputs.validation_level }}\n", workflow)
+        self.assertIn("source_checks: ${{ steps.source_checks.outcome }}", workflow)
+        # Execute the workflow's actual orchestration owner at both levels. The
+        # finite child-process seam avoids recursively running this test suite;
+        # removing, conditioning or swallowing either RI guard fails these cases.
         script = """
-const local=require('./tools/quality/local.cjs'),p=require('node:path');
-const reports=['staging','production'].map(level=>{
- const result=local.prepublication(level,process.argv[1],{
-  report:p.join(process.argv[1],level+'.json'),
-  execute:()=>({status:1,stdout:'',stderr:'controlled independent failure'})
- });
- return result.checks.filter(row=>row.id==='ri').map(row=>row.command);
-});
-console.log(JSON.stringify(reports));
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const argv = JSON.parse(process.argv[1]);
+const output = process.argv[2];
+const prepublication = require(path.resolve(argv[1])).prepublication;
+const identity = {
+  sourceCommit: process.env.SITE_CANDIDATE_SHA || 'a'.repeat(40),
+  sourceTree: 'b'.repeat(40),
+  sourceDirty: false,
+};
+const commands = {
+  ri: ['python3', 'tools/repository_intelligence.py', '--config',
+       '.github/repository-intelligence-config.json', 'verify'],
+  'ri-ci': ['python3', 'tools/check_ri_ci.py', 'verify'],
+};
+const observations = [];
+for (const level of ['staging', 'production']) {
+  for (const failed of [null, 'ri', 'ri-ci']) {
+    const calls = [];
+    const report = prepublication(level, path.join(output, 'artifact'), {
+      report: path.join(output, level + '-' + (failed || 'pass'), 'preflight.json'),
+      identify: () => identity,
+      execute: (command, args) => {
+        const call = [command, ...args];
+        calls.push(call);
+        const failing = failed && JSON.stringify(call) === JSON.stringify(commands[failed]);
+        return { status: failing ? 1 : 0, stdout: 'observed child output',
+                 stderr: failing ? 'controlled ' + failed + ' freshness failure' : '' };
+      },
+    });
+    assert.equal(report.validationLevel, level);
+    assert.equal(report.pass, failed === null);
+    for (const [id, command] of Object.entries(commands)) {
+      assert.equal(calls.filter((call) => JSON.stringify(call) === JSON.stringify(command)).length, 1);
+      const row = report.checks.find((check) => check.id === id);
+      assert.deepEqual(row.command, command);
+      assert.equal(row.pass, id !== failed);
+      assert.equal(row.status, id === failed ? 'failed' : 'passed');
+      if (id === failed) {
+        assert.equal(row.exitCode, 1);
+        assert.match(fs.readFileSync(row.stderr, 'utf8'), /freshness failure/);
+      }
+    }
+    observations.push({ level, failed, pass: report.pass });
+  }
+}
+process.stdout.write(JSON.stringify(observations));
 """
         result = subprocess.run(
-            ["node", "-e", script, str(self.root)],
+            ["node", "-e", script, json.dumps(argv), str(self.root / "prepublication")],
             cwd=REPO,
-            text=True,
             capture_output=True,
+            text=True,
             check=False,
-            timeout=20,
         )
-        self.assertEqual(result.returncode, 0, result.stderr)
-        command = [
-            "python3",
-            "tools/repository_intelligence.py",
-            "--config",
-            ".github/repository-intelligence-config.json",
-            "verify",
-        ]
-        self.assertEqual(json.loads(result.stdout), [[command], [command]])
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(len(json.loads(result.stdout)), 6)
 
     def test_verified_definition_and_source_identity_are_deterministic(self):
         first = ci.verify(self.root)

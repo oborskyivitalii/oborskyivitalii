@@ -299,9 +299,12 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
       model = report.rows[0],
       fixed = motion.select(value.manifest).behavior === 'fixed-blocks';
     report.kind = 'color-functional';
+    report.smoke = false;
+    delete report.profile;
+    delete report.fullGate;
     report.browsers = ['chromium', 'firefox', 'webkit'].map((engine) => ({
       engine,
-      version: 'controlled fixture',
+      version: 'controlled full Color fixture; not a real browser launch',
     }));
     report.rows = ['chromium', 'firefox', 'webkit'].flatMap((engine) =>
       [1440, 390].flatMap((width) =>
