@@ -60,6 +60,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/cloudflare-staging-20261005/evidence](review/cloudflare-staging-20261005/evidence) | Initial Direct Upload staging provisioning/provider/HTTP evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006](review/color-staging-20261006) | Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -364,6 +365,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [drafts/medium-profile-revision-20261001.html](drafts/medium-profile-revision-20261001.html) | Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/pmday-article-draft.en.md](drafts/pmday-article-draft.en.md) | First real English PMDay editorial draft: author arc, title choices, chapters, proposed figures, bounded evidence and sources; excluded from public output. | draft | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## guides/
 
@@ -618,6 +620,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/color-staging-20261006/evidence/provider.json](review/color-staging-20261006/evidence/provider.json) | Historical manifest/observation data: provider.json. Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence/staging-package.json](review/color-staging-20261006/evidence/staging-package.json) | Historical manifest/observation data: staging-package.json. Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-2/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-2/2026-10-15-editorial-draft.md](review/issue-2/2026-10-15-editorial-draft.md) | Author-authorized PMDay first-draft scope, exact sources/access, independent editorial review and remaining acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
 

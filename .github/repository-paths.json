@@ -727,6 +727,12 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "drafts/pmday-article-draft.en.md": {
+      "kind": "file",
+      "purpose": "First real English PMDay editorial draft: author arc, title choices, chapters, proposed figures, bounded evidence and sources; excluded from public output.",
+      "role": "draft",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "guides": {
       "kind": "directory",
       "purpose": "Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface.",
@@ -946,6 +952,18 @@
     "review/color-staging-20261006/target.json": {
       "kind": "file",
       "purpose": "Historical manifest/observation data: target.json. Color hosted variant provider/package identity and target evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2": {
+      "kind": "directory",
+      "purpose": "Dated editorial, source and publication review evidence for the PMDay article owner.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/2026-10-15-editorial-draft.md": {
+      "kind": "file",
+      "purpose": "Author-authorized PMDay first-draft scope, exact sources/access, independent editorial review and remaining acceptance.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8406dc9ce0c6e8852d1e0880485379167a8f90e490ee17c6b3033b646eb029b7",
+    "digest": "27549d5a500f55e9aa8c8afb6c4e96312da55f8f188723c5e7d7d71e9a64408c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "9425cbd373f15f9132fad5b664e3814c49f1225d9d77c2e86e77e1bde483f5ce"
+        "sha256": "f85adb03b1592a1357826bdee8bf35ac4e50234b00242265afaed0b74ce560fa"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f292089e95ac1faa1c4075cb2ae56dc80a6a4e6af8350fda80fd8e62e48a6605"
+        "sha256": "f8d5810492171a1361e535e5a88db010c8107aaefd2dd92e278e8bdcafcb2be6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9891d5fb13056381ef6568a8d6944e09a3ec347f74c42bb9c5efea7980fcae05"
+        "sha256": "65831d16552820b8459a35ccc13dc08a44a07ad67c21ff44d3e53d86e1e1a792"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -498,9 +498,14 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "drafts/pmday-article-draft.en.md",
+        "identity_mode": "content",
+        "sha256": "30ab15f770281c07f95a2d46acbaaf0fe253dc536920dbf6c7be772505691c1f"
+      },
+      {
         "path": "guides/ARTICLE-WORKFLOW.md",
         "identity_mode": "content",
-        "sha256": "7f0edba57984a4ea2f58768b419d6a7ecea4bf4e8ee122efc64a5cbfc9027818"
+        "sha256": "b7a0e50d2df20daa83b24c21dd04a86c081b47009f1faea193e95a4905b53321"
       },
       {
         "path": "guides/CODE-STYLE.md",
@@ -641,6 +646,11 @@
         "path": "review/color-staging-20261006/target.json",
         "identity_mode": "content",
         "sha256": "42bac7997ba50f77b0ad9a53fa76cbdaa3fab8df0099c531b0c7f317ee2be0e2"
+      },
+      {
+        "path": "review/issue-2/2026-10-15-editorial-draft.md",
+        "identity_mode": "content",
+        "sha256": "feb0e77a73b3afca383c219c50c3cc5b10cef36555c1df7c5477e7f7c985f862"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -8205,6 +8215,17 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "drafts/pmday-article-draft.en.md",
+      "kind": "file",
+      "purpose": "First real English PMDay editorial draft: author arc, title choices, chapters, proposed figures, bounded evidence and sources; excluded from public output.",
+      "role": "draft",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "When We Delegate Thinking"
+    },
+    {
       "path": "guides/ARTICLE-WORKFLOW.md",
       "kind": "file",
       "purpose": "Canonical site-owned article authoring, semantic editions, candidate exports, observed publication and upstream upgrade workflow.",
@@ -8522,6 +8543,17 @@
         "AGENTS.md"
       ],
       "title": "target.json"
+    },
+    {
+      "path": "review/issue-2/2026-10-15-editorial-draft.md",
+      "kind": "file",
+      "purpose": "Author-authorized PMDay first-draft scope, exact sources/access, independent editorial review and remaining acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 2 — 2026-10-15 first real PMDay editorial draft"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -22566,6 +22598,16 @@
       "path": "review/color-staging-20261006/evidence",
       "kind": "directory",
       "purpose": "Color hosted variant provider/package identity and target evidence. Contains evidence artifacts.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-2",
+      "kind": "directory",
+      "purpose": "Dated editorial, source and publication review evidence for the PMDay article owner.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

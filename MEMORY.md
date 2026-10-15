@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-14**.
+Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 
 ## Snapshot
 
@@ -27,9 +27,11 @@ Dated continuity, not live authority. Last verified: **2026-10-14**.
   The explicit diagnostic now runs in existing browser jobs, preserving budgets
   and public/runtime bytes. Final evidence-only tip/checks are in live PR79;
   continue via `review/issue-5/2026-10-14-managed-print.md`.
-  Real PMDay waits for author-approved chapters; present manuscript/blueprint/
-  exports remain technical fixtures. #2 AC01-AC06 and original human/publication
-  gates remain open; accepted recording AC07/AC08 is preserved.
+  On15October the author confirmed English/usual audience and supplied the real
+  PMDay reflection/writing-printing/cognitive-delegation→HOW/WHAT arc. First real
+  editorial draft: `drafts/pmday-article-draft.en.md`; author review is pending.
+  Present selected manuscript/blueprint/exports remain technical fixtures.
+  #2 AC01-AC06/human/publication gates stay open; recording AC07/AC08 preserved.
   Commands/trust: `guides/ARTICLE-WORKFLOW.md`, `guides/SITE-CONTENT-RELEASE.md`.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
@@ -89,7 +91,7 @@ Dated continuity, not live authority. Last verified: **2026-10-14**.
 | #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
 | #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
-| #5 / PR79 and #2          | Finish current-source content-release checks/preview; real article #2 is deferred, with original editorial/rights/publication decisions preserved.  |
+| #5 / PR79 and #2          | Publisher technical evidence is retained; review the first real English PMDay editorial draft, then iterate its prose/figures before any accepted edition. |
 | #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
 
 ## Next session
@@ -97,8 +99,8 @@ Dated continuity, not live authority. Last verified: **2026-10-14**.
 1. Revalidate main and PR79 raw head, working tree, checks and candidate preview.
    Read the14October managed-print continuation and exact current CI links;
    do not reuse historical or failed attempts as current admission.
-2. Continue #5 in PR79; use PMDay only as a technical test artifact. Real #2
-   authoring waits for supplied chapters; preserve its accepted recording increment.
+2. Continue the same PR79 route. Read the real #2 editorial draft and15October
+   review, take the author's corrections; preserve the separate publisher fixture.
 3. Read exact-source execution, migration inventory and independent reviews in
    `review/issue-5/`; keep browser/PDF fallback limits and failed attempts honest.
 4. Preserve source/tree/package bindings. Merge, production, external publication

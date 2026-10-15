@@ -8,6 +8,11 @@ On 13 October the author deferred the real PMDay article until its author-approv
 chapters are supplied. The existing PMDay manuscript, blueprint and exports are
 technical test artifacts for the publisher. They do not establish editorial
 acceptance of issue #2. Its accepted recording increment remains separate.
+On 15 October the author supplied the real article's opening arc, confirmed
+English and the usual delivery/engineering leadership audience, and requested a
+detailed first draft. That [editorial draft](../drafts/pmday-article-draft.en.md)
+now owns the proposed prose, chapter structure, figures and evidence for review.
+The existing selected publisher fixture remains separate and unchanged.
 The [content release guide](SITE-CONTENT-RELEASE.md) explains automatic Writing
 registration and verified platform reuse when adding an article or external link.
 
