@@ -47,6 +47,7 @@
         "tools/quality/artifact.cjs",
         "tools/quality/budgets.json",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/test-profiles.json",
         "tools/site/build.cjs",
         "tools/site/snapshot.cjs",
@@ -1007,6 +1008,7 @@
       "inputs": [
         "tests/test-profile-selection.test.cjs",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/test-profiles.json",
         "tools/quality/local.cjs"
       ]

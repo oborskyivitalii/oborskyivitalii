@@ -152,6 +152,14 @@ Historical issue-specific policies remain source-pinned evidence; the current
 issue selects its own policy. Manual diagnostic workflows stay manual and are
 not counted as an automatic speed improvement.
 
+The source runner delegates execution to
+[`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
+the measured long `space`, `executive` and `release-rights` modules first, then
+the remaining selected files lexically, retaining the same selected set, Node
+process isolation, default worker allocation, native TAP and strict accounting.
+The fixed 180-second child bound and 16MiB output bound remain; SIGTERM/SIGINT
+abort the owned runner and reap its children before timeout evidence is retained.
+
 At every issue's completion, review its tests against PR smoke, bounded staging
 and full production coverage. Record additions, merged duplicate assertions,
 disabled obsolete cases, diagnostic-only cases and the reason/owner in the

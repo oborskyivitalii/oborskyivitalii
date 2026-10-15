@@ -165,6 +165,7 @@
         "tools/quality/secrets-baseline.json",
         "tools/quality/secrets-reviewed.json",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/staging-gate.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/test-profiles.json",
@@ -528,7 +529,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5c726d5c20f4d5023f64ee1cc1c0bbad1e5d4ee958925743598d953dcb9f13c9",
+    "digest": "890a63d32bf233cfb2a4f05cedec7df52fa21270c3ddb04b585f28d0b5b88cca",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -624,7 +625,7 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "f7a04f4359d830921238c888a5ef9d79b446ceb9c668c7f8d901d0177e22a09e"
+        "sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
       },
       {
         "path": ".github/repository-layout.json",
@@ -632,7 +633,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "dafd8b93f4c1bb8700f4fc2c07a606601e4864e14e45b39ee85c076b147b538e"
+        "sha256": "c1d382564195b15cd63cd4f8322cc116d70114538405049630b9a415127c3215"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -732,7 +733,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "dbde773d10d1b7575e54c055090d9180281a8e771422f9d20434cdb17338510e"
+        "sha256": "6f017dbbf47f9dfcb05c29e2c5a4cc27a0ed72196db52fd67e74bf5b1b1d11b9"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -752,7 +753,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "c0e2e7b92fe526a8ed7b808b4e0e13c5f9b1caab10c13366765dfb95a1e813de"
+        "sha256": "f38697930a14dacfda0dec0ec97470fdb5a54216131bcdb3fcc5aecc28e5b4d4"
       },
       {
         "path": "tests/test_code_style.py",
@@ -856,7 +857,7 @@
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "2b67f103a239dca4062949cfe90e36868c0bcb43769c58b56ead749ff72b4247"
+        "sha256": "85392a9956f127b743e436d0856089a0842340dec3ff6f0851d217706457aa0a"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -868,7 +869,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8f67ede176aa897fc72da59e6d9afc66dd094377e978521dd96cf4f0313dc296"
+        "sha256": "cb26d4a0afe6ac8e8d12de1cecdeeeb71e25174bd65d8d6617a1ec30dd9fb583"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -415,6 +415,7 @@
       "paths": [
         "tools/quality/test-profiles.json",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/staging-gate.cjs",
         "tests/test-profile-selection.test.cjs",

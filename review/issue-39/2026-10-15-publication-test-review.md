@@ -473,3 +473,68 @@ CLI require a source runner absent from its deliberately minimal checkout. The
 limits are now loaded only inside prepublication; lightweight package generation
 keeps its original dependency boundary. The existing real edition/package CLI
 test verifies that boundary, alongside the timeout/reporting regression.
+
+### Repeated native preflight: actual source-suite limit
+
+Repaired source `3f45fddb` passed Ready source 591/591, navigation, owning acceptance
+and hosted preview smoke. Ordinary stage
+[38743649689](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38743649689)
+passed its first preflight 26/26 and published its immutable candidate. Source
+574/574 completed in 120696ms with the original 180000ms child limit. Its verified
+artifact 11978246014 has SHA256
+`1806476093364898d87b5a58960c8a004c18c848944e88a8e0cd9c79ffff5602`.
+
+The reusable workflow repeated preflight on those same source/public identities
+and failed 25/26: its source child reached the actual inner 180000ms deadline.
+The repaired reporting wrapper exited 1 normally after 180200ms, retaining the
+inner ETIMEDOUT metadata, 112572-byte original TAP and empty original stderr.
+Artifact 11977727842 has verified SHA256
+`f14104bf069eaa2caf4cf57ff4a8691b8d32759b9b94bc2e5fff847a6871e887`.
+The 447 completed cases contain no assertion failure and no final accounting;
+the run remains failed. Reporter order means the first unflushed file cannot
+identify a precise stalled test. All other check families passed in both runs,
+including security, advisories, rights/package and unchanged-source guards.
+
+Retained environments show Intel Xeon 6973P-C x4/image20261012.334.1 for the first
+pass and AMD EPYC 7763 x4/image20261004.327.1 for the failure. Among 152 shared
+cases lasting at least 100ms, median second/first duration was 1.46944. This
+supports host-speed variation as an inference, without proving one exact cause.
+The source, runtime and served public bytes were identical; browser/performance,
+permanent Cloudflare promotion and the Pages mirror did not run. The successful
+first preflight is retained independently and does not admit the failed repeat.
+
+Source-suite cost and scheduling are being measured with the original selected
+modules, assertions, frame/route matrices and limits. Neither a timeout waiver
+nor an old browser measurement establishes current staging admission.
+
+### Source scheduling correction without a larger execution budget
+
+The native TAP shows a long tail: Node's CLI sorts test files lexically, so the
+expensive space module starts late. A programmatic Node worker starts only the
+three measured long files (`space`, `executive`, `release-rights`) first and
+keeps the remaining selected files lexical. The selector's canonical module set
+is unchanged. Process isolation, native TAP, strict named/empty-suite/failed/
+skipped accounting, default `availableParallelism() - 1` allocation, 180000ms
+child bound, 16MiB output bound and 210000ms reporting wrapper are preserved.
+
+A clean source3f45 diagnostic used an external prototype worker on CPU4-7 with
+the same staging artifact/environment. All574 selected tests passed with zero
+failed/cancelled/skipped/todo in131735ms, below the original180000ms bound. This
+is a real complete diagnostic, not current-head native admission. A schedule
+model using those same per-file durations predicts192789ms for the old lexical
+three-worker order; that counterfactual is explicitly a model. Interrupted or
+overlapping earlier local experiments are invalidated and provide no timing
+claim. Single isolated all56 space-case trials of compiled-VM reuse and a finite
+assertion fast path demonstrated no gain; neither patch is integrated.
+
+The actual integration regression exercises ordered launch despite reversed
+input, fresh globals in every selected process, and blocking assertion/uncaught/
+exit3/skip/empty-suite/empty-exit0 cases. Independent review also reproduced a
+programmatic-runner SIGTERM orphan absent from the native CLI. The worker now
+aborts its owned Node runner on SIGTERM/SIGINT and fatal stream errors, reaps its
+children and disposes signal handlers. Ordinary assertion failures still allow
+the other selected cases to complete. Controlled parent-interruption regression
+and an independent replay both passed SIGTERM and SIGINT: the parent exits1,
+the selected child is reaped, original partial TAP remains and strict accounting
+rejects the cancelled run. Current-source and ordinary native staging remain
+required.

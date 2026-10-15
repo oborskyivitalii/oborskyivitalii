@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "688292d3fdc599d57a9382a9445e24a5471601fba400761bed79b4c3b1962019",
+    "digest": "05429be124d3ed7b0e0eae92da0de482ff85c3a7016043ec7727b14d59914013",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -142,7 +142,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "f7a04f4359d830921238c888a5ef9d79b446ceb9c668c7f8d901d0177e22a09e"
+        "sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "dafd8b93f4c1bb8700f4fc2c07a606601e4864e14e45b39ee85c076b147b538e"
+        "sha256": "c1d382564195b15cd63cd4f8322cc116d70114538405049630b9a415127c3215"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b4bb7a9394729173567a7044e555bed501cc8e444a7d1d444c7d428533a364e8"
+        "sha256": "02f0cc462165712543372039b97efe0465e50e8f028b162dbc32617a3823e8d4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -296,7 +296,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a52222d8e813d9eda079eebd7c67ae49357d108d066833472398b6581801e266"
+        "sha256": "39dc5ef988e4bfae67d7ffacf4d5154c2860977a3676ff384951fe31ad5d6cde"
       },
       {
         "path": "NOTICE.md",
@@ -550,7 +550,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "dbde773d10d1b7575e54c055090d9180281a8e771422f9d20434cdb17338510e"
+        "sha256": "6f017dbbf47f9dfcb05c29e2c5a4cc27a0ed72196db52fd67e74bf5b1b1d11b9"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -795,7 +795,7 @@
       {
         "path": "review/issue-39/2026-10-15-publication-test-review.md",
         "identity_mode": "content",
-        "sha256": "ecb490852f0d5046a335060faa5f750bb5a41d8afb3f6adddfd96ba5e083cee5"
+        "sha256": "77cdd9ac4d40ebb4d50c77391ccb00e793ca35e04cde567f4adc7f99d06b864c"
       },
       {
         "path": "review/issue-39/2026-10-15-release-issue-audit.md",
@@ -5675,7 +5675,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "c0e2e7b92fe526a8ed7b808b4e0e13c5f9b1caab10c13366765dfb95a1e813de"
+        "sha256": "f38697930a14dacfda0dec0ec97470fdb5a54216131bcdb3fcc5aecc28e5b4d4"
       },
       {
         "path": "tests/test_code_style.py",
@@ -5930,7 +5930,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "1282ba9f5250e1ccbde6ec824909f837f18473733879ac600f5ce74ee226f26b"
+        "sha256": "2c2a90f930e5f83cb2c9e013377a3f96cf853318f3e4e586166f43e0ae95c88f"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -6213,9 +6213,14 @@
         "sha256": "1b4c5276ff8287565a200b0fdeaaf6f7e548e84961550267ff9daf69a0723eca"
       },
       {
+        "path": "tools/quality/source-test-worker.cjs",
+        "identity_mode": "content",
+        "sha256": "cb93e4b237616b8951a6ec420cd20b052fa3f03a0cc991baedfa580cff2c9386"
+      },
+      {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "2b67f103a239dca4062949cfe90e36868c0bcb43769c58b56ead749ff72b4247"
+        "sha256": "85392a9956f127b743e436d0856089a0842340dec3ff6f0851d217706457aa0a"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -6240,7 +6245,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "8f67ede176aa897fc72da59e6d9afc66dd094377e978521dd96cf4f0313dc296"
+        "sha256": "cb26d4a0afe6ac8e8d12de1cecdeeeb71e25174bd65d8d6617a1ec30dd9fb583"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6543,7 +6548,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "f7a04f4359d830921238c888a5ef9d79b446ceb9c668c7f8d901d0177e22a09e"
+    "config_sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
   },
   "owners": [
     {
@@ -20455,6 +20460,17 @@
       "title": "serve.cjs"
     },
     {
+      "path": "tools/quality/source-test-worker.cjs",
+      "kind": "file",
+      "purpose": "Bounded source-runner scheduling with measured long files first, isolated Node processes, original TAP and owned signal cleanup.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "source-test-worker.cjs"
+    },
+    {
       "path": "tools/quality/source-tests.cjs",
       "kind": "file",
       "purpose": "Fail-visible exact-Git changed-source selector, permanent/manual/task allocation and real Node execution/accounting.",
@@ -22632,6 +22648,7 @@
       "paths": [
         "tools/quality/test-profiles.json",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/staging-gate.cjs",
         "tests/test-profile-selection.test.cjs",

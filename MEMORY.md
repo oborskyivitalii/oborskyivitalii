@@ -20,9 +20,18 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge
   Ordinary stage 38739388574 then failed before upload: 25/26 source families pass,
   but equal outer/inner 180-second deadlines killed source reporting first.
   Artifact 11976016447 retains the failure; browser/performance did not run.
-- The current harness repair keeps the inner 180-second limit and grants only its
-  outer reporting wrapper 30 seconds of startup/cleanup/report grace. Source and
-  native evidence must be refreshed after this change; prior failures stay failed.
+- Repaired head `3f45fddb` passed Ready source 591/591, navigation, owning and hosted
+  smoke. Ordinary stage 38743649689 passed its first preflight 26/26, source 574/574
+  in 120.7s, then published an immutable candidate. Its repeated preflight failed
+  25/26 at the real inner 180-second limit, retaining the report and partial TAP.
+- The reporting repair works: the outer wrapper has 30s startup/cleanup/report
+  grace; its inner limit remains 180s. The failed repeat completed 447 cases with
+  no assertion failure or final counts. Native browser/performance and permanent
+  promotion did not run. All failed reports remain failed.
+- A clean external scheduling prototype passed all574 in131.7s by starting only
+  space/executive/release-rights first. The integrated worker preserves selection,
+  default CPU allocation, isolation, TAP and bounds, with explicit owned signal
+  cleanup. Its new source/native evidence must pass before another ordinary stage.
 - Ordinary runs 38703875419 and 38708680860 remain failed. Writing equivalent
   readiness 3382.9ms exceeded 3200ms; original budgets and cold/warm setup remain.
 - Live rulesets contain only strict protect-main with source/navigation contexts;
@@ -62,8 +71,8 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge
 ## Next session
 
 1. Revalidate main, PR40 head/Draft state, required checks, owner decisions and runs.
-2. Finish the bounded source-timeout ownership repair, refresh Ready evidence,
-   then continue ordinary open-PR staging. Preserve the failed preflight and all
+2. Finish the measured source-suite cost/scheduling repair, refresh Ready evidence,
+   then continue ordinary open-PR staging. Preserve both failed preflights and all
    source-runner diagnostics; do not substitute a stale preview for admission.
 3. Supply both stable URLs and exact served identity for maintainer review before
    production/domain/DNS activation. Actual issue/PR observations supersede this note.

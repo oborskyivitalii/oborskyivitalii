@@ -7795,6 +7795,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/source-test-worker.cjs": {
+      "kind": "file",
+      "purpose": "Bounded source-runner scheduling with measured long files first, isolated Node processes, original TAP and owned signal cleanup.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/source-tests.cjs": {
       "kind": "file",
       "purpose": "Fail-visible exact-Git changed-source selector, permanent/manual/task allocation and real Node execution/accounting.",

@@ -418,7 +418,7 @@ function executePlan(root, plan, options = {}) {
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
-  const argv = ['--test', '--test-reporter=tap', ...plan.modules],
+  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...plan.modules],
     started = Date.now(),
     result = execute(argv);
   const output = result.stdout || '',
