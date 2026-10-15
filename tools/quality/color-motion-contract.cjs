@@ -26,6 +26,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
+  issue39Licensed: {
+    behavior: 'fixed-blocks',
+    baseEngine: '53bb494ae3b2bc9ea5b838755ee5b2b9c48fab7183fc6c53a2461dc44dbb004f',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
 };
 const runtimes = [
   {
@@ -69,6 +76,20 @@ const runtimes = [
     edition: 'staging',
     fingerprint: '49ab29ede2d117832a79151f02da524001024fa2109f79a9b55b7921bbb3dbd6',
     styles: '545b7cb79e15706a80087ebc5cf5139b0c4af564d47f141b7a1ede0915c18a97',
+  },
+  {
+    id: 'issue39-licensed-plain',
+    family: 'issue39Licensed',
+    edition: 'plain',
+    fingerprint: '3f806604b25fb2f7f8fa04c9a2338c6dc8780a8e6894e7300fb0a28c272e7827',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-licensed-staging',
+    family: 'issue39Licensed',
+    edition: 'staging',
+    fingerprint: '79a40d3f5166b1ac87575db60bd9f24bcaef768d8158b7a963ae181ec58e777b',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
   },
 ];
 function reviewedRuntime(id) {

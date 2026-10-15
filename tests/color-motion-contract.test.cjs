@@ -162,8 +162,8 @@ function evidence(id) {
   }
   return value;
 }
-test('only the six reviewed plain/staging runtime tuples select a camera and flight contract', () => {
-  for (const family of ['legacy', 'fixed', 'issue76'])
+test('only the eight reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+  for (const family of ['legacy', 'fixed', 'issue76', 'issue39-licensed'])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
         selected = manifest(id);
@@ -174,7 +174,7 @@ test('only the six reviewed plain/staging runtime tuples select a camera and fli
       );
       assert.equal(gate.aggregate(evidence(id)).pass, true);
     }
-  for (const id of ['fixed-plain', 'issue76-plain']) {
+  for (const id of ['fixed-plain', 'issue76-plain', 'issue39-licensed-plain']) {
     const copy = motion.reviewedRuntime(id);
     copy.files['space.js'] = '0'.repeat(64);
     assert.equal(motion.select(manifest(id)).id, id);
@@ -197,7 +197,13 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
       m.files['runtime/' + m.variant.fingerprint + '/styles.css'].sha256 = '0'.repeat(64);
     },
   ];
-  for (const id of ['fixed-plain', 'issue76-plain', 'issue76-staging']) {
+  for (const id of [
+    'fixed-plain',
+    'issue76-plain',
+    'issue76-staging',
+    'issue39-licensed-plain',
+    'issue39-licensed-staging',
+  ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
       mutate(value);
@@ -223,14 +229,19 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
       assert.equal(contexts, 0, 'unreviewed tuple cannot launch a browser context');
     }
   }
-  for (const id of ['fixed-staging', 'issue76-staging']) {
+  for (const id of ['fixed-staging', 'issue76-staging', 'issue39-licensed-staging']) {
     const staged = manifest(id);
     delete staged.edition;
     assert.throws(() => motion.select(staged), /edition differs/);
   }
 });
-test('issue76 rejects mixed reviewed bytes and editions in both canonical and immutable paths', () => {
-  for (const id of ['issue76-plain', 'issue76-staging']) {
+test('current and licensed families reject mixed reviewed bytes and editions in canonical and immutable paths', () => {
+  for (const id of [
+    'issue76-plain',
+    'issue76-staging',
+    'issue39-licensed-plain',
+    'issue39-licensed-staging',
+  ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
         name === 'styles.css'
@@ -250,7 +261,7 @@ test('issue76 rejects mixed reviewed bytes and editions in both canonical and im
       }
     }
     const wrongEdition = manifest(id);
-    if (id === 'issue76-plain') {
+    if (motion.reviewedRuntime(id).edition === 'plain') {
       wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
     } else {
       delete wrongEdition.edition;
@@ -258,13 +269,43 @@ test('issue76 rejects mixed reviewed bytes and editions in both canonical and im
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
   }
 });
+test('licensed contracts reject every missing or substituted runtime file and remain staging-only', () => {
+  for (const id of ['issue39-licensed-plain', 'issue39-licensed-staging']) {
+    const runtime = motion.reviewedRuntime(id);
+    for (const name of Object.keys(runtime.files)) {
+      for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name]) {
+        for (const missing of [false, true]) {
+          const value = manifest(id);
+          if (missing) delete value.files[file];
+          else value.files[file].sha256 = '0'.repeat(64);
+          assert.throws(() => motion.select(value), /Color bytes/);
+        }
+      }
+    }
+    const production = manifest(id);
+    production.edition = {
+      id: 'production',
+      indexable: true,
+      origin: 'https://vitaliioborskyi.ai',
+    };
+    assert.throws(() => motion.select(production), /edition differs/);
+  }
+  assert.throws(() => motion.reviewedRuntime('issue39-licensed-production'), /unknown reviewed/);
+});
 test('full Color aggregation preserves all twelve engine, viewport and theme cells for reviewed contracts', () => {
-  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain']) {
+  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain', 'issue39-licensed-plain']) {
     const value = evidence(id),
       report = value.reports.at(-1),
       model = report.rows[0],
       fixed = motion.select(value.manifest).behavior === 'fixed-blocks';
     report.kind = 'color-functional';
+    report.smoke = false;
+    delete report.profile;
+    delete report.fullGate;
+    report.browsers = ['chromium', 'firefox', 'webkit'].map((engine) => ({
+      engine,
+      version: 'controlled full Color fixture; not a real browser launch',
+    }));
     report.rows = ['chromium', 'firefox', 'webkit'].flatMap((engine) =>
       [1440, 390].flatMap((width) =>
         ['light', 'dark'].map((theme) => ({
@@ -278,6 +319,9 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     );
     quality.colorReports([report], value.manifest);
     const invalid = [
+      (r) => (r.browsers = r.browsers.filter((browser) => browser.engine !== 'webkit')),
+      (r) => (r.browsers[0] = structuredClone(r.browsers[1])),
+      (r) => (r.browsers[0].version = ''),
       (r) => (r.rows = r.rows.filter((row) => row.engine !== 'webkit')),
       (r) => (r.rows[0] = structuredClone(r.rows[1])),
       (r) => (r.rows[0].theme = 'other'),
@@ -298,7 +342,14 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
   }
 });
 test('reviewed report guard branches reject wrong planes, moving reading cameras and false contract claims', () => {
-  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain', 'issue76-staging']) {
+  for (const id of [
+    'legacy-plain',
+    'fixed-plain',
+    'issue76-plain',
+    'issue76-staging',
+    'issue39-licensed-plain',
+    'issue39-licensed-staging',
+  ]) {
     const value = evidence(id),
       report = value.reports.at(-1);
     assert.equal(stage.validateColor(report, value.manifest), 2);

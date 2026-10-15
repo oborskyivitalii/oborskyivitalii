@@ -29,6 +29,88 @@ function fixture(t) {
     select: (profile, options = {}) => runner.select(directory, profile, { registry, ...options }),
   };
 }
+function executionFixture(t, body) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'site-source-execution-')),
+    reports = fs.mkdtempSync(path.join(os.tmpdir(), 'site-source-reports-')),
+    file = 'tests/controlled.test.cjs',
+    write = (name, bytes) => {
+      fs.mkdirSync(path.dirname(path.join(directory, name)), { recursive: true });
+      fs.writeFileSync(path.join(directory, name), bytes);
+    };
+  write(file, body);
+  write(
+    'tools/quality/source-tests.cjs',
+    fs.readFileSync(path.join(root, 'tools/quality/source-tests.cjs'))
+  );
+  write('tools/quality/local.cjs', '// no delegated baseline in this controlled repository\n');
+  write('guides/SITE-CHECK-PROFILES.md', 'controlled test owner\n');
+  write(
+    runner.REGISTRY,
+    JSON.stringify({
+      schema_version: 1,
+      owner: 'guides/SITE-CHECK-PROFILES.md',
+      source_profiles: {
+        pr: { baseline_files: [], known_non_node_paths: [], shared_inputs: [] },
+        staging: { baseline_files: [] },
+      },
+      tests: [
+        {
+          path: file,
+          language: 'javascript',
+          purpose: 'Controlled actual execution',
+          owner: 'guides/SITE-CHECK-PROFILES.md',
+          lifecycle: 'permanent',
+          profiles: ['pr-targeted', 'staging', 'production'],
+          disposition: 'controlled fixture',
+          surviving_route: 'production',
+          inputs: [file],
+        },
+      ],
+    })
+  );
+  cp.execFileSync('git', ['init', '--quiet'], { cwd: directory });
+  cp.execFileSync('git', ['add', '.'], { cwd: directory });
+  cp.execFileSync(
+    'git',
+    [
+      '-c',
+      'user.name=Fixture',
+      '-c',
+      'user.email=fixture@example.invalid',
+      'commit',
+      '--quiet',
+      '-m',
+      'controlled source',
+    ],
+    { cwd: directory }
+  );
+  t.after(() => {
+    fs.rmSync(directory, { recursive: true, force: true });
+    fs.rmSync(reports, { recursive: true, force: true });
+  });
+  return {
+    directory,
+    file,
+    report: path.join(reports, 'source.json'),
+    plan: { profile: 'production', modules: [file], baselineFiles: [] },
+    write,
+    cli(...args) {
+      return cp.spawnSync(
+        process.execPath,
+        [
+          path.join(directory, 'tools/quality/source-tests.cjs'),
+          '--profile',
+          'production',
+          '--require-clean',
+          '--report',
+          path.join(reports, 'source.json'),
+          ...args,
+        ],
+        { cwd: directory, encoding: 'utf8', timeout: 20000 }
+      );
+    },
+  };
+}
 const tap = (values = {}) =>
   '# Subtest: controlled real test\n' +
   Object.entries({ tests: 2, pass: 2, fail: 0, cancelled: 0, skipped: 0, todo: 0, ...values })
@@ -360,6 +442,38 @@ test('an empty selected file cannot masquerade as one passing Node test wrapper'
   );
 });
 
+test('a suite-only selected module cannot borrow passing leaf cases from another module or sibling', (t) => {
+  const f = fixture(t),
+    empty = 'tests/content.test.cjs',
+    active = 'tests/archive.test.cjs',
+    plan = { profile: 'production', modules: [empty, active] };
+  f.write(active, "require('node:test')('actual leaf case', () => {});\n");
+  for (const body of [
+    "require('node:test').describe('empty suite', () => {});\n",
+    "const {describe}=require('node:test');describe('outer suite', () => {describe('empty inner', () => {});});\n",
+    "const {describe,it}=require('node:test');describe('outer suite', () => {it('real sibling', () => {});describe('empty inner', () => {});});\n",
+  ]) {
+    f.write(empty, body);
+    assert.throws(() => runner.run(f.directory, plan), /empty Node suite/);
+  }
+});
+
+test('nested nonempty suites retain actual leaf accounting without interpreting names or stdout as metadata', (t) => {
+  const f = fixture(t),
+    file = 'tests/content.test.cjs';
+  f.write(
+    file,
+    "const {describe,it}=require('node:test');describe(\"type: 'suite'\", () => {describe('inner', () => {it('first leaf', () => {console.log(\"type: 'suite'\");});});it('second leaf', () => {});});\n"
+  );
+  const result = runner.run(f.directory, {
+    profile: 'production',
+    modules: [file],
+  });
+  assert.equal(result.pass, true);
+  assert.equal(result.total, 2);
+  assert.equal(result.passed, 2);
+});
+
 test('nested future test modules are inventoried while fixture helpers remain helper files', (t) => {
   const f = fixture(t),
     file = 'tests/nested/future-contract.test.cjs';
@@ -379,4 +493,178 @@ test('nested future test modules are inventoried while fixture helpers remain he
   f.write('tests/fixtures/helper.cjs');
   assert.ok(f.select('production').modules.includes(file));
   assert.deepEqual(f.select('pr', { changedPaths: [file] }).modules, [file]);
+});
+
+test('Basic delegates strict named accounting and rejects an empty file beside a real baseline case', (t) => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'site-basic-accounting-')),
+    empty = path.join(directory, 'empty.test.cjs'),
+    active = path.join(directory, 'active.test.cjs'),
+    env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const execute = (files) =>
+    cp.spawnSync(
+      process.execPath,
+      [
+        '-e',
+        'console.log(JSON.stringify(require(process.argv[1]).tests(process.argv.slice(2))))',
+        path.join(root, 'tools/quality/local.cjs'),
+        ...files,
+      ],
+      { env, encoding: 'utf8', timeout: 10000 }
+    );
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  fs.writeFileSync(empty, '');
+  fs.writeFileSync(active, "require('node:test')('remaining baseline test', () => {});\n");
+  const mixed = execute([empty, active]);
+  assert.equal(mixed.status, 1);
+  assert.match(mixed.stderr, /empty selected test module/);
+  fs.writeFileSync(empty, "require('node:test').describe('empty baseline suite', () => {});\n");
+  const suiteOnly = execute([empty, active]);
+  assert.equal(suiteOnly.status, 1);
+  assert.match(suiteOnly.stderr, /empty Node suite/);
+  const complete = execute([active]);
+  assert.equal(complete.status, 0, complete.stderr);
+  assert.deepEqual(JSON.parse(complete.stdout), {
+    files: [active],
+    total: 1,
+    passed: 1,
+    failed: 0,
+    skipped: 0,
+  });
+  for (const option of ['skip', 'todo']) {
+    fs.writeFileSync(
+      active,
+      "require('node:test')('unavailable baseline', {" + option + ':true}, () => {});\n'
+    );
+    const unavailable = execute([active]);
+    assert.equal(unavailable.status, 1);
+    assert.match(unavailable.stderr, /not all selected|skipped|todo/);
+  }
+});
+
+test('explicit source reporting retains actual failed process streams and source before the CLI exits nonzero', (t) => {
+  const f = executionFixture(
+      t,
+      "const test=require('node:test');test('controlled process failure',()=>{console.log('raw-evidence-'.repeat(1000));throw Error('original process failure')});\n"
+    ),
+    child = f.cli();
+  assert.equal(child.status, 1, child.stderr);
+  const report = JSON.parse(fs.readFileSync(f.report, 'utf8')),
+    printed = JSON.parse(child.stdout),
+    raw = fs.readFileSync(report.files.tap, 'utf8');
+  assert.deepEqual(printed, report);
+  assert.equal(report.status, 'failed');
+  assert.equal(report.pass, false);
+  assert.equal(report.execution.status, 1);
+  assert.equal(report.source.sourceDirty, false);
+  assert.deepEqual(report.sourceAfter, report.source);
+  assert.match(report.source.sourceCommit, /^[a-f0-9]{40}$/);
+  assert.match(report.source.sourceTree, /^[a-f0-9]{40}$/);
+  assert.ok(raw.length > 8000);
+  assert.match(raw, /original process failure/);
+  assert.equal(report.execution.stdoutBytes, Buffer.byteLength(raw));
+  assert.equal(report.execution.timeoutMs, 180000);
+  assert.equal(report.execution.maxBufferBytes, 16 * 1024 * 1024);
+  assert.deepEqual(report.observedAccounting.fail, [1]);
+});
+
+test('explicit reports preserve accounting failure, timeout evidence and source mutation as failures', (t) => {
+  const skipped = executionFixture(
+    t,
+    "require('node:test')('selected skipped test',{skip:true},()=>{});\n"
+  );
+  assert.throws(
+    () =>
+      runner.run(skipped.directory, skipped.plan, { requireClean: true, report: skipped.report }),
+    /not all selected|skipped/
+  );
+  const skipReport = JSON.parse(fs.readFileSync(skipped.report));
+  assert.equal(skipReport.pass, false);
+  assert.equal(skipReport.execution.status, 0);
+  assert.deepEqual(skipReport.observedAccounting.skipped, [1]);
+  const timeout = executionFixture(t, "require('node:test')('available',()=>{});\n");
+  assert.throws(
+    () =>
+      runner.run(timeout.directory, timeout.plan, {
+        requireClean: true,
+        report: timeout.report,
+        execute: () => ({
+          status: null,
+          signal: 'SIGTERM',
+          stdout: 'partial raw TAP\n',
+          stderr: 'original timeout diagnostic\n',
+          error: Object.assign(new Error('spawnSync ETIMEDOUT'), { code: 'ETIMEDOUT' }),
+        }),
+      }),
+    /ETIMEDOUT/
+  );
+  const timeoutReport = JSON.parse(fs.readFileSync(timeout.report));
+  assert.equal(timeoutReport.pass, false);
+  assert.equal(timeoutReport.execution.error.code, 'ETIMEDOUT');
+  assert.equal(fs.readFileSync(timeoutReport.files.tap, 'utf8'), 'partial raw TAP\n');
+  assert.equal(
+    fs.readFileSync(timeoutReport.files.stderr, 'utf8'),
+    'original timeout diagnostic\n'
+  );
+  const mutation = executionFixture(
+    t,
+    "require('node:test')('changes source',()=>{require('node:fs').appendFileSync(__filename,'\\n// source changed\\n')});\n"
+  );
+  assert.throws(
+    () =>
+      runner.run(mutation.directory, mutation.plan, {
+        requireClean: true,
+        report: mutation.report,
+      }),
+    /clean checkout/
+  );
+  const mutationReport = JSON.parse(fs.readFileSync(mutation.report));
+  assert.equal(mutationReport.pass, false);
+  assert.equal(mutationReport.source.sourceDirty, false);
+  assert.equal(mutationReport.sourceAfter.sourceDirty, true);
+});
+
+test('report write errors cannot become green and clean source failures still leave structured evidence', (t) => {
+  const f = executionFixture(t, "require('node:test')('available',()=>{});\n");
+  fs.mkdirSync(f.report);
+  let failure;
+  try {
+    runner.run(f.directory, f.plan, { requireClean: true, report: f.report });
+  } catch (error) {
+    failure = error;
+  }
+  assert.equal(failure?.code, 'EISDIR');
+  assert.equal(failure.report.pass, false);
+  assert.equal(failure.report.status, 'failed');
+  assert.equal(failure.report.execution.status, 0);
+  assert.equal(failure.report.reportWriteError.name, 'Error');
+  fs.rmSync(f.report, { recursive: true });
+  f.write(f.file, '// dirty source\n');
+  assert.throws(
+    () => runner.run(f.directory, f.plan, { requireClean: true, report: f.report }),
+    /clean checkout/
+  );
+  const report = JSON.parse(fs.readFileSync(f.report));
+  assert.equal(report.pass, false);
+  assert.equal(report.source.sourceDirty, true);
+  assert.equal(report.execution, undefined);
+  assert.equal(fs.readFileSync(report.files.tap, 'utf8'), '');
+  assert.throws(
+    () => runner.argumentsFor(['--profile', 'production', '--plan', '--report', f.report]),
+    /requires execution/
+  );
+});
+
+test('optional successful source reports keep the default API and CLI result shapes', (t) => {
+  const f = executionFixture(t, "require('node:test')('available',()=>{});\n"),
+    result = runner.run(f.directory, f.plan, { requireClean: true, report: f.report }),
+    report = JSON.parse(fs.readFileSync(f.report));
+  assert.equal(result.pass, true);
+  assert.equal(Object.hasOwn(result, 'source'), false);
+  assert.deepEqual(report.result, result);
+  assert.equal(report.pass, true);
+  const child = f.cli();
+  assert.equal(child.status, 0, child.stderr);
+  assert.equal(JSON.parse(child.stdout).status, 'passed');
+  assert.equal(Object.hasOwn(JSON.parse(child.stdout), 'files'), false);
 });

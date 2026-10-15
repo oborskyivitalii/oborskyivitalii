@@ -302,6 +302,41 @@ test('staging performance validates actual raw windows, cold/warm flights and tw
     assert.throws(() => stage.validatePerformance(report));
   }
 });
+test('every staging measurement requires the observed active renderer state', () => {
+  for (const index of [0, 1, 2, 3, 4])
+    for (const state of [undefined, 'stopped']) {
+      const report = fixture.performanceReport(),
+        row = index === 4 ? report.flights[0] : report.samples[0].measurements[index];
+      assert.equal(row.state, 'active');
+      if (state === undefined) delete row.state;
+      else row.state = state;
+      assert.throws(
+        () => stage.validatePerformance(report),
+        /staging measurement lacks an active renderer/
+      );
+    }
+});
+test('flight preparation timestamps require finite numbers inside the original measurement window', () => {
+  const selected = stage.flightCases().find((row) => row.to === 'research' && row.phase === 'cold');
+  for (const field of ['start', 'duration', 'time']) {
+    for (const value of ['2', undefined, NaN, Infinity, -Infinity, -1, 100000]) {
+      const row = fixture.flight('research', 'index', 'cold');
+      if (value === undefined) delete row.rawPreparation[0][field];
+      else row.rawPreparation[0][field] = value;
+      assert.throws(
+        () => stage.validateFlight(row, selected),
+        (error) => {
+          assert.match(error.message, /invalid preparation sample/);
+          assert.equal(
+            require('../tools/quality/validate.cjs').performanceBudgetFailure(error),
+            null
+          );
+          return true;
+        }
+      );
+    }
+  }
+});
 test('observed slow motion is rejected even when its derived metrics are internally consistent', () => {
   const report = fixture.performanceReport(),
     row = report.samples[0].measurements[0];
@@ -548,6 +583,232 @@ test('performance driver runs two route samples and two audits serially with a c
     0
   );
 });
+function resourceEntry(name, startTime = 110, responseEnd = 200) {
+  return {
+    name,
+    initiatorType: 'fetch',
+    startTime,
+    duration: responseEnd - startTime,
+    fetchStart: startTime,
+    requestStart: startTime + 10,
+    responseStart: responseEnd - 10,
+    responseEnd,
+    responseStatus: 200,
+    transferSize: 1300,
+    encodedBodySize: 1000,
+    decodedBodySize: 2000,
+  };
+}
+test('post-flight resource collection selects only the two current same-origin fetches without truncating overflow', () => {
+  const vm = require('node:vm'),
+    directory = fixture.target + '/staging/',
+    snapshot = directory + 'snapshots/' + 'a'.repeat(64) + '/research.html',
+    selected = [resourceEntry(directory + 'site-revision.json'), resourceEntry(snapshot, 210, 900)];
+  let resources = [
+    ...selected,
+    resourceEntry(directory + 'site-revision.json', 1, 50),
+    resourceEntry(directory + 'site-revision.json', 5001, 5010),
+    resourceEntry('https://other.example/site-revision.json'),
+    resourceEntry(directory + 'snapshots/' + 'a'.repeat(64) + '/writing.html'),
+    { ...resourceEntry(directory + 'index.html'), initiatorType: 'navigation' },
+  ];
+  const collect = () =>
+    vm.runInNewContext('(' + stage.flightResourceTiming.toString() + ')(selected)', {
+      URL,
+      selected: { startMs: 100, endMs: 5000, destination: 'research' },
+      location: { href: directory + 'research.html' },
+      performance: {
+        now: () => 5005,
+        getEntriesByType: (kind) => {
+          assert.equal(kind, 'resource');
+          return resources;
+        },
+      },
+    });
+  const evidence = JSON.parse(JSON.stringify(collect()));
+  assert.deepEqual(evidence, {
+    schema: 1,
+    documentURL: directory + 'research.html',
+    collectedAtMs: 5005,
+    entries: selected,
+  });
+  resources = [...selected, resourceEntry(snapshot, 1000, 1100)];
+  assert.throws(collect, /overflowing current-flight resource timing/);
+});
+test('flight fetch evidence separates response completion from preparation and rejects invalid unbounded records', () => {
+  const directory = fixture.target + '/staging/',
+    snapshot = directory + 'snapshots/' + 'a'.repeat(64) + '/research.html',
+    row = {
+      to: 'research',
+      window: { startMs: 100, endMs: 5000 },
+      rawChoreography: [{ kind: 'navigation-start', time: 105 }],
+      rawPreparation: [{ kind: 'route', page: 'research', start: 1000 }],
+      transitionPhase: 'cold',
+      pass: true,
+    },
+    evidence = {
+      schema: 1,
+      documentURL: directory + 'research.html',
+      collectedAtMs: 5005,
+      entries: [resourceEntry(directory + 'site-revision.json'), resourceEntry(snapshot, 210, 900)],
+    },
+    read = (input = evidence, flight = row) =>
+      stage.flightReadTiming(input, flight, directory + 'index.html');
+  assert.deepEqual(read(), {
+    navigationStartMs: 105,
+    preparationStartMs: 1000,
+    navigationToPreparationMs: 895,
+    lastResponseEndMs: 900,
+    navigationToLastResponseEndMs: 795,
+    responseEndToPreparationMs: 100,
+  });
+  const cached = structuredClone(evidence);
+  Object.assign(cached.entries[1], { transferSize: 0, responseStatus: 0 });
+  assert.deepEqual(
+    read(cached),
+    read(),
+    'zero transfer/status remain raw observations, not wire-latency claims'
+  );
+  const warm = read({ ...evidence, entries: [] }, { ...row, transitionPhase: 'warm' });
+  assert.equal(warm.navigationToPreparationMs, 895);
+  assert.equal(warm.lastResponseEndMs, null, 'a warm cache does not manufacture network timing');
+  assert.equal(warm.responseEndToPreparationMs, null);
+  for (const mutate of [
+    (value) => (value.schema = 2),
+    (value) => (value.collectedAtMs = 4999),
+    (value) => (value.collectedAtMs = Infinity),
+    (value) => (value.collectedAtMs = Number.MAX_VALUE),
+    (value) => (value.documentURL = 'https://other.example/staging/research.html'),
+    (value) =>
+      (value.documentURL = value.documentURL.replace('https://', 'https://user:password@')),
+    (value) => (value.documentURL = fixture.target + '/different/research.html'),
+    (value) => value.entries.push(resourceEntry(snapshot, 1000, 1100)),
+    (value) => value.entries.pop(),
+    (value) => (value.entries[1] = structuredClone(value.entries[0])),
+    (value) => (value.entries[0].name = 'https://other.example/site-revision.json'),
+    (value) => (value.entries[1].name = snapshot.replace('https://', 'https://user:password@')),
+    (value) => (value.entries[0].name = directory + 'site-revision.json?unbound=1'),
+    (value) => (value.entries[0].name = directory + 'x'.repeat(2049)),
+    (value) => (value.entries[1].name = snapshot.replace('/research.html', '/writing.html')),
+    (value) => (value.entries[1].name = snapshot.replace('a'.repeat(64), 'not-a-version')),
+    (value) => (value.entries[1].name = snapshot + '/extra'),
+    (value) => (value.entries[0].initiatorType = 'navigation'),
+    (value) => (value.entries[0].startTime = 99),
+    (value) => (value.entries[0].fetchStart = 1),
+    (value) =>
+      Object.assign(value.entries[1], { fetchStart: 999, requestStart: 0, responseStart: 0 }),
+    (value) => (value.entries[0].requestStart = 201),
+    (value) => (value.entries[0].responseStart = Number.NaN),
+    (value) => (value.entries[0].responseEnd = 5001),
+    (value) => (value.entries[0].duration = 1),
+    (value) => (value.entries[0].responseStatus = 600),
+    (value) => (value.entries[0].transferSize = -1),
+    (value) => (value.entries[0].encodedBodySize = 0.5),
+    (value) => (value.entries[0].decodedBodySize = Infinity),
+    (value) => (value.entries[0].decodedBodySize = Number.MAX_SAFE_INTEGER + 1),
+    (value) => (value.entries[0].decodedBodySize = 2000001),
+  ]) {
+    const invalid = structuredClone(evidence);
+    mutate(invalid);
+    assert.throws(() => read(invalid));
+  }
+  const late = structuredClone(evidence);
+  late.entries[1].responseEnd = 1100;
+  late.entries[1].duration = 890;
+  assert.throws(() => read(late), /response completed after route preparation/);
+  assert.throws(
+    () => read(evidence, { ...row, transitionPhase: 'warm' }),
+    /cold\/warm fetch timing/
+  );
+  const failed = read({ ...evidence, entries: [] }, { ...row, pass: false, rawPreparation: [] });
+  assert.equal(
+    failed.preparationStartMs,
+    null,
+    'an interrupted read retains an explicit missing endpoint'
+  );
+});
+test('flight driver collects resources only after the original window and preserves the native latency failure', async () => {
+  const data = fixture.flightData('research', 'index', 'cold'),
+    calls = [],
+    documentURL = fixture.target + '/index.html';
+  data.end = data.elapsed = 4875;
+  data.events.find((event) => event.kind === 'navigation-ready').time = 4875;
+  data.events.push({ kind: 'route', page: 'research', start: 6, time: 8, duration: 2 });
+  const resources = {
+    schema: 1,
+    documentURL: fixture.target + '/research.html',
+    collectedAtMs: 4999,
+    entries: [
+      resourceEntry(fixture.target + '/site-revision.json', 0.1, 2),
+      resourceEntry(fixture.target + '/snapshots/' + 'a'.repeat(64) + '/research.html', 2.1, 4),
+    ],
+  };
+  for (const entry of resources.entries) {
+    entry.requestStart = entry.startTime;
+    entry.responseStart = entry.responseEnd;
+  }
+  const selected = { from: 'index', to: 'research', phase: 'cold' },
+    page = {
+      url: () => documentURL,
+      locator: () => ({ getAttribute: async () => 'index' }),
+      evaluate: async (fn, argument) => {
+        if (fn === stage.flightResourceTiming) {
+          calls.push('resources after capture');
+          assert.deepEqual(argument, { startMs: 0, endMs: 4875, destination: 'research' });
+          return structuredClone(resources);
+        }
+        if (argument === 'research') calls.push('original click');
+        else {
+          calls.push('original raw capture');
+          return structuredClone(data);
+        }
+      },
+      waitForFunction: async (fn, destination, options) => {
+        calls.push('original ready wait');
+        assert.equal(destination, 'research');
+        assert.deepEqual(options, {
+          polling: 40,
+          timeout: require('../tools/quality/motion.cjs').transitionReadyDeadlineMs(390),
+        });
+      },
+    },
+    setup = fixture.flightSetup('research', 'cold'),
+    row = await stage.measureFlight({ page, errors: [] }, selected, setup);
+  assert.deepEqual(calls, [
+    'original click',
+    'original ready wait',
+    'original raw capture',
+    'resources after capture',
+  ]);
+  const expected = require('../tools/quality/motion.cjs').summarize(data, 'flight', {
+    from: 'index',
+    to: 'research',
+    width: 390,
+  });
+  for (const [key, value] of Object.entries(expected)) assert.deepEqual(row[key], value);
+  assert.equal(row.readyMs, 4875);
+  assert.equal(row.equivalentReadyMs, 3383);
+  assert.throws(() => stage.validateFlight(row, selected), /invalid\/slow input-to-ready latency/);
+  resources.entries.push(structuredClone(resources.entries[0]));
+  const invalid = await stage.measureFlight({ page, errors: [] }, selected, setup);
+  assert.equal(invalid.pass, false);
+  assert.match(invalid.error, /resource timing/);
+  assert.deepEqual(
+    invalid.rawFrames,
+    row.rawFrames,
+    'invalid telemetry cannot erase the failing measurement'
+  );
+  assert.equal(invalid.equivalentReadyMs, 3383);
+  resources.entries.pop();
+  page.waitForFunction = async () => {
+    throw Error('controlled readiness timeout');
+  };
+  const interrupted = await stage.measureFlight({ page, errors: [] }, selected, setup);
+  assert.equal(interrupted.pass, false);
+  assert.equal(interrupted.error, 'controlled readiness timeout');
+  assert.deepEqual(interrupted.resourceTiming.entries, row.resourceTiming.entries);
+  assert.deepEqual(interrupted.rawFrames, row.rawFrames);
+});
 test('selected flight driver uses a fresh context for each destination and measures its actual cold/warm pair', async () => {
   const calls = [];
   let pairId = 0;
@@ -686,4 +947,182 @@ test('failed flight collection retains previous and failing raw records instead 
     }
   );
   assert.equal(measurementClosed, true);
+});
+function completedSlowFlight(to = 'writing') {
+  const data = fixture.flightData(to, 'index', 'cold');
+  data.end = data.elapsed = to === 'writing' ? 4620.9 : 4875;
+  data.events.at(-1).time = data.end;
+  return {
+    from: 'index',
+    to,
+    width: 390,
+    rate: 4,
+    ...require('../tools/quality/motion.cjs').summarize(data, 'flight', {
+      from: 'index',
+      to,
+      width: 390,
+    }),
+    setup: fixture.flightSetup(to, 'cold'),
+    errors: [],
+    pass: true,
+  };
+}
+test('a completed over-budget cold flight retains its failure and collects the remaining declared flights and audits', async () => {
+  const calls = [],
+    slow = completedSlowFlight(),
+    raw = structuredClone(slow),
+    detail = await stage.collectPerformance(fixture.target, {
+      launch: async () => ({
+        version: () => 'controlled fixture',
+        close: async () => calls.push('close measurement browser'),
+      }),
+      sample: async (browser, url, route) =>
+        fixture.performanceReport().samples.find((s) => s.route === route),
+      flights: async (browser, url) =>
+        stage.selectedFlights(browser, url, {
+          open: async () => ({ page: {}, close: async () => calls.push('close pair') }),
+          setup: async (page, selected) => fixture.flightSetup(selected.to, selected.phase),
+          measure: async (pair, selected) => {
+            calls.push(selected.to + ' ' + selected.phase);
+            return selected.to === 'writing' && selected.phase === 'cold'
+              ? slow
+              : fixture.flight(selected.to, selected.from, selected.phase);
+          },
+          restore: async () => calls.push('restore index'),
+        }),
+      lighthouse: async (url, route) => {
+        calls.push('lighthouse ' + route);
+        return fixture.lighthouseRow(route);
+      },
+    });
+  assert.deepEqual(calls, [
+    'research cold',
+    'restore index',
+    'research warm',
+    'close pair',
+    'writing cold',
+    'restore index',
+    'writing warm',
+    'close pair',
+    'close measurement browser',
+    'lighthouse research',
+    'lighthouse writing',
+  ]);
+  assert.equal(detail.flights.length, 4);
+  assert.equal(detail.lighthouse.length, 2);
+  const failed = detail.flights[2];
+  assert.equal(failed.pass, false);
+  assert.ok(Math.abs(failed.equivalentReadyMs - 3382.9) < 1e-8);
+  for (const key of ['rawFrames', 'rawPreparation', 'rawChoreography', 'readyMs'])
+    assert.deepEqual(failed[key], raw[key], 'budget failure preserves ' + key);
+  assert.equal(failed.validationFailure.kind, 'performance-budget');
+  assert.deepEqual(
+    failed.validationFailure.violations.map(({ metric, actual, limit }) => ({
+      metric,
+      actual,
+      limit,
+    })),
+    [{ metric: 'equivalentReadyMs', actual: failed.equivalentReadyMs, limit: 3200 }]
+  );
+  const aggregate = fixture.aggregateFixture();
+  Object.assign(
+    aggregate.reports.find((report) => report.kind === 'stage-performance'),
+    detail
+  );
+  assert.throws(
+    () => require('../tools/quality/staging-gate.cjs').aggregate(aggregate),
+    /invalid\/slow input-to-ready latency/
+  );
+});
+test('budget continuation cannot bypass bad cache or renderer state, failed warm setup, forged error types or cleanup failure', async () => {
+  for (const defect of [
+    'cache',
+    'raw-integrity',
+    'preparation-start-type',
+    'preparation-time-missing',
+    'preparation-time-window',
+    'missing-state',
+    'stopped-state',
+    'warm-setup',
+    'forged-error',
+    'cleanup',
+  ]) {
+    const calls = [],
+      slow = completedSlowFlight('research');
+    await assert.rejects(
+      () =>
+        stage.collectPerformance(fixture.target, {
+          launch: async () => ({ version: () => 'controlled fixture', close: async () => {} }),
+          sample: async (browser, url, route) =>
+            fixture.performanceReport().samples.find((s) => s.route === route),
+          flights: async (browser, url) =>
+            stage.selectedFlights(browser, url, {
+              open: async () => ({
+                page: {},
+                close: async () => {
+                  if (defect === 'cleanup') throw Error('controlled cleanup failure');
+                },
+              }),
+              setup: async (page, selected) => {
+                calls.push('setup ' + selected.phase);
+                if (defect === 'warm-setup' && selected.phase === 'warm')
+                  throw Error('controlled warm setup failure');
+                return fixture.flightSetup(selected.to, selected.phase);
+              },
+              measure: async (pair, selected) => {
+                calls.push('measure ' + selected.phase);
+                if (defect === 'forged-error') {
+                  const error = Error('controlled collection failure');
+                  error.name = 'PerformanceBudgetError';
+                  error.violations = [{ metric: 'equivalentReadyMs', actual: 3382.9, limit: 3200 }];
+                  throw error;
+                }
+                if (defect === 'cache') slow.setup.samples.at(-1).targetCached = true;
+                if (defect === 'raw-integrity') slow.rawPreparation[0].duration = -1;
+                if (defect === 'preparation-start-type')
+                  slow.rawPreparation[0].start = String(slow.rawPreparation[0].start);
+                if (defect === 'preparation-time-missing') delete slow.rawPreparation[0].time;
+                if (defect === 'preparation-time-window')
+                  slow.rawPreparation[0].time = slow.window.endMs + 1;
+                if (defect === 'missing-state') delete slow.state;
+                if (defect === 'stopped-state') slow.state = 'stopped';
+                return selected.phase === 'cold'
+                  ? slow
+                  : fixture.flight('research', 'index', 'warm');
+              },
+              restore: async () => calls.push('restore'),
+            }),
+          lighthouse: async () => assert.fail('unsafe collection failure must prevent Lighthouse'),
+        }),
+      (error) => {
+        assert.ok(
+          error.detail.flights.every((row) => row.pass === false || row.transitionPhase === 'warm')
+        );
+        if (defect === 'warm-setup') {
+          assert.equal(error.detail.flights.length, 2);
+          assert.equal(error.detail.flights[1].expectedPhase, 'warm');
+          assert.equal(error.detail.flights[1].pass, false);
+          assert.equal(error.detail.flights[1].setup, null);
+          assert.equal(calls.includes('measure warm'), false);
+        }
+        if (
+          [
+            'cache',
+            'raw-integrity',
+            'preparation-start-type',
+            'preparation-time-missing',
+            'preparation-time-window',
+            'missing-state',
+            'stopped-state',
+          ].includes(defect)
+        ) {
+          assert.equal(error.detail.flights.length, 1);
+          assert.equal(error.detail.flights[0].validationFailure, undefined);
+          assert.equal(calls.includes('restore'), false);
+          assert.equal(calls.includes('setup warm'), false);
+        }
+        return true;
+      }
+    );
+  }
 });

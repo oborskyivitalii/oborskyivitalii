@@ -308,6 +308,33 @@ function select(root, profile, options = {}) {
     taskSnapshots: 'selected owning issue policy only',
   };
 }
+function requireNonemptySuites(tap) {
+  const active = [];
+  let completed = null;
+  for (const line of tap.split(/\r?\n/)) {
+    const caption = line.match(/^([ ]*)# Subtest: (.+)$/);
+    if (caption) {
+      const indent = caption[1].length;
+      if (active.length) active.at(-1).children++;
+      active.push({ indent, name: caption[2], children: 0 });
+      completed = null;
+      continue;
+    }
+    const outcome = line.match(/^([ ]*)(?:not )?ok [0-9]+(?: |$)/);
+    if (outcome) {
+      const index = active.findLastIndex((entry) => entry.indent === outcome[1].length);
+      completed = index < 0 ? null : active[index];
+      if (index >= 0) active.length = index;
+      continue;
+    }
+    const suite = line.match(/^([ ]*)type: ['"]suite['"]$/);
+    if (suite)
+      assert.ok(
+        completed && suite[1].length === completed.indent + 2 && completed.children > 0,
+        'empty Node suite cannot establish selected test coverage: ' + completed?.name
+      );
+  }
+}
 function accounting(tap, { modules = [], root = '' } = {}) {
   const captions = [...tap.matchAll(/^# Subtest: (.+)\r?$/gm)].map((match) => match[1].trim());
   assert.ok(captions.length > 0, 'no actual named Node test cases');
@@ -316,6 +343,7 @@ function accounting(tap, { modules = [], root = '' } = {}) {
     !captions.some((caption) => wrappers.has(caption)),
     'empty selected test module reported only a file wrapper'
   );
+  requireNonemptySuites(tap);
   const keys = ['tests', 'pass', 'fail', 'cancelled', 'skipped', 'todo'],
     values = {};
   for (const key of keys) {
@@ -348,7 +376,18 @@ function requireClean(root) {
     'source tests require clean checkout'
   );
 }
-function run(root, plan, options = {}) {
+function executeSource(root, argv) {
+  const environment = { ...process.env };
+  delete environment.NODE_TEST_CONTEXT;
+  return cp.spawnSync(process.execPath, argv, {
+    cwd: root,
+    env: environment,
+    encoding: 'utf8',
+    maxBuffer: 16 * 1024 * 1024,
+    timeout: 180000,
+  });
+}
+function executePlan(root, plan, options = {}) {
   assert.ok(Array.isArray(plan.modules), 'missing selected modules');
   assert.equal(new Set(plan.modules).size, plan.modules.length, 'duplicate selected source module');
   for (const file of plan.modules) {
@@ -373,18 +412,7 @@ function run(root, plan, options = {}) {
         'No additional Node target; local source smoke and applicable Python/owning-issue checks retain their own evidence.',
     };
   }
-  const environment = { ...process.env };
-  delete environment.NODE_TEST_CONTEXT;
-  const execute =
-    options.execute ||
-    ((argv) =>
-      cp.spawnSync(process.execPath, argv, {
-        cwd: root,
-        env: environment,
-        encoding: 'utf8',
-        maxBuffer: 16 * 1024 * 1024,
-        timeout: 180000,
-      }));
+  const execute = options.execute || ((argv) => executeSource(root, argv));
   const argv = ['--test', '--test-reporter=tap', ...plan.modules],
     started = Date.now(),
     result = execute(argv);
@@ -411,12 +439,114 @@ function run(root, plan, options = {}) {
     argv,
   };
 }
+function sourceIdentity(root) {
+  return {
+    sourceCommit: git(root, ['rev-parse', 'HEAD']).trim(),
+    sourceTree: git(root, ['rev-parse', 'HEAD^{tree}']).trim(),
+    sourceDirty: git(root, ['status', '--porcelain', '--untracked-files=all']).trim() !== '',
+  };
+}
+function reportPaths(root, file) {
+  assert.ok(typeof file === 'string' && file && !file.includes('\0'), 'report path required');
+  const json = path.resolve(file);
+  assert.ok(json.endsWith('.json'), 'source test report must end in .json');
+  const prefix = json.slice(0, -'.json'.length),
+    files = { json, tap: prefix + '.tap', stderr: prefix + '.stderr' };
+  for (const destination of Object.values(files)) {
+    const relative = path.relative(root, destination);
+    if (relative !== '..' && !relative.startsWith('..' + path.sep) && !path.isAbsolute(relative))
+      git(root, ['check-ignore', '--', relative]);
+    if (fs.existsSync(destination))
+      assert.ok(!fs.lstatSync(destination).isSymbolicLink(), 'symlink source test report');
+  }
+  return files;
+}
+function run(root, plan, options = {}) {
+  if (!Object.hasOwn(options, 'report')) return executePlan(root, plan, options);
+  const files = reportPaths(root, options.report),
+    report = {
+      schema: 1,
+      kind: 'source-tests',
+      profile: plan.profile,
+      modules: plan.modules,
+      cleanSourceRequired: options.requireClean === true,
+      status: 'failed',
+      pass: false,
+      files,
+    };
+  let result, failure;
+  const writeRaw = (child = {}) => {
+    fs.mkdirSync(path.dirname(files.json), { recursive: true });
+    fs.writeFileSync(files.tap, child.stdout || '');
+    fs.writeFileSync(files.stderr, child.stderr || '');
+  };
+  try {
+    report.source = sourceIdentity(root);
+    result = executePlan(root, plan, {
+      ...options,
+      execute(argv) {
+        const child = (options.execute || ((args) => executeSource(root, args)))(argv);
+        report.execution = {
+          argv,
+          status: child.status,
+          signal: child.signal || null,
+          error: child.error
+            ? { name: child.error.name, message: child.error.message, code: child.error.code }
+            : null,
+          timeoutMs: 180000,
+          maxBufferBytes: 16 * 1024 * 1024,
+          stdoutBytes: Buffer.byteLength(child.stdout || ''),
+          stderrBytes: Buffer.byteLength(child.stderr || ''),
+        };
+        report.observedAccounting = Object.fromEntries(
+          ['tests', 'pass', 'fail', 'cancelled', 'skipped', 'todo'].map((key) => [
+            key,
+            [...(child.stdout || '').matchAll(new RegExp('^# ' + key + ' (\\d+)\\r?$', 'gm'))].map(
+              (match) => Number(match[1])
+            ),
+          ])
+        );
+        // Persist complete bounded child streams before status/accounting can throw.
+        writeRaw(child);
+        return child;
+      },
+    });
+  } catch (error) {
+    failure = error;
+  }
+  try {
+    report.sourceAfter = sourceIdentity(root);
+    if (!failure)
+      assert.deepEqual(report.sourceAfter, report.source, 'source changed during tests');
+    if (!report.execution) writeRaw();
+  } catch (error) {
+    failure ||= error;
+  }
+  if (result) report.result = result;
+  if (!failure) {
+    report.status = result.status;
+    report.pass = result.pass;
+  } else report.error = { name: failure.name, message: failure.message.slice(0, 8000) };
+  try {
+    fs.writeFileSync(files.json, JSON.stringify(report, null, 2) + '\n');
+  } catch (error) {
+    failure = error;
+    report.status = 'failed';
+    report.pass = false;
+    report.reportWriteError = { name: error.name, message: error.message };
+  }
+  if (failure) {
+    failure.report = report;
+    throw failure;
+  }
+  return result;
+}
 function argumentsFor(argv) {
   const options = {};
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
     assert.ok(
-      ['--profile', '--base', '--head', '--require-clean', '--plan'].includes(flag),
+      ['--profile', '--base', '--head', '--require-clean', '--plan', '--report'].includes(flag),
       'unknown source-test argument ' + flag
     );
     const key = flag.slice(2).replace(/-([a-z])/g, (_, x) => x.toUpperCase());
@@ -428,13 +558,14 @@ function argumentsFor(argv) {
     }
   }
   assert.ok(options.profile, '--profile is required');
+  assert.ok(!(options.plan && options.report), '--report requires execution, not --plan');
   return options;
 }
 function main(argv = process.argv.slice(2)) {
   const root = path.resolve(__dirname, '../..'),
     options = argumentsFor(argv),
     plan = select(root, options.profile, options);
-  if (options.requireClean) requireClean(root);
+  if (options.requireClean && options.plan) requireClean(root);
   const result = options.plan
     ? { ...plan, status: 'planned', pass: null }
     : run(root, plan, options);
@@ -445,6 +576,7 @@ if (require.main === module) {
   try {
     main();
   } catch (error) {
+    if (error.report) console.log(JSON.stringify(error.report));
     console.error(error.message);
     process.exitCode = 1;
   }
@@ -462,5 +594,7 @@ module.exports = {
   run,
   argumentsFor,
   requireClean,
+  sourceIdentity,
+  reportPaths,
   main,
 };

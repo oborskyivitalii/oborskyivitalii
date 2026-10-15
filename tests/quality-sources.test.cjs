@@ -951,3 +951,487 @@ test('all historical secret dispositions retain their exact data in the closed l
     for (const entry of source.findings) assert.deepEqual(reviewed.get(entry.id), entry);
   }
 });
+test('independent scanner engines retain current raw results and continue after sibling failures', (t) => {
+  const { collectEngines } = require('../tools/quality/scanners.cjs');
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'scanner-engines-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  for (const names of [
+    ['eslint', 'stylelint', 'ruff'],
+    ['semgrep', 'bandit', 'secrets'],
+    ['npm', 'pip'],
+  ]) {
+    const calls = [];
+    fs.writeFileSync(path.join(directory, names[0] + '.json'), 'stale successful report');
+    const engines = names.map((name, index) => ({
+      name,
+      reports: [name + '.json'],
+      run: () => {
+        calls.push(name);
+        if (index === 0) throw Error('controlled tool/feed failure');
+        fs.writeFileSync(path.join(directory, name + '.json'), JSON.stringify({ engine: name }));
+        if (index === 1 && names.length === 3) throw Error('controlled policy rejection');
+        return { observed: true };
+      },
+    }));
+    let failure;
+    assert.throws(
+      () => collectEngines(engines, directory),
+      (error) => {
+        failure = error;
+        return /Scanner engines failed/.test(error.message);
+      }
+    );
+    assert.deepEqual(calls, names);
+    assert.deepEqual(
+      failure.detail.engines.map((row) => row.name),
+      names
+    );
+    assert.equal(failure.detail.engines[0].pass, false);
+    assert.deepEqual(
+      failure.detail.engines[0].rawReports,
+      [],
+      'stale raw evidence cannot stand in for a failed invocation'
+    );
+    assert.equal(failure.detail.engines.at(-1).pass, true);
+    for (const row of failure.detail.engines.slice(1)) {
+      assert.equal(row.rawReports.length, 1);
+      const bytes = fs.readFileSync(path.join(directory, row.rawReports[0].file));
+      assert.equal(row.rawReports[0].bytes, bytes.length);
+      assert.equal(
+        row.rawReports[0].sha256,
+        require('../tools/quality/artifact.cjs').digest(bytes)
+      );
+    }
+  }
+});
+test('Python advisory reports require every unique exact pin and reject skipped or malformed clean claims', () => {
+  const {
+    admitPythonAdvisories,
+    pinnedPythonRequirements,
+  } = require('../tools/quality/scanners.cjs');
+  const requirements = '# exact input\nExample_Pkg==1.2.3\nsecond.pkg==4.5.6\n';
+  const report = {
+    dependencies: [
+      { name: 'example-pkg', version: '1.2.3', vulns: [] },
+      { name: 'Second.Pkg', version: '4.5.6', vulns: [] },
+    ],
+  };
+  const before = structuredClone(report);
+  assert.deepEqual(admitPythonAdvisories(report, requirements), {
+    dependencies: 2,
+  });
+  for (const mutate of [
+    (value) => value.dependencies.pop(),
+    (value) => value.dependencies.push(structuredClone(value.dependencies[0])),
+    (value) => {
+      value.dependencies[1].name = 'unknown';
+    },
+    (value) => {
+      value.dependencies[0].version = '1.2.4';
+    },
+    (value) => {
+      value.dependencies[0].skip_reason = 'not audited';
+    },
+    (value) => {
+      value.dependencies[0].skip_reason = '';
+    },
+    (value) => {
+      delete value.dependencies[0].vulns;
+    },
+    (value) => {
+      value.dependencies[0].vulns = {};
+    },
+    (value) => {
+      value.dependencies[0].vulns = [{ id: 'controlled-advisory' }];
+    },
+    (value) => {
+      value.dependencies = [];
+    },
+    (value) => {
+      value.dependencies = {};
+    },
+    (value) => {
+      delete value.dependencies;
+    },
+  ]) {
+    const changed = structuredClone(report);
+    mutate(changed);
+    assert.throws(() => admitPythonAdvisories(changed, requirements));
+  }
+  assert.deepEqual(report, before, 'policy review never deletes raw findings');
+  for (const input of [
+    '',
+    'one>=1',
+    '-r other.txt',
+    'one==1; python_version>"3"',
+    'one==1\nONE==1',
+    'one.pkg==1\none-pkg==1',
+  ])
+    assert.throws(() => pinnedPythonRequirements(input));
+});
+test('npm advisory policy rejects feed failures and every stale or expanded exact reachability exception', (t) => {
+  const { admitNpmAdvisories } = require('../tools/quality/scanners.cjs');
+  const exceptions = JSON.parse(
+    fs.readFileSync(path.join(root, 'tools/quality/advisory-exceptions.json'))
+  );
+  const exception = exceptions[0];
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'advisory-policy-'));
+  t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
+  const files = [
+    ...new Set([exception.reviewedSource, ...Object.keys(exception.reviewedMaterials)]),
+  ];
+  for (const file of files) {
+    fs.mkdirSync(path.dirname(path.join(directory, file)), { recursive: true });
+    fs.copyFileSync(path.join(root, file), path.join(directory, file));
+  }
+  const options = {
+    projectRoot: directory,
+    toolchain: path.join(directory, 'tools/quality/toolchain'),
+    exceptions,
+    now: new Date('2026-10-15T00:00:00Z'),
+  };
+  const report = {
+    metadata: { dependencies: { total: 1 }, vulnerabilities: { total: 1 } },
+    vulnerabilities: {
+      braces: { via: [{ name: exception.package, url: exception.url }] },
+    },
+  };
+  assert.equal(admitNpmAdvisories(report, options).findings, 1);
+  const before = structuredClone(report);
+  for (const mutate of [
+    (value) => {
+      value.error = { message: 'controlled feed failure' };
+    },
+    (value) => {
+      delete value.metadata;
+    },
+    (value) => {
+      delete value.metadata.dependencies;
+    },
+    (value) => {
+      value.metadata.dependencies = {};
+    },
+    (value) => {
+      value.metadata.dependencies.total = 0;
+    },
+    (value) => {
+      value.metadata.dependencies.total = -1;
+    },
+    (value) => {
+      value.metadata.dependencies.total = '1';
+    },
+    (value) => {
+      value.metadata.vulnerabilities.total = -1;
+    },
+    (value) => {
+      value.vulnerabilities.braces.via[0].url = 'https://example.invalid/new-advisory';
+    },
+    (value) => {
+      value.vulnerabilities.braces.via = ['unresolved-chain'];
+    },
+  ]) {
+    const changed = structuredClone(report);
+    mutate(changed);
+    assert.throws(() => admitNpmAdvisories(changed, options));
+  }
+  for (const mutate of [
+    (value) => {
+      value.expires = 'not-a-date';
+    },
+    (value) => {
+      value.expires = '2026-02-30';
+    },
+    (value) => {
+      value.expires = '2026-10-14';
+    },
+    (value) => {
+      value.version = '0.0.0';
+    },
+    (value) => {
+      value.reviewedSourceSha256 = '0'.repeat(64);
+    },
+    (value) => {
+      value.reviewedMaterials[files.at(-1)] = '0'.repeat(64);
+    },
+  ]) {
+    const changed = structuredClone(exceptions);
+    mutate(changed[0]);
+    assert.throws(() => admitNpmAdvisories(report, { ...options, exceptions: changed }));
+  }
+  for (const file of files) {
+    const target = path.join(directory, file),
+      bytes = fs.readFileSync(target);
+    fs.appendFileSync(target, '\nchanged reviewed bytes\n');
+    assert.throws(() => admitNpmAdvisories(report, options));
+    fs.writeFileSync(target, bytes);
+  }
+  assert.deepEqual(report, before);
+});
+test('actual scanner category control flow keeps later engines and reports failed prerequisites honestly', (t) => {
+  const vm = require('node:vm'),
+    { createRequire } = require('node:module');
+  const filename = path.join(root, 'tools/quality/scanners.cjs');
+  const source = fs.readFileSync(filename, 'utf8'),
+    nativeRequire = createRequire(filename);
+  const parent = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'scanner-cli-'));
+  t.after(() => fs.rmSync(parent, { recursive: true, force: true }));
+  const execute = (kind, invalidIdentity = false) => {
+    const directory = path.join(parent, kind + (invalidIdentity ? '-blocked' : ''));
+    fs.mkdirSync(directory);
+    const calls = [],
+      reports = [];
+    const output = (value = '') => ({ status: 0, stdout: value, stderr: '' });
+    const write = (name, value) =>
+      fs.writeFileSync(path.join(directory, name), JSON.stringify(value));
+    const spawnSync = (command, args, options) => {
+      if (command === 'git') return cp.spawnSync(command, args, options);
+      const tool = path.basename(command);
+      calls.push(tool === path.basename(process.execPath) ? args[0] : tool);
+      if (tool === 'eslint') {
+        write('eslint.json', []);
+        return { ...output(), status: 2, stderr: 'controlled ESLint failure' };
+      }
+      if (tool === path.basename(process.execPath)) {
+        write('stylelint.json', []);
+        return output();
+      }
+      if (tool === 'ruff')
+        return output(
+          args.includes('--show-files') ? path.join(root, 'tools/build_site_bundle.py') : '[]'
+        );
+      if (tool === 'semgrep') {
+        write('semgrep.json', {
+          results: [{ extra: { lines: 'controlled source snippet' } }],
+          errors: [],
+          paths: { scanned: [] },
+        });
+        return { ...output(), status: 2, stderr: 'controlled Semgrep failure' };
+      }
+      if (tool === 'bandit') {
+        write('bandit.json', {
+          results: [{ code: 'controlled source snippet' }],
+          errors: [],
+          metrics: {},
+        });
+        return { ...output(), status: 2, stderr: 'controlled Bandit failure' };
+      }
+      if (tool === 'detect-secrets') return output(JSON.stringify({ results: {} }));
+      if (tool === 'python') return output();
+      if (tool === 'npm')
+        return output(JSON.stringify({ error: { message: 'controlled feed failure' } }));
+      if (tool === 'pip-audit') {
+        const dependencies = fs
+          .readFileSync(path.join(root, 'tools/quality/toolchain/requirements.txt'), 'utf8')
+          .trim()
+          .split('\n')
+          .map((line) => {
+            const [name, version] = line.split('==');
+            return { name, version, vulns: [] };
+          });
+        write('pip-audit.json', { dependencies });
+        return output();
+      }
+      throw Error('unexpected controlled tool ' + tool);
+    };
+    const localRequire = (name) => {
+      if (name === 'node:child_process') return { spawnSync };
+      if (name === './common.cjs')
+        return {
+          identity: () => {
+            if (invalidIdentity) throw Error('controlled invalid artifact identity');
+            return {
+              sourceCommit: 'a'.repeat(40),
+              sourceTree: 'b'.repeat(40),
+              candidateCommit: 'a'.repeat(40),
+              artifactDigest: 'c'.repeat(64),
+            };
+          },
+          report: (reportKind, value, pass) => reports.push({ kind: reportKind, value, pass }),
+        };
+      if (name === './format.cjs')
+        return {
+          sourceInventory: () => ({
+            files: ['tools/build_site_bundle.py'],
+            byLanguage: { js: [], python: ['tools/build_site_bundle.py'] },
+          }),
+        };
+      return nativeRequire(name);
+    };
+    const module = { exports: {} };
+    vm.runInNewContext(
+      source,
+      {
+        require: localRequire,
+        module,
+        __dirname: path.dirname(filename),
+        Buffer,
+        process: {
+          ...process,
+          env: { ...process.env, SITE_REPORT_DIR: directory },
+        },
+      },
+      { filename }
+    );
+    assert.throws(
+      () => module.exports.main(kind),
+      invalidIdentity ? /invalid artifact/ : /Scanner engines failed/
+    );
+    assert.equal(reports.length, 1);
+    assert.equal(reports[0].pass, false);
+    return { calls, detail: reports[0].value.detail, directory };
+  };
+  for (const [kind, names] of [
+    ['lint', ['eslint', 'stylelint', 'ruff']],
+    ['security', ['semgrep', 'bandit', 'secrets']],
+    ['advisories', ['npm', 'pip']],
+  ]) {
+    const result = execute(kind);
+    assert.deepEqual(
+      Array.from(result.detail.engines, (row) => row.name),
+      names
+    );
+    assert.equal(result.detail.engines[0].pass, false);
+    assert.equal(result.detail.engines.at(-1).pass, true);
+    assert.ok(result.detail.engines.every((row) => row.commands.length > 0));
+    if (kind === 'security') {
+      assert.equal(
+        JSON.parse(fs.readFileSync(path.join(result.directory, 'semgrep.json'))).results[0].extra
+          .lines,
+        undefined
+      );
+      assert.equal(
+        JSON.parse(fs.readFileSync(path.join(result.directory, 'bandit.json'))).results[0].code,
+        undefined
+      );
+    }
+  }
+  assert.deepEqual(execute('security', true).calls, []);
+});
+test('shared MIME admission accepts exact variants and rejects missing or substituted image types', () => {
+  const mime = require('../tools/quality/serve.cjs');
+  for (const [file, value] of [
+    ['/', 'text/html; charset=utf-8'],
+    ['index.html', 'TEXT/HTML'],
+    ['code.js', 'application/javascript'],
+    ['code.js', 'text/javascript'],
+    ['file.css', 'text/css'],
+    ['file.json', 'application/json'],
+    ['icon.svg', 'image/svg+xml'],
+    ['portrait.jpg', 'image/jpeg'],
+    ['portrait.jpeg', 'image/jpeg; charset=UTF-8'],
+    ['portrait.webp', 'image/webp'],
+    ['image.png', 'image/png'],
+    ['favicon.ico', 'image/x-icon'],
+    ['favicon.ico', 'image/vnd.microsoft.icon'],
+    ['robots.txt', 'text/plain'],
+    ['sitemap.xml', 'text/xml'],
+    ['sitemap.xml', 'application/xml'],
+    ['opaque', 'application/octet-stream'],
+  ])
+    assert.doesNotThrow(() => mime.assertContentType(file, value));
+  for (const file of ['portrait.jpg', 'portrait.jpeg', 'portrait.webp', 'image.png', 'favicon.ico'])
+    for (const wrong of [
+      undefined,
+      '',
+      'text/plain',
+      'application/octet-stream',
+      'text/html,image/jpeg',
+      'image/jpeg.evil',
+      'image/jpeg\r\nX-Evil: true',
+    ])
+      assert.throws(() => mime.assertContentType(file, wrong));
+});
+test('actual hosted collector rejects wrong or missing MIME with unchanged JPEG/WebP/PNG/ICO bytes', async () => {
+  const { verify } = require('../tools/quality/hosted.cjs'),
+    { digest } = require('../tools/quality/artifact.cjs');
+  const data = {
+    'index.html': Buffer.from('<h1>Exact fixture</h1>'),
+    '404.html': Buffer.from('<h1>Missing fixture</h1>'),
+    'portrait.jpg': fs.readFileSync(path.join(root, 'site/assets/vitalii-oborskyi.jpg')),
+    'portrait.webp': fs.readFileSync(path.join(root, 'site/assets/vitalii-oborskyi-cutout.webp')),
+    'image.png': fs.readFileSync(
+      path.join(root, 'review/assets/vitalii-oborskyi-cutout-20261002.png')
+    ),
+    'favicon.ico': Buffer.from([0, 0, 1, 0, 0, 0]),
+    'robots.txt': Buffer.from('User-agent: *\n'),
+    'sitemap.xml': Buffer.from('<urlset/>'),
+    opaque: Buffer.from('controlled opaque bytes'),
+  };
+  const types = {
+    'index.html': 'text/html',
+    '404.html': 'text/html',
+    'portrait.jpg': 'image/jpeg',
+    'portrait.webp': 'image/webp',
+    'image.png': 'image/png',
+    'favicon.ico': 'image/x-icon',
+    'robots.txt': 'text/plain',
+    'sitemap.xml': 'application/xml',
+    opaque: 'application/octet-stream',
+  };
+  const manifest = {
+    sourceCommit: 'a'.repeat(40),
+    files: Object.fromEntries(
+      Object.entries(data).map(([file, bytes]) => [file, { sha256: digest(bytes) }])
+    ),
+  };
+  const fetcher = (changed, value) => async (url) => {
+    const name = new URL(url).pathname.slice('/site/'.length) || 'index.html';
+    const exists = Object.hasOwn(data, name),
+      file = exists ? name : '404.html';
+    const type = name === changed ? value : types[file];
+    return new Response(data[file], {
+      status: exists ? 200 : 404,
+      headers: {
+        ...(type === undefined ? {} : { 'content-type': type }),
+        'x-robots-tag': 'noindex',
+        'x-content-type-options': 'nosniff',
+      },
+    });
+  };
+  assert.equal(
+    (await verify('https://quality.invalid/site', 'staging', manifest, fetcher())).root,
+    true
+  );
+  for (const file of ['portrait.jpg', 'portrait.webp', 'image.png', 'favicon.ico'])
+    for (const value of [undefined, '', 'text/plain'])
+      await assert.rejects(
+        verify('https://quality.invalid/site', 'staging', manifest, fetcher(file, value)),
+        /Content-Type/
+      );
+  await assert.rejects(
+    verify(
+      'https://quality.invalid/site',
+      'staging',
+      manifest,
+      fetcher('index.html', 'application/octet-stream')
+    ),
+    /Content-Type/
+  );
+});
+test('loopback serves canonical image/robots/sitemap types and root or extensionless bytes', async (t) => {
+  const { start } = require('../tools/quality/serve.cjs');
+  const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'mime-server-'));
+  const files = {
+    'index.html': 'text/html',
+    'image.jpg': 'image/jpeg',
+    'image.webp': 'image/webp',
+    'image.png': 'image/png',
+    'favicon.ico': 'image/x-icon',
+    'robots.txt': 'text/plain',
+    'sitemap.xml': 'application/xml',
+    opaque: 'application/octet-stream',
+  };
+  for (const file of Object.keys(files))
+    fs.writeFileSync(path.join(directory, file), 'controlled immutable ' + file);
+  const { server, url } = await start(directory);
+  t.after(async () => {
+    await new Promise((resolve) => server.close(resolve));
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+  for (const [file, expected] of [['', 'text/html'], ...Object.entries(files)]) {
+    const response = await fetch(url + '/' + file);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type').split(';')[0], expected);
+    assert.equal(await response.text(), 'controlled immutable ' + (file || 'index.html'));
+  }
+});

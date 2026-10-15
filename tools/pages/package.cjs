@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const artifact = require('../quality/artifact.cjs');
 const snapshot = require('../site/snapshot.cjs');
+const stagingPackage = require('../staging/package.cjs');
 
 function basePath(value = '/') {
   assert.equal(typeof value, 'string');
@@ -41,7 +42,11 @@ function read(directory) {
 }
 
 function checkStaging(directory, record) {
-  assert.deepEqual(record.edition, { id: 'staging', indexable: false, analytics: false });
+  assert.deepEqual(record.edition, {
+    id: 'staging',
+    indexable: false,
+    analytics: false,
+  });
   for (const file of Object.keys(record.files).filter((name) => name.endsWith('.html'))) {
     const html = fs.readFileSync(path.join(directory, 'public', file), 'utf8');
     assert.match(html, /name="robots" content="noindex,nofollow"/);
@@ -63,6 +68,15 @@ function subtree(files, prefix) {
     Object.entries(files)
       .filter(([name]) => name.startsWith(prefix))
       .map(([name, value]) => [name.slice(prefix.length), value])
+  );
+}
+
+function readRights(directory, record) {
+  const file = path.join(directory, 'rights.json');
+  return stagingPackage.publicationRights(
+    path.join(directory, 'public'),
+    record,
+    fs.existsSync(file) ? JSON.parse(fs.readFileSync(file)) : undefined
   );
 }
 
@@ -94,6 +108,29 @@ function verify(directory, record) {
   );
   snapshot.verify(publicDir, record.root);
   snapshot.verify(path.join(publicDir, 'staging'), record.staging);
+  const stagingRights = stagingPackage.publicationRights(
+    path.join(publicDir, 'staging'),
+    record.staging,
+    record.rights?.staging ?? undefined
+  );
+  const rootRights = stagingPackage.publicationRights(
+    publicDir,
+    record.root,
+    record.rights?.root ?? undefined
+  );
+  if (stagingRights || rootRights || Object.hasOwn(record, 'rights')) {
+    assert.deepEqual(Object.keys(record.rights).sort(), ['root', 'staging']);
+    assert.deepEqual(
+      record.state.licensing,
+      {
+        staging: stagingRights?.inventoryDigest || null,
+        root: rootRights?.inventoryDigest || null,
+      },
+      'Pages publication license receipt differs'
+    );
+  } else {
+    assert.equal(Object.hasOwn(record.state, 'licensing'), false, 'unbound Pages license receipt');
+  }
   const state = JSON.parse(fs.readFileSync(path.join(publicDir, '_delivery/state.json')));
   assert.deepEqual(state, record.state);
   if (!record.root.files['404.html'])
@@ -113,6 +150,8 @@ function build(
   const staging = read(stagingDirectory);
   checkStaging(stagingDirectory, staging);
   const production = productionDirectory ? read(productionDirectory) : null;
+  const stagingRights = readRights(stagingDirectory, staging);
+  const rootRights = production ? readRights(productionDirectory, production) : stagingRights;
   if (production) {
     assert.equal(prefix, '/', 'production Pages requires origin root');
     assert.equal(production.edition?.id || 'production', 'production');
@@ -135,8 +174,19 @@ function build(
           publicDigest: production.artifactDigest,
         }
       : null,
-    staging: { sourceCommit: staging.sourceCommit, publicDigest: staging.artifactDigest },
+    staging: {
+      sourceCommit: staging.sourceCommit,
+      publicDigest: staging.artifactDigest,
+    },
     publication,
+    ...(stagingRights || rootRights
+      ? {
+          licensing: {
+            staging: stagingRights?.inventoryDigest || null,
+            root: rootRights?.inventoryDigest || null,
+          },
+        }
+      : {}),
   };
   fs.mkdirSync(path.join(target, '_delivery'), { recursive: true });
   fs.writeFileSync(
@@ -154,6 +204,14 @@ function build(
     state,
     files: manifest.files,
     packageDigest: manifest.artifactDigest,
+    ...(stagingRights || rootRights
+      ? {
+          rights: {
+            staging: stagingRights,
+            root: rootRights,
+          },
+        }
+      : {}),
   };
   verify(output, record);
   fs.writeFileSync(path.join(output, 'pages-package.json'), JSON.stringify(record, null, 2) + '\n');
@@ -167,4 +225,13 @@ if (require.main === module) {
     verify(staging, JSON.parse(fs.readFileSync(path.join(staging, 'pages-package.json'))));
   else throw Error('Usage: package.cjs build STAGING OUTPUT [PRODUCTION TAG] | verify OUTPUT');
 }
-module.exports = { basePath, read, checkStaging, subtree, build, verify, notFound, notFoundFor };
+module.exports = {
+  basePath,
+  read,
+  checkStaging,
+  subtree,
+  build,
+  verify,
+  notFound,
+  notFoundFor,
+};

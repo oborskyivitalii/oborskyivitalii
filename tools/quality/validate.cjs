@@ -3,6 +3,18 @@ const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path');
 const budgets = require('./budgets.json');
+class PerformanceBudgetError extends Error {
+  constructor(violations) {
+    super(violations.map((violation) => violation.message).join('; '));
+    this.name = 'PerformanceBudgetError';
+    this.violations = violations;
+  }
+}
+function performanceBudgetFailure(error) {
+  return error instanceof PerformanceBudgetError
+    ? { kind: 'performance-budget', violations: structuredClone(error.violations) }
+    : null;
+}
 function unique(rows, key) {
   const ids = rows.map(key);
   assert.equal(new Set(ids).size, ids.length, 'duplicate evidence');
@@ -19,6 +31,11 @@ function lighthouse(r) {
     for (const profile of ['mobile', 'desktop']) {
       const rows = r.rows.filter((x) => x.route === route && x.formFactor === profile);
       assert.equal(rows.length, budgets.lighthouse.runs);
+      assert.deepEqual(
+        rows.map((row) => row.run).sort((a, b) => a - b),
+        Array.from({ length: budgets.lighthouse.runs }, (_, index) => index + 1),
+        'unexpected Lighthouse run selection'
+      );
       for (const row of rows) {
         assert.equal(row.configSettings.formFactor, profile, 'mislabeled Lighthouse profile');
         assert.ok(!row.runtimeError, 'Lighthouse runtime error');
@@ -41,7 +58,10 @@ function lighthouse(r) {
       const metrics = {};
       for (const [metric, limit] of Object.entries(budgets.lighthouse[profile])) {
         const values = rows.map((x) => x.metrics[metric]?.numericValue).sort((a, b) => a - b);
-        assert.ok(values.every(Number.isFinite), 'missing raw metric');
+        assert.ok(
+          values.every((value) => Number.isFinite(value) && value >= 0),
+          'missing or invalid raw metric'
+        );
         const median = values[Math.floor(values.length / 2)];
         assert.ok(median <= limit, `${route}/${profile} ${metric}: ${median} > ${limit}`);
         metrics[metric] = median;
@@ -61,13 +81,18 @@ function lighthouse(r) {
 function measure(row, kind, zero) {
   assert.equal(row.kind, kind);
   assert.ok(
-    Number.isFinite(row.elapsedMs) && row.elapsedMs >= 900,
+    Number.isFinite(row.elapsedMs) &&
+      row.elapsedMs >= (['idle', 'scroll'].includes(kind) ? 3900 : 900),
     'incomplete measurement window'
   );
   assert.ok(Number.isFinite(row.window?.startMs) && Number.isFinite(row.window?.endMs));
   assert.ok(
     Math.abs(row.window.endMs - row.window.startMs - row.elapsedMs) < 1e-8,
     'inconsistent window'
+  );
+  assert.ok(
+    Array.isArray(row.rawFrames) && Array.isArray(row.rawLongTasks),
+    'missing raw motion records'
   );
   assert.equal(row.rawFrames.length, row.callbacks, 'inconsistent callback count');
   assert.equal(
@@ -90,9 +115,22 @@ function measure(row, kind, zero) {
     'invalid raw callback sample'
   );
   assert.ok(
-    row.rawFrames.every((x, i) => i === 0 || x.time >= row.rawFrames[i - 1].time),
+    row.rawFrames.every(
+      (x, i) =>
+        i === 0 ||
+        (x.time >= row.rawFrames[i - 1].time && x.started >= row.rawFrames[i - 1].started)
+    ),
     'unordered raw callbacks'
   );
+  for (const task of row.rawLongTasks)
+    assert.ok(
+      Number.isFinite(task.start) &&
+        Number.isFinite(task.duration) &&
+        task.duration >= 0 &&
+        task.start >= row.window.startMs &&
+        task.start + task.duration <= row.window.endMs,
+      'long task outside window'
+    );
   const painted = row.rawFrames
     .filter((x) => x.painted)
     .map((x) => x.duration)
@@ -137,9 +175,15 @@ function measure(row, kind, zero) {
     'declared busy time differs from raw samples'
   );
   assert.ok(Number.isFinite(row.callbackBusyPercent) && row.callbackBusyPercent >= 0);
+  assert.equal(row.state, 'active', 'motion measurement lacks an active renderer');
   if (zero) {
     assert.equal(row.callbacks, 0, `${kind} callbacks`);
     assert.equal(row.paints, 0, `${kind} paints`);
+    assert.match(
+      row.motion,
+      kind === 'off' ? /^Motion: off$/ : /^Motion: reduced$/,
+      'zero work came from the wrong public motion mode'
+    );
   } else {
     assert.ok(row.paints >= budgets.motion.minimumPaints, 'empty positive paint probe');
     assert.ok(Number.isFinite(row.paintCallbackMs.p95));
@@ -239,26 +283,22 @@ function transition(row) {
   for (const [key, value] of Object.entries(planned))
     assert.equal(row[key], value, 'incorrect verified pacing metric: ' + key);
   assert.ok(
-    Number.isFinite(row.readyMs) &&
-      row.readyMs >= 900 &&
-      row.equivalentReadyMs <= limits.readyMaxMs,
+    Number.isFinite(row.readyMs) && row.readyMs >= 900,
     'invalid/slow input-to-ready latency'
   );
-  assert.ok(row.paintCallbackMs.p95 <= limits.paintCallbackP95Ms, 'slow transition painted p95');
-  assert.ok(row.paintCallbackMs.max <= limits.paintCallbackMaxMs, 'blocked transition callback');
-  assert.ok(
-    row.paintIntervalsMs.count >= limits.minimumPaints - 1 &&
-      row.paintIntervalsMs.max <= limits.paintGapMaxMs,
-    'transition paint gap'
-  );
+  assert.ok(row.paintIntervalsMs.count >= limits.minimumPaints - 1, 'transition paint gap');
   assert.ok(Array.isArray(row.rawPreparation), 'missing model/layout preparation');
   for (const sample of row.rawPreparation)
     assert.ok(
       ['model', 'layout', 'route'].includes(sample.kind) &&
+        Number.isFinite(sample.start) &&
         Number.isFinite(sample.duration) &&
+        Number.isFinite(sample.time) &&
         sample.duration >= 0 &&
         sample.start >= row.window.startMs &&
-        sample.start + sample.duration <= row.window.endMs,
+        sample.start + sample.duration <= row.window.endMs &&
+        sample.time >= row.window.startMs &&
+        sample.time <= row.window.endMs,
       'invalid preparation sample'
     );
   const durations = row.rawPreparation.map((x) => x.duration);
@@ -279,7 +319,6 @@ function transition(row) {
     row.transitionPhase,
     row.rawPreparation.some((x) => x.kind === 'model') ? 'cold' : 'warm'
   );
-  assert.ok(row.preparationMs.max <= limits.preparationMaxMs, 'blocked scene preparation');
   for (const sample of row.rawLongTasks)
     assert.ok(
       Number.isFinite(sample.duration) &&
@@ -288,6 +327,38 @@ function transition(row) {
         sample.start + sample.duration <= row.window.endMs,
       'long task outside measurement'
     );
+  const violations = [];
+  for (const [metric, actual, limit, message] of [
+    [
+      'equivalentReadyMs',
+      row.equivalentReadyMs,
+      limits.readyMaxMs,
+      'invalid/slow input-to-ready latency',
+    ],
+    [
+      'paintCallbackP95Ms',
+      row.paintCallbackMs.p95,
+      limits.paintCallbackP95Ms,
+      'slow transition painted p95',
+    ],
+    [
+      'paintCallbackMaxMs',
+      row.paintCallbackMs.max,
+      limits.paintCallbackMaxMs,
+      'blocked transition callback',
+    ],
+    ['paintGapMaxMs', row.paintIntervalsMs.max, limits.paintGapMaxMs, 'transition paint gap'],
+    [
+      'preparationMaxMs',
+      row.preparationMs.max,
+      limits.preparationMaxMs,
+      'blocked scene preparation',
+    ],
+  ]) {
+    assert.ok(Number.isFinite(actual) && actual >= 0, 'invalid transition budget metric ' + metric);
+    if (actual > limit) violations.push({ metric, actual, limit, message });
+  }
+  if (violations.length) throw new PerformanceBudgetError(violations);
   return true;
 }
 function scrollSyncEvidence(sync, route) {
@@ -330,7 +401,79 @@ function scrollSyncEvidence(sync, route) {
   assert.ok(Number.isFinite(distance) && distance < 1e-4, 'stale reordered semantic waypoint');
   assert.ok(Math.abs(distance - waypoint.distance) < 1e-8, 'incorrect waypoint distance');
 }
-function functionalChecks(mode, route, checks) {
+function functionalFailure(mode, checks) {
+  const before = checks?.evidence?.before,
+    after = checks?.evidence?.after;
+  assert.ok(before && after, 'missing actual failure-state observations');
+  for (const state of [before, after]) {
+    assert.equal(state.h1, 1);
+    assert.equal(state.overflow, false);
+    assert.ok(Number.isInteger(state.paints) && state.paints >= 0);
+    assert.ok(Number.isInteger(state.callbacks) && state.callbacks >= 0);
+  }
+  const fallback = ['no-js', 'no-canvas', 'no-raf', 'no-match-media', 'css-blocked'].includes(mode),
+    frozen = fallback || ['reduced', 'draw-fault', 'context-loss'].includes(mode);
+  if (frozen)
+    for (const key of ['phase', 'camera', 'paints', 'callbacks'])
+      assert.equal(after[key], before[key], `unsettled ${mode} ${key}`);
+  if (fallback) {
+    assert.equal(checks.fallback, true);
+    for (const state of [before, after]) {
+      assert.equal(state.ready, false);
+      assert.equal(state.fallback, true);
+      assert.equal(state.motion.hidden || state.motion.disabled, true);
+      assert.equal(state.paints, 0);
+      assert.equal(state.callbacks, 0);
+    }
+  } else if (mode === 'reduced') {
+    assert.equal(checks.reducedFreeze, true);
+    assert.equal(after.ready, true);
+    assert.equal(after.motion.disabled, true);
+    assert.match(after.motion.label, /reduced/);
+  } else if (['draw-fault', 'context-loss'].includes(mode)) {
+    assert.equal(checks.boundedFailure, true);
+    assert.equal(checks.synthetic, true);
+    assert.equal(after.ready, false);
+    assert.equal(after.fallback, true);
+    assert.equal(after.motion.disabled, true);
+    assert.match(after.motion.label, /unavailable/);
+  } else {
+    assert.equal(checks.positiveProbe, true);
+    assert.equal(after.ready, true);
+    assert.ok(after.paints > before.paints, 'failure fixture did not observe an actual new paint');
+  }
+}
+function validateCriticalMediaJourney(journey, width) {
+  assert.ok(Array.isArray(journey?.states), 'missing CSS-blocked route observations');
+  assert.deepEqual(
+    journey.states.map((state) => state.page),
+    ['research', 'index', 'research', 'index'],
+    'incomplete CSS-blocked route and history journey'
+  );
+  assert.equal(journey.history, true, 'missing CSS-blocked history observation');
+  assert.equal(journey.documentPreserved, true, 'CSS-blocked journey replaced the document');
+  const css =
+    '\n' + fs.readFileSync(path.resolve(__dirname, '../../site/engine/critical-media.css'), 'utf8');
+  for (const state of journey.states) {
+    assert.equal(state.documentPreserved, true, 'CSS-blocked route replaced the document');
+    assert.equal(state.criticalMediaOutsideHead, 0, 'critical media outside the document head');
+    assert.equal(state.overflow, false, 'CSS-blocked route overflow');
+    if (state.page === 'research') {
+      assert.deepEqual(state.criticalMedia, [], 'critical media retained on Research');
+      assert.equal(state.portrait, null, 'unexpected Research portrait');
+    } else {
+      assert.deepEqual(state.criticalMedia, [css], 'missing or changed canonical Home media CSS');
+      assert.equal(state.portrait?.viewportWidth, width, 'wrong observed portrait viewport');
+      assert.ok(
+        Number.isFinite(state.portrait.width) &&
+          state.portrait.width > 0 &&
+          state.portrait.width <= width + 1,
+        'unbounded CSS-blocked Home portrait'
+      );
+    }
+  }
+}
+function functionalChecks(mode, route, checks, width) {
   assert.ok(checks, 'missing functional assertions');
   if (mode === 'normal') {
     for (const key of [
@@ -347,12 +490,10 @@ function functionalChecks(mode, route, checks) {
     assert.ok(['camera fixed', 'short page'].includes(checks.forward));
     assert.equal(checks.archive, route === 'writing' ? true : 'not applicable');
     scrollSyncEvidence(checks.scrollSync, route);
-  } else if (['no-js', 'no-canvas', 'no-raf', 'no-match-media', 'css-blocked'].includes(mode))
-    assert.equal(checks.fallback, true);
-  else if (mode === 'reduced') assert.equal(checks.reducedFreeze, true);
-  else if (['draw-fault', 'context-loss'].includes(mode)) assert.equal(checks.boundedFailure, true);
-  else assert.equal(checks.positiveProbe, true);
+  } else functionalFailure(mode, checks);
   if (mode === 'css-delayed') assert.equal(checks.beforeCSSNoPaint, true);
+  if (mode === 'css-blocked' && route === 'index')
+    validateCriticalMediaJourney(checks.criticalMediaJourney, width);
 }
 function functional(r, platform, engines, smoke) {
   assert.equal(r.environment.platform, platform);
@@ -401,7 +542,7 @@ function functional(r, platform, engines, smoke) {
           assert.equal(row.pass, true, row.error);
           assert.deepEqual(row.errors, []);
           assert.deepEqual(row.externalRequests, []);
-          functionalChecks(mode, route, row.checks);
+          functionalChecks(mode, route, row.checks, row.width);
         }
   navigation(r, engines);
   analytics(r, engines);
@@ -655,7 +796,12 @@ function aggregate({
     for (const row of host[0].rows) {
       assert.equal(row.status, 200);
       assert.equal(row.sha256, m.files[row.file].sha256);
-      assert.ok(row.url.startsWith(expected + '/'));
+      assert.equal(
+        require('./local-browser.cjs').artifactFile(row.url, expected, m),
+        row.file,
+        'served redirect changed artifact identity'
+      );
+      require('./serve.cjs').assertContentType(row.file, row.mime);
     }
     for (const row of reports.filter((x) =>
       ['functional', 'color-functional', 'motion', 'lighthouse', 'captures'].includes(x.kind)
@@ -708,6 +854,17 @@ function colorReports(reports, manifest) {
   assert.equal(report.variant.fingerprint, manifest.variant.fingerprint);
   assert.deepEqual(report.variant.effects, manifest.variant.effects);
   assert.deepEqual(report.motionContract, runtime, 'Color feature motion contract differs');
+  assert.ok(Array.isArray(report.browsers), 'missing actual Color browser provenance');
+  assert.deepEqual(
+    report.browsers.map((browser) => browser.engine).sort(),
+    ['chromium', 'firefox', 'webkit'],
+    'missing/duplicate Color browser engines'
+  );
+  for (const browser of report.browsers)
+    assert.ok(
+      typeof browser.version === 'string' && browser.version.trim().length > 0,
+      'missing actual Color browser version'
+    );
   assert.equal(report.rows.length, 12);
   unique(report.rows, (row) => `${row.engine}/${row.width}/${row.theme}`);
   for (const engine of ['chromium', 'firefox', 'webkit']) {
@@ -860,7 +1017,10 @@ module.exports = {
   lighthouse,
   motion,
   transition,
+  performanceBudgetFailure,
   functional,
+  functionalFailure,
+  validateCriticalMediaJourney,
   aggregate,
   scanner,
   sourceReport,

@@ -33,16 +33,36 @@ jobs:
         with:
           node-version: 24.19.0
       - name: Authenticate an owner request on exact protected main
+        id: source_identity
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             require('./tools/pages/controller.cjs').controller(context,(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data);
             require('node:assert/strict').equal(process.env.SITE_CANDIDATE_SHA,context.sha);
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: 3.12.14
+      - name: Install locked host-independent prepublication tools
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
       - name: Freeze a separate production edition before tests
         run: |
           node tools/quality/artifact.cjs build quality-artifact
           node tools/release/edition.cjs build quality-artifact
           node tools/release/edition.cjs verify quality-artifact
+      - name: Complete host-independent production guards before candidate upload
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}
+        run: node tools/quality/local.cjs --prepublication production quality-artifact --report quality-reports/prepublication.json
+      - name: Retain all prepublication observations even when a guard fails
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-prepublication-production-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 90
       - id: public
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:

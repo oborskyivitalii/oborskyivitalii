@@ -153,41 +153,32 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: 3.12.14
-      - name: Install locked maintained-source check dependencies
-        run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
-          python3 -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
-      - name: Validate exact source and regressions
-        id: source_checks
-        continue-on-error: true
+      - name: Authenticate the prepublication request and exact checkout
+        id: source_identity
         run: |
           node -e "require('node:assert/strict').match(process.env.SITE_CANDIDATE_SHA,/^[0-9a-f]{40}$/)"
           node -e "const a=require('node:assert/strict'),v=process.env.SITE_PUBLIC_VARIANT;a.ok(['base','color'].includes(v));if(v==='color')a.equal(process.env.SITE_TEST_PROFILE,'staging')"
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           node -e "const a=require('node:assert/strict');a.ok(['staging','production'].includes(process.env.SITE_VALIDATION_LEVEL));if(process.env.SITE_VALIDATION_LEVEL==='staging'){a.equal(process.env.SITE_TEST_PROFILE,'staging');a.ok(process.env.SITE_TEST_BASE_URL.startsWith('https://'));a.equal(process.env.SITE_AUTOMATED_ONLY,'true');a.equal(process.env.SITE_FULL,'true')}"
-          status=0
-          check() { "$@" || status=1; }
-          if [ "$SITE_VALIDATION_LEVEL" = staging ]; then
-            check node tools/quality/local.cjs
-            check node tools/quality/source-tests.cjs --profile staging --require-clean
-          else
-            check node tools/quality/source-tests.cjs --profile production --require-clean
-            check node tools/site/build.cjs --check
-            check node tools/check_site_seo.cjs
-            check node tools/build_scene_fallbacks.cjs --check
-            check node tools/build_site_previews.cjs --check
-            check python tools/build_site_bundle.py --check
-          fi
-          check python tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
-          check python tools/run_repository_tests.py
-          exit "$status"
+      - name: Install locked maintained-source check dependencies
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
       - name: Package public files once and enforce budgets
         if: inputs.public_artifact_id == ''
         run: node tools/quality/artifact.cjs build quality-artifact
       - name: Build the explicit Color rendition
         if: inputs.public_artifact_id == '' && inputs.public_variant == 'color'
         run: node tools/staging/color.cjs quality-artifact
+      - name: Freeze the selected publication edition before prepublication guards
+        if: inputs.public_artifact_id == ''
+        run: |
+          if [ "$SITE_VALIDATION_LEVEL" = staging ]; then
+            node tools/staging/edition.cjs quality-artifact
+          else
+            node tools/release/edition.cjs build quality-artifact
+          fi
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         if: inputs.public_artifact_id != ''
         with:
@@ -208,6 +199,18 @@ jobs:
           a.equal(m.components.variant?.id||'base',process.env.SITE_PUBLIC_VARIANT,'wrong tested public rendition');
           if(process.env.SITE_VALIDATION_LEVEL==='production')a.notEqual(m.edition?.id,'staging','production validates a separately frozen production edition');
           JS
+      - name: Complete host-independent guards before candidate upload or hosted jobs
+        id: source_checks
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}
+        run: node tools/quality/local.cjs --prepublication "$SITE_VALIDATION_LEVEL" quality-artifact --report quality-reports/prepublication.json
+      - name: Retain all prepublication observations even when a guard fails
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-prepublication-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: error
+          retention-days: 30
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
       - id: upload

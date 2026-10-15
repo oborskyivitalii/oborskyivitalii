@@ -199,6 +199,44 @@ RI/CI routes as required by SITE-CHECK-PROFILES.
 
 ## GitHub Pages staging mirror and bootstrap
 
+Before an explicit stable-staging or prospective-production upload, prepare the
+selected frozen artifact once, then run the existing local check owner:
+
+```sh
+node tools/quality/local.cjs --prepublication staging color-artifact --report quality-reports/prepublication.json
+node tools/quality/local.cjs --prepublication production quality-artifact --report quality-reports/prepublication.json
+```
+
+Use the command for the selected edition, with the complete pinned Node and
+Python scanner toolchain installed. The mode consumes those exact frozen
+bytes, runs existing source/Python/style/RI/generated/scanner/selftest and
+edition/rights/package guards, and retains each independent failure and raw
+streams. An invalid artifact blocks its dependent checks explicitly. Final
+source, manifest and public hashes must still match. Reports belong outside
+source or in an ignored output directory. This preflight is required before
+deployable upload for explicit staging/evidence and production preparation;
+ordinary Draft preview keeps its existing bounded path. Diagnostic reports are
+retained even when preparation fails. The later native upload identity binding,
+host/browser/performance/live leases and release decisions remain mandatory;
+preflight never grants production eligibility or deployment authority.
+
+Run the separately selected current owning-issue policy on that same clean
+source before preparation; the enduring Python runner excludes numbered task
+policies deliberately. Use the existing acceptance selector and the current
+issue's `.github/acceptance/issue-N.json`, then run:
+
+```sh
+python3 tools/issue_acceptance.py validate --policy .github/acceptance/issue-N.json
+python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-N.json --require-clean --expected-source FULL_COMMIT_SHA --report /tmp/owning-acceptance.json
+```
+
+Replace the placeholders with the selected owner and exact candidate. Ordinary
+`/stage` enforces fresh raw-head Basic, RI and owning acceptance through
+`begin-admission.requireAdmission()` before its build/upload job. Prospective
+production preparation also requires the separate selected-policy result in
+its operator sequence. The prepublication report does not assert that an
+owning policy ran, and does not run unrelated historical task policies.
+
 `site-pages.yml` runs only after actual successful Cloudflare stable verification.
 Enable Pages with the GitHub Actions source, preserve the canonical-domain owner
 #39/#40, and set `SITE_PAGES_STAGING_ENABLED=true` after the reviewed publisher is
@@ -215,6 +253,26 @@ production, root also serves labelled staging. Afterwards the combined package
 preserves every declared file hash of the accepted durable production archive at
 root while staging changes its subtree. Both hosts consume the same staging
 public manifest. Host-specific 404/transport files remain outside that manifest.
+
+The first licensed edition carries a frozen `rights.json` beside its uploaded
+source artifact. The staging package retains the complete report and digest;
+the Pages package retains the root/staging reports and publishes their digest
+receipt in `_delivery/state.json`. Both extraction routes restore the validated
+sidecar. The shared `tools/release/rights-record.cjs` verifier checks the exact
+source/tree/edition/public manifest, selected licenses and exceptions, and the
+escaped full legal copies in current Credits and its immutable snapshot without
+reading today's legal sources. Mechanical verification retains
+`approvalPass: false`; exact-edition human acceptance remains separate.
+
+The existing closed Color selector requires these records for exactly the
+reviewed `issue39-licensed-plain` and `issue39-licensed-staging` identities. The
+consumer derives that choice from the verified public revision, so deleting or
+relabeling optional manifest metadata cannot waive it. Every supplied report is
+validated. Genuine historical reportless families retain their original output
+and recovery behavior; an accepted historical production root can remain
+reportless while the licensed staging subtree records its own digest. This
+compatibility does not admit a new production publication or change native
+staging/performance gates.
 
 One `author-pages-publication` queue serializes combined deployments. The
 publisher authenticates the stable producer, artifact IDs/upload digest, bounded

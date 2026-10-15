@@ -5,6 +5,7 @@ const assert = require('node:assert/strict'),
   path = require('node:path');
 const { digest } = require('../quality/artifact.cjs'),
   pkg = require('./package.cjs');
+const { assertContentType } = require('../quality/serve.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 function origin(value, project, stable = false) {
   assert.match(project, /^[a-z0-9][a-z0-9-]{0,57}[a-z0-9]$/);
@@ -67,15 +68,6 @@ async function request(url, expectedOrigin, fetcher = fetch) {
   }
   throw Error('Too many staging redirects');
 }
-function type(file) {
-  if (file.endsWith('.html')) return /text\/html/i;
-  if (file.endsWith('.css')) return /text\/css/i;
-  if (file.endsWith('.js')) return /(?:text|application)\/javascript/i;
-  if (file.endsWith('.svg')) return /image\/svg\+xml/i;
-  if (file.endsWith('.webp')) return /image\/webp/i;
-  if (file.endsWith('.jpg')) return /image\/jpeg/i;
-  return /application\/json/i;
-}
 async function httpSmoke(base, record, fetcher = fetch) {
   const files = Object.keys(record.source.files)
       .filter((x) => x !== '.nojekyll')
@@ -85,11 +77,7 @@ async function httpSmoke(base, record, fetcher = fetch) {
     const result = await request(base + '/' + file, base, fetcher);
     assert.equal(result.response.status, 200, file + ' HTTP status');
     responseHeaders(result.response.headers, require('../site/snapshot.cjs').immutable(file));
-    assert.match(
-      result.response.headers.get('content-type') || '',
-      type(file),
-      'content type ' + file
-    );
+    assertContentType(file, result.response.headers.get('content-type'));
     assert.equal(digest(result.bytes), record.files[file].sha256, 'hosted bytes differ ' + file);
     rows.push({
       file,
@@ -101,9 +89,11 @@ async function httpSmoke(base, record, fetcher = fetch) {
   const home = await request(base + '/', base, fetcher);
   assert.equal(home.response.status, 200);
   responseHeaders(home.response.headers);
+  assertContentType('index.html', home.response.headers.get('content-type'));
   assert.equal(digest(home.bytes), record.files['index.html'].sha256);
   const query = await request(base + '/writing.html?topic=systems&language=uk', base, fetcher);
   assert.equal(query.response.status, 200);
+  assertContentType('writing.html', query.response.headers.get('content-type'));
   assert.equal(
     new URL(query.url).search,
     '?topic=systems&language=uk',
@@ -116,6 +106,7 @@ async function httpSmoke(base, record, fetcher = fetch) {
   );
   assert.equal(missing.response.status, 404, 'unknown address became Home');
   responseHeaders(missing.response.headers);
+  assertContentType('404.html', missing.response.headers.get('content-type'));
   assert.equal(digest(missing.bytes), record.files['404.html'].sha256, 'unexpected error document');
   return {
     files: rows,
