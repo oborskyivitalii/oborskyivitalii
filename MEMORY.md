@@ -1,10 +1,15 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-12**.
+Dated continuity, not live authority. Last verified: **2026-10-15** (local compatibility preparation).
 
 ## Snapshot
 
-- Main checkpoint is `fd3dea5b2271123468560e1eb4dc3f0aa056b6b2` after PR78.
+- Local #39 compatibility dependency starts at main `cc115c4`; [preparation](review/issue-39/2026-10-15-controller-compatibility.md)
+  preserves all public/producer bytes and registers two independently byte-checked
+  licensed plain/staging tuples. Final source/CI, ordinary admission and merge
+  remain pending; PR40 keeps full execution ownership.
+
+- Earlier checkpoint was `fd3dea5b2271123468560e1eb4dc3f0aa056b6b2` after PR78.
   Its tree equals admitted sourcebe6439b; ordinary run38234626344 passed the
   bounded gate, Cloudflare stable and Pages mirror, then fresh Staging admission.
 - [#76 / PR77](https://github.com/oborskyivitalii/oborskyivitalii/pull/77)

@@ -1215,7 +1215,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1646,6 +1646,23 @@
         "tests/camera-view.test.cjs",
         "tests/navigation.test.cjs",
         "tests/flight.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue39_acceptance.py",
+      "language": "python",
+      "purpose": "Issue39 controller dependency preserves exact main public/producer/export bytes, binds independently checked licensing tuples and reuses strict Color selector negatives; actual both-host admission remains external.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue39 compatibility phase only; PR40 retains the full licensing/production mapping after rebase",
+      "surviving_route": ".github/acceptance/issue-39.json",
+      "inputs": [
+        "tests/test_issue39_acceptance.py",
+        ".github/acceptance/issue-39.json",
+        "tests/color-motion-contract.test.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "review/issue-39/2026-10-15-license-tuples.json"
       ]
     }
   ]

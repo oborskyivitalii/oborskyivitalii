@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6f9c705a4a895da05783c3f4ecd7728dde08dbe03c29f3c385db3adb55d87e91",
+    "digest": "2a60b3f05103b7caddb4fd37eb1d7b05e6c2207b21a41f0a2e878fd69b7dfaa2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -63,6 +63,11 @@
         "path": ".github/acceptance/issue-36.json",
         "identity_mode": "content",
         "sha256": "e69f1f6189b2e9114f533cbd188882a37b1f3b1f1994ce43dc699d197970bd0f"
+      },
+      {
+        "path": ".github/acceptance/issue-39.json",
+        "identity_mode": "content",
+        "sha256": "04eb080ca0441cd42045c62716c85b7a09f15c4711905d1f9ec93541bd17be0c"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -151,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "f6a58106a2e48dcb590d4c3bc4c46a45a9713a72de564afaaa6896f493c8d94f"
+        "sha256": "702e17c277ed8123c229c4e96975aa75d7e7ebc736fd29809f6c7215b552c9ac"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c3efa50ed241e664c5ae3d7c450eb37f93f36fcfbbcf42a580c46e4e31ac3143"
+        "sha256": "388b237cce9f8ce69b69f616901e45cb8934cd472164ab54b40ebdd12e64c943"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -271,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "83ccd25848a04810fc0d0d19e9cb0385d06b2ee29f904c2b9617da780d7514dc"
+        "sha256": "90759a662453b37b4e25e0bdcb0058c6bf99cb672b7a6befebc9c37b84ce9445"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -691,6 +696,16 @@
         "path": "review/issue-36/preview.png",
         "identity_mode": "content",
         "sha256": "0d6151e66a8333d84de7b0abce55b59d0dce8247452a56a674c49a4d20edd585"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-controller-compatibility.md",
+        "identity_mode": "content",
+        "sha256": "82b183c95681ba9f4c1af17d2ae70c23f75b2dc62811d475c880d98c8b8a6b7e"
+      },
+      {
+        "path": "review/issue-39/2026-10-15-license-tuples.json",
+        "identity_mode": "content",
+        "sha256": "71f4479458a11dc605b80a6e9a58252b9b6fb411e2ccf17095b73e35f31a0680"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5310,7 +5325,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "60c0047f3a395809b2ff6986b648eda46a8bed4ce3fb029f392cf8a5dafd1727"
+        "sha256": "892e6de55755bf96ed14fe547f61749ecb9ce823b519f423e6e6beb463ca9c54"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5551,6 +5566,11 @@
         "path": "tests/test_issue36_acceptance.py",
         "identity_mode": "content",
         "sha256": "1a5ee8a94ccb5977da5bace47d0a64277a59fcb045881dfd7ff7b00ff8ad8b00"
+      },
+      {
+        "path": "tests/test_issue39_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "3328ed8cc89f4c0725c1c7385302d227a23f33aa4aee7e8315ef5d1c758b1350"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -5840,7 +5860,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "4104901dab91a172803133b2e2030c3dd59e136cb8680dd682af16e72521b8da"
+        "sha256": "264bd1fbbd9a312951ae879d61d73c9f64901ae73ff4cb2054249fe580cf0911"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6020,7 +6040,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "fbb7d1f88b2b8168b9b8caa4e3aac6338c8b5d1c37d867bf8db95d483d09066f"
+        "sha256": "1ae2f9ee99a8f7ace4a2e7a5f0aa74e6f31903229466d99b8b33f2cf77175d1d"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6075,7 +6095,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "12afa0f09db2f7574398bcb1331d7edf4df08e8720b5cfa2492879a305e1db3c"
+        "sha256": "2df4c886d1814f61020a3901b478bd11fac05d9bbf41a867f09c39829d86c3fa"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6690,6 +6710,17 @@
         "AGENTS.md"
       ],
       "title": "issue-36.json"
+    },
+    {
+      "path": ".github/acceptance/issue-39.json",
+      "kind": "file",
+      "purpose": "Issue39 narrow controller dependency maps original AC01-AC05 to exact main-byte preservation, strict Color guards and separate future-tuple/staging/release decisions.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-39.json"
     },
     {
       "path": ".github/acceptance/issue-41.json",
@@ -8076,6 +8107,28 @@
         "AGENTS.md"
       ],
       "title": "preview.png"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-controller-compatibility.md",
+      "kind": "file",
+      "purpose": "Narrow exact-main compatibility dependency plan, unresolved final licensing tuple inputs and ordinary two-host admission/merge boundaries.",
+      "role": "draft",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 39 — narrow licensing controller compatibility preparation"
+    },
+    {
+      "path": "review/issue-39/2026-10-15-license-tuples.json",
+      "kind": "file",
+      "purpose": "Independent exact canonical/immutable runtime and full embedded license byte proof from explicitly dirty root-produced diagnostic artifacts; not clean-source admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-15-controller-compatibility.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-15-license-tuples.json"
     },
     {
       "path": "review/issue-41/2026-10-07-analysis.md",
@@ -18770,6 +18823,17 @@
       "title": "test_issue36_acceptance.py"
     },
     {
+      "path": "tests/test_issue39_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue39 compatibility phase snapshot verifies unchanged main public/producer/export bytes and actual bounded selector rejection cases; full licensing/production policy stays in PR40.",
+      "role": "validator",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue39_acceptance.py"
+    },
+    {
       "path": "tests/test_issue41_acceptance.py",
       "kind": "file",
       "purpose": "Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3.",
@@ -20885,6 +20949,16 @@
       "kind": "directory",
       "purpose": "Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance.",
       "role": "draft",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-39",
+      "kind": "directory",
+      "purpose": "Issue39 versioned domain/release and controller-compatibility evidence under the original PR40 execution owner.",
+      "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"

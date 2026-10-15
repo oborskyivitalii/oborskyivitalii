@@ -64,6 +64,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-36](review/issue-36) | Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39](review/issue-39) | Issue39 versioned domain/release and controller-compatibility evidence under the original PR40 execution owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41](review/issue-41) | Dated source inventory and content-authority analysis for the same-PR Sol handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -189,6 +190,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-36.json](.github/acceptance/issue-36.json) | Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-39.json](.github/acceptance/issue-39.json) | Issue39 narrow controller dependency maps original AC01-AC05 to exact main-byte preservation, strict Color guards and separate future-tuple/staging/release decisions. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-41.json](.github/acceptance/issue-41.json) | Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-45.json](.github/acceptance/issue-45.json) | Issue45 scoped formula and heading reading-clarity criterion mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-48.json](.github/acceptance/issue-48.json) | Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -637,6 +639,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-36/2026-10-07-controller-compatibility.md](review/issue-36/2026-10-07-controller-compatibility.md) | Issue36 trusted staging consumer analysis, finite media/legacy compatibility and full joint acceptance after PR43 merge. | history | [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) |
 | [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) | Owning issue36 formula design/provenance, implemented native integration, scoped validation protocol and exact-source execution/evidence handoff. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-36/preview.png](review/issue-36/preview.png) | Day/Night and narrow-width rendered proof of the SVG candidate, not an integrated scene screenshot. | draft | [review/issue-36/2026-10-07-handoff.md](review/issue-36/2026-10-07-handoff.md) |
+
+## review/issue-39/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-39/2026-10-15-controller-compatibility.md](review/issue-39/2026-10-15-controller-compatibility.md) | Narrow exact-main compatibility dependency plan, unresolved final licensing tuple inputs and ordinary two-host admission/merge boundaries. | draft | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-39/2026-10-15-license-tuples.json](review/issue-39/2026-10-15-license-tuples.json) | Independent exact canonical/immutable runtime and full embedded license byte proof from explicitly dirty root-produced diagnostic artifacts; not clean-source admission. | history | [review/issue-39/2026-10-15-controller-compatibility.md](review/issue-39/2026-10-15-controller-compatibility.md) |
 
 ## review/issue-41/
 
@@ -1837,6 +1846,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue36_acceptance.py](tests/test_issue36_acceptance.py) | Owning issue36 canonical SVG/inertness/geometry, native source/cache/depth/compiler/legacy-media mappings and source-bound browser/performance acceptance assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue39_acceptance.py](tests/test_issue39_acceptance.py) | Issue39 compatibility phase snapshot verifies unchanged main public/producer/export bytes and actual bounded selector rejection cases; full licensing/production policy stays in PR40. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue41_acceptance.py](tests/test_issue41_acceptance.py) | Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue45_acceptance.py](tests/test_issue45_acceptance.py) | Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue48_acceptance.py](tests/test_issue48_acceptance.py) | Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |

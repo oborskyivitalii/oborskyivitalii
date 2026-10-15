@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 39,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Revalidated baseline and capability inventory",
+      "automated_scope": "This controller-compatibility dependency records exact main cc115c4241197d59205934bdc18f209109d5ee87 and preserves its complete public and producer byte inventories. It supplies no new provider inventory or domain observation; those remain with execution PR40.",
+      "checks": ["PRESERVATION"],
+      "gates": ["LIVE-INVENTORY"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Canonical .ai topology and lossless .com redirect plan",
+      "automated_scope": "No domain, DNS, Pages settings, migration or redirect implementation is included in this narrow compatibility increment. Original AC02 remains manual-only pending in this phase and continues in PR40.",
+      "checks": [],
+      "gates": ["LIVE-DOMAINS"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Preserve current production release controls while preparing",
+      "automated_scope": "Exact main public, authored-site, producer, hosting and workflow bytes remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission.",
+      "checks": ["PRESERVATION", "SELECTOR", "PROOF"],
+      "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Actionable maintainer instructions and linked execution",
+      "automated_scope": "The bounded compatibility dependency retains issue39 and PR40 ownership, original AC01-AC05, explicit pending domain/rights/device/review/merge gates and current source/style/navigation checks. Applicable CS01/CS04/CS05/CS08/CS09/CS10 architectural and readability review remains separate. This phase map replaces no full PR40 implementation checks; that execution PR retains its complete mapping after rebase.",
+      "checks": ["STYLE", "BASIC", "RI", "RI-CI"],
+      "gates": ["OWNER-SETTINGS", "REVIEW", "STAGING", "MERGE"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Eventual live custom-domain acceptance",
+      "automated_scope": "No production publication, canonical domain, DNS, TLS, redirect, live indexing or production telemetry is changed or accepted by this compatibility dependency. Original AC05 remains manual-only pending.",
+      "checks": [],
+      "gates": ["LIVE-DOMAINS", "PRODUCTION-ADMISSION"]
+    }
+  ],
+  "checks": {
+    "PRESERVATION": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_main_public_and_producer_bytes_are_preserved"
+    },
+    "SELECTOR": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_selector_and_bounded_negative_guards"
+    },
+    "PROOF": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_recorded_license_tuples_match_closed_selector"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "BASIC": { "kind": "node-basic" },
+    "RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "LIVE-INVENTORY": {
+      "kind": "human",
+      "description": "Re-read exact main/PR/controller and actual provider state before delivery. Pinned byte preservation is not a live settings inventory."
+    },
+    "LIVE-DOMAINS": {
+      "kind": "human",
+      "description": "PR40 retains actual .ai/.com/www DNS, TLS, canonical host, lossless path/query redirects, authenticated Pages migration and eventual public acceptance. No domain operation belongs to this compatibility increment."
+    },
+    "TUPLE-REVIEW": {
+      "kind": "human",
+      "description": "Before readiness independently derive the final licensing candidate's plain/staging fingerprints, base engine and every canonical plus immutable runtime-file hash. Review exact source/tree/public digests and unknown/mixed/missing/edition mutation rejections; no placeholders or dynamic fingerprint allowance may be registered."
+    },
+    "PRODUCTION-ADMISSION": {
+      "kind": "human",
+      "description": "PR40 retains complete exact-artifact full/native/security/performance, physical-device/independent/visual, source-bound rights and maintainer policy acceptance, actual publisher/recovery controls and explicit production release decision. This dependency neither supplies nor waives them."
+    },
+    "OWNER-SETTINGS": {
+      "kind": "human",
+      "description": "Original ownership Verified and repository Pages/environment/protection/App/immutable Release settings keep their separate source-bound administration evidence. No settings are changed by a registry compatibility PR."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Independent exact-source review of selector tuples, byte preservation, scope, CS01/CS04/CS05/CS08/CS09/CS10 and actual issue39/PR40/dependency-PR links. Source checks are not a maintainer decision."
+    },
+    "STAGING": {
+      "kind": "human",
+      "description": "Ready exact head must obtain actual source/RI/owning checks, owner /stage, bounded unchanged-budget regression, both stable publishers and fresh Staging admission using the unchanged main public family. Preview evidence alone does not admit merge."
+    },
+    "MERGE": {
+      "kind": "merge",
+      "description": "Apply the applicable maintainer merge decision to the exact ordinarily admitted dependency tree, then record unchanged-tree merge/postmerge identity. No bootstrap waiver or production authorization is inferred; PR40 remains the main licensing/release execution owner."
+    }
+  }
+}
