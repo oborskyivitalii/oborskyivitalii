@@ -165,3 +165,58 @@ RI/CI20/20 regression cases, source-number/figure inventory and whitespace pass.
 RI projection/coupling freshness and exact committed identity are reconciled in
 the live issue/PR after generation. No new tests or browser/PDF run were added
 for this excluded prose. Existing public, publisher and fixture bytes stay intact.
+
+## Revision 0.3 — review as ownership and the documentation trust problem
+
+Prepared from `e87f338fec4493305ba8b6412383a2446fcaf363`. On15October the author
+explicitly requested: integrate review's knowledge/ownership function; explain
+why generated documentation moves rather than automatically resolves the trust
+problem; use contextual hyperlinks throughout the site article, leaving other
+platform treatments for later. Title and publication gates remain unchanged.
+
+### Bounded research intake and proposed treatment
+
+New public primary source: Bacchelli and Bird, *Expectations, Outcomes, and
+Challenges of Modern Code Review*, ICSE2013. Microsoft Research's original record
+and abstract inspected on15October; observations/interviews/surveys and review
+comments across Microsoft teams establish knowledge-transfer/team-awareness
+benefits alongside defect finding. It is neither an AI-versus-human trial nor
+proof that every review creates ownership. Cite for that bounded empirical claim.
+The link from usable understanding to accountable operation is the author's
+engineering argument. Assigned responsibility does not disappear when knowledge
+is missing; understanding alone also does not supply authority or recovery tools.
+
+The documentation paradox is the author's requested analysis, not a new measured
+finding: explanations may help, yet generated code/documentation can share errors;
+readability and agreement do not establish fidelity. Distinguish explanation/code
+consistency from code/requirement correctness. Code links, observed execution,
+independent constraints/tests and investigation exercises can reduce checking
+cost, but their effectiveness must be demonstrated. No universal requirement to
+manually re-read every line, and no claim that using another LLM guarantees
+independence. This user instruction authorises this provisional article treatment.
+
+Affected owner: existing draft chapters4/5/10/11 and source list, plus source-link
+presentation throughout. Existing vendor evidence and presentation pins unchanged.
+No UA/Subprime doctrine or evidence register correction is implied. Public output,
+publisher fixtures, platform adaptations and runtime remain outside this revision.
+Current self-review, source links and local freshness checks will be reconciled
+below and in issue2/PR79. AC01–AC06 remain open; AC07/AC08 unchanged.
+
+### Revision0.3 self-review and checks
+
+Root self-review: the article distinguishes defect detection, knowledge formation,
+formal responsibility and the capability to discharge it. The documentation
+section distinguishes fidelity to code from correctness against requirements,
+allows cheaper verified abstraction and names correlated-error limits. It does
+not claim manual line-by-line review is the only valid ownership mechanism.
+Bacchelli/Bird is cited only for bounded observational findings, not as proof of
+the author's responsibility argument. No new independent review is claimed.
+All23primary source entries have contextual links in the prose or relevant
+editorial note; numeric-only callouts are removed from the body. The final source
+list remains, along with existing version/access limitations. Guide records the
+site-specific link decision; platform editions are unchanged.
+
+Prepared-source Basic25/25, style101files/0legacy occurrences, RI28/28 and
+RI/CI20/20 regression cases pass. Projection and coupling freshness, Markdown
+link integrity and whitespace are checked before committing. No new tests,
+public outputs, article renders or browser runs for this excluded prose revision.

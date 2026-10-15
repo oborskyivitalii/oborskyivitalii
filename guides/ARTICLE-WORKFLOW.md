@@ -13,6 +13,9 @@ English and the usual delivery/engineering leadership audience, and requested a
 detailed first draft. That [editorial draft](../drafts/pmday-article-draft.en.md)
 now owns the proposed prose, chapter structure, figures and evidence for review.
 The existing selected publisher fixture remains separate and unchanged.
+For this article, the author requests descriptive source hyperlinks in the site
+prose, retaining a final source list. Other platform treatments will be decided
+when preparing those adaptations.
 The [content release guide](SITE-CONTENT-RELEASE.md) explains automatic Writing
 registration and verified platform reuse when adding an article or external link.
 
