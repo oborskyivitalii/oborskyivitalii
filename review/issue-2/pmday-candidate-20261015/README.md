@@ -14,7 +14,7 @@ Execution: PR #79; article owner #2; publisher owner #5.
 ## Artifact identity and independent review
 
 The corrected publication-kit artifact is
-`6982563a4cc8427c3691f438c9f882f3a2f6b4c91db1987c516b178407be0eee`.
+`3c31e78189977072258f6b56ffa6d6e19e66109a02bc353fa5b6891d19b2a029`.
 Its ZIP contains all 33 files from the exact generated artifact directory:
 32 declared outputs plus the root manifest. The publishing `verifyKit` check,
 every output checksum/byte count, current source/producer checksums and ZIP
@@ -22,11 +22,11 @@ integrity were independently verified. The separate article PDF is byte-identica
 to the PDF in the kit.
 
 - Article PDF SHA-256:
-  `4fc93039fc5a2609fecee658a90e45e4bcba2003a4888ceee8138461ebbef7f2`
+  `2efc7d8cb6e2a559724db5d3022c3b48d9d67fddcb215e01c57be20a024aeb8a`
   (409,747 bytes, 13 pages).
 - Publication ZIP SHA-256:
-  `c741fa2e2ae0be0ce186be5e876a076d737594c27471ffadaae3fa05c5c64bd9`
-  (1,914,710 bytes).
+  `fa2f802b2f4fee5aaf86c92b462844efadeb75d046227a651d11af75743fb850`
+  (1,914,745 bytes).
 - Social-cover ZIP SHA-256:
   `02da46d31072fc9c5b1fea393b8a4f5d3d7f6fa8756e5008f51ee9b78ababe59`
   (4,104,141 bytes; four files).
@@ -44,6 +44,14 @@ CSS. Corrected page 1 was visually re-inspected; pages 2 through 13 were
 pixel-identical to the already inspected PDF when both PDFs were rendered with
 the same MuPDF settings. The first page retains generous white space before the
 full cover on page 2.
+
+A later profile-formatting correction changed the kit's source checksum without
+changing its prose or artwork. The complete kit and standalone PDF were
+regenerated; all 13 resulting pages are text-identical and pixel-identical to
+the corrected, visually inspected PDF under the same MuPDF settings. PDF metadata
+and its byte checksum changed. The social-cover ZIP remains byte-identical to
+its earlier review bundle and records its original kit artifact ID in its own
+manifest; its cover masters and provenance have not changed.
 
 Artwork originals and editable SVGs are in
 `site/assets/publications/pmday-ai-both-sides/`; the landscape and square masters

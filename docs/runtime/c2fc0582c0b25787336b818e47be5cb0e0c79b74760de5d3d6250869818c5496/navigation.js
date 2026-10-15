@@ -1179,16 +1179,20 @@ window.SiteScrollEntry=(function () {
   );
   const documentIndex = document.getElementById('site-documents');
   const articles = documentIndex ? JSON.parse(documentIndex.textContent) : {};
-  const embeddedAssetURLs = new Map();
-  let embeddedAssetsReady = null;
-  if (embedded?.assets) {
-    for (const image of document.querySelectorAll('[data-offline-resource]')) {
-      const name = image.getAttribute('data-offline-resource');
-      const value = image.getAttribute(image.tagName === 'IMG' ? 'src' : 'href');
-      if (embeddedAssetURLs.has(name) && embeddedAssetURLs.get(name) !== value) return;
-      embeddedAssetURLs.set(name, value);
+  function embeddedResources(doc, declared) {
+    const urls = new Map();
+    if (!declared) return urls;
+    for (const element of doc.querySelectorAll('[data-offline-resource]')) {
+      const name = element.getAttribute('data-offline-resource');
+      const value = element.getAttribute(element.tagName === 'IMG' ? 'src' : 'href');
+      if (urls.has(name) && urls.get(name) !== value) return null;
+      urls.set(name, value);
     }
+    return urls;
   }
+  const embeddedAssetURLs = embeddedResources(document, embedded?.assets);
+  if (!embeddedAssetURLs) return;
+  let embeddedAssetsReady = null;
   if (Object.keys(articles).length > 50) return;
   for (const [key, article] of Object.entries(articles)) {
     if (

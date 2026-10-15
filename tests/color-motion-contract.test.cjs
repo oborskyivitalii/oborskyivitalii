@@ -191,7 +191,7 @@ function evidence(id) {
   }
   return value;
 }
-test('only the twenty reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+test('only the twenty-two reviewed plain/staging runtime tuples select a camera and flight contract', () => {
   for (const family of [
     'legacy',
     'fixed',
@@ -203,6 +203,7 @@ test('only the twenty reviewed plain/staging runtime tuples select a camera and 
     'issue5-smooth',
     'issue5-viewport',
     'issue5-content',
+    'issue5-presentation',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -251,6 +252,8 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue5-viewport-staging',
     'issue5-content-plain',
     'issue5-content-staging',
+    'issue5-presentation-plain',
+    'issue5-presentation-staging',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -553,7 +556,7 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
 });
 
-test('content registry runtime tuples reproduce the complete current plain and staging byte closure', () => {
+test('presentation runtime tuples reproduce the complete current plain and staging byte closure', () => {
   const fs = require('node:fs');
   const path = require('node:path');
   const os = require('node:os');
@@ -578,16 +581,16 @@ test('content registry runtime tuples reproduce the complete current plain and s
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-content-plain');
+    assert.equal(motion.select(plain).id, 'issue5-presentation-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-content-staging');
+    assert.equal(motion.select(staged).id, 'issue5-presentation-staging');
     for (const record of [plain, staged]) {
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-content-plain').variant.baseEngine
+        motion.reviewedRuntime('issue5-presentation-plain').variant.baseEngine
       );
     }
   } finally {
@@ -615,5 +618,32 @@ test('content registry admission rejects older article navigation, archive count
     const corrupt = manifest(id);
     corrupt.files['navigation.js'].sha256 = '0'.repeat(64);
     assert.throws(() => motion.select(corrupt), /Color bytes/);
+  }
+});
+
+test('presentation admission rejects prior viewer-free runtime bytes and mismatched editions', () => {
+  for (const edition of ['plain', 'staging']) {
+    const id = 'issue5-presentation-' + edition;
+    const previous = motion.reviewedRuntime('issue5-content-' + edition);
+    for (const name of ['navigation.js', 'styles.css']) {
+      for (const location of ['canonical', 'immutable', 'both']) {
+        const mixed = manifest(id);
+        if (location !== 'immutable') mixed.files[name].sha256 = previous.files[name];
+        if (location !== 'canonical')
+          mixed.files['runtime/' + mixed.variant.fingerprint + '/' + name].sha256 =
+            previous.files[name];
+        assert.throws(() => motion.select(mixed), /Color bytes/);
+      }
+    }
+    const foreign = manifest(id);
+    foreign.variant.baseEngine = previous.variant.baseEngine;
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+    const wrongEdition = manifest(id);
+    if (edition === 'plain') {
+      wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
+    } else {
+      delete wrongEdition.edition;
+    }
+    assert.throws(() => motion.select(wrongEdition), /edition differs/);
   }
 });

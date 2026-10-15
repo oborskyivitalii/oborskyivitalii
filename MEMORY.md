@@ -23,7 +23,9 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   `review/issue-2/pmday-candidate-20261015/`; dated review owns check results.
   Local review browser is not managed-CI proof. Historic managed fixture proof
   remains in `review/issue-5/2026-10-14-managed-print.md` at `e581f8f`.
-  Current-source automated checks and exact preview must be revalidated live.
+  Independent implementation/export findings and remediations are in
+  `review/issue-5/2026-10-15-presentation-review.md`; original social covers have
+  a separate download ZIP. Exact current-source checks/preview are in live PR79.
   #2 AC01-AC06 and #5 whole human/publication gates stay open; recording AC07/08
   remains accepted. No merge, permanent-stage promotion or production is implied.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
@@ -84,7 +86,7 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 | #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
 | #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
 | #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
-| #5 / PR79 and #2          | Publisher technical evidence is retained; review the revised English PMDay editorial draft, then iterate its prose/figures before any accepted edition. |
+| #5 / PR79 and #2          | Publisher technical evidence is retained; review the completed real article/PDF/social-cover candidate and hosted preview; author/device/rights/publication decisions remain. |
 | #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
 
 ## Next session

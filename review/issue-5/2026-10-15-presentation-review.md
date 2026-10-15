@@ -32,6 +32,7 @@ claimed as a second independent review.
 | F04 | `review/issue-2/pmday-candidate-20261015/` | Platform-rendition kit contains efficient images. Added a separate `social-covers.zip` with original landscape/square upload masters, provenance and hashes. |
 | F05 | Hosted frame-denial headers | Reader loads only a declared PDF on demand, bounds bytes/deadline, verifies digest and uses a local Blob. Existing headers remain. Close/navigation/pagehide abort work and revoke URLs. |
 | F06 | Native PDF painting | Local headless review establishes frame lifecycle, not native PDF plugin rendering. Actual Safari/iPad PDF painting remains a device check. Native open/download links remain available without JavaScript. |
+| F08 | First committed CI at `6095c266` | Formatting caught the new profile JSON; preview caught output generated before the final template formatting, and source checks caught the previous explicit Color fixture admission. Correct source formatting and regenerate output before checks; admit the reviewed new runtime separately while preserving historical families. These original runs stay failed. |
 | F07 | Full offline export | The real article/deck exceeds the existing 800KB-gzip single-file limit. It is explicitly rejected; use hosted reader or complete multi-file/PDF kit. No budget was raised. |
 
 ## Checks actually observed during prepared-source review
@@ -49,6 +50,37 @@ claimed as a second independent review.
 - Earlier broad local attempts were invalid/incomplete: first lacked the
   required Python executable; a later attempt overlapped CSS regeneration and
   saw the stale generated-CSS equality failure. Neither is a green final run.
+
+## CI follow-up before final validation
+
+The first committed `6095c266` checks correctly rejected profile formatting,
+output generated before the final template formatting, and an outdated explicit
+Color fixture admission. All of those original runs remain failed. The profile
+is formatted and public/offline output regenerated, followed by a fresh output
+check. The refreshed kit changes input/PDF metadata hashes; every PDF page remains
+text- and pixel-identical to the corrected independently reviewed version.
+
+A separately recomputed `issue5Presentation` runtime family records the new plain
+and staging bytes. All20historical tuples remain unchanged. Exact byte/edition,
+prior-navigation and prior-CSS mixed negatives remain rejecting; Color/staging/
+build checks pass31/31, including cold closure reconstruction. Six new static
+checksum dispositions are append-only, each proved against the recomputed public
+runtime. A scoped lint check also found the top-level reader exceeded the existing
+complexity limit by one. A cohesive embedded-resource collection helper and
+behavioral IMG/link/duplicate/conflict checks fix this without an exception.
+Navigation/offline/Color/build/staging checks then pass75/75; scoped ESLint has
+zero errors/warnings. Output was regenerated before pinning final tuples.
+No detect-secrets scan or full staging/security pass is claimed by that proof. A full local preflight also exposed an existing content-classifier assumption:
+all publication inventory rows were required to be content-eligible, including
+unchanged SVG/provenance sources introduced by this article. The bounded fix
+preserves those non-content rows exactly before/after, rejects their addition,
+change or deletion through the content route, and leaves unsupported changed
+source paths on the full platform route. Shape/owner and non-publication policy
+guards remain. Root independently reviewed that comparison and boundary;
+content-baseline/profile-selection checks pass30/30, including both previously
+failing scenarios with all real artwork/provenance present. Reflexivity, new/
+changed/deleted unsupported rows and unsupported changed source are exercised.
+Final current-source CI/preview results belong in the live owners.
 
 ## Style and acceptance mapping
 

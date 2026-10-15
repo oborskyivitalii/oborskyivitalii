@@ -307,6 +307,16 @@ function publicationInventoryCompatible(registry, before, after) {
     ),
   });
   if (!isDeepStrictEqual(withoutPublications(before), withoutPublications(after))) return false;
+  // Existing non-content publication inputs can remain pinned, never change or disappear.
+  for (const [file, entry] of Object.entries(before.entries || {})) {
+    if (
+      (file.startsWith('site/publications/') || file.startsWith('site/assets/publications/')) &&
+      entry.kind === 'file' &&
+      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input)) &&
+      !isDeepStrictEqual(entry, after.entries?.[file])
+    )
+      return false;
+  }
   for (const [file, entry] of Object.entries(after.entries || {})) {
     if (derivedEntry(file)) {
       safePath(file);
@@ -335,7 +345,8 @@ function publicationInventoryCompatible(registry, before, after) {
       return false;
     if (
       entry.kind === 'file' &&
-      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input))
+      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input)) &&
+      !isDeepStrictEqual(entry, before.entries?.[file])
     )
       return false;
   }

@@ -201,6 +201,7 @@ test('authored content selection retains all mandatory safety modules and reject
     'site/content/pages/talks/talks.json',
     'site/publications/example/executable.cjs',
     'site/assets/publications/example/active.js',
+    'site/assets/publications/example/PROVENANCE.md',
     'unknown-owner.json',
   ]) {
     assert.throws(
@@ -215,8 +216,11 @@ test('authored content selection retains all mandatory safety modules and reject
   for (const changedPaths of [[], ['docs/writing.html']])
     assert.throws(() => runner.select(root, 'content', { changedPaths }), /rejects/);
 });
-test('publication inventory bookkeeping admits only article-owned entries without changing platform owners', () => {
+test('publication inventory admits content bookkeeping while pinning existing unsupported entries', () => {
   const registry = runner.loadRegistry(root);
+  const current = JSON.parse(fs.readFileSync(path.join(root, '.github/repository-paths.json')));
+  assert.equal(runner.publicationInventoryCompatible(registry, current, current), true);
+  const provenance = 'site/assets/publications/existing/PROVENANCE.md';
   const before = {
     schema_version: 1,
     entries: {
@@ -225,6 +229,12 @@ test('publication inventory bookkeeping admits only article-owned entries withou
         owner: 'site/README.md',
         role: 'source',
         purpose: 'Existing platform owner',
+      },
+      [provenance]: {
+        kind: 'file',
+        owner: 'guides/ARTICLE-WORKFLOW.md',
+        role: 'source',
+        purpose: 'Existing publication asset provenance',
       },
     },
   };
@@ -249,6 +259,19 @@ test('publication inventory bookkeeping admits only article-owned entries withou
     (value) => {
       value.entries['site/publications/new-article/active.cjs'] =
         value.entries['site/publications/new-article/manuscript.md'];
+    },
+    (value) => {
+      value.entries['site/assets/publications/new-article/PROVENANCE.md'] =
+        value.entries[provenance];
+    },
+    (value) => {
+      value.entries[provenance].purpose = 'Changed publication asset provenance';
+    },
+    (value) => {
+      value.entries[provenance].role = 'draft';
+    },
+    (value) => {
+      delete value.entries[provenance];
     },
     (value) => {
       value.entries['site/publications/new-article/manuscript.md'].owner = 'MEMORY.md';

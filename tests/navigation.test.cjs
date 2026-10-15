@@ -19,6 +19,44 @@ const extractSource = source.slice(
 );
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
 
+test('embedded resources preserve image and PDF URL contexts and reject conflicting identities', () => {
+  const start = source.indexOf('  function embeddedResources(');
+  const end = source.indexOf('  const embeddedAssetURLs =', start);
+  assert.ok(start >= 0 && end > start, 'authored embedded resource boundary');
+  const context = {};
+  vm.runInNewContext(source.slice(start, end) + '\nglobalThis.collect=embeddedResources;', context);
+  const imageURL = 'data:image/png;base64,cG9zdGVy';
+  const pdfURL = 'data:application/pdf;base64,c2xpZGVz';
+  const element = (tagName, name, src, href) => ({
+    tagName,
+    getAttribute: (attribute) => ({ 'data-offline-resource': name, src, href })[attribute],
+  });
+  const elements = [
+    element('IMG', 'poster', imageURL, 'unused-image-href'),
+    element('A', 'slides', 'unused-link-src', pdfURL),
+    element('A', 'slides', 'another-unused-src', pdfURL),
+  ];
+  let queries = 0;
+  const document = {
+    querySelectorAll(selector) {
+      assert.equal(selector, '[data-offline-resource]');
+      queries++;
+      return elements;
+    },
+  };
+  assert.deepEqual(Object.fromEntries(context.collect(document, null)), {});
+  assert.equal(queries, 0, 'ordinary documents do not scan for embedded resources');
+  assert.deepEqual(Object.fromEntries(context.collect(document, {})), {
+    poster: imageURL,
+    slides: pdfURL,
+  });
+  elements.push(element('A', 'slides', 'unused-src', pdfURL + 'changed'));
+  assert.equal(context.collect(document, {}), null, 'conflicting PDF hrefs abort initialization');
+  elements.pop();
+  elements.push(element('IMG', 'poster', imageURL + 'changed', 'unused-href'));
+  assert.equal(context.collect(document, {}), null, 'conflicting image srcs abort initialization');
+});
+
 test('a canceled slide hash cannot clear the busy state of a reopened viewer', async () => {
   const bytes = Buffer.from('%PDF-1.7\nviewer lifecycle fixture\n%%EOF\n');
   const digest = require('node:crypto').createHash('sha256').update(bytes).digest();
