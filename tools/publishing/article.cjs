@@ -8,6 +8,7 @@ const { verifyAppendOnlyHistory } = require('./history.cjs');
 const { semanticDigest, adaptationDigest } = require('./semantic.cjs');
 const { loadProfile } = require('./profile.cjs');
 const { decodeUtf8 } = require('./text.cjs');
+const { loadPresentation } = require('./presentation.cjs');
 
 const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const SHA = /^[0-9a-f]{64}$/;
@@ -133,6 +134,7 @@ function validateMetadata(metadata, articleId) {
       'canonical',
       'translationOf',
       'profile',
+      'presentation',
     ],
     'publication'
   );
@@ -431,6 +433,7 @@ function loadArticle(root, articleId, { assetUrl } = {}) {
   if (new Set(assets.map((asset) => asset.id)).size !== assets.length) {
     throw new Error('Duplicate article asset identity');
   }
+  const presentation = loadPresentation(root, metadata, assets, assetUrl);
   if (assets.reduce((total, asset) => total + asset.bytes.length, 0) > 16_000_000) {
     throw new Error('Declared article images exceed their 16 MB aggregate boundary');
   }
@@ -458,6 +461,7 @@ function loadArticle(root, articleId, { assetUrl } = {}) {
     full.input,
     full.source.path,
     ...assets.map((asset) => asset.path),
+    ...(presentation ? [presentation.file.path] : []),
     ...validateTranslation(root, metadata),
   ];
   const adaptations = {};
@@ -506,6 +510,7 @@ function loadArticle(root, articleId, { assetUrl } = {}) {
     html: result.bodyHtml,
     sections: result.model.sections.filter((section) => section.id !== result.titleId),
     assets,
+    presentation,
     source: full.source,
     edition: full.edition,
     adaptations,

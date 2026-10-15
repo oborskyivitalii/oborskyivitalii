@@ -231,6 +231,9 @@ async function renderKit(
       await fs.writeFile(path.join(staging, asset.url), asset.bytes, { flag: 'wx' });
     }
     const fullSource = readSource(root, article.source.path);
+    if (article.presentation) {
+      await fs.writeFile(path.join(staging, 'presentation.pdf'), article.presentation.file.bytes);
+    }
     const full = compile(decodeUtf8(fullSource.bytes, article.source.path), assets, {
       title: article.metadata.title,
     });
@@ -274,6 +277,13 @@ async function renderKit(
           },
         ]
       : [];
+    if (article.presentation) {
+      omissions.push({
+        scope: 'print and platform',
+        feature: 'Interactive presentation viewer',
+        reason: 'Poster and source PDF link retained; original PDF included separately in the kit.',
+      });
+    }
     for (const platform of ['linkedin', 'medium']) {
       const result = await writePlatform(
         root,
@@ -389,6 +399,7 @@ async function renderKit(
       'tools/publishing/semantic.cjs',
       'tools/publishing/profile.cjs',
       'tools/publishing/text.cjs',
+      'tools/publishing/presentation.cjs',
       'site/templates/articles/print.html',
       'site/engine/article-print.css',
       ...(pdf ? ['tools/publishing/print.mjs', 'tools/publishing/print-resource.cjs'] : []),

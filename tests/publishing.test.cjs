@@ -65,13 +65,21 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
     status: 'draft',
     source: 'manuscript.en.md',
     edition: 'first-edition',
-    rights: { status: 'review-pending', notice: 'Author review pending.', references: [] },
+    rights: {
+      status: 'review-pending',
+      notice: 'Author review pending.',
+      references: [],
+    },
     profile: 'profile.json',
     references: [],
     assets,
     platforms: {
       linkedin: adaptation
-        ? { mode: 'adaptation', source: 'adaptations/linkedin.en.md', edition: 'linkedin-first' }
+        ? {
+            mode: 'adaptation',
+            source: 'adaptations/linkedin.en.md',
+            edition: 'linkedin-first',
+          }
         : { mode: 'equivalent-rendition' },
       medium: { mode: 'equivalent-rendition' },
     },
@@ -84,7 +92,12 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
     articleId: id,
     language: 'en',
     kind: 'full-article',
-    source: { path: 'manuscript.en.md', sha256: hash(manuscript), commit: null, blob: null },
+    source: {
+      path: 'manuscript.en.md',
+      sha256: hash(manuscript),
+      commit: null,
+      blob: null,
+    },
     owner: 'site',
     derivation: null,
     rights: 'review-pending',
@@ -105,7 +118,10 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
       medium: { formats, relationship: 'equivalent-rendition' },
     },
     launch: { source: 'launch-post.en.md', sha256: hash(launch) },
-    seo: { title: 'Authored distribution title', summary: 'Authored distribution summary.' },
+    seo: {
+      title: 'Authored distribution title',
+      summary: 'Authored distribution summary.',
+    },
     assets: { cover: role, hero: role },
     limits: {},
   });
@@ -117,7 +133,11 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
       ...edition,
       id: 'linkedin-first',
       kind: 'adaptation',
-      source: { ...edition.source, path: 'adaptations/linkedin.en.md', sha256: hash(adapted) },
+      source: {
+        ...edition.source,
+        path: 'adaptations/linkedin.en.md',
+        sha256: hash(adapted),
+      },
       derivation: {
         relationship: 'adaptation',
         baseEdition: edition.id,
@@ -152,6 +172,7 @@ async function withFixture(callback) {
       'tools/publishing/semantic.cjs',
       'tools/publishing/profile.cjs',
       'tools/publishing/text.cjs',
+      'tools/publishing/presentation.cjs',
       'site/publications/policy.json',
       'site/templates/articles/print.html',
       'site/engine/article-print.css',
@@ -259,7 +280,10 @@ test('two independent profiles resolve figure and adaptation identities without 
 test('strict source selection rejects unknown fields, dishonest accepted edition and altered assets', async () => {
   await withFixture(async (root) => {
     const { directory, metadata } = fixture(root);
-    json(root, `${directory}/publication.json`, { ...metadata, publishedAt: '2026-01-01' });
+    json(root, `${directory}/publication.json`, {
+      ...metadata,
+      publishedAt: '2026-01-01',
+    });
     assert.throws(() => loadArticle(root, 'first-profile'), /Unknown publication field/);
     json(root, `${directory}/publication.json`, {
       ...metadata,
@@ -279,7 +303,10 @@ test('semantic editions reject meaningful metadata drift while profiles stay ind
   await withFixture(async (root) => {
     const { directory, metadata, edition } = fixture(root);
     const initial = loadArticle(root, metadata.id);
-    json(root, `${directory}/publication.json`, { ...metadata, title: 'Changed argument title' });
+    json(root, `${directory}/publication.json`, {
+      ...metadata,
+      title: 'Changed argument title',
+    });
     assert.throws(() => loadArticle(root, metadata.id), /semantic identity drifted/);
     json(root, `${directory}/publication.json`, {
       ...metadata,
@@ -298,7 +325,10 @@ test('semantic editions reject meaningful metadata drift while profiles stay ind
     assert.equal(revisedProfile.furniture.seo.title, profile.seo.title);
     const source = Buffer.from([65, 32, 255, 32, 66, 46, 10]);
     write(root, `${directory}/manuscript.en.md`, source);
-    const changed = { ...edition, source: { ...edition.source, sha256: hash(source) } };
+    const changed = {
+      ...edition,
+      source: { ...edition.source, sha256: hash(source) },
+    };
     changed.semanticSha256 = semanticDigest(metadata, changed.source);
     json(root, `${directory}/editions/first-edition.json`, changed);
     assert.throws(() => loadArticle(root, metadata.id), /valid UTF-8 source bytes/);
@@ -308,7 +338,9 @@ test('semantic editions reject meaningful metadata drift while profiles stay ind
 test('kit installs coherent source-bound HTML/MD/TXT/copy candidates and rejects output corruption', async () => {
   await withFixture(async (root) => {
     fixture(root, 'second-profile', { adaptation: true });
-    const first = await renderKit(root, 'second-profile', { generatedAt: '2026-10-12T00:00:00Z' });
+    const first = await renderKit(root, 'second-profile', {
+      generatedAt: '2026-10-12T00:00:00Z',
+    });
     const manifest = await verifyKit(first.directory);
     assert.equal(manifest.contentEdition, 'first-edition');
     assert.equal(manifest.transformations[0].contentEdition, 'linkedin-first');
@@ -358,7 +390,9 @@ test('kit installs coherent source-bound HTML/MD/TXT/copy candidates and rejects
 test('kit rename failure does not install partial assets or discard a prior candidate', async () => {
   await withFixture(async (root) => {
     fixture(root);
-    const prior = await renderKit(root, 'first-profile', { generatedAt: '2026-10-12T00:00:00Z' });
+    const prior = await renderKit(root, 'first-profile', {
+      generatedAt: '2026-10-12T00:00:00Z',
+    });
     const sourceBefore = fs.readFileSync(
       path.join(root, 'site/publications/first-profile/manuscript.en.md')
     );
@@ -418,7 +452,11 @@ test('a new authored LinkedIn edition leaves full source and its prior edition u
       ...edition,
       id: 'linkedin-second',
       kind: 'adaptation',
-      source: { ...edition.source, path: 'adaptations/linkedin.en.md', sha256: hash(nextSource) },
+      source: {
+        ...edition.source,
+        path: 'adaptations/linkedin.en.md',
+        sha256: hash(nextSource),
+      },
       derivation: {
         relationship: 'adaptation',
         baseEdition: edition.id,
@@ -437,7 +475,10 @@ test('a new authored LinkedIn edition leaves full source and its prior edition u
       ...metadata,
       platforms: {
         ...metadata.platforms,
-        linkedin: { ...metadata.platforms.linkedin, edition: 'linkedin-second' },
+        linkedin: {
+          ...metadata.platforms.linkedin,
+          edition: 'linkedin-second',
+        },
       },
     });
     const after = await renderKit(root, 'revision-profile', {
@@ -586,7 +627,9 @@ test('translation validates its edition family and freezes its declared derivati
 
 test('platform events bind the declared document formats of real committed kits', async () => {
   await withFixture(async (root) => {
-    const { directory, metadata, edition } = fixture(root, 'platform-event', { figure: false });
+    const { directory, metadata, edition } = fixture(root, 'platform-event', {
+      figure: false,
+    });
     const git = (arguments_) =>
       execFileSync('git', arguments_, { cwd: root, encoding: 'utf8' }).trim();
     git(['init', '-q']);
@@ -680,7 +723,9 @@ test('platform events bind the declared document formats of real committed kits'
 
 test('canonical and actual dates require an exact committed artifact and production-served inspection', async () => {
   await withFixture(async (root) => {
-    const { directory, metadata, edition } = fixture(root, 'event-profile', { figure: false });
+    const { directory, metadata, edition } = fixture(root, 'event-profile', {
+      figure: false,
+    });
     const git = (args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
     git(['init', '-q']);
     git(['config', 'user.email', 'tests@example.com']);
@@ -750,7 +795,10 @@ test('canonical and actual dates require an exact committed artifact and product
     json(root, `${artifactRoot}/artifact.json`, artifactManifest);
     const document = files[descriptor.alias];
     const url = 'https://vitaliioborskyi.ai/articles/event-profile.html';
-    json(root, `${directory}/publication.json`, { ...accepted, canonical: url });
+    json(root, `${directory}/publication.json`, {
+      ...accepted,
+      canonical: url,
+    });
     assert.throws(() => loadArticle(root, 'event-profile'), /Canonical must stay pending/);
     json(root, `${directory}/publication.json`, accepted);
     const event = {
@@ -796,7 +844,10 @@ test('canonical and actual dates require an exact committed artifact and product
     );
     appendPublicationEvent(root, 'event-profile', event);
     assert.throws(() => appendPublicationEvent(root, 'event-profile', event), /EEXIST/);
-    json(root, `${directory}/publication.json`, { ...accepted, canonical: url });
+    json(root, `${directory}/publication.json`, {
+      ...accepted,
+      canonical: url,
+    });
     const observed = loadArticle(root, 'event-profile');
     assert.equal(observed.metadata.published, event.occurredAt);
     assert.equal(observed.metadata.modified, event.occurredAt);
@@ -810,5 +861,46 @@ test('canonical and actual dates require an exact committed artifact and product
     json(root, `${directory}/publication-events/site-first.json`, event);
     write(root, `${artifactRoot}/public/${descriptor.alias}`, 'corrupt');
     assert.throws(() => loadArticle(root, 'event-profile'), /corrupt or excessive public bytes/);
+  });
+});
+
+test('presentation binds PDF bytes, poster identity and edition semantics', async () => {
+  await withFixture(async (root) => {
+    const { metadata, edition, directory } = fixture(root);
+    const originalIdentity = semanticDigest(metadata, edition.source);
+    const bytes = fs.readFileSync(
+      path.join(repo, 'site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf')
+    );
+    metadata.presentation = {
+      title: 'Source presentation',
+      poster: 'example',
+      pdf: {
+        path: 'site/assets/publications/first-profile/slides.pdf',
+        sha256: hash(bytes),
+      },
+      sourceUrl: 'https://example.com/slides.pdf',
+    };
+    write(root, metadata.presentation.pdf.path, bytes);
+    const { loadPresentation } = require('../tools/publishing/presentation.cjs');
+    const loaded = loadPresentation(root, metadata, metadata.assets);
+    assert.deepEqual(loaded.file.bytes, bytes);
+    assert.equal(loaded.file.mime, 'application/pdf');
+    assert.notEqual(semanticDigest(metadata, edition.source), originalIdentity);
+    edition.semanticSha256 = semanticDigest(metadata, edition.source);
+    json(root, `${directory}/publication.json`, metadata);
+    json(root, `${directory}/editions/${edition.id}.json`, edition);
+    assert.ok(loadArticle(root, metadata.id).inputs.includes(metadata.presentation.pdf.path));
+    const kit = await renderKit(root, metadata.id);
+    assert.deepEqual(fs.readFileSync(path.join(kit.directory, 'presentation.pdf')), bytes);
+    await verifyKit(kit.directory);
+    metadata.presentation.poster = 'missing';
+    assert.throws(() => loadPresentation(root, metadata, metadata.assets), /poster/);
+    metadata.presentation.poster = 'example';
+    const declaredPath = metadata.presentation.pdf.path;
+    metadata.presentation.pdf.path = 'site/assets/publications/other/slides.pdf';
+    assert.throws(() => loadPresentation(root, metadata, metadata.assets), /path or digest/);
+    metadata.presentation.pdf.path = declaredPath;
+    write(root, declaredPath, Buffer.concat([bytes, Buffer.from('changed')]));
+    assert.throws(() => loadPresentation(root, metadata, metadata.assets), /bytes do not match/);
   });
 });

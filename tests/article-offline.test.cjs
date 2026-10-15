@@ -52,7 +52,11 @@ function publication(root, id, language, body) {
     source: 'manuscript.' + language + '.md',
     edition: 'offline-first',
     profile: 'profile.json',
-    rights: { status: 'review-pending', notice: 'Offline fixture review pending.', references: [] },
+    rights: {
+      status: 'review-pending',
+      notice: 'Offline fixture review pending.',
+      references: [],
+    },
     references: [{ id: 'source', url: 'https://example.com/source' }],
     assets: [
       {
@@ -78,7 +82,12 @@ function publication(root, id, language, body) {
     articleId: id,
     language,
     kind: 'full-article',
-    source: { path: metadata.source, sha256: builder.sha(manuscript), commit: null, blob: null },
+    source: {
+      path: metadata.source,
+      sha256: builder.sha(manuscript),
+      commit: null,
+      blob: null,
+    },
     owner: 'site',
     derivation: null,
     rights: 'review-pending',
@@ -95,7 +104,10 @@ function publication(root, id, language, body) {
       linkedin: { formats: ['txt'], relationship: 'equivalent-rendition' },
       medium: { formats: ['txt'], relationship: 'equivalent-rendition' },
     },
-    launch: { source: 'launch-post.' + language + '.md', sha256: builder.sha(launch) },
+    launch: {
+      source: 'launch-post.' + language + '.md',
+      sha256: builder.sha(launch),
+    },
     seo: { title, summary: metadata.summary },
     assets: {
       cover: { omitReason: 'Fixture has no cover.' },
@@ -138,7 +150,11 @@ function acceptUndated(root, article) {
     },
     editions: [],
     discussions: [],
-    presentation: { topic: 'systems', kind: 'Article', publisher: 'Author site' },
+    presentation: {
+      topic: 'systems',
+      kind: 'Article',
+      publisher: 'Author site',
+    },
   };
   delete catalog.records['publication-99'].edition.datePublished;
   delete catalog.records['publication-99'].edition.dateModified;
@@ -156,12 +172,20 @@ test.before(() => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'article-offline-source-'));
   for (const relative of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
     fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
-    fs.cpSync(path.join(repo, relative), path.join(root, relative), { recursive: true });
+    fs.cpSync(path.join(repo, relative), path.join(root, relative), {
+      recursive: true,
+    });
   }
   // Do not inherit real accepted records after replacing their source tree.
   json(root, 'site/content/catalog.json', legacyCatalog(repo));
-  fs.rmSync(path.join(root, 'site/publications'), { recursive: true, force: true });
-  fs.rmSync(path.join(root, 'site/assets/publications'), { recursive: true, force: true });
+  fs.rmSync(path.join(root, 'site/publications'), {
+    recursive: true,
+    force: true,
+  });
+  fs.rmSync(path.join(root, 'site/assets/publications'), {
+    recursive: true,
+    force: true,
+  });
   const english = publication(root, 'offline-english', 'en', 'EN_BODY_OWNER_1');
   const ukrainian = publication(root, 'offline-ukrainian', 'uk', 'UK_BODY_OWNER_2');
   ukrainian.metadata.translationOf = {
@@ -236,7 +260,9 @@ test('ordinary offline payloads exclude all article bodies, descriptors, indexes
   const portrait = fs.readFileSync(
     path.join(f.publicDirectory, 'assets/vitalii-oborskyi-cutout.webp')
   );
-  const ordinary = preview.routePayloads(portrait, { publicDirectory: f.publicDirectory });
+  const ordinary = preview.routePayloads(portrait, {
+    publicDirectory: f.publicDirectory,
+  });
   assert.deepEqual(Object.keys(ordinary.pages), snapshot.routes);
   assert.deepEqual(Object.keys(ordinary.revision.articles || {}), []);
   const bytes = JSON.stringify(ordinary);
@@ -343,7 +369,9 @@ test('accepted undated export uses its committed content edition without inventi
 test('output and manifest bind the exact bytes and embedded source inputs', (t) => {
   const f = fixture(t);
   const outputFile = path.join(f.root, 'deliverable/article.html');
-  const { html, manifest } = exportSelected(f, f.english.metadata.id, { outputFile });
+  const { html, manifest } = exportSelected(f, f.english.metadata.id, {
+    outputFile,
+  });
   assert.equal(fs.readFileSync(outputFile, 'utf8'), html);
   assert.deepEqual(JSON.parse(fs.readFileSync(outputFile + '.manifest.json')), manifest);
   assert.equal(manifest.schema, 1);
@@ -372,7 +400,10 @@ test('selection requires an explicit known article from the supplied coherent pu
     assert.throws(() => exportSelected(f, articleId));
   }
   assert.throws(
-    () => exportSelected(f, f.english.metadata.id, { publicDirectory: path.join(f.root, 'docs') }),
+    () =>
+      exportSelected(f, f.english.metadata.id, {
+        publicDirectory: path.join(f.root, 'docs'),
+      }),
     /selected|missing|article/i
   );
 });
@@ -452,7 +483,10 @@ test('offline destinations reject symbolic parent paths and hardlinked existing 
   const parent = path.join(f.root, 'linked-review');
   fs.symlinkSync(path.join(f.root, 'site/publications'), parent);
   assert.throws(
-    () => exportSelected(f, f.english.metadata.id, { outputFile: path.join(parent, 'new.html') }),
+    () =>
+      exportSelected(f, f.english.metadata.id, {
+        outputFile: path.join(parent, 'new.html'),
+      }),
     /symbolic|link/i
   );
   const first = path.join(f.root, 'prior-independent.html');
@@ -497,7 +531,9 @@ test('public and source input aliases cannot conceal document or manifest output
     fs.writeFileSync(source, 'tracked independent source bytes');
     const sourceAlias = path.join(f.root, 'tracked-owner-alias' + (suffix ? '-pair' : ''));
     fs.symlinkSync(source, sourceAlias);
-    cp.execFileSync('git', ['add', '--', path.relative(f.root, sourceAlias)], { cwd: f.root });
+    cp.execFileSync('git', ['add', '--', path.relative(f.root, sourceAlias)], {
+      cwd: f.root,
+    });
     if (suffix) fs.writeFileSync(outputFile, 'previous independent review bytes');
     assert.throws(
       () =>
@@ -527,4 +563,43 @@ test('public and source input aliases cannot conceal document or manifest output
   });
   assert.equal(positive.manifest.articleId, f.accepted.metadata.id);
   assert.equal(positive.manifest.kind, 'standalone-article-review');
+});
+
+test('presentation export retains declared PDF links and rejects mutated PDF bytes', (t) => {
+  const f = fixture(t);
+  const article = publication(f.root, 'offline-presentation', 'en', 'PDF_PRESENTATION_OWNER');
+  // Small synthetic PDF envelope exercises closure; the real deck is checked in the hosted journey.
+  const pdf = Buffer.from('%PDF-1.7\n1 0 obj\n<< /Type /Page >>\nendobj\n%%EOF\n');
+  const pdfPath = 'site/assets/publications/offline-presentation/slides.pdf';
+  article.metadata.presentation = {
+    title: 'Presentation',
+    poster: 'pixel',
+    pdf: { path: pdfPath, sha256: builder.sha(pdf) },
+    sourceUrl: 'https://example.com/slides.pdf',
+  };
+  write(f.root, pdfPath, pdf);
+  article.edition.semanticSha256 = publisher.semanticDigest(
+    article.metadata,
+    article.edition.source
+  );
+  json(f.root, article.directory + '/publication.json', article.metadata);
+  json(f.root, article.directory + '/editions/offline-first.json', article.edition);
+  builder.build({
+    root: f.root,
+    output: f.publicDirectory,
+    all: true,
+    cacheFile: path.join(f.root, 'presentation.cache.json'),
+    candidateArticles: [article.metadata.id],
+  });
+  const result = exportSelected(f, article.metadata.id);
+  const data = payload(result.html);
+  const name = Object.keys(data.assets).find((name) => name.endsWith('.pdf'));
+  assert.equal(data.assets[name].mime, 'application/pdf');
+  assert.equal(data.assets[name].sha256, builder.sha(pdf));
+  assert.equal((result.html.match(/href="data:application\/pdf;base64,/g) || []).length, 3);
+  assert.match(data.pages['article:offline-presentation:en'], /presentation-toggle/);
+  assert.doesNotMatch(result.html, /<iframe\b/);
+  assertNoNetworkResources(result.html);
+  fs.appendFileSync(path.join(f.publicDirectory, name), 'changed');
+  assert.throws(() => exportSelected(f, article.metadata.id), /digest|differ|match/);
 });

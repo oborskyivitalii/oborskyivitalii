@@ -309,6 +309,38 @@ function articleHistoryCheckpoint(scope = window) {
   };
 }
 
+async function presentationJourney(page) {
+  const control = page.locator('.presentation-toggle');
+  if (!(await control.count())) return null;
+  assert.equal(await page.locator('.presentation-viewer iframe').count(), 0, 'lazy PDF viewer');
+  const pdf = await page.locator('.presentation-actions a[download]').getAttribute('href');
+  assert.ok(pdf.endsWith('.pdf'), 'native PDF fallback');
+  await control.focus();
+  await page.keyboard.press('Enter');
+  const frame = page.locator('.presentation-viewer iframe');
+  await frame.waitFor();
+  const first = await frame.getAttribute('src');
+  assert.ok(first.startsWith('blob:'), 'viewer uses verified local PDF bytes');
+  assert.equal(await control.getAttribute('aria-expanded'), 'true');
+  await control.click();
+  assert.equal(await frame.count(), 0, 'closing removes PDF viewer');
+  assert.equal(
+    await page.evaluate(async (url) => {
+      try {
+        await fetch(url);
+        return false;
+      } catch {
+        return true;
+      }
+    }, first),
+    true,
+    'closing releases PDF memory'
+  );
+  await control.click();
+  await frame.waitFor();
+  return frame.getAttribute('src');
+}
+
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
@@ -351,10 +383,24 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await settled(page, 'article:' + key, timeout);
     await preserveShell(page);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    const slideURL = await presentationJourney(page);
     await page.goBack();
     await settled(page, 'writing', timeout);
     await preserveShell(page);
     assert.deepEqual(await inspectHead(page), writingHead, 'Back restored complete archive head');
+    if (slideURL)
+      assert.equal(
+        await page.evaluate(async (url) => {
+          try {
+            await fetch(url);
+            return false;
+          } catch {
+            return true;
+          }
+        }, slideURL),
+        true,
+        'navigation releases PDF memory'
+      );
     assert.equal(await page.locator('#archive-topic').inputValue(), archive.topic);
     assert.equal(await page.locator('#archive-language').inputValue(), archive.language);
     assert.equal(await page.locator('#archive-year').inputValue(), archive.year);
@@ -458,6 +504,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       key,
       width,
       mode: 'normal',
+      presentation: slideURL ? { keyboard: true, close: true, navigationCleanup: true } : null,
       head,
       archive,
       reading,

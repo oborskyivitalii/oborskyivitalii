@@ -26,8 +26,8 @@
 
 
 
-  <meta name="site-engine" content="0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a">
-  <meta name="site-route" content="03247e78e49dc4e5fa1befc14e9989f39da28d302bd541a9ecdc082700531742">
+  <meta name="site-engine" content="58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91">
+  <meta name="site-route" content="e38ded24b64a0947a4e371b51a4cec54ba550af6f2f3363fb6f4f27b40f43672">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -1593,6 +1593,10 @@ body[data-page='writing'] #archive-results {
 .article-sources {
   margin-block: 2.5rem;
 }
+.article-toc ol {
+  padding-left: 0;
+  list-style: none;
+}
 .article-body {
   line-height: 1.75;
   overflow-wrap: anywhere;
@@ -1636,6 +1640,36 @@ body[data-page='writing'] #archive-results {
 }
 .article-list li + li {
   margin-top: 1.5rem;
+}
+.article-presentation {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-block: 2rem;
+}
+.article-presentation figure {
+  margin-block: 1rem;
+}
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.presentation-viewer iframe {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 65vh, 760px);
+  border: 0;
+  background: #fff;
+}
+.presentation-help {
+  font-size: 0.85rem;
+}
+@media print {
+  .presentation-toggle,
+  .presentation-viewer {
+    display: none;
+  }
 }
 @media print {
   .article-reader {

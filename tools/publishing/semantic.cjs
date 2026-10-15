@@ -47,6 +47,9 @@ function semanticDigest(metadata, source, assets = metadata.assets) {
   if (metadata.translationOf !== undefined) {
     identity.translationOf = metadata.translationOf;
   }
+  if (metadata.presentation !== undefined) {
+    identity.presentation = metadata.presentation;
+  }
   return digest(identity);
 }
 

@@ -113,7 +113,14 @@ function context({
     if (article.metadata.canonical === canonical && article.metadata.published)
       canonicals[key] = canonical;
   }
-  return { repoRoot, publicDirectory, articleKey, revision, canonicals, record };
+  return {
+    repoRoot,
+    publicDirectory,
+    articleKey,
+    revision,
+    canonicals,
+    record,
+  };
 }
 
 function rootURLs(html, file) {
@@ -198,7 +205,9 @@ function documents(html, environment) {
   );
   if (!environment.articleKey) return html;
   const article = environment.revision.articles[environment.articleKey];
-  const index = { [environment.articleKey]: { url: article.alias, snapshot: article.url } };
+  const index = {
+    [environment.articleKey]: { url: article.alias, snapshot: article.url },
+  };
   return html.replace(
     '</head>',
     `<script type="application/json" id="site-documents">${scriptJSON(index, 0)}</script>\n</head>`
@@ -211,14 +220,34 @@ function assets(environment) {
   if (descriptor.assets.length > 50) throw Error('Finite standalone asset inventory');
   return Object.fromEntries(
     descriptor.assets.map((name) => {
-      if (!/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.png$/.test(name))
+      if (!/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|pdf)$/.test(name))
         throw Error('Unsupported standalone article resource');
       const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
       const sha256 = artifact.digest(bytes);
       if (bytes.length > budgets.assetRawBytes || sha256 !== name.split('/')[1])
         throw Error('Standalone article asset bytes differ from descriptor');
-      return [name, { mime: 'image/png', sha256, bytes: bytes.length }];
+      return [
+        name,
+        {
+          mime: name.endsWith('.pdf') ? 'application/pdf' : 'image/png',
+          sha256,
+          bytes: bytes.length,
+        },
+      ];
     })
+  );
+}
+
+function presentationLinks(environment, inline = false) {
+  return new Set(
+    Object.entries(assets(environment))
+      .filter(([, resource]) => resource.mime === 'application/pdf')
+      .map(([name]) =>
+        inline
+          ? 'data:application/pdf;base64,' +
+            fs.readFileSync(path.join(environment.publicDirectory, name)).toString('base64')
+          : name
+      )
   );
 }
 
@@ -236,9 +265,26 @@ function inlineAssets(html, environment) {
       .replace(/src="[^"]+"/, `src="data:image/png;base64,${bytes.toString('base64')}"`)
       .replace('<img', `<img data-offline-resource="${name}"`);
   });
+  html = html.replace(/<a\b[^>]*href="([^"]+\.pdf)"[^>]*>/g, (original, name) => {
+    if (!Object.hasOwn(resources, name)) return original;
+    used.add(name);
+    const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
+    return original
+      .replace(/href="[^"]+"/, `href="data:application/pdf;base64,${bytes.toString('base64')}"`)
+      .replace('<a', `<a data-offline-resource="${name}"`);
+  });
   if (used.size !== Object.keys(resources).length)
     throw Error('Standalone article asset closure differs');
   return html;
 }
 
-module.exports = { context, rootURLs, articleLinks, documents, assets, inlineAssets, assertOutput };
+module.exports = {
+  context,
+  rootURLs,
+  articleLinks,
+  documents,
+  assets,
+  presentationLinks,
+  inlineAssets,
+  assertOutput,
+};

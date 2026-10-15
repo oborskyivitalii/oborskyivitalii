@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "id": "pmday-ai-both-sides",
+  "slug": "ai-changes-both-sides-of-software-engineering",
+  "title": "AI Changes Both Sides of Software Engineering",
+  "summary": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi"
+    }
+  ],
+  "language": "en",
+  "topic": "AI delivery and runtime control",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/pmday-ai-both-sides"
+  },
+  "status": "review",
+  "source": "manuscript.en.md",
+  "edition": "pmday-ai-both-sides-en-review-20261015",
+  "rights": {
+    "status": "review-pending",
+    "notice": "Article by Vitalii Oborskyi. Original explanatory diagrams and AI-generated editorial cover prepared for this edition. Publication-specific rights review remains pending. Linked sources and the presentation retain their own notices and credits.",
+    "references": [
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
+    ]
+  },
+  "references": [
+    {
+      "id": "source-1",
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf"
+    },
+    {
+      "id": "source-2",
+      "url": "https://youtu.be/xSgWjuGqC9I"
+    },
+    {
+      "id": "source-3",
+      "url": "https://doi.org/10.1093/qje/qjr035"
+    },
+    {
+      "id": "source-4",
+      "url": "https://digitalcommons.chapman.edu/economics_articles/99/"
+    },
+    {
+      "id": "source-5",
+      "url": "https://claude.com/resources/articles/code-review"
+    },
+    {
+      "id": "source-6",
+      "url": "https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/"
+    },
+    {
+      "id": "source-7",
+      "url": "https://claude.com/resources/articles/the-ai-native-sdlc-playbook"
+    },
+    {
+      "id": "source-8",
+      "url": "https://www.anthropic.com/engineering/redesigning-source-control"
+    },
+    {
+      "id": "source-9",
+      "url": "https://www.nber.org/papers/w35275"
+    },
+    {
+      "id": "source-10",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/EVIDENCE.md"
+    },
+    {
+      "id": "source-11",
+      "url": "https://dora.dev/research/2025/dora-report/"
+    },
+    {
+      "id": "source-12",
+      "url": "https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/"
+    },
+    {
+      "id": "source-13",
+      "url": "https://cognition.com/blog/deepwiki"
+    },
+    {
+      "id": "source-14",
+      "url": "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/"
+    },
+    {
+      "id": "source-15",
+      "url": "https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/"
+    },
+    {
+      "id": "source-16",
+      "url": "https://doi.org/10.1509/jmkr.2005.42.4.431"
+    },
+    {
+      "id": "source-17",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md"
+    },
+    {
+      "id": "source-18",
+      "url": "https://aclanthology.org/2020.acl-main.442/"
+    },
+    {
+      "id": "source-19",
+      "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+    },
+    {
+      "id": "source-20",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md"
+    },
+    {
+      "id": "source-21",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+    },
+    {
+      "id": "source-22",
+      "url": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis"
+    },
+    {
+      "id": "source-23",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+    },
+    {
+      "id": "source-24",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    },
+    {
+      "id": "source-25",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/pmday-ai-both-sides/cover.png",
+      "sha256": "2d688e19b820cd96ae32bd7fdab8a71418774231da340b6897709329a580fb25",
+      "width": 640,
+      "height": 335,
+      "alt": "Conceptual architecture connects software construction with a branching decision structure.",
+      "caption": "We can delegate more work. We still have to own the consequences.",
+      "credit": "AI-generated editorial illustration directed for this article; built-in ImageGen, 15 October 2026."
+    },
+    {
+      "id": "presentation-cover",
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180",
+      "width": 640,
+      "height": 360,
+      "alt": "First slide of the PMDay presentation, AI Changes the Delivery System and the Product Itself.",
+      "caption": "PMDay presentation, v35 review edition, 15 slides. Recording in Ukrainian.",
+      "credit": "Vitalii Oborskyi. Preview rendered from the pinned v35 PDF; presentation credits remain in the source deck."
+    },
+    {
+      "id": "two-shifts",
+      "path": "site/assets/publications/pmday-ai-both-sides/two-shifts.png",
+      "sha256": "7aa08bc4e6d1a4f8ca2b51a3a4f0522d7afc3be1c9a625e0506a239096c5751d",
+      "width": 1200,
+      "height": 800,
+      "alt": "Two-by-two matrix: conventional or AI-assisted development can each produce software governed by explicit rules or software with consequential model judgment.",
+      "caption": "Figure 1. How software is built and what it depends on at runtime are independent questions.",
+      "credit": "Original diagram for this article, based on the PMDay HOW/WHAT distinction."
+    },
+    {
+      "id": "delivery-queue",
+      "path": "site/assets/publications/pmday-ai-both-sides/delivery-queue.png",
+      "sha256": "018056e8a80bedc1933db972b904773a2410439eb258f9716aa136800a91ce1f",
+      "width": 1200,
+      "height": 710,
+      "alt": "Synthetic weekly capacities: generation, review and integration start at eight each. Raising generation alone to one hundred creates a queue growing by ninety-two changes per week when all changes are admitted.",
+      "caption": "Figure 2. Local acceleration can increase unfinished work. Synthetic capacities; downstream capacity is unchanged and all generated work is admitted.",
+      "credit": "Original explanatory diagram; no measured AI productivity result is represented."
+    },
+    {
+      "id": "runtime-control",
+      "path": "site/assets/publications/pmday-ai-both-sides/runtime-control.png",
+      "sha256": "412524c6e38d6843b5a9e4f55d3d4293e0413e70883d4883eafb2e0bf303a568",
+      "width": 1200,
+      "height": 1180,
+      "alt": "Scoped context leads to a model proposal, required checks and permission decisions. Satisfied conditions permit delivery; failed or unavailable conditions lead to denial, clarification or fallback. Both paths feed observation, authorised intervention and verified reassessment.",
+      "caption": "Figure 3. Control before and after consequence. Semantic checking is fallible; permissions constrain authority. Later intervention cannot necessarily reverse earlier consequences.",
+      "credit": "Original diagram for this article, informed by PMDay slide 12 and Uncertainty Architecture."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json",
+  "presentation": {
+    "title": "The presentation behind this article",
+    "poster": "presentation-cover",
+    "pdf": {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    "sourceUrl": "https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf"
+  }
+}

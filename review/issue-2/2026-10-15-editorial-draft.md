@@ -269,3 +269,54 @@ Whitespace and RI projection freshness are reconciled after this record.
 No new tests or runtime/browser/PDF campaign is warranted for excluded prose.
 Original whole AC01–AC06 remain pending author/editorial, source/rights/deck,
 rendered-edition and publication gates; recording AC07/AC08 remain unchanged.
+
+## Final manuscript and visual preparation — 15 October 2026
+
+The author authorises writing the article, preparing all visuals, a presentation
+viewer within the site and reusable Medium/LinkedIn preview artwork. Continue
+PR79, with issue2 owning editorial acceptance and issue5 owning the bounded reader.
+The real publication gets its own `pmday-ai-both-sides` identity; the frozen
+technical `pmday-two-shifts` example remains intact. Draft0.4 is retained as the
+previous editorial checkpoint, not a competing source for the final manuscript.
+
+Planned verification: manuscript/figure/provenance reconciliation; strict declared
+PDF validation and semantic identity; on-demand viewer with open/download fallback;
+keyboard, narrow-screen and no-JS behaviour; browser layout and article export
+inspection. CS01–CS10 apply to metadata, reader, canonical CSS and bounded adapter
+changes. Preserve existing resource budgets and raw-HTML rejection; no general
+iframe channel. Include meaningful negative cases for PDF mutation/path and viewer
+declarations. Existing whole publication/rights/upstream/device gates remain open.
+
+Cover: built-in ImageGen, dark navy/cyan/amber architectural metaphor connecting
+software construction and consequential judgment, exact article title/byline;
+landscape and square compositions. Original source files retained, with efficient
+web delivery encodings. Diagrams are original deterministic SVG/PNG artwork,
+not generated quantitative images. Prompts and media provenance travel with the
+publication. This is preparation and review, not production or external posting.
+
+### Recovered completion and self-review
+
+The continuation recovered all uncommitted source/assets from the earlier
+worktree at `e1a2978`, preserving that checkpoint. PR79 now explicitly links
+both2/5 and related rights7. Complete candidate inventory is in
+[the review bundle](pmday-candidate-20261015/README.md).
+
+Self-review found direct PDF framing would conflict with existing hosting
+frame-denial headers. The reader now fetches only the declared PDF on request,
+bounds bytes/time, checks its digest, and opens a local Blob. Close, navigation
+and pagehide abort work/revoke the URL. Existing headers, raw-HTML rejection,
+resource budgets and public draft isolation remain. The existing article journey
+now exercises keyboard opening and close/navigation cleanup when a deck exists.
+The initial offline test wrongly used the full deck beyond the existing transfer
+limit; its positive contract now uses a tiny synthetic PDF while real oversized
+exports remain explicitly rejected. The mutation test caught the snapshot digest
+before the adapter; its expected diagnostic now names that valid rejection.
+
+71 publisher/print/delivery/offline cases and Basic25/25 pass. Local Chromium
+review verifies desktop/mobile, lazy PDF fetch, keyboard, close/navigation
+cleanup, no-JS links and corrupt-PDF rejection. This is root self-review and
+local browser evidence, not fresh independent or physical iPad acceptance.
+The13-page review PDF and both platform kits are verified; all pages and original
+figures inspected. Final source/RI/issue and hosted identities are in the live PR.
+Original #2AC01-AC06 and #5AC01-AC12 whole review/publication gates remain open;
+accepted recording scope is unchanged. No merge/stable/production/external post.

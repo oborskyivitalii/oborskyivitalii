@@ -1182,9 +1182,9 @@ window.SiteScrollEntry=(function () {
   const embeddedAssetURLs = new Map();
   let embeddedAssetsReady = null;
   if (embedded?.assets) {
-    for (const image of document.querySelectorAll('img[data-offline-resource]')) {
+    for (const image of document.querySelectorAll('[data-offline-resource]')) {
       const name = image.getAttribute('data-offline-resource');
-      const value = image.getAttribute('src');
+      const value = image.getAttribute(image.tagName === 'IMG' ? 'src' : 'href');
       if (embeddedAssetURLs.has(name) && embeddedAssetURLs.get(name) !== value) return;
       embeddedAssetURLs.set(name, value);
     }
@@ -1317,6 +1317,115 @@ window.SiteScrollEntry=(function () {
     return data;
   }
   cache.set(page, extract(document));
+  let slideSession = null;
+  function closeSlides() {
+    if (!slideSession) return;
+    const { control, host, controller, url } = slideSession;
+    slideSession = null;
+    controller.abort();
+    if (url) URL.revokeObjectURL(url);
+    host.replaceChildren();
+    host.hidden = true;
+    control.removeAttribute('aria-busy');
+    control.setAttribute('aria-expanded', 'false');
+    control.textContent = 'View slides here';
+  }
+  async function slideBytes(source, signal) {
+    const response = await fetch(source, {
+      signal,
+      credentials: 'same-origin',
+      redirect: 'error',
+    });
+    if (!response.ok || !response.headers.get('content-type')?.includes('application/pdf')) {
+      throw Error('Presentation PDF unavailable');
+    }
+    const reader = response.body.getReader();
+    const chunks = [];
+    let size = 0;
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        size += value.length;
+        if (size > 2000000) throw Error('Presentation PDF exceeds its byte budget');
+        chunks.push(value);
+      }
+    } finally {
+      await reader.cancel();
+    }
+    return new Uint8Array(await new Blob(chunks).arrayBuffer());
+  }
+  document.addEventListener('click', async (event) => {
+    const control = event.target.closest?.('.article-presentation .presentation-toggle');
+    if (
+      !control ||
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
+    const section = control.closest('.article-presentation');
+    const host = section.querySelector('.presentation-viewer');
+    if (!host || !page.startsWith('article:')) return;
+    event.preventDefault();
+    const closing = slideSession?.control === control;
+    closeSlides();
+    if (closing) return;
+    const session = {
+      control,
+      host,
+      controller: new AbortController(),
+      url: null,
+    };
+    slideSession = session;
+    control.setAttribute('aria-busy', 'true');
+    control.textContent = 'Loading slides…';
+    const timeout = window.setTimeout(() => session.controller.abort(), 8000);
+    try {
+      await pin(session.controller.signal);
+      if (embedded) await verifyEmbeddedAssets();
+      const source = new URL(control.href);
+      const descriptor = pinned.articles[page.slice(8)];
+      const name = embedded
+        ? control.getAttribute('data-offline-resource')
+        : source.pathname.slice(directory.pathname.length);
+      if (
+        !descriptor.assets.includes(name) ||
+        !name.endsWith('.pdf') ||
+        (!embedded &&
+          (source.origin !== entry.origin ||
+            !source.pathname.startsWith(directory.pathname) ||
+            source.search ||
+            source.hash))
+      )
+        throw Error('Undeclared presentation resource');
+      const bytes = await slideBytes(source.href, session.controller.signal);
+      const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+      const hash = [...new Uint8Array(digest)].map((x) => x.toString(16).padStart(2, '0')).join('');
+      if (hash !== name.split('/')[1]) throw Error('Presentation PDF identity changed');
+      if (slideSession !== session || !control.isConnected) return;
+      // A verified local Blob retains the host's frame-denial policy for site pages.
+      session.url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+      const viewer = document.createElement('iframe');
+      viewer.title = section.querySelector('strong')?.textContent || 'Presentation PDF';
+      viewer.src = session.url;
+      host.replaceChildren(viewer);
+      host.hidden = false;
+      control.setAttribute('aria-expanded', 'true');
+      control.textContent = 'Close slide viewer';
+    } catch {
+      if (slideSession === session) {
+        closeSlides();
+        control.textContent = 'Use Open PDF below';
+      }
+    } finally {
+      window.clearTimeout(timeout);
+      if (slideSession === session) control.removeAttribute('aria-busy');
+    }
+  });
   function routeFor(url) {
     if (url.origin !== entry.origin) return null;
     if (embedded) {
@@ -1531,19 +1640,22 @@ window.SiteScrollEntry=(function () {
           throw Error('Embedded asset inventory differs');
         for (const [name, asset] of entries) {
           const value = embeddedAssetURLs.get(name);
+          const mime = name.endsWith('.pdf') ? 'application/pdf' : 'image/png';
+          const prefix = 'data:' + mime + ';base64,';
           if (
-            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.png$/.test(name) ||
-            asset.mime !== 'image/png' ||
+            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|pdf)$/.test(name) ||
+            asset.mime !== mime ||
             asset.sha256 !== name.split('/')[1] ||
             !Number.isSafeInteger(asset.bytes) ||
             asset.bytes < 1 ||
             asset.bytes > 2000000 ||
             typeof value !== 'string' ||
-            !/^data:image\/png;base64,[A-Za-z0-9+/]*={0,2}$/.test(value) ||
-            value.length > 4 * Math.ceil(asset.bytes / 3) + 22
+            !value.startsWith(prefix) ||
+            !/^[A-Za-z0-9+/]*={0,2}$/.test(value.slice(prefix.length)) ||
+            value.length > 4 * Math.ceil(asset.bytes / 3) + prefix.length
           )
             throw Error('Invalid embedded article resource');
-          const raw = window.atob(value.slice(22));
+          const raw = window.atob(value.slice(prefix.length));
           if (raw.length !== asset.bytes) throw Error('Embedded asset byte length differs');
           const bytes = Uint8Array.from(raw, (character) => character.charCodeAt(0));
           const digest = await window.crypto.subtle.digest('SHA-256', bytes);
@@ -1557,12 +1669,14 @@ window.SiteScrollEntry=(function () {
   }
   function hydrateEmbeddedImages(result, descriptor) {
     const used = new Set();
-    for (const image of result.main.querySelectorAll('img[src]')) {
-      const name = image.getAttribute('src');
+    for (const image of result.main.querySelectorAll('img[src],.article-presentation a[href]')) {
+      const attribute = image.tagName === 'IMG' ? 'src' : 'href';
+      const name = image.getAttribute(attribute);
       if (!name.startsWith('article-media/')) continue;
       if (!descriptor.assets.includes(name) || !embeddedAssetURLs.has(name))
         throw Error('Unknown embedded article image');
-      image.setAttribute('src', embeddedAssetURLs.get(name));
+      image.setAttribute(attribute, embeddedAssetURLs.get(name));
+      image.setAttribute('data-offline-resource', name);
       used.add(name);
     }
     if (used.size !== descriptor.assets.length)
@@ -1628,6 +1742,7 @@ window.SiteScrollEntry=(function () {
     content.inert = false;
   }
   function interrupt() {
+    closeSlides();
     scrollEntry?.cancelRoute?.();
     scrollEntry?.suspend();
     const travelling = transition !== null;
@@ -1926,7 +2041,9 @@ window.SiteScrollEntry=(function () {
       transition = update;
       content.inert = true;
       if (window.SiteScene)
-        window.SiteScene.navigate(next, animate, transition, landing, { navigationId: own });
+        window.SiteScene.navigate(next, animate, transition, landing, {
+          navigationId: own,
+        });
       else transition(1);
     });
   }
@@ -2238,6 +2355,7 @@ window.SiteScrollEntry=(function () {
     window.SiteArchive?.print();
   });
   window.addEventListener('pagehide', () => {
+    closeSlides();
     save();
     releaseEndpoint('leave');
     releaseTail();

@@ -127,7 +127,8 @@ li {
 
 .article-print-toc ol {
   margin: 0;
-  padding-left: 5mm;
+  padding-left: 0;
+  list-style: none;
 }
 
 ul,
@@ -188,7 +189,8 @@ th {
 }
 
 tr,
-figure {
+figure,
+blockquote {
   break-inside: avoid-page;
 }
 

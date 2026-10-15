@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Build the real PMDay article into full site HTML and visually reviewed article PDF with source/artifact manifests.",
-      "automated_scope": "Owner decision 13 October: real PMDay authoring is deferred pending author-approved chapters; current PMDay-labelled files are technical test artifacts, not editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "automated_scope": "Owner decision 15 October: real PMDay authoring and visuals resume as pmday-ai-both-sides; pmday-two-shifts remains a frozen technical fixture. Prepared real editions do not establish editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
       "checks": ["PUBLISHER", "READER", "DELIVERY"],
       "gates": ["ARTICLE"]
     },
@@ -42,7 +42,7 @@
     {
       "id": "AC06",
       "intent": "Demonstrate blueprint, whole-text review, manuscript/adaptation and feedback workflow on PMDay.",
-      "automated_scope": "Owner decision 13 October: real PMDay authoring is deferred pending author-approved chapters; current PMDay-labelled files are technical test artifacts, not editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "automated_scope": "Owner decision 15 October: real PMDay authoring and visuals resume as pmday-ai-both-sides; pmday-two-shifts remains a frozen technical fixture. Prepared real editions do not establish editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
       "checks": ["PUBLISHER"],
       "gates": ["EDITORIAL"]
     },

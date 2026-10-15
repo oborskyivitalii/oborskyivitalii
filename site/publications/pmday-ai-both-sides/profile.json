@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "pmday-ai-both-sides-review-20261015",
+  "platforms": {
+    "linkedin": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": [
+        "html",
+        "md",
+        "txt",
+        "copy-ready"
+      ],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "2af7b847a6d06da12d7c1a256d9433270791be8ee6ad7b4494ffc7ef23dc479a"
+  },
+  "seo": {
+    "title": "AI Changes Both Sides of Software Engineering",
+    "summary": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {
+    "linkedinCharacters": 30000,
+    "mediumCharacters": 50000
+  }
+}

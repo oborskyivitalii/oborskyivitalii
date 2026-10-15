@@ -156,7 +156,10 @@ function editionFields(edition, source, baseEdition) {
   if (source.state === 'committed')
     for (const name of ['commit', 'blob']) {
       assert.match(source[name], /^[a-f0-9]{40}$/, 'Verified local Git source identity');
-      fields.set(key(['source', name]), { value: source[name], spans: new Set([1]) });
+      fields.set(key(['source', name]), {
+        value: source[name],
+        spans: new Set([1]),
+      });
     }
   if (baseEdition) {
     bind(fields, ['derivation', 'baseSourceSha256'], baseEdition.source.sha256);
@@ -178,7 +181,11 @@ const gitRouting = [
 const unsafeGitEnvironment = (variable) =>
   gitRouting.includes(variable.toUpperCase()) || /^GIT_CONFIG(?:$|_)/i.test(variable);
 function gitEnvironment() {
-  const environment = { ...process.env, GIT_NO_LAZY_FETCH: '1', GIT_NO_REPLACE_OBJECTS: '1' };
+  const environment = {
+    ...process.env,
+    GIT_NO_LAZY_FETCH: '1',
+    GIT_NO_REPLACE_OBJECTS: '1',
+  };
   for (const variable of Object.keys(environment))
     if (unsafeGitEnvironment(variable)) delete environment[variable];
   return environment;
@@ -345,7 +352,9 @@ function historicalPublication(projectRoot, id, file, bytes, cache, histories) {
     );
   const contexts = new Set();
   for (const commit of histories.get(id)) {
-    const stored = publicationGit(projectRoot, ['show', commit + ':' + file], { missing: true });
+    const stored = publicationGit(projectRoot, ['show', commit + ':' + file], {
+      missing: true,
+    });
     if (!stored?.equals(bytes)) continue;
     const metadataBytes = publicationGit(
       projectRoot,
@@ -421,6 +430,8 @@ function collectPublicationChecksumFields(projectRoot, read) {
       const assets = new Map();
       for (const [index, asset] of article.assets.entries())
         bind(assets, ['assets', index, 'sha256'], digest(asset.bytes));
+      if (article.presentation)
+        bind(assets, ['presentation', 'pdf', 'sha256'], digest(article.presentation.file.bytes));
       if (article.metadata.translationOf)
         bind(
           assets,

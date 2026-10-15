@@ -481,39 +481,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a": {
+    "docs/runtime/58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91": {
       "kind": "directory",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a/archive.js": {
+    "docs/runtime/58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91/archive.js": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a/navigation.js": {
+    "docs/runtime/58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91/navigation.js": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a/space.js": {
+    "docs/runtime/58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91/space.js": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a/styles.css": {
+    "docs/runtime/58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91/styles.css": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/0bd39d2137c0b6ea2c9066c849573f22741a100098814f923f8022b07d46475a/theme.js": {
+    "docs/runtime/58d89528a1ce2e79d84b8145a173f742d17cf83cae7f3269f4f4aac730f7db91/theme.js": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -565,39 +565,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/03247e78e49dc4e5fa1befc14e9989f39da28d302bd541a9ecdc082700531742": {
+    "docs/snapshots/2454efcaf3d5174e76e828340c93d93a7d16b5d8fc4c6dd4cc685064b9c4c441": {
       "kind": "directory",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/03247e78e49dc4e5fa1befc14e9989f39da28d302bd541a9ecdc082700531742/writing.html": {
+    "docs/snapshots/2454efcaf3d5174e76e828340c93d93a7d16b5d8fc4c6dd4cc685064b9c4c441/research.html": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/43b6ff1bd39335f0b41c56b2dc0a546bcd0d193f0eefc941578d34b01664e794": {
+    "docs/snapshots/4c603d1511814ce0907a0f0958fbd3188dde7cccc9bcf787157955df8fe2f64b": {
       "kind": "directory",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/43b6ff1bd39335f0b41c56b2dc0a546bcd0d193f0eefc941578d34b01664e794/research.html": {
+    "docs/snapshots/4c603d1511814ce0907a0f0958fbd3188dde7cccc9bcf787157955df8fe2f64b/index.html": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/56c8c5aa82d42d116bd6bbf4b4d91b53a113641256076ac5b7aa03afa680bc07": {
-      "kind": "directory",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/56c8c5aa82d42d116bd6bbf4b4d91b53a113641256076ac5b7aa03afa680bc07/talks.html": {
-      "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -613,15 +601,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6a40c1d8b6b41b4e42b4056539bb869408bdd8d802c8fd257c7c00ec0a755153": {
+    "docs/snapshots/5b68e57b53c91d048e932fbee9fd6e8b6124d405b3eb4167148a6ec6e659ada7": {
       "kind": "directory",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6a40c1d8b6b41b4e42b4056539bb869408bdd8d802c8fd257c7c00ec0a755153/index.html": {
+    "docs/snapshots/5b68e57b53c91d048e932fbee9fd6e8b6124d405b3eb4167148a6ec6e659ada7/talks.html": {
       "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -634,18 +622,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/80595f2c66713878dad50c20ffd4683a82098fa20b4471cc6bb5af041d54c2f2": {
-      "kind": "directory",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/80595f2c66713878dad50c20ffd4683a82098fa20b4471cc6bb5af041d54c2f2/credits.html": {
-      "kind": "file",
-      "purpose": "Generated complete public output or immutable runtime/document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -682,6 +658,30 @@
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/dd4e1278e6424660cf2abdce1d66b7138fd9777e3683db963c71d8ab9ec2ef11": {
+      "kind": "directory",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/dd4e1278e6424660cf2abdce1d66b7138fd9777e3683db963c71d8ab9ec2ef11/credits.html": {
+      "kind": "file",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e38ded24b64a0947a4e371b51a4cec54ba550af6f2f3363fb6f4f27b40f43672": {
+      "kind": "directory",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e38ded24b64a0947a4e371b51a4cec54ba550af6f2f3363fb6f4f27b40f43672/writing.html": {
+      "kind": "file",
+      "purpose": "Generated site rendition or immutable runtime/document resource.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -964,6 +964,42 @@
     "review/issue-2/2026-10-15-editorial-draft.md": {
       "kind": "file",
       "purpose": "Author-authorized PMDay first-draft scope, exact sources/access, independent editorial review and remaining acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015": {
+      "kind": "directory",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/README.md": {
+      "kind": "file",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/article.pdf": {
+      "kind": "file",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/publication-kit.zip": {
+      "kind": "file",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/social-covers.zip": {
+      "kind": "file",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/viewer-observations.json": {
+      "kind": "file",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -1356,6 +1392,24 @@
       "purpose": "Exact failed50dda Semgrep report: one regular-expression exec sink finding, no scanner errors, nonempty coverage; retained without bypass.",
       "role": "history",
       "owner": "review/issue-5/2026-10-13-content-release.md"
+    },
+    "review/issue-5/2026-10-14-managed-print-evidence.zip": {
+      "kind": "file",
+      "purpose": "Unmodified GitHub artifact11885112971 from run38547576489: real managed article PDF, exact print and kit manifests and clean-source report for d0250b7; technical draft only.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-14-managed-print.md": {
+      "kind": "file",
+      "purpose": "Issue5 managed PDF completion scope, exact-source rendering evidence, independent review and visual verification; no publication or stable promotion.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-15-presentation-review.md": {
+      "kind": "file",
+      "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-5/pmday-candidate": {
       "kind": "directory",
@@ -6469,6 +6523,90 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/pmday-ai-both-sides": {
+      "kind": "directory",
+      "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/PROVENANCE.md": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: PROVENANCE.md.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: cover.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/delivery-queue.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: delivery-queue.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/delivery-queue.svg": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: delivery-queue.svg.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/presentation-cover.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: presentation-cover.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: presentation-v35.pdf.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/runtime-control.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: runtime-control.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/runtime-control.svg": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: runtime-control.svg.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/source": {
+      "kind": "directory",
+      "purpose": "PMDay article source, presentation viewer or original publication media: source.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/source/cover-landscape.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: cover-landscape.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/source/cover-square.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: cover-square.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/two-shifts.png": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: two-shifts.png.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/two-shifts.svg": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: two-shifts.svg.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/assets/publications/pmday-two-shifts": {
       "kind": "directory",
       "purpose": "PMDay article-local original figures and bounded source-review renditions.",
@@ -6871,6 +7009,54 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/pmday-ai-both-sides": {
+      "kind": "directory",
+      "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/blueprint.md": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: blueprint.md.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions": {
+      "kind": "directory",
+      "purpose": "PMDay article source, presentation viewer or original publication media: editions.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015.json": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides-en-review-20261015.json.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/launch-post.en.md": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: launch-post.en.md.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/manuscript.en.md": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: manuscript.en.md.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/profile.json": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: profile.json.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/publication.json": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: publication.json.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/pmday-two-shifts": {
       "kind": "directory",
       "purpose": "PMDay article authored source/edition grouping.",
@@ -7138,6 +7324,12 @@
     "site/templates/articles": {
       "kind": "directory",
       "purpose": "Publication adapter templates distinct from native site reader templates.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/templates/articles/presentation.html": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: presentation.html.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -8227,6 +8419,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "tools/publishing/presentation.cjs": {
+      "kind": "file",
+      "purpose": "PMDay article source, presentation viewer or original publication media: presentation.cjs.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "tools/publishing/print-resource.cjs": {
       "kind": "file",
       "purpose": "Bounded local print HTML, stylesheet, image and font closure with rejected remote/unsafe resources.",
@@ -8334,6 +8532,12 @@
       "purpose": "Conditional finite native article journeys with primitive activation capture before geometry/layout, bounded native history diagnostics and strict evidence completeness/identity validation.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/article-print.cjs": {
+      "kind": "file",
+      "purpose": "Explicit normal-CLI managed Chromium article PDF export, complete-kit and exact source/browser/toolchain identity verification with separate review artifacts.",
+      "role": "validator",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "tools/quality/artifact.cjs": {
       "kind": "file",
@@ -8509,6 +8713,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/generated-checksums.cjs": {
+      "kind": "file",
+      "purpose": "Canonical producer-verified generated checksum admission with exact path, type, occurrence and field binding; stale or unknown values fail.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
     "tools/quality/geometry.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for geometry; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -8620,12 +8830,6 @@
     "tools/quality/scanners.cjs": {
       "kind": "file",
       "purpose": "Pinned lint/security/advisory execution with raw coverage, exact expiring Bandit triage and verified RI/coupling checksum proof; new findings fail.",
-      "role": "validator",
-      "owner": "guides/SITE-RELEASE-GATES.md"
-    },
-    "tools/quality/generated-checksums.cjs": {
-      "kind": "file",
-      "purpose": "Canonical producer-verified generated checksum admission with exact path, type, occurrence and field binding; stale or unknown values fail.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -9096,24 +9300,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "tools/quality/article-print.cjs": {
-      "kind": "file",
-      "purpose": "Explicit normal-CLI managed Chromium article PDF export, complete-kit and exact source/browser/toolchain identity verification with separate review artifacts.",
-      "role": "validator",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "review/issue-5/2026-10-14-managed-print.md": {
-      "kind": "file",
-      "purpose": "Issue5 managed PDF completion scope, exact-source rendering evidence, independent review and visual verification; no publication or stable promotion.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-5/2026-10-14-managed-print-evidence.zip": {
-      "kind": "file",
-      "purpose": "Unmodified GitHub artifact11885112971 from run38547576489: real managed article PDF, exact print and kit manifests and clean-source report for d0250b7; technical draft only.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

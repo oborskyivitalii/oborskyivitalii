@@ -19,6 +19,23 @@ when preparing those adaptations.
 The [content release guide](SITE-CONTENT-RELEASE.md) explains automatic Writing
 registration and verified platform reuse when adding an article or external link.
 
+## Current PMDay candidate — 15 October 2026
+
+The author requested the full six-chapter article, finished visuals, an embedded
+presentation and social preview artwork. The real manuscript now lives in
+`site/publications/pmday-ai-both-sides/manuscript.en.md`; the earlier file in
+`drafts/` is an editorial checkpoint. `pmday-two-shifts` remains the frozen
+technical fixture. Both are explicit review-preview selections; neither enters
+the default public catalog until its publication gates are satisfied.
+
+The optional `presentation` declaration pins one article-local PDF (maximum2MB),
+its poster, title and HTTPS source. The site offers an on-demand, hash-verified
+PDF viewer with native open/download links, cancellation and object-URL cleanup.
+Print/platform kits retain the poster/source link and a separate `presentation.pdf`.
+No author-supplied HTML or general iframe channel is enabled. Small declared PDF
+resources can travel in bounded offline exports; a complete article plus deck
+that exceeds the existing800KB gzip limit is rejected with a hosted-edition route.
+
 ## Contract and verification design
 
 One `site/publications/<id>/manuscript.<language>.md` owns the full article.

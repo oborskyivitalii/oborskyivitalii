@@ -13,7 +13,140 @@ const section = (name, next) => {
 };
 const flightSource = section('flight', 'mount'),
   interruptSource = section('interrupt', 'motionAllowed');
+const extractSource = source.slice(
+  source.indexOf('  function extract('),
+  source.indexOf('  cache.set(page, extract(document));')
+);
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
+
+test('a canceled slide hash cannot clear the busy state of a reopened viewer', async () => {
+  const bytes = Buffer.from('%PDF-1.7\nviewer lifecycle fixture\n%%EOF\n');
+  const digest = require('node:crypto').createHash('sha256').update(bytes).digest();
+  const name = 'article-media/' + digest.toString('hex') + '/slides.pdf';
+  const attributes = new Map();
+  const tasks = new Map();
+  const liveURLs = new Set();
+  const revokedURLs = [];
+  const hashes = [];
+  const hashWaiters = new Map();
+  const signals = [];
+  const host = {
+    hidden: true,
+    children: [],
+    replaceChildren(...children) {
+      this.children = children;
+    },
+  };
+  const section = {
+    querySelector: (selector) =>
+      selector === '.presentation-viewer' ? host : { textContent: 'Presentation' },
+  };
+  const control = {
+    href: 'https://author.invalid/project/' + name,
+    isConnected: true,
+    closest: () => section,
+    setAttribute: (key, value) => attributes.set(key, value),
+    removeAttribute: (key) => attributes.delete(key),
+  };
+  let click;
+  class ResourceURL extends URL {
+    static createObjectURL() {
+      const value = 'blob:https://author.invalid/' + (liveURLs.size + revokedURLs.length);
+      liveURLs.add(value);
+      return value;
+    }
+    static revokeObjectURL(value) {
+      liveURLs.delete(value);
+      revokedURLs.push(value);
+    }
+  }
+  const context = {
+    page: 'article:reader:en',
+    embedded: null,
+    pinned: { articles: { 'reader:en': { assets: [name] } } },
+    entry: new URL('https://author.invalid/project/articles/reader.html'),
+    directory: new URL('https://author.invalid/project/'),
+    pin: async () => {},
+    document: {
+      addEventListener(type, listener) {
+        assert.equal(type, 'click');
+        click = listener;
+      },
+      createElement: (tagName) => ({ tagName }),
+    },
+    window: {
+      setTimeout(callback, delay) {
+        assert.equal(delay, 8000);
+        const id = tasks.size + 1;
+        tasks.set(id, callback);
+        return id;
+      },
+      clearTimeout: (id) => tasks.delete(id),
+      crypto: {
+        subtle: {
+          digest(algorithm, actualBytes) {
+            assert.equal(algorithm, 'SHA-256');
+            assert.deepEqual(Buffer.from(actualBytes), bytes);
+            return new Promise((resolve) => {
+              const index = hashes.length;
+              const complete = () => resolve(digest);
+              hashes.push(complete);
+              hashWaiters.get(index)?.(complete);
+            });
+          },
+        },
+      },
+    },
+    async fetch(url, options) {
+      assert.equal(url, control.href);
+      signals.push(options.signal);
+      return new Response(bytes, { headers: { 'Content-Type': 'application/pdf' } });
+    },
+    URL: ResourceURL,
+    Uint8Array,
+    Blob,
+    AbortController,
+  };
+  const start = source.indexOf('  let slideSession = null;');
+  const end = source.indexOf('  function routeFor(', start);
+  assert.ok(start >= 0 && end > start, 'authored slide lifecycle boundary');
+  vm.runInNewContext(source.slice(start, end), context);
+  const activate = () =>
+    click({
+      target: { closest: () => control },
+      button: 0,
+      preventDefault() {},
+    });
+  const hashAt = (index) =>
+    hashes[index]
+      ? Promise.resolve(hashes[index])
+      : new Promise((resolve) => hashWaiters.set(index, resolve));
+
+  const abandoned = activate();
+  const finishAbandonedHash = await hashAt(0);
+  await activate();
+  assert.equal(signals[0].aborted, true, 'close cancels the abandoned resource owner');
+  const surviving = activate();
+  const finishSurvivingHash = await hashAt(1);
+  finishAbandonedHash();
+  await abandoned;
+  assert.equal(attributes.get('aria-busy'), 'true', 'reopened viewer still owns its loading state');
+  assert.equal(host.hidden, true);
+  assert.equal(host.children.length, 0, 'stale verified bytes cannot mount a frame');
+  finishSurvivingHash();
+  await surviving;
+  assert.equal(attributes.has('aria-busy'), false);
+  assert.equal(attributes.get('aria-expanded'), 'true');
+  assert.equal(host.children.length, 1);
+  assert.equal(liveURLs.has(host.children[0].src), true);
+  assert.equal(tasks.size, 0, 'both resource deadlines are released');
+  await activate();
+  assert.equal(host.hidden, true);
+  assert.equal(host.children.length, 0);
+  assert.equal(liveURLs.size, 0, 'closing releases the surviving PDF');
+  assert.equal(revokedURLs.length, 1, 'the abandoned session never creates a PDF URL');
+});
+
 function harness(options = {}) {
   const tasks = new Map(),
     presented = [],
@@ -74,6 +207,7 @@ function harness(options = {}) {
     },
     releaseEndpoint() {},
     releaseTail() {},
+    closeSlides() {},
     Promise,
   };
   vm.runInNewContext(
@@ -371,6 +505,7 @@ function routeHarness({
     },
     releaseEndpoint() {},
     releaseTail() {},
+    closeSlides() {},
     arriveEndpoint() {},
     mountEndpoint() {},
     rebaseResources() {},
@@ -974,7 +1109,7 @@ function routeHeadHarness(candidate = source) {
     source.indexOf('  async function navigate(')
   );
   vm.runInNewContext(
-    `let page='research',serial=0;${declaration}${section('extract', 'routeFor')}${section('mountNative', 'prepare')}${prepare}
+    `let page='research',serial=0;${declaration}${extractSource}${section('mountNative', 'prepare')}${prepare}
     globalThis.api={extract,prepare,mountNative};`,
     context
   );

@@ -9,35 +9,23 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   PR78's ordinary both-host admission remains historical evidence; live owner #76
   holds exact final runtime admission and merge evidence.
 - [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79)
-  is the sole publisher/content-release route. Verified baseline raw head
-  `8200297c41aa673017fe69cb797e9e5a0cc63311`, main `cc115c42`.
-  Baseline source732, navigation70, owning10, managed preview and bounded
-  regression38425085186 pass; no stable promotion, merge or production follows.
-  Writing29, automatic collection/count and independent verified content reuse
-  AC13-AC15 are accepted on that baseline. Earlier failed attempts remain failed.
-  On14October the author requested managed PDF completion without permanent
-  staging. Implementation `d0250b7` has source749/749, navigation and owning
-  checks green. Preview38547576489 successfully ran the ordinary --pdf CLI on
-  managed Chromium153.0.8010.12/revision1243 and Playwright1.63.0; report before/
-  after binds its clean exact head/tree, managedBrowser true/reviewOnly false.
-  The actual five-page A4 PDF was inspected; no clipping or overlap was observed.
-  Original artifact11885112971 and its PDF/manifests/report are retained unchanged
-  in `review/issue-5/2026-10-14-managed-print-evidence.zip`. Earlier alternative
-  Chromium and failed local CDN attempts remain historical, not managed proof.
-  The explicit diagnostic now runs in existing browser jobs, preserving budgets
-  and public/runtime bytes. Final evidence-only tip/checks are in live PR79;
-  continue via `review/issue-5/2026-10-14-managed-print.md`.
-  On15October the author confirmed English/usual audience and supplied the real
-  PMDay reflection/writing-printing/cognitive-delegation→HOW/WHAT arc. First real
-  editorial draft: `drafts/pmday-article-draft.en.md`; author review is pending.
-  Revision0.4 retains AI Changes Both Sides of Software Engineering, rewritten
-  as six chapters with three visual proposals and about3,100words before sources.
-  Opening links the pinned v35 review PDF and Ukrainian recording. HOW retains
-  review/ownership and documentation verification; WHAT retains runtime control.
-  Contextual hyperlinks remain; platform adaptations and author acceptance pending.
-  Present selected manuscript/blueprint/exports remain technical fixtures.
-  #2 AC01-AC06/human/publication gates stay open; recording AC07/AC08 preserved.
-  Commands/trust: `guides/ARTICLE-WORKFLOW.md`, `guides/SITE-CONTENT-RELEASE.md`.
+  also owns execution for article [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
+  On15October the author requested the completed six-chapter English article,
+  visuals, reusable social covers and an in-page presentation reader. This
+  supersedes the earlier real-article deferral. Recovered preparation continues
+  from raw head `e1a29787ad256c90f00e73af0d2b28dcf069527b`; current tip is in PR79.
+  Canonical real prose: `site/publications/pmday-ai-both-sides/manuscript.en.md`.
+  Three original diagrams, landscape/square ImageGen covers and pinned v35 deck
+  accompany it. `pmday-two-shifts` remains the frozen technical fixture.
+  Default production catalog excludes both review candidates; explicit preview
+  includes them. Lazy verified PDF viewer retains open/download fallback.
+  Review PDF/platform kit and limitations are in
+  `review/issue-2/pmday-candidate-20261015/`; dated review owns check results.
+  Local review browser is not managed-CI proof. Historic managed fixture proof
+  remains in `review/issue-5/2026-10-14-managed-print.md` at `e581f8f`.
+  Current-source automated checks and exact preview must be revalidated live.
+  #2 AC01-AC06 and #5 whole human/publication gates stay open; recording AC07/08
+  remains accepted. No merge, permanent-stage promotion or production is implied.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from
@@ -101,15 +89,13 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
 
 ## Next session
 
-1. Revalidate main and PR79 raw head, working tree, checks and candidate preview.
-   Read the14October managed-print continuation and exact current CI links;
-   do not reuse historical or failed attempts as current admission.
-2. Continue the same PR79 route. Read the real #2 editorial draft and15October
-   review, take the author's corrections; preserve the separate publisher fixture.
-3. Read exact-source execution, migration inventory and independent reviews in
-   `review/issue-5/`; keep browser/PDF fallback limits and failed attempts honest.
-4. Preserve source/tree/package bindings. Merge, production, external publication
-   and UA/deck/Subprime disposition retain their applicable owner decisions.
+1. Revalidate main, PR79 raw head, clean source, current checks and preview.
+2. Read `review/issue-2/2026-10-15-editorial-draft.md` and the candidate README.
+   Real article authoring is resumed; do not restore the obsolete deferral.
+3. Continue in the same PR79 with issue5 policy and issue2 editorial acceptance.
+   Preserve final author/rights/device/publication/upstream decisions.
+4. Read current CI diagnostics before repeating checks. Do not treat historical
+   managed fixture PDF or local review browser as current-source release proof.
 
 ## Maintenance
 

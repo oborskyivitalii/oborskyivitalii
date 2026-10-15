@@ -1555,6 +1555,10 @@ body[data-page='writing'] #archive-results {
 .article-sources {
   margin-block: 2.5rem;
 }
+.article-toc ol {
+  padding-left: 0;
+  list-style: none;
+}
 .article-body {
   line-height: 1.75;
   overflow-wrap: anywhere;
@@ -1598,6 +1602,36 @@ body[data-page='writing'] #archive-results {
 }
 .article-list li + li {
   margin-top: 1.5rem;
+}
+.article-presentation {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-block: 2rem;
+}
+.article-presentation figure {
+  margin-block: 1rem;
+}
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.presentation-viewer iframe {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 65vh, 760px);
+  border: 0;
+  background: #fff;
+}
+.presentation-help {
+  font-size: 0.85rem;
+}
+@media print {
+  .presentation-toggle,
+  .presentation-viewer {
+    display: none;
+  }
 }
 @media print {
   .article-reader {

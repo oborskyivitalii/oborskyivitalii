@@ -57,6 +57,9 @@ function select(root, candidates = [], catalog = { records: {} }) {
       if (!articleId.test(article.metadata.slug)) throw Error('Invalid article slug');
       return {
         ...article,
+        assets: article.presentation
+          ? [...article.assets, article.presentation.file]
+          : article.assets,
         key: `${id}:${article.metadata.language}`,
         url: `articles/${article.metadata.slug}.html`,
         candidate: article.metadata.status !== 'accepted',
@@ -103,7 +106,7 @@ function input(root, article) {
             `<li><a href="#${escapeAttribute(section.id)}">${escapeText(section.text || section.title)}</a></li>`
         )
         .join('\n'),
-      BODY: article.html,
+      BODY: presentationBody(root, article),
       RIGHTS: escapeText(metadata.rights.notice),
       EDITION: escapeText(metadata.edition),
       SOURCES: metadata.references
@@ -124,10 +127,34 @@ function input(root, article) {
     },
     main,
     schema: { '@context': 'https://schema.org', ...summary(article) },
-    inputs: article.inputs.concat('site/templates/pages/article.html'),
+    inputs: article.inputs.concat(
+      'site/templates/pages/article.html',
+      ...(article.presentation ? ['site/templates/articles/presentation.html'] : [])
+    ),
     records: {},
     discussions: {},
   };
+}
+
+function presentationBody(root, article) {
+  const deck = article.presentation;
+  if (!deck) return article.html;
+  const marker = '<figure id="figure-' + deck.poster.id + '">';
+  const start = article.html.indexOf(marker);
+  const end = article.html.indexOf('</figure>', start);
+  if (start < 0 || end < start || article.html.indexOf(marker, start + 1) !== -1) {
+    throw Error('Presentation requires exactly one poster figure in the manuscript');
+  }
+  const viewer = substitute(
+    fs.readFileSync(path.join(root, 'site/templates/articles/presentation.html'), 'utf8'),
+    {
+      TITLE: escapeText(deck.title),
+      POSTER: article.html.slice(start, end + 9),
+      PDF: escapeAttribute(deck.file.url),
+    },
+    'presentation viewer'
+  );
+  return article.html.slice(0, start) + viewer + article.html.slice(end + 9);
 }
 
 function alternates(article, index) {

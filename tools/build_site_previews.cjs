@@ -35,9 +35,10 @@ function filename(page, theme) {
   return `site-v1-20261004-v11-${page === 'index' ? '' : page + '-'}${themes[theme]}.html`;
 }
 
-function rewriteLinks(html, theme, interactive = false) {
+function rewriteLinks(html, theme, interactive = false, resources = new Set()) {
   return html.replace(/href="([^"]+)"/g, (attribute, value) => {
     if (
+      resources.has(value) ||
       value.startsWith('data:image/svg+xml;base64,') ||
       value.startsWith('https://') ||
       value.startsWith('mailto:') ||
@@ -139,7 +140,7 @@ function renderInteractive(
   );
   let html = replaceStylesheet(source, `<style>\n${css}</style>`);
   html = inlineIcon(html, environment.publicDirectory);
-  html = rewriteLinks(html, 'light', true);
+  html = rewriteLinks(html, 'light', true, offline.presentationLinks(environment, true));
   html = html.replace(
     'src="assets/vitalii-oborskyi-cutout.webp"',
     () => `src="data:image/webp;base64,${portrait.toString('base64')}"`
@@ -218,7 +219,12 @@ function routePayloads(portrait, options = {}) {
     source = offline.documents(offline.articleLinks(source, environment), environment);
     const key = 'article:' + environment.articleKey;
     payload.files[key] = 'article-' + environment.articleKey.replace(':', '-') + '-offline.html';
-    payload.pages[key] = rewriteLinks(source, 'light', true);
+    payload.pages[key] = rewriteLinks(
+      source,
+      'light',
+      true,
+      offline.presentationLinks(environment)
+    );
     payload.assets = offline.assets(environment);
     if (Buffer.byteLength(payload.pages[key], 'utf8') > 100000)
       throw Error('Standalone article HTML byte budget');
