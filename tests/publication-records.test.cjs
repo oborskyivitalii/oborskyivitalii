@@ -253,6 +253,11 @@ test('known licensed publications require frozen rights by actual runtime bytes 
   const temp = delivery.temporary(t);
   for (const edition of [false, true]) {
     const source = fixture.fixture(path.join(temp, String(edition)), true, edition);
+    const original = {
+      record: structuredClone(source.record),
+      report: structuredClone(source.report),
+      css: fs.readFileSync(path.join(source.directory, 'public/styles.css')),
+    };
     assert.equal(staging.publicationRequired(source.record, source.record.components), true);
     fs.rmSync(path.join(source.directory, 'rights.json'));
     assert.throws(
@@ -284,6 +289,30 @@ test('known licensed publications require frozen rights by actual runtime bytes 
         /rights record required|conflicting tested runtime identity/
       );
     }
+    source.record.components.routes.credits.sha256 = '0'.repeat(64);
+    source.report.policy.decision.licenses['original-code'] = 'MIT';
+    source.report.files['styles.css'].sha256 = '0'.repeat(64);
+    const changedCSS = path.join(source.directory, 'public/styles.css');
+    fs.appendFileSync(changedCSS, '\nchanged fixture bytes');
+    fs.rmSync(path.join(source.directory, 'public/credits.html'));
+    fs.writeFileSync(path.join(source.directory, 'public/unmanaged.txt'), 'unmanaged bytes');
+    fixture.save(source);
+    const next = fixture.fixture(path.join(temp, 'independent-' + edition), true, edition);
+    assert.deepEqual(next.record, original.record);
+    assert.deepEqual(next.report, original.report);
+    assert.deepEqual(
+      artifact.manifest(path.join(next.directory, 'public')).files,
+      original.record.files
+    );
+    assert.deepEqual(fs.readFileSync(path.join(next.directory, 'public/styles.css')), original.css);
+    assert.deepEqual(
+      JSON.parse(fs.readFileSync(path.join(next.directory, 'rights.json'))),
+      original.report
+    );
+    assert.ok(fs.readFileSync(changedCSS, 'utf8').endsWith('changed fixture bytes'));
+    assert.equal(source.report.policy.decision.licenses['original-code'], 'MIT');
+    assert.notStrictEqual(next.record.components, source.record.components);
+    assert.notStrictEqual(next.report.policy.decision, source.report.policy.decision);
   }
 });
 

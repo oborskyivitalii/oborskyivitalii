@@ -213,3 +213,41 @@ Historical licensed/Pages fixtures consume their actual pinned baseline bytes
 and producers; new article-aware output is not misrepresented as that baseline.
 Source-runner and scanner orchestration fixtures preserve both branches' failure
 cases and complete raw reports. Final integrated results belong in live PR79.
+
+The first integrated CI run at `69cc0615` passed Navigation/RI, owning acceptance
+and hosted preview smoke, including managed technical-fixture PDF export. Its
+Source/Basic run remains a recorded failure: synthetic hosted-file entries lacked
+the byte sizes now required by the article budget validator, and the complete
+63-module source process reached the unchanged 180-second limit. Synthetic entries
+now include the same raw/gzip sizes as the surrounding fixture. The focused quality
+module passes all 19 cases with its original negative checks intact.
+
+Repeated preparation of immutable licensed publication test data is now bounded
+to two private in-memory entries (plain/staging). Every caller receives independent
+files and deserialized objects; snapshot and exact reviewed-runtime verification
+still run on each copy. An existing test now mutates nested metadata and public
+files, then verifies that a later fixture is clean and independent in both variants.
+All 15 publication cases pass; measured module time falls from 16.317 to 12.590
+seconds on this host. This is test preparation work, not a runtime performance
+claim. The source timeout, two-worker limit and 16 MiB output cap remain unchanged.
+
+The focused writing-model test now prepares only the three diagnostic variants it
+actually consumes, retaining its exact base/Color/source setup assertions. The
+separate complete 13-variant double-build determinism and artifact/budget checks
+are unchanged. All five module cases pass; the focused case falls from 3.604–3.888
+to 1.062 seconds locally. Neither this measurement nor the publication fixture
+measurement establishes a completed full source run; that result is recorded
+separately against the final commit in PR79.
+
+The shared delivery fixture likewise retains one private current-source seed and
+two prepared staging seeds. Every call reads and hashes the actual public paths
+and bytes; staging reuse also binds producer functions and producer/effect bytes.
+Files, sidecars and record objects are independently copied, snapshots are checked
+again, and Color copies must still match the exact admitted motion tuple. The
+existing Pages case now exercises changed source commit arguments and mutation
+isolation for both staging variants, including sizes metadata. Four affected
+modules pass 53/53; their accumulated completed-case durations fall from 37.733 to
+32.146 seconds (wall time 14.529 to 12.749). These are test-duration observations,
+not OS CPU accounting. A separate 12-call source/base/Color microbenchmark using
+process CPU accounting measures 3.204 to 0.844 seconds. No production generator
+or source-test gate is bypassed.

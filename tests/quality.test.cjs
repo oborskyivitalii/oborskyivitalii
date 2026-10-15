@@ -1090,7 +1090,7 @@ test('full hosted evidence cannot use local measurements, a missing file or anot
       'sitemap.xml',
       'opaque',
     ]) {
-      x.manifest.files[file] = { sha256: 'e'.repeat(64) };
+      x.manifest.files[file] = { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 };
       x.reports.find((r) => r.kind === 'captures').public_sources['docs/' + file] = 'e'.repeat(64);
     }
     x.reports.push({

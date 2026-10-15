@@ -13,6 +13,8 @@ const root = path.resolve(__dirname, '../..');
 const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
 let baselineFiles;
 let baselineReading;
+// Only immutable prepared bytes survive between cases; callers receive fresh files and objects.
+const preparedSources = new Map();
 const legalCSS =
   '\n/* Full legal copies remain readable when expanded on narrow screens. */\n' +
   '.legal-notices pre {\n  max-inline-size: 100%;\n  white-space: pre-wrap;\n' +
@@ -97,7 +99,33 @@ function licensedSource(parent, staging) {
   return source;
 }
 
+function copyPrepared(parent, staging) {
+  const name = staging ? 'staging' : 'plain';
+  const prepared = preparedSources.get(name);
+  if (!prepared) return null;
+  const source = {
+    directory: path.join(parent, name),
+    record: JSON.parse(prepared.record),
+    report: JSON.parse(prepared.report),
+  };
+  const publicDirectory = path.join(source.directory, 'public');
+  fs.rmSync(publicDirectory, { recursive: true, force: true });
+  for (const [name, bytes] of prepared.files) {
+    const file = path.join(publicDirectory, name);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, bytes);
+  }
+  source.record.components = snapshot.verify(publicDirectory, source.record);
+  assert.equal(motion.select(source.record).id, 'issue39-licensed-' + name);
+  save(source);
+  return source;
+}
+
 function fixture(parent, modern = true, staging = true) {
+  if (modern) {
+    const prepared = copyPrepared(parent, staging);
+    if (prepared) return prepared;
+  }
   const source = modern
     ? licensedSource(parent, staging)
     : staging
@@ -227,6 +255,15 @@ function fixture(parent, modern = true, staging = true) {
     linkedPublications: {},
   });
   save(source);
+  if (modern)
+    preparedSources.set(staging ? 'staging' : 'plain', {
+      record: JSON.stringify(source.record),
+      report: JSON.stringify(source.report),
+      files: Object.keys(source.record.files).map((name) => [
+        name,
+        fs.readFileSync(path.join(publicDirectory, name)),
+      ]),
+    });
   return source;
 }
 

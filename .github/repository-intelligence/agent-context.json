@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "23d79f3e2d13df5ed68556b6742222639704c50bf3019016479761b966cd3005",
+    "digest": "95b5b4d42fb6e83cae165613938a0c6c9dcda2b3b19789e5ad8255e7882e17d6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1005,7 +1005,7 @@
       {
         "path": "review/issue-5/2026-10-15-presentation-review.md",
         "identity_mode": "content",
-        "sha256": "f5e7194cfb45132446441f7004d755eef88b966fc1e07b1de8084b2732bab6f1"
+        "sha256": "4513ee9af34f5d5025afd6139dd217686c2d24391c3badfb947eab39decaf481"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5855,12 +5855,12 @@
       {
         "path": "tests/fixtures/delivery.cjs",
         "identity_mode": "content",
-        "sha256": "220ae921965315695973b416550635b45298aa8750503961c51957e26a08c5d0"
+        "sha256": "388101701db543d3f5dad1c0ac587b0c7153a2ec6c6510de247250d067cf761c"
       },
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "41a2c7b7783e2e4f019c603ced85b33ebee02b252e028c9e3ac006b9b78ded65"
+        "sha256": "6b2914dd8f26a10b4181fdf1713adf67784443efec051c17e865d02bddce2bd4"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -5925,7 +5925,7 @@
       {
         "path": "tests/pages-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "c4e3aace6a3eb76a80c4743555f3ba84f54c7f0a796d891d7a8627e033e590d8"
+        "sha256": "e0e0841b8c515e17ebe8a3a2768eb5ddcccdf49f342328e3682ecea4620b2df6"
       },
       {
         "path": "tests/phase-checkpoint.test.cjs",
@@ -5950,7 +5950,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "e8ec39a8d0fc4c3e8c3d5525b4aba99484cd7f4359194ad095e7aac36fdead5f"
+        "sha256": "a0ee87d16e02b271955eff6be5dfefd130cac3fd9d23790e79cca472db19eaa5"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -5985,7 +5985,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "e0e65332eb1b098f1bd1f685997ef5e31ead56dc2565677ebd8e062364ad6a3b"
+        "sha256": "a4da3b5a0390905b307f00de40947b2e18fe680853941b851b3387d2d2dbf7d9"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -6240,7 +6240,7 @@
       {
         "path": "tests/writing-variants.test.cjs",
         "identity_mode": "content",
-        "sha256": "f4f1571b48a2aef015fe47a402726163fe9cc58dee121d5b3344e9ed40e5d385"
+        "sha256": "b4fc5ff8a6fc41efd27f4449a16bdd1b495f03db07f98bdf6a9a6c8dd15f807f"
       },
       {
         "path": "tools/RI-LICENSE.md",
