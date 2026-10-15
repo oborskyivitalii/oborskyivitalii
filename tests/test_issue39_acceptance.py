@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "cc115c4241197d59205934bdc18f209109d5ee87"
+# Live issue39: staging-snapshot-proxy-preparation-20261015 permits this owner only.
+HOST_POLICY_AMENDMENT = "tools/staging/package.cjs"
 PROTECTED = (
     "site",
     "docs",
@@ -46,18 +48,55 @@ class Issue39AcceptanceTests(unittest.TestCase):
         actual = {}
         for source in paths:
             owner = ROOT / source
+            self.assertFalse(owner.is_symlink(), source)
+            for ancestor in owner.parents:
+                if ancestor == ROOT:
+                    break
+                self.assertFalse(ancestor.is_symlink(), source)
             files = owner.rglob("*") if owner.is_dir() else [owner]
             for filename in files:
+                self.assertFalse(filename.is_symlink(), str(filename))
                 if filename.is_file():
-                    self.assertFalse(filename.is_symlink())
+                    self.assertEqual(filename.stat().st_mode & 0o111, 0)
                     relative = filename.relative_to(ROOT).as_posix()
                     raw = filename.read_bytes()
                     actual[relative] = hashlib.sha1(
                         b"blob " + str(len(raw)).encode() + b"\0" + raw,
                         usedforsecurity=False,
                     ).hexdigest()
-        self.assertTrue(baseline, "protected main source inventory is empty")
-        self.assertEqual(actual, baseline, "compatibility changed a public or producer byte")
+        self.assertEqual(len(baseline), 607, "pinned protected main inventory changed")
+        self.assertIn(HOST_POLICY_AMENDMENT, baseline)
+        self.assertEqual(set(actual), set(baseline), "protected main path inventory changed")
+        self.assertEqual(
+            {name: value for name, value in actual.items() if name != HOST_POLICY_AMENDMENT},
+            {name: value for name, value in baseline.items() if name != HOST_POLICY_AMENDMENT},
+            "compatibility changed a byte outside the named staging host-policy amendment",
+        )
+
+    def test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes(self):
+        result = subprocess.run(
+            ["node", "--test", "--test-reporter=tap", "tests/staging.test.cjs"],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=60,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout)
+        for name in (
+            "default staging host generation and archived legacy verification preserve exact pinned-main bytes",
+            "versioned snapshot proxy policy binds only admitted immutable HTML and preserves source bytes",
+            "snapshot proxy policy rejects missing flags, mutated rules and inconsistent source or package records",
+        ):
+            self.assertIn("# Subtest: " + name + "\n", result.stdout)
+        for label in ("fail", "cancelled", "skipped", "todo"):
+            self.assertRegex(result.stdout, rf"(?m)^# {label} 0$", result.stdout)
+        total = re.search(r"(?m)^# tests ([1-9][0-9]*)$", result.stdout)
+        passed = re.search(r"(?m)^# pass ([1-9][0-9]*)$", result.stdout)
+        self.assertIsNotNone(total, result.stdout)
+        self.assertIsNotNone(passed, result.stdout)
+        self.assertEqual(total.group(1), passed.group(1), result.stdout)
 
     def test_current_selector_and_bounded_negative_guards(self):
         result = subprocess.run(

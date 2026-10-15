@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "21439e1993f068f5af4d6a831f0d594c8e13deaf53a338dc7549e69c82df2b7a",
+    "digest": "50f96d4c6f794af371d30496c08cc3449f80f8c7faaf762f6d664819fa42df36",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "1e8ade865e311eaf01d327c994d6754011db82303ec431801bda31b757c7dd94"
+        "sha256": "c2a7ee555c93ee959f610bb3a2efa202dd1a71a6b58d21680dceaae02c400be2"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d01d788c45525b8e5ee448a31feedbe94bff7426d01bf81bc8db8f307734e160"
+        "sha256": "5edc8fea10d79daec0186008afe9ff4c67088ebd57b7eaa0b3742b6208e1cd84"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -276,7 +276,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "8d3a52237d5b491770d3b1230f2ab0bbcb79e6ef8581d0ca1ce6963ce044daa9"
+        "sha256": "eebc3578d6713c042f6a2104c810ff2b37c65ac98455aef2ef72d1c08dc33471"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-39/2026-10-15-controller-compatibility.md",
         "identity_mode": "content",
-        "sha256": "ea8a29e4697f32d89cd145cb04fdd4a54615fe902c8e002b56098e7d72fb2210"
+        "sha256": "72c907af5ca70b80e0725087c535fdc97946e3df67d72df9454f9e08067c2817"
       },
       {
         "path": "review/issue-39/2026-10-15-license-tuples.json",
@@ -5535,7 +5535,7 @@
       {
         "path": "tests/staging.test.cjs",
         "identity_mode": "content",
-        "sha256": "e5843c7cbf9a49cafed22d31dff190f8d2b380c320b6dbd1e679583644cd1176"
+        "sha256": "e2f09374db0cee56c012c793c50e261aeddfef643c40725aa08de3bb9f7ee742"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -5570,7 +5570,7 @@
       {
         "path": "tests/test_issue39_acceptance.py",
         "identity_mode": "content",
-        "sha256": "964176728df87564bbfe21888e7c9abfb9210aa6a60329c564e35d88a432378e"
+        "sha256": "6cb77173a26bb18d9c470aa65c99f9b6224b323e66a6b43efd71be81af09dd5f"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -6040,7 +6040,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "1ae2f9ee99a8f7ace4a2e7a5f0aa74e6f31903229466d99b8b33f2cf77175d1d"
+        "sha256": "19e158e3e4fbdc9ad4009ad86c7255e9ebfeff442ddd1b72a43974501e99a162"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6095,7 +6095,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "74fbde65c40d1489132f2f160f1282dce47db038d13da9bbaad34b834ac2f328"
+        "sha256": "d59fce334a139b45d7cf8acbc3ece2e3dd8edf9c1a59585791a772a8be7e1dfe"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6345,7 +6345,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "2c4c6ea1c6b5fb34d713a1e4a1a8030f125eeeb13dabf2828afca4ec843fa688"
+        "sha256": "2f13ef1289c7f9ae7bcd5f2d03b9e78e368f597ae54cb4ff53a6d5dc8b938fab"
       },
       {
         "path": "tools/staging/review-flow.cjs",

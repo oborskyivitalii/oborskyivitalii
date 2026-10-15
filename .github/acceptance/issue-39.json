@@ -7,22 +7,22 @@
     {
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
-      "automated_scope": "This controller-compatibility dependency records exact main cc115c4241197d59205934bdc18f209109d5ee87 and preserves its complete public and producer byte inventories. It supplies no new provider inventory or domain observation; those remain with execution PR40.",
-      "checks": ["PRESERVATION"],
+      "automated_scope": "This controller-compatibility dependency records exact main cc115c4241197d59205934bdc18f209109d5ee87 and preserves all 607 protected paths and modes plus all 606 blobs outside the sole tools/staging/package.cjs host-policy amendment authorized by issue39 staging-snapshot-proxy-preparation-20261015. Its actual legacy-default hosting output remains byte exact; the separately checked finite proxy mode supplies no provider inventory, hosted performance acceptance or domain observation. Those remain external or with execution PR40.",
+      "checks": ["PRESERVATION", "HOST-POLICY"],
       "gates": ["LIVE-INVENTORY"]
     },
     {
       "id": "AC02",
       "intent": "Canonical .ai topology and lossless .com redirect plan",
-      "automated_scope": "No domain, DNS, Pages settings, migration or redirect implementation is included in this narrow compatibility increment. Original AC02 remains manual-only pending in this phase and continues in PR40.",
+      "automated_scope": "No domain, DNS, Pages project settings, migration or public canonical redirect is changed. The narrowly authorized undeployed host policy concerns only immutable snapshot internal 200 proxy compatibility. Original AC02 remains manual-only pending in this phase and continues in PR40.",
       "checks": [],
       "gates": ["LIVE-DOMAINS"]
     },
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "Exact main public, authored-site, producer, hosting and workflow bytes remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission. The quality-only flight collector reads bounded same-origin ResourceTiming after the original measurement window, retains raw response and preparation intervals, rejects malformed/missing/overflow evidence and preserves the original cold/warm setup and latency failure; this source check cannot turn an earlier failed staging run into admission.",
-      "checks": ["PRESERVATION", "SELECTOR", "PROOF", "FLIGHT-TELEMETRY"],
+      "automated_scope": "All 607 protected main paths/modes and 606 unamended blobs remain exact; only tools/staging/package.cjs may implement the dated finite host-policy amendment. Behavioral checks compare actual legacy-default hosting bytes with pinned main and exercise explicit versioned same-site immutable-snapshot 200 proxy validation and arbitrary-policy rejection. Public aliases, SEO, public snapshot/runtime bytes, workflows and default legacy generation remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission. The quality-only flight collector reads bounded same-origin ResourceTiming after the original measurement window, retains raw response and preparation intervals, rejects malformed/missing/overflow evidence and preserves the original cold/warm setup and latency failure. Neither host-policy source checks nor telemetry turn prior failed staging runs into admission or prove the 3200 ms budget passes.",
+      "checks": ["PRESERVATION", "HOST-POLICY", "SELECTOR", "PROOF", "FLIGHT-TELEMETRY"],
       "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
     },
     {
@@ -44,6 +44,10 @@
     "PRESERVATION": {
       "kind": "unittest",
       "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_main_public_and_producer_bytes_are_preserved"
+    },
+    "HOST-POLICY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes"
     },
     "SELECTOR": {
       "kind": "unittest",
@@ -94,11 +98,11 @@
     },
     "REVIEW": {
       "kind": "human",
-      "description": "Independent exact-source review of selector tuples, byte preservation, scope, CS01/CS04/CS05/CS08/CS09/CS10 and actual issue39/PR40/dependency-PR links. Source checks are not a maintainer decision."
+      "description": "Independent exact-source review of selector tuples, all 606 unamended protected blobs, the sole package host-policy exception, actual legacy-default byte parity, finite proxy security and the current-main deployment boundary; review scope, CS01/CS04/CS05/CS08/CS09/CS10 and actual issue39/PR40/dependency-PR links. Source checks are not a maintainer decision."
     },
     "STAGING": {
       "kind": "human",
-      "description": "Ready exact head must obtain actual source/RI/owning checks, owner /stage, bounded unchanged-budget regression, both stable publishers and fresh Staging admission using the unchanged main public family. Preview evidence alone does not admit merge. Post-window ResourceTiming is diagnostic evidence; original latency/performance and cold-cache requirements remain mandatory, and prior failed runs remain failed."
+      "description": "Ready exact head must obtain actual source/RI/owning checks, owner /stage, bounded unchanged-budget regression, both stable publishers and fresh Staging admission using the unchanged main public family. Preview evidence alone does not admit merge. Post-window ResourceTiming and finite host-policy preparation are source evidence only; original latency/performance and cold-cache requirements remain mandatory, and prior failed runs remain failed. The ordinary /stage publisher currently uses protected main and rejects the new host policy before deployment; preparation neither resolves that circular boundary nor authorizes bootstrap integration, and no prior one-time exception is reused. The existing owner-labeled PR route instead uses its merge-ref validator for nonpromoting preview evidence; current default legacy generation does not select the proxy policy."
     },
     "MERGE": {
       "kind": "merge",

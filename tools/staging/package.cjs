@@ -42,6 +42,34 @@ const headers = `/*
 const notFound =
   '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Page not found · Vitalii Oborskyi</title><link rel="stylesheet" href="/styles.css"><main class="wrap" id="main"><h1>Page not found</h1><p>This address does not exist in this review version.</p><p><a href="/">Home</a> · <a href="/research.html">Research</a> · <a href="/writing.html">Writing</a> · <a href="/talks.html">Talks</a> · <a href="/credits.html">Credits</a></p></main></html>\n';
 const identityKeys = ['sourceCommit', 'sourceTree', 'candidateCommit', 'artifactDigest'];
+const hostPolicies = Object.freeze({
+  legacy: 'legacy',
+  snapshotProxy: 'immutable-snapshot-proxy-v1',
+});
+function selectedHostPolicy(value) {
+  assert.ok(Object.values(hostPolicies).includes(value), 'unknown staging host policy');
+  return value;
+}
+function snapshotProxyRules(source) {
+  const names = Object.keys(source.files);
+  snapshot.inventory(names, snapshot.legacyMediaFiles, source.edition?.id);
+  const immutable = names
+    .filter((name) => name.startsWith('snapshots/') && snapshot.immutable(name))
+    .sort();
+  assert.ok(immutable.length > 0, 'missing admitted immutable snapshot HTML');
+  return (
+    immutable
+      .map((name) => {
+        // Proxy to the existing canonical lookup, not back to an .html path.
+        // The index lookup requires its directory to avoid another redirect.
+        const destination = name.endsWith('/index.html')
+          ? name.slice(0, -'index.html'.length)
+          : name.slice(0, -'.html'.length);
+        return '/' + name + ' /' + destination + ' 200';
+      })
+      .join('\n') + '\n'
+  );
+}
 function sourceGate(source, gate, expected = {}) {
   assert.equal(source.schema, 1);
   assert.equal(source.sourceDirty, false, 'dirty source');
@@ -87,7 +115,8 @@ function sourceGate(source, gate, expected = {}) {
       'wrong tested archive digest'
     );
 }
-function additions(source) {
+function additions(source, hostPolicy = hostPolicies.legacy) {
+  selectedHostPolicy(hostPolicy);
   const revision = {
     schema: 1,
     scope: 'staging only; not production release',
@@ -99,6 +128,9 @@ function additions(source) {
     _headers: headers,
     ...(source.files['404.html'] ? {} : { '404.html': notFound }),
     '_staging/revision.json': JSON.stringify(revision, null, 2) + '\n',
+    ...(hostPolicy === hostPolicies.snapshotProxy
+      ? { _redirects: snapshotProxyRules(source) }
+      : {}),
   };
 }
 function policyHeaders(name) {
@@ -141,7 +173,15 @@ function checkLinks(dir) {
     }
   }
 }
-function build(input, out, expected = {}) {
+function build(input, out, expected = {}, options = {}) {
+  assert.ok(options && typeof options === 'object' && !Array.isArray(options));
+  assert.ok(
+    Object.keys(options).every((key) => key === 'hostPolicy'),
+    'unknown host policy option'
+  );
+  const hostPolicy = selectedHostPolicy(
+    Object.hasOwn(options, 'hostPolicy') ? options.hostPolicy : hostPolicies.legacy
+  );
   const source = JSON.parse(fs.readFileSync(path.join(input, 'artifact.json'))),
     gate = JSON.parse(fs.readFileSync(path.join(input, 'gate/release-manifest.json')));
   sourceGate(source, gate, expected);
@@ -152,7 +192,7 @@ function build(input, out, expected = {}) {
   assert.equal(fs.readdirSync(out).length, 0, 'staging output must be empty');
   const target = path.join(out, 'public');
   fs.cpSync(path.join(input, 'public'), target, { recursive: true });
-  const extra = additions(source);
+  const extra = additions(source, hostPolicy);
   for (const [name, text] of Object.entries(extra)) {
     const file = path.join(target, name);
     fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -162,6 +202,7 @@ function build(input, out, expected = {}) {
     record = {
       schema: 1,
       kind: 'staging-package',
+      ...(hostPolicy === hostPolicies.snapshotProxy ? { hostPolicy } : {}),
       source,
       gate,
       hostFiles: Object.keys(extra).sort(),
@@ -175,10 +216,15 @@ function build(input, out, expected = {}) {
 function verify(dir, record, expected = {}) {
   assert.equal(record.schema, 1);
   assert.equal(record.kind, 'staging-package');
+  const hostPolicy = Object.hasOwn(record, 'hostPolicy')
+    ? selectedHostPolicy(record.hostPolicy)
+    : hostPolicies.legacy;
+  if (Object.hasOwn(record, 'hostPolicy'))
+    assert.equal(hostPolicy, hostPolicies.snapshotProxy, 'legacy host policy must remain implicit');
   sourceGate(record.source, record.gate, expected);
   const target = path.join(dir, 'public'),
     actual = artifact.manifest(target),
-    extra = additions(record.source);
+    extra = additions(record.source, hostPolicy);
   assert.equal(actual.artifactDigest, record.packageDigest, 'staging package changed');
   assert.deepEqual(actual.files, record.files);
   assert.deepEqual(record.hostFiles, Object.keys(extra).sort());
@@ -229,6 +275,8 @@ module.exports = {
   headers,
   policyHeaders,
   notFound,
+  hostPolicies,
+  snapshotProxyRules,
   sourceGate,
   additions,
   checkLinks,

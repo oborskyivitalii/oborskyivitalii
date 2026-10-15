@@ -3,7 +3,8 @@ const test = require('node:test'),
   assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path'),
-  os = require('node:os');
+  os = require('node:os'),
+  cp = require('node:child_process');
 const artifact = require('../tools/quality/artifact.cjs'),
   staging = require('../tools/staging/package.cjs');
 const hosted = require('../tools/staging/hosted.cjs');
@@ -208,6 +209,271 @@ test('staging adds only host policy, real 404 and revision; every tested public 
       'no SPA catch-all'
     );
     assert.equal(fs.existsSync(path.join(f.out, 'public', 'review')), false);
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
+test('default staging host generation and archived legacy verification preserve exact pinned-main bytes', () => {
+  const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87',
+    root = path.resolve(__dirname, '..');
+  for (const create of [fixture, legacyFixture, formulaFixture]) {
+    const f = create();
+    try {
+      const previous = path.join(f.dir, 'previous'),
+        oldOutput = path.join(f.dir, 'old-package'),
+        explicitOutput = path.join(f.dir, 'explicit-legacy');
+      for (const name of [
+        'tools/staging/package.cjs',
+        'tools/quality/artifact.cjs',
+        'tools/quality/budgets.json',
+        'tools/site/snapshot.cjs',
+      ]) {
+        const target = path.join(previous, name);
+        fs.mkdirSync(path.dirname(target), { recursive: true });
+        fs.writeFileSync(
+          target,
+          cp.execFileSync('git', ['show', baseline + ':' + name], { cwd: root })
+        );
+      }
+      cp.execFileSync(
+        process.execPath,
+        [path.join(previous, 'tools/staging/package.cjs'), 'build', f.input, oldOutput],
+        {
+          env: {
+            ...process.env,
+            SITE_CANDIDATE_SHA: f.expected.sourceCommit,
+            SITE_EXPECTED_PUBLIC_DIGEST: f.expected.publicDigest,
+            SITE_ARTIFACT_ID: f.expected.artifactId,
+            SITE_UPLOAD_DIGEST: f.expected.uploadDigest,
+          },
+          timeout: 30000,
+          stdio: 'pipe',
+        }
+      );
+      const oldRecord = JSON.parse(fs.readFileSync(path.join(oldOutput, 'staging-package.json'))),
+        current = staging.build(f.input, f.out, f.expected);
+      staging.build(f.input, explicitOutput, f.expected, {
+        hostPolicy: staging.hostPolicies.legacy,
+      });
+      assert.equal(Object.hasOwn(current, 'hostPolicy'), false);
+      assert.equal(
+        staging.verify(oldOutput, oldRecord, f.expected),
+        true,
+        'historical package remains verifiable'
+      );
+      for (const directory of [f.out, explicitOutput]) {
+        assert.deepEqual(
+          fs.readFileSync(path.join(directory, 'staging-package.json')),
+          fs.readFileSync(path.join(oldOutput, 'staging-package.json')),
+          'entire default legacy record retains its original bytes and package digest'
+        );
+        assert.deepEqual(
+          artifact.manifest(path.join(directory, 'public')),
+          artifact.manifest(path.join(oldOutput, 'public'))
+        );
+        for (const name of Object.keys(oldRecord.files))
+          assert.deepEqual(
+            fs.readFileSync(path.join(directory, 'public', name)),
+            fs.readFileSync(path.join(oldOutput, 'public', name)),
+            'actual pinned-main legacy output byte: ' + name
+          );
+      }
+    } finally {
+      fs.rmSync(f.dir, { recursive: true, force: true });
+    }
+  }
+});
+function retainedSnapshotFixture() {
+  const f = fixture(),
+    publicDir = path.join(f.input, 'public'),
+    revision = JSON.parse(fs.readFileSync(path.join(publicDir, 'site-revision.json'))),
+    retained = 'snapshots/' + 'd'.repeat(64) + '/writing.html';
+  // A declared retained payload shares the existing dependency closure. This
+  // synthetic version tests finite host-policy coverage, not edition provenance.
+  fs.mkdirSync(path.dirname(path.join(publicDir, retained)), { recursive: true });
+  fs.copyFileSync(
+    path.join(publicDir, revision.routes.writing.url),
+    path.join(publicDir, retained)
+  );
+  const manifest = artifact.manifest(publicDir);
+  Object.assign(f.source, manifest);
+  Object.assign(f.gate, manifest);
+  f.expected.publicDigest = manifest.artifactDigest;
+  fs.writeFileSync(path.join(f.input, 'artifact.json'), JSON.stringify(f.source));
+  fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
+  return { ...f, retained };
+}
+test('versioned snapshot proxy policy binds only admitted immutable HTML and preserves source bytes', () => {
+  for (const create of [retainedSnapshotFixture, legacyFixture, formulaFixture]) {
+    const f = create();
+    try {
+      const record = staging.build(f.input, f.out, f.expected, {
+          hostPolicy: staging.hostPolicies.snapshotProxy,
+        }),
+        publicDir = path.join(f.out, 'public'),
+        rules = fs.readFileSync(path.join(publicDir, '_redirects'), 'utf8'),
+        revision = JSON.parse(fs.readFileSync(path.join(publicDir, 'site-revision.json'))),
+        immutable = Object.keys(f.source.files)
+          .filter((name) => name.startsWith('snapshots/'))
+          .sort();
+      assert.equal(record.hostPolicy, 'immutable-snapshot-proxy-v1');
+      assert.equal(staging.verify(f.out, record, f.expected), true);
+      assert.deepEqual(record.hostFiles, [
+        '404.html',
+        '_headers',
+        '_redirects',
+        '_staging/revision.json',
+      ]);
+      assert.deepEqual(record.source, f.source);
+      assert.deepEqual(record.gate, f.gate);
+      assert.notEqual(
+        record.packageDigest,
+        f.source.artifactDigest,
+        'hosting additions have their own identity'
+      );
+      const lines = rules.trimEnd().split('\n');
+      assert.equal(lines.length, immutable.length);
+      assert.deepEqual(lines, [...lines].sort(), 'rule order is deterministic');
+      assert.equal(rules, lines.join('\n') + '\n', 'one canonical final newline');
+      assert.ok(
+        lines.includes(
+          '/' +
+            revision.routes.writing.url +
+            ' /' +
+            revision.routes.writing.url.slice(0, -5) +
+            ' 200'
+        )
+      );
+      assert.ok(
+        lines.includes(
+          '/' +
+            revision.routes.index.url +
+            ' /' +
+            path.posix.dirname(revision.routes.index.url) +
+            '/ 200'
+        )
+      );
+      if (f.retained)
+        assert.ok(
+          lines.includes('/' + f.retained + ' /' + f.retained.slice(0, -5) + ' 200'),
+          'retained declared snapshots receive exact rules too'
+        );
+      for (const [index, line] of lines.entries()) {
+        const [from, to, status, ...extra] = line.split(' ');
+        assert.equal(from, '/' + immutable[index]);
+        assert.equal(status, '200');
+        assert.deepEqual(extra, []);
+        assert.ok(to.startsWith('/snapshots/') && !/[\s*?#]/.test(to));
+        assert.equal(to, from.endsWith('/index.html') ? from.slice(0, -10) : from.slice(0, -5));
+      }
+      for (const name of Object.keys(f.source.files)) {
+        assert.deepEqual(record.files[name], f.source.files[name]);
+        assert.deepEqual(
+          fs.readFileSync(path.join(publicDir, name)),
+          fs.readFileSync(path.join(f.input, 'public', name)),
+          'no tested source byte is rewritten'
+        );
+      }
+      for (const [name, bytes] of Object.entries(staging.additions(f.source)))
+        assert.equal(
+          fs.readFileSync(path.join(publicDir, name), 'utf8'),
+          bytes,
+          'legacy headers, 404 and revision bytes stay exact'
+        );
+    } finally {
+      fs.rmSync(f.dir, { recursive: true, force: true });
+    }
+  }
+});
+test('snapshot proxy policy rejects missing flags, mutated rules and inconsistent source or package records', () => {
+  const f = retainedSnapshotFixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected, {
+        hostPolicy: staging.hostPolicies.snapshotProxy,
+      }),
+      publicDir = path.join(f.out, 'public'),
+      rulesFile = path.join(publicDir, '_redirects'),
+      original = fs.readFileSync(rulesFile, 'utf8'),
+      lines = original.trimEnd().split('\n'),
+      index = lines.find((line) => line.split(' ')[0].endsWith('/index.html')),
+      writing = lines.find((line) => line.split(' ')[0].endsWith('/writing.html')),
+      refresh = (candidate) => {
+        const actual = artifact.manifest(publicDir);
+        candidate.files = actual.files;
+        candidate.packageDigest = actual.artifactDigest;
+        return candidate;
+      };
+    for (const changed of [
+      lines.slice(1).join('\n') + '\n',
+      original + writing + '\n',
+      [...lines].reverse().join('\n') + '\n',
+      original.replace(/\n/g, '\r\n'),
+      original.trimEnd(),
+      original.replace(' 200', ' 301'),
+      original.replace(writing, writing.split(' ')[0] + ' https://other.example/writing 200'),
+      original.replace(writing, writing.split(' ')[0] + ' /writing.html 200'),
+      original.replace(index, index.split(' ')[0] + ' ' + index.split(' ')[0] + ' 200'),
+      original.replace(
+        index,
+        index.split(' ')[0] + ' ' + index.split(' ')[0].slice(0, -5) + ' 200'
+      ),
+      original.replace('/snapshots/', '/snapshots/*/'),
+      original.replace('/snapshots/', '/snapshots/../'),
+      original + '/writing.html /writing 200\n',
+      original + '/* /index.html 200\n',
+      original.replace('/' + f.retained, '/snapshots/' + 'f'.repeat(64) + '/writing.html'),
+    ]) {
+      assert.notEqual(changed, original, 'negative changes actual proxy bytes');
+      fs.writeFileSync(rulesFile, changed);
+      assert.throws(
+        () => staging.verify(f.out, refresh(structuredClone(record)), f.expected),
+        /host configuration changed _redirects/,
+        'honest manifest rehash cannot authorize a rule amendment'
+      );
+      fs.writeFileSync(rulesFile, original);
+    }
+    for (const mutate of [
+      (candidate) => delete candidate.hostPolicy,
+      (candidate) => (candidate.hostPolicy = undefined),
+      (candidate) => (candidate.hostPolicy = null),
+      (candidate) => (candidate.hostPolicy = 'legacy'),
+      (candidate) => (candidate.hostPolicy = 'immutable-snapshot-proxy-v2'),
+      (candidate) =>
+        (candidate.hostFiles = candidate.hostFiles.filter((name) => name !== '_redirects')),
+      (candidate) => (candidate.packageDigest = 'f'.repeat(64)),
+      (candidate) => (candidate.source.sourceCommit = 'f'.repeat(40)),
+      (candidate) => (candidate.source.files['writing.html'].sha256 = 'f'.repeat(64)),
+    ]) {
+      const candidate = structuredClone(record);
+      mutate(candidate);
+      assert.throws(() => staging.verify(f.out, candidate, f.expected));
+    }
+    fs.rmSync(rulesFile);
+    assert.throws(() => staging.verify(f.out, refresh(structuredClone(record)), f.expected));
+    fs.writeFileSync(rulesFile, original);
+    fs.writeFileSync(path.join(publicDir, '_worker.js'), 'export default {};\n');
+    const extra = refresh(structuredClone(record));
+    extra.hostFiles.push('_worker.js');
+    assert.throws(() => staging.verify(f.out, extra, f.expected));
+    fs.rmSync(path.join(publicDir, '_worker.js'));
+    for (const options of [
+      null,
+      [],
+      { hostPolicy: undefined },
+      { hostPolicy: null },
+      { hostPolicy: 'unknown' },
+      { redirects: '/* /index.html 200' },
+    ])
+      assert.throws(() => staging.build(f.input, path.join(f.dir, 'invalid'), f.expected, options));
+    for (const name of [
+      'snapshots/' + 'f'.repeat(64) + '/unknown.html',
+      'snapshots/' + 'f'.repeat(64) + '/writing.html\n/*',
+      'snapshots/../writing.html',
+      '_redirects',
+    ])
+      assert.throws(() =>
+        staging.snapshotProxyRules({ ...f.source, files: { ...f.source.files, [name]: {} } })
+      );
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }

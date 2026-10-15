@@ -10,16 +10,20 @@ Baseline main: `cc115c4241197d59205934bdc18f209109d5ee87`, tree
 Prepared branch: `work/issue39-license-controller-compat`. The original local
 preparation established no remote ref or merge. The later published dependency
 is [PR80](https://github.com/oborskyivitalii/oborskyivitalii/pull/80); its current
-admission failure and narrowly changed diagnostic method are recorded below.
+admission failures, post-window diagnostics and later named host-policy
+preparation are recorded below.
 
 ## Intent, scope and pending decisions
 
 The maintainer approved Apache-2.0 for original engineering and CC BY 4.0 for
 original editorial material, then requested changed-content review on permanent
 staging before resuming production. PR40 remains the licensing/release execution
-owner. This dependency can add exact reviewed future Color identities to the
-existing closed selector while preserving every current-main public, authored
-site, producer, hosting, workflow and existing export byte.
+owner. The initial registry and telemetry increments added exact reviewed future Color
+identities and post-window evidence while preserving every current-main public,
+authored-site, producer, hosting, workflow and existing export byte. The later
+finite host-policy scope below permits exactly one named producer amendment:
+`tools/staging/package.cjs`; all other606 protected blobs and all607 inventory
+paths/modes remain exact. Default legacy hosting output remains byte-identical.
 
 Original AC01-AC05 remain mapped. AC02/AC05 and all applicable human/live gates
 stay pending; source fixtures cannot complete a domain, licensing, device or
@@ -261,3 +265,105 @@ and eight human/live/merge gates. Both changed collector/test owners are existin
 catalog/profile paths; the owning issue39 profile now explicitly watches them.
 RI/coupling, final owning results and security review follow the frozen source;
 these local preparation observations do not replace new native staging evidence.
+
+## Finite snapshot proxy controller preparation
+
+The [dated scope recorded before edits](https://github.com/oborskyivitalii/oborskyivitalii/issues/39)
+is the live issue39 top block `staging-snapshot-proxy-preparation-20261015`.
+It authorizes source preparation under the same PR80 dependency and PR40 execution
+owner, with a single named producer exception. It does not authorize a bootstrap
+merge, provider action or another unchanged-runtime staging attempt.
+
+Changed-method ordinary
+[run38708680860](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38708680860)
+used source `9dc1b84daeeb73da70cc025e3d61c994d72ec3b9`, tree
+`541f3f30cccfc665b60547f3232507e24fd40783`, and **failed**. Native
+[artifact11959778829](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38708680860/artifacts/11959778829)
+shows correct post-window collection: Research cold/warm equivalent readiness
+3004.3/2451.2ms passed; cold Writing4620.9ms raw /3382.9ms equivalent exceeded3200ms.
+Writing navigation-to-preparation525.8ms included revision158.3ms, gap24.5ms,
+snapshot318.9ms and post-response20.8ms. Hosted evidence confirms immutable `.html`
+requests finish at extensionless paths. Exact redirect-time allocation and a
+provider fault remain unproven. Stable publishers/admission did not pass.
+
+The official [Pages redirects](https://developers.cloudflare.com/pages/configuration/redirects/)
+and [serving rules](https://developers.cloudflare.com/pages/configuration/serving-pages/)
+document same-site200 proxying and automatic HTML canonicalization. The inspected
+[Cloudflare Pages handler](https://github.com/cloudflare/workers-sdk/blob/b81efbcb22d2f90d22d3d144b059e99873831002/packages/pages-shared/asset-server/handler.ts),
+blob `febaf781d6ce104fb7741e0f534410681a2a99c6`, processes custom200 rules before
+asset lookup. An extensionless target uses the existing `.html` asset without a
+browser redirect. An index target must be its containing directory, rather than
+`/index` or `/index.html`, which would cause another canonicalization redirect.
+This source inspection establishes a supported mechanism; it is not deployed
+behavior or a passing performance measurement.
+
+`tools/staging/package.cjs` now verifies two canonical record forms:
+
+| Form                          | Generation and verification                                                                                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Legacy                        | Default and explicit `legacy` API generation retain the historical record with no `hostPolicy` field and exact original host additions. Existing records/archives remain verifiable. |
+| `immutable-snapshot-proxy-v1` | Only explicit fourth API options select this mode. The record carries that exact `hostPolicy`; `_redirects` is generated solely from admitted immutable snapshot HTML inventory.     |
+
+The API is `build(input, output, expected, { hostPolicy: 'immutable-snapshot-proxy-v1' })`.
+There is no new CLI/environment/default switch. Rules contain exact sorted paths,
+a single final newline and status200. Every current or retained admitted snapshot
+gets one source-exact rule; non-index destinations are extensionless siblings,
+index destinations the exact hash-directory ending in `/`. No wildcard, external
+origin, SPA fallback, public alias, query-based rule, arbitrary file or runtime
+rewrite is admitted. Existing headers, noindex, immutable cache scope, source
+pinning, artifact/gate checks and public link verification remain unchanged.
+
+Unknown/null policies, a present noncanonical legacy flag, a proxy file with no
+new-mode flag, missing files/rules, duplicates, reordering, status/target/source
+substitutions and extra deployment inputs are rejected. Recomputing file/package
+hashes honestly cannot authorize altered rules: verification derives the complete
+allowed host inventory and exact bytes again from the admitted source. New hosting
+metadata has a new package/upload identity; HTML/runtime bytes and hashes remain
+unchanged. The new mode creates no extensionless source files and changes no
+`site-revision.json` route URL or cryptographic body verification.
+
+The preservation amendment keeps all607 baseline paths/modes and compares all606
+non-amended blobs exactly; only `tools/staging/package.cjs` may differ. Behavioral
+`HOST-POLICY` evidence replaces byte equality for that named owner. A real pinned
+main CLI replay loads the original package/artifact/snapshot/budget sources and
+compares actual generated legacy package-record bytes, digests and every public
+output byte for current, legacy-media and formula-media fixtures. New-mode tests
+cover retained snapshots and strict honestly rehashed rule/source/record failures.
+Original AC01-AC05 and every human/live/merge gate remain; PR40's complete execution
+policy stays separate. No whole release criterion is completed by this preparation.
+
+The existing owner `staging-regression` label route can later provide evidence-only
+Root validation using its PR merge-ref validator and exact raw-source artifact.
+It requires the actual authorized label event; a persistent label on synchronize
+is insufficient. This route has no stable promotion/Pages/admission claim. Ordinary
+owner `/stage` still uses protected main's predeploy verifier, which currently
+rejects `_redirects`; integration needs its concrete applicable maintainer decision
+if ordinary admission cannot be earned. No historical waiver is reused.
+
+Even hypothetically removing the entire152.7ms pre-fetch interval yields3230.2ms
+from the failed sample, still above3200ms; the actual redirect contribution is
+unmeasured. This is **not sufficient** to claim3200ms acceptance. Future Root must explicitly select
+the mode, prove actual hosted200/no-redirect/exact-body behavior and pass fresh
+unchanged-budget native checks. No cache warming, probe allowance, metric relaxation,
+new workflow, Worker, provider edit or runtime performance change is included.
+
+Applicable CS01/CS04/CS05/CS07/CS08/CS09/CS10 map to the existing producer/test owners,
+finite source-derived policy, default legacy byte proof, meaningful adverse cases,
+pinned formatter/lint, bounded style guard and unchanged measurement semantics.
+Initial local preparation passes all15 maintained staging tests and the five
+owning source methods, pinned source ESLint/Prettier and the89-file style guard.
+Independent exact-source/security review, final RI/owning/full-source validation,
+clean source identity and eventual native evidence follow the final freeze. These
+source results do not change any failed run or supply integration/publication approval.
+
+Initial independent producer review also reproduced the unchanged host-file
+SHA256/raw metadata in both frozen5October and6October legacy archive records,
+and generated the five exact current snapshot rules from the retained native
+PR40 and licensing diagnostic artifacts. These were read-only source/host-rule
+observations, not new provider or performance runs. The actual policy/wrapper
+checks preserve that distinction and leave admission/integration pending.
+The independent preservation walk also matched612 protected path/mode/blob
+records outside the intentionally amended package owner against the published
+9dc1b84 source, including public/export/workflow, cache/header, budget/validator,
+telemetry and selector owners. This expanded independent set is separate from
+the maintained607-path inventory /606 unchanged-blob proof against pinned main.

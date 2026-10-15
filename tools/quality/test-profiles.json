@@ -930,7 +930,7 @@
     {
       "path": "tests/staging.test.cjs",
       "language": "javascript",
-      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
+      "purpose": "Exact hosted package/headers/routing/rollback, pinned legacy-default hosting bytes, finite versioned immutable-snapshot proxy rejection, source leases, retained inputs and browser-visible recovery contract",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1651,7 +1651,7 @@
     {
       "path": "tests/test_issue39_acceptance.py",
       "language": "python",
-      "purpose": "Issue39 controller dependency preserves exact main public/producer/export bytes, binds independently checked licensing tuples, reuses strict selector negatives and verifies bounded post-flight ResourceTiming while retaining original readiness failures; actual both-host admission remains external.",
+      "purpose": "Issue39 controller dependency preserves all 607 protected main paths/modes and 606 blobs outside the sole package host-policy amendment, verifies actual legacy-default byte parity and finite snapshot proxy rejection, binds licensing tuples and preserves strict selector/telemetry/readiness failures; actual both-host admission remains external.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
@@ -1664,7 +1664,9 @@
         "tools/quality/color-motion-contract.cjs",
         "review/issue-39/2026-10-15-license-tuples.json",
         "tools/quality/staging-regression.cjs",
-        "tests/staging-regression.test.cjs"
+        "tests/staging-regression.test.cjs",
+        "tools/staging/package.cjs",
+        "tests/staging.test.cjs"
       ]
     }
   ]
