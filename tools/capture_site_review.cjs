@@ -8,6 +8,7 @@ const fs = require('node:fs'),
   crypto = require('node:crypto');
 const os = require('node:os');
 const { chromium } = require(process.env.SITE_REVIEW_PLAYWRIGHT || 'playwright');
+const primaryCount = Object.keys(require('../site/content/catalog.json').records).length;
 const root = path.resolve(__dirname, '..'),
   out = path.join(root, 'review/site-v1-20261004-v11-captures');
 const publicRoot = path.resolve(process.env.SITE_PUBLIC_DIR || path.join(root, 'docs'));
@@ -297,12 +298,12 @@ async function behavior() {
   await idle(page);
   assert.equal(await page.locator('#archive-empty').isVisible(), true);
   await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
-  assert.equal(await page.locator('li.publication:visible').count(), 27);
+  assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
   await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
   assert.equal(await page.locator('li.publication:visible').count(), 0);
   await page.locator('.filter-reset').click();
   await idle(page);
-  assert.equal(await page.locator('li.publication:visible').count(), 27);
+  assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
   await page.goto(`${base}/writing.html?topic=delivery&language=uk#topic-systems`);
   await idle(page);
   assert.equal(await page.locator('#archive-topic').inputValue(), 'systems');
@@ -314,8 +315,7 @@ async function behavior() {
   await page.goForward();
   await idle(page);
   assert.equal(await page.locator('#archive-language').inputValue(), 'en');
-  results.writing_archive =
-    'topic motion; year reflow/first scroll; empty results; Reset; conflict hash/query; back/forward; all 27 records on print and filter restoration passed';
+  results.writing_archive = `topic motion; year reflow/first scroll; empty results; Reset; conflict hash/query; back/forward; all ${primaryCount} records on print and filter restoration passed`;
   for (const width of [360])
     for (const theme of ['light', 'dark'])
       for (const route of pages) {

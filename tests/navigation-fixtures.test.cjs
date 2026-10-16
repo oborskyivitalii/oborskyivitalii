@@ -264,6 +264,28 @@ function blockSamples(direction = 'forward') {
       translate = '0px ' + y + 'px',
       layer = {
         translate,
+        distance: Math.sign(y) * 600 + 'px',
+        nativeAnimations: [
+          {
+            name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+            startTime: 100,
+            currentTime: 300,
+            pending: false,
+            playState: 'running',
+            playbackRate: 1,
+            timing: { delay: order * plan.rowStepMs, duration: plan.rowDurationMs },
+            keyframes: [
+              {
+                computedOffset: 0,
+                translate: stage === 'departing' ? '0px' : '0px ' + Math.sign(y) * 600 + 'px',
+              },
+              {
+                computedOffset: 1,
+                translate: stage === 'departing' ? '0px ' + Math.sign(y) * 600 + 'px' : '0px',
+              },
+            ],
+          },
+        ],
         opacity: 1,
         animation: {
           name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
@@ -428,6 +450,8 @@ function fractionalBlockSamples(rows, direction, serialize) {
       for (const layer of unit.layers) {
         layer.animation.delay = serialize(unit.order * plan.rowStepMs);
         layer.animation.duration = plan.rowDurationMs;
+        layer.nativeAnimations[0].timing.delay = unit.order * plan.rowStepMs;
+        layer.nativeAnimations[0].timing.duration = plan.rowDurationMs;
       }
       return unit;
     });
@@ -501,6 +525,8 @@ function noPaperSamples(direction, isolated) {
     for (const layer of unit.layers) {
       layer.animation.delay = 0;
       layer.animation.duration = 1000;
+      layer.nativeAnimations[0].timing.delay = 0;
+      layer.nativeAnimations[0].timing.duration = 1000;
     }
     unit.ink = unit.layers.map((layer) => layer.translate);
     sample.units = [unit];
@@ -526,6 +552,24 @@ test('navigation without a paper pseudo-element and isolated dividers retain act
     }
 });
 test('timing evidence records the hidden native mount, camera framing and opaque native content', () => {
+  function nativeAnimation(pseudoElement = null) {
+    return {
+      animationName: 'route-block-depart',
+      startTime: 100,
+      currentTime: 200,
+      pending: false,
+      playState: 'running',
+      playbackRate: 1,
+      effect: {
+        pseudoElement,
+        getTiming: () => ({ delay: 200, duration: 200 }),
+        getKeyframes: () => [
+          { computedOffset: 0, translate: '0px' },
+          { computedOffset: 1, translate: '0px -600px' },
+        ],
+      },
+    };
+  }
   const routeUnits = [],
     borderSources = [];
   const scene = {
@@ -607,12 +651,14 @@ test('timing evidence records the hidden native mount, camera framing and opaque
       entryBorderOwner: '2',
     },
     children: [
-      { dataset: {} },
+      { dataset: {}, getAnimations: () => [nativeAnimation()] },
       {
         dataset: { entrySeparator: 'top', entrySeparatorSource: 'ancestor', entryBorderOwner: '2' },
+        getAnimations: () => [nativeAnimation()],
       },
     ],
     getBoundingClientRect: () => ({ top: 320, bottom: 450 }),
+    getAnimations: () => [nativeAnimation('::before')],
   });
   borderSources.push({
     dataset: { entryBorderTopOwner: '2' },
@@ -647,9 +693,10 @@ test('timing evidence records the hidden native mount, camera framing and opaque
       routeRow: '0',
       routeDelay: '1',
     },
-    children: [{ dataset: {} }],
+    children: [{ dataset: {}, getAnimations: () => [nativeAnimation()] }],
     noPaper: true,
     getBoundingClientRect: () => ({ top: 200, bottom: 260 }),
+    getAnimations: () => [],
   });
   time += 100;
   observer();
@@ -766,4 +813,101 @@ test('restoration timeout retains every position sample and actual history misma
   assert.equal(evidence.samples.at(-1).y, 7073);
   assert.equal(evidence.samples.at(-1).savedY, 400);
   assert.match(evidence.error, /2000ms/);
+});
+
+test('native animation tracks distinguish WebKit sequential CSS reads from missing, static or divergent separators', () => {
+  const samples = blockSamples();
+  for (const sample of samples)
+    for (const unit of sample.units)
+      for (const layer of unit.layers.filter((item) => item.separator)) {
+        const [x, y] = layer.translate.split(' ');
+        layer.translate = x + ' ' + (Number.parseFloat(y) + 0.4) + 'px';
+      }
+  assert.doesNotThrow(() => checkTiming(samples));
+  for (const mutate of [
+    (layer) => delete layer.nativeAnimations,
+    (layer) => (layer.nativeAnimations = []),
+    (layer) => (layer.nativeAnimations[0].startTime += 1),
+    (layer) => (layer.nativeAnimations[0].currentTime += 1),
+    (layer) => (layer.nativeAnimations[0].timing.duration += 50),
+    (layer) => (layer.nativeAnimations[0].keyframes[1].translate = '0px -20px'),
+    (layer) => (layer.distance = '-20px'),
+  ]) {
+    const invalid = structuredClone(samples);
+    mutate(invalid[0].units[2].layers.at(-1));
+    assert.throws(() => checkTiming(invalid));
+  }
+  const staticSeparator = structuredClone(samples);
+  for (const sample of staticSeparator)
+    for (const unit of sample.units)
+      for (const layer of unit.layers.filter((item) => item.separator)) layer.translate = '0px 0px';
+  assert.throws(() => checkTiming(staticSeparator), /each separator needs actual movement/);
+});
+
+function edgeInputFixture({ direction = 1, late = false, blocked = false } = {}) {
+  const input = require('../tools/quality/edge-input.cjs');
+  let now = 0,
+    y = direction < 0 ? 500 : 0,
+    serial = 0;
+  const jobs = new Map();
+  const window = {
+    requestAnimationFrame(fn) {
+      const id = ++serial;
+      jobs.set(id, { time: now + 16, fn });
+      return id;
+    },
+    cancelAnimationFrame(id) {
+      jobs.delete(id);
+    },
+    setTimeout(fn, delay) {
+      const id = ++serial;
+      jobs.set(id, { time: now + delay, fn });
+      return id;
+    },
+  };
+  const context = {
+    window,
+    performance: { now: () => now },
+    innerHeight: 900,
+    document: {
+      documentElement: {
+        get scrollHeight() {
+          return 1900 + (now >= (late ? 880 : 128) ? 12 : 0);
+        },
+      },
+    },
+    get scrollY() {
+      return y;
+    },
+    scrollTo({ top }) {
+      if (!blocked) y = top;
+    },
+    args: { direction, policy: input.policy },
+  };
+  const promise = vm.runInNewContext('(' + input.observe.toString() + ')(args)', context);
+  while (jobs.size) {
+    const [id, job] = [...jobs].sort((a, b) => a[1].time - b[1].time)[0];
+    jobs.delete(id);
+    now = job.time;
+    job.fn();
+    assert.ok(now <= 900, 'native setup cannot extend its original window');
+  }
+  return promise.then((result) => JSON.parse(JSON.stringify(result)));
+}
+
+test('native endpoint preparation corrects reflow inside the original900ms window and rejects late or blocked geometry', async () => {
+  const input = require('../tools/quality/edge-input.cjs');
+  const forward = await edgeInputFixture();
+  assert.equal(input.validate(forward), true);
+  assert.equal(forward.elapsedMs, 900);
+  assert.equal(forward.y, 1012);
+  assert.equal(forward.corrections, 2);
+  const reverse = await edgeInputFixture({ direction: -1 });
+  assert.equal(input.validate(reverse), true);
+  assert.equal(reverse.y, 0);
+  assert.throws(() => input.validate(null), /missing edge input/);
+  for (const options of [{ late: true }, { blocked: true }]) {
+    const invalid = await edgeInputFixture(options);
+    assert.throws(() => input.validate(invalid));
+  }
 });

@@ -921,6 +921,8 @@ function colorReports(reports, manifest) {
           assert.equal(row.checks[key], true, 'missing Color ' + key);
         }
         colorMotion.validateFlight(row, manifest);
+        if (runtime.behavior === 'fixed-blocks')
+          require('./edge-input.cjs').journey(row.edgeInputs);
       }
     }
   }

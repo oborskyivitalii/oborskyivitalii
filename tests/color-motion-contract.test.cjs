@@ -30,6 +30,22 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
       translate = '0px ' + y + 'px',
       layer = {
         translate,
+        distance: Math.sign(y) * 600 + 'px',
+        nativeAnimations: [
+          {
+            name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+            startTime: 100,
+            currentTime: 300,
+            pending: false,
+            playState: 'running',
+            playbackRate: 1,
+            timing: { delay: order * plan.rowStepMs, duration: plan.rowDurationMs },
+            keyframes: [
+              { computedOffset: 0, translate: stage === 'departing' ? '0px' : '0px 600px' },
+              { computedOffset: 1, translate: stage === 'departing' ? '0px -600px' : '0px' },
+            ],
+          },
+        ],
         opacity: 1,
         animation: {
           name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),

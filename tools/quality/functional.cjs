@@ -137,6 +137,12 @@ async function navigateDocument(page, url, release) {
 function forwardCameraResponded(expected) {
   const scene = document.querySelector('.space-scene'),
     probe = window.__forwardCameraResponse;
+  // Native scroll anchoring can follow moving ink after the exact scrollTo.
+  // Account only for the measured displacement of that same visible node.
+  const anchor = window.__forwardReadingAnchor,
+    anchorTop = anchor?.isConnected ? anchor.getBoundingClientRect().top + scrollY : null,
+    displacement = expected.anchor ? anchorTop - expected.anchor.top : 0,
+    target = expected.target + displacement;
   const sample = {
     time: performance.now() - probe.start,
     y: scrollY,
@@ -146,18 +152,51 @@ function forwardCameraResponded(expected) {
     paints: window.__quality?.paints,
     callbacks: window.__quality?.callbacks,
     hidden: document.hidden,
+    anchorTop,
+    displacement,
+    target,
   };
   probe.samples.push(sample);
   const responded =
-    Math.abs(scrollY - expected.target) <= 1 && scene.dataset.camera === expected.baseline;
+    (!expected.anchor || Number.isFinite(anchorTop)) &&
+    scrollY > 0 &&
+    Math.abs(scrollY - target) <= 1 &&
+    scene.dataset.camera === expected.baseline;
   if (responded) {
     probe.status = 'responded';
     probe.elapsedMs = sample.time;
   }
   return responded;
 }
+function readingTravel() {
+  const range = document.documentElement.scrollHeight - innerHeight,
+    rows = [...document.querySelectorAll('li.publication')].filter((el) => !el.hidden);
+  const position = rows.length
+    ? rows[0].getBoundingClientRect().top +
+      scrollY -
+      innerHeight * 0.22 +
+      (rows.at(-1).getBoundingClientRect().bottom - rows[0].getBoundingClientRect().top) * 0.35
+    : range * 0.6;
+  const target = Math.max(0, Math.min(range, position));
+  scrollTo({ top: target, behavior: 'instant' });
+  const point = document.elementFromPoint(innerWidth * 0.5, innerHeight * 0.5),
+    anchor = point?.firstElementChild || point;
+  window.__forwardReadingAnchor = anchor;
+  return {
+    range,
+    target,
+    y: scrollY,
+    anchor: anchor
+      ? { top: anchor.getBoundingClientRect().top + scrollY, tag: anchor.tagName, id: anchor.id }
+      : null,
+  };
+}
 async function forwardCamera(page, baseline, travel) {
   if (travel.range <= 1 || travel.target <= 1) return state(page);
+  if (travel.anchor) {
+    assert.ok(Number.isFinite(travel.anchor.top), 'missing native reading anchor');
+    assert.ok(Math.abs(travel.y - travel.target) <= 1, 'requested native scroll was not reached');
+  }
   await page.evaluate(
     ({ baseline, travel }) =>
       (window.__forwardCameraResponse = {
@@ -173,7 +212,7 @@ async function forwardCamera(page, baseline, travel) {
   try {
     await page.waitForFunction(
       forwardCameraResponded,
-      { baseline, target: travel.target },
+      { baseline, target: travel.target, anchor: travel.anchor },
       { polling: 50, timeout: 2000 }
     );
   } catch (error) {
@@ -423,19 +462,7 @@ async function normal(page, scenario) {
   });
   const reverse = await atStart(page, a.camera);
   assert.equal(reverse.camera, a.camera, 'reverse camera endpoint');
-  const travel = await page.evaluate(() => {
-    const range = document.documentElement.scrollHeight - innerHeight,
-      rows = [...document.querySelectorAll('li.publication')].filter((el) => !el.hidden);
-    // Exercise real native reading content, including Writing's publication rows.
-    const target = rows.length
-      ? rows[0].getBoundingClientRect().top +
-        scrollY -
-        innerHeight * 0.22 +
-        (rows.at(-1).getBoundingClientRect().bottom - rows[0].getBoundingClientRect().top) * 0.35
-      : range * 0.6;
-    scrollTo({ top: Math.max(0, Math.min(range, target)), behavior: 'instant' });
-    return { range, target: Math.max(0, Math.min(range, target)), y: scrollY };
-  });
+  const travel = await page.evaluate(readingTravel);
   const forward = await forwardCamera(page, a.camera, travel);
   if (travel.range > 1 && travel.target > 1) {
     assert.ok(forward.scrollY > 0, 'native scroll reaches the visible journey');
@@ -846,6 +873,7 @@ module.exports = {
   navigateDocument,
   forwardCamera,
   forwardCameraResponded,
+  readingTravel,
   nextPaintReady,
   nextPaintSample,
   serialEngines,

@@ -469,6 +469,33 @@ test('forward response allows native subpixel rounding but does not demand trave
   assert.equal(result.camera, 'opening');
   assert.equal(result.forwardResponse, null);
 });
+test('native anchoring accounts only for the same visible ink displacement after exact scroll input', async () => {
+  const travel = { range: 9000, target: 2400, y: 2400, anchor: { top: 2800 } };
+  for (const defect of [null, 'unaccounted', 'lost', 'blocked', 'camera', 'reversed']) {
+    const h = helpers();
+    let documentTop = 2800;
+    h.context.window.__forwardReadingAnchor = {
+      isConnected: defect !== 'lost',
+      getBoundingClientRect: () => ({ top: documentTop - h.context.scrollY }),
+    };
+    const page = cameraPage(h, (_time, current) => {
+      documentTop = defect === 'unaccounted' ? 2800 : 2744;
+      current.context.scrollY = defect === 'reversed' ? 0 : 2344;
+      current.scene.dataset.camera = defect === 'camera' ? 'journey' : 'opening';
+    });
+    if (defect) {
+      await assert.rejects(
+        h.forwardCamera(page, 'opening', { ...travel, y: defect === 'blocked' ? 0 : 2400 })
+      );
+    } else {
+      const result = await h.forwardCamera(page, 'opening', travel);
+      assert.equal(result.scrollY, 2344);
+      assert.equal(result.forwardResponse.samples[0].displacement, -56);
+      assert.equal(result.forwardResponse.samples[0].target, 2344);
+      assert.equal(result.forwardResponse.timeoutMs, 2000);
+    }
+  }
+});
 function paintPage(h, change) {
   h.attached.add('.space-scene');
   h.attached.add('#space-motion');

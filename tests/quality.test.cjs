@@ -986,6 +986,7 @@ function colorFixture() {
         motionContract: structuredClone(motionContract),
         ribbons: { sceneHook: 'undefined', dataset: {} },
         paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+        edgeInputs: require('./fixtures/staging-evidence.cjs').edgeInputs(),
         checks: Object.fromEntries(
           [
             'blockFlight',
@@ -1040,6 +1041,12 @@ test('full macOS policy keeps twelve travel Color cells with ordinary paint incl
     (report) => (report.rows[0].paint.ordinaryShapes = 0),
     (report) => (report.rows[0].paint.customShapes = 1),
     (report) => delete report.rows[0].paint,
+    (report) => delete report.rows[0].edgeInputs,
+    (report) => report.rows[0].edgeInputs.pop(),
+    (report) => (report.rows[0].edgeInputs[0].preparation.stableMs = 179),
+    (report) => (report.rows[0].edgeInputs[0].preparation.y = 900),
+    (report) => (report.rows[0].edgeInputs[0].preparation.policy.budgetMs = 901),
+    (report) => (report.rows[0].edgeInputs[2].to = 'writing'),
   ];
   for (const mutate of mutations) {
     const evidence = colorFixture();

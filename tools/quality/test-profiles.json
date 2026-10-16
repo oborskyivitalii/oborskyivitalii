@@ -530,7 +530,7 @@
     {
       "path": "tests/functional-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Native route reading behavior with stationary camera, working controls/fallbacks, source-bound artifact and functional evidence",
+      "purpose": "Native route reading with stationary camera and exact-input same-ink anchoring observations, adversarial displacement/control/fallback cases and source-bound evidence",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -583,7 +583,7 @@
     {
       "path": "tests/navigation-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Ordered opaque visual rows and moving separators around centered/restored camera stages, reverse Tetris assembly, native mount, interruption/history and bounded navigation evidence",
+      "purpose": "Ordered opaque visual rows and moving separators around centered/restored camera stages, reverse Tetris assembly, native mount, interruption/history and bounded navigation evidence; exact native animation track/clock and per-separator movement negatives; bounded native endpoint reflow/blocked/late-input proof",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -593,7 +593,9 @@
         "tests/navigation-fixtures.test.cjs",
         "tools/quality/navigation.cjs",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/edge-input.cjs",
+        "tools/quality/block-observation.cjs"
       ]
     },
     {
@@ -741,7 +743,9 @@
         "tools/quality/transition-pacing.json",
         "tools/quality/transition-pacing.cjs",
         "tools/quality/serve.cjs",
-        "tools/capture_site_review.cjs"
+        "tools/capture_site_review.cjs",
+        "tools/quality/edge-input.cjs",
+        "tools/quality/block-observation.cjs"
       ]
     },
     {
@@ -1707,7 +1711,9 @@
         "tools/staging/color.cjs",
         "tools/staging/edition.cjs",
         "site/content/production-social.json",
-        ".github/workflows/site-release-candidate.yml"
+        ".github/workflows/site-release-candidate.yml",
+        "tools/quality/edge-input.cjs",
+        "tools/quality/block-observation.cjs"
       ]
     },
     {

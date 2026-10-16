@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f36a720565b28c4e8cac28c7a268b6b1dcf02cd4bf540dbbe3a73b59f82dc1de",
+    "digest": "fa5a66d8dbae03b10fbc01a9a38a0d122db6fb27f400f678dbd1e3278cbe4d88",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "da2e6b3bee99730e8a3fe4468352f373f5e87608099f0de9f5d2776c3d5dbc2e"
+        "sha256": "cbb94dba13a076df79caae20f2079851b344d8dfa15b88dc50550ad7d0cf6d93"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1f1e3a5375eeaea8b32c027bd00a8e52cbee22b3c449ca94947049bf5f77b151"
+        "sha256": "192c082f7de5996c132150d74f829b24734521cee446e002c7baa1fc643cb4ba"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "08a9f0b5e70b9111ead39416ce0699c70e2c7567bb2c7b9d3fda52083980ae4f"
+        "sha256": "91f45517ba3900b856ff2baa0b40f942422286cf639f2ec7e7c49b3a01a5e1d3"
       },
       {
         "path": "NOTICE.md",
@@ -891,6 +891,16 @@
         "path": "review/issue-39/2026-10-16-writing-tbt.md",
         "identity_mode": "content",
         "sha256": "bcab5008833d6ba58e5fb01e3b3533a9e7ad818bd47ec1e00aa7c19cf3519886"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-native-navigation.json.gz",
+        "identity_mode": "content",
+        "sha256": "632969aa8319bd3f9329648f75df81a7a3445390df30c903fda0cc2cf3ad2bba"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-native-navigation.md",
+        "identity_mode": "content",
+        "sha256": "6ecc3d450a1bf70f99a78efaa4a48f3f795f8277db46094e8ff9379dd76893d1"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5545,7 +5555,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "740f81c5ef96133cf1b0c6d2107780243d99e42e443238b9aa2febd88dfb56a9"
+        "sha256": "1957fd5288b5d1f842bb23a9292d18fb22b45022a3b6f2270c93d94bebab7bb7"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5600,7 +5610,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "80a50e995ca66dbfafa08612e8d0211ab7ad5e7751a947a57a210432aaa3b6fd"
+        "sha256": "b4bf1364fee4ed041547a0003db4582e782dcb593b332e113da56e0db515078e"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -5620,7 +5630,7 @@
       {
         "path": "tests/functional-fixtures.test.cjs",
         "identity_mode": "content",
-        "sha256": "a2ce9696aa813ee6ce45fde7a2ccd435bcd7287eb2f71d37062b870e86145d40"
+        "sha256": "6a3946512a1f12b366478292e41410232d75c69e3b36b14d14e1ae6d9ab9d7e0"
       },
       {
         "path": "tests/gtk-native-probe.test.cjs",
@@ -5640,7 +5650,7 @@
       {
         "path": "tests/navigation-fixtures.test.cjs",
         "identity_mode": "content",
-        "sha256": "d26034b7ade30cbbe52bf31c76738ad67edb372a2a6e52afedc077728f96ddde"
+        "sha256": "0174139b59ad3050dd60ea74faf92266d6481ce8ccb37ea42bf1adee36be54e8"
       },
       {
         "path": "tests/navigation-motion-fixtures.test.cjs",
@@ -5700,7 +5710,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "74f5da453ecadd31f2113c061781af987ae58c5055b6ef2a8da22552b945f1aa"
+        "sha256": "1ed6e284fc5180bdc49920d25fd97f330efcd58ed5bec5df551e755b38b8f0bd"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5985,7 +5995,7 @@
       {
         "path": "tools/capture_site_review.cjs",
         "identity_mode": "content",
-        "sha256": "ae9f0f534cf2801aae55eaed80500575ce4d6b1263403164f934d4b03429d46f"
+        "sha256": "9a90ba932c550bac01c36299a11d88b983433ec8184a1751a613cb261a5b41b1"
       },
       {
         "path": "tools/check_code_style.py",
@@ -6085,7 +6095,12 @@
       {
         "path": "tools/quality/block-flight.cjs",
         "identity_mode": "content",
-        "sha256": "1fd068231cd7d5998010e50d64b7dbdeacb3f047eba962196465c3339326816f"
+        "sha256": "2a4d60069aa5ad803e2521d97bd44fd1747c8afef94db34ed251116f8909eb26"
+      },
+      {
+        "path": "tools/quality/block-observation.cjs",
+        "identity_mode": "content",
+        "sha256": "95aa76be742aa534db63dc29378ac050b631735c77d7475e9a2bdb0a3cefd4b9"
       },
       {
         "path": "tools/quality/browser-gate-diagnostics.cjs",
@@ -6120,7 +6135,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "13ea4e9594105f7aaa51ea0d8375a2cd5bd6b9f2c139fa2a2ff5a27cb2f03fc5"
+        "sha256": "89524dcaf52068246386ba365c2b5b0c6ff2182796e6bc0401e68621cb57d478"
       },
       {
         "path": "tools/quality/color-motion-contract.cjs",
@@ -6141,6 +6156,11 @@
         "path": "tools/quality/display-probe.cjs",
         "identity_mode": "content",
         "sha256": "9c1fbdc1b2a14289c3a1e82d470b9d52671790bdb005e184282264aae916f82d"
+      },
+      {
+        "path": "tools/quality/edge-input.cjs",
+        "identity_mode": "content",
+        "sha256": "0362f975f5e832f19e03c6fea10f01a9363a97906515ff8e4225c5148bb4d3d0"
       },
       {
         "path": "tools/quality/engine-browser.cjs",
@@ -6195,7 +6215,7 @@
       {
         "path": "tools/quality/functional.cjs",
         "identity_mode": "content",
-        "sha256": "1f3cdc1bd8606f1cf718d65b4d1ed709dfeeb5d557122d4f0a85fc3c62b9c912"
+        "sha256": "df03d3fd81d0f94d824956b86ea699e12857140d9513a416c54ca7ead7876101"
       },
       {
         "path": "tools/quality/geometry.cjs",
@@ -6250,7 +6270,7 @@
       {
         "path": "tools/quality/navigation.cjs",
         "identity_mode": "content",
-        "sha256": "d9ca037e8a9e9b30b6315f6fa82358d0a14ad7b17c48b386e60f2eb49029dcca"
+        "sha256": "3d7fda5680822f5d0d890b8e115d09506719229417630d0f990eaedbdc665bab"
       },
       {
         "path": "tools/quality/phase-checkpoint.cjs",
@@ -6375,7 +6395,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "49a573841ff5ccd29d0f1d88234afb6b1203284aac96e2a4396afcee85ab83d3"
+        "sha256": "85be4d512c8acb9b1efdfb75d9803a2c5354c7fa2ac4015e962bc530eca0eacc"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6415,7 +6435,7 @@
       {
         "path": "tools/quality/validate.cjs",
         "identity_mode": "content",
-        "sha256": "071aba02006bf7d0ba8bf2c520bc0f4248fee01bb2661d18f98a2fbaf4a618ee"
+        "sha256": "57e4ee4b8bc90960a0aa937f0620b10afba6ae9005c381c07e8c4949b0ef89f7"
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",
@@ -8884,6 +8904,28 @@
         "AGENTS.md"
       ],
       "title": "Issue39 — bounded Writing TBT correction, 16 October 2026"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-native-navigation.json.gz",
+      "kind": "file",
+      "purpose": "Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-17-native-navigation.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-native-navigation.md",
+      "kind": "file",
+      "purpose": "Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 / PR85 — native navigation and capture follow-up"
     },
     {
       "path": "review/issue-41/2026-10-07-analysis.md",
@@ -20315,6 +20357,17 @@
       "title": "block-flight.cjs"
     },
     {
+      "path": "tools/quality/block-observation.cjs",
+      "kind": "file",
+      "purpose": "Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "block-observation.cjs"
+    },
+    {
       "path": "tools/quality/browser-gate-diagnostics.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -20434,6 +20487,17 @@
         "AGENTS.md"
       ],
       "title": "display-probe.cjs"
+    },
+    {
+      "path": "tools/quality/edge-input.cjs",
+      "kind": "file",
+      "purpose": "Bounded900ms native endpoint preparation and source-bound Color edge evidence validation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edge-input.cjs"
     },
     {
       "path": "tools/quality/engine-browser.cjs",

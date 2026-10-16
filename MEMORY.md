@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-16**.
+Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
@@ -23,14 +23,21 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
   protected main-only production/github-pages environments. Private-key owner
   creation/entry complete: key4899234 and private-key secret names verified in both
   environments. App-token mint remains unverified. Production enabled=false; retired Pages staging=false.
-- Original full native run38971767557/1 is not admitted: captures asserts retired
-  moving-camera behavior; controlled loopback omits production txt/xml MIME;
-  macOS WebKit navigation separator mismatch; Linux Color Firefox timeouts and
-  WebKit separator mismatch. Other in-progress jobs require fresh inspection.
-- Follow-up work/pr40-production-finalization-39 corrects capture observations/
-  negatives,loopback MIME and production-only composition while retaining the
-  predecessor solely for recovery. Versioned report and adjacent raw gzip:
-  review/issue-39/2026-10-16-production-finalization.md. New source has no native admission.
+- Original full38971767557/1 failed captures/Linux/macOS/Windows; retain originals.
+  Performance passed30 Lighthouse rows,10 medians,15motion samples,3journeys and
+  300s soak; Writing mobile TBT132.5ms median. macOS functional130/130,analytics13/13;
+  Windows37/40 functional,8/8 navigation,26/26 analytics. No full admission.
+- Active Draft PR85/work/pr40-production-finalization-39 at02eb3e60 corrects stale
+  captures,MIME and production-only composition. Source618/618 and owning19/19
+  passed before this follow-up. New17October report/raw gzip retains diagnosis.
+- Follow-up local frozen96 checks pass12/12 Color cells across Chromium153,
+  Firefox155,WebKit26.6,all20 capture views/behaviors and5recordings;43 targeted
+  regressions pass. WebKit shares exact native clocks/keyframes despite CSS text
+  sampling differences; Firefox edge preparation corrects reflow within900ms.
+  Windows original Firefox mobile native anchoring shifts56px; corrected same-ink
+  observation passes all3originally failing cells locally. Targeted units59/59.
+  Native Windows and full exact-source admission remain required.
+  Diagnostic container flags/user-space WebKit libraries never enter native CI.
 
 ## Decisions
 
@@ -48,23 +55,22 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / merged PR40 follow-up | Review/test capture,MIME and production-only cleanup; Draft follow-up PR, current-source owning/RI/source checks and native verification. |
-| #39 / #13 | Diagnose actual WebKit separator and Firefox edge timeouts; retain complete original native failures and remaining full jobs. |
+| #39 / merged PR40 follow-up | Publish completed harness corrections in PR85, current-source checks,Ready and existing staging admission. |
+| #39 / #13 | Retain completed original failures; verify corrected harness on actual native platforms,including Windows anchoring. |
 | #39 / #72 / #8 | App-token proof; authenticated project-prefix to canonical cutover with exact configuration/package recovery; protected publisher and live checks. |
 | #1 / #7 / #8 / #13 | Exact-source rights policy/inventory review, physical iOS/Android and independent acceptance; actual production-domain analytics/TLS/cost. |
 
 ## Next session
 
-1. Revalidate protected main, follow-up PR, actual settings/key metadata and all
-   jobs/artifacts in38971767557; never infer admission from a previous source.
-2. Continue the same #39 follow-up, preserve stable staging and every failed/raw
-   result. Current public/runtime content remains unchanged by harness edits. The local
-   implementation checkpoint6be36795/tree69140c6f passed618/618 source and19/19
-   owning checks; report/raw gzip preserve exact identities and pending gates.
-3. Finish the native blockers and exact-source admission through existing profiles;
-   no selected green reruns, widened limits or second staging publisher.
-4. After actual external/full/cutover prerequisites, continue already-authorized
-   production and verify canonical domains/served bytes and exact recovery.
+1. Revalidate protected main,PR85 and exact source-bound checks. Do not infer
+   native admission from the local diagnostic matrix or previous source.
+2. Finish full mapped source/owning/RI
+   checks,publish same PR85 and mark Ready after completed implementation.
+3. Use existing owner /stage route after Ready source/RI/owning checks;merge only
+   with required Staging admission. Preserve original failed results and budgets.
+4. Finish canonical configuration/package compensation before publication,then
+   exact-main preparation/full regression and actual external rights/device/review
+   gates. Continue authorized production only after its prerequisites pass.
 
 ## Maintenance
 

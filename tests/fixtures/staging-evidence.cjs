@@ -429,6 +429,22 @@ function blockFlightSamples(width = 1440) {
     const translate = '0px ' + y + 'px',
       layer = {
         translate,
+        distance: Math.sign(y) * 600 + 'px',
+        nativeAnimations: [
+          {
+            name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+            startTime: 100,
+            currentTime: 300,
+            pending: false,
+            playState: 'running',
+            playbackRate: 1,
+            timing: { delay: row * plan.rowStepMs, duration: plan.rowDurationMs },
+            keyframes: [
+              { computedOffset: 0, translate: stage === 'departing' ? '0px' : '0px 600px' },
+              { computedOffset: 1, translate: stage === 'departing' ? '0px -600px' : '0px' },
+            ],
+          },
+        ],
         opacity: 1,
         animation: {
           name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
@@ -504,6 +520,27 @@ function fixedHome() {
     },
   };
 }
+function edgeInputs() {
+  return [
+    ['index', 'research', 1],
+    ['research', 'writing', 1],
+    ['writing', 'research', -1],
+  ].map(([from, to, direction]) => ({
+    from,
+    to,
+    preparation: {
+      direction,
+      policy: { budgetMs: 900, stableMs: 180, tolerancePx: 2 },
+      elapsedMs: 900,
+      stableMs: 800,
+      range: 1000,
+      y: direction < 0 ? 0 : 1000,
+      corrections: 1,
+      samples: 58,
+      changes: [{ t: 900, range: 1000, y: direction < 0 ? 0 : 1000 }],
+    },
+  }));
+}
 function colorReport(manifest) {
   const motionContract = colorMotion.select(manifest);
   return {
@@ -523,6 +560,7 @@ function colorReport(manifest) {
       motionContract: clone(motionContract),
       ribbons: { sceneHook: 'undefined', dataset: {} },
       paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+      edgeInputs: edgeInputs(),
       checks: Object.fromEntries(
         [
           'shortenedHomeRange',
@@ -641,5 +679,6 @@ module.exports = {
   performanceReport,
   blockFlightSamples,
   colorReport,
+  edgeInputs,
   aggregateFixture,
 };
