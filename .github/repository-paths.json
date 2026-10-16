@@ -8460,6 +8460,24 @@
       "purpose": "Source-independent frozen publication license metadata, exact full-copy hashes and archived artifact binding shared with the Root rights compiler.",
       "role": "validator",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-39/2026-10-16-python-audit-compatibility.md": {
+      "kind": "file",
+      "purpose": "Source-only trusted-main Python audit installer compatibility prerequisite for PR40; exact package graph and public-byte preservation evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "tests/test_python_toolchain.py": {
+      "kind": "file",
+      "purpose": "Negative and positive installed-tool graph checks; reject broadened SDK overrides and missing, changed or incompatible dependencies.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/python_toolchain.py": {
+      "kind": "file",
+      "purpose": "Verify the installed exact Python audit graph and sole reviewed patched MCP compatibility constraint.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
     }
   }
 }

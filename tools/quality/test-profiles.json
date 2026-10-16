@@ -1726,6 +1726,21 @@
         "tests/fixtures/delivery.cjs",
         "tests/fixtures/staging-evidence.cjs"
       ]
+    },
+    {
+      "path": "tests/test_python_toolchain.py",
+      "language": "python",
+      "purpose": "Installed pinned audit graph and exact Semgrep/MCP constraint override; missing, changed, incompatible and broadened declarations fail.",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent installed-graph failure surfaces; no dependency advisory exception",
+      "surviving_route": "python3 tools/run_repository_tests.py",
+      "inputs": [
+        "tests/test_python_toolchain.py",
+        "tools/quality/python_toolchain.py",
+        "tools/quality/toolchain/requirements.txt"
+      ]
     }
   ]
 }

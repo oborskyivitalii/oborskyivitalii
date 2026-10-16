@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
-      "automated_scope": "This controller dependency pins protected main cc115c4241197d59205934bdc18f209109d5ee87: all 607 original paths/modes and 597 blobs outside the six named staging/Pages consumers and four explicit prepublication/source-report workflow owners remain exact. The sole new protected path is the shared source-independent tools/release/rights-record.cjs verifier. Actual legacy-default staging and Pages outputs are compared byte-for-byte with the pinned main producers. Finite proxy and frozen publication source checks supply no provider inventory, native performance acceptance or domain observation; those remain external or in PR40.",
+      "automated_scope": "Current protected main315da39d is the exact baseline. All607 public, authored, runtime, producer, release and workflow paths/modes remain present. Reversing only the eight named full/minimal installer paragraphs must reproduce every original blob exactly; source preservation is not a live provider inventory.",
       "checks": ["PRESERVATION", "HOST-POLICY"],
       "gates": ["LIVE-INVENTORY"]
     },
@@ -21,21 +21,22 @@
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "All 607 protected main paths/modes and 597 unamended blobs remain exact; the named tools/staging/{package,hosted,review-flow}.cjs and tools/pages/{package,controller,http}.cjs consumers implement only finite hosting, first-staging frozen-record compatibility and shared MIME checks, with the single shared tools/release/rights-record.cjs verifier. Known exact issue39 licensed plain/staging Color families require a source/tree/edition/artifact-bound frozen record even through default API; the discriminator derives from actual verified revision bytes and the existing closed selector. Every supplied record is checked, including both rendered full legal copies, scope/licenses/exceptions and approvalPass=false. Pages preserves nested reports, records their receipt digests, and restores sidecars through both extraction routes. Genuine historical reportless families retain exact default output and independent frozen recovery. Behavioral checks compare actual legacy-default hosting bytes with pinned main and exercise explicit versioned same-site immutable-snapshot 200 proxy validation and arbitrary-policy rejection. Public aliases, SEO, public snapshot/runtime bytes and default legacy generation remain unchanged. The strict Color selector executes bounded aggregation, every canonical/immutable file absence/substitution, edition/identity mutation and pre-browser rejection cases. The inert review record binds two literal licensing tuples to independently hashed diagnostic source/runtime/full-license bytes; it retains sourceDirty=true and is not clean-head licensing-source CI or production admission. The quality-only flight collector reads bounded same-origin ResourceTiming after the original measurement window, retains raw response and preparation intervals, rejects malformed/missing/overflow evidence and preserves the original cold/warm setup and latency failure. Neither host-policy source checks nor telemetry turn prior failed staging runs into admission or prove the 3200 ms budget passes. The later authorized comprehensive guard review adds an existing-local.cjs prepublication mode and pre-upload ordering in the four named workflows. Independent source/Python/style/RI/scanner/selftest/artifact/edition/rights/package failures are retained, dependency-blocked checks stay failed, and final source/manifest/public digests are rechecked. Normal Draft preview remains lightweight; host/native/live gates stay later and mandatory. Actual analytics hosted/offline fixture construction includes declared legal-owner dependencies without inventing them for historical producers. The explicitly named tools/staging/hosted.cjs, tools/staging/review-flow.cjs and tools/pages/http.cjs HTTP consumers reuse the shared finite MIME guard and actual-helper wrong/missing/alias/query/404 negatives; no runtime/public body changes or relaxed transport policy are permitted.",
+      "automated_scope": "The audit-only trusted-main dependency installs the complete exact Python lock, immediately verifies the installed graph and keeps unmodified Semgrep1.179.0 with the sole explicit patched MCP1.30.0 constraint override. Pin pip26.2.1 and retain every other original dependency. Four positive/adversarial graph fixtures reject missing/changed/duplicate/unfrozen packages, broadened overrides and every other incompatible requirement. Existing source/selector/host-policy/publication/flight negatives remain selected. Actual Semgrep coverage, complete dependency advisory feeds and current-candidate native prepublication remain separate run evidence. No public/runtime change, CVE exception, staging promotion or production admission is supplied.",
       "checks": [
         "PRESERVATION",
         "HOST-POLICY",
         "SELECTOR",
         "PROOF",
         "FLIGHT-TELEMETRY",
-        "PUBLICATION-RECORDS"
+        "PUBLICATION-RECORDS",
+        "AUDIT-GRAPH"
       ],
       "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
     },
     {
       "id": "AC04",
       "intent": "Actionable maintainer instructions and linked execution",
-      "automated_scope": "The bounded compatibility dependency retains issue39 and PR40 ownership, original AC01-AC05, explicit pending domain/rights/device/review/merge gates and current source/style/navigation checks. Applicable CS01/CS04/CS05/CS08/CS09/CS10 architectural and readability review remains separate. This phase map replaces no full PR40 implementation checks; that execution PR retains its complete mapping after rebase.",
+      "automated_scope": "Continue #39/PR40 under the maintainer request to deliver PR40 through main and permanent Cloudflare staging, then production. The existing /stage workflow executes from protected main before checking candidate requirements; its current resolver cannot install the patched SDK pair. This finite source-only installer bridge precedes ordinary PR40 admission. Ready source/RI/owning checks remain required; CS01/CS05/CS08/CS09/CS10 self-review does not supply independent full release acceptance. PR40 retains its complete feature policy after integration.",
       "checks": ["STYLE", "BASIC", "RI", "RI-CI"],
       "gates": ["OWNER-SETTINGS", "REVIEW", "STAGING", "MERGE"]
     },
@@ -86,6 +87,10 @@
     "PUBLICATION-RECORDS": {
       "kind": "unittest",
       "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_frozen_publication_records_and_actual_legacy_pages_bytes"
+    },
+    "AUDIT-GRAPH": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_installed_python_graph_contracts"
     }
   },
   "gates": {
@@ -111,15 +116,15 @@
     },
     "REVIEW": {
       "kind": "human",
-      "description": "Independent exact-source review of selector tuples, all 597 unamended protected blobs, the six named staging/Pages consumer exceptions, four explicit prepublication/source-report workflow owners and shared frozen verifier, actual staging/Pages legacy-default byte parity, missing/rehashed/metadata-opt-out license failures, finite proxy security and the current-main deployment boundary; review scope, CS01/CS04/CS05/CS08/CS09/CS10 and actual issue39/PR40/dependency-PR links. Source checks are not a maintainer decision."
+      "description": "Self-review the exact eight installer paragraphs, complete lock/graph verifier and negative fixtures; preserve every protected main blob after exact installer reversal. Independent production/device/rights/editorial review remains with the frozen PR40 release candidate, not supplied by this source-only dependency."
     },
     "STAGING": {
       "kind": "human",
-      "description": "Ready exact head must obtain actual source/RI/owning checks, owner /stage, bounded unchanged-budget regression, both stable publishers and fresh Staging admission using the unchanged main public family. Preview evidence alone does not admit merge. Post-window ResourceTiming and finite host-policy preparation are source evidence only; original latency/performance and cold-cache requirements remain mandatory, and prior failed runs remain failed. The ordinary /stage publisher currently uses protected main and rejects the new host policy before deployment; preparation neither resolves that circular boundary nor authorizes bootstrap integration, and no prior one-time exception is reused. The existing owner-labeled PR route instead uses its merge-ref validator for nonpromoting preview evidence; current default legacy generation does not select the proxy policy."
+      "description": "PR40 must obtain fresh Ready source/RI/owning admission, ordinary owner-requested Cloudflare staging, unchanged-budget hosted regression and exact stable identity before merge. This installer-only prerequisite keeps every public/runtime byte unchanged and does not publish staging; its trusted installer must be available before that ordinary PR40 request. Earlier two-host/Pages staging requirements are superseded by merged PR81; original host/performance cases and failed history remain."
     },
     "MERGE": {
       "kind": "merge",
-      "description": "Apply the applicable maintainer merge decision to the exact ordinarily admitted dependency tree, then record unchanged-tree merge/postmerge identity. No bootstrap waiver or production authorization is inferred; PR40 remains the main licensing/release execution owner."
+      "description": "The current maintainer instruction requests PR40 through protected main/permanent staging and then production. Integrate only this required public-byte-preserving installer compatibility prerequisite through ordinary successful required checks, retain its exact tree and existing protection, then resume PR40 ordinary staging. Do not infer production activation or close the owning launch issue from this dependency merge."
     }
   }
 }

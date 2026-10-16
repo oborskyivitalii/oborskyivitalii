@@ -613,7 +613,8 @@ test('explicit stable and production workflows run prepublication before deploya
       source
         .slice(0, preflight)
         .includes(
-          'pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt'
+          'pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt\n' +
+            '          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py'
         )
     );
     const retain = source.slice(preflight, publicUpload);
