@@ -369,7 +369,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission.",
+      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission. Five ordinary current Writing trials plus one separate CPU sample, fresh-process failure retention and unchanged budgets.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": ["diagnostic", "pr-targeted"],

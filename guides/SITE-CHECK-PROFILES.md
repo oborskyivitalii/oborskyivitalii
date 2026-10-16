@@ -133,6 +133,14 @@ reports keep `fullGate: false` and `performanceAcceptance: false`. This does not
 change ordinary staging trials, settings, cases or admission budgets. Historical
 Research/WebKit cause-probe replay stays manual and retains its original count.
 
+Issue #39 uses the separate PR #40-only `site-writing-current-evidence` label
+job in that same workflow: five ordinary fresh-process mobile/simulated Writing
+trials on one exact unchanged Color artifact, followed by one separately sampled
+CPU attribution. Every result, trace and network log survives; no retry or
+best-run selection. The original200ms individual budget remains; collection
+success is not performance acceptance or full/staging admission. Cleanup failure
+stops further launches. Historical protocols above remain unchanged.
+
 ## Complete production regression
 
 `validation_level: production` is the reusable workflow's default. Run the full

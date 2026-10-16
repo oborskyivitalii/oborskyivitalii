@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7f760cb3124f741687dda07606f9873fe449df09cb2237eb4a78f2d33d758110",
+    "digest": "6fa6f4501dab9e71036fee80c7ec5d15cfd35d4e9da677394290716d1a1ca1b7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "2467bc72b31afdb14c8af76b9c4cb2bc2d2f59b9a47564cc339ab05353034d57"
+        "sha256": "8c1febf29bfe102ca27e144a9c7fd58a4c3c8c520066637194cb1aa859e3d9f1"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b8e8afb518ec55888c0c9c8f9e557033a86cbdece337ebf9f2410685833b1a62"
+        "sha256": "6300baa5c719806afe0cf491bb2ac961e60970f09c673c82a8ecfd6793dae4ce"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d5e15191c5ee9371be7b40f782d705f3db5dd148e03cfd7f142e84574643f689"
+        "sha256": "b90eae4566b32817950cd85f62b2f6954e9ff32d0dc9c15040862c4d54e5ea3a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -191,7 +191,7 @@
       {
         "path": ".github/workflows/site-cause-probe.yml",
         "identity_mode": "content",
-        "sha256": "4a2e4fcd26aed0633d7b85ef8436d4779689b7d590bdfd4c4fd5db1d391e8b12"
+        "sha256": "94b18d692d06b54ac5f7fba58198aab416f7373de5e0af02729c969f5679d492"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -545,7 +545,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "644da4bf74158d45a5ca0efc704ddf55f7adde32fa0beb6d485fc126a712245a"
+        "sha256": "8731fd90a1ca1519c160b44fd327379bee9eecb865a383eb633a7e0887fc2282"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -806,6 +806,11 @@
         "path": "review/issue-39/2026-10-16-compact-tuples.json.gz",
         "identity_mode": "content",
         "sha256": "d40d295317eb569fdaeae232c1024df665e451b82266684f450adff3546f0c11"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-native-writing-controller.md",
+        "identity_mode": "content",
+        "sha256": "d183dc88f4d41f4bae513c4ce0ddfafab1fcaf68b6fc995cfa25e110139a9b63"
       },
       {
         "path": "review/issue-39/2026-10-16-positioning-integration.md",
@@ -5490,7 +5495,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "74b88d90b6641f5e8c8aa889ed9056f6192cec4e22f763eb16f8d048f108b00a"
+        "sha256": "e9e7b21368429dc4366b3748d872ab218e19f8334f783b6801b36060ca944701"
       },
       {
         "path": "tests/color-build.test.cjs",
@@ -5775,7 +5780,7 @@
       {
         "path": "tests/test_issue39_acceptance.py",
         "identity_mode": "content",
-        "sha256": "ebc79a9fca88084f7466494c70f391accea858ed537278990a98e57bf46d1cbc"
+        "sha256": "fe3dc60946ae379d555ed9cfa2676055eb537a6569c77cac5af000756bdfbbaa"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -6065,7 +6070,7 @@
       {
         "path": "tools/quality/cause-probe.cjs",
         "identity_mode": "content",
-        "sha256": "ec5425f027f886226e0886dbfbc0af5eae68025698f069ce5a50bb9a57ec8e3b"
+        "sha256": "38657020e5e7a2111244c39c68778cd018e3869dcfd55861460603d9e16413c6"
       },
       {
         "path": "tools/quality/cold-native-probe.cjs",
@@ -6330,7 +6335,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "b7b2dd24878b3c3db8308c51ee66e9cc27b7c4526ae2af451cd0988c3b96b996"
+        "sha256": "aa6035be89d8163657277fd3e0807a595223e1f16804f755da790c9cf91bfbc6"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7292,7 +7297,7 @@
     {
       "path": ".github/workflows/site-cause-probe.yml",
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -8652,6 +8657,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-16-compact-tuples.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-native-writing-controller.md",
+      "kind": "file",
+      "purpose": "Issue39 bounded native current Writing measurements and eventual exact trusted-controller registration, failure retention and stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — native Writing evidence and trusted controller, 16 October2026"
     },
     {
       "path": "review/issue-39/2026-10-16-positioning-integration.md",
@@ -18952,7 +18968,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "kind": "file",
-      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts.",
+      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -20217,7 +20233,7 @@
     {
       "path": "tools/quality/cause-probe.cjs",
       "kind": "file",
-      "purpose": "Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity.",
+      "purpose": "Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [

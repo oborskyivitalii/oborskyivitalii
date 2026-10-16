@@ -555,6 +555,9 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
         self.assertIn(BASE, analysis)
         self.assertRegex(analysis, r"(?m)^## Sol tasks$")
 
+    def test_current_writing_diagnostic_keeps_raw_failures_and_sample_separation(self):
+        node_contracts(self, ["tests/cause-probe.test.cjs"])
+
     def test_flight_resource_telemetry_preserves_original_failure(self):
         result = subprocess.run(
             ["node", "--test", "--test-reporter=tap", "tests/staging-regression.test.cjs"],

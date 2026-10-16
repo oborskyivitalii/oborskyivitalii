@@ -14,6 +14,7 @@ const {
   evidenceComplete,
   writingLabels,
   writing,
+  traceSummary,
 } = require('../tools/quality/cause-probe.cjs');
 const candidate = 'a'.repeat(40),
   variant = { id: 'color', contract: 1, fingerprint: 'c'.repeat(64) };
@@ -452,4 +453,122 @@ test('cause scope counts preserve Research and WebKit while Writing requires all
     }),
     true
   );
+});
+
+test('current Writing keeps five ordinary trials separate from CPU sampling and retains every overrun', async (t) => {
+  for (const failure of [null, 'lighthouse', 'cleanup']) {
+    const fixture = writingTrialFixture(t, null);
+    const request = fixture.dependencies.lighthouse;
+    fixture.dependencies.lighthouse = async (url, flags) => {
+      const ordinal = fixture.launches.length;
+      if (failure === 'lighthouse' && ordinal === 3) throw Error('original failed trial');
+      const result = await request(url, flags);
+      if (ordinal !== 6) result.artifacts.Trace.traceEvents = [{ name: 'RunTask', dur: 81000 }];
+      return result;
+    };
+    if (failure === 'cleanup') {
+      const launch = fixture.dependencies.launcher.launch;
+      fixture.dependencies.launcher.launch = async (options) => {
+        const chrome = await launch(options);
+        if (fixture.launches.length === 3)
+          chrome.kill = async () => {
+            throw Error('cleanup failed');
+          };
+        return chrome;
+      };
+    }
+    const promise = writing(
+      writingFixture(),
+      'http://127.0.0.1:1234',
+      fixture.output,
+      fixture.record,
+      fixture.dependencies,
+      true
+    );
+    if (failure === 'cleanup') await assert.rejects(promise, /cleanup failed/);
+    else await promise;
+    assert.equal(fixture.launches.length, failure === 'cleanup' ? 3 : 6);
+    assert.equal(fixture.record.rows.length, failure ? (failure === 'cleanup' ? 3 : 5) : 6);
+    assert.equal(evidenceComplete('writing-current', fixture.record), !failure);
+    assert.equal(fixture.record.errors.length, failure ? 1 : 0);
+    for (const row of fixture.record.rows) {
+      assert.equal(row.tbtMs, 900, 'overrun is preserved without performance acceptance');
+      assert.equal(row.sampled, row.run === 6);
+      const request =
+        fixture.requests[row.run - 1 - (failure === 'lighthouse' && row.run > 3 ? 1 : 0)];
+      assert.equal('additionalTraceCategories' in request.flags, row.sampled);
+      assert.equal(row.fullGate, false);
+      assert.equal(row.performanceAcceptance, false);
+      const raw = JSON.parse(
+        zlib.gunzipSync(fs.readFileSync(path.join(fixture.output, row.lhr.file)))
+      );
+      assert.equal(raw.audits['total-blocking-time'].numericValue, 900);
+    }
+    if (failure === 'cleanup')
+      assert.deepEqual(
+        fixture.record.unattempted.map((v) => v.run),
+        [4, 5, 6]
+      );
+    if (!failure) {
+      for (const rows of [
+        fixture.record.rows.slice(1),
+        [...fixture.record.rows.slice(0, 5), fixture.record.rows[0]],
+        fixture.record.rows.map((row) => ({ ...row, sampled: true })),
+      ])
+        assert.equal(evidenceComplete('writing-current', { ...fixture.record, rows }), false);
+    }
+  }
+});
+test('ordinary mobile evidence still requires trace/network and sampled evidence requires actual samples', () => {
+  const result = writingResult('http://localhost/writing.html', true);
+  lighthouseEvidence(result, false);
+  assert.throws(() => lighthouseEvidence(result, true));
+  assert.throws(() =>
+    lighthouseEvidence(
+      { ...result, artifacts: { ...result.artifacts, Trace: { traceEvents: [] } } },
+      false
+    )
+  );
+  assert.throws(() =>
+    lighthouseEvidence({ ...result, artifacts: { ...result.artifacts, DevtoolsLog: [] } }, false)
+  );
+  assert.equal(scopeContract('writing-current').trials, 6);
+  const trace = {
+    traceEvents: [
+      {
+        name: 'ProfileChunk',
+        pid: 1,
+        tid: 2,
+        id: 'a',
+        args: {
+          data: {
+            cpuProfile: {
+              nodes: [{ id: 1, callFrame: { functionName: 'paint' } }],
+              samples: [1, 1],
+            },
+          },
+        },
+      },
+      {
+        name: 'ProfileChunk',
+        pid: 1,
+        tid: 2,
+        id: 'b',
+        args: {
+          data: {
+            cpuProfile: {
+              nodes: [{ id: 1, callFrame: { functionName: 'project' } }],
+              samples: [1],
+            },
+          },
+        },
+      },
+      { name: 'RunTask', dur: 81000, ts: 10, pid: 1, tid: 2 },
+    ],
+  };
+  assert.deepEqual(traceSummary(trace).cpuSelfSamples, [
+    { functionName: 'paint', samples: 2 },
+    { functionName: 'project', samples: 1 },
+  ]);
+  assert.equal(traceSummary(trace).longTasks[0].ms, 81);
 });
