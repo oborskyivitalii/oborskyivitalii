@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4aef6a2038553ea40695fb8ec2e1688c88e19e57085ae697111e7885a7b89929",
+    "digest": "9109945728615bb15fd35529dddd5c6c345616cc8806ffd3f9037e2acf35cfa6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -825,7 +825,7 @@
       {
         "path": "review/issue-39/2026-10-16-readiness-execution.md",
         "identity_mode": "content",
-        "sha256": "a3a6ffc7b83c0d6f70cb3cf2c8af8300c839177bf0ff039fb056e574a4740e7f"
+        "sha256": "30bdde130d0a1f05fa489b5a5a7a8f39992c1bfa9439c75a582c9b24e4009d91"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5650,7 +5650,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "c530862d5ce35d8640145e3dc5e50b4c23494b67eb91af332c6a8a66661a04e9"
+        "sha256": "7919539e425f9e1bb435f6b0640696efd981c442081552dd0963edbda527324d"
       },
       {
         "path": "tests/release-rights.test.cjs",

@@ -286,3 +286,14 @@ The publication ledger union additionally retains PR83's exact prior findings.
 The superseded branch-only prerequisite policy is not used to admit the full
 PR40 edition. Final fresh full-feature owning and scanner observations follow
 on one clean source; Writing TBT and hosted staging remain subsequent work.
+
+
+Exact clean server commit90802457 / tree186bc0c2 passed complete lint, package
+verification, Semgrep225 files/zero findings, all37 raw Bandit findings exactly
+reviewed and all4779 detector candidates classified. Installed graph89 packages/
+143 active constraints passed. Full feature owning execution passed15/16 checks;
+its only failure was the production fixture's old exact identity expectation.
+Update that current-source expectation to issue39-licensed-compact-production,
+retaining every runtime-byte, loader, wrong-variant and edition rejection.
+All historical family cases remain. Repeat final current-source checks after
+this focused fixture correction; preserve90802457's failed owning result.
