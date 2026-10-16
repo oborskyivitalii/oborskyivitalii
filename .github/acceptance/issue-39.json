@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
-      "automated_scope": "Current main9d8e99f5 is the exact baseline. Preserve all607 protected public/runtime/producer/workflow files and modes after reversing only the exact named mandatory-rights list paragraph. No public or runtime byte changes; actual provider inventory remains separate.",
+      "automated_scope": "Current main321b7066 is the exact baseline. Preserve all607 protected public/runtime/producer/workflow files and modes after reversing only the exact two-ID mandatory-rights list addition. No public or runtime byte changes; actual provider inventory remains separate.",
       "checks": ["PRESERVATION", "HOST-POLICY"],
       "gates": ["LIVE-INVENTORY"]
     },
@@ -21,7 +21,7 @@
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "Two exact future compact-metadata plain/staging fingerprints, independently recomputed base/Color/edition hashes and all five unchanged canonical/immutable runtime files from cold immutable16d4b1cd/current-candidate builds. Retain every historical tuple, strict unknown/mixed/missing/edition rejection, mandatory frozen license records and original timing/resource budgets. Patched Python audit graph remains unchanged and verified. No production tuple, public/runtime/compiler/workflow change or hosted admission belongs to this prerequisite.",
+      "automated_scope": "Two exact future Writing plain/staging identities, independently recomputed from clean immutable64559870 source, base/Color/edition descriptors and all five canonical/immutable runtime hashes. Retain every historical/compact tuple and strict unknown/mixed/missing/edition rejection; mandatory frozen publication rights, source provenance and original timing/resource budgets remain. Native isolated current-runtime diagnostic38940320357 retains45/29/22/19.5/21.5ms ordinary TBT plus separate111ms CPU attribution, not hosted staging or release admission. This prerequisite changes no public/runtime/compiler/workflow bytes and registers no production tuple. Patched Python audit graph is unchanged and verified.",
       "checks": [
         "PRESERVATION",
         "HOST-POLICY",
@@ -30,14 +30,15 @@
         "FLIGHT-TELEMETRY",
         "PUBLICATION-RECORDS",
         "AUDIT-GRAPH",
-        "COMPACT-PROOF"
+        "COMPACT-PROOF",
+        "WRITING-PROOF"
       ],
       "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
     },
     {
       "id": "AC04",
       "intent": "Actionable maintainer instructions and linked execution",
-      "automated_scope": "Continue #39/PR40 after merged PR82. Approved compact JSON-LD changes producer-bound identity while preserving every runtime byte; trusted-main package verification needs the two exact identities and finite mandatory-rights membership before ordinary PR40 admission. Normal current source/RI/owning CI and protected merge apply under the maintainer delivery instruction. Keep full PR40 feature and actual release acceptance separate; CS01/CS04/CS05/CS08/CS09/CS10 self-review is not independent release review.",
+      "automated_scope": "The maintainer authorized isolated native Writing diagnosis and eventual exact trusted-main identities, then stop/report. Register only the verified current plain/staging runtime through ordinary successful source/RI/owning/preview checks and protected merge. PR40 stays Draft; no Ready/full26preflight/stage/PR40 merge/production/domain operation belongs here. CS01/CS04/CS05/CS08/CS09/CS10 self-review remains separate from independent release review.",
       "checks": ["STYLE", "BASIC", "RI", "RI-CI"],
       "gates": ["OWNER-SETTINGS", "REVIEW", "STAGING", "MERGE"]
     },
@@ -96,6 +97,10 @@
     "COMPACT-PROOF": {
       "kind": "unittest",
       "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_compact_tuple_proof_and_closed_selector"
+    },
+    "WRITING-PROOF": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_writing_runtime_proof_and_closed_selector"
     }
   },
   "gates": {
@@ -125,11 +130,11 @@
     },
     "STAGING": {
       "kind": "human",
-      "description": "PR40 requires fresh Ready source/RI/owning admission, ordinary one-host Cloudflare staging, unchanged-budget native regression and exact stable identity before merge. This controller-only prerequisite preserves current public/runtime bytes and does not claim staging; the trusted registry must recognize its future compact-metadata tuples before ordinary PR40 admission. GitHub Pages staging stays retired."
+      "description": "PR40 requires fresh exact-source Ready admission, full26preflight and ordinary Cloudflare staging before its merge. This two-ID controller prerequisite supplies none of those gates; PR40 remains Draft."
     },
     "MERGE": {
       "kind": "merge",
-      "description": "Current maintainer instruction requests PR40 through protected main/permanent staging, then production. Integrate only this required public-byte-preserving exact controller-identity prerequisite through normal successful required checks; preserve its exact tree and protection, then resume full PR40 admission. No production activation or issue closure follows."
+      "description": "Current maintainer authorization covers this required exact controller-identity prerequisite on trusted main through ordinary successful checks and expected-head protected merge. Then stop/report. PR40 Ready, preflight, stage, merge, production and issue closure remain separate."
     }
   }
 }

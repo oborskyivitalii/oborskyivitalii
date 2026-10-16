@@ -4,52 +4,49 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main9d8e99f5 includes merged PR81 and PR82: one permanent Cloudflare
-  staging and PR previews; exact patched Python audit graph installer is on main.
-- #39 / PR40 remains remote Draft16d4b1cd. Isolated local delivery preserves
-  its full feature policy, compact metadata and215 individually proved hashes.
-- Full local owning execution6ed433e retains three unknown-identity failures.
-  Cold Node builds and independent Python derivation prove every runtime byte
-  unchanged; this branch registers only the two exact future plain/staging IDs.
-- Review: `review/issue-39/2026-10-16-compact-controller.md`; inert tuple proof
-  in the adjacent gzip. No current PR40 stable admission, merge or production.
+- Protected main321b7066 includes PR81/82/83: one Cloudflare stable staging,
+  exact patched Python graph and ten reviewed historical/compact runtime tuples.
+- #39 / PR40 remains Draft64559870. Prior math/projection correction is preserved;
+  final local isolated candidate136.5/150/232ms retained a real overrun.
+- Native diagnostic38940320357 on exact645 source/full Ubuntu Chromium153:
+  five ordinary plain Color trials45/29/22/19.5/21.5ms; separate sampled111ms.
+  No current native tail reproduced; no additional runtime change is justified.
+- Native diagnostic is loopback plain Color, not hosted/staging acceptance.
+  Raw six-run artifact12062293377,90days; all earlier failures remain.
+- This minimal branch prepares only exact Writing plain/staging controller IDs.
+  Review: `review/issue-39/2026-10-16-writing-controller.md` and adjacent tuple gzip.
 
 ## Decisions
 
-- The maintainer requests PR40 through protected main/permanent staging, then
-  production. Stage the open PR first and preserve its admitted tree at merge.
-- /stage uses the main workflow installer and PR requirements. The patched SDK
-  requires the exact graph-verified installer bridge on main before that request.
-- Retain unmodified Semgrep1.179.0; pin MCP1.30.0 and pip26.2.1. Verify the whole
-  exact inventory and every active constraint, permitting only the named SDK
-  constraint override. No advisory exception or budget change is authorized.
-- This dependency preserves every public/runtime/compiler/workflow byte. The607
-  protected main9d8e99f5 blobs/modes must match after reversing only the exact
-  mandatory-rights list paragraph; all old tuples and rejection checks survive.
-- Keep the full feature acceptance policy in PR40 and all actual release gates.
-  Self-review, source CI and a dependency merge do not supply release approval.
+- Maintainer authorized next steps1/2 (native diagnosis and trusted-main exact
+  identities), then stop/report with numbered next steps. PR40 stays Draft.
+- Preserve all607 protected main blobs/modes after only the exact two-ID rights
+  list addition; retain every historical/compact tuple, byte/edition rejection,
+  frozen rights, audit graph, original timing/resource and release budgets.
+- Native current evidence does not erase old235.5/232ms failures, prove a causal
+  hardware explanation or substitute for hosted staging and human review.
+- Integrate only the required two-ID controller prerequisite through ordinary
+  successful source/RI/owning/preview checks and protected expected-head merge.
+- No PR40 Ready/full26preflight/stage/merge/production/domain/DNS in this scope.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 compact identity prerequisite | Freeze exact source; pass source/RI/owning and preview checks; normal protected merge. |
-| #39 / PR40 | Integrate main, prove exact checksum findings, finish compact JSON-LD and clean preflight, then ordinary one-host staging before merge. |
-| #1 / #7 / #8 / #13 | Current rights/editorial/reader/device/independent, full/native/performance and live-origin acceptance. |
-| #39 / #72 | Actual protected App/environment/immutable release settings, authenticated Pages predecessor, canonical migration and recovery. |
+| #39 Writing identity prerequisite | Freeze; source/RI/owning/preview checks; normal trusted-main integration. |
+| #39 / PR40 | After stop/report: integrate main, freeze final source, Ready source admission,26/26 preflight and ordinary stable staging. |
+| #1 / #7 / #8 / #13 | Full/native/performance and exact-source rights/editorial/device/independent acceptance before production. |
+| #39 / #72 | Publisher settings, canonical migration and recovery remain separate. |
 
 ## Next session
 
-1. Revalidate live main, PR40 and prerequisite PR/refs/checks; preserve original
-   dirty worktree and failed/raw runtime evidence.
-2. Complete and integrate only this exact public-byte-preserving tuple prerequisite.
-3. Resume PR40 readiness review, full feature policy and26-family preflight.
-4. Obtain exact stable Cloudflare admission before merging the identical PR40 tree.
-5. Freeze production from merged main; finish actual full/native/manual release
-   gates, then perform only the ready authorized production actions.
+1. Revalidate PR40/current main and the controller prerequisite checks and refs.
+2. Complete only already authorized controller integration, then stop/report.
+3. Obtain a later instruction before PR40 Ready, full preflight or staging.
+4. Stable staging must verify its exact edition/host/source and all original budgets.
 
 ## Maintenance
 
-Keep these five sections and at most120lines. Issues/PRs own current acceptance;
+Keep these five sections and at most120lines. Issues/PRs own actual acceptance;
 replace stale observations at handoff and rebuild RI. Never store secrets or
 private correspondence in memory.

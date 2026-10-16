@@ -162,13 +162,14 @@ function evidence(id) {
   }
   return value;
 }
-test('only reviewed historical and compact-metadata plain/staging runtime tuples select a camera and flight contract', () => {
+test('only reviewed historical, compact-metadata and Writing plain/staging runtime tuples select a camera and flight contract', () => {
   for (const family of [
     'legacy',
     'fixed',
     'issue76',
     'issue39-licensed',
     'issue39-licensed-compact',
+    'issue39-writing-tbt',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -209,8 +210,10 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-staging',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -242,6 +245,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
   ]) {
     const staged = manifest(id);
     delete staged.edition;
@@ -254,8 +258,10 @@ test('current and licensed families reject mixed reviewed bytes and editions in 
     'issue76-staging',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
   ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
@@ -364,8 +370,10 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'issue76-staging',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1);

@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "9d8e99f536e823dc32337e11db0b10fdb85365f2"
+BASE = "321b706653d210129205878cebac3ccd1dd7f866"
 LOCK_BASE = "315da39d0294d970809648cdc0725f7e63187602"
 PROTECTED = (
     "site",
@@ -46,8 +46,8 @@ class Issue39AcceptanceTests(unittest.TestCase):
             self.assertEqual((mode, kind), ("100644", "blob"))
             baseline[filename.decode()] = object_id
         self.assertEqual(len(baseline), 607)
-        before = b"  const licensed = ['issue39-licensed-plain', 'issue39-licensed-staging'].map(\n    motion.reviewedRuntime\n  );"
-        after = b"  const licensed = [\n    'issue39-licensed-plain',\n    'issue39-licensed-staging',\n    'issue39-licensed-compact-plain',\n    'issue39-licensed-compact-staging',\n  ].map(motion.reviewedRuntime);"
+        before = b"  const licensed = [\n    'issue39-licensed-plain',\n    'issue39-licensed-staging',\n    'issue39-licensed-compact-plain',\n    'issue39-licensed-compact-staging',\n  ].map(motion.reviewedRuntime);"
+        after = b"  const licensed = [\n    'issue39-licensed-plain',\n    'issue39-licensed-staging',\n    'issue39-licensed-compact-plain',\n    'issue39-licensed-compact-staging',\n    'issue39-writing-tbt-plain',\n    'issue39-writing-tbt-staging',\n  ].map(motion.reviewedRuntime);"
         actual = {}
         for source in paths:
             owner = ROOT / source
@@ -72,6 +72,70 @@ class Issue39AcceptanceTests(unittest.TestCase):
                 ).hexdigest()
         self.assertEqual(set(actual), set(baseline))
         self.assertEqual(actual, baseline, "byte changed outside the exact mandatory-rights list")
+
+    def test_writing_runtime_proof_and_closed_selector(self):
+        with gzip.open(
+            ROOT / "review/issue-39/2026-10-16-writing-controller-tuples.json.gz", "rt"
+        ) as handle:
+            proof = json.load(handle)
+        self.assertEqual(proof["kind"], "issue39-writing-runtime-controller-identity")
+        self.assertFalse(proof["sourceObservation"]["dirty"])
+        self.assertEqual(
+            proof["sourceObservation"]["commit"], "64559870de11b6f394cdb2197ff5fa07f4a90f11"
+        )
+        self.assertEqual([row["kind"] for row in proof["editions"]], ["plain", "staging"])
+        components = proof["baseComponents"]
+        base = {
+            key: components[key]
+            for key in ["engine", "scenes", "assets", "producer", "routes", "variant", "contract"]
+        }
+        base_engine = hashlib.sha256(
+            (json.dumps(base, ensure_ascii=False, indent=2) + "\n").encode()
+        ).hexdigest()
+
+        def digest(value):
+            return hashlib.sha256(
+                json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode()
+            ).hexdigest()
+
+        plain = digest({"contract": 1, "baseEngine": base_engine, "parts": proof["parts"]})
+        descriptor = proof["descriptor"]
+        staged = digest(
+            {
+                "contract": 1,
+                "edition": descriptor["edition"],
+                "baseEngine": plain,
+                "css": descriptor["css"],
+                "producer": descriptor["producer"],
+                "inputs": descriptor["inputs"],
+            }
+        )
+        for row, expected in zip(proof["editions"], [plain, staged], strict=True):
+            self.assertEqual(row["variant"]["baseEngine"], base_engine)
+            self.assertEqual(row["variant"]["fingerprint"], expected)
+            self.assertFalse(row["sourceDirty"])
+            self.assertEqual(row["sourceCommit"], proof["sourceObservation"]["commit"])
+            self.assertEqual(row["sourceTree"], proof["sourceObservation"]["tree"])
+            self.assertEqual(
+                set(row["files"]),
+                {"styles.css", "space.js", "navigation.js", "theme.js", "archive.js"},
+            )
+            for record in row["files"].values():
+                self.assertTrue(record["canonicalAndImmutableEqual"])
+                self.assertEqual(record["sha256"], record["independentPythonSha256"])
+        script = """
+const fs=require('node:fs'),z=require('node:zlib'),a=require('node:assert/strict'),m=require('./tools/quality/color-motion-contract.cjs');
+const p=JSON.parse(z.gunzipSync(fs.readFileSync('review/issue-39/2026-10-16-writing-controller-tuples.json.gz')));
+for(const row of p.editions){const id='issue39-writing-tbt-'+row.kind,known=m.reviewedRuntime(id),files={};
+a.deepEqual(known.variant,row.variant);
+for(const [name,record]of Object.entries(row.files)){a.equal(record.sha256,known.files[name]);for(const file of [name,'runtime/'+row.variant.fingerprint+'/'+name])files[file]=record;}
+const candidate={variant:row.variant,components:{contract:1,engine:row.variant.fingerprint,variant:row.variant},files,...(row.edition?{edition:row.edition}:{})};a.equal(m.select(candidate).id,id);}
+a.throws(()=>m.reviewedRuntime('issue39-writing-tbt-production'));
+"""
+        result = subprocess.run(
+            ["node", "-e", script], cwd=ROOT, capture_output=True, text=True, timeout=30
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_compact_tuple_proof_and_closed_selector(self):
         with gzip.open(ROOT / "review/issue-39/2026-10-16-compact-tuples.json.gz", "rt") as handle:
