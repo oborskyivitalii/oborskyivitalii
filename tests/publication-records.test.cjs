@@ -645,6 +645,9 @@ test('explicit stable and production workflows run prepublication before deploya
     reusableBuild,
     /name: Complete host-independent guards[^\n]*\n {8}id: source_checks/
   );
-  assert.match(reusableBuild, /source_checks: \$\{\{ steps\.source_checks\.outcome \}\}/);
+  assert.match(
+    reusableBuild,
+    /source_checks:.*steps\.reuse_source_checks\.outcome.*steps\.source_checks\.outcome/
+  );
   assert.doesNotMatch(reusableBuild, /check node tools\/quality\/source-tests\.cjs/);
 });

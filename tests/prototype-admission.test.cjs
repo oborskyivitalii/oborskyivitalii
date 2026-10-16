@@ -144,7 +144,7 @@ test('all exact source workflows must finish before owner staging', async () => 
   assert.equal(api.writes.length, 0);
 });
 
-test('merge admission is written only for current owner source accepted on both hosts', async () => {
+test('merge admission is written only for current owner source accepted on Cloudflare', async () => {
   const main = { protected: true, commit: { sha: mainSHA } },
     api = github();
   const id = await admission.beginMergeAdmission(api, context, pr(), main, '1');
@@ -156,7 +156,6 @@ test('merge admission is written only for current owner source accepted on both 
     source,
     {
       promote: 'success',
-      pages: 'success',
     },
     id,
     '1'
@@ -164,10 +163,7 @@ test('merge admission is written only for current owner source accepted on both 
   assert.equal(api.writes[0].status, 'in_progress');
   assert.equal(api.writes[0].head_sha, source);
   assert.equal(result.conclusion, 'success');
-  for (const outcomes of [
-    { promote: 'failure', pages: 'success' },
-    { promote: 'success', pages: 'skipped' },
-  ]) {
+  for (const outcomes of [{ promote: 'failure' }, { promote: 'skipped' }, {}]) {
     const rejected = github();
     await assert.rejects(
       admission.publishMergeAdmission(rejected, context, pr(), main, source, outcomes)
@@ -177,7 +173,6 @@ test('merge admission is written only for current owner source accepted on both 
   await assert.rejects(
     admission.publishMergeAdmission(github(), context, pr(), main, mainSHA, {
       promote: 'success',
-      pages: 'success',
     }),
     /head moved/
   );
@@ -188,7 +183,6 @@ test('merge admission is written only for current owner source accepted on both 
   await assert.rejects(
     admission.publishMergeAdmission(behind, context, pr(), main, source, {
       promote: 'success',
-      pages: 'success',
     }),
     /current main/
   );
@@ -207,7 +201,7 @@ test('a fresh staging attempt supersedes old success and failure completes only 
     source,
     id,
     'failure',
-    { title: 'Failed mirror', summary: 'fixture' },
+    { title: 'Failed promotion', summary: 'fixture' },
     '1'
   );
   assert.equal(api.writes[1].conclusion, 'failure');
@@ -238,7 +232,7 @@ test('rerun admission uses the actual environment attempt and rejects missing or
       pr(),
       main,
       source,
-      { promote: 'success', pages: 'success' },
+      { promote: 'success' },
       id
     );
     assert.equal(api.writes[1].conclusion, 'success');
@@ -258,7 +252,7 @@ test('rerun admission uses the actual environment attempt and rejects missing or
   }
 });
 
-test('actual merge identity requires the complete tested tree and the real latest two-host admission', async () => {
+test('actual merge identity requires the complete tested tree and the real latest Cloudflare admission', async () => {
   const tree = 'c'.repeat(40),
     check = {
       id: 30,
@@ -280,7 +274,7 @@ test('actual merge identity requires the complete tested tree and the real lates
     status: 'completed',
     conclusion: 'success',
   };
-  const jobs = ['promote', 'pages / Pages publication', 'merge-admission'].map(job);
+  const jobs = ['promote', 'merge-admission'].map(job);
   let mergedTree = tree;
   const api = {
     rest: {
@@ -346,7 +340,11 @@ test('Draft jobs cannot impersonate required contexts and browser installation i
     smoke,
     /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true'/
   );
-  assert.match(yaml, /PAGES_RESULT: \$\{\{ needs.pages.result \}\}/);
-  assert.match(yaml, /pages:process.env.PAGES_RESULT/);
+  assert.doesNotMatch(
+    yaml,
+    /SITE_PAGES_STAGING_ENABLED|PAGES_RESULT|PAGES_ENABLED|needs\.pages|mirror-recovery|site-pages\.yml/
+  );
+  assert.equal(fs.existsSync('.github/workflows/site-pages.yml'), false);
+  assert.match(yaml, /promote:process.env.PROMOTE_RESULT/);
   assert.match(yaml, /beginMergeAdmission/);
 });

@@ -265,12 +265,6 @@
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
-    ".github/workflows/site-pages.yml": {
-      "kind": "file",
-      "purpose": "Serialized staging Pages mirror with production hash invariants and exact recovery.",
-      "role": "workflow",
-      "owner": "guides/SITE-STAGING.md"
-    },
     ".github/workflows/site-production.yml": {
       "kind": "file",
       "purpose": "Disabled-by-default owner release or rollback; frozen evidence, combined Pages publication, live acceptance and compensated production identity.",
@@ -297,7 +291,7 @@
     },
     ".github/workflows/site-staging-merge.yml": {
       "kind": "file",
-      "purpose": "Read-only actual merge/source-tree and authenticated two-host staging admission observation.",
+      "purpose": "Read-only actual merge/source-tree and authenticated Cloudflare-only staging admission observation.",
       "role": "workflow",
       "owner": "guides/SITE-STAGING.md"
     },
@@ -1434,6 +1428,12 @@
       "purpose": "Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-72/2026-10-16-cloudflare-only-staging.md": {
+      "kind": "file",
+      "purpose": "Approved Cloudflare-only staging amendment, duplicate preflight removal, implementation evidence and remaining PR40/live gates.",
+      "role": "history",
+      "owner": "guides/SITE-STAGING.md"
     },
     "review/public-responses-20261006": {
       "kind": "directory",
@@ -7045,6 +7045,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/prepublication-reuse.test.cjs": {
+      "kind": "file",
+      "purpose": "Same-run preflight reuse, native artifact identity and missing/failed/changed/wrong-source/attempt/host negatives.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/quality-sources.test.cjs": {
       "kind": "file",
       "purpose": "Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests.",
@@ -7722,6 +7728,12 @@
       "purpose": "Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/prepublication.cjs": {
+      "kind": "file",
+      "purpose": "Authenticate and verify complete same-run/attempt staging preflight reports and immutable original scanner bytes without rerunning guards.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/reading-clarity.cjs": {
       "kind": "file",
