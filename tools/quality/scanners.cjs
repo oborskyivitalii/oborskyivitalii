@@ -49,7 +49,9 @@ function storedReport(execute, command, args, file, redact, accepted = [0]) {
     fs.writeFileSync(path.join(out, file), JSON.stringify(report, null, 2));
   } catch (error) {
     if (toolError)
-      throw Error(toolError.message + '; raw report: ' + error.message, { cause: error });
+      throw Error(toolError.message + '; raw report: ' + error.message, {
+        cause: error,
+      });
     throw error;
   }
   if (toolError) throw toolError;
@@ -854,6 +856,7 @@ function advisories() {
       name: 'pip',
       reports: ['pip-audit.json'],
       run: (run) => {
+        run(py('python'), ['tools/quality/python_toolchain.py']);
         run(py('pip-audit'), [
           '-r',
           'tools/quality/toolchain/requirements.txt',

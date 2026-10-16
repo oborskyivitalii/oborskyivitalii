@@ -41,6 +41,14 @@ on:
       public_upload_digest:
         type: string
         default: ''
+      prepublication_artifact_id:
+        description: Exact staging preflight artifact from this workflow run and attempt
+        type: string
+        default: ''
+      prepublication_upload_digest:
+        description: Native upload digest of that preflight artifact
+        type: string
+        default: ''
       evidence_artifact_id:
         description: Immutable external review/device evidence artifact ID
         type: string
@@ -139,7 +147,9 @@ jobs:
       artifact_upload_digest: ${{ inputs.public_upload_digest || steps.upload.outputs.artifact-digest }}
       public_digest: ${{ steps.identity.outputs.digest }}
       artifact_run_id: ${{ inputs.public_run_id || github.run_id }}
-      source_checks: ${{ steps.source_checks.outcome }}
+      source_checks: ${{ inputs.prepublication_artifact_id != '' && steps.reuse_source_checks.outcome || steps.source_checks.outcome }}
+      prepublication_artifact_id: ${{ inputs.prepublication_artifact_id || steps.prepublication.outputs.artifact-id }}
+      prepublication_upload_digest: ${{ inputs.prepublication_upload_digest || steps.prepublication.outputs.artifact-digest }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -161,10 +171,12 @@ jobs:
           test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
           node -e "const a=require('node:assert/strict');a.ok(['staging','production'].includes(process.env.SITE_VALIDATION_LEVEL));if(process.env.SITE_VALIDATION_LEVEL==='staging'){a.equal(process.env.SITE_TEST_PROFILE,'staging');a.ok(process.env.SITE_TEST_BASE_URL.startsWith('https://'));a.equal(process.env.SITE_AUTOMATED_ONLY,'true');a.equal(process.env.SITE_FULL,'true')}"
       - name: Install locked maintained-source check dependencies
+        if: inputs.prepublication_artifact_id == ''
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
       - name: Package public files once and enforce budgets
         if: inputs.public_artifact_id == ''
         run: node tools/quality/artifact.cjs build quality-artifact
@@ -199,17 +211,52 @@ jobs:
           a.equal(m.components.variant?.id||'base',process.env.SITE_PUBLIC_VARIANT,'wrong tested public rendition');
           if(process.env.SITE_VALIDATION_LEVEL==='production')a.notEqual(m.edition?.id,'staging','production validates a separately frozen production edition');
           JS
+      - name: Authenticate the same-run staging preflight artifact
+        if: inputs.prepublication_artifact_id != ''
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PREFLIGHT_ID: ${{ inputs.prepublication_artifact_id }}
+          PREFLIGHT_DIGEST: ${{ inputs.prepublication_upload_digest }}
+          PUBLIC_RUN: ${{ inputs.public_run_id }}
+        with:
+          script: |
+            const a=require('node:assert/strict');
+            a.equal(process.env.SITE_VALIDATION_LEVEL,'staging');
+            a.equal(process.env.PUBLIC_RUN,String(context.runId));
+            await require('./tools/quality/prepublication.cjs').authenticate(github,context,process.env.PREFLIGHT_ID,process.env.PREFLIGHT_DIGEST,process.env.GITHUB_RUN_ATTEMPT);
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: inputs.prepublication_artifact_id != ''
+        with:
+          artifact-ids: ${{ inputs.prepublication_artifact_id }}
+          path: staging-reports/prepublication-source
+      - name: Verify every retained preflight guard and original report byte
+        id: reuse_source_checks
+        if: inputs.prepublication_artifact_id != ''
+        env:
+          SITE_EXPECTED_PUBLIC_DIGEST: ${{ inputs.public_digest }}
+        run: node tools/quality/prepublication.cjs staging-reports/prepublication-source quality-artifact quality-reports
       - name: Complete host-independent guards before candidate upload or hosted jobs
         id: source_checks
-        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}
+        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && inputs.prepublication_artifact_id == '' }}
+        env:
+          SITE_TEST_BASE_URL: ${{ inputs.validation_level != 'staging' && inputs.base_url || '' }}
         run: node tools/quality/local.cjs --prepublication "$SITE_VALIDATION_LEVEL" quality-artifact --report quality-reports/prepublication.json
       - name: Retain all prepublication observations even when a guard fails
-        if: always()
+        id: prepublication
+        if: ${{ always() && inputs.prepublication_artifact_id == '' }}
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: site-prepublication-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: quality-reports/
           if-no-files-found: error
+          retention-days: 30
+      - name: Retain preflight verification diagnostics without replacing the producer
+        if: ${{ always() && inputs.prepublication_artifact_id != '' }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-prepublication-verified-${{ inputs.profile }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/
+          if-no-files-found: warn
           retention-days: 30
       - id: identity
         run: node -e "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+require('./quality-artifact/artifact.json').artifactDigest+'\n')"
@@ -263,6 +310,7 @@ jobs:
         with:
           node-version: 24.19.0
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        if: inputs.validation_level != 'staging'
         with:
           python-version: 3.12.14
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
@@ -271,23 +319,45 @@ jobs:
           run-id: ${{ needs.build.outputs.artifact_run_id }}
           github-token: ${{ github.token }}
           path: quality-artifact
+      - name: Authenticate the original same-attempt staging preflight
+        if: inputs.validation_level == 'staging'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PREFLIGHT_ID: ${{ needs.build.outputs.prepublication_artifact_id }}
+          PREFLIGHT_DIGEST: ${{ needs.build.outputs.prepublication_upload_digest }}
+        with:
+          script: |
+            await require('./tools/quality/prepublication.cjs').authenticate(github,context,process.env.PREFLIGHT_ID,process.env.PREFLIGHT_DIGEST,process.env.GITHUB_RUN_ATTEMPT);
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: inputs.validation_level == 'staging'
+        with:
+          artifact-ids: ${{ needs.build.outputs.prepublication_artifact_id }}
+          path: staging-reports/prepublication-source
+      - name: Revalidate and retain original staging scanner reports
+        if: inputs.validation_level == 'staging'
+        env:
+          SITE_EXPECTED_PUBLIC_DIGEST: ${{ needs.build.outputs.public_digest }}
+        run: node tools/quality/prepublication.cjs staging-reports/prepublication-source quality-artifact quality-reports
       - name: Install locked tools
+        if: inputs.validation_level != 'staging'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
       - name: Verify artifact and scanner fixtures
+        if: inputs.validation_level != 'staging'
         run: |
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/quality/selftest.cjs
       - name: Lint source
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && inputs.validation_level != 'staging' }}
         run: node tools/quality/scanners.cjs lint
       - name: Security scans
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && inputs.validation_level != 'staging' }}
         run: node tools/quality/scanners.cjs security
       - name: Dependency advisories
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && inputs.validation_level != 'staging' }}
         run: node tools/quality/scanners.cjs advisories
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()

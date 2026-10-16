@@ -165,7 +165,14 @@ function evidence(id) {
   return value;
 }
 test('only reviewed historical and current launch plain/staging tuples select a camera and flight contract', () => {
-  for (const family of ['legacy', 'fixed', 'issue76', 'issue39', 'issue39-licensed'])
+  for (const family of [
+    'legacy',
+    'fixed',
+    'issue76',
+    'issue39',
+    'issue39-licensed',
+    'issue39-licensed-compact',
+  ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
         selected = manifest(id);
@@ -176,14 +183,20 @@ test('only reviewed historical and current launch plain/staging tuples select a 
       );
       assert.equal(gate.aggregate(evidence(id)).pass, true);
     }
-  for (const id of ['fixed-plain', 'issue76-plain', 'issue39-plain', 'issue39-licensed-plain']) {
+  for (const id of [
+    'fixed-plain',
+    'issue76-plain',
+    'issue39-plain',
+    'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+  ]) {
     const copy = motion.reviewedRuntime(id);
     copy.files['space.js'] = '0'.repeat(64);
     assert.equal(motion.select(manifest(id)).id, id);
   }
 });
 test('production Color has a separate exact edition identity with unchanged approved runtime bytes', () => {
-  for (const family of ['issue76', 'issue39', 'issue39-licensed']) {
+  for (const family of ['issue76', 'issue39', 'issue39-licensed', 'issue39-licensed-compact']) {
     const plain = motion.reviewedRuntime(family + '-plain'),
       production = motion.reviewedRuntime(family + '-production');
     assert.notEqual(production.variant.fingerprint, plain.variant.fingerprint);
@@ -227,10 +240,13 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-production',
     'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
     'issue39-production',
     'issue39-licensed-production',
+    'issue39-licensed-compact-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -262,6 +278,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-staging',
     'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
   ]) {
     const staged = manifest(id);
     delete staged.edition;
@@ -275,10 +292,13 @@ test('reviewed fixed-block tuples reject mixed bytes and editions in canonical a
     'issue76-production',
     'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
     'issue39-production',
     'issue39-licensed-production',
+    'issue39-licensed-compact-production',
   ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
@@ -310,8 +330,11 @@ test('reviewed fixed-block tuples reject mixed bytes and editions in canonical a
 test('licensed contracts reject every missing or substituted canonical and immutable runtime file', () => {
   for (const id of [
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
     'issue39-licensed-production',
+    'issue39-licensed-compact-production',
   ]) {
     const runtime = motion.reviewedRuntime(id);
     for (const name of Object.keys(runtime.files))
@@ -332,8 +355,10 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     'issue76-production',
     'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-production',
     'issue39-licensed-production',
+    'issue39-licensed-compact-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1),
@@ -390,10 +415,13 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'issue76-staging',
     'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
     'issue39-production',
     'issue39-licensed-production',
+    'issue39-licensed-compact-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1);

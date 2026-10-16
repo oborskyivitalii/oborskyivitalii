@@ -1,11 +1,14 @@
 """Issue #39 production preparation; live release decisions remain separate."""
 
 import copy
+import gzip
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import subprocess
+import sys
 import unittest
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
@@ -150,6 +153,150 @@ def planned_redirect(plan, source):
 
 
 class Issue39AcceptanceTests(unittest.TestCase):
+    def test_original_secret_reviews_and_advisory_policy_are_retained(self):
+        original = "16d4b1cd03afbb3d01194bbda3d5a2db2edab2d4"
+        for filename in (
+            "secrets-baseline.json",
+            "secrets-reviewed.json",
+            "secrets-reviewed-checksums.json",
+            "advisory-exceptions.json",
+        ):
+            name = "tools/quality/" + filename
+            expected = subprocess.check_output(["git", "show", original + ":" + name], cwd=ROOT)
+            self.assertEqual((ROOT / name).read_bytes(), expected, name)
+        name = "tools/quality/secrets-publication.json"
+        previous = json.loads(
+            subprocess.check_output(["git", "show", original + ":" + name], cwd=ROOT)
+        )
+        current = read(name)
+        indexed = {row["id"]: row for row in current["findings"]}
+        self.assertEqual(len(indexed), len(current["findings"]))
+        for row in previous["findings"]:
+            self.assertEqual(indexed[row["id"]], row)
+        with gzip.open(
+            ROOT / "review/issue-39/2026-10-16-secret-ledger-merge.json.gz", "rt"
+        ) as handle:
+            provenance = json.load(handle)
+        main = json.loads(
+            subprocess.check_output(
+                ["git", "show", provenance["trustedMain"] + ":" + name], cwd=ROOT
+            )
+        )
+        main_rows = {row["id"]: row for row in main["findings"]}
+        self.assertEqual(len(provenance["reasonVariants"]), 6)
+        for row in provenance["reasonVariants"]:
+            self.assertEqual(indexed[row["id"]], row["originalPR40"])
+            self.assertEqual(main_rows[row["id"]], row["trustedMainReason"])
+            for key in ("id", "path", "rule", "disposition"):
+                self.assertEqual(row["originalPR40"][key], row["trustedMainReason"][key])
+
+    def test_compact_tuple_proof_and_closed_selector(self):
+        with gzip.open(ROOT / "review/issue-39/2026-10-16-compact-tuples.json.gz", "rt") as handle:
+            proof = json.load(handle)
+        self.assertEqual(proof["kind"], "issue39-compact-metadata-runtime-identity")
+        self.assertFalse(proof["sourceObservation"]["dirty"])
+        self.assertTrue(proof["pythonDerivationVerified"])
+        self.assertEqual(
+            [row["kind"] for row in proof["editions"]], ["plain", "staging", "production"]
+        )
+        components = proof["baseComponents"]
+        base = {
+            key: components[key]
+            for key in ["engine", "scenes", "assets", "producer", "routes", "variant", "contract"]
+        }
+        base_engine = hashlib.sha256(
+            (json.dumps(base, ensure_ascii=False, indent=2) + "\n").encode()
+        ).hexdigest()
+
+        def digest(value):
+            return hashlib.sha256(
+                json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode()
+            ).hexdigest()
+
+        plain = digest({"contract": 1, "baseEngine": base_engine, "parts": proof["parts"]})
+        descriptor = proof["descriptors"]["staging"]
+        staged = digest(
+            {
+                "contract": 1,
+                "edition": descriptor["edition"],
+                "baseEngine": plain,
+                "css": descriptor["css"],
+                "producer": descriptor["producer"],
+                "inputs": descriptor["inputs"],
+            }
+        )
+        descriptor = proof["descriptors"]["production"]
+        production = digest(
+            {
+                "contract": 1,
+                "edition": descriptor["edition"],
+                "baseEngine": plain,
+                "css": descriptor["css"],
+                "producer": descriptor["producer"],
+                "inputs": descriptor["inputs"],
+            }
+        )
+        for row, expected in zip(proof["editions"], [plain, staged, production], strict=True):
+            self.assertEqual(row["variant"]["baseEngine"], base_engine)
+            self.assertEqual(row["variant"]["fingerprint"], expected)
+            self.assertFalse(row["sourceDirty"])
+            self.assertEqual(
+                set(row["files"]),
+                {"styles.css", "space.js", "navigation.js", "theme.js", "archive.js"},
+            )
+            for record in row["files"].values():
+                self.assertTrue(record["baselineBytesEqual"])
+                self.assertTrue(record["canonicalAndImmutableEqual"])
+                self.assertEqual(record["sha256"], record["independentPythonSha256"])
+        script = """
+const fs=require('node:fs'),z=require('node:zlib'),a=require('node:assert/strict'),m=require('./tools/quality/color-motion-contract.cjs');
+const p=JSON.parse(z.gunzipSync(fs.readFileSync('review/issue-39/2026-10-16-compact-tuples.json.gz')));
+for(const row of p.editions){const id='issue39-licensed-compact-'+row.kind,known=m.reviewedRuntime(id),old=m.reviewedRuntime('issue39-licensed-'+row.kind),files={};
+a.deepEqual(known.variant,row.variant);a.deepEqual(known.files,old.files);
+for(const [name,record]of Object.entries(row.files)){a.equal(record.sha256,known.files[name]);for(const file of [name,'runtime/'+row.variant.fingerprint+'/'+name])files[file]=record;}
+const candidate={variant:row.variant,components:{contract:1,engine:row.variant.fingerprint,variant:row.variant},files,...(row.edition?{edition:row.edition}:{})};a.equal(m.select(candidate).id,id);}
+"""
+        result = subprocess.run(
+            ["node", "-e", script], cwd=ROOT, capture_output=True, text=True, timeout=30
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_installed_python_graph_contracts(self):
+        original = subprocess.check_output(
+            [
+                "git",
+                "show",
+                "315da39d0294d970809648cdc0725f7e63187602:tools/quality/toolchain/requirements.txt",
+            ],
+            cwd=ROOT,
+        )
+        expected = original.replace(b"mcp==1.29.0\n", b"mcp==1.30.0\n").replace(
+            b"pillow==12.3.0\n", b"pillow==12.3.0\npip==26.2.1\n"
+        )
+        self.assertEqual((ROOT / "tools/quality/toolchain/requirements.txt").read_bytes(), expected)
+        tools = Path(os.environ.get("SITE_AUDIT_TOOLS", ROOT / "tools/quality/toolchain"))
+        executable = (
+            tools / "venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
+        )
+        script = """
+import json, unittest
+suite = unittest.defaultTestLoader.discover('tests', pattern='test_python_toolchain.py')
+result = unittest.TextTestRunner(verbosity=1).run(suite)
+print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
+                  'skips': len(result.skipped), 'expectedFailures': len(result.expectedFailures)}))
+"""
+        result = subprocess.run(
+            [str(executable), "-c", script],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=30,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report, {"pass": True, "tests": 4, "skips": 0, "expectedFailures": 0})
+
     def test_provider_snapshot_records_observations_and_unknown_admin_state(self):
         data = read(SNAPSHOT)
         self.assertEqual((data["schema"], data["issue"], data["source_commit"]), (1, 39, BASE))
@@ -298,6 +445,20 @@ class Issue39AcceptanceTests(unittest.TestCase):
             if name in changed_configuration:
                 continue
             data = (ROOT / name).read_bytes()
+            if name == "site/README.md":
+                # #39 readiness-execution-20261016 corrects this delivery wording
+                # only. Every remaining source-contract byte stays protected.
+                current_wording = (
+                    b"The base edition is the default producer selection. The delivery adapters select\n"
+                    b"Color explicitly for preview, staging and the separately frozen production\n"
+                    b"candidate; each requires its own matching verification. Offline exports accept\n"
+                )
+                self.assertEqual(data.count(current_wording), 1)
+                data = data.replace(
+                    current_wording,
+                    b"The base edition remains the deployable producer selection. Offline exports accept\n",
+                    1,
+                )
             if name in legal_amendments:
                 self.assertEqual(hashlib.sha256(data).hexdigest(), legal_amendments[name], name)
                 continue

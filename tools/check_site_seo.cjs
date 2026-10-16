@@ -11,6 +11,17 @@ const root = path.resolve(__dirname, '..'),
   baseline = '0333c4d2b2318850fd56312d83fb63ca468f01a4';
 const { helperContracts } = require('./quality/format-parity.cjs');
 const normalizedHTML = new Map();
+function restoreCompactMetadata(html) {
+  const pattern = /(<script type="application\/ld\+json">)(\s*)([\s\S]*?)(\s*)(<\/script>)/g;
+  const matches = [...html.matchAll(pattern)];
+  assert.equal(matches.length, 1, 'one current structured metadata block required');
+  return html.replace(pattern, (_, opening, before, data, after, closing) => {
+    const value = JSON.parse(data);
+    const { scriptJSON } = require('./site/html.cjs');
+    assert.equal(data, scriptJSON(value, 0), 'only exact escaped compact metadata is reversible');
+    return opening + before + scriptJSON(value) + after + closing;
+  });
+}
 const voidTags = new Set([
   'area',
   'base',
@@ -427,6 +438,7 @@ function restoreApprovedContent(html, page) {
     : html;
 }
 function restore(html, page) {
+  html = restoreCompactMetadata(html);
   html = normalizeHTML(strip(require('./build_site_previews.cjs').sourceForPreview(html)));
   html = restoreCriticalMedia(html, page);
   // Authored-effects identity is build metadata. Only these exact production
@@ -550,7 +562,7 @@ function verify() {
     pass: true,
     rows,
     policy:
-      'Ordered HTML contracts after reversing exact hash-bound Issue39/7 licensing fragments and full texts, then Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 and original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. The three legal wrapping declarations are the only allowed stylesheet delta from cc115c4. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Inline separators, attributes/order and raw JSON-LD remain exact; decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
+      'Ordered HTML contracts after reversing exact hash-bound Issue39/7 licensing fragments and full texts, then Issue41 AI-assisted site case and positioning, Issue61 PMDay recording, Issue48 and original Issue41 content amendments and declared Home hierarchy/wordmark changes, approved contact/title wrappers, reviewed response blocks/Research nav, accessible Writing formula description, exact canonical Home critical media head block and authored-base build identity. The three legal wrapping declarations are the only allowed stylesheet delta from cc115c4. ASCII whitespace runs and void-tag spellings are canonicalized; only named Research/Writing/Talks block-fragment EOF seams are reversible. Current JSON-LD must be exact escaped compact serialization and reverses only to its original two-space spelling before comparison; values, key order, inline separators and attributes remain exact. Decorative fallback SVG is excluded. Includes semantic metadata, publication records, links, languages, dates, portrait and source attribution.',
   };
 }
 if (require.main === module) process.stdout.write(JSON.stringify(verify(), null, 2) + '\n');
@@ -561,6 +573,7 @@ module.exports = {
   restoreContentAmendment,
   restoreRefactorPresentation,
   restoreCriticalMedia,
+  restoreCompactMetadata,
   restoreApprovedLicensing,
   verifyApprovedLicensingCSS,
   normalizeHTML,

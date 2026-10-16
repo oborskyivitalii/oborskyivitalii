@@ -677,7 +677,8 @@ test('explicit stable and production workflows run prepublication before deploya
       source
         .slice(0, preflight)
         .includes(
-          'pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt'
+          'pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt\n' +
+            '          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py'
         )
     );
     const retain = source.slice(preflight, publicUpload);
@@ -709,6 +710,35 @@ test('explicit stable and production workflows run prepublication before deploya
     reusableBuild,
     /name: Complete host-independent guards[^\n]*\n {8}id: source_checks/
   );
-  assert.match(reusableBuild, /source_checks: \$\{\{ steps\.source_checks\.outcome \}\}/);
+  assert.match(
+    reusableBuild,
+    /source_checks:.*steps\.reuse_source_checks\.outcome.*steps\.source_checks\.outcome/
+  );
   assert.doesNotMatch(reusableBuild, /check node tools\/quality\/source-tests\.cjs/);
+});
+
+test('compact-metadata identities still require frozen publication rights before any file access', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const runtime = motion.reviewedRuntime('issue39-licensed-compact-' + edition);
+    const source = {
+      variant: runtime.variant,
+      components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },
+      files: {},
+      ...(edition === 'staging'
+        ? { edition: { id: 'staging', indexable: false, analytics: false } }
+        : edition === 'production'
+          ? { edition: { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' } }
+          : {}),
+    };
+    for (const [name, sha256] of Object.entries(runtime.files)) {
+      source.files[name] = { sha256 };
+      source.files['runtime/' + runtime.variant.fingerprint + '/' + name] = { sha256 };
+    }
+    assert.equal(staging.publicationRequired(source, source.components), true);
+    assert.throws(
+      () => staging.publicationRights('/no-file-access', source, undefined, source.components),
+      /licensed publication rights record required/
+    );
+  }
 });

@@ -2,6 +2,42 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { renderSlots, safeURL } = require('../tools/site/render-content.cjs');
+const { renderPage } = require('../tools/site/render-page.cjs');
+
+test('compact page metadata preserves structured values and cannot close its script container', () => {
+  const schema = {
+    name: '</script><script>unexpected()</script> & \u2028\u2029',
+    mainEntity: {
+      numberOfItems: 2,
+      itemListElement: [{ name: 'First work' }, { name: 'Second work' }],
+    },
+  };
+  const html = renderPage({
+    route: { id: 'writing', url: 'writing.html' },
+    input: {
+      meta: { title: 'Writing', description: 'Public works', lang: 'en' },
+      schema,
+      main: '<main>Readable public content</main>',
+    },
+    templates: {
+      head: '<head><title>{{TITLE}}</title><meta name="description" content="{{DESCRIPTION}}"><script type="application/ld+json">{{SCHEMA}}</script>{{MEASUREMENT}}{{CRITICAL_MEDIA}}</head>',
+      shell:
+        '<html lang="{{LANG}}"><body data-page="{{ROUTE}}">{{HEAD}}{{HEADER}}{{MAIN}}{{FOOTER}}{{FALLBACK}}</body></html>',
+    },
+    headerHTML: '<a href="writing.html">Writing</a>',
+    footerHTML: '<footer>Credits</footer>',
+    fallbackHTML: '',
+    routeLabel: 'Writing',
+  });
+  const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.equal(scripts.length, 1);
+  const payload = scripts[0][1];
+  assert.deepEqual(JSON.parse(payload), schema);
+  assert.doesNotMatch(payload, /[<\u2028\u2029\n]/);
+  assert.equal((html.match(/<script\b/g) || []).length, 1);
+  assert.ok(Buffer.byteLength(payload) < Buffer.byteLength(JSON.stringify(schema, null, 2)));
+  assert.ok(html.includes('<main>Readable public content</main>'));
+});
 
 function content() {
   return {
@@ -202,7 +238,9 @@ test('page documents reject unknown schema, executable fields, missing templates
   const root = path.resolve(__dirname, '..'),
     dir = fs.mkdtempSync(path.join(os.tmpdir(), 'content-document-'));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-  fs.cpSync(path.join(root, 'site'), path.join(dir, 'site'), { recursive: true });
+  fs.cpSync(path.join(root, 'site'), path.join(dir, 'site'), {
+    recursive: true,
+  });
   const api = require('../tools/site/content.cjs'),
     c = api.catalog(dir),
     route = require('../tools/site/build.cjs')

@@ -366,7 +366,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
   assert.equal(edition.verify(source.directory, source.record), true);
   assert.equal(
     require('../tools/quality/color-motion-contract.cjs').select(source.record).id,
-    'issue39-licensed-production'
+    'issue39-licensed-compact-production'
   );
   assert.notEqual(source.record.variant.fingerprint, color.variant.fingerprint);
   for (const name of require('../tools/site/snapshot.cjs').runtimeFiles)

@@ -68,8 +68,8 @@ function substitute(source, values, name) {
   });
   return result;
 }
-const scriptJSON = (value) =>
-  JSON.stringify(value, null, 2)
+const scriptJSON = (value, indentation = 2) =>
+  JSON.stringify(value, null, indentation)
     .replace(/</g, '\\u003c')
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
