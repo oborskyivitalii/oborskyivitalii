@@ -18,7 +18,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Import is used only by the reviewed explicit-argv Git/Node calls in this source; no shell execution is enabled. The installed executable PATH is owned by the pinned CI/developer environment. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "Import is used only by the reviewed explicit-argv Git/Node calls in this source; no shell execution is enabled. The installed executable PATH is owned by the pinned CI/developer environment. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -32,7 +32,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -46,7 +46,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -60,7 +60,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -74,7 +74,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Current repository-owned module/test bytes are deliberately compiled and executed to avoid stale Python bytecode. The repository test loader owns this trust boundary; policy supplies bounded selectors rather than executable text. This is developer tooling, not an interpreter for hostile candidate code. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "Current repository-owned module/test bytes are deliberately compiled and executed to avoid stale Python bytecode. The repository test loader owns this trust boundary; policy supplies bounded selectors rather than executable text. This is developer tooling, not an interpreter for hostile candidate code. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -88,7 +88,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "Git/Node is intentionally resolved through the setup-owned CI/developer PATH; the executable and argv structure are authored, shell-free tooling. Exact source and pinned CI setup must remain reviewed. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -102,7 +102,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "This reviewed call passes a Python argv list to Git/Node without shell=True; command/option structure is authored tooling, and variable repository paths or validated immutable refs remain separate argv values. It is not a hostile-candidate sandbox. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_repository_layout.py",
@@ -116,7 +116,7 @@
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "issue": 35,
       "reviewBy": "2026-11-03",
-      "rationale": "Bandit identifies a Python True/False boolean under the pass/automation_pass report dictionary key as a password. This value is acceptance state, never a credential, token or environment secret. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file’s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
+      "rationale": "Bandit identifies a Python True/False boolean under the pass/automation_pass report dictionary key as a password. This value is acceptance state, never a credential, token or environment secret. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue39 licensing preparation: the only source AST change adds four literal public legal-notice filenames to ROOT_FILES. Actual pinned Bandit 1.9.4 reproduces all 36 raw finding signatures unchanged, with seven of this file\u2019s findings shifted by four lines and its import unchanged. Existing subprocess/exec/status contexts and exact line hashes are identical; no finding, trust boundary, owner, expiry or allowance expansion."
     },
     {
       "path": "tools/check_ri_ci.py",
@@ -509,6 +509,20 @@
       "issue": 35,
       "reviewBy": "2026-11-03",
       "rationale": "Issue56 review: the alleged hardcoded password is the boolean True returned under the machine-readable pass status key. It is validation outcome metadata, not authentication material or an externally accepted credential. Issue58 R2: revalidated against the identical Python AST and corresponding raw Bandit finding after mechanical formatting; rule, severity, confidence and execution trust boundary are unchanged. Issue58 R4 revalidation: the only source AST change adds --muted to the canonical CSS token-owner tuple, strengthening ownership validation. The reviewed subprocess import, fixed git argv call and static token word are unchanged in AST and source lines; actual finding rule/test/severity/confidence/text/CWE/line/column signatures are identical. No finding, trust-boundary, owner, expiry or allowance expansion. Issue58 rebase review: immutable main already owns manifest-bound retained CSS validation; the integrated AST is exactly that main AST plus the previously reviewed --muted ownership token. Fixed subprocess argv and metadata-return statements remain identical in AST. All 36 raw rule/test/text/CWE/severity/confidence and statement-context signatures match main, frozen R2 and pre-rebase source. Only four source fingerprints and shifted line numbers are rebound; see review/issue-58/2026-10-08-rebase-bandit.json."
+    },
+    {
+      "path": "tools/quality/python_toolchain.py",
+      "rule": "B105",
+      "line": 111,
+      "test_name": "hardcoded_password_string",
+      "severity": "LOW",
+      "confidence": "MEDIUM",
+      "source_sha256": "c837dae35711237dc7a87d68b0bcefba2256c4dca148a1789de378e37252916f",
+      "line_sha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e",
+      "owner": ".github/ACCEPTANCE.md",
+      "issue": 35,
+      "reviewBy": "2026-11-03",
+      "rationale": "Issue39/PR40 bounded security continuation: pinned Bandit1.9.4 mistakes the JSON report key pass with Python boolean True for a hardcoded password. AST/source inspection confirms a boolean success indicator returned only after the exact installed audit graph is fully verified; there is no password string, credential, authentication use or external input. Admit only this exact rule/line/source signature under the existing expiring tooling policy; every other old or new raw finding remains checked."
     }
   ]
 }

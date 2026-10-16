@@ -1,61 +1,64 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge and PR40 rebase).
+Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main observed at `9b82f382` on 16 October; production disabled.
-- #39 / Ready PR40 includes user-approved PR68 author-first positioning and
-  licensed publication safeguards; exact reviewed prototype `943c720f`,
-  [preview](https://a97c99f2.oborskyi-author-ci-staging.pages.dev/).
-- #41 / PR68 was closed without merge as superseded, while #41 remains open.
-- The Ready admission on `943c720f` exposed strict-main AC03 and old topic-card
-  browser selector failures. Record real correction runs and remaining gates
-  under #39/PR40, without reclassifying prior failures.
-- Earlier staging Writing TBT235.5>200ms and source timeouts remain failed.
-  New permanent two-host staging has not yet passed.
+- Protected main is `321b7066` after merged PR81, PR82 and PR83. GitHub Pages
+  staging is retired; PR previews and one permanent staging use Cloudflare.
+- #39 / PR40 bounded steps1/2 integrate main321b7066 and preserve PR68
+  positioning/licensing/production preparation from original16d4b1cd. Read the
+  live PR for the delivered commit and exact checks; keep it Draft.
+- Public JSON-LD is compact with unchanged semantics/runtime/legal copy. All482
+  original publication dispositions plus finite new proofs remain in the ledger.
+- Earlier source/RI/owning/preview successes remain bound to their original head.
+  Stable staging has not admitted the current corrected candidate.
+- Actual staging preflight failed security/advisories; older Writing TBT
+  235.5ms and local baseline289ms exceed the unchanged200ms budget.
 
 ## Decisions
 
-- Original engineering uses Apache-2.0; original editorial/non-brand diagrams use
-  CC BY4.0. Portrait/identity/third-party/historical exceptions remain. UA and
-  Subprime retain their own scopes. Do not request recorded consents again.
-- Every modern publication carries source/tree/edition/artifact-bound notices and
-  frozen rights records. Mechanical approvalPass stays false; exact-edition human
-  rights/editorial acceptance remains distinct.
-- PR80's controller merge is the new narrow maintainer decision recorded above.
-  No successful ordinary stage or native performance result was invented.
-- PR40 must stage before merge. Freeze production only from merged protected main;
-  consume its admitted archive without rebuilding. Preserve all original full,
-  native, device, independent, rights, administration, origin and recovery gates.
-- Prepare authenticated Pages migration before domain binding. Retain predecessor
-  settings/package first. First production has no earlier production rollback target.
+- The maintainer now requests PR40 through stable staging and protected main,
+  then production. Stage the open PR first; preserve its admitted tree at merge.
+- Cloudflare staging runs one authenticated same-run/attempt preflight. Keep
+  original scanner reports and all browser/performance/recovery checks.
+- Original engineering uses Apache-2.0; original editorial/non-brand diagrams
+  use CC BY4.0. Preserve portrait/identity/third-party/upstream exceptions and
+  supplied consents; exact-edition rights/editorial acceptance remains separate.
+- PR82 is merged; its source536/536, RI/owning/preview and post-merge RI pass.
+- Latest maintainer scope: finish only main integration and checksum/HTML
+  readiness, then stop/report. Writing TBT and staging remain subsequent work.
+- PR83 is merged into current main and its exact plain/staging controller
+  identities are integrated. Full PR40 feature policy remains in this branch.
+- Finish only the recorded #39 dependency/checksum/HTML/performance corrections.
+  The dependency override must be exact and graph-verified, without a CVE waiver.
+- Freeze production only from merged protected main and consume its exact archive.
+  Retain full/native/device/independent/rights/settings/origin/recovery gates.
+- Preserve authenticated predecessor Pages bytes/settings before canonical cutover.
+  First production has no earlier production rollback target.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | Revalidate the byte-exact AC03/browser admission repair at a fresh head, then ordinary two-host staging; keep unchanged performance budgets. |
-| #7 / #1 | Final-inventory rights/editorial and first-reader acceptance; preserve the selected licenses and supplied permissions. |
-| #13 | Fresh unchanged-budget full/native/performance, physical Safari/Android and source-bound independent release evidence. |
-| #39 / #72 | Actual protected settings, dedicated App/environments/immutable archives, canonical migration and recovery; keep production opt-in off during preparation. |
-| #8 | Actual canonical SEO/indexing/social/analytics requests/counts/cost and Search Console disposition. |
-| #69 / #76 | Preserve original device/lifecycle/full-cost acceptance separately from merged runtime implementation. |
-| #49 / PR53; #41 / PR68 | Optional animation/editorial work remains separate. |
+| #39 / PR40 | Complete bounded main/checksum/HTML verification and handoff; then Writing TBT, current Ready CI/preflight and one-host staging. |
+| #1 / #7 / #8 / #13 | Current rights/editorial/reader/device/independent, full/native/performance and live SEO/indexing/analytics acceptance. |
+| #39 / #72 | Actual protected settings, production App/environments/immutable archive, canonical migration and recovery. |
+| #69 / #76; #49 / PR53; #41 | Preserve remaining device/lifecycle/cost and independent feature/editorial acceptance. |
 
 ## Next session
 
-1. Revalidate main, PR40 head/Draft state, required checks, owner decisions and runs.
-2. Finish the measured source-suite cost/scheduling repair, refresh Ready evidence,
-   then continue ordinary open-PR staging. Preserve both failed preflights and all
-   source-runner diagnostics; do not substitute a stale preview for admission.
-3. Supply both stable URLs and exact served identity for maintainer review before
-   production/domain/DNS activation. Actual issue/PR observations supersede this note.
-4. After admitted merge, freeze one production candidate and finish actual release
-   settings/full evidence/migration preparation under the six existing owners.
+1. Revalidate main, PR40 head/Draft, working trees and current runs.
+2. Read the bounded steps1/2 section in #39 readiness execution and its live
+   PR/issue evidence; preserve original dirty worktrees and failed diagnostics.
+3. Resume Writing TBT only under the next maintainer instruction. Refresh current Ready/source
+   evidence and require a clean26-family preflight before later /stage.
+4. Verify permanent Cloudflare identity, merge the identical admitted tree, then
+   freeze the merged-main production candidate and finish actual release gates.
+5. Report actual source/edition/run and remaining external evidence honestly.
 
 ## Maintenance
 
-Keep these five sections and at most 120 lines. Replace stale observations at a
-meaningful handoff; rebuild/verify RI after edits. Detailed evidence belongs to
-existing issue/PR reviews. Never store secrets or private correspondence here.
+Keep these five sections and at most120lines. Replace stale observations at a
+meaningful handoff; issues/PRs own current acceptance. Rebuild/verify RI after edits.
+Never store secrets or private correspondence in memory.

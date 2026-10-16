@@ -40,6 +40,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
+  issue39LicensedCompact: {
+    behavior: 'fixed-blocks',
+    baseEngine: '73ab537313a205583a5a1f912161092f7b98994d4415a1f70696e0236af7a0b8',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
 };
 const runtimes = [
   {
@@ -131,6 +138,27 @@ const runtimes = [
     family: 'issue39Licensed',
     edition: 'production',
     fingerprint: 'bb5a2643fed4d2caef69289634bffe4a35b0ceef2345affbf3be6f25903c9c06',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-licensed-compact-plain',
+    family: 'issue39LicensedCompact',
+    edition: 'plain',
+    fingerprint: '80cda9414465974ced82ba891839ed7d6ec6e8a7d2194d3cd6122e323f263bf3',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-licensed-compact-staging',
+    family: 'issue39LicensedCompact',
+    edition: 'staging',
+    fingerprint: '2c543a78d13b006840f151d99fdbf5f551e001d9ee04bbbed636a55fe6b6017d',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-licensed-compact-production',
+    family: 'issue39LicensedCompact',
+    edition: 'production',
+    fingerprint: 'b848de73373003be1f141f9d51d30d6fa7343df0b33ce41e00713335d553083e',
     styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
 ];

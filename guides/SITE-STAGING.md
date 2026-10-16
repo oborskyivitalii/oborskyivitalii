@@ -1,9 +1,12 @@
 # PR previews and explicit staging
 
-Current scheduling/mirror implementation owner:
+Current Cloudflare-only staging implementation owner:
 [#72](https://github.com/oborskyivitalii/oborskyivitalii/issues/72). New controller
 code, repository settings and observed host acceptance are separate observations;
-the historical runs below do not prove the new publisher is activated.
+the historical runs below prove only their exact editions. The 16 October
+maintainer amendment retires the GitHub Pages staging publisher; Pages is reserved
+for production. Earlier served Pages bytes are historical until the production
+cutover/removal is observed; removing a workflow does not unpublish a live site.
 
 Owner intent: [hosting #8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8)
 and [release gates #13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13).
@@ -92,8 +95,7 @@ staging origin using `profile: staging`; real production indexing/origin checks
 use `profile: production`. These origin policies do not change the coverage
 level. The strict `tools/quality/promotion.cjs` and GitHub Pages example still
 require the full hosted gate and external device/independent acceptance; the
-lighter `staging-gate` is rejected for production admission. Color stays
-staging-only. Production activation and first-release acceptance remain with
+lighter `staging-gate` is rejected for production admission. Color is selected explicitly for the frozen production candidate; staging-edition bytes never qualify. Production activation and first-release acceptance remain with
 #8/#1/#7.
 
 ## Verified provider and first preview
@@ -161,7 +163,7 @@ root and real-404 checks. The existing 20-second request and 15-minute promotion
 job limits remain. A preceding revision during alias propagation never counts
 as success; exhausted convergence remains a failed promotion or recovery.
 
-For the two-host staging controller, retry with **Re-run all jobs**, or create a
+For the staging controller, retry with **Re-run all jobs**, or create a
 new owner `/stage` request. **Re-run failed jobs** is not supported: reused jobs
 and admission outputs can belong to an earlier attempt, so they cannot prove one
 complete accepted attempt. Admission validates the actual run attempt and blocks
@@ -172,7 +174,7 @@ Recovery records retain the original package producer attempt separately from
 the promotion attempt. Historical promotion-only retries retain their exact
 tested package ID/upload digest and producer name; legacy records keep their
 original matching attempt. This recovery compatibility does not authorize a
-partial retry of the current two-host controller. No browser report, failed
+partial retry of the current controller. No browser report, failed
 observation or artifact is relabeled.
 
 After enabling preview, subsequent PR commits publish automatically. Changing
@@ -197,12 +199,9 @@ Promotion retains the successful package/recovery for 90 days; subsequent runs
 locate the last real successful promotion, verify its attempt/digests and restore
 it through the official action if stable verification fails. Disabled/skipped
 runs never replace recovery. Expired recovery blocks promotion. The first stable
-promotion has no earlier accepted package to restore. When a later Pages mirror
-fails, its publisher restores the previous combined Pages package and the
-staging controller restores and verifies the previous Cloudflare alias. A
-failed mirror recovery requires reconciliation; its newly promoted recovery
-record cannot be mistaken for the live accepted alias. A later bookkeeping
-failure does not discard an otherwise verified live publisher receipt.
+promotion has no earlier accepted package to restore. Historical recovery records may include an older Pages mirror result; its
+compensation status remains validated when selecting that old Cloudflare package.
+New staging attempts publish and recover only Cloudflare.
 
 Production GitHub Pages and physical-device/independent release acceptance retain
 their existing requirements. Staging and full-production failures are recorded
@@ -211,7 +210,7 @@ served files. At owning-issue completion review added/changed tests against PR,
 staging, production and diagnostic coverage; update the profile registry and
 RI/CI routes as required by SITE-CHECK-PROFILES.
 
-## GitHub Pages staging mirror and bootstrap
+## One pre-upload preflight and Cloudflare admission
 
 Before an explicit stable-staging or prospective-production upload, prepare the
 selected frozen artifact once, then run the existing local check owner:
@@ -251,100 +250,36 @@ production preparation also requires the separate selected-policy result in
 its operator sequence. The prepublication report does not assert that an
 owning policy ran, and does not run unrelated historical task policies.
 
-`site-pages.yml` runs only after actual successful Cloudflare stable verification.
-Enable Pages with the GitHub Actions source, preserve the canonical-domain owner
-#39/#40, and set `SITE_PAGES_STAGING_ENABLED=true` after the reviewed publisher is
-integrated into main. The connector does not expose Pages/variables/ruleset
-administration; a guide or skipped publisher is not setting evidence.
+The staging build retains its preflight and raw scanner reports in one native
+artifact. The reusable validation workflow authenticates its ID, upload digest,
+run/controller and exact attempt, then verifies the complete successful guard
+set, source/tree/edition/manifest and retained file hashes. Its build/static jobs
+consume those original reports instead of rerunning source checks or scanners.
+Direct reusable staging requests without a producer report still execute one
+preflight. Production retains its existing full validation route.
 
-The permanent mirror is `/staging/` beneath the configured Pages deployment base.
-A project base such as `https://oborskyivitalii.github.io/oborskyivitalii/`
-publishes its mirror at that base plus `staging/`; an origin-root base retains
-`https://oborskyivitalii.github.io/staging/`. The receipt, complete HTTP inventory,
-recovery and generated fallback links stay within the same base. Accepted
-production requires the unchanged canonical origin root. Before first
-production, root also serves labelled staging. Afterwards the combined package
-preserves every declared file hash of the accepted durable production archive at
-root while staging changes its subtree. Both hosts consume the same staging
-public manifest. Host-specific 404/transport files remain outside that manifest.
+Original lint/security/advisory reports are host-independent (`target: null`).
+They are never relabelled as HTTP observations. Hosted/browser/performance
+reports still require their exact tested candidate URL. Wrong-source, missing,
+failed, changed or different-attempt evidence fails before promotion.
 
-The first licensed edition carries a frozen `rights.json` beside its uploaded
-source artifact. The staging package retains the complete report and digest;
-the Pages package retains the root/staging reports and publishes their digest
-receipt in `_delivery/state.json`. Both extraction routes restore the validated
-sidecar. The shared `tools/release/rights-record.cjs` verifier checks the exact
-source/tree/edition/public manifest, selected licenses and exceptions, and the
-escaped full legal copies in current Credits and its immutable snapshot without
-reading today's legal sources. Mechanical verification retains
-`approvalPass: false`; exact-edition human acceptance remains separate.
+Before each owner staging attempt the trusted main controller creates a fresh
+in-progress `Staging admission` check. Successful Ready source/RI/owning checks,
+the complete bounded staging gate and verified Cloudflare stable promotion are
+required. GitHub Pages settings, publishers and browser smoke are not part of
+staging admission. Failed/cancelled attempts remain failed; previous green checks
+cannot admit a new attempt.
 
-The existing closed Color selector requires these records for exactly the
-reviewed `issue39-licensed-plain` and `issue39-licensed-staging` identities. The
-consumer derives that choice from the verified public revision, so deleting or
-relabeling optional manifest metadata cannot waive it. Every supplied report is
-validated. Genuine historical reportless families retain their original output
-and recovery behavior; an accepted historical production root can remain
-reportless while the licensed staging subtree records its own digest. This
-compatibility does not admit a new production publication or change native
-staging/performance gates.
+The read-only postmerge observer authenticates the actual successful owner/main
+attempt, Cloudflare promotion and merge admission, and requires identical complete
+source trees between the tested PR and merge. Preserve the tested package without
+rebuilding main. Add `Staging admission` to strict `protect-main` through the
+existing administration route after the new controller is integrated and observed;
+retain the existing Basic/navigation contexts. Actual settings evidence remains
+separate. `SITE_PRODUCTION_ENABLED` stays absent/false during preparation.
 
-One `author-pages-publication` queue serializes combined deployments. The
-publisher authenticates the stable producer, artifact IDs/upload digest, bounded
-gate and accepted production record. The live receipt must match an actual
-successful publisher attempt and retained combined artifact. Unknown existing
-Pages roots, expired recovery or conflicting production state stop publication.
-It checks previous live bytes before upload, then the complete new inventory,
-root, staging/query paths and real 404, plus Chromium history/refresh smoke under
-`/staging/`. Failure restores the previous complete artifact through the official
-Pages action, verifies it and stays red. First publication has no previous accepted
-package to restore. Combined staging recovery is retained for 90 days; durable
-production archives are separate.
-
-A first deployment that reached verified HTTP bytes but failed its final browser
-guard can leave an unaccepted receipt when no previous Pages package exists.
-Only the staging controller's `previousStaging()` recovery path may retain that
-baseline, explicitly with `accepted: false`. It authenticates the exact failed
-owner/main attempt1, named publisher steps, native artifact upload digest, ZIP
-record and every public entry, served receipt and complete current HTTP inventory.
-It requires no production or prior recovery. Ordinary `previous()` and production
-remain accepted-only; reruns, later failures and conflicting state cannot use
-this first-publication path. Restoration preserves the failed admission.
-
-Trusted Color checks select a closed reviewed runtime contract before opening
-the browser, binding variant, base engine, edition and canonical/immutable file
-hashes. Legacy sources retain scroll-camera/spatial-flight guards; the reviewed
-fixed-camera/native-block sources use their strict corresponding guards. Smoke
-and full aggregates revalidate that source selection. Unknown or mixed identities
-fail; assertions cannot fall back to another contract. Width/engine/theme cases
-and the existing resource budgets remain unchanged.
-
-Before each owner staging attempt, the trusted main controller creates a fresh
-in-progress `Staging admission` check. Previous green admission cannot survive a
-failed new attempt. Actual source admission and both enabled publishers are
-required before building that staging candidate; Draft preview packaging is
-unchanged. Failed or cancelled attempts remain blocked.
-
-After both hosts pass, the trusted main controller completes `Staging admission`
-for the exact open PR head only if current main remains its merge base. After
-bootstrap integration add this GitHub Actions check to the existing strict
-`protect-main` ruleset, retaining `checks` and
-`Local navigation and RI freshness`. Until authenticated setting evidence, this
-additional requirement is pending. Bootstrap uses the current reviewed main
-staging controller; subsequent requests use the integrated publisher. Record
-the tested head, actual merge commit/tree and public-byte equivalence separately.
-After bootstrap and Pages enablement, `site-staging-merge.yml` authenticates the
-latest GitHub Actions check and its actual successful two-host jobs. It requires
-the merged commit's complete source tree to equal the accepted PR tree, records
-both SHAs/tree/run, and preserves the tested package without rebuilding main.
-The bootstrap PR uses the preceding reviewed main controller; the new requirement
-is enabled only after that controller and Pages mirror are integrated and observed.
-
-For the initial Pages setup select **GitHub Actions** under
-[Settings → Pages](https://github.com/oborskyivitalii/oborskyivitalii/settings/pages)
-and keep the initial GitHub origin. Publish labelled staging at root and
-`/staging/`; do not configure the `.ai` custom domain or DNS while production
-activation is excluded. The `github-pages` environment permits protected main.
-After bootstrap, enable `SITE_PAGES_STAGING_ENABLED=true`, stage a ready source
-with the current controller, observe both addresses and recovery, then add
-`Staging admission` (GitHub Actions integration `15368`) to strict `protect-main`.
-Keep both existing required contexts. `SITE_PRODUCTION_ENABLED` stays absent/false.
+The retired `SITE_PAGES_STAGING_ENABLED` variable has no staging consumer. The
+former Pages publisher workflow is removed. Production-only package composition
+and historical Pages recovery helpers remain until PR40's explicit cleanup and
+production cutover; no new staging run writes GitHub Pages. See the scoped
+[execution record](../review/issue-72/2026-10-16-cloudflare-only-staging.md).

@@ -4,6 +4,32 @@ const test = require('node:test'),
   fs = require('node:fs');
 const { normalizeHTML } = require('../tools/check_site_seo.cjs');
 const readHTML = (file) => normalizeHTML(fs.readFileSync(file, 'utf8'));
+test('SEO restores only exact compact metadata spelling while retaining all values and key order', () => {
+  const { restoreCompactMetadata } = require('../tools/check_site_seo.cjs');
+  const { scriptJSON } = require('../tools/site/html.cjs');
+  const value = { name: 'Public <work>', items: ['A', 'B'], count: 2 };
+  const html = '<script type="application/ld+json">\n' + scriptJSON(value, 0) + '\n</script>';
+  const expected = '<script type="application/ld+json">\n' + scriptJSON(value) + '\n</script>';
+  assert.equal(restoreCompactMetadata(html), expected);
+  for (const changed of [
+    html.replace('Public', 'Private'),
+    html.replace('["A","B"]', '["B","A"]'),
+    html.replace('"count":2', '"count":3'),
+  ]) {
+    assert.notEqual(changed, html, 'metadata mutation changes actual source');
+    assert.notEqual(restoreCompactMetadata(changed), expected);
+  }
+  for (const changed of [
+    html + html,
+    html.replace('"count":2', '"count":2,"count":2'),
+    html.replace('"count":2', '"count":2e0'),
+    html.replace('"count":2', '"count": 2'),
+    html.replace('Public \\u003cwork>', 'Public <work>'),
+  ]) {
+    assert.notEqual(changed, html, 'invalid metadata fixture changes actual source');
+    assert.throws(() => restoreCompactMetadata(changed), /metadata/);
+  }
+});
 test('HTML reconciliation accepts source spelling changes while preserving inline separators, attributes and raw bytes', () => {
   const original =
     '<p data-label="A &amp; B">Left <strong>middle</strong> right.</p><input disabled><script type="application/json">{"x": 1}</script>';
@@ -58,11 +84,13 @@ test('critical media reconciliation admits only exact Home head ownership, bytes
   assert.ok(restoreCriticalMedia(extra, 'index').includes(unrelated));
   assert.notEqual(restore(extra, 'index'), restore(html, 'index'), 'unrelated CSS stays in parity');
   for (const changed of [
-    html.replace('"@type": "ProfilePage"', '"@type": "OtherPage"'),
+    html.replace('"@type":"ProfilePage"', '"@type":"OtherPage"'),
     html.replace('Portrait of Vitalii Oborskyi', 'Portrait of another person'),
     html.replace('height="721"', 'height="722"'),
-  ])
+  ]) {
+    assert.notEqual(changed, html, 'critical-media metadata mutation changes actual source');
     assert.notEqual(restore(changed, 'index'), restore(html, 'index'));
+  }
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'critical-media-seo-')),
     owner = path.join(directory, 'site/engine/critical-media.css');
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));

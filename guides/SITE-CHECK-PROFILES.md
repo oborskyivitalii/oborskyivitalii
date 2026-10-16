@@ -38,9 +38,10 @@ After visual approval mark the PR ready; deferred source/RI jobs use distinct
 names, so their skips cannot impersonate required admission contexts. `/stage`
 requires real successful latest raw-head source/RI/issue jobs. Explicit
 `staging-regression` requests retain their selected regression for Drafts.
-The Pages mirror adds bounded exact-byte and Chromium `/staging/` navigation
-checks without replaying staging performance. Admission, Pages and archive
-negative suites are permanent source checks, deferred during Draft packaging.
+The 16 October #72 amendment removes GitHub Pages staging and its hosted smoke.
+Cloudflare is the only staging publisher. Historical Pages package/recovery and
+production archive negatives remain source checks because production consumers
+still use those helpers; they are deferred during Draft packaging.
 
 Issue #36 adds a scoped diagnostic on existing `site-writing-probe.yml`:
 the exact `site-writing-paradigm-evidence` label event on same-repository PR #38
@@ -69,6 +70,15 @@ artifact/edition/rights/package owners, retains independent failures and checks
 source/public immutability again at the end. The staging source allocation is
 Basic plus the nonbaseline staging suites; production runs its complete source
 allocation once. Missing artifact prerequisites block their dependent checks.
+For staging, the producer runs these guards once before upload and retains all
+raw reports. Build/static consumers authenticate the native preflight artifact
+from the same run/controller/attempt and verify complete successful guard rows,
+clean source/tree, exact manifest/edition and every retained file hash. They reuse
+the original host-independent scanner reports; no host target is fabricated.
+Missing, failed, modified, wrong-source/profile/attempt reports fail. Direct
+staging validation without an existing producer report runs one preflight.
+Production remains on the complete existing route; there is no cross-run cache.
+
 This is a preparation order within the existing profiles, not a replacement
 gate or permission to deploy. Host/native/live assertions still follow, using
 the same artifact. Normal Draft preview remains bounded.
@@ -137,7 +147,7 @@ The `profile` / `SITE_TEST_PROFILE` value describes the hosted origin and its
 indexing policy (`staging` or `production`); `validation_level` selects the test
 coverage. Full production regression can inspect an immutable staging candidate
 without claiming production-origin indexing/TLS/ZAP acceptance. A production
-origin must receive its applicable live checks separately. Color is staging-only.
+origin must receive its applicable live checks separately. The explicit frozen production candidate supports Color; its staging edition never qualifies as production evidence.
 
 See [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) for unchanged release budgets and
 [SITE-STAGING](SITE-STAGING.md) for controller, source leases, promotion and
