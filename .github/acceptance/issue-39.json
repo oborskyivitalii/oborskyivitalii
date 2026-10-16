@@ -7,7 +7,7 @@
     {
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
-      "automated_scope": "Current protected main315da39d is the exact baseline. All607 public, authored, runtime, producer, release and workflow paths/modes remain present. Reversing only the eight named full/minimal installer paragraphs must reproduce every original blob exactly; source preservation is not a live provider inventory.",
+      "automated_scope": "Current main9d8e99f5 is the exact baseline. Preserve all607 protected public/runtime/producer/workflow files and modes after reversing only the exact named mandatory-rights list paragraph. No public or runtime byte changes; actual provider inventory remains separate.",
       "checks": ["PRESERVATION", "HOST-POLICY"],
       "gates": ["LIVE-INVENTORY"]
     },
@@ -21,7 +21,7 @@
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "The audit-only trusted-main dependency installs the complete exact Python lock, immediately verifies the installed graph and keeps unmodified Semgrep1.179.0 with the sole explicit patched MCP1.30.0 constraint override. Pin pip26.2.1 and retain every other original dependency. Four positive/adversarial graph fixtures reject missing/changed/duplicate/unfrozen packages, broadened overrides and every other incompatible requirement. Existing source/selector/host-policy/publication/flight negatives remain selected. Actual Semgrep coverage, complete dependency advisory feeds and current-candidate native prepublication remain separate run evidence. No public/runtime change, CVE exception, staging promotion or production admission is supplied.",
+      "automated_scope": "Two exact future compact-metadata plain/staging fingerprints, independently recomputed base/Color/edition hashes and all five unchanged canonical/immutable runtime files from cold immutable16d4b1cd/current-candidate builds. Retain every historical tuple, strict unknown/mixed/missing/edition rejection, mandatory frozen license records and original timing/resource budgets. Patched Python audit graph remains unchanged and verified. No production tuple, public/runtime/compiler/workflow change or hosted admission belongs to this prerequisite.",
       "checks": [
         "PRESERVATION",
         "HOST-POLICY",
@@ -29,14 +29,15 @@
         "PROOF",
         "FLIGHT-TELEMETRY",
         "PUBLICATION-RECORDS",
-        "AUDIT-GRAPH"
+        "AUDIT-GRAPH",
+        "COMPACT-PROOF"
       ],
       "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
     },
     {
       "id": "AC04",
       "intent": "Actionable maintainer instructions and linked execution",
-      "automated_scope": "Continue #39/PR40 under the maintainer request to deliver PR40 through main and permanent Cloudflare staging, then production. The existing /stage workflow executes from protected main before checking candidate requirements; its current resolver cannot install the patched SDK pair. This finite source-only installer bridge precedes ordinary PR40 admission. Ready source/RI/owning checks remain required; CS01/CS05/CS08/CS09/CS10 self-review does not supply independent full release acceptance. PR40 retains its complete feature policy after integration.",
+      "automated_scope": "Continue #39/PR40 after merged PR82. Approved compact JSON-LD changes producer-bound identity while preserving every runtime byte; trusted-main package verification needs the two exact identities and finite mandatory-rights membership before ordinary PR40 admission. Normal current source/RI/owning CI and protected merge apply under the maintainer delivery instruction. Keep full PR40 feature and actual release acceptance separate; CS01/CS04/CS05/CS08/CS09/CS10 self-review is not independent release review.",
       "checks": ["STYLE", "BASIC", "RI", "RI-CI"],
       "gates": ["OWNER-SETTINGS", "REVIEW", "STAGING", "MERGE"]
     },
@@ -91,6 +92,10 @@
     "AUDIT-GRAPH": {
       "kind": "unittest",
       "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_installed_python_graph_contracts"
+    },
+    "COMPACT-PROOF": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_compact_tuple_proof_and_closed_selector"
     }
   },
   "gates": {
@@ -116,15 +121,15 @@
     },
     "REVIEW": {
       "kind": "human",
-      "description": "Self-review the exact eight installer paragraphs, complete lock/graph verifier and negative fixtures; preserve every protected main blob after exact installer reversal. Independent production/device/rights/editorial review remains with the frozen PR40 release candidate, not supplied by this source-only dependency."
+      "description": "Self-review exact two plain/staging tuples, independent computational derivations and unchanged runtime bytes; preserve every protected main blob after only the exact mandatory-rights paragraph reversal. Previously reviewed bytes remain unchanged; new independent release/device/editorial/rights review remains pending with PR40."
     },
     "STAGING": {
       "kind": "human",
-      "description": "PR40 must obtain fresh Ready source/RI/owning admission, ordinary owner-requested Cloudflare staging, unchanged-budget hosted regression and exact stable identity before merge. This installer-only prerequisite keeps every public/runtime byte unchanged and does not publish staging; its trusted installer must be available before that ordinary PR40 request. Earlier two-host/Pages staging requirements are superseded by merged PR81; original host/performance cases and failed history remain."
+      "description": "PR40 requires fresh Ready source/RI/owning admission, ordinary one-host Cloudflare staging, unchanged-budget native regression and exact stable identity before merge. This controller-only prerequisite preserves current public/runtime bytes and does not claim staging; the trusted registry must recognize its future compact-metadata tuples before ordinary PR40 admission. GitHub Pages staging stays retired."
     },
     "MERGE": {
       "kind": "merge",
-      "description": "The current maintainer instruction requests PR40 through protected main/permanent staging and then production. Integrate only this required public-byte-preserving installer compatibility prerequisite through ordinary successful required checks, retain its exact tree and existing protection, then resume PR40 ordinary staging. Do not infer production activation or close the owning launch issue from this dependency merge."
+      "description": "Current maintainer instruction requests PR40 through protected main/permanent staging, then production. Integrate only this required public-byte-preserving exact controller-identity prerequisite through normal successful required checks; preserve its exact tree and protection, then resume full PR40 admission. No production activation or issue closure follows."
     }
   }
 }

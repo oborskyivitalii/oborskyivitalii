@@ -652,3 +652,27 @@ test('explicit stable and production workflows run prepublication before deploya
   );
   assert.doesNotMatch(reusableBuild, /check node tools\/quality\/source-tests\.cjs/);
 });
+
+test('compact-metadata identities still require frozen publication rights before any file access', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  for (const edition of ['plain', 'staging']) {
+    const runtime = motion.reviewedRuntime('issue39-licensed-compact-' + edition);
+    const source = {
+      variant: runtime.variant,
+      components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },
+      files: {},
+      ...(edition === 'staging'
+        ? { edition: { id: 'staging', indexable: false, analytics: false } }
+        : {}),
+    };
+    for (const [name, sha256] of Object.entries(runtime.files)) {
+      source.files[name] = { sha256 };
+      source.files['runtime/' + runtime.variant.fingerprint + '/' + name] = { sha256 };
+    }
+    assert.equal(staging.publicationRequired(source, source.components), true);
+    assert.throws(
+      () => staging.publicationRights('/no-file-access', source, undefined, source.components),
+      /licensed publication rights record required/
+    );
+  }
+});
