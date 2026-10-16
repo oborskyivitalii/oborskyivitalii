@@ -239,3 +239,40 @@ The new immutable original-PR40 baseline literal is separately checked by actual
 pinned detection and Git object verification before an exact ledger append.
 Freeze the final review/memory bytes, run its exact-source preflight and Ready CI,
 then request ordinary one-host staging. No full release criterion is newly closed.
+
+
+## Bounded steps 1 and 2 — convergence after parallel publication
+
+The maintainer explicitly requests only main integration and checksum/HTML
+completion, then a stop/report. Writing TBT, Ready admission, ordinary staging,
+PR40 merge and production remain subsequent work. Main321b7066 with PR81/82/83
+is integrated. All five runtime aliases are byte-identical to original16d4b1cd;
+Writing source99933→95111B and Credits83948→83927B preserve exact visible/legal
+content and JSON-LD values. No timing/resource budget changes.
+
+Parallel publication advanced PR40 to4188f84 while another clean preparation
+00004b07 was being verified. The expected-head check prevented overwrite. Keep
+4188f84's complete17-check feature policy, three-edition independent derivation,
+all runtime mutations and ledger-merge provenance. Apply only the current modern
+publication fixture's exact compact identity, permanent original-ledger retention,
+and byte-equality assertion to that newer source. Historical fixtures remain exact.
+
+The clean parallel preparation passed16/16 owning checks, all115 permanent Python
+tests, lint/format/style/architecture/SEO/RI and actual package/security checks.
+Semgrep covered225 files/zero findings; all37 raw Bandit observations and4779
+detector candidates were accounted. Its earlier90802457 owning15/16 failure
+remains failed; the production fixture correction is already present in4188f84.
+These observations are bound to00004b07, not automatically to this convergence.
+
+Pinned Bandit1.9.4's new B105 at python_toolchain.py:111 mistakes the report key
+pass with boolean True for a password. Add only its exact source/line/rule/
+severity/confidence fingerprint to the existing expiring tooling policy, keeping
+all36 original entries. The public source checksum in that review is separately
+recomputed and appended to the unchanged closed secret-ledger mechanism. Retain
+every original482 PR40 disposition and every4188f84 record; final union705.
+Self-review/computational derivation does not supply independent human approval.
+
+Freeze and run the final17-check policy, current scanners and permanent Python
+checks on the delivered convergence. Actual results and remaining full/human/
+performance gates are recorded in the live owning issue/PR at handoff. Stop after
+this bounded delivery; no native TBT, /stage or production operation is requested.

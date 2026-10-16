@@ -721,6 +721,8 @@ test('compact-metadata identities still require frozen publication rights before
   const motion = require('../tools/quality/color-motion-contract.cjs');
   for (const edition of ['plain', 'staging', 'production']) {
     const runtime = motion.reviewedRuntime('issue39-licensed-compact-' + edition);
+    const original = motion.reviewedRuntime('issue39-licensed-' + edition);
+    assert.deepEqual(runtime.files, original.files);
     const source = {
       variant: runtime.variant,
       components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },

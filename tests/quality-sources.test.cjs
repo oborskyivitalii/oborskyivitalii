@@ -950,6 +950,19 @@ test('all historical secret dispositions retain their exact data in the closed l
     const source = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
     for (const entry of source.findings) assert.deepEqual(reviewed.get(entry.id), entry);
   }
+  const previousPublication = JSON.parse(
+    cp.execFileSync(
+      'git',
+      ['show', '16d4b1cd03afbb3d01194bbda3d5a2db2edab2d4:tools/quality/secrets-publication.json'],
+      { cwd: root, encoding: 'utf8' }
+    )
+  );
+  for (const entry of previousPublication.findings)
+    assert.deepEqual(
+      reviewed.get(entry.id),
+      entry,
+      'preserve each original publication disposition'
+    );
 });
 test('independent scanner engines retain current raw results and continue after sibling failures', (t) => {
   const { collectEngines } = require('../tools/quality/scanners.cjs');

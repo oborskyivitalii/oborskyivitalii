@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ffc1099954e47652fdf1b68e704406cc3e55adebf3ebbe8c360704513c63f461",
+    "digest": "ddc208fa6b75c60899d0cc28e2d952b7e53338f28befdb8ce3e072e43c127d20",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a63a286f5ddd6fecad18c90755485b5ab42c46c83aa8743be20c7f1e30ad63c2"
+        "sha256": "f927c2f34f3aba05c91e44d05badcf510cf6893381973c1192d0f28c0d2c694f"
       },
       {
         "path": "NOTICE.md",
@@ -815,7 +815,7 @@
       {
         "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",
         "identity_mode": "content",
-        "sha256": "77cfd798d90f930b8da781094f127b3251a9597085055204391ec94085709335"
+        "sha256": "0e5d1e3e6a92b8a134eb38d7d4a36dbd48accc19092b0fb955768644564722db"
       },
       {
         "path": "review/issue-39/2026-10-16-python-audit-compatibility.md",
@@ -825,7 +825,7 @@
       {
         "path": "review/issue-39/2026-10-16-readiness-execution.md",
         "identity_mode": "content",
-        "sha256": "995ef574ec4aa251544942d03773c78efb582f63af55e201188bf7ec44449db2"
+        "sha256": "f96d044d3e668ddb044bab0ae1ad6b32b4b27e79e1c0a3177272c11354a2eca2"
       },
       {
         "path": "review/issue-39/2026-10-16-secret-ledger-merge.json.gz",
@@ -5535,7 +5535,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "f0ed7c1320d5f3374b3b5c10d05fefd36e1ea7feae0e1509d51a8af1593f11a7"
+        "sha256": "e9de95991b66daca66cb776480bb3571330c4a68d54f778c0cfe197077c93e07"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -5630,12 +5630,12 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "0cb38b657deaca49d3757d11994e21b848129aabd02ca5331ef8fda87dd1b79b"
+        "sha256": "c0ddcd2a1cba2cd249b9e15539b0482f5edf21f29bc52389de7be28162b5a542"
       },
       {
         "path": "tests/quality-sources.test.cjs",
         "identity_mode": "content",
-        "sha256": "92bb134aded3a98cd4cba307ebbd8098ab3ef35c0bb35df612d9ceb5cf88971a"
+        "sha256": "a43a019c1a7f0ef476560ebf8801ee7a91fe4cd10988f531d84e4be8dbc10617"
       },
       {
         "path": "tests/quality.test.cjs",
@@ -6015,7 +6015,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "5ebbcbbb15bc60c5c0e515505bdb6f291ea9ad66dfc7f821a704226e38506c3f"
+        "sha256": "95e7c2c0e6a873c813a23dc5ce5c2276519aa461d7bf8e163d248683e100fdc4"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -6255,7 +6255,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "a82dc91e5d21d55b5b754413c1bf3ad2d220389cde8cb3d3ddd14b7a1448a459"
+        "sha256": "0fee3e7f4d9edce11c6a68271d39e03333c10afc46ee419a71177a0482af6698"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
