@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
     "date": "2026-10-16",
-    "summary": "Full PR40 main integration after PR81/PR82: exact compact metadata tuples with unchanged runtime bytes, mandatory frozen rights, complete append-only original/main secret review and retained failures/budgets. Review source/acceptance/workflow/registry and RI/CI routes; actual live/native/device/independent release gates remain separate. Self-review."
+    "summary": "Full PR40 integration retains exact compact identities, frozen rights, append-only secret review and original budgets. Bounded Writing TBT diagnosis adds history/catalog/handoff only: all24 observations, rejected2D treatment and explicit Draft stop; no runtime or admission change. Review RI/catalog/evidence routing; live/native/device/independent gates remain separate. Self-review."
   },
   "layers": [
     {
@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "90e54f591aa4b79d1866fd1279297ee004ed576a25d31275f5526322178f35a5",
+    "digest": "aa774d83d0c70b4ef82b507c6c39c0ec73a3035210a3c1c22d063e29eb3ce221",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -634,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "86041907ab297d8643c476829c421c69e8cb13742445ff37e9da193b59ddbaf3"
+        "sha256": "1b00f6b06929e63f52bf34d2aaa775ff2aa3eb4b8545def58c00437b82e48a56"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

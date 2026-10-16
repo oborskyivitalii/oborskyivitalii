@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ddc208fa6b75c60899d0cc28e2d952b7e53338f28befdb8ce3e072e43c127d20",
+    "digest": "c652e217b63480cb156b0b842c887039f11b4d3a081499ab5a0dddc2b550bbdd",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "86041907ab297d8643c476829c421c69e8cb13742445ff37e9da193b59ddbaf3"
+        "sha256": "1b00f6b06929e63f52bf34d2aaa775ff2aa3eb4b8545def58c00437b82e48a56"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e06f839cf732ca29c0b6895764e30782d2556b75ec2b10d3fc0e7e67a2a50639"
+        "sha256": "dad8e4dd52564efae078f8f5ef27cdfe03da4f7ea41d107d5e56e1e03dab5876"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f927c2f34f3aba05c91e44d05badcf510cf6893381973c1192d0f28c0d2c694f"
+        "sha256": "24513692acdbd2df18ebf79f77cff750e1b3a5340afcecff6c7fd90f23005d73"
       },
       {
         "path": "NOTICE.md",
@@ -831,6 +831,16 @@
         "path": "review/issue-39/2026-10-16-secret-ledger-merge.json.gz",
         "identity_mode": "content",
         "sha256": "9180d8eb530ba7c55100a9d330a7a2fcae55bf3e362b5b3607f0c4d0ef425c34"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-writing-tbt.json.gz",
+        "identity_mode": "content",
+        "sha256": "0b0ae597a27973950f0a3ae5aa5baf631e8ec2cad1202e9142e54ae38dbdcefc"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-writing-tbt.md",
+        "identity_mode": "content",
+        "sha256": "ca5074ff1561d5c4110efdf494a6762c21d9390a298266339a995ef7dacc2afd"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -8692,6 +8702,28 @@
         "AGENTS.md"
       ],
       "title": "2026-10-16-secret-ledger-merge.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-writing-tbt.json.gz",
+      "kind": "file",
+      "purpose": "Inert source/artifact-bound Writing TBT execution record with every trial, raw-report hashes, CPU/cgroup monitoring and exact text-export archive identity; no performance admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-writing-tbt.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-writing-tbt.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-writing-tbt.md",
+      "kind": "file",
+      "purpose": "Bounded exact-source Writing TBT diagnosis, all controlled observations, rejected2D treatment and explicit Draft/stop boundary; self-review, no native release acceptance.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — 16 October Writing TBT diagnosis"
     },
     {
       "path": "review/issue-41/2026-10-07-analysis.md",

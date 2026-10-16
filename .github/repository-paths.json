@@ -8724,6 +8724,18 @@
       "purpose": "Verbatim provenance for six identical-disposition secret-review reason variants during PR40/main ledger reconciliation; original PR40 rows and all newer exact IDs remain preserved.",
       "role": "history",
       "owner": "review/issue-39/2026-10-16-readiness-execution.md"
+    },
+    "review/issue-39/2026-10-16-writing-tbt.md": {
+      "kind": "file",
+      "purpose": "Bounded exact-source Writing TBT diagnosis, all controlled observations, rejected2D treatment and explicit Draft/stop boundary; self-review, no native release acceptance.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-39/2026-10-16-writing-tbt.json.gz": {
+      "kind": "file",
+      "purpose": "Inert source/artifact-bound Writing TBT execution record with every trial, raw-report hashes, CPU/cgroup monitoring and exact text-export archive identity; no performance admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-writing-tbt.md"
     }
   }
 }
