@@ -4,51 +4,48 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main is `9b82f382` after PR80. Production remains disabled.
-- #72 now owns [PR81](https://github.com/oborskyivitalii/oborskyivitalii/pull/81) on
-  `work/cloudflare-only-staging-72`,
-  based on that main. The maintainer explicitly requested it before PR40 resumes.
-- #39 / PR40 remains at `16d4b1cd`; its separate worktree contains unfinished
-  JSON-LD/headroom and readiness corrections. Do not overwrite or import them here.
-- #72 implementation/review/evidence belongs in
-  review/issue-72/2026-10-16-cloudflare-only-staging.md and the live PR.
-- Earlier two-host staging and failed runs remain historical source-bound evidence.
+- Main315da39d includes merged PR81: Cloudflare PR previews and one permanent
+  staging remain; GitHub Pages staging is retired.
+- #39 / PR40 remains Draft16d4b1cd, with local main integration and readiness
+  corrections preserved separately. Nothing new is staged, merged or published.
+- This branch prepares a minimal trusted-main Python audit installer dependency.
+  Its review is `review/issue-39/2026-10-16-python-audit-compatibility.md`.
 
 ## Decisions
 
-- Retire GitHub Pages staging. Keep Cloudflare PR previews and one permanent
-  Cloudflare staging alias; reserve Pages for production. The live #72 scope
-  amendment explicitly replaces AC04 and reopens changed protocol/delivery ACs.
-- Staging source/lint/security/advisory preflight executes once before upload.
-  Reuse only authenticated reports from the same native run/controller/attempt,
-  exact clean source/tree/edition/artifact and complete unchanged raw reports.
-- Preserve all staging browser/performance cases, thresholds, source/Ready/RI/
-  owning checks, Cloudflare package/alias recovery and merge-tree linkage.
-- Full production regression and publication-specific package cleanup remain
-  with PR40. No production/domain/DNS activation or PR40 merge is implied.
-- Original licensing selection and supplied consents remain accepted under #39;
-  exact-edition rights/editorial/device/independent release evidence stays separate.
+- The maintainer requests PR40 through protected main/permanent staging, then
+  production. Stage the open PR first and preserve its admitted tree at merge.
+- /stage uses the main workflow installer and PR requirements. The patched SDK
+  requires the exact graph-verified installer bridge on main before that request.
+- Retain unmodified Semgrep1.179.0; pin MCP1.30.0 and pip26.2.1. Verify the whole
+  exact inventory and every active constraint, permitting only the named SDK
+  constraint override. No advisory exception or budget change is authorized.
+- This dependency preserves every public/runtime/producer byte; only eight exact
+  installer paragraphs may differ in the607 protected paths from main315da39d.
+- Keep the full feature acceptance policy in PR40 and all actual release gates.
+  Self-review, source CI and a dependency merge do not supply release approval.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #72 infrastructure | Local536 source cases,111 Python and9 policy checks pass; inspect final native CI; protected integration before PR40 staging. |
-| #39 / PR40 | Rebase after infrastructure integration; finish exact checksum triage, MCP/Semgrep advisory resolution, Writing TBT and clean preflight before one-host staging. |
-| #39 / #72 | Actual administration, retired live Pages deployment disposition, protection, production archive and recovery remain separate observations. |
-| #1 / #7 / #8 / #13 | Final rights/editorial/reader/device/independent, full/native/performance, live SEO/indexing/analytics and launch evidence. |
-| #69 / #76; #49 / PR53; #41 | Preserve remaining device/lifecycle/cost and independent animation/editorial acceptance. |
+| #39 installer prerequisite | Freeze exact source, pass Basic/style/format/lint/architecture, RI/coupling/owning/source checks; normal protected merge. |
+| #39 / PR40 | Integrate main, prove exact checksum findings, finish compact JSON-LD and clean preflight, then ordinary one-host staging before merge. |
+| #1 / #7 / #8 / #13 | Current rights/editorial/reader/device/independent, full/native/performance and live-origin acceptance. |
+| #39 / #72 | Actual protected App/environment/immutable release settings, authenticated Pages predecessor, canonical migration and recovery. |
 
 ## Next session
 
-1. Revalidate live main, infrastructure PR and PR40 refs/checks and working trees.
-2. Read #72's 16 October scope amendment and versioned implementation record.
-3. Finish/inspect the infrastructure checks without an unnecessary full release run.
-4. Return to PR40 only after the infrastructure route is accepted and integrated.
-5. Keep production/domain/DNS activation under its existing maintainer decision.
+1. Revalidate live main, PR40 and prerequisite PR/refs/checks; preserve original
+   dirty worktree and failed/raw runtime evidence.
+2. Complete and integrate only this public-byte-preserving installer prerequisite.
+3. Resume PR40 readiness review, full feature policy and26-family preflight.
+4. Obtain exact stable Cloudflare admission before merging the identical PR40 tree.
+5. Freeze production from merged main; finish actual full/native/manual release
+   gates, then perform only the ready authorized production actions.
 
 ## Maintenance
 
-Keep these five sections and at most 120 lines. Replace stale observations at a
-meaningful handoff; issues/PRs own current acceptance. Rebuild/verify RI after edits.
-Never store secrets or private correspondence in memory.
+Keep these five sections and at most120lines. Issues/PRs own current acceptance;
+replace stale observations at handoff and rebuild RI. Never store secrets or
+private correspondence in memory.

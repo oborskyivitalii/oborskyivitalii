@@ -2,27 +2,28 @@
 
 import hashlib
 import json
+import os
 import re
 import subprocess
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "cc115c4241197d59205934bdc18f209109d5ee87"
-# Live issue39 names finite hosting and first-publication record compatibility.
-CONSUMER_AMENDMENTS = {
-    "tools/staging/package.cjs",
-    "tools/staging/hosted.cjs",
-    "tools/staging/review-flow.cjs",
-    "tools/pages/package.cjs",
-    "tools/pages/controller.cjs",
-    "tools/pages/http.cjs",
-    ".github/workflows/site-checks.yml",
-    ".github/workflows/site-color-review.yml",
-    ".github/workflows/site-release-candidate.yml",
-    ".github/workflows/site-release-checks.yml",
+BASE = "315da39d0294d970809648cdc0725f7e63187602"
+# Current #39 continuation permits only these exact installer edits in protected owners.
+FULL_INSTALL_WORKFLOWS = {
+    '.github/workflows/site-color-review.yml',
+    '.github/workflows/site-release-candidate.yml',
+    '.github/workflows/site-cause-fix-probe.yml',
+    '.github/workflows/site-gtk-native-probe.yml',
+    '.github/workflows/site-gtk-target-probe.yml',
+    '.github/workflows/site-release-checks.yml',
 }
-FROZEN_RIGHTS_OWNER = "tools/release/rights-record.cjs"
+MINI_INSTALL_WORKFLOWS = {
+    '.github/workflows/issue-acceptance.yml',
+    '.github/workflows/site-checks.yml',
+}
 PROTECTED = (
     "site",
     "docs",
@@ -50,13 +51,19 @@ class Issue39AcceptanceTests(unittest.TestCase):
     def test_current_main_public_and_producer_bytes_are_preserved(self):
         paths = protected_paths()
         baseline = {}
-        records = git("ls-tree", "-rz", BASE, "--", *paths).split(b"\0")
-        for record in filter(None, records):
+        for record in filter(None, git("ls-tree", "-rz", BASE, "--", *paths).split(b"\0")):
             metadata, filename = record.split(b"\t", 1)
             mode, kind, object_id = metadata.decode().split()
             self.assertEqual((mode, kind), ("100644", "blob"))
             baseline[filename.decode()] = object_id
-
+        self.assertEqual(len(baseline), 607, "current protected main inventory changed")
+        self.assertTrue((FULL_INSTALL_WORKFLOWS | MINI_INSTALL_WORKFLOWS).issubset(baseline))
+        full = b"tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt"
+        patched = (
+            full.replace(b" -r ", b" --no-deps -r ")
+            + b"\n          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py"
+        )
+        mini = b"--no-deps ruff==0.16.10 PyYAML==6.0.3"
         actual = {}
         for source in paths:
             owner = ROOT / source
@@ -65,33 +72,59 @@ class Issue39AcceptanceTests(unittest.TestCase):
                 if ancestor == ROOT:
                     break
                 self.assertFalse(ancestor.is_symlink(), source)
-            files = owner.rglob("*") if owner.is_dir() else [owner]
-            for filename in files:
+            for filename in owner.rglob("*") if owner.is_dir() else [owner]:
                 self.assertFalse(filename.is_symlink(), str(filename))
-                if filename.is_file():
-                    self.assertEqual(filename.stat().st_mode & 0o111, 0)
-                    relative = filename.relative_to(ROOT).as_posix()
-                    raw = filename.read_bytes()
-                    actual[relative] = hashlib.sha1(
-                        b"blob " + str(len(raw)).encode() + b"\0" + raw,
-                        usedforsecurity=False,
-                    ).hexdigest()
-        self.assertEqual(len(baseline), 607, "pinned protected main inventory changed")
-        self.assertTrue(CONSUMER_AMENDMENTS.issubset(baseline))
-        self.assertEqual(
-            set(actual),
-            set(baseline) | {FROZEN_RIGHTS_OWNER},
-            "protected inventory differs beyond the named shared frozen verifier",
+                if not filename.is_file():
+                    continue
+                self.assertEqual(filename.stat().st_mode & 0o111, 0)
+                name = filename.relative_to(ROOT).as_posix()
+                raw = filename.read_bytes()
+                if name in FULL_INSTALL_WORKFLOWS:
+                    expected = git("show", BASE + ":" + name).count(full)
+                    self.assertGreater(expected, 0)
+                    self.assertEqual(raw.count(patched), expected, name)
+                    raw = raw.replace(patched, full)
+                if name in MINI_INSTALL_WORKFLOWS:
+                    self.assertEqual(raw.count(mini + b" packaging==26.3"), 1, name)
+                    raw = raw.replace(mini + b" packaging==26.3", mini)
+                if name == ".github/workflows/issue-acceptance.yml":
+                    admitted_policy = b"          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-39.json' ||\n"
+                    self.assertEqual(raw.count(admitted_policy), 1)
+                    raw = raw.replace(admitted_policy, b"")
+                actual[name] = hashlib.sha1(
+                    b"blob " + str(len(raw)).encode() + b"\0" + raw, usedforsecurity=False
+                ).hexdigest()
+        self.assertEqual(set(actual), set(baseline), "protected paths changed")
+        self.assertEqual(actual, baseline, "a byte changed outside the exact installer paragraphs")
+
+    def test_installed_python_graph_contracts(self):
+        original = git("show", BASE + ":tools/quality/toolchain/requirements.txt")
+        expected = original.replace(b"mcp==1.29.0\n", b"mcp==1.30.0\n").replace(
+            b"pillow==12.3.0\n", b"pillow==12.3.0\npip==26.2.1\n"
         )
-        self.assertEqual(
-            {
-                name: value
-                for name, value in actual.items()
-                if name not in CONSUMER_AMENDMENTS | {FROZEN_RIGHTS_OWNER}
-            },
-            {name: value for name, value in baseline.items() if name not in CONSUMER_AMENDMENTS},
-            "compatibility changed a byte outside the named hosting/Pages consumers",
+        self.assertEqual((ROOT / "tools/quality/toolchain/requirements.txt").read_bytes(), expected)
+        tools = Path(os.environ.get("SITE_AUDIT_TOOLS", ROOT / "tools/quality/toolchain"))
+        executable = (
+            tools / "venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
         )
+        script = """
+import json, unittest
+suite = unittest.defaultTestLoader.discover('tests', pattern='test_python_toolchain.py')
+result = unittest.TextTestRunner(verbosity=1).run(suite)
+print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
+                  'skips': len(result.skipped), 'expectedFailures': len(result.expectedFailures)}))
+"""
+        result = subprocess.run(
+            [str(executable), "-c", script],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=30,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report, {"pass": True, "tests": 4, "skips": 0, "expectedFailures": 0})
 
     def test_frozen_publication_records_and_actual_legacy_pages_bytes(self):
         result = subprocess.run(

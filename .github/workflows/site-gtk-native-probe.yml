@@ -127,7 +127,8 @@ jobs:
           node tools/quality/artifact.cjs build quality-artifact
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
       - name: Lint complete current source
         if: ${{ !cancelled() }}
         run: node tools/quality/scanners.cjs lint

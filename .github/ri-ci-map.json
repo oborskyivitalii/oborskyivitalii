@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
-    "date": "2026-10-11",
-    "summary": "Maintainer-approved Cloudflare-only staging: retire the Pages staging publisher and two-host admission/compensation, authenticate same-run/attempt complete preflight reports, preserve original scanner bytes and all hosted/performance/recovery budgets. Production package cleanup and activation stay with PR40; local checks are self-review."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
+    "date": "2026-10-16",
+    "summary": "Trusted-main Python audit installer prerequisite for PR40: complete exact inventory/constraint verification with one patched MCP compatibility override, unchanged scanners/advisory feeds and protected public/runtime bytes. Reviewed source/acceptance installer routes and new permanent graph fixtures; production and ordinary PR40 staging remain separate. Self-review."
   },
   "layers": [
     {
@@ -482,7 +482,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "88fd1fa8f37e28fdf3bbb7913ede957e95531254f599bc5face5d4da9c0963ba",
+    "digest": "e12164633b01256b7e9a9e07901966403d9bd3e230a72bb4d01ae9410818f7fe",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -518,7 +518,7 @@
       },
       {
         "path": ".github/acceptance/issue-39.json",
-        "sha256": "20935309b5576bd48f3b011fd55f7836e17d02febbea284c607aade947287379"
+        "sha256": "06fbf77ff1376cfed94e4cdee018359ae3975fe58f45571b9b63e70d790dda0b"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -586,11 +586,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "469a96ca5651c5b846ae9ca8056e8e542069c4cc6d15c0c0cf193c0a5e2f05d9"
+        "sha256": "b927ac108807d42ff965263d818ac3d8b8e4b5821f8e09e7362f554853e6efee"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "18892853d182eb1fbde7ffcdb9db67592592bb7da94fd44a9c86f547d1759265"
+        "sha256": "606ce6e1ceb55047a8ab8f4764d767d06ed8987dba52a9de6f57beb94742087e"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -606,7 +606,7 @@
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
-        "sha256": "999372814387ed5ee5ab3bf5e12b04dadc3ccf1482562ecdd9f1503c1ecbb11c"
+        "sha256": "c660b602cbf9231672b99983822dfe5645dfc9cfbc0931281aefbb09cf797b85"
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
@@ -614,19 +614,19 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "009941a67400e7e3bef1bbf55b2a976e4cc1e409191a248efee7006383002add"
+        "sha256": "7b30376e9e02472e85e198ee71f01c6628d156297104baad8a38cc2f3be109bd"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "111cd483dd21695e465f77d0ef2ffcc68d4ec1c4abefaf45d89d6dec82f4ae52"
+        "sha256": "69ce99394f141b695236850930511018debf510e99c57954f7e60c0e2a3e4f88"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
-        "sha256": "2e555c5ab92cb13e2d92003a4b63053ab02e8f9c41a233ab61af4097b71c9154"
+        "sha256": "06284b6b8a8c40456245543ecacd6ce63f37541ff5d9abdc42871aba70760fca"
       },
       {
         "path": ".github/workflows/site-gtk-target-probe.yml",
-        "sha256": "e7ad196cd35383facc9ac988de9647601ca5752250c2536efe19a094583a98b3"
+        "sha256": "53ac3b6b90edd9e8a70f9b1f74cbd51d52dc2c7b00c7f1f9541120d995b3304c"
       },
       {
         "path": ".github/workflows/site-navigation-probe.yml",
@@ -638,11 +638,11 @@
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "a48798ce8f37f03574d9eeb1298bf458edd88bfe422d7318f44330db03faad5d"
+        "sha256": "4267303bbfb7837ce684cd46196cc6455a30f0a5df49ff536994b29cf48b64df"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "0bee74502f9f7449fde841ec27471c97cee8dcca7b888563254774ceda95bc35"
+        "sha256": "830a11a6aa62cabb9395ebd0bd46774fd28172dd63b1bf300874331d8c9f7c74"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -722,7 +722,7 @@
       },
       {
         "path": "tests/test_issue39_acceptance.py",
-        "sha256": "ed2c0a95e9210077e96db937f1aafdd902fde69d2468df02a1570f59c478cf3f"
+        "sha256": "b5d5241121f8e8db6e242a2a2ee7f58282de8f87f24d14bdf49c79c4ada5a309"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -814,7 +814,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "9d4246773e43f015f56c1e7d6e3be4b9bd8d6720a44014a186c71ee105aef6ed"
+        "sha256": "763670aad7ad7a2e70fb668f4368705e22040a673ea0c0a719e6d8d00aa347ee"
       },
       {
         "path": "tools/repository_intelligence.py",

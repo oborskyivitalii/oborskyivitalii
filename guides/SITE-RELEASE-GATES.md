@@ -177,6 +177,17 @@ The maintainer's 11 October instruction explicitly excludes production activatio
 | Stylelint | Parse errors and reviewed duplicate/cascade rules gate; cosmetic formatting debt is visible without an indiscriminate CSS rewrite. |
 | Ruff | Python correctness/import checks and reviewed complexity rules; use `--no-cache` or an external cache. |
 
+The Python lock includes its installer and every installed audit dependency. Full
+installers use `--no-deps` only with that complete lock, immediately followed by
+`python tools/quality/python_toolchain.py`. The verifier rejects missing, changed,
+duplicate, unfrozen or incompatible packages. Its single reviewed constraint
+override keeps unmodified Semgrep CE1.179.0 with patched MCP1.30.0, replacing the
+upstream exact1.29.0 declaration. Only the existing CE scan route is supported;
+this is not an MCP service deployment or a dependency-advisory exception. The
+advisory engine repeats installed-graph verification and audits every locked
+package, including the patched SDK and installer. Any future version/constraint
+change needs a new compatibility review; the exact override otherwise fails.
+
 New untriaged findings fail the relevant check until classified. A real release
 blocker must be fixed or carry an explicit, scoped and expiring reviewed exception.
 Separate false-positive suppressions from accepted risk. Each exception records
