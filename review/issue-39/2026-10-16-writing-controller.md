@@ -81,3 +81,9 @@ No scanner, severity, source binding, expiry, advisory or runtime policy is waiv
 This corrects main's missing classification; the original failed scan remains.
 Prepared owning13/13, selector/publication25/25, Basic24, maintained lint/format,
 RI28 and RI/CI20 passed. Frozen final source/hosted CI remains pending.
+
+The second retained security scan on5733adc classified the six identities and all
+37 Bandit rows, but correctly exposed the newly copied Bandit row's own exact
+public source SHA256. Independently recompute that unchanged verifier hash and
+append only its exact detector ID (seven total additions, original83 preserved).
+No raw finding is hidden; final clean scan must bind the resulting source.

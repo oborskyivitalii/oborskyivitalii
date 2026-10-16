@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e521211b59e9298026d8c6d653880dc5e6e4478aa53851b19b8b81c78c27b22d",
+    "digest": "d1690001168730e11c838f7db3089789a0220f4f9b9a8d30ef6ee49319f5c4e0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -730,7 +730,7 @@
       {
         "path": "review/issue-39/2026-10-16-writing-controller.md",
         "identity_mode": "content",
-        "sha256": "255da4db0880affb9b680690a72539fae89eaedab667b86a5d422db7c4ced6c0"
+        "sha256": "cd3be65f4558770055c5187586c4c0282665839069e7e4ffce565b66ebf537e9"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -6100,7 +6100,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "7e825f422c9409cd2d8b4ad2bc6656356fd1b24eae092e894cf667198a070cf1"
+        "sha256": "212baf4a6b484170fa3f8ee7a02e52960a935f41ecce331ada356a7e21546455"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
