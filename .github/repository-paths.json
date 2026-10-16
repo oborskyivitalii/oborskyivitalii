@@ -8754,6 +8754,30 @@
       "purpose": "Inert verified native Writing six-row cause record with exact runner/source/artifact/profile and original raw hashes; five ordinary trials plus separately sampled CPU attribution, no hosted admission.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-writing-controller.md": {
+      "kind": "file",
+      "purpose": "Issue39 exact Writing plain/staging trusted-controller prerequisite, native evidence, preservation and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-writing-controller-tuples.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact clean-source Writing runtime tuple proof with independent Python base/Color/edition and canonical/immutable SHA256 derivation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-stable-merge-ledger.json.gz": {
+      "kind": "file",
+      "purpose": "Exact PR40/current-main ledger union proof preserving all prior feature rows and same-disposition reason variants.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-stable-staging.md": {
+      "kind": "file",
+      "purpose": "Issue39 current-main reconciliation, Ready/preflight/stable staging source-bound evidence and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

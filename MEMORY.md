@@ -22,23 +22,19 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Decisions
 
-- Maintainer authorized next steps1/2: native Writing diagnosis and eventual
-  exact trusted-main identities, then stop/report with numbered next steps.
-- Keep PR40 Draft; no Ready/full26preflight/stage/PR40 merge/production/domain/DNS
-  belongs to this continuation. Integrating controller alone grants no admission.
-- Existing allocation correction and all runtime bytes remain unchanged. Native
-  evidence does not prove a sole runner/hardware cause or erase earlier failures.
-- Preserve full PR40 feature policy, all894 publication dispositions, baseline
-  ledgers, original budgets and source-bound frozen rights when later integrating
-  the minimal main policy. Main prerequisite policy is deliberately narrower.
-- Freeze production only from accepted merged main; full/native/device/independent/
-  rights/editorial/settings/live-origin/recovery decisions remain separate.
+- Latest maintainer “Роби” authorizes main integration/Ready checks, exact-source
+  26/26 preflight and ordinary stable Cloudflare staging, then stop/report.
+- No PR40 merge, production activation or domain/DNS action belongs here.
+- Preserve the full PR40 feature/runtime/rights/scanner policy when reconciling
+  the deliberately narrow main prerequisite. All earlier raw failures remain.
+- Source/Ready, preflight, actual staged edition and served identity are separate
+  observations. Existing budgets and full/native/manual production gates remain.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | After stop: integrate latest main, preserve full feature policy, freeze final head, Ready source checks,26/26 preflight, ordinary stable staging and served identity/budgets. |
+| #39 / PR40 | Authorized continuation: integrate latest main, preserve full feature policy, freeze final head, Ready source checks,26/26 preflight, ordinary stable staging and served identity/budgets. |
 | #1 / #7 / #8 / #13 | Actual source-bound rights/editorial/device/independent/full/native and production live-origin acceptance. |
 | #39 / #72 | Publisher settings, canonical migration, protected archive and recovery. |
 
@@ -46,7 +42,8 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 1. Revalidate PR40/current main/checks; preserve original dirty worktree and every
    failed/raw observation. Do not infer prior green evidence admits a new head.
-2. Continue only when requested after this bounded stop/report.
+2. Resume the authorized Ready/preflight/stable-staging continuation if interrupted;
+   stop/report after served-source verification. PR40 merge/production stay outside scope.
 3. Integrate main carefully: full PR40 policy/runtime/rights/scanner provenance
    must survive the prerequisite's intentionally narrow policy and ledger.
 4. Exact Ready checks and26/26 preflight precede ordinary stable Cloudflare staging.

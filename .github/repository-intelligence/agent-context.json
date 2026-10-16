@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5ecd2e979a224afb83e6603f2ba8852816b0126734d14de09a05392c136440af",
+    "digest": "288d07fd6036f3470689742f5ca9c0ffd83fc1a4be9b3d607e7c0efa6ad49dc8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d7af6246508bd5a809251f3de9b7d8b6815bde98cf42dc3cfdd4f67d0d5aed2f"
+        "sha256": "60632811d9591b1ad1aeee5afc1e6e1443adc91674143daf6e7dd4bb7047fd5b"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a1ad31892e1db95d8ed2cb186835b94df92f90c941f7c9571849e9cd2772e69b"
+        "sha256": "6927bb2b94362d277f2b73c5fd3589ce5b4f1e66174c6f5933d47a93fef77805"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9db49646459655bfc5d73318bbbb157303e74615854f9586439d1e97c03f475d"
+        "sha256": "9f535c54bfcead8c012a23731dafdb9294139056b4dfaa9d71e687708b8d9d37"
       },
       {
         "path": "NOTICE.md",
@@ -843,9 +843,29 @@
         "sha256": "9180d8eb530ba7c55100a9d330a7a2fcae55bf3e362b5b3607f0c4d0ef425c34"
       },
       {
+        "path": "review/issue-39/2026-10-16-stable-merge-ledger.json.gz",
+        "identity_mode": "content",
+        "sha256": "1ef9aff7098294957536ca0802ee2f3b0e69ec6bfd4f90f351a4abb21fe8b53d"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-stable-staging.md",
+        "identity_mode": "content",
+        "sha256": "a90d4d4b21da99e9c6647fbfc29b60bbb6cf5d65f513e27d143d62bdda39d2be"
+      },
+      {
         "path": "review/issue-39/2026-10-16-writing-checksum-proof.json.gz",
         "identity_mode": "content",
         "sha256": "be46cc2ffe948cfa01baf2e39b98fc417a4758a212d48108c42598eb8d095d0d"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-writing-controller-tuples.json.gz",
+        "identity_mode": "content",
+        "sha256": "5930316ddde84be0ee75db90363d7c3a46abaeaae4e5b413885b23411c797990"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-writing-controller.md",
+        "identity_mode": "content",
+        "sha256": "cd3be65f4558770055c5187586c4c0282665839069e7e4ffce565b66ebf537e9"
       },
       {
         "path": "review/issue-39/2026-10-16-writing-tbt-evidence.json.gz",
@@ -6280,7 +6300,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "8ea62cc51daf2fcd8dbf82d7a853c41c54e142925dc23a81e5e2471caeb393f3"
+        "sha256": "0461fd462c90cdca2b2a13bd60cd3e0a4758f5a061b37da8ea9ccb51ba3a33c5"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -8741,6 +8761,28 @@
       "title": "2026-10-16-secret-ledger-merge.json.gz"
     },
     {
+      "path": "review/issue-39/2026-10-16-stable-merge-ledger.json.gz",
+      "kind": "file",
+      "purpose": "Exact PR40/current-main ledger union proof preserving all prior feature rows and same-disposition reason variants.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-stable-merge-ledger.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-stable-staging.md",
+      "kind": "file",
+      "purpose": "Issue39 current-main reconciliation, Ready/preflight/stable staging source-bound evidence and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — current-main integration and stable staging, 16 October2026"
+    },
+    {
       "path": "review/issue-39/2026-10-16-writing-checksum-proof.json.gz",
       "kind": "file",
       "purpose": "Per-finding independent recomputation of exact newly generated Writing revision/output/preview/bundle/runtime and source-reference public checksums; no scanner exclusion.",
@@ -8750,6 +8792,28 @@
         "AGENTS.md"
       ],
       "title": "2026-10-16-writing-checksum-proof.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-writing-controller-tuples.json.gz",
+      "kind": "file",
+      "purpose": "Inert exact clean-source Writing runtime tuple proof with independent Python base/Color/edition and canonical/immutable SHA256 derivation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-writing-controller-tuples.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-writing-controller.md",
+      "kind": "file",
+      "purpose": "Issue39 exact Writing plain/staging trusted-controller prerequisite, native evidence, preservation and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — exact Writing runtime controller identities, 16 October2026"
     },
     {
       "path": "review/issue-39/2026-10-16-writing-tbt-evidence.json.gz",
