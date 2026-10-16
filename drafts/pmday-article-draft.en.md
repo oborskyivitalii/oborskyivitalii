@@ -1,9 +1,9 @@
-> **Editorial revision 0.7 — 16 October 2026. Assembly input, not a published edition.**
-> Direct author feedback now gives the article a *What if not?* narrative, revisits how early agent/replacement forecasts narrowed into code-output measures and later SDLC countermeasures, and closes on organizational—not vendor—risk. Title: **The Sum of Our Technology**, with **AI Changes Both Sides of Software Engineering** as the subtitle and a documented allusion to Lem's *Summa Technologiae*. It keeps the seven full v35 slide captures (3, 5, 7, 9, 10, 12, 14) and their detailed figure specs. This supersedes draft v0.6. The rendered `r2` article and its PDF/kit are **not** this revision.
+> **Editorial revision 0.8 — 16 October 2026. Assembly input, not a published edition.**
+> Building on v0.7's *What if not?* structure, this author-requested revision makes the second shift explicitly **socio-technical**: meaningful deployment of consequential Thinking Systems requires designing people, authority, operating processes, model judgment, evidence and fallbacks together. Human-in-the-loop is an operational architecture dependency with finite availability, response time, cognitive load, skills and power to intervene—not a governance caption. The seven unchanged v35 slide sources (3, 5, 7, 9, 10, 12, 14) now have stronger human-capacity interpretation guards. **Draft v0.8 supersedes v0.7 as the next editorial input**, not the still-rendered r2 manuscript/PDF/kit.
 >
 > Editorial owner: [issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2). Execution: [PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79), publisher owner [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5). Inspected pre-revision-0.7 PR head: `a787660e86ad1f48d153aaecdba7656f3619826e`; reviewed main: `9b82f382d080f879528fac8bba94b3656ce14521`. **These are historical identities, not the live head**; revalidate before assembly.
 >
-> Reader prose is bounded by the `ARTICLE START` / `ARTICLE END` comments. The seven `ASSEMBLY FIG` comments and the assembly appendix are instructions, not article prose. Copy only reader prose into the canonical manuscript and replace the seven markers with declared full-slide figures. [Versioned editorial review and handoff](../review/issue-2/2026-10-15-editorial-draft.md#editorial-revision-07--what-if-not-16-october-2026).
+> Reader prose is bounded by the `ARTICLE START` / `ARTICLE END` comments. The seven `ASSEMBLY FIG` comments and the assembly appendix are instructions, not article prose. Copy only reader prose into the canonical manuscript and replace the seven markers with declared full-slide figures. [Versioned editorial review and handoff](../review/issue-2/2026-10-15-editorial-draft.md#editorial-revision-08--human-authority-as-an-architectural-dependency-16-october-2026).
 
 <!-- ARTICLE START -->
 # The Sum of Our Technology
@@ -146,6 +146,8 @@ More capacity can buy faster repairs, simpler workflows and fewer steps. It need
 
 Now for the second shift. So far we have asked whether AI can change the system **building** software without weakening what the team must own. What happens when the running product itself makes consequential judgments?
 
+To use such systems for consequential work, we need to say something larger: **we are no longer designing only software. We are designing an entire socio-technical operating stack**—models, data, rules, evidence, tools, decision authority, operating procedures and people who must intervene when judgment is uncertain or wrong. Software matters. It is not the whole controlled system.
+
 Consider an assistant helping an employee recover account access. It interprets the request, retrieves guidance and recommends the next step. Even if it cannot directly change permissions, its answer may influence someone who can.
 
 In [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md), I call a system whose consequential runtime responsibility depends partly on probabilistic model judgment a *Thinking System*. The term describes an engineering property, not consciousness or proof of adequate control.
@@ -178,7 +180,7 @@ Four failures in 200 independent, representative observations would imply an app
 
 <!-- ASSEMBLY FIG-05: v35 slide 10, synthetic 196/3/1 and critical breach; keep the sample caveat and accessible table. -->
 
-We need to separate **ready to begin**, **done** and **authorized to release**. Readiness establishes the initial scope, obligations, budgets and evaluation plan. Done establishes evidence against those obligations, tested fallback and documented limitations. Release requires an accountable decision about the remaining operational risk and the capacity to intervene. One green demonstration cannot make all three decisions.
+We need to separate **ready to begin**, **done** and **authorized to release**. Readiness establishes the initial scope, obligations, budgets, evaluation plan and the feasibility of any required human decision capacity. Done establishes evidence against those obligations, tested fallback and documented limitations. Release requires an accountable decision about remaining operational risk and the capacity to intervene **in the time available**. One green demonstration cannot make all three decisions.
 
 ### What if control fails at the moment it matters?
 
@@ -188,9 +190,23 @@ A second model reviewing the first may help; it can also make the same mistake. 
 
 <!-- ASSEMBLY FIG-06: v35 slide 12, fallible semantics and hard permission/approval gate, denial/fallback, monitoring and intervention. -->
 
-**A rollback cannot undisclose a credential.** A human-in-the-loop label does not establish that the person had the information, authority and time needed to act.
+### The human is an architectural dependency
 
-If effective control cannot operate before the consequence, depends on unavailable people or makes the case economically infeasible, **narrow, redesign or reject that AI path**. Another impressive proof of concept will not fix an unworkable operating model.
+“Human in the loop” looks reassuring in a diagram or consulting brochure. In production, it is an architectural claim: **someone with real authority, adequate evidence and enough time will be available when the system needs a consequential decision.**
+
+**What if not?**
+
+Suppose our access-recovery assistant routes a suspicious request to a security reviewer. The approval screen exists. The workflow has an escalation arrow. But at night the queue is unattended; during peak demand it grows faster than reviewers can clear it; or the reviewer sees a fluent summary without the evidence needed to recognize a privacy breach. We have drawn a control path that the organization cannot reliably operate.
+
+That human path has architecture-level dependencies: staffed coverage and continuity, arrival rates and review capacity, decision latency relative to possible harm, training and competence, cognitive load and attention switching, evidence quality and independence, permission to refuse or escalate, and a tested fallback when the reviewer is absent or overloaded. **These are design inputs, operating costs and failure modes, not work to leave for governance after deployment.**
+
+[Uncertainty Architecture's control-loop anatomy](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md) explicitly treats Human Authority response time, capacity and decision quality as observable control concerns. People are not interchangeable APIs; treating them that way would itself be a failure of design. Meaningful oversight requires professional agency, adequate information, independence and the power to say *no*. Yet **if the system's safety depends on that judgment, its limits belong in the architecture.**
+
+Test the whole path. What if there is no reviewer on shift, a sudden surge, misleading evidence, decision fatigue or an intervention that arrives too late? Does a consequential action wait behind an enforced permission gate, fail safely or proceed anyway? Can anyone demonstrate that intervention works **before** an irreversible effect?
+
+**A rollback cannot undisclose a credential.** An oversight policy cannot make a human available after the fact.
+
+If the required human capacity does not exist, cannot act soon enough or makes the use case economically infeasible, **narrow, redesign or reject that AI path**. Another impressive proof of concept will not repair a missing socio-technical architecture.
 
 ## 6. What If Not?
 
@@ -202,6 +218,8 @@ But **you are not the vendor**.
 
 Your team has different customers. Your organization has existing systems, contracts, security boundaries and people who must answer the phone when production breaks. Your available expertise, volume of change, rollback options, regulatory constraints and appetite for loss may be nothing like those of an AI lab.
 
+If a Thinking System depends on human oversight, **your staffing, training, decision rights and cognitive capacity are part of its operating architecture and cost model**. You cannot buy those guarantees with an API subscription or add them afterwards as a compliance footnote.
+
 An operating model that works at a vendor's scale is not a portable proof that the same bet is right for you.
 
 And even capable vendors can be wrong—about timing, costs, generalizability or which problems the next model generation will solve. I hope the current bet pays off. I do not think every organization is obliged to go all-in before it knows what it is risking.
@@ -210,7 +228,7 @@ What troubles me most is not the ambition. It is how readily an organization-wid
 
 **What if not?** What if the promised speedup does not survive your review load, architecture, incident profile or cost structure? What if an agent eventually writes everything but nobody can establish what should have been built? What if the new process performs beautifully on good days and leaves your organization unable to respond on the bad one?
 
-There is an alternative to betting the company on a forecast. Choose a bounded workflow. Agree on the outcome, the baseline, the authority delegated and the failures you cannot accept. Track elapsed delivery time, useful customer effects, rework, instability, human load, expertise coverage, recovery and full operating cost. Test the candidate changes. Rehearse the moment the agent cannot fix its own error. Keep the ability to stop, contain and recover.
+There is an alternative to betting the company on a forecast. Choose a bounded workflow. Agree on the outcome, the baseline, the authority delegated and the failures you cannot accept. Track elapsed delivery time, useful customer effects, rework, instability, **human decision latency and sustained workload**, expertise coverage, recovery and full operating cost. Test the candidate changes. Rehearse the moment the agent cannot fix its own error—or its designated human controller is unavailable or overloaded. Keep the ability to stop, contain and recover.
 
 Treat the result as evidence, including when it says *no*. Expand what works, redesign what is unproven and decline what your organization cannot safely operate.
 
@@ -234,7 +252,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 
 ### Source of truth and non-negotiable scope
 
-- Treat **reader text between ARTICLE START and ARTICLE END** as editorial revision **0.7**, replacing draft 0.6 (and its earlier ancestors) for the *next* candidate; rendered r2 remains historical. Keep the six-chapter structure, sharp opening and closing, restored numbers with limitations, fallibility/recovery argument, new equilibrium subsection, precise requirements boundary and after-release control. Do not globally compress/soften again.
+- Treat **reader text between ARTICLE START and ARTICLE END** as editorial revision **0.8**, replacing draft 0.7 (and its earlier ancestors) for the *next* candidate; rendered r2 remains historical. Keep the six-chapter structure, sharp opening and closing, restored numbers with limitations, fallibility/recovery argument, new equilibrium subsection, precise requirements boundary and after-release control. Do not globally compress/soften again.
 - `site/publications/pmday-ai-both-sides/manuscript.en.md` is the **future canonical reader manuscript**. This excluded `drafts/` file is an editorial input, not a published source. Migrate prose and figures there under an explicitly new content edition; follow current `guides/ARTICLE-WORKFLOW.md` and the owning #2/#5 acceptance routes.
 - Seven `ASSEMBLY FIG` markers are machine/editor handoff instructions **not reader prose**. Replace each at its exact position with a registered, accessible figure asset. Include the existing original cover only where the established editorial profile calls for it; no duplicate poster or generic redraws.
 - The **seven required slide screenshots** are **3, 5, 7, 9, 10, 12, 14**. Slide 13 is removed from the required body set in favour of 14. Slides 4 (too dense), 6, 8, 11, 13 and 15 are not additional default body screenshots. Do not silently reduce the seven back to five or expand to all 15.
@@ -346,7 +364,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 
 **Caption:** Effective control spans permission enforcement, safe fallback and verified intervention, not observation alone. PMDay v35, slide 12.
 
-**Interpretation guard:** A semantic checker may be wrong and cannot replace permission enforcement. Feedback cannot reverse an irreversible disclosure. Do not imply the diagram proves any system is safe. Replace the generic runtime-control redraw.
+**Interpretation guard:** A semantic checker may be wrong and cannot replace permission enforcement. Feedback cannot reverse an irreversible disclosure. **Human availability, decision latency, cognitive capacity, evidence and intervention authority are architecture dependencies**, now explained in chapter 5; the picture does not prove a staffed control path exists. Do not redraw or crop the slide, and replace the generic runtime-control redraw.
 
 #### FIG-07 — slide 14: Delivery and continuing laboratory
 
@@ -362,7 +380,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 
 **Caption:** Keep delivery commitments while the learning loop remains open after release. Production outcomes can change future evidence, control and authority decisions. PMDay v35, slide 14.
 
-**Interpretation guard:** Do not turn an iterative cycle into a waterfall or let PM coordination override product, risk or service authority. Unlike the prior figure plan, slide 13 is not required as an additional screenshot; its expertise-gap example stays in prose.
+**Interpretation guard:** Do not turn an iterative cycle into a waterfall or let PM coordination override product, risk or service authority. The prose—not the unchanged slide—extends the operating model to measurable human load, response time, decision authority and fallback; this is not evidence that real-world staffing is viable. Slide 13 is not required as another screenshot.
 
 ### Readable editorial reference table (not article prose)
 
@@ -390,7 +408,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 1. Full-slide captures, not crops of graphs or remade quantitative figures. Preserve original typography and all on-screen caveats even when converting to efficient web encodings. If mobile text is too small, support enlarging through the already-linked deck PDF, without adding new PDF viewer machinery or breaking no-JS reading.
 2. Keep seven **body figures** in the agreed order (plus the existing cover where applicable). Maintain body accessibility: factual numbers also appear as searchable prose/table content, meaningful English alt text and captions with edition + slide number. Decorative repetition and a second presentation poster are prohibited.
 3. Review desktop (~1440px), mobile (~390px), no-JS HTML, generated article PDF **all pages**, LinkedIn/Medium rendition image order/alt/credits, links and resource budgets. Do not break the site's **single** Slides PDF link policy, canonical Writing counter/catalog or content-release separation.
-4. Do not reuse review-only source/PDF/kit SHA records as proof for revision 0.7. Generate a **new** semantically distinct article edition and export manifest; preserve r2 as earlier history, plus frozen `pmday-two-shifts` technical fixture.
+4. Do not reuse review-only source/PDF/kit SHA records as proof for revision 0.8. Generate a **new** semantically distinct article edition and export manifest; preserve r2 as earlier history, plus frozen `pmday-two-shifts` technical fixture.
 5. Rights/provenance gate: evidence of the exact PDF and image extraction is not equivalent to permission to publish/relicense all graphics or to transfer upstream material. Preserve explicit #2/#7/UA133 gates and author approval.
 
 ### Ordered execution and acceptance for Sol / Astra
@@ -409,6 +427,8 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 ### Revision 0.7 — authorial voice, literary architecture and source additions
 
 **The requested title for the next candidate is `The Sum of Our Technology`, with `AI Changes Both Sides of Software Engineering` as the subtitle.** It is a deliberate allusion to **Stanisław Lem, [*Summa Technologiae* (1964)](https://english.lem.pl/works/essays/summa-technologiae)**. The book is a named item in the reader-facing Further reading, not a scientific source for the SDLC data and not a claim that Lem made these modern engineering predictions. Keep the current URL/slug of the r2 preview unless the maintainer explicitly changes it; update the new edition's article title, browser/meta/social/covers and PDF heading consistently at assembly rather than only the visible H1.
+
+**Socio-technical dependency contract (v0.8):** Keep the new chapter-5 subsection **“The human is an architectural dependency”** as reader prose after slide 12, not as an appendix or generic responsible-AI disclaimer. Its explicit failure scenario is the access-recovery escalation to a human reviewer with missing coverage, excess queue or insufficient evidence. Preserve the linked pinned [UA control-loop anatomy](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md), its **draft-normative** status and the distinction between an author's engineering design argument and empirical evidence of a deployed team's staffing. Required fields for the real article case: reviewer authority/competence, available coverage, workload/queue, cognitive attention and fatigue, evidence quality, time to effect versus response time, enforced gating, safe fallback, intervention rehearsal, cost and no-go decision. Do not invent numerical staff metrics or use real incident claims. **Do not add an eighth screenshot or redraw slide 12**; its controller/permission/people/cost content is the visual anchor. In chapter 6 keep a concise link from the vendor/adopter comparison to the staffing and cognition required for the socio-technical stack.
 
 **Narrative contract for Sol/Astra:** “What if not?” is a recurring adversarial *engineering question*, not a catchphrase to paste into every paragraph. Preserve four visible transitions: (i) code generation vs end-to-end flow, (ii) moving first-pass review and knowledge/recovery failure, (iii) specifications/explanations and their shared error assumptions, (iv) the final organizational-bet decision; keep the distinct value, runtime and release failure modes. Each intervention receives a fair condition under which it *could* succeed, its specific unproven assumption, the failure mode if it does not, and the observable safeguard/bounded experiment. Avoid repeating identical rhetorical questions mechanically.
 
