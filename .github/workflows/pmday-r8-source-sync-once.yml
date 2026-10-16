@@ -1,0 +1,247 @@
+name: One-shot PMDay R8 source synchronization
+on:
+  push:
+    branches: [work/issue-5-publisher-pmday-20261012]
+    paths: [.github/workflows/pmday-r8-source-sync-once.yml]
+permissions:
+  contents: write
+concurrency:
+  group: pmday-r8-source-sync
+  cancel-in-progress: false
+jobs:
+  synchronize:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Install existing locked publisher and source-check dependencies
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3 Pillow==11.3.0
+      - name: Synchronize exact R8 reader and existing media contracts
+        run: |
+          tools/quality/toolchain/venv/bin/python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          import re
+          from PIL import Image
+
+          root = Path.cwd()
+          draft_path = root / 'drafts/pmday-article-draft.en.md'
+          draft = draft_path.read_text(encoding='utf-8')
+          assert draft.startswith('> **Editorial R8'), 'Unexpected editorial input'
+          assert draft.count('<!-- ARTICLE START -->') == 1
+          assert draft.count('<!-- ARTICLE END -->') == 1
+          # Restore the one copying omission; the exact PDF-source digest below is authoritative.
+          before = 'and implementation a replaceable detail.'
+          if before in draft:
+              assert draft.count(before) == 1
+              draft = draft.replace(before, 'and implementation becomes a replaceable detail.')
+          reader = draft.split('<!-- ARTICLE START -->')[1].split('<!-- ARTICLE END -->')[0].strip() + '\n'
+          expected = 'd9c28aa95035d49678513ffab92c0973a2e37e8a7a3a89df8676fce970a90973'
+          assert hashlib.sha256(reader.encode()).hexdigest() == expected, 'Reader differs from reviewed R8 PDF input'
+          assert len(re.findall(r'^## [1-6]\.', reader, re.M)) == 6
+          part_five = reader.split('## 5.')[1].split('## 6.')[0]
+          assert part_five.count('**What if not?**') == 6
+          assert '<!--' not in reader
+          assert 'sandbox:' not in reader
+          assert all(number in reader for number in ['25.467', '3.441', '1.288', '0.0883%'])
+          assert all(name in reader for name in ['Bainbridge', 'Knight', 'Parasuraman'])
+          figure_data = draft.split('<!-- R8 FIGURE DATA START -->')[1].split('<!-- R8 FIGURE DATA END -->')[0]
+          figures = json.loads(figure_data.split('```json\n')[1].split('\n```')[0])
+          order = re.findall(r'^!\[.*\]\(asset:([a-z0-9-]+)\)$', reader, re.M)
+          assert order == ['cover', 'pmday-slide-03', 'pmday-slide-05', 'pmday-slide-07', 'pmday-slide-09', 'pmday-slide-10', 'pmday-slide-12', 'pmday-slide-14']
+          assert list(figures) == order
+          bibliography = reader.split('## Sources & references')[1].split('## How to cite')[0]
+          assert [int(x) for x in re.findall(r'^(\d+)\. ', bibliography, re.M)] == list(range(1, 27))
+
+          publication_dir = root / 'site/publications/pmday-ai-both-sides'
+          media_dir = root / 'site/assets/publications/pmday-ai-both-sides'
+          metadata_path = publication_dir / 'publication.json'
+          metadata = json.loads(metadata_path.read_text())
+          assert metadata['edition'] == 'pmday-ai-both-sides-en-review-20261016-r3'
+          assert metadata['status'] == 'review' and metadata['canonical'] is None
+          for asset in metadata['assets']:
+              data = (root / asset['path']).read_bytes()
+              assert hashlib.sha256(data).hexdigest() == asset['sha256'], asset['id']
+          original_cover = media_dir / 'cover.png'
+          image = Image.open(original_cover).convert('RGB')
+          assert image.size == (640, 335)
+          detail = image.crop((0, 136, 640, 335))
+          pixel_sha = hashlib.sha256(detail.tobytes()).hexdigest()
+          assert pixel_sha == '5490e70dc1dc6e1ea5ff1cab16229fc309776f1e141cc08c900957d52e69ff20'
+          cover_path = media_dir / 'cover-detail-r8.png'
+          detail.save(cover_path, format='PNG', optimize=True)
+          for asset in metadata['assets']:
+              if asset['id'] in figures:
+                  asset['alt'] = figures[asset['id']]['alt']
+                  asset['caption'] = figures[asset['id']]['caption']
+              if asset['id'] == 'cover':
+                  asset['path'] = cover_path.relative_to(root).as_posix()
+                  asset['sha256'] = hashlib.sha256(cover_path.read_bytes()).hexdigest()
+                  asset['width'], asset['height'] = detail.size
+                  asset['credit'] = 'Detail of the original AI-generated editorial illustration directed by Vitalii Oborskyi, 15 October 2026; same crop as the R7/R8 review PDF. Original master retained.'
+          metadata['edition'] = 'pmday-ai-both-sides-en-review-20261016-r8'
+          metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
+          draft_path.write_text(draft, encoding='utf-8')
+          (publication_dir / 'manuscript.en.md').write_text(reader, encoding='utf-8')
+          profile_path = publication_dir / 'profile.json'
+          profile = json.loads(profile_path.read_text())
+          profile['id'] = 'pmday-ai-both-sides-review-20261016-r8'
+          profile_path.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + '\n')
+          (publication_dir / 'blueprint.md').write_text('''# The Sum of Our Technology — R8 review manuscript
+
+          Editorial owner: issue #2; publisher execution: issue #5 / PR #79.
+
+          The author requested synchronization of the revised draft and the full canonical manuscript, plus a standalone R8 PDF. R7 was the editorial base. Preserve the six chapters, stronger direct Microsoft quotations with accurate scope, six chapter-5 What if not turns, NBER Table 6 trace, independent human-factors sources, 26-reference bibliography, citation block and seven original slide screenshots.
+
+          The ARTICLE START–END reader in the excluded R8 draft is copied without rewriting. Captions and alt text are synchronized through publication.json. The older r3 and r2 content-edition records remain historical. The R8 cover detail preserves the original master and matches the previously approved R7 crop.
+
+          This is an unaccepted review edition with null public canonical and pending per-item rights. No publication, external posting, stable promotion or merge is authorized. LinkedIn/Medium generation and hosted-site integration are not part of this pass. The standalone PDF has a separate producer and identity; it is not managed-CI print proof.
+          '''.replace('\n          ', '\n'), encoding='utf-8')
+          provenance = media_dir / 'PROVENANCE.md'
+          with provenance.open('a', encoding='utf-8') as stream:
+              stream.write('\n## R8 review cover detail and retained slide bytes\n\n')
+              stream.write('The R8 reader preserves all seven full-slide PNG source bytes. Its cover selects cover-detail-r8.png, the RGB crop (0, 136, 640, 335) of the existing 640 by 335 cover.png. The original remains unchanged. Crop pixels match the R7/R8 standalone review cover: SHA-256 ' + pixel_sha + '. This removes the competing embedded title without redrawing any artwork or empirical figure. Per-item publication clearance remains pending.\n')
+          catalog_path = root / '.github/repository-paths.json'
+          catalog = json.loads(catalog_path.read_text())
+          edition_path = 'site/publications/pmday-ai-both-sides/editions/' + metadata['edition'] + '.json'
+          for path, purpose in [
+              (cover_path.relative_to(root).as_posix(), 'R8 cover detail derived from the original illustration; exact crop and pixel identity in PROVENANCE.md.'),
+              (edition_path, 'R8 review article semantic/source identity, preserving historical editions and pending publication rights.'),
+          ]:
+              assert path not in catalog['entries'], 'New path already classified: ' + path
+              catalog['entries'][path] = {'kind': 'file', 'purpose': purpose, 'role': 'source', 'owner': 'guides/ARTICLE-WORKFLOW.md'}
+          catalog['entries'] = dict(sorted(catalog['entries'].items()))
+          catalog_path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+          review_path = root / 'review/issue-2/pmday-candidate-20261015/README.md'
+          old_review = review_path.read_text()
+          run_url = 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID']
+          current_review = '''# PMDay article candidate — editorial review and export history
+
+          Execution: PR #79; article owner #2; publisher owner #5.
+
+          > **Current reader: R8.** The excluded editorial draft and canonical manuscript now contain the same R8 text. The files article.pdf and publication-kit.zip retained in this review directory remain historical r2 artifacts; do not confuse them with the standalone R8 PDF delivered in the conversation.
+
+          ## Editorial R8 — direct quotations and synchronized source
+
+          Author instruction, 16 October 2026: restore sharper vendor quotations and arguments, preserve R7 improvements and update both source owners. The Microsoft first-party article was reread. Source 11 identifies the sections supplying the review, autopilot and disposability phrases. Human architectural oversight and the bounded-feature condition are retained; no blanket abolition of all review is attributed.
+
+          Reader SHA-256: d9c28aa95035d49678513ffab92c0973a2e37e8a7a3a89df8676fce970a90973. Six numbered chapters, six explicit chapter-5 refrains, eight displayed images, 26 numbered bibliography items. The article keeps the NBER Table 6 trace and positive Anthropic results, critical-class uncertainty, independent human-factors sources and the practical bounded-pilot decision. Its customer-adoption paragraph remains declarative.
+
+          The standalone The_Sum_of_Our_Technology_R8.pdf has 17 pages, 1,625,712 bytes and SHA-256 d884d392f376dbf3e4e54f1e19a0bb7374caccdc7e822018a90c17e4ce267819. It was rendered and visually self-reviewed page by page, with clickable sources, 19 bookmarks and 8 illustrations. Slides 7 and 12 use landscape pages. The PDF is a WeasyPrint review export, not a managed-CI publisher output, public release or binary committed in this directory.
+
+          Source synchronization uses the existing publisher semanticDigest and validation, exact asset checks, maintained formatting, Basic and RI/coupling checks. The final source commit is pushed only after these checks succeed. The preparation run below supplies the actual result; it is not hosted-preview or independent editorial/rights acceptance. Style mapping: CS01/02 canonical source and metadata; CS04/05 single owners and scoped formatting; CS08/10 exact-source checks and source/provenance constraints; no runtime/CSS/budget changes. No LinkedIn/Medium rendition is generated.
+
+          The seven original slide PNG hashes are unchanged. The R8 cover is a separately declared derivative with the exact RGB pixels of the R7/R8 crop; the original cover and older edition records are retained. Future site preparation must check normal document/media budgets and responsive reading without weakening them. The existing PR conflict and publication gates are not resolved by this source/PDF update. #2 AC01–AC06 and applicable #5 human/publication gates remain open. No merge, stable staging, production or upstream deck disposition.
+
+          '''.replace('\n          ', '\n')
+          history = old_review[old_review.index('## Editorial R6'):]
+          review_path.write_text(current_review + 'Preparation run: ' + run_url + '\n\n## Historical R6 and earlier checkpoints\n\n' + history)
+          memory_path = root / 'MEMORY.md'
+          memory = memory_path.read_text()
+          memory = memory.replace('Last verified: **2026-10-15** (#2/PR79).', 'Last verified: **2026-10-16** (#2/PR79 R8 only; unrelated snapshots remain historical).')
+          start = memory.index('- [#5 / PR79]')
+          end = memory.index('- PR75 source', start)
+          memory = memory[:start] + '''- [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) executes
+            editorial [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
+            R8 now synchronizes the excluded draft and canonical article manuscript,
+            preserving R7 evidence and restoring precise direct Microsoft quotations.
+            Source, semantic edition, 26 references and seven original slides are
+            coordinated; review/issue-2/pmday-candidate-20261015/README.md owns evidence.
+            The standalone R8 PDF is not the historical r2 PDF/kit in that directory.
+            Publisher fixture pmday-two-shifts and default public catalog are unchanged.
+            No platform kit, hosted promotion, merge or publication was requested.
+            Original editorial/rights/device/publication/upstream gates stay open.
+          '''.replace('\n          ', '\n') + memory[end:]
+          assert len(memory.splitlines()) <= 120
+          memory_path.write_text(memory)
+          print(json.dumps({'readerSha256': expected, 'edition': metadata['edition'], 'figures': order, 'coverPixelSha256': pixel_sha, 'run': run_url}))
+          PY
+      - name: Derive references through the locked AST and freeze a new semantic edition
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const dir = 'site/publications/pmday-ai-both-sides/';
+          const reader = fs.readFileSync(dir + 'manuscript.en.md', 'utf8');
+          const metadata = JSON.parse(fs.readFileSync(dir + 'publication.json', 'utf8'));
+          const assets = metadata.assets.map((asset) => ({ ...asset, url: '/' + asset.path.slice(5) }));
+          const compiled = require('./tools/publishing/article.cjs').compile(reader, assets, { title: metadata.title });
+          const urls = [...new Set(compiled.model.links.map((link) => link.url).filter((url) => url.startsWith('https:')))];
+          if (urls.length !== 30) throw Error('Expected all 30 distinct URLs in the 26-source reader');
+          if (compiled.model.links.filter((link) => link.url === metadata.presentation.sourceUrl).length !== 1) throw Error('The reader must have exactly one presentation link');
+          if (compiled.model.figures.length !== 8) throw Error('Expected cover plus seven real slides');
+          metadata.references = urls.map((url, index) => ({ id: 'source-' + (index + 1), url }));
+          fs.writeFileSync(dir + 'publication.json', JSON.stringify(metadata, null, 2) + '\n');
+          const source = { path: 'manuscript.en.md', sha256: crypto.createHash('sha256').update(reader).digest('hex'), commit: null, blob: null };
+          const edition = {
+            schema: 1,
+            id: metadata.edition,
+            articleId: metadata.id,
+            language: metadata.language,
+            kind: 'full-article',
+            source,
+            owner: 'site',
+            derivation: null,
+            rights: 'review-pending',
+            semanticSha256: require('./tools/publishing/semantic.cjs').semanticDigest(metadata, source),
+          };
+          fs.writeFileSync(dir + 'editions/' + edition.id + '.json', JSON.stringify(edition, null, 2) + '\n', { flag: 'wx' });
+          console.log(JSON.stringify({ edition: edition.id, semanticSha256: edition.semanticSha256, references: urls.length, figures: compiled.model.figures }));
+          NODE
+      - name: Remove bootstrap and stage only the prepared source owners
+        run: |
+          git rm .github/workflows/pmday-r8-source-sync-once.yml
+          git add drafts/pmday-article-draft.en.md site/publications/pmday-ai-both-sides/
+          git add site/assets/publications/pmday-ai-both-sides/cover-detail-r8.png site/assets/publications/pmday-ai-both-sides/PROVENANCE.md
+          git add .github/repository-paths.json MEMORY.md review/issue-2/pmday-candidate-20261015/README.md
+      - name: Format only the changed JSON owners
+        run: |
+          tools/quality/toolchain/node_modules/.bin/prettier --write .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261016-r8.json
+          git add .github/repository-paths.json site/publications/pmday-ai-both-sides/
+          node tools/quality/format.cjs --check
+      - name: Validate the actual article source without generating platform renditions
+        run: node tools/publishing/cli.cjs validate pmday-ai-both-sides
+      - name: Refresh and verify derived RI identity with unchanged CI routes
+        run: |
+          python3 tools/check_ri_ci.py refresh
+          python3 tools/check_ri_ci.py verify
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
+          python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+      - name: Run the existing Basic source checks
+        run: node tools/quality/local.cjs
+      - name: Verify parity and commit the coordinated R8 source
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const draft = fs.readFileSync('drafts/pmday-article-draft.en.md', 'utf8');
+          const reader = draft.split('<!-- ARTICLE START -->')[1].split('<!-- ARTICLE END -->')[0].trim() + '\n';
+          const canonical = fs.readFileSync('site/publications/pmday-ai-both-sides/manuscript.en.md', 'utf8');
+          if (reader !== canonical) throw Error('Draft and canonical reader diverged');
+          if (crypto.createHash('sha256').update(reader).digest('hex') !== 'd9c28aa95035d49678513ffab92c0973a2e37e8a7a3a89df8676fce970a90973') throw Error('Reader changed after validation');
+          NODE
+          git add .github/ri-ci-map.json .github/repository-intelligence/ REPOSITORY-MAP.md
+          git diff --cached --check
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'content(article): synchronize R8 draft, manuscript and semantic edition (Refs #5)'
+          test -z "$(git status --porcelain)"
+          remote_head=$(git ls-remote origin refs/heads/work/issue-5-publisher-pmday-20261012 | cut -f1)
+          test "$remote_head" = "$GITHUB_SHA"
+          git push origin HEAD:work/issue-5-publisher-pmday-20261012
