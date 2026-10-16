@@ -60,6 +60,8 @@ Observed data distinguish these outcomes. Demirer, Musolff and Yang's September 
 
 [DORA's 2025 analysis](https://dora.dev/insights/balancing-ai-tensions/) similarly associates greater AI adoption with higher delivery throughput **and greater instability**. It does not establish causation. The question is not whether activity increased. It is whether the system improved on the measures that matter.
 
+I examine that gap between local code-generation gains and the costs shifted into review, QA, architecture, maintenance and production in [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis). It is my independent research synthesis of evidence and delivery-system failure modes—not a separate experiment proving that every team will face the same outcome.
+
 Now the story moves to the next constraint: code review.
 
 [Anthropic introduced multi-agent Code Review](https://claude.com/resources/articles/code-review) in March 2026 in response to the review bottleneck created by more generated code. Microsoft's Jay Parikh argued in June that teams should [stop treating traditional review as a fixed constraint](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/): shift first-pass checks to agents, keep humans involved in architectural decisions and rethink the workflows around them.
@@ -150,7 +152,7 @@ To use such systems for consequential work, we need to say something larger: **w
 
 Consider an assistant helping an employee recover account access. It interprets the request, retrieves guidance and recommends the next step. Even if it cannot directly change permissions, its answer may influence someone who can.
 
-In [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md), I call a system whose consequential runtime responsibility depends partly on probabilistic model judgment a *Thinking System*. The term describes an engineering property, not consciousness or proof of adequate control.
+In my open research project [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture), I use *Thinking System* for software in which at least one consequential runtime responsibility depends partly on probabilistic model judgment. The [controlled-object explanation](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md) gives the precise definition. This is an engineering classification, not a claim about consciousness, risk level or proven safe control.
 
 Two differently worded answers can both be acceptable. Incorrect recovery instructions and unauthorized disclosure are not just alternative phrasings.
 
