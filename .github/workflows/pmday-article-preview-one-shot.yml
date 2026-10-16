@@ -149,6 +149,12 @@ jobs:
           git rm .github/workflows/pmday-article-preview-one-shot.yml
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+      - name: Stage the exact newly authored and generated paths before formatter ownership checks
+        run: |
+          git add site/publications/pmday-ai-both-sides/
+          git add site/assets/publications/pmday-ai-both-sides/PROVENANCE.md
+          git add site/assets/publications/pmday-ai-both-sides/pmday-slide-*.png
+          git add .github/repository-paths.json REPOSITORY-MAP.md .github/repository-intelligence/
       - name: Verify maintained formatting and basic source
         run: |
           node tools/quality/format.cjs --check
