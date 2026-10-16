@@ -160,6 +160,10 @@ jobs:
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
+      - name: Format the newly authored profile using the pinned formatter
+        run: |
+          tools/quality/toolchain/node_modules/.bin/prettier --write site/publications/pmday-ai-both-sides/profile.json
+          git add site/publications/pmday-ai-both-sides/profile.json
       - name: Verify maintained formatting and basic source
         run: |
           node tools/quality/format.cjs --check
