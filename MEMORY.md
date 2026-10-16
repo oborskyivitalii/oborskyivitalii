@@ -4,56 +4,56 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main a5a6f8ce includes PR81/82/83 and the exact
-  Writing plain/staging controller prerequisite PR84. PR40 integrated main at805d94a5/tree3743aa0a; Draft again for the interpreter correction.
-- Native Writing diagnostic38940320357 binds clean64559870/tree611ca08c:
-  full Chromium153/Lighthouse13.5 Ubuntu24.04.5, five ordinary45/29/22/19.5/21.5ms,
-  separate CPU111ms. No current native overrun reproduced; no new runtime edit.
-- Native raw ZIP12062293377 and all18 raw hashes/sizes verified; actual plain
-  artifact matches independent cold build. Versioned six-row evidence/report:
-  `review/issue-39/2026-10-16-native-writing-controller.md` and adjacent gzip.
-- This is loopback plain Color, not hosted/staging acceptance. Prior local232ms,
-  native235.5ms, loaded/failed observations and isolation correction remain.
-- PR84 exact53f1ec3f/treec5dee8e8 source545/545, owning13/13, RI/navigation pass.
-  Only two proved IDs, mandatory rights and exact checksum/boolean classifications;
-  protected607 public/runtime/compiler/workflow blobs otherwise remain unchanged.
-- PR40 head805 native619/619 in50 modules, owning19/19, RI/navigation and preview pass.
-- Ordinary stage38945614659 stopped before upload at25/26: system Python lacked
-  packaging;115 Python tests,22 errors. Locked audit venv already has26.3.
-- Correct only that suite executable to the locked venv, no system fallback.
-  Preserve failure/report in2026-10-16-stable-staging.md and adjacent gzip.
+- PR40 merged by explicit maintainer request after visual acceptance as
+  96a7a10dcf0a7afd2d4ea0618fc5d590922f7cc0; protected main96, exact tree60fbe98c
+  matches admitted PR head61a83b22. Postmerge identity38951959635 and main
+  navigation38951973596 passed. No bypass; no review threads existed.
+- Stable Cloudflare still serves accepted61/public305a2c6d/package3f2e5647;
+  stage38947896256/1 passed26/26 and hosted TBT Research58/Writing71.5ms.
+- Clean local production96 build/edition/rights verify passed: public307f689d,
+  production Color6f9b49f7, rights inventory8da9998f. InventoryPass true, approval
+  false; this is local preparation, not native production CI or live publication.
+- Current39 report2026-10-16-production-continuation.md and adjacent inventory
+  record exact workflow inputs, actual DNS/rulesets and remaining release work.
+- Actual Cloudflare .ai has only ownership TXT; .com empty DNS; no redirect
+  ruleset. Edge universal certificates active, not proof of Pages origin TLS.
+- GitHub returned only protect-main ruleset and no Releases. Production App,
+  environments/immutability/Pages/opt-in need actual admin inspection/setup.
 
 ## Decisions
 
-- Latest maintainer “Роби” authorizes main integration/Ready checks, exact-source
-  26/26 preflight and ordinary stable Cloudflare staging, then stop/report.
-- No PR40 merge, production activation or domain/DNS action belongs here.
-- Preserve the full PR40 feature/runtime/rights/scanner policy when reconciling
-  the deliberately narrow main prerequisite. All earlier raw failures remain.
-- Source/Ready, preflight, actual staged edition and served identity are separate
-  observations. Existing budgets and full/native/manual production gates remain.
+- User at21:01Warsaw: reviewed stable/allOK; merge40 into main and proceed to
+  production. Merge complete; production continuation already authorized.
+- Connector can merge/read Actions, but has no workflow_dispatch or Pages/admin
+  mutations; gh CLI absent. Browser fallback access permission is required.
+- Do not fake full/native/device/independent/rights evidence. Preserve original
+  budgets/pins/ledger/runtime and all235.5/232/25-of26/prerequisite failures.
+- Cloudflare-only staging remains. Production legacy Pages subtree cleanup and
+  authenticated predecessor/recovery were explicitly deferred under39 at cutover.
+- Existing license/portrait/advisor permissions persist; ownership TXT unchanged.
 
 ## Open work
 
-| Owner | Next acceptance route |
+| Owner | Remaining acceptance |
 | --- | --- |
-| #39 / PR40 | Authorized continuation: integrate latest main, preserve full feature policy, freeze final head, Ready source checks,26/26 preflight, ordinary stable staging and served identity/budgets. |
-| #1 / #7 / #8 / #13 | Actual source-bound rights/editorial/device/independent/full/native and production live-origin acceptance. |
-| #39 / #72 | Publisher settings, canonical migration, protected archive and recovery. |
+| #39 / merged PR40 | Native frozen production candidate/full validation; production-only package/recovery cleanup, exact source-bound external acceptance and authorized release. |
+| #1 / #7 / #8 / #13 | Actual full/native/soak/capture, physical/independent/rights, Pages/App/protection/environment/immutable-release and live-origin acceptance. |
+| #39 / #72 | Canonical Pages transition, DNS/.com redirects, production archive/rollback; one Cloudflare staging only. |
 
 ## Next session
 
-1. Revalidate PR40/current main/checks; preserve original dirty worktree and every
-   failed/raw observation. Do not infer prior green evidence admits a new head.
-2. Resume the authorized Ready/preflight/stable-staging continuation if interrupted;
-   stop/report after served-source verification. PR40 merge/production stay outside scope.
-3. Freeze the narrow Python interpreter correction, rerun exact Ready checks
-   and ordinary26/26 preflight; full feature/scanner/runtime policy stays intact.
-4. Exact Ready checks and26/26 preflight precede ordinary stable Cloudflare staging.
-5. Stop/report staging; later PR40 merge/production retain separate decisions.
+1. Re-read current issue39 production authorization and versioned report. Preserve
+   source96/main lease; inert evidence branch must not replace candidate identity.
+2. With browser-fallback access authorized, dispatch Frozen production candidate
+   onmain with candidate_sha96a7a10dcf0a7afd2d4ea0618fc5d590922f7cc0, after live
+   revalidation. Native outputs feed existing full candidate-evidence workflow.
+3. Inspect actual administration/setup, finish scoped production-only Pages
+   cleanup, then source-bound external admission and existing publication/recovery.
+4. No production workflow/DNS/canonical/tag/ref/Release mutation has occurred yet.
+   Keep all raw failures and original dirty worktree; do not retry for a green metric.
 
 ## Maintenance
 
-Keep these five sections and at most120lines. Issues/PRs own actual acceptance;
-replace stale observations at handoff and rebuild/verify RI. Never store secrets
-or private correspondence in memory.
+Keep five sections and at most120lines. Issues/PRs own actual acceptance;
+replace stale observations and rebuild/verify RI. Never store secrets or private
+correspondence in memory.

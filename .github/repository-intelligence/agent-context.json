@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8b5e54bede509213047114407306db299cbf9f50db249d31342d335438a6e7bb",
+    "digest": "e8c3dbf187987b13b01e418eb52585c50ec7adf8bd39d892e1249903f213cd01",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
+        "sha256": "e2c8ae5b55db4bc974d5ec69309420377620f177a78fea6c95003be3fd5738a2"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f50dc24344e97334affb998962cefa98ea8070a53f1f45ba38e5faa6297c51bb"
+        "sha256": "738533b273051d78fa06f2c383db5872c08a6b88eb6d25e5c5eab3498ddff353"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6f06b200993a655851222810b9d07de91dae1b5ccf035d2aacc81c9deaf8d519"
+        "sha256": "f9687b60ce2621f7a7c431ef97eb2d47162cd5fb771d9de14b28bf3b7767b42d"
       },
       {
         "path": "NOTICE.md",
@@ -821,6 +821,16 @@
         "path": "review/issue-39/2026-10-16-positioning-integration.md",
         "identity_mode": "content",
         "sha256": "4bd892f53b0cad3daed3e88b473add4f01b857e79e027ad7620381adff456687"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-production-continuation.md",
+        "identity_mode": "content",
+        "sha256": "7b5b2cf55fc1c1c94715fdc2ed6502784bcabfe0cb8e21d7b976a907a723c3b3"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-production-inventory.json.gz",
+        "identity_mode": "content",
+        "sha256": "4f91ee6daa01d9ac4c0b5381ab4ed2c077964d9e81fa4bd28a78f1756b45733c"
       },
       {
         "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",
@@ -8720,6 +8730,28 @@
         "AGENTS.md"
       ],
       "title": "Issue39 PR40 — selected PR68 positioning integration (16 October 2026)"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-production-continuation.md",
+      "kind": "file",
+      "purpose": "Current issue39 maintainer-authorized PR40 merge and production continuation: exact merged/local candidate evidence, live provider inventory, capability barrier and remaining release route.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-production-continuation.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — merge accepted PR40 and production continuation,16 October2026"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-production-inventory.json.gz",
+      "kind": "file",
+      "purpose": "Inert bounded live API and exact merged-main production preparation record; no native admission or publication assertion.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-production-continuation.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-production-inventory.json.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",

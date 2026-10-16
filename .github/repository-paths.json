@@ -8784,6 +8784,18 @@
       "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
       "role": "history",
       "owner": "review/issue-39/2026-10-16-stable-staging.md"
+    },
+    "review/issue-39/2026-10-16-production-continuation.md": {
+      "kind": "file",
+      "purpose": "Current issue39 maintainer-authorized PR40 merge and production continuation: exact merged/local candidate evidence, live provider inventory, capability barrier and remaining release route.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-production-continuation.md"
+    },
+    "review/issue-39/2026-10-16-production-inventory.json.gz": {
+      "kind": "file",
+      "purpose": "Inert bounded live API and exact merged-main production preparation record; no native admission or publication assertion.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-production-continuation.md"
     }
   }
 }
