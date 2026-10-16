@@ -4,41 +4,16 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge
 
 ## Snapshot
 
-- PR80 merged normally into protected main as `9b82f38`; its tree equals reviewed
-  `9d63c29`. Required source/navigation checks passed. No ruleset or bypass changed.
-- Maintainer approved the controller-first route and instructed execution.
-  [Issue decision](https://github.com/oborskyivitalii/oborskyivitalii/issues/39#issuecomment-6192358568)
-  distinguishes this infrastructure integration from native/staging admission.
-- PR40's rebased checkpoint `1fe0ea5` has parent `9b82f38` and exactly preserves
-  the integrated `c7f4a1b` tree. Its fresh prepublication passed 26/26 families;
-  owning checks passed 14/14. The later handoff-only amendment needs its own
-  current-source checks; do not relabel the checkpoint report as that evidence.
-- Independent replay of the actual rebased artifact through new-main consumers
-  accepted the five proxy rules, licensed runtime, Pages composition and both
-  frozen-rights extraction paths. This is source/artifact proof, not hosted proof.
-- PR40 Ready head `1f791427` passed actual source/navigation/owning and hosted smoke.
-  Ordinary stage 38739388574 then failed before upload: 25/26 source families pass,
-  but equal outer/inner 180-second deadlines killed source reporting first.
-  Artifact 11976016447 retains the failure; browser/performance did not run.
-- Repaired head `3f45fddb` passed Ready source 591/591, navigation, owning and hosted
-  smoke. Ordinary stage 38743649689 passed its first preflight 26/26, source 574/574
-  in 120.7s, then published an immutable candidate. Its repeated preflight failed
-  25/26 at the real inner 180-second limit, retaining the report and partial TAP.
-- The reporting repair works: the outer wrapper has 30s startup/cleanup/report
-  grace; its inner limit remains 180s. The failed repeat completed 447 cases with
-  no assertion failure or final counts. Native browser/performance and permanent
-  promotion did not run. All failed reports remain failed.
-- A clean external scheduling prototype passed all574 in131.7s by starting only
-  space/executive/release-rights first. The integrated worker preserves selection,
-  default CPU allocation, isolation, TAP and bounds, with explicit owned signal
-  cleanup. Its new source/native evidence must pass before another ordinary stage.
-- Ordinary runs 38703875419 and 38708680860 remain failed. Writing equivalent
-  readiness 3382.9ms exceeded 3200ms; original budgets and cold/warm setup remain.
-- Live rulesets contain only strict protect-main with source/navigation contexts;
-  Staging admission and protect-production are absent. Production App, environment,
-  Pages administration and release immutability require actual verification.
-- Production/domain/DNS activation remains paused for permanent-staging review.
-  Ownership Verified and previously supplied portrait/advisor consents remain valid.
+- Protected main observed at `9b82f382` on 16 October; production disabled.
+- #39 / Ready PR40 includes user-approved PR68 author-first positioning and
+  licensed publication safeguards; exact reviewed prototype `943c720f`,
+  [preview](https://a97c99f2.oborskyi-author-ci-staging.pages.dev/).
+- #41 / PR68 was closed without merge as superseded, while #41 remains open.
+- The Ready admission on `943c720f` exposed strict-main AC03 and old topic-card
+  browser selector failures. Record real correction runs and remaining gates
+  under #39/PR40, without reclassifying prior failures.
+- Earlier staging Writing TBT235.5>200ms and source timeouts remain failed.
+  New permanent two-host staging has not yet passed.
 
 ## Decisions
 
@@ -60,7 +35,7 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (guard merge
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | Update exact rebased head, Ready source/smoke checks, ordinary licensed proxy staging on both permanent hosts, maintainer review, then protected merge. |
+| #39 / PR40 | Revalidate the byte-exact AC03/browser admission repair at a fresh head, then ordinary two-host staging; keep unchanged performance budgets. |
 | #7 / #1 | Final-inventory rights/editorial and first-reader acceptance; preserve the selected licenses and supplied permissions. |
 | #13 | Fresh unchanged-budget full/native/performance, physical Safari/Android and source-bound independent release evidence. |
 | #39 / #72 | Actual protected settings, dedicated App/environments/immutable archives, canonical migration and recovery; keep production opt-in off during preparation. |

@@ -8,20 +8,31 @@
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
       "automated_scope": "The unchanged 2026-10-07 provider snapshot retains its historical schema/ref/observations and then-unknown Pages settings. It is dated evidence, not a new live inventory; current refs and provider state require separate live review.",
-      "checks": ["INVENTORY"],
-      "gates": ["LIVE-INVENTORY"]
+      "checks": [
+        "INVENTORY"
+      ],
+      "gates": [
+        "LIVE-INVENTORY"
+      ]
     },
     {
       "id": "AC02",
       "intent": "Canonical .ai topology and lossless .com redirect plan",
       "automated_scope": "Finite exact DNS and rule fields, negative origin/proxy/host/query/order mutations and planned URL fixtures; authenticated migration fixtures bind the old Pages prefix, captured settings, source workflow/run/artifact, frozen execution controller and exact recovery bytes. These checks do not apply provider rules or migrate the live host.",
-      "checks": ["DOMAIN-PLAN", "DOMAIN-NEGATIVES", "REDIRECT-FIXTURES", "PAGES-MIGRATION"],
-      "gates": ["LIVE-DOMAINS"]
+      "checks": [
+        "DOMAIN-PLAN",
+        "DOMAIN-NEGATIVES",
+        "REDIRECT-FIXTURES",
+        "PAGES-MIGRATION"
+      ],
+      "gates": [
+        "LIVE-DOMAINS"
+      ]
     },
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "The 2026-10-15 authorized implementation preserves the exact current-main authored edition, retained source and five generated runtime aliases against cc115c4241197d59205934bdc18f209109d5ee87, with the later maintainer-approved licensing amendment: exact hash-bound Credits text/templates and a single legal-notices pre wrapping rule. Other permitted differences are declared production social/rights additions, canonical analytics configuration and generated identities. Full license/notice copies are embedded in the existing Credits route and verified against authored owners; no broad content exemption or new public route is introduced. Maintained behavioral suites check explicit Color production selection, five-route SEO and social JPEG identity/MIME, prior immutable closure, source/artifact-bound rights inventory and approval rejection, exact-artifact release/recovery, canonical-origin analytics isolation and authenticated Pages migration. Deterministic checks cannot sign the future exact-edition rights inventory, physical-device review, live settings, deployed provider cost or release approval. The quality-only post-flight ResourceTiming source check retains bounded same-origin fetch observations after the original measurement window, rejects malformed/missing/overflow evidence and preserves raw cold/warm readiness failures without changing performance budgets or supplying native staging admission. The dated immutable-snapshot-proxy-v1 hosting preparation changes only tools/staging/package.cjs among the protected delivery owners. Default and explicit-legacy API generation retain exact pinned-main package bytes and archived verification; the Root package CLI explicitly selects only the finite same-site immutable HTML 200 proxy policy. Source/package/route/header mutation checks and actual CLI identity/tamper cases retain source bytes and reject arbitrary policy. Failed native stage38708680860 remains failed at3382.9ms above3200ms; these checks provide no native admission, bootstrap authorization or production release. The integrated shared guard additionally verifies exact source/publication records before upload, selected immutable snapshot direct200/zero-redirect/exact-body observations, strict native/browser provenance, complete scanners and named source accounting. These deterministic checks do not replace native performance, source-bound human rights/editorial, physical-device or release decisions.",
+      "automated_scope": "The 2026-10-15 authorized implementation preserves the exact current-main authored edition except the nine explicitly approved full Git-blob-pinned PR68 Home/Research content and template owners at c3b8fb7d0b7a127363f24cdacb8a36c3f811054a, retained source and five generated runtime aliases against cc115c4241197d59205934bdc18f209109d5ee87, with the later maintainer-approved licensing amendment: exact hash-bound Credits text/templates and a single legal-notices pre wrapping rule. Other permitted differences are declared production social/rights additions, canonical analytics configuration and generated identities. Full license/notice copies are embedded in the existing Credits route and verified against authored owners; no broad content exemption or new public route is introduced. Maintained behavioral suites check explicit Color production selection, five-route SEO and social JPEG identity/MIME, prior immutable closure, source/artifact-bound rights inventory and approval rejection, exact-artifact release/recovery, canonical-origin analytics isolation and authenticated Pages migration. Deterministic checks cannot sign the future exact-edition rights inventory, physical-device review, live settings, deployed provider cost or release approval. The quality-only post-flight ResourceTiming source check retains bounded same-origin fetch observations after the original measurement window, rejects malformed/missing/overflow evidence and preserves raw cold/warm readiness failures without changing performance budgets or supplying native staging admission. The dated immutable-snapshot-proxy-v1 hosting preparation changes only tools/staging/package.cjs among the protected delivery owners. Default and explicit-legacy API generation retain exact pinned-main package bytes and archived verification; the Root package CLI explicitly selects only the finite same-site immutable HTML 200 proxy policy. Source/package/route/header mutation checks and actual CLI identity/tamper cases retain source bytes and reject arbitrary policy. Failed native stage38708680860 remains failed at3382.9ms above3200ms; these checks provide no native admission, bootstrap authorization or production release. The integrated shared guard additionally verifies exact source/publication records before upload, selected immutable snapshot direct200/zero-redirect/exact-body observations, strict native/browser provenance, complete scanners and named source accounting. These deterministic checks do not replace native performance, source-bound human rights/editorial, physical-device or release decisions. The later selected issue41 editorial exception is byte-exact and cannot admit unrelated pages, runtime, licensing or retained-history changes. Hosted browser smoke still validates all response names, exact order, unique public profile per card, route control, artifact identity and no-Canvas fallback regardless of heading placement; no other tests or performance thresholds are waived.",
       "checks": [
         "CURRENT-MAIN-PRESERVATION",
         "DOMAIN-PLAN",
@@ -30,21 +41,38 @@
         "FLIGHT-TELEMETRY",
         "HOST-POLICY"
       ],
-      "gates": ["PRODUCTION-ADMISSION"]
+      "gates": [
+        "PRODUCTION-ADMISSION"
+      ]
     },
     {
       "id": "AC04",
       "intent": "Actionable maintainer instructions and linked execution",
       "automated_scope": "AC01-AC05/check/gate and exact operator settings routes remain mapped. The existing bounded style guard checks its declared subset; CS01, CS05, CS08, CS09 and CS10 ownership, readability, proportional verification and issue/PR evidence require explicit review beyond that guard. Human usefulness, live links and owner completion stay separate.",
-      "checks": ["OPERATOR-POLICY", "CURRENT-GUARD", "NODE-BASIC", "RI-FRESH", "RI-CI"],
-      "gates": ["OWNER-SETTINGS", "REVIEW", "MERGE"]
+      "checks": [
+        "OPERATOR-POLICY",
+        "CURRENT-GUARD",
+        "NODE-BASIC",
+        "RI-FRESH",
+        "RI-CI"
+      ],
+      "gates": [
+        "OWNER-SETTINGS",
+        "REVIEW",
+        "MERGE"
+      ]
     },
     {
       "id": "AC05",
       "intent": "Eventual live custom-domain acceptance",
       "automated_scope": "Finite fixtures for both .com hosts/schemes and encoded/repeated queries; prepared URL expectations alone never admit public DNS/TLS/HTTP.",
-      "checks": ["REDIRECT-FIXTURES"],
-      "gates": ["LIVE-DOMAINS", "PRODUCTION-ADMISSION"]
+      "checks": [
+        "REDIRECT-FIXTURES"
+      ],
+      "gates": [
+        "LIVE-DOMAINS",
+        "PRODUCTION-ADMISSION"
+      ]
     }
   ],
   "checks": {

@@ -24,3 +24,19 @@ The implementation does not establish new third-party consent, commercial
 endorsement, exact-edition approval or production eligibility. The current
 CI run/artifact/preview link, when successful, is added to issue 39 and PR40.
 PR68/issue41 remain open for their separate whole-issue acceptance.
+
+## Ready staging-admission test repair — 16 October 2026
+
+User has approved the reviewed immutable PR40 preview for staging. The first
+Ready check on exact source `943c720f` uncovered two original **failures**:
+
+- [Owning acceptance 38881226898](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38881226898): AC03 failed because old strict-main preservation rejected precisely the nine files explicitly imported from PR68. Correct only the named test using the nine immutable Git blobs at upstream source `c3b8fb7`; every other original, legal, runtime, retained and generated alias contract remains strict.
+- [Browser smoke 38881226900](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38881226900): four configurations (1440/390 normal/no-Canvas) saw the original selector expect a person-name heading, but the approved Arkadiy discussion card now has a topic heading and a profile link inside its attribution. The repaired real browser check still requires all exact public names and order, one profile per card and all other route/identity behavior.
+- [RI 38881226847](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38881226847) and [source 38881227123](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38881227123) passed on the historical head, not as evidence for a future repair commit.
+
+Current scope: owning policy/test, the existing browser-smoke selector,
+this versioned review, MEMORY handoff and generated RI/CI. No modification to
+site content, runtime/flight, licensing, budgets, provider settings, staging
+or production. Fresh exact-head Ready source/RI/issue/browser CI and the
+ordinary `/stage` gate are still mandatory. Prior TBT and native timeouts
+remain failed; all unchanged manual/rights/device/release/merge gates stay open.

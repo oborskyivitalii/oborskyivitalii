@@ -258,6 +258,19 @@ class Issue39AcceptanceTests(unittest.TestCase):
             'site/content/pages/credits/main.json': "4d3b70b91dca37af7dd67a9b3de9b5a8e8f48825b689f982d046539f3e8f69a2",
             'site/templates/pages/credits/main.html': "14e369575829e251620e2b3ca3400c7c4c6b02f9d81876e33a83540070437e0c",
         }
+        # Exact selected PR68 edition; remaining current-main bytes stay protected.
+        # Source commit: c3b8fb7d0b7a127363f24cdacb8a36c3f811054a.
+        editorial_amendments = {
+            "site/content/pages/index/about.json": "ab5c825a5e899b37ac45935dd76610f5fd09b551",
+            "site/content/pages/index/acknowledgements.json": "a6f293f39aef21ad38627a3f677cb846dc41c267",
+            "site/content/pages/index/contact.json": "c5e831bdd277c1105181d97bc0981b1d4a5893d2",
+            "site/content/pages/index/help.json": "1265e8d20ce4b0d9249fb5d87ec6e19470da665d",
+            "site/content/pages/index/hero.json": "57b847b3a62cb9f3702e52b3e8d4375e5404411d",
+            "site/content/pages/index/main.json": "d4912bee32ed3ef7a0d3f3bb1b63eb5d61128c14",
+            "site/content/pages/research/acknowledgements.json": "88131da87ebf3fe2ba81226df036dafeb2bebd99",
+            "site/templates/pages/index/acknowledgements.html": "e12511ddaf39a6d41439d4a3e97da083be549366",
+            "site/templates/pages/research/acknowledgements.html": "e22f50a3fbc6f0c32a5c7116aac33f480fa0d67f",
+        }
         entries = subprocess.check_output(
             ["git", "ls-tree", "-r", CURRENT_MAIN, "--", *protected],
             cwd=ROOT,
@@ -270,6 +283,7 @@ class Issue39AcceptanceTests(unittest.TestCase):
             mode, kind, blob = metadata.split()
             self.assertEqual((mode, kind), ("100644", "blob"))
             baseline[name] = blob
+        self.assertTrue(set(editorial_amendments).issubset(baseline))
         current = set()
         for parent in protected:
             owner = ROOT / parent
@@ -291,7 +305,7 @@ class Issue39AcceptanceTests(unittest.TestCase):
                 self.assertEqual(data.count(LEGAL_CSS), 1, name)
                 data = data.replace(LEGAL_CSS, b"", 1)
             actual = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
-            self.assertEqual(actual, blob, name)
+            self.assertEqual(actual, editorial_amendments.get(name, blob), name)
         credits_path = "site/content/pages/credits/main.json"
         original_credits = json.loads(
             subprocess.check_output(

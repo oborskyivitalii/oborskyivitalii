@@ -139,16 +139,24 @@ async function routeBytes(context, url, manifest) {
   );
 }
 async function responseNames(page, route) {
+  assert.ok(['index', 'research'].includes(route), 'known response route');
   const selector =
     route === 'index'
-      ? '#acknowledgements .ack-leads article h3 a'
-      : '#acknowledgements .ack-grid article h3 a';
-  const names = await page.locator(selector).allTextContents();
-  assert.deepEqual(
-    names,
-    route === 'index' ? selectedResponses : completeResponses,
-    route + ' public-response names and order'
+      ? '#acknowledgements .ack-leads article'
+      : '#acknowledgements .ack-grid article';
+  // Topic-first cards put the public identity in attribution rather than the heading.
+  const entries = await page.locator(selector).evaluateAll((cards) =>
+    cards.map((card) => {
+      const profiles = card.querySelectorAll('a[href^="https://www.linkedin.com/in/"]');
+      return { name: profiles[0]?.textContent?.trim() || null, profiles: profiles.length };
+    })
   );
+  const expected = route === 'index' ? selectedResponses : completeResponses;
+  assert.equal(entries.length, expected.length, route + ' response count');
+  for (const entry of entries)
+    assert.equal(entry.profiles, 1, route + ' one public profile per response');
+  const names = entries.map((entry) => entry.name);
+  assert.deepEqual(names, expected, route + ' public-response names and order');
   assert.equal(
     await page.locator('#acknowledgements article').count(),
     names.length,
