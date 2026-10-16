@@ -190,6 +190,7 @@ jobs:
           PY
           git add -A
           python3 tools/check_ri_ci.py refresh
+          node tools/quality/format.cjs --write
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           git add -A
       - name: Verify content, exact legal and technical contracts
