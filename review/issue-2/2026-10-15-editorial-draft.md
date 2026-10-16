@@ -392,3 +392,45 @@ No chart content, source deck or UA research evidence was modified. Slide 4 rema
 **Static self-check on proposed draft (not independent review):** six numbered chapters; revised title + subtitle; chapter six explicitly `What If Not?`; seven ordered FIG markers with seven slide contracts `3/5/7/9/10/12/14`; same single opening presentation PDF and Ukrainian recording; named Lem reference and a short Further reading section; paired sourced historical counterexamples; no sandbox path. Reader body is around 3.3k English words. Previous export identity `r2` remains unchanged.
 
 **Not executed:** new HTML/PDF/platform kit, image PNG repository commits, code/source quality suite, RI build/verify, new hosted smoke, independent article/rights/device visual checks. Existing source-run results for r2 and old editorial suggestions do **not** establish successful verification of this revision. Keep #2 AC01–AC06 open and preserve recording AC07/08. Next Sol/Astra: inspect current raw PR head and current main; apply exact latest v0.7 prose + seven figure descriptions; generate/attach sourced images, update title/covers/metadata for a new edition; run full source + RI + publishing checks; inspect article PDF/mobile and return for author acceptance before any merge or public release.
+
+
+## Editorial revision 0.7 — What If Not (16 October 2026)
+
+### Author decision and examined scope
+
+Direct owner feedback after the 15 October seven-slide review requested a distinct **literary through-line, "What if not?"**: proposed efficiency intervention → potential benefit → explicit assumption → credible failure mode when the bet fails → preserved engineering obligation or bounded experiment. The author specifically reframed vendor criticism as a **historical sequence**: early expectations of replacing programmers → increased code-production capacity without a balanced SDLC redesign → downstream constraints → new vendor countermeasures. Contemporary vendor proposals must be quoted and assessed fairly, not portrayed as a categorical call to abolish all review.
+
+The author additionally requested a new title **The Sum of Our Technology**, an allusion to Stanisław Lem's *Summa Technologiae*, and a named link to that book in Further reading. The earlier title becomes subtitle **AI Changes Both Sides of Software Engineering**. The last chapter changes from "Engineering rigor moves. It does not disappear." to **"6. What If Not?"**, preserving the substantive delivery/control/learning argument.
+
+**Owning issue:** #2 editorial article and rights/evidence decisions; **execution:** #5 / PR79. The source was updated on the existing PR79 branch from head \`a787660e86ad1f48d153aaecdba7656f3619826e\`; the first full v0.7 save was \`e106b6ae14053895d2ab9330af3975327829380c\` and the source-check correction was \`e34a6727d04847124d464fe4351997dc8bd298f8\`. Later handoff edits do not change the reader prose. Re-validate the actual live PR head at assembly.
+
+### Source review: evidence versus interpretation
+
+| Original source | Verified observation and guard |
+| --- | --- |
+| [Cognition, "Introducing Devin", 12 Mar 2024](https://cognition.com/blog/introducing-devin) | The announcement describes the "first AI software engineer" **and** calls Devin a teammate whose tasks can be reviewed; it does not literally state that all programmers will be replaced tomorrow. Distinguish broad audience interpretation/industry hype from first-party quotation. |
+| [Dario Amodei, CFR, March 2025](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic) | Forecast of AI writing 90% of code within 3–6 months and possibly essentially all within a year; **same speech retains human specification, application design, integration and security**. Production delivery/replacement forecasts cannot be inferred from code-output forecasts. |
+| [Microsoft, Jay Parikh, Build 2026](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) | Advocates reworking review for an agentic SDLC and boundary-limited disposability while preserving architectural oversight. This is a proposed operating model, not evidence that all review roles are obsolete. |
+| [Anthropic / Claude Code team, 15 Oct 2026](https://claude.dev/blog/solving-code-review-at-anthropic/) | Says explicitly that review was **not removed**; moved most code reading to machines. Reports merged Claude Code PRs >2× June–September while the reverted share fell >40%, with layered checks, risk-based human approvals, incident/revert observations and operational rollback. Also says there is **no formal codebase-understanding-sharing process yet** and **no automatic circuit breaker tightening approvals when reverts/incidents rise**. These are firsthand vendor-reported operating observations, not a controlled external transfer study. |
+| [Stanisław Lem, *Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) | Title/allusion source; [University of Minnesota Press](https://www.upress.umn.edu/9780816689040/summa-technologiae/) identifies original publication in 1964. Do not imply Lem made the AI/SDLC arguments; treat it as an explicitly explained literary allusion and a named Further reading item, not causal engineering evidence. |
+
+No original quantitative values of NBER (25.5×/3.4×/1.3×), DORA, GitClear, Agarwal, METR, or the explicitly **synthetic** 196/3/1 evaluation were changed by this revision. Cross-source methods and evidence confidence stay separate.
+
+### Actual editorial changes / author-acceptance mapping
+
+| Finding | Result and acceptance impact |
+| --- | --- |
+| Narrative lacked a recurring decision question | Reader starts with “What if not?”, returns to it at downstream review, documentation, product value and critical runtime control; chapter 6 uses the exact title **What If Not?**; #2 AC01 remains subject to owner approval. |
+| First SDLC bottleneck was too implicit | Explains the full intent→operation chain and why faster code-generation alone predicts shifted queues under fixed-capacity push assumptions, not measured universal failure; #2 AC01/AC02 remains review-open. |
+| Vendor argument risked strawman rhetoric | Separates what Devin/CFR actually claimed from the wider historical narrative; treats Microsoft/Anthropic new designs as plausible with vendor-specific observations and unclosed operational problems; #2 AC02 remains review-open. |
+| Adoption could sound like "all-in or reject" | Final chapter distinguishes vendor revenue/research bets from adopter's customers, legal obligations, budgets, staffing and recoverability; recommends bounded evidence-led pilots, controlled expansion, narrowing or opting out; #2 AC01 remains review-open. |
+| Lem title and sources not represented | Adds *Summa Technologiae (1964)* to both contextual prose and named Further reading and title/metadata assembly instructions; #2 AC01/AC04 remains review-open. |
+| Visuals could be broken during prose rewrite | Preserves **seven FIG markers** 3/5/7/9/10/12/14 with one-to-one detailed asset/alt/placement/extraction instructions and slide provenance; #2 AC03 remains image-integration/rights-open. |
+
+### Handoff / actual verification status
+
+**Draft source:** [revision 0.7](../../drafts/pmday-article-draft.en.md) is the only next prose input. Copy **only** ARTICLE START–END reader prose; it contains six sections, plus the Further reading subsection and seven placement markers. Figure comments and the long engineering appendix are **not article text**. Current assembly target remains \`site/publications/pmday-ai-both-sides/manuscript.en.md\`, with a *new* edition identity and figure metadata; the old r2 is intact.
+
+**Scoped self-check:** direct first-party text links opened for Cognition, CFR, 15 October Anthropic and Lem/publisher; manuscript inspected for exact title/section 6, 7 marker order, 7 figure specs, no uncommitted PNG claimed and preserved reader-visible sources. No new image/PDF/site/kit build, full \`node tools/quality/local.cjs\`, RI rebuild/verify, mapped CI or hosted preview is claimed at this source-only checkpoint. Old green r2 results do **not** establish acceptance of v0.7.
+
+**Sol/Astra actions:** (1) inspect latest PR79 tree and issue #2/#5/#7 original ACs, (2) pin original UA PR113 v35 PDF and generate all seven complete screenshots, register attribution/rights, (3) integrate v0.7 prose, new title/subtitle, named Further reading and exact slide order into new semantic article edition, update browser/social/PDF title without silently changing the old slug, (4) regenerate all site/HTML/PDF/LinkedIn/Medium outputs from owners, (5) run mapped source/RI/quality, content and multi-device/render checks, (6) obtain independent editorial/source/rights and human release decision. **No merge, production, external publication or acceptance gates silently granted.**
