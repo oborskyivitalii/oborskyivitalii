@@ -77,17 +77,24 @@ async function check(directory, value, fetcher = fetch) {
     if (failed) throw failed.reason;
     rows.push(...observations.map((item) => item.value));
   }
-  for (const [url, file] of [
+  const journeys = [
     ['/', 'index.html'],
-    ['/staging/', 'staging/index.html'],
-    ['/staging/writing.html?topic=systems&language=uk', 'staging/writing.html'],
-  ]) {
+    ...(record.staging
+      ? [
+          ['/staging/', 'staging/index.html'],
+          ['/staging/writing.html?topic=systems&language=uk', 'staging/writing.html'],
+        ]
+      : [['/writing.html?topic=systems&language=uk', 'writing.html']]),
+  ];
+  for (const [url, file] of journeys) {
     const { response, bytes } = await request(base + url, base, fetcher);
     assert.equal(response.status, 200);
     assertContentType(file, response.headers.get('content-type'));
     assert.equal(artifact.digest(bytes), record.files[file].sha256);
   }
-  for (const missingPath of ['/__delivery_missing', '/staging/__delivery_missing']) {
+  const missingPaths = ['/__delivery_missing', '/staging/__delivery_missing'];
+  if (!record.staging) missingPaths.push('/staging/', '/staging/writing.html');
+  for (const missingPath of missingPaths) {
     const missing = await request(base + missingPath, base, fetcher);
     assert.equal(missing.response.status, 404, 'Pages converted a missing route to Home');
     assertContentType('404.html', missing.response.headers.get('content-type'));
@@ -103,7 +110,7 @@ async function check(directory, value, fetcher = fetch) {
     packageDigest: record.packageDigest,
     rows,
     root: true,
-    staging: true,
+    staging: record.staging !== null,
     query: true,
     actual404: true,
   };

@@ -8,6 +8,7 @@ const fs = require('node:fs'),
   crypto = require('node:crypto');
 const os = require('node:os');
 const { chromium } = require(process.env.SITE_REVIEW_PLAYWRIGHT || 'playwright');
+const primaryCount = Object.keys(require('../site/content/catalog.json').records).length;
 const root = path.resolve(__dirname, '..'),
   out = path.join(root, 'review/site-v1-20261004-v11-captures');
 const publicRoot = path.resolve(process.env.SITE_PUBLIC_DIR || path.join(root, 'docs'));
@@ -180,18 +181,23 @@ async function matrix() {
         assert.notEqual(await pixelTrace(page), first, 'geometry moves without scrolling');
         await page.screenshot({ path: path.join(out, `${route}-${theme}-${device}.png`) });
         const max = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-        await page.mouse.wheel(0, Math.max(250, Math.round(max * 0.45)));
+        const scroll = {
+          range: max,
+          before: { y: await page.evaluate(() => scrollY), camera },
+        };
+        const scrollDistance = Math.max(250, Math.round(max * 0.45));
+        await page.mouse.wheel(0, scrollDistance);
         await idle(page);
         assert.notEqual(await pixelTrace(page), first, `${route} must move with native scroll`);
-        const hasScroll = max > 1 && (await page.evaluate(() => scrollY)) > 0;
-        if (hasScroll)
-          assert.notEqual(await poseTrace(page), camera, `${route} forward scroll moves camera`);
-        else assert.equal(await poseTrace(page), camera, `${route} short page keeps camera`);
+        scroll.forward = { y: await page.evaluate(() => scrollY), camera: await poseTrace(page) };
         if (device === 'desktop' && ['index', 'research', 'writing'].includes(route))
           await page.screenshot({ path: path.join(out, `${route}-${theme}-lower.png`) });
+        await page.mouse.wheel(0, -scrollDistance);
+        await idle(page);
+        scroll.reverse = { y: await page.evaluate(() => scrollY), camera: await poseTrace(page) };
         const frameTimes = await page.evaluate(() => window.__review.frames);
         frameTimes.sort((a, b) => a - b);
-        summary.push({
+        const view = {
           route,
           theme,
           device,
@@ -199,8 +205,11 @@ async function matrix() {
           ...dimensions,
           readyProbe,
           scene_pixels_changed_after_scroll: true,
-          native_scroll_has_range: hasScroll,
-          native_scroll_changes_camera: hasScroll,
+          native_scroll: scroll,
+          native_scroll_has_range: max > 1,
+          native_scroll_changes_camera: [scroll.forward, scroll.reverse].some(
+            (sample) => sample.camera !== camera
+          ),
           ambient_changes_pixels: true,
           ambientProbe,
           idle_camera_stays_fixed: true,
@@ -210,7 +219,9 @@ async function matrix() {
             p95: frameTimes[Math.floor(frameTimes.length * 0.95)] || 0,
             max: Math.max(...frameTimes),
           },
-        });
+        };
+        require('./quality/validate.cjs').captureScroll(view);
+        summary.push(view);
         process.stdout.write(
           `${route} ${theme} ${device}: captured; scroll/ambient/overflow passed\n`
         );
@@ -287,12 +298,12 @@ async function behavior() {
   await idle(page);
   assert.equal(await page.locator('#archive-empty').isVisible(), true);
   await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
-  assert.equal(await page.locator('li.publication:visible').count(), 27);
+  assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
   await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
   assert.equal(await page.locator('li.publication:visible').count(), 0);
   await page.locator('.filter-reset').click();
   await idle(page);
-  assert.equal(await page.locator('li.publication:visible').count(), 27);
+  assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
   await page.goto(`${base}/writing.html?topic=delivery&language=uk#topic-systems`);
   await idle(page);
   assert.equal(await page.locator('#archive-topic').inputValue(), 'systems');
@@ -304,8 +315,7 @@ async function behavior() {
   await page.goForward();
   await idle(page);
   assert.equal(await page.locator('#archive-language').inputValue(), 'en');
-  results.writing_archive =
-    'topic motion; year reflow/first scroll; empty results; Reset; conflict hash/query; back/forward; all 27 records on print and filter restoration passed';
+  results.writing_archive = `topic motion; year reflow/first scroll; empty results; Reset; conflict hash/query; back/forward; all ${primaryCount} records on print and filter restoration passed`;
   for (const width of [360])
     for (const theme of ['light', 'dark'])
       for (const route of pages) {

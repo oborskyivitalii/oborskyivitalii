@@ -2,6 +2,11 @@
 const primaryCount = Object.keys(require('../../site/content/catalog.json').records).length;
 const assert = require('node:assert/strict');
 const pacing = require('./transition-pacing.cjs');
+const {
+  timingProbe,
+  checkSeparators,
+  cssTimingSerializationMs,
+} = require('./block-observation.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const checks = [
   'persistentShell',
@@ -386,152 +391,6 @@ function beginInterruption(kind) {
   link.click();
   link.setAttribute('href', href);
 }
-function timingProbe() {
-  window.__flightSamples = [];
-  let lastTime = -Infinity,
-    lastState;
-  function milliseconds(value) {
-    const number = Number.parseFloat(value);
-    return value?.endsWith('ms') ? number : number * 1000;
-  }
-  function layer(element, pseudo) {
-    const style = getComputedStyle(element, pseudo),
-      side = !pseudo && element.dataset.entrySeparator;
-    return {
-      translate: style.translate,
-      opacity: Number(style.opacity),
-      animation: {
-        name: style.animationName,
-        delay: milliseconds(style.animationDelay),
-        duration: milliseconds(style.animationDuration),
-      },
-      ...(pseudo ? { content: style.content } : {}),
-      ...(side
-        ? {
-            separatorPaint: {
-              width: Number.parseFloat(style.getPropertyValue('border-' + side + '-width')),
-              style: style.getPropertyValue('border-' + side + '-style'),
-              color: style.getPropertyValue('border-' + side + '-color'),
-              length: Number.parseFloat(
-                side === 'top' || side === 'bottom' ? style.width : style.height
-              ),
-            },
-          }
-        : {}),
-    };
-  }
-  function record(kind) {
-    const scene = document.querySelector('.space-scene'),
-      content = document.querySelector('#site-content'),
-      main = content?.querySelector('main');
-    if (!scene || !content || !content.hasAttribute('aria-busy')) return;
-    const time = performance.now(),
-      state = [
-        main?.dataset.routeBlocks,
-        scene.dataset.cameraStage,
-        scene.dataset.travel,
-        scene.dataset.direction,
-        document.body.dataset.page,
-      ].join('/');
-    if (
-      kind !== 'mount' &&
-      window.__flightSamples.length &&
-      state === lastState &&
-      time - lastTime < 100
-    )
-      return;
-    lastTime = time;
-    lastState = state;
-    const units = [...content.querySelectorAll('[data-route-block]')];
-    window.__flightSamples.push({
-      kind,
-      time,
-      viewportWidth: innerWidth,
-      progress: Number(scene.dataset.progress),
-      opacity: Number(getComputedStyle(content).opacity),
-      transform: getComputedStyle(content).transform,
-      stage: main?.dataset.routeBlocks || 'settled',
-      cameraStage: scene.dataset.cameraStage || 'settled',
-      framing: Number(scene.dataset.framing || 0),
-      travel: scene.dataset.travel,
-      direction: units[0]?.dataset.routeDirection || scene.dataset.direction,
-      page: document.body.dataset.page,
-      units: units.map((element) => {
-        const rect = element.getBoundingClientRect(),
-          children = [...element.children].map((child) => ({
-            ...layer(child),
-            separator: child.dataset.entrySeparator || null,
-            separatorSource: child.dataset.entrySeparatorSource || null,
-            borderOwner: child.dataset.entryBorderOwner || null,
-          })),
-          paper = layer(element, '::before'),
-          hasPaper =
-            typeof paper.content === 'string' && !['none', 'normal'].includes(paper.content);
-        return {
-          tag: element.tagName,
-          id: element.id,
-          className: element.className,
-          stage: element.dataset.routeBlock,
-          direction: element.dataset.routeDirection,
-          row: Number(element.dataset.routeRow),
-          order: Number(element.dataset.routeDelay),
-          borderOwner: element.dataset.entryBorderOwner || null,
-          top: rect.top,
-          bottom: rect.bottom,
-          opacity: Number(getComputedStyle(element).opacity),
-          ink: children.map((child) => child.translate),
-          paper: hasPaper ? paper.translate : null,
-          paperContent: paper.content,
-          layers: [...children, ...(hasPaper ? [paper] : [])],
-        };
-      }),
-      borderSources: [...content.querySelectorAll('[data-entry-border-source]')].map((element) => {
-        const rect = element.getBoundingClientRect(),
-          style = getComputedStyle(element);
-        return {
-          sides: ['top', 'right', 'bottom', 'left']
-            .filter((side) => {
-              const width = Number.parseFloat(style.getPropertyValue('border-' + side + '-width')),
-                lineStyle = style.getPropertyValue('border-' + side + '-style'),
-                position = side === 'top' ? rect.top : rect.bottom;
-              return (
-                width > 0 &&
-                lineStyle !== 'none' &&
-                lineStyle !== 'hidden' &&
-                (side === 'top' || side === 'bottom'
-                  ? position >= 0 && position <= innerHeight
-                  : rect.bottom > 0 && rect.top < innerHeight)
-              );
-            })
-            .map((side) => ({
-              side,
-              owner:
-                element.dataset['entryBorder' + side[0].toUpperCase() + side.slice(1) + 'Owner'] ||
-                null,
-              color: style.getPropertyValue('border-' + side + '-color'),
-            })),
-        };
-      }),
-    });
-    if (window.__flightSamples.length > 400) window.__flightSamples.shift();
-  }
-  new MutationObserver(() => record('progress')).observe(document, {
-    subtree: true,
-    attributes: true,
-    attributeFilter: [
-      'data-progress',
-      'data-phase',
-      'data-camera-stage',
-      'data-framing',
-      'data-route-blocks',
-      'data-route-block',
-      'data-route-direction',
-      'data-route-row',
-      'data-route-delay',
-    ],
-  });
-  window.addEventListener('site:page-mount', () => record('mount'));
-}
 function checkBlockMovement(rows, phase) {
   const moving = [];
   for (const sample of rows)
@@ -546,52 +405,6 @@ function checkBlockMovement(rows, phase) {
       }
     }
   assert.ok(moving.length > 0, 'actual signed block movement during ' + phase);
-}
-function checkBlockSeparators(sample, phase) {
-  const transparent = (color) =>
-    color === 'transparent' || /(?:,|\/)\s*0(?:\.0+)?%?\s*\)$/.test(color);
-  const proxies = [],
-    expected = new Map();
-  for (const unit of sample.units.filter((unit) => unit.stage === phase))
-    for (const layer of unit.layers.filter((layer) => layer.separator)) {
-      assert.equal(layer.borderOwner, unit.borderOwner, 'separator retains its block owner');
-      assert.ok(layer.borderOwner, 'separator owner is observable');
-      assert.ok(['unit', 'ancestor'].includes(layer.separatorSource), 'native separator source');
-      assert.equal(layer.opacity, 1, 'separator remains opaque');
-      const peer = unit.layers.find((candidate) => !candidate.separator);
-      if (peer)
-        assert.equal(
-          layer.translate,
-          peer.translate,
-          'separator follows the native block layer path'
-        );
-      const paint = layer.separatorPaint;
-      assert.ok(
-        Number.isFinite(paint.width) && paint.width > 0,
-        'separator retains a painted border'
-      );
-      assert.ok(
-        Number.isFinite(paint.length) && paint.length > 0,
-        'separator retains its native length'
-      );
-      assert.ok(
-        !['none', 'hidden'].includes(paint.style),
-        'separator retains its native line style'
-      );
-      assert.ok(paint.color && !transparent(paint.color), 'separator retains visible native color');
-      proxies.push(layer);
-    }
-  for (const source of sample.borderSources)
-    for (const { side, owner, color } of source.sides) {
-      assert.ok(transparent(color), 'native static separator is replaced during block movement');
-      const key = owner + '/' + side;
-      expected.set(key, (expected.get(key) || 0) + 1);
-    }
-  for (const [key, count] of expected)
-    assert.ok(
-      proxies.filter((proxy) => proxy.borderOwner + '/' + proxy.separator === key).length >= count,
-      'every visible native separator participates in a block: ' + key
-    );
 }
 function blockRowInterval(peers, phase) {
   let interval;
@@ -656,7 +469,7 @@ function checkBlockRows(samples, phase) {
   const plan = pacing.rowPlan(complete.viewportWidth, visual.length);
   // Computed CSS times round fractional seconds in their serialized text.
   // One microsecond covers that conversion without granting latency allowance.
-  const serializationMs = 0.001;
+  const serializationMs = cssTimingSerializationMs;
   for (const [order, interval] of intervals.entries()) {
     assert.equal(
       interval.duration,
@@ -679,7 +492,7 @@ function checkBlockRows(samples, phase) {
       serializationMs,
     'visual row count cannot extend the approved phase'
   );
-  for (const sample of samples) checkBlockSeparators(sample, phase);
+  checkSeparators(samples, phase);
 }
 function checkTiming(samples) {
   assert.ok(samples.length > 0, 'observed actual block navigation');

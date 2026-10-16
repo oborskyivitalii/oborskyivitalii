@@ -110,9 +110,10 @@ and retains the previous and next complete Pages packages. Existing tags/assets
 cannot be repurposed or replaced. A tag-only interrupted preparation needs explicit
 reconciliation or a fresh identity; the publisher does not overwrite it.
 
-The official Pages deployment composes the frozen production root with the
-previous accepted staging subtree. Exact HTTP/TLS/MIME/canonical/indexing, root
-and staging navigation, real 404 and a bounded passive ZAP scan must pass. The
+The official Pages deployment composes the frozen production root only. It
+authenticates and retains the complete previous package solely for recovery;
+Cloudflare remains the sole staging publisher. Exact HTTP/TLS/MIME/canonical/indexing,
+production navigation, real 404 (including retired `/staging/` routes) and a bounded passive ZAP scan must pass. The
 scan uses a pinned image, the owned origin only, excludes `/staging/`, and does
 not run active attacks. Explicit reviewed header warnings reflect Pages hosting
 capabilities; new or high-risk findings fail. All observations must be retained.

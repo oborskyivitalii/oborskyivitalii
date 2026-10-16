@@ -57,7 +57,7 @@ async function previous(github, context, core) {
     require('./edition-archive.cjs').origin
   );
   const record = await pages.previous(github, context, process.env.PAGES_ORIGIN, proof.current);
-  assert.ok(record, 'publish and verify the staging mirror before first production');
+  assert.ok(record, 'authenticate the existing Pages recovery receipt before production');
   save('release-control/previous.json', record);
   core.setOutput('id', record.artifactId);
   core.setOutput('run', record.runId);
@@ -150,10 +150,9 @@ function compose() {
   const previous = read('release-control/previous.json');
   const directory = 'pages-previous/pages-package';
   pages.retained(directory, previous);
-  pages.stagingFromPages(directory, 'staging-source');
   const release = read('release-assets/archive.json');
   const record = require('../pages/package.cjs').build(
-    'staging-source',
+    null,
     'pages-package',
     'production-source',
     release.tag,
@@ -166,7 +165,7 @@ function compose() {
     '/',
     { productionRightsDigest: release.rights.inventoryDigest }
   );
-  assert.deepEqual(record.staging.files, read(directory + '/pages-package.json').staging.files);
+  assert.equal(record.staging, null, 'production must not republish a staging subtree');
   fs.mkdirSync('pages-reports', { recursive: true });
   return record;
 }
@@ -191,8 +190,9 @@ function verifyPreparedArchive() {
     desired.rights.inventoryDigest,
     'prepared production license differs'
   );
-  const previous = read('pages-previous/pages-package/pages-package.json');
-  assert.deepEqual(combined.staging, previous.staging, 'prepared staging subtree differs');
+  assert.equal(combined.staging, null, 'prepared package republishes a staging subtree');
+  assert.equal(combined.state.staging, null, 'prepared receipt claims staging');
+  assert.equal(combined.rights.staging, null, 'prepared license claims staging');
   return desired;
 }
 
@@ -235,7 +235,6 @@ async function accept(github, context) {
     pages: read('pages-reports/http.json'),
     policy: read('pages-reports/production-policy.json'),
     productionBrowser: read('pages-reports/production-browser/preview-smoke.json'),
-    stagingBrowser: read('pages-reports/staging-browser/preview-smoke.json'),
     passive: read('pages-reports/passive.json'),
     retained: process.env.OBSERVATIONS_RETAINED === 'true',
   });

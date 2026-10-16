@@ -10,6 +10,37 @@ const artifact = require('../tools/quality/artifact.cjs'),
 const hosted = require('../tools/staging/hosted.cjs');
 const state = require('../tools/staging/state.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
+test('controlled HTTP model serves exact production robots and sitemap with their required MIME', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-production-mime-'));
+  const files = {
+    'robots.txt': ['text/plain', 'User-agent: *\nAllow: /\n'],
+    'sitemap.xml': [
+      'application/xml',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>\n',
+    ],
+  };
+  let server;
+  try {
+    fs.writeFileSync(path.join(dir, '404.html'), '<h1>Not found</h1>');
+    for (const [file, [, bytes]] of Object.entries(files))
+      fs.writeFileSync(path.join(dir, file), bytes);
+    const endpoint = await require('../tools/staging/selftest.cjs').start(dir);
+    server = endpoint.server;
+    for (const [file, [type, bytes]] of Object.entries(files)) {
+      const response = await fetch(endpoint.url + '/' + file);
+      assert.equal(response.status, 200);
+      assert.equal(response.headers.get('content-type'), type + '; charset=utf-8');
+      assert.equal(await response.text(), bytes);
+    }
+    const missing = await fetch(endpoint.url + '/missing.txt');
+    assert.equal(missing.status, 404);
+    assert.equal(missing.headers.get('content-type'), 'text/html; charset=utf-8');
+    assert.equal(await missing.text(), '<h1>Not found</h1>');
+  } finally {
+    if (server) await new Promise((resolve) => server.close(resolve));
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
 function fixture() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-staging-test-')),
     input = path.join(dir, 'input'),

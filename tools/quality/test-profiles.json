@@ -530,7 +530,7 @@
     {
       "path": "tests/functional-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Native route reading behavior with stationary camera, working controls/fallbacks, source-bound artifact and functional evidence",
+      "purpose": "Native route reading with stationary camera and exact-input same-ink anchoring observations, adversarial displacement/control/fallback cases and source-bound evidence",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -583,7 +583,7 @@
     {
       "path": "tests/navigation-fixtures.test.cjs",
       "language": "javascript",
-      "purpose": "Ordered opaque visual rows and moving separators around centered/restored camera stages, reverse Tetris assembly, native mount, interruption/history and bounded navigation evidence",
+      "purpose": "Ordered opaque visual rows and moving separators around centered/restored camera stages, reverse Tetris assembly, native mount, interruption/history and bounded navigation evidence; exact native animation track/clock and per-separator movement negatives; bounded native endpoint reflow/blocked/late-input proof",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -593,7 +593,9 @@
         "tests/navigation-fixtures.test.cjs",
         "tools/quality/navigation.cjs",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/edge-input.cjs",
+        "tools/quality/block-observation.cjs"
       ]
     },
     {
@@ -714,7 +716,7 @@
     {
       "path": "tests/quality.test.cjs",
       "language": "javascript",
-      "purpose": "Release aggregate, required evidence/counts/source identity, budgets, Lighthouse medians, motion/raw samples and hosted failure rejection",
+      "purpose": "Release aggregate, required evidence/counts/source identity, budgets, Lighthouse medians, motion/raw samples and hosted failure rejection; actual forward/reverse capture scroll observations and fixed reading camera negatives",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -740,7 +742,10 @@
         ".github/workflows/**",
         "tools/quality/transition-pacing.json",
         "tools/quality/transition-pacing.cjs",
-        "tools/quality/serve.cjs"
+        "tools/quality/serve.cjs",
+        "tools/capture_site_review.cjs",
+        "tools/quality/edge-input.cjs",
+        "tools/quality/block-observation.cjs"
       ]
     },
     {
@@ -980,7 +985,7 @@
     {
       "path": "tests/staging.test.cjs",
       "language": "javascript",
-      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
+      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract; exact production robots/sitemap MIME in the controlled loopback model",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1560,7 +1565,7 @@
     {
       "path": "tests/prototype-admission.test.cjs",
       "language": "javascript",
-      "purpose": "Draft deferral and exact-head Cloudflare-only staging/merge admission; stale, skipped, failed and wrong-attempt negatives",
+      "purpose": "Draft deferral, exact-head Cloudflare staging and eligible read-only PR admission; stale, skipped, failed, wrong-attempt/current-main/tree and same-name self-job negatives with bounded source refresh",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1578,11 +1583,11 @@
     {
       "path": "tests/pages-delivery.test.cjs",
       "language": "javascript",
-      "purpose": "Hashed root/project staging, confined hosted bytes, production root, accepted recovery and authenticated unaccepted first-publication negatives",
+      "purpose": "Hashed root/project staging, confined hosted bytes, production root, accepted recovery and authenticated unaccepted first-publication negatives; production-only root/licensing and retired staging path 404 rejection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain production package/controller and historical recovery failure surfaces; automatic Pages staging publisher retired under #72 on 16 October",
+      "disposition": "retain production-only publication and complete historical/recovery package validation; Cloudflare is the sole staging publisher",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/pages-delivery.test.cjs",
@@ -1635,7 +1640,7 @@
     {
       "path": "tests/release-controller.test.cjs",
       "language": "javascript",
-      "purpose": "Color/production social metadata and real-job/protection/raw-asset/rights admission with failed live/ref/label/rollback transitions; all external operations use fixtures.",
+      "purpose": "Color/production social metadata and real-job/protection/raw-asset/rights admission with failed live/ref/label/rollback transitions; all external operations use fixtures.; production-only composition adapter and rejection before provider mutation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1706,7 +1711,9 @@
         "tools/staging/color.cjs",
         "tools/staging/edition.cjs",
         "site/content/production-social.json",
-        ".github/workflows/site-release-candidate.yml"
+        ".github/workflows/site-release-candidate.yml",
+        "tools/quality/edge-input.cjs",
+        "tools/quality/block-observation.cjs"
       ]
     },
     {

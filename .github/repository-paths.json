@@ -8784,6 +8784,48 @@
       "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
       "role": "history",
       "owner": "review/issue-39/2026-10-16-stable-staging.md"
+    },
+    "review/issue-39/2026-10-16-production-finalization.md": {
+      "kind": "file",
+      "purpose": "Issue39 actual GitHub production setup, native frozen candidate/recovery and production regression blocker follow-up.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-production-finalization-native.json.gz": {
+      "kind": "file",
+      "purpose": "Original source96 native production regression failure logs, reports, job metadata and exact upload digests; bounded historical evidence, not new admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tools/quality/edge-input.cjs": {
+      "kind": "file",
+      "purpose": "Bounded900ms native endpoint preparation and source-bound Color edge evidence validation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/block-observation.cjs": {
+      "kind": "file",
+      "purpose": "Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-39/2026-10-17-native-navigation.md": {
+      "kind": "file",
+      "purpose": "Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-native-navigation.json.gz": {
+      "kind": "file",
+      "purpose": "Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-staging-admission.md": {
+      "kind": "file",
+      "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

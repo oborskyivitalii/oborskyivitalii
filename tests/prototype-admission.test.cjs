@@ -348,3 +348,177 @@ test('Draft jobs cannot impersonate required contexts and browser installation i
   assert.match(yaml, /promote:process.env.PROMOTE_RESULT/);
   assert.match(yaml, /beginMergeAdmission/);
 });
+
+function stagedPRFixture() {
+  const p = { ...pr(), merge_commit_sha: 'd'.repeat(40) };
+  p.base.sha = mainSHA;
+  const main = { protected: true, commit: { sha: mainSHA } };
+  const c = {
+    ...context,
+    eventName: 'pull_request',
+    payload: {
+      action: 'edited',
+      sender: { login: context.actor },
+      pull_request: structuredClone(p),
+    },
+  };
+  const checkpoint = {
+    id: 30,
+    name: 'Staging admission',
+    head_sha: source,
+    app: { id: 15368 },
+    status: 'completed',
+    conclusion: 'success',
+    external_id: '900/1',
+  };
+  const checks = [
+    checkpoint,
+    { ...checkpoint, id: 40, external_id: undefined, status: 'in_progress' },
+  ];
+  const stagingRun = {
+    id: 900,
+    run_attempt: 1,
+    path: flow.workflow,
+    event: 'issue_comment',
+    head_sha: mainSHA,
+    head_branch: 'main',
+    head_repository: { full_name: flow.repository },
+    actor: { login: context.actor },
+    triggering_actor: { login: context.actor },
+    status: 'completed',
+    conclusion: 'success',
+  };
+  const jobs = ['promote', 'merge-admission'].map(job),
+    api = github();
+  const sourcePaginate = api.paginate;
+  api.paginate = async (method, args) => {
+    if (method === 'staged-checks') {
+      assert.equal(args.filter, 'all');
+      return checks;
+    }
+    if (method === 'stage-jobs') return jobs;
+    return sourcePaginate(method, args);
+  };
+  api.rest.checks.listForRef = 'staged-checks';
+  api.rest.actions.listJobsForWorkflowRunAttempt = 'stage-jobs';
+  api.rest.actions.getWorkflowRun = async () => ({ data: stagingRun });
+  api.rest.repos.getCommit = async () => ({ data: { commit: { tree: { sha: 'c'.repeat(40) } } } });
+  api.rest.repos.getBranch = async () => ({ data: main });
+  api.rest.pulls = { get: async () => ({ data: p }) };
+  return { p, main, c, checkpoint, checks, stagingRun, jobs, api };
+}
+
+test('eligible read-only PR verification authenticates actual staged bytes without mistaking its own same-name job for proof', async () => {
+  const f = stagedPRFixture(),
+    record = await admission.verifyPR(f.api, f.c, f.p, f.main);
+  assert.equal(record.kind, 'accepted-pr-staging');
+  assert.equal(record.testedSource, source);
+  assert.equal(record.sourceTree, 'c'.repeat(40));
+  assert.equal(record.checkpointCheck, 30);
+  assert.equal(record.stagingRun, 900);
+  assert.equal(record.attempt, 1);
+  assert.equal(record.sourceAdmission.length, 3);
+  assert.equal(record.fullGate, false);
+  assert.equal(record.productionEligible, false);
+  assert.equal(record.deploymentAuthorized, false);
+  assert.deepEqual(f.api.writes, []);
+  f.p.merged = true;
+  assert.equal((await admission.verifyMerge(f.api, f.c, f.p)).stagingRun, 900);
+});
+
+test('PR staging proof rejects stale source, actor, controller, attempt, jobs, current leases and a newer failed attempt', async () => {
+  for (const mutate of [
+    (f) => (f.c.eventName = 'issue_comment'),
+    (f) => (f.c.actor = 'another-user'),
+    (f) => (f.c.payload.sender.login = 'another-user'),
+    (f) => (f.c.payload.pull_request.head.sha = mainSHA),
+    (f) => (f.p.draft = true),
+    (f) => (f.p.head.repo.full_name = 'another/repo'),
+    (f) => (f.p.base.sha = source),
+    (f) => (f.main.protected = false),
+    (f) => (f.checks.length = 0),
+    (f) => (f.checkpoint.app.id = 1),
+    (f) => (f.checkpoint.conclusion = 'failure'),
+    (f) => f.checks.push({ ...f.checkpoint, id: 50, external_id: '901/1', status: 'in_progress' }),
+    (f) => f.checks.push({ ...f.checkpoint, id: 50, external_id: '901/1', conclusion: 'failure' }),
+    (f) => (f.stagingRun.id = 901),
+    (f) => (f.stagingRun.head_sha = source),
+    (f) => (f.stagingRun.triggering_actor.login = 'another-user'),
+    (f) => (f.stagingRun.run_attempt = 2),
+    (f) => (f.stagingRun.status = 'in_progress'),
+    (f) => (f.stagingRun.path = '.github/workflows/unrelated.yml'),
+    (f) => (f.jobs[0].conclusion = 'skipped'),
+    (f) => (f.jobs[1].conclusion = 'failure'),
+    (f) =>
+      (f.api.rest.actions.listWorkflowRuns = async () => ({
+        data: { workflow_runs: [{ ...run(), conclusion: 'failure' }] },
+      })),
+    (f) =>
+      (f.api.rest.repos.compareCommitsWithBasehead = async () => ({
+        data: { merge_base_commit: { sha: mainSHA }, behind_by: 1 },
+      })),
+    (f) =>
+      (f.api.rest.repos.getCommit = async ({ ref }) => ({
+        data: { commit: { tree: { sha: ref } } },
+      })),
+    (f) =>
+      (f.api.rest.repos.getBranch = async () => ({
+        data: { protected: true, commit: { sha: source } },
+      })),
+    (f) =>
+      (f.api.rest.pulls.get = async () => ({
+        data: { ...f.p, head: { ...f.p.head, sha: mainSHA } },
+      })),
+    (f) => {
+      const paginate = f.api.paginate;
+      let reads = 0;
+      f.api.paginate = async (method, args) => {
+        if (method === 'staged-checks' && ++reads > 1) f.checkpoint.conclusion = 'failure';
+        return paginate(method, args);
+      };
+    },
+  ]) {
+    const f = stagedPRFixture();
+    mutate(f);
+    await assert.rejects(admission.verifyPR(f.api, f.c, f.p, f.main));
+    assert.deepEqual(f.api.writes, []);
+  }
+});
+
+test('source-admission refresh waits boundedly for running jobs but never retries missing or failed evidence', async () => {
+  let clock = 0,
+    pauses = 0;
+  const runtime = {
+    now: () => clock,
+    delay: async (ms) => {
+      assert.ok(ms <= 5000);
+      clock += ms;
+      pauses++;
+    },
+  };
+  const running = github((r) => {
+    if (clock < 10000) r.status = 'in_progress';
+  });
+  assert.equal((await admission.waitForAdmission(running, context, pr(), runtime)).length, 3);
+  assert.equal(clock, 10000);
+  assert.equal(pauses, 2);
+  for (const conclusion of ['failure', 'skipped']) {
+    const failed = github((r) => (r.conclusion = conclusion));
+    await assert.rejects(admission.waitForAdmission(failed, context, pr(), runtime));
+    assert.equal(pauses, 2);
+  }
+  const missing = github();
+  missing.rest.actions.listWorkflowRuns = async () => ({ data: { workflow_runs: [] } });
+  await assert.rejects(admission.waitForAdmission(missing, context, pr(), runtime));
+  assert.equal(pauses, 2);
+  clock = 0;
+  await assert.rejects(
+    admission.waitForAdmission(
+      github((r) => (r.status = 'in_progress')),
+      context,
+      pr(),
+      runtime
+    )
+  );
+  assert.equal(clock, 240000);
+});

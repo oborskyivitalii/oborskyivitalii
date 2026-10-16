@@ -85,17 +85,39 @@ test('production draft archive writes wait for complete local Pages and licensin
   fs.cpSync(f.source.directory, path.join(directory, 'production-source'), { recursive: true });
   fs.cpSync(f.directory, path.join(directory, 'release-assets'), { recursive: true });
   const stage = fixture.staging(path.join(f.temp, 'action-stage'));
-  pages.build(stage.directory, path.join(directory, 'pages-previous/pages-package'));
-  const combinedDirectory = path.join(directory, 'pages-package');
-  const combined = pages.build(
-    stage.directory,
-    combinedDirectory,
-    f.source.directory,
-    f.record.tag,
-    null,
-    '/',
-    { productionRightsDigest: f.record.rights.inventoryDigest }
+  const previousDirectory = path.join(directory, 'pages-previous/pages-package');
+  const predecessor = pages.build(stage.directory, previousDirectory);
+  const previousBytes = fs.readFileSync(path.join(previousDirectory, 'pages-package.json'));
+  fs.mkdirSync(path.join(directory, 'release-control'));
+  fs.writeFileSync(
+    path.join(directory, 'release-control/previous.json'),
+    JSON.stringify({ state: predecessor.state })
   );
+  const combinedDirectory = path.join(directory, 'pages-package');
+  cp.execFileSync(
+    process.execPath,
+    [
+      '-e',
+      'require(process.argv[1]).compose()',
+      path.join(__dirname, '../tools/release/actions.cjs'),
+    ],
+    {
+      cwd: directory,
+      env: {
+        ...process.env,
+        GITHUB_RUN_ID: '900',
+        GITHUB_RUN_ATTEMPT: '1',
+        GITHUB_SHA: context.sha,
+      },
+    }
+  );
+  const combined = JSON.parse(fs.readFileSync(path.join(combinedDirectory, 'pages-package.json')));
+  assert.equal(combined.staging, null);
+  assert.deepEqual(
+    fs.readFileSync(path.join(previousDirectory, 'pages-package.json')),
+    previousBytes
+  );
+  pages.verify(previousDirectory, predecessor);
   const script = `
     const assert=require('node:assert/strict');
     const actions=require(process.argv[1]);
@@ -135,6 +157,9 @@ test('production draft archive writes wait for complete local Pages and licensin
     },
     (record) => {
       record.state.production.tag = 'prod-2026-10-12.2';
+    },
+    (record) => {
+      record.staging = stage.record;
     },
   ]) {
     const invalid = structuredClone(combined);
@@ -963,14 +988,17 @@ test('passive scanner uses a pinned image, an exact bounded origin and explicit 
   assert.throws(() => passive.validate(raw, traffic), /authorized origin/);
 });
 
-test('live report reduction binds both browser editions, exact Pages digest, owned origin and retained observations', (t) => {
+test('live report reduction binds production-only bytes, retired staging paths, owned origin and retained observations', (t) => {
   const f = releaseFixture(t),
     stage = fixture.staging(f.temp);
   const combined = pages.build(
-    stage.directory,
+    null,
     f.temp + '/combined',
     f.source.directory,
-    f.record.tag
+    f.record.tag,
+    null,
+    '/',
+    { productionRightsDigest: f.record.rights.inventoryDigest }
   );
   const browser = (record, target) => ({
     ...fixture.fullProof(record).external,
@@ -979,7 +1007,7 @@ test('live report reduction binds both browser editions, exact Pages digest, own
     rows: Array.from({ length: 4 }, () => ({ pass: true })),
   });
   const reports = {
-    pages: { pass: true, packageDigest: combined.packageDigest },
+    pages: { pass: true, packageDigest: combined.packageDigest, staging: false, actual404: true },
     policy: {
       pass: true,
       sourceCommit: f.record.sourceCommit,
@@ -987,7 +1015,6 @@ test('live report reduction binds both browser editions, exact Pages digest, own
       origin: edition.origin,
     },
     productionBrowser: browser(f.record.public, edition.origin),
-    stagingBrowser: browser(stage.record, edition.origin + '/staging'),
     passive: passive.validate(
       { '@version': 'fixture', site: [{ '@name': edition.origin, alerts: [] }] },
       {
@@ -1006,8 +1033,10 @@ test('live report reduction binds both browser editions, exact Pages digest, own
     (r) => (r.pages.packageDigest = '0'.repeat(64)),
     (r) => (r.policy.sourceCommit = context.sha),
     (r) => (r.productionBrowser.artifactDigest = stage.record.artifactDigest),
-    (r) => (r.stagingBrowser.target = edition.origin),
-    (r) => (r.stagingBrowser.rows[0].pass = false),
+    (r) => (r.productionBrowser.rows[0].pass = false),
+    (r) => (r.pages.staging = true),
+    (r) => (r.pages.actual404 = false),
+    (r) => (r.stagingBrowser = browser(stage.record, edition.origin + '/staging')),
     (r) => (r.passive.origin = 'https://medium.com'),
     (r) => delete r.passive.kind,
     (r) => delete r.passive.coverage,
@@ -1017,4 +1046,18 @@ test('live report reduction binds both browser editions, exact Pages digest, own
     mutate(invalid);
     assert.throws(() => releaseLive.observation(f.record, combined, invalid));
   }
+  const legacy = pages.build(
+    stage.directory,
+    f.temp + '/legacy-combined',
+    f.source.directory,
+    f.record.tag
+  );
+  assert.throws(
+    () =>
+      releaseLive.observation(f.record, legacy, {
+        ...reports,
+        pages: { ...reports.pages, packageDigest: legacy.packageDigest },
+      }),
+    /republish staging/
+  );
 });

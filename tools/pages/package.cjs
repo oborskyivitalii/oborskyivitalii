@@ -90,11 +90,36 @@ function verify(directory, record) {
   const prefix = basePath(record.state.basePath || '/');
   if (record.state.basePath !== undefined) assert.equal(record.state.basePath, prefix);
   if (record.state.production) assert.equal(prefix, '/', 'production Pages requires origin root');
+  const productionOnly = record.staging === null;
+  if (productionOnly) {
+    assert.ok(record.state.production, 'production-only Pages needs an admitted production root');
+    require('../release/archive.cjs').tag(record.state.production.tag);
+    assert.deepEqual(
+      record.state.production,
+      {
+        tag: record.state.production.tag,
+        sourceCommit: record.root.sourceCommit,
+        publicDigest: record.root.artifactDigest,
+      },
+      'production-only Pages receipt differs from its frozen root'
+    );
+    assert.equal(record.root.edition?.id, 'production');
+    assert.equal(record.state.staging, null, 'production-only Pages cannot claim staging');
+    assert.ok(
+      record.rights?.productionArchiveDigest,
+      'production-only Pages needs archived rights'
+    );
+    assert.equal(record.rights.staging, null, 'production-only Pages cannot license staging');
+  }
   const publicDir = path.join(directory, 'public');
   const actual = artifact.manifest(publicDir);
   assert.equal(actual.artifactDigest, record.packageDigest, 'combined Pages bytes changed');
   assert.deepEqual(actual.files, record.files);
-  assert.deepEqual(subtree(actual.files, 'staging/'), record.staging.files, 'staging copy differs');
+  assert.deepEqual(
+    subtree(actual.files, 'staging/'),
+    record.staging?.files || {},
+    'staging copy differs'
+  );
   for (const [name, info] of Object.entries(record.root.files)) {
     assert.deepEqual(actual.files[name], info, 'accepted production root changed: ' + name);
   }
@@ -103,7 +128,7 @@ function verify(directory, record) {
     [
       ...new Set([
         ...Object.keys(record.root.files),
-        ...Object.keys(record.staging.files).map((name) => 'staging/' + name),
+        ...Object.keys(record.staging?.files || {}).map((name) => 'staging/' + name),
         '_delivery/state.json',
         '404.html',
       ]),
@@ -111,12 +136,14 @@ function verify(directory, record) {
     'unexpected Pages deployment input'
   );
   snapshot.verify(publicDir, record.root);
-  snapshot.verify(path.join(publicDir, 'staging'), record.staging);
-  const stagingRights = stagingPackage.publicationRights(
-    path.join(publicDir, 'staging'),
-    record.staging,
-    record.rights?.staging ?? undefined
-  );
+  if (!productionOnly) snapshot.verify(path.join(publicDir, 'staging'), record.staging);
+  const stagingRights = productionOnly
+    ? null
+    : stagingPackage.publicationRights(
+        path.join(publicDir, 'staging'),
+        record.staging,
+        record.rights?.staging ?? undefined
+      );
   const licensing = require('../release/rights-record.cjs');
   if (stagingRights) licensing.publication(record.staging, stagingRights, 'staging');
   const archivedRightsDigest = record.rights?.productionArchiveDigest;
@@ -172,10 +199,18 @@ function build(
   options = {}
 ) {
   const prefix = basePath(deploymentPath);
-  const staging = read(stagingDirectory);
-  checkStaging(stagingDirectory, staging);
+  const staging = stagingDirectory ? read(stagingDirectory) : null;
+  if (staging) checkStaging(stagingDirectory, staging);
+  else {
+    assert.ok(productionDirectory, 'production-only Pages needs production input');
+    assert.match(
+      options.productionRightsDigest || '',
+      /^[a-f0-9]{64}$/,
+      'production-only Pages needs archived rights'
+    );
+  }
   const production = productionDirectory ? read(productionDirectory) : null;
-  const stagingRights = readRights(stagingDirectory, staging);
+  const stagingRights = staging ? readRights(stagingDirectory, staging) : null;
   const rootRights = production
     ? readRights(productionDirectory, production, options.productionRightsDigest)
     : stagingRights;
@@ -190,7 +225,7 @@ function build(
   assert.equal(fs.readdirSync(output).length, 0, 'Pages output must be empty');
   const target = path.join(output, 'public');
   copy(productionDirectory || stagingDirectory, target, production || staging);
-  copy(stagingDirectory, path.join(target, 'staging'), staging);
+  if (staging) copy(stagingDirectory, path.join(target, 'staging'), staging);
   const state = {
     schema: 1,
     basePath: prefix,
@@ -201,10 +236,12 @@ function build(
           publicDigest: production.artifactDigest,
         }
       : null,
-    staging: {
-      sourceCommit: staging.sourceCommit,
-      publicDigest: staging.artifactDigest,
-    },
+    staging: staging
+      ? {
+          sourceCommit: staging.sourceCommit,
+          publicDigest: staging.artifactDigest,
+        }
+      : null,
     publication,
     ...(stagingRights || rootRights
       ? {

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8b5e54bede509213047114407306db299cbf9f50db249d31342d335438a6e7bb",
+    "digest": "c9ead78849adfd62ed42c344de8ab7e52a0006e4c1f73202c718920b2d11e0a4",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
+        "sha256": "0948f5598e993631dd541dc1d2a0ed245df540ef8666492a864a53155d9cabee"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f50dc24344e97334affb998962cefa98ea8070a53f1f45ba38e5faa6297c51bb"
+        "sha256": "74fcb13a9dd17ea5bf5fed9cf18c97e2a84f13e325c089d58ad05ac33546b81f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -201,7 +201,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "69ce99394f141b695236850930511018debf510e99c57954f7e60c0e2a3e4f88"
+        "sha256": "a67cc536ac2a3e4cdb69c00606fbb8a285ddaf11d5db8b5ee29f46da5507fe31"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -226,7 +226,7 @@
       {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
-        "sha256": "83a2e3e4dd55e234f98a8198b9af6fabb131c5ff755a18fe2376f0e39b0ab3aa"
+        "sha256": "ab308c527eece727811ce5648f76125ed8b29bdbb7796080dc2321abb05a4522"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6f06b200993a655851222810b9d07de91dae1b5ccf035d2aacc81c9deaf8d519"
+        "sha256": "2e7518f30897b4b7caf993f4f26ad8a06d3eec897fccb97547df720cfa2ae0c9"
       },
       {
         "path": "NOTICE.md",
@@ -560,7 +560,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "d4924738acfc93b8caf6a0ff857d603153bf85a4bd50384e25b23496d0c3622f"
+        "sha256": "9d25e8df8f002c6fa25643c4887e3406e9dba89e1edb38ffa15857c1902815d1"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -585,7 +585,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "d9c984fd070e92ac4060377b8b2fff5b002d2dc2cd6252665a3336d3d8f2a007"
+        "sha256": "64129826e5d62dc6b2d453ca4310b745c083cff5de855942764697ae98a2a6af"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -823,6 +823,16 @@
         "sha256": "4bd892f53b0cad3daed3e88b473add4f01b857e79e027ad7620381adff456687"
       },
       {
+        "path": "review/issue-39/2026-10-16-production-finalization-native.json.gz",
+        "identity_mode": "content",
+        "sha256": "d8b8bf1050bcd40cb1ff662a619f8e4d22c05f3a44a50dde126a5a0323dda773"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-production-finalization.md",
+        "identity_mode": "content",
+        "sha256": "8cecad90cb9bd7b26196c8adb6b8adf2da644c4bb8344b2649e0163ea9c1ceea"
+      },
+      {
         "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",
         "identity_mode": "content",
         "sha256": "0e5d1e3e6a92b8a134eb38d7d4a36dbd48accc19092b0fb955768644564722db"
@@ -881,6 +891,21 @@
         "path": "review/issue-39/2026-10-16-writing-tbt.md",
         "identity_mode": "content",
         "sha256": "bcab5008833d6ba58e5fb01e3b3533a9e7ad818bd47ec1e00aa7c19cf3519886"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-native-navigation.json.gz",
+        "identity_mode": "content",
+        "sha256": "632969aa8319bd3f9329648f75df81a7a3445390df30c903fda0cc2cf3ad2bba"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-native-navigation.md",
+        "identity_mode": "content",
+        "sha256": "6ecc3d450a1bf70f99a78efaa4a48f3f795f8277db46094e8ff9379dd76893d1"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-staging-admission.md",
+        "identity_mode": "content",
+        "sha256": "10dccc04e78e269bbe7de1cd2e92ac4630332253f84642bfbad330caa25e1f2e"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5535,7 +5560,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "740f81c5ef96133cf1b0c6d2107780243d99e42e443238b9aa2febd88dfb56a9"
+        "sha256": "1957fd5288b5d1f842bb23a9292d18fb22b45022a3b6f2270c93d94bebab7bb7"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5590,7 +5615,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "80a50e995ca66dbfafa08612e8d0211ab7ad5e7751a947a57a210432aaa3b6fd"
+        "sha256": "b4bf1364fee4ed041547a0003db4582e782dcb593b332e113da56e0db515078e"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -5610,7 +5635,7 @@
       {
         "path": "tests/functional-fixtures.test.cjs",
         "identity_mode": "content",
-        "sha256": "a2ce9696aa813ee6ce45fde7a2ccd435bcd7287eb2f71d37062b870e86145d40"
+        "sha256": "6a3946512a1f12b366478292e41410232d75c69e3b36b14d14e1ae6d9ab9d7e0"
       },
       {
         "path": "tests/gtk-native-probe.test.cjs",
@@ -5630,7 +5655,7 @@
       {
         "path": "tests/navigation-fixtures.test.cjs",
         "identity_mode": "content",
-        "sha256": "d26034b7ade30cbbe52bf31c76738ad67edb372a2a6e52afedc077728f96ddde"
+        "sha256": "0174139b59ad3050dd60ea74faf92266d6481ce8ccb37ea42bf1adee36be54e8"
       },
       {
         "path": "tests/navigation-motion-fixtures.test.cjs",
@@ -5645,7 +5670,7 @@
       {
         "path": "tests/pages-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "af26253c3aa8947322154afd9571ed84a4899d2544794474bb493d4d51c8dcd6"
+        "sha256": "b33c9b124ff47f4f3704b2e2b82edcf773a0b7eb3fe1e308acd6b6892a4fa378"
       },
       {
         "path": "tests/pages-migration.test.cjs",
@@ -5675,7 +5700,7 @@
       {
         "path": "tests/prototype-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "71f07eb127c87a81cf27d90c827d214da6c8853e421e6169f44bbc4ab8ba88b4"
+        "sha256": "e552c7fc214269039fa58e17719d252bcee7cce1a4eb846ca1ca3a9d9c64a5c3"
       },
       {
         "path": "tests/publication-records.test.cjs",
@@ -5690,7 +5715,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "8c4fdbc89b3a63387f59e003a6523459e581b61f5ebdc5b8763692e294c3d165"
+        "sha256": "1ed6e284fc5180bdc49920d25fd97f330efcd58ed5bec5df551e755b38b8f0bd"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5700,12 +5725,12 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "9941c0459ef6cbc4f2564798fd5003adeb32256093882488980afa824f32913a"
+        "sha256": "0ade4fd8e964955eae01766f3005ec15a16d40e0b4462c157b5443b6ddee5ae5"
       },
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "d444360374ee3def5971c4d3ce72953e324327b4e9c50221c7c1565082d81123"
+        "sha256": "ce1d53f6680c315198f93a9c41fabe8aa24da1376865b74771d3d95888cc4ced"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -5775,7 +5800,7 @@
       {
         "path": "tests/staging.test.cjs",
         "identity_mode": "content",
-        "sha256": "74840f3be18891f069b5f8cb52a80c73770946e404d65783df893c02724e9ea7"
+        "sha256": "88c1368d794ef7ad5685f5adc569fc44056cebe634c395b184cb32544b9638c9"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -5975,7 +6000,7 @@
       {
         "path": "tools/capture_site_review.cjs",
         "identity_mode": "content",
-        "sha256": "e3a14c6d6507a76f9286353860eab37b17ad19f1a8cab35e858d81799b60040d"
+        "sha256": "9a90ba932c550bac01c36299a11d88b983433ec8184a1751a613cb261a5b41b1"
       },
       {
         "path": "tools/check_code_style.py",
@@ -6020,7 +6045,7 @@
       {
         "path": "tools/pages/http.cjs",
         "identity_mode": "content",
-        "sha256": "9b6b2a6fd2c2ea25ac9c32cca0348245e15afafbff4bc1c44c13ecec73a129cd"
+        "sha256": "c5d4f0b959270c4437fc549e146de230f913a79cc7264634966a7bfb9bcce466"
       },
       {
         "path": "tools/pages/migration.cjs",
@@ -6030,7 +6055,7 @@
       {
         "path": "tools/pages/package.cjs",
         "identity_mode": "content",
-        "sha256": "889b1ebb989bd3e8fdfb7e052a5500b6ed2148c53237c8040d53dc902d8d8dcb"
+        "sha256": "8d56df89aa48a8f5f337dca0f70332e439ccd91a88ee950596ace76a82bcbe92"
       },
       {
         "path": "tools/pages/unpack.py",
@@ -6075,7 +6100,12 @@
       {
         "path": "tools/quality/block-flight.cjs",
         "identity_mode": "content",
-        "sha256": "1fd068231cd7d5998010e50d64b7dbdeacb3f047eba962196465c3339326816f"
+        "sha256": "2a4d60069aa5ad803e2521d97bd44fd1747c8afef94db34ed251116f8909eb26"
+      },
+      {
+        "path": "tools/quality/block-observation.cjs",
+        "identity_mode": "content",
+        "sha256": "95aa76be742aa534db63dc29378ac050b631735c77d7475e9a2bdb0a3cefd4b9"
       },
       {
         "path": "tools/quality/browser-gate-diagnostics.cjs",
@@ -6110,7 +6140,7 @@
       {
         "path": "tools/quality/color-browser.cjs",
         "identity_mode": "content",
-        "sha256": "13ea4e9594105f7aaa51ea0d8375a2cd5bd6b9f2c139fa2a2ff5a27cb2f03fc5"
+        "sha256": "89524dcaf52068246386ba365c2b5b0c6ff2182796e6bc0401e68621cb57d478"
       },
       {
         "path": "tools/quality/color-motion-contract.cjs",
@@ -6131,6 +6161,11 @@
         "path": "tools/quality/display-probe.cjs",
         "identity_mode": "content",
         "sha256": "9c1fbdc1b2a14289c3a1e82d470b9d52671790bdb005e184282264aae916f82d"
+      },
+      {
+        "path": "tools/quality/edge-input.cjs",
+        "identity_mode": "content",
+        "sha256": "0362f975f5e832f19e03c6fea10f01a9363a97906515ff8e4225c5148bb4d3d0"
       },
       {
         "path": "tools/quality/engine-browser.cjs",
@@ -6185,7 +6220,7 @@
       {
         "path": "tools/quality/functional.cjs",
         "identity_mode": "content",
-        "sha256": "1f3cdc1bd8606f1cf718d65b4d1ed709dfeeb5d557122d4f0a85fc3c62b9c912"
+        "sha256": "df03d3fd81d0f94d824956b86ea699e12857140d9513a416c54ca7ead7876101"
       },
       {
         "path": "tools/quality/geometry.cjs",
@@ -6240,7 +6275,7 @@
       {
         "path": "tools/quality/navigation.cjs",
         "identity_mode": "content",
-        "sha256": "d9ca037e8a9e9b30b6315f6fa82358d0a14ad7b17c48b386e60f2eb49029dcca"
+        "sha256": "3d7fda5680822f5d0d890b8e115d09506719229417630d0f990eaedbdc665bab"
       },
       {
         "path": "tools/quality/phase-checkpoint.cjs",
@@ -6365,7 +6400,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "aa6035be89d8163657277fd3e0807a595223e1f16804f755da790c9cf91bfbc6"
+        "sha256": "86b02968abb97f699cee02e27225e028622077b3bf37d52c8fac16eed659175f"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6405,7 +6440,7 @@
       {
         "path": "tools/quality/validate.cjs",
         "identity_mode": "content",
-        "sha256": "aed4cb7ef03537b5c4f91ae3865694ce449388c4cac9ec4f7f68aaf2eca51830"
+        "sha256": "57e4ee4b8bc90960a0aa937f0620b10afba6ae9005c381c07e8c4949b0ef89f7"
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",
@@ -6465,7 +6500,7 @@
       {
         "path": "tools/release/actions.cjs",
         "identity_mode": "content",
-        "sha256": "caa9319e20a771e1a29030cc09148ef0876fa4c5f3a8f71457e5fb915fcd05ba"
+        "sha256": "6667b6ccafc2b4e65e7f7e5357636291f9920a802af40f136a4fab0e213a0d4f"
       },
       {
         "path": "tools/release/archive.cjs",
@@ -6490,7 +6525,7 @@
       {
         "path": "tools/release/live.cjs",
         "identity_mode": "content",
-        "sha256": "0df2810b094a899caa68dd7a284b50c2b3a9836e2defe6167392134fce8d09b6"
+        "sha256": "bbce541768099b9fa094682e8896ba7f30a0c87072d0fbe40d6e19291f705120"
       },
       {
         "path": "tools/release/package.py",
@@ -6620,7 +6655,7 @@
       {
         "path": "tools/staging/admission.cjs",
         "identity_mode": "content",
-        "sha256": "4dbe95551fd042254e38504e19b6775f05ce0df08df350e8aeb452f6137a64f6"
+        "sha256": "743617685ca9f183590c253202adc7322ece3a29569043bbe7eb2cc9ec645d1e"
       },
       {
         "path": "tools/staging/color.cjs",
@@ -6650,7 +6685,7 @@
       {
         "path": "tools/staging/selftest.cjs",
         "identity_mode": "content",
-        "sha256": "e0464eb006ec755947ba118aa4aaabb6a5f697e4b9e3428973532ee884a086f2"
+        "sha256": "78d6e41ac1a1f5b4355833e2773b0c7b309b5a7cc97ab2d5ac54f54c8cbf71ef"
       },
       {
         "path": "tools/staging/state.cjs",
@@ -8722,6 +8757,28 @@
       "title": "Issue39 PR40 — selected PR68 positioning integration (16 October 2026)"
     },
     {
+      "path": "review/issue-39/2026-10-16-production-finalization-native.json.gz",
+      "kind": "file",
+      "purpose": "Original source96 native production regression failure logs, reports, job metadata and exact upload digests; bounded historical evidence, not new admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-production-finalization-native.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-production-finalization.md",
+      "kind": "file",
+      "purpose": "Issue39 actual GitHub production setup, native frozen candidate/recovery and production regression blocker follow-up.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — production configuration and regression blockers,16 October2026"
+    },
+    {
       "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",
       "kind": "file",
       "purpose": "Individual clean-source proof for215 exact public checksum/editorial Git secret-scanner fingerprints; cold public generation and historical Git/fragment reproduction, with the finite operator recipe; self-review only.",
@@ -8852,6 +8909,39 @@
         "AGENTS.md"
       ],
       "title": "Issue39 — bounded Writing TBT correction, 16 October 2026"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-native-navigation.json.gz",
+      "kind": "file",
+      "purpose": "Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-17-native-navigation.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-native-navigation.md",
+      "kind": "file",
+      "purpose": "Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 / PR85 — native navigation and capture follow-up"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-staging-admission.md",
+      "kind": "file",
+      "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 / PR85 — required-check eligibility after successful staging"
     },
     {
       "path": "review/issue-41/2026-10-07-analysis.md",
@@ -20283,6 +20373,17 @@
       "title": "block-flight.cjs"
     },
     {
+      "path": "tools/quality/block-observation.cjs",
+      "kind": "file",
+      "purpose": "Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "block-observation.cjs"
+    },
+    {
       "path": "tools/quality/browser-gate-diagnostics.cjs",
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -20402,6 +20503,17 @@
         "AGENTS.md"
       ],
       "title": "display-probe.cjs"
+    },
+    {
+      "path": "tools/quality/edge-input.cjs",
+      "kind": "file",
+      "purpose": "Bounded900ms native endpoint preparation and source-bound Color edge evidence validation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edge-input.cjs"
     },
     {
       "path": "tools/quality/engine-browser.cjs",

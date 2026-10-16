@@ -35,20 +35,26 @@ async function check(directory, record, fetcher = fetch) {
 function observation(record, combined, reports) {
   assert.equal(reports.pages.pass, true);
   assert.equal(reports.pages.packageDigest, combined.packageDigest);
+  assert.equal(combined.staging, null, 'production acceptance cannot republish staging');
+  assert.equal(combined.state.staging, null, 'production receipt claims staging');
+  assert.equal(
+    reports.pages.staging,
+    false,
+    'production HTTP must reject the retired staging paths'
+  );
+  assert.equal(reports.pages.actual404, true);
+  assert.equal(reports.stagingBrowser, undefined, 'unexpected second staging publisher evidence');
   assert.equal(reports.policy.pass, true);
   assert.equal(reports.policy.publicDigest, record.publicDigest);
   assert.equal(reports.policy.sourceCommit, record.sourceCommit);
   assert.equal(reports.policy.origin, edition.origin);
-  for (const [name, manifest] of [
-    ['productionBrowser', record.public],
-    ['stagingBrowser', combined.staging],
-  ]) {
+  for (const [name, manifest] of [['productionBrowser', record.public]]) {
     const result = reports[name];
     require('../quality/validate.cjs').sourceReport(result, manifest);
     assert.equal(result.kind, 'preview-smoke');
     assert.equal(result.rows.length, 4);
     assert.ok(result.rows.every((row) => row.pass));
-    assert.equal(result.target, edition.origin + (name === 'stagingBrowser' ? '/staging' : ''));
+    assert.equal(result.target, edition.origin);
   }
   require('./passive.cjs').verifyReport(reports.passive);
   assert.equal(reports.retained, true);

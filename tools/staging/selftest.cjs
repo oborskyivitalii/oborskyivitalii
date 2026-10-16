@@ -17,6 +17,8 @@ const types = {
   '.webp': 'image/webp',
   '.jpg': 'image/jpeg',
   '.json': 'application/json',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
 };
 function start(dir) {
   const server = http.createServer((req, res) => {

@@ -182,7 +182,7 @@ jobs:
           PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').prepareArchive(github,context)
-      - name: Compose production root with the unchanged accepted staging subtree
+      - name: Compose production-only root and retain the predecessor solely for recovery
         run: node -e "require('./tools/release/actions.cjs').compose()"
       - name: Verify complete local composition before writing draft archive assets
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
@@ -241,14 +241,13 @@ jobs:
         continue-on-error: true
         run: node tools/release/live.cjs production-source release-assets/archive.json pages-reports/production-policy.json
       - id: browser
-        name: Verify production and preserved staging navigation on live Pages
+        name: Verify production navigation on live Pages
         if: steps.policy.outcome == 'success'
         continue-on-error: true
         env:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
         run: |
           SITE_TEST_BASE_URL="$PAGES_ORIGIN/" SITE_PUBLIC_DIR="$GITHUB_WORKSPACE/production-source/public" SITE_ARTIFACT_MANIFEST="$GITHUB_WORKSPACE/production-source/artifact.json" SITE_REPORT_DIR="$GITHUB_WORKSPACE/pages-reports/production-browser" node tools/quality/local-browser.cjs --smoke
-          SITE_TEST_BASE_URL="$PAGES_ORIGIN/staging/" SITE_TEST_PROFILE=staging SITE_PUBLIC_DIR="$GITHUB_WORKSPACE/staging-source/public" SITE_ARTIFACT_MANIFEST="$GITHUB_WORKSPACE/staging-source/artifact.json" SITE_REPORT_DIR="$GITHUB_WORKSPACE/pages-reports/staging-browser" node tools/quality/local-browser.cjs --smoke
       - id: passive
         name: Bounded passive ZAP scan on the production origin only
         if: steps.browser.outcome == 'success'
