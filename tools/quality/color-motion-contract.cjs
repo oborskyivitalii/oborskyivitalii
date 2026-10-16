@@ -47,6 +47,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
+  issue39WritingTbt: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
 };
 const runtimes = [
   {
@@ -159,6 +166,27 @@ const runtimes = [
     family: 'issue39LicensedCompact',
     edition: 'production',
     fingerprint: 'b848de73373003be1f141f9d51d30d6fa7343df0b33ce41e00713335d553083e',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-writing-tbt-plain',
+    family: 'issue39WritingTbt',
+    edition: 'plain',
+    fingerprint: '7e19acc943d0748d3976c989f2cea4f8126832de378a371aa71ecd091b75cab8',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-writing-tbt-staging',
+    family: 'issue39WritingTbt',
+    edition: 'staging',
+    fingerprint: '4bbfd81338ddb659308ed833aa519d34f136278bacd6638efcdded6f8e968e2e',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-writing-tbt-production',
+    family: 'issue39WritingTbt',
+    edition: 'production',
+    fingerprint: '6f9b49f746e1a5f2e18138d8d34ee0f9dd2b35b7a68d6b6cbe2b015424e28cf4',
     styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
 ];

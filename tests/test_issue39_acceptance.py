@@ -297,6 +297,12 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
         report = json.loads(result.stdout)
         self.assertEqual(report, {"pass": True, "tests": 4, "skips": 0, "expectedFailures": 0})
 
+    def test_writing_projection_matches_pinned_commands_and_keeps_bounds(self):
+        node_contracts(
+            self,
+            ["tests/camera-view.test.cjs", "tests/renderer.test.cjs"],
+        )
+
     def test_provider_snapshot_records_observations_and_unknown_admin_state(self):
         data = read(SNAPSHOT)
         self.assertEqual((data["schema"], data["issue"], data["source_commit"]), (1, 39, BASE))
@@ -418,6 +424,13 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
             "site/templates/pages/index/acknowledgements.html": "e12511ddaf39a6d41439d4a3e97da083be549366",
             "site/templates/pages/research/acknowledgements.html": "e22f50a3fbc6f0c32a5c7116aac33f480fa0d67f",
         }
+        # #39 writing-tbt-bounded-20261016: exact allocation-only correction.
+        # Remaining source/runtime owners keep their immutable baseline.
+        writing_amendments = {
+            "site/engine/math.cjs": "e3447367a825f7d665776c1eb3b7f5090abaaba057dafedae4347085ae2217f6",
+            "site/engine/projection.cjs": "1bf5143b059de95b8a8328906fdd3e9a23278272ad36436fb23e3263741cf62c",
+            "docs/space.js": "006b6c5dd25db470482173a62b2753982bea6cd1e8493cb42bea7d386b610bd4",
+        }
         entries = subprocess.check_output(
             ["git", "ls-tree", "-r", CURRENT_MAIN, "--", *protected],
             cwd=ROOT,
@@ -459,6 +472,9 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
                     b"The base edition remains the deployable producer selection. Offline exports accept\n",
                     1,
                 )
+            if name in writing_amendments:
+                self.assertEqual(hashlib.sha256(data).hexdigest(), writing_amendments[name], name)
+                continue
             if name in legal_amendments:
                 self.assertEqual(hashlib.sha256(data).hexdigest(), legal_amendments[name], name)
                 continue

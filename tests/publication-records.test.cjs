@@ -744,3 +744,33 @@ test('compact-metadata identities still require frozen publication rights before
     );
   }
 });
+
+test('optimized Writing identities still require frozen publication rights before any file access', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const runtime = motion.reviewedRuntime('issue39-writing-tbt-' + edition);
+    const original = motion.reviewedRuntime('issue39-licensed-' + edition);
+    assert.notEqual(runtime.files['space.js'], original.files['space.js']);
+    for (const file of ['styles.css', 'theme.js', 'archive.js', 'navigation.js'])
+      assert.equal(runtime.files[file], original.files[file]);
+    const source = {
+      variant: runtime.variant,
+      components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },
+      files: {},
+      ...(edition === 'staging'
+        ? { edition: { id: 'staging', indexable: false, analytics: false } }
+        : edition === 'production'
+          ? { edition: { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' } }
+          : {}),
+    };
+    for (const [name, sha256] of Object.entries(runtime.files)) {
+      source.files[name] = { sha256 };
+      source.files['runtime/' + runtime.variant.fingerprint + '/' + name] = { sha256 };
+    }
+    assert.equal(staging.publicationRequired(source, source.components), true);
+    assert.throws(
+      () => staging.publicationRights('/no-file-access', source, undefined, source.components),
+      /licensed publication rights record required/
+    );
+  }
+});

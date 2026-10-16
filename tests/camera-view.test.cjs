@@ -157,3 +157,63 @@ test('centering moves the eye onto the fractal axis and projects it at the scree
     }
   }
 });
+
+test('viewport culling matches independent bounds for empty, crossing, reversed and margin primitives', () => {
+  for (const [width, height] of [
+    [390, 844],
+    [1440, 900],
+  ]) {
+    const view = math.cameraView(pose, width, height);
+    const points = [-8.01, -8, 0, width / 2, width + 8, width + 8.01].flatMap((x) =>
+      [-8.01, -8, 0, height / 2, height + 8, height + 8.01].map((y) => [x, y])
+    );
+    assert.equal(view.visible([]), false);
+    for (const first of points)
+      for (const last of points) {
+        const expected =
+          Math.max(first[0], last[0]) >= -8 &&
+          Math.min(first[0], last[0]) <= width + 8 &&
+          Math.max(first[1], last[1]) >= -8 &&
+          Math.min(first[1], last[1]) <= height + 8;
+        assert.equal(view.visible([first, last]), expected);
+        assert.equal(view.visible([last, first]), expected);
+      }
+  }
+});
+
+test('allocation changes preserve complete pinned pre-correction projected commands across routes and phases', () => {
+  const cp = require('node:child_process');
+  const path = require('node:path');
+  const root = path.resolve(__dirname, '..');
+  const baseline = 'd4868471802953d513c6bf0e87539f31b7497640';
+  const oldFactory = (file) => {
+    const source = cp.execFileSync('git', ['show', baseline + ':' + file], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    const context = { module: { exports: {} } };
+    vm.runInNewContext(source, context);
+    return context.module.exports;
+  };
+  const oldMath = oldFactory('site/engine/math.cjs')();
+  const builder = require('../tools/site/build.cjs');
+  const { definitions } = builder.configuration(root);
+  const current = builder.model(root, definitions);
+  const original = oldFactory('site/engine/projection.cjs')(oldMath, definitions);
+  let observations = 0;
+  for (const route of definitions.routeOrder)
+    for (const compact of [false, true]) {
+      const world = current.worldFor(route, compact);
+      const camera = current.poses[current.initialPoses[route] || 'overview'];
+      for (const time of [0, 3000, 6000, 9000, 12000, 18000, 21000, 24000]) {
+        const input = [world, camera, compact ? 412 : 1440, compact ? 823 : 900, time, 0, true];
+        assert.equal(
+          JSON.stringify(current.projectedWorld(...input)),
+          JSON.stringify(original.projectedWorld(...input)),
+          route + '/' + compact + '/' + time
+        );
+        observations++;
+      }
+    }
+  assert.equal(observations, 80);
+});

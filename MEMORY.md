@@ -11,16 +11,19 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
   bounded convergence preserves its17-check feature policy, three-edition proof,
   all original runtime bytes and ledger provenance. Read the live PR for final
   source/evidence; all original482 dispositions and newer records remain.
-- Clean local d3fef9d6 / tree9f436442 passes17/17 owning checks. The three earlier
-  identity failures are resolved; all previous failed/raw diagnostics remain.
-- Current corrected PR40 has no successful stable staging or production admission.
-  Original Writing TBT failures still require fresh unchanged-budget native tests.
+- Delivered d486847 / tree86c9ee58 passed17/17 owning checks before this
+  correction. The current source adds a mapped projection check; live PR/issue
+  records its final exact-head results. All earlier failed/raw evidence remains.
+- Writing allocation-only correction preserves complete command parity and
+  gives local106.5/101/187ms versus102/178/269ms in fixed pairs. All earlier
+  failures survive; read review/issue-39/2026-10-16-writing-tbt.md. No current
+  native, stable staging or production admission exists for the correction.
 
 ## Decisions
 
-- Latest maintainer instruction: finish only main integration and checksum/HTML
-  readiness (steps1/2), then stop/report. Writing TBT, Ready/preflight/staging,
-  PR40 merge and production require the subsequent continuation.
+- Latest maintainer instruction: finish Writing TBT diagnosis/correction only,
+  then stop/report with numbered next steps. Keep PR40 Draft; Ready, whole
+  preflight, /stage, merge and production remain later work.
 - Cloudflare staging runs one authenticated same-run/attempt preflight. Keep
   original scanner reports and all browser/performance/recovery checks.
 - Original engineering uses Apache-2.0; original editorial/non-brand diagrams
@@ -38,7 +41,7 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | Finish bounded convergence verification/handoff; then resume Writing TBT and current Ready/source/26-family preflight before one-host staging. |
+| #39 / PR40 | Stop after bounded TBT correction; then exact trusted-main runtime registry prerequisite and Ready/source/26-family preflight before one-host staging. |
 | #1 / #7 / #8 / #13 | Current rights/editorial/reader/device/independent, full/native/performance and live SEO/indexing/analytics acceptance. |
 | #39 / #72 | Actual protected settings, production App/environments/immutable archive, canonical migration and recovery. |
 | #69 / #76; #49 / PR53; #41 | Preserve remaining device/lifecycle/cost and independent feature/editorial acceptance. |
@@ -48,9 +51,10 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 1. Revalidate main, PR40 head/Draft, working trees and current runs.
 2. Resume #39's readiness execution record and PR81 integration anchor; preserve
    the original dirty worktree and retained failed/raw diagnostics.
-3. Resume Writing TBT only under the next maintainer instruction; retain runner
-   controls and the original200ms budget. Refresh exact Ready/source evidence
-   and clean26-family preflight before a later /stage.
+3. Read the TBT correction report and live final head/results. Preserve the
+   unchanged200ms budget and every failed/raw diagnostic. Before later Ready
+   and /stage, integrate only the exact new trusted-controller runtime tuples,
+   then refresh source evidence and clean26-family preflight.
 4. Verify permanent Cloudflare identity, merge the identical admitted tree, then
    freeze the merged-main production candidate and finish actual release gates.
 5. Report actual source/edition/run and remaining external evidence honestly.
