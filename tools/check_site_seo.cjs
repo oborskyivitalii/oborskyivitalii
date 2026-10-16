@@ -105,6 +105,18 @@ const positioning = JSON.parse(
 const sitecase = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-sitecase-amendment.json'), 'utf8')
 );
+const arkadiy = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-41/2026-10-10-arkadiy-amendment.json'), 'utf8')
+);
+const arkadiyTopic = JSON.parse(
+  fs.readFileSync(
+    path.join(root, 'review/issue-41/2026-10-10-arkadiy-topic-amendment.json'),
+    'utf8'
+  )
+);
+const authorFirst = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-41/2026-10-10-author-first-amendment.json'), 'utf8')
+);
 // Maintainer-selected #7/#39 successor on 15 October. The historical SEO
 // baseline stays unchanged; only these reviewed legal owners may reverse.
 const licensingBaseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
@@ -363,6 +375,10 @@ function restoreCriticalMedia(html, page, projectRoot = root) {
 function restoreApprovedContent(html, page) {
   html = normalizeHTML(html);
   html = restoreApprovedLicensing(html, page);
+  // Reverse PR68 editorial successors while keeping PR40 licensing intact.
+  html = restoreContentAmendment(html, page, authorFirst);
+  html = restoreContentAmendment(html, page, arkadiyTopic);
+  html = restoreContentAmendment(html, page, arkadiy);
   // This successor uses current template bytes, before historical presentation reversal.
   html = restoreContentAmendment(html, page, sitecase);
   html = restoreContentAmendment(html, page, positioning);
@@ -496,6 +512,9 @@ function verify() {
           ...issue61.changes,
           ...positioning.changes,
           ...sitecase.changes,
+          ...arkadiy.changes,
+          ...arkadiyTopic.changes,
+          ...authorFirst.changes,
         ]
           .filter((change) => change.page === page)
           .map((change) => change.intent),
