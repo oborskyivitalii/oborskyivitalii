@@ -134,7 +134,7 @@ jobs:
           node-version: 24.19.0
       - name: Read exact PR68 source and integrate selected authored editors
         run: |
-          test "$(git rev-parse HEAD~3)" = "44a9586e383c0ec2d172df5e77712e956f272f6d"
+          git merge-base --is-ancestor 44a9586e383c0ec2d172df5e77712e956f272f6d HEAD
           git fetch --no-tags origin c3b8fb7d0b7a127363f24cdacb8a36c3f811054a
           python3 tools/quality/pr40-editorial-bridge.py
           git show "44a9586e383c0ec2d172df5e77712e956f272f6d:.github/workflows/site-checks.yml" > .github/workflows/site-checks.yml
@@ -188,8 +188,10 @@ jobs:
           doc['entries']=dict(sorted(e.items()))
           p.write_text(json.dumps(doc,ensure_ascii=False,indent=2)+'\n')
           PY
+          git add -A
           python3 tools/check_ri_ci.py refresh
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          git add -A
       - name: Verify content, exact legal and technical contracts
         run: |
           node tools/site/build.cjs --check
