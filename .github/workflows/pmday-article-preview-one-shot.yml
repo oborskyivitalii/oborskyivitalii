@@ -146,8 +146,8 @@ jobs:
           
       - name: Rebuild and verify generated repository intelligence
         run: |
-          python3 tools/repository_intelligence.py build
-          python3 tools/repository_intelligence.py verify
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
       - name: Verify maintained formatting and basic source
         run: |
           node tools/quality/format.cjs --check
