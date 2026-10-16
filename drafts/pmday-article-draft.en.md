@@ -232,7 +232,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 
 ### Source of truth and non-negotiable scope
 
-- Treat **reader text between ARTICLE START and ARTICLE END** as editorial revision **0.6**, replacing draft 0.5 and rendered article revision r2 for the *next* candidate. Keep the six-chapter structure, sharp opening and closing, restored numbers with limitations, fallibility/recovery argument, new equilibrium subsection, precise requirements boundary and after-release control. Do not globally compress/soften again.
+- Treat **reader text between ARTICLE START and ARTICLE END** as editorial revision **0.7**, replacing draft 0.6 (and its earlier ancestors) for the *next* candidate; rendered r2 remains historical. Keep the six-chapter structure, sharp opening and closing, restored numbers with limitations, fallibility/recovery argument, new equilibrium subsection, precise requirements boundary and after-release control. Do not globally compress/soften again.
 - `site/publications/pmday-ai-both-sides/manuscript.en.md` is the **future canonical reader manuscript**. This excluded `drafts/` file is an editorial input, not a published source. Migrate prose and figures there under an explicitly new content edition; follow current `guides/ARTICLE-WORKFLOW.md` and the owning #2/#5 acceptance routes.
 - Seven `ASSEMBLY FIG` markers are machine/editor handoff instructions **not reader prose**. Replace each at its exact position with a registered, accessible figure asset. Include the existing original cover only where the established editorial profile calls for it; no duplicate poster or generic redraws.
 - The **seven required slide screenshots** are **3, 5, 7, 9, 10, 12, 14**. Slide 13 is removed from the required body set in favour of 14. Slides 4 (too dense), 6, 8, 11, 13 and 15 are not additional default body screenshots. Do not silently reduce the seven back to five or expand to all 15.
@@ -352,7 +352,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 
 **Source-page preview:** [Open the exact pinned PDF at page 14](https://raw.githubusercontent.com/oborskyivitalii/oborskyivitalii/344a66820649d31b84eb958980373607a45be7d5/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf#page=14). **Final image:** `site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png` (new file, not yet committed).
 
-**Placement:** Late chapter 6, after the new 'Release does not close the laboratory' paragraph and before the two-paragraph conclusion.
+**Placement:** Late chapter 6, after the 'Release does not close the laboratory' paragraph and before the Lem-linked closing reflection and original final line.
 
 **Keep legible:** Delivery Plan → Build → Verify → Ship; hypothesis + approved limits → bounded experiment → measure/compare → decide/adapt loop, feedback from production outcomes/incidents, planning/daily/review/release/operations ownership, both HOW/WHAT, full operating cost and the final responsibility statement.
 
@@ -388,7 +388,7 @@ The research strands behind the two shifts are [The Subprime Code Crisis](https:
 1. Full-slide captures, not crops of graphs or remade quantitative figures. Preserve original typography and all on-screen caveats even when converting to efficient web encodings. If mobile text is too small, support enlarging through the already-linked deck PDF, without adding new PDF viewer machinery or breaking no-JS reading.
 2. Keep seven **body figures** in the agreed order (plus the existing cover where applicable). Maintain body accessibility: factual numbers also appear as searchable prose/table content, meaningful English alt text and captions with edition + slide number. Decorative repetition and a second presentation poster are prohibited.
 3. Review desktop (~1440px), mobile (~390px), no-JS HTML, generated article PDF **all pages**, LinkedIn/Medium rendition image order/alt/credits, links and resource budgets. Do not break the site's **single** Slides PDF link policy, canonical Writing counter/catalog or content-release separation.
-4. Do not reuse review-only source/PDF/kit SHA records as proof for revision 0.6. Generate a **new** semantically distinct article edition and export manifest; preserve r2 as earlier history, plus frozen `pmday-two-shifts` technical fixture.
+4. Do not reuse review-only source/PDF/kit SHA records as proof for revision 0.7. Generate a **new** semantically distinct article edition and export manifest; preserve r2 as earlier history, plus frozen `pmday-two-shifts` technical fixture.
 5. Rights/provenance gate: evidence of the exact PDF and image extraction is not equivalent to permission to publish/relicense all graphics or to transfer upstream material. Preserve explicit #2/#7/UA133 gates and author approval.
 
 ### Ordered execution and acceptance for Sol / Astra
