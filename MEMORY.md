@@ -14,10 +14,10 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 - Delivered d486847 / tree86c9ee58 passed17/17 owning checks before this
   correction. The current source adds a mapped projection check; live PR/issue
   records its final exact-head results. All earlier failed/raw evidence remains.
-- Writing allocation-only correction preserves complete command parity and
-  gives local106.5/101/187ms versus102/178/269ms in fixed pairs. All earlier
-  failures survive; read review/issue-39/2026-10-16-writing-tbt.md. No current
-  native, stable staging or production admission exists for the correction.
+- Writing allocation correction preserves full command parity. Final isolated
+  baseline302/235/189ms versus candidate136.5/150/232ms lowers the median,
+  but232ms still exceeds200. Earlier pairs had foreign-browser overlap. Read
+  review/issue-39/2026-10-16-writing-tbt.md; native/stable admission is pending.
 
 ## Decisions
 
@@ -41,7 +41,7 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | Stop after bounded TBT correction; then exact trusted-main runtime registry prerequisite and Ready/source/26-family preflight before one-host staging. |
+| #39 / PR40 | Stop/report the TBT correction and remaining232ms tail; then isolated native profiling, exact trusted-main tuples and Ready/source/preflight before staging. |
 | #1 / #7 / #8 / #13 | Current rights/editorial/reader/device/independent, full/native/performance and live SEO/indexing/analytics acceptance. |
 | #39 / #72 | Actual protected settings, production App/environments/immutable archive, canonical migration and recovery. |
 | #69 / #76; #49 / PR53; #41 | Preserve remaining device/lifecycle/cost and independent feature/editorial acceptance. |
@@ -51,9 +51,9 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 1. Revalidate main, PR40 head/Draft, working trees and current runs.
 2. Resume #39's readiness execution record and PR81 integration anchor; preserve
    the original dirty worktree and retained failed/raw diagnostics.
-3. Read the TBT correction report and live final head/results. Preserve the
-   unchanged200ms budget and every failed/raw diagnostic. Before later Ready
-   and /stage, integrate only the exact new trusted-controller runtime tuples,
+3. Profile the remaining232ms tail on an isolated native Ubuntu/Chromium job
+   before a further correction. Preserve200ms and every failed/raw observation.
+   Before later Ready and /stage, integrate exact trusted-controller tuples,
    then refresh source evidence and clean26-family preflight.
 4. Verify permanent Cloudflare identity, merge the identical admitted tree, then
    freeze the merged-main production candidate and finish actual release gates.

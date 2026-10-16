@@ -26,13 +26,42 @@ quality/cache/cadence bounds and proportional source/browser verification.
 | F03 | Process observations during source tests/Semgrep | Concurrent work amplified CPU variance; later intermediate series380/179/141.5 and119.5/178.5/2522ms are retained, including their overlaps. Matching-process absence cannot prove absence of hypervisor contention. | AC03 | Do not infer a code improvement from those comparisons. |
 | F04 | After parallel preflight:300.5/228.5/277.5ms, no matching source/scanner process observed; separate379ms sampled profile | Over-budget behavior also reproduces without the observed competing suite. Current CPU stacks include Canvas line/shape submission, projection and navigation initialization. | AC03 | Parallel load is not the sole cause. |
 | F05 | First fixed A/B, B/A, A/B experiment | Baseline237.5/132/322.5; candidate102/210.5/182.5ms. Allocation changes are promising but210.5 still exceeds200. | AC03 | Superseded, not relabelled as a pass. |
-| F06 | Second fixed A/B, B/A, A/B experiment on identical runner/browser/profile | Baseline102/178/269; candidate106.5/101/187ms. Candidate median106.5 versus178ms (40.2% lower); first pair is4.5ms slower, other two are faster. All three candidate values satisfy200ms. No matching competing source/scanner process was observed in these six trials. | AC03 | Selected finite correction; local diagnostic evidence only. |
+| F06 | Second fixed A/B, B/A, A/B experiment on identical runner/browser/profile | Baseline102/178/269; candidate106.5/101/187ms. Candidate median106.5 versus178ms (40.2% lower); first pair is4.5ms slower, other two are faster. All three values satisfy200ms, but later timestamp comparison found foreign Lighthouse overlap during the first baseline launch. Browser contention was not covered by this initial monitor; do not treat the40.2% difference as an isolated causal estimate. | AC03 | Selected finite correction; local diagnostic evidence only. |
 
 Explicit CPU-sampled637.9999999999998/2238/379ms observations remain separate from
 unprofiled metric comparisons. Every series, setup failure and artifact identity
 is recorded in the retained evidence packet. The original native235.5ms and old
 local289ms failures remain failed. No new native staging result is supplied here.
 Small local sample counts and shared-host variability limit extrapolation.
+
+## Final browser-isolated confirmation and remaining blocker
+
+The separate [pre-correction diagnostic branch](https://github.com/oborskyivitalii/oborskyivitalii/tree/work/pr40-writing-observation-39)
+preserved foreign Lighthouse timestamps. They overlap the entire first experiment
+and the first baseline launch of the second experiment. Our original observer
+covered source/scanner processes, not other Chromium. Preserve those observations,
+but downgrade their claimed isolation and the40.2% causal interpretation.
+
+A new fixed A/B, B/A, A/B confirmation uses the verified clean3af5e0a staging
+artifact, the same Chromium153/Lighthouse13.5 mobile/simulated settings and explicit
+foreign Chrome main-process/debugging-port/pipe plus source/scanner monitoring.
+No matching foreign browser/source/scanner was observed across its six trials.
+Shared-hypervisor contention still cannot be excluded by a process inventory.
+
+| Pair | Order | Baseline ms | Candidate ms | Candidate <=200ms |
+| --- | --- | ---: | ---: | --- |
+| 1 | A/B |302|136.5|Yes|
+| 2 | B/A |235|150|Yes|
+| 3 | A/B |189|232|No|
+
+Median235→150ms is36.2% lower, with the third pair43ms slower. The finite code
+correction preserves commands and reduces the measured median, but does not
+resolve the complete200ms budget: one real232ms overrun remains. Step1 diagnosis
+is complete; step2 implementation is delivered with this unresolved performance
+tail. Do not claim stable/native performance acceptance or repeat until green.
+The next bounded task is current-source isolated native Ubuntu/Chromium profiling
+before choosing any further correction. All6 original LHR/trace/network records
+and the improved process monitor are appended to the persistent evidence packet.
 
 ## Decisions
 
@@ -65,14 +94,14 @@ prerequisite before a later ordinary staging run; do not broaden the selector.
 | Task | Paths / behavior | Finding / AC | Check | Status |
 | --- | --- | --- | --- | --- |
 | T01 | Repeated exact artifact measurements and sampled attribution | F01–F04 / AC03 | Retain all series, settings, identities, traces and failures | Complete; local only |
-| T02 | Finite projection allocation correction | F05/F06 / AC03 | Pinned command parity, independent viewport cases, renderer/source/owning checks | Implemented; exact final results in live PR/issue |
+| T02 | Finite projection allocation correction | F05/F06 / AC03 | Pinned command parity, viewport/renderer/source checks | Implemented; isolated232ms tail remains open |
 | T03 | Stop and report | AC04 | Keep PR Draft and later admission stages separate | Required at this handoff |
 
 ## Acceptance evidence
 
 | AC | Check | Observation | Remaining gate |
 | --- | --- | --- | --- |
-| AC03 | Local paired unchanged200ms diagnostic | Candidate106.5/101/187ms; baseline102/178/269ms | Fresh native exact-head staging/performance and full production remain pending |
+| AC03 | Final isolated unchanged200ms diagnostic | Candidate136.5/150/232ms; baseline302/235/189ms; one candidate failure | Fresh native exact-head staging/performance and full production remain pending |
 | AC03 | Current camera/renderer suites |30/30 preparation cases pass, no skips | Final clean owning/source checks recorded in live PR |
 | AC03 | Publication/release-controller suites |39/39 preparation cases pass, no skips | Trusted-main new tuple registration and actual hosted admission |
 | AC04 | Guard, generated/RI and source checks | Final exact-head evidence belongs to the issue/PR checkpoint | Independent/human/merge gates remain open |
@@ -90,7 +119,7 @@ telemetry/budget/failure cases remain. Both failed preparations are retained.
 ## Issue synopsis
 
 Writing200ms overrun reproduced on unchanged Chromium/Linux bytes. The bounded
-allocation-only correction preserves full command geometry and yields local
-106.5/101/187ms in the fixed comparison. Preserve all failures and runner limits;
+allocation-only correction preserves full command geometry; final isolated
+136.5/150/232ms observations improve the median but retain a232ms failure. Preserve all failures and runner limits;
 stop before Ready/whole preflight/staging. The trusted controller needs the exact
 new runtime family before future ordinary admission.
