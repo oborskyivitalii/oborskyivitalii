@@ -4,53 +4,55 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main a5a6f8ce includes PR81/82/83 and the exact
-  Writing plain/staging controller prerequisite PR84. PR40 integrated main at805d94a5/tree3743aa0a; Draft again for the interpreter correction.
-- Native Writing diagnostic38940320357 binds clean64559870/tree611ca08c:
-  full Chromium153/Lighthouse13.5 Ubuntu24.04.5, five ordinary45/29/22/19.5/21.5ms,
-  separate CPU111ms. No current native overrun reproduced; no new runtime edit.
-- Native raw ZIP12062293377 and all18 raw hashes/sizes verified; actual plain
-  artifact matches independent cold build. Versioned six-row evidence/report:
-  `review/issue-39/2026-10-16-native-writing-controller.md` and adjacent gzip.
-- This is loopback plain Color, not hosted/staging acceptance. Prior local232ms,
-  native235.5ms, loaded/failed observations and isolation correction remain.
-- PR84 exact53f1ec3f/treec5dee8e8 source545/545, owning13/13, RI/navigation pass.
-  Only two proved IDs, mandatory rights and exact checksum/boolean classifications;
-  protected607 public/runtime/compiler/workflow blobs otherwise remain unchanged.
-- PR40 head805 native619/619 in50 modules, owning19/19, RI/navigation and preview pass.
-- Ordinary stage38945614659 stopped before upload at25/26: system Python lacked
-  packaging;115 Python tests,22 errors. Locked audit venv already has26.3.
-- Correct only that suite executable to the locked venv, no system fallback.
-  Preserve failure/report in2026-10-16-stable-staging.md and adjacent gzip.
+- PR40 is Ready/open/unmerged at61a83b225e4f654f5f9af152b1a96a44f88823a8,
+  tree60fbe98c25f85957e1ef68d07939efef6033f6e6. Protected main remainsa5a6f8ce.
+- Main integration805 preserved full feature policy,896 publication rows and11
+  exact reason variants. Interpreter-only61 correction uses locked audit venv.
+- Native61 Ready source619/619/50 modules, owning19/19, RI/navigation and hosted
+  two-width normal/no-Canvas/Color preview38947514866 passed.
+- Ordinary stage38947896256/1 passed26/26; permanent source591/591/46 modules,
+  Basic24 and Python115/115; all original scanners/advisories/rights passed.
+- Hosted Chromium153/Firefox155:30 route observations,2 navigation,10 failures,
+  7 analytics;2 Lighthouse mobile trials TBT Research58/Writing71.5ms (<200),
+  LCP2280.9/2188.7ms;8 motion windows and4 cold/warm flights passed.
+- Permanent staging.oborskyi-author-ci-staging.pages.dev serves exact61/public305a2c6d,
+  package3f2e5647, staging/noindex/analytics-off. Promotion/stable HTTP/recovery
+  and Staging admission117131721039 passed; main staysa5, PR40 not merged.
+- Versioned final2026-10-16-stable-staging.md and adjacent native-stable evidence
+  live on an inert report branch rooted at61, preserving admitted PR40 head.
+- Keep failures: original native235.5/local232ms, preflight38945614659 (25/26,
+  missing packaging in system Python), and PR84 post-merge missing admission.
 
 ## Decisions
 
-- Latest maintainer “Роби” authorizes main integration/Ready checks, exact-source
-  26/26 preflight and ordinary stable Cloudflare staging, then stop/report.
-- No PR40 merge, production activation or domain/DNS action belongs here.
-- Preserve the full PR40 feature/runtime/rights/scanner policy when reconciling
-  the deliberately narrow main prerequisite. All earlier raw failures remain.
-- Source/Ready, preflight, actual staged edition and served identity are separate
-  observations. Existing budgets and full/native/manual production gates remain.
+- Latest maintainer scope: integration/Ready,26preflight, stable verification,
+  then stop/report. Completed; no further action without a new continuation.
+- No PR40 merge, production activation or domain/DNS action was taken.
+- All runtime/public source, pins, scanner policy/baselines and original budgets
+  remain; new staging source badges naturally bind rendered bytes to61.
+- Hosted current Writing passed on Linux. Prior loopback45/29/22/19.5/21.5ms
+  and separate CPU111ms remain separate diagnostics, not pooled acceptance.
+- Staging gate fullGate/productionEligible/deploymentAuthorized remain false.
+  Independent human, physical-device, editorial/rights and production gates stay open.
+- Ordinary stage18m13s exceeded the15-minute operational target; source172.8s
+  passed but is close to180s. Retain this CI optimization follow-up honestly.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | Authorized continuation: integrate latest main, preserve full feature policy, freeze final head, Ready source checks,26/26 preflight, ordinary stable staging and served identity/budgets. |
-| #1 / #7 / #8 / #13 | Actual source-bound rights/editorial/device/independent/full/native and production live-origin acceptance. |
-| #39 / #72 | Publisher settings, canonical migration, protected archive and recovery. |
+| #39 / PR40 | Stable visual/device and required independent review, then separate exact-source merge decision. Any head/base change invalidates current admission. |
+| #1 / #7 / #8 / #13 | Exact production edition, full/native/Lighthouse/soak/capture and source-bound rights/editorial/device/settings/release acceptance. |
+| #39 / #72 | Production/canonical/Pages migration, domains, archive/recovery; optimize CI toward15min without test/budget changes. |
 
 ## Next session
 
-1. Revalidate PR40/current main/checks; preserve original dirty worktree and every
-   failed/raw observation. Do not infer prior green evidence admits a new head.
-2. Resume the authorized Ready/preflight/stable-staging continuation if interrupted;
-   stop/report after served-source verification. PR40 merge/production stay outside scope.
-3. Freeze the narrow Python interpreter correction, rerun exact Ready checks
-   and ordinary26/26 preflight; full feature/scanner/runtime policy stays intact.
-4. Exact Ready checks and26/26 preflight precede ordinary stable Cloudflare staging.
-5. Stop/report staging; later PR40 merge/production retain separate decisions.
+1. Reported stop reached. Read issue39's dated continuation anchor and final
+   versioned report, then revalidate PR40/main/checks/actual served source.
+2. Preserve admitted61 and its stable package; do not move PR40 for inert reports.
+3. Continue only the next user-authorized scope. Merge and production are separate
+   decisions; green staging does not supply independent review or release approval.
+4. Preserve original dirty worktree and every prior failed/raw observation.
 
 ## Maintenance
 

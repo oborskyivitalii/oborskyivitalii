@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8b5e54bede509213047114407306db299cbf9f50db249d31342d335438a6e7bb",
+    "digest": "232a22e3dc226249dfe9d6f73d6c41a2dd0ddc7c84d8516487c24306ad6d669c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
+        "sha256": "a0eed5b6369a10f51689839d85e9f1b367c72fefec48534f4f91a1ad3ba58363"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f50dc24344e97334affb998962cefa98ea8070a53f1f45ba38e5faa6297c51bb"
+        "sha256": "a2f68006b0f3e05cfc8a0013791a41decf0d626a87328716917d440b86fe320a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6f06b200993a655851222810b9d07de91dae1b5ccf035d2aacc81c9deaf8d519"
+        "sha256": "5eb0496ff6602bec0d793cc0f7f47df745dd87217346ea59c3c8b0e6898733b4"
       },
       {
         "path": "NOTICE.md",
@@ -808,6 +808,11 @@
         "sha256": "d40d295317eb569fdaeae232c1024df665e451b82266684f450adff3546f0c11"
       },
       {
+        "path": "review/issue-39/2026-10-16-native-stable-staging-evidence.json.gz",
+        "identity_mode": "content",
+        "sha256": "600266aa97c91f230464a0b2c85654547cc8ed912e2bbb2f0f4bf4d3a82a1a0c"
+      },
+      {
         "path": "review/issue-39/2026-10-16-native-writing-controller.md",
         "identity_mode": "content",
         "sha256": "66d65d22943c44886a4c370a8d894312ab98f7ebcc1ee932b99cd2fdb2771322"
@@ -855,7 +860,7 @@
       {
         "path": "review/issue-39/2026-10-16-stable-staging.md",
         "identity_mode": "content",
-        "sha256": "55692a97408927312db786fba4338d3830e0f2b93959861c2ba321acc38a638e"
+        "sha256": "7b97fb709e339f21451da5c540dc41266ee6ae06316539adb7e6f8166948e709"
       },
       {
         "path": "review/issue-39/2026-10-16-writing-checksum-proof.json.gz",
@@ -8687,6 +8692,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-16-compact-tuples.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-native-stable-staging-evidence.json.gz",
+      "kind": "file",
+      "purpose": "Inert exact native stable stage38947896256 proof: nine verified ZIP inventories, original JSON reports, hosted metrics/raw hashes, gate/recovery/stable identity and source admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-stable-staging.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-native-stable-staging-evidence.json.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-native-writing-controller.md",

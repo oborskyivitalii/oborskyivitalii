@@ -8784,6 +8784,12 @@
       "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
       "role": "history",
       "owner": "review/issue-39/2026-10-16-stable-staging.md"
+    },
+    "review/issue-39/2026-10-16-native-stable-staging-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact native stable stage38947896256 proof: nine verified ZIP inventories, original JSON reports, hosted metrics/raw hashes, gate/recovery/stable identity and source admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-stable-staging.md"
     }
   }
 }
