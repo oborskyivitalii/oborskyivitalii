@@ -94,7 +94,11 @@ keep the small smoke profile.
 
 Source checks run `local.cjs`, then `source-tests.cjs --profile staging` for
 registered permanent JavaScript not already checked in the baseline, and
-`python3 tools/run_repository_tests.py`. Lint/security/advisories run in the
+`tools/quality/toolchain/venv/bin/python tools/run_repository_tests.py` (the
+corresponding locked `SITE_AUDIT_TOOLS` venv on shared installations). The audit
+graph regressions require its pinned `packaging`; a missing interpreter fails
+without falling back to system Python. The standard-library-only source guards
+still use `python3`. Lint/security/advisories run in the
 static job. The browser job runs `staging-regression.cjs`:
 
 The source runner owns its fixed 180-second child limit and bounded raw output.

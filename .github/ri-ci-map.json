@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4c63fe00572f24046fae6b4e1f6939b7a6b15200eed0abccfd826a6118e465c0",
+    "digest": "35782987323d01a7ce1622a550cd9a5f154bf22dd259693ef01c009fb844884d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -634,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "60632811d9591b1ad1aeee5afc1e6e1443adc91674143daf6e7dd4bb7047fd5b"
+        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -850,7 +850,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "2500a73ec8a071cc8090c0061dcd44f508c3c85596a6f724bf2b2f654afa9ce9"
+        "sha256": "8398bbf4f9d81adc7f1c1cf6e9afc0b6f2c4942b5724be4dc47b0e7dcfb6d074"
       },
       {
         "path": "tools/quality/source-tests.cjs",

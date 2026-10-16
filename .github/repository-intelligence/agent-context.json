@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "288d07fd6036f3470689742f5ca9c0ffd83fc1a4be9b3d607e7c0efa6ad49dc8",
+    "digest": "8b5e54bede509213047114407306db299cbf9f50db249d31342d335438a6e7bb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "60632811d9591b1ad1aeee5afc1e6e1443adc91674143daf6e7dd4bb7047fd5b"
+        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6927bb2b94362d277f2b73c5fd3589ce5b4f1e66174c6f5933d47a93fef77805"
+        "sha256": "f50dc24344e97334affb998962cefa98ea8070a53f1f45ba38e5faa6297c51bb"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9f535c54bfcead8c012a23731dafdb9294139056b4dfaa9d71e687708b8d9d37"
+        "sha256": "6f06b200993a655851222810b9d07de91dae1b5ccf035d2aacc81c9deaf8d519"
       },
       {
         "path": "NOTICE.md",
@@ -848,9 +848,14 @@
         "sha256": "1ef9aff7098294957536ca0802ee2f3b0e69ec6bfd4f90f351a4abb21fe8b53d"
       },
       {
+        "path": "review/issue-39/2026-10-16-stable-preflight-failure.json.gz",
+        "identity_mode": "content",
+        "sha256": "19c4874fcd66c8b63d3e679626e3e7799aadd3fd548e723cd81b257e2b262561"
+      },
+      {
         "path": "review/issue-39/2026-10-16-stable-staging.md",
         "identity_mode": "content",
-        "sha256": "a90d4d4b21da99e9c6647fbfc29b60bbb6cf5d65f513e27d143d62bdda39d2be"
+        "sha256": "55692a97408927312db786fba4338d3830e0f2b93959861c2ba321acc38a638e"
       },
       {
         "path": "review/issue-39/2026-10-16-writing-checksum-proof.json.gz",
@@ -5655,7 +5660,7 @@
       {
         "path": "tests/prepublication-reuse.test.cjs",
         "identity_mode": "content",
-        "sha256": "9812876445a4e09f377ac21464e8eada831527b1e9ecd2e51f93384b4a76d588"
+        "sha256": "208d3df7434130a311a1cded4610852b72c11eed91724dd7a8f1e98ebb9b54dc"
       },
       {
         "path": "tests/preview-smoke.test.cjs",
@@ -6035,7 +6040,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "2c2a90f930e5f83cb2c9e013377a3f96cf853318f3e4e586166f43e0ae95c88f"
+        "sha256": "894f9c0713039e36e3672dd62531ae2375000b93f6c6e58354efed24b6b93d4c"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -6220,7 +6225,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "2500a73ec8a071cc8090c0061dcd44f508c3c85596a6f724bf2b2f654afa9ce9"
+        "sha256": "8398bbf4f9d81adc7f1c1cf6e9afc0b6f2c4942b5724be4dc47b0e7dcfb6d074"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -8770,6 +8775,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-16-stable-merge-ledger.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-stable-preflight-failure.json.gz",
+      "kind": "file",
+      "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-stable-staging.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-stable-preflight-failure.json.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-stable-staging.md",

@@ -8778,6 +8778,12 @@
       "purpose": "Issue39 current-main reconciliation, Ready/preflight/stable staging source-bound evidence and bounded stop/report.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-stable-preflight-failure.json.gz": {
+      "kind": "file",
+      "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-stable-staging.md"
     }
   }
 }

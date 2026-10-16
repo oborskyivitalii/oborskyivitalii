@@ -344,7 +344,17 @@ function prepublication(level, directory, options = {}) {
     '--report',
     path.join(reportDirectory, reportStem + '-source-tests-runner.json'),
   ]);
-  python('python-tests', 'tools/run_repository_tests.py');
+  // Audit-graph regressions import dependencies installed only in the locked venv.
+  check(
+    'python-tests',
+    path.join(
+      require('./common.cjs').tools,
+      'venv',
+      process.platform === 'win32' ? 'Scripts' : 'bin',
+      process.platform === 'win32' ? 'python.exe' : 'python'
+    ),
+    ['tools/run_repository_tests.py']
+  );
   python('code-style', 'tools/check_code_style.py');
   python('ri', 'tools/repository_intelligence.py', [
     '--config',
