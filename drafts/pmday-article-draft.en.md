@@ -1,175 +1,164 @@
-> **Editorial revision 0.6 — 15 October 2026. Assembly input, not a published edition.**
-> Following a direct visual review of all 15 pages of the pinned UA PMDay v35 presentation, this revision sharpens the article's evidence about code structure, restores the search for an SDLC equilibrium, makes the requirements boundary and post-release reassessment explicit, and changes the screenshot plan from five to **seven** actual slides (3, 5, 7, 9, 10, 12, 14). This supersedes draft 0.5 as the next editorial input. The rendered `r2` manuscript and its existing PDF/kit are **not** this revision.
+> **Editorial revision 0.7 — 16 October 2026. Assembly input, not a published edition.**
+> Direct author feedback now gives the article a *What if not?* narrative, revisits how early agent/replacement forecasts narrowed into code-output measures and later SDLC countermeasures, and closes on organizational—not vendor—risk. Title: **The Sum of Our Technology**, with **AI Changes Both Sides of Software Engineering** as the subtitle and a documented allusion to Lem's *Summa Technologiae*. It keeps the seven full v35 slide captures (3, 5, 7, 9, 10, 12, 14) and their detailed figure specs. This supersedes draft v0.6. The rendered `r2` article and its PDF/kit are **not** this revision.
 >
 > Editorial owner: [issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2). Execution: [PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79), publisher owner [#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5). Inspected PR head: `0a0acbf56941e3c04a24ff1362c9b47b071b5b58`; main: `9b82f382d080f879528fac8bba94b3656ce14521`. Revalidate before assembly.
 >
 > Reader prose is bounded by the `ARTICLE START` / `ARTICLE END` comments. The seven `ASSEMBLY FIG` comments and the assembly appendix are instructions, not article prose. Copy only reader prose into the canonical manuscript and replace the seven markers with declared full-slide figures. [Versioned review and handoff](../review/issue-2/pmday-candidate-20261015/README.md#editorial-revision-05--screenshot-assembly-handoff).
 
 <!-- ARTICLE START -->
+# The Sum of Our Technology
 
-# AI Changes Both Sides of Software Engineering
+*AI Changes Both Sides of Software Engineering*
 
-*We can delegate more work. We still have to own the consequences.*
+An agent opens a pull request. The tests are green. Its explanation is fluent. Another pull request arrives before anyone has understood the first.
 
-A pull request looks convincing. The tests are green. The explanation is fluent.
+This looks like the future of software development.
 
-Then someone asks: what happens if this is wrong—and the agent cannot fix it?
+**What if not?**
 
-That is where a productivity story becomes an engineering question.
+What if we are getting dramatically better at generating work that our organizations cannot verify, integrate, understand or recover? What if the next apparent breakthrough merely moves the failure somewhere less visible?
 
-My PMDay talk brought together two changes we often discuss separately: AI changes how we build software, and model judgment changes what some of that software does. The first can put pressure on our ability to understand what we are building. The second asks us to control systems whose consequential behaviour is not fully specified by explicit rules.
+My PMDay talk connected two changes often discussed separately. AI changes **how** we build software. And model judgment changes **what** some software does when it runs. The first puts pressure on the delivery system; the second changes the object we have to engineer and control.
 
-Both raise the same uncomfortable question: **what must we remain capable of doing after we delegate the work?**
+The question is not whether to embrace AI. It is **what we must still be capable of doing when the promising path does not work**.
 
 [Slides — PDF, v35 review edition](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) · [Recording — Ukrainian](https://youtu.be/xSgWjuGqC9I)
 
 ## 1. When ideas outlive their authors
 
-Writing allowed ideas to survive the people who expressed them. Printing changed how far and cheaply those ideas could travel. A thought could leave an isolated conversation, cross a border and become part of someone else's discovery centuries later.
+Writing allowed an idea to survive the person who expressed it. Printing changed how far and cheaply that idea could travel. A thought could escape a conversation, cross a border and enter discoveries made centuries later.
 
-The important change was not simply that people could produce more text. It was what became possible when knowledge no longer depended so heavily on someone's presence and memory. Research into [printing and the Reformation](https://digitalcommons.chapman.edu/economics_articles/99/) illustrates how far the consequences could reach beyond the production of books.
+The change was not simply more text. Knowledge no longer depended as much on the presence and memory of its author. Research into [printing and the Reformation](https://digitalcommons.chapman.edu/economics_articles/99/) illustrates how consequences of a new means of producing and circulating ideas can extend beyond the activity it initially makes cheaper.
 
-Large language models extend the boundary of delegation again. We can ask them to interpret a request, compare alternatives, propose a design and explain a result. I use *delegating thinking* in this practical sense—not as a claim about consciousness, or that earlier computers did no cognitive work.
+Large language models move another boundary. We can ask them to interpret a request, propose a design, compare alternatives, write code and explain a result. I call this *delegating thinking* in a practical sense, not as a claim that models are conscious or earlier computers performed no cognitive work.
 
-I expect this change to reach far beyond software engineering. But software gives us a place to examine it now, while the consequences are already becoming operational questions.
+The title is a deliberate, modest echo of Stanisław Lem's [*Summa Technologiae* (1964)](https://english.lem.pl/works/essays/summa-technologiae). I am not claiming Lem anticipated this particular SDLC argument. The allusion is to a harder habit of thought: consider a technology together with the wider possibilities, constraints and consequences it creates.
 
-We need to keep two dimensions separate. An AI coding agent can build an ordinary application. A conventionally staffed team can build a product that depends on model judgment at runtime.
-
-How we produce the software does not settle what authority the software should receive. Nor does a successful product demonstration establish that we can maintain what produced it.
+Software is where that habit is particularly urgent. We need to distinguish an AI agent **building** a conventional product from a product **using** model judgment at runtime. The same organization may do both; the engineering problems are different. A faster implementation does not settle what the product should be allowed to decide.
 
 ## 2. We accelerated a step. Not the system.
 
-Imagine a team that can produce, review and integrate eight comparable changes a week. Now increase generation capacity to one hundred, leaving review and integration at eight.
+Think back to how this wave was presented.
 
-If every generated change enters the queue, unfinished work grows by ninety-two a week. Delivery remains eight.
+In 2024, [Cognition introduced Devin as the "first AI software engineer"](https://cognition.com/blog/introducing-devin). The launch also described it as a teammate whose work people could review. In March 2025, Anthropic CEO Dario Amodei [predicted AI would write 90% of code within three to six months, perhaps essentially all code within a year](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic). In the same discussion, he expressly retained human responsibilities for specification, design, integration and security.
 
-This is a deliberately simplified example, not a productivity estimate. Its lesson is less comfortable than the arithmetic: **we can become dramatically better at producing unfinished work.**
+The literal statements matter. Neither example establishes that its speaker promised every developer would lose their job tomorrow. Yet the industry's broader story was easily heard that way: autonomous engineer, nearly all the code, imminent transformation. **An output forecast began to stand in for a system-level promise.**
 
-<!-- ASSEMBLY FIG-01: insert the complete screenshot of v35 slide 3 here, not the existing delivery-queue redraw. See the assembly instructions below. -->
+For many coding-assistant deployments, the first readily accelerated activity was **code generation**. Later agents reached into other tasks too. But neither the ability to produce a change nor an impressive autonomous demonstration proves that the entire software delivery lifecycle has been redesigned to absorb it.
 
-Review did not suddenly become unnecessary. We changed how much work arrived there.
+A product reaches a customer through a chain: **intent → requirements → design → code → review → test → integration → deployment → operation**. Each stage has work to perform, limits, dependencies and people who carry the consequences.
 
-The empirical contrast is striking too. Demirer, Musolff and Yang's September 2026 [*Writing Code vs. Shipping Code*](https://www.nber.org/papers/w35275) examines more than 500,000 GitHub developers. Its cumulative estimates, [recorded in the presentation's evidence register](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/EVIDENCE.md), show **25.5× changed lines, 3.4× commits and 1.3× releases**.
+If one stage gets dramatically faster while downstream capacities and responsibilities remain unchanged, pressure moves downstream. That is not a surprising defect discovered after rollout. Under those conditions it is the predictable effect of changing one part of a constrained system.
 
-Changed lines include additions and deletions. These observational working-paper estimates cover different outcomes and tool generations; asynchronous-agent releases were not separately estimated. They are neither a conversion funnel nor a universal productivity multiplier.
+Imagine a team that generates, reviews and integrates eight comparable changes per week. Raise only code-generation capacity to one hundred. If every generated change enters the queue, review and integration still complete eight, while unfinished work grows by ninety-two a week.
 
-Even with those limits, the distinction matters: code activity and shipped output are not interchangeable measures of success.
+This is a deliberately simplified push-system example, **not an AI productivity measurement**. WIP limits, selection and improvements elsewhere would change the result. But the uncomfortable possibility is plain: **we may become far better at producing unfinished work without becoming much better at shipping valuable software.**
 
-[DORA's 2025 findings](https://dora.dev/insights/balancing-ai-tensions/) add another warning: greater AI adoption is associated with higher delivery throughput **and greater delivery instability**. That is an association, not proof of causation. Faster and healthier are separate questions.
+<!-- ASSEMBLY FIG-01: v35 slide 3, the full SDLC bottleneck. Preserve complete chain and synthetic 8→100, +92/Wk caveats; see figure contract below. -->
 
-The vendor narrative recognises the pressure. [Anthropic describes a review bottleneck](https://claude.com/resources/articles/code-review) following increased code output, while retaining human approval. Microsoft's Jay Parikh writes [“Don't let code review become a bottleneck”](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/), while keeping humans responsible for architectural oversight.
+Observed data distinguish these outcomes. Demirer, Musolff and Yang's September 2026 [*Writing Code vs. Shipping Code*](https://www.nber.org/papers/w35275), covering more than 500,000 GitHub developers, reports cumulative estimates of **25.5× changed lines, 3.4× commits and 1.3× releases**. Changed lines include additions and deletions; the study's observational estimates span different outcomes and tooling cohorts, and do not measure asynchronous-agent releases separately. They are not one funnel or a universal productivity multiplier.
 
-There is a dangerous shortcut available here: treat whatever cannot keep up with generation as an obstacle to remove.
+[DORA's 2025 analysis](https://dora.dev/insights/balancing-ai-tensions/) similarly associates greater AI adoption with higher delivery throughput **and greater instability**. It does not establish causation. The question is not whether activity increased. It is whether the system improved on the measures that matter.
 
-**A bottleneck tells us where capacity is constrained. It does not tell us that the constrained activity has stopped being necessary.**
+Now the story moves to the next constraint: code review.
 
-Anthropic's [October account of Scion](https://www.anthropic.com/engineering/redesigning-source-control) shows what a more substantial response involves. It reports growth from roughly 2,500 daily merges in May to over 30,000 in September, and checkouts around one hundred times faster after a source-control redesign. Engineers retained architectural understanding and reviewed every change for intent, supported by simulations and fuzzing.
+[Anthropic introduced multi-agent Code Review](https://claude.com/resources/articles/code-review) in March 2026 in response to the review bottleneck created by more generated code. Microsoft's Jay Parikh argued in June that teams should [stop treating traditional review as a fixed constraint](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/): shift first-pass checks to agents, keep humans involved in architectural decisions and rethink the workflows around them.
 
-That is not “humans disappeared.” It is a redesign of the surrounding system. Checkout speed is not customer value, and Anthropic explicitly describes an unusual workload. Copying the reduced emphasis on reading every line without the accompanying expertise and verification would be a different experiment.
+These are real engineering responses to a real problem. They **might work**.
+
+**What if not?**
+
+What if automated review catches more local defects but leaves fewer people who understand why the system behaves as it does? What if review becomes faster while repair, incident investigation or architectural correction becomes slower? What if a team keeps the approval button but loses the knowledge that made approval meaningful?
+
+A bottleneck tells us where capacity is constrained. **It does not tell us that the constrained activity has become unnecessary.** Before removing or automating it, we must understand every outcome it was producing.
+
+To be fair, the vendors themselves have not simply discarded this responsibility. Anthropic's [15 October 2026 account of its Claude Code review process](https://claude.dev/blog/solving-code-review-at-anthropic/) explicitly says review remains; it describes layered checks, risk-based human approvals, knowledge sharing and revert/incident guardrails. It is evidence of **one vendor's reported operating model**, not proof that moving most code reading to machines has the same outcome in every organization.
+
+That is the retrospective tension: the journey began with spectacular claims about the speed of making code, then required an increasingly substantial redesign of the system around the code. We should have expected the second part from the start.
 
 ## 3. The scarce resource is understanding
 
-Faster generation changes more than the amount of code a team has to read. It may change the structure of what the team must own. In a longitudinal matched-control study, [Agarwal, He and Vasilescu](https://arxiv.org/html/2601.13597v2) estimated post-agent-adoption increases of **34.85% in SonarQube code complexity** for agent-first repositories and **42.87%** for repositories with earlier AI-IDE exposure. These are statistical estimates of a static-analysis metric—not measurements of human understanding—and the study reports design limitations. Separately, [GitClear's 2026 observational report](https://www.gitclear.com/the_ai_code_quality_maintainability_gap) found duplicated code blocks **81% higher than its 2023 baseline**. It is a vendor-run, cross-period industry signal, not proof that AI alone caused the change.
+More generated code may be harder to own, not simply more abundant. A longitudinal matched-control study by [Agarwal, He and Vasilescu](https://arxiv.org/html/2601.13597v2) estimates **34.85% greater SonarQube code complexity** after agent adoption for agent-first repositories and **42.87%** for repositories with prior AI-IDE exposure. These are static-analysis complexity estimates, **not measurements of human comprehension**; the study has identification and design limits. Separately, [GitClear's 2026 report](https://www.gitclear.com/the_ai_code_quality_maintainability_gap) reports duplicated code blocks **81% higher than its 2023 baseline**. That is an observational, vendor-produced cross-period signal, not proof that AI alone caused the change.
 
-Those results give us a reason to measure maintainability, not a new law of cognition. The fifth slide in the presentation shows generation rising while a team's capacity to comprehend its output remains nearly flat. The gap grows.
+The studies differ. Both give us reasons to measure maintainability instead of assuming it.
 
-It is an overload scenario, not a measured law of human cognition. Better tools, architecture and learning can move the comprehension line. The point is to ask whether our actual delivery model does so—or merely assumes that somebody will keep up.
+My presentation draws a rising curve for generation beside an almost flat line for team comprehension. The widening gap is an **illustrative overload hypothesis**, not a measured law of human cognition or a forecast. Better tools and learning may move the comprehension line too. Have we shown they do?
 
-<!-- ASSEMBLY FIG-02: insert the complete screenshot of v35 slide 5 here; retain its illustrative-hypothesis disclaimer. See the assembly instructions below. -->
+<!-- ASSEMBLY FIG-02: v35 slide 5, illustrative generation/comprehension gap; retain the complete hypothesis disclaimer. -->
 
-That somebody is often the person reviewing the change, maintaining the integration or answering the incident call.
+Code review has always produced at least two things. It may find defects, but it can also transfer knowledge about what changed and why. [Bacchelli and Bird's Microsoft study](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/) identified knowledge transfer and team awareness among review's actual purposes.
 
-Code review has more than one output. It can catch a defect. It can also teach another engineer what changed, why it changed and where it might fail. [Bacchelli and Bird's study of Microsoft teams](https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/) identified knowledge transfer and team awareness alongside defect detection.
+An agent can potentially automate the first benefit. It does not automatically reproduce the second. Conversely, ceremonial human review delivers neither. The issue is not who reads the lines. It is whether the team can still **explain, challenge, maintain and recover** what the system contains.
 
-That makes review one way of turning individual output into shared ownership.
+### What if documentation is the answer?
 
-Automating defect detection does not automatically reproduce that second outcome. We could improve inspection while leaving the people responsible for the service less prepared to operate it. Equally, a ceremonial human approval can provide neither benefit. What matters is demonstrated capability, not the identity of whoever clicked Approve.
+Perhaps the new durable artifact is a specification. Perhaps an AI-generated explanation gives engineers the knowledge they need, even if they rarely inspect implementation details. That could be a major improvement.
 
-**Responsibility does not disappear when understanding disappears. We are left responsible for something we are less capable of controlling.**
+**What if not?**
 
-### An explanation is not yet evidence
+An explanation can reproduce the assumptions that made the code wrong. It may describe intended behaviour instead of observed behaviour. A specification can omit the critical exception; generated implementation and generated tests can then agree with each other while all three are wrong about the business.
 
-Generated documentation looks like an obvious answer. We cannot keep up with the code, so we ask an LLM to explain it.
-
-Now we have two things to trust: an implementation and a story about the implementation.
-
-The story may omit an exception, describe intended rather than actual behaviour, or reproduce the assumption that made the code wrong. Even a perfectly faithful explanation only tells us what the code does. It does not establish that this is what the business needed.
-
-Documentation can make understanding cheaper. It cannot make the need for evidence disappear.
-
-We can connect explanations to exact code versions, executable examples, observed traces and tests grounded in independently established requirements. Then ask engineers to use those materials to predict important behaviour and diagnose an unfamiliar failure.
-
-The test is whether they can do it—not whether the repository contains an impressive amount of Markdown.
-
-Specifications, AI review and replaceable components are plausible ways forward. But a specification can omit a critical exception, and code and tests can agree because they inherit the same mistake. The experiment is whether the new workflow preserves the necessary outcomes—not whether it produces a tidy chain of artifacts.
+That is a failure mode, not an argument against specifications or documentation. Connect them to exact code revisions, independent requirements, executable examples and observed traces. Test whether an engineer can predict a critical behaviour or diagnose a novel incident **using the proposed new artifacts**. A plausible explanation is not yet evidence of understanding.
 
 ### The incident the workflow must survive
 
-Consider a hypothetical production failure. Customers cannot complete transactions. The agent proposes a fix. Then another. Neither restores the service. A rewrite looks tempting, but nobody is sure what it will do to existing data.
+Consider a hypothetical outage. Customers cannot complete transactions. An agent proposes a fix. Then another. Neither works. A rewrite looks tempting, but the data migration and external integrations have consequences the agent's local tests do not capture.
 
-Who can contain the damage? When do we stop retrying? Who can reconstruct the relevant assumptions and establish that the repair worked?
+Who can stop the retries? Who can contain harm, reconstruct the original design assumptions and determine that recovery worked?
 
-“Code is disposable” is useful only within a boundary. Microsoft's [version of that argument](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) explicitly discusses well-bounded features. Your customers' data, integrations and obligations do not become disposable with the implementation.
+The claim that code is disposable has useful, limited scope. [Microsoft explicitly attaches it to well-bounded features](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/). Your customers' data, obligations and dependencies do not become disposable because implementation got cheaper.
 
-Ownership does not mean memorising every line. It means retaining the ability to investigate, challenge and change the system when the abstraction—or the assistant—fails.
+The needed capability is not to memorise every line of code. It is to remain able to investigate, challenge and change the system when the new abstraction or its AI assistant fails. That capability can itself use AI—provided the recovery path is tested when the preferred agent cannot solve the problem.
 
-AI can be central to that capability. The adoption trial should demonstrate recovery as seriously as generation: an agreed retry limit, preserved evidence, a fallback that works, and someone authorised and equipped to use it.
+**A workflow that works only while the agent keeps succeeding is not a complete operating plan.**
 
-**A plan that works only while the agent keeps succeeding is not a complete operating plan.**
+### Searching for a new SDLC equilibrium
 
-### Finding a new SDLC equilibrium
+This is not a plea to restore the old process. We should change it. We should not mistake **a candidate countermeasure** for an established replacement of every function we lose.
 
-The answer is not to defend yesterday's process or demand that reviewers somehow read ten times faster. We need a new sustainable balance between generation, verification, integration and the team's ability to support what ships.
+Measure review age, batch size, work in progress, rework, stability, expertise coverage and recovery without AI. Try smaller batches, WIP limits, AI-assisted review, specifications, explicit ownership and better executable evidence. Check which interventions actually improve end-to-end outcomes and which merely move work or risk elsewhere.
 
-That balance is a hypothesis to test. Start by watching review age, batch size, work in progress, rework, release stability and recovery without AI. Small batches, WIP limits, trusted specifications, AI-assisted review and living ownership maps are candidate countermeasures, **not proven universal fixes**. A smaller queue may solve a flow problem while leaving an expertise problem untouched. Judge experiments by end-to-end delivery, maintainability, team load and full cost—not by how many pull requests the agent produces.
+If review gets faster but the team cannot recover production, the system has not reached a healthy equilibrium. If safety improves but no customer outcome does, reassess the economics. If both improve, expand carefully.
 
-<!-- ASSEMBLY FIG-03: v35 slide 7, New SDLC Equilibrium; place after this paragraph and before section 4. Exact output and guards in appendix. -->
+<!-- ASSEMBLY FIG-03: v35 slide 7, measured flow versus candidate SDLC countermeasures; do not turn proposals into proven results. -->
 
 ## 4. More software is not more value
 
-Suppose we solve the capacity problem. Ideas can reach users far faster.
+Suppose we really do solve the delivery bottleneck. We can release ideas far faster.
 
-Which ideas?
+**What if the ideas are not worth shipping?**
 
-Cheap implementation makes experimentation more attractive. It also makes it easier to skip the conversation in which someone asks whether a feature should exist at all.
+Cheap implementation should make experimentation cheaper. It can also make it easier to skip the disagreement in which somebody asks whether a feature should exist at all.
 
-The answer is not to preserve slow delivery as a quality filter. Good ideas die in queues too. The answer is to preserve useful challenge and make learning cheaper. [Microsoft's research on online experimentation](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) shows how measured customer behaviour can overturn confident predictions about which features will help.
+The answer is not to preserve slowness as a product-quality filter. [Microsoft's work on online experimentation](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) illustrates why measured customer behaviour can contradict confident product expectations. Saying *no* to a feature can be a successful outcome of faster engineering.
 
-**A decision not to ship can be a successful outcome of faster engineering.**
+The [NBER study](https://www.nber.org/papers/w35275) also reports rising low-usage shares among young software cohorts, measured over their first three months: iOS apps with fewer than ten ratings went from roughly **78% to 87%**, and Chrome extensions with fewer than ten downloads from **19% to 33%** (January 2025–April 2026). These are usage proxies, not customer welfare, and not proof that AI caused the change.
 
-The [NBER study](https://www.nber.org/papers/w35275) reports rising low-usage shares among new cohorts, measured over their first three months: iOS apps with fewer than ten ratings increased from about **78% to 87%**; Chrome extensions with fewer than ten downloads from **19% to 33%** (January 2025–April 2026). These are usage proxies, not customer welfare or proof that AI alone caused the trends. More supply does not automatically find more demand.
+In [METR's May 2026 survey](https://metr.org/blog/2026-05-11-ai-usage-survey/) of 349 technical workers, median self-reported speed gains were 3× while estimates of work-value gains were 1.4–2× across different formulations. They are convenience-sample self-reports, not measured delivery results.
 
-Even perceived speed and value differ. [METR's May 2026 survey](https://metr.org/blog/2026-05-11-ai-usage-survey/) of 349 technical workers reported median speed gains of 3×, versus 1.4–2× work-value gains across different question formulations. These were self-reports from a convenience sample, not measured delivery effects.
+Customers still have to discover features, understand them and adjust their work. Even **if** we could ship twenty-five times as many changes, they would not suddenly have twenty-five times more attention. [Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) found a tension between attractive feature lists before use and usability afterwards.
 
-Customers also have work to do. They must discover a feature, understand it and sometimes reorganise a process around it. **Even if we could ship twenty-five times as many changes, customers would not gain twenty-five times as much attention.**
-
-[Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) found that people can favour capability before use but give usability more weight afterwards. An attractive feature list and a satisfying product are not the same thing.
-
-Extra capacity can instead fund faster repairs, better accessibility, simpler workflows and fewer steps. These are not lesser ambitions than a larger roadmap.
-
-The question is what became better for the person using the product—not how much larger the release note became.
+More capacity can buy faster repairs, simpler workflows and fewer steps. It need not buy a larger roadmap. **The test is what became better for the user—not how much larger the release notes became.**
 
 ## 5. When the product itself makes judgments
 
-So far, the problem has been how we produce and own software. The second shift puts judgment inside the running product.
+Now for the second shift. So far we have asked whether AI can change the system **building** software without weakening what the team must own. What happens when the running product itself makes consequential judgments?
 
-Consider an assistant helping an employee recover account access. It interprets the request, retrieves guidance and recommends a next step. Even without direct access-changing permissions, its answer can influence what the employee does.
+Consider an assistant helping an employee recover account access. It interprets the request, retrieves guidance and recommends the next step. Even if it cannot directly change permissions, its answer may influence someone who can.
 
-In [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md), I call this a *Thinking System*: a system whose consequential runtime responsibility depends partly on probabilistic model judgment. This describes an engineering property, not consciousness or adequate control.
+In [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md), I call a system whose consequential runtime responsibility depends partly on probabilistic model judgment a *Thinking System*. The term describes an engineering property, not consciousness or proof of adequate control.
 
-Two differently worded answers may both be correct. An invented recovery step and an unauthorised disclosure are not merely more variations.
+Two differently worded answers can both be acceptable. Incorrect recovery instructions and unauthorized disclosure are not just alternative phrasings.
 
-Requirements must distinguish acceptable behaviour from uncertainty that calls for clarification, and from outcomes that must be prevented. Given different inputs, context, data and permissions, the assistant may explain approved recovery steps, ask for missing information or escalate conflicting guidance. It must not disclose restricted material or bypass authorisation.
+Requirements must specify **the space of acceptable responses and actions**, when to clarify or escalate, and the outcomes that remain prohibited. Input intent, context, data and permissions create combinations that cannot be covered by one happy-path prompt. That does not make identity, access and transaction rules approximate.
 
-A conventional requirement may specify a path: in a given state, pressing A must open window B. With model judgment, we often have to define a **space of acceptable answers and actions**, its boundary cases and explicit prohibitions. This is not permission to be vague. Inputs multiplied by context, data and permissions create combinations that a handful of happy-path prompts will not cover. Product and domain owners still owe testable semantic criteria, examples and counterexamples. Identity, permissions and transaction rules remain exact obligations.
+<!-- ASSEMBLY FIG-04: v35 slide 9, precise permissible-behaviour boundaries; keep the forbidden disclosure and contextual cases. -->
 
-<!-- ASSEMBLY FIG-04: v35 slide 9, Requirements Become Boundaries; insert here before the evaluation subsection. Exact output and guards in appendix. -->
+And there is a twist: the product may behave differently without a new code commit. Its model, retrieval documents, routing or provider might have changed. A passing test is evidence for the conditions tested, not a lifetime guarantee.
 
-There is another uncomfortable consequence: behaviour may change without a code commit. The model, retrieval material, provider or routing can change while our source stays the same. A passing evaluation is evidence about the tested conditions, not a permanent warranty.
+### What if 98% is good enough?
 
-### The reassuring average
-
-The presentation uses a synthetic evaluation of 200 responses:
+Consider the presentation's **synthetic** evaluation of 200 responses:
 
 | Outcome | Count |
 | --- | ---: |
@@ -177,69 +166,65 @@ The presentation uses a synthetic evaluation of 200 responses:
 | Incorrect recovery instructions | 3 |
 | Restricted information disclosed | 1 |
 
-We could put “98% acceptable” on a slide and colour it green.
+Ninety-eight percent sounds reassuring.
 
-**The person whose information was disclosed has a different result.**
+**What if you are the person whose restricted information was disclosed?**
 
-Under a release rule prohibiting that disclosure, this candidate fails. The other 196 responses do not cancel it.
+Under a release rule prohibiting that result, this candidate fails. The other 196 responses cannot cancel the consequence.
 
-There is uncertainty in the rate too. Four failures in 200 independent, representative observations give a [95% Wilson interval](https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm) of approximately **0.8%–5.0%**. That calculation assumes a stable target distribution; it is not a production guarantee or a universal sample-size recommendation.
+Four failures in 200 independent, representative observations would imply an approximate [95% Wilson interval](https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm) of **0.8%–5.0%** for the failure rate, assuming a stable target distribution. This is a hypothetical calculation, not a production estimate or universal sample-size recommendation. A curated *Golden Set* probes known obligations; a representative sample estimates frequencies. Neither makes the other unnecessary. Even the evaluator can be wrong.
 
-A curated *Golden Set* probes known requirements and difficult cases. A representative sample helps estimate frequencies. Repeating a convenient prompt does not establish coverage, and an evaluator—human or model—can itself misjudge the result.
+<!-- ASSEMBLY FIG-05: v35 slide 10, synthetic 196/3/1 and critical breach; keep the sample caveat and accessible table. -->
 
-<!-- ASSEMBLY FIG-05: v35 slide 10, One Green Test Proves Almost Nothing; insert here after the sampling caveat, before the Ready / Done / Release table. Exact output and guards in appendix. -->
+We need to separate **ready to begin**, **done** and **authorized to release**. Readiness establishes the initial scope, obligations, budgets and evaluation plan. Done establishes evidence against those obligations, tested fallback and documented limitations. Release requires an accountable decision about the remaining operational risk and the capacity to intervene. One green demonstration cannot make all three decisions.
 
-This calls for three distinct decisions:
+### What if control fails at the moment it matters?
 
-| Decision | What must be established |
-| --- | --- |
-| **Ready to begin** | Responsibilities, prohibited outcomes, evaluation approach, key dependencies and operating budgets are clear enough to undertake the work. |
-| **Done** | The candidate meets agreed quality and evidence commitments; coverage, uncertainty and limitations are documented; controls and fallback have been tested. |
-| **Authorised to release** | An accountable owner accepts the defined operating scope and remaining risk, with monitoring and response capability in place. |
+Control cannot consist only of watching dashboards after a harmful answer has reached a user. The access assistant needs bounded retrieval, fallible semantic checks, **enforced permission and approval gates before consequential delivery**, a denial/fallback path and observation of what happened.
 
-A successful demo cannot make all three decisions for us.
+A second model reviewing the first may help; it can also make the same mistake. It must not substitute for exact authorization. After deployment, an authorized person must be able to narrow, suspend or disable the risky path and verify that intervention worked. [NIST's AI Risk Management Framework](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) addresses monitoring, disengagement and recovery as operational concerns.
 
-### Control must reach the consequence
+<!-- ASSEMBLY FIG-06: v35 slide 12, fallible semantics and hard permission/approval gate, denial/fallback, monitoring and intervention. -->
 
-For the access assistant, control begins before an answer or action reaches the user: restrict retrieval, check consequential claims, enforce permissions and required approval, and deny or use a safe fallback when necessary conditions fail.
+**A rollback cannot undisclose a credential.** A human-in-the-loop label does not establish that the person had the information, authority and time needed to act.
 
-A semantic checker can be wrong. Asking another model whether the first one behaved safely is not a substitute for enforcing access boundaries.
+If effective control cannot operate before the consequence, depends on unavailable people or makes the case economically infeasible, **narrow, redesign or reject that AI path**. Another impressive proof of concept will not fix an unworkable operating model.
 
-After deployment, we need to observe outcomes and control health, compare them against limits, and enable authorised intervention. Someone must be able to narrow the task, disable a tool or suspend a path—and establish that the intervention worked. [NIST's AI Risk Management Framework](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) likewise includes monitoring, recovery and mechanisms to disengage or deactivate systems that depart from intended use.
+## 6. What If Not?
 
-<!-- ASSEMBLY FIG-06: v35 slide 12, Production Needs a Control Loop; replace the existing runtime-control redraw. Exact output and guards in appendix. -->
+The direction is promising. I want it to work.
 
-A dashboard without the ability to stop harm is an observation mechanism, not a complete control system. “Human in the loop” is not enough when the person lacks information, authority or time.
+AI vendors have made a consequential bet: software generation, review, testing and increasingly the surrounding SDLC can be restructured around agents. Their own engineering accounts suggest that this is not fantasy. They are learning, investing in checks, changing the work and accepting the cost of those experiments.
 
-**And rollback cannot undisclose a credential.**
+But **you are not the vendor**.
 
-The full cost includes tokens, evaluations, retries and human response capacity. If control cannot operate before the consequence, depends on people who will not be available or makes the use case economically infeasible, **narrow, redesign or reject that AI path**. Adding another model as a checker is not a substitute for a control that can actually work. Rejecting one unsafe design is an engineering decision, not a failure of ambition.
+Your team has different customers. Your organization has existing systems, contracts, security boundaries and people who must answer the phone when production breaks. Your available expertise, volume of change, rollback options, regulatory constraints and appetite for loss may be nothing like those of an AI lab.
 
-## 6. Engineering rigor moves. It does not disappear.
+An operating model that works at a vendor's scale is not a portable proof that the same bet is right for you.
 
-The two shifts meet in the delivery operating model.
+And even capable vendors can be wrong—about timing, costs, generalizability or which problems the next model generation will solve. I hope the current bet pays off. I do not think every organization is obliged to go all-in before it knows what it is risking.
 
-We may generate software faster while building products that require more domain evaluation, clearer authority and stronger operational response. Planning only around coding capacity misses both changes.
+What troubles me most is not the ambition. It is how readily an organization-wide change to software engineering can be treated as **a proof of concept running inside the delivery system itself**: roll out the tools, discover which stage breaks next, automate that stage, and see what happens. We would never accept that as a complete systems-engineering argument for a consequential product. We should be more demanding when the product of the experiment is our ability to engineer and recover *all* the other products.
 
-Consider a simple dependency: an agent introduces a critical component in a language nobody on the team knows. Implementation looks complete. Review and recovery capability are not. The delivery plan needs to surface and resolve that gap before the component becomes indispensable.
+**What if not?** What if the promised speedup does not survive your review load, architecture, incident profile or cost structure? What if an agent eventually writes everything but nobody can establish what should have been built? What if the new process performs beautifully on good days and leaves your organization unable to respond on the bad one?
 
-Product and domain owners define useful outcomes and acceptable boundaries. Engineering and QA establish how those commitments are implemented and tested. Service owners need the ability to act in production. Delivery leadership connects these decisions, dependencies and capacities; it cannot replace them with a faster status report.
+There is an alternative to betting the company on a forecast. Choose a bounded workflow. Agree on the outcome, the baseline, the authority delegated and the failures you cannot accept. Track elapsed delivery time, useful customer effects, rework, instability, human load, expertise coverage, recovery and full operating cost. Test the candidate changes. Rehearse the moment the agent cannot fix its own error. Keep the ability to stop, contain and recover.
 
-These are distinct but connected research directions: [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) explores AI-assisted delivery risks; [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) examines consequential model judgment and operational control.
+Treat the result as evidence, including when it says *no*. Expand what works, redesign what is unproven and decline what your organization cannot safely operate.
 
-Start with one bounded workflow. Establish the baseline, useful outcome, delegated authority and prohibited results. Measure elapsed time, human effort, rework, stability and full operating cost—not generated volume alone.
+This discipline applies to both shifts: how we build, and what the running product is allowed to do. **Release does not close the laboratory.** Production outcomes and incidents must update our assumptions, evaluations and boundaries while delivery obligations continue.
 
-Then rehearse failure. Demonstrate how the team detects a problem, contains it and verifies recovery when the preferred automated path does not work. Reassess after material changes to the model, data or authority.
+<!-- ASSEMBLY FIG-07: v35 slide 14, continuous delivery and experimentation/learning loop; preserve both responsibilities. -->
 
-**Release does not close the laboratory.** Production outcomes and incidents must feed the next decision: do the original assumptions, tests, monitoring and delegated limits still hold? The team may have to update the evaluation set, tighten authority or change the workflow—while continuing to meet its delivery and service commitments.
-
-<!-- ASSEMBLY FIG-07: v35 slide 14, Engineering Rigor Moves — It Doesn't Disappear; place before the final two-paragraph conclusion. Exact output and guards in appendix. -->
-
-I am optimistic about what this makes possible: useful software we could not previously afford, less drudgery, better testing and faster repair. I do not want to protect unnecessary work from automation. I want us to know which necessary capabilities our new workflow actually preserves.
-
-Writing allowed ideas to outlive their authors. We are now expanding how much work with those ideas we can delegate.
+Lem's title is a reminder of ambition on the scale of a whole technological world. Our practical responsibility is smaller—and harder to delegate. Writing let ideas outlive their authors. AI may let much more of the work with those ideas proceed without us.
 
 **Build for the future you believe in. Keep the ability to act if that belief is wrong.**
+
+### Further reading
+
+The title alludes to Stanisław Lem, [*Summa Technologiae* (1964)](https://english.lem.pl/works/essays/summa-technologiae); for the historical industry trajectory, read [Cognition's 2024 Devin announcement](https://cognition.com/blog/introducing-devin), [Amodei's March 2025 remarks at the Council on Foreign Relations](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic), [Microsoft's 2026 SDLC argument](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) and [Anthropic's October 2026 account of code review](https://claude.dev/blog/solving-code-review-at-anthropic/). These links document claims and proposed practices; they do not jointly establish their universal effectiveness.
+
+The research strands behind the two shifts are [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) and [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture). Quantitative studies and operational standards are linked beside the claims they qualify.
 
 <!-- ARTICLE END -->
 
@@ -418,3 +403,17 @@ Writing allowed ideas to outlive their authors. We are now expanding how much wo
 | T06 | Independent editorial/quantitative/visual/rights review; record remaining #2:AC01–AC06 and #5 acceptance without inventing final publication or upstream transfer decisions. | Versioned review artifact, PR + issue evidence/checkboxes, author decisions pending |
 
 **Do not merge, stage/promote, publish or post externally as a byproduct of this draft update.** PR79 remains the implementation route, issue #2 the article/editorial owner and issue #5 the publisher owner. Fresh acceptance applies only to the assembled new edition, never to earlier r2 green checks.
+
+### Revision 0.7 — authorial voice, literary architecture and source additions
+
+**The requested title for the next candidate is `The Sum of Our Technology`, with `AI Changes Both Sides of Software Engineering` as the subtitle.** It is a deliberate allusion to **Stanisław Lem, [*Summa Technologiae* (1964)](https://english.lem.pl/works/essays/summa-technologiae)**. The book is a named item in the reader-facing Further reading, not a scientific source for the SDLC data and not a claim that Lem made these modern engineering predictions. Keep the current URL/slug of the r2 preview unless the maintainer explicitly changes it; update the new edition's article title, browser/meta/social/covers and PDF heading consistently at assembly rather than only the visible H1.
+
+**Narrative contract for Sol/Astra:** “What if not?” is a recurring adversarial *engineering question*, not a catchphrase to paste into every paragraph. Preserve four visible transitions: (i) code generation vs end-to-end flow, (ii) moving first-pass review and knowledge/recovery failure, (iii) specifications/explanations and their shared error assumptions, (iv) the final organizational-bet decision; keep the distinct value, runtime and release failure modes. Each intervention receives a fair condition under which it *could* succeed, its specific unproven assumption, the failure mode if it does not, and the observable safeguard/bounded experiment. Avoid repeating identical rhetorical questions mechanically.
+
+**Retrospective vendor evidence, not attributed fiction:** [Cognition's March 2024 Devin announcement](https://cognition.com/blog/introducing-devin) calls it the “first AI software engineer” **but says its tasks are reviewed by people**. [Dario Amodei's March 2025 CFR exchange](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic) forecasts 90% of code generation within 3–6 months and possibly essentially all code within a year, **while explicitly retaining human specification, design, integration and security work**. Do **not** attribute “all developers replaced tomorrow” as a verbatim promise by these sources. The author's critique targets the wider hype/interpretive jump from code production to end-to-end replacement and a foreseeable one-stage imbalance if downstream capacities stay fixed.
+
+**Contemporary vendor counterexample:** Microsoft [Jay Parikh, June 2026](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) advocates agent-assisted first pass **plus** human architectural oversight and bounded disposable code. Anthropic's [October 15, 2026 first-party engineering post](https://claude.dev/blog/solving-code-review-at-anthropic/) directly says it did not remove review: it describes automated layers, human risk-based checks, documentation/knowledge transfer and revert/incident guardrails. Present these as **actual claimed operating methods**, not as deleting review. Their reported organization-specific experience is not independent proof of portability or of reduced total systemic risk in the article author's delivery environment. Distinguish vendor claims, external observational research, hypothetical cases and the author's normative risk decisions.
+
+**Last chapter must be headed `## 6. What If Not?`**, replacing `Engineering rigor moves. It does not disappear.` as the heading, *not* the substance. Keep delivery-and-learning loop on slide 14 there and the original closing line. Distinguish customer/contracts/evidence/cost/skills from vendor goals; the organization need not go all-in, take unnecessary risk or run an uncontrolled SDLC-level PoC. Frame the approach as bounded pilot → baseline + explicit obligations → empirical outcomes/recovery → safe adoption/rollback/decline. Criticism is of unexamined system-level adoption, not vendor motives or all possible AI-assisted delivery.
+
+**Reader references:** Keep the new Lem book title and dates in the *Further reading* paragraphs, with Cognition, CFR, Microsoft and 15 October Anthropic primary links and named canonical UA/Subprime research sources. Follow the established friendly bibliography: **named linked sources**, not `source-1` numeric IDs or a generated technical edition footer. Do not invent book quotations or imply that Lem endorsed the current argument.
