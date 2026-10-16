@@ -68,7 +68,7 @@ count as success. No recurring clock schedule is implied by this guide.
 
 The accepted [#72 archive policy](https://github.com/oborskyivitalii/oborskyivitalii/issues/72)
 uses immutable `prod-YYYY-MM-DD.N` tags and GitHub Releases retaining exact
-`public.tar.gz`, `archive.json` and full test/external evidence. Records bind
+`public.tar.gz`, `archive.json`, `rights.json` and full test/external evidence. Records bind
 source/tree, public/package SHA256, validation run, date and previous accepted tag.
 CI retention is not archive lifetime. Deterministic packing and bounded
 manifest-only extraction live in `tools/release/package.py`; `archive.cjs` rejects
@@ -85,7 +85,7 @@ Rollback deploys the archived package unchanged and verifies it before moving
 the production pointer or labels. Immutable tags never move. Failed or partial
 transitions remain observable and preserve recoverable accepted packages.
 
-`site-release-candidate.yml` builds a distinct production edition before hashing
+`site-release-candidate.yml` builds the explicit Color production edition before hashing
 or testing: canonical URLs, indexing, robots, sitemap and owned 404. It publishes
 only an isolated `production-candidate-RUN` Cloudflare preview. Provider preview
 headers suppress indexing; the public archive already has its production policy.
@@ -94,6 +94,11 @@ That wrapper retains the complete native/browser/security/performance matrix.
 Its full hosted gate must match the exact public artifact; staging-edition HTML
 and the smaller staging gate cannot qualify. Independent, physical iOS/Android
 and applicable rights records must bind the same source/artifact.
+The candidate compiler retains a complete rights inventory with its public
+artifact. Publication requires `evidence.rights.inventoryDigest` matching that
+report, a separate maintainer review record, and a source-confirmed structured
+reuse-policy decision. Pending policy or inventory coverage alone cannot admit
+publication. See [the rights contract](SITE-RIGHTS.md).
 
 `site-production.yml` is dispatch-only and disabled unless
 `SITE_PRODUCTION_ENABLED=true`. `tools/release/controller.cjs` authenticates the
@@ -119,7 +124,7 @@ bookkeeping compensation; the run stays red. A frozen Release from a failed
 bookkeeping transition is retained but is not an accepted rollback target.
 
 Rollback consumes a previously live accepted immutable Release, verifies every
-asset digest and safely unpacks the original package, then repeats live
+asset digest including the frozen rights report and safely unpacks the original package, then repeats live
 production checks. It moves the active pointer and PR labels after success;
 the original Release/tag/evidence remain unchanged. Several releases from the
 same PR share its active PR label; their distinct tags and deployment records
@@ -346,3 +351,5 @@ session resumes from evidence.
 - [ZAP Baseline scope, rule configuration and exit codes](https://www.zaproxy.org/docs/docker/baseline-scan/).
 - [GitHub Pages custom deployment workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 - [Audit tools, versions and limits](../review/site-audit-v8-20261003/REPORT.md).
+
+Custom-domain rollout and finite .com redirects follow [the domain readiness plan](SITE-PRODUCTION.md) in #39.

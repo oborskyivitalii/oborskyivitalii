@@ -208,11 +208,44 @@ test('actual preflight producer and consumer agree on complete source guards and
       }
     );
     assert.equal(result.pass, true);
+    assert.deepEqual(result.checks.find((row) => row.id === 'python-tests').command, [
+      path.join(
+        require('../tools/quality/common.cjs').tools,
+        'venv',
+        process.platform === 'win32' ? 'Scripts' : 'bin',
+        process.platform === 'win32' ? 'python.exe' : 'python'
+      ),
+      'tools/run_repository_tests.py',
+    ]);
     assert.equal(
       preflight.reuse(f.reports, f.source.directory, path.join(f.directory, 'consumer'), f.expected)
         .pass,
       true
     );
+    const pythonCalls = [];
+    const missingPython = require('../tools/quality/local.cjs').prepublication(
+      'staging',
+      f.source.directory,
+      {
+        report: path.join(f.directory, 'missing-python/prepublication.json'),
+        identify: () => ({ ...f.source.record, sourceDirty: false }),
+        execute: (command, args) => {
+          if (args[0] === 'tools/run_repository_tests.py') {
+            pythonCalls.push(command);
+            throw Object.assign(new Error('missing locked interpreter'), { code: 'ENOENT' });
+          }
+          return { status: 0, stdout: '', stderr: '' };
+        },
+      }
+    );
+    assert.equal(missingPython.pass, false);
+    assert.deepEqual(pythonCalls, [
+      result.checks.find((row) => row.id === 'python-tests').command[0],
+    ]);
+    const failedPython = missingPython.checks.find((row) => row.id === 'python-tests');
+    assert.equal(failedPython.status, 'failed');
+    assert.equal(failedPython.error.code, 'ENOENT');
+    assert.match(fs.readFileSync(failedPython.stderr, 'utf8'), /missing locked interpreter/);
   } finally {
     for (const [key, value] of [
       ['GITHUB_RUN_ID', previous.run],

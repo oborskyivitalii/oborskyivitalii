@@ -49,7 +49,9 @@ function storedReport(execute, command, args, file, redact, accepted = [0]) {
     fs.writeFileSync(path.join(out, file), JSON.stringify(report, null, 2));
   } catch (error) {
     if (toolError)
-      throw Error(toolError.message + '; raw report: ' + error.message, { cause: error });
+      throw Error(toolError.message + '; raw report: ' + error.message, {
+        cause: error,
+      });
     throw error;
   }
   if (toolError) throw toolError;

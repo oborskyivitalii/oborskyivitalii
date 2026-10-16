@@ -209,10 +209,77 @@ test('prepublication preserves distinct child runner stderr and command-level fa
   assert.equal(fs.readFileSync(wrapper.stderr, 'utf8'), 'distinct CLI error summary');
 });
 
+test('prepublication preserves inner source timeout evidence before its distinct outer deadline', (t) => {
+  const directory = delivery.temporary(t),
+    runner = require('../tools/quality/source-tests.cjs');
+  assert.equal(runner.executionLimits.timeoutMs, 180000);
+  for (const level of ['staging', 'production']) {
+    let runnerReport;
+    let sourceDeadline;
+    const otherDeadlines = [];
+    const result = local.prepublication(level, path.join(directory, 'artifact'), {
+      report: path.join(directory, level, 'preflight.json'),
+      identify: () => ({
+        sourceCommit: process.env.SITE_CANDIDATE_SHA || 'a'.repeat(40),
+        sourceTree: 'b'.repeat(40),
+        sourceDirty: false,
+      }),
+      execute: (_command, args, execution) => {
+        if (args[0] !== 'tools/quality/source-tests.cjs') {
+          otherDeadlines.push(execution.timeout);
+          return { status: 0, stdout: '', stderr: '' };
+        }
+        sourceDeadline = execution.timeout;
+        assert.ok(execution.timeout > runner.executionLimits.timeoutMs);
+        runnerReport = args[args.indexOf('--report') + 1];
+        let failure;
+        try {
+          runner.run(
+            path.resolve(__dirname, '..'),
+            { profile: level, modules: ['tests/analytics.test.cjs'] },
+            {
+              report: runnerReport,
+              execute: () => ({
+                status: null,
+                signal: 'SIGTERM',
+                error: Object.assign(new Error('owned source timeout'), { code: 'ETIMEDOUT' }),
+                stdout: 'original partial child TAP\n',
+                stderr: 'original inner timeout stderr\n',
+              }),
+            }
+          );
+        } catch (error) {
+          failure = error;
+        }
+        assert.ok(failure?.report, 'inner failure must finish writing its report');
+        return { status: 1, stdout: JSON.stringify(failure.report), stderr: failure.message };
+      },
+    });
+    assert.equal(result.pass, false, 'a reported inner timeout remains blocking');
+    assert.deepEqual(
+      result.checks.filter((row) => !row.pass).map((row) => row.id),
+      ['source-tests']
+    );
+    assert.equal(sourceDeadline, 210000);
+    assert.ok(otherDeadlines.length > 0);
+    assert.ok(otherDeadlines.every((timeout) => timeout === 180000));
+    const raw = JSON.parse(fs.readFileSync(runnerReport, 'utf8')),
+      wrapper = result.checks.find((row) => row.id === 'source-tests');
+    assert.equal(raw.pass, false);
+    assert.equal(raw.execution.timeoutMs, 180000);
+    assert.equal(raw.execution.error.code, 'ETIMEDOUT');
+    assert.equal(fs.readFileSync(raw.files.tap, 'utf8'), 'original partial child TAP\n');
+    assert.equal(fs.readFileSync(raw.files.stderr, 'utf8'), 'original inner timeout stderr\n');
+    assert.deepEqual(JSON.parse(fs.readFileSync(wrapper.stdout, 'utf8')), raw);
+    assert.equal(wrapper.timeoutMs, 210000);
+    assert.equal(result.checks.find((row) => row.id === 'security').pass, true);
+    assert.equal(result.checks.find((row) => row.id === 'unchanged-source').pass, true);
+  }
+});
+
 test('preflight edition guard accepts production bytes on either host profile and rejects coverage-edition mismatches', (t) => {
   const directory = delivery.temporary(t);
-  const production = delivery.source(directory, 'production');
-  production.record = require('../tools/release/edition.cjs').build(production.directory);
+  const production = delivery.production(directory);
   const stage = delivery.staging(directory);
   for (const [level, source] of [
     ['production', production],
@@ -257,7 +324,7 @@ test('known licensed publications require frozen rights by actual runtime bytes 
     fs.rmSync(path.join(source.directory, 'rights.json'));
     assert.throws(
       () => staging.build(source.directory, path.join(temp, 'missing-' + edition)),
-      /rights record required/
+      /rights record required|rights\.json/
     );
     for (const alter of [
       (record) => {
@@ -281,7 +348,7 @@ test('known licensed publications require frozen rights by actual runtime bytes 
       fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(record));
       assert.throws(
         () => staging.build(source.directory, path.join(temp, 'opt-out')),
-        /rights record required|conflicting tested runtime identity/
+        /rights record required|rights\.json|conflicting tested runtime identity/
       );
     }
   }
@@ -309,21 +376,9 @@ test('staging retains exact frozen license records for default and finite proxy 
     stale.rightsDigest = '0'.repeat(64);
     assert.throws(() => staging.verify(directory, stale), /rights digest differs/);
   }
-  const cli = path.join(temp, 'cli');
-  cp.execFileSync(process.execPath, ['tools/staging/package.cjs', 'build', source.directory, cli], {
-    stdio: 'pipe',
-    env: fixtureEnvironment(source, {
-      ...process.env,
-      SITE_CANDIDATE_SHA: 'f'.repeat(40),
-      SITE_EXPECTED_PUBLIC_DIGEST: '0'.repeat(64),
-      SITE_ARTIFACT_ID: '999',
-      SITE_UPLOAD_DIGEST: 'sha256:' + '0'.repeat(64),
-    }),
-  });
-  assert.deepEqual(
-    JSON.parse(fs.readFileSync(path.join(cli, 'staging-package.json'))).rights,
-    source.report
-  );
+  // The real clean-checkout CLI chain and its source/report failures belong to
+  // release-rights.test.cjs: publication actual edition and package CLIs.
+  // These synthetic identities exercise the package API and frozen sidecars.
 });
 
 test('rehashed public revision metadata cannot relabel exact licensed runtime bytes as historical base', (t) => {
@@ -451,7 +506,7 @@ test('Pages requires modern records and binds root and staging reports in the pu
   fs.rmSync(path.join(source.directory, 'rights.json'));
   assert.throws(
     () => pages.build(source.directory, path.join(temp, 'missing')),
-    /rights record required/
+    /rights record required|rights\.json/
   );
   fixture.save(source);
   const directory = path.join(temp, 'pages');
@@ -465,6 +520,27 @@ test('Pages requires modern records and binds root and staging reports in the pu
     root: source.report.inventoryDigest,
   });
   assert.equal(pages.verify(directory, record), true);
+  const receiptPath = path.join(directory, 'public/_delivery/state.json');
+  const originalReceipt = fs.readFileSync(receiptPath);
+  const inventedProduction = structuredClone(record);
+  inventedProduction.state.production = {
+    tag: 'prod-2026-10-15.1',
+    sourceCommit: record.root.sourceCommit,
+    publicDigest: record.root.artifactDigest,
+  };
+  try {
+    fs.writeFileSync(receiptPath, JSON.stringify(inventedProduction.state));
+    const rehashed = artifact.manifest(path.join(directory, 'public'));
+    inventedProduction.files = rehashed.files;
+    inventedProduction.packageDigest = rehashed.artifactDigest;
+    assert.throws(
+      () => pages.verify(directory, inventedProduction),
+      /wrong publication edition/,
+      'a coherently rehashed receipt cannot promote staging bytes to production'
+    );
+  } finally {
+    fs.writeFileSync(receiptPath, originalReceipt);
+  }
   const missing = structuredClone(record);
   delete missing.rights;
   assert.throws(() => pages.verify(directory, missing), /rights record required/);
@@ -487,7 +563,7 @@ test('Pages requires modern records and binds root and staging reports in the pu
 test('modern staging can preserve an accepted historical production root without inventing its rights', (t) => {
   const temp = delivery.temporary(t);
   const source = fixture.fixture(temp);
-  const production = delivery.source(temp, 'production', 'c'.repeat(40));
+  const production = fixture.historical(temp, 'production');
   const directory = path.join(temp, 'combined');
   const record = pages.build(
     source.directory,
@@ -532,21 +608,9 @@ test('both controller extraction routes retain the validated frozen report and e
 
 test('default Pages output and historical verification preserve actual pinned-main bytes', (t) => {
   const temp = delivery.temporary(t);
-  const stage = delivery.staging(temp, true);
-  const production = delivery.source(temp, 'production', 'c'.repeat(40));
-  const previous = path.join(temp, 'previous');
-  const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
-  for (const name of [
-    'tools/pages/package.cjs',
-    'tools/quality/artifact.cjs',
-    'tools/quality/budgets.json',
-    'tools/site/snapshot.cjs',
-    'tools/release/archive.cjs',
-  ]) {
-    const file = path.join(previous, name);
-    fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.writeFileSync(file, cp.execFileSync('git', ['show', baseline + ':' + name]));
-  }
+  const stage = fixture.historical(temp, 'staging', { staging: true, color: true });
+  const production = fixture.historical(temp, 'production');
+  const previous = stage.baselineRoot;
   for (const [name, prefix, prod] of [
     ['initial', '/', false],
     ['project', '/author/', false],
@@ -653,23 +717,51 @@ test('explicit stable and production workflows run prepublication before deploya
   assert.doesNotMatch(reusableBuild, /check node tools\/quality\/source-tests\.cjs/);
 });
 
-test('compact-metadata and Writing identities still require frozen publication rights before any file access', () => {
+test('compact-metadata identities still require frozen publication rights before any file access', () => {
   const motion = require('../tools/quality/color-motion-contract.cjs');
-  for (const id of [
-    'issue39-licensed-compact-plain',
-    'issue39-licensed-compact-staging',
-    'issue39-writing-tbt-plain',
-    'issue39-writing-tbt-staging',
-  ]) {
-    const runtime = motion.reviewedRuntime(id),
-      edition = runtime.edition;
+  for (const edition of ['plain', 'staging', 'production']) {
+    const runtime = motion.reviewedRuntime('issue39-licensed-compact-' + edition);
+    const original = motion.reviewedRuntime('issue39-licensed-' + edition);
+    assert.deepEqual(runtime.files, original.files);
     const source = {
       variant: runtime.variant,
       components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },
       files: {},
       ...(edition === 'staging'
         ? { edition: { id: 'staging', indexable: false, analytics: false } }
-        : {}),
+        : edition === 'production'
+          ? { edition: { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' } }
+          : {}),
+    };
+    for (const [name, sha256] of Object.entries(runtime.files)) {
+      source.files[name] = { sha256 };
+      source.files['runtime/' + runtime.variant.fingerprint + '/' + name] = { sha256 };
+    }
+    assert.equal(staging.publicationRequired(source, source.components), true);
+    assert.throws(
+      () => staging.publicationRights('/no-file-access', source, undefined, source.components),
+      /licensed publication rights record required/
+    );
+  }
+});
+
+test('optimized Writing identities still require frozen publication rights before any file access', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const runtime = motion.reviewedRuntime('issue39-writing-tbt-' + edition);
+    const original = motion.reviewedRuntime('issue39-licensed-' + edition);
+    assert.notEqual(runtime.files['space.js'], original.files['space.js']);
+    for (const file of ['styles.css', 'theme.js', 'archive.js', 'navigation.js'])
+      assert.equal(runtime.files[file], original.files[file]);
+    const source = {
+      variant: runtime.variant,
+      components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },
+      files: {},
+      ...(edition === 'staging'
+        ? { edition: { id: 'staging', indexable: false, analytics: false } }
+        : edition === 'production'
+          ? { edition: { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' } }
+          : {}),
     };
     for (const [name, sha256] of Object.entries(runtime.files)) {
       source.files[name] = { sha256 };

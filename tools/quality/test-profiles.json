@@ -47,6 +47,7 @@
         "tools/quality/artifact.cjs",
         "tools/quality/budgets.json",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/test-profiles.json",
         "tools/site/build.cjs",
         "tools/site/snapshot.cjs",
@@ -255,7 +256,7 @@
     {
       "path": "tests/analytics.test.cjs",
       "language": "javascript",
-      "purpose": "Consent/disabled/vendor and executable-boundary analytics generation; stable source retention",
+      "purpose": "Optional exact-origin analytics composition/runtime isolation and the actual hosted/offline analytics-browser fixture producer with strict declared legal-owner closure and missing/symlink negatives.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -276,6 +277,12 @@
         "tools/build_scene_fallbacks.cjs",
         "site/integrations/**",
         "site/site.json",
+        "site/analytics.json",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
         "tools/quality/analytics-browser.cjs"
       ]
     },
@@ -362,7 +369,7 @@
     {
       "path": "tests/cause-probe.test.cjs",
       "language": "javascript",
-      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission.",
+      "purpose": "Private causal normal/trace identity, original CPU/network evidence, exact four-input Writing derivation/count and retained failures without performance admission. Five ordinary current Writing trials plus one separate CPU sample, fresh-process failure retention and unchanged budgets.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": ["diagnostic", "pr-targeted"],
@@ -404,7 +411,13 @@
         "tools/site/effects.cjs",
         "tools/quality/transition-pacing.json",
         "tools/quality/transition-pacing.cjs",
-        "tools/quality/budgets.json"
+        "tools/quality/budgets.json",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html"
       ]
     },
     {
@@ -425,7 +438,11 @@
         "review/issue-48/content-amendment.json",
         "review/issue-48/source-inventory.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "site/analytics.json",
+        "tools/site/analytics.cjs",
+        "site/routes.json",
+        "tools/quality/artifact.cjs"
       ]
     },
     {
@@ -462,11 +479,11 @@
     {
       "path": "tests/executive.test.cjs",
       "language": "javascript",
-      "purpose": "Current SEO/source reconciliation negative cases and semantic Day/Night contrast; first case duplicates standalone SEO positive verifier",
+      "purpose": "Exact SEO/source reconciliation, approved #7/#39 hash-pinned Credits licensing successor and legal-only CSS delta with independent failure negatives and Day/Night contrast",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; #7/#39 reverses only the exact approved Credits legal fragments/full texts and three wrapping declarations, retaining historical baseline and all unrelated source/SEO negatives",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
@@ -480,7 +497,13 @@
         "review/issue-41/content-amendment.json",
         "review/issue-48/content-amendment.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "docs/styles.css"
       ]
     },
     {
@@ -621,7 +644,13 @@
         "site/effects/**",
         "docs/site-revision.json",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html"
       ]
     },
     {
@@ -640,7 +669,12 @@
         "site/templates/**",
         "site/effects/**",
         "tools/site/**",
-        "tools/build_scene_fallbacks.cjs"
+        "tools/build_scene_fallbacks.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs"
       ]
     },
     {
@@ -809,7 +843,14 @@
         "site/templates/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",
-        "tools/build_scene_fallbacks.cjs"
+        "tools/build_scene_fallbacks.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/engine/styles.css",
+        "docs/styles.css"
       ]
     },
     {
@@ -939,7 +980,7 @@
     {
       "path": "tests/staging.test.cjs",
       "language": "javascript",
-      "purpose": "Exact hosted package/headers/routing/rollback, pinned legacy-default hosting bytes, finite versioned immutable-snapshot proxy rejection, source leases, retained inputs and browser-visible recovery contract",
+      "purpose": "Exact hosted package/headers/routing/rollback, source leases, retained inputs and browser-visible recovery contract",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -958,7 +999,7 @@
     {
       "path": "tests/test-profile-selection.test.cjs",
       "language": "javascript",
-      "purpose": "Complete test registry, bounded source selection, strict named Basic/profile accounting and explicit raw/structured failure reports with clean-source and write-failure negatives.",
+      "purpose": "Complete test registry and bounded source selection, conservative changed-source fallback and strict failed/skipped/TAP accounting.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -967,8 +1008,9 @@
       "inputs": [
         "tests/test-profile-selection.test.cjs",
         "tools/quality/source-tests.cjs",
-        "tools/quality/local.cjs",
-        "tools/quality/test-profiles.json"
+        "tools/quality/source-test-worker.cjs",
+        "tools/quality/test-profiles.json",
+        "tools/quality/local.cjs"
       ]
     },
     {
@@ -1057,7 +1099,7 @@
     {
       "path": "tests/test_repository_test_selection.py",
       "language": "python",
-      "purpose": "Permanent discovery includes current/future generic modules, rejects individually empty modules in mixed suites and preserves combined-run lifecycle/accounting while numeric task snapshots stay separate",
+      "purpose": "Permanent discovery includes current/future generic modules and excludes numeric task snapshots without weakening runner accounting",
       "owner": ".github/REPOSITORY-INTELLIGENCE.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1407,7 +1449,12 @@
         "tests/build-cohesion.test.cjs",
         "tools/site/**",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs"
       ]
     },
     {
@@ -1544,13 +1591,23 @@
         "site/effects/environment.css",
         "tests/fixtures/delivery.cjs",
         "tools/site/edition.cjs",
+        ".github/workflows/site-pages-migration.yml",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html",
+        "tools/release/rights-record.cjs",
+        "tools/release/rights.cjs",
+        "site/rights.json",
         "tools/quality/serve.cjs"
       ]
     },
     {
       "path": "tests/release-archive.test.cjs",
       "language": "javascript",
-      "purpose": "Durable archives, unsafe extraction, full/external proof and verified rollback negatives",
+      "purpose": "Durable archives, unsafe extraction, full/external and exact rights inventory proof, frozen archived verification and rollback negatives",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1560,13 +1617,25 @@
         "tests/release-archive.test.cjs",
         "tools/release/**",
         "tools/quality/promotion.cjs",
-        "tests/fixtures/delivery.cjs"
+        "tests/fixtures/delivery.cjs",
+        "site/rights.json",
+        ".github/workflows/site-production.yml",
+        ".github/workflows/site-candidate-evidence.yml",
+        "tools/release/edition-archive.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/site/snapshot.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html"
       ]
     },
     {
       "path": "tests/release-controller.test.cjs",
       "language": "javascript",
-      "purpose": "Real-job/protection/raw-asset admission and failed live/ref/label/rollback transitions; all external operations use fixtures.",
+      "purpose": "Color/production social metadata and real-job/protection/raw-asset/rights admission with failed live/ref/label/rollback transitions; all external operations use fixtures.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1581,7 +1650,20 @@
         "tools/quality/hosted.cjs",
         "tests/fixtures/delivery.cjs",
         ".github/workflows/site-production.yml",
-        ".github/workflows/site-release-candidate.yml"
+        ".github/workflows/site-release-candidate.yml",
+        "site/content/production-social.json",
+        "site/rights.json",
+        "tools/staging/color.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        ".github/workflows/site-candidate-evidence.yml",
+        "tools/release/edition-archive.cjs",
+        "tools/quality/artifact.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html"
       ]
     },
     {
@@ -1619,7 +1701,12 @@
         "tools/quality/test-profiles.json",
         "tools/quality/transition-pacing.cjs",
         "tools/quality/transition-pacing.json",
-        "tools/quality/budgets.json"
+        "tools/quality/budgets.json",
+        "tools/release/edition.cjs",
+        "tools/staging/color.cjs",
+        "tools/staging/edition.cjs",
+        "site/content/production-social.json",
+        ".github/workflows/site-release-candidate.yml"
       ]
     },
     {
@@ -1660,24 +1747,134 @@
       ]
     },
     {
+      "path": "tests/edition-retention.test.cjs",
+      "language": "javascript",
+      "purpose": "Color and production retain exact immutable prior editions; staging remains isolated and altered retained collisions/closure fail.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent production-preparation failure surfaces; fixture success does not grant live release or rights approval",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/edition-retention.test.cjs",
+        "tools/site/edition-retention.cjs",
+        "tools/site/edition.cjs",
+        "tools/staging/color.cjs",
+        "tools/staging/edition.cjs",
+        "tools/release/edition.cjs",
+        "tools/pages/package.cjs",
+        "site/retained/**",
+        "site/analytics.json",
+        "tests/fixtures/delivery.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html"
+      ]
+    },
+    {
+      "path": "tests/pages-migration.test.cjs",
+      "language": "javascript",
+      "purpose": "Authenticated finite Pages origin migration, retained package and source/settings leases, bounded ZIP extraction and exact failed-execution recovery negatives.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent production-preparation failure surfaces; fixture success does not grant live release or rights approval",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/pages-migration.test.cjs",
+        "tools/pages/**",
+        "tools/staging/review-flow.cjs",
+        "tools/staging/edition.cjs",
+        "tools/site/edition.cjs",
+        "tests/fixtures/delivery.cjs",
+        ".github/workflows/site-pages-migration.yml",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html"
+      ]
+    },
+    {
+      "path": "tests/release-rights.test.cjs",
+      "language": "javascript",
+      "purpose": "Complete actual rights inventory, mandatory stage/production publication source/edition binding, full frozen legal-copy mutation rejection, linked-only material notices and exact archived report/recovery preservation without automatic approval.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent production-preparation failure surfaces; fixture success does not grant live release or rights approval",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/release-rights.test.cjs",
+        "tools/release/rights.cjs",
+        "tools/release/edition.cjs",
+        "site/**",
+        "docs/**",
+        "tools/site/**",
+        "README.md",
+        "CONTRIBUTING.md",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "guides/SITE-SOURCE-AUDIT.md",
+        "guides/SITE-CONTENT-REVIEW.md",
+        "tools/RI-LICENSE.md",
+        "tools/RI-NOTICE.md",
+        "review/assets/vitalii-oborskyi-cutout-20261002.png",
+        "tools/release/edition-archive.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/site/snapshot.cjs",
+        "tools/site/legal.cjs",
+        "tools/release/rights-record.cjs",
+        "tools/staging/edition.cjs",
+        "tools/staging/package.cjs",
+        "tools/pages/**",
+        "tests/fixtures/delivery.cjs",
+        ".github/workflows/site-release-checks.yml",
+        ".github/workflows/site-pages.yml",
+        "tools/quality/local.cjs",
+        "tools/staging/color.cjs",
+        "tools/quality/budgets.json",
+        "tools/quality/common.cjs",
+        "tools/quality/color-motion-contract.cjs"
+      ]
+    },
+    {
       "path": "tests/test_issue39_acceptance.py",
       "language": "python",
-      "purpose": "Issue39 controller dependency preserves all 607 protected main paths/modes and 606 blobs outside the sole package host-policy amendment, verifies actual legacy-default byte parity and finite snapshot proxy rejection, binds licensing tuples and preserves strict selector/telemetry/readiness failures; actual both-host admission remains external.",
+      "purpose": "Issue39 finite domain fixtures, authored/runtime preservation and selected production implementation checks; actual provider, rights, settings and publication acceptance remain external.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue39 compatibility phase only; PR40 retains the full licensing/production mapping after rebase",
+      "disposition": "owning issue39 policy only; reuse permanent delivery/rights/retention suites without recurring historical task snapshots",
       "surviving_route": ".github/acceptance/issue-39.json",
       "inputs": [
         "tests/test_issue39_acceptance.py",
         ".github/acceptance/issue-39.json",
+        "tests/edition-retention.test.cjs",
+        "tests/pages-migration.test.cjs",
+        "tests/release-rights.test.cjs",
+        "tests/release-controller.test.cjs",
+        "tests/release-archive.test.cjs",
         "tests/color-motion-contract.test.cjs",
+        "tests/analytics.test.cjs",
+        "tests/pages-delivery.test.cjs",
+        "tools/quality/source-tests.cjs",
         "tools/quality/color-motion-contract.cjs",
         "review/issue-39/2026-10-15-license-tuples.json",
         "tools/quality/staging-regression.cjs",
         "tests/staging-regression.test.cjs",
         "tools/staging/package.cjs",
-        "tests/staging.test.cjs"
+        "tests/staging.test.cjs",
+        "tools/quality/local.cjs",
+        "tools/release/rights-record.cjs",
+        "tools/pages/package.cjs",
+        "tests/publication-records.test.cjs"
       ]
     },
     {
@@ -1704,7 +1901,33 @@
         ".github/workflows/site-checks.yml",
         ".github/workflows/site-color-review.yml",
         ".github/workflows/site-release-candidate.yml",
-        ".github/workflows/site-release-checks.yml"
+        ".github/workflows/site-release-checks.yml",
+        "site/**",
+        "docs/**",
+        "tools/site/**",
+        "tools/release/rights.cjs",
+        "tools/release/edition.cjs",
+        "tools/release/edition-archive.cjs",
+        "tools/staging/edition.cjs",
+        "tools/staging/color.cjs",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "site/rights.json",
+        "README.md",
+        "CONTRIBUTING.md",
+        "guides/SITE-SOURCE-AUDIT.md",
+        "guides/SITE-CONTENT-REVIEW.md",
+        "tools/RI-LICENSE.md",
+        "tools/RI-NOTICE.md",
+        "review/assets/vitalii-oborskyi-cutout-20261002.png",
+        "tools/quality/artifact.cjs",
+        "tools/site/snapshot.cjs",
+        "tools/site/legal.cjs",
+        ".github/workflows/site-pages.yml",
+        "tools/quality/budgets.json",
+        "tools/quality/common.cjs"
       ]
     },
     {

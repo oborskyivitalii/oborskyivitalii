@@ -26,6 +26,13 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
+  issue39: {
+    behavior: 'fixed-blocks',
+    baseEngine: '77a4d80ad8427e79d10a7c3cb6a5dd20a858296b74fef3e735e5f20578a428ad',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
   issue39Licensed: {
     behavior: 'fixed-blocks',
     baseEngine: '53bb494ae3b2bc9ea5b838755ee5b2b9c48fab7183fc6c53a2461dc44dbb004f',
@@ -92,6 +99,34 @@ const runtimes = [
     styles: '545b7cb79e15706a80087ebc5cf5139b0c4af564d47f141b7a1ede0915c18a97',
   },
   {
+    id: 'issue76-production',
+    family: 'issue76',
+    edition: 'production',
+    fingerprint: 'a7fed56c7d5019efd5c5dbf4b88c6fea711bd0c30a418cafcbb587a6af726442',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
+    id: 'issue39-plain',
+    family: 'issue39',
+    edition: 'plain',
+    fingerprint: '38fd594346f5250133ff433c27bc25eb2e1bfc7865f53dd3a3be783690d14fcc',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
+    id: 'issue39-staging',
+    family: 'issue39',
+    edition: 'staging',
+    fingerprint: '20001067aff1664b0dafe384dc1de7e3a1ce4d4a5647cc84d9f3eed639f63af8',
+    styles: '545b7cb79e15706a80087ebc5cf5139b0c4af564d47f141b7a1ede0915c18a97',
+  },
+  {
+    id: 'issue39-production',
+    family: 'issue39',
+    edition: 'production',
+    fingerprint: 'b4202b7c567affcaaad94eec403329d45ea18fbfd886ac0a3556926ca045f196',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
     id: 'issue39-licensed-plain',
     family: 'issue39Licensed',
     edition: 'plain',
@@ -104,6 +139,13 @@ const runtimes = [
     edition: 'staging',
     fingerprint: '79a40d3f5166b1ac87575db60bd9f24bcaef768d8158b7a963ae181ec58e777b',
     styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-licensed-production',
+    family: 'issue39Licensed',
+    edition: 'production',
+    fingerprint: 'bb5a2643fed4d2caef69289634bffe4a35b0ceef2345affbf3be6f25903c9c06',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
   {
     id: 'issue39-licensed-compact-plain',
@@ -120,6 +162,13 @@ const runtimes = [
     styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
   },
   {
+    id: 'issue39-licensed-compact-production',
+    family: 'issue39LicensedCompact',
+    edition: 'production',
+    fingerprint: 'b848de73373003be1f141f9d51d30d6fa7343df0b33ce41e00713335d553083e',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
     id: 'issue39-writing-tbt-plain',
     family: 'issue39WritingTbt',
     edition: 'plain',
@@ -132,6 +181,13 @@ const runtimes = [
     edition: 'staging',
     fingerprint: '4bbfd81338ddb659308ed833aa519d34f136278bacd6638efcdded6f8e968e2e',
     styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-writing-tbt-production',
+    family: 'issue39WritingTbt',
+    edition: 'production',
+    fingerprint: '6f9b49f746e1a5f2e18138d8d34ee0f9dd2b35b7a68d6b6cbe2b015424e28cf4',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
 ];
 function reviewedRuntime(id) {
@@ -171,7 +227,9 @@ function select(manifest) {
     manifest.edition,
     runtime.edition === 'staging'
       ? { id: 'staging', indexable: false, analytics: false }
-      : undefined,
+      : runtime.edition === 'production'
+        ? { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' }
+        : undefined,
     'Color runtime edition differs'
   );
   for (const [name, hash] of Object.entries(runtime.files)) {

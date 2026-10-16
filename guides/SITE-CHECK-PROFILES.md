@@ -133,6 +133,14 @@ reports keep `fullGate: false` and `performanceAcceptance: false`. This does not
 change ordinary staging trials, settings, cases or admission budgets. Historical
 Research/WebKit cause-probe replay stays manual and retains its original count.
 
+Issue #39 uses the separate PR #40-only `site-writing-current-evidence` label
+job in that same workflow: five ordinary fresh-process mobile/simulated Writing
+trials on one exact unchanged Color artifact, followed by one separately sampled
+CPU attribution. Every result, trace and network log survives; no retry or
+best-run selection. The original200ms individual budget remains; collection
+success is not performance acceptance or full/staging admission. Cleanup failure
+stops further launches. Historical protocols above remain unchanged.
+
 ## Complete production regression
 
 `validation_level: production` is the reusable workflow's default. Run the full
@@ -147,7 +155,7 @@ The `profile` / `SITE_TEST_PROFILE` value describes the hosted origin and its
 indexing policy (`staging` or `production`); `validation_level` selects the test
 coverage. Full production regression can inspect an immutable staging candidate
 without claiming production-origin indexing/TLS/ZAP acceptance. A production
-origin must receive its applicable live checks separately. Color is staging-only.
+origin must receive its applicable live checks separately. The explicit frozen production candidate supports Color; its staging edition never qualifies as production evidence.
 
 See [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) for unchanged release budgets and
 [SITE-STAGING](SITE-STAGING.md) for controller, source leases, promotion and
@@ -161,6 +169,14 @@ source suites instead of a wildcard that revives every historical snapshot.
 Historical issue-specific policies remain source-pinned evidence; the current
 issue selects its own policy. Manual diagnostic workflows stay manual and are
 not counted as an automatic speed improvement.
+
+The source runner delegates execution to
+[`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
+the measured long `space`, `executive` and `release-rights` modules first, then
+the remaining selected files lexically, retaining the same selected set, Node
+process isolation, default worker allocation, native TAP and strict accounting.
+The fixed 180-second child bound and 16MiB output bound remain; SIGTERM/SIGINT
+abort the owned runner and reap its children before timeout evidence is retained.
 
 At every issue's completion, review its tests against PR smoke, bounded staging
 and full production coverage. Record additions, merged duplicate assertions,

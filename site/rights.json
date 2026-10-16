@@ -1,0 +1,267 @@
+{
+  "schema": 1,
+  "ownerIssue": 7,
+  "policy": {
+    "status": "confirmed-by-maintainer",
+    "observedPublicNotice": "scoped-apache-2.0-and-cc-by-4.0-with-exceptions",
+    "scope": ["original-code", "original-text", "original-nonbrand-diagrams"],
+    "decision": {
+      "selection": "explicit-licenses",
+      "reviewer": "oborskyivitalii",
+      "record": "https://github.com/oborskyivitalii/oborskyivitalii/issues/7#licensing-selection-20261015",
+      "decidedAt": "2026-10-15",
+      "licenses": {
+        "original-code": "Apache-2.0",
+        "original-text": "CC-BY-4.0",
+        "original-nonbrand-diagrams": "CC-BY-4.0"
+      }
+    },
+    "boundary": "The maintainer selected these scoped reuse licenses. This inventory supplies no exact-edition rights/editorial approval and cannot grant third-party, identity, portrait or upstream rights."
+  },
+  "bases": {
+    "linked-metadata": {
+      "kind": "linked-publication-and-discussion-metadata",
+      "provenance": [
+        "site/content/catalog.json",
+        "guides/SITE-SOURCE-AUDIT.md",
+        "guides/SITE-CONTENT-REVIEW.md"
+      ],
+      "reuse": "Titles, factual metadata, outbound links and bounded attributed summaries only. External article bodies, recordings, figures, slides, PDFs and licenses are not imported."
+    },
+    "advisor-consent": {
+      "kind": "maintainer-attested-written-consent",
+      "provenance": ["guides/SITE-SOURCE-AUDIT.md"],
+      "people": ["Markus Kopko", "Otman Basir"],
+      "scope": "UA advisory-role display recorded on 2026-10-07. Private correspondence is neither inspected nor published; no institutional endorsement."
+    },
+    "portrait-source": {
+      "kind": "maintainer-supplied-photograph",
+      "provenance": ["guides/SITE-SOURCE-AUDIT.md"],
+      "scope": "Supplied IMG_0431.jpeg, unchanged 960x887 JPEG. Existing site-use instruction preserved. Photographer ownership/general visitor reuse is not independently established."
+    },
+    "portrait-derivative": {
+      "kind": "ai-assisted-background-removal",
+      "provenance": [
+        "guides/SITE-SOURCE-AUDIT.md",
+        "review/assets/vitalii-oborskyi-cutout-20261002.png"
+      ],
+      "scope": "AI-assisted PNG derivative, resized/encoded to transparent WebP. No claim of exact foreground-pixel preservation or general reuse permission."
+    },
+    "retained-edition": {
+      "kind": "pinned-prior-public-bytes",
+      "provenance": ["site/retained/manifest.json", "guides/SITE-SOURCE-AUDIT.md"],
+      "scope": "Previous immutable public snapshots/runtime/media preserve their exact recorded bytes and historical notice boundaries. The current licensing decision does not silently rewrite or relicense these retained editions."
+    },
+    "ri-component": {
+      "kind": "component-license",
+      "provenance": ["tools/RI-NOTICE.md", "tools/RI-LICENSE.md"],
+      "license": "Apache-2.0",
+      "scope": "Repository Intelligence tooling retains its original Apache-2.0 notice and provenance. This component notice does not independently license portraits, editorial text, branding, or UA/Subprime research."
+    },
+    "original-code": {
+      "kind": "authored-software",
+      "license": "Apache-2.0",
+      "provenance": ["LICENSING.md", "LICENSE-CODE.md", "NOTICE.md"],
+      "scope": "Original implementation, including JavaScript, CSS, templates, rendering, delivery, tests and technical configuration. Embedded editorial text and excluded material retain their own scopes."
+    },
+    "original-text": {
+      "kind": "authored-editorial-material",
+      "license": "CC-BY-4.0",
+      "provenance": [
+        "LICENSING.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
+        "guides/SITE-SOURCE-AUDIT.md"
+      ],
+      "scope": "Original website editorial text and new original author-owned hosted article text unless an edition states otherwise. No retrospective blanket grant for externally linked publications or third-party quotations."
+    },
+    "original-diagram": {
+      "kind": "authored-nonbrand-diagram",
+      "license": "CC-BY-4.0",
+      "provenance": [
+        "LICENSING.md",
+        "LICENSE-CONTENT.md",
+        "site/assets/writing-paradigm.svg",
+        "guides/SITE-SOURCE-AUDIT.md"
+      ],
+      "scope": "Original non-brand diagram artwork, including writing-paradigm.svg. Rendering implementation remains original code; identity artwork is excluded."
+    },
+    "identity-branding": {
+      "kind": "excluded-personal-identity",
+      "provenance": ["LICENSING.md", "site/assets/favicon.svg", "guides/SITE-SOURCE-AUDIT.md"],
+      "scope": "Personal identity and identifying favicon are excluded from the general code/content grants. Contact the author about reuse; no trademark or endorsement permission is supplied."
+    },
+    "legal-notice": {
+      "kind": "published-license-and-scope-notice",
+      "provenance": ["LICENSING.md", "LICENSE-CODE.md", "LICENSE-CONTENT.md", "NOTICE.md"],
+      "scope": "Exact copies of the authored licensing map, complete Apache-2.0 and CC BY 4.0 texts, and applicable notices accompany this edition. Scope and exclusions remain in the licensing map."
+    }
+  },
+  "sourceGroups": [
+    {
+      "paths": ["site/content"],
+      "bases": ["original-text", "linked-metadata", "advisor-consent"]
+    },
+    {
+      "paths": ["site/templates"],
+      "bases": ["original-code", "original-text", "linked-metadata"]
+    },
+    {
+      "paths": [
+        "site/engine",
+        "site/effects",
+        "site/scenes",
+        "site/integrations",
+        "tools/site",
+        "tools/release/edition.cjs"
+      ],
+      "bases": ["original-code"]
+    },
+    {
+      "paths": ["site/routes.json", "site/analytics.json"],
+      "bases": ["original-code"]
+    }
+  ],
+  "assets": {
+    "favicon.svg": {
+      "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+      "bases": ["identity-branding"]
+    },
+    "nojekyll": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bases": ["original-code"]
+    },
+    "vitalii-oborskyi-cutout.webp": {
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "bases": ["portrait-derivative"]
+    },
+    "vitalii-oborskyi.jpg": {
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "bases": ["portrait-source"]
+    },
+    "writing-paradigm.svg": {
+      "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
+      "bases": ["original-diagram"]
+    }
+  },
+  "retained": {
+    "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": {
+      "sha256": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
+      "bases": ["retained-edition"]
+    },
+    "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": {
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "bases": ["retained-edition", "portrait-derivative"]
+    },
+    "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": {
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "bases": ["retained-edition", "portrait-source"]
+    },
+    "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg": {
+      "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
+      "bases": ["retained-edition"]
+    },
+    "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js": {
+      "sha256": "fd1d7dbbf378073d673f9d498da8a1b93153472cf045ac632e3384b2c3ca3a0b",
+      "bases": ["retained-edition"]
+    },
+    "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/navigation.js": {
+      "sha256": "d464143b30f2600cfa64a98e131f9def79ef010ff5312762dd002625cf765b98",
+      "bases": ["retained-edition"]
+    },
+    "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/space.js": {
+      "sha256": "bdbbc653e53bb0896e83c1e6eb129b80989f367d8ef206f0233598d789d818d6",
+      "bases": ["retained-edition"]
+    },
+    "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css": {
+      "sha256": "499975bea085f64d2b96efea41c0e06a9399e65f06a9a47d4f948bd1dcfd8ba8",
+      "bases": ["retained-edition"]
+    },
+    "runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js": {
+      "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb",
+      "bases": ["retained-edition"]
+    },
+    "snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
+      "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7",
+      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+    },
+    "snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
+      "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d",
+      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+    },
+    "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
+      "sha256": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
+      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+    },
+    "snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
+      "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942",
+      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+    },
+    "snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
+      "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312",
+      "bases": ["retained-edition", "linked-metadata", "advisor-consent"]
+    }
+  },
+  "notices": [
+    {
+      "path": "site/content/pages/credits/main.json",
+      "scope": "public-current-credits",
+      "bases": [
+        "original-text",
+        "portrait-source",
+        "portrait-derivative",
+        "linked-metadata",
+        "advisor-consent"
+      ]
+    },
+    {
+      "path": "tools/RI-NOTICE.md",
+      "scope": "repository-component-only",
+      "bases": ["ri-component"]
+    },
+    {
+      "path": "tools/RI-LICENSE.md",
+      "scope": "repository-component-only",
+      "bases": ["ri-component"]
+    },
+    {
+      "path": "LICENSING.md",
+      "scope": "public-inline-legal-copy",
+      "bases": ["legal-notice"]
+    },
+    {
+      "path": "LICENSE-CODE.md",
+      "scope": "public-inline-legal-copy",
+      "bases": ["legal-notice"]
+    },
+    {
+      "path": "LICENSE-CONTENT.md",
+      "scope": "public-inline-legal-copy",
+      "bases": ["legal-notice"]
+    },
+    {
+      "path": "NOTICE.md",
+      "scope": "public-inline-legal-copy",
+      "bases": ["legal-notice"]
+    }
+  ],
+  "upstreamBoundaries": [
+    {
+      "repository": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture",
+      "revision": "345c8f50745e5fde1303d0d7952634f7899220c9",
+      "licenses": {
+        "documentation": "CC-BY-4.0",
+        "original-code": "Apache-2.0"
+      },
+      "licensingURL": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/345c8f50745e5fde1303d0d7952634f7899220c9/LICENSING.md",
+      "treatment": "Linked research/provenance only. Its own documentation/code split and third-party exceptions, including Quartz MIT, remain independent. Preserve actual authorship, source and changes for any future adaptation."
+    },
+    {
+      "repository": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis",
+      "revision": "06fdd63b332fd4efe27462dbbd648119c3f96ce8",
+      "license": "CC-BY-SA-4.0",
+      "licensingURL": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis/blob/06fdd63b332fd4efe27462dbbd648119c3f96ce8/LICENSE.md",
+      "treatment": "Linked research/provenance only. Distributed adaptations retain the applicable CC BY-SA 4.0 terms and attribution; independent linked summaries are not a blanket relicensing of the source. The site default does not override upstream terms."
+    }
+  ]
+}

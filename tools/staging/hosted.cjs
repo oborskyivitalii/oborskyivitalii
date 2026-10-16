@@ -64,7 +64,12 @@ async function request(url, expectedOrigin, fetcher = fetch) {
       target = new URL(location, target);
       continue;
     }
-    return { response, url: target.href, bytes: Buffer.from(await response.arrayBuffer()) };
+    return {
+      response,
+      url: target.href,
+      redirects: i,
+      bytes: Buffer.from(await response.arrayBuffer()),
+    };
   }
   throw Error('Too many staging redirects');
 }
@@ -76,12 +81,15 @@ async function httpSmoke(base, record, fetcher = fetch) {
   for (const file of files) {
     const result = await request(base + '/' + file, base, fetcher);
     assert.equal(result.response.status, 200, file + ' HTTP status');
+    if (record.hostPolicy === pkg.hostPolicies.snapshotProxy && file.startsWith('snapshots/'))
+      assert.equal(result.redirects, 0, 'immutable snapshot proxy redirected ' + file);
     responseHeaders(result.response.headers, require('../site/snapshot.cjs').immutable(file));
     assertContentType(file, result.response.headers.get('content-type'));
     assert.equal(digest(result.bytes), record.files[file].sha256, 'hosted bytes differ ' + file);
     rows.push({
       file,
       status: result.response.status,
+      redirects: result.redirects,
       url: result.url,
       sha256: digest(result.bytes),
     });

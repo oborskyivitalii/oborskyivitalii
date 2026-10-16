@@ -71,7 +71,11 @@ function subtree(files, prefix) {
   );
 }
 
-function readRights(directory, record) {
+function readRights(directory, record, trustedInventoryDigest) {
+  if (trustedInventoryDigest)
+    return require('../release/rights-record.cjs').read(directory, record, 'production', {
+      trustedInventoryDigest,
+    });
   const file = path.join(directory, 'rights.json');
   return stagingPackage.publicationRights(
     path.join(directory, 'public'),
@@ -113,13 +117,33 @@ function verify(directory, record) {
     record.staging,
     record.rights?.staging ?? undefined
   );
-  const rootRights = stagingPackage.publicationRights(
-    publicDir,
-    record.root,
-    record.rights?.root ?? undefined
-  );
+  const licensing = require('../release/rights-record.cjs');
+  if (stagingRights) licensing.publication(record.staging, stagingRights, 'staging');
+  const archivedRightsDigest = record.rights?.productionArchiveDigest;
+  let rootRights;
+  if (archivedRightsDigest) {
+    assert.ok(record.state.production, 'archived production license without production');
+    rootRights = record.rights.root;
+    licensing.bind(record.root, rootRights, archivedRightsDigest);
+    if (rootRights.legalCopies) licensing.copies(publicDir, record.root, rootRights);
+  } else {
+    rootRights = stagingPackage.publicationRights(
+      publicDir,
+      record.root,
+      record.rights?.root ?? undefined
+    );
+    if (rootRights)
+      licensing.publication(
+        record.root,
+        rootRights,
+        record.state.production ? 'production' : 'staging'
+      );
+  }
   if (stagingRights || rootRights || Object.hasOwn(record, 'rights')) {
-    assert.deepEqual(Object.keys(record.rights).sort(), ['root', 'staging']);
+    assert.deepEqual(
+      Object.keys(record.rights).sort(),
+      archivedRightsDigest ? ['productionArchiveDigest', 'root', 'staging'] : ['root', 'staging']
+    );
     assert.deepEqual(
       record.state.licensing,
       {
@@ -144,14 +168,17 @@ function build(
   productionDirectory = null,
   productionTag = null,
   publication = null,
-  deploymentPath = '/'
+  deploymentPath = '/',
+  options = {}
 ) {
   const prefix = basePath(deploymentPath);
   const staging = read(stagingDirectory);
   checkStaging(stagingDirectory, staging);
   const production = productionDirectory ? read(productionDirectory) : null;
   const stagingRights = readRights(stagingDirectory, staging);
-  const rootRights = production ? readRights(productionDirectory, production) : stagingRights;
+  const rootRights = production
+    ? readRights(productionDirectory, production, options.productionRightsDigest)
+    : stagingRights;
   if (production) {
     assert.equal(prefix, '/', 'production Pages requires origin root');
     assert.equal(production.edition?.id || 'production', 'production');
@@ -209,6 +236,9 @@ function build(
           rights: {
             staging: stagingRights,
             root: rootRights,
+            ...(options.productionRightsDigest
+              ? { productionArchiveDigest: options.productionRightsDigest }
+              : {}),
           },
         }
       : {}),

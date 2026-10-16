@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const artifact = require('../quality/artifact.cjs');
 const snapshot = require('./snapshot.cjs');
+const retention = require('./edition-retention.cjs');
 
 function compactData(html) {
   return html.replace(
@@ -65,10 +66,9 @@ function build(directory, descriptor) {
       ),
     ])
   );
-  // Optional analytics loaders have their own content digest, separate from runtime identity.
-  const analytics = Object.keys(source.files)
-    .filter((name) => /^runtime\/[a-f0-9]{64}\/analytics\.js$/.test(name))
-    .map((name) => [name, fs.readFileSync(path.join(publicDir, name))]);
+  // Staging has its own noindex/badge/analytics isolation contract for every
+  // served HTML file. Prior public editions are retained only for production.
+  const retained = descriptor.edition.id === 'staging' ? [] : retention.capture(publicDir, base);
   fs.rmSync(path.join(publicDir, 'runtime'), { recursive: true });
   fs.rmSync(path.join(publicDir, 'snapshots'), { recursive: true });
   const write = (name, bytes) => {
@@ -76,8 +76,6 @@ function build(directory, descriptor) {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, bytes);
   };
-  if (descriptor.edition.analytics !== false)
-    for (const [name, bytes] of analytics) write(name, bytes);
   for (const name of snapshot.runtimeFiles) {
     const bytes =
       scripts[name] + (name === 'styles.css' && descriptor.css ? '\n' + descriptor.css : '');
@@ -105,6 +103,7 @@ function build(directory, descriptor) {
   }
   revision.content = artifact.digest(JSON.stringify(versions));
   write('site-revision.json', JSON.stringify(revision, null, 2) + '\n');
+  retention.restore(publicDir, retained);
   for (const [name, bytes] of Object.entries(descriptor.files || {})) write(name, bytes);
   const record = {
     ...source,

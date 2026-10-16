@@ -189,7 +189,12 @@ test('data-owned route label punctuation remains literal when selecting the curr
 
 test('shared catalog label edits invalidate every warm route and keep cold/check parity', (t) => {
   const dir = fs.mkdtempSync('/tmp/site-shared-label-');
-  for (const name of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
+  for (const name of [
+    'site',
+    'tools/site',
+    'tools/build_scene_fallbacks.cjs',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
+  ]) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }

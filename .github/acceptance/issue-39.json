@@ -7,78 +7,84 @@
     {
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
-      "automated_scope": "Current main321b7066 is the exact baseline. Preserve all607 protected public/runtime/producer/workflow files and modes after reversing only the exact two-ID mandatory-rights list addition. No public or runtime byte changes; actual provider inventory remains separate.",
-      "checks": ["PRESERVATION", "HOST-POLICY"],
+      "automated_scope": "The unchanged 2026-10-07 provider snapshot retains its historical schema/ref/observations and then-unknown Pages settings. It is dated evidence, not a new live inventory; current refs and provider state require separate live review.",
+      "checks": ["INVENTORY"],
       "gates": ["LIVE-INVENTORY"]
     },
     {
       "id": "AC02",
       "intent": "Canonical .ai topology and lossless .com redirect plan",
-      "automated_scope": "No domain, DNS, Pages project settings, migration or public canonical redirect is changed. The narrowly authorized undeployed host policy concerns only immutable snapshot internal 200 proxy compatibility. Original AC02 remains manual-only pending in this phase and continues in PR40.",
-      "checks": [],
+      "automated_scope": "Finite exact DNS and rule fields, negative origin/proxy/host/query/order mutations and planned URL fixtures; authenticated migration fixtures bind the old Pages prefix, captured settings, source workflow/run/artifact, frozen execution controller and exact recovery bytes. These checks do not apply provider rules or migrate the live host.",
+      "checks": ["DOMAIN-PLAN", "DOMAIN-NEGATIVES", "REDIRECT-FIXTURES", "PAGES-MIGRATION"],
       "gates": ["LIVE-DOMAINS"]
     },
     {
       "id": "AC03",
       "intent": "Preserve current production release controls while preparing",
-      "automated_scope": "Two exact future Writing plain/staging identities, independently recomputed from clean immutable64559870 source, base/Color/edition descriptors and all five canonical/immutable runtime hashes. Retain every historical/compact tuple and strict unknown/mixed/missing/edition rejection; mandatory frozen publication rights, source provenance and original timing/resource budgets remain. Native isolated current-runtime diagnostic38940320357 retains45/29/22/19.5/21.5ms ordinary TBT plus separate111ms CPU attribution, not hosted staging or release admission. This prerequisite changes no public/runtime/compiler/workflow bytes and registers no production tuple. Patched Python audit graph is unchanged and verified.",
+      "automated_scope": "The 2026-10-15 authorized implementation preserves the exact current-main authored edition except the nine explicitly approved full Git-blob-pinned PR68 Home/Research content and template owners at c3b8fb7d0b7a127363f24cdacb8a36c3f811054a, retained source and five generated runtime aliases against cc115c4241197d59205934bdc18f209109d5ee87, with the later maintainer-approved licensing amendment: exact hash-bound Credits text/templates and a single legal-notices pre wrapping rule. Other permitted differences are declared production social/rights additions, canonical analytics configuration and generated identities. Full license/notice copies are embedded in the existing Credits route and verified against authored owners; no broad content exemption or new public route is introduced. Maintained behavioral suites check explicit Color production selection, five-route SEO and social JPEG identity/MIME, prior immutable closure, source/artifact-bound rights inventory and approval rejection, exact-artifact release/recovery, canonical-origin analytics isolation and authenticated Pages migration. Deterministic checks cannot sign the future exact-edition rights inventory, physical-device review, live settings, deployed provider cost or release approval. The quality-only post-flight ResourceTiming source check retains bounded same-origin fetch observations after the original measurement window, rejects malformed/missing/overflow evidence and preserves raw cold/warm readiness failures without changing performance budgets or supplying native staging admission. The dated immutable-snapshot-proxy-v1 hosting preparation changes only tools/staging/package.cjs among the protected delivery owners. Default and explicit-legacy API generation retain exact pinned-main package bytes and archived verification; the Root package CLI explicitly selects only the finite same-site immutable HTML 200 proxy policy. Source/package/route/header mutation checks and actual CLI identity/tamper cases retain source bytes and reject arbitrary policy. Failed native stage38708680860 remains failed at3382.9ms above3200ms; these checks provide no native admission, bootstrap authorization or production release. The integrated shared guard additionally verifies exact source/publication records before upload, selected immutable snapshot direct200/zero-redirect/exact-body observations, strict native/browser provenance, complete scanners and named source accounting. These deterministic checks do not replace native performance, source-bound human rights/editorial, physical-device or release decisions. The later selected issue41 editorial exception is byte-exact and cannot admit unrelated pages, runtime, licensing or retained-history changes. Hosted browser smoke still validates all response names, exact order, unique public profile per card, route control, artifact identity and no-Canvas fallback regardless of heading placement; no other tests or performance thresholds are waived. Patched audit MCP1.30.0/pip26.2.1 and complete installed inventory/active transitive-extra constraint verification retain only the named Semgrep1.179.0 compatibility override, with four positive/adversarial fixtures and mandatory advisory/scanner gates. Compact metadata has separately derived exact plain/staging/production identities with all five canonical/immutable runtime files unchanged; preserve old tuples, strict edition/byte rejection and mandatory frozen publication rights for all three new identities. Retain every original PR40 publication-review row unchanged, all three baseline ledgers and advisory exceptions byte-for-byte; preserve six same-disposition main reason variants verbatim in provenance and append only individually proved new exact IDs. Writing TBT permits exact hash-bound math/projection and generated space.js only, with pinned command/clipping parity and mandatory rights. Native/local diagnostics retain all trials, cleanup failures and separate CPU sampling; no stage admission.",
       "checks": [
-        "PRESERVATION",
-        "HOST-POLICY",
-        "SELECTOR",
-        "PROOF",
+        "CURRENT-MAIN-PRESERVATION",
+        "DOMAIN-PLAN",
+        "PRODUCTION-PREPARATION",
+        "PAGES-MIGRATION",
         "FLIGHT-TELEMETRY",
-        "PUBLICATION-RECORDS",
+        "HOST-POLICY",
         "AUDIT-GRAPH",
         "COMPACT-PROOF",
-        "WRITING-PROOF"
+        "SECRET-LEDGER",
+        "WRITING-PROJECTION",
+        "WRITING-NATIVE-PROTOCOL"
       ],
-      "gates": ["TUPLE-REVIEW", "PRODUCTION-ADMISSION"]
+      "gates": ["PRODUCTION-ADMISSION"]
     },
     {
       "id": "AC04",
       "intent": "Actionable maintainer instructions and linked execution",
-      "automated_scope": "The maintainer authorized isolated native Writing diagnosis and eventual exact trusted-main identities, then stop/report. Register only the verified current plain/staging runtime through ordinary successful source/RI/owning/preview checks and protected merge. PR40 stays Draft; no Ready/full26preflight/stage/PR40 merge/production/domain operation belongs here. CS01/CS04/CS05/CS08/CS09/CS10 self-review remains separate from independent release review.",
-      "checks": ["STYLE", "BASIC", "RI", "RI-CI"],
-      "gates": ["OWNER-SETTINGS", "REVIEW", "STAGING", "MERGE"]
+      "automated_scope": "AC01-AC05/check/gate and exact operator settings routes remain mapped. The existing bounded style guard checks its declared subset; CS01, CS05, CS08, CS09 and CS10 ownership, readability, proportional verification and issue/PR evidence require explicit review beyond that guard. Human usefulness, live links and owner completion stay separate.",
+      "checks": ["OPERATOR-POLICY", "CURRENT-GUARD", "NODE-BASIC", "RI-FRESH", "RI-CI"],
+      "gates": ["OWNER-SETTINGS", "REVIEW", "MERGE"]
     },
     {
       "id": "AC05",
       "intent": "Eventual live custom-domain acceptance",
-      "automated_scope": "No production publication, canonical domain, DNS, TLS, redirect, live indexing or production telemetry is changed or accepted by this compatibility dependency. Original AC05 remains manual-only pending.",
-      "checks": [],
+      "automated_scope": "Finite fixtures for both .com hosts/schemes and encoded/repeated queries; prepared URL expectations alone never admit public DNS/TLS/HTTP.",
+      "checks": ["REDIRECT-FIXTURES"],
       "gates": ["LIVE-DOMAINS", "PRODUCTION-ADMISSION"]
     }
   ],
   "checks": {
-    "PRESERVATION": {
+    "INVENTORY": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_main_public_and_producer_bytes_are_preserved"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_provider_snapshot_records_observations_and_unknown_admin_state"
     },
-    "HOST-POLICY": {
+    "DOMAIN-PLAN": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_finite_dns_and_redirect_contract"
     },
-    "SELECTOR": {
+    "DOMAIN-NEGATIVES": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_selector_and_bounded_negative_guards"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_bad_origin_proxy_hosts_query_and_order_are_rejected"
     },
-    "PROOF": {
+    "REDIRECT-FIXTURES": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_recorded_license_tuples_match_closed_selector"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_planned_redirect_fixtures_preserve_path_and_query"
     },
-    "FLIGHT-TELEMETRY": {
+    "CURRENT-MAIN-PRESERVATION": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_flight_resource_telemetry_preserves_original_failure"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_main_authored_edition_and_runtime_bytes_are_preserved"
     },
-    "STYLE": {
+    "OPERATOR-POLICY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_operator_routes_and_policy_keep_external_gates_pending"
+    },
+    "CURRENT-GUARD": {
       "kind": "unittest",
       "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
     },
-    "BASIC": {
+    "NODE-BASIC": {
       "kind": "node-basic"
     },
-    "RI": {
+    "RI-FRESH": {
       "kind": "unittest",
       "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
     },
@@ -86,9 +92,21 @@
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
     },
-    "PUBLICATION-RECORDS": {
+    "PRODUCTION-PREPARATION": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_frozen_publication_records_and_actual_legacy_pages_bytes"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_production_color_seo_retention_rights_and_analytics_contracts"
+    },
+    "PAGES-MIGRATION": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_pages_migration_authenticates_settings_source_and_recovery"
+    },
+    "FLIGHT-TELEMETRY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_flight_resource_telemetry_preserves_original_failure"
+    },
+    "HOST-POLICY": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_versioned_snapshot_host_policy_preserves_legacy_and_rejects_arbitrary_routes"
     },
     "AUDIT-GRAPH": {
       "kind": "unittest",
@@ -98,43 +116,43 @@
       "kind": "unittest",
       "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_compact_tuple_proof_and_closed_selector"
     },
-    "WRITING-PROOF": {
+    "SECRET-LEDGER": {
       "kind": "unittest",
-      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_writing_runtime_proof_and_closed_selector"
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_original_secret_reviews_and_advisory_policy_are_retained"
+    },
+    "WRITING-PROJECTION": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_writing_projection_matches_pinned_commands_and_keeps_bounds"
+    },
+    "WRITING-NATIVE-PROTOCOL": {
+      "kind": "unittest",
+      "test": "test_issue39_acceptance.Issue39AcceptanceTests.test_current_writing_diagnostic_keeps_raw_failures_and_sample_separation"
     }
   },
   "gates": {
     "LIVE-INVENTORY": {
       "kind": "human",
-      "description": "Re-read exact main/PR/controller and actual provider state before delivery. Pinned byte preservation is not a live settings inventory."
+      "description": "Review exact live refs/API observations and re-read provider state before mutation; source snapshot is dated evidence."
     },
     "LIVE-DOMAINS": {
       "kind": "human",
-      "description": "PR40 retains actual .ai/.com/www DNS, TLS, canonical host, lossless path/query redirects, authenticated Pages migration and eventual public acceptance. No domain operation belongs to this compatibility increment."
-    },
-    "TUPLE-REVIEW": {
-      "kind": "human",
-      "description": "Before readiness independently derive the final licensing candidate's plain/staging fingerprints, base engine and every canonical plus immutable runtime-file hash. Review exact source/tree/public digests and unknown/mixed/missing/edition mutation rejections; no placeholders or dynamic fingerprint allowance may be registered."
+      "description": "Actual DNS/TLS/.ai hosted content and .com/www both-scheme one-hop 301 path/query checks; www.ai canonical behavior and existing staging unchanged."
     },
     "PRODUCTION-ADMISSION": {
       "kind": "human",
-      "description": "PR40 retains complete exact-artifact full/native/security/performance, physical-device/independent/visual, source-bound rights and maintainer policy acceptance, actual publisher/recovery controls and explicit production release decision. This dependency neither supplies nor waives them."
+      "description": "Actual complete exact-artifact hosted/native production gate; explicit maintainer rights policy plus independent rights acceptance bound to the frozen inventory; applicable physical-device/independent/visual acceptance; observed production-origin analytics/SDK cost; protected publisher/recovery and owner release decision. Fixture passes do not supply these records or activate production."
     },
     "OWNER-SETTINGS": {
       "kind": "human",
-      "description": "Original ownership Verified and repository Pages/environment/protection/App/immutable Release settings keep their separate source-bound administration evidence. No settings are changed by a registry compatibility PR."
+      "description": "GitHub-generated TXT, observed ownership Verified, repository Actions/custom-domain/HTTPS, immutable Release/protected production App/ref and environment settings; authenticated old-prefix preparation and captured-settings execute/recovery procedure before actual Pages migration."
     },
     "REVIEW": {
       "kind": "human",
-      "description": "Self-review exact two plain/staging tuples, independent computational derivations and unchanged runtime bytes; preserve every protected main blob after only the exact mandatory-rights paragraph reversal. Previously reviewed bytes remain unchanged; new independent release/device/editorial/rights review remains pending with PR40."
-    },
-    "STAGING": {
-      "kind": "human",
-      "description": "PR40 requires fresh exact-source Ready admission, full26preflight and ordinary Cloudflare staging before its merge. This two-ID controller prerequisite supplies none of those gates; PR40 remains Draft."
+      "description": "Independent scoped implementation/document review and current issue-to-PR/commit/CI linkage. Review CS01/CS05/CS08/CS09/CS10 for the touched test/policy owners, distinguish self-review, and assess readability, ownership and evidence obligations outside the bounded automatic guard."
     },
     "MERGE": {
       "kind": "merge",
-      "description": "Current maintainer authorization covers this required exact controller-identity prerequisite on trusted main through ordinary successful checks and expected-head protected merge. Then stop/report. PR40 Ready, preflight, stage, merge, production and issue closure remain separate."
+      "description": "Owner-authorized protected merge and final exact-source acceptance reconciliation."
     }
   }
 }

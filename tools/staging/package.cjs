@@ -180,10 +180,13 @@ function publicationRequired(source, revision) {
   const licensed = [
     'issue39-licensed-plain',
     'issue39-licensed-staging',
+    'issue39-licensed-production',
     'issue39-licensed-compact-plain',
     'issue39-licensed-compact-staging',
+    'issue39-licensed-compact-production',
     'issue39-writing-tbt-plain',
     'issue39-writing-tbt-staging',
+    'issue39-writing-tbt-production',
   ].map(motion.reviewedRuntime);
   const knownBytes = licensed.some(
     (runtime) =>
@@ -211,9 +214,13 @@ function publicationRights(publicDirectory, source, report, revision) {
 function build(input, out, expected = {}, options = {}) {
   assert.ok(options && typeof options === 'object' && !Array.isArray(options));
   assert.ok(
-    Object.keys(options).every((key) => key === 'hostPolicy'),
+    Object.keys(options).every((key) =>
+      ['hostPolicy', 'publication', 'requireCheckout'].includes(key)
+    ),
     'unknown host policy option'
   );
+  for (const key of ['publication', 'requireCheckout'])
+    if (Object.hasOwn(options, key)) assert.equal(typeof options[key], 'boolean');
   const hostPolicy = selectedHostPolicy(
     Object.hasOwn(options, 'hostPolicy') ? options.hostPolicy : hostPolicies.legacy
   );
@@ -221,16 +228,21 @@ function build(input, out, expected = {}, options = {}) {
     gate = JSON.parse(fs.readFileSync(path.join(input, 'gate/release-manifest.json')));
   sourceGate(source, gate, expected);
   artifact.verify(path.join(input, 'public'), source);
-  const publicDirectory = path.join(input, 'public');
-  const revision = snapshot.verify(publicDirectory, source);
-  const rightsFile = path.join(input, 'rights.json');
-  const rights = publicationRights(
-    publicDirectory,
-    source,
-    fs.existsSync(rightsFile) ? JSON.parse(fs.readFileSync(rightsFile)) : undefined,
-    revision
-  );
+  const revision = snapshot.verify(path.join(input, 'public'), source);
   checkLinks(path.join(input, 'public'));
+  const rightsFile = path.join(input, 'rights.json');
+  const rights =
+    options.publication || publicationRequired(source, revision)
+      ? require('../release/rights.cjs').readPublication(input, source, undefined, {
+          verifySource: true,
+          requireCheckout: options.requireCheckout === true,
+        })
+      : publicationRights(
+          path.join(input, 'public'),
+          source,
+          fs.existsSync(rightsFile) ? JSON.parse(fs.readFileSync(rightsFile)) : undefined,
+          revision
+        );
   fs.mkdirSync(out, { recursive: true });
   assert.equal(fs.readdirSync(out).length, 0, 'staging output must be empty');
   const target = path.join(out, 'public');
@@ -266,6 +278,14 @@ function verify(dir, record, expected = {}) {
   if (Object.hasOwn(record, 'hostPolicy'))
     assert.equal(hostPolicy, hostPolicies.snapshotProxy, 'legacy host policy must remain implicit');
   sourceGate(record.source, record.gate, expected);
+  if (Object.hasOwn(record, 'rights') || Object.hasOwn(record, 'rightsDigest')) {
+    assert.equal(
+      record.rightsDigest,
+      record.rights?.inventoryDigest,
+      'staging rights digest differs'
+    );
+    require('../release/rights-record.cjs').publication(record.source, record.rights);
+  }
   const target = path.join(dir, 'public'),
     actual = artifact.manifest(target),
     extra = additions(record.source, hostPolicy);
@@ -290,12 +310,6 @@ function verify(dir, record, expected = {}) {
       'host configuration changed ' + file
     );
   const revision = snapshot.verify(target, record.source);
-  if (Object.hasOwn(record, 'rights') || Object.hasOwn(record, 'rightsDigest'))
-    assert.equal(
-      record.rightsDigest,
-      record.rights?.inventoryDigest,
-      'staging rights digest differs'
-    );
   publicationRights(target, record.source, record.rights, revision);
   checkLinks(target);
   return true;
@@ -312,7 +326,15 @@ if (require.main === module) {
   const [mode, input, out] = process.argv.slice(2),
     expected = expectedEnvironment();
   if (mode === 'build')
-    console.log(JSON.stringify(build(path.resolve(input), path.resolve(out), expected)));
+    console.log(
+      JSON.stringify(
+        build(path.resolve(input), path.resolve(out), expected, {
+          hostPolicy: hostPolicies.snapshotProxy,
+          publication: true,
+          requireCheckout: true,
+        })
+      )
+    );
   else if (mode === 'verify')
     verify(
       path.resolve(input),
@@ -329,10 +351,10 @@ module.exports = {
   hostPolicies,
   snapshotProxyRules,
   sourceGate,
-  additions,
-  checkLinks,
   publicationRequired,
   publicationRights,
+  additions,
+  checkLinks,
   build,
   verify,
   expectedEnvironment,

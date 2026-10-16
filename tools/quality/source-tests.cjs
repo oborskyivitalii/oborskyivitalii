@@ -5,6 +5,11 @@ const fs = require('node:fs'),
   cp = require('node:child_process'),
   assert = require('node:assert/strict');
 const REGISTRY = 'tools/quality/test-profiles.json';
+const executionLimits = Object.freeze({
+  timeoutMs: 180000,
+  reportGraceMs: 30000,
+  maxBufferBytes: 16 * 1024 * 1024,
+});
 function safePath(value, { pattern = false } = {}) {
   assert.equal(typeof value, 'string', 'path must be text');
   assert.ok(
@@ -383,8 +388,8 @@ function executeSource(root, argv) {
     cwd: root,
     env: environment,
     encoding: 'utf8',
-    maxBuffer: 16 * 1024 * 1024,
-    timeout: 180000,
+    maxBuffer: executionLimits.maxBufferBytes,
+    timeout: executionLimits.timeoutMs,
   });
 }
 function executePlan(root, plan, options = {}) {
@@ -413,7 +418,7 @@ function executePlan(root, plan, options = {}) {
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
-  const argv = ['--test', '--test-reporter=tap', ...plan.modules],
+  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...plan.modules],
     started = Date.now(),
     result = execute(argv);
   const output = result.stdout || '',
@@ -493,8 +498,8 @@ function run(root, plan, options = {}) {
           error: child.error
             ? { name: child.error.name, message: child.error.message, code: child.error.code }
             : null,
-          timeoutMs: 180000,
-          maxBufferBytes: 16 * 1024 * 1024,
+          timeoutMs: executionLimits.timeoutMs,
+          maxBufferBytes: executionLimits.maxBufferBytes,
           stdoutBytes: Buffer.byteLength(child.stdout || ''),
           stderrBytes: Buffer.byteLength(child.stderr || ''),
         };
@@ -583,6 +588,7 @@ if (require.main === module) {
 }
 module.exports = {
   REGISTRY,
+  executionLimits,
   safePath,
   matches,
   actualModules,

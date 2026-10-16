@@ -134,5 +134,14 @@ evidence, not policy; canonical sources, live issues and Git/GitHub prevail.
 Preserve published editions, identities, URLs and third-party credits; visually inspect
 HTML/PDF/deck exports against accepted editions. Keep drafts separate; link upstream owners.
 Conceptual corrections need their own reviewed issue/PR. [Rights #7](https://github.com/oborskyivitalii/oborskyivitalii/issues/7)
-owns the unselected site-wide license; component code notices do not license all material.
+owns the selected [licensing map](LICENSING.md) and per-edition rights acceptance.
+Original engineering, including site CSS/templates/rendering, is Apache-2.0;
+original editorial text and non-brand diagrams are CC BY 4.0. Preserve portrait,
+identity, third-party, historical-edition and upstream exceptions and notices.
+Before contributing, identify the contribution's scope and its applicable
+license; preserve provenance and do not submit material you cannot authorize.
+Code contributions follow [LICENSE-CODE.md](LICENSE-CODE.md), original editorial
+contributions follow [LICENSE-CONTENT.md](LICENSE-CONTENT.md), and separately
+licensed imports retain their own terms. Disclose a different proposed license
+before integration so the maintainer can review compatibility and attribution.
 Local navigation/freshness checks do not grant publishing/deployment approval.

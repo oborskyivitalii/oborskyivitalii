@@ -293,7 +293,9 @@ remain separate requirements; this source contract does not supply their approva
 
 ## Optional effects contract v1
 
-The base edition remains the deployable producer selection. Offline exports accept
+The base edition is the default producer selection. The delivery adapters select
+Color explicitly for preview, staging and the separately frozen production
+candidate; each requires its own matching verification. Offline exports accept
 an explicit `base`, `color` or `both` argument in
 `tools/site/export.cjs`. Each file has a variant/digest manifest.
 The effects loader attaches a scene `collect` / `paint` pair and a travel

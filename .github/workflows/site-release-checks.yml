@@ -35,7 +35,7 @@ on:
         type: string
         default: ''
       public_variant:
-        description: Explicit public rendition; Color is staging-only
+        description: Explicit public rendition; production candidates preserve approved Color
         type: string
         default: base
       public_upload_digest:
@@ -107,7 +107,7 @@ on:
         type: string
         default: ''
       public_variant:
-        description: Explicit public rendition; Color is staging-only
+        description: Explicit public rendition; production candidates preserve approved Color
         type: string
         default: base
       public_upload_digest:
@@ -189,7 +189,7 @@ jobs:
           if [ "$SITE_VALIDATION_LEVEL" = staging ]; then
             node tools/staging/edition.cjs quality-artifact
           else
-            node tools/release/edition.cjs build quality-artifact
+            node tools/release/edition.cjs build quality-artifact "$SITE_PUBLIC_VARIANT"
           fi
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         if: inputs.public_artifact_id != ''

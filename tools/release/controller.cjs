@@ -7,7 +7,8 @@ const artifact = require('../quality/artifact.cjs');
 const archive = require('./archive.cjs');
 const pages = require('../pages/controller.cjs');
 const flow = require('../staging/review-flow.cjs');
-const edition = require('./edition.cjs');
+const edition = require('./edition-archive.cjs');
+const rights = require('./rights.cjs');
 const workflow = '.github/workflows/site-production.yml';
 const labels = ['active-production', 'archived-production'];
 
@@ -236,17 +237,21 @@ async function wasAccepted(github, context, record) {
 function admission(directory, gate, evidence, publicItem) {
   const record = require('../pages/package.cjs').read(directory);
   edition.verify(directory, record);
-  archive.candidate(record, gate, evidence);
+  const rightsReport = JSON.parse(fs.readFileSync(path.join(directory, 'rights.json')));
+  rights.publication(record, rightsReport, 'production');
+  rights.verifyArchived(
+    path.join(directory, 'public'),
+    record,
+    rightsReport,
+    evidence.rights?.inventoryDigest
+  );
+  archive.candidate(record, gate, evidence, rightsReport);
   assert.equal(String(gate.githubArtifact.id), String(publicItem.id));
   assert.equal(
     gate.githubArtifact.uploadDigest.replace(/^sha256:/, ''),
     publicItem.digest.replace(/^sha256:/, '')
   );
   assert.equal(publicItem.expired, false);
-  assert.ok(
-    evidence.rights?.pass === true && evidence.rights.reviewer && evidence.rights.record,
-    'applicable publication rights acceptance remains pending'
-  );
   return record;
 }
 
@@ -266,12 +271,10 @@ function evidenceFiles(directory, proof) {
 }
 
 function createArchive(directory, proof, gate, evidence, options) {
-  const record = archive.create(
-    require('../pages/package.cjs').read(directory),
-    gate,
-    evidence,
-    options
-  );
+  const record = archive.create(require('../pages/package.cjs').read(directory), gate, evidence, {
+    ...options,
+    rightsReportBytes: fs.readFileSync(path.join(directory, 'rights.json')),
+  });
   record.releasePR = flow.positive(options.releasePR);
   record.origin = edition.origin;
   record.validation = {
@@ -334,6 +337,7 @@ async function restoreArchive(github, context, tag, directory) {
   await releaseSource(github, context, tag, record.sourceCommit);
   const expected = [
     'archive.json',
+    'rights.json',
     'public.tar.gz',
     'activation.json',
     'observations.tar.gz',
@@ -362,12 +366,19 @@ async function restoreArchive(github, context, tag, directory) {
       assert.equal(artifact.digest(bytes), activation.observationsDigest);
     } else if (item.name === 'activation.json') {
       assert.deepEqual(bytes, activationBytes);
+    } else if (item.name === 'rights.json') {
+      assert.equal(
+        artifact.digest(bytes),
+        record.rights.reportSHA256,
+        'archived rights bytes changed'
+      );
     } else if (item.name !== 'archive.json') {
       assert.match(item.name, /^evidence-(?:run-)?[1-9]\d*\.zip$/);
       assert.equal(artifact.digest(bytes), record.evidenceFiles[item.name].sha256);
     }
     fs.writeFileSync(path.join(directory, item.name), bytes);
   }
+  archive.verifyRights(directory, record);
   return record;
 }
 
@@ -383,10 +394,12 @@ async function publishArchive(
   let release = await optional(() => control.rest.repos.getReleaseByTag({ ...context.repo, tag }));
   const names = [
     'archive.json',
+    'rights.json',
     'public.tar.gz',
     ...Object.keys(record.evidenceFiles),
     ...(activation ? ['activation.json', 'observations.tar.gz'] : []),
   ].sort();
+  archive.verifyRights(directory, record);
   if (activation) {
     live(record, activation.observation);
     assert.equal(activation.tag, record.tag);

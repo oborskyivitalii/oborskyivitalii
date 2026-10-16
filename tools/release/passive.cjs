@@ -3,7 +3,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const edition = require('./edition.cjs');
+const edition = require('./edition-archive.cjs');
 const routes = require('../site/snapshot.cjs').routes.map(edition.routeURL);
 const image =
   'ghcr.io/zaproxy/zaproxy@sha256:7aaa659b0d43078febd82e29bad112285c370727e86ab8340444220e17d9f0d2';

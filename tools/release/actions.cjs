@@ -54,7 +54,7 @@ async function previous(github, context, core) {
   const proof = read('release-control/request.json');
   assert.equal(
     require('../pages/http.cjs').origin(process.env.PAGES_ORIGIN),
-    require('./edition.cjs').origin
+    require('./edition-archive.cjs').origin
   );
   const record = await pages.previous(github, context, process.env.PAGES_ORIGIN, proof.current);
   assert.ok(record, 'publish and verify the staging mirror before first production');
@@ -105,9 +105,9 @@ async function prepareArchive(github, context) {
       'production-source',
       record.packageDigest,
     ]);
+    fs.copyFileSync('release-assets/rights.json', 'production-source/rights.json');
     archive.verify('production-source', record, fs.readFileSync('release-assets/public.tar.gz'));
-    require('./edition.cjs').verify('production-source', record.public);
-    assert.ok(record.evidence.rights?.pass === true && record.evidence.rights.record);
+    require('./edition-archive.cjs').verify('production-source', record.public);
     return record;
   }
   const gate = read('validation-gate/release-manifest.json');
@@ -140,9 +140,9 @@ async function prepareArchive(github, context) {
       evidenceFiles,
     }
   );
+  fs.copyFileSync('production-source/rights.json', 'release-assets/rights.json');
   archive.verify('production-source', desired, bytes);
   save('release-assets/archive.json', desired);
-  await controller.publishArchive(github, context, 'release-assets', desired);
   return desired;
 }
 
@@ -162,11 +162,50 @@ function compose() {
       runId: process.env.GITHUB_RUN_ID,
       attempt: process.env.GITHUB_RUN_ATTEMPT,
       controller: process.env.GITHUB_SHA,
-    }
+    },
+    '/',
+    { productionRightsDigest: release.rights.inventoryDigest }
   );
   assert.deepEqual(record.staging.files, read(directory + '/pages-package.json').staging.files);
   fs.mkdirSync('pages-reports', { recursive: true });
   return record;
+}
+
+function verifyPreparedArchive() {
+  const desired = read('release-assets/archive.json');
+  archive.verify('production-source', desired, fs.readFileSync('release-assets/public.tar.gz'));
+  const combined = read('pages-package/pages-package.json');
+  require('../pages/package.cjs').verify('pages-package', combined);
+  assert.deepEqual(combined.root, desired.public, 'prepared production root differs');
+  assert.deepEqual(
+    combined.state.production,
+    {
+      tag: desired.tag,
+      sourceCommit: desired.sourceCommit,
+      publicDigest: desired.publicDigest,
+    },
+    'prepared production receipt differs'
+  );
+  assert.equal(
+    combined.rights.root.inventoryDigest,
+    desired.rights.inventoryDigest,
+    'prepared production license differs'
+  );
+  const previous = read('pages-previous/pages-package/pages-package.json');
+  assert.deepEqual(combined.staging, previous.staging, 'prepared staging subtree differs');
+  return desired;
+}
+
+async function publishPreparedArchive(github, context) {
+  // Deterministic composition/rights failures must precede the first draft tag
+  // or Release asset write. Fresh authenticated leases still guard live deploy.
+  const desired = verifyPreparedArchive();
+  await authenticate(github, context);
+  const proof = read('release-control/request.json');
+  if (proof.operation === 'rollback') return desired;
+  assert.equal(proof.operation, 'publish');
+  await controller.publishArchive(github, context, 'release-assets', desired);
+  return desired;
 }
 
 async function begin(github, context) {
@@ -260,6 +299,8 @@ module.exports = {
   retainReports,
   prepareArchive,
   compose,
+  verifyPreparedArchive,
+  publishPreparedArchive,
   begin,
   accept,
   recover,

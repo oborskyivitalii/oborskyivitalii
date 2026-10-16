@@ -78,11 +78,20 @@ module.exports = function () {
       // Ribbon material carries the payload from the clipped camera vertex.
       return point.length > 3 ? [x, y, ...point.slice(3)] : [x, y];
     };
-    const visible = (points) =>
-      !points.every((point) => point[0] < -8) &&
-      !points.every((point) => point[0] > width + 8) &&
-      !points.every((point) => point[1] < -8) &&
-      !points.every((point) => point[1] > height + 8);
+    const visible = (points) => {
+      // Intersect each vertex's outside-plane bits. A zero intersection means
+      // no viewport edge excludes the complete primitive; no callback arrays.
+      let outside = 15;
+      for (const point of points) {
+        outside &=
+          (point[0] < -8 ? 1 : 0) |
+          (point[0] > width + 8 ? 2 : 0) |
+          (point[1] < -8 ? 4 : 0) |
+          (point[1] > height + 8 ? 8 : 0);
+        if (outside === 0) return true;
+      }
+      return false;
+    };
     return { forward, right, up, camera, project, visible, focal, origin };
   }
   // Semantic headings set interior waypoints. The actual scroll range owns

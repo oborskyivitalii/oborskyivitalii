@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
     "date": "2026-10-16",
-    "summary": "Compact-metadata trusted-controller prerequisite after merged PR82: two exact future plain/staging identities with independently recomputed provenance, unchanged runtime/public bytes and mandatory frozen rights membership. Reviewed owning policy, catalogue, selector/publication negatives and current RI/CI routes; full PR40 and release acceptance remain separate. Self-review."
+    "summary": "Full PR40 main integration after PR81/PR82: exact compact metadata tuples with unchanged runtime bytes, mandatory frozen rights, complete append-only original/main secret review and retained failures/budgets. Review source/acceptance/workflow/registry and RI/CI routes; actual live/native/device/independent release gates remain separate. Self-review."
   },
   "layers": [
     {
@@ -104,12 +104,17 @@
         "review/issue-69/2026-10-11-paced-security-proof.json.gz",
         "review/issue-69/2026-10-11-pacing-harness.md",
         "review/issue-69/2026-10-11-pacing-harness-evidence.json.gz",
-        ".github/acceptance/issue-39.json",
-        "tests/test_issue39_acceptance.py",
-        "review/issue-39/2026-10-15-controller-compatibility.md",
         ".github/acceptance/issue-76.json",
         "review/issue-76/2026-10-11-preview.md",
         "review/issue-76/2026-10-12-admission.md",
+        ".github/acceptance/issue-39.json",
+        "tests/test_issue39_acceptance.py",
+        "review/issue-39/2026-10-07-analysis.md",
+        "review/issue-39/2026-10-15-production-plan.md",
+        "review/issue-39/2026-10-15-release-issue-audit.md",
+        "review/issue-39/2026-10-15-implementation.md",
+        "review/issue-39/2026-10-15-licensing-proposal.md",
+        "review/issue-39/2026-10-15-controller-compatibility.md",
         "review/issue-39/2026-10-15-license-tuples.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
@@ -126,6 +131,10 @@
       "paths": [
         ".github/acceptance/issue-33.json",
         ".github/repository-layout.json",
+        "LICENSING.md",
+        "LICENSE-CODE.md",
+        "LICENSE-CONTENT.md",
+        "NOTICE.md",
         "tests/test_issue33_acceptance.py",
         "tests/test_repository_test_selection.py",
         "tests/test_root_layout.py",
@@ -156,6 +165,7 @@
         "tools/quality/secrets-baseline.json",
         "tools/quality/secrets-reviewed.json",
         "tools/quality/source-tests.cjs",
+        "tools/quality/source-test-worker.cjs",
         "tools/quality/staging-gate.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/test-profiles.json",
@@ -221,7 +231,7 @@
     },
     {
       "id": "github-live-overlay-ci-boundary",
-      "purpose": "CI entrypoints, including bounded explicit-label Writing attribution, index exact-source report routes; live issue/review/check/deployment and diagnostic versus admission remain external observations.",
+      "purpose": "CI entrypoints and production preparation contracts route source/profile and owning-policy checks; authenticated Pages migration, rights inventory and retained editions do not establish live owner, licensing, settings or publication acceptance.",
       "paths": [
         ".github/workflows/issue-acceptance.yml",
         ".github/workflows/site-browser-gate-probe.yml",
@@ -239,7 +249,45 @@
         ".github/workflows/site-writing-probe.yml",
         ".github/workflows/site-production.yml",
         ".github/workflows/site-release-candidate.yml",
-        ".github/workflows/site-staging-merge.yml"
+        ".github/workflows/site-staging-merge.yml",
+        ".github/workflows/site-pages-migration.yml",
+        "guides/SITE-PRODUCTION.md",
+        "guides/SITE-RIGHTS.md",
+        "site/content/production-social.json",
+        "site/rights.json",
+        "tools/pages/migration.cjs",
+        "tools/pages/unpack.py",
+        "tools/pages/controller.cjs",
+        "tools/pages/http.cjs",
+        "tools/release/rights.cjs",
+        "tools/release/controller.cjs",
+        "tools/release/archive.cjs",
+        "tools/release/actions.cjs",
+        "tools/release/edition.cjs",
+        "tools/release/edition-archive.cjs",
+        "tools/release/live.cjs",
+        "tools/site/edition-retention.cjs",
+        "tools/site/legal.cjs",
+        "site/templates/components/legal-notices.html",
+        "tools/check_site_seo.cjs",
+        "tests/executive.test.cjs",
+        "tests/site-engine.test.cjs",
+        "site/content/pages/credits/main.json",
+        "site/templates/pages/credits/main.html",
+        "site/engine/styles.css",
+        "docs/styles.css",
+        "tools/site/edition.cjs",
+        "tools/staging/color.cjs",
+        "tests/edition-retention.test.cjs",
+        "tests/pages-migration.test.cjs",
+        "tests/release-rights.test.cjs",
+        "tests/release-controller.test.cjs",
+        "tests/release-archive.test.cjs",
+        "tests/pages-delivery.test.cjs",
+        "tests/fixtures/delivery.cjs",
+        "tools/release/rights-record.cjs",
+        "tools/quality/analytics-browser.cjs",
+        "tests/analytics.test.cjs"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
     },
@@ -482,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "e98555cf7fa5438195b6c922978c719b2952d3736100f08279480836df4a4458",
+    "digest": "35782987323d01a7ce1622a550cd9a5f154bf22dd259693ef01c009fb844884d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -518,7 +566,7 @@
       },
       {
         "path": ".github/acceptance/issue-39.json",
-        "sha256": "f269f7e0a7a8303939912f914887123de2815e930071f363b0ba7e1fa1b36aaa"
+        "sha256": "8c1febf29bfe102ca27e144a9c7fd58a4c3c8c520066637194cb1aa859e3d9f1"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -578,15 +626,15 @@
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "093bf71ae5061c6b120332d131be088409c850d3cc2e58b44a28fb72d8059f00"
+        "sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
       },
       {
         "path": ".github/repository-layout.json",
-        "sha256": "41a8c2a0fcb29fa5cea9ffcbc3f4e1202107f76459e995d4110e20cf1fa87dcc"
+        "sha256": "98408ac46b10ac077ede1d010a21b0ef95ef46cc848beec87474f7ce7fb8e164"
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "480171992ed813464db6930cb8c323b36484314adb6037f86a0b16e711f164d0"
+        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -602,7 +650,7 @@
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
-        "sha256": "989e16cce13d998dc070f98908a3e3e21b5dca794b5c850540cb5879f85c0533"
+        "sha256": "f8523ff0e3a09ec141f81d1450cd5fdb390dfaee24c5279c2e171bac75a3f8f8"
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
@@ -610,7 +658,7 @@
       },
       {
         "path": ".github/workflows/site-cause-probe.yml",
-        "sha256": "4a2e4fcd26aed0633d7b85ef8436d4779689b7d590bdfd4c4fd5db1d391e8b12"
+        "sha256": "94b18d692d06b54ac5f7fba58198aab416f7373de5e0af02729c969f5679d492"
       },
       {
         "path": ".github/workflows/site-checks.yml",
@@ -633,16 +681,20 @@
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
+        "path": ".github/workflows/site-pages-migration.yml",
+        "sha256": "9f3dc5bf781d3323e6f2563bc15953815789a9bd3736c32d0569f2bf83f5680c"
+      },
+      {
         "path": ".github/workflows/site-production.yml",
-        "sha256": "eb7bce17608f70403b8fdc621d5b462b990190cb463a317f489b402defcf1b8a"
+        "sha256": "83a2e3e4dd55e234f98a8198b9af6fabb131c5ff755a18fe2376f0e39b0ab3aa"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "4267303bbfb7837ce684cd46196cc6455a30f0a5df49ff536994b29cf48b64df"
+        "sha256": "6a84e448b4288e8daa8bdcb3039a8455b32dad7dac07b17f5f56cb9c14067057"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "830a11a6aa62cabb9395ebd0bd46774fd28172dd63b1bf300874331d8c9f7c74"
+        "sha256": "55515562f13d8c62f6a59a4b06c54726a6a90241ddd56f133d6595ef7f155a71"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -666,7 +718,7 @@
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "01b7051da63ca5473ad0e3774bdceab010c48e28933a670fada9ff7d94463339"
+        "sha256": "663a9d493914270419d3aedd0f27e7dfcae00b5816028c3deb05159935a744d5"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -678,7 +730,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "5a277ab732dbe9fe3c9425cf32499e4d8357dfeaf5724b7f4c7d765f6c08d473"
+        "sha256": "8731fd90a1ca1519c160b44fd327379bee9eecb865a383eb633a7e0887fc2282"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -694,11 +746,11 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "24c7ef1b6dd7ec9ffb5a452269b85697276ed1c2372e1bae9fdc079b511605f2"
+        "sha256": "f305e3a3fc078fce247634472b7ebdb30d6ef7d4f5e4047a786fd230c1d4f8d1"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "808cd6871fe2fa0242a85dd5e8174d88c02177b7f1bf79123017bc0edfb057df"
+        "sha256": "f38697930a14dacfda0dec0ec97470fdb5a54216131bcdb3fcc5aecc28e5b4d4"
       },
       {
         "path": "tests/test_code_style.py",
@@ -722,7 +774,7 @@
       },
       {
         "path": "tests/test_issue39_acceptance.py",
-        "sha256": "02535ed227f83e296f8c282859bc0e1ebc8e2b1f94331bee6161c944a38afbc0"
+        "sha256": "fe3dc60946ae379d555ed9cfa2676055eb537a6569c77cac5af000756bdfbbaa"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -786,7 +838,7 @@
       },
       {
         "path": "tools/check_repository_layout.py",
-        "sha256": "15bc9ae64f548f9906738ef31b2c0726f65d70cd1d21a68d33a464ed3c186af1"
+        "sha256": "bb72d6bd8f5d8d2eea158023168ddd7ff99fc37513d9a51e45273caddd18c42b"
       },
       {
         "path": "tools/check_ri_ci.py",
@@ -798,11 +850,11 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "67628e4321a6580769e4aefcca267672ee04ca52f74c972836acd40c9b761183"
+        "sha256": "8398bbf4f9d81adc7f1c1cf6e9afc0b6f2c4942b5724be4dc47b0e7dcfb6d074"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "a7ff380673836bc6eac9ea61116eaf55bac9dc0f5f60b4f07c73bfe40887f302"
+        "sha256": "85392a9956f127b743e436d0856089a0842340dec3ff6f0851d217706457aa0a"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
@@ -814,7 +866,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "763670aad7ad7a2e70fb668f4368705e22040a673ea0c0a719e6d8d00aa347ee"
+        "sha256": "aa6035be89d8163657277fd3e0807a595223e1f16804f755da790c9cf91bfbc6"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -15,6 +15,8 @@ function manifest(id) {
   value.components = { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant };
   if (runtime.edition === 'staging')
     value.edition = { id: 'staging', indexable: false, analytics: false };
+  if (runtime.edition === 'production')
+    value.edition = { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' };
   for (const [name, sha256] of Object.entries(runtime.files))
     for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name])
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
@@ -162,11 +164,12 @@ function evidence(id) {
   }
   return value;
 }
-test('only reviewed historical, compact-metadata and Writing plain/staging runtime tuples select a camera and flight contract', () => {
+test('only reviewed historical and current launch plain/staging tuples select a camera and flight contract', () => {
   for (const family of [
     'legacy',
     'fixed',
     'issue76',
+    'issue39',
     'issue39-licensed',
     'issue39-licensed-compact',
     'issue39-writing-tbt',
@@ -181,10 +184,44 @@ test('only reviewed historical, compact-metadata and Writing plain/staging runti
       );
       assert.equal(gate.aggregate(evidence(id)).pass, true);
     }
-  for (const id of ['fixed-plain', 'issue76-plain', 'issue39-licensed-plain']) {
+  for (const id of [
+    'fixed-plain',
+    'issue76-plain',
+    'issue39-plain',
+    'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+  ]) {
     const copy = motion.reviewedRuntime(id);
     copy.files['space.js'] = '0'.repeat(64);
     assert.equal(motion.select(manifest(id)).id, id);
+  }
+});
+test('production Color has a separate exact edition identity with unchanged approved runtime bytes', () => {
+  for (const family of [
+    'issue76',
+    'issue39',
+    'issue39-licensed',
+    'issue39-licensed-compact',
+    'issue39-writing-tbt',
+  ]) {
+    const plain = motion.reviewedRuntime(family + '-plain'),
+      production = motion.reviewedRuntime(family + '-production');
+    assert.notEqual(production.variant.fingerprint, plain.variant.fingerprint);
+    assert.deepEqual(production.files, plain.files);
+    assert.equal(motion.select(manifest(production.id)).id, production.id);
+    assert.equal(motion.flightCheck(manifest(production.id)), 'blockFlight');
+    for (const mutate of [
+      (m) => delete m.edition,
+      (m) => (m.edition.origin = 'https://candidate.invalid'),
+      (m) => (m.edition.indexable = false),
+      (m) => (m.edition = { id: 'staging', indexable: false, analytics: false }),
+      (m) => (m.variant.fingerprint = plain.variant.fingerprint),
+    ]) {
+      const value = manifest(production.id);
+      mutate(value);
+      assert.throws(() => motion.select(value));
+    }
   }
 });
 test('unknown, conflicting, mixed or merely marked runtime identities fail before browser execution', async () => {
@@ -208,12 +245,19 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'fixed-plain',
     'issue76-plain',
     'issue76-staging',
+    'issue76-production',
+    'issue39-plain',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
+    'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -243,6 +287,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
   for (const id of [
     'fixed-staging',
     'issue76-staging',
+    'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
@@ -252,23 +297,30 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     assert.throws(() => motion.select(staged), /edition differs/);
   }
 });
-test('current and licensed families reject mixed reviewed bytes and editions in canonical and immutable paths', () => {
+test('reviewed fixed-block tuples reject mixed bytes and editions in canonical and immutable paths', () => {
   for (const id of [
     'issue76-plain',
     'issue76-staging',
+    'issue76-production',
+    'issue39-plain',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
+    'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
   ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
         name === 'styles.css'
-          ? id === 'issue76-plain'
-            ? 'fixed-staging'
-            : 'fixed-plain'
+          ? id.endsWith('-staging')
+            ? 'fixed-plain'
+            : 'fixed-staging'
           : 'fixed-plain'
       );
       for (const paths of ['canonical', 'immutable', 'both']) {
@@ -282,7 +334,7 @@ test('current and licensed families reject mixed reviewed bytes and editions in 
       }
     }
     const wrongEdition = manifest(id);
-    if (motion.reviewedRuntime(id).edition === 'plain') {
+    if (id.endsWith('-plain')) {
       wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
     } else {
       delete wrongEdition.edition;
@@ -290,31 +342,44 @@ test('current and licensed families reject mixed reviewed bytes and editions in 
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
   }
 });
-test('licensed contracts reject every missing or substituted runtime file and remain staging-only', () => {
-  for (const id of ['issue39-licensed-plain', 'issue39-licensed-staging']) {
+test('licensed contracts reject every missing or substituted canonical and immutable runtime file', () => {
+  for (const id of [
+    'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+  ]) {
     const runtime = motion.reviewedRuntime(id);
-    for (const name of Object.keys(runtime.files)) {
-      for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name]) {
+    for (const name of Object.keys(runtime.files))
+      for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name])
         for (const missing of [false, true]) {
           const value = manifest(id);
           if (missing) delete value.files[file];
           else value.files[file].sha256 = '0'.repeat(64);
           assert.throws(() => motion.select(value), /Color bytes/);
         }
-      }
-    }
-    const production = manifest(id);
-    production.edition = {
-      id: 'production',
-      indexable: true,
-      origin: 'https://vitaliioborskyi.ai',
-    };
-    assert.throws(() => motion.select(production), /edition differs/);
   }
-  assert.throws(() => motion.reviewedRuntime('issue39-licensed-production'), /unknown reviewed/);
 });
 test('full Color aggregation preserves all twelve engine, viewport and theme cells for reviewed contracts', () => {
-  for (const id of ['legacy-plain', 'fixed-plain', 'issue76-plain', 'issue39-licensed-plain']) {
+  for (const id of [
+    'legacy-plain',
+    'fixed-plain',
+    'issue76-plain',
+    'issue76-production',
+    'issue39-plain',
+    'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+  ]) {
     const value = evidence(id),
       report = value.reports.at(-1),
       model = report.rows[0],
@@ -368,12 +433,18 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'fixed-plain',
     'issue76-plain',
     'issue76-staging',
+    'issue39-plain',
     'issue39-licensed-plain',
     'issue39-licensed-compact-plain',
     'issue39-writing-tbt-plain',
+    'issue39-staging',
     'issue39-licensed-staging',
     'issue39-licensed-compact-staging',
     'issue39-writing-tbt-staging',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1);

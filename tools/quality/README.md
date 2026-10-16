@@ -94,8 +94,24 @@ keep the small smoke profile.
 
 Source checks run `local.cjs`, then `source-tests.cjs --profile staging` for
 registered permanent JavaScript not already checked in the baseline, and
-`python3 tools/run_repository_tests.py`. Lint/security/advisories run in the
+`tools/quality/toolchain/venv/bin/python tools/run_repository_tests.py` (the
+corresponding locked `SITE_AUDIT_TOOLS` venv on shared installations). The audit
+graph regressions require its pinned `packaging`; a missing interpreter fails
+without falling back to system Python. The standard-library-only source guards
+still use `python3`. Lint/security/advisories run in the
 static job. The browser job runs `staging-regression.cjs`:
+
+The source runner owns its fixed 180-second child limit and bounded raw output.
+Its process-isolated Node worker starts the measured long `space`, `executive`
+and `release-rights` source modules first, then the remaining selected files in
+lexical order. Selection, assertions, native TAP/accounting and the existing
+`availableParallelism() - 1` worker allocation remain. Explicit abort handling
+reaps owned test children after SIGTERM/SIGINT before the report wrapper exits.
+Prepublication allows that reporting wrapper 30 additional seconds for startup,
+owned child cleanup and report persistence. Other guard commands retain their
+180-second limit. An inner timeout remains a failed check; the extra wrapper
+time preserves its TAP/stderr and report instead of racing them. Both deadlines
+are separate from browser/performance budgets and do not change selected tests.
 
 Its bounded matrix covers Chromium/Firefox all-route journeys, no-Canvas and
 representative navigation/failure/analytics fixtures, conditional Color smoke,

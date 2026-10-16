@@ -1536,6 +1536,13 @@ body[data-page='writing'] #archive-results {
   }
 }
 
+/* Full legal copies remain readable when expanded on narrow screens. */
+.legal-notices pre {
+  max-inline-size: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 /* Canonical reading backdrop paint for every route and base/Color rendition.
    Placement remains paint-only; text wrapping and line boxes are unchanged. */
 :where(:root) {

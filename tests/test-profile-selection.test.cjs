@@ -42,6 +42,10 @@ function executionFixture(t, body) {
     'tools/quality/source-tests.cjs',
     fs.readFileSync(path.join(root, 'tools/quality/source-tests.cjs'))
   );
+  write(
+    'tools/quality/source-test-worker.cjs',
+    fs.readFileSync(path.join(root, 'tools/quality/source-test-worker.cjs'))
+  );
   write('tools/quality/local.cjs', '// no delegated baseline in this controlled repository\n');
   write('guides/SITE-CHECK-PROFILES.md', 'controlled test owner\n');
   write(
@@ -226,6 +230,28 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   assert.equal(result.status, 'not-applicable');
   assert.equal(result.total, 0);
 });
+test('authored legal and edition changes directly select publication record coverage', () => {
+  for (const changed of [
+    'LICENSING.md',
+    'LICENSE-CODE.md',
+    'LICENSE-CONTENT.md',
+    'NOTICE.md',
+    'tools/release/rights.cjs',
+    'tools/release/edition.cjs',
+    'tools/staging/edition.cjs',
+    'site/rights.json',
+    'site/content/pages/credits/main.json',
+    'tools/site/legal.cjs',
+    '.github/workflows/site-pages.yml',
+  ]) {
+    const plan = runner.select(root, 'pr', { changedPaths: [changed] });
+    assert.ok(
+      plan.modules.includes('tests/publication-records.test.cjs'),
+      changed + ' must select the actual publication producer and frozen-record checks'
+    );
+    assert.deepEqual(plan.conservativeFallback, [], changed + ' has direct declared ownership');
+  }
+});
 test('unknown changed source conservatively selects every permanent JS and never promotes historical snapshots', () => {
   const plan = runner.select(root, 'pr', { changedPaths: ['new-engine-extension.js'] });
   assert.deepEqual(plan.conservativeFallback, ['new-engine-extension.js']);
@@ -398,7 +424,10 @@ test('selected execution keeps real process failure and accounting evidence with
       return { status: 0, stdout: tap() };
     },
   });
-  assert.deepEqual(called, ['--test', '--test-reporter=tap', 'tests/content.test.cjs']);
+  assert.deepEqual(called, [
+    path.join(root, 'tools/quality/source-test-worker.cjs'),
+    'tests/content.test.cjs',
+  ]);
   assert.equal(success.total, 2);
   assert.throws(
     () =>
@@ -430,6 +459,159 @@ test('selected execution keeps real process failure and accounting evidence with
     ]).plan,
     true
   );
+});
+
+test('source scheduling starts expensive files early with isolated processes and preserves failure accounting', (t) => {
+  const f = fixture(t),
+    files = [
+      'tests/aaa.test.cjs',
+      'tests/release-rights.test.cjs',
+      'tests/executive.test.cjs',
+      'tests/space.test.cjs',
+    ],
+    log = path.join(f.directory, 'launches.jsonl');
+  for (const file of files)
+    f.write(
+      file,
+      "const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');" +
+        'test(' +
+        JSON.stringify('isolated leaf ' + file) +
+        ',()=>{' +
+        'assert.equal(globalThis.previousSourceModule,undefined);globalThis.previousSourceModule=true;' +
+        'fs.appendFileSync(' +
+        JSON.stringify(log) +
+        ',' +
+        JSON.stringify(file + '\n') +
+        ');});\n'
+    );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  f.write(
+    'run-source.cjs',
+    'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(JSON.parse(process.argv[2]),{parallelism:2});\n'
+  );
+  const child = cp.spawnSync(
+    process.execPath,
+    [path.join(f.directory, 'run-source.cjs'), JSON.stringify(files)],
+    { cwd: f.directory, env, encoding: 'utf8', timeout: 10000 }
+  );
+  assert.equal(child.status, 0, child.stderr || child.stdout);
+  assert.deepEqual(fs.readFileSync(log, 'utf8').trim().split('\n'), [
+    'tests/space.test.cjs',
+    'tests/executive.test.cjs',
+    'tests/release-rights.test.cjs',
+    'tests/aaa.test.cjs',
+  ]);
+  assert.equal(runner.accounting(child.stdout, { modules: files, root: f.directory }).passed, 4);
+  const file = files[0],
+    plan = { profile: 'production', modules: [file] };
+  for (const body of [
+    "require('node:test')('failed assertion',()=>{throw Error('original scheduling failure')});\n",
+    "throw Error('original uncaught scheduling failure');\n",
+    'process.exit(3);\n',
+    "require('node:test').skip('skipped selected case',()=>{});\n",
+    "require('node:test').describe('empty selected suite',()=>{});\n",
+    'process.exit(0);\n',
+  ]) {
+    f.write(file, body);
+    assert.throws(() => runner.run(f.directory, plan));
+  }
+});
+
+test('source scheduling cancels owned child processes and retains partial TAP on termination', async (t) => {
+  const alive = (pid) => {
+    try {
+      process.kill(pid, 0);
+      return true;
+    } catch (error) {
+      if (error.code === 'ESRCH') return false;
+      throw error;
+    }
+  };
+  const waitFor = async (condition, message) => {
+    const deadline = Date.now() + 5000;
+    while (!condition()) {
+      assert.ok(Date.now() < deadline, message);
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+  };
+  for (const signal of ['SIGTERM', 'SIGINT']) {
+    await t.test(signal, async (t) => {
+      const f = fixture(t),
+        pidFile = path.join(f.directory, 'selected-child.pid'),
+        marker = 'original partial source evidence before ' + signal,
+        files = ['tests/aaa-evidence.test.cjs', 'tests/bbb-holding.test.cjs'];
+      f.write(
+        files[0],
+        "require('node:test')('completed selected case',()=>{console.log(" +
+          JSON.stringify(marker) +
+          ');});\n'
+      );
+      f.write(
+        files[1],
+        "const fs=require('node:fs'),test=require('node:test');fs.writeFileSync(" +
+          JSON.stringify(pidFile) +
+          ',String(process.pid));' +
+          "test('unfinished selected case',()=>new Promise(()=>{}));setInterval(()=>{},1000);\n"
+      );
+      f.write(
+        'run-source.cjs',
+        'require(' +
+          JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+          ').runFiles(' +
+          JSON.stringify(files) +
+          ',{parallelism:2});\n'
+      );
+      const env = { ...process.env };
+      delete env.NODE_TEST_CONTEXT;
+      const worker = cp.spawn(process.execPath, [path.join(f.directory, 'run-source.cjs')], {
+        cwd: f.directory,
+        env,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+      let stdout = '',
+        stderr = '',
+        selectedPid;
+      worker.stdout.on('data', (bytes) => {
+        stdout += bytes;
+      });
+      worker.stderr.on('data', (bytes) => {
+        stderr += bytes;
+      });
+      const closed = new Promise((resolve, reject) => {
+        worker.once('error', reject);
+        worker.once('close', (code, signal) => resolve({ code, signal }));
+      });
+      try {
+        await waitFor(() => {
+          if (!fs.existsSync(pidFile)) return false;
+          const value = fs.readFileSync(pidFile, 'utf8');
+          if (!/^[1-9][0-9]*$/.test(value)) return false;
+          selectedPid = Number(value);
+          return stdout.includes(marker);
+        }, 'selected child and original TAP did not become ready: ' + stderr);
+        const partial = stdout;
+        assert.equal(alive(selectedPid), true, 'selected child must be running before termination');
+        assert.equal(worker.kill(signal), true);
+        await waitFor(
+          () => worker.exitCode !== null || worker.signalCode !== null,
+          'source worker did not finish after ' + signal
+        );
+        const outcome = await closed;
+        assert.equal(outcome.signal, null, 'termination must run owned source cleanup');
+        assert.notEqual(outcome.code, 0, 'interrupted source evidence cannot pass');
+        await waitFor(() => !alive(selectedPid), 'selected child survived source termination');
+        assert.ok(stdout.startsWith(partial), 'original partial TAP must remain intact');
+        assert.match(stdout, new RegExp(marker));
+      } finally {
+        if (selectedPid && alive(selectedPid)) process.kill(selectedPid, 'SIGKILL');
+        if (worker.exitCode === null && worker.signalCode === null) worker.kill('SIGKILL');
+        await closed.catch(() => {});
+      }
+    });
+  }
 });
 
 test('an empty selected file cannot masquerade as one passing Node test wrapper', (t) => {
