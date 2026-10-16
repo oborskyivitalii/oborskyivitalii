@@ -147,12 +147,16 @@ class RICICouplingTests(unittest.TestCase):
             step[1:3],
             [
                 "        id: source_checks",
-                "        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}",
+                "        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' && inputs.prepublication_artifact_id == '' }}",
             ],
         )
-        self.assertEqual(len(step), 4, "preflight cannot be optional or shell-wrapped")
-        self.assertTrue(step[3].startswith("        run: "))
-        argv = shlex.split(step[3].removeprefix("        run: "))
+        self.assertEqual(
+            len(step), 6, "fresh preflight remains explicit with host-independent scanner reports"
+        )
+        self.assertEqual(step[3], "        env:")
+        self.assertIn("SITE_TEST_BASE_URL:", step[4])
+        self.assertTrue(step[5].startswith("        run: "))
+        argv = shlex.split(step[5].removeprefix("        run: "))
         self.assertEqual(
             argv,
             [
@@ -166,7 +170,9 @@ class RICICouplingTests(unittest.TestCase):
             ],
         )
         self.assertIn("  SITE_VALIDATION_LEVEL: ${{ inputs.validation_level }}\n", workflow)
-        self.assertIn("source_checks: ${{ steps.source_checks.outcome }}", workflow)
+        self.assertIn("steps.reuse_source_checks.outcome || steps.source_checks.outcome", workflow)
+        self.assertIn("prepublication.cjs').authenticate", workflow)
+        self.assertIn("id: reuse_source_checks", workflow)
         # Execute the workflow's actual orchestration owner at both levels. The
         # finite child-process seam avoids recursively running this test suite;
         # removing, conditioning or swallowing either RI guard fails these cases.

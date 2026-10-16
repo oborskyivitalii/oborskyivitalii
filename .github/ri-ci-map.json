@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/69",
     "date": "2026-10-11",
-    "summary": "Rebase approved overlapping block phases and fixed reading camera onto reviewed main75 dual-runtime Color validation and authenticated unaccepted first-Pages recovery. Preserve every source/check/profile case and original budget; retain both motion branches, exact ledger entries, authored catalogs and current controls. Refresh exact coupled source identities after independent review; ordinary both-host admission, whole manual/device gates and production decisions remain separate."
+    "summary": "Maintainer-approved Cloudflare-only staging: retire the Pages staging publisher and two-host admission/compensation, authenticate same-run/attempt complete preflight reports, preserve original scanner bytes and all hosted/performance/recovery budgets. Production package cleanup and activation stay with PR40; local checks are self-review."
   },
   "layers": [
     {
@@ -173,7 +173,9 @@
         "tools/quality/block-flight.cjs",
         "tools/release/rights-record.cjs",
         "tests/publication-records.test.cjs",
-        "tests/fixtures/publication-records.cjs"
+        "tests/fixtures/publication-records.cjs",
+        "tools/quality/prepublication.cjs",
+        "tests/prepublication-reuse.test.cjs"
       ],
       "checks": [
         "acceptance-policy",
@@ -235,7 +237,6 @@
         ".github/workflows/site-runtime-checks.yml",
         ".github/workflows/site-staging.yml",
         ".github/workflows/site-writing-probe.yml",
-        ".github/workflows/site-pages.yml",
         ".github/workflows/site-production.yml",
         ".github/workflows/site-release-candidate.yml",
         ".github/workflows/site-staging-merge.yml"
@@ -481,7 +482,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "34dfdeca97d20307afc5abd74e4e98846ffbf71f70a7dde8ebb0b598a2c75dc2",
+    "digest": "88fd1fa8f37e28fdf3bbb7913ede957e95531254f599bc5face5d4da9c0963ba",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -561,7 +562,7 @@
       },
       {
         "path": ".github/acceptance/issue-72.json",
-        "sha256": "8e4128b77f18d94b6506b2c830bb4f7b41e84759adf1e3bf79415bcfd41b5262"
+        "sha256": "7fb6c8e2ea1f9434d12dd425bd385b5988d43b69f10e70d04a19116299ae1952"
       },
       {
         "path": ".github/acceptance/issue-76.json",
@@ -585,7 +586,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "629ff6256980a9e7eb8680d1a892a10b19c3d02947f94a4e7fa79299df9fff0f"
+        "sha256": "469a96ca5651c5b846ae9ca8056e8e542069c4cc6d15c0c0cf193c0a5e2f05d9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -617,7 +618,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "d3a188652ea5b2709ede0432e3960352ee8087dc2ee2c67b35053b2d30fbea5a"
+        "sha256": "111cd483dd21695e465f77d0ef2ffcc68d4ec1c4abefaf45d89d6dec82f4ae52"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -632,10 +633,6 @@
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
-        "path": ".github/workflows/site-pages.yml",
-        "sha256": "4bcd0e1763163cc5645d99fb51639eae6b253d4625880dee85426329cf6a3e58"
-      },
-      {
         "path": ".github/workflows/site-production.yml",
         "sha256": "eb7bce17608f70403b8fdc621d5b462b990190cb463a317f489b402defcf1b8a"
       },
@@ -645,7 +642,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "0c6cf1a15c6859ad70c0025439d0effcd607f4d64bed562213b0fb1096f77eca"
+        "sha256": "0bee74502f9f7449fde841ec27471c97cee8dcca7b888563254774ceda95bc35"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -653,7 +650,7 @@
       },
       {
         "path": ".github/workflows/site-staging-merge.yml",
-        "sha256": "73caa3cb8d3afae1971d41bc9c47f78b4de13bb9f618e18efd9c335a72bcffb9"
+        "sha256": "b5d5c3009106740102eb12abbe43d09efdac3ff5bec241b03bd5a94c4898ee21"
       },
       {
         "path": ".github/workflows/site-staging.yml",
@@ -681,7 +678,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "dbde773d10d1b7575e54c055090d9180281a8e771422f9d20434cdb17338510e"
+        "sha256": "5a277ab732dbe9fe3c9425cf32499e4d8357dfeaf5724b7f4c7d765f6c08d473"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -761,7 +758,7 @@
       },
       {
         "path": "tests/test_issue72_acceptance.py",
-        "sha256": "fd7d9e76d09cccadc6fa9807a90c5a71711e35d86d3ac070946dc589e556fe8d"
+        "sha256": "b1093489098e7a74278401ba7aea79d37a7657c1e1f48a5baf5b98b284a89fa2"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -777,7 +774,7 @@
       },
       {
         "path": "tests/test_ri_ci.py",
-        "sha256": "de8bd9678186feb952ae01163826286947ce22422ccd0597345081a7615f9b1c"
+        "sha256": "b2e9b67e7a4f0f97809e7a32b6e754c440fe10b8d7d411566a1208eff12c446d"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -801,7 +798,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "8645e35652cb334ea53c6826cd3007b7d38cd0f11e4c1e8e3b0725c2bc5f79d0"
+        "sha256": "67628e4321a6580769e4aefcca267672ee04ca52f74c972836acd40c9b761183"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -809,7 +806,7 @@
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "e76ff70dce88ff9b06daf0b12e1a1c737f49e6dea627cba7681b6c623cee9abd"
+        "sha256": "da179239ea2f4bce3cb255ffc9abc0ac3c8a0139fbcaa9d4a33964c624845bef"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
@@ -817,7 +814,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "c70ce96340dc7d3ed7be87ac7e6a76fec66ff96cc80c22bf03f4228728b0e999"
+        "sha256": "9d4246773e43f015f56c1e7d6e3be4b9bd8d6720a44014a186c71ee105aef6ed"
       },
       {
         "path": "tools/repository_intelligence.py",

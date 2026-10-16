@@ -1075,7 +1075,7 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(full, /validation_level: staging/);
   assert.match(full, /full: true/);
   assert.match(full, /public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
-  const promote = text.split('\n  promote:\n')[1].split('\n  pages:\n')[0];
+  const promote = text.split('\n  promote:\n')[1].split('\n  merge-admission:\n')[0];
   assert.match(promote, /needs.full.result == 'success'/);
   assert.match(promote, /review-flow.cjs gate/);
   assert.match(promote, /--branch=staging/);

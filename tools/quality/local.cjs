@@ -424,6 +424,10 @@ function prepublication(level, directory, options = {}) {
   const result = {
     schema: 1,
     kind: 'prepublication-preflight',
+    execution: {
+      runId: process.env.GITHUB_RUN_ID || null,
+      attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    },
     ...identity,
     candidateCommit: environment.SITE_CANDIDATE_SHA,
     validationLevel: level,
@@ -437,6 +441,11 @@ function prepublication(level, directory, options = {}) {
     productionEligible: false,
     deploymentAuthorized: false,
   };
+  assert.deepEqual(
+    checks.map((row) => row.id),
+    require('./prepublication.cjs').checkIds(level)
+  );
+  result.files = require('./prepublication.cjs').capture(reportDirectory, reportFile);
   fs.writeFileSync(reportFile, JSON.stringify(result, null, 2) + '\n');
   return result;
 }

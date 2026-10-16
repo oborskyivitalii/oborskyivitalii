@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "683fd7ab223aca1f1d852b152c5552ff2dc3ce0c180cd2fea165f68dee72c73c",
+    "digest": "e53380dd2d7c01365ccc9df1c5653d0f7f24b7cf89051772611b2ec64a8521b2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -122,7 +122,7 @@
       {
         "path": ".github/acceptance/issue-72.json",
         "identity_mode": "content",
-        "sha256": "8e4128b77f18d94b6506b2c830bb4f7b41e84759adf1e3bf79415bcfd41b5262"
+        "sha256": "7fb6c8e2ea1f9434d12dd425bd385b5988d43b69f10e70d04a19116299ae1952"
       },
       {
         "path": ".github/acceptance/issue-76.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "629ff6256980a9e7eb8680d1a892a10b19c3d02947f94a4e7fa79299df9fff0f"
+        "sha256": "469a96ca5651c5b846ae9ca8056e8e542069c4cc6d15c0c0cf193c0a5e2f05d9"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "98f95faeba3d05f9ce12e973afa93271a1ac8035d00c94cc359982def6cda7c4"
+        "sha256": "e1c0a534a1314bfcd5328e6582115cc7a86b4d17540103a080ee8cf1d9da408a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -201,7 +201,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "d3a188652ea5b2709ede0432e3960352ee8087dc2ee2c67b35053b2d30fbea5a"
+        "sha256": "111cd483dd21695e465f77d0ef2ffcc68d4ec1c4abefaf45d89d6dec82f4ae52"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -219,11 +219,6 @@
         "sha256": "ba70e04ac9e1258017a62c9416fca0405d58294d174020e5cb1fe6ad75fa6702"
       },
       {
-        "path": ".github/workflows/site-pages.yml",
-        "identity_mode": "content",
-        "sha256": "4bcd0e1763163cc5645d99fb51639eae6b253d4625880dee85426329cf6a3e58"
-      },
-      {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
         "sha256": "eb7bce17608f70403b8fdc621d5b462b990190cb463a317f489b402defcf1b8a"
@@ -236,7 +231,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "0c6cf1a15c6859ad70c0025439d0effcd607f4d64bed562213b0fb1096f77eca"
+        "sha256": "0bee74502f9f7449fde841ec27471c97cee8dcca7b888563254774ceda95bc35"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -246,7 +241,7 @@
       {
         "path": ".github/workflows/site-staging-merge.yml",
         "identity_mode": "content",
-        "sha256": "73caa3cb8d3afae1971d41bc9c47f78b4de13bb9f618e18efd9c335a72bcffb9"
+        "sha256": "b5d5c3009106740102eb12abbe43d09efdac3ff5bec241b03bd5a94c4898ee21"
       },
       {
         "path": ".github/workflows/site-staging.yml",
@@ -276,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "dae1e7a97730da34bdbe7c48fc54fdef09997219fd68ac33ea62fa1c0a53c7ab"
+        "sha256": "63eaad870c059401ecf1d14b2959fb0d46ef517e65506885da8e43c1176460bd"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -520,7 +515,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "dbde773d10d1b7575e54c055090d9180281a8e771422f9d20434cdb17338510e"
+        "sha256": "5a277ab732dbe9fe3c9425cf32499e4d8357dfeaf5724b7f4c7d765f6c08d473"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -550,7 +545,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "0f9d4a6a21c36cea811f4052170b6eaaae6f7165fc4cd44b30a874c45ba89017"
+        "sha256": "786a97eff8c6a2443e26de93237bc12090204256f18f2f964799666fbe2d3a20"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -1156,6 +1151,11 @@
         "path": "review/issue-72/2026-10-11-review.md",
         "identity_mode": "content",
         "sha256": "9056307668b9d8a848e81c40dd0c1b59fb5a5291016296691377d88569cdb176"
+      },
+      {
+        "path": "review/issue-72/2026-10-16-cloudflare-only-staging.md",
+        "identity_mode": "content",
+        "sha256": "de76b3e983fe6dea05e0b780fdb27d3e2ccda5053db2983af510b6d0df0e9a8b"
       },
       {
         "path": "review/issue-76/2026-10-11-preview.md",
@@ -5443,6 +5443,11 @@
         "sha256": "5f097aab452cf06e7455addd68ff05aecb8523a5b111fd9a8b291b869716d87c"
       },
       {
+        "path": "tests/prepublication-reuse.test.cjs",
+        "identity_mode": "content",
+        "sha256": "9812876445a4e09f377ac21464e8eada831527b1e9ecd2e51f93384b4a76d588"
+      },
+      {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
         "sha256": "9591b6766256fa7d37ed11e59fad501eb7e5aa94e624cf9b1745bcbbb752c637"
@@ -5455,12 +5460,12 @@
       {
         "path": "tests/prototype-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "c1cbb506f9a48576a1a16a188ecd6359f708a389ab9dc2e64975e2f269c28d6f"
+        "sha256": "71f07eb127c87a81cf27d90c827d214da6c8853e421e6169f44bbc4ab8ba88b4"
       },
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "5b51f515cb62378bf05b00f08b7aa77e4f09e2c73dba1a56fe37c0e18173c489"
+        "sha256": "81e492a946c35c73fabb8f7d39a1c768649e0f0c9a077d3bf3f8274922fd7421"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5495,7 +5500,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "c1d74a68c0beb654c169d68b99910723d0607712cfdfc4d3581dd8ceca9eb6ca"
+        "sha256": "d11ca4b637390fd299154e0d042b17e3e98575b145a1d77e9aaeb4142c00f75c"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -5630,7 +5635,7 @@
       {
         "path": "tests/test_issue72_acceptance.py",
         "identity_mode": "content",
-        "sha256": "fd7d9e76d09cccadc6fa9807a90c5a71711e35d86d3ac070946dc589e556fe8d"
+        "sha256": "b1093489098e7a74278401ba7aea79d37a7657c1e1f48a5baf5b98b284a89fa2"
       },
       {
         "path": "tests/test_issue_acceptance.py",
@@ -5655,7 +5660,7 @@
       {
         "path": "tests/test_ri_ci.py",
         "identity_mode": "content",
-        "sha256": "de8bd9678186feb952ae01163826286947ce22422ccd0597345081a7615f9b1c"
+        "sha256": "b2e9b67e7a4f0f97809e7a32b6e754c440fe10b8d7d411566a1208eff12c446d"
       },
       {
         "path": "tests/test_root_layout.py",
@@ -5985,7 +5990,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "8645e35652cb334ea53c6826cd3007b7d38cd0f11e4c1e8e3b0725c2bc5f79d0"
+        "sha256": "67628e4321a6580769e4aefcca267672ee04ca52f74c972836acd40c9b761183"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -6006,6 +6011,11 @@
         "path": "tools/quality/phase-checkpoint.cjs",
         "identity_mode": "content",
         "sha256": "07c5fb1cf3e59983e613879b629756f373b8107a0918d5f6b7a8e71a3d8a8bc0"
+      },
+      {
+        "path": "tools/quality/prepublication.cjs",
+        "identity_mode": "content",
+        "sha256": "bcd0125891090825fc15d9dc6e44ec8c01c3b1f7abacdd26afc7dc7ece118258"
       },
       {
         "path": "tools/quality/prettier.config.json",
@@ -6090,7 +6100,7 @@
       {
         "path": "tools/quality/staging-gate.cjs",
         "identity_mode": "content",
-        "sha256": "e76ff70dce88ff9b06daf0b12e1a1c737f49e6dea627cba7681b6c623cee9abd"
+        "sha256": "da179239ea2f4bce3cb255ffc9abc0ac3c8a0139fbcaa9d4a33964c624845bef"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
@@ -6110,7 +6120,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "c70ce96340dc7d3ed7be87ac7e6a76fec66ff96cc80c22bf03f4228728b0e999"
+        "sha256": "9d4246773e43f015f56c1e7d6e3be4b9bd8d6720a44014a186c71ee105aef6ed"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6345,7 +6355,7 @@
       {
         "path": "tools/staging/admission.cjs",
         "identity_mode": "content",
-        "sha256": "68656eddc482c1416700884ce9ecf17f4b1c43495fcbd36fa4bd5d56a9251486"
+        "sha256": "4dbe95551fd042254e38504e19b6775f05ce0df08df350e8aeb452f6137a64f6"
       },
       {
         "path": "tools/staging/color.cjs",
@@ -7073,17 +7083,6 @@
       "title": "site-navigation-probe.yml"
     },
     {
-      "path": ".github/workflows/site-pages.yml",
-      "kind": "file",
-      "purpose": "Serialized staging Pages mirror with production hash invariants and exact recovery.",
-      "role": "workflow",
-      "owner": "guides/SITE-STAGING.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "site-pages.yml"
-    },
-    {
       "path": ".github/workflows/site-production.yml",
       "kind": "file",
       "purpose": "Disabled-by-default owner release or rollback; frozen evidence, combined Pages publication, live acceptance and compensated production identity.",
@@ -7130,7 +7129,7 @@
     {
       "path": ".github/workflows/site-staging-merge.yml",
       "kind": "file",
-      "purpose": "Read-only actual merge/source-tree and authenticated two-host staging admission observation.",
+      "purpose": "Read-only actual merge/source-tree and authenticated Cloudflare-only staging admission observation.",
       "role": "workflow",
       "owner": "guides/SITE-STAGING.md",
       "instructions": [
@@ -9139,6 +9138,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 72 — 2026-10-11 independent review and corrections"
+    },
+    {
+      "path": "review/issue-72/2026-10-16-cloudflare-only-staging.md",
+      "kind": "file",
+      "purpose": "Approved Cloudflare-only staging amendment, duplicate preflight removal, implementation evidence and remaining PR40/live gates.",
+      "role": "history",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 72 — 16 October 2026 Cloudflare-only staging"
     },
     {
       "path": "review/issue-76/2026-10-11-preview.md",
@@ -18568,6 +18578,17 @@
       "title": "phase-checkpoint.test.cjs"
     },
     {
+      "path": "tests/prepublication-reuse.test.cjs",
+      "kind": "file",
+      "purpose": "Same-run preflight reuse, native artifact identity and missing/failed/changed/wrong-source/attempt/host negatives.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepublication-reuse.test.cjs"
+    },
+    {
       "path": "tests/preview-smoke.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for preview smoke.",
@@ -19809,6 +19830,17 @@
         "AGENTS.md"
       ],
       "title": "phase-checkpoint.cjs"
+    },
+    {
+      "path": "tools/quality/prepublication.cjs",
+      "kind": "file",
+      "purpose": "Authenticate and verify complete same-run/attempt staging preflight reports and immutable original scanner bytes without rerunning guards.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepublication.cjs"
     },
     {
       "path": "tools/quality/prettier.config.json",

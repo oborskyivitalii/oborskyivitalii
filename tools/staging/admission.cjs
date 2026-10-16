@@ -84,7 +84,7 @@ async function beginMergeAdmission(
     external_id: identity,
     details_url: 'https://github.com/' + flow.repository + '/actions/runs/' + context.runId,
     output: {
-      title: 'Both staging hosts must accept this attempt',
+      title: 'Cloudflare staging must accept this attempt',
       summary: 'A previous successful staging attempt cannot admit this new attempt.',
     },
   });
@@ -139,7 +139,6 @@ async function publishMergeAdmission(
   );
   assert.equal(comparison.behind_by, 0);
   assert.equal(outcomes.promote, 'success', 'stable Cloudflare verification failed');
-  assert.equal(outcomes.pages, 'success', 'Pages mirror must be activated and verified');
   return finishMergeAdmission(
     github,
     context,
@@ -147,7 +146,7 @@ async function publishMergeAdmission(
     id,
     'success',
     {
-      title: 'Exact PR source accepted on both staging hosts',
+      title: 'Exact PR source accepted on Cloudflare staging',
       summary:
         'Source admission: ' +
         evidence.map((item) => item.workflowRun + '/' + item.attempt).join(', ') +
@@ -206,7 +205,7 @@ async function verifyMerge(github, context, pr) {
     attempt_number: attempt,
     per_page: 100,
   });
-  for (const name of ['promote', 'pages / Pages publication', 'merge-admission']) {
+  for (const name of ['promote', 'merge-admission']) {
     const matches = jobs.filter((job) => job.name === name);
     assert.equal(matches.length, 1, 'missing/ambiguous merged staging job: ' + name);
     assert.equal(matches[0].status, 'completed');

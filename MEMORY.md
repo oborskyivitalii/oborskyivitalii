@@ -1,65 +1,54 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-15**.
+Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main is cc115c4 after PR77/78. Production remains disabled.
-- #39 / Draft PR40 owns the approved Apache-2.0 implementation and CC BY4.0
-  original editorial licensing, scoped exceptions, Color production and domain
-  preparation. Published head was fb653f6 at reconnect; revalidate live refs.
-- Local feature follow-up7416e1e adds frozen per-publication rights records, actual
-  clean-Git CLI checks and local archive/Pages preparation before remote writes.
-  Its component independent review passed; final feature integration is pending.
-- #39 / Draft PR80 owns the prerequisite comprehensive staging/production guard
-  review. Original published head628a961; local combined controller3762e5d plus
-  scanner review40c9b74 was preserved. Continuation adds reviewed c8a2d17
-  empty-suite accounting and cf575d0 full CSS-blocked journey evidence.
-- The versioned review owns the complete job/profile/local-command matrix,
-  findings G01-G14/L01-L03 and source/native boundaries:
-  review/issue-39/2026-10-15-publication-test-review.md.
-- Final integrated clean preflight/owning/native results and eventual remote
-  head identities belong in the live PRs; never infer them from component passes.
+- Protected main is `9b82f382` after PR80. Production remains disabled.
+- #72 now owns [PR81](https://github.com/oborskyivitalii/oborskyivitalii/pull/81) on
+  `work/cloudflare-only-staging-72`,
+  based on that main. The maintainer explicitly requested it before PR40 resumes.
+- #39 / PR40 remains at `16d4b1cd`; its separate worktree contains unfinished
+  JSON-LD/headroom and readiness corrections. Do not overwrite or import them here.
+- #72 implementation/review/evidence belongs in
+  review/issue-72/2026-10-16-cloudflare-only-staging.md and the live PR.
+- Earlier two-host staging and failed runs remain historical source-bound evidence.
 
 ## Decisions
 
-- The maintainer requires full staging/production guard review and necessary
-  fixes before another candidate/stable/production publication or PR40 resume.
-  Existing PR80 is the prerequisite; no competing issue is opened.
-- Original site implementation uses Apache-2.0; original editorial material
-  uses CC BY4.0 with explicit portrait/identity/third-party/upstream exceptions.
-  Preserve supplied consents; license selection is not exact-edition release
-  rights/editorial/device acceptance. Every publication must retain its record.
-- After guard preparation, show the changed licensed preview before permanent
-  staging/user review. Production activation, domain/DNS and merge decisions
-  remain separate; no previous one-time controller waiver is reusable.
-- Existing domain ownership is Verified. Do not repeat TXT ownership setup.
-- Preserve all original runtime/public bytes, test families, thresholds and
-  source/tree/edition/artifact bindings in the guard increment. Genuine native
-  failures remain failures: cold Writing3382.9ms exceeds3200ms; earlier TBT and
-  HTTP timeout failures are historical, not erased by source fixes.
+- Retire GitHub Pages staging. Keep Cloudflare PR previews and one permanent
+  Cloudflare staging alias; reserve Pages for production. The live #72 scope
+  amendment explicitly replaces AC04 and reopens changed protocol/delivery ACs.
+- Staging source/lint/security/advisory preflight executes once before upload.
+  Reuse only authenticated reports from the same native run/controller/attempt,
+  exact clean source/tree/edition/artifact and complete unchanged raw reports.
+- Preserve all staging browser/performance cases, thresholds, source/Ready/RI/
+  owning checks, Cloudflare package/alias recovery and merge-tree linkage.
+- Full production regression and publication-specific package cleanup remain
+  with PR40. No production/domain/DNS activation or PR40 merge is implied.
+- Original licensing selection and supplied consents remain accepted under #39;
+  exact-edition rights/editorial/device/independent release evidence stays separate.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR80 | Final integrated clean local preflight, scanners/advisories, owning policy and independent review; then applicable native checks and controller integration decision. |
-| #39 / PR40 | Integrate the reviewed guard prerequisite and feature follow-up, refresh exact-source proof and preview, then user-reviewed ordinary two-host staging. |
-| #7 / #1 / #8 / #13 / #72 | Preserve exact-edition rights/editorial, full/native/physical/independent, release/settings/archive/recovery/indexing/analytics conditions. |
-| #69 / #76 | Integrated runtime has separate remaining device/lifecycle/cost acceptance; do not repeat its completed merge. |
-| #41 / PR68; #49 / PR53 | Separate editorial and fragment-flight work; no task consolidation is inferred. |
-| #2 / #5 / #6 / #11 / #36 / #45 | Retain original publication/harness/guide/visual deliverables and their accepted evidence. |
+| #72 infrastructure | Local536 source cases,111 Python and9 policy checks pass; inspect final native CI; protected integration before PR40 staging. |
+| #39 / PR40 | Rebase after infrastructure integration; finish exact checksum triage, MCP/Semgrep advisory resolution, Writing TBT and clean preflight before one-host staging. |
+| #39 / #72 | Actual administration, retired live Pages deployment disposition, protection, production archive and recovery remain separate observations. |
+| #1 / #7 / #8 / #13 | Final rights/editorial/reader/device/independent, full/native/performance, live SEO/indexing/analytics and launch evidence. |
+| #69 / #76; #49 / PR53; #41 | Preserve remaining device/lifecycle/cost and independent animation/editorial acceptance. |
 
 ## Next session
 
-1. Fetch live main/PR40/PR80 refs, checks/reviews and deployment identities.
-2. Read #39 and its versioned publication-test review before resuming.
-3. Use the latest clean integrated source; preserve all recorded failed attempts.
-4. Record final source/tree/artifact/run results in the live owners.
-5. Keep production and DNS paused until their applicable maintainer decisions.
+1. Revalidate live main, infrastructure PR and PR40 refs/checks and working trees.
+2. Read #72's 16 October scope amendment and versioned implementation record.
+3. Finish/inspect the infrastructure checks without an unnecessary full release run.
+4. Return to PR40 only after the infrastructure route is accepted and integrated.
+5. Keep production/domain/DNS activation under its existing maintainer decision.
 
 ## Maintenance
 
-Keep these five sections and at most120 lines. Replace stale observations at
-a meaningful handoff; issues/PRs own exact current evidence and authority.
-Rebuild/verify RI after edits; never store secrets or private correspondence.
+Keep these five sections and at most 120 lines. Replace stale observations at a
+meaningful handoff; issues/PRs own current acceptance. Rebuild/verify RI after edits.
+Never store secrets or private correspondence in memory.
