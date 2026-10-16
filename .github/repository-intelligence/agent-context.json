@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "fa5a66d8dbae03b10fbc01a9a38a0d122db6fb27f400f678dbd1e3278cbe4d88",
+    "digest": "c9ead78849adfd62ed42c344de8ab7e52a0006e4c1f73202c718920b2d11e0a4",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "cbb94dba13a076df79caae20f2079851b344d8dfa15b88dc50550ad7d0cf6d93"
+        "sha256": "0948f5598e993631dd541dc1d2a0ed245df540ef8666492a864a53155d9cabee"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "192c082f7de5996c132150d74f829b24734521cee446e002c7baa1fc643cb4ba"
+        "sha256": "74fcb13a9dd17ea5bf5fed9cf18c97e2a84f13e325c089d58ad05ac33546b81f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -201,7 +201,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "69ce99394f141b695236850930511018debf510e99c57954f7e60c0e2a3e4f88"
+        "sha256": "a67cc536ac2a3e4cdb69c00606fbb8a285ddaf11d5db8b5ee29f46da5507fe31"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "91f45517ba3900b856ff2baa0b40f942422286cf639f2ec7e7c49b3a01a5e1d3"
+        "sha256": "2e7518f30897b4b7caf993f4f26ad8a06d3eec897fccb97547df720cfa2ae0c9"
       },
       {
         "path": "NOTICE.md",
@@ -585,7 +585,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "b7cc2c11a477ea2658497f52d60c5d5d51ae7a507f4299ca6f999bbb20852151"
+        "sha256": "64129826e5d62dc6b2d453ca4310b745c083cff5de855942764697ae98a2a6af"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -901,6 +901,11 @@
         "path": "review/issue-39/2026-10-17-native-navigation.md",
         "identity_mode": "content",
         "sha256": "6ecc3d450a1bf70f99a78efaa4a48f3f795f8277db46094e8ff9379dd76893d1"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-staging-admission.md",
+        "identity_mode": "content",
+        "sha256": "10dccc04e78e269bbe7de1cd2e92ac4630332253f84642bfbad330caa25e1f2e"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5695,7 +5700,7 @@
       {
         "path": "tests/prototype-admission.test.cjs",
         "identity_mode": "content",
-        "sha256": "71f07eb127c87a81cf27d90c827d214da6c8853e421e6169f44bbc4ab8ba88b4"
+        "sha256": "e552c7fc214269039fa58e17719d252bcee7cce1a4eb846ca1ca3a9d9c64a5c3"
       },
       {
         "path": "tests/publication-records.test.cjs",
@@ -6395,7 +6400,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "85be4d512c8acb9b1efdfb75d9803a2c5354c7fa2ac4015e962bc530eca0eacc"
+        "sha256": "86b02968abb97f699cee02e27225e028622077b3bf37d52c8fac16eed659175f"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6650,7 +6655,7 @@
       {
         "path": "tools/staging/admission.cjs",
         "identity_mode": "content",
-        "sha256": "4dbe95551fd042254e38504e19b6775f05ce0df08df350e8aeb452f6137a64f6"
+        "sha256": "743617685ca9f183590c253202adc7322ece3a29569043bbe7eb2cc9ec645d1e"
       },
       {
         "path": "tools/staging/color.cjs",
@@ -8926,6 +8931,17 @@
         "AGENTS.md"
       ],
       "title": "Issue39 / PR85 — native navigation and capture follow-up"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-staging-admission.md",
+      "kind": "file",
+      "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 / PR85 — required-check eligibility after successful staging"
     },
     {
       "path": "review/issue-41/2026-10-07-analysis.md",

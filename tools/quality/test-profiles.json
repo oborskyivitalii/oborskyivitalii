@@ -1565,7 +1565,7 @@
     {
       "path": "tests/prototype-admission.test.cjs",
       "language": "javascript",
-      "purpose": "Draft deferral and exact-head Cloudflare-only staging/merge admission; stale, skipped, failed and wrong-attempt negatives",
+      "purpose": "Draft deferral, exact-head Cloudflare staging and eligible read-only PR admission; stale, skipped, failed, wrong-attempt/current-main/tree and same-name self-job negatives with bounded source refresh",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

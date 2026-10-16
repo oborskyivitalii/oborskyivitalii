@@ -8820,6 +8820,12 @@
       "purpose": "Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-staging-admission.md": {
+      "kind": "file",
+      "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

@@ -264,11 +264,26 @@ reports still require their exact tested candidate URL. Wrong-source, missing,
 failed, changed or different-attempt evidence fails before promotion.
 
 Before each owner staging attempt the trusted main controller creates a fresh
-in-progress `Staging admission` check. Successful Ready source/RI/owning checks,
+in-progress `Staging admission` API checkpoint. Successful Ready source/RI/owning checks,
 the complete bounded staging gate and verified Cloudflare stable promotion are
 required. GitHub Pages settings, publishers and browser smoke are not part of
 staging admission. Failed/cancelled attempts remain failed; previous green checks
 cannot admit a new attempt.
+
+GitHub does not accept Actions checks from `issue_comment` or `workflow_dispatch`
+as required PR checks. After the successful staging attempt, record its exact
+result in the PR body through the owner's normal GitHub session or connector.
+The existing workflow handles that `pull_request: edited` event with a separate,
+read-only `Staging admission` job. It authenticates the actual latest owner-main
+attempt, source admission, promotion, current protected main and identical
+prospective merge tree. It ignores ordinary same-name jobs as evidence and
+rejects a newer failed/incomplete attempt. A bounded wait covers an owning-policy
+run started by the same edit; missing or failed proof is never retried as success.
+This refresh does not build, publish, scan or rerun browser tests. It has its own
+concurrency group, so prose edits cannot cancel a preview. Draft/inapplicable
+events use distinct deferred names; a skipped job cannot impersonate admission.
+The ordinary Ready job fails closed until the exact source is actually staged.
+See [GitHub's event eligibility rule](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks).
 
 The read-only postmerge observer authenticates the actual successful owner/main
 attempt, Cloudflare promotion and merge admission, and requires identical complete

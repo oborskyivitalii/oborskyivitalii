@@ -6,9 +6,11 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 - PR40 merged to protected main96a7a10dcf0a7afd2d4ea0618fc5d590922f7cc0,
   tree60fbe98c25f85957e1ef68d07939efef6033f6e6. Post-merge identity/navigation passed.
-- Stable Cloudflare staging38947896256/1 serves admitted61a83b22 with the same
-  runtime tree;26/26 preflight,591 source,115 Python and bounded hosted checks pass.
-  Prior failed Writing metrics remain retained; staging is not full admission.
+- Stable Cloudflare staging38979301255/1 now serves admittedc8ff69d4/publicc5121d2a/
+  packagec139f31d. Native26/26 preflight,597 source+Basic24,115 Python,all bounded
+  browser/HTTP/security/performance pass. Research mobile TBT9ms/LCP1623.135ms;
+  Writing24.5ms/1601.862ms,CLS0.049918. Both original individual limits pass.
+  Previous61a83b22/package3f2e5647 retained;this is not full production admission.
 - Frozen production preparation38970827240/1 at96 passed25/25 prepublication,
   615 source/49modules,115 Python, isolated preview publication and exact HTTP.
   Public artifact12076902293/public307f689d/upload d7d07a52; no activation.
@@ -27,17 +29,19 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
   Performance passed30 Lighthouse rows,10 medians,15motion samples,3journeys and
   300s soak; Writing mobile TBT132.5ms median. macOS functional130/130,analytics13/13;
   Windows37/40 functional,8/8 navigation,26/26 analytics. No full admission.
-- Active Draft PR85/work/pr40-production-finalization-39 at02eb3e60 corrects stale
-  captures,MIME and production-only composition. Source618/618 and owning19/19
-  passed before this follow-up. New17October report/raw gzip retains diagnosis.
-- Follow-up local frozen96 checks pass12/12 Color cells across Chromium153,
-  Firefox155,WebKit26.6,all20 capture views/behaviors and5recordings;43 targeted
-  regressions pass. WebKit shares exact native clocks/keyframes despite CSS text
-  sampling differences; Firefox edge preparation corrects reflow within900ms.
-  Windows original Firefox mobile native anchoring shifts56px; corrected same-ink
-  observation passes all3originally failing cells locally. Targeted units59/59.
-  Native Windows and full exact-source admission remain required.
-  Diagnostic container flags/user-space WebKit libraries never enter native CI.
+- Active PR85/work/pr40-production-finalization-39 inspected atc8ff69d4/tree313e9e09:
+  native harness/MIME/production-only fixes pass clean621 source/49modules,
+  own19/19,Ready PR605 plusBasic24,RI and hosted preview. Local12/12Color cells,
+  20capture views/behaviors,5recordings and3original Windows-failing cells pass;
+ 59focused units. Diagnostic flags/libraries never enter native CI.
+- Actual merge rejected405 despite custom Staging admission117236243178 green.
+  GitHub requires eligible PR-event Actions jobs;issue_comment checkpoint is
+  evidence but does not satisfy the PR rule. Main remains96,PR85 unmerged.
+  Current follow-up adds read-only PR verification,refresh-only edited events,
+  actual latest-attempt selection and bounded source wait. New changed source
+  requires its own Ready/staging evidence,then owner PR-body edit refreshes the
+  eligible job. Ruleset/source/budgets unchanged. Reports:17native-navigation
+  and17staging-admission underreview/issue-39;issue39 owns latest live state.
 
 ## Decisions
 
@@ -55,22 +59,22 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / merged PR40 follow-up | Publish completed harness corrections in PR85, current-source checks,Ready and existing staging admission. |
-| #39 / #13 | Retain completed original failures; verify corrected harness on actual native platforms,including Windows anchoring. |
+| #39 / merged PR40 follow-up | Finish eligible PR admission fix in same PR85;new-source Ready/staging,PR-body refresh and protected merge. |
+| #39 / #13 | Retain all originals;fresh exact-source production/native checks remain,including Windows anchoring. |
 | #39 / #72 / #8 | App-token proof; authenticated project-prefix to canonical cutover with exact configuration/package recovery; protected publisher and live checks. |
 | #1 / #7 / #8 / #13 | Exact-source rights policy/inventory review, physical iOS/Android and independent acceptance; actual production-domain analytics/TLS/cost. |
 
 ## Next session
 
-1. Revalidate protected main,PR85 and exact source-bound checks. Do not infer
-   native admission from the local diagnostic matrix or previous source.
-2. Finish full mapped source/owning/RI
-   checks,publish same PR85 and mark Ready after completed implementation.
-3. Use existing owner /stage route after Ready source/RI/owning checks;merge only
-   with required Staging admission. Preserve original failed results and budgets.
-4. Finish canonical configuration/package compensation before publication,then
-   exact-main preparation/full regression and actual external rights/device/review
-   gates. Continue authorized production only after its prerequisites pass.
+1. Revalidate current PR85/head,main and issue39;this snapshot records the
+   inspected c8 staging checkpoint,not later source or publication authority.
+2. Finish current eligible required-check correction,current-source/owning/RI
+   checks and Ready source jobs. Stage the changed source through ordinary /stage.
+3. After actual staging success,record its result in PR85 body through the owner
+   connector;the edited event authenticates proof without another browser matrix.
+   Merge with all required contexts green and verify identical source trees.
+4. Canonical configuration/package compensation and fresh exact-main full/native,
+   rights/device/independent/live gates still precede authorized production.
 
 ## Maintenance
 

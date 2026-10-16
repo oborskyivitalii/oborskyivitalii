@@ -691,6 +691,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-39/2026-10-16-writing-tbt.md](review/issue-39/2026-10-16-writing-tbt.md) | Bounded Writing TBT self-analysis, complete local measurement dispositions, allocation-only correction and remaining exact-source native/trusted-controller gates. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [review/issue-39/2026-10-17-native-navigation.json.gz](review/issue-39/2026-10-17-native-navigation.json.gz) | Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-39/2026-10-17-native-navigation.md](review/issue-39/2026-10-17-native-navigation.md) | Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-17-staging-admission.md](review/issue-39/2026-10-17-staging-admission.md) | Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## review/issue-41/
 
