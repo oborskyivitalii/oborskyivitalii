@@ -1,8 +1,47 @@
-# PMDay article candidate — 15 October 2026
+# PMDay article candidate — editorial review and export history
 
 Execution: PR #79; article owner #2; publisher owner #5.
 
-> **Current pending editorial successor:** [draft revision 0.8](../../../drafts/pmday-article-draft.en.md), **The Sum of Our Technology — AI Changes Both Sides of Software Engineering**, with its *What if not?* narrative and the added **socio-technical Human Authority architecture** argument. The **seven-slide** assembly remains exact. Historical 0.5/0.6/0.7 sections below are not current instructions. PDF/kit identities on this page still describe rendered **r2**, not this draft.
+> **Current editorial input: [R6](../../../drafts/pmday-article-draft.en.md).** The standalone R6 PDF is the current reading deliverable. The site's integrated manuscript remains review r3; the PDF and kit stored in this directory are historical r2. Earlier 0.5–0.8 instructions below are historical and must not replace the R6 text, named bibliography or seven-slide plan.
+
+## Editorial R6 — assurance What if not failure control
+
+**16 October 2026. Author-requested standalone revision and PDF, not site integration or publication.** The author asked that the second part use the exact rhetorical turn **What if not?**, rebuilding the assumptions before it and the failure/control conclusions after it. This pass also brings the previously standalone R4/R5 improvements into the repository's editorial draft; it does not apply the new chapter to obsolete r3 prose.
+
+The exact [R6 source and assembly appendix](https://github.com/oborskyivitalii/oborskyivitalii/blob/4e8cb3bfa01379e7b69354564097a7b6a80bcf89/drafts/pmday-article-draft.en.md) has Git blob `19b7bd0131ac9b8107759e4ac41a204fc49d5d6e`, independently calculated from the local bytes and matched to GitHub's write result. The reader-only Markdown SHA-256 is `41636550c09ead2baf8740d0d4b6bd0d6eb4fabc44e08cd1a3c192456849aaa0`.
+
+### Rewrite and preserved scope
+
+Chapter 5 now tests six explicit assurances: instructions enforce a boundary; evaluation establishes reliance; a second model catches the first model's errors; a qualified human intervenes in time; monitoring and rollback contain the consequences; release conditions continue to hold. Each has a standalone **What if not?**, then a specific counterexample and the corresponding control, dependency or reassessment requirement. The account-recovery example and the socio-technical human-capacity argument remain the through-line.
+
+Against the last reviewed R5 reader, the pre-chapter-5 HTML, chapter 6, bibliography and all eight image payloads are unchanged. The R5 user-adoption paragraph remains declarative: even useful features can arrive faster than people can absorb them. No extra refrain is inserted there. Revision labels and citation metadata now say R6. This is a rhetorical/structural edit, not a new empirical claim or external-source audit.
+
+### Delivered PDF and actual checks
+
+`The_Sum_of_Our_Technology_R6.pdf` was delivered in the conversation: **15 A4 pages, 1,643,216 bytes**, SHA-256 `a5350c8504b02cf68e08d52f33a55c6f0bf82bed5f4922e4fdd57019b262d1ae`. It is not a PDF committed in this directory and must not be confused with `article.pdf` below. Producer: WeasyPrint 68.0; white document layout, embedded fonts, no website menu/3D/UI.
+
+| Check | Observed result |
+| --- | --- |
+| All-page PDF rendering and self-review | 15 pages rendered and visually inspected; no clipped content observed |
+| Images | Eight displayed images: existing cover and v35 slides 3/5/7/9/10/12/14; R5 embedded image payloads unchanged |
+| External sources | All 23 distinct source URLs represented by clickable annotations; 68 URL annotations including wrapped/repeated links |
+| PDF navigation | 24 section/subsection bookmarks |
+| Text placement | No text span outside the checked page-content/footer bounds |
+| Chapter-5 rhetoric | Exactly six standalone What if not? paragraphs; no generic What if question used in their place |
+| Reader preservation | Chapters 1–4, chapter 6, source list and R5 customer-adoption wording retained |
+| Repository source match | Returned GitHub blob equals the locally calculated R6 draft blob |
+
+These are local editorial/render checks and self-review, **not** independent editorial/scientific/rights acceptance, managed-CI print evidence or hosted Safari/iPad validation. Repository source/RI build and verify were not run in this container; no earlier green checks are relabelled as R6 checks. PR #79 remains Draft for iteration. No workflow, test budget, publication rights, default catalog, canonical source edition, stable staging or production setting is changed by this pass.
+
+### Next assembler
+
+Use only the R6 ARTICLE START–END reader text and its appendix, including the 23-source bibliography and How to cite block. The eight `asset:` references preserve placement and alt text; use the appendix captions and retained slide provenance. The committed r3 image encodings and standalone R5/R6 encodings may differ in bytes and dimensions; do not invent byte equivalence or redraw the slides.
+
+When site integration is actually requested, synchronise the canonical manuscript, metadata, image alt/captions and profile; freeze a new semantic edition without changing r3 or old artifact identities; then regenerate and run the applicable source, RI, browser and publication checks. Do not automatically build LinkedIn/Medium adaptations or promote a website as a side effect of this PDF request. #2 AC01–AC06 and applicable #5 human/publication gates remain open; recording AC07/AC08 retain their separate historical acceptance.
+
+## Historical r2 artifacts and earlier editorial checkpoints
+
+The records below are retained as historical evidence. Their use of “current” describes the date of that record, not R6. The original pre-R6 handoff is also preserved at commit `ad89ad11f0a065b1bc223e37efeee361527e1635`.
 
 - `article.pdf`: 12-page full English article, readability revision `r2`, with
   four displayed figures and one compact presentation/recording link paragraph.
