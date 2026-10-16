@@ -31,3 +31,15 @@ commit22639d311d5fb46a23f3d5cdd819800dbe1169d9. Existing per-slide credits and r
 limits remain in pmday-two-shifts/deck-review.json and the upstream artwork
 provenance. No newly accepted public deck edition or event-edition identity is
 claimed. `presentation-cover.png` renders its first page.
+
+## Seven direct full-page v35 slide figures, review r3
+
+Source: SHA256 b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782, 15-page PDF copied from UA PR113 commit 22639d311d5fb46a23f3d5cdd819800dbe1169d9. PyMuPDF 1.26.7 direct full-page rendering at 2x RGB, no crop, retouch or redraw; publication rights review pending. Earlier body diagrams remain unused.
+
+- Slide 3: site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png, 1921x1080, SHA256 1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42.
+- Slide 5: site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png, 1921x1080, SHA256 cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3.
+- Slide 7: site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png, 1921x1080, SHA256 7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d.
+- Slide 9: site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png, 1921x1080, SHA256 ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab.
+- Slide 10: site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png, 1921x1080, SHA256 75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b.
+- Slide 12: site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png, 1921x1080, SHA256 2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18.
+- Slide 14: site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png, 1921x1080, SHA256 25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd.

@@ -6595,6 +6595,48 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 3 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 5 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 7 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 9 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 10 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 12 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png": {
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 14 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/assets/publications/pmday-ai-both-sides/presentation-cover.png": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: presentation-cover.png.",
@@ -7078,6 +7120,12 @@
     "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015.json": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides-en-review-20261015.json.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261016-r3.json": {
+      "kind": "file",
+      "purpose": "PMDay r3 review semantic edition, provenance and pending rights.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

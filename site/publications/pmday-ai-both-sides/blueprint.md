@@ -1,20 +1,9 @@
-# PMDay article — final manuscript candidate
+# The Sum of Our Technology — review manuscript r3
 
-Editorial owner: issue2; publisher execution: PR79 / issue5.
+Editorial owner: issue #2; publisher: #5 / PR #79.
 
-The author approved draft0.4 for full writing and visuals on15October2026.
-`manuscript.en.md` is now the real article owner. The old editorial draft remains
-a historical checkpoint; the pmday-two-shifts publication remains a technical fixture.
+This is the selected authorial v0.8 reader prose from the excluded draft, preserving six chapters, title allusion to Lem and the What If Not thread. The earlier r2 record is historical; this remains a review candidate, not a publication.
 
-Six chapters retain the history → HOW → ownership → value → WHAT → operational
-responsibility arc. Three original figures replace editorial visual notes. Cover
-and presentation poster are additional media. Source links remain contextual.
+Seven unedited full-page v35 PDF screenshots: slides 3, 5, 7, 9, 10, 12, 14. Keep cover and one PDF / Ukrainian recording paragraph. The older original body diagrams remain in the repo but are not selected for the r3 article.
 
-Presentation opens on demand inside the site article with native open/download
-fallback. Platform/print editions retain the poster and source link. Both platform
-outputs are full article renditions, not newly authored short social adaptations.
-The launch copy is a review candidate, not a published message.
-
-Reader, media, PDF and platform outputs require visual inspection. Final author,
-rights, accepted deck edition, publication and upstream PR113 decisions remain
-separate from preparation. No canonical or publication date is invented.
+Reader, evidence/rights, PDF, platform variants and narrow/wide hosted preview must be checked before author or release approval. Existing article slug remains unchanged.

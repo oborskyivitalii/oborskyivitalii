@@ -1,7 +1,5 @@
-AI changes both sides of software engineering: how we build it, and what it is responsible for doing.
+The Sum of Our Technology — AI Changes Both Sides of Software Engineering.
 
-My PMDay article explores delivery speed, ownership, generated documentation, user value and the controls that consequential model judgment requires.
+What if the AI SDLC succeeds at generating code but fails at delivery, recovery or human control?
 
-We can delegate more work. We still have to own the consequences.
-
-Site publication and canonical URL pending. Recording in Ukrainian: https://youtu.be/xSgWjuGqC9I
+My PMDay essay examines two shifts and the socio-technical system we must actually be able to operate. Draft review preview; no publication/canonical URL. Ukrainian recording: https://youtu.be/xSgWjuGqC9I

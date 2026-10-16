@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "95b5b4d42fb6e83cae165613938a0c6c9dcda2b3b19789e5ad8255e7882e17d6",
+    "digest": "da7783e1f93d43f84958e032044d5416bfe3d7e8f323e15e9a278e276dac9715",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "aa3f1a6c54693439656c7651d951cb57e4241650e869ecd9ebd79a806cae8964"
+        "sha256": "7ad87e08edf65c6e296540a80b88169028a23d5729440083a03856a985a19a8a"
       },
       {
         "path": ".github/ri-ci-map.json",
@@ -505,7 +505,7 @@
       {
         "path": "drafts/pmday-article-draft.en.md",
         "identity_mode": "content",
-        "sha256": "c58d58e1d90f58cf635323e04a2158b5b4a5d8cdd87bf397de2a4b2414f6bdcf"
+        "sha256": "50d6c2c84902855e74952226567252899a9629069e6bf883ae38e7766029ea06"
       },
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
@@ -655,12 +655,12 @@
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
         "identity_mode": "content",
-        "sha256": "0404aa3327145d3195762e1ad1d91ea7d910e6253d213c496f10f32257f168d1"
+        "sha256": "cfba82fce991fb63d7b8ffbdc71e236874f98730fde62e5ca54e3fb6958f63f5"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
-        "sha256": "ec0bafe50999d1544d7e0ff797da69a37764190d4f60a393a3f9f3260608e271"
+        "sha256": "28ec5b749178268c4620d6998aa5dfb44e9229d19bd522e5e092ea47cbd3187c"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -5000,7 +5000,7 @@
       {
         "path": "site/assets/publications/pmday-ai-both-sides/PROVENANCE.md",
         "identity_mode": "content",
-        "sha256": "39a139be0c202047d6e32256aac3bad5d4ed7ee72bebe485022e56faecb27eee"
+        "sha256": "5fb230d5258d0f265502bd68f19271f26b6256445864f234e35c9c706f8be56a"
       },
       {
         "path": "site/assets/publications/pmday-ai-both-sides/cover.png",
@@ -5016,6 +5016,41 @@
         "path": "site/assets/publications/pmday-ai-both-sides/delivery-queue.svg",
         "identity_mode": "content",
         "sha256": "0d1ca9a06822e4ef06a0cb7ea31cd89a2b015eb67ff1d9444c65d368d6284092"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+        "identity_mode": "content",
+        "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png",
+        "identity_mode": "content",
+        "sha256": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png",
+        "identity_mode": "content",
+        "sha256": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+        "identity_mode": "content",
+        "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png",
+        "identity_mode": "content",
+        "sha256": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+        "identity_mode": "content",
+        "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png",
+        "identity_mode": "content",
+        "sha256": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd"
       },
       {
         "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
@@ -5330,7 +5365,7 @@
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
         "identity_mode": "content",
-        "sha256": "83def81ab47208a5064a60df6b8438321829c3aa8699902ee5a1cbce271938af"
+        "sha256": "e20d14927cc99d0f0d9dcfc2cbe3686fd57b0d51dd86dea74a54c46081c817bd"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -5343,24 +5378,29 @@
         "sha256": "f6ed098d0c1dc79f214847074f785ba375b92e35125efad42f13bc8f6fd278bc"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261016-r3.json",
+        "identity_mode": "content",
+        "sha256": "f8d133143774a0670acdb9cef01ff6a5c9057aa1eb8aac7c0e44742d619eda26"
+      },
+      {
         "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
         "identity_mode": "content",
-        "sha256": "2af7b847a6d06da12d7c1a256d9433270791be8ee6ad7b4494ffc7ef23dc479a"
+        "sha256": "5262c2436db2542db68b96cc1f5cf485431b510dede2bf8301c94cddbf344b05"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "01d3360b7a19ef3ce4a3aa2d941e5f7f92512dba7ecbcdb7bdaf1240c82e367a"
+        "sha256": "d43ed4eb1bc3a1262909097f0c38a9e6e69922608e942a2b750e1703523043a2"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "439a540adf1abcc1d3e9e49e8fccc61147829fd6e89066dce60107a5a5ded7b7"
+        "sha256": "ef1b233e3d38da71ee7337983f85cd2aadfbc25ebb96a88f2746e110964870b5"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "354f8b9f65e877e1c0a3743f00f5cf494808457b8272ad17ba6f18b594ecbc42"
+        "sha256": "34cb91bd55b1e018dcc60bdf25ff318eff8feb9d01885599c06345fcd59700c5"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -8424,7 +8464,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "AI Changes Both Sides of Software Engineering"
+      "title": "The Sum of Our Technology"
     },
     {
       "path": "guides/ARTICLE-WORKFLOW.md",
@@ -18349,6 +18389,83 @@
       "title": "delivery-queue.svg"
     },
     {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 3 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-03.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 5 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-05.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 7 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-07.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 9 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-09.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 10 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-10.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 12 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-12.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png",
+      "kind": "file",
+      "purpose": "Full-page v35 PMDay slide 14 from pinned review PDF for editorial article r3.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-slide-14.png"
+    },
+    {
       "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: presentation-cover.png.",
@@ -19039,7 +19156,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "PMDay article — final manuscript candidate"
+      "title": "The Sum of Our Technology — review manuscript r3"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -19064,6 +19181,17 @@
       "title": "pmday-ai-both-sides-en-review-20261015.json"
     },
     {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261016-r3.json",
+      "kind": "file",
+      "purpose": "PMDay r3 review semantic edition, provenance and pending rights.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261016-r3.json"
+    },
+    {
       "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: launch-post.en.md.",
@@ -19083,7 +19211,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "AI Changes Both Sides of Software Engineering"
+      "title": "The Sum of Our Technology"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/profile.json",
