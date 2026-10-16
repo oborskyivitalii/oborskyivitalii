@@ -2,7 +2,7 @@
 
 Execution: PR #79; article owner #2; publisher owner #5.
 
-> **Current pending editorial successor:** [draft revision 0.7](../../../drafts/pmday-article-draft.en.md), **The Sum of Our Technology — AI Changes Both Sides of Software Engineering**, with its *What if not?* narrative and **seven-slide** assembly brief. Historical 0.5/0.6 sections below are not current instructions. The PDF/kit identities on this page still describe unchanged rendered **r2**, not this draft.
+> **Current pending editorial successor:** [draft revision 0.8](../../../drafts/pmday-article-draft.en.md), **The Sum of Our Technology — AI Changes Both Sides of Software Engineering**, with its *What if not?* narrative and the added **socio-technical Human Authority architecture** argument. The **seven-slide** assembly remains exact. Historical 0.5/0.6/0.7 sections below are not current instructions. PDF/kit identities on this page still describe rendered **r2**, not this draft.
 
 - `article.pdf`: 12-page full English article, readability revision `r2`, with
   four displayed figures and one compact presentation/recording link paragraph.
@@ -172,3 +172,10 @@ Canonical manuscript and all earlier r2 PDFs/kits remain unchanged by this edito
 **Figure order unchanged** from v0.6: exact v35 pages `3, 5, 7, 9, 10, 12, 14`; all image generation/output remains a **pending** assembly step, not an already committed seven-PNG set. The revised article is excluded from the default site catalog. Neither historical `r2` HTML/PDF/kit identities nor preview were regenerated during this editorial-only pass.
 
 **Priorities for next assembler:** (1) verify current PR79/main and ownership; (2) use ONLY ARTICLE START–END v0.7 reader text; (3) preserve the title/subtitle as the new edition's metadata, social/PDF headings and display, without prematurely changing the route/slug; (4) export seven exact full-page slide images with source/provenance/rights; (5) generate/render/check article + platform exports on current source, including narrow and PDF readability; (6) log independent/editorial/rights acceptance and pending release decisions in #2/#5. No merge, stable promotion, upstream changes, or external publication implicit.
+
+
+### Editorial revision 0.8 — socio-technical Thinking Systems, 16 October 2026
+
+**Current reading input:** [draft 0.8](../../../drafts/pmday-article-draft.en.md) and [versioned issue-2 editorial self-review](../2026-10-15-editorial-draft.md#editorial-revision-08--human-authority-as-an-architectural-dependency-16-october-2026). The author adds an explicit statement that consequential Thinking Systems require a **socio-technical operating stack**. In new chapter-5 subsection *The human is an architectural dependency*, "human in the loop" must be substantiated by staff availability, timely real decision rights, training, cognitive load, sufficient evidence, safe fallback, rehearsal and full cost; the hypothetical failed security escalation supplies a concrete \`What if not?\` example. Chapter 6 explicitly extends adopter economics to human capacity.
+
+This changes **reader text and review/assembly guards only**. The existing seven source slides **3/5/7/9/10/12/14** remain; slide 12 and slide 14 captions/guards are grounded in the unchanged PDF and do not prove the socio-technical stack exists. Original r2 canonical manuscript, review PDF, media, cover and platform kit are unmodified. The new v0.8 still needs assembly, true visual acceptance, RI/source tests, rights clearance and author publication decision.
