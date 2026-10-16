@@ -7,10 +7,12 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 - Protected main321b7066 includes PR81 (one Cloudflare staging), PR82 (patched
   exact Python audit installer) and PR83 (two exact compact-metadata controller
   identities). All prerequisite source/RI/owning and preview checks passed.
-- #39 / PR40 remains remote Draft16d4b1cd. Isolated delivery preserves its full
+- #39 / PR40 remains remote Draft4188f84f. Isolated delivery preserves its full
   feature policy, compact metadata, original runtime bytes and exact secret review.
 - Clean local d3fef9d6 / tree9f436442 passes17/17 owning checks. The three earlier
   identity failures are resolved; all previous failed/raw diagnostics remain.
+- Frozen4188f84f local preflight passes24/26: repair the modern publication
+  fixture identity and Bandit boolean-status false positive without exceptions.
 - Current corrected PR40 has no successful stable staging or production admission.
   Original Writing TBT failures still require fresh unchanged-budget native tests.
 

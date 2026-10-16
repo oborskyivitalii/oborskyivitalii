@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ffc1099954e47652fdf1b68e704406cc3e55adebf3ebbe8c360704513c63f461",
+    "digest": "21d414f8ae122d1a67f846def6c75b883958ea987e9db4e204ed8c7d32e1d982",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "86041907ab297d8643c476829c421c69e8cb13742445ff37e9da193b59ddbaf3"
+        "sha256": "0c1246d9818318a164f11b29ce53ce6b4b71f410f9cfe526ba3f0ae29f161dd8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "e06f839cf732ca29c0b6895764e30782d2556b75ec2b10d3fc0e7e67a2a50639"
+        "sha256": "3f09576c88001f72f757acd4f0932c7ad16db95f243552e25cebcc8b85afc1a6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a63a286f5ddd6fecad18c90755485b5ab42c46c83aa8743be20c7f1e30ad63c2"
+        "sha256": "4f8c7bcd1c720d15639d23b96e910a068520e16499551cac3d77a833f4b7abc5"
       },
       {
         "path": "NOTICE.md",
@@ -813,6 +813,11 @@
         "sha256": "4bd892f53b0cad3daed3e88b473add4f01b857e79e027ad7620381adff456687"
       },
       {
+        "path": "review/issue-39/2026-10-16-preflight-4188f84f.tar.gz",
+        "identity_mode": "content",
+        "sha256": "a1eae3f75c505d62ef1470e341e05bc019da52059a2a8bcaeb9f6094fd01b520"
+      },
+      {
         "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",
         "identity_mode": "content",
         "sha256": "77cfd798d90f930b8da781094f127b3251a9597085055204391ec94085709335"
@@ -825,7 +830,7 @@
       {
         "path": "review/issue-39/2026-10-16-readiness-execution.md",
         "identity_mode": "content",
-        "sha256": "995ef574ec4aa251544942d03773c78efb582f63af55e201188bf7ec44449db2"
+        "sha256": "4cf5c96cad928c5728df5ae0b16b60ae3c1133fc20fc91aa7e2ce6e24cd4cee8"
       },
       {
         "path": "review/issue-39/2026-10-16-secret-ledger-merge.json.gz",
@@ -5535,7 +5540,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "f0ed7c1320d5f3374b3b5c10d05fefd36e1ea7feae0e1509d51a8af1593f11a7"
+        "sha256": "e9de95991b66daca66cb776480bb3571330c4a68d54f778c0cfe197077c93e07"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -5820,7 +5825,7 @@
       {
         "path": "tests/test_python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "7a9d5d3ce027ebf9d10b34eff3dfea69e5a737fc18687acdbb604b8a12d96a20"
+        "sha256": "7e359dd4c8b7a633526c7f1789a1fc9ee1024412b4caca3aaa82d2f5a0dd7c91"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -6215,7 +6220,7 @@
       {
         "path": "tools/quality/python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "c837dae35711237dc7a87d68b0bcefba2256c4dca148a1789de378e37252916f"
+        "sha256": "29c7f7ff2909a85d3cfa3e128b2423b80dfc9a2080feb5978fefd196715c37ed"
       },
       {
         "path": "tools/quality/reading-clarity.cjs",
@@ -8648,6 +8653,17 @@
         "AGENTS.md"
       ],
       "title": "Issue39 PR40 — selected PR68 positioning integration (16 October 2026)"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-preflight-4188f84f.tar.gz",
+      "kind": "file",
+      "purpose": "Original frozen4188f84f failed local prepublication24/26 evidence: all checksummed raw scanner/source reports and artifact identity metadata; exact bytes retained without release admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-readiness-execution.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-preflight-4188f84f.tar.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-public-checksum-proof.json.gz",

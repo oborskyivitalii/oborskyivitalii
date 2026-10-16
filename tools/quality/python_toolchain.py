@@ -108,7 +108,7 @@ def verify(text, distributions):
     if "semgrep" in locked and len(overrides) != 1:
         raise ValueError("Changed or duplicated Semgrep/MCP constraint")
     return {
-        "pass": True,
+        "verified": True,
         "packages": len(locked),
         "dependencies": checked,
         "compatibilityOverrides": overrides,

@@ -28,7 +28,7 @@ class PythonToolchainTests(unittest.TestCase):
     def test_exact_patched_pair_and_all_other_constraints_pass(self):
         graph = self.graph()
         result = TOOLCHAIN.verify(self.lock, graph)
-        self.assertTrue(result["pass"])
+        self.assertTrue(result["verified"])
         self.assertEqual((result["packages"], result["dependencies"]), (3, 3))
         self.assertEqual(
             result["compatibilityOverrides"],

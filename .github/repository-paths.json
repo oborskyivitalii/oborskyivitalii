@@ -8724,6 +8724,12 @@
       "purpose": "Verbatim provenance for six identical-disposition secret-review reason variants during PR40/main ledger reconciliation; original PR40 rows and all newer exact IDs remain preserved.",
       "role": "history",
       "owner": "review/issue-39/2026-10-16-readiness-execution.md"
+    },
+    "review/issue-39/2026-10-16-preflight-4188f84f.tar.gz": {
+      "kind": "file",
+      "purpose": "Original frozen4188f84f failed local prepublication24/26 evidence: all checksummed raw scanner/source reports and artifact identity metadata; exact bytes retained without release admission.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-readiness-execution.md"
     }
   }
 }

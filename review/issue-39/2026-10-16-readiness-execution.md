@@ -239,3 +239,33 @@ The new immutable original-PR40 baseline literal is separately checked by actual
 pinned detection and Git object verification before an exact ledger append.
 Freeze the final review/memory bytes, run its exact-source preflight and Ready CI,
 then request ordinary one-host staging. No full release criterion is newly closed.
+
+
+## Exact frozen4188f84f preflight correction
+
+Clean published4188f84f / tree8570c697, STAGING Color2c543a78 artifact370246ed,
+passes24/26 local prepublication families. Actual Semgrep, dependency advisories
+and exact secret review pass. The source profile completes588 cases in115148ms,
+with581 passing and seven failures at the modern publication fixture's obsolete
+`issue39-licensed-*` current-source expectation. Update only that modern fixture
+to the exact compact family; keep its historical source branch and every frozen
+rights/substitution/extraction assertion unchanged.
+
+Bandit1.9.4 reports B105 at the graph validator's literal boolean `pass: True`
+status, describing True as a possible password. Rename this new internal result
+field to `verified` and update its positive fixture; installation/scanner callers
+consume its exit status and all package/constraint checks remain unchanged. Add
+no suppression, Bandit exception or advisory waiver. Repeat actual pinned Bandit
+and graph/publication fixtures, then the complete current-source preflight.
+
+The [original failed preflight archive](2026-10-16-preflight-4188f84f.tar.gz)
+retains every raw report byte with its captured checksum plus artifact metadata.
+It is failed local evidence, not clean hosted/native or production acceptance.
+
+
+Prepared2942e34 verification: the complete publication-records file passes17/17
+cases, all four positive/adversarial graph tests pass, the real installed graph
+verifies89 packages/143 constraints, and actual pinned Bandit reports zero findings
+and zero errors on the validator. The modern fixture and status-name corrections
+preserve every rejection/constraint and add no exception. Freeze these bytes and
+repeat exact-source prepublication before Ready/staging admission.
