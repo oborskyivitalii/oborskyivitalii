@@ -455,6 +455,21 @@ test('cause scope counts preserve Research and WebKit while Writing requires all
   );
 });
 
+function assertCurrentWritingRows(fixture, failure) {
+  for (const row of fixture.record.rows) {
+    assert.equal(row.tbtMs, 900, 'overrun is preserved without performance acceptance');
+    assert.equal(row.sampled, row.run === 6);
+    const request =
+      fixture.requests[row.run - 1 - (failure === 'lighthouse' && row.run > 3 ? 1 : 0)];
+    assert.equal('additionalTraceCategories' in request.flags, row.sampled);
+    assert.equal(row.fullGate, false);
+    assert.equal(row.performanceAcceptance, false);
+    const raw = JSON.parse(
+      zlib.gunzipSync(fs.readFileSync(path.join(fixture.output, row.lhr.file)))
+    );
+    assert.equal(raw.audits['total-blocking-time'].numericValue, 900);
+  }
+}
 test('current Writing keeps five ordinary trials separate from CPU sampling and retains every overrun', async (t) => {
   for (const failure of [null, 'lighthouse', 'cleanup']) {
     const fixture = writingTrialFixture(t, null);
@@ -491,19 +506,7 @@ test('current Writing keeps five ordinary trials separate from CPU sampling and 
     assert.equal(fixture.record.rows.length, failure ? (failure === 'cleanup' ? 3 : 5) : 6);
     assert.equal(evidenceComplete('writing-current', fixture.record), !failure);
     assert.equal(fixture.record.errors.length, failure ? 1 : 0);
-    for (const row of fixture.record.rows) {
-      assert.equal(row.tbtMs, 900, 'overrun is preserved without performance acceptance');
-      assert.equal(row.sampled, row.run === 6);
-      const request =
-        fixture.requests[row.run - 1 - (failure === 'lighthouse' && row.run > 3 ? 1 : 0)];
-      assert.equal('additionalTraceCategories' in request.flags, row.sampled);
-      assert.equal(row.fullGate, false);
-      assert.equal(row.performanceAcceptance, false);
-      const raw = JSON.parse(
-        zlib.gunzipSync(fs.readFileSync(path.join(fixture.output, row.lhr.file)))
-      );
-      assert.equal(raw.audits['total-blocking-time'].numericValue, 900);
-    }
+    assertCurrentWritingRows(fixture, failure);
     if (failure === 'cleanup')
       assert.deepEqual(
         fixture.record.unattempted.map((v) => v.run),

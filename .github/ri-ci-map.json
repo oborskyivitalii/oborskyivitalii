@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "747283ec2ee2cb4aff12e8e3f2dc05d647067aa8f1d6c0263374e515b843bd65",
+    "digest": "87a877ca49475fad7942a455d8915c999dd2a79d8e79095b6fb67a9adef6fffa",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -634,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6300baa5c719806afe0cf491bb2ac961e60970f09c673c82a8ecfd6793dae4ce"
+        "sha256": "d7af6246508bd5a809251f3de9b7d8b6815bde98cf42dc3cfdd4f67d0d5aed2f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

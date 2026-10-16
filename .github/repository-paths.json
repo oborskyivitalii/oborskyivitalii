@@ -8748,6 +8748,12 @@
       "purpose": "Issue39 bounded native current Writing measurements and eventual exact trusted-controller registration, failure retention and stop/report.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-native-writing-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Inert verified native Writing six-row cause record with exact runner/source/artifact/profile and original raw hashes; five ordinary trials plus separately sampled CPU attribution, no hosted admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

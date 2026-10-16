@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6fa6f4501dab9e71036fee80c7ec5d15cfd35d4e9da677394290716d1a1ca1b7",
+    "digest": "5ecd2e979a224afb83e6603f2ba8852816b0126734d14de09a05392c136440af",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6300baa5c719806afe0cf491bb2ac961e60970f09c673c82a8ecfd6793dae4ce"
+        "sha256": "d7af6246508bd5a809251f3de9b7d8b6815bde98cf42dc3cfdd4f67d0d5aed2f"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b90eae4566b32817950cd85f62b2f6954e9ff32d0dc9c15040862c4d54e5ea3a"
+        "sha256": "a1ad31892e1db95d8ed2cb186835b94df92f90c941f7c9571849e9cd2772e69b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "699a33314128018ffd951c55ae9c45c4c56d536401b9380018f5599d551885f2"
+        "sha256": "9db49646459655bfc5d73318bbbb157303e74615854f9586439d1e97c03f475d"
       },
       {
         "path": "NOTICE.md",
@@ -810,7 +810,12 @@
       {
         "path": "review/issue-39/2026-10-16-native-writing-controller.md",
         "identity_mode": "content",
-        "sha256": "d183dc88f4d41f4bae513c4ce0ddfafab1fcaf68b6fc995cfa25e110139a9b63"
+        "sha256": "66d65d22943c44886a4c370a8d894312ab98f7ebcc1ee932b99cd2fdb2771322"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-native-writing-evidence.json.gz",
+        "identity_mode": "content",
+        "sha256": "abcdbfb47616f72e6e9686dda382c763bc37248de5984f44d340297f492f7323"
       },
       {
         "path": "review/issue-39/2026-10-16-positioning-integration.md",
@@ -5495,7 +5500,7 @@
       {
         "path": "tests/cause-probe.test.cjs",
         "identity_mode": "content",
-        "sha256": "e9e7b21368429dc4366b3748d872ab218e19f8334f783b6801b36060ca944701"
+        "sha256": "bcb59a3c2faa2ea734893ed0f13762d0622f7f64c46be4f788131f76b2236c8b"
       },
       {
         "path": "tests/color-build.test.cjs",
@@ -8668,6 +8673,17 @@
         "AGENTS.md"
       ],
       "title": "Issue39 — native Writing evidence and trusted controller, 16 October2026"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-native-writing-evidence.json.gz",
+      "kind": "file",
+      "purpose": "Inert verified native Writing six-row cause record with exact runner/source/artifact/profile and original raw hashes; five ordinary trials plus separately sampled CPU attribution, no hosted admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-native-writing-evidence.json.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-positioning-integration.md",
