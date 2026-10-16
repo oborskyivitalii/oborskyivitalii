@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "pmday-ai-both-sides-review-20261016",
+  "platforms": {
+    "linkedin": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    },
+    "medium": {
+      "formats": ["html", "md", "txt", "copy-ready"],
+      "relationship": "equivalent-rendition"
+    }
+  },
+  "launch": {
+    "source": "launch-post.en.md",
+    "sha256": "5262c2436db2542db68b96cc1f5cf485431b510dede2bf8301c94cddbf344b05"
+  },
+  "seo": {
+    "title": "The Sum of Our Technology — AI Changes Both Sides of Software Engineering",
+    "summary": "What if AI acceleration fails outside a code generator? Two shifts in software engineering demand evidence, sustainable delivery and viable socio-technical control."
+  },
+  "assets": {
+    "cover": {
+      "id": "cover"
+    },
+    "hero": {
+      "id": "cover"
+    }
+  },
+  "limits": {
+    "linkedinCharacters": 50000,
+    "mediumCharacters": 50000
+  },
+  "reader": {
+    "references": "inline",
+    "presentation": "links"
+  }
+}

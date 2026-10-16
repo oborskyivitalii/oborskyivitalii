@@ -39,7 +39,7 @@ function renderPage({
       TITLE: title,
       TITLE_ATTRIBUTE: escapeAttribute(input.meta.title),
       DESCRIPTION: description,
-      SCHEMA: scriptJSON(input.schema),
+      SCHEMA: scriptJSON(input.schema, 0),
       MEASUREMENT: measurement,
       CRITICAL_MEDIA:
         route.id === 'index'

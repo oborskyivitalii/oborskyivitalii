@@ -17,13 +17,7 @@
 <meta name="twitter:description" content="Sources, author-portrait attribution, publication rights and display preferences for Vitalii Oborskyi’s research and writing site."/>
 <!-- prettier-ignore -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Credits and reuse",
-  "inLanguage": "en",
-  "description": "Publication sources, author portrait, display preferences and reuse boundaries."
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Credits and reuse","inLanguage":"en","description":"Publication sources, author portrait, display preferences and reuse boundaries."}
   </script>
 
 
@@ -32,9 +26,10 @@
 
 
 
-  <meta name="site-engine" content="8ced6511a9420f145dd3409e168e0f9fa4786db025623165afa5e3cc13a6741d">
-  <meta name="site-route" content="0d3345cbdd8c1995dbc63d2b6337f6f0742fb19cb56a8e2d9b2869bb01a305fb">
+  <meta name="site-engine" content="f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0">
+  <meta name="site-route" content="2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495">
   <meta name="site-contract" content="1">
+  <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
 <style>
@@ -1576,6 +1571,127 @@ body[data-page='writing'] #archive-results {
   }
 }
 
+/* Native article reading uses the existing Writing room and shared paper tokens. */
+.article-reader {
+  max-width: 860px;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+.article-reader article,
+.article-list {
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+.article-intro h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+.article-summary {
+  font-size: 1.2rem;
+}
+.article-toc,
+.article-sources {
+  margin-block: 2.5rem;
+}
+.article-toc ol {
+  padding-left: 0;
+  list-style: none;
+}
+.article-body {
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.article-body h2,
+.article-body h3 {
+  margin-top: 2.5rem;
+  scroll-margin-top: 6rem;
+}
+.article-body figure {
+  margin: 2rem 0;
+}
+.article-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.article-body figcaption {
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+.article-body pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid currentColor;
+}
+.article-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.article-body th,
+.article-body td {
+  padding: 0.5rem;
+  border: 1px solid currentColor;
+  text-align: left;
+}
+.article-list {
+  margin-block: 2rem;
+}
+.article-list li + li {
+  margin-top: 1.5rem;
+}
+.article-presentation {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-block: 2rem;
+}
+.article-presentation figure {
+  margin-block: 1rem;
+}
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.presentation-viewer iframe {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 65vh, 760px);
+  border: 0;
+  background: #fff;
+}
+.presentation-help {
+  font-size: 0.85rem;
+}
+@media print {
+  .presentation-toggle,
+  .presentation-viewer {
+    display: none;
+  }
+}
+@media print {
+  .article-reader {
+    max-width: none;
+    padding-top: 0;
+  }
+  .article-reader article {
+    padding: 0;
+    background: transparent;
+  }
+  .article-toc {
+    break-after: page;
+  }
+  .article-body figure {
+    break-inside: avoid;
+  }
+  .article-body h2,
+  .article-body h3 {
+    break-after: avoid;
+  }
+}
+
 /* Canonical reading backdrop paint for every route and base/Color rendition.
    Placement remains paint-only; text wrapping and line boxes are unchanged. */
 :where(:root) {
@@ -1633,7 +1749,12 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-intro > *,
+  .article-toc,
+  .article-body > *,
+  .article-sources,
+  .article-list
 ) {
   position: relative;
   isolation: isolate;
@@ -1674,7 +1795,12 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-intro > *,
+  .article-toc,
+  .article-body > *,
+  .article-sources,
+  .article-list
 )::before {
   content: '';
   position: absolute;
@@ -1720,7 +1846,12 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-intro > *,
+  .article-toc,
+  .article-body > *,
+  .article-sources,
+  .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
 .reading-title,

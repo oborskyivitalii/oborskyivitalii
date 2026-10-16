@@ -4,7 +4,9 @@ const fs = require('node:fs'),
   path = require('node:path'),
   cp = require('node:child_process'),
   assert = require('node:assert/strict');
+const { isDeepStrictEqual } = require('node:util');
 const REGISTRY = 'tools/quality/test-profiles.json';
+const WORKER_LIMIT = 2;
 function safePath(value, { pattern = false } = {}) {
   assert.equal(typeof value, 'string', 'path must be text');
   assert.ok(
@@ -174,6 +176,7 @@ function validateRegistry(root, registry) {
       'production',
       'diagnostic',
       'issue-policy',
+      'content',
     ]);
   for (const row of registry.tests) {
     safePath(row.path);
@@ -187,6 +190,33 @@ function validateRegistry(root, registry) {
     'test inventory must cover every actual module exactly; declare new modules or retire missing ones'
   );
   validateBaseline(root, registry);
+  const content = registry.source_profiles.content;
+  assert.ok(content && Array.isArray(content.authored_inputs), 'missing content impact policy');
+  for (const key of ['authored_inputs', 'derived_inputs']) {
+    assert.ok(
+      Array.isArray(content[key]) && content[key].length,
+      'missing content category ' + key
+    );
+    for (const input of content[key]) safePath(input, { pattern: true });
+  }
+  assert.deepEqual(
+    [...content.mandatory_files].sort(),
+    registry.tests
+      .filter((row) => row.profiles.includes('content'))
+      .map((row) => row.path)
+      .sort(),
+    'mandatory content inventory must equal declared content modules'
+  );
+  assert.ok(
+    content.mandatory_files.length > 0 &&
+      content.mandatory_files.every((file) =>
+        registry.tests.some(
+          (row) =>
+            row.path === file && row.language === 'javascript' && row.lifecycle === 'permanent'
+        )
+      ),
+    'content modules must retain permanent staging and production routes'
+  );
   return registry;
 }
 function git(root, args) {
@@ -263,9 +293,133 @@ function selectPRTargets(root, registry, options, permanent, include) {
   }
   return { changedPaths, conservativeFallback };
 }
+function publicationInventoryCompatible(registry, before, after) {
+  const derivedEntry = (file) => file === 'docs' || file.startsWith('docs/');
+  const withoutPublications = (value) => ({
+    ...value,
+    entries: Object.fromEntries(
+      Object.entries(value.entries || {}).filter(
+        ([file]) =>
+          !file.startsWith('site/publications/') &&
+          !file.startsWith('site/assets/publications/') &&
+          !derivedEntry(file)
+      )
+    ),
+  });
+  if (!isDeepStrictEqual(withoutPublications(before), withoutPublications(after))) return false;
+  // Existing non-content publication inputs can remain pinned, never change or disappear.
+  for (const [file, entry] of Object.entries(before.entries || {})) {
+    if (
+      (file.startsWith('site/publications/') || file.startsWith('site/assets/publications/')) &&
+      entry.kind === 'file' &&
+      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input)) &&
+      !isDeepStrictEqual(entry, after.entries?.[file])
+    )
+      return false;
+  }
+  for (const [file, entry] of Object.entries(after.entries || {})) {
+    if (derivedEntry(file)) {
+      safePath(file);
+      if (
+        !isDeepStrictEqual(Object.keys(entry).sort(), ['kind', 'owner', 'purpose', 'role']) ||
+        entry.owner !== 'site/README.md' ||
+        entry.role !== 'generated' ||
+        !['file', 'directory'].includes(entry.kind) ||
+        typeof entry.purpose !== 'string' ||
+        !entry.purpose.trim()
+      )
+        return false;
+      continue;
+    }
+    if (!file.startsWith('site/publications/') && !file.startsWith('site/assets/publications/'))
+      continue;
+    safePath(file);
+    if (
+      !isDeepStrictEqual(Object.keys(entry).sort(), ['kind', 'owner', 'purpose', 'role']) ||
+      entry.owner !== 'guides/ARTICLE-WORKFLOW.md' ||
+      !['source', 'generated', 'draft', 'configuration'].includes(entry.role) ||
+      typeof entry.purpose !== 'string' ||
+      !entry.purpose.trim() ||
+      !['file', 'directory'].includes(entry.kind)
+    )
+      return false;
+    if (
+      entry.kind === 'file' &&
+      !registry.source_profiles.content.authored_inputs.some((input) => matches(file, input)) &&
+      !isDeepStrictEqual(entry, before.entries?.[file])
+    )
+      return false;
+  }
+  return true;
+}
+function riIdentityCompatible(before, after) {
+  const { reviewed_source_identity: previousIdentity, ...previousPolicy } = before;
+  const { reviewed_source_identity: currentIdentity, ...currentPolicy } = after;
+  if (!isDeepStrictEqual(previousPolicy, currentPolicy)) return false;
+  const validIdentity = (identity) =>
+    identity?.algorithm === 'sha256-path-content-map-v1' &&
+    isDeepStrictEqual(Object.keys(identity).sort(), ['algorithm', 'digest', 'inputs']) &&
+    /^[a-f0-9]{64}$/.test(identity.digest || '') &&
+    Array.isArray(identity.inputs) &&
+    identity.inputs.every(
+      (row) =>
+        isDeepStrictEqual(Object.keys(row).sort(), ['path', 'sha256']) &&
+        typeof row.path === 'string' &&
+        /^[a-f0-9]{64}$/.test(row.sha256 || '')
+    );
+  if (!validIdentity(previousIdentity) || !validIdentity(currentIdentity)) return false;
+  const previousPaths = previousIdentity.inputs.map((row) => safePath(row.path));
+  const currentPaths = currentIdentity.inputs.map((row) => safePath(row.path));
+  return (
+    new Set(currentPaths).size === currentPaths.length &&
+    isDeepStrictEqual(previousPaths, currentPaths)
+  );
+}
+function exactDerivedPolicy(root, registry, base, head, file) {
+  if (!root || !/^[0-9a-f]{40}$/.test(base || '') || !/^[0-9a-f]{40}$/.test(head || ''))
+    return false;
+  try {
+    const before = JSON.parse(git(root, ['show', base + ':' + file]));
+    const after = JSON.parse(git(root, ['show', head + ':' + file]));
+    if (file === '.github/repository-paths.json')
+      return publicationInventoryCompatible(registry, before, after);
+    if (file === '.github/ri-ci-map.json') return riIdentityCompatible(before, after);
+    return false;
+  } catch {
+    return false;
+  }
+}
+function classifyContent(registry, changedPaths, options = {}) {
+  const policy = registry.source_profiles.content;
+  const authored = [],
+    derived = [],
+    platform = [];
+  for (const file of changedPaths) {
+    safePath(file);
+    if (policy.authored_inputs.some((input) => matches(file, input))) authored.push(file);
+    else if (policy.derived_inputs.some((input) => matches(file, input))) derived.push(file);
+    else if (
+      ['.github/repository-paths.json', '.github/ri-ci-map.json'].includes(file) &&
+      exactDerivedPolicy(options.root, registry, options.base, options.head, file)
+    )
+      derived.push(file);
+    else platform.push(file);
+  }
+  return {
+    mode: authored.length > 0 && platform.length === 0 ? 'content' : 'platform',
+    authored,
+    derived,
+    platform,
+    reason: platform.length
+      ? 'Changed platform, policy or unclassified source requires ordinary checks'
+      : authored.length
+        ? 'Only declared authored content and derived public bytes changed'
+        : 'No declared authored content change; generated-only edits cannot select reuse',
+  };
+}
 function select(root, profile, options = {}) {
   assert.ok(
-    ['pr', 'staging', 'production', 'diagnostic'].includes(profile),
+    ['pr', 'content', 'staging', 'production', 'diagnostic'].includes(profile),
     'unknown source profile ' + profile
   );
   const registry = validateRegistry(root, options.registry || loadRegistry(root));
@@ -284,8 +438,22 @@ function select(root, profile, options = {}) {
     }
   };
   let changed = { changedPaths: [], conservativeFallback: [] };
-  if (profile === 'pr') changed = selectPRTargets(root, registry, options, permanent, include);
-  else {
+  let classification;
+  if (['pr', 'content'].includes(profile)) {
+    const changedPaths = normalizedChanges(root, options);
+    classification = classifyContent(registry, changedPaths, { root, ...options });
+    if (profile === 'content')
+      assert.equal(
+        classification.mode,
+        'content',
+        'content profile rejects platform or empty changes'
+      );
+    if (classification.mode === 'content') {
+      changed = { changedPaths, conservativeFallback: [] };
+      for (const row of js.filter((row) => row.profiles.includes('content')))
+        include(row, 'mandatory authored content safety contract');
+    } else changed = selectPRTargets(root, registry, options, permanent, include);
+  } else {
     const rows =
       profile === 'diagnostic' ? js.filter((row) => row.lifecycle === 'diagnostic') : permanent;
     const reason =
@@ -303,6 +471,7 @@ function select(root, profile, options = {}) {
       ? registry.source_profiles[profile].baseline_command
       : null,
     ...changed,
+    ...(classification ? { classification } : {}),
     reasons,
     pythonRoute: 'python3 tools/run_repository_tests.py',
     taskSnapshots: 'selected owning issue policy only',
@@ -376,6 +545,78 @@ function requireClean(root) {
     'source tests require clean checkout'
   );
 }
+function validateExecutionOrder(modules, order) {
+  assert.ok(Array.isArray(order), 'missing source execution order');
+  assert.equal(new Set(order).size, order.length, 'duplicate source execution module');
+  assert.deepEqual([...order].sort(), [...modules].sort(), 'source execution inventory differs');
+}
+function executionOrder(root, modules) {
+  assert.ok(Array.isArray(modules), 'missing selected modules');
+  assert.equal(new Set(modules).size, modules.length, 'duplicate selected source module');
+  const sizes = new Map();
+  for (const file of modules) {
+    safePath(file);
+    assert.ok(
+      /^tests\/(?:[^/]+\/)*[^/]+\.test\.cjs$/.test(file),
+      'unsupported selected source module'
+    );
+    const stat = fs.lstatSync(path.join(root, file));
+    assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'selected source module must be regular');
+    sizes.set(file, stat.size);
+  }
+  const priority = ['tests/space.test.cjs', 'tests/executive.test.cjs'];
+  const rank = (file) => {
+    const index = priority.indexOf(file);
+    return index < 0 ? priority.length : index;
+  };
+  // Measured long suites start first; size orders the remaining selected files.
+  // Both are deterministic scheduling heuristics, not duration guarantees.
+  const ordered = [...modules].sort(
+    (first, second) =>
+      rank(first) - rank(second) ||
+      sizes.get(second) - sizes.get(first) ||
+      (first < second ? -1 : first > second ? 1 : 0)
+  );
+  validateExecutionOrder(modules, ordered);
+  return ordered;
+}
+function executeSelected(root, modules) {
+  assert.ok(modules.length > 0, 'missing selected execution modules');
+  assert.deepEqual(modules, executionOrder(root, modules), 'selected execution order mismatch');
+  const { run: runTests } = require('node:test');
+  const { tap } = require('node:test/reporters');
+  const controller = new AbortController();
+  let reporter;
+  const failed = () => {
+    process.exitCode = 1;
+  };
+  const abort = () => {
+    failed();
+    controller.abort();
+    reporter?.resume();
+  };
+  process.once('SIGTERM', abort);
+  process.once('SIGINT', abort);
+  process.stdout.once('error', abort);
+  const cleanup = () => {
+    process.removeListener('SIGTERM', abort);
+    process.removeListener('SIGINT', abort);
+    process.stdout.removeListener('error', abort);
+  };
+  const stream = runTests({
+    files: modules.map((file) => path.resolve(root, file)),
+    concurrency: WORKER_LIMIT,
+    isolation: 'process',
+    signal: controller.signal,
+  });
+  stream.on('test:fail', failed);
+  stream.on('test:summary', ({ success }) => {
+    if (!success) failed();
+  });
+  stream.on('error', abort);
+  reporter = stream.compose(tap);
+  reporter.on('error', abort).on('end', cleanup).on('close', cleanup).pipe(process.stdout);
+}
 function executeSource(root, argv) {
   const environment = { ...process.env };
   delete environment.NODE_TEST_CONTEXT;
@@ -388,17 +629,7 @@ function executeSource(root, argv) {
   });
 }
 function executePlan(root, plan, options = {}) {
-  assert.ok(Array.isArray(plan.modules), 'missing selected modules');
-  assert.equal(new Set(plan.modules).size, plan.modules.length, 'duplicate selected source module');
-  for (const file of plan.modules) {
-    safePath(file);
-    assert.ok(
-      /^tests\/(?:[^/]+\/)*[^/]+\.test\.cjs$/.test(file),
-      'unsupported selected source module'
-    );
-    const stat = fs.lstatSync(path.join(root, file));
-    assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'selected source module must be regular');
-  }
+  const ordered = executionOrder(root, plan.modules);
   if (options.requireClean) requireClean(root);
   if (!plan.modules.length) {
     assert.equal(plan.profile, 'pr', 'empty routine profile');
@@ -413,7 +644,7 @@ function executePlan(root, plan, options = {}) {
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
-  const argv = ['--test', '--test-reporter=tap', ...plan.modules],
+  const argv = [__filename, '--execute', ...ordered],
     started = Date.now(),
     result = execute(argv);
   const output = result.stdout || '',
@@ -426,7 +657,9 @@ function executePlan(root, plan, options = {}) {
     result.status,
     0,
     'selected source test process failed: ' +
-      (result.error?.message || result.stderr || failures || output.slice(-4000) || result.status)
+      [result.error?.message, result.stderr, failures || output.slice(-4000), result.status]
+        .filter((value) => value !== undefined && value !== null && value !== '')
+        .join('\n')
   );
   const counts = accounting(result.stdout || '', { modules: plan.modules, root });
   if (options.requireClean) requireClean(root);
@@ -436,6 +669,9 @@ function executePlan(root, plan, options = {}) {
     pass: true,
     ...counts,
     elapsedMs: Date.now() - started,
+    executionOrder: ordered,
+    workerLimit: WORKER_LIMIT,
+    availableParallelism: require('node:os').availableParallelism(),
     argv,
   };
 }
@@ -546,25 +782,124 @@ function argumentsFor(argv) {
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
     assert.ok(
-      ['--profile', '--base', '--head', '--require-clean', '--plan', '--report'].includes(flag),
+      [
+        '--profile',
+        '--base',
+        '--head',
+        '--require-clean',
+        '--plan',
+        '--ci-profile',
+        '--report',
+      ].includes(flag),
       'unknown source-test argument ' + flag
     );
     const key = flag.slice(2).replace(/-([a-z])/g, (_, x) => x.toUpperCase());
     assert.ok(!Object.hasOwn(options, key), 'duplicate source-test argument ' + flag);
-    if (['--require-clean', '--plan'].includes(flag)) options[key] = true;
+    if (['--require-clean', '--plan', '--ci-profile'].includes(flag)) options[key] = true;
     else {
       assert.ok(argv[i + 1] && !argv[i + 1].startsWith('--'), 'missing argument ' + flag);
       options[key] = argv[++i];
     }
   }
-  assert.ok(options.profile, '--profile is required');
+  assert.ok(options.profile || options.ciProfile, '--profile is required');
+  if (options.ciProfile)
+    assert.ok(
+      !options.profile && !options.base && !options.head && !options.plan,
+      'CI profile uses only the bound workflow environment'
+    );
   assert.ok(!(options.plan && options.report), '--report requires execution, not --plan');
   return options;
 }
+function verifyContentExecution(plan, record) {
+  const executed = record.contentChecks?.sourceTests;
+  assert.equal(record.contentChecks?.pass, true, 'content Basic checks were not successful');
+  assert.equal(executed?.profile, 'content', 'missing actual content source execution');
+  assert.equal(executed.status, 'passed', 'content source execution incomplete');
+  assert.equal(executed.pass, true, 'content source execution failed');
+  assert.ok(
+    Number.isInteger(executed.total) && executed.total > 0,
+    'empty content source execution'
+  );
+  assert.equal(executed.passed, executed.total, 'partial content source execution');
+  for (const key of ['failed', 'cancelled', 'skipped', 'todo'])
+    assert.equal(executed[key], 0, 'content source execution ' + key);
+  assert.deepEqual(executed.modules, plan.modules, 'content source execution inventory differs');
+  assert.deepEqual(
+    executed.changedPaths,
+    plan.changedPaths,
+    'content source execution diff differs'
+  );
+  return { ...executed, executionReusedWithinJob: true };
+}
+function ciProfile(root, options, environment = process.env) {
+  const mode = environment.CONTENT_MODE || 'platform';
+  assert.ok(['content', 'platform'].includes(mode), 'unknown CI content mode');
+  if (mode === 'content') {
+    if (options.requireClean) requireClean(root);
+    const plan = select(root, 'content', {
+      base: environment.CONTENT_BASE_SHA,
+      head: environment.SITE_CANDIDATE_SHA,
+    });
+    assert.ok(environment.SITE_SOURCE_MANIFEST, 'content source manifest is required');
+    const record = JSON.parse(fs.readFileSync(environment.SITE_SOURCE_MANIFEST));
+    assert.equal(record.sourceDirty, false);
+    assert.equal(record.sourceCommit, environment.SITE_CANDIDATE_SHA);
+    assert.equal(record.sourceTree, git(root, ['rev-parse', 'HEAD^{tree}']).trim());
+    assert.equal(
+      record.contentRelease?.trustedBaseline?.sourceCommit,
+      environment.CONTENT_BASE_SHA,
+      'content execution baseline differs'
+    );
+    const result = verifyContentExecution(plan, record);
+    if (options.report) {
+      const files = reportPaths(root, options.report);
+      const report = JSON.parse(fs.readFileSync(files.json));
+      assert.equal(report.kind, 'source-tests', 'content source report kind differs');
+      assert.equal(report.pass, true, 'content source report did not pass');
+      assert.equal(
+        report.cleanSourceRequired,
+        true,
+        'content source report did not bind clean source'
+      );
+      assert.deepEqual(
+        report.source,
+        sourceIdentity(root),
+        'content source report identity differs'
+      );
+      assert.deepEqual(report.sourceAfter, report.source, 'content source report changed source');
+      assert.deepEqual(report.files, files, 'content source report destinations differ');
+      assert.deepEqual(
+        report.result,
+        record.contentChecks.sourceTests,
+        'content source report execution differs'
+      );
+      assert.equal(report.execution?.status, 0, 'content source process did not pass');
+      const tap = fs.readFileSync(files.tap, 'utf8');
+      const stderr = fs.readFileSync(files.stderr, 'utf8');
+      assert.equal(report.execution.stdoutBytes, Buffer.byteLength(tap));
+      assert.equal(report.execution.stderrBytes, Buffer.byteLength(stderr));
+      const counts = accounting(tap, { modules: plan.modules, root });
+      for (const [key, value] of Object.entries(counts))
+        assert.equal(report.result[key], value, 'content source raw accounting differs');
+    }
+    return result;
+  }
+  const profile = environment.SITE_SOURCE_EVENT === 'pull_request' ? 'pr' : 'staging';
+  const plan = select(root, profile, {
+    base: environment.SITE_BASE_SHA,
+    head: environment.SITE_CANDIDATE_SHA,
+  });
+  return run(root, plan, options);
+}
 function main(argv = process.argv.slice(2)) {
   const root = path.resolve(__dirname, '../..'),
-    options = argumentsFor(argv),
-    plan = select(root, options.profile, options);
+    options = argumentsFor(argv);
+  if (options.ciProfile) {
+    const result = ciProfile(root, options);
+    console.log(JSON.stringify(result));
+    return result;
+  }
+  const plan = select(root, options.profile, options);
   if (options.requireClean && options.plan) requireClean(root);
   const result = options.plan
     ? { ...plan, status: 'planned', pass: null }
@@ -574,7 +909,8 @@ function main(argv = process.argv.slice(2)) {
 }
 if (require.main === module) {
   try {
-    main();
+    if (process.argv[2] === '--execute') executeSelected(process.cwd(), process.argv.slice(3));
+    else main();
   } catch (error) {
     if (error.report) console.log(JSON.stringify(error.report));
     console.error(error.message);
@@ -585,6 +921,9 @@ module.exports = {
   REGISTRY,
   safePath,
   matches,
+  classifyContent,
+  publicationInventoryCompatible,
+  riIdentityCompatible,
   actualModules,
   loadRegistry,
   validateRegistry,
@@ -594,7 +933,11 @@ module.exports = {
   run,
   argumentsFor,
   requireClean,
+  executionOrder,
+  validateExecutionOrder,
   sourceIdentity,
   reportPaths,
   main,
+  ciProfile,
+  verifyContentExecution,
 };

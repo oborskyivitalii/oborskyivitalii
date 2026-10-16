@@ -1,0 +1,297 @@
+{
+  "reviewOnly": true,
+  "sourceHead": "d501d6cef1a611379a149bde4cb26296128a76e5",
+  "sourceDirty": true,
+  "engine": "c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+  "summary": {
+    "documents": 1,
+    "observations": 5
+  },
+  "detail": {
+    "kind": "bounded-article-journey",
+    "browser": "153.0.8010.0",
+    "documents": [
+      "pmday-ai-both-sides:en"
+    ],
+    "availableDocuments": [
+      "pmday-ai-both-sides:en",
+      "pmday-two-shifts:en"
+    ],
+    "observations": [
+      {
+        "key": "pmday-ai-both-sides:en",
+        "width": 1440,
+        "mode": "normal",
+        "presentation": {
+          "keyboard": true,
+          "close": true,
+          "navigationCleanup": true
+        },
+        "head": {
+          "title": "AI Changes Both Sides of Software Engineering — Vitalii Oborskyi",
+          "lang": "en",
+          "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+          "author": "Vitalii Oborskyi",
+          "key": "pmday-ai-both-sides:en",
+          "routeVersion": "f4668d795eb4c3bf09611fb684408a495c387fbf2968beb9ae30bbfc859132e4",
+          "engine": "c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+          "robots": "noindex,nofollow",
+          "canonical": [],
+          "alternates": [],
+          "schemas": [
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "name": "AI Changes Both Sides of Software Engineering",
+              "headline": "AI Changes Both Sides of Software Engineering",
+              "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+              "inLanguage": "en",
+              "author": [
+                {
+                  "@type": "Person",
+                  "name": "Vitalii Oborskyi"
+                }
+              ]
+            }
+          ]
+        },
+        "archive": {
+          "topic": "systems",
+          "language": "en",
+          "year": "all",
+          "search": "?topic=systems&language=en"
+        },
+        "reading": {
+          "entered": [
+            "P",
+            "figure-cover",
+            "P",
+            "P",
+            "SECTION"
+          ],
+          "departed": [
+            "P",
+            "ai-changes-both-sides-of-software-engineering",
+            "P",
+            "P",
+            "P",
+            "NAV",
+            "SECTION"
+          ],
+          "maxEntering": 5,
+          "maxRoute": 7
+        },
+        "checks": {
+          "metadataTransition": true,
+          "filtersBackForward": true,
+          "focusAndScrollHistory": true,
+          "persistentCanvas": true,
+          "nativeAnchors": true,
+          "deepRefresh": true,
+          "readingBlocks": true,
+          "routeDeparture": true,
+          "rapidCancellation": true,
+          "assetsDecoded": true,
+          "basePath": "/"
+        }
+      },
+      {
+        "key": "pmday-ai-both-sides:en",
+        "width": 390,
+        "mode": "normal",
+        "presentation": {
+          "keyboard": true,
+          "close": true,
+          "navigationCleanup": true
+        },
+        "head": {
+          "title": "AI Changes Both Sides of Software Engineering — Vitalii Oborskyi",
+          "lang": "en",
+          "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+          "author": "Vitalii Oborskyi",
+          "key": "pmday-ai-both-sides:en",
+          "routeVersion": "f4668d795eb4c3bf09611fb684408a495c387fbf2968beb9ae30bbfc859132e4",
+          "engine": "c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+          "robots": "noindex,nofollow",
+          "canonical": [],
+          "alternates": [],
+          "schemas": [
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "name": "AI Changes Both Sides of Software Engineering",
+              "headline": "AI Changes Both Sides of Software Engineering",
+              "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+              "inLanguage": "en",
+              "author": [
+                {
+                  "@type": "Person",
+                  "name": "Vitalii Oborskyi"
+                }
+              ]
+            }
+          ]
+        },
+        "archive": {
+          "topic": "systems",
+          "language": "en",
+          "year": "all",
+          "search": "?topic=systems&language=en"
+        },
+        "reading": {
+          "entered": [
+            "P",
+            "figure-cover",
+            "P",
+            "P",
+            "SECTION"
+          ],
+          "departed": [
+            "P",
+            "ai-changes-both-sides-of-software-engineering",
+            "P",
+            "P",
+            "P",
+            "NAV",
+            "SECTION"
+          ],
+          "maxEntering": 3,
+          "maxRoute": 7
+        },
+        "checks": {
+          "metadataTransition": true,
+          "filtersBackForward": true,
+          "focusAndScrollHistory": true,
+          "persistentCanvas": true,
+          "nativeAnchors": true,
+          "deepRefresh": true,
+          "readingBlocks": true,
+          "routeDeparture": true,
+          "rapidCancellation": true,
+          "assetsDecoded": true,
+          "basePath": "/"
+        }
+      },
+      {
+        "key": "pmday-ai-both-sides:en",
+        "width": 390,
+        "mode": "off",
+        "head": {
+          "title": "AI Changes Both Sides of Software Engineering — Vitalii Oborskyi",
+          "lang": "en",
+          "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+          "author": "Vitalii Oborskyi",
+          "key": "pmday-ai-both-sides:en",
+          "routeVersion": "f4668d795eb4c3bf09611fb684408a495c387fbf2968beb9ae30bbfc859132e4",
+          "engine": "c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+          "robots": "noindex,nofollow",
+          "canonical": [],
+          "alternates": [],
+          "schemas": [
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "name": "AI Changes Both Sides of Software Engineering",
+              "headline": "AI Changes Both Sides of Software Engineering",
+              "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+              "inLanguage": "en",
+              "author": [
+                {
+                  "@type": "Person",
+                  "name": "Vitalii Oborskyi"
+                }
+              ]
+            }
+          ]
+        },
+        "checks": {
+          "nativeReading": true,
+          "anchors": true,
+          "writingLink": true,
+          "singleCanvas": true,
+          "basePath": "/"
+        }
+      },
+      {
+        "key": "pmday-ai-both-sides:en",
+        "width": 390,
+        "mode": "no-canvas",
+        "head": {
+          "title": "AI Changes Both Sides of Software Engineering — Vitalii Oborskyi",
+          "lang": "en",
+          "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+          "author": "Vitalii Oborskyi",
+          "key": "pmday-ai-both-sides:en",
+          "routeVersion": "f4668d795eb4c3bf09611fb684408a495c387fbf2968beb9ae30bbfc859132e4",
+          "engine": "c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+          "robots": "noindex,nofollow",
+          "canonical": [],
+          "alternates": [],
+          "schemas": [
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "name": "AI Changes Both Sides of Software Engineering",
+              "headline": "AI Changes Both Sides of Software Engineering",
+              "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+              "inLanguage": "en",
+              "author": [
+                {
+                  "@type": "Person",
+                  "name": "Vitalii Oborskyi"
+                }
+              ]
+            }
+          ]
+        },
+        "checks": {
+          "nativeReading": true,
+          "anchors": true,
+          "writingLink": true,
+          "singleCanvas": true,
+          "basePath": "/"
+        }
+      },
+      {
+        "key": "pmday-ai-both-sides:en",
+        "width": 390,
+        "mode": "no-js",
+        "head": {
+          "title": "AI Changes Both Sides of Software Engineering — Vitalii Oborskyi",
+          "lang": "en",
+          "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+          "author": "Vitalii Oborskyi",
+          "key": "pmday-ai-both-sides:en",
+          "routeVersion": "f4668d795eb4c3bf09611fb684408a495c387fbf2968beb9ae30bbfc859132e4",
+          "engine": "c2fc0582c0b25787336b818e47be5cb0e0c79b74760de5d3d6250869818c5496",
+          "robots": "noindex,nofollow",
+          "canonical": [],
+          "alternates": [],
+          "schemas": [
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "name": "AI Changes Both Sides of Software Engineering",
+              "headline": "AI Changes Both Sides of Software Engineering",
+              "description": "AI changes how we build software and what the software we build is responsible for doing. Faster delivery, shared understanding, useful outcomes and operational control have to evolve together.",
+              "inLanguage": "en",
+              "author": [
+                {
+                  "@type": "Person",
+                  "name": "Vitalii Oborskyi"
+                }
+              ]
+            }
+          ]
+        },
+        "checks": {
+          "nativeReading": true,
+          "anchors": true,
+          "writingLink": true,
+          "singleCanvas": true,
+          "basePath": "/"
+        }
+      }
+    ]
+  }
+}

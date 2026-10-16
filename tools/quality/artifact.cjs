@@ -1,39 +1,10 @@
 'use strict';
 const fs = require('node:fs'),
   path = require('node:path'),
-  crypto = require('node:crypto'),
-  zlib = require('node:zlib'),
   cp = require('node:child_process');
 const budgets = require('./budgets.json'),
   root = path.resolve(__dirname, '../..');
-const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
-function entries(dir, base = dir) {
-  return fs
-    .readdirSync(dir)
-    .sort()
-    .flatMap((name) => {
-      const file = path.join(dir, name),
-        stat = fs.lstatSync(file);
-      if (stat.isSymbolicLink()) throw Error('Symlink in public artifact');
-      return stat.isDirectory()
-        ? entries(file, base)
-        : [
-            {
-              path: path.relative(base, file).split(path.sep).join('/'),
-              bytes: fs.readFileSync(file),
-            },
-          ];
-    });
-}
-function manifest(dir) {
-  const files = Object.fromEntries(
-    entries(dir).map((x) => [
-      x.path,
-      { sha256: digest(x.bytes), raw: x.bytes.length, gzip: zlib.gzipSync(x.bytes).length },
-    ])
-  );
-  return { files, artifactDigest: digest(JSON.stringify(files)) };
-}
+const { digest, entries, manifest } = require('../site/public-artifact.cjs');
 function checkSize(dir) {
   const m = manifest(dir),
     rows = [];
@@ -58,28 +29,308 @@ function checkSize(dir) {
     if (transfer > budgets.routeGzipBytes) throw Error('Route transfer ' + route);
     rows.push({ route, ...m.files[file], svgNodes: nodes, totalGzipBytes: transfer });
   }
-  for (const [file, info] of Object.entries(m.files))
+  for (const [file, info] of Object.entries(m.files)) {
+    if (file.endsWith('.html') && info.raw > budgets.htmlRawBytes) throw Error('HTML size ' + file);
     if (!file.endsWith('.html') && info.raw > budgets.assetRawBytes)
       throw Error('Asset size ' + file);
-  return { schema: 1, kind: 'sizes', pass: true, ...m, rows };
+  }
+  const revision = JSON.parse(fs.readFileSync(path.join(dir, 'site-revision.json'), 'utf8'));
+  const articleRows = Object.entries(revision.articles || {}).map(([key, descriptor]) => {
+    const html = fs.readFileSync(path.join(dir, descriptor.alias), 'utf8');
+    const svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    if (!svg) throw Error('Missing article fallback ' + key);
+    const svgNodes = (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+    const assets = [
+      'styles.css',
+      'theme.js',
+      'space.js',
+      'archive.js',
+      'navigation.js',
+      'assets/favicon.svg',
+      ...descriptor.assets,
+    ];
+    const totalGzipBytes =
+      m.files[descriptor.alias].gzip +
+      assets.reduce((total, file) => {
+        if (!m.files[file]) throw Error('Missing article size dependency ' + file);
+        return total + m.files[file].gzip;
+      }, 0);
+    if (svgNodes > budgets.svgElements || totalGzipBytes > budgets.routeGzipBytes)
+      throw Error('Article transfer size ' + key);
+    return {
+      key,
+      alias: descriptor.alias,
+      ...m.files[descriptor.alias],
+      svgNodes,
+      assets,
+      totalGzipBytes,
+    };
+  });
+  return { schema: 1, kind: 'sizes', pass: true, ...m, rows, articleRows };
+}
+
+function validateArticleSizes(sizes, record) {
+  const aliases = Object.keys(record.files)
+    .filter((file) => /^articles\/[^/]+\.html$/.test(file))
+    .sort();
+  const rows = sizes.articleRows || [];
+  if (JSON.stringify(rows.map((row) => row.alias).sort()) !== JSON.stringify(aliases))
+    throw Error('Missing, extra or duplicate article size evidence');
+  const descriptors = record.components?.articles || {};
+  for (const row of rows) {
+    const descriptor = descriptors[row.key];
+    const file = record.files[row.alias];
+    if (
+      !descriptor ||
+      descriptor.alias !== row.alias ||
+      row.sha256 !== file.sha256 ||
+      row.raw !== file.raw ||
+      row.gzip !== file.gzip ||
+      !Number.isInteger(row.svgNodes) ||
+      row.svgNodes < 1 ||
+      row.svgNodes > budgets.svgElements ||
+      row.raw > budgets.htmlRawBytes
+    )
+      throw Error('Wrong-source or oversized article evidence ' + row.key);
+    const assets = [
+      'styles.css',
+      'theme.js',
+      'space.js',
+      'archive.js',
+      'navigation.js',
+      'assets/favicon.svg',
+      ...descriptor.assets,
+    ];
+    if (JSON.stringify(row.assets) !== JSON.stringify(assets))
+      throw Error('Article size dependency evidence differs ' + row.key);
+    const transfer =
+      file.gzip +
+      assets.reduce((total, name) => {
+        if (!record.files[name]) throw Error('Missing article size dependency ' + name);
+        return total + record.files[name].gzip;
+      }, 0);
+    if (row.totalGzipBytes !== transfer || transfer > budgets.routeGzipBytes)
+      throw Error('Article transfer budget evidence ' + row.key);
+  }
+  for (const [name, file] of Object.entries(record.files)) {
+    const maximum = name.endsWith('.html') ? budgets.htmlRawBytes : budgets.assetRawBytes;
+    if (
+      !Number.isInteger(file.raw) ||
+      file.raw < 0 ||
+      file.raw > maximum ||
+      !Number.isInteger(file.gzip) ||
+      file.gzip < 0
+    )
+      throw Error('Public byte budget ' + name);
+  }
+  return true;
 }
 function git(arg) {
   const r = cp.spawnSync('git', arg, { cwd: root, encoding: 'utf8' });
   if (r.status !== 0) throw Error(r.stderr);
   return r.stdout.trim();
 }
-function build(out) {
-  require('../site/build.cjs').build({ check: true });
-  fs.mkdirSync(out, { recursive: true });
-  const target = path.join(out, 'public');
+function previewSelection(enabled = process.env.SITE_ARTICLE_PREVIEW, projectRoot = root) {
+  if (enabled === undefined || enabled === 'false') return [];
+  if (enabled !== 'true') throw Error('Unknown explicit article preview mode');
+  const selection = JSON.parse(
+    fs.readFileSync(path.join(projectRoot, 'site/article-preview.json'), 'utf8')
+  );
+  if (
+    selection.schema !== 1 ||
+    JSON.stringify(Object.keys(selection).sort()) !== JSON.stringify(['candidates', 'schema']) ||
+    !Array.isArray(selection.candidates) ||
+    selection.candidates.length > 50 ||
+    new Set(selection.candidates).size !== selection.candidates.length ||
+    selection.candidates.some((id) => typeof id !== 'string' || !/^[a-z][a-z0-9-]{0,79}$/.test(id))
+  )
+    throw Error('Invalid explicitly declared article preview selection');
+  return selection.candidates;
+}
+
+function generationPaths(directory) {
+  return {
+    publicDir: path.join(directory, 'generation/public'),
+    lockFile: path.join(directory, 'generation/output-lock.json'),
+  };
+}
+
+function persistGeneration(directory, publicDir, lockBytes) {
+  const destination = generationPaths(directory);
+  const outputLockSha256 = digest(lockBytes);
+  require('../site/content-release.cjs').verifyBaseline({
+    baseline: publicDir,
+    baselineLock: destination.lockFile,
+    expectedBaselineLockSha256: outputLockSha256,
+  });
+  return { schema: 1, outputLockSha256, artifactDigest: manifest(publicDir).artifactDigest };
+}
+
+function storeGeneration(directory, publicDir, lockBytes) {
+  const destination = generationPaths(directory);
+  fs.mkdirSync(path.dirname(destination.lockFile), { recursive: true });
+  fs.writeFileSync(destination.lockFile, lockBytes);
+  const declaration = persistGeneration(directory, publicDir, lockBytes);
+  fs.rmSync(destination.publicDir, { recursive: true, force: true });
+  fs.cpSync(publicDir, destination.publicDir, { recursive: true });
+  return declaration;
+}
+
+function trustedContentBaseline({ directory, expectedGenerationSha256, expectedArtifactDigest }) {
+  if (
+    !/^[a-f0-9]{64}$/.test(expectedGenerationSha256 || '') ||
+    !/^[a-f0-9]{64}$/.test(expectedArtifactDigest || '')
+  )
+    throw Error('Content artifact requires trusted generation and baseline artifact digests');
+  const record = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json'), 'utf8'));
+  verify(path.join(directory, 'public'), record, expectedArtifactDigest);
+  if (
+    record.generation?.schema !== 1 ||
+    record.generation.outputLockSha256 !== expectedGenerationSha256
+  )
+    throw Error('Content artifact baseline lacks its trusted generation declaration');
+  const raw = generationPaths(directory);
+  const generation = require('../site/content-release.cjs').verifyBaseline({
+    baseline: raw.publicDir,
+    baselineLock: raw.lockFile,
+    expectedBaselineLockSha256: expectedGenerationSha256,
+  });
+  if (manifest(raw.publicDir).artifactDigest !== record.generation.artifactDigest)
+    throw Error('Content artifact raw generation differs from its baseline declaration');
+  return { record, generation, ...raw };
+}
+
+function retainFinalSnapshots(directory, record, output, generation) {
+  const immutable = require('../site/snapshot.cjs').immutable;
+  const retained = {};
+  for (const [name, info] of Object.entries(record.files)) {
+    if (!immutable(name)) continue;
+    const bytes = fs.readFileSync(path.join(directory, 'public', name));
+    if (digest(bytes) !== info.sha256) throw Error('Trusted final snapshot changed ' + name);
+    if (Object.hasOwn(generation.files, name)) {
+      if (generation.files[name] !== info.sha256)
+        throw Error('Content release immutable baseline collision ' + name);
+    } else {
+      const target = path.join(output, name);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.writeFileSync(target, bytes);
+      generation.files[name] = info.sha256;
+    }
+    retained[name] = info.sha256;
+  }
+  return retained;
+}
+
+function storeContentBaseline(directory, baseline) {
+  const target = path.join(directory, 'content-baseline');
   fs.rmSync(target, { recursive: true, force: true });
-  fs.cpSync(path.join(root, 'docs'), target, { recursive: true });
+  fs.mkdirSync(target, { recursive: true });
+  for (const name of [
+    'artifact.json',
+    'public',
+    'generation/public',
+    'generation/output-lock.json',
+  ]) {
+    fs.mkdirSync(path.dirname(path.join(target, name)), { recursive: true });
+    fs.cpSync(path.join(baseline, name), path.join(target, name), { recursive: true });
+  }
+}
+
+function composeContentGeneration({ projectRoot = root, out, contentBaseline, articleCandidates }) {
+  const baselineDirectory = path.resolve(contentBaseline.directory);
+  const targetDirectory = path.resolve(out);
+  for (const [first, second] of [
+    [baselineDirectory, targetDirectory],
+    [targetDirectory, baselineDirectory],
+  ]) {
+    const relative = path.relative(first, second);
+    if (relative === '' || (relative !== '..' && !relative.startsWith('..' + path.sep)))
+      throw Error('Content artifact output must be separate from its trusted baseline');
+  }
+  const trusted = trustedContentBaseline(contentBaseline);
+  if (JSON.stringify(trusted.record.articleCandidates || []) !== JSON.stringify(articleCandidates))
+    throw Error('Content baseline candidate selection changed; run an explicit full build');
+  const target = path.join(out, 'public');
+  const result = require('../site/content-release.cjs').release({
+    root: projectRoot,
+    baseline: trusted.publicDir,
+    baselineLock: trusted.lockFile,
+    expectedBaselineLockSha256: contentBaseline.expectedGenerationSha256,
+    output: target,
+    cacheFile: path.join(out, 'content-cache.json'),
+    lockFile: path.join(out, 'content-output-lock.json'),
+    candidateArticles: articleCandidates,
+  });
+  const retained = retainFinalSnapshots(
+    baselineDirectory,
+    trusted.record,
+    target,
+    result.generation
+  );
+  const lockBytes =
+    JSON.stringify(require('../site/content-release.cjs').lockFor(result.generation), null, 2) +
+    '\n';
+  require('../site/snapshot.cjs').verify(target, manifest(target));
+  const declaration = storeGeneration(out, target, lockBytes);
+  storeContentBaseline(out, baselineDirectory);
+  fs.rmSync(path.join(out, 'content-cache.json'), { force: true });
+  fs.rmSync(path.join(out, 'content-output-lock.json'), { force: true });
+  return {
+    declaration,
+    report: {
+      ...result.report,
+      artifactDigest: declaration.artifactDigest,
+      retainedFinalSnapshots: retained,
+      trustedBaseline: {
+        artifactDigest: trusted.record.artifactDigest,
+        generationSha256: contentBaseline.expectedGenerationSha256,
+        sourceCommit: trusted.record.sourceCommit,
+        sourceTree: trusted.record.sourceTree,
+      },
+    },
+  };
+}
+
+function build(out, { contentBaseline } = {}) {
+  const articleCandidates = previewSelection();
+  const target = path.join(out, 'public');
+  let generation;
+  let contentRelease;
+  if (contentBaseline) {
+    const composed = composeContentGeneration({ out, contentBaseline, articleCandidates });
+    generation = composed.declaration;
+    contentRelease = composed.report;
+  } else {
+    require('../site/build.cjs').build({ check: true });
+    fs.mkdirSync(out, { recursive: true });
+    fs.rmSync(target, { recursive: true, force: true });
+    let lockBytes;
+    if (articleCandidates.length) {
+      require('../site/build.cjs').build({
+        root,
+        output: target,
+        all: true,
+        cacheFile: path.join(out, 'candidate-cache.json'),
+        candidateArticles: articleCandidates,
+      });
+      lockBytes = fs.readFileSync(target + '.output-lock.json');
+      fs.rmSync(path.join(out, 'candidate-cache.json'), { force: true });
+      fs.rmSync(target + '.output-lock.json', { force: true });
+    } else {
+      fs.cpSync(path.join(root, 'docs'), target, { recursive: true });
+      lockBytes = fs.readFileSync(path.join(root, 'site/output-lock.json'));
+    }
+    generation = storeGeneration(out, target, lockBytes);
+  }
   const m = {
     schema: 1,
     sourceCommit: git(['rev-parse', 'HEAD']),
     sourceDirty: git(['status', '--porcelain']) !== '',
     sourceTree: git(['rev-parse', 'HEAD^{tree}']),
     candidateCommit: process.env.SITE_CANDIDATE_SHA || git(['rev-parse', 'HEAD']),
+    articleCandidates,
+    generation,
+    ...(contentRelease ? { contentRelease } : {}),
     ...manifest(target),
   };
   m.components = require('../site/snapshot.cjs').verify(target, m);
@@ -103,10 +354,41 @@ function verify(dir, record, expectedDigest = process.env.SITE_EXPECTED_PUBLIC_D
 if (require.main === module) {
   const mode = process.argv[2],
     dir = process.argv[3];
-  if (mode === 'build') console.log(build(path.resolve(dir)));
-  else if (mode === 'sizes') console.log(checkSize(path.resolve(dir)));
+  if (mode === 'build') {
+    const extra = process.argv.slice(4);
+    const contentBaseline = {};
+    const options = {
+      '--content-baseline': 'directory',
+      '--generation-sha256': 'expectedGenerationSha256',
+      '--baseline-digest': 'expectedArtifactDigest',
+    };
+    for (let index = 0; index < extra.length; index += 2) {
+      const option = extra[index];
+      const value = extra[index + 1];
+      if (!options[option] || !value || Object.hasOwn(contentBaseline, options[option]))
+        throw Error('Unknown, duplicate or incomplete artifact content argument ' + option);
+      contentBaseline[options[option]] = value;
+    }
+    if (extra.length && Object.keys(contentBaseline).length !== 3)
+      throw Error('Content artifact requires baseline, generation SHA256 and artifact digest');
+    console.log(build(path.resolve(dir), extra.length ? { contentBaseline } : {}));
+  } else if (mode === 'sizes') console.log(checkSize(path.resolve(dir)));
   else if (mode === 'verify')
     verify(path.resolve(dir), JSON.parse(fs.readFileSync(process.argv[4])));
   else throw Error('Usage: artifact.cjs build OUT | sizes DIR | verify DIR MANIFEST');
 }
-module.exports = { manifest, checkSize, build, verify, digest, entries };
+module.exports = {
+  manifest,
+  checkSize,
+  validateArticleSizes,
+  previewSelection,
+  build,
+  verify,
+  digest,
+  entries,
+  generationPaths,
+  storeGeneration,
+  trustedContentBaseline,
+  composeContentGeneration,
+  retainFinalSnapshots,
+};

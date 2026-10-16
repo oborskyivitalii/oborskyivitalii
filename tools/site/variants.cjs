@@ -23,7 +23,15 @@ function attach(html, { id, effect, code, styles = '', bodyScripts = '', effects
     assert.equal(id, 'color', 'active offline Color identity');
   }
   const fingerprint = hash(
-    JSON.stringify({ contract: 1, id, engine, code, styles, bodyScripts, ...composition })
+    JSON.stringify({
+      contract: 1,
+      id,
+      engine,
+      code,
+      styles,
+      bodyScripts,
+      ...composition,
+    })
   );
   const variant = { id, contract: 1, fingerprint, ...composition };
   const script = `<script data-site-effect="${effect}">window.SiteEffects={...window.SiteEffects,contract:1};\n${code}\n</script>\n`;
@@ -36,7 +44,10 @@ function attach(html, { id, effect, code, styles = '', bodyScripts = '', effects
   html = html.replaceAll(engine, fingerprint);
   const data = /(<script type="application\/json" id="site-pages">)([\s\S]*?)(<\/script>)/;
   const prior = JSON.parse(html.match(data)[2]);
-  for (const route of Object.values(prior.revision.routes))
+  for (const route of [
+    ...Object.values(prior.revision.routes),
+    ...Object.values(prior.revision.articles || {}),
+  ])
     html = html.replaceAll(route.version, hash(route.version + fingerprint));
   html = html.replace(/(<meta name="site-variant" content=")[^"]+(">)/g, '$1' + id + '$2');
   const match = html.match(data),
@@ -47,12 +58,18 @@ function attach(html, { id, effect, code, styles = '', bodyScripts = '', effects
       /(<meta name="site-variant" content=")[^"]+(">)/g,
       '$1' + id + '$2'
     );
-    payload.revision.routes[page].sha256 = hash(payload.pages[page]);
+    const descriptor = page.startsWith('article:')
+      ? payload.revision.articles[page.slice(8)]
+      : payload.revision.routes[page];
+    descriptor.sha256 = hash(payload.pages[page]);
   }
   payload.revision.content = hash(
     JSON.stringify(
       Object.fromEntries(
-        Object.entries(payload.revision.routes).map(([id, route]) => [id, route.version])
+        [
+          ...Object.entries(payload.revision.routes),
+          ...Object.entries(payload.revision.articles || {}),
+        ].map(([id, route]) => [id, route.version])
       ),
       null,
       2

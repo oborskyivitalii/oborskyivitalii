@@ -38,6 +38,11 @@ module.exports = function () {
     '.section-note',
     '.next-route > p',
     '.next-route > a',
+    '.article-intro > *',
+    '.article-toc',
+    '.article-body > *',
+    '.article-sources',
+    '.article-list',
   ].join(',');
   const routeTargets = `${targets},.archive-filters,.section-nav,.topic-nav`;
   const separatorTargets = [
@@ -731,13 +736,13 @@ module.exports = function () {
     cancelRoute();
     settle();
   }
-  function armReading(unit, borders, pageBottom) {
+  function armReading(unit, borders, pageBottom, viewport) {
     const { element, record, native, visible } = unit;
     if (
       !visible ||
       readingDistance <= 0 ||
-      native.top < window.innerHeight ||
-      native.bottom + window.scrollY + readingDistance + 32 >= pageBottom ||
+      native.top < viewport.height ||
+      native.bottom + viewport.scrollY + readingDistance + 32 >= pageBottom ||
       (document.activeElement && element.contains(document.activeElement))
     ) {
       finish(element);
@@ -792,13 +797,14 @@ module.exports = function () {
   function enter(entries, own) {
     if (own !== generation || suspended || !allowed()) return;
     const pageBottom = document.documentElement.scrollHeight;
+    const viewport = { scrollY: window.scrollY, height: window.innerHeight };
     const siblings = new Map();
     for (const entry of entries) {
       const element = entry.target;
       const record = records.get(element);
       if (!record) continue;
       if (!entry.isIntersecting) {
-        if (entry.boundingClientRect.top >= window.innerHeight && direction < 0) {
+        if (entry.boundingClientRect.top >= viewport.height && direction < 0) {
           clearState(element);
           const rect = entry.boundingClientRect;
           armReading(
@@ -810,7 +816,8 @@ module.exports = function () {
               visible: element.getClientRects().length > 0,
             },
             readingBorders,
-            pageBottom
+            pageBottom,
+            viewport
           );
         } else if (active.has(element) || pendingReading.has(element)) finish(element);
         continue;
@@ -855,10 +862,10 @@ module.exports = function () {
     readingDuration =
       Number.isFinite(duration) && duration >= 450 && duration <= 700 ? duration : 700;
     readingStagger = Number.isFinite(stagger) && stagger >= 0 && stagger <= 120 ? stagger : 80;
-    const scrollY = window.scrollY;
     // Batch native reads before any transient layer/state writes. The last
     // block stays steady when its moving ink/paper would grow scroll overflow.
     releaseReadingStates();
+    const viewport = { scrollY: window.scrollY, height: window.innerHeight };
     const pageBottom = document.documentElement.scrollHeight;
     const measured = [...records].map(([element, record]) => {
       const rect = element.getBoundingClientRect();
@@ -895,10 +902,10 @@ module.exports = function () {
         clearState(element);
         continue;
       }
-      armReading({ element, record, native, rect, visible }, borders, pageBottom);
+      armReading({ element, record, native, rect, visible }, borders, pageBottom, viewport);
       observer.observe(element);
     }
-    previousY = scrollY;
+    previousY = viewport.scrollY;
   }
   function deferReconcile() {
     window.clearTimeout(reconcileTask);

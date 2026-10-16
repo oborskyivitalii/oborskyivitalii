@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "id": "pmday-ai-both-sides",
+  "slug": "ai-changes-both-sides-of-software-engineering",
+  "title": "The Sum of Our Technology",
+  "summary": "What if AI acceleration fails outside a code generator? Two shifts in software engineering demand evidence, sustainable delivery and viable socio-technical control.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi"
+    }
+  ],
+  "language": "en",
+  "topic": "AI delivery and runtime control",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/pmday-ai-both-sides"
+  },
+  "status": "review",
+  "source": "manuscript.en.md",
+  "edition": "pmday-ai-both-sides-en-review-20261016-r3",
+  "rights": {
+    "status": "review-pending",
+    "notice": "Article by Vitalii Oborskyi, existing AI-generated cover, seven exact full-page PMDay v35 source screenshots. Original deck/source/third-party credits retained; per-item publication clearance pending.",
+    "references": [
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
+      "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
+    ]
+  },
+  "references": [
+    {
+      "id": "source-1",
+      "url": "https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf"
+    },
+    {
+      "id": "source-2",
+      "url": "https://youtu.be/xSgWjuGqC9I"
+    },
+    {
+      "id": "source-3",
+      "url": "https://digitalcommons.chapman.edu/economics_articles/99/"
+    },
+    {
+      "id": "source-4",
+      "url": "https://english.lem.pl/works/essays/summa-technologiae"
+    },
+    {
+      "id": "source-5",
+      "url": "https://cognition.com/blog/introducing-devin"
+    },
+    {
+      "id": "source-6",
+      "url": "https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic"
+    },
+    {
+      "id": "source-7",
+      "url": "https://www.nber.org/papers/w35275"
+    },
+    {
+      "id": "source-8",
+      "url": "https://dora.dev/insights/balancing-ai-tensions/"
+    },
+    {
+      "id": "source-9",
+      "url": "https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis"
+    },
+    {
+      "id": "source-10",
+      "url": "https://claude.com/resources/articles/code-review"
+    },
+    {
+      "id": "source-11",
+      "url": "https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/"
+    },
+    {
+      "id": "source-12",
+      "url": "https://claude.dev/blog/solving-code-review-at-anthropic/"
+    },
+    {
+      "id": "source-13",
+      "url": "https://arxiv.org/html/2601.13597v2"
+    },
+    {
+      "id": "source-14",
+      "url": "https://www.gitclear.com/the_ai_code_quality_maintainability_gap"
+    },
+    {
+      "id": "source-15",
+      "url": "https://www.microsoft.com/en-us/research/publication/expectations-outcomes-and-challenges-of-modern-code-review/"
+    },
+    {
+      "id": "source-16",
+      "url": "https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/"
+    },
+    {
+      "id": "source-17",
+      "url": "https://metr.org/blog/2026-05-11-ai-usage-survey/"
+    },
+    {
+      "id": "source-18",
+      "url": "https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431"
+    },
+    {
+      "id": "source-19",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture"
+    },
+    {
+      "id": "source-20",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md"
+    },
+    {
+      "id": "source-21",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm"
+    },
+    {
+      "id": "source-22",
+      "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+    },
+    {
+      "id": "source-23",
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/pmday-ai-both-sides/cover.png",
+      "sha256": "2d688e19b820cd96ae32bd7fdab8a71418774231da340b6897709329a580fb25",
+      "width": 640,
+      "height": 335,
+      "alt": "Conceptual architecture connects software construction with a branching decision structure.",
+      "caption": "We can delegate more work. We still have to own the consequences.",
+      "credit": "AI-generated editorial illustration directed for this article; built-in ImageGen, 15 October 2026."
+    },
+    {
+      "id": "presentation-cover",
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180",
+      "width": 640,
+      "height": 360,
+      "alt": "First slide of the PMDay presentation, AI Changes the Delivery System and the Product Itself.",
+      "caption": "PMDay presentation, v35 review edition, 15 slides. Recording in Ukrainian.",
+      "credit": "Vitalii Oborskyi. Preview rendered from the pinned v35 PDF; presentation credits remain in the source deck."
+    },
+    {
+      "id": "pmday-slide-03",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 3: code-generation capacity increases to 100 changes a week, but review and integration remain at eight; 92 uncompleted changes accumulate in the illustrative push system.",
+      "caption": "Accelerating code generation is not the same as accelerating delivery. Illustrative fixed-capacity scenario; PMDay v35, slide 3.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 3 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    },
+    {
+      "id": "pmday-slide-05",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png",
+      "sha256": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 5: illustrative generation output grows faster than team comprehension, showing a possible—not measured—comprehension gap.",
+      "caption": "The potential comprehension gap is a scenario, not a measured cognitive ceiling. PMDay v35, slide 5.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 5 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    },
+    {
+      "id": "pmday-slide-07",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png",
+      "sha256": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 7: teams measure flow, maintainability, production and recovery while experimenting with candidate controls to find a sustainable AI-assisted SDLC equilibrium.",
+      "caption": "Search for a sustainable workflow, not a return to the old one: measure outcomes and test countermeasures. Proposed measures are not proven fixes. PMDay v35, slide 7.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 7 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    },
+    {
+      "id": "pmday-slide-09",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 9: traditional exact-path requirements contrast with a space of acceptable responses—answer, clarify or escalate—bounded by context, permissions and forbidden disclosure.",
+      "caption": "Model-dependent behaviour demands precise boundaries, examples, prohibitions and coverage across contexts—not a single canonical wording. PMDay v35, slide 9.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 9 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    },
+    {
+      "id": "pmday-slide-10",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png",
+      "sha256": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 10: in 200 synthetic responses, 196 are acceptable, three instructions are incorrect and one disclosure violates a release prohibition despite a 98% acceptable average.",
+      "caption": "The average cannot cancel a forbidden consequence. Synthetic evaluation, sample uncertainty and a specific release-blocking rule. PMDay v35, slide 10.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 10 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    },
+    {
+      "id": "pmday-slide-12",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 12: a model proposal is checked before consequential action; failed checks take a denial or fallback route, while monitoring and authorised intervention support ongoing control.",
+      "caption": "Effective control spans permission enforcement, safe fallback and verified intervention, not observation alone. PMDay v35, slide 12.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 12 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    },
+    {
+      "id": "pmday-slide-14",
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png",
+      "sha256": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd",
+      "width": 1921,
+      "height": 1080,
+      "alt": "PMDay slide 14: normal delivery obligations continue alongside a bounded experiment and reassessment loop fed by production outcomes, incidents and authorised release decisions.",
+      "caption": "Keep delivery commitments while the learning loop remains open after release. Production outcomes can change future evidence, control and authority decisions. PMDay v35, slide 14.",
+      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 14 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json",
+  "presentation": {
+    "title": "The presentation behind this article",
+    "poster": "presentation-cover",
+    "pdf": {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+    },
+    "sourceUrl": "https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf"
+  }
+}

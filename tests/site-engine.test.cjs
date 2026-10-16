@@ -10,12 +10,20 @@ const root = path.resolve(__dirname, '..'),
   b = require('../tools/site/build.cjs'),
   artifact = require('../tools/quality/artifact.cjs'),
   snapshot = require('../tools/site/snapshot.cjs');
+const { legacyCatalog } = require('./fixtures/catalog.cjs');
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-engine-'));
   for (const name of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }
+  // These legacy route/cache cases do not carry the repository's accepted Git sources.
+  fs.writeFileSync(
+    path.join(dir, 'site/content/catalog.json'),
+    JSON.stringify(legacyCatalog(root), null, 2) + '\n'
+  );
+  fs.rmSync(path.join(dir, 'site/publications'), { recursive: true, force: true });
+  fs.rmSync(path.join(dir, 'site/assets/publications'), { recursive: true, force: true });
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
 }
@@ -745,6 +753,7 @@ test('content-only classification is advisory, unknown scope is full, and all ma
     null,
     {},
     { ...components, engine: '0'.repeat(64) },
+    { ...components, pageTemplates: '0'.repeat(64) },
     { ...components, producer: undefined },
   ])
     assert.equal(policy.propose(components, next).scope, 'full');

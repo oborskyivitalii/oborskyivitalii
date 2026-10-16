@@ -9,6 +9,28 @@ const {
   verifyRuntimeIdentity,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('content smoke requires every rebuilt article descriptor and retains explicit no-article catalog cases', () => {
+  const { contentDocuments } = require('../tools/quality/local-browser.cjs');
+  assert.equal(contentDocuments({}), null);
+  const manifest = {
+    contentRelease: { kind: 'content-release', builtArticles: [] },
+    components: { articles: {} },
+  };
+  assert.deepEqual(contentDocuments(manifest), []);
+  manifest.components.articles['example:en'] = { alias: 'articles/example.html' };
+  manifest.contentRelease.builtArticles = ['example:en'];
+  assert.deepEqual(contentDocuments(manifest), ['example:en']);
+  for (const builtArticles of [
+    null,
+    ['missing:en'],
+    ['example:en', 'example:en'],
+    Array(51).fill('example:en'),
+  ])
+    assert.throws(() =>
+      contentDocuments({ ...manifest, contentRelease: { kind: 'content-release', builtArticles } })
+    );
+  assert.throws(() => contentDocuments({ ...manifest, contentRelease: { kind: 'preview' } }));
+});
 test('preview identity preserves real base descriptor and Color runtime fingerprints with exact bindings', (t) => {
   const fs = require('node:fs'),
     path = require('node:path'),

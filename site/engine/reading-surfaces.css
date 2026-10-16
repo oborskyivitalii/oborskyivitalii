@@ -55,7 +55,12 @@
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-intro > *,
+  .article-toc,
+  .article-body > *,
+  .article-sources,
+  .article-list
 ) {
   position: relative;
   isolation: isolate;
@@ -96,7 +101,12 @@
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-intro > *,
+  .article-toc,
+  .article-body > *,
+  .article-sources,
+  .article-list
 )::before {
   content: '';
   position: absolute;
@@ -142,7 +152,12 @@
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-intro > *,
+  .article-toc,
+  .article-body > *,
+  .article-sources,
+  .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
 .reading-title,

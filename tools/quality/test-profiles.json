@@ -65,6 +65,52 @@
     },
     "diagnostic": {
       "selection": "all diagnostic JavaScript only on explicit request"
+    },
+    "content": {
+      "selection": "all mandatory content modules; exact authored-only diff required; no source or hosted release admission inferred",
+      "authored_inputs": [
+        "site/content/catalog.json",
+        "site/publications/**.md",
+        "site/publications/**.json",
+        "site/assets/publications/**.png",
+        "site/assets/publications/**.jpg",
+        "site/assets/publications/**.jpeg",
+        "site/assets/publications/**.webp",
+        "site/assets/publications/**.avif",
+        "site/assets/publications/**.svg",
+        "site/assets/publications/**.pdf",
+        "site/content/pages/index/**.json",
+        "site/content/pages/writing/**.json",
+        "site/publications/**.png",
+        "site/publications/**.jpg",
+        "site/publications/**.jpeg",
+        "site/publications/**.webp",
+        "site/publications/**.avif",
+        "site/publications/**.svg",
+        "site/publications/**.pdf"
+      ],
+      "derived_inputs": [
+        "docs/**",
+        "site/output-lock.json",
+        "MEMORY.md",
+        "REPOSITORY-MAP.md",
+        ".github/repository-intelligence/agent-context.json"
+      ],
+      "mandatory_files": [
+        "tests/content.test.cjs",
+        "tests/local-catalog-relationships.test.cjs",
+        "tests/publishing.test.cjs",
+        "tests/publishing-safety.test.cjs",
+        "tests/publishing-history.test.cjs",
+        "tests/publishing-profile.test.cjs",
+        "tests/site-articles.test.cjs",
+        "tests/article-budgets.test.cjs",
+        "tests/article-delivery.test.cjs",
+        "tests/content-baseline.test.cjs",
+        "tests/content-rendering.test.cjs",
+        "tests/archive.test.cjs",
+        "tests/content-release.test.cjs"
+      ]
     }
   },
   "hosted_profiles": {
@@ -255,7 +301,7 @@
     {
       "path": "tests/analytics.test.cjs",
       "language": "javascript",
-      "purpose": "Consent/disabled/vendor and executable-boundary analytics generation; stable source retention",
+      "purpose": "Analytics generation/consent/vendor and executable-boundary negatives; actual cold five-route/offline dependency preparation, canonical artifact/budget copies, export isolation and context/temp cleanup",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -276,7 +322,8 @@
         "tools/build_scene_fallbacks.cjs",
         "site/integrations/**",
         "site/site.json",
-        "tools/quality/analytics-browser.cjs"
+        "tools/quality/analytics-browser.cjs",
+        "tools/quality/budgets.json"
       ]
     },
     {
@@ -285,10 +332,15 @@
       "purpose": "Intersected filters, URL/fragment history, reset/focus, empty/no-JS archive behavior",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": ["pr-smoke", "pr-targeted", "staging", "production"],
+      "profiles": ["pr-smoke", "pr-targeted", "staging", "production", "content"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
-      "inputs": ["tests/archive.test.cjs", "site/content/**", "site/templates/**"]
+      "inputs": [
+        "tests/archive.test.cjs",
+        "site/content/**",
+        "site/templates/**",
+        "tests/fixtures/catalog.cjs"
+      ]
     },
     {
       "path": "tests/browser-gate-diagnostics.test.cjs",
@@ -413,7 +465,7 @@
       "purpose": "Current publication editions, metadata, provenance/names and valid local page/ARIA/resources",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": ["pr-targeted", "staging", "production"],
+      "profiles": ["pr-targeted", "staging", "production", "content"],
       "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
@@ -425,7 +477,8 @@
         "review/issue-48/content-amendment.json",
         "review/issue-48/source-inventory.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -462,15 +515,17 @@
     {
       "path": "tests/executive.test.cjs",
       "language": "javascript",
-      "purpose": "Current SEO/source reconciliation negative cases and semantic Day/Night contrast; first case duplicates standalone SEO positive verifier",
+      "purpose": "Current SEO/editorial reconciliation and Day/Night semantic contrast negatives; primary HTML exact-input cache/batch bounds, parser-coverage failures and raw/inline-byte preservation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite",
+      "disposition": "retain enduring edition/semantic failure checks; issue41 positioning removes stale visible unknown-language assertions, adds catalog-count mutation coverage and exact successor amendment negatives; no new browser/performance suite; same-issue sitecase layers exact About/Credits restoration and extends existing claim/evidence-link negatives rather than adding a new suite; current issue5 retains all editorial and baseline checks and adds bounded normalization/cache/batch negatives with primary-parser dependencies selected explicitly",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
+        "tools/quality/format-parity.py",
+        "tools/quality/format-parity.cjs",
         "tools/site/render-page.cjs",
         "site/engine/critical-media.css",
         "site/engine/styles.css",
@@ -480,7 +535,9 @@
         "review/issue-41/content-amendment.json",
         "review/issue-48/content-amendment.json",
         "review/issue-41/2026-10-09-positioning-amendment.json",
-        "review/issue-41/2026-10-09-sitecase-amendment.json"
+        "review/issue-41/2026-10-09-sitecase-amendment.json",
+        "site/engine/scroll-entry.css",
+        "tools/staging/color.cjs"
       ]
     },
     {
@@ -592,7 +649,7 @@
     {
       "path": "tests/navigation.test.cjs",
       "language": "javascript",
-      "purpose": "Shared yielded route mounting, outgoing-block/camera-restoration/incoming-block sequencing, serial cancellation, native landing/head/history and instant fallback",
+      "purpose": "Shared route/flight sequencing, serial cancellation and native history/landing/fallback; capture before layout, cancel inherited smooth scrolling before read with native-throw cleanup/fallback, match hidden/inert retarget state and preserve deliberate read-time input",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -621,7 +678,10 @@
         "site/effects/**",
         "docs/site-revision.json",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "tools/quality/content-baseline.cjs",
+        "tools/site/content-release.cjs",
+        "tools/quality/content-fixture.cjs"
       ]
     },
     {
@@ -646,7 +706,7 @@
     {
       "path": "tests/quality-sources.test.cjs",
       "language": "javascript",
-      "purpose": "Active authored Color scanner closure and fail-visible exact Bandit review/coverage/source/expiry plus verified public checksum-only admission",
+      "purpose": "Active authored Color scanner closure, exact Bandit review and producer-verified checksum admission with stale, unknown and wrong-field rejection",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -655,6 +715,7 @@
       "inputs": [
         "tests/quality-sources.test.cjs",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "site/effects/**",
         "tools/site/**",
         "tools/build_site_previews.cjs",
@@ -670,6 +731,10 @@
         "tools/quality/security-rules.yml",
         "tools/quality/exceptions.json",
         "tools/quality/secrets-reviewed-checksums.json",
+        "tools/quality/secrets-publication.json",
+        "tools/publishing/toolchain/package.json",
+        "tools/publishing/toolchain/package-lock.json",
+        "tools/publishing/toolchain/licenses.json",
         "tools/quality/serve.cjs",
         "tools/quality/hosted.cjs",
         "tools/quality/advisory-exceptions.json",
@@ -834,7 +899,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds",
+      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds; exhaustive finite Canvas argument/type/position rejection before drawing side effects with reusable VM preparation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -878,7 +943,7 @@
     {
       "path": "tests/staging-regression.test.cjs",
       "language": "javascript",
-      "purpose": "Exact bounded staging browser/performance selections, registry coupling, canonical media route/history negatives, retained original mobile Writing/Research traces, raw motion/failure evidence and original metric budgets.",
+      "purpose": "Exact bounded staging selection, registry/media/history coupling, retained original traces/motion/failure evidence and metric budgets; current viewport-batched runtime/effects identity matches the nine-family/eighteen-tuple reviewed Color inventory",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -900,7 +965,15 @@
         "tests/fixtures/staging-evidence.cjs",
         ".github/workflows/site-release-checks.yml",
         "tools/quality/transition-pacing.json",
-        "tools/quality/transition-pacing.cjs"
+        "tools/quality/transition-pacing.cjs",
+        "site/engine/navigation.js",
+        "tools/staging/color.cjs",
+        "tools/site/effects.cjs",
+        "site/effects/**",
+        "site/engine/**",
+        "site/scenes/**",
+        "site/site.json",
+        "docs/site-revision.json"
       ]
     },
     {
@@ -958,17 +1031,17 @@
     {
       "path": "tests/test-profile-selection.test.cjs",
       "language": "javascript",
-      "purpose": "Complete test registry, bounded source selection, strict named Basic/profile accounting and explicit raw/structured failure reports with clean-source and write-failure negatives.",
+      "purpose": "Complete registry/exact-source selection and strict TAP accounting; actual Space/executive priority, remaining size/lexical order, two isolated workers, serial-case defaults, abort/error reporting and original-deadline cleanup; complete test registry, bounded source selection, strict named Basic/profile accounting and explicit raw/structured failure reports with clean-source and write-failure negatives.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain current profile control",
+      "disposition": "retain all profile/selection and actual-process contracts, including priority and size/lexical order, worker limit and available parallelism reporting, isolated globals and serial-case defaults, assertion/rejection/uncaught failure, original-timeout abort cleanup and incomplete/empty execution negatives; native post-result process.exit accounting limitation remains outside the early-exit claim",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/test-profile-selection.test.cjs",
         "tools/quality/source-tests.cjs",
-        "tools/quality/local.cjs",
-        "tools/quality/test-profiles.json"
+        "tools/quality/test-profiles.json",
+        "tools/quality/local.cjs"
       ]
     },
     {
@@ -1326,7 +1399,7 @@
     {
       "path": "tests/format-parity.test.cjs",
       "language": "javascript",
-      "purpose": "Source-language semantic equivalence and behavior-change rejection across JS/Python/JSON/YAML/CSS/HTML",
+      "purpose": "Source-language semantic equivalence and behavior-change rejection across JS/Python/JSON/YAML/CSS/HTML, preserving exact parser failures before/after mixed-language requests",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1433,14 +1506,15 @@
       "purpose": "Bounded context-typed prose/URL/template/catalog validation and dependency-sensitive output",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": ["pr-targeted", "staging", "production"],
+      "profiles": ["pr-targeted", "staging", "production", "content"],
       "disposition": "retain meaningful current refactoring contracts; no duplicate hosted matrix",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/content-rendering.test.cjs",
         "tools/site/**",
         "site/content/**",
-        "site/templates/**"
+        "site/templates/**",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {
@@ -1599,7 +1673,7 @@
     {
       "path": "tests/color-motion-contract.test.cjs",
       "language": "javascript",
-      "purpose": "Exact reviewed legacy/fixed Color runtime dispatch, strict reading/block/spatial guards and malformed or substituted evidence negatives.",
+      "purpose": "Exact nine-family/eighteen-tuple Color dispatch, preservation of all sixteen published tuples, strict reading/block/spatial guards and malformed/substituted evidence negatives including viewport-batched reading",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1626,7 +1700,7 @@
     {
       "path": "tests/scroll-entry.test.cjs",
       "language": "javascript",
-      "purpose": "Repeat ordinary downward re-entry on stable shells, native block route phases, bounded lifecycle/resources and readable motion/focus/jump fallback",
+      "purpose": "Repeat native downward re-entry and route phases, bounded lifecycle/resources and focus/jump fallback; post-cleanup native viewport snapshots shared before per-unit writes preserve eligibility and final-shell safety",
       "owner": "site/README.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1658,6 +1732,339 @@
         "tests/camera-view.test.cjs",
         "tests/navigation.test.cjs",
         "tests/flight.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/publishing.test.cjs",
+      "language": "javascript",
+      "purpose": "Bounded AST roundtrip and two declared article profiles, semantic/adaptation identities and complete candidate kits",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/publishing.test.cjs",
+        "tools/publishing/**",
+        "site/publications/**",
+        "site/assets/publications/**",
+        "site/templates/articles/**",
+        "site/engine/article-print.css"
+      ]
+    },
+    {
+      "path": "tests/publishing-safety.test.cjs",
+      "language": "javascript",
+      "purpose": "Pinned source identity, path/link/alias boundaries and generation rollback/recovery failures",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": ["tests/publishing-safety.test.cjs", "tools/publishing/**", "site/publications/**"]
+    },
+    {
+      "path": "tests/publishing-print.test.cjs",
+      "language": "javascript",
+      "purpose": "Print resource/provenance/transaction and managed-evidence rejection cases; real default-browser export remains a separate explicit browser diagnostic",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/publishing-print.test.cjs",
+        "tools/publishing/**",
+        "site/templates/articles/**",
+        "site/engine/article-print.css",
+        "tools/quality/article-print.cjs"
+      ]
+    },
+    {
+      "path": "tests/publishing-history.test.cjs",
+      "language": "javascript",
+      "purpose": "Frozen semantic editions, append-only events and exact site/platform artifact inspection negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/publishing-history.test.cjs",
+        "tools/publishing/**",
+        "site/publications/**",
+        "tools/site/articles.cjs",
+        "tools/release/edition.cjs"
+      ]
+    },
+    {
+      "path": "tests/site-articles.test.cjs",
+      "language": "javascript",
+      "purpose": "Native reader, local catalog/dates/translations, draft isolation, byte bounds, cold equality, retained immutable closure and history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/site-articles.test.cjs",
+        "tools/site/**",
+        "site/publications/**",
+        "site/assets/publications/**",
+        "site/engine/navigation.js",
+        "site/engine/scroll-entry.cjs",
+        "site/engine/reading-surfaces.css",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/site-transaction.test.cjs",
+      "language": "javascript",
+      "purpose": "Public tree/cache/mandatory lock transaction and complete independent rollback failures",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/site-transaction.test.cjs",
+        "tools/site/transaction.cjs",
+        "tools/site/build.cjs"
+      ]
+    },
+    {
+      "path": "tests/article-budgets.test.cjs",
+      "language": "javascript",
+      "purpose": "Article HTML/UTF8/transfer size completeness and wrong-source/missing evidence negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-budgets.test.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/validate.cjs",
+        "tools/site/snapshot.cjs",
+        "tools/quality/candidate-source.cjs"
+      ]
+    },
+    {
+      "path": "tests/article-delivery.test.cjs",
+      "language": "javascript",
+      "purpose": "Exact article transport/Color/Pages/staging/production identities, PNG MIME, retention and rejected preview promotion",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-delivery.test.cjs",
+        "tools/staging/**",
+        "tools/pages/**",
+        "tools/release/edition.cjs",
+        "tools/site/**",
+        "tools/quality/article-browser.cjs",
+        "tools/quality/serve.cjs",
+        "tools/quality/hosted.cjs"
+      ]
+    },
+    {
+      "path": "tests/test_issue5_acceptance.py",
+      "language": "python",
+      "purpose": "Issue5 selected reusable publisher, reader and delivery suites with distinct human/editorial/publication gates",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "selected issue5 policy only; permanent behavior stays in Node suites",
+      "surviving_route": ".github/acceptance/issue-5.json",
+      "inputs": [
+        "tests/test_issue5_acceptance.py",
+        ".github/acceptance/issue-5.json",
+        "tests/publishing.test.cjs",
+        "tests/publishing-safety.test.cjs",
+        "tests/publishing-print.test.cjs",
+        "tests/publishing-history.test.cjs",
+        "tests/site-articles.test.cjs",
+        "tests/site-transaction.test.cjs",
+        "tests/article-budgets.test.cjs",
+        "tests/article-delivery.test.cjs",
+        "tests/article-offline.test.cjs",
+        "tests/local-catalog-relationships.test.cjs",
+        "tests/article-browser-evidence.test.cjs",
+        "tests/publishing-profile.test.cjs",
+        "tests/navigation.test.cjs",
+        "tests/pages-delivery.test.cjs",
+        "tests/color-build.test.cjs",
+        "tests/release-controller.test.cjs",
+        "tests/article-candidate-source.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/publishing-profile.test.cjs",
+      "language": "javascript",
+      "purpose": "Distinct bounded packaging profiles, authored cover/hero/launch/SEO outputs and missing/unsafe resource negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain profile configuration failure surface; human native-editor/editorial review stays separate",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/publishing-profile.test.cjs",
+        "tools/publishing/**",
+        "site/publications/**",
+        "site/assets/publications/**"
+      ]
+    },
+    {
+      "path": "tests/article-offline.test.cjs",
+      "language": "javascript",
+      "purpose": "Finite native five-scene plus one-article file export, observed canonical links, embedded asset identity/bounds and protected destination rollback negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent current behavior and negative evidence surfaces; actual browser/device/editorial gates remain separate",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-offline.test.cjs",
+        "tools/site/offline.cjs",
+        "tools/site/standalone.cjs",
+        "tools/site/export.cjs",
+        "tools/site/transaction.cjs",
+        "tools/build_site_previews.cjs",
+        "tools/site/articles.cjs",
+        "site/engine/navigation.js",
+        "site/publications/**",
+        "site/templates/**"
+      ]
+    },
+    {
+      "path": "tests/local-catalog-relationships.test.cjs",
+      "language": "javascript",
+      "purpose": "Exact catalog/source author and ordered multi-author identity, equivalent rendition/adaptation/translation evidence and preparation-date separation",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent current behavior and negative evidence surfaces; actual browser/device/editorial gates remain separate",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/local-catalog-relationships.test.cjs",
+        "tools/site/validate-catalog.cjs",
+        "tools/site/render-records.cjs",
+        "tools/site/articles.cjs",
+        "tools/publishing/events.cjs",
+        "tools/publishing/site-event.cjs",
+        "tools/publishing/semantic.cjs",
+        "site/content/catalog.json",
+        "site/publications/**",
+        "tests/fixtures/catalog.cjs"
+      ]
+    },
+    {
+      "path": "tests/article-browser-evidence.test.cjs",
+      "language": "javascript",
+      "purpose": "Mandatory conditional native article identity/evidence negatives and bounded history diagnostics; primitive activation capture precedes geometry/layout reads that can change the captured departure state",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent current behavior and negative evidence surfaces; actual browser/device/editorial gates remain separate",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-browser-evidence.test.cjs",
+        "tools/quality/article-browser.cjs",
+        "tools/quality/local-browser.cjs",
+        "tools/quality/staging-regression.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/validate.cjs",
+        "tests/fixtures/staging-evidence.cjs"
+      ]
+    },
+    {
+      "path": "tests/article-candidate-source.test.cjs",
+      "language": "javascript",
+      "purpose": "Cold explicit candidate artifact reconstruction across plain/Color/staging layers, source mutations and missing/null/empty/forged candidate declaration negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain independent exact-source reconstruction failure surface; candidate output does not supply production or publication acceptance",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-candidate-source.test.cjs",
+        "tools/quality/candidate-source.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/local.cjs",
+        "tools/site/**",
+        "tools/staging/color.cjs",
+        "tools/staging/package.cjs",
+        "site/article-preview.json",
+        "site/publications/**",
+        "site/assets/publications/**",
+        "site/templates/**",
+        "site/engine/navigation.js"
+      ]
+    },
+    {
+      "path": "tests/content-baseline.test.cjs",
+      "language": "javascript",
+      "purpose": "Trusted prior preview generation selection, exact run/source/tree/archive identity and extraction/path negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "Retain fail-closed content reuse and ordinary full-build fallback; no release admission is inferred",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/content-baseline.test.cjs",
+        "tools/quality/content-baseline.cjs",
+        "tools/quality/source-tests.cjs",
+        "tools/quality/artifact.cjs",
+        ".github/workflows/site-color-review.yml",
+        "tools/quality/content-fixture.cjs",
+        "tools/check_ri_ci.py",
+        "tests/fixtures/catalog.cjs"
+      ]
+    },
+    {
+      "path": "tests/content-release.test.cjs",
+      "language": "javascript",
+      "purpose": "Verified platform reuse, exact coherent artifacts, current source reconstruction and hostile baseline negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "Preserve current-source content proof and full regression for platform changes",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/content-release.test.cjs",
+        "tools/site/content-release.cjs",
+        "tools/site/build.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/candidate-source.cjs",
+        "tools/quality/local.cjs",
+        "site/content/catalog.json",
+        "site/publications/**",
+        "site/templates/**",
+        "tools/site/public-artifact.cjs",
+        "tools/quality/content-fixture.cjs"
+      ]
+    },
+    {
+      "path": "tests/content-fixture.test.cjs",
+      "language": "javascript",
+      "purpose": "Genuine isolated browser content fixture generation, nonpublication/source preservation and current Writing printcounter negatives",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Keep synthetic currentcontent diagnostic independent of release admission and authorship",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/content-fixture.test.cjs",
+        "tools/quality/content-fixture.cjs",
+        "tools/quality/local-browser.cjs",
+        "tools/quality/serve.cjs",
+        "tools/site/content-release.cjs",
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-release-checks.yml",
+        "tests/fixtures/catalog.cjs"
       ]
     },
     {

@@ -239,6 +239,32 @@
         "\u0440\u0435\u0444\u0430\u043a\u0442\u043e\u0440\u0438\u043d\u0433",
         "\u043f\u0440\u0430\u0432\u0438\u043b\u0430 \u043d\u0430\u043f\u0438\u0441\u0430\u043d\u043d\u044f \u043a\u043e\u0434\u0443"
       ]
+    },
+    {
+      "concern": "full authored articles and reusable publication workflow",
+      "path": "guides/ARTICLE-WORKFLOW.md",
+      "queries": [
+        "article authoring",
+        "full articles",
+        "LinkedIn adaptation",
+        "publication events",
+        "\u043f\u0456\u0434\u0433\u043e\u0442\u043e\u0432\u043a\u0430 \u0441\u0442\u0430\u0442\u0435\u0439",
+        "\u043f\u043e\u0432\u043d\u0456 \u0441\u0442\u0430\u0442\u0442\u0456",
+        "\u0440\u0435\u0434\u0430\u043a\u0446\u0456\u0439\u043d\u0438\u0439 \u043f\u0440\u043e\u0446\u0435\u0441"
+      ]
+    },
+    {
+      "concern": "independent article catalog and static content release",
+      "path": "guides/SITE-CONTENT-RELEASE.md",
+      "queries": [
+        "content release",
+        "article counter",
+        "Writing catalog",
+        "content-only build",
+        "\u043b\u0456\u0447\u0438\u043b\u044c\u043d\u0438\u043a \u0441\u0442\u0430\u0442\u0435\u0439",
+        "\u0432\u0438\u043f\u0443\u0441\u043a \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0443",
+        "\u0434\u043e\u0434\u0430\u0442\u0438 \u0441\u0442\u0430\u0442\u0442\u044e"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -382,6 +408,7 @@
         "tools/quality/bandit-triage.cjs",
         "tools/quality/bandit-policy.json",
         "tools/quality/scanners.cjs",
+        "tools/quality/generated-checksums.cjs",
         "tools/quality/secrets-baseline.json",
         "tests/quality-sources.test.cjs",
         "tools/quality/secrets-reviewed.json",
@@ -420,6 +447,36 @@
       "read": ["guides/CODE-STYLE.md"],
       "workflow": ".github/workflows/navigation.yml",
       "note": "Read and follow applicable CS rules before code/template/style/config edits; map them to an issue AC and PR evidence. Guard success establishes only its stated subset; review unautomated rules and exact legacy allowances. This route does not authorize refactoring historical artifacts."
+    },
+    {
+      "concern": "authored article publisher and Writing reader",
+      "paths": [
+        "site/publications/",
+        "site/article-preview.json",
+        "site/assets/publications/",
+        "tools/publishing/",
+        "tools/site/articles.cjs",
+        "tests/publishing",
+        "tests/site-articles.test.cjs",
+        "tests/article-",
+        "guides/ARTICLE-WORKFLOW.md",
+        "tests/test_issue5_acceptance.py",
+        ".github/acceptance/issue-5.json",
+        "tools/site/offline.cjs",
+        "tools/site/standalone.cjs",
+        "tools/quality/candidate-source.cjs",
+        "tools/quality/article-browser.cjs",
+        "tests/local-catalog-relationships.test.cjs",
+        "tests/site-transaction.test.cjs"
+      ],
+      "commands": [
+        "node --test tests/publishing.test.cjs tests/publishing-history.test.cjs tests/publishing-profile.test.cjs tests/publishing-safety.test.cjs tests/publishing-print.test.cjs",
+        "node --test tests/site-articles.test.cjs tests/site-transaction.test.cjs tests/article-offline.test.cjs tests/local-catalog-relationships.test.cjs tests/article-budgets.test.cjs tests/article-browser-evidence.test.cjs tests/article-candidate-source.test.cjs tests/article-delivery.test.cjs",
+        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-5.json --report /tmp/issue-5-acceptance.json"
+      ],
+      "read": ["guides/ARTICLE-WORKFLOW.md", "site/README.md", "guides/SITE-CHECK-PROFILES.md"],
+      "workflow": ".github/workflows/issue-acceptance.yml",
+      "note": "Prepare the locked build-only toolchain before selected source checks. Actual PDF/native-editor/browser/rights/publication evidence and controller promotion remain separate; this route does not publish."
     }
   ]
 }

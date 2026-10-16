@@ -351,7 +351,7 @@ async function fallbacks(browser, base) {
   }
   return rows;
 }
-async function browserSmoke(base) {
+async function browserSmoke(base, articles = {}) {
   const { toolRequire, launchOptions } = require('../quality/common.cjs'),
     pw = toolRequire('playwright'),
     browser = await pw.chromium.launch(launchOptions('chromium'));
@@ -367,6 +367,15 @@ async function browserSmoke(base) {
         views,
         fallback,
         archive: await archive(page, base),
+        ...(Object.keys(articles).length
+          ? {
+              articles: await require('../quality/article-browser.cjs').articleJourney(
+                base,
+                articles,
+                { browser }
+              ),
+            }
+          : {}),
         limits: [
           'Headless Linux browser and viewport emulation, not physical phones.',
           'HTTP byte checks retain external publisher/contact targets; no external site is clicked.',
@@ -399,7 +408,7 @@ async function main() {
   };
   try {
     result.http = await httpSmoke(base, record);
-    result.browser = await browserSmoke(base);
+    result.browser = await browserSmoke(base, record.source.components?.articles || {});
     result.pass = true;
   } catch (e) {
     result.error = e.message;

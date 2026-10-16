@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { createHash } = require('node:crypto');
 const { stripForPreview } = require('./site/analytics.cjs');
+const offline = require('./site/offline.cjs');
 const root = path.resolve(__dirname, '..');
 const galleryFilename = 'site-v1-20261004-v11-index.html';
 const pages = ['index', 'research', 'writing', 'talks', 'credits'];
@@ -34,13 +35,15 @@ function filename(page, theme) {
   return `site-v1-20261004-v11-${page === 'index' ? '' : page + '-'}${themes[theme]}.html`;
 }
 
-function rewriteLinks(html, theme, interactive = false) {
+function rewriteLinks(html, theme, interactive = false, resources = new Set()) {
   return html.replace(/href="([^"]+)"/g, (attribute, value) => {
     if (
+      resources.has(value) ||
       value.startsWith('data:image/svg+xml;base64,') ||
       value.startsWith('https://') ||
       value.startsWith('mailto:') ||
-      value.startsWith('#')
+      value.startsWith('#') ||
+      value.startsWith('?view=')
     )
       return attribute;
     const suffixAt = value.search(/[?#]/);
@@ -52,16 +55,19 @@ function rewriteLinks(html, theme, interactive = false) {
   });
 }
 
-function inlineIcon(html) {
-  const bytes = fs.readFileSync(path.join(root, 'docs/assets/favicon.svg'));
+function inlineIcon(html, publicDirectory = path.join(root, 'docs')) {
+  const bytes = fs.readFileSync(path.join(publicDirectory, 'assets/favicon.svg'));
   return html.replace(
     'href="assets/favicon.svg"',
     () => `href="data:image/svg+xml;base64,${bytes.toString('base64')}"`
   );
 }
 
-function renderPage(source, css, page, theme, portrait) {
-  source = sourceForPreview(source);
+function renderPage(source, css, page, theme, portrait, environment = offline.context()) {
+  source = offline.documents(
+    offline.articleLinks(sourceForPreview(source), environment),
+    environment
+  );
   filename(page, theme); // Validate before transforming source.
   for (const marker of ['<html lang="en">', '<script src="theme.js"></script>']) {
     if (source.split(marker).length !== 2) throw new Error(`Expected one source marker: ${marker}`);
@@ -84,7 +90,7 @@ function renderPage(source, css, page, theme, portrait) {
       () => `src="data:image/webp;base64,${portrait.toString('base64')}"`
     );
   }
-  html = inlineIcon(html);
+  html = inlineIcon(html, environment.publicDirectory);
   html = rewriteLinks(html, theme);
   const control =
     '<nav class="theme-control" aria-label="Review theme"><span>Preview theme</span>' +
@@ -119,11 +125,22 @@ function interactiveFilename(page) {
   return `site-v1-20261004-v11-${page === 'index' ? '' : page + '-'}interactive.html`;
 }
 
-function renderInteractive(source, css, page, portrait, scripts, payloads) {
-  source = sourceForPreview(source);
+function renderInteractive(
+  source,
+  css,
+  page,
+  portrait,
+  scripts,
+  payloads,
+  environment = offline.context()
+) {
+  source = offline.documents(
+    offline.articleLinks(sourceForPreview(source), environment),
+    environment
+  );
   let html = replaceStylesheet(source, `<style>\n${css}</style>`);
-  html = inlineIcon(html);
-  html = rewriteLinks(html, 'light', true);
+  html = inlineIcon(html, environment.publicDirectory);
+  html = rewriteLinks(html, 'light', true, offline.presentationLinks(environment, true));
   html = html.replace(
     'src="assets/vitalii-oborskyi-cutout.webp"',
     () => `src="data:image/webp;base64,${portrait.toString('base64')}"`
@@ -161,18 +178,28 @@ function renderInteractive(source, css, page, portrait, scripts, payloads) {
   return html;
 }
 
-function routePayloads(portrait) {
-  return {
-    revision: JSON.parse(fs.readFileSync(path.join(root, 'docs/site-revision.json'), 'utf8')),
+function routePayloads(portrait, options = {}) {
+  const environment = options.environment || offline.context(options);
+  const revision = structuredClone(environment.revision);
+  delete revision.articles;
+  if (environment.articleKey)
+    revision.articles = {
+      [environment.articleKey]: structuredClone(
+        environment.revision.articles[environment.articleKey]
+      ),
+    };
+  const payload = {
+    revision,
     files: Object.fromEntries(pages.map((page) => [page, interactiveFilename(page)])),
     pages: Object.fromEntries(
       pages.map((page) => {
         let source = sourceForPreview(
-          fs.readFileSync(path.join(root, `docs/${page}.html`), 'utf8')
+          fs.readFileSync(path.join(environment.publicDirectory, `${page}.html`), 'utf8')
         );
         // Route data is inert. Only the persistent document runs executable scripts.
         source = replaceStylesheet(source.replace(/<script src="[^"]+"[^>]*><\/script>/g, ''), '');
-        source = inlineIcon(source).replace(
+        source = offline.documents(offline.articleLinks(source, environment), environment);
+        source = inlineIcon(source, environment.publicDirectory).replace(
           'src="assets/vitalii-oborskyi-cutout.webp"',
           () => `src="data:image/webp;base64,${portrait.toString('base64')}"`
         );
@@ -180,9 +207,163 @@ function routePayloads(portrait) {
       })
     ),
   };
+  if (environment.articleKey) {
+    const descriptor = environment.revision.articles[environment.articleKey];
+    let source = offline.rootURLs(
+      fs.readFileSync(path.join(environment.publicDirectory, descriptor.alias), 'utf8'),
+      descriptor.alias
+    );
+    source = sourceForPreview(source).replace(/<script src="[^"]+"[^>]*><\/script>/g, '');
+    source = replaceStylesheet(source, '');
+    source = inlineIcon(source, environment.publicDirectory);
+    source = offline.documents(offline.articleLinks(source, environment), environment);
+    const key = 'article:' + environment.articleKey;
+    payload.files[key] = 'article-' + environment.articleKey.replace(':', '-') + '-offline.html';
+    payload.pages[key] = rewriteLinks(
+      source,
+      'light',
+      true,
+      offline.presentationLinks(environment)
+    );
+    payload.assets = offline.assets(environment);
+    if (Buffer.byteLength(payload.pages[key], 'utf8') > 100000)
+      throw Error('Standalone article HTML byte budget');
+    payload.revision.articles[environment.articleKey].sha256 = digest(payload.pages[key]);
+  }
+  for (const page of pages) payload.revision.routes[page].sha256 = digest(payload.pages[page]);
+  return payload;
 }
 
-function renderGallery() {
+function exportArticle({
+  repoRoot = root,
+  articleId,
+  outputFile,
+  publicDirectory = path.join(repoRoot, 'docs'),
+} = {}) {
+  if (!/^[a-z][a-z0-9-]{0,79}$/.test(articleId || '')) throw Error('Invalid standalone article id');
+  const base = offline.context({ repoRoot, publicDirectory });
+  const selected = Object.entries(base.revision.articles || {}).filter(
+    ([, article]) => article.articleId === articleId
+  );
+  if (selected.length !== 1)
+    throw Error('Unknown or ambiguous explicit standalone article selection');
+  const [articleKey, descriptor] = selected[0];
+  const model = require('./publishing/article.cjs').loadArticle(repoRoot, articleId);
+  const sourceInputs = Object.fromEntries(
+    model.inputs.map((name) => [name, digest(fs.readFileSync(path.join(repoRoot, name)))])
+  );
+  if (sourceInputs[model.source.path] !== model.source.sha256)
+    throw Error('Standalone source changed during validation');
+  if (outputFile) offline.assertOutput(outputFile, base, model.inputs);
+  if (
+    model.metadata.language !== articleKey.split(':')[1] ||
+    model.edition.id !== descriptor.contentEdition ||
+    model.source.sha256 !== descriptor.sourceSha256 ||
+    model.edition.semanticSha256 !== descriptor.semanticSha256
+  )
+    throw Error('Standalone descriptor differs from the selected source edition identity');
+  const environment = { ...base, articleKey };
+  const portrait = fs.readFileSync(
+    path.join(publicDirectory, 'assets/vitalii-oborskyi-cutout.webp')
+  );
+  const css = fs.readFileSync(path.join(publicDirectory, 'styles.css'), 'utf8');
+  const scripts = Object.fromEntries(
+    ['theme', 'space', 'archive', 'navigation'].map((name) => {
+      const source = fs.readFileSync(path.join(publicDirectory, name + '.js'), 'utf8');
+      if (/<\/script/i.test(source)) throw Error('Unsafe standalone script boundary');
+      return [name, source];
+    })
+  );
+  const payload = routePayloads(portrait, { environment });
+  let source = offline.rootURLs(
+    fs.readFileSync(path.join(publicDirectory, descriptor.alias), 'utf8'),
+    descriptor.alias
+  );
+  source = offline.inlineAssets(source, environment);
+  // Reuse the existing producer; its review-only notice is removed by standalone.
+  let html = renderInteractive(source, css, 'writing', portrait, scripts, payload, environment);
+  html = require('./site/standalone.cjs').standalone(html);
+  const gzipBytes = require('node:zlib').gzipSync(html).length;
+  if (gzipBytes > require('./quality/budgets.json').routeGzipBytes)
+    throw Error('Standalone article transfer budget; use the hosted edition for this image set');
+  const assets = Object.fromEntries(
+    Object.entries(payload.assets).map(([name, value]) => [
+      name,
+      {
+        sha256: value.sha256,
+        bytes: value.bytes,
+      },
+    ])
+  );
+  const manifest = {
+    schema: 1,
+    kind: 'standalone-article-review',
+    articleId,
+    language: articleKey.split(':')[1],
+    key: articleKey,
+    contentEdition: descriptor.contentEdition,
+    sourceSha256: descriptor.sourceSha256,
+    semanticSha256: descriptor.semanticSha256,
+    sourceURL: descriptor.alias,
+    sha256: digest(html),
+    bytes: Buffer.byteLength(html),
+    gzipBytes,
+    assets,
+    inputs: Object.fromEntries(
+      [
+        descriptor.alias,
+        'site-revision.json',
+        'styles.css',
+        'assets/favicon.svg',
+        'assets/vitalii-oborskyi-cutout.webp',
+        ...pages.map((page) => page + '.html'),
+        ...Object.keys(scripts).map((name) => name + '.js'),
+        ...descriptor.assets,
+      ].map((name) => [name, digest(fs.readFileSync(path.join(publicDirectory, name)))])
+    ),
+    sourceInputs,
+  };
+  if (
+    require('./quality/artifact.cjs').manifest(publicDirectory).artifactDigest !==
+      base.record.artifactDigest ||
+    Object.entries(sourceInputs).some(
+      ([name, hash]) => digest(fs.readFileSync(path.join(repoRoot, name))) !== hash
+    )
+  )
+    throw Error('Standalone source or public inputs changed during generation');
+  if (outputFile) {
+    offline.assertOutput(outputFile, environment, model.inputs);
+    require('./site/transaction.cjs').commitFiles([
+      { target: outputFile, bytes: html },
+      { target: outputFile + '.manifest.json', bytes: JSON.stringify(manifest, null, 2) + '\n' },
+    ]);
+  }
+  return { html, manifest };
+}
+
+function captureEvidence(repoRoot = root) {
+  const file = path.join(repoRoot, 'review/site-v1-20261004-v11-captures/captures.json');
+  if (!fs.existsSync(file)) return { current: false, captures: null, staleSources: [] };
+  const captures = JSON.parse(fs.readFileSync(file, 'utf8'));
+  for (const [name, hash] of Object.entries(captures.files))
+    if (digest(fs.readFileSync(path.join(path.dirname(file), name))) !== hash)
+      throw Error('Capture bytes changed: ' + name);
+  const staleSources = Object.entries(captures.public_sources)
+    .filter(([name, hash]) => {
+      const source = path.join(repoRoot, name);
+      return !fs.existsSync(source) || digest(fs.readFileSync(source)) !== hash;
+    })
+    .map(([name]) => name);
+  return {
+    current: staleSources.length === 0,
+    captures,
+    staleSources,
+    file,
+    sha256: digest(fs.readFileSync(file)),
+  };
+}
+
+function renderGallery(captured = captureEvidence()) {
   const captureDir = 'site-v1-20261004-v11-captures',
     labels = {
       index: 'Home',
@@ -191,10 +372,7 @@ function renderGallery() {
       talks: 'Talks',
       credits: 'Credits',
     };
-  const manifestFile = path.join(root, 'review', captureDir, 'captures.json');
-  const captures = fs.existsSync(manifestFile)
-    ? JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
-    : null;
+  const captures = captured.current ? captured.captures : null;
   const image = (page, theme, device) => {
     const name = `${page}-${theme}-${device}-gallery.jpg`,
       file = path.join(root, 'review', captureDir, name);
@@ -236,18 +414,26 @@ function buildPreviews() {
     'docs/assets/vitalii-oborskyi-cutout.webp': digest(portrait),
   };
   const scripts = {};
+  const environment = offline.context();
   for (const name of ['theme', 'space', 'archive', 'navigation']) {
     scripts[name] = fs.readFileSync(path.join(root, `docs/${name}.js`), 'utf8');
     if (/<\/script/i.test(scripts[name])) throw new Error('Unsafe inline script boundary');
     sources[`docs/${name}.js`] = digest(scripts[name]);
   }
-  const payloads = routePayloads(portrait);
+  const payloads = routePayloads(portrait, { environment });
   for (const page of pages) {
     const sourcePath = `docs/${page}.html`;
     const source = fs.readFileSync(path.join(root, sourcePath), 'utf8');
     sources[sourcePath] = digest(source);
     for (const theme of Object.keys(themes)) {
-      files[`review/${filename(page, theme)}`] = renderPage(source, css, page, theme, portrait);
+      files[`review/${filename(page, theme)}`] = renderPage(
+        source,
+        css,
+        page,
+        theme,
+        portrait,
+        environment
+      );
     }
     files[`review/${interactiveFilename(page)}`] = renderInteractive(
       source,
@@ -255,26 +441,15 @@ function buildPreviews() {
       page,
       portrait,
       scripts,
-      payloads
+      payloads,
+      environment
     );
   }
-  const captureFile = path.join(root, 'review/site-v1-20261004-v11-captures/captures.json');
+  const captured = captureEvidence();
   const evidence = {};
-  if (fs.existsSync(captureFile)) {
-    const captures = JSON.parse(fs.readFileSync(captureFile, 'utf8'));
-    for (const [file, hash] of Object.entries(captures.public_sources)) {
-      if (digest(fs.readFileSync(path.join(root, file))) !== hash)
-        throw Error(`Capture source is stale: ${file}`);
-    }
-    for (const [file, hash] of Object.entries(captures.files)) {
-      if (digest(fs.readFileSync(path.join(path.dirname(captureFile), file))) !== hash)
-        throw Error(`Capture bytes changed: ${file}`);
-    }
-    evidence['review/site-v1-20261004-v11-captures/captures.json'] = digest(
-      fs.readFileSync(captureFile)
-    );
-  }
-  files[`review/${galleryFilename}`] = renderGallery();
+  if (captured.captures)
+    evidence['review/site-v1-20261004-v11-captures/captures.json'] = captured.sha256;
+  files[`review/${galleryFilename}`] = renderGallery(captured);
   files['review/site-v1-static-previews-v11.json'] =
     JSON.stringify(
       {
@@ -282,6 +457,15 @@ function buildPreviews() {
         generator: 'tools/build_site_previews.cjs',
         sources,
         evidence,
+        captureDisposition: {
+          selected: captured.current,
+          staleSources: captured.staleSources,
+          status: captured.captures
+            ? captured.current
+              ? 'current-source'
+              : 'historical-unselected'
+            : 'pending',
+        },
         files: Object.fromEntries(
           Object.entries(files).map(([file, content]) => [file, digest(content)])
         ),
@@ -324,4 +508,8 @@ module.exports = {
   interactiveFilename,
   galleryFilename,
   sourceForPreview,
+  routePayloads,
+  exportArticle,
+  captureEvidence,
+  renderGallery,
 };

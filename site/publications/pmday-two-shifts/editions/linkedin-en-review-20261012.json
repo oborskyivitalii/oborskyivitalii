@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "id": "linkedin-en-review-20261012",
+  "articleId": "pmday-two-shifts",
+  "language": "en",
+  "kind": "adaptation",
+  "source": {
+    "path": "adaptations/linkedin.en.md",
+    "sha256": "ffb7302e4fa3ecf12ea7c7588153d059cdcdc4d17021d46c4b49086dc05eaa10",
+    "commit": null,
+    "blob": null
+  },
+  "owner": "site",
+  "derivation": {
+    "relationship": "adaptation",
+    "baseEdition": "pmday-two-shifts-en-review-20261012",
+    "baseSourceSha256": "ddbf94e087037feda8996f03b5564eaa7cedd897bdffb03ad54298b799cbae7a",
+    "baseSemanticSha256": "426717c86a880fd104d1284ee6312cc8d49bb61afefa4e980acbbcf926e9be9a"
+  },
+  "rights": "review-pending",
+  "semanticSha256": "c1f0940acb6ed1bd850a0d3fb874242969092dc5c40e63da02207de0c55e88a9"
+}

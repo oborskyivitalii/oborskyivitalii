@@ -836,6 +836,110 @@ test('closed secret ledgers admit only exact reviewed path, rule and hashed valu
   }
 });
 
+test('public npm integrity dispositions require the exact inventory path, ledger and current lock proof', () => {
+  const crypto = require('node:crypto');
+  const {
+    loadSecretReviews,
+    reviewedSecretFinding,
+    publicationIntegrityProof,
+  } = require('../tools/quality/scanners.cjs');
+  const f = secretReviewFixture();
+  const inventoryFile = 'tools/publishing/toolchain/licenses.json';
+  const directory = path.join(f.directory, 'tools/publishing/toolchain');
+  fs.mkdirSync(directory, { recursive: true });
+  const integrity =
+    'sha512-' +
+    crypto
+      .createHash('sha512')
+      .update('Public controlled npm registry integrity fixture')
+      .digest('base64');
+  const hash = crypto.createHash('sha1').update(integrity).digest('hex');
+  const lock = {
+    lockfileVersion: 3,
+    packages: {
+      '': { name: 'fixture' },
+      'node_modules/fixture-package': { version: '1.0.0', integrity },
+    },
+  };
+  const lockBytes = JSON.stringify(lock);
+  const inventory = {
+    schema: 1,
+    dependencyLockSha256: crypto.createHash('sha256').update(lockBytes).digest('hex'),
+    packages: [
+      {
+        name: 'fixture-package',
+        location: 'node_modules/fixture-package',
+        version: '1.0.0',
+        integrity,
+      },
+    ],
+  };
+  const writeInventory = (value) =>
+    fs.writeFileSync(path.join(f.directory, inventoryFile), JSON.stringify(value));
+  try {
+    fs.writeFileSync(path.join(directory, 'package-lock.json'), lockBytes);
+    writeInventory(inventory);
+    f.reviews[3].findings.push(f.entry(inventoryFile, 'Base64 High Entropy String', hash));
+    f.write(3);
+    const finding = { type: 'Base64 High Entropy String', hashed_secret: hash };
+    const reviewed = loadSecretReviews(f.directory);
+    const proof = publicationIntegrityProof(f.directory);
+    assert.equal(proof.size, 1);
+    assert.equal(reviewedSecretFinding(inventoryFile, finding, reviewed, proof), true);
+    assert.equal(
+      reviewedSecretFinding(inventoryFile, finding, reviewed),
+      false,
+      'a ledger alone cannot supply the current dependency proof'
+    );
+    assert.equal(
+      reviewedSecretFinding(
+        inventoryFile,
+        { ...finding, hashed_secret: 'b'.repeat(40) },
+        reviewed,
+        proof
+      ),
+      false
+    );
+    for (const mutate of [
+      (value) => {
+        value.dependencyLockSha256 = 'a'.repeat(64);
+      },
+      (value) => {
+        value.packages[0].version = '2.0.0';
+      },
+      (value) => {
+        value.packages[0].integrity = 'sha512-' + Buffer.from('unproved value').toString('base64');
+      },
+      (value) => {
+        value.packages[0].location = 'node_modules/other';
+      },
+      (value) => {
+        value.packages.push(structuredClone(value.packages[0]));
+      },
+    ]) {
+      const value = structuredClone(inventory);
+      mutate(value);
+      writeInventory(value);
+      assert.throws(() => publicationIntegrityProof(f.directory), /integrity|inventory/);
+    }
+    writeInventory(inventory);
+    for (const index of [0, 1, 2]) {
+      f.reviews[3].findings = [];
+      f.write(3);
+      f.reviews[index].findings = [f.entry(inventoryFile, finding.type, hash)];
+      f.write(index);
+      assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+      f.reviews[index].findings = [];
+      f.write(index);
+    }
+    f.reviews[3].findings = [f.entry('review/arbitrary-integrity.json', finding.type, hash)];
+    f.write(3);
+    assert.throws(() => loadSecretReviews(f.directory), /Invalid exact secret review entry/);
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
 test('secret ledgers reject malformed metadata and non-exact or non-checksum companion records', () => {
   const { loadSecretReviews } = require('../tools/quality/scanners.cjs');
   const f = secretReviewFixture();
@@ -951,6 +1055,459 @@ test('all historical secret dispositions retain their exact data in the closed l
     for (const entry of source.findings) assert.deepEqual(reviewed.get(entry.id), entry);
   }
 });
+
+function generatedChecksumFixture() {
+  const helper = require('../tools/quality/generated-checksums.cjs');
+  const crypto = require('node:crypto');
+  const bytes = new Map();
+  const readBytes = (file) => {
+    if (!bytes.has(file)) bytes.set(file, fs.readFileSync(path.join(root, file)));
+    return bytes.get(file);
+  };
+  const read = (file) => readBytes(file).toString('utf8');
+  const write = (file, text) => bytes.set(file, Buffer.from(text));
+  const digest = (text, algorithm = 'sha256') =>
+    crypto.createHash(algorithm).update(text).digest('hex');
+  const manifestFile = 'review/site-v1-static-previews-v11.json';
+  const manifest = JSON.parse(read(manifestFile));
+  const fixture = {
+    helper,
+    read,
+    readBytes,
+    write,
+    digest,
+    lock: JSON.parse(read('site/output-lock.json')),
+    revision: JSON.parse(read('docs/site-revision.json')),
+    previews: Object.fromEntries(
+      [...Object.keys(manifest.files), manifestFile].map((file) => [file, read(file)])
+    ),
+    bundle: JSON.parse(read('review/site-v1-offline-bundle-v11.json')),
+  };
+  fixture.collect = () => helper.collectChecksumFields(fixture);
+  fixture.has = (collected, file, value) =>
+    collected.get(file)?.locations.has(digest(value, 'sha1')) === true;
+  return fixture;
+}
+
+test('generated field collection follows a changed content identity without modifying secret ledgers', () => {
+  const fixture = generatedChecksumFixture();
+  const before = fs.readFileSync(path.join(root, 'tools/quality/secrets-reviewed-checksums.json'));
+  const old = fixture.revision.routes.writing;
+  const version = fixture.digest('A newly rendered Writing content edition');
+  const snapshot = 'snapshots/' + version + '/writing.html';
+  const html = fixture.read('docs/writing.html').replaceAll(old.version, version);
+  fixture.write('docs/writing.html', html);
+  fixture.write('docs/' + snapshot, html);
+  fixture.revision.routes.writing = {
+    ...old,
+    version,
+    url: snapshot,
+    sha256: fixture.digest(html),
+  };
+  fixture.lock.routes.writing = {
+    ...fixture.lock.routes.writing,
+    version,
+    snapshotSHA: fixture.digest(html),
+  };
+  delete fixture.lock.files[old.url];
+  fixture.lock.files[snapshot] = fixture.digest(html);
+  fixture.write('docs/site-revision.json', JSON.stringify(fixture.revision, null, 2));
+  fixture.write('site/output-lock.json', JSON.stringify(fixture.lock, null, 2));
+  const collected = fixture.collect();
+  assert.ok(fixture.has(collected, 'docs/writing.html', version));
+  assert.ok(fixture.has(collected, 'docs/' + snapshot, version));
+  assert.ok(fixture.has(collected, 'site/output-lock.json', version));
+  assert.equal(fixture.has(collected, 'docs/writing.html', old.version), false);
+  assert.deepEqual(
+    fs.readFileSync(path.join(root, 'tools/quality/secrets-reviewed-checksums.json')),
+    before
+  );
+  const finding = {
+    type: 'Hex High Entropy String',
+    hashed_secret: fixture.digest(version, 'sha1'),
+    line_number: 1,
+  };
+  assert.equal(
+    fixture.helper.verifiedGeneratedChecksumFinding('docs/writing.html', finding, {
+      proved: collected,
+    }),
+    false,
+    'pure caller-supplied field data cannot create a production admission proof'
+  );
+  assert.throws(
+    () => fixture.helper.admitGeneratedChecksumFindings({}, { proved: collected }),
+    /Unverified/
+  );
+});
+
+test('generated checksum collection rejects arbitrary fields and same-known-value prose or external URLs', () => {
+  for (const extra of [
+    (value) => '<p>' + value + '</p>',
+    (value) => '<!-- <meta name="site-engine" content="' + value + '"> -->',
+    (value) =>
+      '<script>window.fixture=\'<meta name="site-engine" content="' + value + '">\';</script>',
+    (value) => '<textarea><meta name="site-engine" content="' + value + '"></textarea>',
+    (value) => '<title><meta name="site-engine" content="' + value + '"></title>',
+    (value) => '<a href="https://example.org/' + value + '">External</a>',
+    (value) => '<p href="runtime/' + value + '/theme.js">Text</p>',
+    (value) => '<a href="runtime/' + value + '/theme.js">Text</a>',
+  ]) {
+    const fixture = generatedChecksumFixture();
+    const file = 'docs/index.html',
+      value = fixture.revision.engine;
+    fixture.write(file, fixture.read(file).replace('</body>', extra(value) + '</body>'));
+    assert.equal(fixture.has(fixture.collect(), file, value), false);
+  }
+  for (const valueKind of ['known', 'unknown']) {
+    const fixture = generatedChecksumFixture();
+    const file = 'docs/site-revision.json';
+    const value =
+      valueKind === 'known'
+        ? fixture.revision.engine
+        : fixture.digest('Unapproved extra JSON field');
+    fixture.write(file, JSON.stringify({ ...fixture.revision, notes: value }, null, 2));
+    assert.equal(fixture.has(fixture.collect(), file, value), false);
+  }
+});
+
+test('article resource names and unauthorized owners do not become computed checksum fields', () => {
+  const fixture = generatedChecksumFixture();
+  const name = fixture.digest('Authored asset basename, not its computed content digest');
+  const assetDigest = fixture.digest('Actual asset bytes');
+  const resource = 'article-media/' + assetDigest + '/' + name + '.png';
+  const version = fixture.digest('Article edition');
+  const article = {
+    version,
+    sha256: fixture.digest('Snapshot bytes'),
+    alias: 'articles/fixture.html',
+    url: 'article-snapshots/' + version + '/fixture.html',
+    assets: [resource],
+    sourceSha256: fixture.digest('Manuscript bytes'),
+    semanticSha256: fixture.digest('Article semantics'),
+  };
+  fixture.revision.articles = { 'fixture:en': article };
+  fixture.lock.articles = {
+    'fixture:en': { ...article, snapshot: article.url },
+  };
+  fixture.lock.files[resource] = assetDigest;
+  fixture.bundle.entries['site/' + resource] = assetDigest;
+  fixture.write('docs/site-revision.json', JSON.stringify(fixture.revision, null, 2));
+  fixture.write('site/output-lock.json', JSON.stringify(fixture.lock, null, 2));
+  fixture.write('review/site-v1-offline-bundle-v11.json', JSON.stringify(fixture.bundle, null, 2));
+  const html =
+    '<html><head><meta name="site-engine" content="' +
+    fixture.revision.engine +
+    '">' +
+    '<meta name="site-route" content="' +
+    version +
+    '"></head><body><img src="' +
+    resource +
+    '"></body></html>';
+  for (const file of [article.alias, article.url]) fixture.write('docs/' + file, html);
+  const collected = fixture.collect();
+  for (const file of [
+    'docs/site-revision.json',
+    'site/output-lock.json',
+    'docs/' + article.alias,
+    'docs/' + article.url,
+    'review/site-v1-offline-bundle-v11.json',
+  ]) {
+    assert.equal(fixture.has(collected, file, name), false, file);
+    assert.ok(fixture.has(collected, file, assetDigest), file);
+  }
+  assert.equal(collected.has('review/unapproved-archive.html'), false);
+  const finding = {
+    type: 'Secret Keyword',
+    hashed_secret: fixture.digest(assetDigest, 'sha1'),
+    line_number: 1,
+  };
+  assert.equal(
+    fixture.helper.verifiedGeneratedChecksumFinding('docs/' + article.alias, finding, collected),
+    false
+  );
+  assert.equal(
+    fixture.helper.verifiedGeneratedChecksumFinding(
+      'review/unapproved-archive.html',
+      { ...finding, type: 'Hex High Entropy String' },
+      collected
+    ),
+    false
+  );
+});
+
+test('one-line inert payload fields require their exact role and recomputed page bytes', () => {
+  for (const mutation of ['extra', 'stale']) {
+    const fixture = generatedChecksumFixture();
+    const file = 'review/site-v1-20261004-v11-interactive.html';
+    const pattern = /(<script type="application\/json" id="site-pages">)([\s\S]*?)(<\/script>)/;
+    const match = fixture.read(file).match(pattern);
+    const payload = JSON.parse(match[2]);
+    const value =
+      mutation === 'extra' ? fixture.revision.engine : payload.revision.routes.writing.sha256;
+    if (mutation === 'extra') payload.privateNotes = value;
+    else payload.pages.writing += '<p>A changed page whose old digest must fail.</p>';
+    const changed = fixture
+      .read(file)
+      .replace(
+        pattern,
+        () => match[1] + JSON.stringify(payload).replace(/</g, '\\u003c') + match[3]
+      );
+    fixture.write(file, changed);
+    fixture.previews[file] = changed;
+    assert.equal(fixture.has(fixture.collect(), file, value), false);
+  }
+});
+
+function publicationChecksumFixture() {
+  const directory = fs.mkdtempSync(
+    path.join(require('node:os').tmpdir(), 'publication-checksum-test-')
+  );
+  const publisher = require('../tools/publishing/article.cjs');
+  const digest = (bytes, algorithm = 'sha256') =>
+    require('node:crypto').createHash(algorithm).update(bytes).digest('hex');
+  const owner = 'site/publications/checksum-fixture';
+  const write = (file, value) => {
+    const target = path.join(directory, file);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, value);
+  };
+  const json = (file, value) => write(file, JSON.stringify(value, null, 2) + '\n');
+  const git = (...args) =>
+    cp
+      .execFileSync(
+        'git',
+        ['-c', 'user.name=Checksum fixture', '-c', 'user.email=fixture@example.invalid', ...args],
+        { cwd: directory, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
+      )
+      .trim();
+  git('init', '--quiet');
+  write(owner + '/manuscript.en.md', '# Checksum article\n\nFirst complete edition.\n');
+  write(owner + '/launch-post.en.md', 'First authored launch.\n');
+  const metadata = {
+    schema: 1,
+    id: 'checksum-fixture',
+    slug: 'checksum-fixture',
+    title: 'Checksum article',
+    summary: 'A synthetic source proof.',
+    authors: [{ name: 'Fixture author' }],
+    language: 'en',
+    topic: 'delivery',
+    owner: { repository: 'oborskyivitalii/oborskyivitalii', path: owner },
+    status: 'draft',
+    source: 'manuscript.en.md',
+    edition: 'v1',
+    rights: { status: 'review-pending', notice: 'Synthetic test artifact.', references: [] },
+    profile: 'profile.json',
+    references: [],
+    assets: [],
+    platforms: {
+      linkedin: {
+        mode: 'adaptation',
+        source: 'adaptations/linkedin.en.md',
+        edition: 'linkedin-v1',
+      },
+      medium: { mode: 'equivalent-rendition' },
+    },
+    canonical: null,
+  };
+  write(owner + '/adaptations/linkedin.en.md', '# Adaptation\n\nA distinct short argument.\n');
+  const edition = {
+    schema: 1,
+    id: 'v1',
+    articleId: metadata.id,
+    language: 'en',
+    kind: 'full-article',
+    source: {
+      path: metadata.source,
+      sha256: digest(fs.readFileSync(path.join(directory, owner, metadata.source))),
+      commit: null,
+      blob: null,
+    },
+    owner: 'site',
+    derivation: null,
+    rights: 'review-pending',
+  };
+  const adaptation = {
+    ...edition,
+    id: 'linkedin-v1',
+    kind: 'adaptation',
+    source: {
+      ...edition.source,
+      path: 'adaptations/linkedin.en.md',
+      sha256: digest(fs.readFileSync(path.join(directory, owner, 'adaptations/linkedin.en.md'))),
+    },
+  };
+  const profile = {
+    schema: 1,
+    id: 'checksum-fixture-profile',
+    platforms: {
+      linkedin: { formats: ['txt'], relationship: 'adaptation' },
+      medium: { formats: ['txt'], relationship: 'equivalent-rendition' },
+    },
+    launch: {
+      source: 'launch-post.en.md',
+      sha256: digest(fs.readFileSync(path.join(directory, owner, 'launch-post.en.md'))),
+    },
+    seo: { title: 'Authored distribution title', summary: metadata.summary },
+    assets: { cover: { omitReason: 'Plain fixture.' }, hero: { omitReason: 'Plain fixture.' } },
+    limits: {},
+  };
+  function save() {
+    edition.semanticSha256 = publisher.semanticDigest(metadata, edition.source);
+    adaptation.derivation = {
+      relationship: 'adaptation',
+      baseEdition: edition.id,
+      baseSourceSha256: edition.source.sha256,
+      baseSemanticSha256: edition.semanticSha256,
+    };
+    adaptation.semanticSha256 = publisher.adaptationDigest(
+      metadata,
+      adaptation.source,
+      edition,
+      'linkedin'
+    );
+    json(owner + '/publication.json', metadata);
+    json(owner + '/profile.json', profile);
+    json(owner + '/editions/' + edition.id + '.json', edition);
+    json(owner + '/editions/' + adaptation.id + '.json', adaptation);
+  }
+  save();
+  git('add', '.');
+  git('commit', '--quiet', '-m', 'Prepare source bytes');
+  return {
+    directory,
+    owner,
+    metadata,
+    edition,
+    adaptation,
+    profile,
+    publisher,
+    digest,
+    write,
+    json,
+    git,
+    save,
+  };
+}
+
+test('strict local publisher proof retains frozen versions and admits new source, adaptation and launch hashes', () => {
+  const f = publicationChecksumFixture();
+  const helper = require('../tools/quality/generated-checksums.cjs');
+  const read = (file) => fs.readFileSync(path.join(f.directory, file), 'utf8');
+  const collect = () => helper.collectPublicationChecksumFields(f.directory, read);
+  const has = (records, file, value) =>
+    records.get(file)?.locations.has(f.digest(value, 'sha1')) === true;
+  try {
+    const pin = () => {
+      for (const edition of [f.edition, f.adaptation]) {
+        edition.source.commit = f.git('rev-parse', 'HEAD');
+        edition.source.blob = f.git('rev-parse', 'HEAD:' + f.owner + '/' + edition.source.path);
+        edition.rights = 'accepted';
+      }
+    };
+    f.metadata.status = 'accepted';
+    f.metadata.rights.status = 'accepted';
+    pin();
+    f.save();
+    // The exact frozen records precede the existence of their selecting metadata.
+    f.git('rm', '--cached', '--force', '--quiet', f.owner + '/publication.json');
+    f.git('add', f.owner + '/editions');
+    f.git('commit', '--quiet', '-m', 'Freeze v1 records before selecting metadata');
+    f.save();
+    f.git('add', '.');
+    f.git('commit', '--quiet', '-m', 'Select complete accepted v1');
+    const old = JSON.parse(read(f.owner + '/editions/v1.json'));
+    const oldAdaptation = JSON.parse(read(f.owner + '/editions/linkedin-v1.json'));
+    for (let index = 0; index < 101; index++) {
+      f.metadata.slug = 'checksum-fixture-' + index;
+      f.json(f.owner + '/publication.json', f.metadata);
+      f.git('add', f.owner + '/publication.json');
+      f.git('commit', '--quiet', '-m', 'Metadata-only slug update');
+    }
+    f.edition.id = 'v2';
+    f.adaptation.id = 'linkedin-v2';
+    f.metadata.edition = f.edition.id;
+    f.metadata.platforms.linkedin.edition = f.adaptation.id;
+    f.metadata.status = 'draft';
+    f.metadata.rights.status = 'review-pending';
+    f.write(f.owner + '/manuscript.en.md', '# Checksum article\n\nSecond complete edition.\n');
+    f.write(f.owner + '/launch-post.en.md', 'A changed authored launch.\n');
+    for (const edition of [f.edition, f.adaptation]) {
+      edition.source = {
+        ...edition.source,
+        commit: null,
+        blob: null,
+        sha256: f.digest(fs.readFileSync(path.join(f.directory, f.owner, edition.source.path))),
+      };
+      edition.rights = 'review-pending';
+    }
+    f.profile.launch.sha256 = f.digest(
+      fs.readFileSync(path.join(f.directory, f.owner, 'launch-post.en.md'))
+    );
+    f.save();
+    f.git('add', '.');
+    f.git('commit', '--quiet', '-m', 'Prepare v2 source bytes');
+    pin();
+    f.metadata.status = 'accepted';
+    f.metadata.rights.status = 'accepted';
+    f.save();
+    f.git('add', '.');
+    f.git('commit', '--quiet', '-m', 'Select complete accepted v2');
+    const records = collect();
+    const originalHead = fs.readFileSync(path.join(f.directory, '.git/HEAD'));
+    const originalConfig = fs.readFileSync(path.join(f.directory, '.git/config'));
+    const outsideConfig = path.join(f.directory, 'outside-config');
+    fs.writeFileSync(outsideConfig, '[core]\n\thooksPath = fixture-original-hooks\n');
+    const outsideBytes = fs.readFileSync(outsideConfig);
+    for (const variable of [
+      'GIT_DIR',
+      'GIT_CONFIG',
+      'GIT_CONFIG_COUNT',
+      'GIT_CONFIG_PARAMETERS',
+      'GIT_CONFIG_KEY_0',
+      'GIT_CONFIG_VALUE_0',
+      'git_config_key_0',
+    ]) {
+      const inherited = process.env[variable];
+      try {
+        process.env[variable] =
+          variable === 'GIT_DIR' ? path.join(f.directory, '.git') : outsideConfig;
+        assert.throws(collect, /Inherited Git routing/);
+      } finally {
+        if (inherited === undefined) delete process.env[variable];
+        else process.env[variable] = inherited;
+      }
+      assert.deepEqual(fs.readFileSync(outsideConfig), outsideBytes);
+    }
+    assert.deepEqual(fs.readFileSync(path.join(f.directory, '.git/HEAD')), originalHead);
+    assert.deepEqual(fs.readFileSync(path.join(f.directory, '.git/config')), originalConfig);
+    for (const edition of [old, oldAdaptation, f.edition, f.adaptation]) {
+      const file = f.owner + '/editions/' + edition.id + '.json';
+      for (const value of [
+        edition.source.sha256,
+        edition.semanticSha256,
+        edition.source.commit,
+        edition.source.blob,
+      ])
+        assert.ok(has(records, file, value), file);
+    }
+    assert.ok(has(records, f.owner + '/profile.json', f.profile.launch.sha256));
+    assert.ok(has(records, f.owner + '/editions/linkedin-v2.json', f.edition.semanticSha256));
+    assert.deepEqual(JSON.parse(read(f.owner + '/editions/v1.json')), old);
+    const orphan = {
+      ...f.edition,
+      id: 'orphan',
+      source: { ...f.edition.source, commit: null, blob: null },
+    };
+    f.json(f.owner + '/editions/orphan.json', orphan);
+    assert.equal(collect().has(f.owner + '/editions/orphan.json'), false);
+    f.write(f.owner + '/manuscript.en.md', '# Checksum article\n\nUnpinned source drift.\n');
+    assert.throws(collect, /Source bytes do not match/);
+  } finally {
+    fs.rmSync(f.directory, { recursive: true, force: true });
+  }
+});
+
 test('independent scanner engines retain current raw results and continue after sibling failures', (t) => {
   const { collectEngines } = require('../tools/quality/scanners.cjs');
   const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'scanner-engines-'));
@@ -1283,7 +1840,7 @@ test('actual scanner category control flow keeps later engines and reports faile
   for (const [kind, names] of [
     ['lint', ['eslint', 'stylelint', 'ruff']],
     ['security', ['semgrep', 'bandit', 'secrets']],
-    ['advisories', ['npm', 'pip']],
+    ['advisories', ['npm', 'publicationNpm', 'pip']],
   ]) {
     const result = execute(kind);
     assert.deepEqual(
@@ -1291,8 +1848,16 @@ test('actual scanner category control flow keeps later engines and reports faile
       names
     );
     assert.equal(result.detail.engines[0].pass, false);
-    assert.equal(result.detail.engines.at(-1).pass, true);
+    assert.equal(result.detail.engines.at(-1).pass, true, JSON.stringify(result.detail));
     assert.ok(result.detail.engines.every((row) => row.commands.length > 0));
+    if (kind === 'advisories') {
+      assert.equal(result.detail.engines[1].pass, false);
+      assert.deepEqual(
+        Array.from(result.detail.engines[1].rawReports, (row) => row.file),
+        ['publication-npm-audit.json'],
+        'the independent publication feed failure keeps its actual report'
+      );
+    }
     if (kind === 'security') {
       assert.equal(
         JSON.parse(fs.readFileSync(path.join(result.directory, 'semgrep.json'))).results[0].extra

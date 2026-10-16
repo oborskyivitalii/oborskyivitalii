@@ -6,6 +6,7 @@ const test = require('node:test'),
   vm = require('node:vm');
 const sourceFile = process.env.SITE_SPACE_SOURCE || path.join(__dirname, '../docs/space.js');
 const source = fs.readFileSync(sourceFile, 'utf8'),
+  script = new vm.Script(source, { filename: sourceFile }),
   model = require(sourceFile);
 function visit(options = {}) {
   const events = {},
@@ -51,7 +52,11 @@ function visit(options = {}) {
     ].map((name) => [
       name,
       (...args) => {
-        for (const arg of args) assert.ok(Number.isFinite(arg));
+        for (const arg of args) {
+          if (!Number.isFinite(arg)) {
+            assert.ok(Number.isFinite(arg));
+          }
+        }
         if (name === 'clearRect') {
           if (failDraw) throw Error('injected');
           draws++;
@@ -254,7 +259,7 @@ function visit(options = {}) {
       stored = value;
     },
   };
-  vm.runInNewContext(source, { document, window, localStorage });
+  script.runInNewContext({ document, window, localStorage });
   const api = {
     window,
     document,
@@ -337,6 +342,53 @@ function visit(options = {}) {
   };
   return api;
 }
+test('Canvas numeric guards retain every finite argument and reject invalid values before paint side effects', () => {
+  const p = visit({ saved: 'off' });
+  const context = p.canvas.getContext();
+  const valid = [-0, Number.MIN_VALUE, Number.MAX_VALUE, -Number.MAX_VALUE, 0.5, 1, 2, 3];
+  for (const name of [
+    'setTransform',
+    'clearRect',
+    'beginPath',
+    'moveTo',
+    'lineTo',
+    'stroke',
+    'arc',
+    'fill',
+    'closePath',
+  ]) {
+    assert.doesNotThrow(() => context[name]());
+    assert.doesNotThrow(() => context[name](...valid));
+    for (const invalid of [
+      NaN,
+      Infinity,
+      -Infinity,
+      undefined,
+      null,
+      '1',
+      true,
+      new Number(1),
+      1n,
+      Symbol('bad'),
+    ]) {
+      for (let position = 0; position < valid.length; position++) {
+        const args = valid.slice();
+        args[position] = invalid;
+        const before = { draws: p.draws(), bitmap: p.bitmapValid() };
+        assert.throws(() => context[name](...args), {
+          name: 'AssertionError',
+          code: 'ERR_ASSERTION',
+          actual: false,
+          expected: true,
+          operator: '==',
+          message: /assert\.ok\(Number\.isFinite\(arg\)\)/,
+        });
+        assert.deepEqual({ draws: p.draws(), bitmap: p.bitmapValid() }, before);
+      }
+    }
+  }
+});
+
 test('all routes keep a stationary reading camera through forward and reverse native scroll', () => {
   for (const page of model.routeOrder) {
     const p = visit({ page });

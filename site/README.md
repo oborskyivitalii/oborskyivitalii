@@ -30,6 +30,8 @@ freshness alone is insufficient.
 | `content/pages/<id>/*.json`, `content/shared/*.json` | Bounded text, attributes, URLs and explicit template/block references | That route or shared header/footer |
 | `templates/pages/<id>/*.html`, `templates/components/*.html` | Page-specific semantic layout and reusable publication/discussion markup | Declared route compositions |
 | `content/catalog.json` | Primary editions, bounded alternates/discussions, presentation records, topics and labels; five featured selections | Writing; selected featured records also Home and shared labels |
+| `publications/<id>/` | Authored article metadata, blueprint, manuscript, profile/adaptation and observed edition records under [ARTICLE-WORKFLOW](../guides/ARTICLE-WORKFLOW.md) | Validated article model; explicit candidate or eligible public document selection |
+| `../tools/publishing/` | Build-only Markdown AST, provenance and PDF/platform adapters with a pinned toolchain | Article model and separate review kits; no browser parser or second deploy pipeline |
 | `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
 | `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
 | `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
@@ -221,6 +223,9 @@ Git path/mtime heuristics. `--check` cold-generates in temporary storage and rej
 stale public files, extra files or a stale lock. It does not fix outputs in CI.
 All five offline interactive entry files embed all routes, so one content edit
 regenerates those review files even when four hosted route bytes stay unchanged.
+They remain a separate explicit export. A verified online content release can
+reuse the platform without generating those offline files; see
+[SITE-CONTENT-RELEASE](../guides/SITE-CONTENT-RELEASE.md) for commands and trust rules.
 
 Each route signature includes producer, contract/configuration, shared templates,
 engine/scenes/assets/analytics, its actual block bytes, selected catalog records, discussion references and structured order. A Home
@@ -232,6 +237,10 @@ all scenes share one browser bundle and all fallbacks consume the same model.
 signatures, the reviewed output lock, cache hashes and actual output bytes to agree.
 Missing/invalid cache or lock regenerates. A forged cache plus edited HTML cannot
 substitute for source; CI recomputes everything even if the lock is also edited.
+The explicit content-release path instead requires a separately trusted complete
+baseline lock, unchanged platform inputs and exact current-source content proof.
+Ordinary builds retain their cold-source checks. A forged or incomplete baseline
+cannot select content reuse, and platform changes require a full build.
 Generation writes a complete temporary directory, then replaces `docs/` with rename
 and rollback-on-rename-failure. Invalid/missing input leaves the prior public tree intact.
 No claim is made that this filesystem operation publishes an atomic CDN update.
@@ -253,6 +262,9 @@ A changed descriptor, bad MIME, missing route, mismatched engine or corrupted by
 falls back once to the ordinary destination document. The next fresh document
 chooses its own version; there is no reload loop. Standalone files embed the finite
 verified producer payload and navigate through `?view=`, with no HTTP fetch.
+Hosted routes do not embed the whole article registry. A local article embeds its
+own initial descriptor; first navigation selects compatible article descriptors
+from the bounded revision manifest. Article renderer compatibility is explicit.
 
 Prior published versions must be imported explicitly from their verified artifact:
 

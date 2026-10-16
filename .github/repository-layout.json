@@ -131,6 +131,8 @@
     "tools/RI-NOTICE.md",
     "tools/quality/README.md",
     "review/root-history-20261007/README.md",
-    "guides/CODE-STYLE.md"
+    "guides/CODE-STYLE.md",
+    "guides/ARTICLE-WORKFLOW.md",
+    "guides/SITE-CONTENT-RELEASE.md"
   ]
 }

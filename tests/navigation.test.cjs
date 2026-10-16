@@ -13,7 +13,178 @@ const section = (name, next) => {
 };
 const flightSource = section('flight', 'mount'),
   interruptSource = section('interrupt', 'motionAllowed');
+const extractSource = source.slice(
+  source.indexOf('  function extract('),
+  source.indexOf('  cache.set(page, extract(document));')
+);
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
+
+test('embedded resources preserve image and PDF URL contexts and reject conflicting identities', () => {
+  const start = source.indexOf('  function embeddedResources(');
+  const end = source.indexOf('  const embeddedAssetURLs =', start);
+  assert.ok(start >= 0 && end > start, 'authored embedded resource boundary');
+  const context = {};
+  vm.runInNewContext(source.slice(start, end) + '\nglobalThis.collect=embeddedResources;', context);
+  const imageURL = 'data:image/png;base64,cG9zdGVy';
+  const pdfURL = 'data:application/pdf;base64,c2xpZGVz';
+  const element = (tagName, name, src, href) => ({
+    tagName,
+    getAttribute: (attribute) => ({ 'data-offline-resource': name, src, href })[attribute],
+  });
+  const elements = [
+    element('IMG', 'poster', imageURL, 'unused-image-href'),
+    element('A', 'slides', 'unused-link-src', pdfURL),
+    element('A', 'slides', 'another-unused-src', pdfURL),
+  ];
+  let queries = 0;
+  const document = {
+    querySelectorAll(selector) {
+      assert.equal(selector, '[data-offline-resource]');
+      queries++;
+      return elements;
+    },
+  };
+  assert.deepEqual(Object.fromEntries(context.collect(document, null)), {});
+  assert.equal(queries, 0, 'ordinary documents do not scan for embedded resources');
+  assert.deepEqual(Object.fromEntries(context.collect(document, {})), {
+    poster: imageURL,
+    slides: pdfURL,
+  });
+  elements.push(element('A', 'slides', 'unused-src', pdfURL + 'changed'));
+  assert.equal(context.collect(document, {}), null, 'conflicting PDF hrefs abort initialization');
+  elements.pop();
+  elements.push(element('IMG', 'poster', imageURL + 'changed', 'unused-href'));
+  assert.equal(context.collect(document, {}), null, 'conflicting image srcs abort initialization');
+});
+
+test('a canceled slide hash cannot clear the busy state of a reopened viewer', async () => {
+  const bytes = Buffer.from('%PDF-1.7\nviewer lifecycle fixture\n%%EOF\n');
+  const digest = require('node:crypto').createHash('sha256').update(bytes).digest();
+  const name = 'article-media/' + digest.toString('hex') + '/slides.pdf';
+  const attributes = new Map();
+  const tasks = new Map();
+  const liveURLs = new Set();
+  const revokedURLs = [];
+  const hashes = [];
+  const hashWaiters = new Map();
+  const signals = [];
+  const host = {
+    hidden: true,
+    children: [],
+    replaceChildren(...children) {
+      this.children = children;
+    },
+  };
+  const section = {
+    querySelector: (selector) =>
+      selector === '.presentation-viewer' ? host : { textContent: 'Presentation' },
+  };
+  const control = {
+    href: 'https://author.invalid/project/' + name,
+    isConnected: true,
+    closest: () => section,
+    setAttribute: (key, value) => attributes.set(key, value),
+    removeAttribute: (key) => attributes.delete(key),
+  };
+  let click;
+  class ResourceURL extends URL {
+    static createObjectURL() {
+      const value = 'blob:https://author.invalid/' + (liveURLs.size + revokedURLs.length);
+      liveURLs.add(value);
+      return value;
+    }
+    static revokeObjectURL(value) {
+      liveURLs.delete(value);
+      revokedURLs.push(value);
+    }
+  }
+  const context = {
+    page: 'article:reader:en',
+    embedded: null,
+    pinned: { articles: { 'reader:en': { assets: [name] } } },
+    entry: new URL('https://author.invalid/project/articles/reader.html'),
+    directory: new URL('https://author.invalid/project/'),
+    pin: async () => {},
+    document: {
+      addEventListener(type, listener) {
+        assert.equal(type, 'click');
+        click = listener;
+      },
+      createElement: (tagName) => ({ tagName }),
+    },
+    window: {
+      setTimeout(callback, delay) {
+        assert.equal(delay, 8000);
+        const id = tasks.size + 1;
+        tasks.set(id, callback);
+        return id;
+      },
+      clearTimeout: (id) => tasks.delete(id),
+      crypto: {
+        subtle: {
+          digest(algorithm, actualBytes) {
+            assert.equal(algorithm, 'SHA-256');
+            assert.deepEqual(Buffer.from(actualBytes), bytes);
+            return new Promise((resolve) => {
+              const index = hashes.length;
+              const complete = () => resolve(digest);
+              hashes.push(complete);
+              hashWaiters.get(index)?.(complete);
+            });
+          },
+        },
+      },
+    },
+    async fetch(url, options) {
+      assert.equal(url, control.href);
+      signals.push(options.signal);
+      return new Response(bytes, { headers: { 'Content-Type': 'application/pdf' } });
+    },
+    URL: ResourceURL,
+    Uint8Array,
+    Blob,
+    AbortController,
+  };
+  const start = source.indexOf('  let slideSession = null;');
+  const end = source.indexOf('  function routeFor(', start);
+  assert.ok(start >= 0 && end > start, 'authored slide lifecycle boundary');
+  vm.runInNewContext(source.slice(start, end), context);
+  const activate = () =>
+    click({
+      target: { closest: () => control },
+      button: 0,
+      preventDefault() {},
+    });
+  const hashAt = (index) =>
+    hashes[index]
+      ? Promise.resolve(hashes[index])
+      : new Promise((resolve) => hashWaiters.set(index, resolve));
+
+  const abandoned = activate();
+  const finishAbandonedHash = await hashAt(0);
+  await activate();
+  assert.equal(signals[0].aborted, true, 'close cancels the abandoned resource owner');
+  const surviving = activate();
+  const finishSurvivingHash = await hashAt(1);
+  finishAbandonedHash();
+  await abandoned;
+  assert.equal(attributes.get('aria-busy'), 'true', 'reopened viewer still owns its loading state');
+  assert.equal(host.hidden, true);
+  assert.equal(host.children.length, 0, 'stale verified bytes cannot mount a frame');
+  finishSurvivingHash();
+  await surviving;
+  assert.equal(attributes.has('aria-busy'), false);
+  assert.equal(attributes.get('aria-expanded'), 'true');
+  assert.equal(host.children.length, 1);
+  assert.equal(liveURLs.has(host.children[0].src), true);
+  assert.equal(tasks.size, 0, 'both resource deadlines are released');
+  await activate();
+  assert.equal(host.hidden, true);
+  assert.equal(host.children.length, 0);
+  assert.equal(liveURLs.size, 0, 'closing releases the surviving PDF');
+  assert.equal(revokedURLs.length, 1, 'the abandoned session never creates a PDF URL');
+});
+
 function harness(options = {}) {
   const tasks = new Map(),
     presented = [],
@@ -74,6 +245,7 @@ function harness(options = {}) {
     },
     releaseEndpoint() {},
     releaseTail() {},
+    closeSlides() {},
     Promise,
   };
   vm.runInNewContext(
@@ -139,27 +311,90 @@ test('navigation flight forwards native endpoint, history and fragment landing i
     assert.deepEqual(h.commits, ['writing']);
   }
 });
-function routeHarness({ holdDeparture = false } = {}) {
+function routeHarness({
+  holdDeparture = false,
+  holdScene = false,
+  holdRead = false,
+  blurDeparture = false,
+  failNativeScroll = false,
+  initialPage = 'index',
+} = {}) {
   const calls = [],
     probes = [],
     assigned = [],
-    tasks = new Map();
+    tasks = new Map(),
+    timerDelays = new Map(),
+    listeners = new Map(),
+    historyEntries = [],
+    historyWrites = [],
+    blurredFocus = [],
+    nativeScrollCalls = [];
   let timer = 0,
     clock = 10,
+    historyIndex = 0,
+    inert = false,
+    finishScene,
+    resolveScene,
+    resolveRead,
+    releaseRead,
     resolveDeparture,
-    releaseDeparture;
+    releaseDeparture,
+    nativeSmooth = null;
   const departureStarted = new Promise((resolve) => (resolveDeparture = resolve)),
-    departureGate = new Promise((resolve) => (releaseDeparture = resolve));
-  const node = () => ({ setAttribute() {}, focus() {} });
+    departureGate = new Promise((resolve) => (releaseDeparture = resolve)),
+    sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
+    readStarted = new Promise((resolve) => (resolveRead = resolve)),
+    readGate = new Promise((resolve) => (releaseRead = resolve));
+  const node = (id = 'main', href = null) => {
+    const attributes = new Map();
+    return {
+      id,
+      inContent: true,
+      href: href ? new URL(href, 'https://fixture.test/').href : null,
+      getAttribute: (name) => (name === 'href' ? href : (attributes.get(name) ?? null)),
+      setAttribute: (name, value) => attributes.set(name, value),
+      removeAttribute: (name) => attributes.delete(name),
+      focus() {
+        context.document.activeElement = this;
+      },
+    };
+  };
+  const routeMain = (next) => ({
+    ...node(),
+    links: next === 'writing' ? [node('article-sample-en', 'articles/sample-en.html')] : [],
+    controls: next === 'writing' ? [node('archive-topic'), node('archive-language')] : [],
+  });
+  function blurContentFocus() {
+    if (context.document.activeElement?.inContent) {
+      blurredFocus.push(context.document.activeElement.id);
+      context.document.activeElement = context.document.body;
+    }
+  }
   const content = {
-    inert: false,
+    get inert() {
+      return inert;
+    },
+    set inert(value) {
+      inert = value;
+      if (value) blurContentFocus();
+    },
     style: {},
-    setAttribute() {},
-    removeAttribute() {},
+    attributes: new Map(),
+    main: routeMain(initialPage),
+    setAttribute(name, value) {
+      this.attributes.set(name, value);
+    },
+    removeAttribute(name) {
+      this.attributes.delete(name);
+    },
+    hasAttribute(name) {
+      return this.attributes.has(name);
+    },
     replaceChildren(main) {
       this.main = main;
     },
     querySelector: () => content.main,
+    querySelectorAll: () => content.main.links,
   };
   const scrollEntry = {
     suspend() {},
@@ -167,9 +402,13 @@ function routeHarness({ holdDeparture = false } = {}) {
     mount() {},
     resume() {},
     settle() {},
-    cancelRoute() {},
+    cancelRoute() {
+      content.main.removeAttribute('data-route-blocks');
+    },
     async depart(direction, navigationId) {
       calls.push({ kind: 'departure', direction, navigationId });
+      content.main.setAttribute('data-route-blocks', 'departing');
+      if (blurDeparture) blurContentFocus();
       if (holdDeparture && navigationId === 1) {
         resolveDeparture();
         await departureGate;
@@ -184,12 +423,30 @@ function routeHarness({ holdDeparture = false } = {}) {
     },
   };
   const window = {
-    location: { href: 'https://fixture.test/index.html', assign: (url) => assigned.push(url) },
-    setTimeout(fn) {
+    location: {
+      href: `https://fixture.test/${initialPage}.html`,
+      assign: (url) => assigned.push(url),
+    },
+    scrollX: 0,
+    scrollY: 0,
+    scrollTo({ left, top, behavior }) {
+      assert.equal(behavior, 'instant', 'native restoration explicitly cancels smooth scrolling');
+      nativeScrollCalls.push({ left, top, behavior });
+      if (failNativeScroll) throw Error('native scroll unavailable');
+      nativeSmooth = null;
+      window.scrollX = left;
+      window.scrollY = top;
+    },
+    setTimeout(fn, delay) {
       tasks.set(++timer, fn);
+      timerDelays.set(timer, delay);
       return timer;
     },
-    clearTimeout: (id) => tasks.delete(id),
+    clearTimeout(id) {
+      tasks.delete(id);
+      timerDelays.delete(id);
+    },
+    addEventListener: (name, listener) => listeners.set(name, listener),
     dispatchEvent() {},
     SiteEngineProbe: (event) => probes.push(event),
     SiteScene: {
@@ -198,8 +455,33 @@ function routeHarness({ holdDeparture = false } = {}) {
       detachTravel() {},
       navigate(next, animate, update, landing, metadata) {
         calls.push({ kind: 'scene', next, animate, landing, navigationId: metadata.navigationId });
-        update(1);
+        if (holdScene && metadata.navigationId === 1) {
+          finishScene = () => update(1);
+          resolveScene();
+          update(0);
+        } else update(1);
       },
+    },
+  };
+  historyEntries.push({
+    url: window.location.href,
+    state: { unrelated: 'retained', site: { page: initialPage, scroll: [0, 0] } },
+  });
+  const history = {
+    get state() {
+      return historyEntries[historyIndex].state;
+    },
+    pushState(state, unused, url) {
+      const entry = { url: String(url), state: JSON.parse(JSON.stringify(state)) };
+      historyEntries.splice(++historyIndex, Infinity, entry);
+      window.location.href = entry.url;
+      historyWrites.push({ kind: 'push', ...entry });
+    },
+    replaceState(state, unused, url) {
+      const entry = { url: String(url), state: JSON.parse(JSON.stringify(state)) };
+      historyEntries[historyIndex] = entry;
+      window.location.href = entry.url;
+      historyWrites.push({ kind: 'replace', ...entry });
     },
   };
   const context = {
@@ -211,14 +493,17 @@ function routeHarness({ holdDeparture = false } = {}) {
     announcement: {},
     document: {
       hidden: false,
-      body: { dataset: { page: 'index' } },
+      body: { dataset: { page: initialPage } },
       documentElement: { lang: 'en', scrollHeight: 1200 },
       head: { querySelectorAll: () => [], append() {} },
       querySelector: () => null,
       querySelectorAll: () => [],
-      getElementById: () => null,
+      getElementById: (id) =>
+        [content.main, ...content.main.links, ...content.main.controls].find(
+          (element) => element.id === id
+        ) || null,
     },
-    history: { pushState() {}, replaceState() {} },
+    history,
     performance: { now: () => clock++ },
     AbortController,
     CustomEvent: class {
@@ -231,45 +516,368 @@ function routeHarness({ holdDeparture = false } = {}) {
     innerHeight: 600,
     metadata: 'fixture-metadata',
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
-    routeFor: (url) => url.pathname.slice(1).replace('.html', ''),
+    routeFor: (url) =>
+      url.pathname === '/articles/sample-en.html'
+        ? 'article:sample:en'
+        : url.pathname.slice(1).replace('.html', ''),
     address: (url) => url,
-    read: async (next) => ({
-      page: next,
-      title: next,
-      lang: 'en',
-      main: node(),
-      footer: node(),
-      metadata: [],
-    }),
+    async read(next) {
+      if (holdRead && next.startsWith('article:')) {
+        resolveRead();
+        await readGate;
+      }
+      return {
+        page: next,
+        scene: next.startsWith('article:') ? 'writing' : next,
+        article: next.startsWith('article:') ? next.slice(8) : null,
+        title: next,
+        lang: 'en',
+        main: routeMain(next),
+        footer: node(),
+        metadata: [],
+      };
+    },
     prepare: (data) => data,
-    save() {},
-    clearText() {},
+    clearText() {
+      content.inert = false;
+    },
     releaseEndpoint() {},
     releaseTail() {},
+    closeSlides() {},
     arriveEndpoint() {},
     mountEndpoint() {},
-    restoreScroll() {},
+    rebaseResources() {},
   };
+  context.document.activeElement = context.document.body;
   const start = source.indexOf('  async function navigate('),
-    end = source.indexOf('  document.body.dataset.entryPage = page;', start);
+    end = source.indexOf('  document.body.dataset.entryPage = page;', start),
+    scrollStart = source.indexOf('  // One write after a gesture'),
+    scrollEnd = source.indexOf("  window.addEventListener('site:motion-preference'", scrollStart);
   assert.ok(start > 0 && end > start, 'missing authored navigation lifecycle boundary');
+  assert.ok(scrollStart > 0 && scrollEnd > scrollStart, 'missing authored scroll-save boundary');
   vm.runInNewContext(
-    `let page='index',serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null;
-    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${flightSource}
+    `let page=${JSON.stringify(initialPage)},serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null;
+    ${section('save', 'push')}
+    ${interruptSource}${section('motionAllowed', 'restoreScroll')}${section('restoreScroll', 'endpointProbe')}${flightSource}
     ${section('mount', 'prepare')}${source.slice(start, end)}
+    ${source.slice(scrollStart, scrollEnd)}
     globalThis.navigate=navigate;`,
     context
   );
   return {
     navigate: context.navigate,
+    content,
     calls,
     probes,
     assigned,
     tasks,
     departureStarted,
     releaseDeparture,
+    sceneStarted,
+    finishScene: () => finishScene(),
+    readStarted,
+    releaseRead,
+    historyEntries,
+    historyWrites,
+    nativeScrollCalls,
+    blurredFocus,
+    document: context.document,
+    window,
+    beginSmooth(top) {
+      nativeSmooth = top;
+    },
+    advanceSmooth() {
+      if (nativeSmooth === null) return false;
+      window.scrollY = nativeSmooth;
+      listeners.get('scroll')?.();
+      return true;
+    },
+    scheduleScrollSave: () => listeners.get('scroll')(),
+    runTimer(delay) {
+      const [id, callback] = [...tasks].find(([key]) => timerDelays.get(key) === delay) || [];
+      assert.ok(callback, 'expected queued timer with delay ' + delay);
+      window.clearTimeout(id);
+      callback();
+    },
+    focus(id) {
+      const target = context.document.getElementById(id);
+      assert.ok(target, 'expected focusable fixture ' + id);
+      target.focus();
+    },
+    travel(delta) {
+      historyIndex += delta;
+      assert.ok(historyEntries[historyIndex], 'expected native history entry');
+      const entry = historyEntries[historyIndex];
+      window.location.href = entry.url;
+      return context.navigate(new URL(entry.url), { pop: true, position: entry.state.site.scroll });
+    },
   };
 }
+test('an early native scroll failure uses ordinary HTML fallback and releases navigation ownership', async () => {
+  const h = routeHarness({ initialPage: 'writing', failNativeScroll: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 2297;
+  const destination = new URL(
+    'https://fixture.test/articles/sample-en.html?source=archive#section'
+  );
+  await assert.doesNotReject(h.navigate(destination));
+  assert.deepEqual(h.assigned, [destination.href]);
+  assert.deepEqual(h.nativeScrollCalls, [{ left: 0, top: 2297, behavior: 'instant' }]);
+  assert.equal(h.content.hasAttribute('aria-busy'), false);
+  assert.equal(h.content.inert, false);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+  assert.equal(h.historyEntries.length, 1, 'failed boundary does not enter route history');
+  assert.deepEqual(h.calls, [], 'failed boundary cannot begin departure or a camera flight');
+  assert.equal(h.tasks.size, 0, 'the native failure releases its abort timer');
+});
+test('inherited native smooth scrolling stops at navigation while deliberate read-time input still wins', async () => {
+  for (const explicitInput of [false, true]) {
+    const h = routeHarness({ initialPage: 'writing', holdRead: true });
+    h.focus('article-sample-en');
+    h.window.scrollY = 2297;
+    h.beginSmooth(2004);
+    const navigation = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+    await h.readStarted;
+    assert.equal(h.advanceSmooth(), false, 'the inherited native animation was cancelled');
+    assert.equal(h.window.scrollY, 2297);
+    assert.deepEqual(h.nativeScrollCalls, [{ left: 0, top: 2297, behavior: 'instant' }]);
+    if (explicitInput) {
+      h.focus('archive-language');
+      h.beginSmooth(2350);
+      assert.equal(
+        h.advanceSmooth(),
+        true,
+        'new native input during asynchronous reading remains live'
+      );
+      h.runTimer(350);
+      assert.equal(h.historyEntries[0].state.site.scroll[1], 2350);
+    }
+    h.releaseRead();
+    await navigation;
+    const expected = explicitInput ? 2350 : 2297;
+    assert.equal(h.historyEntries[0].state.site.scroll[1], expected);
+    await h.travel(-1);
+    assert.equal(h.window.scrollY, expected);
+    assert.equal(
+      h.document.activeElement.id,
+      explicitInput ? 'archive-language' : 'article-sample-en'
+    );
+    assert.deepEqual(h.assigned, []);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+test('hidden and inert retarget restore matching saved departure instead of transient viewport coordinates', async () => {
+  for (const hidden of [true, false]) {
+    const h = routeHarness({
+      initialPage: 'writing',
+      holdDeparture: hidden,
+      blurDeparture: hidden,
+      holdScene: !hidden,
+      holdRead: true,
+    });
+    h.focus('archive-topic');
+    h.window.scrollX = 13;
+    h.window.scrollY = 5722;
+    const stale = h.navigate(new URL('https://fixture.test/talks.html'));
+    await (hidden ? h.departureStarted : h.sceneStarted);
+    const saved = h.historyEntries[0].state;
+    h.window.scrollX = 17;
+    h.window.scrollY = 2004;
+    const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+    await h.readStarted;
+    assert.equal(h.window.scrollX, 13);
+    assert.equal(
+      h.window.scrollY,
+      5722,
+      'retarget restored the captured outgoing reading position'
+    );
+    h.releaseRead();
+    await latest;
+    if (hidden) h.releaseDeparture();
+    else h.finishScene();
+    await stale;
+    assert.deepEqual(h.historyEntries[0].state, saved);
+    assert.equal(h.historyEntries.length, 2);
+    await h.travel(-1);
+    assert.equal(h.window.scrollY, 5722);
+    assert.equal(h.document.activeElement.id, 'archive-topic');
+    assert.deepEqual(h.assigned, []);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+test('article Back restores the archive link and scroll captured before inert blurs content focus', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  h.window.location.href += '?topic=systems&language=en';
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  assert.deepEqual(h.blurredFocus, ['article-sample-en']);
+  assert.deepEqual(h.historyEntries[0].state, {
+    unrelated: 'retained',
+    site: { page: 'writing', scroll: [0, 705], focus: 'article-sample-en' },
+  });
+  const articleState = h.historyEntries[1].state;
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  assert.equal(h.window.scrollY, 705);
+  assert.equal(new URL(h.window.location.href).search, '?topic=systems&language=en');
+  assert.equal(h.historyEntries.length, 2, 'pop navigation never creates a replacement entry');
+  assert.deepEqual(h.historyEntries[1].state, articleState);
+  await h.travel(1);
+  assert.equal(h.document.body.dataset.article, 'sample:en');
+  assert.equal(h.document.activeElement.id, articleState.site.focus);
+  assert.equal(h.window.scrollY, articleState.site.scroll[1]);
+  assert.deepEqual(h.assigned, []);
+});
+test('initial navigation replaces the entry without storing departure state or pushing history', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'), { initial: true });
+  assert.equal(h.historyEntries.length, 1);
+  assert.deepEqual(
+    h.historyWrites.map((entry) => entry.kind),
+    ['replace', 'replace']
+  );
+  assert.deepEqual(h.historyEntries[0].state.site, {
+    page: 'article:sample:en',
+    scroll: [0, 0],
+    focus: 'main',
+  });
+  assert.deepEqual(h.assigned, []);
+});
+test('departure visibility cannot erase the focus saved for Back', async () => {
+  const h = routeHarness({ initialPage: 'writing', blurDeparture: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  await h.navigate(new URL('https://fixture.test/research.html'));
+  assert.deepEqual(h.blurredFocus, ['article-sample-en']);
+  assert.equal(h.historyEntries[0].state.site.focus, 'article-sample-en');
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  assert.equal(h.window.scrollY, 705);
+  assert.deepEqual(h.assigned, []);
+});
+test('a departing visibility scroll-save tick cannot erase offscreen control focus before inert', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdDeparture: true, blurDeparture: true });
+  h.window.location.href += '?topic=systems&language=en';
+  h.focus('archive-topic');
+  h.window.scrollY = 5722;
+  h.scheduleScrollSave();
+  const navigation = h.navigate(new URL('https://fixture.test/talks.html'));
+  await h.departureStarted;
+  assert.equal(h.content.inert, false, 'visibility departure precedes inert flight');
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), 'departing');
+  assert.equal(h.document.activeElement, h.document.body, 'hidden control lost native focus');
+  const departure = h.historyEntries[0].state;
+  assert.equal(departure.site.focus, 'archive-topic');
+  const writes = h.historyWrites.length;
+  h.runTimer(350);
+  assert.equal(h.historyWrites.length, writes, 'departure cannot replace captured reading state');
+  assert.deepEqual(h.historyEntries[0].state, departure);
+  h.releaseDeparture();
+  await navigation;
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'archive-topic');
+  assert.equal(h.window.scrollY, 5722);
+  assert.equal(new URL(h.window.location.href).search, '?topic=systems&language=en');
+  assert.equal(h.historyEntries.length, 2);
+  assert.deepEqual(h.assigned, []);
+  assert.equal(h.tasks.size, 0);
+});
+test('hidden departure retarget preserves captured focus while explicit read-time controls and scroll still win', async () => {
+  for (const explicitFocus of [false, true]) {
+    const h = routeHarness({
+      initialPage: 'writing',
+      holdDeparture: true,
+      blurDeparture: true,
+      holdRead: true,
+    });
+    h.focus('archive-topic');
+    h.window.scrollY = 5722;
+    const stale = h.navigate(new URL('https://fixture.test/talks.html'));
+    await h.departureStarted;
+    assert.equal(h.content.inert, false);
+    const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+    await h.readStarted;
+    assert.equal(
+      h.content.main.getAttribute('data-route-blocks'),
+      null,
+      'interruption restored native visibility'
+    );
+    if (explicitFocus) {
+      h.focus('archive-language');
+      h.window.scrollY = 5750;
+      const writes = h.historyWrites.length;
+      h.scheduleScrollSave();
+      h.runTimer(350);
+      assert.equal(
+        h.historyWrites.length,
+        writes + 1,
+        'ordinary asynchronous reading remains saveable'
+      );
+      assert.equal(h.historyEntries[0].state.site.focus, 'archive-language');
+    }
+    h.releaseRead();
+    await latest;
+    h.releaseDeparture();
+    await stale;
+    const focus = explicitFocus ? 'archive-language' : 'archive-topic';
+    const scroll = explicitFocus ? 5750 : 5722;
+    assert.deepEqual(h.historyEntries[0].state.site, {
+      page: 'writing',
+      scroll: [0, scroll],
+      focus,
+    });
+    assert.equal(h.historyEntries.length, 2, 'stale departure never enters history');
+    assert.equal(h.historyEntries[1].state.site.page, 'article:sample:en');
+    await h.travel(-1);
+    assert.equal(h.document.activeElement.id, focus);
+    assert.equal(h.window.scrollY, scroll);
+    assert.deepEqual(h.assigned, []);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+test('an inert scroll-save tick and rapid unmounted retarget retain the departure link', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdScene: true });
+  h.focus('article-sample-en');
+  h.window.scrollY = 705;
+  h.scheduleScrollSave();
+  const stale = h.navigate(new URL('https://fixture.test/research.html'));
+  await h.sceneStarted;
+  const departure = h.historyEntries[0].state;
+  const writes = h.historyWrites.length;
+  h.runTimer(350);
+  assert.equal(h.historyWrites.length, writes, 'inert cannot replace the captured departure entry');
+  assert.deepEqual(h.historyEntries[0].state, departure);
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  h.finishScene();
+  await stale;
+  assert.equal(h.historyEntries.length, 2, 'the interrupted destination never enters history');
+  assert.deepEqual(h.historyEntries[0].state, departure);
+  assert.equal(h.historyEntries[1].state.site.page, 'article:sample:en');
+  await h.travel(-1);
+  assert.equal(h.document.activeElement.id, 'article-sample-en');
+  assert.equal(h.window.scrollY, 705);
+  assert.deepEqual(h.assigned, []);
+  assert.equal(h.tasks.size, 0);
+});
+test('explicit focus during a retargeted read replaces the captured departure focus', async () => {
+  const h = routeHarness({ initialPage: 'writing', holdScene: true, holdRead: true });
+  h.focus('article-sample-en');
+  const stale = h.navigate(new URL('https://fixture.test/research.html'));
+  await h.sceneStarted;
+  const latest = h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.readStarted;
+  h.document.activeElement = { id: 'appearance', getAttribute: () => null };
+  h.releaseRead();
+  await latest;
+  h.finishScene();
+  await stale;
+  assert.equal(h.historyEntries[0].state.site.focus, 'appearance');
+  assert.equal(h.historyEntries.length, 2);
+  assert.deepEqual(h.assigned, []);
+});
 test('router-owned navigation IDs follow departure, native arrival preparation, camera and completion', async () => {
   const h = routeHarness();
   for (const [next, direction, position] of [
@@ -530,6 +1138,7 @@ function routeHeadHarness(candidate = source) {
     cache: new Map(),
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
     restoreScroll() {},
+    rebaseResources() {},
     URL,
     CustomEvent: class CustomEvent {},
   };
@@ -538,7 +1147,7 @@ function routeHeadHarness(candidate = source) {
     source.indexOf('  async function navigate(')
   );
   vm.runInNewContext(
-    `let page='research',serial=0;${declaration}${section('extract', 'routeFor')}${section('mountNative', 'prepare')}${prepare}
+    `let page='research',serial=0;${declaration}${extractSource}${section('mountNative', 'prepare')}${prepare}
     globalThis.api={extract,prepare,mountNative};`,
     context
   );
@@ -605,6 +1214,7 @@ function sequenceHarness() {
     setAttribute() {},
     removeAttribute() {},
     querySelector: () => ({
+      getAttribute: () => null,
       focus() {
         events.push('focus');
       },
@@ -649,6 +1259,10 @@ function sequenceHarness() {
     },
     address: (url) => url,
     save() {},
+    restoreScroll(left, top) {
+      context.window.scrollX = left;
+      context.window.scrollY = top;
+    },
     arriveEndpoint() {},
     clearText() {},
     releaseEndpoint() {},
@@ -657,6 +1271,8 @@ function sequenceHarness() {
     announcement: {},
     content,
     window: {
+      scrollX: 0,
+      scrollY: 0,
       location: {
         href: 'https://site.test/index.html',
         assign() {
@@ -672,6 +1288,7 @@ function sequenceHarness() {
   const end = source.indexOf('  document.body.dataset.entryPage', start);
   vm.runInNewContext(
     `let page='index',serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;
+    ${section('departureUnavailable', 'push')}
     ${source.slice(start, end)}
     globalThis.currentPage=value=>page=value;
     globalThis.go=navigate;
@@ -807,4 +1424,59 @@ test('one public block control delegates persistence and refreshes all block mot
       assert.equal(refreshed, writes.length, 'each setter has one motion lifecycle owner');
     }
   }
+});
+
+test('verified snapshot resources regain native root and nested article links at mount', () => {
+  const entry = new URL('https://fixture.test/project/writing.html');
+  const directory = new URL('.', entry);
+  const element = (attributes = {}, children = []) => ({
+    attributes: { ...attributes },
+    getAttribute(name) {
+      return this.attributes[name] || null;
+    },
+    setAttribute(name, value) {
+      this.attributes[name] = value;
+    },
+    querySelectorAll() {
+      return children;
+    },
+  });
+  const context = { URL, entry, directory, embedded: null };
+  vm.runInNewContext(
+    section('rebaseResources', 'extract') + '\nglobalThis.rebase=rebaseResources;',
+    context
+  );
+  for (const [alias, prefix] of [
+    ['credits.html', ''],
+    ['articles/reader.html', '../'],
+  ]) {
+    const credits = element({ href: '../../credits.html' });
+    const research = element({ href: '../../research.html#ua-advisors' });
+    const image = element({ src: '../../article-media/verified/diagram.png' });
+    const external = element({ href: 'https://external.test/article' });
+    const outside = element({ href: 'https://fixture.test/other/article.html' });
+    const anchor = element({ href: '#section' });
+    const inline = element({ src: 'data:image/png;base64,AA==' });
+    const canonical = element({ href: 'https://fixture.test/project/articles/reader.html' });
+    const data = {
+      sourceURL: new URL('snapshots/verified/credits.html', directory),
+      main: element({}, [research, image, external, outside, anchor, inline]),
+      footer: element({}, [credits]),
+      fallback: element(),
+      metadata: [canonical],
+    };
+    context.rebase(data, new URL(alias, directory));
+    assert.equal(credits.attributes.href, prefix + 'credits.html');
+    assert.equal(research.attributes.href, prefix + 'research.html#ua-advisors');
+    assert.equal(image.attributes.src, prefix + 'article-media/verified/diagram.png');
+    assert.equal(external.attributes.href, 'https://external.test/article');
+    assert.equal(outside.attributes.href, 'https://fixture.test/other/article.html');
+    assert.equal(anchor.attributes.href, '#section');
+    assert.equal(inline.attributes.src, 'data:image/png;base64,AA==');
+    assert.equal(canonical.attributes.href, 'https://fixture.test/project/articles/reader.html');
+  }
+  context.embedded = {};
+  const footerLink = element({ href: '?view=credits' });
+  context.rebase({ footer: element({}, [footerLink]) }, entry);
+  assert.equal(footerLink.attributes.href, '?view=credits', 'offline query links stay native');
 });

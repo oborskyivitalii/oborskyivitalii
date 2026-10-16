@@ -3,12 +3,18 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const cp = require('node:child_process');
 const delivery = require('./delivery.cjs');
 const artifact = require('../../tools/quality/artifact.cjs');
 const snapshot = require('../../tools/site/snapshot.cjs');
 const motion = require('../../tools/quality/color-motion-contract.cjs');
 const frozen = require('../../tools/release/rights-record.cjs');
 const root = path.resolve(__dirname, '../..');
+const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
+let baselineFiles;
+let baselineReading;
+// Only immutable prepared bytes survive between cases; callers receive fresh files and objects.
+const preparedSources = new Map();
 const legalCSS =
   '\n/* Full legal copies remain readable when expanded on narrow screens. */\n' +
   '.legal-notices pre {\n  max-inline-size: 100%;\n  white-space: pre-wrap;\n' +
@@ -48,23 +54,93 @@ function save(source) {
   );
 }
 
-function fixture(parent, modern = true, staging = true) {
-  const source = staging ? delivery.staging(parent, modern) : delivery.source(parent, 'plain');
-  if (!staging && modern) {
-    source.record = require('../../tools/staging/color.cjs').build(source.directory);
+function licensedSource(parent, staging) {
+  if (!baselineFiles) {
+    const names = cp
+      .execFileSync('git', ['ls-tree', '-r', '--name-only', baseline, '--', 'docs'], {
+        cwd: root,
+        encoding: 'utf8',
+      })
+      .trim()
+      .split('\n');
+    baselineFiles = names.map((name) => {
+      assert.ok(name.startsWith('docs/'), 'frozen fixture stays in the public tree');
+      return [
+        name.slice(5),
+        cp.execFileSync('git', ['show', baseline + ':' + name], {
+          cwd: root,
+          maxBuffer: 8_000_000,
+        }),
+      ];
+    });
+    baselineReading =
+      '\n' +
+      cp.execFileSync('git', ['show', baseline + ':site/engine/reading-surfaces.css'], {
+        cwd: root,
+        encoding: 'utf8',
+      }) +
+      '\n';
   }
+  const source = delivery.source(parent, staging ? 'staging' : 'plain');
+  const publicDirectory = path.join(source.directory, 'public');
+  fs.rmSync(publicDirectory, { recursive: true, force: true });
+  for (const [name, bytes] of baselineFiles) {
+    const file = path.join(publicDirectory, name);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, bytes);
+  }
+  Object.assign(source.record, artifact.manifest(publicDirectory));
+  source.record.components = snapshot.verify(publicDirectory, source.record);
+  fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
+  source.record = require('../../tools/staging/color.cjs').build(source.directory);
+  if (staging) {
+    source.record = require('../../tools/staging/edition.cjs').build(source.directory);
+  }
+  return source;
+}
+
+function copyPrepared(parent, staging) {
+  const name = staging ? 'staging' : 'plain';
+  const prepared = preparedSources.get(name);
+  if (!prepared) return null;
+  const source = {
+    directory: path.join(parent, name),
+    record: JSON.parse(prepared.record),
+    report: JSON.parse(prepared.report),
+  };
+  const publicDirectory = path.join(source.directory, 'public');
+  fs.rmSync(publicDirectory, { recursive: true, force: true });
+  for (const [name, bytes] of prepared.files) {
+    const file = path.join(publicDirectory, name);
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, bytes);
+  }
+  source.record.components = snapshot.verify(publicDirectory, source.record);
+  assert.equal(motion.select(source.record).id, 'issue39-licensed-' + name);
+  save(source);
+  return source;
+}
+
+function fixture(parent, modern = true, staging = true) {
+  if (modern) {
+    const prepared = copyPrepared(parent, staging);
+    if (prepared) return prepared;
+  }
+  const source = modern
+    ? licensedSource(parent, staging)
+    : staging
+      ? delivery.staging(parent, false)
+      : delivery.source(parent, 'plain');
   const publicDirectory = path.join(source.directory, 'public');
   const revisionFile = path.join(publicDirectory, 'site-revision.json');
   const revision = JSON.parse(fs.readFileSync(revisionFile));
   if (modern) {
     const runtime = motion.reviewedRuntime('issue39-licensed-' + (staging ? 'staging' : 'plain'));
     const oldEngine = revision.engine;
-    const reading =
-      '\n' + fs.readFileSync(path.join(root, 'site/engine/reading-surfaces.css'), 'utf8') + '\n';
     const cssFile = path.join(publicDirectory, 'styles.css');
     const css = fs.readFileSync(cssFile, 'utf8');
-    assert.equal(css.split(reading).length, 2);
-    fs.writeFileSync(cssFile, css.replace(reading, legalCSS + reading));
+    assert.equal(css.split(baselineReading).length, 2);
+    fs.writeFileSync(cssFile, css.replace(baselineReading, legalCSS + baselineReading));
     fs.renameSync(
       path.join(publicDirectory, 'runtime', oldEngine),
       path.join(publicDirectory, 'runtime', runtime.variant.fingerprint)
@@ -179,6 +255,15 @@ function fixture(parent, modern = true, staging = true) {
     linkedPublications: {},
   });
   save(source);
+  if (modern)
+    preparedSources.set(staging ? 'staging' : 'plain', {
+      record: JSON.stringify(source.record),
+      report: JSON.stringify(source.report),
+      files: Object.keys(source.record.files).map((name) => [
+        name,
+        fs.readFileSync(path.join(publicDirectory, name)),
+      ]),
+    });
   return source;
 }
 

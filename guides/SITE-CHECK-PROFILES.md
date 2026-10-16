@@ -13,6 +13,7 @@ Draft iteration scheduling while preserving admission and later budgets.
 | --- | --- | --- |
 | Draft prototype | Same-repository Draft updates | Generated/package/snapshot/size checks, public script syntax and bounded HTTP identity; no toolchain installation or browser/source/governance suites. Deferred admission is explicit. |
 | PR source | Ready PR updates and `ready_for_review` | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
+| Content update | Authored catalog/article/Writing/Home changes with a compatible earlier admitted generation | Mandatory catalog, parser/provenance, unsafe-content, article/delivery/size and reuse-contract source suites; current-source content reconstruction; ordinary hosted smoke plus no-JS Writing and every rebuilt article journey. Unchanged platform generation is reused. |
 | PR hosted smoke | Ready same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
 | Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
 | Production regression | Explicit full candidate validation before an authorized release | Complete source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix. Independent/device/rights and live production-origin requirements remain separate required release gates. |
@@ -34,6 +35,14 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
+Selected Node source files execute in isolated processes with two file workers;
+tests within a file retain their serial default. The stable sorted selection is
+reported separately from execution order: selected Space and executive suites
+start first, then the remaining selected files. This overlaps measured expensive
+work rather than leaving Space at the end of CLI discovery. Every selected case,
+the 180-second process limit, 16MiB output bound, clean-source checks and complete
+zero-skip accounting remain. Reports retain the worker limit, execution order and
+observed host parallelism; timing is evidence for that run, not a speed guarantee.
 After visual approval mark the PR ready; deferred source/RI jobs use distinct
 names, so their skips cannot impersonate required admission contexts. `/stage`
 requires real successful latest raw-head source/RI/issue jobs. Explicit
@@ -59,6 +68,97 @@ new measurements. These reports cannot authorize staging or satisfy production/n
 device gates. Its source fixtures are diagnostics selected by their changed
 helpers or the owning issue policy; current formula runtime assertions remain
 in the permanent renderer and engine suites.
+
+## Article content updates
+
+Issue #5 adds a formal content source profile and automatic generation reuse to
+the ordinary Basic and PR preview workflows. `source-tests.cjs --profile content
+--base <exact-baseline-commit> --head <exact-current-commit>` rejects mixed,
+unknown and generated-only changes. Its complete mandatory inventory is declared
+in `source_profiles.content.mandatory_files`; each module retains its permanent
+staging and production routes. Ordinary PR source selection also recognizes this
+bounded authored scope. A classification is a plan, never evidence of execution.
+
+The admitted authored scope is the publication catalog, Home/Writing JSON prose,
+article Markdown/JSON and declared publication image/PDF media. Generated public
+files/output lock, dated memory and regenerated RI views may accompany that
+scope. Publication inventory edits require an exact old/new Git comparison:
+only article-owned entries and generated `docs/` entries with their existing
+generated role/site owner may change. The RI/CI map may only recalculate its
+derived reviewed-source identity; input paths, layers, checks, review and policy
+remain unchanged, and unconditional current-source RI verification checks the
+new identity. Platform entries, schema, workflow/test policy and other owners
+remain unchanged. Other page prose,
+templates, styles, engine, tools, configuration or unknown source select the
+ordinary platform route. Source reconstruction, media/URL/schema checks and the
+unconditional RI workflow still verify current bytes; bookkeeping cannot supply
+trust or make a generated-only edit eligible.
+
+`content-baseline.cjs` prefers a successful earlier same-branch generation, then
+main and a bounded inventory of prior merged ancestor branches. It checks the
+same repository and workflow, exact raw source commit/tree, ancestry, immutable
+upload archive SHA256, complete public bytes, raw generation/output-lock SHA256
+and current platform fingerprints. The raw baseline must also have actual
+successful source Basic, RI and owning-issue admission jobs for its exact head.
+Draft-only packaging, skipped jobs and unbound source evidence cannot establish
+reusable platform evidence. Basic retrieves the earlier Basic artifact; preview
+retrieves the earlier review artifact, preserving their separate publication
+and explicit draft-preview selections.
+
+Old artifacts without generation metadata, expired/missing artifacts, absent
+source admission, a changed shared catalog label/platform fingerprint, different
+preview selection or a squash/rebase whose raw head is not an admitted ancestor
+produce an explicit ordinary-build disposition. Invalid source/tree bindings,
+archive bytes, unsafe extraction paths or corrupted declared generation fail;
+they are not silently accepted as reuse. The first platform-mode artifact after
+this implementation establishes the new generation format.
+
+When a compatible baseline exists, `local.cjs --content-package` runs the
+mandatory content source suites and composes a coherent new artifact using
+verified unchanged platform bytes. Its `contentChecks` report retains actual
+source-test accounting. `--package-gate` verifies that bound content generation
+against current source without recompiling the platform. The preview build uses
+the same explicit artifact content arguments. Unaffected controller/Color
+producer source fixtures are reserved for the platform branch; the ordinary
+hosted preview remains required. It adds no-JS Writing at both widths and all
+rebuilt article documents, each with the existing two-width normal and Off,
+no-Canvas/no-JS journeys. Their observed identity/count/reading/navigation
+results remain separate from source fixtures.
+
+This profile does not skip staging or production admission, performance,
+scanner, device, review or rights gates, or increase any budget. It does not
+claim an old runtime measurement covers a changed renderer. Offline all-route
+exports remain explicit commands rather than an automatic content-release
+side effect. Public deployment still uploads one complete verified package.
+
+PR #79 also opts into one bounded local diagnostic through `content_fixture`.
+It creates a genuine verified baseline and content release in an isolated Git
+clone, changes an external URL and one synthetic draft, then exercises two-width
+no-JS Writing plus the draft's five existing article cases in the managed
+Chromium job. Shared read-only Git objects preserve any existing accepted
+article's frozen provenance; fixture mutations never touch author sources.
+The separate temporary report declares `syntheticFixture: true`, its parent
+source identity and no deployment/production eligibility. It is uploaded
+separately from typed staging gate reports and cannot replace their evidence.
+This explicit diagnostic does not add another full browser matrix or change
+the existing job/performance budgets.
+
+The same admitted PR79 browser jobs also execute `article-print.cjs` against the
+technical article fixture. It invokes the ordinary publisher CLI with `--pdf`,
+verifies the complete kit and PDF/manifest pair, and rejects review-only or
+mismatched browser/toolchain/source identities. The separate `site-article-print-*`
+artifact contains the actual PDF and source-bound report; typed site gate reports
+are unchanged. Existing synthetic print tests remain the cheap failure-contract
+suite, while real rendering uses the already installed managed Chromium once.
+Clean-checkout evidence preserves the draft's declared source status and cannot
+establish editorial, actual-publication, merge or permanent-staging acceptance.
+
+The existing analytics cold collector also keeps its live catalog in an
+isolated shared Git clone. Its offline producer receives the canonical
+publication adapter and locked parser dependency closure, so frozen accepted
+and observed canonical editions retain provenance during cold preparation.
+Linux, native and staging browser jobs install that parser and fetch source
+history. Writing observations use the canonical displayed-entry collection.
 
 ## Bounded staging regression
 

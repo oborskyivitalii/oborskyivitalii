@@ -31,6 +31,10 @@ function expectedCoverage(manifest) {
       normalRouteObservations: 20,
       noCanvasJourneys: 2,
       noCanvasRouteObservations: 10,
+      // The bounded article profile exercises one representative in five cases.
+      ...(Object.keys(manifest.components?.articles || {}).length
+        ? { articleObservations: 5 }
+        : {}),
       navigation: 2,
       failures: 10,
       analytics: 7,
@@ -85,6 +89,7 @@ function validateHost(report, manifest, hostedURL) {
   }
 }
 function validateSizes(sizes, manifest) {
+  require('./artifact.cjs').validateArticleSizes(sizes, manifest);
   assert.equal(sizes.pass, true);
   assert.equal(sizes.artifactDigest, manifest.artifactDigest);
   assert.deepEqual(sizes.files, manifest.files, 'size report inventory differs from artifact');

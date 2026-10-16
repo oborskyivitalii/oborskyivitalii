@@ -4,6 +4,120 @@ const test = require('node:test'),
   fs = require('node:fs');
 const { normalizeHTML } = require('../tools/check_site_seo.cjs');
 const readHTML = (file) => normalizeHTML(fs.readFileSync(file, 'utf8'));
+test('normalization cache keeps recent exact inputs within entry and UTF-8 bounds without caching failures', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  let calls = 0;
+  const cache = createHTMLNormalizer((requests) => {
+    calls++;
+    if (requests[0].source === 'invalid') throw Error('Invalid fixture HTML');
+    return [[['text', requests[0].source]]];
+  });
+  cache.normalizeHTML('hot exact bytes');
+  for (let index = 0; index < 140; index++) {
+    cache.normalizeHTML('cold exact bytes ' + index);
+    cache.normalizeHTML('hot exact bytes');
+  }
+  assert.equal(calls, 141, 'recent exact inputs survive newer unique candidates');
+  assert.equal(cache.normalizeHTML('changed exact bytes'), 'changed exact bytes');
+  assert.equal(calls, 142, 'changed bytes always receive fresh validation');
+  for (let attempt = 0; attempt < 2; attempt++)
+    assert.throws(() => cache.normalizeHTML('invalid'), /Invalid fixture HTML/);
+  assert.equal(calls, 144, 'failed normalization is never reused');
+  const oversized = '€'.repeat(800000);
+  assert.ok(oversized.length * 2 < 4 * 1024 * 1024);
+  assert.ok(Buffer.byteLength(oversized, 'utf8') * 2 > 4 * 1024 * 1024);
+  for (let attempt = 0; attempt < 2; attempt++)
+    assert.equal(cache.normalizeHTML(oversized), oversized);
+  assert.equal(calls, 146, 'oversized UTF-8 entries bypass the cache');
+  assert.ok(cache.cacheStats().entries <= 128);
+  assert.ok(cache.cacheStats().bytes <= 4 * 1024 * 1024);
+  assert.ok(Object.isFrozen(cache.cacheStats()), 'cache statistics cannot mutate owned state');
+  cache.normalizeHTML('cold exact bytes 0');
+  assert.equal(calls, 147, 'old unused inputs are evicted within the original entry bound');
+});
+test('HTML batch normalization preserves order and bounds original UTF-8 requests before deduplication', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  const requests = [];
+  const cache = createHTMLNormalizer((rows) => {
+    requests.push(rows);
+    return rows.map(({ source }) => [['text', source]]);
+  });
+  assert.deepEqual(cache.normalizeMany([]), []);
+  assert.equal(requests.length, 0, 'empty batches do not start a parser');
+  for (const invalid of [null, 'html', [null], [1], Array(129).fill('same')])
+    assert.throws(() => cache.normalizeMany(invalid), /SEO HTML batch/);
+  const unicode = '€'.repeat(700000);
+  assert.ok(unicode.length * 2 < 4 * 1024 * 1024);
+  assert.throws(() => cache.normalizeMany([unicode, unicode]), /UTF-8 byte bound/);
+  assert.equal(requests.length, 0, 'invalid original inputs fail before parser invocation');
+  assert.deepEqual(cache.normalizeMany(['second', 'first', 'second']), [
+    'second',
+    'first',
+    'second',
+  ]);
+  assert.deepEqual(
+    requests[0].map(({ source }) => source),
+    ['second', 'first']
+  );
+  assert.deepEqual(cache.normalizeMany(['first', 'changed first', 'second']), [
+    'first',
+    'changed first',
+    'second',
+  ]);
+  assert.deepEqual(
+    requests[1].map(({ source }) => source),
+    ['changed first']
+  );
+  assert.equal(cache.normalizeHTML('changed first'), 'changed first');
+  assert.equal(requests.length, 2, 'single and batch calls share only exact validated bytes');
+});
+test('HTML batch normalization never caches partial or malformed parser coverage', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  let mode = 'not-array';
+  const requests = [];
+  const cache = createHTMLNormalizer((rows) => {
+    requests.push(rows);
+    if (mode === 'not-array') return null;
+    if (mode === 'incomplete') return [[['text', rows[0].source]]];
+    if (mode === 'malformed') return [[['text', rows[0].source]], [['unsupported', 'bad']]];
+    if (mode === 'sparse') {
+      const contracts = Array(rows.length);
+      contracts[0] = [['text', rows[0].source]];
+      return contracts;
+    }
+    return rows.map(({ source }) => [['text', source]]);
+  });
+  for (const failure of ['not-array', 'incomplete', 'malformed', 'sparse']) {
+    mode = failure;
+    assert.throws(() => cache.normalizeMany(['valid first', 'later row']), /SEO HTML/);
+    assert.deepEqual(cache.cacheStats(), { entries: 0, bytes: 0 });
+  }
+  mode = 'valid';
+  assert.deepEqual(cache.normalizeMany(['valid first', 'later row']), ['valid first', 'later row']);
+  assert.equal(requests.length, 5);
+  assert.ok(
+    requests.every((rows) => rows.length === 2),
+    'every failed row is parsed again'
+  );
+});
+test('batched primary HTML contracts equal separate parsing and retain raw script/style and inline bytes', () => {
+  const { createHTMLNormalizer } = require('../tools/check_site_seo.cjs');
+  const inputs = [
+    '<!doctype html><!-- exact comment --><p title="A &amp; B">Left <em>middle</em> right.</p>',
+    '<script type="application/json">{"key": 1, "entity": "&amp;"}</script><style>p > em { color: red; }</style>',
+    '<input disabled /><p title="A &amp; B">Left<em>middle</em> right.</p>',
+  ];
+  const batch = createHTMLNormalizer();
+  const separate = createHTMLNormalizer();
+  const expected = inputs.map((input) => separate.normalizeHTML(input));
+  assert.deepEqual(batch.normalizeMany(inputs), expected);
+  assert.notEqual(expected[0].replace(/^.*?<p/, '<p'), expected[2].replace(/^.*?<p/, '<p'));
+  assert.ok(expected[1].includes('{"key": 1, "entity": "&amp;"}'));
+  const invalid = inputs[0].replace('title=', 'title="duplicate" title=');
+  const cold = createHTMLNormalizer();
+  assert.throws(() => cold.normalizeMany([inputs[1], invalid]), /Duplicate HTML attribute/);
+  assert.deepEqual(cold.cacheStats(), { entries: 0, bytes: 0 });
+});
 test('HTML reconciliation accepts source spelling changes while preserving inline separators, attributes and raw bytes', () => {
   const original =
     '<p data-label="A &amp; B">Left <strong>middle</strong> right.</p><input disabled><script type="application/json">{"x": 1}</script>';
@@ -27,6 +141,117 @@ test('HTML reconciliation accepts source spelling changes while preserving inlin
 });
 test('executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy', () =>
   assert.equal(require('../tools/check_site_seo.cjs').verify().pass, true));
+test('article producer metadata reconciliation reverses only exact approved compact JSON-LD bytes', () => {
+  const { restoreStructuredMetadata, restore } = require('../tools/check_site_seo.cjs');
+  const path = require('node:path');
+  for (const page of ['index', 'research', 'writing', 'talks', 'credits']) {
+    const html = readHTML(path.join(__dirname, '../docs/' + page + '.html'));
+    const block = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+    assert.ok(block, 'live page contains its reviewed structured metadata');
+    const compact = block[1];
+    const restored = restoreStructuredMetadata(html, page);
+    const preserved = restore(html, page);
+    const reviewed = restored.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
+    assert.notEqual(reviewed, compact, 'the fixture exercises actual compact metadata');
+    const data = JSON.parse(compact);
+    const reviewedData = JSON.parse(reviewed);
+    if (page === 'writing') {
+      const approved = require('../review/issue-5/writing-catalog-amendment.json');
+      assert.deepEqual(reviewedData.mainEntity, approved.structuredData.mainEntity);
+      const { mainEntity: liveCollection, ...liveMetadata } = data;
+      const { mainEntity: historicalCollection, ...reviewedMetadata } = reviewedData;
+      assert.deepEqual(
+        reviewedMetadata,
+        liveMetadata,
+        'only Writing collection values are restored'
+      );
+      if (JSON.stringify(liveCollection) !== JSON.stringify(historicalCollection)) {
+        assert.throws(
+          () => restoreStructuredMetadata(restored, page),
+          /Writing metadata matches/,
+          'historical reconciliation output cannot pass as live current collection metadata'
+        );
+      } else {
+        assert.equal(
+          restoreStructuredMetadata(restored, page),
+          restored,
+          'reviewed bytes remain stable'
+        );
+      }
+    } else {
+      assert.deepEqual(reviewedData, data, 'approved serialization preserves all values');
+      assert.equal(
+        restoreStructuredMetadata(restored, page),
+        restored,
+        'reviewed bytes remain stable'
+      );
+    }
+    const reordered = {
+      name: data.name,
+      ...Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'name')),
+    };
+    const variants = [
+      compact.replace('https://schema.org', 'https://unapproved.example/schema'),
+      compact.replace(/"inLanguage":\s*"en"/, '"inLanguage":"uk"'),
+      compact.replace('{', '{"unapprovedClaim":true,'),
+      compact.replace('{', '{broken,'),
+      compact.replace(/"@type"\s*:/, '"@type":"Injected", "@type":'),
+      '\n' + JSON.stringify(reordered) + '\n  ',
+      compact.replace(/"@type"\s*:/, '"@type" : '),
+    ];
+    for (const changed of variants) {
+      assert.notEqual(changed, compact, 'negative fixture changes the actual metadata bytes');
+      const altered = html.replace(block[1], () => changed);
+      if (page === 'writing') {
+        assert.throws(() => restoreStructuredMetadata(altered, page), /Writing metadata matches/);
+        assert.throws(() => restore(altered, page), /Writing metadata matches/);
+      } else {
+        assert.equal(
+          restoreStructuredMetadata(altered, page),
+          altered,
+          'undeclared bytes remain visible'
+        );
+        assert.notEqual(
+          restore(altered, page),
+          preserved,
+          'undeclared metadata fails frozen parity'
+        );
+      }
+    }
+  }
+});
+test('article metadata reconciliation rejects missing, duplicate and relocated owners and preserves unrelated tags', () => {
+  const { restoreStructuredMetadata, restore } = require('../tools/check_site_seo.cjs');
+  const html = readHTML(require('node:path').join(__dirname, '../docs/index.html'));
+  const block = html.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/)[0];
+  const preserved = restore(html, 'index');
+  for (const altered of [
+    html.replace(block, ''),
+    html.replace(block, block + ' ' + block),
+    html.replace(block, '').replace('<body data-page="index">', '$&' + block),
+  ]) {
+    assert.throws(() => restoreStructuredMetadata(altered, 'index'), /[Ss]tructured metadata/);
+  }
+  for (const metadata of [
+    '<script type="application/json" id="site-documents">{}</script>',
+    '<script type="application/json" id="site-documents">{"undeclared:en":{}}</script>',
+    '<meta name="site-base" content="./">',
+    '<meta name="site-article" content="undeclared:en">',
+  ]) {
+    assert.throws(
+      () => restore(html.replace('</head>', metadata + '</head>'), 'index'),
+      /Undeclared article/
+    );
+  }
+  for (const metadata of [
+    '<meta name="unapproved-metadata" content="changed claim">',
+    '<script type="application/json" id="another-index">{"claim":"unapproved"}</script>',
+  ]) {
+    const altered = html.replace('</head>', metadata + '</head>');
+    assert.ok(restoreStructuredMetadata(altered, 'index').includes(metadata));
+    assert.notEqual(restore(altered, 'index'), preserved, 'unrelated metadata is never stripped');
+  }
+});
 test('critical media reconciliation admits only exact Home head ownership, bytes and original order', (t) => {
   const path = require('node:path'),
     os = require('node:os'),
@@ -39,6 +264,7 @@ test('critical media reconciliation admits only exact Home head ownership, bytes
     css = fs.readFileSync(path.join(__dirname, '../site/engine/critical-media.css'), 'utf8'),
     block = '<style data-critical-media>\n' + css + '</style>',
     preserved = restoreCriticalMedia(html, 'index');
+  const parity = restore(html, 'index');
   assert.equal(preserved, html.replace(block + ' ', ''), 'only the exact generated block reverses');
   for (const changed of [
     html.replace(block, block + ' ' + block),
@@ -56,13 +282,13 @@ test('critical media reconciliation admits only exact Home head ownership, bytes
   const unrelated = '<style>.unrelated{color:red}</style> ',
     extra = html.replace('<script src="theme.js"></script>', '$& ' + unrelated);
   assert.ok(restoreCriticalMedia(extra, 'index').includes(unrelated));
-  assert.notEqual(restore(extra, 'index'), restore(html, 'index'), 'unrelated CSS stays in parity');
+  assert.notEqual(restore(extra, 'index'), parity, 'unrelated CSS stays in parity');
   for (const changed of [
-    html.replace('"@type": "ProfilePage"', '"@type": "OtherPage"'),
+    html.replace(/"@type":\s*"ProfilePage"/, '"@type":"OtherPage"'),
     html.replace('Portrait of Vitalii Oborskyi', 'Portrait of another person'),
     html.replace('height="721"', 'height="722"'),
   ])
-    assert.notEqual(restore(changed, 'index'), restore(html, 'index'));
+    assert.notEqual(restore(changed, 'index'), parity);
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'critical-media-seo-')),
     owner = path.join(directory, 'site/engine/critical-media.css');
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
@@ -150,10 +376,11 @@ test('approved contact and decorative title reconciliation retain changed destin
   }
   for (const page of ['research', 'writing', 'talks']) {
     const source = readHTML(path.join(__dirname, '../docs/' + page + '.html'));
+    const preservedTitle = restore(source, page);
     assert.ok(source.includes('class="reading-title"'));
     assert.notEqual(
       restore(source.replace('class="reading-title"', 'class="other-title"'), page),
-      restore(source, page)
+      preservedTitle
     );
     assert.notEqual(
       restore(
@@ -163,7 +390,7 @@ test('approved contact and decorative title reconciliation retain changed destin
         ),
         page
       ),
-      restore(source, page)
+      preservedTitle
     );
     const layered = source.includes('class="reading-title-ink"')
       ? source
@@ -171,14 +398,10 @@ test('approved contact and decorative title reconciliation retain changed destin
           /(<span class="reading-title">)([\s\S]*?)(<\/span>)/,
           '$1<span class="reading-title-ink">$2</span>$3'
         );
-    assert.equal(
-      restore(layered, page),
-      restore(source, page),
-      'approved ink wrapper retains exact copy'
-    );
+    assert.equal(restore(layered, page), preservedTitle, 'approved ink wrapper retains exact copy');
     assert.notEqual(
       restore(layered.replace('class="reading-title-ink"', 'class="other-ink"'), page),
-      restore(source, page),
+      preservedTitle,
       'unsupported ink wrapper identity'
     );
     assert.notEqual(
@@ -189,7 +412,7 @@ test('approved contact and decorative title reconciliation retain changed destin
         ),
         page
       ),
-      restore(source, page),
+      preservedTitle,
       'changed layered title copy'
     );
   }
@@ -220,6 +443,7 @@ test('response reconciliation rejects missing people, sources and stronger parti
     );
   }
   const research = readHTML(path.join(__dirname, '../docs/research.html'));
+  const preservedResearch = restore(research, 'research');
   for (const source of [
     'https://www.linkedin.com/posts/michael-risch-ab8b423_uncertainty-architecture-why-ai-governance-activity-7455141331162681344-i-8g',
     'https://www.linkedin.com/posts/vitaliioborskyi_ua-1-ugcPost-7461016808725164033-pQg_/',
@@ -233,13 +457,13 @@ test('response reconciliation rejects missing people, sources and stronger parti
         research.replace(matthew, matthew.replace(source, 'https://www.linkedin.com/posts/other')),
         'research'
       ),
-      restore(research, 'research'),
+      preservedResearch,
       'reshare chain and older context survive'
     );
   }
   assert.notEqual(
     restore(research.replace('>Advisors &amp; responses</a>', '>Trusted by</a>'), 'research'),
-    restore(research, 'research'),
+    preservedResearch,
     'changed navigation claim'
   );
 });
@@ -258,12 +482,17 @@ test('issue48 amendment reverses only declared theory and Matthew changes', () =
       ['research', 'lenses'],
     ]
   );
+  const pages = new Map();
   for (const change of original) {
     assert.equal(
       normalizeHTML(restoreContentAmendment(change.after, change.page, record)),
       normalizeHTML(change.before)
     );
-    const html = readHTML(path.join(__dirname, '../docs/' + change.page + '.html'));
+    if (!pages.has(change.page)) {
+      const html = readHTML(path.join(__dirname, '../docs/' + change.page + '.html'));
+      pages.set(change.page, { html, preserved: restore(html, change.page) });
+    }
+    const { html, preserved } = pages.get(change.page);
     const after = normalizeHTML(change.after);
     assert.ok(html.includes(after));
     const mutation =
@@ -273,7 +502,7 @@ test('issue48 amendment reverses only declared theory and Matthew changes', () =
     assert.notEqual(mutation, after);
     assert.notEqual(
       restore(html.replace(after, mutation), change.page),
-      restore(html, change.page),
+      preserved,
       'changed association/attribution is not silently reversed'
     );
     const corrupt = JSON.parse(JSON.stringify(record));
@@ -423,7 +652,7 @@ test('practical positioning allowances reject unsupported claims, status and con
     ['talks', 'Invited speaker at Corning’s', 'Consulting partner of Corning’s'],
     ['talks', 'internal technical AI workshop', 'validated enterprise AI deployment'],
     ['talks', 'index.html#contact', 'https://unapproved.example/book'],
-    ['writing', '29 primary archive records', '27 primary archive records'],
+    ['writing', '29 articles</p>', '27 articles</p>'],
     ['index', 'credits.html#built-with-ai', 'credits.html#missing-case'],
     ['credits', 'I direct its architecture', 'AI autonomously directs its architecture'],
     [
@@ -437,14 +666,27 @@ test('practical positioning allowances reject unsupported claims, status and con
       'main/tools/site/build.cjs',
     ],
   ];
+  const pages = new Map();
   for (const [page, from, to] of mutations) {
-    const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));
+    if (!pages.has(page)) {
+      const html = readHTML(require('node:path').join(__dirname, '../docs/' + page + '.html'));
+      pages.set(page, { html, preserved: restore(html, page) });
+    }
+    const { html, preserved } = pages.get(page);
     assert.ok(html.includes(from), 'mutation input exists');
-    assert.notEqual(
-      restore(html.replace(from, to), page),
-      restore(html, page),
-      'unapproved copy/source/contact change cannot disappear through restoration'
-    );
+    if (page === 'writing') {
+      assert.throws(
+        () => restore(html.replace(from, to), page),
+        /count matches displayed entries/,
+        'an altered count cannot be normalized as catalog output'
+      );
+    } else {
+      assert.notEqual(
+        restore(html.replace(from, to), page),
+        preserved,
+        'unapproved copy/source/contact change cannot disappear through restoration'
+      );
+    }
   }
 });
 test('Day/Night semantic text and CTA pairs exceed normal-text contrast with no independent atmosphere clock', () => {

@@ -253,6 +253,11 @@ test('known licensed publications require frozen rights by actual runtime bytes 
   const temp = delivery.temporary(t);
   for (const edition of [false, true]) {
     const source = fixture.fixture(path.join(temp, String(edition)), true, edition);
+    const original = {
+      record: structuredClone(source.record),
+      report: structuredClone(source.report),
+      css: fs.readFileSync(path.join(source.directory, 'public/styles.css')),
+    };
     assert.equal(staging.publicationRequired(source.record, source.record.components), true);
     fs.rmSync(path.join(source.directory, 'rights.json'));
     assert.throws(
@@ -284,6 +289,30 @@ test('known licensed publications require frozen rights by actual runtime bytes 
         /rights record required|conflicting tested runtime identity/
       );
     }
+    source.record.components.routes.credits.sha256 = '0'.repeat(64);
+    source.report.policy.decision.licenses['original-code'] = 'MIT';
+    source.report.files['styles.css'].sha256 = '0'.repeat(64);
+    const changedCSS = path.join(source.directory, 'public/styles.css');
+    fs.appendFileSync(changedCSS, '\nchanged fixture bytes');
+    fs.rmSync(path.join(source.directory, 'public/credits.html'));
+    fs.writeFileSync(path.join(source.directory, 'public/unmanaged.txt'), 'unmanaged bytes');
+    fixture.save(source);
+    const next = fixture.fixture(path.join(temp, 'independent-' + edition), true, edition);
+    assert.deepEqual(next.record, original.record);
+    assert.deepEqual(next.report, original.report);
+    assert.deepEqual(
+      artifact.manifest(path.join(next.directory, 'public')).files,
+      original.record.files
+    );
+    assert.deepEqual(fs.readFileSync(path.join(next.directory, 'public/styles.css')), original.css);
+    assert.deepEqual(
+      JSON.parse(fs.readFileSync(path.join(next.directory, 'rights.json'))),
+      original.report
+    );
+    assert.ok(fs.readFileSync(changedCSS, 'utf8').endsWith('changed fixture bytes'));
+    assert.equal(source.report.policy.decision.licenses['original-code'], 'MIT');
+    assert.notStrictEqual(next.record.components, source.record.components);
+    assert.notStrictEqual(next.report.policy.decision, source.report.policy.decision);
   }
 });
 
@@ -532,21 +561,36 @@ test('both controller extraction routes retain the validated frozen report and e
 
 test('default Pages output and historical verification preserve actual pinned-main bytes', (t) => {
   const temp = delivery.temporary(t);
-  const stage = delivery.staging(temp, true);
-  const production = delivery.source(temp, 'production', 'c'.repeat(40));
   const previous = path.join(temp, 'previous');
   const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
-  for (const name of [
-    'tools/pages/package.cjs',
-    'tools/quality/artifact.cjs',
-    'tools/quality/budgets.json',
-    'tools/site/snapshot.cjs',
-    'tools/release/archive.cjs',
-  ]) {
-    const file = path.join(previous, name);
-    fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.writeFileSync(file, cp.execFileSync('git', ['show', baseline + ':' + name]));
+  fs.mkdirSync(previous);
+  cp.execFileSync('tar', ['-x', '-C', previous], {
+    input: cp.execFileSync('git', ['archive', baseline, 'docs', 'site', 'tools'], {
+      maxBuffer: 32_000_000,
+    }),
+  });
+  function historicalSource(name, commit) {
+    const directory = path.join(temp, name);
+    fs.cpSync(path.join(previous, 'docs'), path.join(directory, 'public'), { recursive: true });
+    const record = {
+      schema: 1,
+      sourceDirty: false,
+      sourceCommit: commit,
+      candidateCommit: commit,
+      sourceTree: 'b'.repeat(40),
+      ...artifact.manifest(path.join(directory, 'public')),
+    };
+    record.components = require(path.join(previous, 'tools/site/snapshot.cjs')).verify(
+      path.join(directory, 'public'),
+      record
+    );
+    fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(record, null, 2) + '\n');
+    return { directory, record };
   }
+  const stage = historicalSource('staging', 'a'.repeat(40));
+  require(path.join(previous, 'tools/staging/color.cjs')).build(stage.directory);
+  stage.record = require(path.join(previous, 'tools/staging/edition.cjs')).build(stage.directory);
+  const production = historicalSource('production', 'c'.repeat(40));
   for (const [name, prefix, prod] of [
     ['initial', '/', false],
     ['project', '/author/', false],
@@ -632,11 +676,27 @@ test('explicit stable and production workflows run prepublication before deploya
   const ready = read('site-checks');
   assert.match(
     ready,
-    /source-tests\.cjs --profile pr[^\n]*--report quality-reports\/source-tests\.json/
+    /source-tests\.cjs --ci-profile --require-clean --report quality-reports\/source-tests\.json/
+  );
+  assert.equal((ready.match(/run: node tools\/quality\/source-tests\.cjs/g) || []).length, 1);
+  assert.match(ready, /SITE_BASE_SHA: \$\{\{ github\.event\.pull_request\.base\.sha \}\}/);
+  const additionalSource = ready.slice(
+    ready.indexOf('      - name: Run only additional source tests'),
+    ready.indexOf('      - name: Retain exact source-test accounting')
+  );
+  assert.match(additionalSource, /SITE_SOURCE_EVENT: \$\{\{ github\.event_name \}\}/);
+  assert.match(additionalSource, /SITE_SOURCE_MANIFEST: quality-artifact\/artifact\.json/);
+  assert.match(
+    additionalSource,
+    /CONTENT_MODE: \$\{\{ steps\.content_baseline\.outputs\.mode \}\}/
+  );
+  assert.match(
+    additionalSource,
+    /CONTENT_BASE_SHA: \$\{\{ steps\.content_baseline\.outputs\.sourceCommit \}\}/
   );
   assert.match(
     ready,
-    /source-tests\.cjs --profile staging[^\n]*--report quality-reports\/source-tests\.json/
+    /if: github\.event_name != 'pull_request' \|\| github\.event\.pull_request\.draft == false/
   );
   const reusable = read('site-release-checks');
   const reusableBuild = reusable.slice(reusable.indexOf('  build:'), reusable.indexOf('  host:'));

@@ -151,7 +151,21 @@ function fixture() {
     }))
   );
   return {
-    manifest: { ...identity, components: { variant }, sourceDirty: false },
+    manifest: {
+      ...identity,
+      components: { variant },
+      sourceDirty: false,
+      files: Object.fromEntries(
+        budgets.routes.map((route) => [
+          route + '.html',
+          {
+            sha256: 'e'.repeat(64),
+            raw: 50000,
+            gzip: 10000,
+          },
+        ])
+      ),
+    },
     sizes: {
       pass: true,
       artifactDigest: identity.artifactDigest,
@@ -247,6 +261,12 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
       fs.readFileSync(path.join(root, '.github/workflows/' + id + '.yml'), 'utf8'),
     ])
   );
+  const diagnosticCollision = structuredClone(sources);
+  diagnosticCollision['site-release-checks'] = diagnosticCollision['site-release-checks'].replace(
+    'site-content-fixture-${{ inputs.profile }}-',
+    'site-content-fixture-'
+  );
+  assert.throws(() => workflow.check(root, diagnosticCollision), /collision/);
   sources['site-checks'] = sources['site-checks'].replace(
     'site-gate-basic-',
     'site-gate-full-staging-'
@@ -669,7 +689,14 @@ function fullFixture() {
     { ...identity, pass: true, kind: 'motion', ...motionFixture() }
   );
   x.manifest.files = Object.fromEntries(
-    budgets.routes.map((route) => [route + '.html', { sha256: 'd'.repeat(64) }])
+    budgets.routes.map((route) => [
+      route + '.html',
+      {
+        sha256: 'd'.repeat(64),
+        raw: 50000,
+        gzip: 10000,
+      },
+    ])
   );
   const capture = {
     ...identity,
@@ -1063,7 +1090,7 @@ test('full hosted evidence cannot use local measurements, a missing file or anot
       'sitemap.xml',
       'opaque',
     ]) {
-      x.manifest.files[file] = { sha256: 'e'.repeat(64) };
+      x.manifest.files[file] = { sha256: 'e'.repeat(64), raw: 5000, gzip: 1000 };
       x.reports.find((r) => r.kind === 'captures').public_sources['docs/' + file] = 'e'.repeat(64);
     }
     x.reports.push({
