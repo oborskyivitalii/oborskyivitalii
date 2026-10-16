@@ -1,10 +1,13 @@
 # Issue 72 — 16 October 2026 Cloudflare-only staging
 
 Owning issue: [#72 scope amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/72#accepted-scope-amendment--16-october-2026).
-Owning PR: separate infrastructure PR from main; exact link follows publication.
+Owning PR: [PR81](https://github.com/oborskyivitalii/oborskyivitalii/pull/81), separate infrastructure change from main.
 Reviewer/executor: Codex, self-review; independent review remains distinct.
 Inspected source: protected main `9b82f382d080f879528fac8bba94b3656ce14521`,
-tree `1c444ea8d3129487250649778105ad8323186ffd`. Prepared changes are dirty.
+tree `1c444ea8d3129487250649778105ad8323186ffd`. Local implementation
+`0aa99539f75adca960cd81111b8ad9950dd72b59` and published `d48bf1cb` share
+exact tree `10528588a31476230612b706fed472d9dada7234`. The API publication
+changed commit metadata only. The following documentation checkpoint is separate.
 
 ## Intent and acceptance
 
@@ -45,23 +48,44 @@ introduce a general result cache or reduce production regression.
 | Task | Owners and expected change | Finding / AC | Check | Status |
 | --- | --- | --- | --- | --- |
 | T01 | Isolated main branch, live issue amendment and this record | F01, AC08/09 | Live refs and scope | Complete |
-| T02 | Staging workflow/admission and merge observer | F01, AC02/04 | Behavioral negative controller tests | In progress |
-| T03 | Preflight producer/consumer and staging report aggregate | F02/03, AC02/08 | Same-run reuse and corruption/missing/failed/attempt negatives | In progress |
-| T04 | Current acceptance, guides, registry, catalog and RI/CI | AC08/09 | Basic, policy, style/format/lint, RI and coupling | Pending |
-| T05 | Publish separate reviewed PR and inspect native CI | AC09 | Exact head/run evidence | Pending |
+| T02 | Staging workflow/admission and merge observer | F01, AC02/04 | Behavioral negative controller tests | Implemented; source checks passed |
+| T03 | Preflight producer/consumer and staging report aggregate | F02/03, AC02/08 | Same-run reuse and corruption/missing/failed/attempt negatives | Implemented; six focused reuse tests passed |
+| T04 | Current acceptance, guides, registry, catalog and RI/CI | AC08/09 | Basic, policy, style/format/lint, RI and coupling | Passed locally on exact implementation tree |
+| T05 | Publish separate reviewed PR and inspect native CI | AC09 | Exact head/run evidence | PR81 published; native checks pending |
 
 ## Acceptance evidence
 
 | AC | Check | Result | Remaining gate |
 | --- | --- | --- | --- |
-| AC01 | Existing Draft prototype remains unchanged | Pending regression | Native prototype evidence if applicable |
-| AC02/03/04 | Cloudflare-only admission, source/artifact/attempt, merge and recovery tests | Pending | Trusted-main integration and actual ordinary stage |
-| AC05/06/07/10 | Production consumers and full-gate rejection regressions | Pending | PR40 full/live/settings/archive acceptance |
-| AC08 | Current policy, style, source registry and RI/CI | Pending | Independent review |
-| AC09 | Separate PR linked to #72 | Pending | CI and protected merge |
+| AC01 | Existing Draft prototype remains unchanged | Basic and prototype-admission passed | Native prototype evidence if applicable |
+| AC02/03/04 | Cloudflare-only admission, source/artifact/attempt, merge and recovery tests | Passed source fixtures, including same-run raw/synthetic PR head identities | Trusted-main integration and actual ordinary stage |
+| AC05/06/07/10 | Production consumers and full-gate rejection regressions | Existing archive/controller/full-gate fixtures passed | PR40 full/live/settings/archive acceptance |
+| AC08 | Current policy, style, source registry and RI/CI | Nine automated policy checks passed; style89, RI28, coupling20, format/lint and architecture passed | Independent review |
+| AC09 | Separate PR81 linked to #72 | Published from main without conflicts | CI and protected merge |
 
 ## Issue synopsis
 
 Implement the maintainer-approved one-host staging route and reuse exact same-run
 prepublication reports. Production-specific cleanup and the paused PR40 feature
 work remain separate. No whole live/release criterion is established by fixtures.
+
+## Executed checks and limits
+
+- Clean local staging source selection: **536/536** passing cases in 44 modules,
+  zero failed/cancelled/skipped/todo, under the unchanged 180-second bound. Basic
+  separately passes its 24 delegated cases, generation, syntax, sizes and geometry.
+- Permanent Python source contracts: **111/111**, zero skips. #72 policy: all
+  **9/9** automated checks pass; external/whole-criterion gates remain pending.
+- Locked ESLint/Stylelint/Ruff passes for 228 scanned files; pinned Prettier/Ruff
+  formatting, source architecture, bounded code-style guard and RI/CI verify pass.
+- YAML parsing confirms all job dependencies resolve after deleting the Pages and
+  mirror-compensation jobs. Git diff whitespace check passes. No authored runtime,
+  public `docs/` bytes or budgets changed.
+- Self-review checked failure propagation, immutable source/report identity,
+  cross-attempt rejection, unique native artifact names, no scanner target
+  relabelling, unchanged hosted cases and historical recovery compatibility.
+- Native PR81 prototype run38891521232 is pending at this checkpoint. Ordinary
+  one-host staging awaits trusted-main integration and PR40's existing advisory/
+  performance corrections; this record does not assert that hosted transition.
+- Production full/native/performance and independent/device/rights/settings/live
+  gates were not run for this infrastructure change and remain with PR40.

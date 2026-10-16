@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "257bb6c408962ef23327b667698f92611cd2d29a20d0ee525a64e12c1e587ef4",
+    "digest": "e53380dd2d7c01365ccc9df1c5653d0f7f24b7cf89051772611b2ec64a8521b2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -271,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6b0708f70359e329fddfd99399e565c5fe9aece7aaf2f4450534d6e94e1af0dc"
+        "sha256": "63eaad870c059401ecf1d14b2959fb0d46ef517e65506885da8e43c1176460bd"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -1155,7 +1155,7 @@
       {
         "path": "review/issue-72/2026-10-16-cloudflare-only-staging.md",
         "identity_mode": "content",
-        "sha256": "c828d23dc188cfcb263f6eaa59c338ebb8291674b9a22211cca565cc23a22144"
+        "sha256": "de76b3e983fe6dea05e0b780fdb27d3e2ccda5053db2983af510b6d0df0e9a8b"
       },
       {
         "path": "review/issue-76/2026-10-11-preview.md",

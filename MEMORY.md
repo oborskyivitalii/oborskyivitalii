@@ -5,7 +5,8 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 ## Snapshot
 
 - Protected main is `9b82f382` after PR80. Production remains disabled.
-- #72 now owns a separate `work/cloudflare-only-staging-72` infrastructure PR,
+- #72 now owns [PR81](https://github.com/oborskyivitalii/oborskyivitalii/pull/81) on
+  `work/cloudflare-only-staging-72`,
   based on that main. The maintainer explicitly requested it before PR40 resumes.
 - #39 / PR40 remains at `16d4b1cd`; its separate worktree contains unfinished
   JSON-LD/headroom and readiness corrections. Do not overwrite or import them here.
@@ -32,7 +33,7 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #72 infrastructure | Finish focused controller/report/source/RI checks, publish the separate PR and inspect native CI; protected integration before PR40 staging. |
+| #72 infrastructure | Local536 source cases,111 Python and9 policy checks pass; inspect final native CI; protected integration before PR40 staging. |
 | #39 / PR40 | Rebase after infrastructure integration; finish exact checksum triage, MCP/Semgrep advisory resolution, Writing TBT and clean preflight before one-host staging. |
 | #39 / #72 | Actual administration, retired live Pages deployment disposition, protection, production archive and recovery remain separate observations. |
 | #1 / #7 / #8 / #13 | Final rights/editorial/reader/device/independent, full/native/performance, live SEO/indexing/analytics and launch evidence. |
