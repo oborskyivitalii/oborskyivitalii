@@ -2,7 +2,7 @@
 
 Execution: PR #79; article owner #2; publisher owner #5.
 
-> **Pending editorial successor:** [draft revision 0.5](../../../drafts/pmday-article-draft.en.md) and its five-slide assembly brief are recorded below. The PDF/kit identities on this page still describe the unchanged rendered r2, not that new draft.
+> **Current pending editorial successor:** [draft revision 0.7](../../../drafts/pmday-article-draft.en.md), **The Sum of Our Technology — AI Changes Both Sides of Software Engineering**, with its *What if not?* narrative and **seven-slide** assembly brief. Historical 0.5/0.6 sections below are not current instructions. The PDF/kit identities on this page still describe unchanged rendered **r2**, not this draft.
 
 - `article.pdf`: 12-page full English article, readability revision `r2`, with
   four displayed figures and one compact presentation/recording link paragraph.
@@ -163,3 +163,12 @@ The previous 'Editorial revision 0.5' section above remains **historical evidenc
 **Current default:** seven screenshots, **3 / 5 / 7 / 9 / 10 / 12 / 14**. This adds the testable SDLC-equilibrium step and requirements boundary, substitutes post-release learning slide 14 for slide 13, and keeps the dense evidence slide 4 in prose/citations only. Page-to-asset correspondence, alt/captions, source hash, export commands, preservation rules and six ordered assembly tasks are in draft 0.6 itself. Planned PNG names in the draft are *not* a statement that images have been committed.
 
 Canonical manuscript and all earlier r2 PDFs/kits remain unchanged by this editorial change. No current-source full checks, new figure rights decision or site/production publication has been completed. For the next Sol/Astra pass: read the latest draft, regenerate the seven exact PDF pages, migrate reader-only prose, produce new edition, and verify rights/CI/hosted/mobile/PDF before requesting author acceptance.
+
+
+### Editorial revision 0.7 — current reading and Sol/Astra handoff, 16 October 2026
+
+**Author decision:** edit English copy as a historical and engineering argument that repeatedly asks *what if not?*, rather than a blanket attack on current vendor methodology. Rename title as an allusion to Lem, keep old article title as subtitle; include [*Summa Technologiae* (1964)](https://english.lem.pl/works/essays/summa-technologiae) in named literature. The active [reader draft and detailed seven-slide specifications](../../../drafts/pmday-article-draft.en.md) supersede earlier 0.5/0.6 editorial inputs; the [dated versioned review](../2026-10-15-editorial-draft.md#editorial-revision-07--what-if-not-16-october-2026) records source claims and guardrails.
+
+**Figure order unchanged** from v0.6: exact v35 pages `3, 5, 7, 9, 10, 12, 14`; all image generation/output remains a **pending** assembly step, not an already committed seven-PNG set. The revised article is excluded from the default site catalog. Neither historical `r2` HTML/PDF/kit identities nor preview were regenerated during this editorial-only pass.
+
+**Priorities for next assembler:** (1) verify current PR79/main and ownership; (2) use ONLY ARTICLE START–END v0.7 reader text; (3) preserve the title/subtitle as the new edition's metadata, social/PDF headings and display, without prematurely changing the route/slug; (4) export seven exact full-page slide images with source/provenance/rights; (5) generate/render/check article + platform exports on current source, including narrow and PDF readability; (6) log independent/editorial/rights acceptance and pending release decisions in #2/#5. No merge, stable promotion, upstream changes, or external publication implicit.
