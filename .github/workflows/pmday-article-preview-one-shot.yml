@@ -155,6 +155,11 @@ jobs:
           git add site/assets/publications/pmday-ai-both-sides/PROVENANCE.md
           git add site/assets/publications/pmday-ai-both-sides/pmday-slide-*.png
           git add .github/repository-paths.json REPOSITORY-MAP.md .github/repository-intelligence/
+      - name: Install existing pinned formatting toolchain
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
       - name: Verify maintained formatting and basic source
         run: |
           node tools/quality/format.cjs --check
