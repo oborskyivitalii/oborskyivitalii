@@ -653,10 +653,16 @@ test('explicit stable and production workflows run prepublication before deploya
   assert.doesNotMatch(reusableBuild, /check node tools\/quality\/source-tests\.cjs/);
 });
 
-test('compact-metadata identities still require frozen publication rights before any file access', () => {
+test('compact-metadata and Writing identities still require frozen publication rights before any file access', () => {
   const motion = require('../tools/quality/color-motion-contract.cjs');
-  for (const edition of ['plain', 'staging']) {
-    const runtime = motion.reviewedRuntime('issue39-licensed-compact-' + edition);
+  for (const id of [
+    'issue39-licensed-compact-plain',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-plain',
+    'issue39-writing-tbt-staging',
+  ]) {
+    const runtime = motion.reviewedRuntime(id),
+      edition = runtime.edition;
     const source = {
       variant: runtime.variant,
       components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },

@@ -182,6 +182,8 @@ function publicationRequired(source, revision) {
     'issue39-licensed-staging',
     'issue39-licensed-compact-plain',
     'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-plain',
+    'issue39-writing-tbt-staging',
   ].map(motion.reviewedRuntime);
   const knownBytes = licensed.some(
     (runtime) =>

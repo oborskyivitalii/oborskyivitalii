@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1b5963cca96b0ee5204ec06d8022bbaf18c601891a5bf455a0856042c1dbce37",
+    "digest": "e521211b59e9298026d8c6d653880dc5e6e4478aa53851b19b8b81c78c27b22d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "33020293e1728b4be59c5d4655c306316ce889827fc6eaf158d15d1e53ca3f44"
+        "sha256": "f269f7e0a7a8303939912f914887123de2815e930071f363b0ba7e1fa1b36aaa"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "60844260e8c6b82f48fc6c1f388506c6d5729e9f77486a6631ec0487d6f4433c"
+        "sha256": "480171992ed813464db6930cb8c323b36484314adb6037f86a0b16e711f164d0"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "11a2bb4dec328ee25726fe8a0ad1c63e8100c9f58c633318401cceba5b0ad5ea"
+        "sha256": "b5eebf08663a07f427c7efca892c59b7697a8e4d76c4a3988b0cbe7f498320fc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -271,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "70e779814c4c4097f4c4da5796b4a58eefc93a975fd8872e8f70727db5625fe5"
+        "sha256": "7f52b6c3b25ac98d4631dafeb129cdc85e252108d87020ab721933f8d41bc738"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -721,6 +721,16 @@
         "path": "review/issue-39/2026-10-16-python-audit-compatibility.md",
         "identity_mode": "content",
         "sha256": "6880ece05ee92e244eabc256ff701038096623ccfe5612cadfa97b36fa3ba6ec"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-writing-controller-tuples.json.gz",
+        "identity_mode": "content",
+        "sha256": "5930316ddde84be0ee75db90363d7c3a46abaeaae4e5b413885b23411c797990"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-writing-controller.md",
+        "identity_mode": "content",
+        "sha256": "255da4db0880affb9b680690a72539fae89eaedab667b86a5d422db7c4ced6c0"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5345,7 +5355,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "5b437d6629f412312b2a7961707ce279c47b6885810fd11b9e79f71a30561890"
+        "sha256": "09fe523b22a7ac5a72bf6cf76f498131f8ca9e2a1ad8c9e5de5896c070b32bc7"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5480,7 +5490,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "a0b5ced2db702cde48d1fc149963a83fa00ecdfa615a2da5fff36579efc89ac8"
+        "sha256": "9ec1ed672e17f9d97620bec726b89cbc09249c7cb36d855e8435c4cdf33a1e5e"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5605,7 +5615,7 @@
       {
         "path": "tests/test_issue39_acceptance.py",
         "identity_mode": "content",
-        "sha256": "21b6adc268a53010a2c32f2e8ac1bed3c065a9e85d9d3fc9664eac4192d5221a"
+        "sha256": "02535ed227f83e296f8c282859bc0e1ebc8e2b1f94331bee6161c944a38afbc0"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -5850,7 +5860,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "67a8ed86058166faba1fe136d8d957f6f371adf63aa3f60ab78983464eea3732"
+        "sha256": "9cc6e87f8676a1fa622fa4112a20daa4b609b664ca3fb6c49e7ea192cf66c380"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -5900,7 +5910,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "8271c64e0444fda88761a83c916bdb1e3f2e905c93251c3f01f83189e1591fc0"
+        "sha256": "80fa057c831868c9aa7c33ee6f7e68ddb2cf5aba7fbb8c9fe19aa3a9244316ab"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6090,7 +6100,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "8aa07b051ebd05187c9ca6e55873a4b885a2cc1f5d878a113c235d70eae52907"
+        "sha256": "7e825f422c9409cd2d8b4ad2bc6656356fd1b24eae092e894cf667198a070cf1"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6400,7 +6410,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "b4d6d30e31f68f714333370c554aef93f489cf04e7209371b8b6b58d3755496f"
+        "sha256": "d6f4fa52f485008b9ac12ef750ab0424d7491da32a12d7f1ff9113f56650208b"
       },
       {
         "path": "tools/staging/review-flow.cjs",
@@ -8217,6 +8227,28 @@
         "AGENTS.md"
       ],
       "title": "Issue 39 — 16 October 2026 Python audit compatibility"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-writing-controller-tuples.json.gz",
+      "kind": "file",
+      "purpose": "Inert exact clean-source Writing runtime tuple proof with independent Python base/Color/edition and canonical/immutable SHA256 derivation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-writing-controller-tuples.json.gz"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-writing-controller.md",
+      "kind": "file",
+      "purpose": "Issue39 exact Writing plain/staging trusted-controller prerequisite, native evidence, preservation and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — exact Writing runtime controller identities, 16 October2026"
     },
     {
       "path": "review/issue-41/2026-10-07-analysis.md",
