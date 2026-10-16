@@ -197,7 +197,7 @@ Frequency remains uncertain too. Four failures in 200 independent, representativ
 
 Evaluate severity, coverage and uncertainty—not just the average. Establish what the evidence permits us to delegate, to whom and under which conditions. Testing is necessary; a reassuring score is not a substitute for that decision.
 
-![Synthetic evaluation: 196 acceptable responses, three incorrect instructions and one restricted disclosure in 200 cases; the prohibited disclosure blocks release.](asset:pmday-slide-10)
+![A synthetic evaluation separates failure frequency, uncertainty and a forbidden disclosure that blocks release.](asset:pmday-slide-10)
 
 ### Another model will check the first one
 
@@ -243,7 +243,7 @@ Control has to meet the consequence in time. Enforce what must be enforced befor
 
 If the required response cannot arrive in time, change the boundary: narrow the task, restrict authority, redesign the workflow or reject that AI path. Monitoring is not an architectural answer to a consequence it can only report after the fact.
 
-![Pre-action checks and permission enforcement lead to delivery or fallback; observation, authorised intervention and human capacity close the operating control loop.](asset:pmday-slide-12)
+![A complete control path includes pre-action checks and permissions, denial or fallback, observation, authorised correction and human capacity.](asset:pmday-slide-12)
 
 ### It passed before release
 
