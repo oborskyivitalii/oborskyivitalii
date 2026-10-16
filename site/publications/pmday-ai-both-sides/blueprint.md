@@ -1,9 +1,9 @@
-# The Sum of Our Technology — review manuscript r3
+# The Sum of Our Technology — R8 review manuscript
 
-Editorial owner: issue #2; publisher: #5 / PR #79.
+Editorial owner: issue #2; publisher execution: issue #5 / PR #79.
 
-This is the selected authorial v0.8 reader prose from the excluded draft, preserving six chapters, title allusion to Lem and the What If Not thread. The earlier r2 record is historical; this remains a review candidate, not a publication.
+The author requested synchronization of the revised draft and the full canonical manuscript, plus a standalone R8 PDF. R7 was the editorial base. Preserve the six chapters, stronger direct Microsoft quotations with accurate scope, six chapter-5 What if not turns, NBER Table 6 trace, independent human-factors sources, 26-reference bibliography, citation block and seven original slide screenshots.
 
-Seven unedited full-page v35 PDF screenshots: slides 3, 5, 7, 9, 10, 12, 14. Keep cover and one PDF / Ukrainian recording paragraph. The older original body diagrams remain in the repo but are not selected for the r3 article.
+The ARTICLE START–END reader in the excluded R8 draft is copied without rewriting. Captions and alt text are synchronized through publication.json. The older r3 and r2 content-edition records remain historical. The R8 cover detail preserves the original master and matches the previously approved R7 crop.
 
-Reader, evidence/rights, PDF, platform variants and narrow/wide hosted preview must be checked before author or release approval. Existing article slug remains unchanged.
+This is an unaccepted review edition with null public canonical and pending per-item rights. No publication, external posting, stable promotion or merge is authorized. LinkedIn/Medium generation and hosted-site integration are not part of this pass. The standalone PDF has a separate producer and identity; it is not managed-CI print proof.

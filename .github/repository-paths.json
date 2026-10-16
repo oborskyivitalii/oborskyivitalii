@@ -6577,6 +6577,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/pmday-ai-both-sides/cover-detail-r8.png": {
+      "kind": "file",
+      "purpose": "R8 cover detail derived from the original illustration; exact crop and pixel identity in PROVENANCE.md.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/assets/publications/pmday-ai-both-sides/cover.png": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: cover.png.",
@@ -7126,6 +7132,12 @@
     "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261016-r3.json": {
       "kind": "file",
       "purpose": "PMDay r3 review semantic edition, provenance and pending rights.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261016-r8.json": {
+      "kind": "file",
+      "purpose": "R8 review article semantic/source identity, preserving historical editions and pending publication rights.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

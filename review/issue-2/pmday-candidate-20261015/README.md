@@ -2,7 +2,23 @@
 
 Execution: PR #79; article owner #2; publisher owner #5.
 
-> **Current editorial input: [R6](../../../drafts/pmday-article-draft.en.md).** The standalone R6 PDF is the current reading deliverable. The site's integrated manuscript remains review r3; the PDF and kit stored in this directory are historical r2. Earlier 0.5–0.8 instructions below are historical and must not replace the R6 text, named bibliography or seven-slide plan.
+> **Current reader: R8.** The excluded editorial draft and canonical manuscript now contain the same R8 text. The files article.pdf and publication-kit.zip retained in this review directory remain historical r2 artifacts; do not confuse them with the standalone R8 PDF delivered in the conversation.
+
+## Editorial R8 — direct quotations and synchronized source
+
+Author instruction, 16 October 2026: restore sharper vendor quotations and arguments, preserve R7 improvements and update both source owners. The Microsoft first-party article was reread. Source 11 identifies the sections supplying the review, autopilot and disposability phrases. Human architectural oversight and the bounded-feature condition are retained; no blanket abolition of all review is attributed.
+
+Reader SHA-256: d9c28aa95035d49678513ffab92c0973a2e37e8a7a3a89df8676fce970a90973. Six numbered chapters, six explicit chapter-5 refrains, eight displayed images, 26 numbered bibliography items. The article keeps the NBER Table 6 trace and positive Anthropic results, critical-class uncertainty, independent human-factors sources and the practical bounded-pilot decision. Its customer-adoption paragraph remains declarative.
+
+The standalone The_Sum_of_Our_Technology_R8.pdf has 17 pages, 1,625,712 bytes and SHA-256 d884d392f376dbf3e4e54f1e19a0bb7374caccdc7e822018a90c17e4ce267819. It was rendered and visually self-reviewed page by page, with clickable sources, 19 bookmarks and 8 illustrations. Slides 7 and 12 use landscape pages. The PDF is a WeasyPrint review export, not a managed-CI publisher output, public release or binary committed in this directory.
+
+Source synchronization uses the existing publisher semanticDigest and validation, exact asset checks, maintained formatting, Basic and RI/coupling checks. The final source commit is pushed only after these checks succeed. The preparation run below supplies the actual result; it is not hosted-preview or independent editorial/rights acceptance. Style mapping: CS01/02 canonical source and metadata; CS04/05 single owners and scoped formatting; CS08/10 exact-source checks and source/provenance constraints; no runtime/CSS/budget changes. No LinkedIn/Medium rendition is generated.
+
+The seven original slide PNG hashes are unchanged. The R8 cover is a separately declared derivative with the exact RGB pixels of the R7/R8 crop; the original cover and older edition records are retained. Future site preparation must check normal document/media budgets and responsive reading without weakening them. The existing PR conflict and publication gates are not resolved by this source/PDF update. #2 AC01–AC06 and applicable #5 human/publication gates remain open. No merge, stable staging, production or upstream deck disposition.
+
+Preparation run: https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/38970499494
+
+## Historical R6 and earlier checkpoints
 
 ## Editorial R6 — assurance What if not failure control
 

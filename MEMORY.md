@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
+Dated continuity, not live authority. Last verified: **2026-10-16** (#2/PR79 R8 only; unrelated snapshots remain historical).
 
 ## Snapshot
 
@@ -9,27 +9,16 @@ Dated continuity, not live authority. Last verified: **2026-10-15** (#2/PR79).
   PR79 synchronizes that exact main while preserving its publisher/content route.
   PR40 owns subsequent licensed preview/staging/production preparation; exact
   source/native/scanner results remain in live #39 and its versioned review.
-- [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79)
-  also owns execution for article [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
-  On15October the author requested the completed six-chapter English article,
-  visuals, reusable social covers and an in-page presentation reader. This
-  supersedes the earlier real-article deferral. Recovered preparation continues
-  from raw head `e1a29787ad256c90f00e73af0d2b28dcf069527b`; current tip is in PR79.
-  Canonical real prose: `site/publications/pmday-ai-both-sides/manuscript.en.md`.
-  Three original diagrams, landscape/square ImageGen covers and pinned v35 deck
-  accompany it. `pmday-two-shifts` remains the frozen technical fixture.
-  Default production catalog excludes both review candidates; explicit preview
-  includes them. Author feedback replaces the real article's embedded PDF with one native
-  PDF/recording link paragraph; all sources stay inline with a short further-reading note.
-  Review PDF/platform kit and limitations are in
-  `review/issue-2/pmday-candidate-20261015/`; dated review owns check results.
-  Local review browser is not managed-CI proof. Historic managed fixture proof
-  remains in `review/issue-5/2026-10-14-managed-print.md` at `e581f8f`.
-  Independent implementation/export findings and remediations are in
-  `review/issue-5/2026-10-15-presentation-review.md`; original social covers have
-  a separate download ZIP. Exact current-source checks/preview are in live PR79.
-  #2 AC01-AC06 and #5 whole human/publication gates stay open; recording AC07/08
-  remains accepted. No merge, permanent-stage promotion or production is implied.
+- [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) executes
+  editorial [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
+  R8 now synchronizes the excluded draft and canonical article manuscript,
+  preserving R7 evidence and restoring precise direct Microsoft quotations.
+  Source, semantic edition, 26 references and seven original slides are
+  coordinated; review/issue-2/pmday-candidate-20261015/README.md owns evidence.
+  The standalone R8 PDF is not the historical r2 PDF/kit in that directory.
+  Publisher fixture pmday-two-shifts and default public catalog are unchanged.
+  No platform kit, hosted promotion, merge or publication was requested.
+  Original editorial/rights/device/publication/upstream gates stay open.
 - PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
   owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
   independent native ZIP/file/contract audit passed. These are separate from

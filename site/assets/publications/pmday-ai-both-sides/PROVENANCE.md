@@ -43,3 +43,7 @@ Source: SHA256 b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782,
 - Slide 10: site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png, 1921x1080, SHA256 75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b.
 - Slide 12: site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png, 1921x1080, SHA256 2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18.
 - Slide 14: site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png, 1921x1080, SHA256 25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd.
+
+## R8 review cover detail and retained slide bytes
+
+The R8 reader preserves all seven full-slide PNG source bytes. Its cover selects cover-detail-r8.png, the RGB crop (0, 136, 640, 335) of the existing 640 by 335 cover.png. The original remains unchanged. Crop pixels match the R7/R8 standalone review cover: SHA-256 5490e70dc1dc6e1ea5ff1cab16229fc309776f1e141cc08c900957d52e69ff20. This removes the competing embedded title without redrawing any artwork or empirical figure. Per-item publication clearance remains pending.

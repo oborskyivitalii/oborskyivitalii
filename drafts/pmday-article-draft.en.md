@@ -97,7 +97,7 @@ Bainbridge's [*Ironies of Automation*](https://doi.org/10.1016/0005-1098(83)9004
 
 ### The explanation will give us the understanding
 
-We cannot keep up with the code, so we ask an LLM to explain it. Perhaps specifications and generated documentation become the durable artifacts, and implementation a replaceable detail. That would be useful.
+We cannot keep up with the code, so we ask an LLM to explain it. Perhaps specifications and generated documentation become the durable artifacts, and implementation becomes a replaceable detail. That would be useful.
 
 **What if not?**
 
