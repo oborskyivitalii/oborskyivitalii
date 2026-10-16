@@ -8478,6 +8478,18 @@
       "purpose": "Verify the installed exact Python audit graph and sole reviewed patched MCP compatibility constraint.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "review/issue-39/2026-10-16-compact-controller.md": {
+      "kind": "file",
+      "purpose": "Finite source-only compact JSON-LD metadata identity controller prerequisite; unchanged runtime byte proof, exact rights enforcement and remaining PR40 release gates.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-39/2026-10-16-compact-tuples.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact future plain/staging tuple proof from cold immutable/current-source builds and independent Python JSON/SHA256 derivation; all canonical/immutable runtime files remain identical.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-compact-controller.md"
     }
   }
 }

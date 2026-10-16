@@ -177,9 +177,12 @@ function publicationRequired(source, revision) {
   // Derive the discriminator from verified public bytes. Optional manifest
   // metadata cannot relabel a licensed Color artifact as a historical family.
   const motion = require('../quality/color-motion-contract.cjs');
-  const licensed = ['issue39-licensed-plain', 'issue39-licensed-staging'].map(
-    motion.reviewedRuntime
-  );
+  const licensed = [
+    'issue39-licensed-plain',
+    'issue39-licensed-staging',
+    'issue39-licensed-compact-plain',
+    'issue39-licensed-compact-staging',
+  ].map(motion.reviewedRuntime);
   const knownBytes = licensed.some(
     (runtime) =>
       runtime.variant.fingerprint === revision.engine ||

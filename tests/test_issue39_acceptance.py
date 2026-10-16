@@ -1,5 +1,6 @@
 """Issue39's narrow controller dependency; full launch acceptance stays in PR40."""
 
+import gzip
 import hashlib
 import json
 import os
@@ -10,20 +11,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = "315da39d0294d970809648cdc0725f7e63187602"
-# Current #39 continuation permits only these exact installer edits in protected owners.
-FULL_INSTALL_WORKFLOWS = {
-    '.github/workflows/site-color-review.yml',
-    '.github/workflows/site-release-candidate.yml',
-    '.github/workflows/site-cause-fix-probe.yml',
-    '.github/workflows/site-gtk-native-probe.yml',
-    '.github/workflows/site-gtk-target-probe.yml',
-    '.github/workflows/site-release-checks.yml',
-}
-MINI_INSTALL_WORKFLOWS = {
-    '.github/workflows/issue-acceptance.yml',
-    '.github/workflows/site-checks.yml',
-}
+BASE = "9d8e99f536e823dc32337e11db0b10fdb85365f2"
+LOCK_BASE = "315da39d0294d970809648cdc0725f7e63187602"
 PROTECTED = (
     "site",
     "docs",
@@ -56,14 +45,9 @@ class Issue39AcceptanceTests(unittest.TestCase):
             mode, kind, object_id = metadata.decode().split()
             self.assertEqual((mode, kind), ("100644", "blob"))
             baseline[filename.decode()] = object_id
-        self.assertEqual(len(baseline), 607, "current protected main inventory changed")
-        self.assertTrue((FULL_INSTALL_WORKFLOWS | MINI_INSTALL_WORKFLOWS).issubset(baseline))
-        full = b"tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt"
-        patched = (
-            full.replace(b" -r ", b" --no-deps -r ")
-            + b"\n          tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py"
-        )
-        mini = b"--no-deps ruff==0.16.10 PyYAML==6.0.3"
+        self.assertEqual(len(baseline), 607)
+        before = b"  const licensed = ['issue39-licensed-plain', 'issue39-licensed-staging'].map(\n    motion.reviewedRuntime\n  );"
+        after = b"  const licensed = [\n    'issue39-licensed-plain',\n    'issue39-licensed-staging',\n    'issue39-licensed-compact-plain',\n    'issue39-licensed-compact-staging',\n  ].map(motion.reviewedRuntime);"
         actual = {}
         for source in paths:
             owner = ROOT / source
@@ -79,26 +63,76 @@ class Issue39AcceptanceTests(unittest.TestCase):
                 self.assertEqual(filename.stat().st_mode & 0o111, 0)
                 name = filename.relative_to(ROOT).as_posix()
                 raw = filename.read_bytes()
-                if name in FULL_INSTALL_WORKFLOWS:
-                    expected = git("show", BASE + ":" + name).count(full)
-                    self.assertGreater(expected, 0)
-                    self.assertEqual(raw.count(patched), expected, name)
-                    raw = raw.replace(patched, full)
-                if name in MINI_INSTALL_WORKFLOWS:
-                    self.assertEqual(raw.count(mini + b" packaging==26.3"), 1, name)
-                    raw = raw.replace(mini + b" packaging==26.3", mini)
-                if name == ".github/workflows/issue-acceptance.yml":
-                    admitted_policy = b"          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-39.json' ||\n"
-                    self.assertEqual(raw.count(admitted_policy), 1)
-                    raw = raw.replace(admitted_policy, b"")
+                if name == "tools/staging/package.cjs":
+                    self.assertEqual(raw.count(after), 1)
+                    self.assertEqual(git("show", BASE + ":" + name).count(before), 1)
+                    raw = raw.replace(after, before)
                 actual[name] = hashlib.sha1(
                     b"blob " + str(len(raw)).encode() + b"\0" + raw, usedforsecurity=False
                 ).hexdigest()
-        self.assertEqual(set(actual), set(baseline), "protected paths changed")
-        self.assertEqual(actual, baseline, "a byte changed outside the exact installer paragraphs")
+        self.assertEqual(set(actual), set(baseline))
+        self.assertEqual(actual, baseline, "byte changed outside the exact mandatory-rights list")
+
+    def test_compact_tuple_proof_and_closed_selector(self):
+        with gzip.open(ROOT / "review/issue-39/2026-10-16-compact-tuples.json.gz", "rt") as handle:
+            proof = json.load(handle)
+        self.assertEqual(proof["kind"], "issue39-compact-metadata-runtime-identity")
+        self.assertFalse(proof["sourceObservation"]["dirty"])
+        self.assertTrue(proof["pythonDerivationVerified"])
+        self.assertEqual([row["kind"] for row in proof["editions"]], ["plain", "staging"])
+        components = proof["baseComponents"]
+        base = {
+            key: components[key]
+            for key in ["engine", "scenes", "assets", "producer", "routes", "variant", "contract"]
+        }
+        base_engine = hashlib.sha256(
+            (json.dumps(base, ensure_ascii=False, indent=2) + "\n").encode()
+        ).hexdigest()
+
+        def digest(value):
+            return hashlib.sha256(
+                json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode()
+            ).hexdigest()
+
+        plain = digest({"contract": 1, "baseEngine": base_engine, "parts": proof["parts"]})
+        descriptor = proof["descriptors"]["staging"]
+        staged = digest(
+            {
+                "contract": 1,
+                "edition": descriptor["edition"],
+                "baseEngine": plain,
+                "css": descriptor["css"],
+                "producer": descriptor["producer"],
+                "inputs": descriptor["inputs"],
+            }
+        )
+        for row, expected in zip(proof["editions"], [plain, staged], strict=True):
+            self.assertEqual(row["variant"]["baseEngine"], base_engine)
+            self.assertEqual(row["variant"]["fingerprint"], expected)
+            self.assertFalse(row["sourceDirty"])
+            self.assertEqual(
+                set(row["files"]),
+                {"styles.css", "space.js", "navigation.js", "theme.js", "archive.js"},
+            )
+            for record in row["files"].values():
+                self.assertTrue(record["baselineBytesEqual"])
+                self.assertTrue(record["canonicalAndImmutableEqual"])
+                self.assertEqual(record["sha256"], record["independentPythonSha256"])
+        script = """
+const fs=require('node:fs'),z=require('node:zlib'),a=require('node:assert/strict'),m=require('./tools/quality/color-motion-contract.cjs');
+const p=JSON.parse(z.gunzipSync(fs.readFileSync('review/issue-39/2026-10-16-compact-tuples.json.gz')));
+for(const row of p.editions){const id='issue39-licensed-compact-'+row.kind,known=m.reviewedRuntime(id),old=m.reviewedRuntime('issue39-licensed-'+row.kind),files={};
+a.deepEqual(known.variant,row.variant);a.deepEqual(known.files,old.files);
+for(const [name,record]of Object.entries(row.files)){a.equal(record.sha256,known.files[name]);for(const file of [name,'runtime/'+row.variant.fingerprint+'/'+name])files[file]=record;}
+const candidate={variant:row.variant,components:{contract:1,engine:row.variant.fingerprint,variant:row.variant},files,...(row.edition?{edition:row.edition}:{})};a.equal(m.select(candidate).id,id);}
+"""
+        result = subprocess.run(
+            ["node", "-e", script], cwd=ROOT, capture_output=True, text=True, timeout=30
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_installed_python_graph_contracts(self):
-        original = git("show", BASE + ":tools/quality/toolchain/requirements.txt")
+        original = git("show", LOCK_BASE + ":tools/quality/toolchain/requirements.txt")
         expected = original.replace(b"mcp==1.29.0\n", b"mcp==1.30.0\n").replace(
             b"pillow==12.3.0\n", b"pillow==12.3.0\npip==26.2.1\n"
         )

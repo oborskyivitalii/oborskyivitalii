@@ -162,8 +162,14 @@ function evidence(id) {
   }
   return value;
 }
-test('only the eight reviewed plain/staging runtime tuples select a camera and flight contract', () => {
-  for (const family of ['legacy', 'fixed', 'issue76', 'issue39-licensed'])
+test('only reviewed historical and compact-metadata plain/staging runtime tuples select a camera and flight contract', () => {
+  for (const family of [
+    'legacy',
+    'fixed',
+    'issue76',
+    'issue39-licensed',
+    'issue39-licensed-compact',
+  ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
         selected = manifest(id);
@@ -202,7 +208,9 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-plain',
     'issue76-staging',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -229,7 +237,12 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
       assert.equal(contexts, 0, 'unreviewed tuple cannot launch a browser context');
     }
   }
-  for (const id of ['fixed-staging', 'issue76-staging', 'issue39-licensed-staging']) {
+  for (const id of [
+    'fixed-staging',
+    'issue76-staging',
+    'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
+  ]) {
     const staged = manifest(id);
     delete staged.edition;
     assert.throws(() => motion.select(staged), /edition differs/);
@@ -240,7 +253,9 @@ test('current and licensed families reject mixed reviewed bytes and editions in 
     'issue76-plain',
     'issue76-staging',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
   ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
@@ -348,7 +363,9 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'issue76-plain',
     'issue76-staging',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1);

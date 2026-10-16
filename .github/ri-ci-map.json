@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
     "date": "2026-10-16",
-    "summary": "Trusted-main Python audit installer prerequisite for PR40: complete exact inventory/constraint verification with one patched MCP compatibility override, unchanged scanners/advisory feeds and protected public/runtime bytes. Reviewed source/acceptance installer routes and new permanent graph fixtures; production and ordinary PR40 staging remain separate. Self-review."
+    "summary": "Compact-metadata trusted-controller prerequisite after merged PR82: two exact future plain/staging identities with independently recomputed provenance, unchanged runtime/public bytes and mandatory frozen rights membership. Reviewed owning policy, catalogue, selector/publication negatives and current RI/CI routes; full PR40 and release acceptance remain separate. Self-review."
   },
   "layers": [
     {
@@ -482,7 +482,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "e12164633b01256b7e9a9e07901966403d9bd3e230a72bb4d01ae9410818f7fe",
+    "digest": "4565ea339f7279e8aed47e75b67b150374414b5e702a9cd11bf95d2ec86b82a0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -518,7 +518,7 @@
       },
       {
         "path": ".github/acceptance/issue-39.json",
-        "sha256": "06fbf77ff1376cfed94e4cdee018359ae3975fe58f45571b9b63e70d790dda0b"
+        "sha256": "33020293e1728b4be59c5d4655c306316ce889827fc6eaf158d15d1e53ca3f44"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -586,7 +586,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b927ac108807d42ff965263d818ac3d8b8e4b5821f8e09e7362f554853e6efee"
+        "sha256": "60844260e8c6b82f48fc6c1f388506c6d5729e9f77486a6631ec0487d6f4433c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -722,7 +722,7 @@
       },
       {
         "path": "tests/test_issue39_acceptance.py",
-        "sha256": "b5d5241121f8e8db6e242a2a2ee7f58282de8f87f24d14bdf49c79c4ada5a309"
+        "sha256": "21b6adc268a53010a2c32f2e8ac1bed3c065a9e85d9d3fc9664eac4192d5221a"
       },
       {
         "path": "tests/test_issue41_acceptance.py",

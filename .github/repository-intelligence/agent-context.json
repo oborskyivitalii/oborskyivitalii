@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "04dacfe02b72ba60416b0c7b640623f34a7a54c7794ebb1782710e72340b4e0e",
+    "digest": "1b5963cca96b0ee5204ec06d8022bbaf18c601891a5bf455a0856042c1dbce37",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "06fbf77ff1376cfed94e4cdee018359ae3975fe58f45571b9b63e70d790dda0b"
+        "sha256": "33020293e1728b4be59c5d4655c306316ce889827fc6eaf158d15d1e53ca3f44"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b927ac108807d42ff965263d818ac3d8b8e4b5821f8e09e7362f554853e6efee"
+        "sha256": "60844260e8c6b82f48fc6c1f388506c6d5729e9f77486a6631ec0487d6f4433c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "96d38c3d64890a3c939eb8828455a95be9be679a18f79b1a57bc893400aeead1"
+        "sha256": "11a2bb4dec328ee25726fe8a0ad1c63e8100c9f58c633318401cceba5b0ad5ea"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -271,7 +271,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "20f5d764f08ec1c4ab71f92a78989ff6e3b86658272b420a495e88c24f2c3c4a"
+        "sha256": "70e779814c4c4097f4c4da5796b4a58eefc93a975fd8872e8f70727db5625fe5"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -706,6 +706,16 @@
         "path": "review/issue-39/2026-10-15-publication-test-review.md",
         "identity_mode": "content",
         "sha256": "39210df0a60e326608b4c9cdb8018d3dc7e91012d404983ce9e68d82b00bc52e"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-compact-controller.md",
+        "identity_mode": "content",
+        "sha256": "61a002ac0069a81eda3bb19b514857d76e578b429c22ca01acf4e9dbe8e18608"
+      },
+      {
+        "path": "review/issue-39/2026-10-16-compact-tuples.json.gz",
+        "identity_mode": "content",
+        "sha256": "28f6b931d08073d2f5a8a438d7f0ac6aa5564b73f4e65de125473e2fdbb58ba6"
       },
       {
         "path": "review/issue-39/2026-10-16-python-audit-compatibility.md",
@@ -5335,7 +5345,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "c6d3d43864554e178dea4aeeb3379e004a176c45e7eeae49a424228f09194ebc"
+        "sha256": "5b437d6629f412312b2a7961707ce279c47b6885810fd11b9e79f71a30561890"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5470,7 +5480,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "5bace8e303c097c0e4b7f071505bd93cb4526d12a9e0c62f72f66f576adbb8e5"
+        "sha256": "a0b5ced2db702cde48d1fc149963a83fa00ecdfa615a2da5fff36579efc89ac8"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5595,7 +5605,7 @@
       {
         "path": "tests/test_issue39_acceptance.py",
         "identity_mode": "content",
-        "sha256": "b5d5241121f8e8db6e242a2a2ee7f58282de8f87f24d14bdf49c79c4ada5a309"
+        "sha256": "21b6adc268a53010a2c32f2e8ac1bed3c065a9e85d9d3fc9664eac4192d5221a"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -5890,7 +5900,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "264bd1fbbd9a312951ae879d61d73c9f64901ae73ff4cb2054249fe580cf0911"
+        "sha256": "8271c64e0444fda88761a83c916bdb1e3f2e905c93251c3f01f83189e1591fc0"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6080,7 +6090,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "9cd7d85f60ca5d22d464978eec59ecf94e76d571231108125b7013da6a20c5d6"
+        "sha256": "8aa07b051ebd05187c9ca6e55873a4b885a2cc1f5d878a113c235d70eae52907"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6390,7 +6400,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "fb165f44355534354f7961d16a08dfc4093898db1aaba9f04b8ca0f2cee20426"
+        "sha256": "b4d6d30e31f68f714333370c554aef93f489cf04e7209371b8b6b58d3755496f"
       },
       {
         "path": "tools/staging/review-flow.cjs",
@@ -8174,6 +8184,28 @@
         "AGENTS.md"
       ],
       "title": "Issue 39 — 2026-10-15 publication test review"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-compact-controller.md",
+      "kind": "file",
+      "purpose": "Finite source-only compact JSON-LD metadata identity controller prerequisite; unchanged runtime byte proof, exact rights enforcement and remaining PR40 release gates.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 39 — 16 October 2026 compact metadata controller identities"
+    },
+    {
+      "path": "review/issue-39/2026-10-16-compact-tuples.json.gz",
+      "kind": "file",
+      "purpose": "Inert exact future plain/staging tuple proof from cold immutable/current-source builds and independent Python JSON/SHA256 derivation; all canonical/immutable runtime files remain identical.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-compact-controller.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-16-compact-tuples.json.gz"
     },
     {
       "path": "review/issue-39/2026-10-16-python-audit-compatibility.md",
