@@ -125,11 +125,13 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
           fetch-depth: 1
-      - name: Pack exact tracked source for local deterministic regeneration
-        run: git archive --format=tar HEAD | gzip -3 > repo-source.tar.gz
+      - name: Pack the pinned PR68 editorial source, evidence and tests
+        run: |
+          git fetch --no-tags --depth=1 origin c3b8fb7d0b7a127363f24cdacb8a36c3f811054a
+          git archive --format=tar FETCH_HEAD site/content/pages/index/about.json site/content/pages/index/acknowledgements.json site/content/pages/index/contact.json site/content/pages/index/help.json site/content/pages/index/hero.json site/content/pages/index/main.json site/content/pages/research/acknowledgements.json site/templates/pages/index/acknowledgements.html site/templates/pages/research/acknowledgements.html review/issue-41/2026-10-10-arkadiy-amendment.json review/issue-41/2026-10-10-arkadiy-topic-amendment.json review/issue-41/2026-10-10-author-first-amendment.json tests/content.test.cjs tools/check_site_seo.cjs guides/SITE-CONTENT-REVIEW.md guides/SITE-SOURCE-AUDIT.md guides/SITE-SEO.md review/issue-41/2026-10-10-author-first.md review/issue-41/2026-10-10-author-first-review.md review/issue-41/2026-10-10-editorial-correction-review.md review/issue-41/2026-10-14-rebase-preview.md | gzip -3 > pr68-editorial.tar.gz
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
-          name: pr40-temporary-source-export-${{ github.run_id }}
-          path: repo-source.tar.gz
+          name: pr68-temporary-editorial-export-${{ github.run_id }}
+          path: pr68-editorial.tar.gz
           if-no-files-found: error
           retention-days: 1
