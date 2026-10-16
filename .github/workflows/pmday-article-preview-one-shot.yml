@@ -1,0 +1,166 @@
+name: One-shot PMDay article preview preparation
+on:
+  push:
+    branches: [work/issue-5-publisher-pmday-20261012]
+    paths: [.github/workflows/pmday-article-preview-one-shot.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Install exact PDF renderer
+        run: python3 -m pip install --disable-pip-version-check --user pymupdf==1.26.7
+      - name: Prepare reader r3, PNGs and authored provenance
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,re,pathlib,fitz
+          R=pathlib.Path.cwd()
+          P=R/"site/assets/publications/pmday-ai-both-sides"
+          D=R/"site/publications/pmday-ai-both-sides"
+          pdf=P/"presentation-v35.pdf"
+          digest="b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782"
+          assert hashlib.sha256(pdf.read_bytes()).hexdigest()==digest,"pinned v35 PDF mismatch"
+          deck=fitz.open(pdf)
+          assert len(deck)==15
+          pages=[3,5,7,9,10,12,14]
+          figs={}
+          for page_no in pages:
+              target=P/("pmday-slide-%02d.png"%page_no)
+              pix=deck[page_no-1].get_pixmap(matrix=fitz.Matrix(2,2),colorspace=fitz.csRGB,alpha=False)
+              assert pix.width>1800 and pix.height>=1000
+              pix.save(target)
+              figs[page_no]=dict(path=target.relative_to(R).as_posix(),sha256=hashlib.sha256(target.read_bytes()).hexdigest(),width=pix.width,height=pix.height)
+          draft=(R/"drafts/pmday-article-draft.en.md").read_text()
+          assert draft.startswith("> **Editorial revision 0.8")
+          assert draft.count("<!-- ARTICLE START -->")==1 and draft.count("<!-- ARTICLE END -->")==1
+          reader=draft.split("<!-- ARTICLE START -->")[1].split("<!-- ARTICLE END -->")[0].strip()+"\n"
+          appendix=draft.split("<!-- ARTICLE END -->")[1]
+          slices=list(re.finditer(r"(?m)^#### FIG-(\d{2}) — slide (\d+):",appendix))
+          assert len(slices)==7
+          spec={}
+          for i,m in enumerate(slices):
+              chunk=appendix[m.end():slices[i+1].start() if i+1<len(slices) else len(appendix)]
+              a=re.search(r"(?m)^\*\*Alt:\*\* (.+)$",chunk)
+              c=re.search(r"(?m)^\*\*Caption:\*\* (.+)$",chunk)
+              assert a and c
+              spec[m.group(1)]=(int(m.group(2)),a.group(1),c.group(1))
+          assert [spec[k][0] for k in sorted(spec)]==pages
+          marks=re.findall(r"<!-- ASSEMBLY FIG-(\d{2}):[^\n]* -->",reader)
+          assert marks==sorted(spec)
+          for k in marks:
+              n,alt,_=spec[k]
+              reader,count=re.subn(r"<!-- ASSEMBLY FIG-"+k+r":[^\n]* -->",lambda m:"![%s](asset:pmday-slide-%02d)"%(alt,n),reader)
+              assert count==1
+          assert "<!--" not in reader
+          meta_path=D/"publication.json"
+          meta=json.loads(meta_path.read_text())
+          old={a["id"]:a for a in meta["assets"]}
+          assert "cover" in old and "presentation-cover" in old
+          reader=reader.replace("*AI Changes Both Sides of Software Engineering*\n","*AI Changes Both Sides of Software Engineering*\n\n![%s](asset:cover)\n"%old["cover"]["alt"],1)
+          assert reader.startswith("# The Sum of Our Technology\n") and reader.count("## 6. What If Not?")==1
+          assert reader.count("(asset:pmday-slide-")==7 and reader.count("(asset:cover)")==1
+          urls=list(dict.fromkeys(re.findall(r"\]\((https://[^)\s]+)\)",reader)))
+          assert meta["presentation"]["sourceUrl"] in urls
+          meta["references"]=[dict(id="source-%s"%(i+1),url=u) for i,u in enumerate(urls)]
+          assets=[old["cover"],old["presentation-cover"]]
+          for i,n in enumerate(pages):
+              _,alt,caption=spec["%02d"%(i+1)]
+              assets.append(dict(id="pmday-slide-%02d"%n,**figs[n],alt=alt,caption=caption,credit="Full-page screenshot of PMDay 2026 v35 review slide %s by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."%n))
+          meta["assets"]=assets
+          meta["title"]="The Sum of Our Technology"
+          meta["summary"]="What if AI acceleration fails outside a code generator? Two shifts in software engineering demand evidence, sustainable delivery and viable socio-technical control."
+          meta["edition"]="pmday-ai-both-sides-en-review-20261016-r3"
+          meta["rights"]["notice"]="Article by Vitalii Oborskyi, existing AI-generated cover, seven exact full-page PMDay v35 source screenshots. Original deck/source/third-party credits retained; per-item publication clearance pending."
+          (D/"manuscript.en.md").write_text(reader)
+          meta_path.write_text(json.dumps(meta,indent=2,ensure_ascii=False)+"\n")
+          launch="The Sum of Our Technology — AI Changes Both Sides of Software Engineering.\n\nWhat if the AI SDLC succeeds at generating code but fails at delivery, recovery or human control?\n\nMy PMDay essay examines two shifts and the socio-technical system we must actually be able to operate. Draft review preview; no publication/canonical URL. Ukrainian recording: https://youtu.be/xSgWjuGqC9I\n"
+          (D/"launch-post.en.md").write_text(launch)
+          profile_path=D/"profile.json"
+          profile=json.loads(profile_path.read_text())
+          profile["id"]="pmday-ai-both-sides-review-20261016"
+          profile["seo"]=dict(title="The Sum of Our Technology — AI Changes Both Sides of Software Engineering",summary=meta["summary"])
+          profile["launch"]["sha256"]=hashlib.sha256(launch.encode()).hexdigest()
+          profile["limits"]["linkedinCharacters"]=50000
+          profile_path.write_text(json.dumps(profile,indent=2,ensure_ascii=False)+"\n")
+          blueprint="# The Sum of Our Technology — review manuscript r3\n\nEditorial owner: issue #2; publisher: #5 / PR #79.\n\nThis is the selected authorial v0.8 reader prose from the excluded draft, preserving six chapters, title allusion to Lem and the What If Not thread. The earlier r2 record is historical; this remains a review candidate, not a publication.\n\nSeven unedited full-page v35 PDF screenshots: slides 3, 5, 7, 9, 10, 12, 14. Keep cover and one PDF / Ukrainian recording paragraph. The older original body diagrams remain in the repo but are not selected for the r3 article.\n\nReader, evidence/rights, PDF, platform variants and narrow/wide hosted preview must be checked before author or release approval. Existing article slug remains unchanged.\n"
+          (D/"blueprint.md").write_text(blueprint)
+          with (P/"PROVENANCE.md").open("a") as out:
+              out.write("\n## Seven direct full-page v35 slide figures, review r3\n\nSource: SHA256 "+digest+", 15-page PDF copied from UA PR113 commit 22639d311d5fb46a23f3d5cdd819800dbe1169d9. PyMuPDF 1.26.7 direct full-page rendering at 2x RGB, no crop, retouch or redraw; publication rights review pending. Earlier body diagrams remain unused.\n\n")
+              for n in pages:
+                  f=figs[n]
+                  out.write("- Slide %s: %s, %sx%s, SHA256 %s.\n"%(n,f["path"],f["width"],f["height"],f["sha256"]))
+          edition=D/"editions/pmday-ai-both-sides-en-review-20261016-r3.json"
+          rec=dict(schema=1,id=meta["edition"],articleId=meta["id"],language="en",kind="full-article",source=dict(path="manuscript.en.md",sha256=hashlib.sha256(reader.encode()).hexdigest(),commit=None,blob=None),owner="site",derivation=None,rights="review-pending",semanticSha256="0"*64)
+          edition.write_text(json.dumps(rec,indent=2)+"\n")
+          paths=R/".github/repository-paths.json"
+          cat=json.loads(paths.read_text())
+          for n in pages:
+              cat["entries"][figs[n]["path"]]=dict(kind="file",purpose="Full-page v35 PMDay slide %d from pinned review PDF for editorial article r3."%n,role="source",owner="guides/ARTICLE-WORKFLOW.md")
+          cat["entries"][edition.relative_to(R).as_posix()]=dict(kind="file",purpose="PMDay r3 review semantic edition, provenance and pending rights.",role="source",owner="guides/ARTICLE-WORKFLOW.md")
+          cat["entries"]=dict(sorted(cat["entries"].items()))
+          paths.write_text(json.dumps(cat,indent=2,ensure_ascii=False)+"\n")
+          print(json.dumps({"edition":rec["id"],"source_sha256":rec["source"]["sha256"],"slides":pages,"links":len(urls)}))
+          PY
+          
+      - name: Freeze exact semantic digest
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const dir='site/publications/pmday-ai-both-sides/';
+          const m=JSON.parse(fs.readFileSync(dir+'publication.json','utf8'));
+          const p=dir+'editions/'+m.edition+'.json';
+          const ed=JSON.parse(fs.readFileSync(p,'utf8'));
+          const digest=crypto.createHash('sha256').update(fs.readFileSync(dir+'manuscript.en.md')).digest('hex');
+          if(digest!==ed.source.sha256)throw Error('source digest mismatch');
+          ed.semanticSha256=require('./tools/publishing/semantic.cjs').semanticDigest(m,{sha256:digest},m.assets);
+          fs.writeFileSync(p,JSON.stringify(ed,null,2)+'\n');
+          console.log(JSON.stringify({semantic:ed.semanticSha256,edition:ed.id,assets:m.assets.length}));
+          NODE
+          
+      - name: Validate publisher and prepare full HTML platform kit
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          node tools/publishing/cli.cjs validate pmday-ai-both-sides
+          node tools/publishing/cli.cjs render pmday-ai-both-sides
+      - name: Build and verify the isolated seven-figure article preview
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),path=require('node:path');
+          const out=path.join(process.env.RUNNER_TEMP,'pmday-pr79-v08');
+          const result=require('./tools/site/build.cjs').build({output:out,candidateArticles:['pmday-ai-both-sides'],all:true});
+          const html=fs.readFileSync(path.join(out,'articles/ai-changes-both-sides-of-software-engineering.html'),'utf8');
+          for(const n of [3,5,7,9,10,12,14])if(!html.includes('figure-pmday-slide-'+String(n).padStart(2,'0')))throw Error('missing figure '+n);
+          if(!html.includes('The Sum of Our Technology')||!html.includes('The human is an architectural dependency'))throw Error('wrong editorial revision');
+          console.log(JSON.stringify({article:result.builtArticles,htmlBytes:Buffer.byteLength(html)}));
+          NODE
+          
+      - name: Rebuild and verify generated repository intelligence
+        run: |
+          python3 tools/repository_intelligence.py build
+          python3 tools/repository_intelligence.py verify
+      - name: Verify maintained formatting and basic source
+        run: |
+          node tools/quality/format.cjs --check
+          node tools/quality/local.cjs
+      - name: Commit preview sources with no persistent bootstrap workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/pmday-article-preview-one-shot.yml
+          git add site/publications/pmday-ai-both-sides/
+          git add site/assets/publications/pmday-ai-both-sides/PROVENANCE.md
+          git add site/assets/publications/pmday-ai-both-sides/pmday-slide-*.png
+          git add .github/repository-paths.json REPOSITORY-MAP.md .github/repository-intelligence/
+          git diff --cached --check
+          git commit -m 'content(article): assemble PMDay r3 with seven exact slides (Refs #5)'
+          git push origin HEAD:work/issue-5-publisher-pmday-20261012
