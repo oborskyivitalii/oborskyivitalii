@@ -273,13 +273,15 @@ test('live production cannot accept a passive pass flag without complete scan co
   const temp = fixture.temporary(t);
   const source = fixture.source(temp, 'production');
   source.record = edition.build(source.directory);
-  fixture.rightsInventory(source, true);
-  const stage = fixture.staging(temp);
+  const rights = fixture.rightsInventory(source, true);
   const combined = pages.build(
-    stage.directory,
+    null,
     path.join(temp, 'combined'),
     source.directory,
-    'prod-2026-10-11.1'
+    'prod-2026-10-11.1',
+    null,
+    '/',
+    { productionRightsDigest: rights.report.inventoryDigest }
   );
   const record = {
     sourceCommit: source.record.sourceCommit,
@@ -301,10 +303,9 @@ test('live production cannot accept a passive pass flag without complete scan co
     },
   };
   const reports = {
-    pages: { pass: true, packageDigest: combined.packageDigest },
+    pages: { pass: true, packageDigest: combined.packageDigest, staging: false, actual404: true },
     policy: { pass: true, ...record, origin: edition.origin },
     productionBrowser: browser(source.record, edition.origin),
-    stagingBrowser: browser(stage.record, edition.origin + '/staging'),
     passive: passive.validate(
       { '@version': 'fixture', site: [{ '@name': edition.origin, alerts: [] }] },
       traffic

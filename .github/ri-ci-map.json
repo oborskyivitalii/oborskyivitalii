@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "35782987323d01a7ce1622a550cd9a5f154bf22dd259693ef01c009fb844884d",
+    "digest": "1ec3377888fa1073696ec0d341dfb5ff868fcdbe1bed2393e546df0be937fb8a",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -634,7 +634,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "5668e5993fb07c107184cfdb562eaf447cc6b7aa8c186669f224f2ae936ac5ef"
+        "sha256": "da2e6b3bee99730e8a3fe4468352f373f5e87608099f0de9f5d2776c3d5dbc2e"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -686,7 +686,7 @@
       },
       {
         "path": ".github/workflows/site-production.yml",
-        "sha256": "83a2e3e4dd55e234f98a8198b9af6fabb131c5ff755a18fe2376f0e39b0ab3aa"
+        "sha256": "ab308c527eece727811ce5648f76125ed8b29bdbb7796080dc2321abb05a4522"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -866,7 +866,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "aa6035be89d8163657277fd3e0807a595223e1f16804f755da790c9cf91bfbc6"
+        "sha256": "49a573841ff5ccd29d0f1d88234afb6b1203284aac96e2a4396afcee85ab83d3"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -78,6 +78,57 @@ function hosted(directory, deploymentPath = '/') {
   };
 }
 
+test('production-only Pages retains exact admitted bytes and rights while retiring every staging route', async (t) => {
+  const temp = fixture.temporary(t),
+    production = fixture.production(temp),
+    rights = JSON.parse(fs.readFileSync(path.join(production.directory, 'rights.json'))),
+    directory = path.join(temp, 'production-pages');
+  const record = pkg.build(null, directory, production.directory, 'prod-2026-10-16.1', null, '/', {
+    productionRightsDigest: rights.inventoryDigest,
+  });
+  assert.equal(record.staging, null);
+  assert.equal(record.state.staging, null);
+  assert.equal(record.rights.staging, null);
+  assert.deepEqual(pkg.subtree(record.files, 'staging/'), {});
+  for (const [file, info] of Object.entries(production.record.files))
+    assert.deepEqual(record.files[file], info, 'frozen production bytes changed');
+  const result = await http.check(directory, 'https://author.invalid/', hosted(directory));
+  assert.equal(result.pass, true);
+  assert.equal(result.staging, false);
+  assert.equal(result.actual404, true);
+  await assert.rejects(
+    http.check(directory, 'https://author.invalid/', async (url) => {
+      if (new URL(url).pathname === '/staging/')
+        return fixture.response(url, fs.readFileSync(path.join(directory, 'public/index.html')));
+      return hosted(directory)(url);
+    }),
+    /missing route/
+  );
+  for (const mutate of [
+    (r) => (r.state.production = null),
+    (r) => (r.state.production.sourceCommit = 'f'.repeat(40)),
+    (r) => (r.state.production.publicDigest = 'f'.repeat(64)),
+    (r) => (r.state.staging = { sourceCommit: production.record.sourceCommit }),
+    (r) => delete r.rights.productionArchiveDigest,
+    (r) => (r.rights.staging = r.rights.root),
+  ]) {
+    const invalid = structuredClone(record);
+    mutate(invalid);
+    assert.throws(() => pkg.verify(directory, invalid));
+  }
+  assert.throws(() => pkg.build(null, path.join(temp, 'without-production')));
+  assert.throws(() =>
+    pkg.build(null, path.join(temp, 'without-rights'), production.directory, 'prod-2026-10-16.1')
+  );
+  const stage = fixture.staging(path.join(temp, 'retired-stage'));
+  fs.cpSync(path.join(stage.directory, 'public'), path.join(directory, 'public/staging'), {
+    recursive: true,
+  });
+  const altered = { ...record, ...artifact.manifest(path.join(directory, 'public')) };
+  altered.packageDigest = altered.artifactDigest;
+  assert.throws(() => pkg.verify(directory, altered), /staging copy/);
+});
+
 test('Pages HTTP checks exact root, staging, queries, all assets and an actual 404', async (t) => {
   const temp = fixture.temporary(t),
     stage = fixture.staging(temp),

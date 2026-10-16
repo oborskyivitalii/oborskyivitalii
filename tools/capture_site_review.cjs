@@ -180,18 +180,23 @@ async function matrix() {
         assert.notEqual(await pixelTrace(page), first, 'geometry moves without scrolling');
         await page.screenshot({ path: path.join(out, `${route}-${theme}-${device}.png`) });
         const max = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
-        await page.mouse.wheel(0, Math.max(250, Math.round(max * 0.45)));
+        const scroll = {
+          range: max,
+          before: { y: await page.evaluate(() => scrollY), camera },
+        };
+        const scrollDistance = Math.max(250, Math.round(max * 0.45));
+        await page.mouse.wheel(0, scrollDistance);
         await idle(page);
         assert.notEqual(await pixelTrace(page), first, `${route} must move with native scroll`);
-        const hasScroll = max > 1 && (await page.evaluate(() => scrollY)) > 0;
-        if (hasScroll)
-          assert.notEqual(await poseTrace(page), camera, `${route} forward scroll moves camera`);
-        else assert.equal(await poseTrace(page), camera, `${route} short page keeps camera`);
+        scroll.forward = { y: await page.evaluate(() => scrollY), camera: await poseTrace(page) };
         if (device === 'desktop' && ['index', 'research', 'writing'].includes(route))
           await page.screenshot({ path: path.join(out, `${route}-${theme}-lower.png`) });
+        await page.mouse.wheel(0, -scrollDistance);
+        await idle(page);
+        scroll.reverse = { y: await page.evaluate(() => scrollY), camera: await poseTrace(page) };
         const frameTimes = await page.evaluate(() => window.__review.frames);
         frameTimes.sort((a, b) => a - b);
-        summary.push({
+        const view = {
           route,
           theme,
           device,
@@ -199,8 +204,11 @@ async function matrix() {
           ...dimensions,
           readyProbe,
           scene_pixels_changed_after_scroll: true,
-          native_scroll_has_range: hasScroll,
-          native_scroll_changes_camera: hasScroll,
+          native_scroll: scroll,
+          native_scroll_has_range: max > 1,
+          native_scroll_changes_camera: [scroll.forward, scroll.reverse].some(
+            (sample) => sample.camera !== camera
+          ),
           ambient_changes_pixels: true,
           ambientProbe,
           idle_camera_stays_fixed: true,
@@ -210,7 +218,9 @@ async function matrix() {
             p95: frameTimes[Math.floor(frameTimes.length * 0.95)] || 0,
             max: Math.max(...frameTimes),
           },
-        });
+        };
+        require('./quality/validate.cjs').captureScroll(view);
+        summary.push(view);
         process.stdout.write(
           `${route} ${theme} ${device}: captured; scroll/ambient/overflow passed\n`
         );

@@ -8784,6 +8784,18 @@
       "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
       "role": "history",
       "owner": "review/issue-39/2026-10-16-stable-staging.md"
+    },
+    "review/issue-39/2026-10-16-production-finalization.md": {
+      "kind": "file",
+      "purpose": "Issue39 actual GitHub production setup, native frozen candidate/recovery and production regression blocker follow-up.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-production-finalization-native.json.gz": {
+      "kind": "file",
+      "purpose": "Original source96 native production regression failure logs, reports, job metadata and exact upload digests; bounded historical evidence, not new admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

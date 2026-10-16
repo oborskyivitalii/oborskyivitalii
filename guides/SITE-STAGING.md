@@ -279,7 +279,11 @@ retain the existing Basic/navigation contexts. Actual settings evidence remains
 separate. `SITE_PRODUCTION_ENABLED` stays absent/false during preparation.
 
 The retired `SITE_PAGES_STAGING_ENABLED` variable has no staging consumer. The
-former Pages publisher workflow is removed. Production-only package composition
-and historical Pages recovery helpers remain until PR40's explicit cleanup and
-production cutover; no new staging run writes GitHub Pages. See the scoped
+former Pages staging publisher workflow is removed. New production composition
+contains only the admitted production root, with null staging/source/license
+receipts. HTTP checks require retired `/staging/` paths to return the owned 404.
+The authenticated predecessor remains unchanged as a complete recovery package;
+legacy package verification remains for historical/recovery consumers. Canonical
+migration from the current project-prefix origin, live deployment and actual
+compensation remain separate #39 cutover acceptance, not fixture results. See the scoped
 [execution record](../review/issue-72/2026-10-16-cloudflare-only-staging.md).

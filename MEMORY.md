@@ -4,53 +4,67 @@ Dated continuity, not live authority. Last verified: **2026-10-16**.
 
 ## Snapshot
 
-- Protected main a5a6f8ce includes PR81/82/83 and the exact
-  Writing plain/staging controller prerequisite PR84. PR40 integrated main at805d94a5/tree3743aa0a; Draft again for the interpreter correction.
-- Native Writing diagnostic38940320357 binds clean64559870/tree611ca08c:
-  full Chromium153/Lighthouse13.5 Ubuntu24.04.5, five ordinary45/29/22/19.5/21.5ms,
-  separate CPU111ms. No current native overrun reproduced; no new runtime edit.
-- Native raw ZIP12062293377 and all18 raw hashes/sizes verified; actual plain
-  artifact matches independent cold build. Versioned six-row evidence/report:
-  `review/issue-39/2026-10-16-native-writing-controller.md` and adjacent gzip.
-- This is loopback plain Color, not hosted/staging acceptance. Prior local232ms,
-  native235.5ms, loaded/failed observations and isolation correction remain.
-- PR84 exact53f1ec3f/treec5dee8e8 source545/545, owning13/13, RI/navigation pass.
-  Only two proved IDs, mandatory rights and exact checksum/boolean classifications;
-  protected607 public/runtime/compiler/workflow blobs otherwise remain unchanged.
-- PR40 head805 native619/619 in50 modules, owning19/19, RI/navigation and preview pass.
-- Ordinary stage38945614659 stopped before upload at25/26: system Python lacked
-  packaging;115 Python tests,22 errors. Locked audit venv already has26.3.
-- Correct only that suite executable to the locked venv, no system fallback.
-  Preserve failure/report in2026-10-16-stable-staging.md and adjacent gzip.
+- PR40 merged to protected main96a7a10dcf0a7afd2d4ea0618fc5d590922f7cc0,
+  tree60fbe98c25f85957e1ef68d07939efef6033f6e6. Post-merge identity/navigation passed.
+- Stable Cloudflare staging38947896256/1 serves admitted61a83b22 with the same
+  runtime tree;26/26 preflight,591 source,115 Python and bounded hosted checks pass.
+  Prior failed Writing metrics remain retained; staging is not full admission.
+- Frozen production preparation38970827240/1 at96 passed25/25 prepublication,
+  615 source/49modules,115 Python, isolated preview publication and exact HTTP.
+  Public artifact12076902293/public307f689d/upload d7d07a52; no activation.
+- Recovery prepare38971280141/1 passed: original Pages source/cname/HTTPS,
+  authenticated predecessor38239942377, exact retained package and HTTP. ZIP
+  12076986820 SHA256f98ee7d21c084c4ffb5e639f8506f7118e7bce60c5b0f1dd050e98dca7428fc5.
+- Actual GitHub settings: immutable Releases; strict main checks plus Staging
+  admission; production ruleset25276926 restricts production creation/update/
+  deletion/nonforce. Sole always bypass Integration5351234; no production ref.
+- Dedicated oborskyivitalii-prod/App5351234 installed172222773 only on this repo:
+  Administration/Contents/Workflows write,Metadata read. AppID/ClientID saved in
+  protected main-only production/github-pages environments. Private-key owner
+  creation/entry complete: key4899234 and private-key secret names verified in both
+  environments. App-token mint remains unverified. Production enabled=false; retired Pages staging=false.
+- Original full native run38971767557/1 is not admitted: captures asserts retired
+  moving-camera behavior; controlled loopback omits production txt/xml MIME;
+  macOS WebKit navigation separator mismatch; Linux Color Firefox timeouts and
+  WebKit separator mismatch. Other in-progress jobs require fresh inspection.
+- Follow-up work/pr40-production-finalization-39 corrects capture observations/
+  negatives,loopback MIME and production-only composition while retaining the
+  predecessor solely for recovery. Versioned report and adjacent raw gzip:
+  review/issue-39/2026-10-16-production-finalization.md. New source has no native admission.
 
 ## Decisions
 
-- Latest maintainer “Роби” authorizes main integration/Ready checks, exact-source
-  26/26 preflight and ordinary stable Cloudflare staging, then stop/report.
-- No PR40 merge, production activation or domain/DNS action belongs here.
-- Preserve the full PR40 feature/runtime/rights/scanner policy when reconciling
-  the deliberately narrow main prerequisite. All earlier raw failures remain.
-- Source/Ready, preflight, actual staged edition and served identity are separate
-  observations. Existing budgets and full/native/manual production gates remain.
+- Maintainer approved PR40 merge and production continuation, maximum autonomous
+  GitHub work, then the exact dedicated App/install/permissions/bypass scope.
+  Do not ask again for the same release/setup authorization.
+- Owner completed private-key creation and both protected secret entries.
+  Never request PEM in chat or expose credentials. Read only key/secret metadata.
+- Cloudflare is the sole staging publisher. Preserve every original failed/raw
+  observation and original budgets; do not fabricate device/rights/independent records.
+- Settings, source tests, merged code, exact full admission and publication remain
+  separate observations. Source-bound external gates still apply after authorization.
 
 ## Open work
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / PR40 | Authorized continuation: integrate latest main, preserve full feature policy, freeze final head, Ready source checks,26/26 preflight, ordinary stable staging and served identity/budgets. |
-| #1 / #7 / #8 / #13 | Actual source-bound rights/editorial/device/independent/full/native and production live-origin acceptance. |
-| #39 / #72 | Publisher settings, canonical migration, protected archive and recovery. |
+| #39 / merged PR40 follow-up | Review/test capture,MIME and production-only cleanup; Draft follow-up PR, current-source owning/RI/source checks and native verification. |
+| #39 / #13 | Diagnose actual WebKit separator and Firefox edge timeouts; retain complete original native failures and remaining full jobs. |
+| #39 / #72 / #8 | App-token proof; authenticated project-prefix to canonical cutover with exact configuration/package recovery; protected publisher and live checks. |
+| #1 / #7 / #8 / #13 | Exact-source rights policy/inventory review, physical iOS/Android and independent acceptance; actual production-domain analytics/TLS/cost. |
 
 ## Next session
 
-1. Revalidate PR40/current main/checks; preserve original dirty worktree and every
-   failed/raw observation. Do not infer prior green evidence admits a new head.
-2. Resume the authorized Ready/preflight/stable-staging continuation if interrupted;
-   stop/report after served-source verification. PR40 merge/production stay outside scope.
-3. Freeze the narrow Python interpreter correction, rerun exact Ready checks
-   and ordinary26/26 preflight; full feature/scanner/runtime policy stays intact.
-4. Exact Ready checks and26/26 preflight precede ordinary stable Cloudflare staging.
-5. Stop/report staging; later PR40 merge/production retain separate decisions.
+1. Revalidate protected main, follow-up PR, actual settings/key metadata and all
+   jobs/artifacts in38971767557; never infer admission from a previous source.
+2. Continue the same #39 follow-up, preserve stable staging and every failed/raw
+   result. Current public/runtime content remains unchanged by harness edits. The local
+   implementation checkpoint6be36795/tree69140c6f passed618/618 source and19/19
+   owning checks; report/raw gzip preserve exact identities and pending gates.
+3. Finish the native blockers and exact-source admission through existing profiles;
+   no selected green reruns, widened limits or second staging publisher.
+4. After actual external/full/cutover prerequisites, continue already-authorized
+   production and verify canonical domains/served bytes and exact recovery.
 
 ## Maintenance
 

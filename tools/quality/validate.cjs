@@ -638,6 +638,36 @@ function scanner(r) {
     assert.equal(d.runtimeDependencies, 'none');
   }
 }
+function captureScroll(row) {
+  const scroll = row.native_scroll;
+  assert.ok(scroll && Number.isFinite(scroll.range) && scroll.range >= 0, 'missing capture scroll');
+  const camera = scroll.before?.camera;
+  assert.ok(typeof camera === 'string' && camera.length > 0, 'missing capture reading camera');
+  for (const phase of ['before', 'forward', 'reverse']) {
+    const sample = scroll[phase];
+    assert.ok(
+      sample && Number.isFinite(sample.y) && sample.y >= 0 && sample.y <= scroll.range + 1,
+      'missing/out-of-range capture scroll ' + phase
+    );
+    assert.equal(sample.camera, camera, 'capture reading camera moved during ' + phase);
+  }
+  assert.ok(scroll.before.y <= 1, 'capture reading journey must start at the native top');
+  const hasScroll = scroll.range > 1;
+  assert.equal(row.native_scroll_has_range, hasScroll, 'capture scroll range differs');
+  assert.equal(row.native_scroll_changes_camera, false, 'capture claims reading camera travel');
+  if (hasScroll) {
+    assert.ok(scroll.forward.y > scroll.before.y, 'capture forward native scroll did not move');
+    assert.ok(scroll.reverse.y < scroll.forward.y, 'capture reverse native scroll did not move');
+  } else {
+    assert.equal(scroll.forward.y, scroll.before.y, 'short capture page manufactured scroll');
+    assert.equal(
+      scroll.reverse.y,
+      scroll.before.y,
+      'short capture page manufactured reverse scroll'
+    );
+  }
+  return true;
+}
 function releaseReports(reports, m, releaseEvidence, automatedOnly = false) {
   const windows = reports.find(
       (x) => x.kind === 'functional' && x.environment.platform === 'win32'
@@ -698,6 +728,7 @@ function releaseReports(reports, m, releaseEvidence, automatedOnly = false) {
         assert.ok(row);
         assert.equal(row.overflow, false);
         assert.equal(row.ambient_changes_pixels, true);
+        captureScroll(row);
       }
   }
   if (automatedOnly) return;
@@ -1024,6 +1055,7 @@ module.exports = {
   aggregate,
   scanner,
   sourceReport,
+  captureScroll,
   readEvidence,
   colorPaint,
   colorReports,
