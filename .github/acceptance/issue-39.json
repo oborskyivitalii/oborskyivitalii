@@ -8,26 +8,15 @@
       "id": "AC01",
       "intent": "Revalidated baseline and capability inventory",
       "automated_scope": "The unchanged 2026-10-07 provider snapshot retains its historical schema/ref/observations and then-unknown Pages settings. It is dated evidence, not a new live inventory; current refs and provider state require separate live review.",
-      "checks": [
-        "INVENTORY"
-      ],
-      "gates": [
-        "LIVE-INVENTORY"
-      ]
+      "checks": ["INVENTORY"],
+      "gates": ["LIVE-INVENTORY"]
     },
     {
       "id": "AC02",
       "intent": "Canonical .ai topology and lossless .com redirect plan",
       "automated_scope": "Finite exact DNS and rule fields, negative origin/proxy/host/query/order mutations and planned URL fixtures; authenticated migration fixtures bind the old Pages prefix, captured settings, source workflow/run/artifact, frozen execution controller and exact recovery bytes. These checks do not apply provider rules or migrate the live host.",
-      "checks": [
-        "DOMAIN-PLAN",
-        "DOMAIN-NEGATIVES",
-        "REDIRECT-FIXTURES",
-        "PAGES-MIGRATION"
-      ],
-      "gates": [
-        "LIVE-DOMAINS"
-      ]
+      "checks": ["DOMAIN-PLAN", "DOMAIN-NEGATIVES", "REDIRECT-FIXTURES", "PAGES-MIGRATION"],
+      "gates": ["LIVE-DOMAINS"]
     },
     {
       "id": "AC03",
@@ -41,38 +30,21 @@
         "FLIGHT-TELEMETRY",
         "HOST-POLICY"
       ],
-      "gates": [
-        "PRODUCTION-ADMISSION"
-      ]
+      "gates": ["PRODUCTION-ADMISSION"]
     },
     {
       "id": "AC04",
       "intent": "Actionable maintainer instructions and linked execution",
       "automated_scope": "AC01-AC05/check/gate and exact operator settings routes remain mapped. The existing bounded style guard checks its declared subset; CS01, CS05, CS08, CS09 and CS10 ownership, readability, proportional verification and issue/PR evidence require explicit review beyond that guard. Human usefulness, live links and owner completion stay separate.",
-      "checks": [
-        "OPERATOR-POLICY",
-        "CURRENT-GUARD",
-        "NODE-BASIC",
-        "RI-FRESH",
-        "RI-CI"
-      ],
-      "gates": [
-        "OWNER-SETTINGS",
-        "REVIEW",
-        "MERGE"
-      ]
+      "checks": ["OPERATOR-POLICY", "CURRENT-GUARD", "NODE-BASIC", "RI-FRESH", "RI-CI"],
+      "gates": ["OWNER-SETTINGS", "REVIEW", "MERGE"]
     },
     {
       "id": "AC05",
       "intent": "Eventual live custom-domain acceptance",
       "automated_scope": "Finite fixtures for both .com hosts/schemes and encoded/repeated queries; prepared URL expectations alone never admit public DNS/TLS/HTTP.",
-      "checks": [
-        "REDIRECT-FIXTURES"
-      ],
-      "gates": [
-        "LIVE-DOMAINS",
-        "PRODUCTION-ADMISSION"
-      ]
+      "checks": ["REDIRECT-FIXTURES"],
+      "gates": ["LIVE-DOMAINS", "PRODUCTION-ADMISSION"]
     }
   ],
   "checks": {

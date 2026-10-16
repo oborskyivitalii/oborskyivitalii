@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f3e3e9937e92e7a3e46ec076d166f2405a85337f27f60ec339008648489165d8",
+    "digest": "0fee7d5152c910832c44a12f759a5fe3be86305ed9803367d2a6a13ecfff497e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "7a78216c56b6016caa217552e9caf0b6e36f640f298a5e2747185d55e834722e"
+        "sha256": "561099b92195d86a2d5f4a5258823c6cef30ee2eed9e59d6235f7504e3fb8d04"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d0afc534a23085b0148319183958239ff6f174b791db4b083b04be53b2335b85"
+        "sha256": "580305cac274da6e9aba891aea5b6eb219f777e945ab3d9ef0f2ff3ac7ff5842"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -296,7 +296,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "39dc5ef988e4bfae67d7ffacf4d5154c2860977a3676ff384951fe31ad5d6cde"
+        "sha256": "0cf4bfcc4396b664bfd0e59f726494c8c0291fea594a85c5800cee5707365013"
       },
       {
         "path": "NOTICE.md",
@@ -805,7 +805,7 @@
       {
         "path": "review/issue-39/2026-10-16-positioning-integration.md",
         "identity_mode": "content",
-        "sha256": "263eeec2d5a60e24742bba9f4e2b7a6924b3405390b58cb4e343b2b6e2611ee5"
+        "sha256": "4bd892f53b0cad3daed3e88b473add4f01b857e79e027ad7620381adff456687"
       },
       {
         "path": "review/issue-41/2026-10-07-analysis.md",
@@ -5725,7 +5725,7 @@
       {
         "path": "tests/test_issue39_acceptance.py",
         "identity_mode": "content",
-        "sha256": "8996b600eca66c51def14117ccffdd1814dcab6143b8d89536441b4a45cb8935"
+        "sha256": "d5649bac6c0f9d4c0b224b51afbccb315bee33e87bdcdcfb89f332657dfa087e"
       },
       {
         "path": "tests/test_issue41_acceptance.py",
@@ -6130,7 +6130,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "b1e8289c18f13c39a85c0b1ecec4fa6a305980ffb87de75beeaaf70e544511ad"
+        "sha256": "adcb49f147bcaeca06b0eba20fb9cbb886e796ce6309b9174f0dcfd81988496f"
       },
       {
         "path": "tools/quality/local.cjs",
