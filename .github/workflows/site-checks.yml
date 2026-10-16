@@ -111,3 +111,25 @@ jobs:
       upload_digest: ${{ needs.checks.outputs.artifact_upload_digest }}
       gate_artifact_id: ${{ needs.checks.outputs.gate_artifact_id }}
       gate_upload_digest: ${{ needs.checks.outputs.gate_upload_digest }}
+
+  pr40-local-source-export:
+    name: PR40 temporary read-only source export
+    if: github.event_name == 'pull_request' && github.event.pull_request.number == 40
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Pack exact tracked source for local deterministic regeneration
+        run: git archive --format=tar HEAD | gzip -3 > repo-source.tar.gz
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: pr40-temporary-source-export-${{ github.run_id }}
+          path: repo-source.tar.gz
+          if-no-files-found: error
+          retention-days: 1
