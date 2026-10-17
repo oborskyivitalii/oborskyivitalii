@@ -400,3 +400,34 @@ registered staging source/Python, formatting/style/RI/RI-CI, owning19checks and
 unchanged ordinary prepublication/staging, followed by protected expected-head
 merge. Fresh frozen production/rights/recovery and actual domain smoke remain
 separate pending observations at this checkpoint.
+
+
+## Native authorization deployment correction — 17 October 2026
+
+Inspected protected main552678af985a16ba7a6866e44dd3d00cc955813b and actual
+production run39046471457/2. Owner credential repair made authorization job
+117438453872 pass. Pages job117438531546 stopped before archive/deployment:
+`activeProduction` mistook the native successful `production` environment
+record (creator oborskyivitalii, the authorization job) for an authenticated
+`accepted-production` record and rejected its creator. Live package was unchanged.
+The production deployment UI shows only that native success and the original
+failed authorization; no accepted release exists. This is implementer self-review.
+
+Scope remains issue39 AC03/AC04: recognize only explicit accepted-release payloads,
+then retain the existing successful-status, trusted creator, immutable tag and
+source SHA requirements. Native environment bookkeeping cannot prove publication.
+First-publication byte/receipt/settings leases, exact staging admission, rights,
+protected refs and live smoke remain unchanged. No site byte or budget changes.
+CS01/CS04/CS05/CS08/CS09/CS10 apply to tools/pages/controller.cjs and the existing
+registered tests/pages-delivery.test.cjs. Add behavioral coverage for native
+success without a release, trusted acceptance alongside native records, and
+forged creator/tag/source rejection. Run Basic, registered source/profile and
+owning policy checks, formatter/style and refreshed RI/CI; then ordinary staging
+and protected merge. Re-freeze final main and capture current-controller recovery
+from the original Pages configuration before rebinding canonical and publishing.
+All earlier failed records stay failed. The new behavioral case reproduces the exact
+creator mismatch against the original controller (exit1) and passes on the corrected
+controller (1/1, zero skips); it also rejects forged creator/tag/source and ignores failed
+release statuses. The three affected delivery/migration/release modules pass together.
+Style guard, RI/CI coupling and RI freshness pass locally. Complete exact-source/profile,
+owning checks, hosted staging, merge and new publication remain pending.
