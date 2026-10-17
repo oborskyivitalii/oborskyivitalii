@@ -4,21 +4,24 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- Owner issue39; protected main656fe739 contains merged PR93. All source checks,
-  accepted staging39060480123/1 and production candidate39061956620/1 pass.
-- Publisher39062995834/1 passed actual HTTP44files, policy and browser smoke,
-  published immutable tagprod-2026-10-17.3, then PR93 label write failed403.
-  Ordinary token had PullRequests read. Automatic byte rollback passed; attempted
-  original-prefix settings restoration failed403, skipping metadata compensation.
-- Actual pending state: production ref656fe739; no active label; unaccepted
-  deployment7144735262. Canonical.ai serves exact old staging bytes, digest3ffc.
-  Failed result12111844615 and original recovery39062287331/1 remain retained;
-  issue39 comment6239896098 owns exact ZIP/artifact identities.
-- Active work/production-label-recovery-39 fixes ordinary PR-write permission,
-  pre-live no-op resource permission check, canonical-preserving content recovery
-  and authenticated metadata-only first-release compensation. Native delivery pending.
-- Local Basic24 and targeted release/migration40/40 pass, zero skips; scoped ESLint
-  and bounded style pass. Versioned review records the initial fixture correction.
+- Owner issue39; PR94 merged normally at protected maina9a40bc, treead06e4e2
+  equals tested2451e06c. Source/RI/owning/preview and complete staging39066488284/1,
+  promotion117497935750, merge-admission117498123365 and eligible39067585948 pass.
+- Metadata recovery39067835096/1 failed before writes: Actions Context.repo is an
+  inherited getter lost by the new context spread. GET repos///actions/runs
+  returned404. Pages publication skipped; original partial metadata is unchanged.
+- Active work/production-context-39 passes repo and historical SHA explicitly.
+  Existing migration fixture now models the prototype getter and requires actual
+  owner/repo request arguments; it reproduced the native failure before correction.
+  All40 release/migration cases pass after correction, zero skips; actual retained
+  result/capsule/deployment rehearsal also passes with the accessor modeled.
+- Candidate39067763607/1 on a9a40bc passed build/publish/http but remains isolated
+  and unaccepted. Its44-file production edition and exact rights inventory verify.
+  No tag.4 was created. Final corrected main requires its own authenticated freeze.
+- Original failed publisher39062995834/1/tag.3 passed site checks then PR label403.
+  production ref656fe739, no active label, unaccepted deployment7144735262 remain.
+  Canonical.ai retains old staging bytes. Original result12111844615 and recovery
+  39062287331/1 remain exact; issue39 owns current links and raw identities.
 
 ## Decisions
 
@@ -38,8 +41,8 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Open work
 
-- Finish RI/CI, owning acceptance and exact clean source checks. Push one active
-  PR under39; ordinary Ready/staging/protected merge, no bypass.
+- Deliver the one-line accessor correction and strengthened regression through
+  source checks, one ordinary staging and protected merge under39; no bypass.
 - Dispatch protected operation recover for failed39062995834/1 and tag.3;
   authenticate original recovery39062287331/1 and verify actual metadata compensation.
 - Freeze fresh admitted main, bind prior rights selection to actual inventory,

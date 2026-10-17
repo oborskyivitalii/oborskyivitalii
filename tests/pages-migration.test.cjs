@@ -152,6 +152,18 @@ test('production recovery preserves canonical settings and authenticates an unch
   const value = await frozen(t);
   const actions = require('../tools/release/actions.cjs');
   const current = { ...value.context, sha: 'e'.repeat(40) };
+  const repository = current.repo;
+  delete current.repo;
+  Object.setPrototypeOf(current, {
+    get repo() {
+      return repository;
+    },
+  });
+  value.github.rest.actions.getWorkflowRun = async ({ owner, repo }) => {
+    assert.equal(owner, repository.owner, 'Actions context repository getter was lost');
+    assert.equal(repo, repository.repo);
+    return { data: value.run };
+  };
   value.main.commit.sha = current.sha;
   Object.assign(value.pages, {
     html_url: migration.to + '/',
@@ -222,7 +234,7 @@ test('production recovery preserves canonical settings and authenticates an unch
   await assert.rejects(
     actions.canonicalPredecessor(
       value.github,
-      { ...current, actor: 'other' },
+      { ...current, repo: current.repo, actor: 'other' },
       value.directory,
       proof,
       hosted(value.previousDir)
