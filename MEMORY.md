@@ -4,75 +4,57 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- Owner issue39; policy PR89 merged normally into main28ed0b306d62154631714046041d0510a9c06ba4,
-  treeb60d0c76612e591fb64fe576a78d863f64aad429 equals tested79a7c989.
-  Accepted ordinary staging39029311222/1, eligible PR39029176469/2,
-  postmerge39030552067 and main navigation39030551843 pass.
-  Issue39 comment6233611687 is the exact policy delivery checkpoint.
-- Runtime PR88/work/css-clock-39 is being synchronized with that main.
-  Original head623f939026b379a9956336ab422deaaa46c80290 remains retained.
-  CSS document-timeline completion marks retain paired wall fallback,8ms stale
-  tolerance,1000/700ms motion, camera timing and original watchdog budgets.
-- Corrected native39024689792 at0a3c782 passed40/40flights and80/80animationend,
-  zero watchdog/fallback; raw12097762337 ZIP
-  6be1c0c98993542a63fc803f867fc6e19d11c9aa90d283821d619994868848bf.
-  Temporary workflow restored byte-for-byte before readiness. Prior local source
-  staging611/611, Python115/115 and owning19/19 passed on623f939.
-- Original production39021549906 remains failed: native CSS700ms event observed
-  after691.3ms wall time was rejected, forcing2000ms watchdog. Raw12096259809
-  retained. PR88 old stage39025419509 failed before upload because the protected
-  controller lacked exact new Color identities; PR89 now registers those tuples.
-- Merge reconciliation preserves all949 current-main checksum dispositions and
-  appends182 distinct already-reviewed PR88 rows,1131total; shared5 occur once.
-  No scanner rules, staging cases/budgets or old baseline ledgers are changed.
-- Prior recovery39021099085/1 capsule12097290167 belongs to controller0c76;
-  final main needs fresh preparation. Production has not been published.
-- Last observed opt-in=false, Pages CNAME null, Actions/HTTPS enforced true;
-  App5351234/install172222773 repo-only, production ruleset25276926,
-  production/github-pages environments protected-main-only and key configured.
-  Revalidate actual settings before cutover; never print credentials.
-- Last observed Cloudflare.ai94a46fef3ff2c40cdec1defdff0c85be only permanent GitHub
-  ownership TXT; .com900e77fd27529c7fce067e253f2434c8 DNS empty, SSL active.
+- Owner issue39; protected main656fe739 contains merged PR93. All source checks,
+  accepted staging39060480123/1 and production candidate39061956620/1 pass.
+- Publisher39062995834/1 passed actual HTTP44files, policy and browser smoke,
+  published immutable tagprod-2026-10-17.3, then PR93 label write failed403.
+  Ordinary token had PullRequests read. Automatic byte rollback passed; attempted
+  original-prefix settings restoration failed403, skipping metadata compensation.
+- Actual pending state: production ref656fe739; no active label; unaccepted
+  deployment7144735262. Canonical.ai serves exact old staging bytes, digest3ffc.
+  Failed result12111844615 and original recovery39062287331/1 remain retained;
+  issue39 comment6239896098 owns exact ZIP/artifact identities.
+- Active work/production-label-recovery-39 fixes ordinary PR-write permission,
+  pre-live no-op resource permission check, canonical-preserving content recovery
+  and authenticated metadata-only first-release compensation. Native delivery pending.
+- Local Basic24 and targeted release/migration40/40 pass, zero skips; scoped ESLint
+  and bounded style pass. Versioned review records the initial fixture correction.
 
 ## Decisions
 
-- Maintainer authorizes completing PR88 synchronization/checks/staging/merge and
-  production preparation/publication/smoke in the17October active conversation.
-  Prior GitHub/admin/Cloudflare release/setup authorization persists.
-- PR89 implements the approved policy: unchanged staging checks and budgets;
-  accepted staging plus identical complete tested/merged tree admits the separately
-  frozen production edition. Postpublish bounded smoke is mandatory. Full native,
-  performance, soak, captures and passive diagnostics are optional/nonblocking.
-- Keep protected owner dispatch, source/tree/artifact binding, actual rights
-  acceptance, immutable archives and exact recovery. No automatic push publication.
-- Rights selections15October and release approval16October persist; bind existing
-  decision to fresh exact inventory without requesting the same consent again.
-- Owner physical smoke on Safari/iPad Pro M2 and Chrome/Redmi Note12 passed load,
-  rotation/touch/themes/archive/Off/reduced/background-return. Numeric versions
-  were not supplied. Owner output review is not independent technical code review.
-- Preserve all failed runs and honest source/profile distinctions. Original
-  diagnostic/production failures are not accepted staging or production claims.
+- Maintainer explicitly authorizes completing recovery, protected delivery,
+  production publication and both domains in the current17October conversation.
+  Prior release, rights and provider setup decisions persist; no repeated consent.
+- Keep canonical.ai/HTTPS during content rollback. Explicit migration recovery
+  alone owns original-prefix settings changes. Reauthenticate the existing capsule
+  through original successful owner/main run/attempt/ZIP, ancestor and every live
+  predecessor byte; never claim a fresh preparation run.
+- Keep staging cases/budgets, protected dispatch/source/artifact binding, immutable
+  archives, recorded rights decision and exact recovery. Full diagnostics optional.
+- Failed immutable .1/.2/.3 history stays untouched. .3 is not an accepted release
+  or rollback target. No new App credential or wider grant is needed.
+- Owner physical observations remain historical; no independent technical review
+  or new device review is claimed by this implementation.
 
 ## Open work
 
-- Finish synchronized PR88 exact source checks and self-review; ordinary Ready
-  CI/staging, protected merge and actual postmerge tree identity.
-- Freeze fresh final-main production candidate with candidate_sha/release_pr;
-  authenticate accepted staging and prepare fresh current-controller recovery.
-- Revalidate providers/settings, bind existing rights decision to frozen inventory,
-  configure.ai domain/DNS/TLS/HTTPS and enable authorized production dispatch.
-- Publish the exact immutable production package, verify bounded live smoke,
-  activate.com one-hop301 preserving path/query and verify both hosts/TLS.
-- Reconcile original issue39 AC01–AC05 against actual live evidence; all whole
-  criteria remain open during this prepublication checkpoint.
+- Finish RI/CI, owning acceptance and exact clean source checks. Push one active
+  PR under39; ordinary Ready/staging/protected merge, no bypass.
+- Dispatch protected operation recover for failed39062995834/1 and tag.3;
+  authenticate original recovery39062287331/1 and verify actual metadata compensation.
+- Freeze fresh admitted main, bind prior rights selection to actual inventory,
+  publish fresh tagprod-2026-10-17.4 using authenticated unchanged predecessor capsule.
+- Verify accepted immutable archive/ref/labels/deployment and live.ai. Only then
+  configure.com one-hop301, preserving path/query, and verify hosts/TLS.
+- Reconcile issue39 whole ACs with actual evidence; live scope is incomplete.
 
 ## Next session
 
-1. Revalidate main/PR88/working tree/current CI and issue39; read its latest anchor.
-2. Resume the exact pending phase, preserving completed policy/native evidence.
-3. Complete authorized publication; do not substitute optional full diagnostics.
+1. Revalidate main/active PR/current CI, issue39 and actual pending production state.
+2. Resume exact phase without repeating successful checks or changing domain binding.
+3. Complete authorized publication; preserve failed runs and honest review limits.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; refresh RI and RI/CI after indexed edits.
+- Keep five sections and120-line cap; rebuild RI after indexed changes.
 - Git-backed website code is not duplicated into file storage.

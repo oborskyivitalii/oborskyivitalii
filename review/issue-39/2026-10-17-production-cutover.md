@@ -583,3 +583,45 @@ an extra interruption. No production branch/accepted release exists. Draft tags
 .1 and.2 and pending deployment7143801317 remain historical; next tag is.3.
 .com remains unconfigured. Complete source/native delivery and fresh freeze/recovery
 are still required before another attempt; no blind staging/publisher retry.
+
+## 17 October — label authority and canonical metadata recovery
+
+Owner issue39; inspected protected main656fe739 and failed publisher39062995834/1.
+This is implementation self-review, not independent review. The actual publisher
+passed all exact HTTP, production policy and browser checks, published immutable
+tag.3, then failed POST issues/93/labels with403 because its ordinary token had
+PullRequests read. Automatic byte rollback passed; settings rollback failed403,
+leaving an unaccepted production ref and pending deployment. The source suites
+had not modeled the PR-specific write permission. Raw failed result and original
+capsule remain retained in the owning issue's exact evidence record.
+
+The existing production workflow now grants ordinary publish/recovery jobs
+PullRequests write and exercises the exact label-add resource with an empty
+additive array before archive/live mutation. The provider fixture rejects that
+call when write authority is absent, preserving labels, refs and releases.
+Production-content recovery preserves the already authorized canonical domain
+and HTTPS; explicit migration recovery still owns its original prefix/settings.
+The existing immutable predecessor capsule can be reauthenticated from a proven
+main ancestor, original owner/run/attempt/ZIP and complete canonical served bytes.
+It is never relabelled as a fresh preparation. This avoids repeated CNAME removal.
+
+An explicit recover operation in the same protected workflow authenticates one
+failed owner/main attempt/result ZIP and the original capsule. It rejects accepted
+production, unrelated refs/labels/deployment payload or status, wrong source,
+workflow, actor, attempt, artifact, ancestor, HTTPS/settings or predecessor bytes.
+It reuses controller.recover only after these leases. It cannot deploy Pages,
+write settings, mutate historical Releases/tags or fabricate accepted production.
+The ordinary recovery job reads Pages settings; only the existing Production App
+can compensate its protected ref. No App grant or credential changes are needed.
+
+CS01/04/05/06/07/08/09/10 map to the existing release action/controller, workflow,
+permanent release-controller/pages-migration suites and maintained production
+runbook. No new source owner, wildcard exception, suite or hosted case was added.
+The existing registry retains PR-targeted/staging/production scheduling; optional
+diagnostics remain nonblocking. Site content/runtime/HTML/media are unchanged.
+Local Basic24 and all40 targeted release/migration tests pass, zero skips; bounded
+style and scoped ESLint pass. The first new unrelated-ref negative accidentally
+used the fixture's own source SHA and failed to reject; using a distinct SHA
+corrected the fixture. No implementation guard was relaxed. RI/CI and native
+source/staging/protected merge, actual metadata compensation, fresh production
+freeze/rights binding and live.ai/.com acceptance remain separately required.

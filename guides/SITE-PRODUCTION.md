@@ -51,10 +51,13 @@ No .com GitHub verification is needed for a redirect-only domain.
    staging. Freeze the exact final main using `site-release-candidate.yml` with
    `candidate_sha` and `release_pr`. It authenticates successful staging and an
    identical merged source tree. `site-candidate-evidence.yml` remains optional.
-2. Run **Authorized Pages canonical-root migration**, `mode=prepare`, on that same
-   main before binding the domain. Its successful run/attempt captures actual
+2. Run **Authorized Pages canonical-root migration**, `mode=prepare`, before
+   binding the domain. Its successful run/attempt captures actual
    original Pages settings, authenticated publisher/receipt, exact ZIP/package and
-   live HTTP. Preserve the capsule; an older-controller capsule cannot substitute.
+   live HTTP. Preserve the capsule. The production controller can reuse that
+   immutable predecessor after authenticating its original owner/main workflow,
+   exact attempt/ZIP, controller ancestry in current protected main and every old
+   live byte at the canonical root. It does not claim a new preparation run.
 3. Bind the selected rights decision to the frozen production inventory. Full
    diagnostics and device observations are separate, nonblocking records. Configure the canonical domain and reviewed DNS, then verify
    TLS and HTTPS enforcement. Do not execute the historical migration `execute`
@@ -66,15 +69,26 @@ No .com GitHub verification is needed for a redirect-only domain.
    is absent and every predecessor byte still matches at the canonical root, and
    retains the predecessor solely for recovery. It publishes the admitted
    production package directly, with no staging subtree or rebuild.
-5. On any failed transition the workflow restores exact predecessor bytes and
-   captured Pages configuration, verifies the original prefix, then compensates
-   bookkeeping. A missing Pages-settings permission fails visibly; it is never
-   treated as successful restoration. The agent/owner must restore the capsule's
-   exact settings through repository Pages and verify original-prefix HTTP before
-   recording completed recovery. No unreviewed wider App grant is implied.
+5. On a failed production-content transition, restore exact predecessor bytes
+   while preserving the authorized canonical domain and HTTPS. Verify all old
+   bytes and unchanged canonical settings before bookkeeping compensation. Domain
+   migration is a separate operation; only its explicit recovery route restores
+   the original prefix/settings. Production never writes Pages configuration.
+   Both publish and recovery jobs require `pull-requests: write` for PR-resource
+   label writes. A no-op label-add checks the real resource permission before
+   archive/live writes; it preserves all existing labels.
 6. Subsequent releases/rollbacks omit both first-release inputs and retain the
    existing strict canonical predecessor path. First-release inputs are rejected
    for rollback or once an accepted production deployment exists.
+
+If a first publication restored live bytes but left partial metadata, dispatch
+the same protected production workflow with `operation=recover`, its original
+`release_tag`, `failed_release_run` and exact `failed_release_attempt`. This route
+authenticates the failed owner/main workflow and result ZIP, original capsule,
+source ancestry, unaccepted deployment payload/status, controlled labels/ref and
+every predecessor byte at the unchanged canonical domain. It invokes the same
+bookkeeping compensation without deploying Pages, changing settings, publishing
+a Release or declaring acceptance. Historical immutable failed tags remain.
 
 ## Shared launch dependencies
 
