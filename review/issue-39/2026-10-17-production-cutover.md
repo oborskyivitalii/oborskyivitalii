@@ -372,3 +372,31 @@ The first115-test Python run caught stale RI after the fixture edit (five query
 errors, zero behavioral failures); rebuild RI before the final exact-source run.
 All new tests remain in existing permanent modules; their PR/staging/production
 selection is unchanged. Temporary diagnostic workflow has zero diff versusmain0c76.
+
+## PR88 synchronization after accepted policy PR89 — 17 October 2026
+
+Maintainer authorizes synchronization, ordinary staging/protected merge and the
+subsequent production release in the active conversation. Inspected main is
+28ed0b306d62154631714046041d0510a9c06ba4, tested policy tree
+b60d0c76612e591fb64fe576a78d863f64aad429; original PR88 head is
+623f939026b379a9956336ab422deaaa46c80290. This is implementation self-review,
+not independent technical approval.
+
+The main merge retains the original runtime fix and its native causal evidence,
+while adopting the approved staging-led production policy. The acceptance scope
+now records both finite pinned CSS-clock changes and successful unchanged-source
+staging admission; optional full diagnostics do not block publication. Main's949
+checksum dispositions are retained verbatim, with182 distinct PR88 rows appended;
+the five shared exact findings occur once,1131total. Original baseline ledgers,
+scanner rules, staging cases/budgets, previous failed runs and archived evidence
+stay unchanged. RI views and their current-source digest are regenerated.
+
+CS01/CS03/CS04/CS05/CS06/CS07/CS08/CS09/CS10 retain the existing mapping to
+scroll-entry.cjs, its generated navigation/runtime/offline outputs, finite identity
+and rights consumers, tests and delivery owners. Runtime changes remain exactly
+those already reviewed above; no new animation loop, timing/budget or design
+change is introduced by this synchronization. Required validation is Basic,
+registered staging source/Python, formatting/style/RI/RI-CI, owning19checks and
+unchanged ordinary prepublication/staging, followed by protected expected-head
+merge. Fresh frozen production/rights/recovery and actual domain smoke remain
+separate pending observations at this checkpoint.

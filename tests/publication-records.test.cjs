@@ -656,10 +656,10 @@ test('default Pages output and historical verification preserve actual pinned-ma
   }
 });
 
-test('explicit stable and production workflows run prepublication before deployable upload while Draft previews stay bounded', () => {
+test('staging and optional full diagnostics retain prepublication while production authenticates accepted staging', () => {
   const read = (name) =>
     fs.readFileSync(path.join(__dirname, '../.github/workflows/', name + '.yml'), 'utf8');
-  for (const name of ['site-color-review', 'site-release-candidate', 'site-release-checks']) {
+  for (const name of ['site-color-review', 'site-release-checks']) {
     const source = read(name);
     const preflight = source.indexOf('run: node tools/quality/local.cjs --prepublication');
     const publicUpload = source.indexOf(
@@ -685,6 +685,15 @@ test('explicit stable and production workflows run prepublication before deploya
     assert.match(retain, /if:.*always\(\)/);
     assert.match(retain, /path: quality-reports\//);
   }
+  const production = read('site-release-candidate');
+  const authenticate = production.indexOf(
+    "require('./tools/release/staging-policy.cjs').authenticate"
+  );
+  const bind = production.indexOf('run: node tools/release/staging-policy.cjs bind');
+  const upload = production.indexOf('      - id: public');
+  assert.ok(authenticate > 0 && bind > authenticate && upload > bind);
+  assert.match(production.slice(authenticate, bind), /tools\/release\/rights.cjs verify/);
+  assert.equal(production.includes('--prepublication'), false);
   const stagingSource = read('site-color-review');
   const preflightStep = stagingSource.slice(
     stagingSource.indexOf('      - name: Complete host-independent staging guards'),

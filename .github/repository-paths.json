@@ -57,25 +57,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -111,13 +111,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -129,7 +129,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -141,13 +141,13 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -231,7 +231,7 @@
     },
     ".github/workflows/site-candidate-evidence.yml": {
       "kind": "file",
-      "purpose": "Explicit manual full production-regression evidence on an immutable candidate; no automatic heavy PR trigger or stable promotion.",
+      "purpose": "Optional manual full production diagnostics retaining native/browser/performance/captures and bounded passive ZAP without a publisher dependency.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -1257,7 +1257,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -8361,7 +8361,7 @@
     },
     "tools/release/controller.cjs": {
       "kind": "file",
-      "purpose": "Trusted full evidence, durable immutable assets, protected source, active/archive labels and verified failure compensation.",
+      "purpose": "Trusted staged-source admission, durable immutable assets, protected source, active/archive labels and verified failure compensation.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -8379,7 +8379,7 @@
     },
     "tools/release/live.cjs": {
       "kind": "file",
-      "purpose": "Exact live production edition, Pages, browser and passive-scan acceptance bound to frozen archive identity.",
+      "purpose": "Exact live production edition, Pages and bounded browser smoke acceptance bound to frozen archive identity.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -8832,6 +8832,18 @@
       "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "tools/release/staging-policy.cjs": {
+      "kind": "file",
+      "purpose": "Authenticate successful staging and identical merged source trees; bind separate production edition admission without optional full diagnostics.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "review/issue-39/2026-10-17-production-policy.md": {
+      "kind": "file",
+      "purpose": "Dated issue39 self-review of accepted staging-led production admission, optional full diagnostics, smoke and preserved recovery.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }
