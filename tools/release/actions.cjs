@@ -39,6 +39,25 @@ async function resolve(github, context, core) {
     core.setOutput('gate_id', proof.validation.gate.id);
     core.setOutput('validation_run', proof.validation.run.id);
   }
+  const preparationRun = process.env.FIRST_RELEASE_PREPARATION_RUN || '';
+  const preparationAttempt = process.env.FIRST_RELEASE_PREPARATION_ATTEMPT || '';
+  assert.equal(
+    Boolean(preparationRun),
+    Boolean(preparationAttempt),
+    'incomplete recovery preparation'
+  );
+  if (preparationRun) {
+    assert.equal(operation, 'publish', 'first-release preparation cannot authorize rollback');
+    assert.equal(current, null, 'first-release preparation cannot replace existing production');
+    proof.preparation = await require('../pages/migration.cjs').preparation(
+      github,
+      context,
+      preparationRun,
+      preparationAttempt
+    );
+    core.setOutput('preparation_id', proof.preparation.artifactId);
+    core.setOutput('preparation_digest', proof.preparation.uploadDigest);
+  }
   save('release-control/request.json', proof);
 }
 
@@ -56,11 +75,60 @@ async function previous(github, context, core) {
     require('../pages/http.cjs').origin(process.env.PAGES_ORIGIN),
     require('./edition-archive.cjs').origin
   );
-  const record = await pages.previous(github, context, process.env.PAGES_ORIGIN, proof.current);
+  let record;
+  if (proof.preparation) {
+    const migration = require('../pages/migration.cjs');
+    assert.equal(proof.current, null);
+    record = await migration.firstPublication(
+      github,
+      context,
+      'first-release-prepared',
+      proof.preparation
+    );
+    fs.cpSync('first-release-prepared/previous/pages-package', 'pages-previous/pages-package', {
+      recursive: true,
+    });
+    core.setOutput('first_release', 'true');
+  } else {
+    record = await pages.previous(github, context, process.env.PAGES_ORIGIN, proof.current);
+  }
   assert.ok(record, 'authenticate the existing Pages recovery receipt before production');
   save('release-control/previous.json', record);
   core.setOutput('id', record.artifactId);
   core.setOutput('run', record.runId);
+}
+
+async function verifyPrevious() {
+  const previous = read('release-control/previous.json');
+  pages.retained('pages-previous/pages-package', previous);
+  const proof = read('release-control/request.json');
+  const observation = proof.preparation
+    ? await require('../pages/migration.cjs').observeSource('first-release-prepared')
+    : await require('../pages/http.cjs').check(
+        'pages-previous/pages-package',
+        process.env.PAGES_ORIGIN
+      );
+  save('pages-reports/previous-http.json', observation);
+}
+
+async function restoreSettings(github, context) {
+  const proof = read('release-control/request.json');
+  if (!proof.preparation) return;
+  const migration = require('../pages/migration.cjs');
+  const plan = migration.load('first-release-prepared');
+  await migration.restoreSettings(github, context, plan);
+}
+
+async function verifyRecovery() {
+  const proof = read('release-control/request.json');
+  const base = proof.preparation
+    ? require('../pages/migration.cjs').load('first-release-prepared').from
+    : process.env.PAGES_ORIGIN;
+  const observation = await require('../pages/http.cjs').check(
+    'pages-previous/pages-package',
+    base
+  );
+  save('pages-reports/rollback-http.json', observation);
 }
 
 function retainReports(proof, directory) {
@@ -88,7 +156,11 @@ function retainReports(proof, directory) {
   );
   const name = 'evidence-run-' + proof.run.id + '.zip';
   fs.writeFileSync(path.join(directory, name), logs);
-  files[name] = { sha256: artifact.digest(logs), raw: logs.length, workflowRun: proof.run.id };
+  files[name] = {
+    sha256: artifact.digest(logs),
+    raw: logs.length,
+    workflowRun: proof.run.id,
+  };
   return files;
 }
 
@@ -123,8 +195,12 @@ async function prepareArchive(github, context) {
     'release-assets/public.tar.gz',
   ]);
   const bytes = fs.readFileSync('release-assets/public.tar.gz');
-  const run = (await github.rest.actions.getWorkflowRun({ ...context.repo, run_id: context.runId }))
-    .data;
+  const run = (
+    await github.rest.actions.getWorkflowRun({
+      ...context.repo,
+      run_id: context.runId,
+    })
+  ).data;
   const desired = controller.createArchive(
     'production-source',
     proof.validation,
@@ -212,6 +288,13 @@ async function begin(github, context) {
   await authenticate(github, context);
   const proof = read('release-control/request.json');
   assert.deepEqual(await pages.activeProduction(github, context), proof.current);
+  if (proof.preparation)
+    await require('../pages/migration.cjs').firstPublication(
+      github,
+      context,
+      'first-release-prepared',
+      proof.preparation
+    );
   const transaction = await controller.plan(
     github,
     context,
@@ -295,6 +378,9 @@ module.exports = {
   resolve,
   publicInputs,
   previous,
+  verifyPrevious,
+  restoreSettings,
+  verifyRecovery,
   retainReports,
   prepareArchive,
   compose,

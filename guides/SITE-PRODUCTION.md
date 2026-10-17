@@ -1,45 +1,24 @@
 # GitHub Pages production and custom domains
 
 Owner: [issue #39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39),
-[Draft PR #40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40), under
+[PR #86](https://github.com/oborskyivitalii/oborskyivitalii/pull/86), under
 hosting #8, release #13 and launch #1. Current execution plan:
-[implementation and remaining launch work](../review/issue-39/2026-10-15-implementation.md).
+[implementation and remaining launch work](../review/issue-39/2026-10-17-production-cutover.md).
 Release implementation is owned by [release gates](SITE-RELEASE-GATES.md);
 the existing [staging controller](SITE-STAGING.md) remains the delivery route.
 
-## Target and current state — 15 October 2026
+## Current delivery topology
 
-Main `cc115c4241197d59205934bdc18f209109d5ee87` already implements production
-metadata, a frozen candidate, full evidence, immutable archives, a protected
-publisher and rollback. It has live two-host staging. Those mechanisms must be
-reused; source implementation and staging success do not admit production.
+Cloudflare is the sole PR-preview and permanent-staging publisher. GitHub Pages
+publishes only the production root at https://vitaliioborskyi.ai/; `/staging/`
+is retired and must return the owned 404 after publication. The `.com` hosts
+redirect in one hop to the canonical `.ai` path with the query preserved.
 
-| Role | Current address / state | Target |
-| --- | --- | --- |
-| PR preview | Cloudflare immutable candidate plus `pr-N` alias | Existing preview route |
-| Permanent staging | https://staging.oborskyi-author-ci-staging.pages.dev | Unchanged |
-| Pages staging | https://oborskyivitalii.github.io/oborskyivitalii/staging/ | https://vitaliioborskyi.ai/staging/ |
-| Production | No accepted production in the live Pages receipt | https://vitaliioborskyi.ai/ |
-| Alternate domains | Routing/redirect not applied in the dated API inventory | .com/www.com one-hop 301 to .ai; www.ai to apex |
-
-The combined Pages package owns one production root and one staging subtree.
-Custom-domain binding changes that site's origin; an independent github.io
-staging site would require a separate repository/site. Before binding, prepare and test an authenticated, recoverable migration;
-authenticate and retain the old project-prefix receipt and package first.
-Execute the transition once the canonical origin is available. Ordinary origin/base-path validation stays strict.
-
-PR40 now prepares explicit Color production support, the authenticated Pages
-migration, absolute social images, retained-file preservation and candidate-bound
-rights reports. The exact reviewed Color runtime bytes, animation budgets and
-fallbacks are preserved. Source tests prepare these paths; actual merged-main
-execution and the full frozen-candidate gate remain required.
-
-[Desired DNS/rule payload](github-pages-domains.json) is the original finite
-preparation manifest, not a live controller or current settings inventory. Its
-ownership/bootstrap sequence is historical; ownership is already complete.
-The [7 October inventory](../review/issue-39/2026-10-07-provider-inventory.json)
-and [10 October audit](../review/issue-39/2026-10-10-readiness.md) retain evidence
-for their dates. The current report supersedes their missing-pipeline claims.
+PR40 and PR85 are merged. The owning issue and active follow-up PR contain
+current refs, exact CI results and the remaining first-publication work. Dated
+inventory reports and old two-host staging instructions are historical evidence.
+The existing production candidate, full evidence, immutable archive and protected
+publisher remain the only production route.
 
 ## Who can perform each action
 
@@ -65,69 +44,35 @@ on 7 October and observed again in the dated API audit. Do not generate, replace
 or request it again. Ownership is separate from repository custom-domain binding.
 No .com GitHub verification is needed for a redirect-only domain.
 
-## Step 2 — finish delivery preparation on the existing PR
+## First production publication
 
-1. Rebase PR40 onto current main and preserve authored content/runtime bytes;
-   retain historical audits and map AC01–AC05 to current implementation scope.
-   The dated scope amendment permits delivery changes; live gates stay.
-2. Support Color through production candidate/edition/evidence and the exact
-   reviewed runtime selector. Reuse the existing full matrix and budgets.
-3. Implement an explicit authenticated project-prefix → canonical-root migration
-   in the existing Pages controller route. Authenticate and retain the accepted
-   old receipt, run, package and settings **before** custom-domain binding. Its
-   old github.io origin may redirect afterward. Preserve staging files, update
-   the receipt/404/base path and test both success and compensating recovery.
-4. Independently review delivery changes and run raw-head source/RI/owning checks.
-   Current main's exact Color registry must first admit the new reviewed family;
-   otherwise its Pages browser smoke rejects the new tuple after deployment.
-   Use bounded PR preview evidence while preparing that compatibility integration;
-   then obtain ordinary two-host staging at the current prefix and integrate the
-   unchanged admitted tree through the protected main route when authorized.
-   The implementation report records the reproduced callchain and explicit
-   maintainer decision boundary; do not dispatch a known-failing `/stage`.
-5. Freeze the resulting exact main through `site-release-candidate.yml` and pass
-   its retained artifact/run/digests/immutable URL to `site-candidate-evidence.yml`.
-   The current controller requires the candidate to be current protected main;
-   an unmerged PR head cannot substitute. Full candidate validation must consume
-   the frozen bytes without rebuilding after admission.
-6. Reconcile source-bound independent, rights and device evidence under the
-   existing release owners. Preserve previously supplied permissions and their
-   edition boundaries. The actual Cloudflare manual beacon is configured and
-   enabled in source for the canonical production origin only. Staging and review
-   exports strip it. Complete actual provider/count/cost checks at release;
-   Search Console follows its reachable-origin/access-dependent route.
-
-Detailed task ownership, dependencies and pass conditions are in the current
-report and [selected issue audit](../review/issue-39/2026-10-15-release-issue-audit.md).
-The later implementation changes delivery, not authored content or runtime behavior.
-
-### Execute the prepared Pages migration
-
-Use **Authorized Pages canonical-root migration** (`site-pages-migration.yml`) on
-merged protected main, as repository owner. It shares the ordinary Pages
-publication concurrency lock.
-
-1. Dispatch `mode=prepare` while the original github.io project-prefix origin
-   still serves the accepted receipt. Save the successful run ID and exact
-   attempt. Its retained preparation authenticates the publisher/run/upload ZIP,
-   complete predecessor package, source hashes and observed Pages settings.
-   Keep a durable copy before the 90-day Actions retention expires.
-2. Bind the canonical domain in repository Pages and apply the reviewed DNS at
-   cutover. The workflow intentionally does not change Pages administration or
-   DNS. Its standard token has no repository Administration permission.
-3. Dispatch `mode=execute` with that preparation run and attempt. It verifies
-   exact settings and the unchanged source/production lease, publishes the same
-   staging bytes at canonical `/staging/`, and changes only receipt and owned 404.
-   HTTP/hash/MIME/root+staging404 and hosted navigation must pass. Its receipt is
-   accepted by the subsequent ordinary publisher without loosening origin rules.
-4. On failed/cancelled execution, restore the captured Pages settings first;
-   coordinate DNS restoration if needed. Dispatch `mode=recover` with the exact
-   preparation and failed execution runs/attempts. Recovery verifies the lease
-   and restores the exact predecessor package. The failed execution remains red.
-
-Do not bind the domain before successful preparation. Do not use a successor or
-an expired/missing artifact as recovery evidence. Production publication follows
-successful canonical staging migration and its separate release admission.
+1. Complete and merge the current controller change through ordinary Cloudflare
+   staging. Freeze the exact final main using `site-release-candidate.yml`, then
+   pass that artifact into `site-candidate-evidence.yml` for full production checks.
+2. Run **Authorized Pages canonical-root migration**, `mode=prepare`, on that same
+   main before binding the domain. Its successful run/attempt captures actual
+   original Pages settings, authenticated publisher/receipt, exact ZIP/package and
+   live HTTP. Preserve the capsule; an older-controller capsule cannot substitute.
+3. Complete applicable full, rights, independent and device acceptance on the frozen
+   production artifact. Configure the canonical domain and reviewed DNS, then verify
+   TLS and HTTPS enforcement. Do not execute the historical migration `execute`
+   route: it would republish retired staging on the canonical host.
+4. Dispatch **Authorized production release or rollback**, `operation=publish`, with
+   the successful validation run, merged PR, immutable tag, exact-source release
+   evidence, and `first_release_preparation_run` / `first_release_preparation_attempt`.
+   The publisher authenticates the capsule/run/controller, checks that production
+   is absent and every predecessor byte still matches at the canonical root, and
+   retains the predecessor solely for recovery. It publishes the admitted
+   production package directly, with no staging subtree or rebuild.
+5. On any failed transition the workflow restores exact predecessor bytes and
+   captured Pages configuration, verifies the original prefix, then compensates
+   bookkeeping. A missing Pages-settings permission fails visibly; it is never
+   treated as successful restoration. The agent/owner must restore the capsule's
+   exact settings through repository Pages and verify original-prefix HTTP before
+   recording completed recovery. No unreviewed wider App grant is implied.
+6. Subsequent releases/rollbacks omit both first-release inputs and retain the
+   existing strict canonical predecessor path. First-release inputs are rejected
+   for rollback or once an accepted production deployment exists.
 
 ## Shared launch dependencies
 
@@ -166,13 +111,13 @@ is silently removed to promise closure at the first deployment.
    the tested migration rather than invoking the ordinary publisher against an
    incompatible project-prefix receipt.
 4. After DNS/certificate checks, enable **Enforce HTTPS**; GitHub documents that
-   the option can take up to 24 hours. Verify canonical-root staging and its new
-   authenticated receipt, retaining Cloudflare aliases. Production opt-in remains
+   the option can take up to 24 hours. Verify the canonical origin and retain the authenticated first-release
+   recovery capsule; Cloudflare staging remains independent. Production opt-in remains
    off until the applicable release decision.
 5. Enable the authorized opt-in and invoke `site-production.yml` with the exact
    immutable release tag, successful full validation run, merged source PR and
-   source-bound evidence. It composes the admitted production root with retained
-   staging. Follow the existing publisher/live verifier; do not rebuild the
+   source-bound evidence. It composes only the admitted production root; retained predecessor
+   bytes are recovery material. Follow the existing publisher/live verifier; do not rebuild the
    admitted artifact. Verify .ai before enabling the .com redirect below.
 
 ## Step 4 — Cloudflare configuration by the agent at release

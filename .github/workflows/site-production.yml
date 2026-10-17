@@ -23,6 +23,14 @@ on:
         description: Exact-source independent/device/rights JSON; rights.inventoryDigest must match the frozen candidate (publish only)
         type: string
         default: ''
+      first_release_preparation_run:
+        description: Authenticated current-controller recovery preparation for the first canonical publication only
+        type: string
+        default: ''
+      first_release_preparation_attempt:
+        description: Exact successful preparation attempt; required with first_release_preparation_run
+        type: string
+        default: ''
 permissions:
   contents: read
   actions: read
@@ -49,6 +57,8 @@ jobs:
       gate_id: ${{ steps.request.outputs.gate_id }}
       validation_run: ${{ steps.request.outputs.validation_run }}
       request_id: ${{ steps.retained.outputs.artifact-id }}
+      preparation_id: ${{ steps.request.outputs.preparation_id }}
+      preparation_digest: ${{ steps.request.outputs.preparation_digest }}
     env:
       PRODUCTION_ENABLED: ${{ vars.SITE_PRODUCTION_ENABLED }}
       PRODUCTION_APP_ID: ${{ vars.PRODUCTION_APP_ID }}
@@ -57,6 +67,8 @@ jobs:
       VALIDATION_RUN: ${{ inputs.validation_run_id }}
       RELEASE_PR: ${{ inputs.release_pr }}
       RELEASE_EVIDENCE: ${{ inputs.release_evidence }}
+      FIRST_RELEASE_PREPARATION_RUN: ${{ inputs.first_release_preparation_run }}
+      FIRST_RELEASE_PREPARATION_ATTEMPT: ${{ inputs.first_release_preparation_attempt }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -122,6 +134,14 @@ jobs:
         with:
           artifact-ids: ${{ needs.authorization.outputs.request_id }}
           path: release-control
+      - name: Authenticate and extract the first-release recovery capsule
+        if: needs.authorization.outputs.preparation_id != ''
+        env:
+          PREPARATION_ID: ${{ needs.authorization.outputs.preparation_id }}
+          PREPARATION_DIGEST: ${{ needs.authorization.outputs.preparation_digest }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$PREPARATION_ID/zip" > preparation-upload.zip
+          python3 tools/pages/unpack.py preparation-upload.zip first-release-prepared "$PREPARATION_DIGEST"
       - id: configure
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
       - id: previous
@@ -132,6 +152,7 @@ jobs:
         with:
           script: await require('./tools/release/actions.cjs').previous(github,context,core)
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: steps.previous.outputs.first_release != 'true'
         with:
           artifact-ids: ${{ steps.previous.outputs.id }}
           run-id: ${{ steps.previous.outputs.run }}
@@ -141,9 +162,7 @@ jobs:
         env:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
         run: |
-          mkdir -p pages-reports
-          node -e "require('./tools/pages/controller.cjs').retained('pages-previous/pages-package',JSON.parse(require('node:fs').readFileSync('release-control/previous.json')))"
-          node tools/pages/http.cjs pages-previous/pages-package "$PAGES_ORIGIN" pages-reports/previous-http.json
+          node -e "require('./tools/release/actions.cjs').verifyPrevious().catch(error=>{console.error(error);process.exitCode=1})"
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         if: inputs.operation == 'publish'
         with:
@@ -294,7 +313,12 @@ jobs:
         if: steps.rollback.outcome == 'success'
         env:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
-        run: node tools/pages/http.cjs pages-previous/pages-package "$PAGES_ORIGIN" pages-reports/rollback-http.json
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const actions = require('./tools/release/actions.cjs');
+            await actions.restoreSettings(github,context);
+            await actions.verifyRecovery();
       - name: Restore previous production ref, label state and deployment identity
         if: steps.rollback.outcome == 'success' && success()
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd

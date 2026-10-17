@@ -196,6 +196,23 @@ async function collect(page, kind, duration, { formula = false } = {}) {
   }, formula);
   return { ...summarize(data, kind), ...(data.formula ? { formula: data.formula } : {}) };
 }
+async function setReducedMotion(page) {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  // Protocol acknowledgement may precede the page's media query/change event.
+  // Match navigation's existing bounded setup; never measure Motion:on as reduced.
+  await page.waitForFunction(
+    () => {
+      const control = document.querySelector('#space-motion');
+      return (
+        matchMedia('(prefers-reduced-motion: reduce)').matches &&
+        control?.disabled === true &&
+        control.textContent === 'Motion: reduced'
+      );
+    },
+    null,
+    { polling: 40, timeout: 2000 }
+  );
+}
 async function sample(browser, url, route, profile) {
   const ctx = await browser.newContext({
     viewport: { width: profile.width, height: profile.width === 390 ? 844 : 900 },
@@ -218,7 +235,7 @@ async function sample(browser, url, route, profile) {
     await page.waitForTimeout(200);
     measurements.push(await collect(page, 'off', 1000));
     await page.locator('#space-motion').click();
-    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await setReducedMotion(page);
     await page.waitForTimeout(200);
     measurements.push(await collect(page, 'reduced', 1000));
     return { route, ...profile, positiveProbe, measurements, errors };
@@ -474,6 +491,7 @@ module.exports = {
   summarize,
   flights,
   sample,
+  setReducedMotion,
   collect,
   transitionReadyDeadlineMs: pacing.deadline,
 };

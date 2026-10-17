@@ -137,12 +137,15 @@ async function navigateDocument(page, url, release) {
 function forwardCameraResponded(expected) {
   const scene = document.querySelector('.space-scene'),
     probe = window.__forwardCameraResponse;
-  // Native scroll anchoring can follow moving ink after the exact scrollTo.
-  // Account only for the measured displacement of that same visible node.
+  // Engines may retain the exact scrollTo endpoint or compensate native scroll
+  // anchoring. Admit those two exact positions, never a displacement-sized tolerance.
   const anchor = window.__forwardReadingAnchor,
     anchorTop = anchor?.isConnected ? anchor.getBoundingClientRect().top + scrollY : null,
     displacement = expected.anchor ? anchorTop - expected.anchor.top : 0,
-    target = expected.target + displacement;
+    anchoredTarget = expected.target + displacement,
+    requested = Math.abs(scrollY - expected.target) <= 1,
+    anchored = Math.abs(scrollY - anchoredTarget) <= 1,
+    target = requested ? expected.target : anchoredTarget;
   const sample = {
     time: performance.now() - probe.start,
     y: scrollY,
@@ -155,12 +158,15 @@ function forwardCameraResponded(expected) {
     anchorTop,
     displacement,
     target,
+    requestedTarget: expected.target,
+    anchoredTarget,
+    positionMode: requested ? 'requested' : anchored ? 'anchored' : 'unmatched',
   };
   probe.samples.push(sample);
   const responded =
     (!expected.anchor || Number.isFinite(anchorTop)) &&
     scrollY > 0 &&
-    Math.abs(scrollY - target) <= 1 &&
+    (requested || anchored) &&
     scene.dataset.camera === expected.baseline;
   if (responded) {
     probe.status = 'responded';

@@ -7,6 +7,7 @@ const { digest } = require('../quality/artifact.cjs'),
   pkg = require('./package.cjs');
 const { assertContentType } = require('../quality/serve.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
+const catalog = require('../../site/content/catalog.json');
 function origin(value, project, stable = false) {
   assert.match(project, /^[a-z0-9][a-z0-9-]{0,57}[a-z0-9]$/);
   const url = new URL(value);
@@ -187,7 +188,9 @@ async function appearance(page, theme) {
     escapeFocus: true,
   };
 }
-async function archive(page, base) {
+async function archive(page, base, expectedCatalog = catalog) {
+  const primaryCount = Object.keys(expectedCatalog.records).length;
+  assert.ok(primaryCount > 0, 'archive catalog must contain primary records');
   await page.goto(base + '/writing.html?topic=delivery&language=uk#topic-systems');
   assert.equal(await page.locator('#archive-topic').inputValue(), 'systems');
   assert.equal(await page.locator('#archive-language').inputValue(), 'uk');
@@ -204,7 +207,7 @@ async function archive(page, base) {
   await page.locator('#archive-language').selectOption('uk');
   assert.equal(await page.locator('#archive-empty').isVisible(), true);
   await page.locator('.filter-reset').click();
-  assert.equal(await page.locator('li.publication:visible').count(), 27);
+  assert.equal(await page.locator('li.publication:visible').count(), primaryCount);
   return {
     deepLink: true,
     fragmentConflict: true,
@@ -213,7 +216,7 @@ async function archive(page, base) {
     topicYearLanguage: true,
     empty: true,
     reset: true,
-    primaryRecords: 27,
+    primaryRecords: primaryCount,
   };
 }
 async function normalViews(browser, base) {
@@ -422,4 +425,4 @@ if (require.main === module)
     console.error(e.message);
     process.exitCode = 1;
   });
-module.exports = { origin, responseHeaders, request, httpSmoke, sceneState, browserSmoke };
+module.exports = { origin, responseHeaders, request, httpSmoke, sceneState, archive, browserSmoke };

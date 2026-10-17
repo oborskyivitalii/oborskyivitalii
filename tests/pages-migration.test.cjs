@@ -148,6 +148,100 @@ async function frozen(t) {
   return { ...value, plan, directory };
 }
 
+test('first production consumes the authenticated predecessor for recovery without republishing staging', async (t) => {
+  const value = await frozen(t);
+  Object.assign(value.pages, {
+    html_url: migration.to + '/',
+    cname: new URL(migration.to).hostname,
+  });
+  const observed = await migration.firstPublication(
+    value.github,
+    value.context,
+    value.directory,
+    value.plan.preparation,
+    hosted(value.previousDir)
+  );
+  assert.deepEqual(observed, value.plan.previous);
+  assert.deepEqual(migration.load(value.directory).previous, observed);
+  for (const invalid of [
+    { ...value.plan.preparation, runId: 999 },
+    { ...value.plan.preparation, attempt: 2 },
+  ]) {
+    await assert.rejects(
+      migration.firstPublication(
+        value.github,
+        value.context,
+        value.directory,
+        invalid,
+        hosted(value.previousDir)
+      )
+    );
+  }
+  await assert.rejects(
+    migration.firstPublication(
+      value.github,
+      { ...value.context, sha: 'b'.repeat(40) },
+      value.directory,
+      value.plan.preparation,
+      hosted(value.previousDir)
+    )
+  );
+  await assert.rejects(
+    migration.firstPublication(
+      value.github,
+      value.context,
+      value.directory,
+      value.plan.preparation,
+      hosted(value.previousDir, '/', (response) => ({
+        ...response,
+        arrayBuffer: async () => Buffer.from('changed'),
+      }))
+    )
+  );
+});
+
+test('first-publication settings recovery accepts only the captured configuration and observes ambiguous writes', async (t) => {
+  const value = await frozen(t);
+  const original = structuredClone(value.pages);
+  const canonical = {
+    ...original,
+    html_url: migration.to + '/',
+    cname: new URL(migration.to).hostname,
+  };
+  let writes = 0;
+  value.github.rest.repos.updateInformationAboutPagesSite = async (request) => {
+    writes++;
+    assert.equal(request.cname, null);
+    assert.equal(request.build_type, 'workflow');
+    assert.equal(request.https_enforced, original.https_enforced);
+    Object.assign(value.pages, original);
+    throw Object.assign(Error('committed then connection lost'), {
+      status: 502,
+    });
+  };
+  Object.assign(value.pages, canonical);
+  assert.deepEqual(
+    await migration.restoreSettings(value.github, value.context, value.plan),
+    value.plan.settings
+  );
+  assert.equal(writes, 1);
+  await migration.restoreSettings(value.github, value.context, value.plan);
+  assert.equal(writes, 1, 'already-restored configuration must not be rewritten');
+  Object.assign(value.pages, canonical);
+  value.github.rest.repos.updateInformationAboutPagesSite = async () => {
+    writes++;
+    throw Object.assign(Error('Pages authority missing'), { status: 403 });
+  };
+  await assert.rejects(
+    migration.restoreSettings(value.github, value.context, value.plan),
+    /Pages authority missing/
+  );
+  Object.assign(value.pages, { ...canonical, cname: 'unrelated.example' });
+  const before = writes;
+  await assert.rejects(migration.restoreSettings(value.github, value.context, value.plan));
+  assert.equal(writes, before, 'unrelated settings must never be overwritten');
+});
+
 test('migration authenticates old prefix before binding and preserves all staged/root source bytes', async (t) => {
   const value = await frozen(t);
   assert.equal(migration.load(value.directory).previousPackageDigest, value.old.packageDigest);
@@ -190,7 +284,11 @@ test('migration authenticates old prefix before binding and preserves all staged
     controller.previous(value.github, value.context, migration.to, null, hosted(value.previousDir)),
     /receipt base path differs/
   );
-  Object.assign(value.run, { id: 102, path: migration.workflow, head_sha: value.context.sha });
+  Object.assign(value.run, {
+    id: 102,
+    path: migration.workflow,
+    head_sha: value.context.sha,
+  });
   Object.assign(value.item, {
     name: 'site-pages-102-1',
     workflow_run: { id: 102, head_sha: value.context.sha, head_branch: 'main' },
@@ -328,7 +426,9 @@ test('migration execution and recovery lease admit only frozen controller and ca
     /captured Pages settings/
   );
   value.pages.https_enforced = true;
-  value.github.rest.repos.listDeploymentStatuses = async () => ({ data: [{ state: 'success' }] });
+  value.github.rest.repos.listDeploymentStatuses = async () => ({
+    data: [{ state: 'success' }],
+  });
   value.github.paginate = async () => [
     {
       id: 1,

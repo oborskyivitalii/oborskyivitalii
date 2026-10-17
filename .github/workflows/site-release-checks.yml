@@ -433,7 +433,7 @@ jobs:
           node tools/quality/artifact.cjs verify quality-artifact/public quality-artifact/artifact.json
           node tools/staging/selftest.cjs
           node tools/quality/functional.cjs
-      - name: Assert Color ribbons, spatial flight and real edge scrolling
+      - name: Assert current Color block transitions, absent ribbons and real edge scrolling
         if: inputs.public_variant == 'color' && !cancelled()
         run: node tools/quality/color-browser.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f

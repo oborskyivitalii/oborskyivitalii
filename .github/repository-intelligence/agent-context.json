@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c9ead78849adfd62ed42c344de8ab7e52a0006e4c1f73202c718920b2d11e0a4",
+    "digest": "e62ab8cd602e67f52a250dcca23814340239016aee0cd5cd084645dfeb90dbef",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0948f5598e993631dd541dc1d2a0ed245df540ef8666492a864a53155d9cabee"
+        "sha256": "e59e423fc97e0a26c0e8539655ae1c12f9609b70761e887118db76eedbf976a5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "74fcb13a9dd17ea5bf5fed9cf18c97e2a84f13e325c089d58ad05ac33546b81f"
+        "sha256": "8d919c3e3feabde1c626a3ef36c7c889511db4e73d4bf3a26408317985539dac"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -226,7 +226,7 @@
       {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
-        "sha256": "ab308c527eece727811ce5648f76125ed8b29bdbb7796080dc2321abb05a4522"
+        "sha256": "846ea8752500e1ebbce944ad35954828bb4309a83755b66411ffad510a8e5ce4"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -236,7 +236,7 @@
       {
         "path": ".github/workflows/site-release-checks.yml",
         "identity_mode": "content",
-        "sha256": "55515562f13d8c62f6a59a4b06c54726a6a90241ddd56f133d6595ef7f155a71"
+        "sha256": "3430cc4a28d676ecb7f4fca843e1f0bb0a30f6d03f1cf384b9be9cb4265e9d00"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "2e7518f30897b4b7caf993f4f26ad8a06d3eec897fccb97547df720cfa2ae0c9"
+        "sha256": "09feeea70d226c21fb691500be1ffefa68bd2870c52ef79eede6f5d4c2c3a360"
       },
       {
         "path": "NOTICE.md",
@@ -555,7 +555,7 @@
       {
         "path": "guides/SITE-PRODUCTION.md",
         "identity_mode": "content",
-        "sha256": "4d8c769b7c85e66a42a17aa07c4eeabf45f6cad0eba45f3246eab1df63e86f65"
+        "sha256": "4a6af107b8b9322062c949885a0e8e0fb9f56d28ac1b363f3f4deae9108ee776"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
@@ -901,6 +901,11 @@
         "path": "review/issue-39/2026-10-17-native-navigation.md",
         "identity_mode": "content",
         "sha256": "6ecc3d450a1bf70f99a78efaa4a48f3f795f8277db46094e8ff9379dd76893d1"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-production-cutover.md",
+        "identity_mode": "content",
+        "sha256": "b75fbc245e72563bce0c78cd5bd5d7f85134e5437c43a614715099f06e6401b9"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -5635,7 +5640,7 @@
       {
         "path": "tests/functional-fixtures.test.cjs",
         "identity_mode": "content",
-        "sha256": "6a3946512a1f12b366478292e41410232d75c69e3b36b14d14e1ae6d9ab9d7e0"
+        "sha256": "acd7e28aeb06d58d306dfd6c2eacb5de0feb14eee4ee5636f0914e768f3a5179"
       },
       {
         "path": "tests/gtk-native-probe.test.cjs",
@@ -5675,7 +5680,7 @@
       {
         "path": "tests/pages-migration.test.cjs",
         "identity_mode": "content",
-        "sha256": "47abba90f2196e5e90f882dd14c247c3bb252f089457ea6e541cb44bdedaf24b"
+        "sha256": "01c7226505d188cbd3f2b2a6a060bd87faa73253f86f7a8a101acb79cc8c5771"
       },
       {
         "path": "tests/phase-checkpoint.test.cjs",
@@ -5715,7 +5720,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "1ed6e284fc5180bdc49920d25fd97f330efcd58ed5bec5df551e755b38b8f0bd"
+        "sha256": "68c1b87a5022be4f03d390453ff981ca86d6b3937c6163c0c8831fa7b7e68e1b"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5800,7 +5805,7 @@
       {
         "path": "tests/staging.test.cjs",
         "identity_mode": "content",
-        "sha256": "88c1368d794ef7ad5685f5adc569fc44056cebe634c395b184cb32544b9638c9"
+        "sha256": "4d7f7c60aba84fe25e7a3db26081a30ee0be14d3a6a2e51fea91a2305d152e64"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -6050,7 +6055,7 @@
       {
         "path": "tools/pages/migration.cjs",
         "identity_mode": "content",
-        "sha256": "2538933b57f463121dd169b346042d870fc86ea037e90d9d59e867742a1c9b6d"
+        "sha256": "8f09e40c464acb3960e7b2400f8b7c22ded55b4cfcff35e23ae8a2c3e168fc98"
       },
       {
         "path": "tools/pages/package.cjs",
@@ -6220,7 +6225,7 @@
       {
         "path": "tools/quality/functional.cjs",
         "identity_mode": "content",
-        "sha256": "df03d3fd81d0f94d824956b86ea699e12857140d9513a416c54ca7ead7876101"
+        "sha256": "c87c4a66e4bb056a56440b83ee4cd3f6d8ad77d12ac718c9ef374e1e541d77e4"
       },
       {
         "path": "tools/quality/geometry.cjs",
@@ -6265,7 +6270,7 @@
       {
         "path": "tools/quality/motion.cjs",
         "identity_mode": "content",
-        "sha256": "baff7eba77cab665d7114e618fbda374ab666017f60d16faaef70f7e87804bcb"
+        "sha256": "3b71f7cbf1ea61b1746eadb2a37bb0c8bbb1916dcc50a1f63453903693f1c32b"
       },
       {
         "path": "tools/quality/native-display.cjs",
@@ -6500,7 +6505,7 @@
       {
         "path": "tools/release/actions.cjs",
         "identity_mode": "content",
-        "sha256": "6667b6ccafc2b4e65e7f7e5357636291f9920a802af40f136a4fab0e213a0d4f"
+        "sha256": "d73d7b4783b45b8da713e17ad58d2b1f9fdc004721dd093778178f6edb2c4cd4"
       },
       {
         "path": "tools/release/archive.cjs",
@@ -6670,7 +6675,7 @@
       {
         "path": "tools/staging/hosted.cjs",
         "identity_mode": "content",
-        "sha256": "4b0c121706bdc90e6046130c5facf2088ffaea7af83dc6264cf294800dfbadfb"
+        "sha256": "e2cc1fa8168112a1c7488e40fd1fb9466bfafa7e026934eebeeff12797fc108b"
       },
       {
         "path": "tools/staging/package.cjs",
@@ -8931,6 +8936,17 @@
         "AGENTS.md"
       ],
       "title": "Issue39 / PR85 — native navigation and capture follow-up"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-production-cutover.md",
+      "kind": "file",
+      "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — PR85 delivery and canonical production cutover preparation"
     },
     {
       "path": "review/issue-39/2026-10-17-staging-admission.md",

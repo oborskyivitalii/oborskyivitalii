@@ -10,6 +10,43 @@ const artifact = require('../tools/quality/artifact.cjs'),
 const hosted = require('../tools/staging/hosted.cjs');
 const state = require('../tools/staging/state.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
+test('hosted archive reset follows catalog cardinality and still rejects missing rendered records', async () => {
+  function browserFixture(observedCount) {
+    const fields = { '#archive-topic': 'systems', '#archive-language': 'uk' };
+    return {
+      goto: async () => {},
+      reload: async () => {},
+      goBack: async () => {
+        fields['#archive-language'] = 'uk';
+      },
+      goForward: async () => {
+        fields['#archive-language'] = 'en';
+      },
+      locator: (selector) => ({
+        inputValue: async () => fields[selector],
+        selectOption: async (value) => {
+          fields[selector] = value;
+        },
+        isVisible: async () => true,
+        click: async () => {},
+        count: async () => (selector === '#topic-systems' ? 1 : observedCount),
+      }),
+    };
+  }
+  for (const count of [2, 28, 31]) {
+    const expected = {
+      records: Object.fromEntries(Array.from({ length: count }, (_, i) => ['record-' + i, {}])),
+    };
+    const result = await hosted.archive(browserFixture(count), 'https://fixture.invalid', expected);
+    assert.equal(result.primaryRecords, count);
+    await assert.rejects(
+      hosted.archive(browserFixture(count - 1), 'https://fixture.invalid', expected)
+    );
+  }
+  await assert.rejects(
+    hosted.archive(browserFixture(0), 'https://fixture.invalid', { records: {} })
+  );
+});
 test('controlled HTTP model serves exact production robots and sitemap with their required MIME', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-production-mime-'));
   const files = {
