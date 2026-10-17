@@ -30,6 +30,11 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
   900/180ms and2px validation stays strict. Early-callback regression added.
   Prior-head stage39018028279 cancellation requested before publication. New
   source/staging/full/native evidence and production publication remain needed.
+- Stage39018454175 failed before upload:607 source/Python115/lint/SEO/rights pass;
+  generated preview/bundle freshness and11 new exact checksum candidates failed.
+  Existing preview/bundle owners are regenerated; append only individually proved
+  public hashes to publication ledger, preserve all baseline ledgers/old rows.
+  Run the complete clean prepublication guard before requesting staging again.
 - Recovery39013902509/1 capsule12094430541 ZIPa76391a97ea36eae3edbffa1e666ce72cc83f2c6d738dbd81186f74a4e1606df
   authenticates original Pages host/default cname/workflow/HTTPS and exact old bytes;
   controller32983. Regenerate after main moves. Never execute retired staging migration.

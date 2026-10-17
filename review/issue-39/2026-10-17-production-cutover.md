@@ -246,3 +246,24 @@ late/blocked/wrong-geometry cases remain failures. No public/runtime bytes chang
 PR87 returned to Draft; prior-head stage39018028279 was cancelled before
 publication. All subsequent source/staging/native/full evidence must match
 the corrected head. This is collector self-review, not native admission.
+
+
+### Derived review outputs and checksum triage
+
+Stage39018454175 atcddb286 passed source607/607, Python115, lint, SEO,
+artifact/rights and the remaining source checks. It failed before upload on
+stale generated offline preview copies/bundle manifest and11 new exact
+checksum candidates in docs/revision/output-lock and the exact template pin.
+Semgrep/Bandit/advisories passed. Raw prepublication artifact12095399746 retains
+all original reports. Regenerate the existing preview/bundle owners; append
+only independently reproducible exact public checksum path/type/hash rows to
+the publication ledger, preserving every old row and all original baseline
+ledgers. This is implementation source triage, not independent release review.
+Complete all clean prepublication guards before the next staging request.
+
+Regeneration exposed48 exact new checksum IDs across14 paths (the original11
+plus37 derived preview/bundle IDs). Canonical build, preview and bundle checks
+reproduced every value; the Research source pin separately equals its canonical
+template SHA256. The896 prior publication rows remain unchanged;944 rows now
+exist. All three original baseline ledgers and advisory exceptions are unchanged.
+No scanner rule, broad path allowance or unproved value was added.
