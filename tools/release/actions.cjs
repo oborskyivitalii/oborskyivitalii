@@ -97,7 +97,7 @@ async function preparation(github, context, runId, attempt) {
   );
   return require('../pages/migration.cjs').preparation(
     github,
-    { ...context, sha: run.head_sha },
+    { repo: context.repo, sha: run.head_sha },
     runId,
     attempt
   );

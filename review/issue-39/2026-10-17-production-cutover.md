@@ -625,3 +625,28 @@ used the fixture's own source SHA and failed to reject; using a distinct SHA
 corrected the fixture. No implementation guard was relaxed. RI/CI and native
 source/staging/protected merge, actual metadata compensation, fresh production
 freeze/rights binding and live.ai/.com acceptance remain separately required.
+
+## 17 October — preserve the actual Actions repository accessor
+
+Native metadata-only recovery39067835096/1 on protected maina9a40bc failed
+before any write. Pages publication was skipped. GET repos///actions/runs/39062287331
+returned404 because actions.preparation copied GitHub's Context using spread:
+its inherited repo accessor disappeared. Original metadata and served bytes
+remain unchanged. Candidate39067763607/1 is valid but isolated, not published.
+
+The existing migration regression now models repo as a prototype getter and
+requires actual owner/repo arguments on every workflow-run request. Against the
+old code it reproduces the native missing owner failure. The adapter now passes
+the two required values explicitly, repo and historical SHA. The actor-negative
+fixture also preserves its repository so a missing field cannot mask its intended
+rejection. A search of the affected release/Pages owners found this sole whole
+context spread; the remaining repo spreads copy the returned ordinary descriptor.
+
+All40 existing release/migration tests pass with zero skips after correction.
+The actual retained-result/capsule/deployment rehearsal also passes with the
+prototype accessor and asserted owner/repo arguments; its provider writes remain
+simulated. Basic and exact-source native delivery remain separate. This is
+self-review under the existing CS01/04/05/06/07/08/09/10 mapping. No permission,
+workflow, site/runtime, profile, case, budget or allowance change is added here.
+Normal checks, one ordinary staging and protected merge precede another actual
+metadata compensation. Retain the original failed run; do not relabel it a pass.
