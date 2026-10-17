@@ -530,7 +530,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "94d1b0aa6d61796f962021b711517d2fa5036100b5cef4ed9f00f21333724a89",
+    "digest": "b8d0abac7b6faa340625faef6883bdb50da6f12ee07452d5bd5f24712d6b87c7",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -698,7 +698,7 @@
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
-        "sha256": "394233ded8e02786ab771463d997fbd2ec4dce12e01a58c0dffece5dd238e68b"
+        "sha256": "761df5fc4eac6dbb110254e2f7f14ed5de1eec0ca6cb7a34f9d48dc70cb9cde8"
       },
       {
         "path": ".github/workflows/site-staging-merge.yml",

@@ -16,18 +16,22 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
   completed bywatchdog2000ms. Raw12096259809 ZIP
   1ec4137230a56ce2aee2ade65cc319ff9cd305ba002f397706f425097c9f5d18 retained.
   All30 Lighthouse trials pass. Host/static/captures/native macOS/Windows pass;
-  Linux still running at last inspection. Original failure stays failed.
+  Linux passed too. Aggregate failed. Original failure stays failed.
 - Read-only clock diagnostic39023335245/b7d27aac retained5 fixed trials/40flights.
   Raw12097498521 ZIP8885ce6397158eb94efe853275b4d9933af51e481963ebc88931c3f332b0d6ba:
  20ms frame-workload trial reproduces Talks-to-Writing watchdog; native CSS end
   elapsed700ms, wall691.3ms rejected by original700-minus8ms guard. Three
   ordinary contexts and12ms trial pass. Same causal race, not exact Home repeat.
-- Active work/css-clock-39 pairs document.timeline.currentTime for CSS completion,
+- Active PR88/work/css-clock-39 at0a3c782 pairs document.timeline.currentTime for CSS completion,
   wall fallback when unavailable. Route/reading8ms guards,1000/700ms CSS, camera,
   watchdogs/probe clocks unchanged. New tests red2/3 on old source, green39/39
   with existing controller suite. Generated outputs and exact preservation pins
-  updated. Corrected native fixed-protocol proof pending; temporary workflow
-  must be restored byte-for-byte from0c76 before PR readiness.
+  updated. Exact new Color tuples and required frozen rights verified. Native
+  fixed-protocol39024689792 passed40flights/80 animationend endpoints,0watchdog;
+  raw12097762337 ZIP6be1c0c98993542a63fc803f867fc6e19d11c9aa90d283821d619994868848bf.
+  Temporary workflow restored from0c76; local staging source611/611 passed.
+  Clean0a3 owner18/19: correct one stale release-controller expected identity,
+  rerun on final source. Checksum ledger944 prior rows preserved,+187 exact new.
 - Local clean-main owning acceptance passes19/19 after pinned Python toolchain
   installation. Earlier missing-environment failure is retained, not relabelled.
   Local Chromium CDN download failed; pinned native proof uses existing GitHubCI.

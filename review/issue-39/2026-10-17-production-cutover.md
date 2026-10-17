@@ -328,3 +328,47 @@ The existing closed-selector mutation/full-cell/edition suites include all
 three tuples. Frozen publication rights remain mandatory for all three; the
 new fixture verifies missing rights fail before file access. These are exact
 implementation identity proofs, not independent release/native acceptance.
+
+
+The187 exact new checksum IDs were individually proved before appending to
+secrets-publication.json. All944 prior rows remain identical, now1131 total;
+three original baseline ledgers and advisory exceptions remain unchanged.
+No scanner rule/path allowance or performance threshold changed. Registry
+coverage stays in the existing permanent scroll-entry/publication-records and
+closed Color/staging/controller modules; no new module or deferred gate.
+
+Clean0a3c782 passes formatting and18/19 owning checks. PRODUCTION-PREPARATION
+caught one stale current-edition expectation in release-controller.test.cjs:
+production now correctly selects issue39-css-clock-production. Update that
+exact expected identity; byte/edition/variant/analytics/size assertions remain.
+The failed original owner report remains retained; rerun after this source fix.
+Corrected native diagnostic39024689792 at0a3c782 is collecting the same five
+fixed trials. The temporary workflow has now been restored byte-for-byte to
+main0c76; no diagnostic workflow change is proposed for merge. Final native,
+source/scanner, staging/full and physical scope gates remain separate.
+
+The full publication-records suite also caught its current-edition fixture's
+old Writing-family expected ID. Update only that current fixture to CSS-clock;
+historical source/record fixtures remain pinned. Fetch the five missing pinned
+historical blobs together for this partial local checkout; preserve the first
+failed suite and rerun on corrected source. No fixture assertion is removed.
+
+
+Corrected native39024689792 succeeded on clean0a3c782. Raw artifact12097762337
+ZIP6be1c0c98993542a63fc803f867fc6e19d11c9aa90d283821d619994868848bf
+retains the same Chromium153.0.8010.12,390px viewport, three ordinary contexts
+and12/20ms pre-input workloads. All40 flights completed; all80 departure/arrival
+endpoints completed byanimationend, zero watchdog/fallback. Original setup
+cancellation probes are retained separately and do not represent phase ends.
+Production-edition diagnostic public digest704f9b644e708ca45c1a5eb46c64a91159d1cce9e3b6fbaa48a1f027fc2f9ff7,
+Color fingerprint1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17.
+This bounded causal confirmation is not full production/native/device admission.
+
+Original full39021549906 is now complete: Linux/macOS/Windows, host, static and
+captures passed; performance and aggregate gate failed as originally observed.
+Preserve it. Local corrected source modules pass611/611 staging tests and the
+publication module19/19; those precommit local observations are diagnostics.
+The first115-test Python run caught stale RI after the fixture edit (five query
+errors, zero behavioral failures); rebuild RI before the final exact-source run.
+All new tests remain in existing permanent modules; their PR/staging/production
+selection is unchanged. Temporary diagnostic workflow has zero diff versusmain0c76.

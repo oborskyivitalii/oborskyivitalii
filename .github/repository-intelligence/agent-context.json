@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6c37646363cadb13c48f974c6a1bc9e68ed39f94b9225099e075d8cb9af1cfb0",
+    "digest": "34b785d67d37123c1c56364a6508bc2dfe26ac5204b5721264677fbe2b43c85b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c644767d237357931ff2f29adc98c3b7986189c60cef363c0390aba529ab8dfd"
+        "sha256": "de4baa471a53f7f5b1785616665486f47c5a30e57b2cdd58f26e5511d59c4bd5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -241,7 +241,7 @@
       {
         "path": ".github/workflows/site-runtime-checks.yml",
         "identity_mode": "content",
-        "sha256": "394233ded8e02786ab771463d997fbd2ec4dce12e01a58c0dffece5dd238e68b"
+        "sha256": "761df5fc4eac6dbb110254e2f7f14ed5de1eec0ca6cb7a34f9d48dc70cb9cde8"
       },
       {
         "path": ".github/workflows/site-staging-merge.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "13270967a4f45fe98f71f336551c57b9c429d41761b09e681269030b1d3e694c"
+        "sha256": "696246edb5767ec731e2a840914dd4ba99ff8e2c45c1e77d822106e06aa84af7"
       },
       {
         "path": "NOTICE.md",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "64c406015e0470424055da41248834995db728a27891cd2c9940a1483ba6c487"
+        "sha256": "5b23c58aca80c10db735ea1979d2b773fdc5845971bb2727b86083d0c86d5aac"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -5615,7 +5615,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "359320e6e69cd872fc0f95dc67ac000f3fa1e86e543cf4cca39516eaf1bfbfd4"
+        "sha256": "b8bf29022b8e5295deab65ebb52c9613608498e50f20edf8d5207505acda8bed"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -5735,7 +5735,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "ce1d53f6680c315198f93a9c41fabe8aa24da1376865b74771d3d95888cc4ced"
+        "sha256": "41e9fd4c1592c62a01b0d1f9c18b3504d913c8b10df74eabee2e73a9c3fd47ce"
       },
       {
         "path": "tests/release-rights.test.cjs",
