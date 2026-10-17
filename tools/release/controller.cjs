@@ -602,17 +602,6 @@ async function failedPublication(github, context, runId, attempt) {
   };
 }
 
-async function metadataAccess(github, context, numbers) {
-  // Exercise the actual PR-resource write before changing live Pages. POST with
-  // an empty label array adds nothing; GET alone cannot establish write access.
-  for (const number of new Set(numbers.filter(Boolean))) {
-    const before = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
-    await github.rest.issues.addLabels({ ...context.repo, issue_number: number, labels: [] });
-    const after = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
-    assert.deepEqual(after.labels, before.labels, 'metadata permission probe changed labels');
-  }
-}
-
 async function recoveryState(github, context, proof, transaction, tag) {
   assert.equal(transaction.schema, 1);
   assert.equal(transaction.kind, 'production-transition');
@@ -881,7 +870,6 @@ module.exports = {
   publishArchive,
   branch,
   failedPublication,
-  metadataAccess,
   recoveryState,
   plan,
   move,

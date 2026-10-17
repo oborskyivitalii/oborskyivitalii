@@ -4,20 +4,17 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- Owner issue39; PR94 merged normally at protected maina9a40bc, treead06e4e2
-  equals tested2451e06c. Source/RI/owning/preview and complete staging39066488284/1,
-  promotion117497935750, merge-admission117498123365 and eligible39067585948 pass.
-- Metadata recovery39067835096/1 failed before writes: Actions Context.repo is an
-  inherited getter lost by the new context spread. GET repos///actions/runs
-  returned404. Pages publication skipped; original partial metadata is unchanged.
-- Active work/production-context-39 passes repo and historical SHA explicitly.
-  Existing migration fixture now models the prototype getter and requires actual
-  owner/repo request arguments; it reproduced the native failure before correction.
-  All40 release/migration cases pass after correction, zero skips; actual retained
-  result/capsule/deployment rehearsal also passes with the accessor modeled.
-- Candidate39067763607/1 on a9a40bc passed build/publish/http but remains isolated
-  and unaccepted. Its44-file production edition and exact rights inventory verify.
-  No tag.4 was created. Final corrected main requires its own authenticated freeze.
+- Owner issue39; PR95 merged normally as05fcb496, tree3a13a545 equals tested
+  a19b1c3b. Source/preview/RI/owning and complete staging39068321478/1, stable
+  promotion117503803853 and eligible admission117504167902 passed.
+- Actual metadata recovery39069825104/1 authenticated repo accessor, original
+  capsule, settings and every canonical predecessor byte. It failed before writes
+  on GitHub422: POST labels:[] requires at least one item. Native scopes are correct.
+- Active work/production-label-schema-39 removes that speculative no-op preflight.
+  Existing provider fixture now rejects empty additive writes. The invalid-no-op
+  test is removed; actual failed label transition and compensation coverage stays.
+- Candidate39069852723/1 is isolated on05fcb496, not accepted production. No tag.4
+  exists. Final corrected main needs its own authenticated freeze.
 - Original failed publisher39062995834/1/tag.3 passed site checks then PR label403.
   production ref656fe739, no active label, unaccepted deployment7144735262 remain.
   Canonical.ai retains old staging bytes. Original result12111844615 and recovery
@@ -41,7 +38,7 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Open work
 
-- Deliver the one-line accessor correction and strengthened regression through
+- Deliver the invalid empty-label preflight removal and provider fixture through
   source checks, one ordinary staging and protected merge under39; no bypass.
 - Dispatch protected operation recover for failed39062995834/1 and tag.3;
   authenticate original recovery39062287331/1 and verify actual metadata compensation.

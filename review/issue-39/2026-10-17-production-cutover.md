@@ -650,3 +650,30 @@ self-review under the existing CS01/04/05/06/07/08/09/10 mapping. No permission,
 workflow, site/runtime, profile, case, budget or allowance change is added here.
 Normal checks, one ordinary staging and protected merge precede another actual
 metadata compensation. Retain the original failed run; do not relabel it a pass.
+
+
+## 17 October — remove the invalid empty-label preflight
+
+PR95 merged normally as05fcb496 with its exact tested tree3a13a545; complete
+staging39068321478/1 and eligible admission117504167902 passed. Actual metadata
+recovery39069825104/1 authenticated the original capsule, repository accessor,
+settings and every live predecessor byte, then failed before metadata mutation:
+GitHub returned422 for POST issues/93/labels with labels:[]. The permission
+scope was correct; an empty additive array is invalid provider input. The earlier
+fixture mistakenly accepted it. This failed run remains failed. Candidate
+39069852723 is isolated and cannot establish accepted production.
+
+Remove the speculative no-op preflight instead of adding another provider write.
+Only real existing controller label transitions write labels. Preserve the native
+pull-requests:write scope, protected-ref/App separation, all authenticated source,
+archive, rights, predecessor and live recovery leases. The provider fixture now
+rejects empty additive requests. Remove the one test asserting the invalid no-op;
+its useful failure surface survives in the existing actual label-write failure
+and verified compensation case, plus actual ordinary/App role-separation case.
+No hosted case, runtime byte, profile schedule, budget or original acceptance
+guard is removed. Update the existing registry purpose, not a new suite.
+
+Self-review only; CS01/04/05/06/07/08/09/10 continue to apply. Actual ordinary
+source/staging/protected merge, metadata compensation, final-main freeze/rights
+and live publication remain separate observations. No acceptance or new human
+review is inferred from these corrections.

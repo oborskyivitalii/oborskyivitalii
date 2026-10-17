@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "53e123f7d8bddfa4401f3388f1a0d537ad83807df7898a4991f51e959719f394",
+    "digest": "bbdd35050fdc69b999817f93c116c46bae9b4ee23d619c512fa6ea9b33ce5129",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d9a010e3e0e1075709e75bf35e162476c0a4611b721b76c983c83314a79b2883"
+        "sha256": "2984f41573d0aae68a9b8133d1b4190397c5b67a3afb4e4264d5ac774393006e"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c6aa6c2fcf8cca9fc6febc51f7412ee5b5d1668f068d8a74177f44b6262fe4a6"
+        "sha256": "eb8f706995d947a3691cb8ceac25dba949fa1373548f427903494e53f7628b8c"
       },
       {
         "path": "NOTICE.md",
@@ -560,7 +560,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "a0dd60e75ba857deb7e4ac599751a413a7f9bcd7c19355b17cfa807e5491e39e"
+        "sha256": "d1a5b67ecf8f31a37425bfdc0cf74628a3094781f92fee4b0b1e1fa94316c4e8"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "c8f7e78ed2c812d0892010909b4cacc77f6a6b687c92528bcecab7e446f93165"
+        "sha256": "09ac6b6c1346d76a41bb6034516e5cf879ae237cc8a66abb24adf8a9d9788bd6"
       },
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
@@ -5740,7 +5740,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "2ec53faeaa5adb5e2ee44159c49007ed34ed824e3cf34412a44596f1cb4cdfe6"
+        "sha256": "352732763e82805883ef14b901d93c24d8a8a67f2e6f070bcc9c0f1a1e5629d2"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6410,7 +6410,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "b345893a54061cbb59ba9614b1a81df360a2608d5faf6e03c3afad9a5c969e99"
+        "sha256": "4bb7fb1de9bdb527ed04cf8524d831c670b8696d2b329caa297d879e1f5100e6"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6510,7 +6510,7 @@
       {
         "path": "tools/release/actions.cjs",
         "identity_mode": "content",
-        "sha256": "61e929ccc8be5058253e534cbead48c69d1eddea35a2a3ce5a94988151b81235"
+        "sha256": "af45b4d7354741b146363962fffb430249fed9e4f0d6dc93154bcc24f6615a1a"
       },
       {
         "path": "tools/release/archive.cjs",
@@ -6520,7 +6520,7 @@
       {
         "path": "tools/release/controller.cjs",
         "identity_mode": "content",
-        "sha256": "61d054d1a95919314a1257f0b83e5596e9c3da7ff116633ec903ea8aaa55029d"
+        "sha256": "84e1d300086b651aff21f229995a1e9934b2b4dad5f2a73c50c6f342f281d1ec"
       },
       {
         "path": "tools/release/edition-archive.cjs",
