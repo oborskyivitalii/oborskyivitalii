@@ -434,7 +434,12 @@ async function publishArchive(
   control = productionClient(github)
 ) {
   const tag = archive.tag(record.tag);
-  let release = await optional(() => control.rest.repos.getReleaseByTag({ ...context.repo, tag }));
+  // The tag endpoint exposes published releases, not the draft created before deployment.
+  const matches = (
+    await control.paginate(control.rest.repos.listReleases, { ...context.repo, per_page: 100 })
+  ).filter((item) => item.tag_name === tag);
+  assert.ok(matches.length <= 1, 'ambiguous archive release identity');
+  let release = matches[0] || null;
   const names = [
     'archive.json',
     'rights.json',
