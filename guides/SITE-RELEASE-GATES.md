@@ -131,7 +131,15 @@ All actual publication observations must be retained.
 publication locks its assets/tag. GitHub must report `immutable: true` before
 the protected source ref, labels and successful production deployment can move.
 If any stage fails, exact previous Pages bytes are restored and checked before
-bookkeeping compensation; the run stays red. A frozen Release from a failed
+bookkeeping compensation; the run stays red. Production-content compensation
+preserves the canonical domain/HTTPS and verifies unchanged settings; explicit
+domain-migration recovery owns restoring its original prefix. Authenticated
+first-release capsules may remain from a proven main ancestor when the exact
+predecessor ZIP and every canonical served byte still verify. The protected
+publisher has a separate metadata-only recovery operation for an exact failed
+first-publication result; it cannot deploy Pages, change settings or accept a
+release. Both metadata writers use ordinary `pull-requests: write`; actual
+no-op PR-label writes precede archive/live writes. A frozen Release from a failed
 bookkeeping transition is retained but is not an accepted rollback target.
 
 Rollback consumes a previously live accepted immutable Release, verifies every

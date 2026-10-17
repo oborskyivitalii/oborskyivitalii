@@ -27,9 +27,26 @@ async function authenticate(github, context) {
 async function resolve(github, context, core) {
   await authenticate(github, context);
   const operation = process.env.RELEASE_OPERATION;
-  assert.ok(['publish', 'rollback'].includes(operation));
+  assert.ok(['publish', 'rollback', 'recover'].includes(operation));
   const tag = archive.tag(process.env.RELEASE_TAG);
   const current = await pages.activeProduction(github, context);
+  if (operation === 'recover') {
+    assert.equal(
+      current,
+      null,
+      'first-release metadata recovery cannot replace accepted production'
+    );
+    const failed = await controller.failedPublication(
+      github,
+      context,
+      process.env.FAILED_RELEASE_RUN,
+      process.env.FAILED_RELEASE_ATTEMPT
+    );
+    save('release-control/request.json', { operation, tag, current, failed });
+    core.setOutput('recovery_id', failed.artifactId);
+    core.setOutput('recovery_digest', failed.uploadDigest);
+    return;
+  }
   assert.equal(await controller.branch(github, context), current?.sourceCommit || null);
   const proof = { operation, tag, current };
   if (operation === 'publish') {
@@ -53,16 +70,66 @@ async function resolve(github, context, core) {
   if (preparationRun) {
     assert.equal(operation, 'publish', 'first-release preparation cannot authorize rollback');
     assert.equal(current, null, 'first-release preparation cannot replace existing production');
-    proof.preparation = await require('../pages/migration.cjs').preparation(
-      github,
-      context,
-      preparationRun,
-      preparationAttempt
-    );
+    proof.preparation = await preparation(github, context, preparationRun, preparationAttempt);
     core.setOutput('preparation_id', proof.preparation.artifactId);
     core.setOutput('preparation_digest', proof.preparation.uploadDigest);
   }
   save('release-control/request.json', proof);
+}
+
+async function preparation(github, context, runId, attempt) {
+  const run = (
+    await github.rest.actions.getWorkflowRun({
+      ...context.repo,
+      run_id: flow.positive(runId),
+    })
+  ).data;
+  const comparison = (
+    await github.rest.repos.compareCommitsWithBasehead({
+      ...context.repo,
+      basehead: run.head_sha + '...' + context.sha,
+    })
+  ).data;
+  assert.equal(
+    comparison.merge_base_commit.sha,
+    run.head_sha,
+    'recovery capsule is outside main history'
+  );
+  return require('../pages/migration.cjs').preparation(
+    github,
+    { ...context, sha: run.head_sha },
+    runId,
+    attempt
+  );
+}
+
+async function canonicalPredecessor(github, context, directory, proof, fetcher = fetch) {
+  pages.controller(
+    context,
+    (await github.rest.repos.getBranch({ ...context.repo, branch: 'main' })).data
+  );
+  assert.equal(context.eventName, 'workflow_dispatch');
+  const migration = require('../pages/migration.cjs');
+  const plan = migration.load(directory);
+  assert.deepEqual(plan.preparation, { runId: proof.runId, attempt: proof.attempt });
+  const authenticated = await preparation(github, context, proof.runId, proof.attempt);
+  assert.deepEqual(authenticated, proof, 'recovery preparation changed');
+  const run = (await github.rest.actions.getWorkflowRun({ ...context.repo, run_id: proof.runId }))
+    .data;
+  assert.equal(plan.controller, run.head_sha);
+  assert.equal(await pages.activeProduction(github, context), null);
+  const configured = migration.settings(
+    (await github.rest.repos.getPages(context.repo)).data,
+    migration.to
+  );
+  assert.equal(configured.httpsEnforced, true, 'canonical HTTPS must remain enforced');
+  const observation = await migration.observeSource(directory, fetcher);
+  assert.deepEqual(
+    migration.settings((await github.rest.repos.getPages(context.repo)).data, migration.to),
+    configured,
+    'canonical settings changed during recovery verification'
+  );
+  return { plan, observation, settings: configured };
 }
 
 async function publicInputs(github, context, core) {
@@ -93,14 +160,16 @@ async function previous(github, context, core) {
   );
   let record;
   if (proof.preparation) {
-    const migration = require('../pages/migration.cjs');
     assert.equal(proof.current, null);
-    record = await migration.firstPublication(
+    const verified = await canonicalPredecessor(
       github,
       context,
       'first-release-prepared',
       proof.preparation
     );
+    record = verified.plan.previous;
+    proof.pagesSettings = verified.settings;
+    save('release-control/request.json', proof);
     fs.cpSync('first-release-prepared/previous/pages-package', 'pages-previous/pages-package', {
       recursive: true,
     });
@@ -127,22 +196,22 @@ async function verifyPrevious() {
   save('pages-reports/previous-http.json', observation);
 }
 
-async function restoreSettings(github, context) {
+async function verifyRecovery(github, context) {
   const proof = read('release-control/request.json');
-  if (!proof.preparation) return;
-  const migration = require('../pages/migration.cjs');
-  const plan = migration.load('first-release-prepared');
-  await migration.restoreSettings(github, context, plan);
-}
-
-async function verifyRecovery() {
-  const proof = read('release-control/request.json');
-  const base = proof.preparation
-    ? require('../pages/migration.cjs').load('first-release-prepared').from
-    : process.env.PAGES_ORIGIN;
+  if (proof.preparation) {
+    const verified = await canonicalPredecessor(
+      github,
+      context,
+      'first-release-prepared',
+      proof.preparation
+    );
+    assert.deepEqual(verified.settings, proof.pagesSettings);
+    save('pages-reports/rollback-http.json', verified.observation);
+    return;
+  }
   const observation = await require('../pages/http.cjs').ready(
     'pages-previous/pages-package',
-    base,
+    process.env.PAGES_ORIGIN,
     fetch,
     { retain: (value) => save('pages-reports/rollback-http.json', value) }
   );
@@ -188,8 +257,10 @@ function retainReports(proof, directory) {
 async function prepareArchive(github, context) {
   await authenticate(github, context);
   const proof = read('release-control/request.json');
+  await controller.metadataAccess(github, context, [proof.current?.releasePR, proof.releasePR]);
   if (proof.operation === 'rollback') {
     const record = await controller.restoreArchive(github, context, proof.tag, 'release-assets');
+    await controller.metadataAccess(github, context, [record.releasePR]);
     await controller.wasAccepted(github, context, record);
     cp.execFileSync('python3', [
       'tools/release/package.py',
@@ -309,13 +380,15 @@ async function begin(github, context) {
   await authenticate(github, context);
   const proof = read('release-control/request.json');
   assert.deepEqual(await pages.activeProduction(github, context), proof.current);
-  if (proof.preparation)
-    await require('../pages/migration.cjs').firstPublication(
+  if (proof.preparation) {
+    const verified = await canonicalPredecessor(
       github,
       context,
       'first-release-prepared',
       proof.preparation
     );
+    assert.deepEqual(verified.settings, proof.pagesSettings);
+  }
   const transaction = await controller.plan(
     github,
     context,
@@ -379,6 +452,71 @@ async function recover(github, context) {
   });
 }
 
+async function recoveryInputs(github, context, core) {
+  await authenticate(github, context);
+  const proof = read('release-control/request.json');
+  const request = read('failed-publication/release-control/request.json');
+  assert.equal(proof.operation, 'recover');
+  assert.equal(request.operation, 'publish');
+  assert.equal(request.current, null);
+  assert.equal(request.tag, proof.tag);
+  const capsule = await preparation(
+    github,
+    context,
+    request.preparation.runId,
+    request.preparation.attempt
+  );
+  assert.deepEqual(capsule, request.preparation);
+  const transaction = read('failed-publication/release-control/transition.json');
+  assert.equal(request.releasePR, transaction.desired.releasePR);
+  await controller.recoveryState(github, context, proof.failed, transaction, proof.tag);
+  proof.preparation = capsule;
+  save('release-control/request.json', proof);
+  core.setOutput('preparation_id', capsule.artifactId);
+  core.setOutput('preparation_digest', capsule.uploadDigest);
+}
+
+async function recoverFailed(github, context) {
+  await authenticate(github, context);
+  const proof = read('release-control/request.json');
+  assert.equal(proof.operation, 'recover');
+  const failed = await controller.failedPublication(
+    github,
+    context,
+    proof.failed.runId,
+    proof.failed.attempt
+  );
+  assert.deepEqual(failed, proof.failed, 'failed publication evidence changed');
+  const transaction = read('failed-publication/release-control/transition.json');
+  await controller.recoveryState(github, context, failed, transaction, proof.tag);
+  const verified = await canonicalPredecessor(
+    github,
+    context,
+    'first-release-prepared',
+    proof.preparation
+  );
+  const request = read('failed-publication/release-control/request.json');
+  assert.deepEqual(request.preparation, proof.preparation);
+  const previous = read('failed-publication/release-control/previous.json');
+  assert.deepEqual(previous, verified.plan.previous);
+  await controller.metadataAccess(github, context, [transaction.desired.releasePR]);
+  // Repeat live/provider leases immediately before the existing compensation.
+  await controller.recoveryState(github, context, failed, transaction, proof.tag);
+  await controller.recover(github, context, transaction, {
+    pass: verified.observation.pass,
+    productionTag: null,
+  });
+  assert.equal(await controller.branch(github, context), null);
+  save('release-control/recovered.json', {
+    schema: 1,
+    kind: 'first-release-metadata-recovery',
+    failed,
+    controller: context.sha,
+    observation: verified.observation,
+    settings: verified.settings,
+  });
+}
+
 async function abandoned(github, context) {
   const file = 'release-control/transition.json';
   if (!fs.existsSync(file)) return;
@@ -399,8 +537,11 @@ module.exports = {
   publicInputs,
   previous,
   verifyPrevious,
-  restoreSettings,
   verifyRecovery,
+  preparation,
+  canonicalPredecessor,
+  recoveryInputs,
+  recoverFailed,
   retainReports,
   prepareArchive,
   compose,

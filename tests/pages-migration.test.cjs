@@ -148,6 +148,88 @@ async function frozen(t) {
   return { ...value, plan, directory };
 }
 
+test('production recovery preserves canonical settings and authenticates an unchanged historical capsule', async (t) => {
+  const value = await frozen(t);
+  const actions = require('../tools/release/actions.cjs');
+  const current = { ...value.context, sha: 'e'.repeat(40) };
+  value.main.commit.sha = current.sha;
+  Object.assign(value.pages, {
+    html_url: migration.to + '/',
+    cname: new URL(migration.to).hostname,
+  });
+  Object.assign(value.run, { id: 101, head_sha: value.plan.controller, path: migration.workflow });
+  Object.assign(value.item, {
+    id: 19,
+    name: 'site-pages-migration-preparation-101-1',
+    workflow_run: { id: 101, head_sha: value.run.head_sha, head_branch: 'main' },
+  });
+  let ancestor = value.run.head_sha;
+  value.github.rest.repos.compareCommitsWithBasehead = async () => ({
+    data: { merge_base_commit: { sha: ancestor } },
+  });
+  value.github.paginate = async (endpoint) =>
+    endpoint === 'deployments'
+      ? []
+      : endpoint === 'jobs'
+        ? [{ name: 'Pages migration preparation', conclusion: 'success' }]
+        : [value.item];
+  const proof = await actions.preparation(value.github, current, 101, 1);
+  const before = structuredClone(value.pages);
+  const result = await actions.canonicalPredecessor(
+    value.github,
+    current,
+    value.directory,
+    proof,
+    hosted(value.previousDir)
+  );
+  assert.equal(result.observation.pass, true);
+  assert.equal(result.observation.packageDigest, value.old.packageDigest);
+  assert.deepEqual(value.pages, before, 'production recovery must never rewrite Pages settings');
+  ancestor = 'a'.repeat(40);
+  await assert.rejects(
+    actions.canonicalPredecessor(
+      value.github,
+      current,
+      value.directory,
+      proof,
+      hosted(value.previousDir)
+    )
+  );
+  ancestor = value.run.head_sha;
+  value.pages.https_enforced = false;
+  await assert.rejects(
+    actions.canonicalPredecessor(
+      value.github,
+      current,
+      value.directory,
+      proof,
+      hosted(value.previousDir)
+    )
+  );
+  value.pages.https_enforced = true;
+  await assert.rejects(
+    actions.canonicalPredecessor(
+      value.github,
+      current,
+      value.directory,
+      proof,
+      hosted(value.previousDir, '/', (response) => ({
+        ...response,
+        arrayBuffer: async () => Buffer.from('changed'),
+      }))
+    )
+  );
+  await assert.rejects(
+    actions.canonicalPredecessor(
+      value.github,
+      { ...current, actor: 'other' },
+      value.directory,
+      proof,
+      hosted(value.previousDir)
+    )
+  );
+});
+
 test('first production consumes the authenticated predecessor for recovery without republishing staging', async (t) => {
   const value = await frozen(t);
   Object.assign(value.pages, {

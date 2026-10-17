@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4ada60e1185c701e46418a8137bdb05713ddecc4f7c0bef7a7a1da2dda8617e6",
+    "digest": "761ece223abc719a93d83300910bb2e23da8cc7675bdcf73395d2ebb3bf80553",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "2bdcd8eaf6b4f7ef53337e81e185212f71c6813284cd1a5fb00bff199c1643eb"
+        "sha256": "d9a010e3e0e1075709e75bf35e162476c0a4611b721b76c983c83314a79b2883"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -226,7 +226,7 @@
       {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
-        "sha256": "f00d6019d65546cd2decdbc7b164d1e98d031f2daed93d05b037d971e84f9105"
+        "sha256": "bdbd68819e6cd4350da41fa2821100b62e0ae981f1d8e1c00af739a28e0e8ccc"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4cc660b684e5cc4e678c5870ad08cfbb639a50ba54c077d5f9fae12ef241c881"
+        "sha256": "f13f2d41b6aff81c008a8938d39f04f37eef1c4ca0b61c9aa481c7b8d7cfc4d6"
       },
       {
         "path": "NOTICE.md",
@@ -555,12 +555,12 @@
       {
         "path": "guides/SITE-PRODUCTION.md",
         "identity_mode": "content",
-        "sha256": "edf05fd26dd312bcf2292d1164564e685c1882a2162f4049f6759d634fd175a0"
+        "sha256": "e691d41e47bdc341858b05813ec6de0a4a8450e8f3f9d2bd1eb8e08c2c543076"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "cf8798e52fb210c9cdac30fa7d61c4f68f785e7278cd58c0bc97a788b528dd85"
+        "sha256": "a0dd60e75ba857deb7e4ac599751a413a7f9bcd7c19355b17cfa807e5491e39e"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "667943c2f8bd04c2943283b83cf2489ec8bcd2bd47c866b7baaefcacf6ea833b"
+        "sha256": "1500261a373f2de82f2f4c29ee099b5aa78d96d325b5e0a60bd2611670e368b4"
       },
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
@@ -5685,7 +5685,7 @@
       {
         "path": "tests/pages-migration.test.cjs",
         "identity_mode": "content",
-        "sha256": "01c7226505d188cbd3f2b2a6a060bd87faa73253f86f7a8a101acb79cc8c5771"
+        "sha256": "1a358824511e12fafdcd91881d5a304cadc03a27371b940454ebf45c3d7bd56d"
       },
       {
         "path": "tests/phase-checkpoint.test.cjs",
@@ -5740,7 +5740,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "a37073e3b44d29cd1d8676b753f0896f2680c4f62a679f33d76056d70be64097"
+        "sha256": "2ec53faeaa5adb5e2ee44159c49007ed34ed824e3cf34412a44596f1cb4cdfe6"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6410,7 +6410,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "e09cc4859f4c338a3e6bfe4815dc68f0616fd370f5045bc4bfe8d5ef5716d749"
+        "sha256": "b345893a54061cbb59ba9614b1a81df360a2608d5faf6e03c3afad9a5c969e99"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6510,7 +6510,7 @@
       {
         "path": "tools/release/actions.cjs",
         "identity_mode": "content",
-        "sha256": "dd98f4fe6482a9c6faa2cfe05eccf72a20a4c71b68136f982973df5dd1e64aa9"
+        "sha256": "3aa7192faf65850db14476623ce89650de725e5b5f84af73e3f04248e4e37e48"
       },
       {
         "path": "tools/release/archive.cjs",
@@ -6520,7 +6520,7 @@
       {
         "path": "tools/release/controller.cjs",
         "identity_mode": "content",
-        "sha256": "1e2b01771339c5e6d7fb374630dc529d3232503fccf8934d325aace282d76d69"
+        "sha256": "61d054d1a95919314a1257f0b83e5596e9c3da7ff116633ec903ea8aaa55029d"
       },
       {
         "path": "tools/release/edition-archive.cjs",

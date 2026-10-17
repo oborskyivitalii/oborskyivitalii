@@ -548,6 +548,129 @@ async function branch(github, context) {
   return ref?.object.sha || null;
 }
 
+async function failedPublication(github, context, runId, attempt) {
+  const run = (
+    await github.rest.actions.getWorkflowRun({
+      ...context.repo,
+      run_id: flow.positive(runId),
+    })
+  ).data;
+  assert.equal(run.id, flow.positive(runId));
+  assert.equal(run.path, workflow);
+  assert.equal(run.event, 'workflow_dispatch');
+  assert.equal(run.head_branch, 'main');
+  assert.equal(run.repository.full_name, flow.repository);
+  assert.equal(run.head_repository.full_name, flow.repository);
+  assert.equal(run.actor.login, context.repo.owner);
+  assert.equal(run.triggering_actor.login, context.repo.owner);
+  assert.equal(run.run_attempt, flow.positive(attempt));
+  assert.equal(run.status, 'completed');
+  assert.equal(run.conclusion, 'failure', 'recover only a failed publisher');
+  const comparison = (
+    await github.rest.repos.compareCommitsWithBasehead({
+      ...context.repo,
+      basehead: run.head_sha + '...' + context.sha,
+    })
+  ).data;
+  assert.equal(comparison.merge_base_commit.sha, run.head_sha, 'untrusted recovery source');
+  const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRunAttempt, {
+    ...context.repo,
+    run_id: run.id,
+    attempt_number: run.run_attempt,
+    per_page: 100,
+  });
+  const publication = jobs.filter((job) => job.name === 'Pages publication');
+  assert.equal(publication.length, 1);
+  assert.equal(publication[0].conclusion, 'failure');
+  const items = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
+    ...context.repo,
+    run_id: run.id,
+    per_page: 100,
+  });
+  const name = 'site-production-result-' + run.id + '-' + run.run_attempt;
+  const matches = items.filter((item) => item.name === name);
+  assert.equal(matches.length, 1, 'failed publication result missing/ambiguous');
+  const item = matches[0];
+  pages.artifactIdentity(item, run, item.id, item.digest, name);
+  assert.equal(item.workflow_run.head_sha, run.head_sha);
+  return {
+    runId: run.id,
+    attempt: run.run_attempt,
+    source: run.head_sha,
+    artifactId: item.id,
+    uploadDigest: item.digest,
+  };
+}
+
+async function metadataAccess(github, context, numbers) {
+  // Exercise the actual PR-resource write before changing live Pages. POST with
+  // an empty label array adds nothing; GET alone cannot establish write access.
+  for (const number of new Set(numbers.filter(Boolean))) {
+    const before = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
+    await github.rest.issues.addLabels({ ...context.repo, issue_number: number, labels: [] });
+    const after = (await github.rest.pulls.get({ ...context.repo, pull_number: number })).data;
+    assert.deepEqual(after.labels, before.labels, 'metadata permission probe changed labels');
+  }
+}
+
+async function recoveryState(github, context, proof, transaction, tag) {
+  assert.equal(transaction.schema, 1);
+  assert.equal(transaction.kind, 'production-transition');
+  assert.equal(transaction.before, null, 'metadata-only recovery is first-release only');
+  assert.equal(transaction.desired.tag, archive.tag(tag));
+  assert.equal(transaction.desired.sourceCommit, proof.source);
+  assert.equal(transaction.desired.previousTag, null);
+  assert.deepEqual(transaction.savedLabels, { [transaction.desired.releasePR]: [] });
+  await sourcePR(github, context, transaction.desired, transaction.desired.releasePR);
+  assert.equal(await pages.activeProduction(github, context), null, 'production became accepted');
+  assert.ok(
+    [null, proof.source].includes(await branch(github, context)),
+    'unrelated production ref'
+  );
+  const deployment = (
+    await github.rest.repos.getDeployment({
+      ...context.repo,
+      deployment_id: flow.positive(transaction.deploymentId),
+    })
+  ).data;
+  assert.equal(deployment.id, transaction.deploymentId);
+  assert.equal(deployment.environment, 'production');
+  assert.equal(deployment.sha, proof.source);
+  assert.equal(deployment.creator.login, 'github-actions[bot]');
+  assert.deepEqual(deployment.payload, {
+    kind: 'accepted-production',
+    tag: transaction.desired.tag,
+    sourceCommit: proof.source,
+    publicDigest: transaction.desired.publicDigest,
+    packageDigest: transaction.desired.packageDigest,
+    releasePR: transaction.desired.releasePR,
+    origin: transaction.desired.origin,
+  });
+  const statuses = await github.paginate(github.rest.repos.listDeploymentStatuses, {
+    ...context.repo,
+    deployment_id: deployment.id,
+    per_page: 100,
+  });
+  assert.ok(statuses.length > 0);
+  assert.ok(!statuses.some((status) => status.state === 'success'), 'release was already accepted');
+  assert.ok(['in_progress', 'failure'].includes(statuses[0].state));
+  const active = await github.paginate(github.rest.issues.listForRepo, {
+    ...context.repo,
+    labels: labels[0],
+    state: 'all',
+    per_page: 100,
+  });
+  assert.ok(
+    active.every((item) => item.number === transaction.desired.releasePR),
+    'unrelated active label'
+  );
+  const pr = (
+    await github.rest.pulls.get({ ...context.repo, pull_number: transaction.desired.releasePR })
+  ).data;
+  assert.ok(!pr.labels.some((item) => item.name === labels[1]), 'unrelated archived state');
+  return transaction;
+}
+
 async function plan(github, context, current, desired) {
   assert.equal(
     await branch(github, context),
@@ -757,6 +880,9 @@ module.exports = {
   restoreArchive,
   publishArchive,
   branch,
+  failedPublication,
+  metadataAccess,
+  recoveryState,
   plan,
   move,
   pending,

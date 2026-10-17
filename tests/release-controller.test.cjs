@@ -280,6 +280,8 @@ function github(immutable = true) {
       getLabel: async ({ name }) => ({ data: { name } }),
       createLabel: async (value) => ({ data: value }),
       addLabels: async ({ issue_number, labels }) => {
+        if (state.labelWrite === false)
+          throw Object.assign(Error('PR-resource write denied'), { status: 403 });
         for (const name of labels) state.flags.get(issue_number).add(name);
         state.calls.push('label');
         return { data: {} };
@@ -309,6 +311,134 @@ function github(immutable = true) {
     },
   };
 }
+
+test('PR label permission is exercised without changing labels before publication', async () => {
+  const api = github();
+  api.state.flags.get(73).add('unrelated-label');
+  await controller.metadataAccess(api, context, [73, 73, undefined]);
+  assert.deepEqual([...api.state.flags.get(73)], ['unrelated-label']);
+  assert.deepEqual(api.state.calls, ['label']);
+  api.state.calls.length = 0;
+  api.state.labelWrite = false;
+  await assert.rejects(controller.metadataAccess(api, context, [73]), /write denied/);
+  assert.deepEqual(api.state.calls, []);
+  assert.equal(api.state.refs.size, 0);
+  assert.equal(api.state.releases.size, 0);
+});
+
+test('metadata recovery authenticates the unique failed owner-main attempt and retained result', async () => {
+  const run = {
+    id: 801,
+    run_attempt: 1,
+    head_sha: 'c'.repeat(40),
+    head_branch: 'main',
+    path: controller.workflow,
+    repository: { full_name: 'oborskyivitalii/oborskyivitalii' },
+    head_repository: { full_name: 'oborskyivitalii/oborskyivitalii' },
+    actor: { login: context.actor },
+    triggering_actor: { login: context.actor },
+    event: 'workflow_dispatch',
+    status: 'completed',
+    conclusion: 'failure',
+  };
+  const item = {
+    id: 802,
+    expired: false,
+    name: 'site-production-result-801-1',
+    digest: 'sha256:' + 'a'.repeat(64),
+    workflow_run: { id: 801, head_sha: run.head_sha, head_branch: 'main' },
+  };
+  const state = {
+    run,
+    item,
+    ancestor: run.head_sha,
+    jobs: [{ name: 'Pages publication', conclusion: 'failure' }],
+  };
+  const api = {
+    rest: {
+      actions: {
+        getWorkflowRun: async () => ({ data: state.run }),
+        listJobsForWorkflowRunAttempt: 'jobs',
+        listWorkflowRunArtifacts: 'artifacts',
+      },
+      repos: {
+        compareCommitsWithBasehead: async () => ({
+          data: { merge_base_commit: { sha: state.ancestor } },
+        }),
+      },
+    },
+    paginate: async (endpoint) => (endpoint === 'jobs' ? state.jobs : [state.item]),
+  };
+  const proof = await controller.failedPublication(api, context, 801, 1);
+  assert.equal(proof.artifactId, 802);
+  for (const change of [
+    { conclusion: 'success' },
+    { path: '.github/workflows/other.yml' },
+    { head_branch: 'work' },
+    { actor: { login: 'another-user' } },
+    { triggering_actor: { login: 'another-user' } },
+    { run_attempt: 2 },
+    { repository: { full_name: 'other/repository' } },
+  ]) {
+    state.run = { ...run, ...change };
+    await assert.rejects(controller.failedPublication(api, context, 801, 1));
+  }
+  state.run = run;
+  state.ancestor = 'd'.repeat(40);
+  await assert.rejects(controller.failedPublication(api, context, 801, 1));
+  state.ancestor = run.head_sha;
+  for (const change of [
+    { expired: true },
+    { name: 'site-production-result-801-2' },
+    { workflow_run: { ...item.workflow_run, head_sha: 'd'.repeat(40) } },
+  ]) {
+    state.item = { ...item, ...change };
+    await assert.rejects(controller.failedPublication(api, context, 801, 1));
+  }
+});
+
+test('first-release compensation rejects unrelated or accepted metadata before restoring exact pending state', async (t) => {
+  const f = releaseFixture(t);
+  const api = github();
+  api.rest.pulls.get = async () => ({
+    data: {
+      merged: true,
+      base: { ref: 'main', repo: { full_name: 'oborskyivitalii/oborskyivitalii' } },
+      head: { sha: f.record.sourceCommit, repo: { full_name: 'oborskyivitalii/oborskyivitalii' } },
+      labels: [...api.state.flags.get(73)].map((name) => ({ name })),
+    },
+  });
+  api.rest.repos.getCommit = async () => ({
+    data: { commit: { tree: { sha: f.record.sourceTree } } },
+  });
+  api.rest.repos.compareCommitsWithBasehead = async () => ({
+    data: { merge_base_commit: { sha: f.record.sourceCommit } },
+  });
+  api.rest.repos.getDeployment = async () => ({ data: api.state.deployments[0] });
+  const transaction = await controller.plan(api, context, null, f.record);
+  await controller.pending(api, context, transaction);
+  api.state.refs.set('heads/production', f.record.sourceCommit);
+  const proof = { source: f.record.sourceCommit };
+  await controller.recoveryState(api, context, proof, transaction, f.record.tag);
+  const writes = api.state.calls.slice();
+  api.state.deployments[0].payload.packageDigest = 'a'.repeat(64);
+  await assert.rejects(controller.recoveryState(api, context, proof, transaction, f.record.tag));
+  api.state.deployments[0].payload.packageDigest = f.record.packageDigest;
+  api.state.refs.set('heads/production', '0'.repeat(40));
+  await assert.rejects(controller.recoveryState(api, context, proof, transaction, f.record.tag));
+  api.state.refs.set('heads/production', f.record.sourceCommit);
+  api.state.flags.get(67).add('active-production');
+  await assert.rejects(controller.recoveryState(api, context, proof, transaction, f.record.tag));
+  api.state.flags.get(67).clear();
+  api.state.deployments[0].statuses.unshift({ state: 'success' });
+  await assert.rejects(controller.recoveryState(api, context, proof, transaction, f.record.tag));
+  api.state.deployments[0].statuses.shift();
+  assert.deepEqual(api.state.calls, writes);
+  await controller.recover(api, context, transaction, { pass: true, productionTag: null }, api);
+  assert.equal(await controller.branch(api, context), null);
+  assert.equal(api.state.deployments[0].statuses[0].state, 'failure');
+  assert.equal(api.state.releases.size, 0);
+});
 
 test('production remains disabled except an owner dispatch on the exact protected main', () => {
   const main = { commit: { sha: context.sha }, protected: true };
