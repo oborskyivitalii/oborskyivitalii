@@ -93,3 +93,43 @@ self-review separate. No source/budget/publisher exception is authorized by this
 
 Issue39 owns the final dated delivery anchor and next active PR. Preserve all
 prior reports/failures;continue the same owner. No production activation occurred.
+
+## 17 October — maintainer-requested pipeline audit and first-publication implementation
+
+The maintainer explicitly requested inspection of the tests actually dispatched by
+staging and production, correction of obsolete expectations, and completion of the
+already authorized production launch. This remains issue39/PR86. CS01/04/05/06/07/08/09/10
+apply to the existing quality, release-adapter and migration owners. No public
+runtime, authored content, source/scanner budgets or required browser cells change.
+
+| Actual check route | Reviewed behavior / disposition |
+| --- | --- |
+| Basic and registered source profiles | All49 permanent JavaScript modules plus8 permanent Python modules remain. Numeric issue snapshots stay owning-policy-only; ribbons/private historical experiments stay diagnostic/changed-helper-only. |
+| Staging | Shared prepublication/scanners, exact host, bounded Chromium/Firefox journeys/failures/navigation/analytics, two mobile Lighthouse trials, motion/flights and two-width Color smoke remain. |
+| Production Linux/native | Full functional/failure/navigation/analytics matrices, native macOS WebKit and Windows smoke remain. PR85 fixed MIME, native scroll anchoring, endpoint preparation and animation observations; the older failed96 run did not exercise those corrections. |
+| Color12 | Actual `colorPaint` requires no scene hook, no nonzero retired ribbon dataset and zero custom ribbon geometry. Current effect composition is travel-only. The step name incorrectly advertised ribbons/spatial text; it now names absent ribbons/block transitions. No ribbon-presence assertion is active. |
+| Captures | PR85 replaced the obsolete scroll-camera movement assertion with a fixed camera plus real native forward/reverse movement, current catalog counts,20views and5recordings. |
+| Performance/live/release | Original30 Lighthouse rows, medians, CPU/motion/300s soak; exact hosted bytes/TLS/MIME/404/SEO, immutable rights/archive and release acceptance remain. No old failed report is relabelled green. |
+
+Code now admits the first canonical publication directly from a current-controller
+migration preparation capsule, rather than requiring the retired staging bootstrap.
+The capsule's actual owner/main/run/attempt/artifact digest, captured settings,
+predecessor bytes, no-active-production state and controller lease remain strict.
+The source is observed again immediately before the publication lease. Success
+publishes production only; compensation restores settings and exact old package.
+Ordinary successors/rollback keep their original strict predecessor path.
+
+New behavioral cases extend existing `pages-migration.test.cjs`: successful capsule
+consumption; wrong preparation/attempt/controller/source; idempotent settings
+recovery; provider-commit-then-error; denied authority and unrelated-settings
+rejection. Existing release-controller tests verify production-only composition
+and no draft archive writes before local rights/package verification. Both modules
+passed30/30 on the initial implementation. Full exact-source and hosted results
+will be recorded after the final commit. Real device/independent records are never
+manufactured from automated passes or general visual acceptance.
+
+Complete clean production source passes626/626 in49modules,88947ms,zero skips at
+local4c153e2/tree1c1c20b1. Basic24,code-style and RI/CI pass. A formatter check
+correctly detected the regenerated RI/CI JSON formatting;the final metadata
+amendment restores its pinned formatting. Native full39009442088 checks the
+already-mergedf628 artifact while PR86 completes;it does not admit PR86 itself.

@@ -36,12 +36,16 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
   Actual eligible proof38983646924/check117249992335 authenticates staging389823;
   original405/ineligible and missing-proof failures retained. PR-body edit refresh
   is read-only,isolated from publishers;postmerge uses the actual attempt checkpoint.
-- Next canonical cutover is analysis/preparation only onwork/pr40-canonical-cutover-39.
-  See review/issue-39/2026-10-17-production-cutover.md for final artifact hashes,
-  exact delivery/AC map and ordered source tasks. Existing production.previous
-  requires canonical origin;old migration.compose would republish staging.
-  Never execute that bootstrap. Fresh capsule/current-controller,exact settings+
-  bytes compensation and appropriate Pages client authority remain unimplemented.
+- PR86 implements first canonical publication from an authenticated current-controller
+  preparation capsule,with a second predecessor lease immediately before deploy.
+  Exact old settings/bytes remain recovery material;success publishes production only.
+  Targeted migration/release30/30;complete clean source626/626 in49modules,88.9s.
+- Maintainer17October requested actual staging/production test audit and completion of
+  production. Active Color asserts absent ribbons;misleading workflow name is fixed.
+  Old full96 camera/MIME/edge failures predate mergedPR85 harness corrections.
+- Fresh current-mainf628 production candidate39009092448/1 succeeded;frozen public
+  artifact12092211776. Full native39009442088 is running as test-audit verification;
+  it cannot admit the later PR86 controller/source before final merge/full evidence.
 
 ## Decisions
 
@@ -59,7 +63,7 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 | Owner | Next acceptance route |
 | --- | --- |
-| #39 / merged PR40 follow-up | PR85 delivered;continue canonical first-production transaction in next same-issue Draft PR,then fresh native/full acceptance. |
+| #39 / merged PR40 follow-up | PR86 source ready;ordinary CF staging,protected merge and fresh native/full remain. |
 | #39 / #13 | Retain all originals;fresh exact-source production/native checks remain,including Windows anchoring. |
 | #39 / #72 / #8 | App-token proof; authenticated project-prefix to canonical cutover with exact configuration/package recovery; protected publisher and live checks. |
 | #1 / #7 / #8 / #13 | Exact-source rights policy/inventory review, physical iOS/Android and independent acceptance; actual production-domain analytics/TLS/cost. |
@@ -68,11 +72,11 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 1. Revalidate main,merged PR85,stable8a and next active Draft PR from issue39.
    Mainf628 and stage8a share exact tested tree;no rebuild is needed for that proof.
-2. Implement the scoped canonical transaction and exact configuration/package
-   compensation before freezing another production candidate. Preserve CF-only
-   staging;do not execute the historical staging migration at the canonical host.
-3. Prove required client authority;owner key entry is complete. Current App has
-   no Pages permission;prepare the minimal treatment before a new grant request.
+2. Verify current PR86 owning/RI/Ready checks,ordinary CF staging and merge.
+   Its capsule route publishes production directly;never execute the historical
+   staging-at-canonical migration.
+3. Prepare current-controller recovery capsule and exact-main production/full
+   evidence. Owner key entry is complete;source code grants no wider App scope.
 4. After final source merge,prepare/freeze exact-main production,run full native
    once,and gather real rights/device/independent/live records. Existing production
    authorization persists;never fabricate those records or publish before gates.

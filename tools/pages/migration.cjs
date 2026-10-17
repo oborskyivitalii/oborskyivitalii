@@ -271,6 +271,21 @@ async function observeSource(directory, fetcher = fetch) {
   };
 }
 
+async function firstPublication(github, context, directory, preparationProof, fetcher = fetch) {
+  const plan = load(directory);
+  assert.deepEqual(
+    plan.preparation,
+    {
+      runId: preparationProof.runId,
+      attempt: preparationProof.attempt,
+    },
+    'first-publication preparation differs'
+  );
+  await lease(github, context, plan, 'execute');
+  await observeSource(directory, fetcher);
+  return plan.previous;
+}
+
 async function recoverySource(github, context, directory, runId, attempt, fetcher = fetch) {
   const plan = load(directory);
   const run = (
@@ -321,6 +336,49 @@ async function recoverySource(github, context, directory, runId, attempt, fetche
   };
 }
 
+async function restoreSettings(github, context, plan) {
+  validate(plan);
+  assert.equal(context.sha, plan.controller, 'recovery controller moved');
+  controller.controller(
+    context,
+    (await github.rest.repos.getBranch({ ...context.repo, branch: 'main' })).data
+  );
+  assert.equal(
+    await controller.activeProduction(github, context),
+    null,
+    'production became active'
+  );
+  const observe = async () => (await github.rest.repos.getPages(context.repo)).data;
+  const original = (value) => {
+    try {
+      return isDeepStrictEqual(settings(value, from), plan.settings);
+    } catch {
+      return false;
+    }
+  };
+  const before = await observe();
+  if (original(before)) return plan.settings;
+  settings(before, to);
+  let updateError;
+  try {
+    await github.rest.repos.updateInformationAboutPagesSite({
+      ...context.repo,
+      cname: plan.settings.cname,
+      build_type: plan.settings.buildType,
+      https_enforced: plan.settings.httpsEnforced,
+    });
+  } catch (error) {
+    updateError = error;
+  }
+  // A provider can commit a settings write and still return an error. Only the
+  // actual captured settings establish compensation; unrelated changes fail.
+  if (!original(await observe())) {
+    if (updateError) throw updateError;
+    assert.fail('captured Pages settings were not restored');
+  }
+  return plan.settings;
+}
+
 module.exports = {
   workflow,
   from,
@@ -334,5 +392,7 @@ module.exports = {
   lease,
   compose,
   observeSource,
+  firstPublication,
   recoverySource,
+  restoreSettings,
 };
