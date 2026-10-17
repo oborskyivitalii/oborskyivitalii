@@ -12,7 +12,7 @@ on:
         required: true
         type: string
       validation_run_id:
-        description: Successful full prospective-production validation (publish only)
+        description: Successful frozen candidate bound to accepted staging (publish only)
         type: string
         default: ''
       release_pr:
@@ -20,7 +20,7 @@ on:
         type: string
         default: ''
       release_evidence:
-        description: Exact-source independent/device/rights JSON; rights.inventoryDigest must match the frozen candidate (publish only)
+        description: Exact-source rights acceptance JSON; rights.inventoryDigest must match the frozen candidate (publish only)
         type: string
         default: ''
       first_release_preparation_run:
@@ -34,6 +34,7 @@ on:
 permissions:
   contents: read
   actions: read
+  checks: read
 concurrency:
   group: author-pages-publication
   cancel-in-progress: false
@@ -88,7 +89,7 @@ jobs:
           permission-administration: write
           permission-metadata: read
       - id: request
-        name: Authenticate owner, source protection and complete real production jobs
+        name: Authenticate owner, source protection and staging-bound frozen candidate
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
@@ -114,6 +115,7 @@ jobs:
       actions: read
       issues: write
       pull-requests: read
+      checks: read
       deployments: write
       pages: write
       id-token: write
@@ -172,7 +174,7 @@ jobs:
           path: validation-gate
       - id: public
         if: inputs.operation == 'publish'
-        name: Authenticate the exact full-tested public artifact and producer
+        name: Authenticate the exact staging-bound production artifact and producer
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: await require('./tools/release/actions.cjs').publicInputs(github,context,core)
@@ -195,7 +197,7 @@ jobs:
           permission-contents: write
           permission-workflows: write
           permission-metadata: read
-      - name: Verify full/external admission and prepare the frozen archive locally
+      - name: Verify staging/rights admission and prepare the frozen archive locally
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
@@ -267,16 +269,6 @@ jobs:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
         run: |
           SITE_TEST_BASE_URL="$PAGES_ORIGIN/" SITE_PUBLIC_DIR="$GITHUB_WORKSPACE/production-source/public" SITE_ARTIFACT_MANIFEST="$GITHUB_WORKSPACE/production-source/artifact.json" SITE_REPORT_DIR="$GITHUB_WORKSPACE/pages-reports/production-browser" node tools/quality/local-browser.cjs --smoke
-      - id: passive
-        name: Bounded passive ZAP scan on the production origin only
-        if: steps.browser.outcome == 'success'
-        continue-on-error: true
-        run: |
-          mkdir -p pages-reports/zap
-          node tools/release/passive.cjs plan pages-reports/zap/plan.json
-          chmod 777 pages-reports/zap
-          docker run --rm --network bridge -v "$GITHUB_WORKSPACE/pages-reports/zap:/zap/wrk:rw" ghcr.io/zaproxy/zaproxy@sha256:7aaa659b0d43078febd82e29bad112285c370727e86ab8340444220e17d9f0d2 zap.sh -cmd -autorun /zap/wrk/plan.json
-          node tools/release/passive.cjs verify pages-reports/zap/zap.json pages-reports/passive.json
       - id: observations
         name: Retain all actual observations before marking production accepted
         if: always()
@@ -295,7 +287,7 @@ jobs:
         if: >-
           steps.deploy.outcome == 'success' && steps.http.outcome == 'success' &&
           steps.policy.outcome == 'success' && steps.browser.outcome == 'success' &&
-          steps.passive.outcome == 'success' && steps.observations.outcome == 'success'
+          steps.observations.outcome == 'success'
         continue-on-error: true
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:

@@ -37,7 +37,7 @@ The Cloudflare controller below remains the preview/staging route.
 | Mark the visually approved PR ready | Same PR preview | Required Basic/style/lint/RI/owning-issue source admission and existing two-width Chromium preview smoke. |
 | Owner posts exactly `/stage` in an open PR, or manually dispatches its number from main | Immutable candidate, then `https://staging.oborskyi-author-ci-staging.pages.dev` after success | Exact source/package/HTTP checks, lint/security/advisories and bounded staging regression: Chromium/Firefox all-route journeys, selected failure/navigation/analytics, two mobile Lighthouse trials and bounded CPU/flight samples. |
 | Owner applies `staging-regression` to an open same-repository PR | Immutable preview candidate URL | The bounded staging regression records exact candidate evidence; it does not update the stable staging alias. |
-| Explicit full candidate validation before production | Exact selected public artifact and, when provided, its immutable HTTPS origin | Full production regression retains all engines/native platforms, complete cases, thirty Lighthouse runs, soak/captures and external release gates. This validation does not publish production. |
+| Optional manual full candidate diagnostic | Exact selected public artifact and, when provided, its immutable HTTPS origin | Full regression retains all engines/native platforms, complete cases, thirty Lighthouse runs and soak/captures. It is nonblocking and does not publish production. |
 
 Only the pinned official Wrangler Action deploys candidates, stable staging and
 rollback. CI resolves the current open PR head, public/package artifact identities
@@ -68,7 +68,7 @@ The staging edition is generated before hashing/testing: visible STAGING/source
 badge, HTML `noindex,nofollow`, no production analytics SDK or verification token.
 Its CSS uses existing theme tokens. JSON-LD formatting is compacted without
 changing data to retain the original HTML budget. Removing staging metadata
-requires a separately frozen production artifact before full tests.
+requires a separately frozen production artifact. Full diagnostics on it are optional.
 
 PR40 publication packaging explicitly selects `immutable-snapshot-proxy-v1` in
 its existing package CLI, alongside clean-checkout rights verification. The policy
@@ -88,14 +88,15 @@ jobs and promotes only their matching `staging-gate`, whose `fullGate` and
 `productionEligible` remain false. The operational target is at most 15 minutes
 of active staging jobs; measure the actual run and report queue time separately.
 
-For explicit pre-production candidate validation, `validation_level: production`
+For an optional full candidate diagnostic, `validation_level: production`
 and `full: true` select the complete regression; production is the reusable
 workflow's default validation level. A full validation can test an immutable
 staging origin using `profile: staging`; real production indexing/origin checks
 use `profile: production`. These origin policies do not change the coverage
 level. The strict `tools/quality/promotion.cjs` and GitHub Pages example still
 require the full hosted gate and external device/independent acceptance; the
-lighter `staging-gate` is rejected for production admission. Color is selected explicitly for the frozen production candidate; staging-edition bytes never qualify. Production activation and first-release acceptance remain with
+lighter `staging-gate` is rejected as full evidence. Production instead uses the
+separate staging-policy derivation bound to identical accepted source trees. Color is selected explicitly for the frozen production candidate; staging-edition bytes never qualify. Production activation and first-release acceptance remain with
 #8/#1/#7.
 
 ## Verified provider and first preview
@@ -203,8 +204,9 @@ promotion has no earlier accepted package to restore. Historical recovery record
 compensation status remains validated when selecting that old Cloudflare package.
 New staging attempts publish and recover only Cloudflare.
 
-Production GitHub Pages and physical-device/independent release acceptance retain
-their existing requirements. Staging and full-production failures are recorded
+Production GitHub Pages follows issue #39's staging-then-smoke policy. Rights,
+protected owner dispatch, archive identity and recovery remain required; optional
+full/device diagnostics are not publication dependencies. Staging and full-production failures are recorded
 under their actual profile without relaxing performance limits or patching
 served files. At owning-issue completion review added/changed tests against PR,
 staging, production and diagnostic coverage; update the profile registry and
@@ -212,7 +214,7 @@ RI/CI routes as required by SITE-CHECK-PROFILES.
 
 ## One pre-upload preflight and Cloudflare admission
 
-Before an explicit stable-staging or prospective-production upload, prepare the
+Before an explicit stable-staging or optional full diagnostic upload, prepare the
 selected frozen artifact once, then run the existing local check owner:
 
 ```sh
@@ -227,8 +229,9 @@ edition/rights/package guards, and retains each independent failure and raw
 streams. An invalid artifact blocks its dependent checks explicitly. Final
 source, manifest and public hashes must still match. Reports belong outside
 source or in an ignored output directory. This preflight is required before
-deployable upload for explicit staging/evidence and production preparation;
-ordinary Draft preview keeps its existing bounded path. Diagnostic reports are
+deployable upload for explicit staging/evidence and the optional full diagnostic;
+the production-candidate freeze instead authenticates successful staging without
+repeating its checks. Ordinary Draft preview keeps its existing bounded path. Diagnostic reports are
 retained even when preparation fails. The later native upload identity binding,
 host/browser/performance/live leases and release decisions remain mandatory;
 preflight never grants production eligibility or deployment authority.

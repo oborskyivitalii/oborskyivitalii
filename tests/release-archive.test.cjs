@@ -265,7 +265,7 @@ test('passive acceptance requires actual successful traffic for every production
   assert.throws(() => passive.validate(alertReport, traffic), /included staging/);
 });
 
-test('live production cannot accept a passive pass flag without complete scan coverage', (t) => {
+test('optional passive diagnostics reject incomplete coverage without blocking production smoke', (t) => {
   const edition = require('../tools/release/edition.cjs');
   const passive = require('../tools/release/passive.cjs');
   const live = require('../tools/release/live.cjs');
@@ -327,6 +327,9 @@ test('live production cannot accept a passive pass flag without complete scan co
   ]) {
     const invalid = structuredClone(reports);
     mutate(invalid);
-    assert.throws(() => live.observation(record, combined, invalid));
+    assert.throws(() => passive.verifyReport(invalid.passive));
+    assert.equal(live.observation(record, combined, invalid).smokePolicy, 'production-smoke-v1');
   }
+  delete reports.passive;
+  assert.equal(live.observation(record, combined, reports).pass, true);
 });

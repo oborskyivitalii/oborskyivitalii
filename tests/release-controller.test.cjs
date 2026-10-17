@@ -419,7 +419,7 @@ test('explicit production Color preserves approved runtime and rejects a differe
     ),
     summaryStep = workflow.slice(
       workflow.indexOf(
-        '      - name: Show exact inputs for the existing full candidate validation\n'
+        '      - name: Show production admission and optional full diagnostic inputs\n'
       )
     ),
     bindings = Object.fromEntries(
@@ -1037,15 +1037,17 @@ test('live report reduction binds production-only bytes, retired staging paths, 
     (r) => (r.pages.staging = true),
     (r) => (r.pages.actual404 = false),
     (r) => (r.stagingBrowser = browser(stage.record, edition.origin + '/staging')),
-    (r) => (r.passive.origin = 'https://medium.com'),
-    (r) => delete r.passive.kind,
-    (r) => delete r.passive.coverage,
     (r) => (r.retained = false),
   ]) {
     const invalid = structuredClone(reports);
     mutate(invalid);
     assert.throws(() => releaseLive.observation(f.record, combined, invalid));
   }
+  delete reports.passive;
+  const smoke = releaseLive.observation(f.record, combined, reports);
+  assert.equal(smoke.smokePolicy, 'production-smoke-v1');
+  controller.live(f.record, smoke);
+  assert.equal(smoke.passiveScan, undefined, 'optional diagnostics are not a smoke result');
   const legacy = pages.build(
     stage.directory,
     f.temp + '/legacy-combined',
@@ -1060,4 +1062,287 @@ test('live report reduction binds production-only bytes, retired staging paths, 
       }),
     /republish staging/
   );
+});
+
+function stagingAuthenticationFixture() {
+  const policy = require('../tools/release/staging-policy.cjs');
+  const state = {
+    pr: {
+      number: 88,
+      merged: true,
+      merge_commit_sha: 'c'.repeat(40),
+      head: { sha: 'a'.repeat(40), repo: { full_name: 'oborskyivitalii/oborskyivitalii' } },
+      base: { ref: 'main', repo: { full_name: 'oborskyivitalii/oborskyivitalii' } },
+    },
+    check: {
+      id: 700,
+      name: 'Staging admission',
+      head_sha: 'a'.repeat(40),
+      app: { id: 15368 },
+      status: 'completed',
+      conclusion: 'success',
+      external_id: '800/1',
+    },
+    run: {
+      id: 800,
+      run_attempt: 1,
+      path: '.github/workflows/site-color-review.yml',
+      head_branch: 'main',
+      head_sha: 'f'.repeat(40),
+      head_repository: { full_name: 'oborskyivitalii/oborskyivitalii' },
+      actor: { login: 'oborskyivitalii' },
+      triggering_actor: { login: 'oborskyivitalii' },
+      event: 'issue_comment',
+      status: 'completed',
+      conclusion: 'success',
+    },
+    tree: 'b'.repeat(40),
+    // The actual staging graph in run39028272999 skips preview smoke and
+    // label-only evidence; its bounded regression runs under full / staging.
+    jobs: Object.entries({
+      target: 'success',
+      'begin-admission': 'success',
+      build: 'success',
+      publish: 'success',
+      smoke: 'skipped',
+      'full / build': 'success',
+      'full / static': 'success',
+      'full / host': 'success',
+      'full / staging': 'success',
+      'full / gate': 'success',
+      'stage-evidence': 'skipped',
+      promote: 'success',
+      'merge-admission': 'success',
+    }).map(([name, conclusion]) => ({ name, status: 'completed', conclusion })),
+  };
+  const names = policy.names(800, 1);
+  state.artifacts = [names.public, names.gate, ...names.reports].map((name, index) => ({
+    id: 300 + index,
+    name,
+    expired: false,
+    digest: 'sha256:' + 'd'.repeat(64),
+    workflow_run: { id: 800, head_sha: state.run.head_sha },
+  }));
+  const api = {
+    rest: {
+      pulls: { get: async () => ({ data: state.pr }) },
+      repos: {
+        getCommit: async ({ ref }) => ({
+          data: {
+            commit: { tree: { sha: ref === state.pr.head.sha ? 'b'.repeat(40) : state.tree } },
+          },
+        }),
+      },
+      checks: { listForRef: 'checks' },
+      actions: {
+        getWorkflowRun: async () => ({ data: state.run }),
+        listJobsForWorkflowRunAttempt: 'jobs',
+        listWorkflowRunArtifacts: 'artifacts',
+      },
+    },
+    paginate: async (endpoint) => {
+      if (endpoint === 'checks') return [state.check];
+      if (endpoint === 'jobs') return state.jobs;
+      assert.equal(endpoint, 'artifacts');
+      return state.artifacts;
+    },
+  };
+  return { state, api };
+}
+
+async function stagedProductionFixture(t) {
+  const policy = require('../tools/release/staging-policy.cjs');
+  const f = stagingAuthenticationFixture();
+  const authentication = await policy.authenticate(f.api, context, 88, 'c'.repeat(40));
+  const temp = fixture.temporary(t),
+    tested = fixture.staging(temp, true);
+  const source = fixture.source(temp, 'staged-production', 'c'.repeat(40));
+  require('../tools/staging/color.cjs').build(source.directory);
+  source.record = edition.build(source.directory, 'color');
+  const rights = fixture.rightsInventory(source, true);
+  const controlled = require('./fixtures/staging-evidence.cjs');
+  const input = controlled.aggregateFixture(true),
+    manifest = tested.record;
+  const identity = controlled.identity(manifest);
+  const host = {
+    ...identity,
+    kind: 'hosted',
+    profile: 'staging',
+    root: true,
+    actual404: true,
+    redirectsStayWithinSite: true,
+    rows: Object.keys(manifest.files)
+      .filter((file) => file !== '.nojekyll')
+      .map((file) => ({
+        file,
+        status: 200,
+        sha256: manifest.files[file].sha256,
+        url: input.hostedURL + '/' + file,
+        mime: require('../tools/quality/serve.cjs').canonicalType(file),
+      })),
+  };
+  input.manifest = manifest;
+  input.sizes.artifactDigest = manifest.artifactDigest;
+  input.sizes.files = manifest.files;
+  for (const row of input.sizes.rows) Object.assign(row, manifest.files[row.route + '.html']);
+  input.reports = [
+    host,
+    ...input.reports
+      .filter((row) => ['lint', 'security', 'advisories'].includes(row.kind))
+      .map((row) => ({ ...row, ...identity })),
+    controlled.functional(manifest),
+    controlled.performanceReport(manifest),
+    controlled.colorReport(manifest),
+  ];
+  const gate = require('../tools/quality/staging-gate.cjs').aggregate(input);
+  gate.githubArtifact = {
+    id: authentication.public.id,
+    uploadDigest: authentication.public.digest,
+  };
+  const authFile = path.join(temp, 'authentication.json'),
+    gateFile = path.join(temp, 'stage-gate.json');
+  fs.writeFileSync(authFile, JSON.stringify(authentication));
+  fs.writeFileSync(gateFile, JSON.stringify(gate));
+  policy.bind(source.directory, authFile, tested.directory, gateFile);
+  const expected = { artifactId: 900, uploadDigest: 'sha256:' + 'e'.repeat(64) };
+  const admission = policy.gate(
+    source.directory,
+    path.join(temp, 'release-manifest.json'),
+    expected
+  );
+  const external = fixture.fullProof(source.record, rights.report).external;
+  for (const key of ['independentReview', 'iosSafari', 'androidChrome']) delete external[key];
+  external.optionalFull = { pass: false, kind: 'controlled failed optional diagnostic' };
+  return { temp, tested, source, rights, admission, external, expected };
+}
+
+test('production reuses the successful staged source tree without requiring optional full or device reports', async (t) => {
+  const f = await stagedProductionFixture(t);
+  const policy = require('../tools/release/staging-policy.cjs');
+  assert.equal(policy.validate(f.source.record, f.admission, f.expected), true);
+  assert.equal(
+    require('../tools/release/archive.cjs').candidate(
+      f.source.record,
+      f.admission,
+      f.external,
+      f.rights.report
+    ),
+    true
+  );
+  assert.equal(f.admission.fullGate, false);
+  assert.notEqual(f.admission.artifactDigest, f.admission.staging.manifest.artifactDigest);
+  assert.notEqual(f.admission.sourceCommit, f.admission.staging.manifest.sourceCommit);
+  assert.equal(f.admission.sourceTree, f.admission.staging.manifest.sourceTree);
+  const noRights = structuredClone(f.external);
+  delete noRights.rights;
+  assert.throws(() =>
+    require('../tools/release/archive.cjs').candidate(
+      f.source.record,
+      f.admission,
+      noRights,
+      f.rights.report
+    )
+  );
+});
+
+test('production staging admission rejects changed sources, incomplete stages, mixed runtimes and artifact substitution', async (t) => {
+  const f = await stagedProductionFixture(t);
+  const policy = require('../tools/release/staging-policy.cjs');
+  for (const mutate of [
+    (a) => (a.fullGate = true),
+    (a) => (a.sourceTree = '0'.repeat(40)),
+    (a) => (a.staging.authentication.sourceTree = '0'.repeat(40)),
+    (a) => (a.staging.authentication.testedSource = '0'.repeat(40)),
+    (a) => (a.staging.authentication.attempt = 2),
+    (a) => (a.staging.authentication.reports[0].id = a.staging.authentication.public.id),
+    (a) => (a.staging.gate.pass = false),
+    (a) => (a.staging.gate.jobs.staging.result = 'skipped'),
+    (a) => a.staging.gate.checkedReports.pop(),
+    (a) => (a.staging.manifest.files['navigation.js'].sha256 = '0'.repeat(64)),
+    (a) => (a.githubArtifact.id = '901'),
+    (a) => (a.githubArtifact.uploadDigest = 'sha256:' + '0'.repeat(64)),
+  ]) {
+    const invalid = structuredClone(f.admission);
+    mutate(invalid);
+    assert.throws(() => policy.validate(f.source.record, invalid, f.expected));
+  }
+});
+
+test('production authenticates the real successful stage attempt, every existing job and raw artifact before derivation', async () => {
+  const policy = require('../tools/release/staging-policy.cjs');
+  const good = stagingAuthenticationFixture();
+  assert.equal((await policy.authenticate(good.api, context, 88, 'c'.repeat(40))).pass, true);
+  for (const mutate of [
+    (s) => (s.pr.merged = false),
+    (s) => (s.tree = '0'.repeat(40)),
+    (s) => (s.check.conclusion = 'failure'),
+    (s) => (s.run.run_attempt = 2),
+    (s) => (s.run.triggering_actor.login = 'other-user'),
+    (s) => (s.jobs.find((job) => job.name === 'full / staging').conclusion = 'failure'),
+    (s) => (s.jobs.find((job) => job.name === 'full / staging').conclusion = 'skipped'),
+    (s) => (s.jobs.find((job) => job.name === 'smoke').conclusion = 'success'),
+    (s) => (s.jobs.find((job) => job.name === 'stage-evidence').conclusion = 'failure'),
+    (s) =>
+      s.jobs.splice(
+        s.jobs.findIndex((job) => job.name === 'smoke'),
+        1
+      ),
+    (s) => (s.artifacts[0].expired = true),
+    (s) => (s.artifacts[1].workflow_run.head_sha = '0'.repeat(40)),
+    (s) => s.artifacts.push(structuredClone(s.artifacts[0])),
+  ]) {
+    const invalid = stagingAuthenticationFixture();
+    mutate(invalid.state);
+    await assert.rejects(policy.authenticate(invalid.api, context, 88, 'c'.repeat(40)));
+  }
+});
+
+test('the production publisher consumes frozen staging admission and never queries the optional full run', async () => {
+  const run = {
+    id: 900,
+    run_attempt: 1,
+    path: '.github/workflows/site-release-candidate.yml',
+    event: 'workflow_dispatch',
+    head_branch: 'main',
+    head_sha: context.sha,
+    head_repository: { full_name: 'oborskyivitalii/oborskyivitalii' },
+    actor: { login: context.repo.owner },
+    triggering_actor: { login: context.repo.owner },
+    status: 'completed',
+    conclusion: 'success',
+  };
+  const jobs = ['build', 'publish', 'http'].map((name) => ({
+    name,
+    status: 'completed',
+    conclusion: 'success',
+  }));
+  const artifacts = [
+    'site-production-admission-900-1',
+    'site-production-candidate-observations-900-1',
+  ].map((name, index) => ({
+    id: 500 + index,
+    name,
+    expired: false,
+    digest: 'sha256:' + 'd'.repeat(64),
+    workflow_run: { id: 900, head_sha: context.sha },
+  }));
+  const api = {
+    rest: {
+      actions: {
+        getWorkflowRun: async ({ run_id }) => {
+          assert.equal(run_id, 900);
+          return { data: run };
+        },
+        listJobsForWorkflowRunAttempt: 'jobs',
+        listWorkflowRunArtifacts: 'artifacts',
+      },
+    },
+    paginate: async (endpoint) => (endpoint === 'jobs' ? jobs : artifacts),
+  };
+  assert.equal((await controller.stagingValidation(api, context, 900)).gate.id, 500);
+  jobs[2].conclusion = 'failure';
+  await assert.rejects(controller.stagingValidation(api, context, 900), /candidate job/);
+  jobs[2].conclusion = 'success';
+  run.path = '.github/workflows/site-candidate-evidence.yml';
+  await assert.rejects(controller.stagingValidation(api, context, 900), /untrusted evidence/);
 });

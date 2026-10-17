@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ffe4d35807908624980d2fd3768059991bbd2d50eefcbb1936d92181afdb707f",
+    "digest": "498601d0add7c8e01b67c6eea5ec1ce47afd4b18966ba1917c600383f0b30599",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -67,7 +67,7 @@
       {
         "path": ".github/acceptance/issue-39.json",
         "identity_mode": "content",
-        "sha256": "338e444166fe9d67c0741480e1e5832ef6c072a45d909d9a2ded02c53206d8c1"
+        "sha256": "0f52f846204753d1f8d5c014822d286baf8274ac74b3007902e0aea962f9ef64"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0b04b450d92cffaaefb00cfc9b1931758bd1eb73202a5b58026399cc2b9a6d43"
+        "sha256": "3cbebe6e206feaafcf831e4bc7bdc3454b567c914164eb90508acdaf5344bcfb"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "aba484aa8965b4dd33a2570a85f7fb91fcb659454502f36532382e1e425156b2"
+        "sha256": "f336677d55887e30f8f8a8ef3b4e8eb93807a98d3fb9d8440f246bba7cb7de9c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -181,7 +181,7 @@
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
         "identity_mode": "content",
-        "sha256": "f8523ff0e3a09ec141f81d1450cd5fdb390dfaee24c5279c2e171bac75a3f8f8"
+        "sha256": "744789b2449b688ccc4a35fa3344068f138580cec08fbffc30d2285584965cc6"
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
@@ -226,12 +226,12 @@
       {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
-        "sha256": "846ea8752500e1ebbce944ad35954828bb4309a83755b66411ffad510a8e5ce4"
+        "sha256": "0c39dea8f4c7793dc3c542f9e9e2b4f817dee655de596afc21bc5c33386e8a93"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
         "identity_mode": "content",
-        "sha256": "6a84e448b4288e8daa8bdcb3039a8455b32dad7dac07b17f5f56cb9c14067057"
+        "sha256": "b035032db4fce0b00ca28370bb7faa03fd0ee7ab3f8df23a20bf92b7b277c9ca"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3470d1ff2064743d16df846ea1ae512492e3753459c69b707a13f31280955192"
+        "sha256": "4e2fc992905c98191c4232db2f2e13a7210f419a81a2e57b164a7ece1902af55"
       },
       {
         "path": "NOTICE.md",
@@ -545,7 +545,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "8731fd90a1ca1519c160b44fd327379bee9eecb865a383eb633a7e0887fc2282"
+        "sha256": "f06f7f5bdd4495fafaf36b2f8c90ca5b604c9fdb5efb7e45e07b3845f8240763"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -555,12 +555,12 @@
       {
         "path": "guides/SITE-PRODUCTION.md",
         "identity_mode": "content",
-        "sha256": "4a6af107b8b9322062c949885a0e8e0fb9f56d28ac1b363f3f4deae9108ee776"
+        "sha256": "9cebdfc339fc35626d1709902771aded7862755542b5529da6fcb44bb3386675"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "9d25e8df8f002c6fa25643c4887e3406e9dba89e1edb38ffa15857c1902815d1"
+        "sha256": "cf8798e52fb210c9cdac30fa7d61c4f68f785e7278cd58c0bc97a788b528dd85"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -585,7 +585,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "64129826e5d62dc6b2d453ca4310b745c083cff5de855942764697ae98a2a6af"
+        "sha256": "1d9001e7bdba3ee62488ed04de3e9227c9a19d17e392e7d4901d805af9e28448"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -906,6 +906,11 @@
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
         "sha256": "6a693f553f8ca6000a7f90df1f8809bcf81b73fdae45ec8138c1ec0acb94e448"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-production-policy.md",
+        "identity_mode": "content",
+        "sha256": "903f47d551dc1b09ef9e93f924fb5148295dadc3ece06ca3cfbbec5ce1b6605b"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -5565,7 +5570,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "1957fd5288b5d1f842bb23a9292d18fb22b45022a3b6f2270c93d94bebab7bb7"
+        "sha256": "e792f71273a05af9325f42a4ee86ac45a04c9f0b5f0c608b338b5e8fc013bcd3"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5710,7 +5715,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "e49aca95a0b6d2617496bfe9434569b09f66313ac3f4e798d077349e3861eee2"
+        "sha256": "c7ecb75a94b5f804be4a8f61a3c9e7462cb444c88c3fbd84ecf60f522cf9feac"
       },
       {
         "path": "tests/quality-sources.test.cjs",
@@ -5730,12 +5735,12 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "0ade4fd8e964955eae01766f3005ec15a16d40e0b4462c157b5443b6ddee5ae5"
+        "sha256": "4abc9565fb8d37cf2ffeed7d297a9dc4e984173b70c092c0138d315ac14c98ea"
       },
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "ce1d53f6680c315198f93a9c41fabe8aa24da1376865b74771d3d95888cc4ced"
+        "sha256": "ca9b9fcc64d2a3bb2d1d6f544a95c1631b9dc1b7b3b1f144b3dae712caeb44b5"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6150,7 +6155,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "97b1b8a5be095135ce4469779faffeb0a0186a57b6d38fd4e1359c270d4910f3"
+        "sha256": "954492bd151cab0772f1e5e0617210ee9cc04fd2c144f3cfec7e295572aee4a0"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6345,7 +6350,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "61289fd6fca15c136579dac449cd8143d130a95a3ee5789a3a8c8f396744ea2c"
+        "sha256": "d5c4c761a22aefeb00fc4065983d6ca8f2c05c7b1bd529ba3bdb7979f8151596"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6405,7 +6410,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "86b02968abb97f699cee02e27225e028622077b3bf37d52c8fac16eed659175f"
+        "sha256": "e09cc4859f4c338a3e6bfe4815dc68f0616fd370f5045bc4bfe8d5ef5716d749"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6505,17 +6510,17 @@
       {
         "path": "tools/release/actions.cjs",
         "identity_mode": "content",
-        "sha256": "d73d7b4783b45b8da713e17ad58d2b1f9fdc004721dd093778178f6edb2c4cd4"
+        "sha256": "65fb5ccd3950706741ea7570192d4a11d88dbf75456ada973e92e4ddee5b574e"
       },
       {
         "path": "tools/release/archive.cjs",
         "identity_mode": "content",
-        "sha256": "100bc4ec1a55e8f5ccc83972681a589f26502f4cfc298b00b3f1481595b5ec2d"
+        "sha256": "6030ca02b4c4096af11d8b8b7b88287754af62b4189dda0e65020ab787b94ea0"
       },
       {
         "path": "tools/release/controller.cjs",
         "identity_mode": "content",
-        "sha256": "e95255ea32feca52a44f381e789bb27b1bdd048f397d75f64d6cfd1adeaa2745"
+        "sha256": "0211f8bae2fddf643916b60933e16b9743e05f73da1b6c4d7bd5e924880d325d"
       },
       {
         "path": "tools/release/edition-archive.cjs",
@@ -6530,7 +6535,7 @@
       {
         "path": "tools/release/live.cjs",
         "identity_mode": "content",
-        "sha256": "bbce541768099b9fa094682e8896ba7f30a0c87072d0fbe40d6e19291f705120"
+        "sha256": "90085cfa0ae4da0dfc4241b5cb04cc2c97a566e01ce7b197fd1044fd4dde014b"
       },
       {
         "path": "tools/release/package.py",
@@ -6551,6 +6556,11 @@
         "path": "tools/release/rights.cjs",
         "identity_mode": "content",
         "sha256": "414b9b44e0c23e402b7a6fb77412613c50fd44377e5fbbbaca60fed5d12646b6"
+      },
+      {
+        "path": "tools/release/staging-policy.cjs",
+        "identity_mode": "content",
+        "sha256": "dcab5e73390e9b6904b2a69a572defe81cddfb98e34ece144e57b9ad63217fff"
       },
       {
         "path": "tools/repository_intelligence.py",
@@ -6680,7 +6690,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "a8263d06b2f2aa1c4edd2447bef8eafdb81a0fb750cb135aaceb217711496232"
+        "sha256": "bacc9444d5a17f3655eaa99cbf0a949e6660c1365d8a1b6185975f31bfba5968"
       },
       {
         "path": "tools/staging/review-flow.cjs",
@@ -7345,7 +7355,7 @@
     {
       "path": ".github/workflows/site-candidate-evidence.yml",
       "kind": "file",
-      "purpose": "Explicit manual full production-regression evidence on an immutable candidate; no automatic heavy PR trigger or stable promotion.",
+      "purpose": "Optional manual full production diagnostics retaining native/browser/performance/captures and bounded passive ZAP without a publisher dependency.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -8947,6 +8957,17 @@
         "AGENTS.md"
       ],
       "title": "Issue39 — PR85 delivery and canonical production cutover preparation"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-production-policy.md",
+      "kind": "file",
+      "purpose": "Dated issue39 self-review of accepted staging-led production admission, optional full diagnostics, smoke and preserved recovery.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Staging-led production release policy"
     },
     {
       "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -21282,7 +21303,7 @@
     {
       "path": "tools/release/controller.cjs",
       "kind": "file",
-      "purpose": "Trusted full evidence, durable immutable assets, protected source, active/archive labels and verified failure compensation.",
+      "purpose": "Trusted staged-source admission, durable immutable assets, protected source, active/archive labels and verified failure compensation.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
@@ -21315,7 +21336,7 @@
     {
       "path": "tools/release/live.cjs",
       "kind": "file",
-      "purpose": "Exact live production edition, Pages, browser and passive-scan acceptance bound to frozen archive identity.",
+      "purpose": "Exact live production edition, Pages and bounded browser smoke acceptance bound to frozen archive identity.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [
@@ -21366,6 +21387,17 @@
         "AGENTS.md"
       ],
       "title": "rights.cjs"
+    },
+    {
+      "path": "tools/release/staging-policy.cjs",
+      "kind": "file",
+      "purpose": "Authenticate successful staging and identical merged source trees; bind separate production edition admission without optional full diagnostics.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "staging-policy.cjs"
     },
     {
       "path": "tools/repository_intelligence.py",

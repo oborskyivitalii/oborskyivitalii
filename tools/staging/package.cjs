@@ -187,6 +187,9 @@ function publicationRequired(source, revision) {
     'issue39-writing-tbt-plain',
     'issue39-writing-tbt-staging',
     'issue39-writing-tbt-production',
+    'issue39-css-clock-plain',
+    'issue39-css-clock-staging',
+    'issue39-css-clock-production',
   ].map(motion.reviewedRuntime);
   const knownBytes = licensed.some(
     (runtime) =>

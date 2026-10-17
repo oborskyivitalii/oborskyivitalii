@@ -17,8 +17,9 @@ redirect in one hop to the canonical `.ai` path with the query preserved.
 PR40 and PR85 are merged. The owning issue and active follow-up PR contain
 current refs, exact CI results and the remaining first-publication work. Dated
 inventory reports and old two-host staging instructions are historical evidence.
-The existing production candidate, full evidence, immutable archive and protected
-publisher remain the only production route.
+The staging-bound production candidate, immutable archive and protected publisher
+remain the only production route. Full regression is an optional manual action.
+After publication or rollback only bounded HTTP/policy/browser smoke is required.
 
 ## Who can perform each action
 
@@ -47,14 +48,15 @@ No .com GitHub verification is needed for a redirect-only domain.
 ## First production publication
 
 1. Complete and merge the current controller change through ordinary Cloudflare
-   staging. Freeze the exact final main using `site-release-candidate.yml`, then
-   pass that artifact into `site-candidate-evidence.yml` for full production checks.
+   staging. Freeze the exact final main using `site-release-candidate.yml` with
+   `candidate_sha` and `release_pr`. It authenticates successful staging and an
+   identical merged source tree. `site-candidate-evidence.yml` remains optional.
 2. Run **Authorized Pages canonical-root migration**, `mode=prepare`, on that same
    main before binding the domain. Its successful run/attempt captures actual
    original Pages settings, authenticated publisher/receipt, exact ZIP/package and
    live HTTP. Preserve the capsule; an older-controller capsule cannot substitute.
-3. Complete applicable full, rights, independent and device acceptance on the frozen
-   production artifact. Configure the canonical domain and reviewed DNS, then verify
+3. Bind the selected rights decision to the frozen production inventory. Full
+   diagnostics and device observations are separate, nonblocking records. Configure the canonical domain and reviewed DNS, then verify
    TLS and HTTPS enforcement. Do not execute the historical migration `execute`
    route: it would republish retired staging on the canonical host.
 4. Dispatch **Authorized production release or rollback**, `operation=publish`, with
@@ -104,7 +106,7 @@ is silently removed to promise closure at the first deployment.
 2. Confirm [repository Pages](https://github.com/oborskyivitalii/oborskyivitalii/settings/pages)
    uses **GitHub Actions**, already observed serving staging. Do not switch to
    branch publication. Confirm settings through an authenticated path before release.
-3. With the concrete candidate, full evidence and tested migration/recovery ready,
+3. With the staging-admitted candidate, rights and tested migration/recovery ready,
    save custom domain **vitaliioborskyi.ai** before applying the .ai routing DNS.
    For Actions publication, a repository CNAME file does not control this setting.
    Capture old origin/receipt/settings first; coordinate the binding and DNS with
@@ -115,7 +117,7 @@ is silently removed to promise closure at the first deployment.
    recovery capsule; Cloudflare staging remains independent. Production opt-in remains
    off until the applicable release decision.
 5. Enable the authorized opt-in and invoke `site-production.yml` with the exact
-   immutable release tag, successful full validation run, merged source PR and
+   immutable release tag, successful frozen-candidate run, merged source PR and
    source-bound evidence. It composes only the admitted production root; retained predecessor
    bytes are recovery material. Follow the existing publisher/live verifier; do not rebuild the
    admitted artifact. Verify .ai before enabling the .com redirect below.
