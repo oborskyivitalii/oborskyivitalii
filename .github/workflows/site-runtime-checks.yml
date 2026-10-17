@@ -1,13 +1,17 @@
 name: Site local diagnostics
-# Manual only: PRs already run this once in site-checks.yml.
+# Temporary issue39 native clock observation. Never admission or publication.
 on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 jobs:
   runtime:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 12
+    env:
+      SITE_ARTIFACT_MANIFEST: ${{ github.workspace }}/quality-artifact/artifact.json
+      SITE_PUBLIC_DIR: ${{ github.workspace }}/quality-artifact/public
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -15,4 +19,131 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '24.19.0'
-      - run: node tools/quality/local.cjs
+      - name: Authenticate the immutable failed candidate
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            const assert = require('node:assert/strict');
+            const item = (await github.rest.actions.getArtifact({
+              ...context.repo, artifact_id: 12096726868
+            })).data;
+            assert.equal(item.expired, false);
+            assert.equal(item.workflow_run.id, 39021038805);
+            assert.equal(item.workflow_run.head_sha, '0c76d32393ef36b474153c1592e3cbdcf588e631');
+            assert.equal(item.digest, 'sha256:9c092aabe03f59fc826ffa51a380e3d068b42bd2a64c51604e8135cf14094bd7');
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: 12096726868
+          run-id: 39021038805
+          github-token: ${{ github.token }}
+          path: quality-artifact
+      - name: Install the pinned native diagnostic engine
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Retain five fixed native clock trials without changing public bytes
+        run: |
+          mkdir -p quality-reports
+          node <<'JS'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const { toolRequire, launchOptions } = require('./tools/quality/common.cjs');
+          const { start } = require('./tools/quality/serve.cjs');
+          const { installProbe } = require('./tools/quality/motion.cjs');
+          const pacing = require('./tools/quality/transition-pacing.cjs');
+          function instrument() {
+            const probe = window.SiteEngineProbe;
+            window.__routeClock = { phases: [], events: [] };
+            window.SiteEngineProbe = (event) => {
+              if (event.kind === 'route-block') {
+                window.__routeClock.phases.push({
+                  ...event,
+                  observedWall: performance.now(),
+                  observedTimeline: document.timeline?.currentTime ?? null,
+                });
+              }
+              probe(event);
+            };
+            for (const type of ['animationstart', 'animationend', 'animationcancel']) {
+              document.addEventListener(type, (event) => {
+                if (!['route-block-depart', 'route-block-arrive'].includes(event.animationName)) return;
+                const unit = event.target.closest('[data-route-block]');
+                window.__routeClock.events.push({
+                  type,
+                  name: event.animationName,
+                  elapsedTime: event.elapsedTime,
+                  eventTime: event.timeStamp,
+                  wall: performance.now(),
+                  timeline: document.timeline?.currentTime ?? null,
+                  target: event.target.tagName + '.' + event.target.className,
+                  pseudo: event.pseudoElement,
+                  unit: unit?.tagName + '.' + unit?.className,
+                  row: unit?.dataset.routeRow,
+                  state: unit?.dataset.routeBlock,
+                  delay: Number.parseFloat(unit?.style.getPropertyValue('--route-block-delay')),
+                  duration: Number.parseFloat(unit?.style.getPropertyValue('--route-block-duration')),
+                });
+              }, true);
+            }
+          }
+          (async () => {
+            const manifest = JSON.parse(fs.readFileSync('quality-artifact/artifact.json'));
+            assert.equal(manifest.sourceCommit, '0c76d32393ef36b474153c1592e3cbdcf588e631');
+            assert.equal(manifest.artifactDigest, 'd4fe8bddf3d2c782326df310f205a607b81e7b8e9965e07189b9bef4923525b5');
+            require('./tools/quality/artifact.cjs').verify('quality-artifact/public', manifest);
+            const { server, url } = await start();
+            const browser = await toolRequire('playwright').chromium.launch(launchOptions('chromium'));
+            const report = {
+              diagnosticOnly: true, fullGate: false, productionEligible: false,
+              executionSource: process.env.GITHUB_SHA,
+              artifact: manifest, browser: browser.version(), trials: [],
+              protocol: 'Three ordinary fresh contexts, then12/20ms explicit pre-input frame workloads. Eight unchanged primary flights each; no retry or acceptance claim.',
+            };
+            try {
+              for (const frameOffsetMs of [0, 0, 0, 12, 20]) {
+                const trial = { frameOffsetMs, rows: [] };
+                report.trials.push(trial);
+                const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+                await context.addInitScript('(' + installProbe.toString() + ')();(' + instrument.toString() + ')();');
+                try {
+                  const page = await context.newPage();
+                  await page.goto(url + '/index.html');
+                  await page.waitForFunction(() => document.querySelector('.space-scene').dataset.ready === 'true');
+                  for (const destination of ['research', 'writing', 'talks', 'index', 'talks', 'writing', 'research', 'index']) {
+                    const from = await page.locator('body').getAttribute('data-page');
+                    await page.evaluate(async ({ destination, frameOffsetMs }) => {
+                      window.__routeClock = { phases: [], events: [] };
+                      window.__qualityMotion.events = [];
+                      const click = () => document.querySelector('a[href="' + (destination === 'index' ? './' : destination + '.html') + '"]').click();
+                      if (frameOffsetMs) {
+                        await new Promise((resolve) => requestAnimationFrame(() => {
+                          const start = performance.now();
+                          while (performance.now() - start < frameOffsetMs) {}
+                          click();
+                          resolve();
+                        }));
+                      } else click();
+                    }, { destination, frameOffsetMs });
+                    await page.waitForFunction((destination) => document.body.dataset.page === destination && !document.querySelector('#site-content').hasAttribute('aria-busy') && document.querySelector('.space-scene').dataset.travel === 'settled', destination, { polling: 40, timeout: pacing.deadline(390) });
+                    const observation = await page.evaluate(() => ({ ...window.__routeClock, choreography: window.__qualityMotion.events }));
+                    trial.rows.push({ from, to: destination, ...observation });
+                    fs.writeFileSync('quality-reports/route-clock.json', JSON.stringify(report, null, 2));
+                  }
+                } finally {
+                  await context.close();
+                }
+                console.log(JSON.stringify({ trial: report.trials.length, frameOffsetMs, flights: trial.rows.length, watchdogs: trial.rows.filter((row) => row.phases.some((phase) => phase.completedBy === 'watchdog')).length }));
+              }
+            } finally {
+              await browser.close();
+              server.close();
+              fs.writeFileSync('quality-reports/route-clock.json', JSON.stringify(report, null, 2));
+            }
+          })().catch((error) => { console.error(error); process.exitCode = 1; });
+          JS
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: issue39-route-clock-${{ github.run_id }}
+          path: quality-reports/
+          retention-days: 90
