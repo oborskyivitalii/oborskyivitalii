@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
-    "date": "2026-10-16",
-    "summary": "Full PR40 main integration after PR81/PR82: exact compact metadata tuples with unchanged runtime bytes, mandatory frozen rights, complete append-only original/main secret review and retained failures/budgets. Review source/acceptance/workflow/registry and RI/CI routes; actual live/native/device/independent release gates remain separate. Self-review."
+    "date": "2026-10-17",
+    "summary": "Issue39 bounded post-deploy readiness: staging missing-file convergence and Pages whole-package readiness before live smoke/recovery; existing registered behavioral tests and protected delivery routes remain. Original cases, budgets and source/artifact admission preserved. Self-review; independent and live acceptance remain separate."
   },
   "layers": [
     {
@@ -531,7 +531,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "cbb409c606653addb86ffba73542474a689edc9785a86d16e98d2b03b9a8ba57",
+    "digest": "a39af9e6b7d7b2d21c5d4ee7d566935461860c6c60b2361de7a16d098aef1a75",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -687,7 +687,7 @@
       },
       {
         "path": ".github/workflows/site-production.yml",
-        "sha256": "0c39dea8f4c7793dc3c542f9e9e2b4f817dee655de596afc21bc5c33386e8a93"
+        "sha256": "f00d6019d65546cd2decdbc7b164d1e98d031f2daed93d05b037d971e84f9105"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",

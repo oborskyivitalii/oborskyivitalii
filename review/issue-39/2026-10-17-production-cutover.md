@@ -473,3 +473,56 @@ canonical binding and HTTPS. Do not label the skipped native bookkeeping
 compensation successful or request an unreviewed wider App grant. No production
 ref or active label had moved; the failed transition and draft archive remain
 observable. The `.com` cutover remains after actual accepted publication.
+
+
+## 17 October — bounded post-deploy readiness correction
+
+Maintainer steering identified immediate verification racing CDN propagation.
+This self-analysis continues issue39; it is not independent technical review.
+Source base: PR91 analytics tree507734ad904728f0e818932c2ede98cc8d340c79.
+The unchanged-source control39054217521/1 passed completely, including stable
+promotion. Native PR admission39052636708/2 passed; PR91 merged normally as
+8923228c5b5b4976bea69c37cb5a37876826f6e8 with identical complete tree.
+
+Actual stable promotion39052751831/1 observed a stale revision first, then a new
+revision together with stale site-revision bytes and a404 on a new immutable
+snapshot. The old60-second readiness loop retried byte mismatches but treated
+that404 as fatal. Production's HTTP verifier had no readiness loop. Its earlier
+production failure39051970824/1 was unexpected analytics, not readiness.
+
+CS01/04/05/06/07/08/09/10 apply to existing staging, Pages HTTP and release
+adapter owners. No public runtime, source rendition, browser cases, performance
+budgets, sample counts or admission gates change. Existing registered test
+modules own positive and negative readiness checks; no competing pipeline or
+test registry is introduced.
+
+- Staging also treats404 for an expected file/revision as pending within its
+  original60-second limit. Origin/TLS, security headers, MIME and other status
+  failures remain fatal. Immutable snapshot and owned404 checks stay strict.
+- Production waits within the same60-second/two-second bound before policy and
+  browser smoke. Each observation must independently verify the whole frozen
+  package, queries and true404s; successes are never assembled across attempts.
+  Only old bytes and transitional200/404 statuses poll; unsafe responses and
+  other statuses fail immediately. The deadline bounds body reads as well.
+- Every observation retains status, actual/expected digests, MIME and failure.
+  Exhaustion fails once into existing recovery. Restored-byte verification uses
+  the same wait and requires pass before bookkeeping; there is no automatic
+  /stage dispatch, browser rerun or infinite workflow retry.
+
+Behavioral coverage includes stale-to-fresh, new revision with a missing
+snapshot, permanent404, alternating old files, SPA fallback, redirect/origin/
+MIME/503/transport rejection, finite deadline and late-body non-acceptance.
+The first combined local run passed74/75; its stalled-body test gave an
+unrealistic50ms deadline that elapsed during package verification before any
+request. The test now allows1000ms while retaining the actual hard deadline
+and cancellation assertions; source behavior was not relaxed for that failure.
+Exact final validation and native delivery are recorded in the PR and issue.
+
+Local validation of the readiness correction: all75/75 cases in the four
+affected permanent delivery/controller modules pass with zero skips. Basic24/24
+passes, bounded style passes, RI28/28 regressions pass, RI freshness and reviewed
+RI/CI coupling pass. These are local current-byte checks; exact clean/native
+source results and live activation are separate. The initial50ms test failure
+remains recorded above. Existing GitHub Pages first-release settings recovery
+can still require the already authorized manual operator path after a403; this
+change does not claim to grant Pages permissions or repair that authority.

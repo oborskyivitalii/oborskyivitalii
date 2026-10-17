@@ -140,11 +140,14 @@ async function verifyRecovery() {
   const base = proof.preparation
     ? require('../pages/migration.cjs').load('first-release-prepared').from
     : process.env.PAGES_ORIGIN;
-  const observation = await require('../pages/http.cjs').check(
+  const observation = await require('../pages/http.cjs').ready(
     'pages-previous/pages-package',
-    base
+    base,
+    fetch,
+    { retain: (value) => save('pages-reports/rollback-http.json', value) }
   );
   save('pages-reports/rollback-http.json', observation);
+  assert.equal(observation.pass, true, observation.error);
 }
 
 function retainReports(proof, directory) {
