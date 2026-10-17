@@ -280,8 +280,7 @@ function github(immutable = true) {
       getLabel: async ({ name }) => ({ data: { name } }),
       createLabel: async (value) => ({ data: value }),
       addLabels: async ({ issue_number, labels }) => {
-        if (state.labelWrite === false)
-          throw Object.assign(Error('PR-resource write denied'), { status: 403 });
+        assert.ok(labels.length > 0, 'GitHub rejects an empty additive label request');
         for (const name of labels) state.flags.get(issue_number).add(name);
         state.calls.push('label');
         return { data: {} };
@@ -311,20 +310,6 @@ function github(immutable = true) {
     },
   };
 }
-
-test('PR label permission is exercised without changing labels before publication', async () => {
-  const api = github();
-  api.state.flags.get(73).add('unrelated-label');
-  await controller.metadataAccess(api, context, [73, 73, undefined]);
-  assert.deepEqual([...api.state.flags.get(73)], ['unrelated-label']);
-  assert.deepEqual(api.state.calls, ['label']);
-  api.state.calls.length = 0;
-  api.state.labelWrite = false;
-  await assert.rejects(controller.metadataAccess(api, context, [73]), /write denied/);
-  assert.deepEqual(api.state.calls, []);
-  assert.equal(api.state.refs.size, 0);
-  assert.equal(api.state.releases.size, 0);
-});
 
 test('metadata recovery authenticates the unique failed owner-main attempt and retained result', async () => {
   const run = {

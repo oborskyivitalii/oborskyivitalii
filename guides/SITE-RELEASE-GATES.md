@@ -138,8 +138,9 @@ first-release capsules may remain from a proven main ancestor when the exact
 predecessor ZIP and every canonical served byte still verify. The protected
 publisher has a separate metadata-only recovery operation for an exact failed
 first-publication result; it cannot deploy Pages, change settings or accept a
-release. Both metadata writers use ordinary `pull-requests: write`; actual
-no-op PR-label writes precede archive/live writes. A frozen Release from a failed
+release. Both metadata writers use ordinary `pull-requests: write`; only real
+label transitions issue writes. GitHub rejects empty additive label requests,
+so these cannot establish permission through a no-op preflight. A frozen Release from a failed
 bookkeeping transition is retained but is not an accepted rollback target.
 
 Rollback consumes a previously live accepted immutable Release, verifies every

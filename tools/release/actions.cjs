@@ -257,10 +257,8 @@ function retainReports(proof, directory) {
 async function prepareArchive(github, context) {
   await authenticate(github, context);
   const proof = read('release-control/request.json');
-  await controller.metadataAccess(github, context, [proof.current?.releasePR, proof.releasePR]);
   if (proof.operation === 'rollback') {
     const record = await controller.restoreArchive(github, context, proof.tag, 'release-assets');
-    await controller.metadataAccess(github, context, [record.releasePR]);
     await controller.wasAccepted(github, context, record);
     cp.execFileSync('python3', [
       'tools/release/package.py',
@@ -499,7 +497,6 @@ async function recoverFailed(github, context) {
   assert.deepEqual(request.preparation, proof.preparation);
   const previous = read('failed-publication/release-control/previous.json');
   assert.deepEqual(previous, verified.plan.previous);
-  await controller.metadataAccess(github, context, [transaction.desired.releasePR]);
   // Repeat live/provider leases immediately before the existing compensation.
   await controller.recoveryState(github, context, failed, transaction, proof.tag);
   await controller.recover(github, context, transaction, {

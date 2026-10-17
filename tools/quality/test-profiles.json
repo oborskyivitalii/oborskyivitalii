@@ -1640,7 +1640,7 @@
     {
       "path": "tests/release-controller.test.cjs",
       "language": "javascript",
-      "purpose": "Authenticated staging-source production derivation, exact rights/artifact/archive identity, optional diagnostic independence, actual PR-resource permission preflight and authenticated failed-first-release metadata compensation; external operations use fixtures.",
+      "purpose": "Authenticated staging-source production derivation, exact rights/artifact/archive identity, optional diagnostic independence, provider-valid label transitions and authenticated failed-first-release metadata compensation; external operations use fixtures.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
