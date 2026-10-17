@@ -37,7 +37,14 @@ function observe({ direction, policy }) {
       sample();
       frame = window.requestAnimationFrame(tick);
     }
-    window.setTimeout(() => {
+    function finish() {
+      // Timer delivery can precede the monotonic deadline on coarse clocks.
+      // Keep collecting until the unchanged 900ms observation window is complete.
+      const remaining = policy.budgetMs - (performance.now() - started);
+      if (remaining > 0) {
+        window.setTimeout(finish, remaining);
+        return;
+      }
       window.cancelAnimationFrame(frame);
       const final = sample();
       changes.push(final);
@@ -52,7 +59,8 @@ function observe({ direction, policy }) {
         samples,
         changes,
       });
-    }, policy.budgetMs);
+    }
+    window.setTimeout(finish, policy.budgetMs);
     tick();
   });
 }

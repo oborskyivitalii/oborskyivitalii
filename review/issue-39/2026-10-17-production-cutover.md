@@ -203,7 +203,8 @@ separator, so Firefox wraps `VocabularyDiscussionsAdvisors` as one run, reaching
 353.7px at320px. This affects initial Research and Home-to-Research navigation
 when external styles.css is blocked, in both themes. It is a real fallback bug.
 The original full run remains failed. macOS130/130, Windows40/40, native
-navigation/analytics, all performance gates and Linux Color12/12 passed.
+navigation/analytics and all performance gates passed. Linux Color actually
+passed11/12; the early status reporting12/12 was premature and is corrected.
 
 The correction inserts only four whitespace separators in the canonical
 Research main template. Styled navigation is a flex container with gaps; its
@@ -228,3 +229,20 @@ Current `build-cohesion.test.cjs` and the actual registered suites remain requir
 
 Protected staging, new frozen production/native evidence and actual canonical
 publication are pending. No production deployment is claimed.
+
+
+### Edge setup clock correction
+
+The same raw Linux artifact retains Firefox1440/light Color failure
+`edge setup window shortened`: elapsed899ms, stable855ms, y/range5538/5538,
+policy900ms setup/180ms stable/2px. One setTimeout(900) callback did not guarantee
+that the collector's monotonic clock had reached its deadline. The collector
+now reschedules only the remaining interval before taking its final sample;
+validation and all policy fields remain unchanged. The deterministic fixture
+delivers the first timer at899, requires a real final sample at900, retains its
+original no-extension bound and still rejects a shortened899 report. Existing
+late/blocked/wrong-geometry cases remain failures. No public/runtime bytes change.
+
+PR87 returned to Draft; prior-head stage39018028279 was cancelled before
+publication. All subsequent source/staging/native/full evidence must match
+the corrected head. This is collector self-review, not native admission.

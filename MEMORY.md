@@ -19,13 +19,17 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
   overflow, including Home-to-Research journey, both themes. Raw12094968799 ZIP
   c5c058b02a97d4ff51046d9dddfb8b3863db004d58452ec3bbf76e1cf647be30,
   /tmp/pr86-final-linux: adjacent section links without spaces produce353.7px run.
-  Linux Color12/12, macOS130/130+4nav+13analytics, Windows40/40+8nav+26analytics,
+  Linux Color11/12, macOS130/130+4nav+13analytics, Windows40/40+8nav+26analytics,
   full Lighthouse30 rows/10 medians, motion15 zero-work,24 flights/300s soak pass.
   Partial passes do not admit production; failed artifact must not be released.
 - Active work/research-fallback-39 inserts only four whitespace separators between
   Research section links. Content/hrefs/order, styled flex layout, runtime/media
   unchanged; exact template preservation pin and generated Research identity updated.
-  New protected PR/stage/frozen full/native evidence and publication still needed.
+  PR87 is Draft again after raw Color revealed899ms from a900ms timer. The edge
+  collector now waits against the actual unchanged monotonic deadline; original
+  900/180ms and2px validation stays strict. Early-callback regression added.
+  Prior-head stage39018028279 cancellation requested before publication. New
+  source/staging/full/native evidence and production publication remain needed.
 - Recovery39013902509/1 capsule12094430541 ZIPa76391a97ea36eae3edbffa1e666ce72cc83f2c6d738dbd81186f74a4e1606df
   authenticates original Pages host/default cname/workflow/HTTPS and exact old bytes;
   controller32983. Regenerate after main moves. Never execute retired staging migration.
