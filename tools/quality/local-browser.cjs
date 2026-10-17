@@ -28,6 +28,21 @@ const completeResponses = [
   'Matthew Skelton',
 ];
 const hash = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+function analyticsRequest(value, base, manifest, settings = require('../../site/analytics.json')) {
+  const edition = manifest.edition;
+  if (
+    edition?.id !== 'production' ||
+    edition.indexable !== true ||
+    edition.origin !== new URL(base).origin
+  )
+    return false;
+  const config = require('../site/analytics.cjs').validate(settings);
+  if (!config.enabled || config.siteURL !== base.replace(/\/$/, '') + '/') return false;
+  return [
+    'https://static.cloudflareinsights.com/beacon.min.js',
+    'https://cloudflareinsights.com/cdn-cgi/rum',
+  ].includes(value);
+}
 function artifactFile(value, base, manifest) {
   const url = new URL(value),
     scope = new URL(base.replace(/\/$/, '') + '/');
@@ -299,6 +314,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     page = await context.newPage();
   const errors = [],
     external = [],
+    analytics = [],
     responseChecks = [],
     checkedFiles = new Set(),
     rows = [];
@@ -314,7 +330,10 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   }, mode);
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('request', (request) => {
-    if (!request.url().startsWith(url + '/')) external.push(request.url());
+    const value = request.url();
+    if (value.startsWith(url + '/')) return;
+    if (analyticsRequest(value, url, manifest)) analytics.push(value);
+    else external.push(value);
   });
   page.on('response', (response) => {
     responseChecks.push(
@@ -420,6 +439,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       motionOff: mode === 'normal',
       errors,
       externalRequests: external,
+      analyticsRequests: analytics,
       verifiedResponses: [...checkedFiles].sort(),
     };
   } catch (error) {
@@ -438,6 +458,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       state: await state(page).catch(() => null),
       errors,
       externalRequests: external,
+      analyticsRequests: analytics,
     };
   } finally {
     await context.close();
@@ -515,4 +536,5 @@ module.exports = {
   state,
   artifactFile,
   verifyResponse,
+  analyticsRequest,
 };

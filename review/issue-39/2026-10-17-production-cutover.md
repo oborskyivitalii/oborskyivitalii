@@ -431,3 +431,45 @@ controller (1/1, zero skips); it also rejects forged creator/tag/source and igno
 release statuses. The three affected delivery/migration/release modules pass together.
 Style guard, RI/CI coupling and RI freshness pass locally. Complete exact-source/profile,
 owning checks, hosted staging, merge and new publication remain pending.
+
+## Production analytics smoke correction — 17 October 2026
+
+Inspected main `4710b2f3f91523d4be6ad41465c7f040d5589a76`, successful frozen
+candidate `39051516569/1`, recovery preparation `39051857316/1`, and failed
+production `39051970824/1`. Authorization, predecessor verification, archive
+composition, live Pages bytes and production policy passed. The four original
+desktop/mobile normal/no-canvas navigation cells completed all five routes with
+no runtime/served-byte errors, then rejected the configured Cloudflare beacon
+script and RUM endpoint as unexpected external requests. Color smoke was not
+reached. Raw result artifact `12108545029` remains failed; draft release
+`prod-2026-10-17.1` is not accepted and its identity must not be reused.
+
+The existing `local-browser.cjs` now recognizes only those two exact HTTPS URLs
+when the frozen edition is indexable production and both its origin and selected
+base match the canonical `site/analytics.json` configuration. Preview, staging,
+local and disabled analytics retain rejection. Different hosts, paths, schemes
+and query-bearing endpoints remain unexpected. Allowed requests are retained in
+`analyticsRequests` in both successful and failed rows; `externalRequests` must
+still be empty. No route, browser cell, byte/runtime assertion, timing budget,
+site output, analytics configuration or vendor stub is changed. The subsequent
+Color smoke has no external-request rejection and needs no amendment.
+
+The existing registered `preview-smoke.test.cjs` exercises both actual provider
+URLs plus disabled, staging/preview, local, nonindexable, wrong-origin/base and
+arbitrary external-request negatives. CS01/CS04/CS05/CS08/CS09/CS10 apply under
+AC04. This is implementer self-review; no independent review is asserted. Run
+Basic, the affected preview/release/migration suites, registered staging source,
+owning policy, formatting/style and refreshed RI/CI before the unchanged ordinary
+staging and protected merge. Freeze the new main, bind existing owner rights
+decisions to its exact inventory, and use a fresh current-controller recovery
+capsule and release tag before actual production acceptance.
+
+The failed publisher restored predecessor files, but its ordinary `GITHUB_TOKEN`
+could not restore Pages settings (HTTP403, Administration plus Pages required).
+The documented operator recovery is used with the owner's explicit temporary
+domain-interruption approval. Restore captured Actions/null-CNAME/project-prefix
+settings, verify every original package byte and HTTP journey, then restore the
+canonical binding and HTTPS. Do not label the skipped native bookkeeping
+compensation successful or request an unreviewed wider App grant. No production
+ref or active label had moved; the failed transition and draft archive remain
+observable. The `.com` cutover remains after actual accepted publication.

@@ -7,8 +7,55 @@ const {
   verifyResponse,
   identity,
   verifyRuntimeIdentity,
+  analyticsRequest,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('smoke permits only exact configured production analytics and retains other external rejection', () => {
+  const base = 'https://vitaliioborskyi.ai';
+  const manifest = { edition: { id: 'production', indexable: true, origin: base } };
+  const settings = {
+    schema: 1,
+    provider: 'cloudflare',
+    enabled: true,
+    siteURL: base + '/',
+    token: 'a'.repeat(32),
+    searchConsoleVerification: null,
+  };
+  const vendor = [
+    'https://static.cloudflareinsights.com/beacon.min.js',
+    'https://cloudflareinsights.com/cdn-cgi/rum',
+  ];
+  for (const value of vendor) {
+    assert.equal(analyticsRequest(value, base, manifest, settings), true);
+    for (const edition of [undefined, { id: 'staging' }, { ...manifest.edition, indexable: false }])
+      assert.equal(analyticsRequest(value, base, { edition }, settings), false);
+    for (const target of ['https://preview.example.com', 'http://127.0.0.1:3000'])
+      assert.equal(analyticsRequest(value, target, manifest, settings), false);
+    assert.equal(analyticsRequest(value, base, manifest, { ...settings, enabled: false }), false);
+    assert.equal(
+      analyticsRequest(value, base, manifest, { ...settings, siteURL: base + '/other/' }),
+      false
+    );
+    assert.equal(
+      analyticsRequest(
+        value,
+        base,
+        { edition: { ...manifest.edition, origin: 'https://other.example.com' } },
+        settings
+      ),
+      false
+    );
+  }
+  for (const value of [
+    vendor[0] + '?injected=1',
+    vendor[1] + '/other',
+    'http://static.cloudflareinsights.com/beacon.min.js',
+    'https://static.cloudflareinsights.com/other.js',
+    'https://cloudflareinsights.com.evil.example/cdn-cgi/rum',
+    'https://other.example.com/beacon.min.js',
+  ])
+    assert.equal(analyticsRequest(value, base, manifest, settings), false, value);
+});
 test('preview identity preserves real base descriptor and Color runtime fingerprints with exact bindings', (t) => {
   const fs = require('node:fs'),
     path = require('node:path'),
