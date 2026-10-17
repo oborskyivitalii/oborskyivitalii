@@ -114,3 +114,20 @@ matched individually. All944 previous publication rows and all three baseline
 ledgers remain byte-for-byte unchanged; no detector or wildcard is relaxed.
 The scanner must pass on the new exact committed head before fresh staging.
 This is implementer self-review, not independent technical review.
+
+
+## Observed staging job applicability correction
+
+Actual run39028272999 and unchanged site-color-review.yml show that an owner
+staging deliberately skips smoke (preview-only) and stage-evidence (label-only).
+The existing full branch requires needs.smoke.result==skipped; its bounded
+regression is full / staging. The first production-authentication implementation
+wrongly required both inapplicable jobs to succeed, which would reject a real
+accepted staging. Before merge, its fixture was corrected to this observed graph;
+all three selected authentication/derivation tests failed on the original guard.
+The production validator now requires target and all existing mandatory staging
+jobs to succeed, while requiring these two known inapplicable routes to finish
+skipped. Missing, failed, cancelled or unexpectedly selected routes still fail.
+Regression negatives retain failed/skipped mandatory regression and malformed
+artifact/attempt/source checks. Staging workflow, runner, budgets and cases have
+no changes. A new exact-head staging remains required before protected merge.

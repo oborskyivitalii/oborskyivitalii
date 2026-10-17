@@ -1097,20 +1097,23 @@ function stagingAuthenticationFixture() {
       conclusion: 'success',
     },
     tree: 'b'.repeat(40),
-    jobs: [
-      'begin-admission',
-      'build',
-      'publish',
-      'smoke',
-      'full / build',
-      'full / static',
-      'full / host',
-      'full / staging',
-      'full / gate',
-      'stage-evidence',
-      'promote',
-      'merge-admission',
-    ].map((name) => ({ name, status: 'completed', conclusion: 'success' })),
+    // The actual staging graph in run39028272999 skips preview smoke and
+    // label-only evidence; its bounded regression runs under full / staging.
+    jobs: Object.entries({
+      target: 'success',
+      'begin-admission': 'success',
+      build: 'success',
+      publish: 'success',
+      smoke: 'skipped',
+      'full / build': 'success',
+      'full / static': 'success',
+      'full / host': 'success',
+      'full / staging': 'success',
+      'full / gate': 'success',
+      'stage-evidence': 'skipped',
+      promote: 'success',
+      'merge-admission': 'success',
+    }).map(([name, conclusion]) => ({ name, status: 'completed', conclusion })),
   };
   const names = policy.names(800, 1);
   state.artifacts = [names.public, names.gate, ...names.reports].map((name, index) => ({
@@ -1276,6 +1279,9 @@ test('production authenticates the real successful stage attempt, every existing
     (s) => (s.run.run_attempt = 2),
     (s) => (s.run.triggering_actor.login = 'other-user'),
     (s) => (s.jobs.find((job) => job.name === 'full / staging').conclusion = 'failure'),
+    (s) => (s.jobs.find((job) => job.name === 'full / staging').conclusion = 'skipped'),
+    (s) => (s.jobs.find((job) => job.name === 'smoke').conclusion = 'success'),
+    (s) => (s.jobs.find((job) => job.name === 'stage-evidence').conclusion = 'failure'),
     (s) =>
       s.jobs.splice(
         s.jobs.findIndex((job) => job.name === 'smoke'),

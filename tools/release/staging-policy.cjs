@@ -60,24 +60,27 @@ async function authenticate(github, context, number, source) {
     attempt_number: proof.attempt,
     per_page: 100,
   });
-  for (const name of [
-    'begin-admission',
-    'build',
-    'publish',
-    'smoke',
-    'full / build',
-    'full / static',
-    'full / host',
-    'full / staging',
-    'full / gate',
-    'stage-evidence',
-    'promote',
-    'merge-admission',
-  ]) {
+  // Owner staging deliberately skips the preview-only smoke and label-only
+  // evidence routes. Its original bounded regression is full / staging.
+  for (const [name, conclusion] of Object.entries({
+    target: 'success',
+    'begin-admission': 'success',
+    build: 'success',
+    publish: 'success',
+    smoke: 'skipped',
+    'full / build': 'success',
+    'full / static': 'success',
+    'full / host': 'success',
+    'full / staging': 'success',
+    'full / gate': 'success',
+    'stage-evidence': 'skipped',
+    promote: 'success',
+    'merge-admission': 'success',
+  })) {
     const selected = jobs.filter((job) => job.name === name);
     assert.equal(selected.length, 1, 'missing/ambiguous staging job: ' + name);
     assert.equal(selected[0].status, 'completed');
-    assert.equal(selected[0].conclusion, 'success', 'staging job did not pass: ' + name);
+    assert.equal(selected[0].conclusion, conclusion, 'unexpected staging job disposition: ' + name);
   }
   const records = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
     ...context.repo,

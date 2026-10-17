@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2c1df7acfe916776f2eb792765c8f778e6898921d8a98ac99918a7dfccc87513",
+    "digest": "498601d0add7c8e01b67c6eea5ec1ce47afd4b18966ba1917c600383f0b30599",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "09ec5a7d77082e5a3cea82c98e1f06890c4ecb22cd1fb3757f06ec31a2e76929"
+        "sha256": "4e2fc992905c98191c4232db2f2e13a7210f419a81a2e57b164a7ece1902af55"
       },
       {
         "path": "NOTICE.md",
@@ -910,7 +910,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
         "identity_mode": "content",
-        "sha256": "596b4261100f8fb20ae9306eee5ff87704033690b0f46b3cc944a6ef95438eb5"
+        "sha256": "903f47d551dc1b09ef9e93f924fb5148295dadc3ece06ca3cfbbec5ce1b6605b"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -5740,7 +5740,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "96ec51da373c9d854e72e5a3a83895f1abcf33222c8c1e9643f17a85d57e0dfc"
+        "sha256": "ca9b9fcc64d2a3bb2d1d6f544a95c1631b9dc1b7b3b1f144b3dae712caeb44b5"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6560,7 +6560,7 @@
       {
         "path": "tools/release/staging-policy.cjs",
         "identity_mode": "content",
-        "sha256": "76615ff81179dcf6778ca30a7bbd7066f88d7d1d83c16373f4f6bd85ad0eb935"
+        "sha256": "dcab5e73390e9b6904b2a69a572defe81cddfb98e34ece144e57b9ad63217fff"
       },
       {
         "path": "tools/repository_intelligence.py",

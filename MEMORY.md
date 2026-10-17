@@ -29,7 +29,11 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 - Maintainer17October explicitly authorizes protected merge ofPR89 into main.
   Stage39027632676 runs on457d97b; before merge, five exact new Color-checksum
   dispositions must be appended from the already reviewedPR88 ledger. All944
-  original rows remain unchanged. Fresh final-head CI/staging is required.
+  original rows remain unchanged. Corrected headf23d07d source CI passed; new
+  staging39028272999 passed prepublication, publication, static and host. Its
+  observed job graph exposed a production-auth guard error: preview smoke and
+  label-only evidence must be skipped during owner staging. Correct the guard
+  and its fixture, then require fresh exact-head CI/staging before merge.
 - Policy PR also preregisters only PR88's three exact plain/staging/production
   runtime identities plus required rights; no PR88 runtime/public files copied.
 - Last recovery39021099085/1 capsule12097290167 captures original Pages project
