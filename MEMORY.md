@@ -43,9 +43,10 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 - Maintainer17October requested actual staging/production test audit and completion of
   production. Active Color asserts absent ribbons;misleading workflow name is fixed.
   Old full96 camera/MIME/edge failures predate mergedPR85 harness corrections.
-- Fresh current-mainf628 production candidate39009092448/1 succeeded;frozen public
-  artifact12092211776. Full native39009442088 is running as test-audit verification;
-  it cannot admit the later PR86 controller/source before final merge/full evidence.
+- Fresh full39009442088 passed captures/static/host but Linux exposed another stale
+  helper:hosted.archive hardcoded27records versus actual29. PR86 now derives catalog
+  count,with cardinality/missing-row negatives. Superseded staging39009824851 was
+  cancelled before publication/promotion;corrected-source checks/staging remain.
 
 ## Decisions
 

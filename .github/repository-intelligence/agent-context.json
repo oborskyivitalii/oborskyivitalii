@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8186df72a0efa73216302d67dd7f6679241a666893162863e76add81de3b4746",
+    "digest": "cef8f4d6b2526b361b285ec784a8de067c0fff8afa417855672a8e529616b4e0",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "3cf8ca42b03891234ceee7396c39efe3fe5d90b060d227d6934afed45dc9645f"
+        "sha256": "03315ad433e4bdb7508796910623ba637da685092d6009a2d8ea7866b872fb79"
       },
       {
         "path": "NOTICE.md",
@@ -555,7 +555,7 @@
       {
         "path": "guides/SITE-PRODUCTION.md",
         "identity_mode": "content",
-        "sha256": "7bc423b38e32cf52acfd29106353b15eec4763b0197a0dad011570ad5479dc47"
+        "sha256": "4a6af107b8b9322062c949885a0e8e0fb9f56d28ac1b363f3f4deae9108ee776"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "121b0b0cea012006131e2fdd54cba3af3caab76f0e3f30c44ddfbc1b6f9b3074"
+        "sha256": "7c13b405eb73545f30e7406406dfb14c6d14b220fa1902b8d516114c2f76f1e0"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -5805,7 +5805,7 @@
       {
         "path": "tests/staging.test.cjs",
         "identity_mode": "content",
-        "sha256": "88c1368d794ef7ad5685f5adc569fc44056cebe634c395b184cb32544b9638c9"
+        "sha256": "4d7f7c60aba84fe25e7a3db26081a30ee0be14d3a6a2e51fea91a2305d152e64"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -6675,7 +6675,7 @@
       {
         "path": "tools/staging/hosted.cjs",
         "identity_mode": "content",
-        "sha256": "4b0c121706bdc90e6046130c5facf2088ffaea7af83dc6264cf294800dfbadfb"
+        "sha256": "e2cc1fa8168112a1c7488e40fd1fb9466bfafa7e026934eebeeff12797fc108b"
       },
       {
         "path": "tools/staging/package.cjs",

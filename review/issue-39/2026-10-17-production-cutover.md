@@ -133,3 +133,24 @@ local4c153e2/tree1c1c20b1. Basic24,code-style and RI/CI pass. A formatter check
 correctly detected the regenerated RI/CI JSON formatting;the final metadata
 amendment restores its pinned formatting. Native full39009442088 checks the
 already-mergedf628 artifact while PR86 completes;it does not admit PR86 itself.
+
+### Fresh native audit exposed an additional obsolete fixture
+
+Full current-main run39009442088 passed captures,static/security and hosted HTTP,
+then the Linux controlled staging model failed before functional collection:
+`tools/staging/hosted.cjs` still asserted27visible archive records against the
+actual29-record catalog. The prior static audit missed this executed helper;
+its earlier completeness claim is superseded by this observed failure.
+
+The archive browser fixture now derives the exact primary count from the canonical
+catalog,as functional/preview/capture fixtures already do,and reports that count.
+A direct behavioral regression exercises2,28and31-record catalogs and requires
+rejection when the browser reports one missing record;an empty expected catalog
+also fails. The filter/history/reset behavior remains unchanged. Remaining literal
+27-record Writing experiment assertions are registered diagnostics,not dispatched
+by ordinary staging/production. Fixed5-route,20view/10fallback and browser-matrix
+counts are coverage contracts,not publication-data snapshots.
+
+Ordinary staging39009824851 for superseded d8430f36 was cancelled before candidate
+publication/promotion so the obsolete head is not admitted. Source/owning success
+for d843 remains historical;the corrected head requires its own checks/staging.

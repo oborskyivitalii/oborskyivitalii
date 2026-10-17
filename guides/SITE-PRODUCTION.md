@@ -1,9 +1,9 @@
 # GitHub Pages production and custom domains
 
 Owner: [issue #39](https://github.com/oborskyivitalii/oborskyivitalii/issues/39),
-[Draft PR #40](https://github.com/oborskyivitalii/oborskyivitalii/pull/40), under
+[PR #86](https://github.com/oborskyivitalii/oborskyivitalii/pull/86), under
 hosting #8, release #13 and launch #1. Current execution plan:
-[implementation and remaining launch work](../review/issue-39/2026-10-15-implementation.md).
+[implementation and remaining launch work](../review/issue-39/2026-10-17-production-cutover.md).
 Release implementation is owned by [release gates](SITE-RELEASE-GATES.md);
 the existing [staging controller](SITE-STAGING.md) remains the delivery route.
 
