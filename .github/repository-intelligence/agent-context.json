@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "dc7c00acab7b9918cd52e38b53a9913cf1b75b576fe5f2b7995ddf58cca8630d",
+    "digest": "4ada60e1185c701e46418a8137bdb05713ddecc4f7c0bef7a7a1da2dda8617e6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "2a7e6a4c664fcf51f5c5d55a706a579de833ddca1d8987bc9517377ab44edce1"
+        "sha256": "667943c2f8bd04c2943283b83cf2489ec8bcd2bd47c866b7baaefcacf6ea833b"
       },
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
@@ -5740,7 +5740,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "949ef4e808e061120b8ebb70c42fb05548b7009864aa4bf7d2584dfbc21cc804"
+        "sha256": "a37073e3b44d29cd1d8676b753f0896f2680c4f62a679f33d76056d70be64097"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6520,7 +6520,7 @@
       {
         "path": "tools/release/controller.cjs",
         "identity_mode": "content",
-        "sha256": "0211f8bae2fddf643916b60933e16b9743e05f73da1b6c4d7bd5e924880d325d"
+        "sha256": "1e2b01771339c5e6d7fb374630dc529d3232503fccf8934d325aace282d76d69"
       },
       {
         "path": "tools/release/edition-archive.cjs",

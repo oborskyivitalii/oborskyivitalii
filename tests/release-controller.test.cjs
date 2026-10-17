@@ -214,7 +214,10 @@ function github(immutable = true) {
     },
     repos: {
       getReleaseByTag: async ({ tag }) =>
-        state.releases.has(tag) ? { data: state.releases.get(tag) } : missing(),
+        state.releases.has(tag) && !state.releases.get(tag).draft
+          ? { data: state.releases.get(tag) }
+          : missing(),
+      listReleases: 'releases',
       createRelease: async (value) => {
         assert.equal(value.draft, true);
         const release = { ...value, id: serial++, immutable: false };
@@ -294,6 +297,7 @@ function github(immutable = true) {
     state,
     rest,
     paginate: async (method, value) => {
+      if (method === 'releases') return [...state.releases.values()];
       if (method === 'active-labels')
         return [...state.flags]
           .filter(([, names]) => names.has('active-production'))
@@ -600,6 +604,65 @@ test('archive uploads bind all raw evidence and become immutable only after reta
   );
 });
 
+test('draft discovery preserves orphan-tag, source, asset, ambiguity and permission rejection before writes', async (t) => {
+  const f = releaseFixture(t);
+  for (const mode of ['orphan', 'source', 'asset', 'extra', 'ambiguous', 'permission']) {
+    const api = github();
+    if (mode === 'orphan') api.state.refs.set('tags/' + f.record.tag, f.record.sourceCommit);
+    else await controller.publishArchive(api, context, f.directory, f.record, null, api);
+    if (mode === 'source') api.state.refs.set('tags/' + f.record.tag, 'e'.repeat(40));
+    if (mode === 'asset') {
+      const item = api.state.assets.find((asset) => asset.name === 'archive.json');
+      item.bytes = Buffer.concat([item.bytes, Buffer.from('changed')]);
+      item.size = item.bytes.length;
+      item.digest = 'sha256:' + artifact.digest(item.bytes);
+    }
+    if (mode === 'extra') api.state.assets.push({ name: 'untracked.bin', release_id: 1 });
+    if (['ambiguous', 'permission'].includes(mode)) {
+      const paginate = api.paginate;
+      api.paginate = async (method, value) => {
+        if (method !== 'releases') return paginate(method, value);
+        if (mode === 'permission')
+          throw Object.assign(Error('release listing forbidden'), { status: 403 });
+        const release = api.state.releases.get(f.record.tag);
+        return [release, { ...release, id: release.id + 100 }];
+      };
+    }
+    const before = api.state.calls.slice();
+    const errors = {
+      orphan: /untracked tag/,
+      source: /source tag moved/,
+      asset: /cannot be replaced/,
+      extra: /unexpected existing archive asset/,
+      ambiguous: /ambiguous archive release identity/,
+      permission: /listing forbidden/,
+    };
+    await assert.rejects(
+      controller.publishArchive(api, context, f.directory, f.record, null, api),
+      errors[mode]
+    );
+    assert.deepEqual(api.state.calls, before, mode + ' must not mutate remote state');
+  }
+});
+
+test('draft discovery selects the exact tag among unrelated releases and resumes without duplicate writes', async (t) => {
+  const f = releaseFixture(t),
+    api = github();
+  api.state.releases.set('prod-2026-10-15.1', {
+    id: 9000,
+    tag_name: 'prod-2026-10-15.1',
+    draft: true,
+  });
+  const first = await controller.publishArchive(api, context, f.directory, f.record, null, api),
+    before = api.state.calls.slice();
+  const resumed = await controller.publishArchive(api, context, f.directory, f.record, null, api);
+  assert.equal(resumed.id, first.id);
+  assert.equal(resumed.draft, true);
+  assert.equal(api.state.releases.size, 2);
+  assert.deepEqual(api.state.calls, before);
+  assert.equal(api.state.refs.get('tags/' + f.record.tag), f.record.sourceCommit);
+});
+
 test('a changed rights release asset fails before any publication or historical restoration', async (t) => {
   const f = releaseFixture(t);
   const api = github();
@@ -865,7 +928,7 @@ test('only protected refs and Release operations use the installed production Ap
   };
   for (const name of ['createRef', 'updateRef', 'deleteRef'])
     publication.rest.git[name] = forbidden;
-  for (const name of ['createRelease', 'uploadReleaseAsset', 'updateRelease'])
+  for (const name of ['listReleases', 'createRelease', 'uploadReleaseAsset', 'updateRelease'])
     publication.rest.repos[name] = forbidden;
   for (const name of ['createDeployment', 'createDeploymentStatus'])
     control.rest.repos[name] = forbidden;

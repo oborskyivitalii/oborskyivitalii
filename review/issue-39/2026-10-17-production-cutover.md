@@ -526,3 +526,60 @@ source results and live activation are separate. The initial50ms test failure
 remains recorded above. Existing GitHub Pages first-release settings recovery
 can still require the already authorized manual operator path after a403; this
 change does not claim to grant Pages permissions or repair that authority.
+
+## 17 October — production draft-release lookup correction
+
+Actual final-main publisher39057631160/1 on eb3cbb5073e7427e305e3bdc666081cbf8ab21a9
+passed authorization, exact Pages readiness (one891.607755ms observation,44
+files), production policy43files, all4generic smoke cells (32recognized
+analytics requests each,zero unexpected externals) and2Color cells. Final
+archive acceptance failed at publishArchive: GET release-by-tag returned404
+for the publisher's existing draft, then its exact-source tag was rejected as
+untracked. The controller correctly selected rollback because the accepted
+step's actual outcome failed; REST step conclusion can still show success for
+continue-on-error. Never infer acceptance from that displayed conclusion.
+
+GitHub's primary [release REST contract](https://docs.github.com/en/rest/releases/releases)
+describes tag lookup for published releases and authenticated list releases for
+drafts with push access. Actual list read confirms draft415984624/tag
+prod-2026-10-17.2 with exact-source ref and all original archive assets. The
+old mock incorrectly returned drafts from getReleaseByTag. Correcting that
+provider model reproduced the native untracked-tag failure in the existing
+archive roundtrip without another deployment (0/1pass).
+
+The existing controller now uses the installed App's paginated release list,
+requires a unique exact tag match, and then retains every source-tag and
+complete frozen-asset byte/inventory check. Published archive restoration still
+uses published tag lookup. No orphan ref is adopted, replaced or deleted; no
+archive asset can be replaced; no new credential or permission is introduced.
+The corrected roundtrip covers draft-to-immutable publication and restoration.
+Additional behavioral negatives reject orphan tags,moved source,changed or
+extra assets,ambiguous releases and denied listing before any write. A repeated
+draft preparation selects the exact tag among unrelated drafts and makes no
+duplicate writes. The credential-role case includes draft discovery.
+
+Self-review audits the remaining provider boundaries: protected-ref/draft/asset
+App writes actually succeeded; ordinary deployment/label identity stays separate;
+update-release uses the same already-granted Contents/Workflows-write client.
+A fresh authenticated settings read confirmed release immutability enabled.
+Existing immutable,source,live,evidence,protection and compensation negatives
+remain. CS01/04/05/06/07/08/09/10 apply to these existing owners and their registered
+permanent suite. This is not independent review.
+
+Affected release-controller tests now pass27/27 with zero skips. Basic passes
+24 focused tests and its five-route checks; the bounded style guard and pinned
+formatter pass. Regenerated RI verifies fresh, RI/CI coupling passes15checks,
+and the existing RI28/28 and RI/CI20/20 regression suites pass. These local
+results do not replace the pending exact-source native staging/admission.
+Native failed
+run/result artifact12110785248 ZIP5008268a6477e26e67d4a09c9061181ea1ba4edea42ce25b3dd5d13bdced1560
+remains retained. Automated rollback redeployed the exact predecessor; captured
+settings restoration returned the known403 and native bookkeeping compensation
+was skipped. Independent strict-TLS canonical.ai probes verify all60served old
+files against authenticated recovery39057435126, digest3ffcbe8e1b9b64adefdf496386b5e5e0bd7a67a1ec9bc8269da6bf9291b2f74d.
+The desired.ai binding is retained; original-prefix captured-settings verification
+will be completed during the next authorized fresh prepare-only recovery, avoiding
+an extra interruption. No production branch/accepted release exists. Draft tags
+.1 and.2 and pending deployment7143801317 remain historical; next tag is.3.
+.com remains unconfigured. Complete source/native delivery and fresh freeze/recovery
+are still required before another attempt; no blind staging/publisher retry.
