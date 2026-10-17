@@ -267,3 +267,136 @@ reproduced every value; the Research source pin separately equals its canonical
 template SHA256. The896 prior publication rows remain unchanged;944 rows now
 exist. All three original baseline ledgers and advisory exceptions are unchanged.
 No scanner rule, broad path allowance or unproved value was added.
+
+
+### Native CSS completion clock — bounded correction
+
+PR87 merged as0c76d32393ef36b474153c1592e3cbdcf588e631, tree-identical to
+bc9aa9e45883512ddeac0d56634469260622942d. Accepted staging39019664824
+is separate from frozen production39021038805, artifact12096726868,
+publicd4fe8bddf3d2c782326df310f205a607b81e7b8e9965e07189b9bef4923525b5.
+Full39021549906 failed its original strict motion gate:390px/rate1
+Research-to-Home arrival finished bywatchdog after2000ms. All30 Lighthouse
+trials passed; partial passes do not admit this artifact. No rerun replaces it.
+
+Read-only diagnostic39023335245 retained five predetermined fresh contexts,
+40 unchanged primary flights: three ordinary contexts, then12/20ms explicit
+pre-input frame workloads. Artifact12097498521 ZIP
+8885ce6397158eb94efe853275b4d9933af51e481963ebc88931c3f332b0d6ba
+binds the original frozen bytes and diagnostic sourceb7d27aac separately.
+Only the20ms trial reproduced a watchdog, on Talks-to-Writing arrival.
+FORM.archive-filters received five genuine CSS animationend events with
+elapsedTime0.7: document timeline22778.3-to23478.3 is700ms; wall mark22787.2
+to23478.5 is691.3ms. The existing700-minus8ms wall guard rejected them.
+This proves the same clock race; it is not an exact repeat of the original
+spontaneous Home failure. W3C Web Animations1 section4.3.2 documents that the
+CSS document timeline is frame sampled while performance.now advances:
+https://www.w3.org/TR/web-animations-1/#document-timelines
+
+The controller now pairs finite document timeline start/end readings for CSS
+completion, retaining paired wall readings if either timeline mark is absent.
+Reading and route guards share this correction. Probe clocks, watchdogs,8ms
+stale-event tolerance,1000ms wave,700ms rows, camera/style/layout stay unchanged.
+Three regression tests first retained two failures on original code and one
+passing unavailable-timeline fallback; corrected controller passes39/39 tests.
+They cover genuine completion in both directions/phases and reading, stale
+completion rejection, and unavailable-start fallback. Existing cancellation,
+cleanup and finite-watchdog tests remain required.
+
+CS01/CS04/CS05/CS06/CS07 preserve one owner, closure API and explicit fallback;
+CS08/CS09/CS10 require generated outputs, exact finite source pins, source
+checks and fresh native/staging/full evidence. This is implementation
+self-review. No independent technical approval or new physical check is claimed.
+The temporary manual workflow is diagnostic-only and will be restored exactly
+to0c76 before PR readiness; its five-trial corrected run cannot admit production.
+
+
+Corrected diagnostic39024229013 stopped before native execution: the unchanged
+closed Color selector rejected the new runtime fingerprint. It is a setup
+failure, not a native trial or runtime verdict. Append only the derived
+issue39-css-clock plain/staging/production tuples; preserve all prior families,
+edition and canonical/immutable byte rejection. Generated navigation SHA256
+f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e
+is the only changed runtime asset; styles/theme/archive/space remain exactly
+equal to the preceding Writing family for each edition. New fingerprints:
+plain6d9f94052d390ec92e5583543c1934b3c1c0796274759589a42cb44d38424714,
+staging0144ed548a9d191f9dd27ce2542f7dd829d540f67a7f37f0466a3700cce03729,
+production1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17.
+The actual producers generated these independently of the hardcoded registry;
+artifact/snapshot checks verified both canonical and immutable runtime copies.
+The existing closed-selector mutation/full-cell/edition suites include all
+three tuples. Frozen publication rights remain mandatory for all three; the
+new fixture verifies missing rights fail before file access. These are exact
+implementation identity proofs, not independent release/native acceptance.
+
+
+The187 exact new checksum IDs were individually proved before appending to
+secrets-publication.json. All944 prior rows remain identical, now1131 total;
+three original baseline ledgers and advisory exceptions remain unchanged.
+No scanner rule/path allowance or performance threshold changed. Registry
+coverage stays in the existing permanent scroll-entry/publication-records and
+closed Color/staging/controller modules; no new module or deferred gate.
+
+Clean0a3c782 passes formatting and18/19 owning checks. PRODUCTION-PREPARATION
+caught one stale current-edition expectation in release-controller.test.cjs:
+production now correctly selects issue39-css-clock-production. Update that
+exact expected identity; byte/edition/variant/analytics/size assertions remain.
+The failed original owner report remains retained; rerun after this source fix.
+Corrected native diagnostic39024689792 at0a3c782 is collecting the same five
+fixed trials. The temporary workflow has now been restored byte-for-byte to
+main0c76; no diagnostic workflow change is proposed for merge. Final native,
+source/scanner, staging/full and physical scope gates remain separate.
+
+The full publication-records suite also caught its current-edition fixture's
+old Writing-family expected ID. Update only that current fixture to CSS-clock;
+historical source/record fixtures remain pinned. Fetch the five missing pinned
+historical blobs together for this partial local checkout; preserve the first
+failed suite and rerun on corrected source. No fixture assertion is removed.
+
+
+Corrected native39024689792 succeeded on clean0a3c782. Raw artifact12097762337
+ZIP6be1c0c98993542a63fc803f867fc6e19d11c9aa90d283821d619994868848bf
+retains the same Chromium153.0.8010.12,390px viewport, three ordinary contexts
+and12/20ms pre-input workloads. All40 flights completed; all80 departure/arrival
+endpoints completed byanimationend, zero watchdog/fallback. Original setup
+cancellation probes are retained separately and do not represent phase ends.
+Production-edition diagnostic public digest704f9b644e708ca45c1a5eb46c64a91159d1cce9e3b6fbaa48a1f027fc2f9ff7,
+Color fingerprint1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17.
+This bounded causal confirmation is not full production/native/device admission.
+
+Original full39021549906 is now complete: Linux/macOS/Windows, host, static and
+captures passed; performance and aggregate gate failed as originally observed.
+Preserve it. Local corrected source modules pass611/611 staging tests and the
+publication module19/19; those precommit local observations are diagnostics.
+The first115-test Python run caught stale RI after the fixture edit (five query
+errors, zero behavioral failures); rebuild RI before the final exact-source run.
+All new tests remain in existing permanent modules; their PR/staging/production
+selection is unchanged. Temporary diagnostic workflow has zero diff versusmain0c76.
+
+## PR88 synchronization after accepted policy PR89 — 17 October 2026
+
+Maintainer authorizes synchronization, ordinary staging/protected merge and the
+subsequent production release in the active conversation. Inspected main is
+28ed0b306d62154631714046041d0510a9c06ba4, tested policy tree
+b60d0c76612e591fb64fe576a78d863f64aad429; original PR88 head is
+623f939026b379a9956336ab422deaaa46c80290. This is implementation self-review,
+not independent technical approval.
+
+The main merge retains the original runtime fix and its native causal evidence,
+while adopting the approved staging-led production policy. The acceptance scope
+now records both finite pinned CSS-clock changes and successful unchanged-source
+staging admission; optional full diagnostics do not block publication. Main's949
+checksum dispositions are retained verbatim, with182 distinct PR88 rows appended;
+the five shared exact findings occur once,1131total. Original baseline ledgers,
+scanner rules, staging cases/budgets, previous failed runs and archived evidence
+stay unchanged. RI views and their current-source digest are regenerated.
+
+CS01/CS03/CS04/CS05/CS06/CS07/CS08/CS09/CS10 retain the existing mapping to
+scroll-entry.cjs, its generated navigation/runtime/offline outputs, finite identity
+and rights consumers, tests and delivery owners. Runtime changes remain exactly
+those already reviewed above; no new animation loop, timing/budget or design
+change is introduced by this synchronization. Required validation is Basic,
+registered staging source/Python, formatting/style/RI/RI-CI, owning19checks and
+unchanged ordinary prepublication/staging, followed by protected expected-head
+merge. Fresh frozen production/rights/recovery and actual domain smoke remain
+separate pending observations at this checkpoint.

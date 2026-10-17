@@ -436,6 +436,12 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
             "site/engine/projection.cjs": "1bf5143b059de95b8a8328906fdd3e9a23278272ad36436fb23e3263741cf62c",
             "docs/space.js": "006b6c5dd25db470482173a62b2753982bea6cd1e8493cb42bea7d386b610bd4",
         }
+        # #39 css-animation-clock-20261017: exact frame-clock completion guard.
+        # Timing budgets, stylesheet and other runtime owners stay protected.
+        css_clock_amendments = {
+            "site/engine/scroll-entry.cjs": "76562cdd9e4701728a7ae4b326a23cac8ada5eccbad14e37a4a0960e02cbb06d",
+            "docs/navigation.js": "571421564a822bacc5d3286c8a445565d7d7e30b81c181064a9116cc62b4cf83",
+        }
         entries = subprocess.check_output(
             ["git", "ls-tree", "-r", CURRENT_MAIN, "--", *protected],
             cwd=ROOT,
@@ -477,6 +483,9 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
                     b"The base edition remains the deployable producer selection. Offline exports accept\n",
                     1,
                 )
+            if name in css_clock_amendments:
+                self.assertEqual(hashlib.sha256(data).hexdigest(), css_clock_amendments[name], name)
+                continue
             if name in writing_amendments:
                 self.assertEqual(hashlib.sha256(data).hexdigest(), writing_amendments[name], name)
                 continue

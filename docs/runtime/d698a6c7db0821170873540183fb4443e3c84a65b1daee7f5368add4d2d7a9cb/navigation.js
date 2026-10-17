@@ -85,6 +85,18 @@ window.SiteScrollEntry=(function () {
   const routeActive = new Set();
   const clock = () => window.performance?.now() ?? Date.now();
 
+  function animationMark() {
+    const timeline = document.timeline?.currentTime;
+    return { started: clock(), timelineStarted: Number.isFinite(timeline) ? timeline : null };
+  }
+  function animationElapsed(mark) {
+    const timeline = document.timeline?.currentTime;
+    // CSS events and their start marks share the frame-sampled document clock.
+    // Retain a paired wall-clock fallback when either timeline mark is absent.
+    return Number.isFinite(mark.timelineStarted) && Number.isFinite(timeline)
+      ? timeline - mark.timelineStarted
+      : clock() - mark.started;
+  }
   function listen(target, name, handler, options) {
     target?.addEventListener?.(name, handler, options);
     listeners.push(() => target?.removeEventListener?.(name, handler, options));
@@ -680,7 +692,7 @@ window.SiteScrollEntry=(function () {
               timing.rowDurationMs,
           ])
         ),
-        started: clock(),
+        ...animationMark(),
         timing,
         resolve,
         timer: null,
@@ -748,7 +760,7 @@ window.SiteScrollEntry=(function () {
     element.setAttribute('data-scroll-entry', 'waiting');
   }
   function startReading(element, index, own) {
-    const started = clock();
+    const mark = animationMark();
     element.setAttribute('data-scroll-delay', String(index));
     element.setAttribute('data-scroll-entry', 'entering');
     // An event normally releases the state. This one-shot fallback also
@@ -762,7 +774,7 @@ window.SiteScrollEntry=(function () {
     }, 2000);
     active.set(element, {
       timer,
-      started,
+      ...mark,
       plannedDurationMs: readingDuration + index * readingStagger,
     });
   }
@@ -965,7 +977,7 @@ window.SiteScrollEntry=(function () {
         if (event.animationName !== expected || !routePhase?.pending.has(element)) return;
         // A queued event from a cancelled animation on this retained node
         // cannot consume its new row before the new planned end has elapsed.
-        if (clock() - routePhase.started < routePhase.pending.get(element) - 8) return;
+        if (animationElapsed(routePhase) < routePhase.pending.get(element) - 8) return;
         routePhase.pending.delete(element);
         if (!routePhase.pending.size) completeRoute(routeGeneration);
       } else {
@@ -975,7 +987,7 @@ window.SiteScrollEntry=(function () {
         if (entry) {
           // An old queued completion cannot settle this retained shell's new
           // reveal before its own duration and sibling delay have elapsed.
-          if (clock() - entry.started < entry.plannedDurationMs - 8) return;
+          if (animationElapsed(entry) < entry.plannedDurationMs - 8) return;
           finish(element);
           drainReading(generation);
         }

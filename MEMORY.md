@@ -4,84 +4,75 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- Owning issue39. Protected main0c76d32393ef36b474153c1592e3cbdcf588e631;
-  PR87 merged after successful staging39019664824. Production is not published.
-- Full39021549906 failed one native CSS completion watchdog. Diagnostic39023335245
-  proved genuine700ms CSS animationend could arrive at691.3ms wall time. PR88
-  head623f939026b379a9956336ab422deaaa46c80290 pairs DocumentTimeline clocks;
-  corrected native39024689792 retains40/40 flights,80/80 animationend,zero watchdog.
-  Linux/macOS/Windows/static/host/captures passed in the original full run;
-  partial results never turn that failed aggregate green.
-- PR88 Ready/open. Stage39025419509 stopped before Cloudflare publication because
-  protected main did not yet know its exact Color family. Preserve failed run;
-  not a native runtime failure. Its local source611/611,owning19/19,Python115 passed.
-- Active Ready PR89 / branch work/staging-led-production-39 implements the
-  maintainer-requested release policy independently from PR88: authenticate real
-  successful staging jobs/reports and identical complete merged source tree,
-  compile/bind distinct production edition/rights/archive, then only bounded
-  HTTP/policy/browser smoke. Full native/performance/capture/ZAP is optional manual
-  with no publisher dependency. Original staging workflows/cases/budgets unchanged.
-- New release-controller/archive/publication suites52/52 pass,zero skips. New
-  wrong-source/tree/attempt/report/runtime/artifact failures covered. Historical
-  full archive and exact rollback proof remain. Prepared staging source612/612 in46modules and Basic24/24 pass; style/RI-CI
-  pass. Published457d97b clean owning19/19,Python115/115,format/lint pass;
-  Ready CI Basic39027398819,RI39027398774,owning39027398756 passed.
-- Maintainer17October explicitly authorizes protected merge ofPR89 into main.
-  Stage39027632676 runs on457d97b; before merge, five exact new Color-checksum
-  dispositions must be appended from the already reviewedPR88 ledger. All944
-  original rows remain unchanged. Corrected headf23d07d source CI passed; new
-  staging39028272999 passed prepublication, publication, static and host. Its
-  observed job graph exposed a production-auth guard error: preview smoke and
-  label-only evidence must be skipped during owner staging. Correct the guard
-  and its fixture, then require fresh exact-head CI/staging before merge.
-- Policy PR also preregisters only PR88's three exact plain/staging/production
-  runtime identities plus required rights; no PR88 runtime/public files copied.
-- Last recovery39021099085/1 capsule12097290167 captures original Pages project
-  prefix/CNAME null/Actions/HTTPS and predecessor package3ffcbe8e1b9b64adefdf496386b5e5e0bd7a67a1ec9bc8269da6bf9291b2f74d.
-  It belongs to0c76; regenerate for the eventual final release controller.
-- Last production artifact12096726868/publicd4fe8bddf3d2c782326df310f205a607b81e7b8e9965e07189b9bef4923525b5
-  belongs to0c76 and the failed full run; future release freezes fresh final main.
-- Last observed production opt-in=false; no new production/domain/DNS activation.
-  Dedicated App/environment/ruleset and immutable Release setup were previously
-  verified; revalidate metadata at cutover, never print credentials.
+- Owner issue39; policy PR89 merged normally into main28ed0b306d62154631714046041d0510a9c06ba4,
+  treeb60d0c76612e591fb64fe576a78d863f64aad429 equals tested79a7c989.
+  Accepted ordinary staging39029311222/1, eligible PR39029176469/2,
+  postmerge39030552067 and main navigation39030551843 pass.
+  Issue39 comment6233611687 is the exact policy delivery checkpoint.
+- Runtime PR88/work/css-clock-39 is being synchronized with that main.
+  Original head623f939026b379a9956336ab422deaaa46c80290 remains retained.
+  CSS document-timeline completion marks retain paired wall fallback,8ms stale
+  tolerance,1000/700ms motion, camera timing and original watchdog budgets.
+- Corrected native39024689792 at0a3c782 passed40/40flights and80/80animationend,
+  zero watchdog/fallback; raw12097762337 ZIP
+  6be1c0c98993542a63fc803f867fc6e19d11c9aa90d283821d619994868848bf.
+  Temporary workflow restored byte-for-byte before readiness. Prior local source
+  staging611/611, Python115/115 and owning19/19 passed on623f939.
+- Original production39021549906 remains failed: native CSS700ms event observed
+  after691.3ms wall time was rejected, forcing2000ms watchdog. Raw12096259809
+  retained. PR88 old stage39025419509 failed before upload because the protected
+  controller lacked exact new Color identities; PR89 now registers those tuples.
+- Merge reconciliation preserves all949 current-main checksum dispositions and
+  appends182 distinct already-reviewed PR88 rows,1131total; shared5 occur once.
+  No scanner rules, staging cases/budgets or old baseline ledgers are changed.
+- Prior recovery39021099085/1 capsule12097290167 belongs to controller0c76;
+  final main needs fresh preparation. Production has not been published.
+- Last observed opt-in=false, Pages CNAME null, Actions/HTTPS enforced true;
+  App5351234/install172222773 repo-only, production ruleset25276926,
+  production/github-pages environments protected-main-only and key configured.
+  Revalidate actual settings before cutover; never print credentials.
+- Last observed Cloudflare.ai94a46fef3ff2c40cdec1defdff0c85be only permanent GitHub
+  ownership TXT; .com900e77fd27529c7fce067e253f2434c8 DNS empty, SSL active.
 
 ## Decisions
 
-- Maintainer explicitly17October changes production policy: preserve all staging
-  checks; passing staging admits production; only smoke after publication. Full
-  existing production suite is optional/manual and cannot block publication.
-  Exact issue anchor: issue39 comment6232906938. No reapproval needed.
-- Prepare a separate policy PR; runtime fix stays inPR88. Keep production paused
-  while preparing policy. Rights/owner dispatch/protected source/archive/recovery
-  remain; no automatic production on push and no fake passing diagnostic reports.
-- Earlier authorization for protected merge, production continuation and concrete
-  GitHub/Cloudflare/admin setup persists. Do not ask for the same permission again.
-- Supplied product/device/rights acceptance is recorded at issue39's
-  release-external-acceptance-20261017. Do not invent OS versions or independent
-  technical review. New policy publisher does not require device/full reports.
-- Original failures, raw reports, metric budgets, staging cases and scanner rules
-  stay intact. Self-review is explicitly self-review; issue remains open.
+- Maintainer authorizes completing PR88 synchronization/checks/staging/merge and
+  production preparation/publication/smoke in the17October active conversation.
+  Prior GitHub/admin/Cloudflare release/setup authorization persists.
+- PR89 implements the approved policy: unchanged staging checks and budgets;
+  accepted staging plus identical complete tested/merged tree admits the separately
+  frozen production edition. Postpublish bounded smoke is mandatory. Full native,
+  performance, soak, captures and passive diagnostics are optional/nonblocking.
+- Keep protected owner dispatch, source/tree/artifact binding, actual rights
+  acceptance, immutable archives and exact recovery. No automatic push publication.
+- Rights selections15October and release approval16October persist; bind existing
+  decision to fresh exact inventory without requesting the same consent again.
+- Owner physical smoke on Safari/iPad Pro M2 and Chrome/Redmi Note12 passed load,
+  rotation/touch/themes/archive/Off/reduced/background-return. Numeric versions
+  were not supplied. Owner output review is not independent technical code review.
+- Preserve all failed runs and honest source/profile distinctions. Original
+  diagnostic/production failures are not accepted staging or production claims.
 
 ## Open work
 
-- Finish the five exact checksum disposition additions inPR89, run scanners and
-  exact-head owning/RI checks, then fresh ordinary staging and protected merge.
-  No production publication or DNS activation occurs as part of policy merge.
-- Rebase and stagePR88 with exact Color compatibility available on protected main;
-  preserve original failed attempt. Merge only through existing protections.
-- Freeze final main with candidate_sha/release_pr, fresh current-controller recovery,
-  exact rights binding, then authorized Pages production and smoke. Full optional.
-- Verify actual.ai routing/TLS/HTTPS, .com one-hop301 path/query, www.ai,404 and
-  retired/staging404, analytics, immutable archive and recovery before closing ACs.
+- Finish synchronized PR88 exact source checks and self-review; ordinary Ready
+  CI/staging, protected merge and actual postmerge tree identity.
+- Freeze fresh final-main production candidate with candidate_sha/release_pr;
+  authenticate accepted staging and prepare fresh current-controller recovery.
+- Revalidate providers/settings, bind existing rights decision to frozen inventory,
+  configure.ai domain/DNS/TLS/HTTPS and enable authorized production dispatch.
+- Publish the exact immutable production package, verify bounded live smoke,
+  activate.com one-hop301 preserving path/query and verify both hosts/TLS.
+- Reconcile original issue39 AC01–AC05 against actual live evidence; all whole
+  criteria remain open during this prepublication checkpoint.
 
 ## Next session
 
-1. Revalidate main/worktrees/policyPR/PR88/CI and issue39 live, do not restart audit.
-2. Read review/issue-39/2026-10-17-production-policy.md and current release owners;
-   dated full-before-production instructions are superseded by accepted new policy.
-3. Finish separate policy PR before returning toPR88 and actual publication.
+1. Revalidate main/PR88/working tree/current CI and issue39; read its latest anchor.
+2. Resume the exact pending phase, preserving completed policy/native evidence.
+3. Complete authorized publication; do not substitute optional full diagnostics.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; rebuild/verify RI and RI/CI after edits.
-- Website code is external-git-backed; do not duplicate into file storage.
+- Keep five sections and120-line cap; refresh RI and RI/CI after indexed edits.
+- Git-backed website code is not duplicated into file storage.
