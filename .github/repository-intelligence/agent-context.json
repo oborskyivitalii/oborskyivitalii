@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9f793141f5cd61162d8d5318990c489d9d0005530cd28f32e69bda5de4bd6bfc",
+    "digest": "2c1df7acfe916776f2eb792765c8f778e6898921d8a98ac99918a7dfccc87513",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e27de5a082bd3856e03c2a2870be5020d3a5e84969bdbc01fb2b958dee64da1a"
+        "sha256": "09ec5a7d77082e5a3cea82c98e1f06890c4ecb22cd1fb3757f06ec31a2e76929"
       },
       {
         "path": "NOTICE.md",
@@ -910,7 +910,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
         "identity_mode": "content",
-        "sha256": "75066ce79601c8b311c4e25502c49b31c7670269bb6e7bba5e573ccf7134059d"
+        "sha256": "596b4261100f8fb20ae9306eee5ff87704033690b0f46b3cc944a6ef95438eb5"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -6350,7 +6350,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "61289fd6fca15c136579dac449cd8143d130a95a3ee5789a3a8c8f396744ea2c"
+        "sha256": "d5c4c761a22aefeb00fc4065983d6ca8f2c05c7b1bd529ba3bdb7979f8151596"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",

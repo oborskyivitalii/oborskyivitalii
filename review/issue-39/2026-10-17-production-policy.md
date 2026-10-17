@@ -99,3 +99,18 @@ separate runtime PR88 with the controller compatibility prerequisite available.
 Production uses a new exact merged-source candidate and fresh recovery capsule,
 rights binding, owner dispatch and post-publication smoke. The optional full
 action is never a prerequisite. Issue39 remains open throughout this PR.
+
+
+## Exact scanner ledger prerequisite before protected merge
+
+The first policy staging request is39027632676 at457d97b. A bounded exact-file
+scan found five new high-entropy candidates in the preregistered Color family:
+its source-engine hash, navigation bytes and three edition fingerprints.
+They are SHA256 identities already derived from PR88 source623f939, not access
+credentials. All five path/rule/SHA1 finding IDs and their unchanged reviewed
+reasons are copied from PR88's existing publication ledger. The canonical source
+lines, original scanner SHA1 values and all three retained edition summaries were
+matched individually. All944 previous publication rows and all three baseline
+ledgers remain byte-for-byte unchanged; no detector or wildcard is relaxed.
+The scanner must pass on the new exact committed head before fresh staging.
+This is implementer self-review, not independent technical review.

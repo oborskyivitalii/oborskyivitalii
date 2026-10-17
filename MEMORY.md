@@ -15,7 +15,7 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 - PR88 Ready/open. Stage39025419509 stopped before Cloudflare publication because
   protected main did not yet know its exact Color family. Preserve failed run;
   not a native runtime failure. Its local source611/611,owning19/19,Python115 passed.
-- Active separate worktree/branch work/staging-led-production-39 implements the
+- Active Ready PR89 / branch work/staging-led-production-39 implements the
   maintainer-requested release policy independently from PR88: authenticate real
   successful staging jobs/reports and identical complete merged source tree,
   compile/bind distinct production edition/rights/archive, then only bounded
@@ -24,7 +24,12 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 - New release-controller/archive/publication suites52/52 pass,zero skips. New
   wrong-source/tree/attempt/report/runtime/artifact failures covered. Historical
   full archive and exact rollback proof remain. Prepared staging source612/612 in46modules and Basic24/24 pass; style/RI-CI
-  pass. Final clean-source checks and Draft policy PR publication continue; inspect live PR list for its number.
+  pass. Published457d97b clean owning19/19,Python115/115,format/lint pass;
+  Ready CI Basic39027398819,RI39027398774,owning39027398756 passed.
+- Maintainer17October explicitly authorizes protected merge ofPR89 into main.
+  Stage39027632676 runs on457d97b; before merge, five exact new Color-checksum
+  dispositions must be appended from the already reviewedPR88 ledger. All944
+  original rows remain unchanged. Fresh final-head CI/staging is required.
 - Policy PR also preregisters only PR88's three exact plain/staging/production
   runtime identities plus required rights; no PR88 runtime/public files copied.
 - Last recovery39021099085/1 capsule12097290167 captures original Pages project
@@ -55,9 +60,9 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Open work
 
-- Finish source/style/format/RI/coupling and issue39 checks on exact committed policy
-  head; create/update separate Draft PR and link scope/results under issue39.
-- After review run ordinary Ready admission/staging and protected merge for policy.
+- Finish the five exact checksum disposition additions inPR89, run scanners and
+  exact-head owning/RI checks, then fresh ordinary staging and protected merge.
+  No production publication or DNS activation occurs as part of policy merge.
 - Rebase and stagePR88 with exact Color compatibility available on protected main;
   preserve original failed attempt. Merge only through existing protections.
 - Freeze final main with candidate_sha/release_pr, fresh current-controller recovery,
