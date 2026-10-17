@@ -162,7 +162,11 @@ bounded 60-second convergence interval with two-second polls. Every observation
 is retained, and success still requires all ten exact file hashes, headers,
 root and real-404 checks. The existing 20-second request and 15-minute promotion
 job limits remain. A preceding revision during alias propagation never counts
-as success; exhausted convergence remains a failed promotion or recovery.
+as success. A temporarily missing expected file (404), including a new immutable
+snapshot, also waits within this same deadline. A permanent missing file still
+fails; TLS/origin, security-header, MIME and other status errors do not poll.
+Exhausted convergence remains a failed promotion or recovery. This polling never
+dispatches another staging workflow or reruns browser/performance cases.
 
 For the staging controller, retry with **Re-run all jobs**, or create a
 new owner `/stage` request. **Re-run failed jobs** is not supported: reused jobs

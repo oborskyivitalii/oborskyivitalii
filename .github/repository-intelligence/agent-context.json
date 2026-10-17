@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bc37e6a2f71efbe0585ccd3e25c8cd6a372ba0bf519e8d883f761cb9711459e9",
+    "digest": "dc7c00acab7b9918cd52e38b53a9913cf1b75b576fe5f2b7995ddf58cca8630d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,7 +161,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "9cb0fc12d209babecc75f897927963e22ba8476525a1a1ebf77e6b256409d7f9"
+        "sha256": "2bdcd8eaf6b4f7ef53337e81e185212f71c6813284cd1a5fb00bff199c1643eb"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -226,7 +226,7 @@
       {
         "path": ".github/workflows/site-production.yml",
         "identity_mode": "content",
-        "sha256": "0c39dea8f4c7793dc3c542f9e9e2b4f817dee655de596afc21bc5c33386e8a93"
+        "sha256": "f00d6019d65546cd2decdbc7b164d1e98d031f2daed93d05b037d971e84f9105"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
@@ -555,7 +555,7 @@
       {
         "path": "guides/SITE-PRODUCTION.md",
         "identity_mode": "content",
-        "sha256": "9cebdfc339fc35626d1709902771aded7862755542b5529da6fcb44bb3386675"
+        "sha256": "edf05fd26dd312bcf2292d1164564e685c1882a2162f4049f6759d634fd175a0"
       },
       {
         "path": "guides/SITE-RELEASE-GATES.md",
@@ -585,7 +585,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "1d9001e7bdba3ee62488ed04de3e9227c9a19d17e392e7d4901d805af9e28448"
+        "sha256": "574d6133589413768dc77b7dd102933b8fb04a68fd6d6f02e373b8915e21cf14"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -905,7 +905,7 @@
       {
         "path": "review/issue-39/2026-10-17-production-cutover.md",
         "identity_mode": "content",
-        "sha256": "b35bea9350144fc70068c54a40f2461ed3f076b1b028f79193c1d1c98b191d03"
+        "sha256": "2a7e6a4c664fcf51f5c5d55a706a579de833ddca1d8987bc9517377ab44edce1"
       },
       {
         "path": "review/issue-39/2026-10-17-production-policy.md",
@@ -5680,7 +5680,7 @@
       {
         "path": "tests/pages-delivery.test.cjs",
         "identity_mode": "content",
-        "sha256": "8df55939648c4e590f48aac0b1fd1c0cec290d22357e975d3fda1f2a903b4aa9"
+        "sha256": "68d94dc1ea7202b49c8d6b7d62935e5b5e383471721d7a9c68f3329754dfb600"
       },
       {
         "path": "tests/pages-migration.test.cjs",
@@ -5755,7 +5755,7 @@
       {
         "path": "tests/review-flow.test.cjs",
         "identity_mode": "content",
-        "sha256": "575b9c026771135426f92834c1516d72666eb942929824b353af8d5b2ecf793a"
+        "sha256": "8b09830888860e628967cdf5c4b14293431789453594b5f9ed9c056485ddfdd1"
       },
       {
         "path": "tests/ribbons.test.cjs",
@@ -6055,7 +6055,7 @@
       {
         "path": "tools/pages/http.cjs",
         "identity_mode": "content",
-        "sha256": "c5d4f0b959270c4437fc549e146de230f913a79cc7264634966a7bfb9bcce466"
+        "sha256": "3e2d5ed1df0f1a042a51791bc1f584f7e78759ab47f44e2cfc22e194a8bc7ff8"
       },
       {
         "path": "tools/pages/migration.cjs",
@@ -6510,7 +6510,7 @@
       {
         "path": "tools/release/actions.cjs",
         "identity_mode": "content",
-        "sha256": "65fb5ccd3950706741ea7570192d4a11d88dbf75456ada973e92e4ddee5b574e"
+        "sha256": "dd98f4fe6482a9c6faa2cfe05eccf72a20a4c71b68136f982973df5dd1e64aa9"
       },
       {
         "path": "tools/release/archive.cjs",
@@ -6695,7 +6695,7 @@
       {
         "path": "tools/staging/review-flow.cjs",
         "identity_mode": "content",
-        "sha256": "ebd2792decb860a4a0425215de74cdc05f2575b76cb6058f7dbab80a55b2ade2"
+        "sha256": "4f3358c70f56b6d855e5843db238e30dfd9a05fc03c7ed620cac01db2b8f3dca"
       },
       {
         "path": "tools/staging/selftest.cjs",

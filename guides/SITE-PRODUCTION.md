@@ -122,6 +122,15 @@ is silently removed to promise closure at the first deployment.
    bytes are recovery material. Follow the existing publisher/live verifier; do not rebuild the
    admitted artifact. Verify .ai before enabling the .com redirect below.
 
+The post-deploy Pages HTTP verifier first waits up to 60 seconds, polling every
+two seconds, for one complete observation of the exact frozen package, root,
+query routes and owned 404s. Old bytes or a transitional 200/404 status cannot
+pass; all prior attempts remain in the report. TLS/origin, MIME, transport and
+other HTTP status failures stop immediately. Policy/browser smoke starts only
+after readiness passes. Exhaustion fails the publication and invokes the existing
+rollback; restored-byte verification uses the same bounded wait. No readiness
+attempt dispatches staging or repeats a full regression.
+
 ## Step 4 — Cloudflare configuration by the agent at release
 
 Re-read existing DNS/rules first. Preserve unrelated records/rules; report

@@ -616,6 +616,63 @@ test('post-deploy alias convergence retains the stale revision before one fresh 
     fs.rmSync(f.dir, { recursive: true, force: true });
   }
 });
+test('post-deploy missing revision and immutable snapshot wait for one complete edition', async () => {
+  const f = packageFixture();
+  try {
+    f.out = path.join(f.dir, 'proxy-package');
+    f.record = pkg.build(
+      path.join(f.dir, 'input'),
+      f.out,
+      {},
+      {
+        hostPolicy: pkg.hostPolicies.snapshotProxy,
+      }
+    );
+    const base = 'https://staging.' + flow.project + '.pages.dev',
+      good = fetchFixture(f),
+      snapshot = Object.keys(f.record.source.files).find((file) => file.startsWith('snapshots/'));
+    for (const file of ['_staging/revision.json', snapshot]) {
+      const clock = readinessClock();
+      const result = await flow.readyHttp(
+        base,
+        f.record,
+        async (url, init) => {
+          if (new URL(url).pathname === '/' + file && clock.waits.length === 0)
+            return new Response('not propagated', { status: 404 });
+          return good(url, init);
+        },
+        clock.options
+      );
+      assert.equal(result.pass, true);
+      assert.equal(result.readiness.attempts.length, 2);
+      assert.equal(result.readiness.attempts[0].retryable, true);
+      const first = result.readiness.attempts[0];
+      assert.equal(
+        (file.startsWith('_staging') ? first.revision : first.rows.find((r) => r.file === file))
+          .status,
+        404
+      );
+      assert.equal(result.readiness.attempts[1].pass, true);
+      assert.ok(result.rows.some((r) => r.file === snapshot && r.status === 200));
+    }
+    const clock = readinessClock();
+    const missing = await flow.readyHttp(
+      base,
+      f.record,
+      async (url, init) =>
+        new URL(url).pathname === '/' + snapshot
+          ? new Response('still missing', { status: 404 })
+          : good(url, init),
+      clock.options
+    );
+    assert.equal(missing.pass, false);
+    assert.equal(missing.readiness.deadlineExceeded, true);
+    assert.equal(missing.readiness.attempts.length, 3);
+    assert.equal(missing.rows, undefined);
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
 test('never-correct and mixed alias bytes fail at the finite deadline without stitching successful files', async () => {
   const f = packageFixture();
   try {
