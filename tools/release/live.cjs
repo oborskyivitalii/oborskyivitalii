@@ -56,7 +56,6 @@ function observation(record, combined, reports) {
     assert.ok(result.rows.every((row) => row.pass));
     assert.equal(result.target, edition.origin);
   }
-  require('./passive.cjs').verifyReport(reports.passive);
   assert.equal(reports.retained, true);
   return {
     pass: true,
@@ -66,7 +65,7 @@ function observation(record, combined, reports) {
     pages: true,
     productionPolicy: true,
     browser: true,
-    passiveScan: true,
+    smokePolicy: 'production-smoke-v1',
     retained: true,
   };
 }

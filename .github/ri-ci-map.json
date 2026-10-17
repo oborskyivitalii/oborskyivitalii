@@ -287,7 +287,8 @@
         "tests/fixtures/delivery.cjs",
         "tools/release/rights-record.cjs",
         "tools/quality/analytics-browser.cjs",
-        "tests/analytics.test.cjs"
+        "tests/analytics.test.cjs",
+        "tools/release/staging-policy.cjs"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
     },
@@ -530,7 +531,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ce1d2dc9096d8909bc57c8c863557140d4de5b21f74a149e372c3cb294cc1717",
+    "digest": "ba4ec0760c8a09a0eb3c6040b54c4166d23eebc92eab013c305045fa4b7b50de",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -566,7 +567,7 @@
       },
       {
         "path": ".github/acceptance/issue-39.json",
-        "sha256": "338e444166fe9d67c0741480e1e5832ef6c072a45d909d9a2ded02c53206d8c1"
+        "sha256": "0f52f846204753d1f8d5c014822d286baf8274ac74b3007902e0aea962f9ef64"
       },
       {
         "path": ".github/acceptance/issue-41.json",
@@ -634,7 +635,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0b04b450d92cffaaefb00cfc9b1931758bd1eb73202a5b58026399cc2b9a6d43"
+        "sha256": "3cbebe6e206feaafcf831e4bc7bdc3454b567c914164eb90508acdaf5344bcfb"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -650,7 +651,7 @@
       },
       {
         "path": ".github/workflows/site-candidate-evidence.yml",
-        "sha256": "f8523ff0e3a09ec141f81d1450cd5fdb390dfaee24c5279c2e171bac75a3f8f8"
+        "sha256": "744789b2449b688ccc4a35fa3344068f138580cec08fbffc30d2285584965cc6"
       },
       {
         "path": ".github/workflows/site-cause-fix-probe.yml",
@@ -686,11 +687,11 @@
       },
       {
         "path": ".github/workflows/site-production.yml",
-        "sha256": "846ea8752500e1ebbce944ad35954828bb4309a83755b66411ffad510a8e5ce4"
+        "sha256": "0c39dea8f4c7793dc3c542f9e9e2b4f817dee655de596afc21bc5c33386e8a93"
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "6a84e448b4288e8daa8bdcb3039a8455b32dad7dac07b17f5f56cb9c14067057"
+        "sha256": "b035032db4fce0b00ca28370bb7faa03fd0ee7ab3f8df23a20bf92b7b277c9ca"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
@@ -730,7 +731,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "8731fd90a1ca1519c160b44fd327379bee9eecb865a383eb633a7e0887fc2282"
+        "sha256": "f06f7f5bdd4495fafaf36b2f8c90ca5b604c9fdb5efb7e45e07b3845f8240763"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -866,7 +867,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "86b02968abb97f699cee02e27225e028622077b3bf37d52c8fac16eed659175f"
+        "sha256": "e09cc4859f4c338a3e6bfe4815dc68f0616fd370f5045bc4bfe8d5ef5716d749"
       },
       {
         "path": "tools/repository_intelligence.py",

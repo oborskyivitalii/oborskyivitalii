@@ -4,89 +4,75 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- Owning issue39; PR40/85/86 merged. Main32983b0441eca6233667e2d1717a0b1920929f11,
-  treea19b0588091bd7288dd0461375d4ddc54e23fbda. PR86 tested head2b96ba1b33d678f2ae389ef0a4cbc2b05568d184;
-  normal protected merge, accepted staging39012606408 and admission39013846992.
-- PR86 fixed obsolete27-vs29 hosted archive expectation, reduced-motion setup race,
-  native optional scroll-anchoring observer, Color job wording and direct first
-  canonical production publication using authenticated current-controller recovery.
-  Clean production source629/629 in49 modules and Python115/115 passed.
-- Stage39011414181 failed Writing TBT216.5>200ms; one retained same-source control
-  39012606408 passed at25ms. No changed thresholds/cases or until-green loop.
-- Frozen production39013869613 artifact12094032661/public8910f22f7e28c3577377e7545141324608f062f45d011f5fc142f550f1456040;
-  immutable184cd42d.oborskyi-author-ci-staging.pages.dev; all25 source guards pass.
-- Full39014326534 FAILED Linux functional256/260: Firefox320 CSS-blocked Research
-  overflow, including Home-to-Research journey, both themes. Raw12094968799 ZIP
-  c5c058b02a97d4ff51046d9dddfb8b3863db004d58452ec3bbf76e1cf647be30,
-  /tmp/pr86-final-linux: adjacent section links without spaces produce353.7px run.
-  Linux Color11/12, macOS130/130+4nav+13analytics, Windows40/40+8nav+26analytics,
-  full Lighthouse30 rows/10 medians, motion15 zero-work,24 flights/300s soak pass.
-  Partial passes do not admit production; failed artifact must not be released.
-- Active work/research-fallback-39 inserts only four whitespace separators between
-  Research section links. Content/hrefs/order, styled flex layout, runtime/media
-  unchanged; exact template preservation pin and generated Research identity updated.
-  PR87 is Draft again after raw Color revealed899ms from a900ms timer. The edge
-  collector now waits against the actual unchanged monotonic deadline; original
-  900/180ms and2px validation stays strict. Early-callback regression added.
-  Prior-head stage39018028279 cancellation requested before publication. New
-  source/staging/full/native evidence and production publication remain needed.
-- Stage39018454175 failed before upload:607 source/Python115/lint/SEO/rights pass;
-  generated preview/bundle freshness and11 new exact checksum candidates failed.
-  Existing preview/bundle owners are regenerated; append only individually proved
-  public hashes to publication ledger, preserve all baseline ledgers/old rows.
-  Run the complete clean prepublication guard before requesting staging again.
-- Recovery39013902509/1 capsule12094430541 ZIPa76391a97ea36eae3edbffa1e666ce72cc83f2c6d738dbd81186f74a4e1606df
-  authenticates original Pages host/default cname/workflow/HTTPS and exact old bytes;
-  controller32983. Regenerate after main moves. Never execute retired staging migration.
-- GitHub: production opt-in=false, old Pages staging=false; CNAME blank, Actions,
-  default HTTPS. App5351234 installed172222773 only this repo, protected production
-  ref ruleset25276926; AppID/ClientID and private-key secret names verified in both
-  production/github-pages environments. App token mint not yet observed.
-- Cloudflare.ai94a46fef3ff2c40cdec1defdff0c85be only permanent GitHub TXT;
-  .com900e77fd27529c7fce067e253f2434c8 DNS empty, no redirect entrypoint, UniversalSSL active.
-  Canonical DNS/certificate/redirect/publisher activation not yet performed.
+- Owning issue39. Protected main0c76d32393ef36b474153c1592e3cbdcf588e631;
+  PR87 merged after successful staging39019664824. Production is not published.
+- Full39021549906 failed one native CSS completion watchdog. Diagnostic39023335245
+  proved genuine700ms CSS animationend could arrive at691.3ms wall time. PR88
+  head623f939026b379a9956336ab422deaaa46c80290 pairs DocumentTimeline clocks;
+  corrected native39024689792 retains40/40 flights,80/80 animationend,zero watchdog.
+  Linux/macOS/Windows/static/host/captures passed in the original full run;
+  partial results never turn that failed aggregate green.
+- PR88 Ready/open. Stage39025419509 stopped before Cloudflare publication because
+  protected main did not yet know its exact Color family. Preserve failed run;
+  not a native runtime failure. Its local source611/611,owning19/19,Python115 passed.
+- Active separate worktree/branch work/staging-led-production-39 implements the
+  maintainer-requested release policy independently from PR88: authenticate real
+  successful staging jobs/reports and identical complete merged source tree,
+  compile/bind distinct production edition/rights/archive, then only bounded
+  HTTP/policy/browser smoke. Full native/performance/capture/ZAP is optional manual
+  with no publisher dependency. Original staging workflows/cases/budgets unchanged.
+- New release-controller/archive/publication suites52/52 pass,zero skips. New
+  wrong-source/tree/attempt/report/runtime/artifact failures covered. Historical
+  full archive and exact rollback proof remain. Prepared staging source612/612 in46modules and Basic24/24 pass; style/RI-CI
+  pass. Final clean-source checks and Draft policy PR publication continue; inspect live PR list for its number.
+- Policy PR also preregisters only PR88's three exact plain/staging/production
+  runtime identities plus required rights; no PR88 runtime/public files copied.
+- Last recovery39021099085/1 capsule12097290167 captures original Pages project
+  prefix/CNAME null/Actions/HTTPS and predecessor package3ffcbe8e1b9b64adefdf496386b5e5e0bd7a67a1ec9bc8269da6bf9291b2f74d.
+  It belongs to0c76; regenerate for the eventual final release controller.
+- Last production artifact12096726868/publicd4fe8bddf3d2c782326df310f205a607b81e7b8e9965e07189b9bef4923525b5
+  belongs to0c76 and the failed full run; future release freezes fresh final main.
+- Last observed production opt-in=false; no new production/domain/DNS activation.
+  Dedicated App/environment/ruleset and immutable Release setup were previously
+  verified; revalidate metadata at cutover, never print credentials.
 
 ## Decisions
 
-- Maintainer approved PR40 merge, production continuation, autonomous GitHub/admin,
-  exact dedicated App/install/permissions/bypass scope and browser fallback.
-  Do not ask again for already-authorized release/setup actions.
-- Maintainer17October explicitly requests audit/fix of actual executed tests and
-  completing production. Issue39 research-fallback-20261017 records bounded fix.
-- Owner confirmed full physical smoke on Safari/iPad Pro M2 and Chrome/Redmi Note12:
-  load/rotation/touch/themes/archive/Off/reduced/background-return. No numeric OS/
-  browser versions supplied. Issue39 release-external-acceptance-20261017 records
-  this and independent owner output review, not independent technical source review.
-- Existing unchanged-scope reuse rule applies only to covered unchanged behavior;
-  corrected CSS-failure path needs fresh native evidence. Do not invent review.
-- Scoped licenses selected15October and owner release approval16October retained.
-  Rights acceptance must bind fresh exact frozen inventory; no repeat consent request.
-- Preserve all raw failed runs, case counts and original budgets. Historical task
-  snapshots stay in declared diagnostics/issue routes, outside routine profiles.
-- Source/merge/staging/full gate/manual acceptance/actual publication are separate.
-  Never mint a green record, waive a failure or call production live before verification.
-- No secret/private-key values in chat/logs/files; inspect metadata only.
+- Maintainer explicitly17October changes production policy: preserve all staging
+  checks; passing staging admits production; only smoke after publication. Full
+  existing production suite is optional/manual and cannot block publication.
+  Exact issue anchor: issue39 comment6232906938. No reapproval needed.
+- Prepare a separate policy PR; runtime fix stays inPR88. Keep production paused
+  while preparing policy. Rights/owner dispatch/protected source/archive/recovery
+  remain; no automatic production on push and no fake passing diagnostic reports.
+- Earlier authorization for protected merge, production continuation and concrete
+  GitHub/Cloudflare/admin setup persists. Do not ask for the same permission again.
+- Supplied product/device/rights acceptance is recorded at issue39's
+  release-external-acceptance-20261017. Do not invent OS versions or independent
+  technical review. New policy publisher does not require device/full reports.
+- Original failures, raw reports, metric budgets, staging cases and scanner rules
+  stay intact. Self-review is explicitly self-review; issue remains open.
 
 ## Open work
 
-- Finish bounded fallback source checks, RI/RI-CI/style/policy, protected PR/staging,
-  merge, then new exact production freeze/full matrix/current-controller recovery.
-- Full gate admission and source/rights/manual evidence binding must actually pass.
-  Preserve narrow independent output review; broader technical review remains distinct.
-- Bind Pages.ai CNAME, DNS/cert/HTTPS, enable production and publish with actual
-  full run/PR/evidence/prep inputs. Verify exact protected activation/recovery/archive.
-- Apply.com one-hop301 preserving path/query after.ai success, then actual GET/TLS,
-  www.ai,404,/staging404,staging noindex/identity and analytics/postpublish evidence.
-- Reconcile issue whole ACs only when every applicable live/review gate is verified.
+- Finish source/style/format/RI/coupling and issue39 checks on exact committed policy
+  head; create/update separate Draft PR and link scope/results under issue39.
+- After review run ordinary Ready admission/staging and protected merge for policy.
+- Rebase and stagePR88 with exact Color compatibility available on protected main;
+  preserve original failed attempt. Merge only through existing protections.
+- Freeze final main with candidate_sha/release_pr, fresh current-controller recovery,
+  exact rights binding, then authorized Pages production and smoke. Full optional.
+- Verify actual.ai routing/TLS/HTTPS, .com one-hop301 path/query, www.ai,404 and
+  retired/staging404, analytics, immutable archive and recovery before closing ACs.
 
 ## Next session
 
-1. Revalidate worktree/main/active PR/CI and issue39 live; no restart of completed audit.
-2. Read review/issue-39/2026-10-17-production-cutover.md fallback section and actual
-   registered profiles. Current failed full39014326534 may not be used for admission.
-3. Continue necessary authorized publication until live; do not end on readiness alone.
+1. Revalidate main/worktrees/policyPR/PR88/CI and issue39 live, do not restart audit.
+2. Read review/issue-39/2026-10-17-production-policy.md and current release owners;
+   dated full-before-production instructions are superseded by accepted new policy.
+3. Finish separate policy PR before returning toPR88 and actual publication.
 
 ## Maintenance
 
-- Keep five sections and120-line cap. Rebuild/verify RI and RI/CI after indexed edits.
+- Keep five sections and120-line cap; rebuild/verify RI and RI/CI after edits.
 - Website code is external-git-backed; do not duplicate into file storage.

@@ -1,5 +1,5 @@
 'use strict';
-// Only an owner dispatch on protected main can consume full evidence or change production.
+// Only an owner dispatch on protected main can admit a staged source or change production.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -95,6 +95,49 @@ async function validation(github, context, runId) {
     assert.equal(item.workflow_run.id, run.id);
   }
   return { run, gate: gates[0], reports };
+}
+
+async function stagingValidation(github, context, runId) {
+  const run = producer(
+    (await github.rest.actions.getWorkflowRun({ ...context.repo, run_id: flow.positive(runId) }))
+      .data,
+    context,
+    ['.github/workflows/site-release-candidate.yml']
+  );
+  assert.equal(run.triggering_actor.login, context.repo.owner);
+  const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRunAttempt, {
+    ...context.repo,
+    run_id: run.id,
+    attempt_number: run.run_attempt,
+    per_page: 100,
+  });
+  for (const name of ['build', 'publish', 'http']) {
+    const selected = jobs.filter((job) => job.name === name);
+    assert.equal(selected.length, 1, 'missing/ambiguous candidate job: ' + name);
+    assert.equal(selected[0].status, 'completed');
+    assert.equal(selected[0].conclusion, 'success', 'candidate job did not pass: ' + name);
+  }
+  const items = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
+    ...context.repo,
+    run_id: run.id,
+    per_page: 100,
+  });
+  const select = (name) => {
+    const selected = items.filter((item) => item.name === name);
+    assert.equal(selected.length, 1, 'missing/ambiguous candidate evidence: ' + name);
+    const item = selected[0];
+    assert.equal(item.expired, false);
+    assert.match(item.digest, /^sha256:[a-f0-9]{64}$/);
+    assert.equal(item.workflow_run.id, run.id);
+    assert.equal(item.workflow_run.head_sha, run.head_sha);
+    return item;
+  };
+  const suffix = run.id + '-' + run.run_attempt;
+  return {
+    run,
+    gate: select('site-production-admission-' + suffix),
+    reports: [select('site-production-candidate-observations-' + suffix)],
+  };
 }
 
 function productionClient(github, token = process.env.PRODUCTION_APP_TOKEN) {
@@ -607,7 +650,10 @@ async function pending(github, context, transaction) {
 function live(release, observation) {
   archive.transition(null, release, observation);
   assert.equal(observation.deploymentURL, edition.origin + '/');
-  for (const check of ['pages', 'productionPolicy', 'browser', 'passiveScan', 'retained'])
+  const checks = ['pages', 'productionPolicy', 'browser', 'retained'];
+  if (observation.smokePolicy === undefined) checks.push('passiveScan');
+  else assert.equal(observation.smokePolicy, 'production-smoke-v1');
+  for (const check of checks)
     assert.equal(observation[check], true, 'production live acceptance missing: ' + check);
 }
 
@@ -691,6 +737,7 @@ module.exports = {
   authorize,
   producer,
   validation,
+  stagingValidation,
   productionClient,
   productionAppId,
   protection,

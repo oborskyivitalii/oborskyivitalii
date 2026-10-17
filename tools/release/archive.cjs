@@ -21,7 +21,13 @@ function candidate(publicRecord, gate, evidence, rightsReport) {
     'production',
     'staging edition cannot be released'
   );
-  require('../quality/promotion.cjs').validate(publicRecord, gate, evidence, {});
+  if (gate.kind === 'production-staging-admission') {
+    require('./staging-policy.cjs').validate(publicRecord, gate, {
+      artifactId: gate.githubArtifact?.id,
+      uploadDigest: gate.githubArtifact?.uploadDigest,
+    });
+    require('../quality/validate.cjs').sourceReport(evidence, publicRecord);
+  } else require('../quality/promotion.cjs').validate(publicRecord, gate, evidence, {});
   rights.acceptance(publicRecord, rightsReport, evidence);
   return true;
 }

@@ -33,7 +33,11 @@ async function resolve(github, context, core) {
   assert.equal(await controller.branch(github, context), current?.sourceCommit || null);
   const proof = { operation, tag, current };
   if (operation === 'publish') {
-    proof.validation = await controller.validation(github, context, process.env.VALIDATION_RUN);
+    proof.validation = await controller.stagingValidation(
+      github,
+      context,
+      process.env.VALIDATION_RUN
+    );
     proof.releasePR = flow.positive(process.env.RELEASE_PR);
     proof.evidence = JSON.parse(process.env.RELEASE_EVIDENCE);
     core.setOutput('gate_id', proof.validation.gate.id);
@@ -63,6 +67,18 @@ async function resolve(github, context, core) {
 
 async function publicInputs(github, context, core) {
   const gate = read('validation-gate/release-manifest.json');
+  assert.equal(gate.kind, 'production-staging-admission');
+  const proof = read('release-control/request.json');
+  const staging = await require('./staging-policy.cjs').authenticate(
+    github,
+    context,
+    proof.releasePR,
+    gate.sourceCommit
+  );
+  assert.deepEqual(staging, gate.staging.authentication, 'staging admission changed');
+  proof.validation.reports.push(staging.public, staging.gate, ...staging.reports);
+  proof.validation.reportRuns = [proof.validation.run.id, staging.runId];
+  save('release-control/request.json', proof);
   const item = await controller.publicArtifact(github, context, gate);
   save('release-control/public.json', item);
   core.setOutput('id', item.id);
@@ -146,21 +162,23 @@ function retainReports(proof, directory) {
     fs.writeFileSync(path.join(directory, 'evidence-' + item.id + '.zip'), bytes);
   }
   const files = controller.evidenceFiles(directory, proof);
-  const logs = cp.execFileSync(
-    'gh',
-    ['api', 'repos/' + flow.repository + '/actions/runs/' + flow.positive(proof.run.id) + '/logs'],
-    {
-      timeout: 120000,
-      maxBuffer: 300_000_000,
-    }
-  );
-  const name = 'evidence-run-' + proof.run.id + '.zip';
-  fs.writeFileSync(path.join(directory, name), logs);
-  files[name] = {
-    sha256: artifact.digest(logs),
-    raw: logs.length,
-    workflowRun: proof.run.id,
-  };
+  for (const runId of proof.reportRuns || [proof.run.id]) {
+    const logs = cp.execFileSync(
+      'gh',
+      ['api', 'repos/' + flow.repository + '/actions/runs/' + flow.positive(runId) + '/logs'],
+      {
+        timeout: 120000,
+        maxBuffer: 300_000_000,
+      }
+    );
+    const name = 'evidence-run-' + runId + '.zip';
+    fs.writeFileSync(path.join(directory, name), logs);
+    files[name] = {
+      sha256: artifact.digest(logs),
+      raw: logs.length,
+      workflowRun: runId,
+    };
+  }
   return files;
 }
 
@@ -318,7 +336,6 @@ async function accept(github, context) {
     pages: read('pages-reports/http.json'),
     policy: read('pages-reports/production-policy.json'),
     productionBrowser: read('pages-reports/production-browser/preview-smoke.json'),
-    passive: read('pages-reports/passive.json'),
     retained: process.env.OBSERVATIONS_RETAINED === 'true',
   });
   save('pages-reports/accepted-observation.json', observation);

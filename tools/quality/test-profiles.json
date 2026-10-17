@@ -1273,7 +1273,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1616,7 +1616,7 @@
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain independent failure surfaces; defer during Draft packaging",
+      "disposition": "retain historical full archive/rights/recovery and optional passive failure surfaces; passive findings do not gate the bounded production smoke",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/release-archive.test.cjs",
@@ -1640,11 +1640,11 @@
     {
       "path": "tests/release-controller.test.cjs",
       "language": "javascript",
-      "purpose": "Color/production social metadata and real-job/protection/raw-asset/rights admission with failed live/ref/label/rollback transitions; all external operations use fixtures.; production-only composition adapter and rejection before provider mutation",
+      "purpose": "Authenticated staging-source production derivation, exact rights/artifact/archive identity, optional diagnostic independence and smoke/ref/label/rollback failure transitions; external operations use fixtures.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
-      "disposition": "retain independent publication/failure surfaces; excluded from Draft prototype packaging",
+      "disposition": "extend existing permanent behavior with staged-source admission and wrong-source/tree/attempt/report/edition/artifact negatives; preserve historical full verification and compensation; no new suite or staging case removal",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [
         "tests/release-controller.test.cjs",
@@ -1668,7 +1668,10 @@
         "LICENSE-CONTENT.md",
         "NOTICE.md",
         "tools/site/legal.cjs",
-        "site/templates/components/legal-notices.html"
+        "site/templates/components/legal-notices.html",
+        "tools/staging/admission.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tests/fixtures/staging-evidence.cjs"
       ]
     },
     {

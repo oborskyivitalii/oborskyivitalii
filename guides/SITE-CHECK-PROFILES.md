@@ -15,7 +15,9 @@ Draft iteration scheduling while preserving admission and later budgets.
 | PR source | Ready PR updates and `ready_for_review` | Small Basic source check, RI/CI coverage and the owning issue's targeted AC policy. Additional source suites follow changed paths in the registry. |
 | PR hosted smoke | Ready same-repository PR updates | Exact artifact/HTTP identity and Chromium at 1440/390 widths: routes, controls, persistent navigation/history and no-Canvas fallback; authored Color adds its two-width smoke. |
 | Staging regression | Owner `/stage` or dispatch for stable staging; owner `staging-regression` PR label for evidence without promotion | Exact source/public/package/host identity; bounded source suites, lint/security/advisories; Chromium/Firefox journeys, representative failure/navigation/analytics checks, two mobile Lighthouse trials and bounded motion/flight samples. |
-| Production regression | Explicit full candidate validation before an authorized release | Complete source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix. Independent/device/rights and live production-origin requirements remain separate required release gates. |
+| Production admission | Owner dispatch after successful staging and protected merge | Authenticate original staging jobs/reports and identical complete source tree; freeze production edition, rights and immutable archive. No second browser/performance matrix. |
+| Post-production smoke | Publication or rollback | Exact served bytes, routes/assets, HTTPS, canonical/indexing/404 policy and bounded Chromium navigation/control smoke. |
+| Optional production regression | Manual dispatch when needed | Complete unchanged source/scanner/advisory/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture matrix and bounded passive ZAP. Its status never blocks publication. |
 | Diagnostics | Manual dispatch or a relevant changed-path selection | Historical export/configuration probes and experimental comparison suites. Preserve useful fault coverage; dated edition assertions do not run as every candidate's universal regression. |
 
 ## PR feedback
@@ -63,7 +65,7 @@ in the permanent renderer and engine suites.
 
 ## Bounded staging regression
 
-Explicit stable-staging/evidence and prospective-production preparation first
+Explicit stable-staging/evidence and optional full diagnostic preparation first
 run `local.cjs --prepublication` on the exact frozen artifact before deployable
 upload. It orchestrates the existing source, Python, style/RI, scanner and
 artifact/edition/rights/package owners, retains independent failures and checks
@@ -77,7 +79,9 @@ clean source/tree, exact manifest/edition and every retained file hash. They reu
 the original host-independent scanner reports; no host target is fabricated.
 Missing, failed, modified, wrong-source/profile/attempt reports fail. Direct
 staging validation without an existing producer report runs one preflight.
-Production remains on the complete existing route; there is no cross-run cache.
+The optional full diagnostic retains its complete existing route. Production
+admission instead authenticates accepted staging through `tools/release/staging-policy.cjs`;
+it does not rerun this preflight or claim cached production test results.
 
 This is a preparation order within the existing profiles, not a replacement
 gate or permission to deploy. Host/native/live assertions still follow, using
@@ -141,15 +145,19 @@ best-run selection. The original200ms individual budget remains; collection
 success is not performance acceptance or full/staging admission. Cleanup failure
 stops further launches. Historical protocols above remain unchanged.
 
-## Complete production regression
+## Optional complete production regression
 
-`validation_level: production` is the reusable workflow's default. Run the full
-candidate validation explicitly before production admission; changing a staging
-alias does not create release acceptance. Coverage remains 390 functional / 12
+The maintainer-approved 17 October policy in issue #39 makes this an optional
+manual action, `site-candidate-evidence.yml`. It is not a dependency of the
+production publisher; failed or skipped diagnostics stay visible without
+blocking publication. `validation_level: production` remains the reusable
+workflow's default for this full diagnostic. Coverage remains 390 functional / 12
 navigation / 39 analytics cases: Linux Chromium/Firefox 260/8/26 and native
 macOS WebKit 130/4/13. Windows 40/8/26 smoke and all twelve original Linux Color
 checks remain supplemental. Original scanner, exception, raw metric, failure,
-source/manifest and physical-device/review guards remain in force.
+source/manifest guards remain in force within this diagnostic. Physical-device
+and implementation review records remain separate observations, not required
+inputs to the staging-based publisher. Exact-edition rights acceptance remains required.
 
 The `profile` / `SITE_TEST_PROFILE` value describes the hosted origin and its
 indexing policy (`staging` or `production`); `validation_level` selects the test

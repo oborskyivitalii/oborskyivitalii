@@ -54,6 +54,13 @@ const families = {
     space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
     navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
+  issue39CssClock: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'd698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: 'f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e',
+  },
 };
 const runtimes = [
   {
@@ -187,6 +194,27 @@ const runtimes = [
     family: 'issue39WritingTbt',
     edition: 'production',
     fingerprint: '6f9b49f746e1a5f2e18138d8d34ee0f9dd2b35b7a68d6b6cbe2b015424e28cf4',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-css-clock-plain',
+    family: 'issue39CssClock',
+    edition: 'plain',
+    fingerprint: '6d9f94052d390ec92e5583543c1934b3c1c0796274759589a42cb44d38424714',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-css-clock-staging',
+    family: 'issue39CssClock',
+    edition: 'staging',
+    fingerprint: '0144ed548a9d191f9dd27ce2542f7dd829d540f67a7f37f0466a3700cce03729',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-css-clock-production',
+    family: 'issue39CssClock',
+    edition: 'production',
+    fingerprint: '1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17',
     styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
 ];

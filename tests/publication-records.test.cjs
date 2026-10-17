@@ -656,10 +656,10 @@ test('default Pages output and historical verification preserve actual pinned-ma
   }
 });
 
-test('explicit stable and production workflows run prepublication before deployable upload while Draft previews stay bounded', () => {
+test('staging and optional full diagnostics retain prepublication while production authenticates accepted staging', () => {
   const read = (name) =>
     fs.readFileSync(path.join(__dirname, '../.github/workflows/', name + '.yml'), 'utf8');
-  for (const name of ['site-color-review', 'site-release-candidate', 'site-release-checks']) {
+  for (const name of ['site-color-review', 'site-release-checks']) {
     const source = read(name);
     const preflight = source.indexOf('run: node tools/quality/local.cjs --prepublication');
     const publicUpload = source.indexOf(
@@ -685,6 +685,15 @@ test('explicit stable and production workflows run prepublication before deploya
     assert.match(retain, /if:.*always\(\)/);
     assert.match(retain, /path: quality-reports\//);
   }
+  const production = read('site-release-candidate');
+  const authenticate = production.indexOf(
+    "require('./tools/release/staging-policy.cjs').authenticate"
+  );
+  const bind = production.indexOf('run: node tools/release/staging-policy.cjs bind');
+  const upload = production.indexOf('      - id: public');
+  assert.ok(authenticate > 0 && bind > authenticate && upload > bind);
+  assert.match(production.slice(authenticate, bind), /tools\/release\/rights.cjs verify/);
+  assert.equal(production.includes('--prepublication'), false);
   const stagingSource = read('site-color-review');
   const preflightStep = stagingSource.slice(
     stagingSource.indexOf('      - name: Complete host-independent staging guards'),
@@ -752,6 +761,36 @@ test('optimized Writing identities still require frozen publication rights befor
     const original = motion.reviewedRuntime('issue39-licensed-' + edition);
     assert.notEqual(runtime.files['space.js'], original.files['space.js']);
     for (const file of ['styles.css', 'theme.js', 'archive.js', 'navigation.js'])
+      assert.equal(runtime.files[file], original.files[file]);
+    const source = {
+      variant: runtime.variant,
+      components: { contract: 1, engine: runtime.variant.fingerprint, variant: runtime.variant },
+      files: {},
+      ...(edition === 'staging'
+        ? { edition: { id: 'staging', indexable: false, analytics: false } }
+        : edition === 'production'
+          ? { edition: { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' } }
+          : {}),
+    };
+    for (const [name, sha256] of Object.entries(runtime.files)) {
+      source.files[name] = { sha256 };
+      source.files['runtime/' + runtime.variant.fingerprint + '/' + name] = { sha256 };
+    }
+    assert.equal(staging.publicationRequired(source, source.components), true);
+    assert.throws(
+      () => staging.publicationRights('/no-file-access', source, undefined, source.components),
+      /licensed publication rights record required/
+    );
+  }
+});
+
+test('CSS-clock identities preserve the other runtime files and require frozen rights', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const runtime = motion.reviewedRuntime('issue39-css-clock-' + edition);
+    const original = motion.reviewedRuntime('issue39-writing-tbt-' + edition);
+    assert.notEqual(runtime.files['navigation.js'], original.files['navigation.js']);
+    for (const file of ['styles.css', 'theme.js', 'archive.js', 'space.js'])
       assert.equal(runtime.files[file], original.files[file]);
     const source = {
       variant: runtime.variant,
