@@ -403,6 +403,70 @@ test('Pages production lease and retained receipt reject unknown or replaced sta
   );
 });
 
+test('Pages accepted production ignores native environment success and authenticates release records', async () => {
+  const context = {
+    repo: { owner: 'oborskyivitalii', repo: 'oborskyivitalii' },
+  };
+  const native = {
+    id: 102,
+    creator: { login: context.repo.owner },
+    sha: 'a'.repeat(40),
+    payload: {},
+  };
+  const accepted = {
+    id: 101,
+    creator: { login: 'github-actions[bot]' },
+    sha: 'b'.repeat(40),
+    payload: {
+      kind: 'accepted-production',
+      tag: 'prod-2026-10-17.1',
+      sourceCommit: 'b'.repeat(40),
+      publicDigest: 'c'.repeat(64),
+    },
+  };
+  const deployments = [native];
+  const statuses = new Map([
+    [native.id, 'success'],
+    [accepted.id, 'success'],
+  ]);
+  const api = {
+    rest: {
+      repos: {
+        listDeployments: 'deployments',
+        listDeploymentStatuses: async ({ deployment_id }) => ({
+          data: [{ state: statuses.get(deployment_id) }],
+        }),
+      },
+    },
+    paginate: async (method, args) => {
+      assert.equal(method, 'deployments');
+      assert.equal(args.environment, 'production');
+      return deployments.slice();
+    },
+  };
+  assert.equal(await controller.activeProduction(api, context), null);
+  deployments.push(accepted);
+  assert.deepEqual(await controller.activeProduction(api, context), {
+    ...accepted.payload,
+    deploymentId: accepted.id,
+  });
+  for (const mutate of [
+    (value) => (value.creator.login = context.repo.owner),
+    (value) => (value.payload.tag = 'latest'),
+    (value) => (value.payload.sourceCommit = 'd'.repeat(40)),
+  ]) {
+    const invalid = structuredClone(accepted);
+    mutate(invalid);
+    deployments[1] = invalid;
+    await assert.rejects(controller.activeProduction(api, context));
+  }
+  deployments[1] = { ...accepted, payload: JSON.stringify(accepted.payload) };
+  statuses.set(accepted.id, 'failure');
+  assert.equal(await controller.activeProduction(api, context), null);
+  statuses.set(accepted.id, 'success');
+  assert.equal((await controller.activeProduction(api, context)).tag, accepted.payload.tag);
+});
+
 test('Pages recovery trusts the exact successful attempt and stops on untracked roots or expired recovery', async () => {
   const context = { repo: { owner: 'oborskyivitalii', repo: 'oborskyivitalii' } };
   const state = {

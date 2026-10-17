@@ -45,10 +45,11 @@ async function activeProduction(github, context) {
       per_page: 1,
     });
     if (data[0]?.state !== 'success') continue;
-    assert.equal(deployment.creator?.login, 'github-actions[bot]');
     const payload =
       typeof deployment.payload === 'string' ? JSON.parse(deployment.payload) : deployment.payload;
-    assert.equal(payload.kind, 'accepted-production');
+    // Native environment successes also include authorization jobs, not accepted releases.
+    if (payload?.kind !== 'accepted-production') continue;
+    assert.equal(deployment.creator?.login, 'github-actions[bot]');
     require('../release/archive.cjs').tag(payload.tag);
     assert.equal(payload.sourceCommit, deployment.sha);
     return { ...payload, deploymentId: deployment.id };
