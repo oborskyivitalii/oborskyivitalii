@@ -190,3 +190,41 @@ its source/preflight observations and cancellation remain retained. No more ordi
 staging is requested until this complete audit/fix bundle is ready. Final source
 and native evidence must prove the corrected producers without changing public
 site/runtime bytes. Real physical-device/independent records remain distinct.
+
+
+## Research CSS-blocked correction, 17 October 2026
+
+Self-review of main32983b0441eca6233667e2d1717a0b1920929f11 and full
+run39014326534 found four Firefox failures in260 Linux functional scenarios.
+Raw artifact12094968799 (ZIP SHA256
+`c5c058b02a97d4ff51046d9dddfb8b3863db004d58452ec3bbf76e1cf647be30`)
+retains screenshots and DOM: adjacent Research section links have no text
+separator, so Firefox wraps `VocabularyDiscussionsAdvisors` as one run, reaching
+353.7px at320px. This affects initial Research and Home-to-Research navigation
+when external styles.css is blocked, in both themes. It is a real fallback bug.
+The original full run remains failed. macOS130/130, Windows40/40, native
+navigation/analytics, all performance gates and Linux Color12/12 passed.
+
+The correction inserts only four whitespace separators in the canonical
+Research main template. Styled navigation is a flex container with gaps; its
+text, anchors, order, content, runtime, styles and media are unchanged. The
+finite AC03 preservation proof pins that exact template SHA256 rather than
+relaxing the baseline. Existing native CSS-blocked initial and same-document
+journeys supply the behavioral regression at the original width and budget.
+No threshold, scenario or timing change is made.
+
+Applicable CS01/CS02/CS03/CS05 preserve source ownership, semantic text and
+presentation; CS08/CS09/CS10 require current source/profile checks and exact
+linked evidence. This paragraph is implementation self-review, not independent
+technical approval. Prior owner physical/output checks cover the unchanged
+normal styled edition only; the corrected CSS-failure path requires fresh
+native evidence.
+
+The manually selected historical `content-migration.test.cjs` was also run
+during diagnosis and failed its old R2 editorial/Credits parity as expected.
+The registry declares it `task-snapshot`, issue58 only, outside current staging
+and production. It is left intact; it does not block or admit this release.
+Current `build-cohesion.test.cjs` and the actual registered suites remain required.
+
+Protected staging, new frozen production/native evidence and actual canonical
+publication are pending. No production deployment is claimed.

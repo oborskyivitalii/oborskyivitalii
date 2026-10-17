@@ -53,6 +53,33 @@ test('HTML reconciliation accepts source spelling changes while preserving inlin
 });
 test('executive hierarchy preserves the frozen SEO, editions, sources and all unrelated copy', () =>
   assert.equal(require('../tools/check_site_seo.cjs').verify().pass, true));
+test('Research fallback reconciliation admits only the four exact section-link separators', () => {
+  const { restoreResearchNavigation } = require('../tools/check_site_seo.cjs');
+  const original = normalizeHTML(
+    require('node:child_process').execFileSync(
+      'git',
+      ['show', '32983b0441eca6233667e2d1717a0b1920929f11:docs/research.html'],
+      { encoding: 'utf8' }
+    )
+  ).match(/<nav class="section-nav wrap"[^>]*>[\s\S]*?<\/nav>/)[0];
+  const current = readHTML('docs/research.html').match(
+    /<nav class="section-nav wrap"[^>]*>[\s\S]*?<\/nav>/
+  )[0];
+  assert.notEqual(current, original, 'the fallback supplies real inline separators');
+  assert.equal(restoreResearchNavigation(current, 'research'), original);
+  assert.equal(restoreResearchNavigation(original, 'research'), original);
+  assert.equal(restoreResearchNavigation(current, 'index'), current);
+  for (const changed of [
+    current.replace('</a> <a', '</a><a'),
+    current.replace('#lenses', '#wrong'),
+    current.replace('Vocabulary', 'Changed'),
+    current.replace('</nav>', '<a href="#extra">Extra</a></nav>'),
+  ]) {
+    assert.notEqual(changed, current, 'each negative actually changes the navigation');
+    assert.equal(restoreResearchNavigation(changed, 'research'), changed);
+    assert.notEqual(changed, original, 'unapproved changes remain visible to the SEO comparison');
+  }
+});
 test('critical media reconciliation admits only exact Home head ownership, bytes and original order', (t) => {
   const path = require('node:path'),
     os = require('node:os'),
