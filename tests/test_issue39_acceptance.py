@@ -411,6 +411,11 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
             'site/content/pages/credits/main.json': "4d3b70b91dca37af7dd67a9b3de9b5a8e8f48825b689f982d046539f3e8f69a2",
             'site/templates/pages/credits/main.html': "14e369575829e251620e2b3ca3400c7c4c6b02f9d81876e33a83540070437e0c",
         }
+        # #39 research-fallback-20261017: only the four section-link separators.
+        # The existing native CSS-blocked cases retain the 320px overflow check.
+        fallback_amendments = {
+            "site/templates/pages/research/main.html": "f68c5cc7530943e7314f5449b841257daeffde1e349c7c0b693e0096ea361657",
+        }
         # Exact selected PR68 edition; remaining current-main bytes stay protected.
         # Source commit: c3b8fb7d0b7a127363f24cdacb8a36c3f811054a.
         editorial_amendments = {
@@ -477,6 +482,9 @@ print(json.dumps({'pass': result.wasSuccessful(), 'tests': result.testsRun,
                 continue
             if name in legal_amendments:
                 self.assertEqual(hashlib.sha256(data).hexdigest(), legal_amendments[name], name)
+                continue
+            if name in fallback_amendments:
+                self.assertEqual(hashlib.sha256(data).hexdigest(), fallback_amendments[name], name)
                 continue
             if name in {"site/engine/styles.css", "docs/styles.css"}:
                 self.assertEqual(data.count(LEGAL_CSS), 1, name)

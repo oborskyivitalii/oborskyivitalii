@@ -383,7 +383,29 @@ function restoreCriticalMedia(html, page, projectRoot = root) {
   // body, raw data and relative ordering remain in the frozen comparison.
   return html.replace(expected + ' ', '');
 }
+let researchNavigation;
+function restoreResearchNavigation(html, page) {
+  if (page !== 'research') return html;
+  if (!researchNavigation) {
+    // #39 research-fallback-20261017: reverse only four new link separators.
+    // The immutable predecessor supplies every label, href and attribute.
+    const previous = cp.execFileSync(
+      'git',
+      ['show', '32983b0441eca6233667e2d1717a0b1920929f11:docs/research.html'],
+      { cwd: root, encoding: 'utf8' }
+    );
+    const matches = normalizeHTML(previous).match(
+      /<nav class="section-nav wrap"[^>]*>[\s\S]*?<\/nav>/g
+    );
+    assert.equal(matches?.length, 1, 'one frozen Research section navigation');
+    const original = matches[0];
+    assert.equal((original.match(/<\/a><a /g) || []).length, 4);
+    researchNavigation = { original, separated: original.replaceAll('</a><a ', '</a> <a ') };
+  }
+  return html.replace(researchNavigation.separated, () => researchNavigation.original);
+}
 function restoreApprovedContent(html, page) {
+  html = restoreResearchNavigation(normalizeHTML(html), page);
   html = normalizeHTML(html);
   html = restoreApprovedLicensing(html, page);
   // Reverse PR68 editorial successors while keeping PR40 licensing intact.
@@ -570,6 +592,7 @@ module.exports = {
   verify,
   restore,
   restoreApprovedContent,
+  restoreResearchNavigation,
   restoreContentAmendment,
   restoreRefactorPresentation,
   restoreCriticalMedia,

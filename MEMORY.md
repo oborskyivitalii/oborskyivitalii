@@ -4,90 +4,89 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- PR40 and follow-up PR85 merged. Current mainf628c64b21b4421705f627c81131f47f85a00874,
-  tree6618f825e15d4ffe03fd06e95db005d7d1d878b2 equals tested8a1baf86. Strict required
-  checks/RI/Staging admission passed without bypass. Postmerge38983874980 and
-  main RI38983874647 pass;clean merged-source own19/19 passes,manual gates pending.
-- Stable CF38982352435/1 serves8a/public9751f5ef/package644c40c1:26/26 guards,
-  source600+Basic24,Python115,30route observations,2nav/10failure/7analytics,
-  Color smoke,motion/4flights and2mobile LH pass. Research TBT38.5/LCP2137.6115/CLS0;
-  Writing85/2166.5405/0.049918. Previousc8 retained. No full production admission.
-- Frozen production preparation38970827240/1 at96 passed25/25 prepublication,
-  615 source/49modules,115 Python, isolated preview publication and exact HTTP.
-  Public artifact12076902293/public307f689d/upload d7d07a52; no activation.
-- Recovery prepare38971280141/1 passed: original Pages source/cname/HTTPS,
-  authenticated predecessor38239942377, exact retained package and HTTP. ZIP
-  12076986820 SHA256f98ee7d21c084c4ffb5e639f8506f7118e7bce60c5b0f1dd050e98dca7428fc5.
-- Actual GitHub settings: immutable Releases; strict main checks plus Staging
-  admission; production ruleset25276926 restricts production creation/update/
-  deletion/nonforce. Sole always bypass Integration5351234; no production ref.
-- Dedicated oborskyivitalii-prod/App5351234 installed172222773 only on this repo:
-  Administration/Contents/Workflows write,Metadata read. AppID/ClientID saved in
-  protected main-only production/github-pages environments. Private-key owner
-  creation/entry complete: key4899234 and private-key secret names verified in both
-  environments. App-token mint remains unverified. Production enabled=false; retired Pages staging=false.
-- Original full38971767557/1 failed captures/Linux/macOS/Windows; retain originals.
-  Performance passed30 Lighthouse rows,10 medians,15motion samples,3journeys and
-  300s soak; Writing mobile TBT132.5ms median. macOS functional130/130,analytics13/13;
-  Windows37/40 functional,8/8 navigation,26/26 analytics. No full admission.
-- PR85 delivered native capture/MIME/Firefox endpoint+anchoring/WebKit clock
-  corrections,production-only Pages composition and actual eligible PR admission.
-  Complete clean source624/624/49modules,Ready608+Basic24 and own19/19 pass.
-  Actual eligible proof38983646924/check117249992335 authenticates staging389823;
-  original405/ineligible and missing-proof failures retained. PR-body edit refresh
-  is read-only,isolated from publishers;postmerge uses the actual attempt checkpoint.
-- PR86 implements first canonical publication from an authenticated current-controller
-  preparation capsule,with a second predecessor lease immediately before deploy.
-  Exact old settings/bytes remain recovery material;success publishes production only.
-  Targeted migration/release30/30;complete clean source626/626 in49modules,88.9s.
-- Maintainer17October requested actual staging/production test audit and completion of
-  production. Active Color asserts absent ribbons;misleading workflow name is fixed.
-  Old full96 camera/MIME/edge failures predate mergedPR85 harness corrections.
-- Full39009442088 Color12/captures/static/host/Lighthouse pass;Linux model exposed
-  obsolete27-record archive fixture,now derived from catalog. Motion had one reduced
-  sample still publiclyOn;collector now awaits actual reduced setup at original2s
-  bound before unchanged zero-work sampling. macOS122/130functional,4/4nav,13/13analytics:
-  observer wrongly required optional scroll anchoring;both exact1px endpoints now
-  allowed,original2s/camera/anchor negatives preserved. Focused38/38. Windows pending.
-- Superseded staging39009824851 and39010371748 cancelled before publication/promotion.
-  Complete corrected-source/Ready/staging/native acceptance remains pending.
+- Owning issue39; PR40/85/86 merged. Main32983b0441eca6233667e2d1717a0b1920929f11,
+  treea19b0588091bd7288dd0461375d4ddc54e23fbda. PR86 tested head2b96ba1b33d678f2ae389ef0a4cbc2b05568d184;
+  normal protected merge, accepted staging39012606408 and admission39013846992.
+- PR86 fixed obsolete27-vs29 hosted archive expectation, reduced-motion setup race,
+  native optional scroll-anchoring observer, Color job wording and direct first
+  canonical production publication using authenticated current-controller recovery.
+  Clean production source629/629 in49 modules and Python115/115 passed.
+- Stage39011414181 failed Writing TBT216.5>200ms; one retained same-source control
+  39012606408 passed at25ms. No changed thresholds/cases or until-green loop.
+- Frozen production39013869613 artifact12094032661/public8910f22f7e28c3577377e7545141324608f062f45d011f5fc142f550f1456040;
+  immutable184cd42d.oborskyi-author-ci-staging.pages.dev; all25 source guards pass.
+- Full39014326534 FAILED Linux functional256/260: Firefox320 CSS-blocked Research
+  overflow, including Home-to-Research journey, both themes. Raw12094968799 ZIP
+  c5c058b02a97d4ff51046d9dddfb8b3863db004d58452ec3bbf76e1cf647be30,
+  /tmp/pr86-final-linux: adjacent section links without spaces produce353.7px run.
+  Linux Color11/12, macOS130/130+4nav+13analytics, Windows40/40+8nav+26analytics,
+  full Lighthouse30 rows/10 medians, motion15 zero-work,24 flights/300s soak pass.
+  Partial passes do not admit production; failed artifact must not be released.
+- Active work/research-fallback-39 inserts only four whitespace separators between
+  Research section links. Content/hrefs/order, styled flex layout, runtime/media
+  unchanged; exact template preservation pin and generated Research identity updated.
+  PR87 is Draft again after raw Color revealed899ms from a900ms timer. The edge
+  collector now waits against the actual unchanged monotonic deadline; original
+  900/180ms and2px validation stays strict. Early-callback regression added.
+  Prior-head stage39018028279 cancellation requested before publication. New
+  source/staging/full/native evidence and production publication remain needed.
+- Stage39018454175 failed before upload:607 source/Python115/lint/SEO/rights pass;
+  generated preview/bundle freshness and11 new exact checksum candidates failed.
+  Existing preview/bundle owners are regenerated; append only individually proved
+  public hashes to publication ledger, preserve all baseline ledgers/old rows.
+  Run the complete clean prepublication guard before requesting staging again.
+- Recovery39013902509/1 capsule12094430541 ZIPa76391a97ea36eae3edbffa1e666ce72cc83f2c6d738dbd81186f74a4e1606df
+  authenticates original Pages host/default cname/workflow/HTTPS and exact old bytes;
+  controller32983. Regenerate after main moves. Never execute retired staging migration.
+- GitHub: production opt-in=false, old Pages staging=false; CNAME blank, Actions,
+  default HTTPS. App5351234 installed172222773 only this repo, protected production
+  ref ruleset25276926; AppID/ClientID and private-key secret names verified in both
+  production/github-pages environments. App token mint not yet observed.
+- Cloudflare.ai94a46fef3ff2c40cdec1defdff0c85be only permanent GitHub TXT;
+  .com900e77fd27529c7fce067e253f2434c8 DNS empty, no redirect entrypoint, UniversalSSL active.
+  Canonical DNS/certificate/redirect/publisher activation not yet performed.
 
 ## Decisions
 
-- Maintainer approved PR40 merge and production continuation, maximum autonomous
-  GitHub work, then the exact dedicated App/install/permissions/bypass scope.
-  Do not ask again for the same release/setup authorization.
-- Owner completed private-key creation and both protected secret entries.
-  Never request PEM in chat or expose credentials. Read only key/secret metadata.
-- Cloudflare is the sole staging publisher. Preserve every original failed/raw
-  observation and original budgets; do not fabricate device/rights/independent records.
-- Settings, source tests, merged code, exact full admission and publication remain
-  separate observations. Source-bound external gates still apply after authorization.
+- Maintainer approved PR40 merge, production continuation, autonomous GitHub/admin,
+  exact dedicated App/install/permissions/bypass scope and browser fallback.
+  Do not ask again for already-authorized release/setup actions.
+- Maintainer17October explicitly requests audit/fix of actual executed tests and
+  completing production. Issue39 research-fallback-20261017 records bounded fix.
+- Owner confirmed full physical smoke on Safari/iPad Pro M2 and Chrome/Redmi Note12:
+  load/rotation/touch/themes/archive/Off/reduced/background-return. No numeric OS/
+  browser versions supplied. Issue39 release-external-acceptance-20261017 records
+  this and independent owner output review, not independent technical source review.
+- Existing unchanged-scope reuse rule applies only to covered unchanged behavior;
+  corrected CSS-failure path needs fresh native evidence. Do not invent review.
+- Scoped licenses selected15October and owner release approval16October retained.
+  Rights acceptance must bind fresh exact frozen inventory; no repeat consent request.
+- Preserve all raw failed runs, case counts and original budgets. Historical task
+  snapshots stay in declared diagnostics/issue routes, outside routine profiles.
+- Source/merge/staging/full gate/manual acceptance/actual publication are separate.
+  Never mint a green record, waive a failure or call production live before verification.
+- No secret/private-key values in chat/logs/files; inspect metadata only.
 
 ## Open work
 
-| Owner | Next acceptance route |
-| --- | --- |
-| #39 / merged PR40 follow-up | PR86 source ready;ordinary CF staging,protected merge and fresh native/full remain. |
-| #39 / #13 | Retain all originals;fresh exact-source production/native checks remain,including Windows anchoring. |
-| #39 / #72 / #8 | App-token proof; authenticated project-prefix to canonical cutover with exact configuration/package recovery; protected publisher and live checks. |
-| #1 / #7 / #8 / #13 | Exact-source rights policy/inventory review, physical iOS/Android and independent acceptance; actual production-domain analytics/TLS/cost. |
+- Finish bounded fallback source checks, RI/RI-CI/style/policy, protected PR/staging,
+  merge, then new exact production freeze/full matrix/current-controller recovery.
+- Full gate admission and source/rights/manual evidence binding must actually pass.
+  Preserve narrow independent output review; broader technical review remains distinct.
+- Bind Pages.ai CNAME, DNS/cert/HTTPS, enable production and publish with actual
+  full run/PR/evidence/prep inputs. Verify exact protected activation/recovery/archive.
+- Apply.com one-hop301 preserving path/query after.ai success, then actual GET/TLS,
+  www.ai,404,/staging404,staging noindex/identity and analytics/postpublish evidence.
+- Reconcile issue whole ACs only when every applicable live/review gate is verified.
 
 ## Next session
 
-1. Revalidate main,merged PR85,stable8a and next active Draft PR from issue39.
-   Mainf628 and stage8a share exact tested tree;no rebuild is needed for that proof.
-2. Verify current PR86 owning/RI/Ready checks,ordinary CF staging and merge.
-   Its capsule route publishes production directly;never execute the historical
-   staging-at-canonical migration.
-3. Prepare current-controller recovery capsule and exact-main production/full
-   evidence. Owner key entry is complete;source code grants no wider App scope.
-4. After final source merge,prepare/freeze exact-main production,run full native
-   once,and gather real rights/device/independent/live records. Existing production
-   authorization persists;never fabricate those records or publish before gates.
+1. Revalidate worktree/main/active PR/CI and issue39 live; no restart of completed audit.
+2. Read review/issue-39/2026-10-17-production-cutover.md fallback section and actual
+   registered profiles. Current failed full39014326534 may not be used for admission.
+3. Continue necessary authorized publication until live; do not end on readiness alone.
 
 ## Maintenance
 
-Keep these five sections and at most120lines. Issues/PRs own actual acceptance;
-replace stale observations at handoff and rebuild/verify RI. Never store secrets
-or private correspondence in memory.
+- Keep five sections and120-line cap. Rebuild/verify RI and RI/CI after indexed edits.
+- Website code is external-git-backed; do not duplicate into file storage.

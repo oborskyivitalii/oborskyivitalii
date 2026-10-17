@@ -8689,7 +8689,7 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/66331f3e135a960b8415dee5984d9586026cafa1a2583db7c46b74e318247b34": {
+    "docs/snapshots/b562b67088b0c19bc1795d1fd767edba34a2dbc9cc5356f6cd1fa20bc1f621ae": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
@@ -8719,7 +8719,7 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/66331f3e135a960b8415dee5984d9586026cafa1a2583db7c46b74e318247b34/research.html": {
+    "docs/snapshots/b562b67088b0c19bc1795d1fd767edba34a2dbc9cc5356f6cd1fa20bc1f621ae/research.html": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",

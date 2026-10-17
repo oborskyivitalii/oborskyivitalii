@@ -844,7 +844,12 @@ test('native animation tracks distinguish WebKit sequential CSS reads from missi
   assert.throws(() => checkTiming(staticSeparator), /each separator needs actual movement/);
 });
 
-function edgeInputFixture({ direction = 1, late = false, blocked = false } = {}) {
+function edgeInputFixture({
+  direction = 1,
+  late = false,
+  blocked = false,
+  earlyTimer = false,
+} = {}) {
   const input = require('../tools/quality/edge-input.cjs');
   let now = 0,
     y = direction < 0 ? 500 : 0,
@@ -861,7 +866,7 @@ function edgeInputFixture({ direction = 1, late = false, blocked = false } = {})
     },
     setTimeout(fn, delay) {
       const id = ++serial;
-      jobs.set(id, { time: now + delay, fn });
+      jobs.set(id, { time: now + (earlyTimer && delay === 900 ? 899 : delay), fn });
       return id;
     },
   };
@@ -910,4 +915,16 @@ test('native endpoint preparation corrects reflow inside the original900ms windo
     const invalid = await edgeInputFixture(options);
     assert.throws(() => input.validate(invalid));
   }
+});
+
+test('early timer delivery cannot shorten the actual monotonic edge observation window', async () => {
+  const input = require('../tools/quality/edge-input.cjs');
+  const result = await edgeInputFixture({ earlyTimer: true });
+  assert.equal(result.elapsedMs, 900);
+  assert.equal(result.changes.at(-1).t, 900);
+  assert.equal(input.validate(result), true);
+  const shortened = structuredClone(result);
+  shortened.elapsedMs = 899;
+  shortened.changes.at(-1).t = 899;
+  assert.throws(() => input.validate(shortened), /edge setup window shortened/);
 });

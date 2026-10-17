@@ -45,7 +45,7 @@
       "snapshotSHA": "0224ffac57190528cab236079ebf9b940736320a6062a4024481158203819469"
     },
     "research": {
-      "version": "66331f3e135a960b8415dee5984d9586026cafa1a2583db7c46b74e318247b34",
+      "version": "b562b67088b0c19bc1795d1fd767edba34a2dbc9cc5356f6cd1fa20bc1f621ae",
       "url": "research.html",
       "inputs": [
         "site/content/pages/research/acknowledgements.json",
@@ -63,7 +63,7 @@
         "site/templates/pages/research/topics.html"
       ],
       "records": [],
-      "snapshotSHA": "27cf2578d40db0b878a4fa6b2f368e67d79062e845ad34e033f1fb168038f020"
+      "snapshotSHA": "7a2e14f971400dab97c7e23d6a9a931f9853d3ee8b3fbebcb29b497402c3675f"
     },
     "writing": {
       "version": "16c1795ef315f0faae3e69c2782e9cf1f0e3b2550cfd17bb93f3835e448ad9cf",
@@ -147,8 +147,8 @@
   "files": {
     "index.html": "e7a7091339460aa7c1f640e0860957c89c8b181d5d37fac06d9cbc0883a74a30",
     "snapshots/f941bfd05d5d7ca4b0c0655ce70ebda928124f415db206f72f6d38d1174360fa/index.html": "0224ffac57190528cab236079ebf9b940736320a6062a4024481158203819469",
-    "research.html": "ba4b5abf8b8a50024910465b0d21057def944c485cf83be3565325fe57061000",
-    "snapshots/66331f3e135a960b8415dee5984d9586026cafa1a2583db7c46b74e318247b34/research.html": "27cf2578d40db0b878a4fa6b2f368e67d79062e845ad34e033f1fb168038f020",
+    "research.html": "33373518ba66efe7e1d7a4fc7aa6e1a36495aee2886e31ce0095cc8ee3f8dcc0",
+    "snapshots/b562b67088b0c19bc1795d1fd767edba34a2dbc9cc5356f6cd1fa20bc1f621ae/research.html": "7a2e14f971400dab97c7e23d6a9a931f9853d3ee8b3fbebcb29b497402c3675f",
     "writing.html": "e2b7d47bb35295acaeb6b7e871843943a0d6df307193ec1ec9251c6a54e5299e",
     "snapshots/16c1795ef315f0faae3e69c2782e9cf1f0e3b2550cfd17bb93f3835e448ad9cf/writing.html": "afb10dd3ae3391759f903f4c303902d3aed94c942cc0e8ef80857f2044b03ace",
     "talks.html": "f137b977dbbd335ed26e7719dec2a2dabfefed5d047c64b014ffbf9b10ebe801",
@@ -185,6 +185,6 @@
     "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
     "snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942",
     "snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312",
-    "site-revision.json": "b38c8de644d2cac974f65f45a59ef5692e4d45c95901f3f48d28140cb3693562"
+    "site-revision.json": "d9dee47f18e5a3ce8d6def8f2a8f5218c7b9e17f92874d2f24b343cfd9794461"
   }
 }
