@@ -267,3 +267,45 @@ reproduced every value; the Research source pin separately equals its canonical
 template SHA256. The896 prior publication rows remain unchanged;944 rows now
 exist. All three original baseline ledgers and advisory exceptions are unchanged.
 No scanner rule, broad path allowance or unproved value was added.
+
+
+### Native CSS completion clock — bounded correction
+
+PR87 merged as0c76d32393ef36b474153c1592e3cbdcf588e631, tree-identical to
+bc9aa9e45883512ddeac0d56634469260622942d. Accepted staging39019664824
+is separate from frozen production39021038805, artifact12096726868,
+publicd4fe8bddf3d2c782326df310f205a607b81e7b8e9965e07189b9bef4923525b5.
+Full39021549906 failed its original strict motion gate:390px/rate1
+Research-to-Home arrival finished bywatchdog after2000ms. All30 Lighthouse
+trials passed; partial passes do not admit this artifact. No rerun replaces it.
+
+Read-only diagnostic39023335245 retained five predetermined fresh contexts,
+40 unchanged primary flights: three ordinary contexts, then12/20ms explicit
+pre-input frame workloads. Artifact12097498521 ZIP
+8885ce6397158eb94efe853275b4d9933af51e481963ebc88931c3f332b0d6ba
+binds the original frozen bytes and diagnostic sourceb7d27aac separately.
+Only the20ms trial reproduced a watchdog, on Talks-to-Writing arrival.
+FORM.archive-filters received five genuine CSS animationend events with
+elapsedTime0.7: document timeline22778.3-to23478.3 is700ms; wall mark22787.2
+to23478.5 is691.3ms. The existing700-minus8ms wall guard rejected them.
+This proves the same clock race; it is not an exact repeat of the original
+spontaneous Home failure. W3C Web Animations1 section4.3.2 documents that the
+CSS document timeline is frame sampled while performance.now advances:
+https://www.w3.org/TR/web-animations-1/#document-timelines
+
+The controller now pairs finite document timeline start/end readings for CSS
+completion, retaining paired wall readings if either timeline mark is absent.
+Reading and route guards share this correction. Probe clocks, watchdogs,8ms
+stale-event tolerance,1000ms wave,700ms rows, camera/style/layout stay unchanged.
+Three regression tests first retained two failures on original code and one
+passing unavailable-timeline fallback; corrected controller passes39/39 tests.
+They cover genuine completion in both directions/phases and reading, stale
+completion rejection, and unavailable-start fallback. Existing cancellation,
+cleanup and finite-watchdog tests remain required.
+
+CS01/CS04/CS05/CS06/CS07 preserve one owner, closure API and explicit fallback;
+CS08/CS09/CS10 require generated outputs, exact finite source pins, source
+checks and fresh native/staging/full evidence. This is implementation
+self-review. No independent technical approval or new physical check is claimed.
+The temporary manual workflow is diagnostic-only and will be restored exactly
+to0c76 before PR readiness; its five-trial corrected run cannot admit production.

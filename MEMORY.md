@@ -4,47 +4,43 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Snapshot
 
-- Owning issue39; PR40/85/86 merged. Main32983b0441eca6233667e2d1717a0b1920929f11,
-  treea19b0588091bd7288dd0461375d4ddc54e23fbda. PR86 tested head2b96ba1b33d678f2ae389ef0a4cbc2b05568d184;
-  normal protected merge, accepted staging39012606408 and admission39013846992.
-- PR86 fixed obsolete27-vs29 hosted archive expectation, reduced-motion setup race,
-  native optional scroll-anchoring observer, Color job wording and direct first
-  canonical production publication using authenticated current-controller recovery.
-  Clean production source629/629 in49 modules and Python115/115 passed.
-- Stage39011414181 failed Writing TBT216.5>200ms; one retained same-source control
-  39012606408 passed at25ms. No changed thresholds/cases or until-green loop.
-- Frozen production39013869613 artifact12094032661/public8910f22f7e28c3577377e7545141324608f062f45d011f5fc142f550f1456040;
-  immutable184cd42d.oborskyi-author-ci-staging.pages.dev; all25 source guards pass.
-- Full39014326534 FAILED Linux functional256/260: Firefox320 CSS-blocked Research
-  overflow, including Home-to-Research journey, both themes. Raw12094968799 ZIP
-  c5c058b02a97d4ff51046d9dddfb8b3863db004d58452ec3bbf76e1cf647be30,
-  /tmp/pr86-final-linux: adjacent section links without spaces produce353.7px run.
-  Linux Color11/12, macOS130/130+4nav+13analytics, Windows40/40+8nav+26analytics,
-  full Lighthouse30 rows/10 medians, motion15 zero-work,24 flights/300s soak pass.
-  Partial passes do not admit production; failed artifact must not be released.
-- Active work/research-fallback-39 inserts only four whitespace separators between
-  Research section links. Content/hrefs/order, styled flex layout, runtime/media
-  unchanged; exact template preservation pin and generated Research identity updated.
-  PR87 is Draft again after raw Color revealed899ms from a900ms timer. The edge
-  collector now waits against the actual unchanged monotonic deadline; original
-  900/180ms and2px validation stays strict. Early-callback regression added.
-  Prior-head stage39018028279 cancellation requested before publication. New
-  source/staging/full/native evidence and production publication remain needed.
-- Stage39018454175 failed before upload:607 source/Python115/lint/SEO/rights pass;
-  generated preview/bundle freshness and11 new exact checksum candidates failed.
-  Existing preview/bundle owners are regenerated; append only individually proved
-  public hashes to publication ledger, preserve all baseline ledgers/old rows.
-  Run the complete clean prepublication guard before requesting staging again.
-- Recovery39013902509/1 capsule12094430541 ZIPa76391a97ea36eae3edbffa1e666ce72cc83f2c6d738dbd81186f74a4e1606df
-  authenticates original Pages host/default cname/workflow/HTTPS and exact old bytes;
-  controller32983. Regenerate after main moves. Never execute retired staging migration.
-- GitHub: production opt-in=false, old Pages staging=false; CNAME blank, Actions,
-  default HTTPS. App5351234 installed172222773 only this repo, protected production
-  ref ruleset25276926; AppID/ClientID and private-key secret names verified in both
-  production/github-pages environments. App token mint not yet observed.
+- Owning issue39; PR87 merged0c76d32393ef36b474153c1592e3cbdcf588e631,
+  tree5d3733aa9550621739cd3a9510d8a85491bc5d60 equals testedbc9aa9e4.
+  Accepted staging39019664824; ordinary stage source607/607, Python115 passed.
+- Frozen production39021038805 artifact12096726868 ZIP
+  9c092aabe03f59fc826ffa51a380e3d068b42bd2a64c51604e8135cf14094bd7,
+  publicd4fe8bddf3d2c782326df310f205a607b81e7b8e9965e07189b9bef4923525b5,
+  immutable1a0c54b1.oborskyi-author-ci-staging.pages.dev. All25 prepublication
+  guards,631 source in49 modules, Python115 passed; not production admission.
+- Full39021549906 FAILED performance:390px/rate1 Research-to-Home arrival
+  completed bywatchdog2000ms. Raw12096259809 ZIP
+  1ec4137230a56ce2aee2ade65cc319ff9cd305ba002f397706f425097c9f5d18 retained.
+  All30 Lighthouse trials pass. Host/static/captures/native macOS/Windows pass;
+  Linux still running at last inspection. Original failure stays failed.
+- Read-only clock diagnostic39023335245/b7d27aac retained5 fixed trials/40flights.
+  Raw12097498521 ZIP8885ce6397158eb94efe853275b4d9933af51e481963ebc88931c3f332b0d6ba:
+ 20ms frame-workload trial reproduces Talks-to-Writing watchdog; native CSS end
+  elapsed700ms, wall691.3ms rejected by original700-minus8ms guard. Three
+  ordinary contexts and12ms trial pass. Same causal race, not exact Home repeat.
+- Active work/css-clock-39 pairs document.timeline.currentTime for CSS completion,
+  wall fallback when unavailable. Route/reading8ms guards,1000/700ms CSS, camera,
+  watchdogs/probe clocks unchanged. New tests red2/3 on old source, green39/39
+  with existing controller suite. Generated outputs and exact preservation pins
+  updated. Corrected native fixed-protocol proof pending; temporary workflow
+  must be restored byte-for-byte from0c76 before PR readiness.
+- Local clean-main owning acceptance passes19/19 after pinned Python toolchain
+  installation. Earlier missing-environment failure is retained, not relabelled.
+  Local Chromium CDN download failed; pinned native proof uses existing GitHubCI.
+- Recovery39021099085/1 capsule12097290167 ZIP
+  7d545717ba1a79d93cddd12d647120da53d823c04e22220bc17b96baf18ee505
+  authenticates original Pages/defaultCNAME/workflow/HTTPS and predecessor bytes;
+  controller0c76. New main needs fresh preparation. Never execute retired migration.
+- GitHub production opt-in=false; CNAME blank, Actions/default HTTPS; immutable
+  Releases enabled. App5351234 installed172222773 repo-only; ruleset25276926
+  protects production; both environments main-only with App metadata/key secret.
+  Token mint not yet observed. No provider mutation or production publication yet.
 - Cloudflare.ai94a46fef3ff2c40cdec1defdff0c85be only permanent GitHub TXT;
-  .com900e77fd27529c7fce067e253f2434c8 DNS empty, no redirect entrypoint, UniversalSSL active.
-  Canonical DNS/certificate/redirect/publisher activation not yet performed.
+  .com900e77fd27529c7fce067e253f2434c8 DNS empty, no redirect entrypoint, SSL active.
 
 ## Decisions
 
@@ -52,7 +48,7 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
   exact dedicated App/install/permissions/bypass scope and browser fallback.
   Do not ask again for already-authorized release/setup actions.
 - Maintainer17October explicitly requests audit/fix of actual executed tests and
-  completing production. Issue39 research-fallback-20261017 records bounded fix.
+  completing production. Issue39 css-animation-clock-20261017 records the bounded clock fix.
 - Owner confirmed full physical smoke on Safari/iPad Pro M2 and Chrome/Redmi Note12:
   load/rotation/touch/themes/archive/Off/reduced/background-return. No numeric OS/
   browser versions supplied. Issue39 release-external-acceptance-20261017 records
@@ -69,7 +65,8 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 
 ## Open work
 
-- Finish bounded fallback source checks, RI/RI-CI/style/policy, protected PR/staging,
+- Finish bounded CSS-clock native/source proof, restore diagnostic workflow exactly,
+  RI/RI-CI/style/policy, protected followup PR/staging,
   merge, then new exact production freeze/full matrix/current-controller recovery.
 - Full gate admission and source/rights/manual evidence binding must actually pass.
   Preserve narrow independent output review; broader technical review remains distinct.
@@ -82,8 +79,8 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 ## Next session
 
 1. Revalidate worktree/main/active PR/CI and issue39 live; no restart of completed audit.
-2. Read review/issue-39/2026-10-17-production-cutover.md fallback section and actual
-   registered profiles. Current failed full39014326534 may not be used for admission.
+2. Read review/issue-39/2026-10-17-production-cutover.md CSS-clock section and actual
+   registered profiles. Failed full39021549906 may not be used for admission.
 3. Continue necessary authorized publication until live; do not end on readiness alone.
 
 ## Maintenance

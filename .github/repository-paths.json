@@ -8629,97 +8629,97 @@
       "role": "history",
       "owner": "review/issue-39/2026-10-16-readiness-execution.md"
     },
-    "docs/runtime/ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5": {
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5/archive.js": {
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5/navigation.js": {
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5/styles.css": {
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5/theme.js": {
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5/space.js": {
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/35d5791fbf358250e877822c7aafe68d41b1c8573b320b05b9a59af299225f60": {
+    "docs/snapshots/1fdf2ddd5904bda6af834675a9aa958ce522906fa19aaefa7d620a77e6151bed": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/16c1795ef315f0faae3e69c2782e9cf1f0e3b2550cfd17bb93f3835e448ad9cf": {
+    "docs/snapshots/2a4f1a54e89288af67dc59ab78acf44f7bc90d960e5d7dc6b4881067208cd4ce": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f941bfd05d5d7ca4b0c0655ce70ebda928124f415db206f72f6d38d1174360fa": {
+    "docs/snapshots/23bdcbce34b6c51c5bbff8584db4fd992858fb5dafc2706da6547ae1f856585c": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f80336707c3413c4fbd0f533f846faec2268dc945500c8982423b05cb6e60d74": {
+    "docs/snapshots/59cd8343a795aaca116bf79596ca66b54ebd919266246d3a38a16d22fe2ff662": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b562b67088b0c19bc1795d1fd767edba34a2dbc9cc5356f6cd1fa20bc1f621ae": {
+    "docs/snapshots/bf5ac4445098c18eccdba25f67e4173b5711bf16ca16d374174aa39b600193ba": {
       "kind": "directory",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/35d5791fbf358250e877822c7aafe68d41b1c8573b320b05b9a59af299225f60/credits.html": {
+    "docs/snapshots/1fdf2ddd5904bda6af834675a9aa958ce522906fa19aaefa7d620a77e6151bed/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/16c1795ef315f0faae3e69c2782e9cf1f0e3b2550cfd17bb93f3835e448ad9cf/writing.html": {
+    "docs/snapshots/2a4f1a54e89288af67dc59ab78acf44f7bc90d960e5d7dc6b4881067208cd4ce/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f941bfd05d5d7ca4b0c0655ce70ebda928124f415db206f72f6d38d1174360fa/index.html": {
+    "docs/snapshots/23bdcbce34b6c51c5bbff8584db4fd992858fb5dafc2706da6547ae1f856585c/index.html": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f80336707c3413c4fbd0f533f846faec2268dc945500c8982423b05cb6e60d74/talks.html": {
+    "docs/snapshots/59cd8343a795aaca116bf79596ca66b54ebd919266246d3a38a16d22fe2ff662/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b562b67088b0c19bc1795d1fd767edba34a2dbc9cc5356f6cd1fa20bc1f621ae/research.html": {
+    "docs/snapshots/bf5ac4445098c18eccdba25f67e4173b5711bf16ca16d374174aa39b600193ba/research.html": {
       "kind": "file",
       "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
       "role": "generated",
