@@ -2,6 +2,39 @@
 const test = require('node:test'),
   assert = require('node:assert/strict');
 const { aggregate, lighthouse, motion } = require('../tools/quality/validate.cjs');
+test('reduced measurement waits for actual media and public mode, rejecting incomplete transitions', async () => {
+  const vm = require('node:vm');
+  const { setReducedMotion } = require('../tools/quality/motion.cjs');
+  function fixture({ mediaDelay = 0, modeDelay = 0, disabled = true } = {}) {
+    let elapsed = 0;
+    const page = {
+      emulateMedia: async (value) => assert.deepEqual(value, { reducedMotion: 'reduce' }),
+      waitForFunction: async (predicate, argument, options) => {
+        assert.deepEqual(options, { polling: 40, timeout: 2000 });
+        for (; elapsed <= options.timeout; elapsed += options.polling) {
+          const ready = elapsed >= modeDelay;
+          const matches = vm.runInNewContext('(' + predicate.toString() + ')()', {
+            matchMedia: () => ({ matches: elapsed >= mediaDelay }),
+            document: {
+              querySelector: () => ({
+                disabled: ready && disabled,
+                textContent: ready ? 'Motion: reduced' : 'Motion: on',
+              }),
+            },
+          });
+          if (matches) return;
+        }
+        throw Error('media/public mode did not settle');
+      },
+    };
+    return { page, elapsed: () => elapsed };
+  }
+  const delayed = fixture({ mediaDelay: 360, modeDelay: 600 });
+  await setReducedMotion(delayed.page);
+  assert.equal(delayed.elapsed(), 600, 'measurement must wait beyond a guessed 200ms delay');
+  for (const state of [{ mediaDelay: 3000 }, { modeDelay: 3000 }, { disabled: false }])
+    await assert.rejects(setReducedMotion(fixture(state).page), /did not settle/);
+});
 const budgets = require('../tools/quality/budgets.json');
 const colorMotion = require('../tools/quality/color-motion-contract.cjs');
 const variant = { id: 'base', contract: 1, fingerprint: 'd'.repeat(64) };

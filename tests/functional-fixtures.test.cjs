@@ -496,6 +496,30 @@ test('native anchoring accounts only for the same visible ink displacement after
     }
   }
 });
+test('engines retaining the requested native endpoint do not have to apply optional scroll anchoring', async () => {
+  for (const displacement of [-56, -88]) {
+    const h = helpers();
+    h.context.window.__forwardReadingAnchor = {
+      isConnected: true,
+      getBoundingClientRect: () => ({ top: 2800 + displacement - h.context.scrollY }),
+    };
+    const page = cameraPage(h, (_time, current) => {
+      current.context.scrollY = 2400;
+    });
+    const result = await h.forwardCamera(page, 'opening', {
+      range: 9000,
+      target: 2400,
+      y: 2400,
+      anchor: { top: 2800 },
+    });
+    const sample = result.forwardResponse.samples[0];
+    assert.equal(sample.positionMode, 'requested');
+    assert.equal(sample.target, 2400);
+    assert.equal(sample.anchoredTarget, 2400 + displacement);
+    assert.equal(sample.displacement, displacement);
+    assert.equal(result.forwardResponse.timeoutMs, 2000);
+  }
+});
 function paintPage(h, change) {
   h.attached.add('.space-scene');
   h.attached.add('#space-motion');

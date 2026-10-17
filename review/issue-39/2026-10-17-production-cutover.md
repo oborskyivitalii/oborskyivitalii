@@ -154,3 +154,39 @@ counts are coverage contracts,not publication-data snapshots.
 Ordinary staging39009824851 for superseded d8430f36 was cancelled before candidate
 publication/promotion so the obsolete head is not admitted. Source/owning success
 for d843 remains historical;the corrected head requires its own checks/staging.
+
+### Complete native audit — mode setup and optional browser anchoring
+
+Current-main full39009442088 preserves these actual observations:
+
+- Linux Color12/12 passed;captures20views/5recordings,static/security/advisories and
+  exact HTTP passed. Its controlled staging model stopped before Linux functional
+  collection at the independently corrected27/29 archive fixture.
+- Performance completed30Lighthouse rows/10medians and the300s soak. One of15motion
+  profiles (Talks390px/CPU4) began its purported reduced window in actual public
+  `Motion: on`,recording60callbacks/10paints. Fourteen reduced profiles correctly
+  had0/0. This is a missing test precondition,not evidence that the failed sample
+  ever entered reduced mode. The collector now awaits actual matching media,
+  disabled control and `Motion: reduced` using navigation's existing2000ms/40ms
+  polling setup bound,then retains the original200ms settle and1000ms zero-work
+  measurement. Zero-callback/paint requirements and all metric budgets are unchanged.
+- Native macOS WebKit passed122/130functional,4/4navigation and13/13analytics.
+  All8failures are the forward-scroll observer:actual y remained the exact requested
+  coordinate while the same visible ink moved by-56/-88px. The observer wrongly
+  required optional browser scroll anchoring to compensate that movement. It now
+  admits either the exact requested endpoint or the exact same-ink-compensated
+  endpoint,still within1px,after the original synchronous successful scroll input,
+  with a fixed camera/live anchor and unchanged2000ms deadline. It records both
+  targets,actual displacement and the chosen mode;no displacement-sized tolerance
+  is introduced. Existing blocked/reversed/lost-anchor/unaccounted-drift/camera
+  negatives remain. New negatives/positives cover delayed media and both native
+  endpoint behaviors. Targeted observer/quality tests pass38/38.
+- Windows still completes its original matrix;live logs show4normal2000ms
+  observer timeouts. Its final raw reports must confirm their causes before a
+  final source is published/admitted. No native pass is inferred from local units.
+
+Staging39010371748 for the superseded source was cancelled before publish/promote;
+its source/preflight observations and cancellation remain retained. No more ordinary
+staging is requested until this complete audit/fix bundle is ready. Final source
+and native evidence must prove the corrected producers without changing public
+site/runtime bytes. Real physical-device/independent records remain distinct.

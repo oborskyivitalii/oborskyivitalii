@@ -43,10 +43,14 @@ Dated continuity, not live authority. Last verified: **2026-10-17**.
 - Maintainer17October requested actual staging/production test audit and completion of
   production. Active Color asserts absent ribbons;misleading workflow name is fixed.
   Old full96 camera/MIME/edge failures predate mergedPR85 harness corrections.
-- Fresh full39009442088 passed captures/static/host but Linux exposed another stale
-  helper:hosted.archive hardcoded27records versus actual29. PR86 now derives catalog
-  count,with cardinality/missing-row negatives. Superseded staging39009824851 was
-  cancelled before publication/promotion;corrected-source checks/staging remain.
+- Full39009442088 Color12/captures/static/host/Lighthouse pass;Linux model exposed
+  obsolete27-record archive fixture,now derived from catalog. Motion had one reduced
+  sample still publiclyOn;collector now awaits actual reduced setup at original2s
+  bound before unchanged zero-work sampling. macOS122/130functional,4/4nav,13/13analytics:
+  observer wrongly required optional scroll anchoring;both exact1px endpoints now
+  allowed,original2s/camera/anchor negatives preserved. Focused38/38. Windows pending.
+- Superseded staging39009824851 and39010371748 cancelled before publication/promotion.
+  Complete corrected-source/Ready/staging/native acceptance remains pending.
 
 ## Decisions
 
