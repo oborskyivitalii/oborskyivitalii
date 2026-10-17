@@ -8826,6 +8826,12 @@
       "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-production-cutover.md": {
+      "kind": "file",
+      "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     }
   }
 }

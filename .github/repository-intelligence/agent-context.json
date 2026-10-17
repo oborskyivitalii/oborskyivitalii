@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c9ead78849adfd62ed42c344de8ab7e52a0006e4c1f73202c718920b2d11e0a4",
+    "digest": "f927db20f62fdeec4ba54daf93692c621b9149a5fdf5a75f5e6ac53d2ccbf79b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -156,12 +156,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0948f5598e993631dd541dc1d2a0ed245df540ef8666492a864a53155d9cabee"
+        "sha256": "e59e423fc97e0a26c0e8539655ae1c12f9609b70761e887118db76eedbf976a5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "74fcb13a9dd17ea5bf5fed9cf18c97e2a84f13e325c089d58ad05ac33546b81f"
+        "sha256": "17b0bbc8679605c30ea967db9b566a329cce57ee527c61f41b22bea83f963fba"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,7 +291,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "2e7518f30897b4b7caf993f4f26ad8a06d3eec897fccb97547df720cfa2ae0c9"
+        "sha256": "46a55aec2554e2a2472706943fe1e6c62c47e8670005f980dae19be2e904384c"
       },
       {
         "path": "NOTICE.md",
@@ -901,6 +901,11 @@
         "path": "review/issue-39/2026-10-17-native-navigation.md",
         "identity_mode": "content",
         "sha256": "6ecc3d450a1bf70f99a78efaa4a48f3f795f8277db46094e8ff9379dd76893d1"
+      },
+      {
+        "path": "review/issue-39/2026-10-17-production-cutover.md",
+        "identity_mode": "content",
+        "sha256": "a6a3d562e3e54f7f9a04bb2cc544e2604d3b02988f0f596d768aec75348bc4b5"
       },
       {
         "path": "review/issue-39/2026-10-17-staging-admission.md",
@@ -8931,6 +8936,17 @@
         "AGENTS.md"
       ],
       "title": "Issue39 / PR85 — native navigation and capture follow-up"
+    },
+    {
+      "path": "review/issue-39/2026-10-17-production-cutover.md",
+      "kind": "file",
+      "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue39 — PR85 delivery and canonical production cutover preparation"
     },
     {
       "path": "review/issue-39/2026-10-17-staging-admission.md",
