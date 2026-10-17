@@ -309,3 +309,22 @@ checks and fresh native/staging/full evidence. This is implementation
 self-review. No independent technical approval or new physical check is claimed.
 The temporary manual workflow is diagnostic-only and will be restored exactly
 to0c76 before PR readiness; its five-trial corrected run cannot admit production.
+
+
+Corrected diagnostic39024229013 stopped before native execution: the unchanged
+closed Color selector rejected the new runtime fingerprint. It is a setup
+failure, not a native trial or runtime verdict. Append only the derived
+issue39-css-clock plain/staging/production tuples; preserve all prior families,
+edition and canonical/immutable byte rejection. Generated navigation SHA256
+f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e
+is the only changed runtime asset; styles/theme/archive/space remain exactly
+equal to the preceding Writing family for each edition. New fingerprints:
+plain6d9f94052d390ec92e5583543c1934b3c1c0796274759589a42cb44d38424714,
+staging0144ed548a9d191f9dd27ce2542f7dd829d540f67a7f37f0466a3700cce03729,
+production1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17.
+The actual producers generated these independently of the hardcoded registry;
+artifact/snapshot checks verified both canonical and immutable runtime copies.
+The existing closed-selector mutation/full-cell/edition suites include all
+three tuples. Frozen publication rights remain mandatory for all three; the
+new fixture verifies missing rights fail before file access. These are exact
+implementation identity proofs, not independent release/native acceptance.
