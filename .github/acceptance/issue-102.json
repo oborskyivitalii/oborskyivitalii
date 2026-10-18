@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 102,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/102",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Load one SDK for declared canonical/extensionless entries with production isolation.",
+      "automated_scope": "ANALYTICS exercises exact-origin root/project aliases, duplicate and blocked loads, unknown/article/trailing-slash/snapshot negatives and offline exports; deployed behavior and future declared article integration remain live gates.",
+      "checks": ["ANALYTICS"],
+      "gates": ["LIVE"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Verify meaningful loader/history/filter behavior without manufactured provider events.",
+      "automated_scope": "ANALYTICS executes the maintained guard and real fixture producer contracts. Existing vendor-stub browser scenarios now visit both entry forms; actual browser execution and received-provider SPA behavior remain external evidence.",
+      "checks": ["ANALYTICS"],
+      "gates": ["BROWSER", "LIVE"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Record a timestamped bounded baseline and preserve style and source ownership.",
+      "automated_scope": "BASIC, STYLE, RI and coupling check generated consistency, budgets and their bounded source/navigation scopes. Provider baseline/contamination interpretation and CS01-CS10 judgment require review of dated evidence.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Document dimensions/sample limits, preserve staging isolation/budgets and correct the runbook.",
+      "automated_scope": "ANALYTICS and BASIC verify isolation, generated artifacts and unchanged budgets. Provider-specific metric sampling, hosted SDK cost, documentation and access limits require live/review evidence.",
+      "checks": ["ANALYTICS", "BASIC"],
+      "gates": ["LIVE", "REVIEW"]
+    }
+  ],
+  "checks": {
+    "ANALYTICS": {
+      "kind": "unittest",
+      "test": "test_issue102_acceptance.Issue102AcceptanceTests.test_declared_entry_aliases_and_isolation"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "LIVE": {
+      "kind": "human",
+      "description": "After accepted deployment, observe declared entries, SPA/filter/history and provider receipt/sample counts/hosted cost; future article paths require reader registration. Record merge/deploy separately."
+    },
+    "BROWSER": {
+      "kind": "human",
+      "description": "Run existing thirteen vendor-stub scenarios per applicable engine on this exact candidate; source/VM checks alone are insufficient."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Review applicable CS01-CS10, finite route ownership, baseline definitions/traffic limits, provider access evidence and unchanged budgets. Self-review is distinct from independent review; #103/#8 remain open for connection/property outcomes."
+    }
+  }
+}

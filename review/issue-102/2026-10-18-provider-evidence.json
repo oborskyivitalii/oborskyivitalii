@@ -1,0 +1,111 @@
+{
+  "observedAt": "2026-10-18T18:46:25.439Z",
+  "window": {
+    "from": "2026-10-17T21:45:59Z",
+    "toExclusive": "2026-10-18T18:00:00Z"
+  },
+  "hostname": "vitaliioborskyi.ai",
+  "provider": "Cloudflare Web Analytics",
+  "query": {
+    "dataset": "rumPageloadEventsAdaptiveGroups",
+    "totals": [
+      "count",
+      "sum.visits",
+      "avg.sampleInterval"
+    ],
+    "groupBy": [
+      "requestPath"
+    ],
+    "siteFilter": "Exact registered production site; opaque identifiers omitted"
+  },
+  "response": {
+    "paths": [
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 93,
+        "dimensions": {
+          "requestPath": "/"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 9,
+        "dimensions": {
+          "requestPath": "/research.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 10,
+        "dimensions": {
+          "requestPath": "/talks.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 58,
+        "dimensions": {
+          "requestPath": "/writing.html"
+        }
+      },
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 4,
+        "dimensions": {
+          "requestPath": "/credits.html"
+        }
+      }
+    ],
+    "total": [
+      {
+        "avg": {
+          "sampleInterval": 1
+        },
+        "count": 174,
+        "sum": {
+          "visits": 154
+        }
+      }
+    ]
+  },
+  "google": {
+    "bridge": "HYPD",
+    "sites": [],
+    "accountSummaries": [],
+    "scope": "webmasters.readonly",
+    "plan": "Free, ended trial, one active account across platforms"
+  },
+  "windsor": {
+    "availableInSession": false,
+    "inventoryCheckedAt": "2026-10-18",
+    "providerSideConfiguration": "unobserved"
+  },
+  "liveRouteReads": {
+    "method": "GET without JavaScript",
+    "routes": [
+      "/index",
+      "/research",
+      "/writing",
+      "/talks",
+      "/credits"
+    ],
+    "status": 200,
+    "trailingSlashWritingStatus": 404
+  },
+  "limits": [
+    "Pageviews and visits are not unique people or conversions.",
+    "Owner/CI contamination is not quantifiable from this aggregate read.",
+    "No custom events or UTM report; no current vital sample sizes queried.",
+    "No synthetic events sent by this read-only audit."
+  ]
+}

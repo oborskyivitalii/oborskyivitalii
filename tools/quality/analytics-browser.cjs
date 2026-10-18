@@ -117,7 +117,8 @@ async function scenario(browser, dir, producer, s) {
       }
     } else if (url.href.startsWith(prefix)) {
       const name = decodeURIComponent(url.pathname.slice('/author/'.length)) || 'index.html',
-        target = path.join(dir, 'docs', name);
+        filename = routes.includes(name) ? name + '.html' : name,
+        target = path.join(dir, 'docs', filename);
       assert.ok(!name.includes('..'), 'finite fixture path');
       if (!fs.existsSync(target)) {
         await route.fulfill({ status: 404, body: 'Missing fixture resource' });
@@ -133,7 +134,7 @@ async function scenario(browser, dir, producer, s) {
         '.jpg': 'image/jpeg',
       };
       await route.fulfill({
-        contentType: types[path.extname(name)] || 'application/octet-stream',
+        contentType: types[path.extname(filename)] || 'application/octet-stream',
         body: fs.readFileSync(target),
       });
     } else if (url.protocol === 'file:') await route.continue();
@@ -150,6 +151,17 @@ async function scenario(browser, dir, producer, s) {
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await ready(page, s.entry);
     await vendorState(page, s.mode);
+    if (s.mode === 'enabled') {
+      assert.equal(vendor.length, 1, 'canonical entry loads one vendor');
+      vendor.length = 0;
+      await page.goto(prefix + s.entry + '?entry=alias#content', {
+        waitUntil: 'domcontentloaded',
+      });
+      await ready(page, s.entry);
+      await vendorState(page, s.mode);
+      assert.equal(vendor.length, 1, 'extensionless entry loads one vendor');
+      result.entryForms = ['canonical', 'extensionless'];
+    }
     await page.evaluate(() => {
       window.__analyticsShell = {
         header: document.querySelector('header'),
