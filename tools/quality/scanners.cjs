@@ -959,6 +959,7 @@ function advisories() {
       name: 'pip',
       reports: ['pip-audit.json'],
       run: (run) => {
+        run(py('python'), ['tools/quality/python_toolchain.py']);
         run(py('pip-audit'), [
           '-r',
           'tools/quality/toolchain/requirements.txt',

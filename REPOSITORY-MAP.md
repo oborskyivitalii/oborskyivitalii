@@ -18,7 +18,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.gitignore](.gitignore) | Local dependency, build, cache and staging package exclusions. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [AGENTS.md](AGENTS.md) | Compact agent bootstrap, authority routes, issue-first work and completion rules. | guide | [AGENTS.md](AGENTS.md) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Issue intent, PR/commit linkage, research intake, review, closure and memory procedure. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [LICENSE-CODE.md](LICENSE-CODE.md) | Apache-2.0 license for original personal-site code within the explicit LICENSING scope; upstream terms remain separate. | license | [LICENSING.md](LICENSING.md) |
+| [LICENSE-CONTENT.md](LICENSE-CONTENT.md) | CC BY 4.0 terms for original personal-site content within the explicit LICENSING scope and exclusions. | license | [LICENSING.md](LICENSING.md) |
+| [LICENSING.md](LICENSING.md) | Maintainer-approved personal-site code/content licensing boundary, media exclusions and upstream attribution policy. | guide | [LICENSING.md](LICENSING.md) |
 | [MEMORY.md](MEMORY.md) | Bounded dated session handoff: verified baseline, decisions, open acceptance and next step. | memory | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [NOTICE.md](NOTICE.md) | Personal-site attribution and preserved upstream/component notices without relicensing external material. | license | [LICENSING.md](LICENSING.md) |
 | [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) | Short Ukrainian entry router delegating purpose to README, rules to AGENTS and navigation to REPOSITORY-MAP. | guide | [PROJECT-BOOTSTRAP.md](PROJECT-BOOTSTRAP.md) |
 | [README.md](README.md) | Author/repository entry point and routes to site sources, work and ownership. | guide | [README.md](README.md) |
 | [REPOSITORY-MAP.md](REPOSITORY-MAP.md) | Generated readable description/index of every repository file and directory. | generated | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -38,19 +42,20 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452](docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310](docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0](docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495](docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0](docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4e7ec8ab38c400a18d1106fbdbcc93d552564d641b0842dd788ebe72689f8a14](docs/snapshots/4e7ec8ab38c400a18d1106fbdbcc93d552564d641b0842dd788ebe72689f8a14) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438](docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a](docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/90884102e1990bbd74bd27e7f289510bdf04b332b70db6c0a26f5d8fc40e6d31](docs/snapshots/90884102e1990bbd74bd27e7f289510bdf04b332b70db6c0a26f5d8fc40e6d31) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538](docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/9d42d6d729704099dfb641da349cba1e92551cd9a60277836fe6a00fb48e63f5](docs/snapshots/9d42d6d729704099dfb641da349cba1e92551cd9a60277836fe6a00fb48e63f5) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/bfd144b034e656a0cc4ad91b89e8a6ed360a631d496decf637a283b4a006f04a](docs/snapshots/bfd144b034e656a0cc4ad91b89e8a6ed360a631d496decf637a283b4a006f04a) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/edb20a5d76fbe47c290fd59f7cac38087635fe2ab5d6e0123f5304d71199017b](docs/snapshots/edb20a5d76fbe47c290fd59f7cac38087635fe2ab5d6e0123f5304d71199017b) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -66,7 +71,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-36](review/issue-36) | Single dated Writing formula execution handoff, original visual proof and linked source-bound integration/browser/performance acceptance. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [review/issue-39](review/issue-39) | Issue39 versioned domain/release and controller-compatibility evidence under the original PR40 execution owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39](review/issue-39) | Dated custom-domain readiness inspection, review and execution handoff for issue 39. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41](review/issue-41) | Dated source inventory and content-authority analysis for the same-PR Sol handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -207,7 +212,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-36.json](.github/acceptance/issue-36.json) | Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [.github/acceptance/issue-39.json](.github/acceptance/issue-39.json) | Issue39 narrow controller dependency maps original AC01-AC05 to exact main-byte preservation, strict Color guards and separate future-tuple/staging/release decisions. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-39.json](.github/acceptance/issue-39.json) | Issue39 source-bound production implementation checks with separate provider, rights, owner and live-domain gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-41.json](.github/acceptance/issue-41.json) | Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-45.json](.github/acceptance/issue-45.json) | Issue45 scoped formula and heading reading-clarity criterion mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-48.json](.github/acceptance/issue-48.json) | Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -235,20 +240,20 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-candidate-evidence.yml](.github/workflows/site-candidate-evidence.yml) | Explicit manual full production-regression evidence on an immutable candidate; no automatic heavy PR trigger or stable promotion. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-candidate-evidence.yml](.github/workflows/site-candidate-evidence.yml) | Optional manual full production diagnostics retaining native/browser/performance/captures and bounded passive ZAP without a publisher dependency. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-cause-fix-probe.yml](.github/workflows/site-cause-fix-probe.yml) | GitHub Actions: Confirm cause corrections and cold native attribution; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-cause-probe.yml](.github/workflows/site-cause-probe.yml) | Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [.github/workflows/site-cause-probe.yml](.github/workflows/site-cause-probe.yml) | Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-checks.yml](.github/workflows/site-checks.yml) | GitHub Actions: Site basic checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-color-review.yml](.github/workflows/site-color-review.yml) | GitHub Actions: Site PR preview and staging; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-gtk-native-probe.yml](.github/workflows/site-gtk-native-probe.yml) | GitHub Actions: Retain exact GTK WebProcess offline abort stack; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-gtk-target-probe.yml](.github/workflows/site-gtk-target-probe.yml) | GitHub Actions: Attribute GTK disabled-script target crashes; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-navigation-probe.yml](.github/workflows/site-navigation-probe.yml) | GitHub Actions: Site navigation diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-pages.yml](.github/workflows/site-pages.yml) | Serialized staging Pages mirror with production hash invariants and exact recovery. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [.github/workflows/site-pages-migration.yml](.github/workflows/site-pages-migration.yml) | Authenticated owner-main canonical-root Pages migration, frozen predecessor package and exact settings recovery; no DNS or CNAME mutation. | workflow | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | [.github/workflows/site-production.yml](.github/workflows/site-production.yml) | Disabled-by-default owner release or rollback; frozen evidence, combined Pages publication, live acceptance and compensated production identity. | workflow | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [.github/workflows/site-release-candidate.yml](.github/workflows/site-release-candidate.yml) | Build and publish a separately hashed prospective production edition on an isolated Cloudflare preview before complete validation. | workflow | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [.github/workflows/site-release-checks.yml](.github/workflows/site-release-checks.yml) | Reusable explicit selected staging or full production validation, separate report identities and exact artifact/source bindings. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-runtime-checks.yml](.github/workflows/site-runtime-checks.yml) | GitHub Actions: Site local diagnostics; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [.github/workflows/site-staging-merge.yml](.github/workflows/site-staging-merge.yml) | Read-only actual merge/source-tree and authenticated two-host staging admission observation. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [.github/workflows/site-staging-merge.yml](.github/workflows/site-staging-merge.yml) | Read-only actual merge/source-tree and authenticated Cloudflare-only staging admission observation. | workflow | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [.github/workflows/site-staging.yml](.github/workflows/site-staging.yml) | GitHub Actions: Verified site staging; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-writing-probe.yml](.github/workflows/site-writing-probe.yml) | GitHub Actions: Writing cold comparison; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
@@ -287,6 +292,22 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
+## docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/archive.js](docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/archive.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/navigation.js](docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/navigation.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/space.js](docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/space.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/styles.css](docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/styles.css) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/theme.js](docs/runtime/2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452/theme.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+
+## docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310/analytics.js](docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310/analytics.js) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
 ## docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -297,27 +318,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/
+## docs/snapshots/4e7ec8ab38c400a18d1106fbdbcc93d552564d641b0842dd788ebe72689f8a14/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/archive.js](docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/archive.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/navigation.js](docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/navigation.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/space.js](docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/space.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/styles.css](docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/styles.css) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/theme.js](docs/runtime/f15399168dba87612abc5bbff88845def9cb5b798ce108db0c6f1afdf84a52a0/theme.js) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495/credits.html](docs/snapshots/2ac22fda157fa74c1ae6d5863768589e4fdb7d097320d36016e0d4f1a009c495/credits.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0/index.html](docs/snapshots/51167d383f39171ab8e59104f46db67d139c1873012d43245ec4d00a7373c5a0/index.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/4e7ec8ab38c400a18d1106fbdbcc93d552564d641b0842dd788ebe72689f8a14/credits.html](docs/snapshots/4e7ec8ab38c400a18d1106fbdbcc93d552564d641b0842dd788ebe72689f8a14/credits.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -325,23 +330,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438/research.html](docs/snapshots/5d41117ea27935a407212addace11e74427cf96427db0794844b43821782a438/research.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a/writing.html](docs/snapshots/82b303805c894da08f2ce7616e1dc7fafc9deb6b6f36eb03dca6d116d75bdb5a/writing.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
 
@@ -349,23 +342,41 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/90884102e1990bbd74bd27e7f289510bdf04b332b70db6c0a26f5d8fc40e6d31/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/90884102e1990bbd74bd27e7f289510bdf04b332b70db6c0a26f5d8fc40e6d31/research.html](docs/snapshots/90884102e1990bbd74bd27e7f289510bdf04b332b70db6c0a26f5d8fc40e6d31/research.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538/
+## docs/snapshots/9d42d6d729704099dfb641da349cba1e92551cd9a60277836fe6a00fb48e63f5/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538/talks.html](docs/snapshots/9d9c67f0f40a2de69abc8533ae913e15d0f3f4a4e2c6703ae3cba96fceee7538/talks.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/9d42d6d729704099dfb641da349cba1e92551cd9a60277836fe6a00fb48e63f5/writing.html](docs/snapshots/9d42d6d729704099dfb641da349cba1e92551cd9a60277836fe6a00fb48e63f5/writing.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/bfd144b034e656a0cc4ad91b89e8a6ed360a631d496decf637a283b4a006f04a/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/bfd144b034e656a0cc4ad91b89e8a6ed360a631d496decf637a283b4a006f04a/index.html](docs/snapshots/bfd144b034e656a0cc4ad91b89e8a6ed360a631d496decf637a283b4a006f04a/index.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/edb20a5d76fbe47c290fd59f7cac38087635fe2ab5d6e0123f5304d71199017b/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/edb20a5d76fbe47c290fd59f7cac38087635fe2ab5d6e0123f5304d71199017b/talks.html](docs/snapshots/edb20a5d76fbe47c290fd59f7cac38087635fe2ab5d6e0123f5304d71199017b/talks.html) | Generated public rendition or immutable runtime/document resource; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -386,11 +397,14 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) | Current Basic, Preview, Full staging and Full production validation profiles. | guide | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) | Maintained commands, trust boundaries and operator workflow for independent static content releases. | guide | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
 | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) | Maintained exact-edition editorial, source and rights review protocol; past inventory decisions remain archived. | guide | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
+| [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) | Custom-domain production plan, provider boundaries, owner settings and phased GitHub Pages release instructions. | guide | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) | Exact-artifact security, quality, performance, browser/device and release requirements. | guide | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) | Release-bound rights inventory, recorded provenance, explicit reuse-policy decision and distinct rights approval gate. | guide | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
 | [guides/SITE-ROADMAP.md](guides/SITE-ROADMAP.md) | Stable site/publication priorities and live owning-issue routes; dated backlog observations remain archived. | guide | [guides/SITE-ROADMAP.md](guides/SITE-ROADMAP.md) |
 | [guides/SITE-SEO.md](guides/SITE-SEO.md) | Search/topic plan, structured publication metadata and discoverability constraints. | guide | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) | Public-source identities, publication inventory, contribution provenance and access limits. | guide | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) | Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook. | guide | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [guides/github-pages-domains.json](guides/github-pages-domains.json) | Prepared finite .ai Pages DNS and .com redirect desired-state; no deploy controller consumes it yet. | configuration | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 
 ## review/
 
@@ -683,9 +697,42 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [review/issue-39/2026-10-07-analysis.md](review/issue-39/2026-10-07-analysis.md) | Issue 39 provider/repository findings, sequenced execution tasks and pending live acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-07-provider-inventory.json](review/issue-39/2026-10-07-provider-inventory.json) | Sanitized dated exact-ref/provider observations and unavailable Pages administration, without mutation claims. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-07-review.md](review/issue-39/2026-10-07-review.md) | Independent scoped preparation review, inspected source identities and distinct pending activation gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-10-readiness.md](review/issue-39/2026-10-10-readiness.md) | Issue39 current production-readiness audit: exact main/staging/provider state, capability limits, acceptance gaps and same-issue execution tasks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-39/2026-10-15-controller-compatibility.md](review/issue-39/2026-10-15-controller-compatibility.md) | Narrow exact-main compatibility dependency plan, unresolved final licensing tuple inputs and ordinary two-host admission/merge boundaries. | draft | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-39/2026-10-15-implementation.md](review/issue-39/2026-10-15-implementation.md) | Issue39 production implementation evidence, provider preparation, exact checks and remaining maintainer/live release gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-39/2026-10-15-license-tuples.json](review/issue-39/2026-10-15-license-tuples.json) | Independent exact canonical/immutable runtime and full embedded license byte proof from explicitly dirty root-produced diagnostic artifacts; not clean-source admission. | history | [review/issue-39/2026-10-15-controller-compatibility.md](review/issue-39/2026-10-15-controller-compatibility.md) |
+| [review/issue-39/2026-10-15-licensing-proposal.md](review/issue-39/2026-10-15-licensing-proposal.md) | Proposed scoped repository, website and article licenses with verified UA/Subprime terms, draft Credits copy and staging-first owner decision route; no effective grant. | history | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
+| [review/issue-39/2026-10-15-production-plan.md](review/issue-39/2026-10-15-production-plan.md) | Current-main production gap audit, rebased PR40 scope and ordered domain launch plan; dated evidence, not release approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-15-publication-licensing.md](review/issue-39/2026-10-15-publication-licensing.md) | Dated issue39 self-analysis and implementation evidence for mandatory per-publication stage/production licensing records; live admission remains separate. | history | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
 | [review/issue-39/2026-10-15-publication-test-review.md](review/issue-39/2026-10-15-publication-test-review.md) | Consolidated issue39 staging/production guard review: exact source/profile/workflow matrices, concrete repairs, independent evidence, pending native/publication limits and preserved failures. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-15-release-issue-audit.md](review/issue-39/2026-10-15-release-issue-audit.md) | Selected production dependency and closure audit for six release owners; preserved SEO/rights/analytics scope and permanent-staging evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-16-compact-controller.md](review/issue-39/2026-10-16-compact-controller.md) | Finite source-only compact JSON-LD metadata identity controller prerequisite; unchanged runtime byte proof, exact rights enforcement and remaining PR40 release gates. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-39/2026-10-16-compact-tuples.json.gz](review/issue-39/2026-10-16-compact-tuples.json.gz) | Inert exact plain/staging/production compact-metadata tuple proof from cold immutable/current-source builds and independent Python JSON/SHA256 derivation; all canonical/immutable runtime bytes remain identical; no release acceptance. | history | [review/issue-39/2026-10-16-compact-controller.md](review/issue-39/2026-10-16-compact-controller.md) |
+| [review/issue-39/2026-10-16-native-writing-controller.md](review/issue-39/2026-10-16-native-writing-controller.md) | Issue39 bounded native current Writing measurements and eventual exact trusted-controller registration, failure retention and stop/report. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-native-writing-evidence.json.gz](review/issue-39/2026-10-16-native-writing-evidence.json.gz) | Inert verified native Writing six-row cause record with exact runner/source/artifact/profile and original raw hashes; five ordinary trials plus separately sampled CPU attribution, no hosted admission. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-positioning-integration.md](review/issue-39/2026-10-16-positioning-integration.md) | Versioned PR68 editorial source evidence or selected PR40 integration decision | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-16-production-finalization-native.json.gz](review/issue-39/2026-10-16-production-finalization-native.json.gz) | Original source96 native production regression failure logs, reports, job metadata and exact upload digests; bounded historical evidence, not new admission. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-production-finalization.md](review/issue-39/2026-10-16-production-finalization.md) | Issue39 actual GitHub production setup, native frozen candidate/recovery and production regression blocker follow-up. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-public-checksum-proof.json.gz](review/issue-39/2026-10-16-public-checksum-proof.json.gz) | Individual clean-source proof for215 exact public checksum/editorial Git secret-scanner fingerprints; cold public generation and historical Git/fragment reproduction, with the finite operator recipe; self-review only. | history | [review/issue-39/2026-10-16-readiness-execution.md](review/issue-39/2026-10-16-readiness-execution.md) |
+| [review/issue-39/2026-10-16-python-audit-compatibility.md](review/issue-39/2026-10-16-python-audit-compatibility.md) | Source-only trusted-main Python audit installer compatibility prerequisite for PR40; exact package graph and public-byte preservation evidence. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-39/2026-10-16-readiness-execution.md](review/issue-39/2026-10-16-readiness-execution.md) | PR40 current-code readiness findings, finite remediation, exact-source checks and remaining release gates. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-39/2026-10-16-secret-ledger-merge.json.gz](review/issue-39/2026-10-16-secret-ledger-merge.json.gz) | Verbatim provenance for six identical-disposition secret-review reason variants during PR40/main ledger reconciliation; original PR40 rows and all newer exact IDs remain preserved. | history | [review/issue-39/2026-10-16-readiness-execution.md](review/issue-39/2026-10-16-readiness-execution.md) |
+| [review/issue-39/2026-10-16-stable-merge-ledger.json.gz](review/issue-39/2026-10-16-stable-merge-ledger.json.gz) | Exact PR40/current-main ledger union proof preserving all prior feature rows and same-disposition reason variants. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-stable-preflight-failure.json.gz](review/issue-39/2026-10-16-stable-preflight-failure.json.gz) | Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload. | history | [review/issue-39/2026-10-16-stable-staging.md](review/issue-39/2026-10-16-stable-staging.md) |
+| [review/issue-39/2026-10-16-stable-staging.md](review/issue-39/2026-10-16-stable-staging.md) | Issue39 current-main reconciliation, Ready/preflight/stable staging source-bound evidence and bounded stop/report. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-writing-checksum-proof.json.gz](review/issue-39/2026-10-16-writing-checksum-proof.json.gz) | Per-finding independent recomputation of exact newly generated Writing revision/output/preview/bundle/runtime and source-reference public checksums; no scanner exclusion. | history | [review/issue-39/2026-10-16-writing-tbt.md](review/issue-39/2026-10-16-writing-tbt.md) |
+| [review/issue-39/2026-10-16-writing-controller-tuples.json.gz](review/issue-39/2026-10-16-writing-controller-tuples.json.gz) | Inert exact clean-source Writing runtime tuple proof with independent Python base/Color/edition and canonical/immutable SHA256 derivation. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-writing-controller.md](review/issue-39/2026-10-16-writing-controller.md) | Issue39 exact Writing plain/staging trusted-controller prerequisite, native evidence, preservation and bounded stop/report. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-16-writing-tbt-evidence.json.gz](review/issue-39/2026-10-16-writing-tbt-evidence.json.gz) | Original local metric dispositions, source/runtime identities, trace hashes and screenshot-free persistent export identity for bounded Writing TBT diagnosis. | history | [review/issue-39/2026-10-16-writing-tbt.md](review/issue-39/2026-10-16-writing-tbt.md) |
+| [review/issue-39/2026-10-16-writing-tbt.md](review/issue-39/2026-10-16-writing-tbt.md) | Bounded Writing TBT self-analysis, complete local measurement dispositions, allocation-only correction and remaining exact-source native/trusted-controller gates. | history | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [review/issue-39/2026-10-17-native-navigation.json.gz](review/issue-39/2026-10-17-native-navigation.json.gz) | Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-17-native-navigation.md](review/issue-39/2026-10-17-native-navigation.md) | Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-17-production-cutover.md](review/issue-39/2026-10-17-production-cutover.md) | Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-39/2026-10-17-production-policy.md](review/issue-39/2026-10-17-production-policy.md) | Dated issue39 self-review of accepted staging-led production admission, optional full diagnostics, smoke and preserved recovery. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-39/2026-10-17-staging-admission.md](review/issue-39/2026-10-17-staging-admission.md) | Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## review/issue-41/
 
@@ -702,6 +749,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-41/2026-10-09-sitecase-review.md](review/issue-41/2026-10-09-sitecase-review.md) | Independent current-byte source, history, editorial and scope review of the compact AI-assisted delivery case and preserved prior positioning. | history | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
 | [review/issue-41/2026-10-09-sitecase.md](review/issue-41/2026-10-09-sitecase.md) | Dated same-issue AI-assisted delivery case analysis with actual code/history support, role/enterprise boundaries and ordered content-only execution tasks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/2026-10-09-staging-security.md](review/issue-41/2026-10-09-staging-security.md) | Issue41 exact staging failure, bounded public-checksum triage and offline-generation correction; current-source independent review and deployment evidence remain linked from the same PR. | history | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [review/issue-41/2026-10-10-arkadiy-amendment.json](review/issue-41/2026-10-10-arkadiy-amendment.json) | Versioned PR68 editorial source evidence or selected PR40 integration decision | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-41/2026-10-10-arkadiy-topic-amendment.json](review/issue-41/2026-10-10-arkadiy-topic-amendment.json) | Versioned PR68 editorial source evidence or selected PR40 integration decision | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-41/2026-10-10-author-first-amendment.json](review/issue-41/2026-10-10-author-first-amendment.json) | Versioned PR68 editorial source evidence or selected PR40 integration decision | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-41/content-amendment.json](review/issue-41/content-amendment.json) | Issue41 hashed exact before/after authored-content and primary schema deltas layered onto the historical SEO comparison; editorial acceptance remains separate. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [review/issue-41/source-inventory.json](review/issue-41/source-inventory.json) | Exact original LinkedIn/Reddit inputs and supplied snapshot hashes/metrics; current admitted/deferred catalog mappings with dated source-access limits. | history | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 
@@ -754,6 +804,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-5/2026-10-14-managed-print.md](review/issue-5/2026-10-14-managed-print.md) | Issue5 managed PDF completion scope, exact-source rendering evidence, independent review and visual verification; no publication or stable promotion. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-5/2026-10-15-presentation-review.md](review/issue-5/2026-10-15-presentation-review.md) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/2026-10-18-release-segmentation.md](review/issue-5/2026-10-18-release-segmentation.md) | Article-first R10 delivery and staged independent platform/content/media release plan with source-qualified findings and acceptance dependencies. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-5/2026-10-18-step1-reconciliation.md](review/issue-5/2026-10-18-step1-reconciliation.md) | Issue5 step1 main/PR79 technical reconciliation, editorial preservation, current checks, blockers and revised incremental plan. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [review/issue-5/2026-10-18-step1-validation.json](review/issue-5/2026-10-18-step1-validation.json) | Issue5 step1 exact editorial inventory, source parents, checks and explicit R10 publication blockers. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-5/writing-catalog-amendment.json](review/issue-5/writing-catalog-amendment.json) | Issue5 Writing/content-release continuation, immutable semantic amendment or exact-source review evidence. | history | [review/issue-5/2026-10-13-content-release.md](review/issue-5/2026-10-13-content-release.md) |
 
 ## review/issue-5/pmday-candidate/
@@ -873,6 +925,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-72/2026-10-11-pages-basepath.md](review/issue-72/2026-10-11-pages-basepath.md) | Isolated preparation, focused evidence and trusted-main integration prerequisites for configured Pages project-base compatibility. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-72/2026-10-11-pages-validator-recovery.md](review/issue-72/2026-10-11-pages-validator-recovery.md) | Failed two-host evidence, strict motion-validator compatibility and authenticated failed-first Pages recovery preparation. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
 | [review/issue-72/2026-10-11-review.md](review/issue-72/2026-10-11-review.md) | Independent staging/release/security/browser review findings, focused corrections and truthful remaining provider/release gates. | history | [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) |
+| [review/issue-72/2026-10-16-cloudflare-only-staging.md](review/issue-72/2026-10-16-cloudflare-only-staging.md) | Approved Cloudflare-only staging amendment, duplicate preflight removal, implementation evidence and remaining PR40/live gates. | history | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 
 ## review/issue-76/
 
@@ -1626,6 +1679,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/analytics.json](site/analytics.json) | Disabled-by-default real production origin/token/verification source configuration. | configuration | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [site/article-preview.json](site/article-preview.json) | Finite explicit candidate selection for isolated article previews; draft articles do not enter the default accepted catalog. | configuration | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/output-lock.json](site/output-lock.json) | Generated reviewed output fingerprints and dependency identity; regenerate with tools/site/build.cjs. | generated | [tools/site/build.cjs](tools/site/build.cjs) |
+| [site/rights.json](site/rights.json) | Approved scoped code/content reuse policy, source/media/retained provenance and component notices with separate exact-edition rights approval. | configuration | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
 | [site/routes.json](site/routes.json) | Five route IDs, native destinations, scenes and semantic stop contract. | configuration | [site/README.md](site/README.md) |
 
 ## site/assets/
@@ -1681,6 +1735,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [site/content/catalog.json](site/content/catalog.json) | Exact curated publication editions, language/rendition identities and featured selections. | source | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
+| [site/content/production-social.json](site/content/production-social.json) | Validated existing portrait descriptor for absolute production social-image metadata on every route. | source | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 
 ## site/content/pages/credits/
 
@@ -1915,6 +1970,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/templates/components/discussion-row.html](site/templates/components/discussion-row.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 | [site/templates/components/edition-link.html](site/templates/components/edition-link.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 | [site/templates/components/language-badge.html](site/templates/components/language-badge.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
+| [site/templates/components/legal-notices.html](site/templates/components/legal-notices.html) | Canonical semantic Credits sections and stable anchors for escaped full licensing scope, code/content terms and attribution notices. | source | [site/README.md](site/README.md) |
 | [site/templates/components/publication-summary.html](site/templates/components/publication-summary.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 | [site/templates/components/publication-title.html](site/templates/components/publication-title.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 | [site/templates/components/publication.html](site/templates/components/publication.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
@@ -1996,7 +2052,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/build-cohesion.test.cjs](tests/build-cohesion.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/camera-view.test.cjs](tests/camera-view.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/color-motion-contract.test.cjs](tests/color-motion-contract.test.cjs) | Exact nine-family/eighteen-tuple Color inventory, preserved sixteen published identities and malformed/substituted runtime/evidence negatives including viewport-batched reading. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content-baseline.test.cjs](tests/content-baseline.test.cjs) | CI baseline source admission, cross-branch ancestry, archive digest and content/platform selection negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2005,6 +2061,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/content-release.test.cjs](tests/content-release.test.cjs) | Content-only release, baseline tamper/compatibility and retained decorated resource closure failure cases. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content-rendering.test.cjs](tests/content-rendering.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/content.test.cjs](tests/content.test.cjs) | Behavioral/adversarial tests and fixtures for content. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/edition-retention.test.cjs](tests/edition-retention.test.cjs) | Production and Color immutable-edition preservation, staging isolation and collision/closure rejection. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/effects.test.cjs](tests/effects.test.cjs) | Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases. | test | [site/README.md](site/README.md) |
 | [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/engine-browser-fixtures.test.cjs](tests/engine-browser-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for engine browser fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2021,7 +2078,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/navigation-motion-fixtures.test.cjs](tests/navigation-motion-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for navigation motion fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/navigation.test.cjs](tests/navigation.test.cjs) | Permanent native history/focus and interruption checks: smooth-scroll cancellation before read, native-throw cleanup/fallback, matching saved hidden/inert retarget state, queued-save suppression and deliberate readable-state input preservation. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/pages-delivery.test.cjs](tests/pages-delivery.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/pages-migration.test.cjs](tests/pages-migration.test.cjs) | Authenticated prefix-to-canonical migration, bounded ZIP extraction, settings/source leases and exact recovery failure surfaces. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/phase-checkpoint.test.cjs](tests/phase-checkpoint.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/prepublication-reuse.test.cjs](tests/prepublication-reuse.test.cjs) | Same-run preflight reuse, native artifact identity and missing/failed/changed/wrong-source/attempt/host negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview-smoke.test.cjs](tests/preview-smoke.test.cjs) | Behavioral/adversarial tests and fixtures for preview smoke. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/preview.test.cjs](tests/preview.test.cjs) | Behavioral/adversarial tests and fixtures for preview. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/prototype-admission.test.cjs](tests/prototype-admission.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2036,6 +2095,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/refactor-metrics.test.cjs](tests/refactor-metrics.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/release-archive.test.cjs](tests/release-archive.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/release-controller.test.cjs](tests/release-controller.test.cjs) | Failure-oriented immutable archive, live identity/label/rollback, production control and passive-scan fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/release-rights.test.cjs](tests/release-rights.test.cjs) | Complete artifact/source rights inventory, provenance/notice integrity, frozen archived verification and unapproved-policy negatives. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/renderer.test.cjs](tests/renderer.test.cjs) | Maintained renderer palette, ordered drawing/state equivalence and cache invalidation, bounded formula projection/sampling/cache and geometry/resource regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/review-flow.test.cjs](tests/review-flow.test.cjs) | Behavioral/adversarial tests and fixtures for review flow. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/ribbons.test.cjs](tests/ribbons.test.cjs) | Explicit historical optional ribbon geometry/material/clock diagnostic; active Color excludes ribbons. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2057,7 +2117,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue36_acceptance.py](tests/test_issue36_acceptance.py) | Owning issue36 canonical SVG/inertness/geometry, native source/cache/depth/compiler/legacy-media mappings and source-bound browser/performance acceptance assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [tests/test_issue39_acceptance.py](tests/test_issue39_acceptance.py) | Issue39 compatibility phase snapshot verifies unchanged main public/producer/export bytes and actual bounded selector rejection cases; full licensing/production policy stays in PR40. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue39_acceptance.py](tests/test_issue39_acceptance.py) | Finite desired-domain fixtures, preserved authored/runtime contracts and mapped production implementation regressions; no live production admission. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue41_acceptance.py](tests/test_issue41_acceptance.py) | Issue41 selected implementation checks and negative fixtures; original preparation-only evidence remains pinned at d7ce5d3. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue45_acceptance.py](tests/test_issue45_acceptance.py) | Issue45 selection of maintained source checks; actual visual/browser acceptance remains separate. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue48_acceptance.py](tests/test_issue48_acceptance.py) | Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -2070,6 +2130,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue72_acceptance.py](tests/test_issue72_acceptance.py) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue_acceptance.py](tests/test_issue_acceptance.py) | Acceptance runner adversarial cases for invalid mappings, skipped/empty/failed tests and evidence identity. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_offline_export_security.py](tests/test_offline_export_security.py) | Behavioral/adversarial tests and fixtures for offline export security. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/test_python_toolchain.py](tests/test_python_toolchain.py) | Negative and positive installed-tool graph checks; reject broadened SDK overrides and missing, changed or incompatible dependencies. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_repository_intelligence.py](tests/test_repository_intelligence.py) | Behavioral/adversarial tests and fixtures for repository intelligence. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/test_repository_test_selection.py](tests/test_repository_test_selection.py) | Permanent discovery and failure/accounting regressions: numeric task snapshots stay selected only by their issue policy; generic/current/new modules remain included. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tests/test_ri_ci.py](tests/test_ri_ci.py) | Negative and positive cases for stale coverage, dangling paths/selectors and workflow invocation drift. | test | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
@@ -2121,7 +2182,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [tools/pages/controller.cjs](tools/pages/controller.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/pages/http.cjs](tools/pages/http.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/pages/migration.cjs](tools/pages/migration.cjs) | Finite authenticated Pages prefix-to-canonical migration and exact frozen-package/settings recovery controller. | validator | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | [tools/pages/package.cjs](tools/pages/package.cjs) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/pages/unpack.py](tools/pages/unpack.py) | Digest-bound and bounded native Actions ZIP extraction rejecting traversal, symlinks and unsupported archive entries. | validator | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 
 ## tools/publishing/
 
@@ -2167,12 +2230,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/bandit-policy.json](tools/quality/bandit-policy.json) | 32 independently reviewed current RI/acceptance-tooling Bandit findings, bound to exact file/line bytes and review expiry; no high-severity admission. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/bandit-triage.cjs](tools/quality/bandit-triage.cjs) | Strict reviewed internal-tooling Bandit admission: exact source/line/rule/owner/expiry, raw finding and scan coverage accounting; untriaged changes fail. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/block-flight.cjs](tools/quality/block-flight.cjs) | Strict native block timing, layers, separators, overlap and camera-phase checks for reviewed Color runtime. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/block-observation.cjs](tools/quality/block-observation.cjs) | Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/browser-gate-diagnostics.cjs](tools/quality/browser-gate-diagnostics.cjs) | Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/browser-gate-trace.cjs](tools/quality/browser-gate-trace.cjs) | Maintained quality/check helper for browser gate trace; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/browser-lifecycle.cjs](tools/quality/browser-lifecycle.cjs) | Maintained quality/check helper for browser lifecycle; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/budgets.json](tools/quality/budgets.json) | Quality/release configuration: budgets; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/candidate-source.cjs](tools/quality/candidate-source.cjs) | Cold exact-source reconstruction of explicit article candidate artifacts including Color/staging transformation layers. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
-| [tools/quality/cause-probe.cjs](tools/quality/cause-probe.cjs) | Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/cause-probe.cjs](tools/quality/cause-probe.cjs) | Maintained private browser cause attribution: original Research/WebKit protocols and bounded four-input Writing CPU/network evidence with exact parent identity. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/cold-native-probe.cjs](tools/quality/cold-native-probe.cjs) | Maintained quality/check helper for cold native probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/color-browser.cjs](tools/quality/color-browser.cjs) | Maintained quality/check helper for color browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/color-motion-contract.cjs](tools/quality/color-motion-contract.cjs) | Exact reviewed Color dispatch across nine families/eighteen plain-staging tuples; preserve sixteen published tuples while admitting source-bound viewport-batched reading runtime. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
@@ -2181,6 +2245,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/content-fixture.cjs](tools/quality/content-fixture.cjs) | Explicit synthetic content-release diagnostic preserving frozen source history and separate admission evidence. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/deploy-pages.example.yml](tools/quality/deploy-pages.example.yml) | Quality/release configuration: deploy pages.example; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/display-probe.cjs](tools/quality/display-probe.cjs) | Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/edge-input.cjs](tools/quality/edge-input.cjs) | Bounded900ms native endpoint preparation and source-bound Color edge evidence validation. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/engine-browser.cjs](tools/quality/engine-browser.cjs) | Maintained quality/check helper for engine browser; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/eslint.config.cjs](tools/quality/eslint.config.cjs) | Maintained quality/check helper for eslint configuration; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/exceptions.json](tools/quality/exceptions.json) | Quality/release configuration: exceptions; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -2205,8 +2270,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/native-display.cjs](tools/quality/native-display.cjs) | Maintained quality/check helper for native display; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/navigation.cjs](tools/quality/navigation.cjs) | Maintained quality/check helper for navigation; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/phase-checkpoint.cjs](tools/quality/phase-checkpoint.cjs) | Issue58 checkpoint, authored architecture or bounded comparable resource evidence control. | validator | [tools/quality/README.md](tools/quality/README.md) |
+| [tools/quality/prepublication.cjs](tools/quality/prepublication.cjs) | Authenticate and verify complete same-run/attempt staging preflight reports and immutable original scanner bytes without rerunning guards. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/prettier.config.json](tools/quality/prettier.config.json) | Explicit LF/two-space/100-column strict-whitespace Prettier configuration; opaque embedded literals are preserved. | configuration | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/promotion.cjs](tools/quality/promotion.cjs) | Maintained quality/check helper for promotion; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/python_toolchain.py](tools/quality/python_toolchain.py) | Verify the installed exact Python audit graph and sole reviewed patched MCP compatibility constraint. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/reading-clarity.cjs](tools/quality/reading-clarity.cjs) | Opt-in bounded Chromium heading geometry comparison and separately served baseline/candidate formula captures; not a release gate. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/refactor-metrics.cjs](tools/quality/refactor-metrics.cjs) | Issue58 checkpoint, authored architecture or bounded comparable resource evidence control. | validator | [tools/quality/README.md](tools/quality/README.md) |
 | [tools/quality/research-pair-probe.cjs](tools/quality/research-pair-probe.cjs) | Maintained quality/check helper for research pair probe; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -2220,6 +2287,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/quality/security-rules.yml](tools/quality/security-rules.yml) | Quality/release configuration: security rules; preserve reviewed budgets, pins and exception provenance. | configuration | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/selftest.cjs](tools/quality/selftest.cjs) | Maintained quality/check helper for selftest; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/serve.cjs](tools/quality/serve.cjs) | Maintained quality/check helper for serve; applicable profiles are selected by SITE-CHECK-PROFILES. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/quality/source-test-worker.cjs](tools/quality/source-test-worker.cjs) | Bounded source-runner scheduling with measured long files first, isolated Node processes, original TAP and owned signal cleanup. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/source-tests.cjs](tools/quality/source-tests.cjs) | Exact-Git source selection and lifecycle allocation; Space/executive execute first, remaining selected files follow size/lexical order through two isolated public Node workers, original bounds, abort/error cleanup and complete TAP accounting. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/staging-gate.cjs](tools/quality/staging-gate.cjs) | Exact-source/artifact/origin/scanner/job/matrix staging aggregate; light evidence cannot authorize full production. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools/quality/staging-regression.cjs](tools/quality/staging-regression.cjs) | Bounded Chromium/Firefox journey, failure, analytics and CPU/flight/single-Lighthouse runner with strict raw-observation validators. | validator | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2257,12 +2325,15 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [tools/release/actions.cjs](tools/release/actions.cjs) | Production workflow adapters preserving exact packages, raw reports, transition leases and recovery observations. | source | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/release/archive.cjs](tools/release/archive.cjs) | Immutable production archive identity and deterministic bounded extraction. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
-| [tools/release/controller.cjs](tools/release/controller.cjs) | Trusted full evidence, durable immutable assets, protected source, active/archive labels and verified failure compensation. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/release/controller.cjs](tools/release/controller.cjs) | Trusted staged-source admission, durable immutable assets, protected source, active/archive labels and verified failure compensation. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/release/edition-archive.cjs](tools/release/edition-archive.cjs) | Intrinsic verification of frozen production metadata and social image bytes without today's source or runtime registry, preserving historical rollback. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/release/edition.cjs](tools/release/edition.cjs) | Distinct production indexing/canonical/robots/sitemap/404 policy applied before immutable hashing and tests. | source | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
-| [tools/release/live.cjs](tools/release/live.cjs) | Exact live production edition, Pages, browser and passive-scan acceptance bound to frozen archive identity. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
+| [tools/release/live.cjs](tools/release/live.cjs) | Exact live production edition, Pages and bounded browser smoke acceptance bound to frozen archive identity. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/release/package.py](tools/release/package.py) | Immutable production archive identity and deterministic bounded extraction. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/release/passive.cjs](tools/release/passive.cjs) | Pinned bounded passive ZAP plan and explicit origin/risk classification without external-host crawling. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
-| [tools/release/rights-record.cjs](tools/release/rights-record.cjs) | Source-independent frozen publication license metadata, exact full-copy hashes and archived artifact binding shared with the Root rights compiler. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/release/rights-record.cjs](tools/release/rights-record.cjs) | Source-independent frozen publication license record, exact edition/file/notice binding and decoded legal-copy verification for staging, Pages and archive recovery. | validator | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
+| [tools/release/rights.cjs](tools/release/rights.cjs) | Deterministic source/artifact-bound rights inventory compilation and frozen archived inventory verification without granting approval. | validator | [guides/SITE-RIGHTS.md](guides/SITE-RIGHTS.md) |
+| [tools/release/staging-policy.cjs](tools/release/staging-policy.cjs) | Authenticate successful staging and identical merged source trees; bind separate production edition admission without optional full diagnostics. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 
 ## tools/site/
 
@@ -2273,12 +2344,14 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/site/build.cjs](tools/site/build.cjs) | Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners. | source | [site/README.md](site/README.md) |
 | [tools/site/content-release.cjs](tools/site/content-release.cjs) | Verified independent content generation with trusted baseline, unchanged platform and transactional output. | source | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
 | [tools/site/content.cjs](tools/site/content.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/edition-retention.cjs](tools/site/edition-retention.cjs) | Capture and restore immutable prior-edition closure with exact collision checks for Color and production packaging. | source | [site/README.md](site/README.md) |
 | [tools/site/edition.cjs](tools/site/edition.cjs) | Shared pre-test edition transformation, content-addressed runtime/routes and exact artifact inventory. | source | [site/README.md](site/README.md) |
 | [tools/site/effects.cjs](tools/site/effects.cjs) | Canonical active effect manifest, descriptor validation, ordered hosted assembly and compatible offline adapters. | source | [site/README.md](site/README.md) |
 | [tools/site/evidence-policy.cjs](tools/site/evidence-policy.cjs) | Advisory component-fingerprint proposal for content-only or full check scope under #13; never skips mandatory jobs or reuses evidence. | source | [site/README.md](site/README.md) |
 | [tools/site/export.cjs](tools/site/export.cjs) | Canonical offline export builder for Base, Ribbons, Flight and Color using maintained effect adapters. | source | [site/README.md](site/README.md) |
 | [tools/site/fallback.cjs](tools/site/fallback.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
 | [tools/site/html.cjs](tools/site/html.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
+| [tools/site/legal.cjs](tools/site/legal.cjs) | Embed and verify full root licensing scope, code/content terms and notices on the existing Credits route with stable section anchors. | source | [site/README.md](site/README.md) |
 | [tools/site/offline.cjs](tools/site/offline.cjs) | Bounded five-scene plus one-article standalone payload and native embedded asset identity. | source | [site/README.md](site/README.md) |
 | [tools/site/public-artifact.cjs](tools/site/public-artifact.cjs) | Leaf complete public byte inventory and SHA256/gzip digest shared by artifact and content release. | source | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
 | [tools/site/render-content.cjs](tools/site/render-content.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |

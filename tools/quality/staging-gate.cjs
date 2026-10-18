@@ -211,7 +211,16 @@ function aggregate({
   );
   for (const report of reports) {
     full.sourceReport(report, manifest);
-    assert.equal(report.target, target, 'local/different-origin results cannot authorize staging');
+    if (['lint', 'security', 'advisories'].includes(report.kind) && report.target === null) {
+      // Source scans retain their original pre-upload identity, without claiming a host observation.
+      assert.ok(report.environment?.runId && report.environment?.attempt);
+    } else {
+      assert.equal(
+        report.target,
+        target,
+        'local/different-origin results cannot authorize staging'
+      );
+    }
   }
   for (const kind of ['lint', 'security', 'advisories'])
     full.scanner(reports.find((row) => row.kind === kind));

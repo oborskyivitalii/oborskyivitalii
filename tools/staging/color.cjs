@@ -1,10 +1,11 @@
 'use strict';
-// Explicit staging rendition of the authored Color effects. Production stays base.
+// Explicit authored Color rendition; staging and production editions bind it separately.
 const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path');
 const artifact = require('../quality/artifact.cjs'),
   snapshot = require('../site/snapshot.cjs');
+const retention = require('../site/edition-retention.cjs');
 function authoredEffects() {
   return require('../site/effects.cjs').descriptors();
 }
@@ -91,8 +92,10 @@ function decoratePublic(dir) {
       },
     ])
   );
-  // Earlier immutable documents keep their original runtime closure beside the
-  // new Color generation; decorating current aliases does not prune history.
+  const retained = retention.capture(dir, base, { preserveActive: true });
+  fs.rmSync(path.join(dir, 'runtime'), { recursive: true });
+  fs.rmSync(path.join(dir, 'snapshots'), { recursive: true });
+  fs.rmSync(path.join(dir, 'article-snapshots'), { recursive: true, force: true });
   for (const [name, text] of Object.entries(scripts)) {
     write(dir, name, text);
     write(dir, 'runtime/' + identity.variant.fingerprint + '/' + name, text);
@@ -129,6 +132,7 @@ function decoratePublic(dir) {
   }
   revision.content = artifact.digest(JSON.stringify(identity.versions));
   write(dir, 'site-revision.json', JSON.stringify(revision, null, 2) + '\n');
+  retention.restore(dir, retained);
   return { base, revision };
 }
 function build(directory) {

@@ -54,6 +54,7 @@ test.before(() => {
     'tools/site',
     'tools/publishing',
     'tools/build_scene_fallbacks.cjs',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
     fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
     fs.cpSync(path.join(repo, relative), path.join(root, relative), {

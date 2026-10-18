@@ -19,6 +19,8 @@ function manifest(id) {
   };
   if (runtime.edition === 'staging')
     value.edition = { id: 'staging', indexable: false, analytics: false };
+  if (runtime.edition === 'production')
+    value.edition = { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' };
   for (const [name, sha256] of Object.entries(runtime.files))
     for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name])
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
@@ -32,6 +34,22 @@ function blockSamples(width = 1440, direction = 'forward', count = 2) {
       translate = '0px ' + y + 'px',
       layer = {
         translate,
+        distance: Math.sign(y) * 600 + 'px',
+        nativeAnimations: [
+          {
+            name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
+            startTime: 100,
+            currentTime: 300,
+            pending: false,
+            playState: 'running',
+            playbackRate: 1,
+            timing: { delay: order * plan.rowStepMs, duration: plan.rowDurationMs },
+            keyframes: [
+              { computedOffset: 0, translate: stage === 'departing' ? '0px' : '0px 600px' },
+              { computedOffset: 1, translate: stage === 'departing' ? '0px -600px' : '0px' },
+            ],
+          },
+        ],
         opacity: 1,
         animation: {
           name: 'route-block-' + (stage === 'departing' ? 'depart' : 'arrive'),
@@ -191,7 +209,7 @@ function evidence(id) {
   }
   return value;
 }
-test('only the twenty-six reviewed plain/staging runtime tuples select a camera and flight contract', () => {
+test('only reviewed historical and current launch plain/staging tuples select a camera and flight contract', () => {
   for (const family of [
     'legacy',
     'fixed',
@@ -206,6 +224,11 @@ test('only the twenty-six reviewed plain/staging runtime tuples select a camera 
     'issue5-presentation',
     'issue5-reader-links',
     'issue39-licensed',
+    'issue39',
+    'issue39-licensed-compact',
+    'issue39-writing-tbt',
+    'issue39-css-clock',
+    'issue5-reconciled',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -217,10 +240,47 @@ test('only the twenty-six reviewed plain/staging runtime tuples select a camera 
       );
       assert.equal(gate.aggregate(evidence(id)).pass, true);
     }
-  for (const id of ['fixed-plain', 'issue76-plain', 'issue5-plain', 'issue39-licensed-plain']) {
+  for (const id of [
+    'fixed-plain',
+    'issue76-plain',
+    'issue39-plain',
+    'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-css-clock-plain',
+  ]) {
     const copy = motion.reviewedRuntime(id);
     copy.files['space.js'] = '0'.repeat(64);
     assert.equal(motion.select(manifest(id)).id, id);
+  }
+});
+test('production Color has a separate exact edition identity with unchanged approved runtime bytes', () => {
+  for (const family of [
+    'issue76',
+    'issue39',
+    'issue39-licensed',
+    'issue39-licensed-compact',
+    'issue39-writing-tbt',
+    'issue39-css-clock',
+    'issue5-reconciled',
+  ]) {
+    const plain = motion.reviewedRuntime(family + '-plain'),
+      production = motion.reviewedRuntime(family + '-production');
+    assert.notEqual(production.variant.fingerprint, plain.variant.fingerprint);
+    assert.deepEqual(production.files, plain.files);
+    assert.equal(motion.select(manifest(production.id)).id, production.id);
+    assert.equal(motion.flightCheck(manifest(production.id)), 'blockFlight');
+    for (const mutate of [
+      (m) => delete m.edition,
+      (m) => (m.edition.origin = 'https://candidate.invalid'),
+      (m) => (m.edition.indexable = false),
+      (m) => (m.edition = { id: 'staging', indexable: false, analytics: false }),
+      (m) => (m.variant.fingerprint = plain.variant.fingerprint),
+    ]) {
+      const value = manifest(production.id);
+      mutate(value);
+      assert.throws(() => motion.select(value));
+    }
   }
 });
 test('unknown, conflicting, mixed or merely marked runtime identities fail before browser execution', async () => {
@@ -258,8 +318,22 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue5-presentation-staging',
     'issue5-reader-links-plain',
     'issue5-reader-links-staging',
+    'issue76-production',
+    'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-css-clock-plain',
+    'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
+    'issue39-css-clock-staging',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+    'issue39-css-clock-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -291,25 +365,43 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue76-staging',
     'issue5-staging',
     'issue39-licensed-staging',
+    'issue39-staging',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
+    'issue39-css-clock-staging',
   ]) {
     const staged = manifest(id);
     delete staged.edition;
     assert.throws(() => motion.select(staged), /edition differs/);
   }
 });
-test('current and licensed families reject mixed reviewed bytes and editions in canonical and immutable paths', () => {
+test('reviewed fixed-block tuples reject mixed bytes and editions in canonical and immutable paths', () => {
   for (const id of [
     'issue76-plain',
     'issue76-staging',
+    'issue76-production',
+    'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-css-clock-plain',
+    'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
+    'issue39-css-clock-staging',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+    'issue39-css-clock-production',
   ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
         name === 'styles.css'
-          ? id === 'issue76-plain'
-            ? 'fixed-staging'
-            : 'fixed-plain'
+          ? id.endsWith('-staging')
+            ? 'fixed-plain'
+            : 'fixed-staging'
           : 'fixed-plain'
       );
       for (const paths of ['canonical', 'immutable', 'both']) {
@@ -323,7 +415,7 @@ test('current and licensed families reject mixed reviewed bytes and editions in 
       }
     }
     const wrongEdition = manifest(id);
-    if (motion.reviewedRuntime(id).edition === 'plain') {
+    if (id.endsWith('-plain')) {
       wrongEdition.edition = { id: 'staging', indexable: false, analytics: false };
     } else {
       delete wrongEdition.edition;
@@ -364,28 +456,31 @@ test('issue5 rejects prior navigation or reading CSS and mismatched plain/stagin
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
   }
 });
-test('licensed contracts reject every missing or substituted runtime file and remain staging-only', () => {
-  for (const id of ['issue39-licensed-plain', 'issue39-licensed-staging']) {
+test('licensed contracts reject every missing or substituted canonical and immutable runtime file', () => {
+  for (const id of [
+    'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-css-clock-plain',
+    'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
+    'issue39-css-clock-staging',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+    'issue39-css-clock-production',
+  ]) {
     const runtime = motion.reviewedRuntime(id);
-    for (const name of Object.keys(runtime.files)) {
-      for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name]) {
+    for (const name of Object.keys(runtime.files))
+      for (const file of [name, 'runtime/' + runtime.variant.fingerprint + '/' + name])
         for (const missing of [false, true]) {
           const value = manifest(id);
           if (missing) delete value.files[file];
           else value.files[file].sha256 = '0'.repeat(64);
           assert.throws(() => motion.select(value), /Color bytes/);
         }
-      }
-    }
-    const production = manifest(id);
-    production.edition = {
-      id: 'production',
-      indexable: true,
-      origin: 'https://vitaliioborskyi.ai',
-    };
-    assert.throws(() => motion.select(production), /edition differs/);
   }
-  assert.throws(() => motion.reviewedRuntime('issue39-licensed-production'), /unknown reviewed/);
 });
 test('full Color aggregation preserves all twelve engine, viewport and theme cells for reviewed contracts', () => {
   for (const id of [
@@ -394,6 +489,16 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     'issue76-plain',
     'issue5-plain',
     'issue39-licensed-plain',
+    'issue76-production',
+    'issue39-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-css-clock-plain',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+    'issue39-css-clock-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1),
@@ -450,8 +555,21 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'issue76-staging',
     'issue5-plain',
     'issue5-staging',
+    'issue39-plain',
     'issue39-licensed-plain',
+    'issue39-licensed-compact-plain',
+    'issue39-writing-tbt-plain',
+    'issue39-css-clock-plain',
+    'issue39-staging',
     'issue39-licensed-staging',
+    'issue39-licensed-compact-staging',
+    'issue39-writing-tbt-staging',
+    'issue39-css-clock-staging',
+    'issue39-production',
+    'issue39-licensed-production',
+    'issue39-licensed-compact-production',
+    'issue39-writing-tbt-production',
+    'issue39-css-clock-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1);
@@ -634,16 +752,16 @@ test('reader-link runtime tuples reproduce the complete current plain and stagin
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-reader-links-plain');
+    assert.equal(motion.select(plain).id, 'issue5-reconciled-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-reader-links-staging');
+    assert.equal(motion.select(staged).id, 'issue5-reconciled-staging');
     for (const record of [plain, staged]) {
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-reader-links-plain').variant.baseEngine
+        motion.reviewedRuntime('issue5-reconciled-plain').variant.baseEngine
       );
     }
   } finally {

@@ -6,13 +6,13 @@ on:
         description: Explicit production action; never runs on push or staging
         required: true
         type: choice
-        options: [publish, rollback]
+        options: [publish, rollback, recover]
       release_tag:
         description: Immutable prod-YYYY-MM-DD.N identity
         required: true
         type: string
       validation_run_id:
-        description: Successful full prospective-production validation (publish only)
+        description: Successful frozen candidate bound to accepted staging (publish only)
         type: string
         default: ''
       release_pr:
@@ -20,12 +20,29 @@ on:
         type: string
         default: ''
       release_evidence:
-        description: Source-bound independent/device/rights JSON records (publish only)
+        description: Exact-source rights acceptance JSON; rights.inventoryDigest must match the frozen candidate (publish only)
+        type: string
+        default: ''
+      first_release_preparation_run:
+        description: Authenticated current-controller recovery preparation for the first canonical publication only
+        type: string
+        default: ''
+      first_release_preparation_attempt:
+        description: Exact successful preparation attempt; required with first_release_preparation_run
+        type: string
+        default: ''
+      failed_release_run:
+        description: Failed first-publication run to compensate without deploying Pages (recover only)
+        type: string
+        default: ''
+      failed_release_attempt:
+        description: Exact failed first-publication attempt (recover only)
         type: string
         default: ''
 permissions:
   contents: read
   actions: read
+  checks: read
 concurrency:
   group: author-pages-publication
   cancel-in-progress: false
@@ -49,6 +66,10 @@ jobs:
       gate_id: ${{ steps.request.outputs.gate_id }}
       validation_run: ${{ steps.request.outputs.validation_run }}
       request_id: ${{ steps.retained.outputs.artifact-id }}
+      preparation_id: ${{ steps.request.outputs.preparation_id }}
+      preparation_digest: ${{ steps.request.outputs.preparation_digest }}
+      recovery_id: ${{ steps.request.outputs.recovery_id }}
+      recovery_digest: ${{ steps.request.outputs.recovery_digest }}
     env:
       PRODUCTION_ENABLED: ${{ vars.SITE_PRODUCTION_ENABLED }}
       PRODUCTION_APP_ID: ${{ vars.PRODUCTION_APP_ID }}
@@ -57,6 +78,10 @@ jobs:
       VALIDATION_RUN: ${{ inputs.validation_run_id }}
       RELEASE_PR: ${{ inputs.release_pr }}
       RELEASE_EVIDENCE: ${{ inputs.release_evidence }}
+      FIRST_RELEASE_PREPARATION_RUN: ${{ inputs.first_release_preparation_run }}
+      FIRST_RELEASE_PREPARATION_ATTEMPT: ${{ inputs.first_release_preparation_attempt }}
+      FAILED_RELEASE_RUN: ${{ inputs.failed_release_run }}
+      FAILED_RELEASE_ATTEMPT: ${{ inputs.failed_release_attempt }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -76,7 +101,7 @@ jobs:
           permission-administration: write
           permission-metadata: read
       - id: request
-        name: Authenticate owner, source protection and complete real production jobs
+        name: Authenticate owner, source protection and staging-bound frozen candidate
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
@@ -91,6 +116,7 @@ jobs:
           retention-days: 90
   publish:
     name: Pages publication
+    if: inputs.operation != 'recover'
     needs: authorization
     runs-on: ubuntu-24.04
     timeout-minutes: 35
@@ -101,7 +127,8 @@ jobs:
       contents: read
       actions: read
       issues: write
-      pull-requests: read
+      pull-requests: write
+      checks: read
       deployments: write
       pages: write
       id-token: write
@@ -122,6 +149,14 @@ jobs:
         with:
           artifact-ids: ${{ needs.authorization.outputs.request_id }}
           path: release-control
+      - name: Authenticate and extract the first-release recovery capsule
+        if: needs.authorization.outputs.preparation_id != ''
+        env:
+          PREPARATION_ID: ${{ needs.authorization.outputs.preparation_id }}
+          PREPARATION_DIGEST: ${{ needs.authorization.outputs.preparation_digest }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$PREPARATION_ID/zip" > preparation-upload.zip
+          python3 tools/pages/unpack.py preparation-upload.zip first-release-prepared "$PREPARATION_DIGEST"
       - id: configure
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
       - id: previous
@@ -132,6 +167,7 @@ jobs:
         with:
           script: await require('./tools/release/actions.cjs').previous(github,context,core)
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        if: steps.previous.outputs.first_release != 'true'
         with:
           artifact-ids: ${{ steps.previous.outputs.id }}
           run-id: ${{ steps.previous.outputs.run }}
@@ -141,9 +177,7 @@ jobs:
         env:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
         run: |
-          mkdir -p pages-reports
-          node -e "require('./tools/pages/controller.cjs').retained('pages-previous/pages-package',JSON.parse(require('node:fs').readFileSync('release-control/previous.json')))"
-          node tools/pages/http.cjs pages-previous/pages-package "$PAGES_ORIGIN" pages-reports/previous-http.json
+          node -e "require('./tools/release/actions.cjs').verifyPrevious().catch(error=>{console.error(error);process.exitCode=1})"
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         if: inputs.operation == 'publish'
         with:
@@ -153,7 +187,7 @@ jobs:
           path: validation-gate
       - id: public
         if: inputs.operation == 'publish'
-        name: Authenticate the exact full-tested public artifact and producer
+        name: Authenticate the exact staging-bound production artifact and producer
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: await require('./tools/release/actions.cjs').publicInputs(github,context,core)
@@ -176,14 +210,20 @@ jobs:
           permission-contents: write
           permission-workflows: write
           permission-metadata: read
-      - name: Verify full/external admission and upload recoverable draft archive assets
+      - name: Verify staging/rights admission and prepare the frozen archive locally
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
         with:
           script: await require('./tools/release/actions.cjs').prepareArchive(github,context)
-      - name: Compose production root with the unchanged accepted staging subtree
+      - name: Compose production-only root and retain the predecessor solely for recovery
         run: node -e "require('./tools/release/actions.cjs').compose()"
+      - name: Verify complete local composition before writing draft archive assets
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
+        with:
+          script: await require('./tools/release/actions.cjs').publishPreparedArchive(github,context)
       - name: Retain the complete next combined site before touching live Pages
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
@@ -223,7 +263,7 @@ jobs:
         continue-on-error: true
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
       - id: http
-        name: Verify every combined Pages file, routes, query and real 404
+        name: Await exact Pages package, then verify routes, query and real 404
         if: steps.deploy.outcome == 'success'
         continue-on-error: true
         env:
@@ -235,24 +275,13 @@ jobs:
         continue-on-error: true
         run: node tools/release/live.cjs production-source release-assets/archive.json pages-reports/production-policy.json
       - id: browser
-        name: Verify production and preserved staging navigation on live Pages
+        name: Verify production navigation on live Pages
         if: steps.policy.outcome == 'success'
         continue-on-error: true
         env:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
         run: |
           SITE_TEST_BASE_URL="$PAGES_ORIGIN/" SITE_PUBLIC_DIR="$GITHUB_WORKSPACE/production-source/public" SITE_ARTIFACT_MANIFEST="$GITHUB_WORKSPACE/production-source/artifact.json" SITE_REPORT_DIR="$GITHUB_WORKSPACE/pages-reports/production-browser" node tools/quality/local-browser.cjs --smoke
-          SITE_TEST_BASE_URL="$PAGES_ORIGIN/staging/" SITE_TEST_PROFILE=staging SITE_PUBLIC_DIR="$GITHUB_WORKSPACE/staging-source/public" SITE_ARTIFACT_MANIFEST="$GITHUB_WORKSPACE/staging-source/artifact.json" SITE_REPORT_DIR="$GITHUB_WORKSPACE/pages-reports/staging-browser" node tools/quality/local-browser.cjs --smoke
-      - id: passive
-        name: Bounded passive ZAP scan on the production origin only
-        if: steps.browser.outcome == 'success'
-        continue-on-error: true
-        run: |
-          mkdir -p pages-reports/zap
-          node tools/release/passive.cjs plan pages-reports/zap/plan.json
-          chmod 777 pages-reports/zap
-          docker run --rm --network bridge -v "$GITHUB_WORKSPACE/pages-reports/zap:/zap/wrk:rw" ghcr.io/zaproxy/zaproxy@sha256:7aaa659b0d43078febd82e29bad112285c370727e86ab8340444220e17d9f0d2 zap.sh -cmd -autorun /zap/wrk/plan.json
-          node tools/release/passive.cjs verify pages-reports/zap/zap.json pages-reports/passive.json
       - id: observations
         name: Retain all actual observations before marking production accepted
         if: always()
@@ -271,7 +300,7 @@ jobs:
         if: >-
           steps.deploy.outcome == 'success' && steps.http.outcome == 'success' &&
           steps.policy.outcome == 'success' && steps.browser.outcome == 'success' &&
-          steps.passive.outcome == 'success' && steps.observations.outcome == 'success'
+          steps.observations.outcome == 'success'
         continue-on-error: true
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
@@ -285,11 +314,14 @@ jobs:
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
         with:
           artifact_name: github-pages-rollback
-      - name: Verify restored bytes before restoring production bookkeeping
+      - name: Verify restored bytes and unchanged canonical settings before bookkeeping
         if: steps.rollback.outcome == 'success'
         env:
           PAGES_ORIGIN: ${{ steps.configure.outputs.base_url }}
-        run: node tools/pages/http.cjs pages-previous/pages-package "$PAGES_ORIGIN" pages-reports/rollback-http.json
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        with:
+          script: |
+            await require('./tools/release/actions.cjs').verifyRecovery(github,context);
       - name: Restore previous production ref, label state and deployment identity
         if: steps.rollback.outcome == 'success' && success()
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
@@ -315,3 +347,78 @@ jobs:
       - name: Keep incomplete publication or recovery red
         if: always() && steps.accepted.outcome != 'success'
         run: exit 1
+  recovery:
+    name: First-release metadata recovery
+    if: inputs.operation == 'recover'
+    needs: authorization
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: production
+    permissions:
+      contents: read
+      actions: read
+      issues: write
+      pull-requests: write
+      deployments: write
+      pages: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PRODUCTION_ENABLED: ${{ vars.SITE_PRODUCTION_ENABLED }}
+      PRODUCTION_APP_ID: ${{ vars.PRODUCTION_APP_ID }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.authorization.outputs.request_id }}
+          path: release-control
+      - name: Authenticate and extract the exact failed publication result
+        env:
+          RECOVERY_ID: ${{ needs.authorization.outputs.recovery_id }}
+          RECOVERY_DIGEST: ${{ needs.authorization.outputs.recovery_digest }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$RECOVERY_ID/zip" > failed-publication.zip
+          python3 tools/pages/unpack.py failed-publication.zip failed-publication "$RECOVERY_DIGEST"
+      - id: production-app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        with:
+          client-id: ${{ vars.PRODUCTION_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PRODUCTION_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-administration: write
+          permission-contents: write
+          permission-workflows: write
+          permission-metadata: read
+      - id: capsule
+        name: Authenticate the original recovery capsule and partial metadata
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
+        with:
+          script: await require('./tools/release/actions.cjs').recoveryInputs(github,context,core)
+      - name: Authenticate and extract the original predecessor capsule
+        env:
+          PREPARATION_ID: ${{ steps.capsule.outputs.preparation_id }}
+          PREPARATION_DIGEST: ${{ steps.capsule.outputs.preparation_digest }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$PREPARATION_ID/zip" > preparation-upload.zip
+          python3 tools/pages/unpack.py preparation-upload.zip first-release-prepared "$PREPARATION_DIGEST"
+      - name: Verify every predecessor byte and compensate only exact partial metadata
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
+        env:
+          PRODUCTION_APP_TOKEN: ${{ steps.production-app.outputs.token }}
+        with:
+          script: await require('./tools/release/actions.cjs').recoverFailed(github,context)
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: site-production-metadata-recovery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: release-control/
+          if-no-files-found: error
+          retention-days: 90

@@ -4,6 +4,20 @@ This guide owns topic vocabulary and discoverability boundaries. Dated sections
 record their inspected editions and evidence; current editorial/release decisions
 belong to the owning issues and [MEMORY](../MEMORY.md), not an old session handoff.
 
+## Production preservation audit — 2026-10-15
+
+[PR40's launch issue audit](../review/issue-39/2026-10-15-release-issue-audit.md)
+retains closed #14's exact SEO preservation and #41's source/edition boundaries.
+Current main already has a separate production canonical/OG URL/robots/sitemap/
+404 layer; the dated candidate follow-ups below are historical. Production Color
+admission and #8's absolute social image remain. Preserve the five-page baseline
+and explicit amendments; no keyword-map or copy rewrite follows from deployment.
+
+#8's maintainer decision requests analytics preparation before first release and
+actual enablement with the real origin/beacon at launch. The disabled adapter is
+preparation, not live measurement. Search Console and observed query/page learning
+follow a reachable authorized origin. Source checks do not prove indexing/rankings.
+
 ## Content authority amendment — 2026-10-07
 
 [Issue #41](https://github.com/oborskyivitalii/oborskyivitalii/issues/41) implements

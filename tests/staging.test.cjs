@@ -10,6 +10,74 @@ const artifact = require('../tools/quality/artifact.cjs'),
 const hosted = require('../tools/staging/hosted.cjs');
 const state = require('../tools/staging/state.cjs');
 const snapshot = require('../tools/site/snapshot.cjs');
+test('hosted archive reset follows catalog cardinality and still rejects missing rendered records', async () => {
+  function browserFixture(observedCount) {
+    const fields = { '#archive-topic': 'systems', '#archive-language': 'uk' };
+    return {
+      goto: async () => {},
+      reload: async () => {},
+      goBack: async () => {
+        fields['#archive-language'] = 'uk';
+      },
+      goForward: async () => {
+        fields['#archive-language'] = 'en';
+      },
+      locator: (selector) => ({
+        inputValue: async () => fields[selector],
+        selectOption: async (value) => {
+          fields[selector] = value;
+        },
+        isVisible: async () => true,
+        click: async () => {},
+        count: async () => (selector === '#topic-systems' ? 1 : observedCount),
+      }),
+    };
+  }
+  for (const count of [2, 28, 31]) {
+    const expected = {
+      records: Object.fromEntries(Array.from({ length: count }, (_, i) => ['record-' + i, {}])),
+    };
+    const result = await hosted.archive(browserFixture(count), 'https://fixture.invalid', expected);
+    assert.equal(result.primaryRecords, count);
+    await assert.rejects(
+      hosted.archive(browserFixture(count - 1), 'https://fixture.invalid', expected)
+    );
+  }
+  await assert.rejects(
+    hosted.archive(browserFixture(0), 'https://fixture.invalid', { records: {} })
+  );
+});
+test('controlled HTTP model serves exact production robots and sitemap with their required MIME', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-production-mime-'));
+  const files = {
+    'robots.txt': ['text/plain', 'User-agent: *\nAllow: /\n'],
+    'sitemap.xml': [
+      'application/xml',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>\n',
+    ],
+  };
+  let server;
+  try {
+    fs.writeFileSync(path.join(dir, '404.html'), '<h1>Not found</h1>');
+    for (const [file, [, bytes]] of Object.entries(files))
+      fs.writeFileSync(path.join(dir, file), bytes);
+    const endpoint = await require('../tools/staging/selftest.cjs').start(dir);
+    server = endpoint.server;
+    for (const [file, [type, bytes]] of Object.entries(files)) {
+      const response = await fetch(endpoint.url + '/' + file);
+      assert.equal(response.status, 200);
+      assert.equal(response.headers.get('content-type'), type + '; charset=utf-8');
+      assert.equal(await response.text(), bytes);
+    }
+    const missing = await fetch(endpoint.url + '/missing.txt');
+    assert.equal(missing.status, 404);
+    assert.equal(missing.headers.get('content-type'), 'text/html; charset=utf-8');
+    assert.equal(await missing.text(), '<h1>Not found</h1>');
+  } finally {
+    if (server) await new Promise((resolve) => server.close(resolve));
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
 function fixture() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-staging-test-')),
     input = path.join(dir, 'input'),
@@ -596,7 +664,10 @@ function fetchFixture(f, options = {}) {
         'cache-control': staging.policyHeaders(u.pathname.slice(1))['Cache-Control'],
         'x-content-type-options': 'nosniff',
       };
-    if (u.pathname.endsWith('.html'))
+    if (
+      u.pathname.endsWith('.html') &&
+      !(options.proxySnapshots && u.pathname.startsWith('/snapshots/'))
+    )
       return new Response(null, {
         status: 301,
         headers: { location: u.pathname.slice(0, -5) + (options.dropQuery ? '' : u.search) },
@@ -619,7 +690,10 @@ function fetchFixture(f, options = {}) {
     headers['content-type'] = extensions[path.extname(file)];
     const bytes = fs.readFileSync(path.join(f.out, 'public', file));
     return new Response(
-      options.tamper && file === 'styles.css' ? Buffer.from('bad bytes') : bytes,
+      (options.tamper && file === 'styles.css') ||
+      (options.tamperSnapshot && file.startsWith('snapshots/'))
+        ? Buffer.from('bad bytes')
+        : bytes,
       { status: missing && !options.spa ? 404 : 200, headers }
     );
   };
@@ -679,6 +753,39 @@ test('real-HTTP smoke model checks every served byte, extensionless query redire
       { spa: true },
     ])
       await assert.rejects(() => hosted.httpSmoke(base, record, fetchFixture(f, options)));
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
+test('selected snapshot proxy staging requires zero redirects and exact immutable response bodies', async () => {
+  const f = fixture();
+  try {
+    const record = staging.build(f.input, f.out, f.expected, {
+        hostPolicy: staging.hostPolicies.snapshotProxy,
+      }),
+      base = 'https://preview.unit-test-staging.pages.dev',
+      result = await hosted.httpSmoke(base, record, fetchFixture(f, { proxySnapshots: true })),
+      snapshots = result.files.filter((row) => row.file.startsWith('snapshots/'));
+    assert.ok(snapshots.length > 0);
+    for (const row of snapshots) {
+      assert.equal(row.status, 200);
+      assert.equal(row.redirects, 0);
+      assert.equal(row.url, base + '/' + row.file);
+      assert.equal(row.sha256, record.source.files[row.file].sha256);
+    }
+    await assert.rejects(
+      () => hosted.httpSmoke(base, record, fetchFixture(f)),
+      /immutable snapshot proxy redirected/
+    );
+    await assert.rejects(
+      () =>
+        hosted.httpSmoke(
+          base,
+          record,
+          fetchFixture(f, { proxySnapshots: true, tamperSnapshot: true })
+        ),
+      /hosted bytes differ snapshots\//
+    );
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }

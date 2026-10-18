@@ -10,13 +10,18 @@ const writingLabels = Object.freeze(['color', 'no-ribbons', 'no-canvas-draw', 't
 const originalProtocol =
   'Fresh-process WebKit cold Index twice alone and twice with normal Color Chromium/Firefox rendering; original 3000ms foreground, 180ms baseline and 1500ms next-paint fixture. Separate 2200ms recovery observation never retries or alters the failed result. Research has three fresh mobile/simulated Lighthouse trials on normal Color bytes with original trace, network log and explicit CPU samples. Collection success is never performance acceptance.';
 function scopeContract(scope) {
-  assert.ok(['webkit', 'lighthouse', 'writing'].includes(scope), 'unsupported cause scope');
+  assert.ok(
+    ['webkit', 'lighthouse', 'writing', 'writing-current'].includes(scope),
+    'unsupported cause scope'
+  );
   return {
-    trials: scope === 'lighthouse' ? 3 : 4,
+    trials: scope === 'writing-current' ? 6 : scope === 'lighthouse' ? 3 : 4,
     protocol:
-      scope === 'writing'
-        ? 'Exactly one fresh-process Writing mobile/simulated Lighthouse trial per normal Color, no-ribbons, no-canvas-draw and thematic-off input, with explicit CPU samples. Three private copies derive from the same unchanged Color source/tree/artifact. Original LHR, trace and network evidence survive validation failures; no retries or discarded inputs. Collection success is never performance acceptance.'
-        : originalProtocol,
+      scope === 'writing-current'
+        ? 'Exactly five sequential fresh-process Writing mobile/simulated Lighthouse trials on unchanged normal Color bytes, then one separately CPU-sampled attribution trial. Retain every launch, raw LHR, trace, network log and failure; no retry, warmup, omission, best-run or median acceptance. Original 200ms individual TBT budget remains. Collection success is never performance acceptance.'
+        : scope === 'writing'
+          ? 'Exactly one fresh-process Writing mobile/simulated Lighthouse trial per normal Color, no-ribbons, no-canvas-draw and thematic-off input, with explicit CPU samples. Three private copies derive from the same unchanged Color source/tree/artifact. Original LHR, trace and network evidence survive validation failures; no retries or discarded inputs. Collection success is never performance acceptance.'
+          : originalProtocol,
   };
 }
 function validateInput(normal, control, candidate, label = 'browser-gate-trace') {
@@ -112,6 +117,19 @@ function evidenceComplete(scope, record) {
     !record.rows.every((row) => row.evidenceValid)
   )
     return false;
+  if (scope === 'writing-current')
+    return Array.from({ length: 6 }, (_, index) => index + 1).every(
+      (run) =>
+        record.rows.filter(
+          (row) =>
+            row.label === 'color' &&
+            row.route === 'writing' &&
+            row.run === run &&
+            row.sampled === (run === 6) &&
+            row.fullGate === false &&
+            row.performanceAcceptance === false
+        ).length === 1
+    );
   return (
     scope !== 'writing' ||
     writingLabels.every(
@@ -132,7 +150,7 @@ function saveRaw(output, name, value) {
   fs.writeFileSync(path.join(output, name + '.json.gz'), bytes);
   return { file: name + '.json.gz', sha256: artifact.digest(bytes), bytes: bytes.length };
 }
-function lighthouseEvidence(result) {
+function lighthouseEvidence(result, sampled = true) {
   assert.equal(result.lhr?.configSettings?.formFactor, 'mobile');
   assert.equal(result.lhr?.configSettings?.throttlingMethod, 'simulate');
   assert.ok(
@@ -144,15 +162,16 @@ function lighthouseEvidence(result) {
     Array.isArray(result.artifacts?.DevtoolsLog) && result.artifacts.DevtoolsLog.length > 0,
     'original network/DevTools evidence required'
   );
-  assert.ok(
-    result.artifacts.Trace.traceEvents.some(
-      (row) =>
-        row.name === 'ProfileChunk' &&
-        Array.isArray(row.args?.data?.cpuProfile?.samples) &&
-        row.args.data.cpuProfile.samples.length > 0
-    ),
-    'function-level CPU samples required'
-  );
+  if (sampled)
+    assert.ok(
+      result.artifacts.Trace.traceEvents.some(
+        (row) =>
+          row.name === 'ProfileChunk' &&
+          Array.isArray(row.args?.data?.cpuProfile?.samples) &&
+          row.args.data.cpuProfile.samples.length > 0
+      ),
+      'function-level CPU samples required'
+    );
   assert.ok(
     Number.isFinite(result.lhr.audits['total-blocking-time'].numericValue),
     'measured TBT required'
@@ -228,7 +247,36 @@ async function research(inputs, url, output, record) {
   }
   return inputs;
 }
-async function writing(inputs, url, output, record, dependencies) {
+function traceSummary(trace) {
+  const profiles = new Map();
+  const tasks = [];
+  for (const event of trace?.traceEvents || []) {
+    if (event.name === 'RunTask' && event.dur > 50000)
+      tasks.push({ ts: event.ts, ms: event.dur / 1000, pid: event.pid, tid: event.tid });
+    if (event.name !== 'ProfileChunk') continue;
+    const key = [event.pid, event.tid, event.id].join(':');
+    if (!profiles.has(key)) profiles.set(key, { nodes: new Map(), counts: new Map() });
+    const profile = profiles.get(key),
+      data = event.args?.data?.cpuProfile;
+    for (const node of data?.nodes || []) profile.nodes.set(node.id, node.callFrame);
+    for (const id of data?.samples || []) profile.counts.set(id, (profile.counts.get(id) || 0) + 1);
+  }
+  const counts = new Map();
+  for (const { nodes, counts: samples } of profiles.values())
+    for (const [id, count] of samples) {
+      const frame = nodes.get(id);
+      const key = JSON.stringify(frame || { functionName: 'unknown', id });
+      counts.set(key, (counts.get(key) || 0) + count);
+    }
+  return {
+    longTasks: tasks.sort((a, b) => b.ms - a.ms).slice(0, 12),
+    cpuSelfSamples: [...counts]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 30)
+      .map(([frame, samples]) => ({ ...JSON.parse(frame), samples })),
+  };
+}
+async function writing(inputs, url, output, record, dependencies, current = false) {
   let runtime = dependencies;
   if (!runtime) {
     const { toolRequire } = require('./common.cjs');
@@ -243,7 +291,14 @@ async function writing(inputs, url, output, record, dependencies) {
   }
   assert.equal(record.fullGate, false);
   assert.equal(record.performanceAcceptance, false);
-  for (const label of writingLabels) {
+  const plan = current
+    ? Array.from({ length: 6 }, (_, index) => ({
+        label: 'color',
+        run: index + 1,
+        sampled: index === 5,
+      }))
+    : writingLabels.map((label) => ({ label, run: 1, sampled: true }));
+  for (const [index, { label, run, sampled }] of plan.entries()) {
     let chrome,
       cleanupError,
       phase = 'launch';
@@ -258,14 +313,15 @@ async function writing(inputs, url, output, record, dependencies) {
         output: 'json',
         logLevel: 'error',
         onlyCategories: ['performance', 'accessibility', 'best-practices'],
-        additionalTraceCategories: ['disabled-by-default-v8.cpu_profiler'],
+        ...(sampled ? { additionalTraceCategories: ['disabled-by-default-v8.cpu_profiler'] } : {}),
       });
       const lhr = result.lhr,
-        prefix = 'writing-' + label + '-1',
+        prefix = 'writing-' + label + '-' + run,
         row = {
           label,
           route: 'writing',
-          run: 1,
+          run,
+          sampled,
           fullGate: false,
           performanceAcceptance: false,
           evidenceValid: false,
@@ -277,15 +333,17 @@ async function writing(inputs, url, output, record, dependencies) {
           lhr: saveRaw(output, prefix + '-lhr', lhr),
           trace: saveRaw(output, prefix + '-trace', result.artifacts?.Trace),
           devtoolsLog: saveRaw(output, prefix + '-devtoolslog', result.artifacts?.DevtoolsLog),
+          traceSummary: traceSummary(result.artifacts?.Trace),
         };
       record.rows.push(row);
       save(record, output);
       phase = 'validation';
-      lighthouseEvidence(result);
+      lighthouseEvidence(result, sampled);
       row.evidenceValid = true;
       save(record, output);
+      console.log('Writing observation', JSON.stringify(row));
     } catch (error) {
-      record.errors.push({ label, run: 1, phase, message: error.message, stack: error.stack });
+      record.errors.push({ label, run, phase, message: error.message, stack: error.stack });
       save(record, output);
     } finally {
       if (chrome)
@@ -295,14 +353,14 @@ async function writing(inputs, url, output, record, dependencies) {
           // A browser with unknown cleanup state must not overlap the next trial.
           record.errors.push({
             label,
-            run: 1,
+            run,
             phase: 'cleanup',
             message: error.message,
             stack: error.stack,
           });
-          record.unattempted = writingLabels
-            .slice(writingLabels.indexOf(label) + 1)
-            .map((next) => ({ label: next, run: 1, reason: 'previous browser cleanup failed' }));
+          record.unattempted = plan
+            .slice(index + 1)
+            .map(({ label, run }) => ({ label, run, reason: 'previous browser cleanup failed' }));
           save(record, output);
           cleanupError = error;
         }
@@ -454,6 +512,14 @@ async function main(scope, normalDir, controlDir, output) {
     pass: false,
     protocol: contract.protocol,
     environment: environment(),
+    runner: {
+      cpuModel: require('node:os').cpus()[0]?.model,
+      logicalCpus: require('node:os').cpus().length,
+      image: process.env.ImageOS,
+      imageVersion: process.env.ImageVersion,
+      runId: process.env.GITHUB_RUN_ID,
+      runAttempt: process.env.GITHUB_RUN_ATTEMPT,
+    },
     identities: Object.fromEntries(
       Object.entries(inputs).map(([label, v]) => [label, { ...v.manifest, files: undefined }])
     ),
@@ -464,8 +530,11 @@ async function main(scope, normalDir, controlDir, output) {
   const { server, url } = await require('./writing-probe.cjs').serve(inputs);
   try {
     if (scope === 'webkit') await webkit(inputs, url, output, record);
-    else if (scope === 'writing') await writing(inputs, url, output, record);
+    else if (scope === 'writing' || scope === 'writing-current')
+      await writing(inputs, url, output, record, undefined, scope === 'writing-current');
     else await research(inputs, url, output, record);
+    for (const { publicDir, manifest } of Object.values(inputs))
+      artifact.verify(publicDir, manifest);
     record.complete = evidenceComplete(scope, record);
     record.pass = record.complete;
     save(record, output);
@@ -495,6 +564,7 @@ module.exports = {
   evidenceComplete,
   writingLabels,
   writing,
+  traceSummary,
   lighthouseEvidence,
   saveRaw,
   heartbeat,

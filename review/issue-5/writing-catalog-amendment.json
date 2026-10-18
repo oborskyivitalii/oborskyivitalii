@@ -488,7 +488,7 @@
     "site/templates/components/language-badge.html": "c52c5eda2f53cad3dccbaa029822a6feeb9f9ec0ff785a733a5574c0ff7d0a62",
     "site/templates/components/publication-title.html": "bd5bd7da4a65d5362e9632f732960a1be59be8f47f1c759a75506630335a29ed",
     "site/templates/components/publication.html": "472b7d41fab55fd9d178cd80dca52492184b41481ed37b222815cb02b8d853dc",
-    "tools/site/content.cjs": "377e7d98d90d2036016826aa3f5f4648029986ef7ae1c2928663ed2952d2ba0d",
+    "tools/site/content.cjs": "e18ef27e528a957aad3ba1f64ea557ec5977e14572d64323e15c40d2da810119",
     "tools/site/html.cjs": "6dbfb79e88d569e53575325d9be47c8b8afcff6bb0f60d09fb0c59ca861f573f",
     "tools/site/render-content.cjs": "d41abe47bec0c5698e49f1bc114c9bdf55e1d6fcf348374a8587f20e373fcf33",
     "tools/site/render-records.cjs": "f141136540bdec4129595038024618f2afe67351221f6cc174c743aa45075c42",

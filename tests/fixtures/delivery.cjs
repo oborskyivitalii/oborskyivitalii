@@ -115,6 +115,14 @@ function staging(parent, color = false) {
       record: JSON.stringify(result.record),
       files: artifact.entries(result.directory),
     });
+  rightsInventory(result, true);
+  return result;
+}
+
+function production(parent, name = 'production', commit) {
+  const result = source(parent, name, commit);
+  result.record = require('../../tools/release/edition.cjs').build(result.directory);
+  rightsInventory(result, true);
   return result;
 }
 function response(url, bytes, status = 200) {
@@ -129,7 +137,45 @@ function response(url, bytes, status = 200) {
     arrayBuffer: async () => Buffer.from(bytes),
   };
 }
-function fullProof(record) {
+function rightsInventory(source, confirmed = false) {
+  const sourceRoot = source.directory + '-rights-source';
+  for (const name of [
+    'site',
+    'README.md',
+    'CONTRIBUTING.md',
+    'guides/SITE-SOURCE-AUDIT.md',
+    'guides/SITE-CONTENT-REVIEW.md',
+    'tools/site',
+    'tools/release/edition.cjs',
+    'tools/RI-LICENSE.md',
+    'tools/RI-NOTICE.md',
+    'review/assets/vitalii-oborskyi-cutout-20261002.png',
+    ...Object.values(require('../../tools/site/legal.cjs').sources),
+  ]) {
+    const target = path.join(sourceRoot, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.cpSync(path.join(__dirname, '../..', name), target, { recursive: true });
+  }
+  if (!confirmed) {
+    const file = path.join(sourceRoot, 'site/rights.json');
+    const manifest = JSON.parse(fs.readFileSync(file));
+    manifest.policy.status = 'pending-maintainer-decision';
+    manifest.policy.decision = null;
+    fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
+  }
+  const report = require('../../tools/release/rights.cjs').compile(
+    path.join(source.directory, 'public'),
+    source.record,
+    { sourceRoot }
+  );
+  fs.writeFileSync(
+    path.join(source.directory, 'rights.json'),
+    JSON.stringify(report, null, 2) + '\n'
+  );
+  return { sourceRoot, report };
+}
+
+function fullProof(record, rightsReport = null) {
   const identity = {
     schema: 1,
     pass: true,
@@ -140,7 +186,12 @@ function fullProof(record) {
   const external = {
     ...identity,
     independentReview: { pass: true, reviewer: 'fixture reviewer', record: 'fixture review' },
-    rights: { pass: true, reviewer: 'fixture owner', record: 'fixture publication decision' },
+    rights: {
+      pass: true,
+      reviewer: 'fixture owner',
+      record: 'fixture publication decision',
+      ...(rightsReport ? { inventoryDigest: rightsReport.inventoryDigest } : {}),
+    },
   };
   for (const key of ['iosSafari', 'androidChrome'])
     external[key] = {
@@ -168,4 +219,4 @@ function fullProof(record) {
     external,
   };
 }
-module.exports = { source, staging, temporary, response, fullProof };
+module.exports = { source, staging, production, temporary, response, rightsInventory, fullProof };

@@ -12,7 +12,7 @@ const repository = 'oborskyivitalii/oborskyivitalii',
   project = 'oborskyi-author-ci-staging';
 const workflow = '.github/workflows/site-color-review.yml',
   marker = '<!-- site-review-deployment -->';
-const byteMismatches = new WeakSet();
+const pendingResponses = new WeakSet();
 function positive(value) {
   assert.ok(
     typeof value === 'string' || typeof value === 'number',
@@ -203,7 +203,18 @@ function sameBytes(actual, expected, file) {
     assert.equal(actual, expected, 'wrong served bytes ' + file);
   } catch (error) {
     error.code = 'ALIAS_BYTES_PENDING';
-    byteMismatches.add(error);
+    pendingResponses.add(error);
+    throw error;
+  }
+}
+function available(status, file) {
+  try {
+    assert.equal(status, 200, file);
+  } catch (error) {
+    if (status === 404) {
+      error.code = 'ALIAS_FILE_PENDING';
+      pendingResponses.add(error);
+    }
     throw error;
   }
 }
@@ -212,6 +223,7 @@ function httpObservation(file, result, expected) {
     file,
     url: result.url,
     status: result.response.status,
+    redirects: result.redirects,
     sha256: digest(result.bytes),
     expectedSha256: expected,
     headers: Object.fromEntries(
@@ -234,17 +246,25 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
     'site-revision.json',
     '_staging/revision.json',
     ...['space.js', 'navigation.js', 'styles.css'].map((x) => 'runtime/' + runtime + '/' + x),
+    ...(record.hostPolicy === pkg.hostPolicies.snapshotProxy
+      ? Object.keys(record.source.files).filter((file) => file.startsWith('snapshots/'))
+      : []),
   ];
   const work = names.map(async (file) => {
     try {
       const result = await hosted.request(base + '/' + file, base, fetcher);
       if (observation)
         observation.rows.push(httpObservation(file, result, record.files[file].sha256));
-      assert.equal(result.response.status, 200, file);
-      hosted.responseHeaders(result.response.headers, file.startsWith('runtime/'));
+      available(result.response.status, file);
+      if (record.hostPolicy === pkg.hostPolicies.snapshotProxy && file.startsWith('snapshots/'))
+        assert.equal(result.redirects, 0, 'immutable snapshot proxy redirected ' + file);
+      hosted.responseHeaders(
+        result.response.headers,
+        require('../site/snapshot.cjs').immutable(file)
+      );
       assertContentType(file, result.response.headers.get('content-type'));
       sameBytes(digest(result.bytes), record.files[file].sha256, file);
-      return { file, sha256: digest(result.bytes), status: 200 };
+      return { file, sha256: digest(result.bytes), status: 200, redirects: result.redirects };
     } catch (error) {
       if (observation) observation.failed(error, file);
       throw error;
@@ -263,7 +283,7 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
   const root = await hosted.request(base + '/', base, fetcher);
   if (observation)
     observation.rows.push(httpObservation('/', root, record.files['index.html'].sha256));
-  assert.equal(root.response.status, 200);
+  available(root.response.status, '/');
   hosted.responseHeaders(root.response.headers);
   assertContentType('index.html', root.response.headers.get('content-type'));
   sameBytes(digest(root.bytes), record.files['index.html'].sha256, '/');
@@ -329,7 +349,7 @@ async function readyHttp(base, record, fetcher = fetch, options = {}) {
       rows: observed.rows,
       failed(error, file) {
         observed.errors.push({ file, message: error.message, code: error.code || null });
-        if (!byteMismatches.has(error) && !observation.fatal) {
+        if (!pendingResponses.has(error) && !observation.fatal) {
           observation.fatal = error;
           abort.abort(error);
         }
@@ -358,7 +378,7 @@ async function readyHttp(base, record, fetcher = fetch, options = {}) {
           const file = '_staging/revision.json',
             revision = await hosted.request(base + '/' + file, base, boundedFetcher);
           observed.revision = httpObservation(file, revision, record.files[file].sha256);
-          assert.equal(revision.response.status, 200, file);
+          available(revision.response.status, file);
           hosted.responseHeaders(revision.response.headers);
           sameBytes(digest(revision.bytes), record.files[file].sha256, file);
           abort.signal.throwIfAborted();
@@ -385,7 +405,7 @@ async function readyHttp(base, record, fetcher = fetch, options = {}) {
       Object.assign(attempt, {
         error: error.message,
         code: error.code || null,
-        retryable: byteMismatches.has(error),
+        retryable: pendingResponses.has(error),
       });
     result.readiness.attempts.push(attempt);
     if (!error) {
@@ -396,7 +416,7 @@ async function readyHttp(base, record, fetcher = fetch, options = {}) {
     }
     result.error = error.message;
     save();
-    if (!byteMismatches.has(error)) {
+    if (!pendingResponses.has(error)) {
       if (error.code === 'ALIAS_READINESS_DEADLINE') {
         result.readiness.deadlineExceeded = true;
         save();

@@ -2,6 +2,39 @@
 const test = require('node:test'),
   assert = require('node:assert/strict');
 const { aggregate, lighthouse, motion } = require('../tools/quality/validate.cjs');
+test('reduced measurement waits for actual media and public mode, rejecting incomplete transitions', async () => {
+  const vm = require('node:vm');
+  const { setReducedMotion } = require('../tools/quality/motion.cjs');
+  function fixture({ mediaDelay = 0, modeDelay = 0, disabled = true } = {}) {
+    let elapsed = 0;
+    const page = {
+      emulateMedia: async (value) => assert.deepEqual(value, { reducedMotion: 'reduce' }),
+      waitForFunction: async (predicate, argument, options) => {
+        assert.deepEqual(options, { polling: 40, timeout: 2000 });
+        for (; elapsed <= options.timeout; elapsed += options.polling) {
+          const ready = elapsed >= modeDelay;
+          const matches = vm.runInNewContext('(' + predicate.toString() + ')()', {
+            matchMedia: () => ({ matches: elapsed >= mediaDelay }),
+            document: {
+              querySelector: () => ({
+                disabled: ready && disabled,
+                textContent: ready ? 'Motion: reduced' : 'Motion: on',
+              }),
+            },
+          });
+          if (matches) return;
+        }
+        throw Error('media/public mode did not settle');
+      },
+    };
+    return { page, elapsed: () => elapsed };
+  }
+  const delayed = fixture({ mediaDelay: 360, modeDelay: 600 });
+  await setReducedMotion(delayed.page);
+  assert.equal(delayed.elapsed(), 600, 'measurement must wait beyond a guessed 200ms delay');
+  for (const state of [{ mediaDelay: 3000 }, { modeDelay: 3000 }, { disabled: false }])
+    await assert.rejects(setReducedMotion(fixture(state).page), /did not settle/);
+});
 const budgets = require('../tools/quality/budgets.json');
 const colorMotion = require('../tools/quality/color-motion-contract.cjs');
 const variant = { id: 'base', contract: 1, fingerprint: 'd'.repeat(64) };
@@ -713,7 +746,21 @@ function fullFixture() {
     for (const theme of ['day', 'night'])
       for (const device of ['desktop', 'mobile']) {
         capture.files[`${route}-${theme}-${device}.png`] = 'e'.repeat(64);
-        capture.views.push({ route, theme, device, overflow: false, ambient_changes_pixels: true });
+        capture.views.push({
+          route,
+          theme,
+          device,
+          overflow: false,
+          ambient_changes_pixels: true,
+          native_scroll_has_range: true,
+          native_scroll_changes_camera: false,
+          native_scroll: {
+            range: 1000,
+            before: { y: 0, camera: 'controlled fixed reading pose' },
+            forward: { y: 450, camera: 'controlled fixed reading pose' },
+            reverse: { y: 0, camera: 'controlled fixed reading pose' },
+          },
+        });
       }
   }
   x.reports.push(capture);
@@ -737,6 +784,12 @@ test('complete controlled full-release fixture passes, missing native/capture/de
     (x) => x.reports.at(-1).views.pop(),
     (x) => delete x.reports.at(-1).files['writing-motion.webm'],
     (x) => (x.reports.at(-1).files['writing-motion.webm'] = true),
+    (x) => delete x.reports.at(-1).views[0].native_scroll,
+    (x) => (x.reports.at(-1).views[0].native_scroll.forward.camera = 'moving camera'),
+    (x) => (x.reports.at(-1).views[0].native_scroll.reverse.camera = 'moving camera'),
+    (x) => (x.reports.at(-1).views[0].native_scroll.forward.y = 0),
+    (x) => (x.reports.at(-1).views[0].native_scroll.reverse.y = 450),
+    (x) => (x.reports.at(-1).views[0].native_scroll_changes_camera = true),
     (x) => (x.releaseEvidence.iosSafari.pass = false),
     (x) => delete x.releaseEvidence.androidChrome.device,
   ];
@@ -744,6 +797,26 @@ test('complete controlled full-release fixture passes, missing native/capture/de
     const x = fullFixture();
     mutate(x);
     assert.throws(() => aggregate(x));
+  }
+});
+test('full captures accept genuine short pages and reject fabricated or missing scroll observations', () => {
+  const short = fullFixture();
+  const row = short.reports.at(-1).views[0];
+  row.native_scroll.range = 0;
+  row.native_scroll_has_range = false;
+  row.native_scroll.forward.y = 0;
+  row.native_scroll.reverse.y = 0;
+  assert.equal(aggregate(short).pass, true);
+  for (const mutate of [
+    (r) => (r.native_scroll.forward.y = 10),
+    (r) => delete r.native_scroll.reverse,
+    (r) => (r.native_scroll.before.camera = ''),
+    (r) => (r.native_scroll.range = NaN),
+    (r) => (r.native_scroll_has_range = true),
+  ]) {
+    const invalid = structuredClone(short);
+    mutate(invalid.reports.at(-1).views[0]);
+    assert.throws(() => aggregate(invalid));
   }
 });
 test('full CSS-blocked Home evidence requires the complete original route and history journey', () => {
@@ -973,6 +1046,7 @@ function colorFixture() {
         motionContract: structuredClone(motionContract),
         ribbons: { sceneHook: 'undefined', dataset: {} },
         paint: { completed: 2, ordinaryShapes: 12, customShapes: 0 },
+        edgeInputs: require('./fixtures/staging-evidence.cjs').edgeInputs(),
         checks: Object.fromEntries(
           [
             'blockFlight',
@@ -1027,6 +1101,12 @@ test('full macOS policy keeps twelve travel Color cells with ordinary paint incl
     (report) => (report.rows[0].paint.ordinaryShapes = 0),
     (report) => (report.rows[0].paint.customShapes = 1),
     (report) => delete report.rows[0].paint,
+    (report) => delete report.rows[0].edgeInputs,
+    (report) => report.rows[0].edgeInputs.pop(),
+    (report) => (report.rows[0].edgeInputs[0].preparation.stableMs = 179),
+    (report) => (report.rows[0].edgeInputs[0].preparation.y = 900),
+    (report) => (report.rows[0].edgeInputs[0].preparation.policy.budgetMs = 901),
+    (report) => (report.rows[0].edgeInputs[2].to = 'writing'),
   ];
   for (const mutate of mutations) {
     const evidence = colorFixture();

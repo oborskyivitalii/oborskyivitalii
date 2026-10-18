@@ -469,6 +469,57 @@ test('forward response allows native subpixel rounding but does not demand trave
   assert.equal(result.camera, 'opening');
   assert.equal(result.forwardResponse, null);
 });
+test('native anchoring accounts only for the same visible ink displacement after exact scroll input', async () => {
+  const travel = { range: 9000, target: 2400, y: 2400, anchor: { top: 2800 } };
+  for (const defect of [null, 'unaccounted', 'lost', 'blocked', 'camera', 'reversed']) {
+    const h = helpers();
+    let documentTop = 2800;
+    h.context.window.__forwardReadingAnchor = {
+      isConnected: defect !== 'lost',
+      getBoundingClientRect: () => ({ top: documentTop - h.context.scrollY }),
+    };
+    const page = cameraPage(h, (_time, current) => {
+      documentTop = defect === 'unaccounted' ? 2800 : 2744;
+      current.context.scrollY = defect === 'reversed' ? 0 : 2344;
+      current.scene.dataset.camera = defect === 'camera' ? 'journey' : 'opening';
+    });
+    if (defect) {
+      await assert.rejects(
+        h.forwardCamera(page, 'opening', { ...travel, y: defect === 'blocked' ? 0 : 2400 })
+      );
+    } else {
+      const result = await h.forwardCamera(page, 'opening', travel);
+      assert.equal(result.scrollY, 2344);
+      assert.equal(result.forwardResponse.samples[0].displacement, -56);
+      assert.equal(result.forwardResponse.samples[0].target, 2344);
+      assert.equal(result.forwardResponse.timeoutMs, 2000);
+    }
+  }
+});
+test('engines retaining the requested native endpoint do not have to apply optional scroll anchoring', async () => {
+  for (const displacement of [-56, -88]) {
+    const h = helpers();
+    h.context.window.__forwardReadingAnchor = {
+      isConnected: true,
+      getBoundingClientRect: () => ({ top: 2800 + displacement - h.context.scrollY }),
+    };
+    const page = cameraPage(h, (_time, current) => {
+      current.context.scrollY = 2400;
+    });
+    const result = await h.forwardCamera(page, 'opening', {
+      range: 9000,
+      target: 2400,
+      y: 2400,
+      anchor: { top: 2800 },
+    });
+    const sample = result.forwardResponse.samples[0];
+    assert.equal(sample.positionMode, 'requested');
+    assert.equal(sample.target, 2400);
+    assert.equal(sample.anchoredTarget, 2400 + displacement);
+    assert.equal(sample.displacement, displacement);
+    assert.equal(result.forwardResponse.timeoutMs, 2000);
+  }
+});
 function paintPage(h, change) {
   h.attached.add('.space-scene');
   h.attached.add('#space-motion');

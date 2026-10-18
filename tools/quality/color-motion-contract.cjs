@@ -5,6 +5,14 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  issue5Reconciled: {
+    behavior: 'fixed-blocks',
+    baseEngine: '2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: 'f30dd4d3c8090cfe12f372d1f5e592e7627f1f8c4c138674a19175549a3debcf',
+    archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
+  },
   legacy: {
     behavior: 'following-spatial',
     baseEngine: 'fa4a705a0e232b75f58804ea4fd3b39a3b40c9a3e7343c09937a85378aae67d4',
@@ -93,6 +101,13 @@ const families = {
     navigation: 'c6b943e797d98d4001a726a22b728d49fa2b81ca1da5a421017d0e8e3e7b51ef',
     archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
   },
+  issue39: {
+    behavior: 'fixed-blocks',
+    baseEngine: '77a4d80ad8427e79d10a7c3cb6a5dd20a858296b74fef3e735e5f20578a428ad',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
   issue39Licensed: {
     behavior: 'fixed-blocks',
     baseEngine: '53bb494ae3b2bc9ea5b838755ee5b2b9c48fab7183fc6c53a2461dc44dbb004f',
@@ -100,8 +115,50 @@ const families = {
     space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
     navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
   },
+  issue39LicensedCompact: {
+    behavior: 'fixed-blocks',
+    baseEngine: '73ab537313a205583a5a1f912161092f7b98994d4415a1f70696e0236af7a0b8',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '0632b41dbfdc9e931db7513729c88b625240673c5a039c2bc61686cf15578487',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
+  issue39WritingTbt: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'ed13aef9321a94422fbe8c5b72150a7eb5f9f1ec883c61a0ad9a800dfc0655a5',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: 'e91efc5dccd49673849d989de9ec5ca5eacbfe445752c085e19f04d808dcc31b',
+  },
+  issue39CssClock: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'd698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: 'f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e',
+  },
 };
 const runtimes = [
+  {
+    id: 'issue5-reconciled-production',
+    family: 'issue5Reconciled',
+    edition: 'production',
+    fingerprint: '67aad573db12f043210a3a98b4e0f26f43d4bddb2c824d46ee21108f8ddf7177',
+    styles: '0febf1812d0748533e48b5ab6dfc4e8bac6c3c6a787ac9701aaf6ebbe61d5cdc',
+  },
+  {
+    id: 'issue5-reconciled-plain',
+    family: 'issue5Reconciled',
+    edition: 'plain',
+    fingerprint: '7acc79ca1645e6269866a09243c28a405a960898d4a937f8b877468b8a7baa94',
+    styles: '0febf1812d0748533e48b5ab6dfc4e8bac6c3c6a787ac9701aaf6ebbe61d5cdc',
+  },
+  {
+    id: 'issue5-reconciled-staging',
+    family: 'issue5Reconciled',
+    edition: 'staging',
+    fingerprint: 'ff6746cb27316ab12f898dd46f6da34800f98413c84358e530405d59d2e48be6',
+    styles: '12342444a81c54686eb840bda16c0afc40a569badd6644d8696437f031f8e64f',
+  },
   {
     id: 'legacy-plain',
     family: 'legacy',
@@ -271,6 +328,34 @@ const runtimes = [
     styles: '1807811a0be488799b26fc953210d78d2a66626d8466d9d6fa345855697e7a6b',
   },
   {
+    id: 'issue76-production',
+    family: 'issue76',
+    edition: 'production',
+    fingerprint: 'a7fed56c7d5019efd5c5dbf4b88c6fea711bd0c30a418cafcbb587a6af726442',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
+    id: 'issue39-plain',
+    family: 'issue39',
+    edition: 'plain',
+    fingerprint: '38fd594346f5250133ff433c27bc25eb2e1bfc7865f53dd3a3be783690d14fcc',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
+    id: 'issue39-staging',
+    family: 'issue39',
+    edition: 'staging',
+    fingerprint: '20001067aff1664b0dafe384dc1de7e3a1ce4d4a5647cc84d9f3eed639f63af8',
+    styles: '545b7cb79e15706a80087ebc5cf5139b0c4af564d47f141b7a1ede0915c18a97',
+  },
+  {
+    id: 'issue39-production',
+    family: 'issue39',
+    edition: 'production',
+    fingerprint: 'b4202b7c567affcaaad94eec403329d45ea18fbfd886ac0a3556926ca045f196',
+    styles: '302fb2878c83f919c5fbbe9fdcf9a11ef0094b720682924d9a7d76bf4846670e',
+  },
+  {
     id: 'issue39-licensed-plain',
     family: 'issue39Licensed',
     edition: 'plain',
@@ -284,6 +369,76 @@ const runtimes = [
     edition: 'staging',
     fingerprint: '79a40d3f5166b1ac87575db60bd9f24bcaef768d8158b7a963ae181ec58e777b',
     styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-licensed-production',
+    family: 'issue39Licensed',
+    edition: 'production',
+    fingerprint: 'bb5a2643fed4d2caef69289634bffe4a35b0ceef2345affbf3be6f25903c9c06',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-licensed-compact-plain',
+    family: 'issue39LicensedCompact',
+    edition: 'plain',
+    fingerprint: '80cda9414465974ced82ba891839ed7d6ec6e8a7d2194d3cd6122e323f263bf3',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-licensed-compact-staging',
+    family: 'issue39LicensedCompact',
+    edition: 'staging',
+    fingerprint: '2c543a78d13b006840f151d99fdbf5f551e001d9ee04bbbed636a55fe6b6017d',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-licensed-compact-production',
+    family: 'issue39LicensedCompact',
+    edition: 'production',
+    fingerprint: 'b848de73373003be1f141f9d51d30d6fa7343df0b33ce41e00713335d553083e',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-writing-tbt-plain',
+    family: 'issue39WritingTbt',
+    edition: 'plain',
+    fingerprint: '7e19acc943d0748d3976c989f2cea4f8126832de378a371aa71ecd091b75cab8',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-writing-tbt-staging',
+    family: 'issue39WritingTbt',
+    edition: 'staging',
+    fingerprint: '4bbfd81338ddb659308ed833aa519d34f136278bacd6638efcdded6f8e968e2e',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-writing-tbt-production',
+    family: 'issue39WritingTbt',
+    edition: 'production',
+    fingerprint: '6f9b49f746e1a5f2e18138d8d34ee0f9dd2b35b7a68d6b6cbe2b015424e28cf4',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-css-clock-plain',
+    family: 'issue39CssClock',
+    edition: 'plain',
+    fingerprint: '6d9f94052d390ec92e5583543c1934b3c1c0796274759589a42cb44d38424714',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
+  {
+    id: 'issue39-css-clock-staging',
+    family: 'issue39CssClock',
+    edition: 'staging',
+    fingerprint: '0144ed548a9d191f9dd27ce2542f7dd829d540f67a7f37f0466a3700cce03729',
+    styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
+  },
+  {
+    id: 'issue39-css-clock-production',
+    family: 'issue39CssClock',
+    edition: 'production',
+    fingerprint: '1f922d2579f25cfd67186d2f8e0d0fd517c35aaef9ebef8d5a14d3aa30519b17',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
   },
 ];
 function reviewedRuntime(id) {
@@ -324,7 +479,9 @@ function select(manifest) {
     manifest.edition,
     runtime.edition === 'staging'
       ? { id: 'staging', indexable: false, analytics: false }
-      : undefined,
+      : runtime.edition === 'production'
+        ? { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' }
+        : undefined,
     'Color runtime edition differs'
   );
   for (const [name, hash] of Object.entries(runtime.files)) {

@@ -149,21 +149,19 @@ test('changed PNG bytes cannot reuse an immutable article asset name', (t) => {
   );
 });
 
-test('staging derivation retains old article snapshots and their complete immutable runtime closure', (t) => {
+test('staging derives labelled article snapshots and removes prior unlabelled HTML/runtime', (t) => {
   const { directory, publicDir, record, article } = fixture(t);
-  const oldBytes = fs.readFileSync(path.join(publicDir, article.url));
-  const oldRuntime = 'runtime/' + record.components.engine + '/navigation.js';
-  const oldRuntimeBytes = fs.readFileSync(path.join(publicDir, oldRuntime));
   const stage = stageEdition.build(directory);
-  assert.notEqual(stage.components.articles[key].version, article.version);
-  assert.deepEqual(fs.readFileSync(path.join(publicDir, article.url)), oldBytes);
-  assert.deepEqual(fs.readFileSync(path.join(publicDir, oldRuntime)), oldRuntimeBytes);
+  const current = stage.components.articles[key];
+  assert.notEqual(current.version, article.version);
+  assert.equal(fs.existsSync(path.join(publicDir, article.url)), false);
+  assert.equal(fs.existsSync(path.join(publicDir, 'runtime', record.components.engine)), false);
+  for (const file of [current.alias, current.url]) {
+    const html = fs.readFileSync(path.join(publicDir, file), 'utf8');
+    assert.match(html, /name="robots" content="noindex,nofollow"/);
+    assert.match(html, /class="site-environment"/);
+  }
   pages.checkStaging(directory, stage);
-  fs.rmSync(path.join(publicDir, oldRuntime));
-  assert.throws(
-    () => snapshot.verify(publicDir, refreshRecord(publicDir, stage)),
-    /snapshot dependency missing/
-  );
 });
 
 test('Color derives article versions with the selected runtime and preserves earlier immutable documents', (t) => {

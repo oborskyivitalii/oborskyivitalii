@@ -6,7 +6,11 @@ const fs = require('node:fs'),
   assert = require('node:assert/strict');
 const { isDeepStrictEqual } = require('node:util');
 const REGISTRY = 'tools/quality/test-profiles.json';
-const WORKER_LIMIT = 2;
+const executionLimits = Object.freeze({
+  timeoutMs: 180000,
+  reportGraceMs: 30000,
+  maxBufferBytes: 16 * 1024 * 1024,
+});
 function safePath(value, { pattern = false } = {}) {
   assert.equal(typeof value, 'string', 'path must be text');
   assert.ok(
@@ -545,78 +549,6 @@ function requireClean(root) {
     'source tests require clean checkout'
   );
 }
-function validateExecutionOrder(modules, order) {
-  assert.ok(Array.isArray(order), 'missing source execution order');
-  assert.equal(new Set(order).size, order.length, 'duplicate source execution module');
-  assert.deepEqual([...order].sort(), [...modules].sort(), 'source execution inventory differs');
-}
-function executionOrder(root, modules) {
-  assert.ok(Array.isArray(modules), 'missing selected modules');
-  assert.equal(new Set(modules).size, modules.length, 'duplicate selected source module');
-  const sizes = new Map();
-  for (const file of modules) {
-    safePath(file);
-    assert.ok(
-      /^tests\/(?:[^/]+\/)*[^/]+\.test\.cjs$/.test(file),
-      'unsupported selected source module'
-    );
-    const stat = fs.lstatSync(path.join(root, file));
-    assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'selected source module must be regular');
-    sizes.set(file, stat.size);
-  }
-  const priority = ['tests/space.test.cjs', 'tests/executive.test.cjs'];
-  const rank = (file) => {
-    const index = priority.indexOf(file);
-    return index < 0 ? priority.length : index;
-  };
-  // Measured long suites start first; size orders the remaining selected files.
-  // Both are deterministic scheduling heuristics, not duration guarantees.
-  const ordered = [...modules].sort(
-    (first, second) =>
-      rank(first) - rank(second) ||
-      sizes.get(second) - sizes.get(first) ||
-      (first < second ? -1 : first > second ? 1 : 0)
-  );
-  validateExecutionOrder(modules, ordered);
-  return ordered;
-}
-function executeSelected(root, modules) {
-  assert.ok(modules.length > 0, 'missing selected execution modules');
-  assert.deepEqual(modules, executionOrder(root, modules), 'selected execution order mismatch');
-  const { run: runTests } = require('node:test');
-  const { tap } = require('node:test/reporters');
-  const controller = new AbortController();
-  let reporter;
-  const failed = () => {
-    process.exitCode = 1;
-  };
-  const abort = () => {
-    failed();
-    controller.abort();
-    reporter?.resume();
-  };
-  process.once('SIGTERM', abort);
-  process.once('SIGINT', abort);
-  process.stdout.once('error', abort);
-  const cleanup = () => {
-    process.removeListener('SIGTERM', abort);
-    process.removeListener('SIGINT', abort);
-    process.stdout.removeListener('error', abort);
-  };
-  const stream = runTests({
-    files: modules.map((file) => path.resolve(root, file)),
-    concurrency: WORKER_LIMIT,
-    isolation: 'process',
-    signal: controller.signal,
-  });
-  stream.on('test:fail', failed);
-  stream.on('test:summary', ({ success }) => {
-    if (!success) failed();
-  });
-  stream.on('error', abort);
-  reporter = stream.compose(tap);
-  reporter.on('error', abort).on('end', cleanup).on('close', cleanup).pipe(process.stdout);
-}
 function executeSource(root, argv) {
   const environment = { ...process.env };
   delete environment.NODE_TEST_CONTEXT;
@@ -624,12 +556,22 @@ function executeSource(root, argv) {
     cwd: root,
     env: environment,
     encoding: 'utf8',
-    maxBuffer: 16 * 1024 * 1024,
-    timeout: 180000,
+    maxBuffer: executionLimits.maxBufferBytes,
+    timeout: executionLimits.timeoutMs,
   });
 }
 function executePlan(root, plan, options = {}) {
-  const ordered = executionOrder(root, plan.modules);
+  assert.ok(Array.isArray(plan.modules), 'missing selected modules');
+  assert.equal(new Set(plan.modules).size, plan.modules.length, 'duplicate selected source module');
+  for (const file of plan.modules) {
+    safePath(file);
+    assert.ok(
+      /^tests\/(?:[^/]+\/)*[^/]+\.test\.cjs$/.test(file),
+      'unsupported selected source module'
+    );
+    const stat = fs.lstatSync(path.join(root, file));
+    assert.ok(stat.isFile() && !stat.isSymbolicLink(), 'selected source module must be regular');
+  }
   if (options.requireClean) requireClean(root);
   if (!plan.modules.length) {
     assert.equal(plan.profile, 'pr', 'empty routine profile');
@@ -644,7 +586,7 @@ function executePlan(root, plan, options = {}) {
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
-  const argv = [__filename, '--execute', ...ordered],
+  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...plan.modules],
     started = Date.now(),
     result = execute(argv);
   const output = result.stdout || '',
@@ -669,9 +611,6 @@ function executePlan(root, plan, options = {}) {
     pass: true,
     ...counts,
     elapsedMs: Date.now() - started,
-    executionOrder: ordered,
-    workerLimit: WORKER_LIMIT,
-    availableParallelism: require('node:os').availableParallelism(),
     argv,
   };
 }
@@ -729,8 +668,8 @@ function run(root, plan, options = {}) {
           error: child.error
             ? { name: child.error.name, message: child.error.message, code: child.error.code }
             : null,
-          timeoutMs: 180000,
-          maxBufferBytes: 16 * 1024 * 1024,
+          timeoutMs: executionLimits.timeoutMs,
+          maxBufferBytes: executionLimits.maxBufferBytes,
           stdoutBytes: Buffer.byteLength(child.stdout || ''),
           stderrBytes: Buffer.byteLength(child.stderr || ''),
         };
@@ -909,8 +848,7 @@ function main(argv = process.argv.slice(2)) {
 }
 if (require.main === module) {
   try {
-    if (process.argv[2] === '--execute') executeSelected(process.cwd(), process.argv.slice(3));
-    else main();
+    main();
   } catch (error) {
     if (error.report) console.log(JSON.stringify(error.report));
     console.error(error.message);
@@ -919,6 +857,7 @@ if (require.main === module) {
 }
 module.exports = {
   REGISTRY,
+  executionLimits,
   safePath,
   matches,
   classifyContent,
@@ -933,8 +872,6 @@ module.exports = {
   run,
   argumentsFor,
   requireClean,
-  executionOrder,
-  validateExecutionOrder,
   sourceIdentity,
   reportPaths,
   main,

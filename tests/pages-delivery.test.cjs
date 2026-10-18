@@ -89,7 +89,7 @@ test('Pages initial root is staging and subsequent staging changes preserve ever
   const initial = pkg.build(stage.directory, path.join(temp, 'initial'));
   assert.equal(initial.state.production, null);
   assert.deepEqual(initial.root.files, stage.record.files);
-  const production = fixture.source(temp, 'production', 'c'.repeat(40));
+  const production = fixture.production(temp, 'production', 'c'.repeat(40));
   const directory = path.join(temp, 'combined');
   const record = pkg.build(stage.directory, directory, production.directory, 'prod-2026-10-11.1');
   assert.deepEqual(pkg.subtree(record.files, 'staging/'), stage.record.files);
@@ -116,6 +116,205 @@ function hosted(directory, deploymentPath = '/') {
       : fixture.response(url, fs.readFileSync(path.join(directory, 'public/404.html')), 404);
   };
 }
+
+function readinessClock() {
+  let now = 0;
+  const waits = [];
+  return {
+    waits,
+    options: {
+      deadlineMs: 6000,
+      pollMs: 2000,
+      clock: () => now,
+      wait: async (ms) => {
+        waits.push(ms);
+        now += ms;
+      },
+    },
+  };
+}
+
+test('production readiness waits for exact complete bytes and retains stale and missing observations', async (t) => {
+  const temp = fixture.temporary(t),
+    production = fixture.production(temp),
+    directory = path.join(temp, 'pages'),
+    rights = JSON.parse(fs.readFileSync(path.join(production.directory, 'rights.json')));
+  const record = pkg.build(null, directory, production.directory, 'prod-2026-10-17.2', null, '/', {
+    productionRightsDigest: rights.inventoryDigest,
+  });
+  const clock = readinessClock(),
+    good = hosted(directory),
+    saved = [];
+  const result = await http.ready(
+    directory,
+    'https://author.invalid/',
+    async (url, init) => {
+      assert.equal(init.cache, 'no-store');
+      assert.equal(init.redirect, 'manual');
+      assert.ok(init.signal instanceof AbortSignal);
+      if (new URL(url).pathname === '/site-revision.json' && clock.waits.length === 0)
+        return fixture.response(url, 'old revision');
+      if (new URL(url).pathname === '/index.html' && clock.waits.length === 1)
+        return fixture.response(url, 'not propagated', 404);
+      return good(url);
+    },
+    { ...clock.options, retain: (value) => saved.push(value) }
+  );
+  assert.equal(result.pass, true);
+  assert.equal(result.packageDigest, record.packageDigest);
+  assert.equal(result.query, true);
+  assert.equal(result.actual404, true);
+  assert.equal(result.readiness.attempts.length, 3);
+  assert.deepEqual(clock.waits, [2000, 2000]);
+  assert.ok(result.readiness.attempts.slice(0, 2).every((a) => !a.pass && a.retryable));
+  assert.ok(
+    result.readiness.attempts[1].rows.some((r) => r.status === 404 && r.expectedStatus === 200)
+  );
+  assert.ok(
+    result.readiness.attempts[2].rows.every(
+      (r) => r.sha256 === r.expectedSha256 && r.status === r.expectedStatus
+    )
+  );
+  assert.equal(saved[1].pass, false);
+  assert.equal(saved[1].readiness.attempts.length, 1);
+  assert.equal(saved.at(-1).pass, true);
+
+  for (const mode of ['missing', 'mixed', 'fallback']) {
+    const bounded = readinessClock();
+    const failed = await http.ready(
+      directory,
+      'https://author.invalid/',
+      async (url) => {
+        const file = new URL(url).pathname;
+        if (mode === 'missing' && file === '/index.html') return fixture.response(url, '', 404);
+        if (
+          mode === 'mixed' &&
+          file === (bounded.waits.length % 2 ? '/writing.html' : '/index.html')
+        )
+          return fixture.response(url, 'old bytes');
+        if (mode === 'fallback' && file.includes('__delivery_missing'))
+          return fixture.response(url, fs.readFileSync(path.join(directory, 'public/index.html')));
+        return good(url);
+      },
+      bounded.options
+    );
+    assert.equal(failed.pass, false, mode);
+    assert.equal(failed.readiness.deadlineExceeded, true, mode);
+    assert.equal(failed.readiness.elapsedMs, 6000);
+    assert.equal(failed.readiness.attempts.length, 3);
+    assert.ok(failed.readiness.attempts.every((a) => !a.pass && a.retryable));
+    assert.equal(failed.rows, undefined, 'different observations cannot be stitched into a pass');
+  }
+});
+
+test('production readiness rejects unsafe responses without polling and bounds stalled body reads', async (t) => {
+  const temp = fixture.temporary(t),
+    production = fixture.production(temp),
+    directory = path.join(temp, 'pages'),
+    rights = JSON.parse(fs.readFileSync(path.join(production.directory, 'rights.json')));
+  pkg.build(null, directory, production.directory, 'prod-2026-10-17.2', null, '/', {
+    productionRightsDigest: rights.inventoryDigest,
+  });
+  const good = hosted(directory);
+  for (const mode of ['redirect', 'origin', 'mime', 'status', 'transport']) {
+    const result = await http.ready(
+      directory,
+      'https://author.invalid/',
+      async (url) => {
+        if (mode === 'transport')
+          throw Object.assign(Error('TLS transport failure'), { code: 'PAGES_BYTES_PENDING' });
+        const response = await good(url);
+        if (mode === 'redirect') response.status = 301;
+        if (mode === 'origin') response.url = 'https://outside.invalid/';
+        if (mode === 'mime') response.headers.set('content-type', 'application/octet-stream');
+        if (mode === 'status') response.status = 503;
+        return response;
+      },
+      {
+        deadlineMs: 1000,
+        pollMs: 1,
+        wait: async () => assert.fail('unsafe response must not poll'),
+      }
+    );
+    assert.equal(result.pass, false, mode);
+    assert.equal(result.readiness.attempts.length, 1);
+    assert.equal(result.readiness.attempts[0].retryable, false);
+  }
+  const releases = [];
+  let signal;
+  const stalled = await http.ready(
+    directory,
+    'https://author.invalid/',
+    async (url, init) => {
+      signal = init.signal;
+      const response = await good(url);
+      response.arrayBuffer = () =>
+        new Promise((resolve) => {
+          releases.push(() => resolve(Buffer.from('late')));
+        });
+      return response;
+    },
+    { deadlineMs: 1000, pollMs: 1 }
+  );
+  assert.equal(stalled.pass, false);
+  assert.equal(stalled.readiness.deadlineExceeded, true);
+  assert.equal(signal.aborted, true);
+  const retained = JSON.stringify(stalled);
+  for (const release of releases) release();
+  await new Promise((resolve) => setTimeout(resolve, 5));
+  assert.equal(JSON.stringify(stalled), retained);
+});
+
+test('production-only Pages retains exact admitted bytes and rights while retiring every staging route', async (t) => {
+  const temp = fixture.temporary(t),
+    production = fixture.production(temp),
+    rights = JSON.parse(fs.readFileSync(path.join(production.directory, 'rights.json'))),
+    directory = path.join(temp, 'production-pages');
+  const record = pkg.build(null, directory, production.directory, 'prod-2026-10-16.1', null, '/', {
+    productionRightsDigest: rights.inventoryDigest,
+  });
+  assert.equal(record.staging, null);
+  assert.equal(record.state.staging, null);
+  assert.equal(record.rights.staging, null);
+  assert.deepEqual(pkg.subtree(record.files, 'staging/'), {});
+  for (const [file, info] of Object.entries(production.record.files))
+    assert.deepEqual(record.files[file], info, 'frozen production bytes changed');
+  const result = await http.check(directory, 'https://author.invalid/', hosted(directory));
+  assert.equal(result.pass, true);
+  assert.equal(result.staging, false);
+  assert.equal(result.actual404, true);
+  await assert.rejects(
+    http.check(directory, 'https://author.invalid/', async (url) => {
+      if (new URL(url).pathname === '/staging/')
+        return fixture.response(url, fs.readFileSync(path.join(directory, 'public/index.html')));
+      return hosted(directory)(url);
+    }),
+    /missing route/
+  );
+  for (const mutate of [
+    (r) => (r.state.production = null),
+    (r) => (r.state.production.sourceCommit = 'f'.repeat(40)),
+    (r) => (r.state.production.publicDigest = 'f'.repeat(64)),
+    (r) => (r.state.staging = { sourceCommit: production.record.sourceCommit }),
+    (r) => delete r.rights.productionArchiveDigest,
+    (r) => (r.rights.staging = r.rights.root),
+  ]) {
+    const invalid = structuredClone(record);
+    mutate(invalid);
+    assert.throws(() => pkg.verify(directory, invalid));
+  }
+  assert.throws(() => pkg.build(null, path.join(temp, 'without-production')));
+  assert.throws(() =>
+    pkg.build(null, path.join(temp, 'without-rights'), production.directory, 'prod-2026-10-16.1')
+  );
+  const stage = fixture.staging(path.join(temp, 'retired-stage'));
+  fs.cpSync(path.join(stage.directory, 'public'), path.join(directory, 'public/staging'), {
+    recursive: true,
+  });
+  const altered = { ...record, ...artifact.manifest(path.join(directory, 'public')) };
+  altered.packageDigest = altered.artifactDigest;
+  assert.throws(() => pkg.verify(directory, altered), /staging copy/);
+});
 
 test('Pages HTTP checks exact root, staging, queries, all assets and an actual 404', async (t) => {
   const temp = fixture.temporary(t),
@@ -300,7 +499,7 @@ test('Pages project recovery retains its prefix and cannot compose an accepted p
     () => controller.retained(directory, { state: { ...record.state, basePath: '/other/' } }),
     /receipt/
   );
-  const production = fixture.source(temp, 'production', 'c'.repeat(40));
+  const production = fixture.production(temp, 'production', 'c'.repeat(40));
   assert.throws(
     () =>
       pkg.build(
@@ -389,6 +588,70 @@ test('Pages production lease and retained receipt reject unknown or replaced sta
     () => controller.productionLease({ state: record.state }, production),
     /production differs/
   );
+});
+
+test('Pages accepted production ignores native environment success and authenticates release records', async () => {
+  const context = {
+    repo: { owner: 'oborskyivitalii', repo: 'oborskyivitalii' },
+  };
+  const native = {
+    id: 102,
+    creator: { login: context.repo.owner },
+    sha: 'a'.repeat(40),
+    payload: {},
+  };
+  const accepted = {
+    id: 101,
+    creator: { login: 'github-actions[bot]' },
+    sha: 'b'.repeat(40),
+    payload: {
+      kind: 'accepted-production',
+      tag: 'prod-2026-10-17.1',
+      sourceCommit: 'b'.repeat(40),
+      publicDigest: 'c'.repeat(64),
+    },
+  };
+  const deployments = [native];
+  const statuses = new Map([
+    [native.id, 'success'],
+    [accepted.id, 'success'],
+  ]);
+  const api = {
+    rest: {
+      repos: {
+        listDeployments: 'deployments',
+        listDeploymentStatuses: async ({ deployment_id }) => ({
+          data: [{ state: statuses.get(deployment_id) }],
+        }),
+      },
+    },
+    paginate: async (method, args) => {
+      assert.equal(method, 'deployments');
+      assert.equal(args.environment, 'production');
+      return deployments.slice();
+    },
+  };
+  assert.equal(await controller.activeProduction(api, context), null);
+  deployments.push(accepted);
+  assert.deepEqual(await controller.activeProduction(api, context), {
+    ...accepted.payload,
+    deploymentId: accepted.id,
+  });
+  for (const mutate of [
+    (value) => (value.creator.login = context.repo.owner),
+    (value) => (value.payload.tag = 'latest'),
+    (value) => (value.payload.sourceCommit = 'd'.repeat(40)),
+  ]) {
+    const invalid = structuredClone(accepted);
+    mutate(invalid);
+    deployments[1] = invalid;
+    await assert.rejects(controller.activeProduction(api, context));
+  }
+  deployments[1] = { ...accepted, payload: JSON.stringify(accepted.payload) };
+  statuses.set(accepted.id, 'failure');
+  assert.equal(await controller.activeProduction(api, context), null);
+  statuses.set(accepted.id, 'success');
+  assert.equal((await controller.activeProduction(api, context)).tag, accepted.payload.tag);
 });
 
 test('Pages recovery trusts the exact successful attempt and stops on untracked roots or expired recovery', async () => {
@@ -714,6 +977,12 @@ test('failed first Pages recovery requires the exact upload, receipt and current
   const substituted = structuredClone(f.record);
   substituted.root.sourceTree = substituted.staging.sourceTree = 'e'.repeat(40);
   fs.writeFileSync(metadata, JSON.stringify(substituted, null, 2) + '\n');
+  assert.throws(
+    () => controller.retained(f.directory, previous, f.upload),
+    /rights source\/artifact differs/
+  );
+  const extraMetadata = { ...f.record, unauthenticatedMetadata: 'substituted' };
+  fs.writeFileSync(metadata, JSON.stringify(extraMetadata, null, 2) + '\n');
   assert.throws(() => controller.retained(f.directory, previous, f.upload), /authenticated ZIP/);
   fs.writeFileSync(metadata, original);
   await assert.rejects(

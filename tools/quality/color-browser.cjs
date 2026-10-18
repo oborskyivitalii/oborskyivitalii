@@ -105,15 +105,17 @@ async function forwardFlight(page, artifact) {
   return samples;
 }
 async function edge(page, route, direction, artifact) {
-  await page.evaluate(
-    (d) =>
-      scrollTo({ top: d < 0 ? 0 : document.documentElement.scrollHeight, behavior: 'instant' }),
-    direction
-  );
-  await page.waitForTimeout(900);
+  const from = await page.evaluate(() => document.body.dataset.page);
   await page.mouse.move(200, 150);
+  const preparation = await require('./edge-input.cjs').prepare(page, direction);
   await page.mouse.wheel(0, direction * 320);
-  await settled(page, route, artifact);
+  try {
+    await settled(page, route, artifact);
+  } catch (error) {
+    error.edgeInput = { from, to: route, preparation, after: await state(page) };
+    throw error;
+  }
+  return { from, to: route, preparation };
 }
 async function preferences(page, id, value) {
   await page.evaluate(
@@ -184,13 +186,13 @@ async function scenario(browser, url, artifact, engine, width, theme) {
       'Motion: on',
       'Home range checked with live motion'
     );
-    await edge(page, 'research', 1, artifact);
+    const edgeInputs = [await edge(page, 'research', 1, artifact)];
     const homeEdge = await state(page);
     assert.equal(homeEdge.page, 'research', 'shortened Home continues to Research');
     await travel(page, 'index', artifact);
     const flight = await forwardFlight(page, artifact);
-    await edge(page, 'writing', 1, artifact);
-    await edge(page, 'research', -1, artifact);
+    edgeInputs.push(await edge(page, 'writing', 1, artifact));
+    edgeInputs.push(await edge(page, 'research', -1, artifact));
     const reverse = await state(page);
     assert.ok(Math.abs(reverse.y - reverse.max) <= 2, 'reverse arrives at real native bottom');
     await preferences(page, 'end-scroll', false);
@@ -231,6 +233,7 @@ async function scenario(browser, url, artifact, engine, width, theme) {
         retiredReadingEffectAbsent: true,
       },
       home: { motion: homeMotion, scroll: homeScroll, edge: homeEdge },
+      edgeInputs,
       flight,
     };
   } finally {
@@ -262,7 +265,14 @@ async function main(options = {}) {
               rows.push(await scenario(browser, url, artifact, engine, width, theme));
             } catch (error) {
               pass = false;
-              rows.push({ engine, width, theme, pass: false, error: error.message });
+              rows.push({
+                engine,
+                width,
+                theme,
+                pass: false,
+                error: error.message,
+                edgeInput: error.edgeInput || null,
+              });
             }
           }
       } finally {

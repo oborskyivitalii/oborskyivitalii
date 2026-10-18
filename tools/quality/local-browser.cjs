@@ -28,6 +28,21 @@ const completeResponses = [
   'Matthew Skelton',
 ];
 const hash = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+function analyticsRequest(value, base, manifest, settings = require('../../site/analytics.json')) {
+  const edition = manifest.edition;
+  if (
+    edition?.id !== 'production' ||
+    edition.indexable !== true ||
+    edition.origin !== new URL(base).origin
+  )
+    return false;
+  const config = require('../site/analytics.cjs').validate(settings);
+  if (!config.enabled || config.siteURL !== base.replace(/\/$/, '') + '/') return false;
+  return [
+    'https://static.cloudflareinsights.com/beacon.min.js',
+    'https://cloudflareinsights.com/cdn-cgi/rum',
+  ].includes(value);
+}
 function artifactFile(value, base, manifest) {
   const url = new URL(value),
     scope = new URL(base.replace(/\/$/, '') + '/');
@@ -199,16 +214,24 @@ async function contentJourney(browser, baseURL, manifest) {
   return { kind: 'content-smoke', writing, documents, articles, fullGate: false };
 }
 async function responseNames(page, route) {
+  assert.ok(['index', 'research'].includes(route), 'known response route');
   const selector =
     route === 'index'
-      ? '#acknowledgements .ack-leads article h3 a'
-      : '#acknowledgements .ack-grid article h3 a';
-  const names = await page.locator(selector).allTextContents();
-  assert.deepEqual(
-    names,
-    route === 'index' ? selectedResponses : completeResponses,
-    route + ' public-response names and order'
+      ? '#acknowledgements .ack-leads article'
+      : '#acknowledgements .ack-grid article';
+  // Topic-first cards put the public identity in attribution rather than the heading.
+  const entries = await page.locator(selector).evaluateAll((cards) =>
+    cards.map((card) => {
+      const profiles = card.querySelectorAll('a[href^="https://www.linkedin.com/in/"]');
+      return { name: profiles[0]?.textContent?.trim() || null, profiles: profiles.length };
+    })
   );
+  const expected = route === 'index' ? selectedResponses : completeResponses;
+  assert.equal(entries.length, expected.length, route + ' response count');
+  for (const entry of entries)
+    assert.equal(entry.profiles, 1, route + ' one public profile per response');
+  const names = entries.map((entry) => entry.name);
+  assert.deepEqual(names, expected, route + ' public-response names and order');
   assert.equal(
     await page.locator('#acknowledgements article').count(),
     names.length,
@@ -359,6 +382,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     page = await context.newPage();
   const errors = [],
     external = [],
+    analytics = [],
     responseChecks = [],
     checkedFiles = new Set(),
     rows = [];
@@ -374,7 +398,10 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   }, mode);
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('request', (request) => {
-    if (!request.url().startsWith(url + '/')) external.push(request.url());
+    const value = request.url();
+    if (value.startsWith(url + '/')) return;
+    if (analyticsRequest(value, url, manifest)) analytics.push(value);
+    else external.push(value);
   });
   page.on('response', (response) => {
     responseChecks.push(
@@ -480,6 +507,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       motionOff: mode === 'normal',
       errors,
       externalRequests: external,
+      analyticsRequests: analytics,
       verifiedResponses: [...checkedFiles].sort(),
     };
   } catch (error) {
@@ -498,6 +526,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       state: await state(page).catch(() => null),
       errors,
       externalRequests: external,
+      analyticsRequests: analytics,
     };
   } finally {
     await context.close();
@@ -595,4 +624,5 @@ module.exports = {
   contentDocuments,
   contentJourney,
   writingControls,
+  analyticsRequest,
 };

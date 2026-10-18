@@ -89,14 +89,14 @@ The architecture above is an inference/recommendation for this repository.
 
 | Phase | Deliverable and owner | Hard dependency | Can proceed independently |
 | --- | --- | --- | --- |
-| P0 | Freeze R10 delivery scope and minimal article/content/media contract, #2/#5 | Current refs/source inspection | MFA #97 and connector access #103. |
-| P1 | Reconcile PR79 onto released main; preserve accepted release/legal/analytics/security owners; admit the minimal reusable article reader/producer | P0; actual source/fixture checks | Final R10 editorial/source/figure/rights review under #2. |
+| P0 | Freeze the technical article/content/media contract and current source handoff, #5 | Current refs/source inspection | MFA #97 and connector access #103. |
+| P1 | Reconcile PR79 onto released main; preserve accepted release/legal/analytics/security owners; verify the minimal reusable article reader/producer | P0; actual source/fixture checks | Article source is maintained in another conversation; writing is excluded here. |
 | P2 | Produce current R10 HTML preview; verify stable route, full text/figures/sources, mobile readability, no-JS, Writing entry/count, SEO, resources and article↔room behavior | P1 + reviewed R10 source | Search Console access/configuration #8/#103; final #39 review. |
 | P3 | Owner acceptance, one applicable platform staging/admission and first article publication via existing controller; verify live article/index/media/canonical and record publication event | P2 + rights/actual release decision | Other technical backlog does not become a prerequisite. |
 | P4 | Finish separately triggered platform/content/media workflows and shared release assembly; prove content-only production without rebuilding the admitted platform | P3 stable contract/baseline | #104 measurement design; no existing URL/manuscript migration. |
 | P5 | Use an actual subsequent bounded article revision or next article to prove the small release; then #6 cross-repo harness and #11 guides | P4; real reviewed content | Low-priority #98/#99/#100 as separately selected. |
 
-The author can finish R10 while P1 is implemented. The article should not wait for
+Article writing/editing is outside this technical plan and continues in another conversation. The article should not wait for
 complete microservice-style isolation, moving assets to a different CDN, all
 publisher export adapters, a new site design, GSC/Windsor access, conversion
 instrumentation, old visual diagnostic campaigns, or cross-repository harnesses.
@@ -205,3 +205,17 @@ platform/content/media release lanes with one safe artifact assembler. Preserve
 stable URLs/manuscript ownership and all current main release/legal/security work.
 Full microservices and a new hosting stack are not prerequisites. Original #2/#5
 criteria and explicit rights/review/publication gates remain honest and separate.
+
+## 18 October — step 1 execution amendment
+
+The user authorized step 1 only, then a report/reassessment and pause. Writing or
+rewriting the article is removed from this workstream. The technical handoff uses
+the current manuscript/metadata/media from the other conversation unchanged.
+
+[Step 1 reconciliation](2026-10-18-step1-reconciliation.md) records the normal
+main-to-PR merge, preserved production controls, tests and editorial byte proof.
+The next bounded technical increment resolves the current R10 raw-HTML budget
+failure without shortening the text or raising the limit, integrates hosted-article
+rights/notices admission, and creates an immutable article HTML preview. Only after that acceptance comes
+first publication; full independent platform/content/media production lanes follow.
+No main merge, staging promotion or production change belongs to step 1.

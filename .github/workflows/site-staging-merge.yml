@@ -11,7 +11,7 @@ jobs:
   identity:
     if: >-
       github.repository == 'oborskyivitalii/oborskyivitalii' &&
-      vars.SITE_PAGES_STAGING_ENABLED == 'true' &&
+      vars.SITE_PR_STAGING_ENABLED == 'true' &&
       github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -20,7 +20,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: Bind the actual merge tree to the accepted PR and both staging publishers
+      - name: Bind the actual merge tree to the accepted PR and Cloudflare staging
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |

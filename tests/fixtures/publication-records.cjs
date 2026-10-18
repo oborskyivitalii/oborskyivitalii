@@ -1,5 +1,5 @@
 'use strict';
-// Synthetic publication metadata exercises consumers, not actual rights approval.
+// Current fixtures compile authored rights; pinned historical records stay frozen.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -11,14 +11,6 @@ const motion = require('../../tools/quality/color-motion-contract.cjs');
 const frozen = require('../../tools/release/rights-record.cjs');
 const root = path.resolve(__dirname, '../..');
 const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87';
-let baselineFiles;
-let baselineReading;
-// Only immutable prepared bytes survive between cases; callers receive fresh files and objects.
-const preparedSources = new Map();
-const legalCSS =
-  '\n/* Full legal copies remain readable when expanded on narrow screens. */\n' +
-  '.legal-notices pre {\n  max-inline-size: 100%;\n  white-space: pre-wrap;\n' +
-  '  overflow-wrap: anywhere;\n}\n';
 
 function digest(report) {
   const body = { ...report };
@@ -54,112 +46,92 @@ function save(source) {
   );
 }
 
-function licensedSource(parent, staging) {
-  if (!baselineFiles) {
-    const names = cp
-      .execFileSync('git', ['ls-tree', '-r', '--name-only', baseline, '--', 'docs'], {
-        cwd: root,
-        encoding: 'utf8',
-      })
-      .trim()
-      .split('\n');
-    baselineFiles = names.map((name) => {
-      assert.ok(name.startsWith('docs/'), 'frozen fixture stays in the public tree');
-      return [
-        name.slice(5),
-        cp.execFileSync('git', ['show', baseline + ':' + name], {
-          cwd: root,
-          maxBuffer: 8_000_000,
-        }),
-      ];
+function historicalSources(parent) {
+  const checkout = path.join(parent, 'pinned-main');
+  if (fs.existsSync(path.join(checkout, 'docs/site-revision.json'))) return checkout;
+  const inventory = cp
+    .execFileSync('git', ['ls-tree', '-rz', baseline, '--', 'docs', 'site', 'tools'], { cwd: root })
+    .toString()
+    .split('\0')
+    .filter(Boolean)
+    .map((entry) => {
+      const [metadata, name] = entry.split('\t');
+      const [mode, kind, object] = metadata.split(' ');
+      assert.equal(mode, '100644');
+      assert.equal(kind, 'blob');
+      assert.match(object, /^[a-f0-9]{40}$/);
+      assert.match(name, /^(?:docs|site|tools)\//);
+      assert.ok(!name.split('/').some((part) => part === '.' || part === '..'));
+      return { name, object };
     });
-    baselineReading =
-      '\n' +
-      cp.execFileSync('git', ['show', baseline + ':site/engine/reading-surfaces.css'], {
-        cwd: root,
-        encoding: 'utf8',
-      }) +
-      '\n';
-  }
-  const source = delivery.source(parent, staging ? 'staging' : 'plain');
-  const publicDirectory = path.join(source.directory, 'public');
-  fs.rmSync(publicDirectory, { recursive: true, force: true });
-  for (const [name, bytes] of baselineFiles) {
-    const file = path.join(publicDirectory, name);
+  const bytes = cp.execFileSync('git', ['cat-file', '--batch'], {
+    cwd: root,
+    input: inventory.map((entry) => entry.object + '\n').join(''),
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  let offset = 0;
+  for (const entry of inventory) {
+    const newline = bytes.indexOf(10, offset);
+    const [object, kind, length] = bytes.subarray(offset, newline).toString().split(' ');
+    const size = Number(length);
+    assert.equal(object, entry.object);
+    assert.equal(kind, 'blob');
+    assert.ok(Number.isInteger(size) && size >= 0);
+    offset = newline + 1;
+    assert.ok(offset + size < bytes.length);
+    assert.equal(bytes[offset + size], 10);
+    const file = path.join(checkout, entry.name);
     fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.writeFileSync(file, bytes);
+    fs.writeFileSync(file, bytes.subarray(offset, offset + size));
+    offset += size + 1;
   }
-  Object.assign(source.record, artifact.manifest(publicDirectory));
-  source.record.components = snapshot.verify(publicDirectory, source.record);
-  fs.writeFileSync(path.join(source.directory, 'artifact.json'), JSON.stringify(source.record));
-  source.record = require('../../tools/staging/color.cjs').build(source.directory);
-  if (staging) {
-    source.record = require('../../tools/staging/edition.cjs').build(source.directory);
-  }
-  return source;
+  assert.equal(offset, bytes.length);
+  return checkout;
 }
 
-function copyPrepared(parent, staging) {
-  const name = staging ? 'staging' : 'plain';
-  const prepared = preparedSources.get(name);
-  if (!prepared) return null;
-  const source = {
-    directory: path.join(parent, name),
-    record: JSON.parse(prepared.record),
-    report: JSON.parse(prepared.report),
+function historical(parent, name = 'historical', { staging = false, color = false } = {}) {
+  const checkout = historicalSources(parent);
+  const directory = path.join(parent, name);
+  fs.cpSync(path.join(checkout, 'docs'), path.join(directory, 'public'), { recursive: true });
+  const record = {
+    schema: 1,
+    sourceDirty: false,
+    sourceCommit: baseline,
+    candidateCommit: baseline,
+    sourceTree: cp
+      .execFileSync('git', ['rev-parse', baseline + '^{tree}'], { cwd: root })
+      .toString()
+      .trim(),
+    ...artifact.manifest(path.join(directory, 'public')),
   };
-  const publicDirectory = path.join(source.directory, 'public');
-  fs.rmSync(publicDirectory, { recursive: true, force: true });
-  for (const [name, bytes] of prepared.files) {
-    const file = path.join(publicDirectory, name);
-    fs.mkdirSync(path.dirname(file), { recursive: true });
-    fs.writeFileSync(file, bytes);
-  }
-  source.record.components = snapshot.verify(publicDirectory, source.record);
-  assert.equal(motion.select(source.record).id, 'issue39-licensed-' + name);
-  save(source);
+  record.components = snapshot.verify(path.join(directory, 'public'), record);
+  const source = { directory, record, baselineRoot: checkout };
+  fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(record));
+  if (color)
+    source.record = require(path.join(checkout, 'tools/staging/color.cjs')).build(directory);
+  if (staging)
+    source.record = require(path.join(checkout, 'tools/staging/edition.cjs')).build(directory);
   return source;
 }
 
 function fixture(parent, modern = true, staging = true) {
   if (modern) {
-    const prepared = copyPrepared(parent, staging);
-    if (prepared) return prepared;
+    const source = staging ? delivery.staging(parent, true) : delivery.source(parent, 'plain');
+    if (!staging) {
+      source.record = require('../../tools/staging/color.cjs').build(source.directory);
+      source.report = delivery.rightsInventory(source, true).report;
+    } else source.report = JSON.parse(fs.readFileSync(path.join(source.directory, 'rights.json')));
+    assert.equal(
+      motion.select(source.record).id,
+      'issue5-reconciled-' + (staging ? 'staging' : 'plain')
+    );
+    save(source);
+    return source;
   }
-  const source = modern
-    ? licensedSource(parent, staging)
-    : staging
-      ? delivery.staging(parent, false)
-      : delivery.source(parent, 'plain');
+  const source = historical(parent, staging ? 'staging' : 'plain', { staging });
   const publicDirectory = path.join(source.directory, 'public');
   const revisionFile = path.join(publicDirectory, 'site-revision.json');
   const revision = JSON.parse(fs.readFileSync(revisionFile));
-  if (modern) {
-    const runtime = motion.reviewedRuntime('issue39-licensed-' + (staging ? 'staging' : 'plain'));
-    const oldEngine = revision.engine;
-    const cssFile = path.join(publicDirectory, 'styles.css');
-    const css = fs.readFileSync(cssFile, 'utf8');
-    assert.equal(css.split(baselineReading).length, 2);
-    fs.writeFileSync(cssFile, css.replace(baselineReading, legalCSS + baselineReading));
-    fs.renameSync(
-      path.join(publicDirectory, 'runtime', oldEngine),
-      path.join(publicDirectory, 'runtime', runtime.variant.fingerprint)
-    );
-    fs.copyFileSync(
-      cssFile,
-      path.join(publicDirectory, 'runtime', runtime.variant.fingerprint, 'styles.css')
-    );
-    for (const name of Object.keys(source.record.files).filter((name) => name.endsWith('.html'))) {
-      const file = path.join(publicDirectory, name);
-      fs.writeFileSync(
-        file,
-        fs.readFileSync(file, 'utf8').replaceAll(oldEngine, runtime.variant.fingerprint)
-      );
-    }
-    revision.engine = runtime.variant.fingerprint;
-    revision.variant = runtime.variant;
-    source.record.variant = runtime.variant;
-  }
   const texts = Object.fromEntries(
     Object.keys(frozen.legalSources).map((id) => [
       id,
@@ -190,11 +162,6 @@ function fixture(parent, modern = true, staging = true) {
   fs.writeFileSync(revisionFile, JSON.stringify(revision));
   Object.assign(source.record, artifact.manifest(publicDirectory));
   source.record.components = snapshot.verify(publicDirectory, source.record);
-  if (modern)
-    assert.equal(
-      motion.select(source.record).id,
-      'issue39-licensed-' + (staging ? 'staging' : 'plain')
-    );
   const licenses = {
     'original-code': 'Apache-2.0',
     'original-text': 'CC-BY-4.0',
@@ -255,16 +222,7 @@ function fixture(parent, modern = true, staging = true) {
     linkedPublications: {},
   });
   save(source);
-  if (modern)
-    preparedSources.set(staging ? 'staging' : 'plain', {
-      record: JSON.stringify(source.record),
-      report: JSON.stringify(source.report),
-      files: Object.keys(source.record.files).map((name) => [
-        name,
-        fs.readFileSync(path.join(publicDirectory, name)),
-      ]),
-    });
   return source;
 }
 
-module.exports = { fixture, digest, save };
+module.exports = { fixture, historical, digest, save };

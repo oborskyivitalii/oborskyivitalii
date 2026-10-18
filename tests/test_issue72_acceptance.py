@@ -34,6 +34,9 @@ class Issue72AcceptanceTests(unittest.TestCase):
     def test_prototype_and_exact_head_admission(self):
         run_node(self, "tests/prototype-admission.test.cjs")
 
+    def test_same_run_preflight_reuse(self):
+        run_node(self, "tests/prepublication-reuse.test.cjs")
+
     def test_pages_edition_preservation_and_recovery(self):
         run_node(self, "tests/pages-delivery.test.cjs")
 
@@ -62,6 +65,7 @@ class Issue72AcceptanceTests(unittest.TestCase):
         catalog = json.loads((ROOT / ".github/repository-paths.json").read_text())["entries"]
         for name in (
             "prototype-admission",
+            "prepublication-reuse",
             "pages-delivery",
             "release-archive",
             "release-controller",

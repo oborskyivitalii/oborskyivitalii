@@ -14,6 +14,13 @@ Research meaning and evidence stay in their canonical repositories; this site
 owns personal publication editions and distribution. [Repository ownership](guides/REPOSITORIES.md)
 and [publication priorities](guides/SITE-ROADMAP.md) describe those boundaries.
 
+Original engineering, including the website's CSS, templates and rendering code,
+uses [Apache-2.0](LICENSE-CODE.md). Original editorial text and non-brand diagrams
+use [CC BY 4.0](LICENSE-CONTENT.md). Portraits, personal branding, attributed
+third-party material and separately licensed editions have their own boundaries.
+Read the [licensing map](LICENSING.md) and [notices](NOTICE.md) before reuse;
+UA and Subprime retain their own licenses.
+
 Edit authored content, templates, engine and assets in [site/](site/README.md).
 [docs/](docs/index.html) is generated public output. Internal contracts and
 runbooks are in [guides/](guides/README.md); dated evidence is in [review/](review/).

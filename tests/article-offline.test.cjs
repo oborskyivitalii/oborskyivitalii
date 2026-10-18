@@ -170,7 +170,12 @@ test.before(() => {
     'ordinary offline payload producer is available'
   );
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'article-offline-source-'));
-  for (const relative of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
+  for (const relative of [
+    'site',
+    'tools/site',
+    'tools/build_scene_fallbacks.cjs',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
+  ]) {
     fs.mkdirSync(path.dirname(path.join(root, relative)), { recursive: true });
     fs.cpSync(path.join(repo, relative), path.join(root, relative), {
       recursive: true,

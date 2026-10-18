@@ -27,9 +27,9 @@
     },
     {
       "id": "AC04",
-      "intent": "Labelled permanent Pages mirror",
+      "intent": "Cloudflare-only staging and no Pages publisher (explicit 16 October amendment)",
       "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
-      "checks": ["PAGES"],
+      "checks": ["ADMISSION", "PREFLIGHT"],
       "gates": ["LIVE", "REVIEW"]
     },
     {
@@ -57,7 +57,7 @@
       "id": "AC08",
       "intent": "Style/test/RI allocation",
       "automated_scope": "Current-source fixtures establish only mapped admission/edition/hash/recovery/archive/full-gate contracts; actual hosts, settings, durable Release uploading, protection/labels, approval and merged closure remain external.",
-      "checks": ["GUARD", "RI-CI", "ALLOCATION"],
+      "checks": ["GUARD", "RI-CI", "ALLOCATION", "PREFLIGHT"],
       "gates": ["REVIEW"]
     },
     {
@@ -106,6 +106,10 @@
     },
     "BASIC": {
       "kind": "node-basic"
+    },
+    "PREFLIGHT": {
+      "kind": "unittest",
+      "test": "test_issue72_acceptance.Issue72AcceptanceTests.test_same_run_preflight_reuse"
     }
   },
   "gates": {

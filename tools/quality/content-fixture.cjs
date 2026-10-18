@@ -115,6 +115,7 @@ function prepare({ sourceRoot = root, temporaryRoot = os.tmpdir() } = {}) {
       'tools/site',
       'tools/publishing',
       'tools/build_scene_fallbacks.cjs',
+      ...Object.values(require('../site/legal.cjs').sources),
     ]) {
       fs.mkdirSync(path.dirname(path.join(directory, source)), { recursive: true });
       fs.cpSync(path.join(sourceRoot, source), path.join(directory, source), {

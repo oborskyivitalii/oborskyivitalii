@@ -13,7 +13,12 @@ const root = path.resolve(__dirname, '..'),
 const { legacyCatalog } = require('./fixtures/catalog.cjs');
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-engine-'));
-  for (const name of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
+  for (const name of [
+    'site',
+    'tools/site',
+    'tools/build_scene_fallbacks.cjs',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
+  ]) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
   }

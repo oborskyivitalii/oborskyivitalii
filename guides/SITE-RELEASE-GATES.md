@@ -12,7 +12,9 @@ Read live issues/PRs and [MEMORY](../MEMORY.md) for the exact candidate and resu
 [Test optimization #35](https://github.com/oborskyivitalii/oborskyivitalii/issues/35)
 supersedes the old full-staging schedule: PR feedback is small smoke plus the
 owning issue's targeted AC checks; explicit staging runs the bounded regression
-in SITE-CHECK-PROFILES; full regression precedes production admission. Full
+in SITE-CHECK-PROFILES. The maintainer's 17 October policy under #39 admits
+production from authenticated successful staging on the identical merged source
+tree; full production regression is an optional manual diagnostic. Full
 production coverage retains Linux Chromium/Firefox 260/8/26 plus native macOS
 WebKit 130/4/13: all 390 functional, 12 navigation and 39 analytics cases,
 including every no-JavaScript/failure mode. Windows 40/8/26 smoke and twelve
@@ -21,10 +23,12 @@ unchanged. Legacy nonfull three-engine tooling remains available diagnostically.
 
 Staging uses the existing CI controller and owner request. Its distinct
 `staging-gate` is not full release evidence. Production activation and
-first-release rights, independent/device and maintainer visual acceptance remain
-separate. Historical successful runs admit only their matching sources,
-artifacts and controllers; neither a prior run nor green Basic/staging checks
-accepts another production candidate.
+exact-edition rights acceptance and owner dispatch remain required. Independent,
+device and visual observations remain honest records; the publisher does not
+require new device or full-diagnostic reports. Historical successful runs admit
+only their matching sources, artifacts and controllers. The new staging-policy
+owner authenticates actual completed staging, the protected merge and identical
+complete source trees before deriving the separate production edition.
 
 The [original contract and dated amendments](https://github.com/oborskyivitalii/oborskyivitalii/blob/3ca14c54824ac6b9e7225bc88429b4b8fb3bcf10/SITE-RELEASE-GATES.md)
 preserve PR #10/S1–S4 execution, blanket publication pauses and the original
@@ -53,14 +57,15 @@ SonarQube service, Lighthouse server or device-cloud subscription is required.
 | Draft prototype | Generated/package/snapshot/size/syntax and HTTP identity | Deferred source/browser checks are not admission. |
 | Visually approved ready PR | Bounded Basic source/hosted smoke, RI checks and targeted owning-issue AC checks | Required checks fail on missing/failed applicable results; preview does not authorize stable staging. |
 | Explicit staging | Exact-artifact source/lint/security/advisory/host checks and bounded browser/failure/navigation/analytics/Lighthouse/CPU/flight regression | The distinct complete staging gate and source/controller/artifact identities must match before stable staging promotion. |
-| Before production admission | Complete exact-artifact source/security/browser/native/Color/accessibility/failure/Lighthouse/CPU/soak/capture regression and applicable source-bound rights/independent/device/production-origin checks | Only the strict full gate plus applicable external release acceptance admits the candidate; activation stays with #8 and the release decision. |
+| Before production admission | Authenticate successful staging jobs/raw reports and unchanged merged source tree; freeze and verify production edition/rights/archive | `production-staging-admission` binds both distinct artifacts without claiming full production tests. Owner dispatch and rights approval remain required. |
+| Optional full diagnostic | Manually invoke the complete existing production suite and passive ZAP when needed | Status is visible and nonblocking; no publication dependency. |
 | After deployment | Served edition/digests, every route and assets, interactions, HTTPS/live headers and applicable canonical/robots/sitemap policy | Deployment is healthy only after live checks; recovery follows the reviewed same-artifact controller route. |
 
 The registry in SITE-CHECK-PROFILES owns routine, targeted and diagnostic source
 suites. At issue completion review every added/changed test's PR/staging/production
 assignment, duplicate or obsolete status, reason and owner; update RI and its CI
-mapping with those dispositions. The complete authorized production matrix must
-not be skipped by a path filter. If a check is legitimately not applicable, the
+mapping with those dispositions. When explicitly requested, the complete optional
+production matrix must not be reduced by a path filter. If a check is legitimately not applicable, the
 aggregate records a validated reason; absent/cancelled/unknown results do not
 count as success. No recurring clock schedule is implied by this guide.
 
@@ -68,12 +73,14 @@ count as success. No recurring clock schedule is implied by this guide.
 
 The accepted [#72 archive policy](https://github.com/oborskyivitalii/oborskyivitalii/issues/72)
 uses immutable `prod-YYYY-MM-DD.N` tags and GitHub Releases retaining exact
-`public.tar.gz`, `archive.json` and full test/external evidence. Records bind
+`public.tar.gz`, `archive.json`, `rights.json`, original staging/candidate reports
+and source-bound rights evidence. Historical full-gated archives remain valid. Records bind
 source/tree, public/package SHA256, validation run, date and previous accepted tag.
 CI retention is not archive lifetime. Deterministic packing and bounded
 manifest-only extraction live in `tools/release/package.py`; `archive.cjs` rejects
-staging/prototype proof, incomplete full jobs/devices, package tampering and
-reassignment of a release identity.
+raw staging/prototype proof, failed or incomplete staging derivation, package
+tampering and reassignment of a release identity. It also preserves verification
+of historical full-gated archives without requesting new full tests for rollback.
 
 After successful authorized deployment and live checks, protected `production`
 and the GitHub `production` deployment must identify the same live source/package.
@@ -85,41 +92,59 @@ Rollback deploys the archived package unchanged and verifies it before moving
 the production pointer or labels. Immutable tags never move. Failed or partial
 transitions remain observable and preserve recoverable accepted packages.
 
-`site-release-candidate.yml` builds a distinct production edition before hashing
+`site-release-candidate.yml` builds the explicit Color production edition before hashing
 or testing: canonical URLs, indexing, robots, sitemap and owned 404. It publishes
 only an isolated `production-candidate-RUN` Cloudflare preview. Provider preview
 headers suppress indexing; the public archive already has its production policy.
-Forward its artifact/run/digests and immutable URL into `site-candidate-evidence.yml`.
-That wrapper retains the complete native/browser/security/performance matrix.
-Its full hosted gate must match the exact public artifact; staging-edition HTML
-and the smaller staging gate cannot qualify. Independent, physical iOS/Android
-and applicable rights records must bind the same source/artifact.
+Supply `candidate_sha` and the accepted merged `release_pr`. The candidate
+authenticates original successful staging and identical complete source trees,
+then binds both edition manifests and the original staging gate. Runtime assets
+must match their reviewed staging/production family. The new admission remains
+`fullGate: false`; staging-edition bytes cannot become the production archive.
+Optionally forward its artifact/run/digests and immutable URL into
+`site-candidate-evidence.yml` for the unchanged full matrix. No optional outcome
+is consumed by the publisher.
+The candidate compiler retains a complete rights inventory with its public
+artifact. Publication requires `evidence.rights.inventoryDigest` matching that
+report, a separate maintainer review record, and a source-confirmed structured
+reuse-policy decision. Pending policy or inventory coverage alone cannot admit
+publication. See [the rights contract](SITE-RIGHTS.md).
 
 `site-production.yml` is dispatch-only and disabled unless
 `SITE_PRODUCTION_ENABLED=true`. `tools/release/controller.cjs` authenticates the
-actual completed owner/main producers, both named native jobs and every raw
-report artifact, source PR/tree/history and production protection. Before live
-publication it uploads `public.tar.gz`, `archive.json`, seven original report
-ZIPs and full run logs to a draft Release, redownloads and verifies their bytes,
+actual completed owner/main candidate producer and original staging jobs/reports,
+source PR/tree/history and production protection. Before live publication it
+uploads `public.tar.gz`, `archive.json`, original staging/candidate report ZIPs
+and logs of both producers to a draft Release, redownloads and verifies their bytes,
 and retains the previous and next complete Pages packages. Existing tags/assets
 cannot be repurposed or replaced. A tag-only interrupted preparation needs explicit
 reconciliation or a fresh identity; the publisher does not overwrite it.
 
-The official Pages deployment composes the frozen production root with the
-previous accepted staging subtree. Exact HTTP/TLS/MIME/canonical/indexing, root
-and staging navigation, real 404 and a bounded passive ZAP scan must pass. The
-scan uses a pinned image, the owned origin only, excludes `/staging/`, and does
-not run active attacks. Explicit reviewed header warnings reflect Pages hosting
-capabilities; new or high-risk findings fail. All observations must be retained.
+The official Pages deployment composes the frozen production root only. It
+authenticates and retains the complete previous package solely for recovery;
+Cloudflare remains the sole staging publisher. Exact HTTP/TLS/MIME/canonical/indexing,
+production navigation and real 404 (including retired `/staging/` routes) must
+pass the bounded post-publication smoke. Passive ZAP stays in the optional full
+action with its pinned image, owned-origin scope and original finding policy.
+All actual publication observations must be retained.
 `activation.json` and `observations.tar.gz` then join the durable Release before
 publication locks its assets/tag. GitHub must report `immutable: true` before
 the protected source ref, labels and successful production deployment can move.
 If any stage fails, exact previous Pages bytes are restored and checked before
-bookkeeping compensation; the run stays red. A frozen Release from a failed
+bookkeeping compensation; the run stays red. Production-content compensation
+preserves the canonical domain/HTTPS and verifies unchanged settings; explicit
+domain-migration recovery owns restoring its original prefix. Authenticated
+first-release capsules may remain from a proven main ancestor when the exact
+predecessor ZIP and every canonical served byte still verify. The protected
+publisher has a separate metadata-only recovery operation for an exact failed
+first-publication result; it cannot deploy Pages, change settings or accept a
+release. Both metadata writers use ordinary `pull-requests: write`; only real
+label transitions issue writes. GitHub rejects empty additive label requests,
+so these cannot establish permission through a no-op preflight. A frozen Release from a failed
 bookkeeping transition is retained but is not an accepted rollback target.
 
 Rollback consumes a previously live accepted immutable Release, verifies every
-asset digest and safely unpacks the original package, then repeats live
+asset digest including the frozen rights report and safely unpacks the original package, then repeats live
 production checks. It moves the active pointer and PR labels after success;
 the original Release/tag/evidence remain unchanged. Several releases from the
 same PR share its active PR label; their distinct tags and deployment records
@@ -128,7 +153,8 @@ accepted deployment before a transition, so stale manual labels stop publication
 
 Source integration is implemented under #72. Live controls, actual production
 transitions and existing #39/#40/#1/#7 release acceptance remain separate evidence.
-The maintainer's 11 October instruction explicitly excludes production activation.
+The later maintainer authorization permits production continuation; preparing
+this policy PR does not itself activate production.
 
 ### Production preparation without activation
 
@@ -177,6 +203,17 @@ The maintainer's 11 October instruction explicitly excludes production activatio
 | Stylelint | Parse errors and reviewed duplicate/cascade rules gate; cosmetic formatting debt is visible without an indiscriminate CSS rewrite. |
 | Ruff | Python correctness/import checks and reviewed complexity rules; use `--no-cache` or an external cache. |
 
+The Python lock includes its installer and every installed audit dependency. Full
+installers use `--no-deps` only with that complete lock, immediately followed by
+`python tools/quality/python_toolchain.py`. The verifier rejects missing, changed,
+duplicate, unfrozen or incompatible packages. Its single reviewed constraint
+override keeps unmodified Semgrep CE1.179.0 with patched MCP1.30.0, replacing the
+upstream exact1.29.0 declaration. Only the existing CE scan route is supported;
+this is not an MCP service deployment or a dependency-advisory exception. The
+advisory engine repeats installed-graph verification and audits every locked
+package, including the patched SDK and installer. Any future version/constraint
+change needs a new compatibility review; the exact override otherwise fails.
+
 New untriaged findings fail the relevant check until classified. A real release
 blocker must be fixed or carry an explicit, scoped and expiring reviewed exception.
 Separate false-positive suppressions from accepted risk. Each exception records
@@ -195,7 +232,7 @@ same approved candidate. Scanner reports must redact any discovered secret value
 | Linux, pinned supported runner image | Chromium at two widths | Chromium/Firefox all-route journeys and representative failure/navigation fixtures | Full functional/failure 260/8/26; original Color12 retains all three engines. |
 | Windows, pinned supported runner image | Not required | Not required | Chromium/Firefox all five routes, both themes, desktop/mobile and core interactions. |
 | macOS, pinned supported runner image | Not required | Not required | WebKit full 130/4/13, all five routes, both themes/widths and every original failure/no-JavaScript mode. |
-| Physical iPhone/iPad Safari and modest Android Chrome | No device-cloud requirement | No new automated device claim | First release and material rendering/layout/input/fallback/browser-policy changes require recorded physical smoke evidence. |
+| Physical iPhone/iPad Safari and modest Android Chrome | No device-cloud requirement | No new automated device claim | Record available physical observations for first release and material rendering changes; not an input required by the staging-based publisher. |
 
 The following matrix and performance section specify full production regression.
 The bounded staging sample retains the applicable individual original limits,
@@ -214,11 +251,11 @@ GPU-loss claim needs an actual observation.
 Real-device smoke covers load, portrait/landscape, touch scroll, theme, archive,
 Motion off/reduced and readability after tab return. Record device, OS/browser,
 candidate SHA/artifact digest, result and reviewer. For content-only updates,
-record unchanged runtime/layout/assets plus the automated matrix; layout-affecting
-content or dependency changes require the applicable device check again. Reusing
+record unchanged runtime/layout/assets and available automated coverage; layout-affecting
+content or dependency changes invalidate claims that old physical observations cover the changed behavior. Reusing
 device evidence requires an explicit matching runtime/layout/assets fingerprint.
-If devices are unavailable, finish automated work and leave that release gate
-pending. A documented maintainer exception can narrow the supported-device claim;
+If devices are unavailable, record that observation as missing; under the
+17 October staging-then-smoke policy it does not block production publication. A documented maintainer exception can narrow the supported-device claim;
 the implementer cannot silently mark untested phones as supported.
 
 Playwright WebKit is not branded Safari. Device profiles and CPU slowdown do not
@@ -241,7 +278,7 @@ desktop. A failed/missing run makes the sample incomplete, not optimistically gr
 
 | Initial budget | Enforcement |
 | --- | --- |
-| Mobile LCP ≤2.5 s, TBT ≤200 ms, CLS ≤0.1, each route's three-run median | Required release metric assertions. Desktop metrics are retained and checked against reviewed per-route budgets set before candidate evaluation. |
+| Mobile LCP ≤2.5 s, TBT ≤200 ms, CLS ≤0.1, each route's three-run median | Required assertions within the optional full diagnostic. Staging retains its original individual budgets. Desktop metrics retain reviewed per-route budgets. |
 | Lighthouse performance ≥90 | Secondary target/report; never substitutes for the individual metric gates. |
 | Raw HTML ≤100 KB per public route | Deterministic PR/release gate. |
 | ≤250 decorative inline SVG nodes, or an external static fallback | Count actual elements; give external assets explicit raw/compressed byte budgets and record total route transfer size. Moving the same cost out of HTML is not sufficient. |
@@ -280,9 +317,11 @@ moving branch after validation. Bind external device/review records to the same
 artifact or an explicitly checked unchanged-scope fingerprint. Identify the
 candidate revision separately from GitHub's temporary PR merge ref.
 
-The strict production gate checks required job status, report schemas/route
+The optional full diagnostic gate checks its complete job status, report schemas/route
 counts, nonempty scanner/browser coverage, all expected profiles, metric
-assertions, exception expiry and matching source/artifact identities. The
+assertions, exception expiry and matching source/artifact identities. Production
+admission separately authenticates successful staging, the identical merged
+source tree and frozen production edition through `staging-policy.cjs`. The
 separate staging gate checks its smaller explicit matrix and remains
 `fullGate: false` / `productionEligible: false`. No `continue-on-error` bypass on
 mandatory checks. Prove failure propagation using synthetic secret/security-rule,
@@ -291,14 +330,14 @@ mismatch cases. Fixtures must not contain real credentials and stay out of docs/
 Also demonstrate a complete passing validation after #12's fixes.
 
 GitHub Pages uses an Actions-based deployment whose production job depends on
-the successful strict full gate; direct automatic branch publication cannot
-enforce it. The existing `promotion.cjs` and GitHub Pages example retain their full hosted/device/review contract;
+authenticated successful staging and its frozen production derivation; automatic
+branch publication cannot enforce that binding. The existing `promotion.cjs` and GitHub Pages example retain their full hosted/device/review contract;
 `staging-gate` does not satisfy them. Preserve separate existing rights/URL/release
 decisions. If a different host is selected, implement equivalent same-artifact
 gating. Inspect any repository/environment controls at activation and record
 unavailable capabilities honestly; do not add a new approval ceremony just for CI.
 
-Once an owned origin exists, scope OWASP ZAP Baseline to that exact origin with
+For the optional full diagnostic on an owned origin, scope OWASP ZAP Baseline to that exact origin with
 bounded crawling/passive scanning and explicit FAIL/WARN rule policy. Do not
 attack or crawl linked Medium/LinkedIn/research hosts. Record preview-versus-prod
 header/config differences. Local HTTP is not proof of TLS/CSP. Account for actual
@@ -322,10 +361,10 @@ session resumes from evidence.
 
 - [ ] Applicable known bugs fixed; focused regressions fail on their recorded baseline and pass on the candidate.
 - [ ] Existing portable pinned commands and applicable gates pass in a clean checkout.
-- [ ] Applicable profile runs on candidate bytes; before production, the full browser/OS/performance matrix and validity checks pass.
+- [ ] Accepted staging and identical merged source tree authenticate the frozen production edition. Optional full diagnostics are recorded separately and do not block release.
 - [ ] Controlled failing cases block the aggregate gate; complete passing case exists.
 - [ ] Same-artifact deployment dependencies verified; hosting activation and live checks tracked in #8.
-- [ ] Required device and independent review evidence recorded or explicitly pending.
+- [ ] Rights acceptance binds the frozen inventory; device and independent review observations are accurately recorded.
 - [ ] Before/after report, all-page visual preview, exact-head CI and durable issue/PR updates; test/profile dispositions and RI routes reviewed.
 
 ## Primary implementation references
@@ -335,3 +374,5 @@ session resumes from evidence.
 - [ZAP Baseline scope, rule configuration and exit codes](https://www.zaproxy.org/docs/docker/baseline-scan/).
 - [GitHub Pages custom deployment workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 - [Audit tools, versions and limits](../review/site-audit-v8-20261003/REPORT.md).
+
+Custom-domain rollout and finite .com redirects follow [the domain readiness plan](SITE-PRODUCTION.md) in #39.

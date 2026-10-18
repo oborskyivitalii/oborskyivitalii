@@ -437,7 +437,14 @@ function fetchFixture(f, mutation) {
   return async (url) => {
     const u = new URL(url);
     let file = u.pathname.slice(1) || 'index.html';
-    if (u.pathname.endsWith('.html'))
+    if (
+      u.pathname.endsWith('.html') &&
+      !(
+        f.record.hostPolicy === pkg.hostPolicies.snapshotProxy &&
+        u.pathname.startsWith('/snapshots/') &&
+        mutation !== 'snapshot-redirect'
+      )
+    )
       return new Response(null, { status: 301, headers: { location: u.pathname.slice(0, -5) } });
     if (
       !fs.existsSync(path.join(f.out, 'public', file)) &&
@@ -454,7 +461,8 @@ function fetchFixture(f, mutation) {
     };
     if (mutation === 'robots') headers['x-robots-tag'] = 'noindex';
     const bytes =
-      mutation === 'runtime' && file.endsWith('/space.js')
+      (mutation === 'runtime' && file.endsWith('/space.js')) ||
+      (mutation === 'snapshot' && file.startsWith('snapshots/'))
         ? Buffer.from('wrong tested engine')
         : fs.readFileSync(path.join(f.out, 'public', file));
     return new Response(bytes, { status: missing ? 404 : 200, headers });
@@ -500,6 +508,45 @@ test('fast hosted smoke binds all five routes, both revisions and actual base ru
       /wrong served bytes/
     );
     await assert.rejects(() => flow.quickHttp(base, f.record, fetchFixture(f, 'robots')));
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
+test('finite snapshot proxy preview observes direct 200 and exact immutable bodies before admission', async () => {
+  const f = packageFixture();
+  try {
+    f.out = path.join(f.dir, 'proxy-package');
+    f.record = pkg.build(
+      path.join(f.dir, 'input'),
+      f.out,
+      {},
+      {
+        hostPolicy: pkg.hostPolicies.snapshotProxy,
+      }
+    );
+    const base = 'https://abcdefgh.' + flow.project + '.pages.dev',
+      result = await flow.quickHttp(base, f.record, fetchFixture(f)),
+      snapshots = Object.keys(f.record.source.files).filter((file) =>
+        file.startsWith('snapshots/')
+      );
+    assert.ok(snapshots.length > 0);
+    assert.deepEqual(
+      result.rows.filter((row) => snapshots.includes(row.file)).map((row) => row.file),
+      snapshots
+    );
+    for (const row of result.rows.filter((row) => snapshots.includes(row.file))) {
+      assert.equal(row.status, 200);
+      assert.equal(row.redirects, 0);
+      assert.equal(row.sha256, f.record.source.files[row.file].sha256);
+    }
+    await assert.rejects(
+      () => flow.quickHttp(base, f.record, fetchFixture(f, 'snapshot-redirect')),
+      /immutable snapshot proxy redirected/
+    );
+    await assert.rejects(
+      () => flow.quickHttp(base, f.record, fetchFixture(f, 'snapshot')),
+      /wrong served bytes.*snapshots\//
+    );
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }
@@ -565,6 +612,63 @@ test('post-deploy alias convergence retains the stale revision before one fresh 
     assert.equal(saved[1].pass, false);
     assert.deepEqual(saved[1].readiness.attempts, [first]);
     assert.equal(saved.at(-1).pass, true);
+  } finally {
+    fs.rmSync(f.dir, { recursive: true, force: true });
+  }
+});
+test('post-deploy missing revision and immutable snapshot wait for one complete edition', async () => {
+  const f = packageFixture();
+  try {
+    f.out = path.join(f.dir, 'proxy-package');
+    f.record = pkg.build(
+      path.join(f.dir, 'input'),
+      f.out,
+      {},
+      {
+        hostPolicy: pkg.hostPolicies.snapshotProxy,
+      }
+    );
+    const base = 'https://staging.' + flow.project + '.pages.dev',
+      good = fetchFixture(f),
+      snapshot = Object.keys(f.record.source.files).find((file) => file.startsWith('snapshots/'));
+    for (const file of ['_staging/revision.json', snapshot]) {
+      const clock = readinessClock();
+      const result = await flow.readyHttp(
+        base,
+        f.record,
+        async (url, init) => {
+          if (new URL(url).pathname === '/' + file && clock.waits.length === 0)
+            return new Response('not propagated', { status: 404 });
+          return good(url, init);
+        },
+        clock.options
+      );
+      assert.equal(result.pass, true);
+      assert.equal(result.readiness.attempts.length, 2);
+      assert.equal(result.readiness.attempts[0].retryable, true);
+      const first = result.readiness.attempts[0];
+      assert.equal(
+        (file.startsWith('_staging') ? first.revision : first.rows.find((r) => r.file === file))
+          .status,
+        404
+      );
+      assert.equal(result.readiness.attempts[1].pass, true);
+      assert.ok(result.rows.some((r) => r.file === snapshot && r.status === 200));
+    }
+    const clock = readinessClock();
+    const missing = await flow.readyHttp(
+      base,
+      f.record,
+      async (url, init) =>
+        new URL(url).pathname === '/' + snapshot
+          ? new Response('still missing', { status: 404 })
+          : good(url, init),
+      clock.options
+    );
+    assert.equal(missing.pass, false);
+    assert.equal(missing.readiness.deadlineExceeded, true);
+    assert.equal(missing.readiness.attempts.length, 3);
+    assert.equal(missing.rows, undefined);
   } finally {
     fs.rmSync(f.dir, { recursive: true, force: true });
   }
@@ -1075,7 +1179,7 @@ test('workflow publishes through the official action, excludes full tests from P
   assert.match(full, /validation_level: staging/);
   assert.match(full, /full: true/);
   assert.match(full, /public_artifact_id: \$\{\{ needs.build.outputs.public_artifact \}\}/);
-  const promote = text.split('\n  promote:\n')[1].split('\n  pages:\n')[0];
+  const promote = text.split('\n  promote:\n')[1].split('\n  merge-admission:\n')[0];
   assert.match(promote, /needs.full.result == 'success'/);
   assert.match(promote, /review-flow.cjs gate/);
   assert.match(promote, /--branch=staging/);

@@ -1,5 +1,5 @@
 'use strict';
-// Only an owner dispatch on protected main can consume full evidence or change production.
+// Only an owner dispatch on protected main can admit a staged source or change production.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -7,7 +7,8 @@ const artifact = require('../quality/artifact.cjs');
 const archive = require('./archive.cjs');
 const pages = require('../pages/controller.cjs');
 const flow = require('../staging/review-flow.cjs');
-const edition = require('./edition.cjs');
+const edition = require('./edition-archive.cjs');
+const rights = require('./rights.cjs');
 const workflow = '.github/workflows/site-production.yml';
 const labels = ['active-production', 'archived-production'];
 
@@ -94,6 +95,49 @@ async function validation(github, context, runId) {
     assert.equal(item.workflow_run.id, run.id);
   }
   return { run, gate: gates[0], reports };
+}
+
+async function stagingValidation(github, context, runId) {
+  const run = producer(
+    (await github.rest.actions.getWorkflowRun({ ...context.repo, run_id: flow.positive(runId) }))
+      .data,
+    context,
+    ['.github/workflows/site-release-candidate.yml']
+  );
+  assert.equal(run.triggering_actor.login, context.repo.owner);
+  const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRunAttempt, {
+    ...context.repo,
+    run_id: run.id,
+    attempt_number: run.run_attempt,
+    per_page: 100,
+  });
+  for (const name of ['build', 'publish', 'http']) {
+    const selected = jobs.filter((job) => job.name === name);
+    assert.equal(selected.length, 1, 'missing/ambiguous candidate job: ' + name);
+    assert.equal(selected[0].status, 'completed');
+    assert.equal(selected[0].conclusion, 'success', 'candidate job did not pass: ' + name);
+  }
+  const items = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
+    ...context.repo,
+    run_id: run.id,
+    per_page: 100,
+  });
+  const select = (name) => {
+    const selected = items.filter((item) => item.name === name);
+    assert.equal(selected.length, 1, 'missing/ambiguous candidate evidence: ' + name);
+    const item = selected[0];
+    assert.equal(item.expired, false);
+    assert.match(item.digest, /^sha256:[a-f0-9]{64}$/);
+    assert.equal(item.workflow_run.id, run.id);
+    assert.equal(item.workflow_run.head_sha, run.head_sha);
+    return item;
+  };
+  const suffix = run.id + '-' + run.run_attempt;
+  return {
+    run,
+    gate: select('site-production-admission-' + suffix),
+    reports: [select('site-production-candidate-observations-' + suffix)],
+  };
 }
 
 function productionClient(github, token = process.env.PRODUCTION_APP_TOKEN) {
@@ -236,17 +280,21 @@ async function wasAccepted(github, context, record) {
 function admission(directory, gate, evidence, publicItem) {
   const record = require('../pages/package.cjs').read(directory);
   edition.verify(directory, record);
-  archive.candidate(record, gate, evidence);
+  const rightsReport = JSON.parse(fs.readFileSync(path.join(directory, 'rights.json')));
+  rights.publication(record, rightsReport, 'production');
+  rights.verifyArchived(
+    path.join(directory, 'public'),
+    record,
+    rightsReport,
+    evidence.rights?.inventoryDigest
+  );
+  archive.candidate(record, gate, evidence, rightsReport);
   assert.equal(String(gate.githubArtifact.id), String(publicItem.id));
   assert.equal(
     gate.githubArtifact.uploadDigest.replace(/^sha256:/, ''),
     publicItem.digest.replace(/^sha256:/, '')
   );
   assert.equal(publicItem.expired, false);
-  assert.ok(
-    evidence.rights?.pass === true && evidence.rights.reviewer && evidence.rights.record,
-    'applicable publication rights acceptance remains pending'
-  );
   return record;
 }
 
@@ -266,12 +314,10 @@ function evidenceFiles(directory, proof) {
 }
 
 function createArchive(directory, proof, gate, evidence, options) {
-  const record = archive.create(
-    require('../pages/package.cjs').read(directory),
-    gate,
-    evidence,
-    options
-  );
+  const record = archive.create(require('../pages/package.cjs').read(directory), gate, evidence, {
+    ...options,
+    rightsReportBytes: fs.readFileSync(path.join(directory, 'rights.json')),
+  });
   record.releasePR = flow.positive(options.releasePR);
   record.origin = edition.origin;
   record.validation = {
@@ -334,6 +380,7 @@ async function restoreArchive(github, context, tag, directory) {
   await releaseSource(github, context, tag, record.sourceCommit);
   const expected = [
     'archive.json',
+    'rights.json',
     'public.tar.gz',
     'activation.json',
     'observations.tar.gz',
@@ -362,12 +409,19 @@ async function restoreArchive(github, context, tag, directory) {
       assert.equal(artifact.digest(bytes), activation.observationsDigest);
     } else if (item.name === 'activation.json') {
       assert.deepEqual(bytes, activationBytes);
+    } else if (item.name === 'rights.json') {
+      assert.equal(
+        artifact.digest(bytes),
+        record.rights.reportSHA256,
+        'archived rights bytes changed'
+      );
     } else if (item.name !== 'archive.json') {
       assert.match(item.name, /^evidence-(?:run-)?[1-9]\d*\.zip$/);
       assert.equal(artifact.digest(bytes), record.evidenceFiles[item.name].sha256);
     }
     fs.writeFileSync(path.join(directory, item.name), bytes);
   }
+  archive.verifyRights(directory, record);
   return record;
 }
 
@@ -380,13 +434,20 @@ async function publishArchive(
   control = productionClient(github)
 ) {
   const tag = archive.tag(record.tag);
-  let release = await optional(() => control.rest.repos.getReleaseByTag({ ...context.repo, tag }));
+  // The tag endpoint exposes published releases, not the draft created before deployment.
+  const matches = (
+    await control.paginate(control.rest.repos.listReleases, { ...context.repo, per_page: 100 })
+  ).filter((item) => item.tag_name === tag);
+  assert.ok(matches.length <= 1, 'ambiguous archive release identity');
+  let release = matches[0] || null;
   const names = [
     'archive.json',
+    'rights.json',
     'public.tar.gz',
     ...Object.keys(record.evidenceFiles),
     ...(activation ? ['activation.json', 'observations.tar.gz'] : []),
   ].sort();
+  archive.verifyRights(directory, record);
   if (activation) {
     live(record, activation.observation);
     assert.equal(activation.tag, record.tag);
@@ -485,6 +546,118 @@ async function branch(github, context) {
     github.rest.git.getRef({ ...context.repo, ref: 'heads/production' })
   );
   return ref?.object.sha || null;
+}
+
+async function failedPublication(github, context, runId, attempt) {
+  const run = (
+    await github.rest.actions.getWorkflowRun({
+      ...context.repo,
+      run_id: flow.positive(runId),
+    })
+  ).data;
+  assert.equal(run.id, flow.positive(runId));
+  assert.equal(run.path, workflow);
+  assert.equal(run.event, 'workflow_dispatch');
+  assert.equal(run.head_branch, 'main');
+  assert.equal(run.repository.full_name, flow.repository);
+  assert.equal(run.head_repository.full_name, flow.repository);
+  assert.equal(run.actor.login, context.repo.owner);
+  assert.equal(run.triggering_actor.login, context.repo.owner);
+  assert.equal(run.run_attempt, flow.positive(attempt));
+  assert.equal(run.status, 'completed');
+  assert.equal(run.conclusion, 'failure', 'recover only a failed publisher');
+  const comparison = (
+    await github.rest.repos.compareCommitsWithBasehead({
+      ...context.repo,
+      basehead: run.head_sha + '...' + context.sha,
+    })
+  ).data;
+  assert.equal(comparison.merge_base_commit.sha, run.head_sha, 'untrusted recovery source');
+  const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRunAttempt, {
+    ...context.repo,
+    run_id: run.id,
+    attempt_number: run.run_attempt,
+    per_page: 100,
+  });
+  const publication = jobs.filter((job) => job.name === 'Pages publication');
+  assert.equal(publication.length, 1);
+  assert.equal(publication[0].conclusion, 'failure');
+  const items = await github.paginate(github.rest.actions.listWorkflowRunArtifacts, {
+    ...context.repo,
+    run_id: run.id,
+    per_page: 100,
+  });
+  const name = 'site-production-result-' + run.id + '-' + run.run_attempt;
+  const matches = items.filter((item) => item.name === name);
+  assert.equal(matches.length, 1, 'failed publication result missing/ambiguous');
+  const item = matches[0];
+  pages.artifactIdentity(item, run, item.id, item.digest, name);
+  assert.equal(item.workflow_run.head_sha, run.head_sha);
+  return {
+    runId: run.id,
+    attempt: run.run_attempt,
+    source: run.head_sha,
+    artifactId: item.id,
+    uploadDigest: item.digest,
+  };
+}
+
+async function recoveryState(github, context, proof, transaction, tag) {
+  assert.equal(transaction.schema, 1);
+  assert.equal(transaction.kind, 'production-transition');
+  assert.equal(transaction.before, null, 'metadata-only recovery is first-release only');
+  assert.equal(transaction.desired.tag, archive.tag(tag));
+  assert.equal(transaction.desired.sourceCommit, proof.source);
+  assert.equal(transaction.desired.previousTag, null);
+  assert.deepEqual(transaction.savedLabels, { [transaction.desired.releasePR]: [] });
+  await sourcePR(github, context, transaction.desired, transaction.desired.releasePR);
+  assert.equal(await pages.activeProduction(github, context), null, 'production became accepted');
+  assert.ok(
+    [null, proof.source].includes(await branch(github, context)),
+    'unrelated production ref'
+  );
+  const deployment = (
+    await github.rest.repos.getDeployment({
+      ...context.repo,
+      deployment_id: flow.positive(transaction.deploymentId),
+    })
+  ).data;
+  assert.equal(deployment.id, transaction.deploymentId);
+  assert.equal(deployment.environment, 'production');
+  assert.equal(deployment.sha, proof.source);
+  assert.equal(deployment.creator.login, 'github-actions[bot]');
+  assert.deepEqual(deployment.payload, {
+    kind: 'accepted-production',
+    tag: transaction.desired.tag,
+    sourceCommit: proof.source,
+    publicDigest: transaction.desired.publicDigest,
+    packageDigest: transaction.desired.packageDigest,
+    releasePR: transaction.desired.releasePR,
+    origin: transaction.desired.origin,
+  });
+  const statuses = await github.paginate(github.rest.repos.listDeploymentStatuses, {
+    ...context.repo,
+    deployment_id: deployment.id,
+    per_page: 100,
+  });
+  assert.ok(statuses.length > 0);
+  assert.ok(!statuses.some((status) => status.state === 'success'), 'release was already accepted');
+  assert.ok(['in_progress', 'failure'].includes(statuses[0].state));
+  const active = await github.paginate(github.rest.issues.listForRepo, {
+    ...context.repo,
+    labels: labels[0],
+    state: 'all',
+    per_page: 100,
+  });
+  assert.ok(
+    active.every((item) => item.number === transaction.desired.releasePR),
+    'unrelated active label'
+  );
+  const pr = (
+    await github.rest.pulls.get({ ...context.repo, pull_number: transaction.desired.releasePR })
+  ).data;
+  assert.ok(!pr.labels.some((item) => item.name === labels[1]), 'unrelated archived state');
+  return transaction;
 }
 
 async function plan(github, context, current, desired) {
@@ -594,7 +767,10 @@ async function pending(github, context, transaction) {
 function live(release, observation) {
   archive.transition(null, release, observation);
   assert.equal(observation.deploymentURL, edition.origin + '/');
-  for (const check of ['pages', 'productionPolicy', 'browser', 'passiveScan', 'retained'])
+  const checks = ['pages', 'productionPolicy', 'browser', 'retained'];
+  if (observation.smokePolicy === undefined) checks.push('passiveScan');
+  else assert.equal(observation.smokePolicy, 'production-smoke-v1');
+  for (const check of checks)
     assert.equal(observation[check], true, 'production live acceptance missing: ' + check);
 }
 
@@ -678,6 +854,7 @@ module.exports = {
   authorize,
   producer,
   validation,
+  stagingValidation,
   productionClient,
   productionAppId,
   protection,
@@ -692,6 +869,8 @@ module.exports = {
   restoreArchive,
   publishArchive,
   branch,
+  failedPublication,
+  recoveryState,
   plan,
   move,
   pending,

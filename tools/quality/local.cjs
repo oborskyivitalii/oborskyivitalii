@@ -366,7 +366,8 @@ function sourceIdentity() {
 
 function prepublication(level, directory, options = {}) {
   assert.ok(['staging', 'production'].includes(level), 'unknown prepublication level');
-  const input = path.resolve(directory);
+  const input = path.resolve(directory),
+    sourceLimits = require('./source-tests.cjs').executionLimits;
   const reportFile = path.resolve(
     options.report ||
       path.join(
@@ -405,15 +406,7 @@ function prepublication(level, directory, options = {}) {
     SITE_VALIDATION_LEVEL: level,
   };
   const execute =
-    options.execute ||
-    ((command, args) =>
-      cp.spawnSync(command, args, {
-        cwd: root,
-        env: environment,
-        encoding: 'utf8',
-        timeout: 180000,
-        maxBuffer: 16 * 1024 * 1024,
-      }));
+    options.execute || ((command, args, execution) => cp.spawnSync(command, args, execution));
   const checks = [];
   function check(id, command, args, dependencies = []) {
     const blocked = dependencies.filter(
@@ -424,9 +417,19 @@ function prepublication(level, directory, options = {}) {
       return;
     }
     const started = Date.now();
+    // The reporting wrapper must outlive its own bounded test child so timeout
+    // cleanup and original TAP/stderr can finish before the outer deadline.
+    const timeoutMs =
+      id === 'source-tests' ? sourceLimits.timeoutMs + sourceLimits.reportGraceMs : 180000;
     let result;
     try {
-      result = execute(command, args);
+      result = execute(command, args, {
+        cwd: root,
+        env: environment,
+        encoding: 'utf8',
+        timeout: timeoutMs,
+        maxBuffer: 16 * 1024 * 1024,
+      });
     } catch (error) {
       result = { status: null, error, stdout: '', stderr: error.message };
     }
@@ -441,6 +444,10 @@ function prepublication(level, directory, options = {}) {
       status: result.status === 0 && !result.error ? 'passed' : 'failed',
       exitCode: result.status ?? null,
       signal: result.signal || null,
+      error: result.error
+        ? { name: result.error.name, message: result.error.message, code: result.error.code }
+        : null,
+      timeoutMs,
       elapsedMs: Date.now() - started,
       stdout,
       stderr,
@@ -471,7 +478,17 @@ function prepublication(level, directory, options = {}) {
     '--report',
     path.join(reportDirectory, reportStem + '-source-tests-runner.json'),
   ]);
-  python('python-tests', 'tools/run_repository_tests.py');
+  // Audit-graph regressions import dependencies installed only in the locked venv.
+  check(
+    'python-tests',
+    path.join(
+      require('./common.cjs').tools,
+      'venv',
+      process.platform === 'win32' ? 'Scripts' : 'bin',
+      process.platform === 'win32' ? 'python.exe' : 'python'
+    ),
+    ['tools/run_repository_tests.py']
+  );
   python('code-style', 'tools/check_code_style.py');
   python('ri', 'tools/repository_intelligence.py', [
     '--config',
@@ -558,6 +575,10 @@ function prepublication(level, directory, options = {}) {
   const result = {
     schema: 1,
     kind: 'prepublication-preflight',
+    execution: {
+      runId: process.env.GITHUB_RUN_ID || null,
+      attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    },
     ...identity,
     candidateCommit: environment.SITE_CANDIDATE_SHA,
     validationLevel: level,
@@ -571,6 +592,11 @@ function prepublication(level, directory, options = {}) {
     productionEligible: false,
     deploymentAuthorized: false,
   };
+  assert.deepEqual(
+    checks.map((row) => row.id),
+    require('./prepublication.cjs').checkIds(level)
+  );
+  result.files = require('./prepublication.cjs').capture(reportDirectory, reportFile);
   fs.writeFileSync(reportFile, JSON.stringify(result, null, 2) + '\n');
   return result;
 }

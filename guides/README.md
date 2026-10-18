@@ -5,6 +5,10 @@ rules, and [REPOSITORY-MAP](../REPOSITORY-MAP.md) indexes files and editing owne
 These nonpublic guides own the detailed contracts below. Current task intent and
 acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint.
 
+[LICENSING](../LICENSING.md) owns the site's code/content license split and exclusions;
+[code terms](../LICENSE-CODE.md), [content terms](../LICENSE-CONTENT.md) and
+[NOTICE](../NOTICE.md) preserve the applicable permissions and attribution boundaries.
+
 | Guide | Responsibility | Owning route |
 | --- | --- | --- |
 | [CODE-STYLE](CODE-STYLE.md) | Mandatory agent coding/architecture rules, bounded enforcement and exact legacy debt | Code-changing issue ACs; initial audit/refactor plan #54 |
@@ -14,11 +18,13 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) | Editorial, exact-edition, attribution and rights review | Content issue; rights #7; launch/release #1/#8/#13 |
 | [ARTICLE-WORKFLOW](ARTICLE-WORKFLOW.md) | Article blueprint/manuscript/profile, pinned sources, PDF/platform candidates and observed publication events | Publisher #5; PMDay #2; original research and rights owners |
 | [SITE-CONTENT-RELEASE](SITE-CONTENT-RELEASE.md) | Automatic Writing records/count and verified platform reuse for independent static content packages | Publisher #5; existing hosting/release decisions #8/#13 |
+| [SITE-RIGHTS](SITE-RIGHTS.md) | Source, media and retained-edition rights inventory, reuse-policy decision and release approval evidence | Rights #7; production preparation #39; release gates #13 |
 | [SITE-SEO](SITE-SEO.md) | Topic vocabulary, visible content mapping and discoverability evidence | Content owner; production measurement #8; later guides #11 |
 | [SITE-ANALYTICS](SITE-ANALYTICS.md) | Disabled-by-default measurement adapter and actual-origin activation | Hosting/analytics #8; release coverage #13 |
 | [SITE-CHECK-PROFILES](SITE-CHECK-PROFILES.md) | PR smoke/targeted acceptance, bounded staging and full production check selection; test registry/dispositions | Test optimization #35; hosting/gates #8/#13 |
 | [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) | Security, browser/device, performance budgets and exact-artifact evidence | Release gates #13 and hosting #8 |
 | [SITE-STAGING](SITE-STAGING.md) | CI controller, immutable preview/staging, promotion and recovery mechanics | Hosting/gates #8/#13 |
+| [SITE-PRODUCTION](SITE-PRODUCTION.md) | GitHub Pages .ai canonical domain, .com redirect and phased owner/provider preparation | Domain readiness #39 under #8/#13 |
 
 Read dated evidence as evidence of its exact source; it cannot admit a later
 candidate. Required budgets and source/artifact checks remain with these owners.

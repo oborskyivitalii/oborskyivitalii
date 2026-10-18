@@ -6,9 +6,15 @@ on:
         description: Exact current main commit; prepares a preview, never activates production
         required: true
         type: string
+      release_pr:
+        description: Merged PR with successful unchanged staging source
+        required: true
+        type: string
 permissions:
   contents: read
   actions: read
+  checks: read
+  pull-requests: read
 concurrency:
   group: author-production-candidate
   cancel-in-progress: false
@@ -20,9 +26,12 @@ jobs:
       public_id: ${{ steps.public.outputs.artifact-id }}
       upload_digest: ${{ steps.public.outputs.artifact-digest }}
       digest: ${{ steps.identity.outputs.digest }}
+      rights_digest: ${{ steps.rights.outputs.digest }}
+      rights_policy_status: ${{ steps.rights.outputs.policy_status }}
       package_id: ${{ steps.package.outputs.artifact-id }}
     env:
       SITE_CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+      RELEASE_PR: ${{ inputs.release_pr }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -38,31 +47,39 @@ jobs:
         with:
           script: |
             require('./tools/pages/controller.cjs').controller(context,(await github.rest.repos.getBranch({...context.repo,branch:'main'})).data);
+            const fs=require('node:fs');
             require('node:assert/strict').equal(process.env.SITE_CANDIDATE_SHA,context.sha);
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
-        with:
-          python-version: 3.12.14
-      - name: Install locked host-independent prepublication tools
+            const proof=await require('./tools/release/staging-policy.cjs').authenticate(github,context,process.env.RELEASE_PR,context.sha);
+            fs.mkdirSync('quality-reports',{recursive:true});
+            fs.writeFileSync('quality-reports/staging-authentication.json',JSON.stringify(proof,null,2)+'\n');
+            for(const [key,value] of Object.entries({stage_run:proof.runId,public_id:proof.public.id,public_digest:proof.public.digest,gate_id:proof.gate.id,gate_digest:proof.gate.digest}))core.setOutput(key,value);
+      - name: Retrieve authenticated staging artifact and original gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STAGE_PUBLIC_ID: ${{ steps.source_identity.outputs.public_id }}
+          STAGE_PUBLIC_DIGEST: ${{ steps.source_identity.outputs.public_digest }}
+          STAGE_GATE_ID: ${{ steps.source_identity.outputs.gate_id }}
+          STAGE_GATE_DIGEST: ${{ steps.source_identity.outputs.gate_digest }}
         run: |
-          npm ci --prefix tools/quality/toolchain --ignore-scripts
-          python3 -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check -r tools/quality/toolchain/requirements.txt
-      - name: Freeze a separate production edition before tests
+          mkdir -p quality-reports/staging
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$STAGE_PUBLIC_ID/zip" > quality-reports/staging/public.zip
+          python3 tools/pages/unpack.py quality-reports/staging/public.zip quality-reports/staging/public "$STAGE_PUBLIC_DIGEST"
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$STAGE_GATE_ID/zip" > quality-reports/staging/gate.zip
+          python3 tools/pages/unpack.py quality-reports/staging/gate.zip quality-reports/staging/gate "$STAGE_GATE_DIGEST"
+      - name: Freeze the production edition from the accepted identical source tree
         run: |
           node tools/quality/artifact.cjs build quality-artifact
-          node tools/release/edition.cjs build quality-artifact
+          node tools/staging/color.cjs quality-artifact
+          node tools/release/edition.cjs build quality-artifact color
           node tools/release/edition.cjs verify quality-artifact
-      - name: Complete host-independent production guards before candidate upload
-        if: ${{ !cancelled() && steps.source_identity.outcome == 'success' }}
-        run: node tools/quality/local.cjs --prepublication production quality-artifact --report quality-reports/prepublication.json
-      - name: Retain all prepublication observations even when a guard fails
-        if: always()
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        with:
-          name: site-prepublication-production-${{ github.run_id }}-${{ github.run_attempt }}
-          path: quality-reports/
-          if-no-files-found: error
-          retention-days: 90
+      - id: rights
+        name: Inventory rights and notices on the frozen production edition
+        run: |
+          node tools/release/rights.cjs build quality-artifact
+          node tools/release/rights.cjs verify quality-artifact quality-artifact/rights.json
+          node -e "const r=require('./quality-artifact/rights.json');require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT,'digest='+r.inventoryDigest+'\npolicy_status='+r.policy.status+'\n')"
+      - name: Bind production derivation to the original successful staging
+        run: node tools/release/staging-policy.cjs bind quality-artifact quality-reports/staging-authentication.json quality-reports/staging/public quality-reports/staging/gate/release-manifest.json
       - id: public
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
@@ -154,6 +171,10 @@ jobs:
         with:
           artifact-ids: ${{ needs.build.outputs.package_id }}
           path: staging-package
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.build.outputs.public_id }}
+          path: quality-artifact
       - name: Observe immutable candidate bytes with preview transport policy
         run: node tools/staging/review-flow.cjs http staging-package "${{ needs.publish.outputs.url }}" quality-reports/production-candidate-http.json
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
@@ -163,14 +184,24 @@ jobs:
           path: quality-reports/
           if-no-files-found: error
           retention-days: 90
-      - name: Show exact inputs for the existing full candidate validation
+      - name: Retain staging-based production admission without a full-test claim
+        run: node tools/release/staging-policy.cjs gate quality-artifact quality-reports/release-manifest.json
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: site-production-admission-${{ github.run_id }}-${{ github.run_attempt }}
+          path: quality-reports/release-manifest.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Show production admission and optional full diagnostic inputs
         env:
           CANDIDATE_URL: ${{ needs.publish.outputs.url }}
           PUBLIC_ID: ${{ needs.build.outputs.public_id }}
           PUBLIC_DIGEST: ${{ needs.build.outputs.digest }}
           UPLOAD_DIGEST: ${{ needs.build.outputs.upload_digest }}
+          RIGHTS_DIGEST: ${{ needs.build.outputs.rights_digest }}
+          RIGHTS_POLICY_STATUS: ${{ needs.build.outputs.rights_policy_status }}
         run: |
           node - <<'JS'
           require('node:fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-            'Prepared prospective production bytes; production remains inactive.\n\n'+JSON.stringify({candidate_sha:process.env.SITE_CANDIDATE_SHA,base_url:process.env.CANDIDATE_URL,public_artifact_id:process.env.PUBLIC_ID,public_run_id:process.env.GITHUB_RUN_ID,public_digest:process.env.PUBLIC_DIGEST,public_upload_digest:process.env.UPLOAD_DIGEST},null,2)+'\n');
+            'Prepared staging-admitted production Color bytes; production remains inactive. The optional full diagnostic is not a release dependency.\n\n'+JSON.stringify({candidate_sha:process.env.SITE_CANDIDATE_SHA,public_variant:'color',base_url:process.env.CANDIDATE_URL,public_artifact_id:process.env.PUBLIC_ID,public_run_id:process.env.GITHUB_RUN_ID,public_digest:process.env.PUBLIC_DIGEST,public_upload_digest:process.env.UPLOAD_DIGEST,rights_inventory_digest:process.env.RIGHTS_DIGEST,rights_policy_status:process.env.RIGHTS_POLICY_STATUS},null,2)+'\n');
           JS

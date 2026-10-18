@@ -37,7 +37,7 @@ function applyDeliveryLayers(directory, record, content, candidates) {
   const edition = record.edition?.id;
   if (edition === 'staging') require('../staging/edition.cjs').build(directory);
   else if (edition === 'production' && content && !candidates.length)
-    require('../release/edition.cjs').build(directory);
+    require('../release/edition.cjs').build(directory, record.components.variant?.id || 'base');
   else if (edition) throw Error('Article candidates cannot use a production edition');
 }
 

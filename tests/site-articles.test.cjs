@@ -27,7 +27,12 @@ function json(root, relative, value) {
 }
 test.before(() => {
   const source = fs.mkdtempSync(path.join(os.tmpdir(), 'site-articles-source-'));
-  for (const relative of ['site', 'tools/site', 'tools/build_scene_fallbacks.cjs']) {
+  for (const relative of [
+    'site',
+    'tools/site',
+    'tools/build_scene_fallbacks.cjs',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
+  ]) {
     fs.mkdirSync(path.dirname(path.join(source, relative)), {
       recursive: true,
     });
@@ -360,7 +365,7 @@ test('article changes, slug rename and deletion have cold/incremental equality w
   assert.ok(!Object.keys(deleted.files).some((name) => name.startsWith('article-')));
 });
 
-test('accepted articles survive retention and edition derivation after rename with original immutable bytes', (t) => {
+test('accepted article rename retains source history while staging isolates HTML and preserves media', (t) => {
   const root = fixture(t, { cold: true });
   const record = publication(root);
   accept(root, record);
@@ -389,8 +394,11 @@ test('accepted articles survive retention and edition derivation after rename wi
   const staged = require('../tools/staging/edition.cjs').build(directory);
   assert.equal(Object.keys(staged.components.articles).length, 1);
   snapshot.verify(path.join(directory, 'public'), staged);
-  for (const name of Object.keys(before.files).filter(snapshot.immutable))
-    assert.equal(staged.files[name].sha256, before.files[name], name);
+  for (const name of Object.keys(before.files).filter(snapshot.immutable)) {
+    if (name.startsWith('runtime/') || name.endsWith('.html')) {
+      assert.equal(staged.files[name], undefined, 'old staging HTML/runtime removed: ' + name);
+    } else assert.equal(staged.files[name].sha256, before.files[name], name);
+  }
 });
 
 test('article identity verifier rejects unknown rooms, candidate production, corrupt assets and omitted snapshots', (t) => {

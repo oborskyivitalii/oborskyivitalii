@@ -152,7 +152,12 @@ function repositoryFixture(t, { realSources = false } = {}) {
   const directory = temporary(t),
     registry = sourceTests.loadRegistry(root);
   if (realSources) {
-    for (const source of ['site', 'tools/site', 'tools/publishing'])
+    for (const source of [
+      'site',
+      'tools/site',
+      'tools/publishing',
+      ...Object.values(require('../tools/site/legal.cjs').sources),
+    ])
       fs.cpSync(path.join(root, source), path.join(directory, source), {
         recursive: true,
         filter: (file) => !file.split(path.sep).includes('node_modules'),

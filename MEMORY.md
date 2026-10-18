@@ -4,73 +4,65 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 ## Snapshot
 
-- Live main/production: `3af9100989c7dd6edc18b0b94c2d59f177cfd465`,
-  tree `2a4a0d57f75eba7f651906e6ea097e88b6cf8f0b`.
-  Immutable prod-2026-10-17.4 and actual publisher39071850828 succeeded.
-  Canonical.ai and both.com301 redirects are live; #39 owns exact evidence.
-- Sole open Draft PR79 under #5/#2 was inspected at
-  `8d7a87091b461a18d618d8299a5614261fe6a451`; tree1d69853a.
-  GitHub reports mergeable:false/dirty against its older main base.
-  Preserve current main release/legal/security/analytics changes on reconciliation.
-- Article is R10, not R8 or an unwritten draft. Draft and canonical manuscript
-  match SHA2565f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49.
-  R10 source/PDF evidence lives in review/issue-2/pmday-candidate-20261015/README.md.
-  Prior standalone PDFs are review artifacts, not managed current site acceptance.
-  R10 PDF delivery was not established by this planning pass.
-- PR79 already has generation reuse and content-vs-platform PR classification.
-  Its guide retains ordinary staging/production gates; independent lightweight
-  production content admission is not delivered.
-- Planning owner: review/issue-5/2026-10-18-release-segmentation.md.
-  This pass changes planning/catalog/RI/memory only, not article/runtime/workflows.
-  No rebase, preview, merge or production action is claimed.
+- Production/main remains3af9100989c7dd6edc18b0b94c2d59f177cfd465,
+  accepted prod-2026-10-17.4. No publication or provider change in this step.
+- Owner #5; same Draft PR79. Technical step1 reconciles its54f3a2c2 head
+  with released main by normal merge; final source/run links live in issue/PR.
+- Record: review/issue-5/2026-10-18-step1-reconciliation.md.
+  Plan: review/issue-5/2026-10-18-release-segmentation.md.
+- All54 starting files under drafts, site/publications, site/assets/publications
+  and review/issue-2 retain their original Git blobs. No editorial changes.
+- Current R10 manuscript SHA256:
+  5f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49.
+- Current-main release policy, legal owners, analytics, Cloudflare-only staging,
+  native navigation corrections and source worker are preserved.
 
 ## Decisions
 
-- User prioritizes publishing the new site article quickly while retaining a
-  clean engine/assets/templates/content separation and future independent lanes.
-- Recommended sequence: minimal contract + reconcile PR79/current R10 in parallel,
-  current HTML preview/rights/reader acceptance, first article via existing
-  controller, then independent content/media production lane and real reuse proof.
-- Recommendation is one static monorepo with versioned platform/content/media
-  artifacts and one atomic assembler. Microservices/new hosting/CMS are not a
-  selected prerequisite. Source/rights/review decisions remain with their owners.
-- First article adds a reader/runtime capability: use applicable source and
-  bounded staging checks honestly. Later content-only changes can use targeted
-  checks with exact compatible-platform proof; unknown/shared-code changes escalate.
-- Keep stable articles/<slug>.html URLs, one canonical manuscript and declared
-  media/semantic editions. Existing PR79 source/export history stays preserved.
-- Full diagnostics remain optional under the accepted17October release policy.
-  Do not revive obsolete ribbon/shard/GTK campaigns for this planning task.
-- #7/#13 are closed completed for shipped scope; #45/#49 closed superseded.
-  #101 Turnstile is closed not applicable. #39 final independent review stays open.
+- User authorizes step1 only, report/reassessment, then small subsequent steps.
+  Article writing/editing is explicitly excluded; it continues in another chat.
+- Preserve authored article/edition/media history. Consume the latest editorial
+  handoff rather than changing its text or manufacturing acceptance.
+- One static monorepo with versioned platform/templates/content/media artifacts
+  and one atomic assembler remains recommended. No runtime microservices now.
+- First reader integration is a platform change. Later content-only generation
+  can reuse an exact compatible admitted platform; unknown/shared changes escalate.
+- Full diagnostics stay optional under the accepted17October release policy.
+  Staging derives labelled/noindex active HTML, removes prior unlabelled HTML,
+  and retains immutable media. Color/source history remains separate.
+- Declared candidate media is explicit pending review input, not licensed or
+  publication-approved. Current release policy still requires article notices
+  admission before a real hosted article can ship.
 
 ## Open work
 
-- #2: complete R10 editorial/source/figure/rights and current HTML publication;
-  original PDF/deck/upstream criteria remain separately reconciled.
-- #5/PR79: reconcile onto actual main, retain minimal reader/publisher integration;
-  then AC16–AC20 versioned boundaries, content-only production, media, assembly,
-  concurrency/rollback. Existing AC01–AC15 keep their exact historical scope.
-- #102: extensionless entry analytics gap; plan declared article-path coverage.
-  #103/#8: actual Windsor/Google property access, indexing and query baseline.
-  #104: conversion design after article/template contract; not a publication block.
-- #97 owner MFA action can run independently. #98 disclosure file and #99/#100
-  bot/crawler policies are not prerequisites for the article.
-- #6 harness follows settled publisher contracts; #11 guides use the resulting lane.
-- #36/#41 retain scoped current visual/editorial evidence obligations. No new
-  first-reader/device or independent approval is invented by source inspection.
+- #5 AC11/12 retain independent and hosted/release gates. AC16–AC20 independent
+  production lanes, version boundaries, media/assembly/concurrency remain open.
+- Current R10 isolated HTML build fails the existing100000-byte article budget;
+  synthetic source checks do not establish real-article preview readiness.
+- Next technical increment: reduce reader overhead without changing text/budget,
+  exact hosted-article rights/notices admission and
+  current immutable HTML preview, using source supplied by the editorial chat.
+- After preview acceptance: bounded platform staging and existing controller
+  publication; then independent content/media production and real reuse proof.
+- #2 original PDF/deck/upstream/editorial/publication gates remain separate;
+  this chat does not write or accept the article.
+- #102 analytics entry/article route coverage; #8/#103 Google/Windsor access;
+  #104 conversions after the reader contract. MFA #97 is independent.
+- #98/#99/#100 are separately selected, not first-article blockers.
+  #6 harness and #11 guides follow the proven publisher lane.
+- #39 final independent review remains open. #7/#13 shipped scope is closed;
+  #45/#49 superseded; #101 Turnstile not applicable.
 
 ## Next session
 
-1. Revalidate main and PR79 head; read owning #5/#2 dated plan and R10 evidence.
-2. Inventory and reconcile unique publisher changes against released main,
-   preserving current production controller, legal records, source/security fixes.
-3. Finish R10 review in parallel, reach a current immutable HTML preview, then
-   follow actual owner acceptance/release route. Full lane separation is later.
-4. Map added AC16–AC20 before their implementation; use targeted meaningful
-   content/baseline/compatibility/concurrent-publication negatives.
+1. Read issue5/PR79 final checkpoint; revalidate current head and production.
+2. Resume the next user-selected technical increment. Do not repeat step1 or
+   overwrite concurrent article changes from the other conversation.
+3. Keep rights, actual hosted-reader acceptance and release decisions explicit;
+   a successful source build is not an article publication event.
 
 ## Maintenance
 
 Keep these five sections and at most120lines. Rebuild/verify RI after indexed
-changes; use live issues/refs for current acceptance. Never store secrets.
+changes. Use live issue/refs for current evidence; never store secrets.

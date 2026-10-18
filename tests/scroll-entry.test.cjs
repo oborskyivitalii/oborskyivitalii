@@ -234,6 +234,82 @@ function harness({
   };
 }
 
+test('native CSS completion remains valid when the wall clock advances between frame samples', async () => {
+  for (const direction of [1, -1]) {
+    for (const stage of ['departing', 'arriving']) {
+      const h = harness({ count: 1 });
+      h.document.timeline = { currentTime: 84 };
+      if (stage === 'arriving') h.controller.prepareArrival(direction);
+      const phase =
+        stage === 'departing' ? h.controller.depart(direction) : h.controller.arrive(direction);
+      h.tick(985);
+      h.document.timeline.currentTime = 1084;
+      h.root.emit('animationend', {
+        animationName: stage === 'departing' ? 'route-block-depart' : 'route-block-arrive',
+        target: h.elements[0],
+      });
+      h.routeWatchdog();
+      assert.equal(
+        (await phase).completedBy,
+        'animationend',
+        'the genuine1000ms CSS wave completed'
+      );
+      h.controller.cancel();
+    }
+  }
+  const reading = harness();
+  reading.document.timeline = { currentTime: 84 };
+  reading.scroll(200);
+  reading.intersect([1]);
+  reading.tick(685);
+  reading.document.timeline.currentTime = 784;
+  reading.root.emit('animationend', {
+    animationName: 'scroll-entry-rise',
+    target: reading.elements[1],
+  });
+  assert.equal(reading.state(1), undefined, 'the genuine700ms CSS reveal completed');
+  reading.controller.cancel();
+});
+
+test('elapsed wall time cannot admit a stale event before the current CSS phase ends', async () => {
+  const h = harness({ count: 1 });
+  h.document.timeline = { currentTime: 84 };
+  const phase = h.controller.depart(1);
+  h.tick(1000);
+  h.document.timeline.currentTime = 984;
+  h.root.emit('animationend', {
+    animationName: 'route-block-depart',
+    target: h.elements[0],
+  });
+  assert.equal(h.probes.at(-1).completedBy, null, 'the current CSS phase is still900ms old');
+  h.tick(100);
+  h.document.timeline.currentTime = 1084;
+  h.root.emit('animationend', {
+    animationName: 'route-block-depart',
+    target: h.elements[0],
+  });
+  h.routeWatchdog();
+  assert.equal((await phase).completedBy, 'animationend');
+  h.controller.cancel();
+});
+
+test('unavailable CSS timeline marks retain the paired wall-clock completion fallback', async () => {
+  for (const value of [null, undefined, NaN, Infinity]) {
+    const h = harness({ count: 1 });
+    h.document.timeline = { currentTime: value };
+    const phase = h.controller.depart(1);
+    h.tick(1000);
+    h.document.timeline.currentTime = 1084;
+    h.root.emit('animationend', {
+      animationName: 'route-block-depart',
+      target: h.elements[0],
+    });
+    h.routeWatchdog();
+    assert.equal((await phase).completedBy, 'animationend');
+    h.controller.cancel();
+  }
+});
+
 test('entry boot keeps the first fold steady and arms only safe below-fold shells', () => {
   const h = harness();
   assert.equal(h.state(0), undefined);

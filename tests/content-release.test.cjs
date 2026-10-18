@@ -98,6 +98,7 @@ test.before(() => {
     'tools/site',
     'tools/publishing',
     'tools/build_scene_fallbacks.cjs',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
     fs.mkdirSync(path.dirname(path.join(root, name)), { recursive: true });
     fs.cpSync(path.join(repo, name), path.join(root, name), {
@@ -290,7 +291,7 @@ function compose(f, layers = []) {
   return { directory, record: readJSON(directory, 'artifact.json') };
 }
 
-test('content artifact retains prior deployed Color/staging snapshots and proves exact current source', (t) => {
+test('content artifact preserves immutable media, isolates staging HTML and proves exact current source', (t) => {
   const f = fixture(t);
   changedCatalog(f);
   publication(f.root, candidates[0], 'Changed content with prior deployed reader retained.');
@@ -309,7 +310,17 @@ test('content artifact retains prior deployed Color/staging snapshots and proves
   assert.equal(output.record.files['articles/first-profile.html'], undefined);
   for (const [name, info] of Object.entries(f.record.files)) {
     if (!snapshot.immutable(name)) continue;
-    assert.equal(output.record.files[name].sha256, info.sha256, name);
+    if (
+      name.endsWith('.html') ||
+      (name.startsWith('runtime/') &&
+        !name.startsWith('runtime/' + output.record.components.engine + '/'))
+    ) {
+      assert.equal(
+        output.record.files[name],
+        undefined,
+        'old staging HTML/runtime removed: ' + name
+      );
+    } else assert.equal(output.record.files[name].sha256, info.sha256, name);
   }
   assert.equal(
     verifyCandidateSource(path.join(output.directory, 'public'), output.record, {

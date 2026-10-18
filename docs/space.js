@@ -79,11 +79,20 @@ const math=(function () {
       // Ribbon material carries the payload from the clipped camera vertex.
       return point.length > 3 ? [x, y, ...point.slice(3)] : [x, y];
     };
-    const visible = (points) =>
-      !points.every((point) => point[0] < -8) &&
-      !points.every((point) => point[0] > width + 8) &&
-      !points.every((point) => point[1] < -8) &&
-      !points.every((point) => point[1] > height + 8);
+    const visible = (points) => {
+      // Intersect each vertex's outside-plane bits. A zero intersection means
+      // no viewport edge excludes the complete primitive; no callback arrays.
+      let outside = 15;
+      for (const point of points) {
+        outside &=
+          (point[0] < -8 ? 1 : 0) |
+          (point[0] > width + 8 ? 2 : 0) |
+          (point[1] < -8 ? 4 : 0) |
+          (point[1] > height + 8 ? 8 : 0);
+        if (outside === 0) return true;
+      }
+      return false;
+    };
     return { forward, right, up, camera, project, visible, focal, origin };
   }
   // Semantic headings set interior waypoints. The actual scroll range owns
@@ -2348,15 +2357,19 @@ const projection=(function (math, definitions) {
   function projectedFace(f, vertices, screen, project) {
     // Clipping changes vertex count. Sorting uses the continuous original face
     // centroid so an extra near-plane intersection cannot reorder it abruptly.
-    const points = [],
-      z = f.indices.reduce((sum, index) => sum + vertices[index][2], 0) / f.indices.length;
+    const points = [];
+    let depth = 0,
+      needsClipping = false;
     for (const index of f.indices) {
-      if (!screen[index]) {
-        const clipped = clipPolygon(f.indices.map((j) => vertices[j]));
-        if (clipped.length < 3) return null;
-        return { points: clipped.map(project), depth: z };
-      }
-      points.push(screen[index]);
+      depth += vertices[index][2];
+      if (screen[index]) points.push(screen[index]);
+      else needsClipping = true;
+    }
+    const z = depth / f.indices.length;
+    if (needsClipping) {
+      const clipped = clipPolygon(f.indices.map((index) => vertices[index]));
+      if (clipped.length < 3) return null;
+      return { points: clipped.map(project), depth: z };
     }
     return { points, depth: z };
   }
@@ -2436,18 +2449,26 @@ const projection=(function (math, definitions) {
       const detailFade =
         line.minScale && pixelScale !== Infinity ? smooth(pixelScale - line.minScale) : 1;
       if (detailFade === 0) continue;
-      const [a, b] = line.indices,
-        unclipped = screen[a] && screen[b],
-        clipped = unclipped ? [vertices[a], vertices[b]] : clipSegment(vertices[a], vertices[b]);
-      if (!clipped) continue;
-      const projected = unclipped ? [screen[a], screen[b]] : clipped.map(project),
-        z = (clipped[0][2] + clipped[1][2]) / 2;
+      const [a, b] = line.indices;
+      let start = vertices[a],
+        end = vertices[b],
+        projected;
+      if (screen[a] && screen[b]) projected = [screen[a], screen[b]];
+      else {
+        const clipped = clipSegment(start, end);
+        if (!clipped) continue;
+        [start, end] = clipped;
+        projected = clipped.map(project);
+      }
+      const z = (start[2] + end[2]) / 2;
       if (!visible(projected)) continue;
-      if (
-        minArea &&
-        Math.hypot(projected[1][0] - projected[0][0], projected[1][1] - projected[0][1]) < 0.5
-      )
-        continue;
+      if (minArea) {
+        const dx = projected[1][0] - projected[0][0],
+          dy = projected[1][1] - projected[0][1];
+        // Compare squared CSS-pixel length; the existing half-pixel cutoff
+        // does not require a square root for every submitted line.
+        if (dx * dx + dy * dy < 0.25) continue;
+      }
       shapes.push({
         kind: 'line',
         points: projected,

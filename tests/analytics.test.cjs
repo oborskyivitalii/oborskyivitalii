@@ -36,6 +36,7 @@ function fixture(t) {
     'tools/build_site_previews.cjs',
     'tools/quality/artifact.cjs',
     'tools/quality/budgets.json',
+    ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
     fs.mkdirSync(path.dirname(path.join(dir, name)), { recursive: true });
     fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });

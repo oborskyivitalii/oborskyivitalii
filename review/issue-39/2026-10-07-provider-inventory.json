@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "issue": 39,
+  "observed_at": "2026-10-07T10:27:00Z",
+  "source_commit": "ec9b8361b619f1042bce5a3ec224d3e0c9054b01",
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "github": {
+    "repository_permissions": {
+      "admin": true,
+      "push": true,
+      "pull": true
+    },
+    "pages_administration": {
+      "available_via_plugin": false,
+      "read_attempt": "GET /repos/oborskyivitalii/oborskyivitalii/pages rejected by connector endpoint allowlist",
+      "live_pages_settings": "unobserved"
+    },
+    "active_pages_deploy_workflow": false,
+    "release_gate": ".github/workflows/site-release-checks.yml",
+    "inactive_example": "tools/quality/deploy-pages.example.yml"
+  },
+  "cloudflare": {
+    "account_id": "3b938b72a4ad0ac10b9102e0534e75c0",
+    "zones": [
+      {
+        "name": "vitaliioborskyi.ai",
+        "id": "94a46fef3ff2c40cdec1defdff0c85be",
+        "status": "active",
+        "dns_records": [],
+        "redirect_entrypoint": "absent",
+        "page_rules_count": 0,
+        "worker_routes_count": 0,
+        "universal_ssl_enabled": true,
+        "universal_certificate_status": "active"
+      },
+      {
+        "name": "vitaliioborskyi.com",
+        "id": "900e77fd27529c7fce067e253f2434c8",
+        "status": "active",
+        "dns_records": [],
+        "redirect_entrypoint": "absent",
+        "page_rules_count": 0,
+        "worker_routes_count": 0,
+        "universal_ssl_enabled": true,
+        "universal_certificate_status": "active"
+      }
+    ],
+    "capabilities": {
+      "dns_read": "observed",
+      "dns_edit": "permission advertised; no write attempted",
+      "redirect_read": "observed absent entrypoint",
+      "redirect_edit": "API schema available; no write attempted",
+      "certificate_read": "observed"
+    }
+  },
+  "mutations": {
+    "routing_dns": false,
+    "redirect_rule": false,
+    "pages_settings": false,
+    "production_deploy": false
+  }
+}
