@@ -2,6 +2,32 @@
 
 Execution: PR #79; article owner #2; publisher owner #5.
 
+> **Current reader: R9, 18 October 2026.** The editorial draft and canonical manuscript contain the exact reader used for the standalone R9 PDF. Existing article.pdf and platform kit in this directory remain historical; no R9 binary is silently substituted or claimed committed.
+
+## Editorial R9 — Lem quotations and systemic responsibility
+
+Author accepted the prior proposal, selecting the responsibility and reciprocal-care quotations and retaining the power-delegation statement as his own argument. Verified source pages: https://existentialtech.antikythera.org/ (Konior's English translation, notes 1/18, bibliography for the Polish 2020 edition p.471); https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/ (publisher-supplied Polish excerpt, Fantastyka i futurologia, 22 July 2025). The original book pages were not independently verified. Bibliography and quote attributions expose this provenance; the second quote's English wording was prepared for the article.
+
+The main text no longer explains its title by naming Summa. It retains that book in reference 4, adds reference 27, and preserves existing references 1–26. The Microsoft quotation and autopilot/disposability language remain exact, with first-pass review, human oversight and bounded-feature scope. The new conclusion raises conditional concerns about foreseeable costs omitted from the adoption case or weak systems analysis; private intent or collusion is not asserted. The sentence on delegated power is not a Lem quotation.
+
+Reader SHA-256: 7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd. PDF: The_Sum_of_Our_Technology_R9.pdf, 19 pages, 1,627,807 bytes, SHA-256 0ae16014f95a0649e84cdd9c3d64c27a222ecbbc03dc6129298c9d68e77a5572. Produced with WeasyPrint 68.0, locally rendered for all-page self-review; 8 unchanged image pixel payloads, all 32 distinct external URLs clickable, 75 external URL annotations, 19 bookmarks, no text spans outside checked page bounds. Source reader preserves six second-part refrains and unchanged section-4 adoption argument. This is local self-review, not managed publisher PDF proof or independent scientific/rights approval.
+
+Source preparation uses the previously established R8 route: locked AST extraction, publisher validation, maintained formatting, Basic, RI build/verify and coupling regressions before final coordinated source commit. All existing media bytes and prior edition records are retained. The temporary job removes itself before RI checks/commit; it introduces no persistent test/controller change. Style scope is CS01/02/04/05/08/10; no runtime or CSS changes. Read the actual preparation run result below, not this plan as proof.
+
+The first R9 preparation run 39128264066 failed its formatting check on the inherited generated .github/ri-ci-map.json. No R9 source commit was made by that run. The follow-up applies the already pinned formatter to that map before checking and again after generator refresh; no assertions or test budgets are relaxed. Toolchain installation also reported five existing high-severity npm audit findings in the quality toolchain; no unrelated dependency upgrade or claim of a clean security audit is made.
+
+Follow-up run 39128822230 still failed the same map because the direct Prettier CLI used its defaults, while the repository guard supplies tools/quality/prettier.config.json explicitly. This run uses that exact checked configuration before and after CI-map refresh. Both failed runs remain historical failures; their reader/semantic checks succeeded, but neither committed R9. No quality assertion, path coverage or budget was weakened.
+
+#2 AC01–AC06 and applicable #5 author/rights/publication gates remain open; AC07/08 recording acceptance remains separate. No site promotion, new hosted-preview acceptance, LinkedIn/Medium output, production, merge or upstream UA disposition. Existing base conflict remains separate.
+
+Preparation run: https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39129034749
+
+## Historical R8 and earlier checkpoints
+
+# PMDay article candidate — editorial review and export history
+
+Execution: PR #79; article owner #2; publisher owner #5.
+
 > **Current reader: R8.** The excluded editorial draft and canonical manuscript now contain the same R8 text. The files article.pdf and publication-kit.zip retained in this review directory remain historical r2 artifacts; do not confuse them with the standalone R8 PDF delivered in the conversation.
 
 ## Editorial R8 — direct quotations and synchronized source

@@ -1,9 +1,7 @@
-# The Sum of Our Technology — R8 review manuscript
+# The Sum of Our Technology — R9 review manuscript
 
-Editorial owner: issue #2; publisher execution: issue #5 / PR #79.
+Editorial owner #2; publisher execution #5 / PR #79. The approved R9 revision preserves the previous full article, seven original slide sources and quantified evidence; sharpens the architectural-oversight response; inserts two short, sourced Lem quotations; and strengthens the conditional systemic-responsibility conclusion. The delegated-power/rigor statement is the author's own, never attributed to Lem. Explanatory title-allusion paragraphs are removed from the main text; Summa remains in references.
 
-The author requested synchronization of the revised draft and the full canonical manuscript, plus a standalone R8 PDF. R7 was the editorial base. Preserve the six chapters, stronger direct Microsoft quotations with accurate scope, six chapter-5 What if not turns, NBER Table 6 trace, independent human-factors sources, 26-reference bibliography, citation block and seven original slide screenshots.
+Source 4 explicitly credits Bogna Konior's secondary quotation/English translation and original edition locator; source 27 identifies the publisher-supplied Polish excerpt, its separate Lem work, and translation for this article. The 27-entry bibliography and all 32 source URLs must stay readable and traceable.
 
-The ARTICLE START–END reader in the excluded R8 draft is copied without rewriting. Captions and alt text are synchronized through publication.json. The older r3 and r2 content-edition records remain historical. The R8 cover detail preserves the original master and matches the previously approved R7 crop.
-
-This is an unaccepted review edition with null public canonical and pending per-item rights. No publication, external posting, stable promotion or merge is authorized. LinkedIn/Medium generation and hosted-site integration are not part of this pass. The standalone PDF has a separate producer and identity; it is not managed-CI print proof.
+Draft reader and canonical manuscript match the standalone PDF input. Freeze a new R9 review semantic edition without rewriting prior editions or changing original image hashes. Preserve six chapters, exactly six chapter-5 What if not turns, the customer-adoption paragraph without an additional refrain, and the original closing sentence. No changes to the publisher, runtime, catalog release, media budgets or downstream platform generation. Final editorial/rights/publication acceptance remains open.

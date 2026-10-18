@@ -26,7 +26,7 @@ The important change was not simply more text. It was what became possible when 
 
 Large language models move another boundary. We can delegate interpretation, comparison, design proposals, implementation and explanation. *Delegating thinking* describes that practical change; it does not require a claim about consciousness.
 
-The title deliberately echoes Stanisław Lem's [*Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) [4]. The question is not just what a new capability lets us do. It is what happens to the larger system when we begin doing it.
+The question is not just what a new capability lets us do. It is what happens to the larger system when we begin doing it.
 
 Software gives us an immediate test. An AI agent can build an ordinary application. A conventionally staffed team can build a product that depends on model judgment. These are different shifts, with different failure modes. A convincing demonstration of either is not an answer to what happens when it stops working.
 
@@ -58,13 +58,13 @@ Now the narrative follows the next bottleneck. [Anthropic's Code Review announce
 
 > **“Don’t let code review become a bottleneck”**
 
-His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But naming the work to hand off is not demonstrating that its necessary outcomes survive the handoff.
+His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But architectural oversight is not a resource that appears because we name it. It depends on people continuing to understand the system whose implementation they increasingly do not inspect.
 
 **What if not?**
 
 Review gets faster, but the work of understanding the change no longer happens. Defect detection improves while incident investigation becomes harder. The team keeps the approval button and loses the capability that gave approval meaning. **The queue has cleared. The ownership gap has not.**
 
-**Identifying a bottleneck does not prove that its function can be removed.**
+**Identifying a bottleneck does not prove that its function can be removed.** An activity has been accelerated. Its responsibilities have not necessarily been discharged.
 
 There is important counterevidence. In its [October account of code review](https://claude.dev/blog/solving-code-review-at-anthropic/) [12], Anthropic reports that merged Claude Code PRs more than doubled while the reverted share fell by over 40% between June and September. It describes layered checks, risk-based approvals and staged release. Those are encouraging internal results from a redesigned workflow, not merely a promise.
 
@@ -250,6 +250,14 @@ Record the conditions of reliance and reassessment triggers. Turn incidents into
 
 Readiness means the design and capacity are feasible. Done means the candidate meets agreed evidence obligations. Release means an accountable owner accepts its operating scope. None means “safe forever”. We are maintaining the conditions under which the system may produce consequences.
 
+Stanisław Lem captured this reciprocal obligation:
+
+> “The more technology takes care of us, the more carefully we must take care of it.”
+
+*— Stanisław Lem; translated from Polish for this article, from a publisher-supplied anthology excerpt. Source and translation details: [27].*
+
+For a Thinking System, that care means maintaining evidence, enforceable limits and the human capacity to act—not merely keeping the model online.
+
 ![Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.](asset:pmday-slide-12)
 
 ## 6. What If Not?
@@ -263,6 +271,26 @@ You, your team and your organisation are not the vendor.
 You have different customers, commitments, systems and resources. A vendor's access to specialists does not staff your incident response. An API subscription does not supply the human judgment your architecture requires. A capable vendor can be wrong about timing, economics or the conditions needed elsewhere. Its confidence is not your risk acceptance.
 
 The problem is not moving to the next bottleneck. That is sensible systems work. It is removing a function before demonstrating how its necessary outcomes will be preserved. The history of generation followed by review redesign shows why the unit of adoption must be the workflow—not the tool's headline capability. [10], [11], [12]
+
+Lem's warning also applies to the people creating and promoting that capability:
+
+> “One cannot simultaneously make discoveries and avoid taking responsibility for their consequences.”
+
+*— Stanisław Lem, quoted and translated by Bogna Konior; source and edition details: [4].*
+
+What remains unclear to me is how much of the adoption story was designed with the full system in view—and how much emerged from competition, fragmented responsibility and locally convincing results.
+
+If foreseeable costs in verification, maintenance, recovery and human capacity were understood but left out of the adoption case, the concern is more than enthusiastic marketing. It is whether customers are being encouraged to take on risks and costs that the promise does not make visible.
+
+If those consequences were not seriously considered, the concern is different, but no more reassuring: a system-wide transformation is being promoted without system-level engineering. **That is not a new definition of engineering. It is a retreat from it.**
+
+These possibilities can coexist without a shared plan. Public messaging does not establish private intent. But customers should not have to solve that mystery before demanding an honest account of what they are being asked to operate.
+
+A foreseeable cost does not disappear because it sits outside the benchmark—or outside the vendor's balance sheet.
+
+**The more power we delegate, the more rigor we owe the systems that will bear its consequences.**
+
+For me, that means explicit assumptions, evidence proportionate to the consequences, viable human capacity and tested containment. As technology acts faster, across more systems, with effects harder to reverse, engineering must become more rigorous and more systemic—not more ceremonial. We cannot predict every effect. We can refuse to treat a local capability demonstration as sufficient justification for a system-wide commitment.
 
 An uncontrolled SDLC-wide proof of concept is not a strategy. Neither is paralysis. Start with a bounded decision:
 
@@ -292,7 +320,7 @@ Writing let ideas outlive their authors. AI expands how much work with those ide
 
 ### Further reading
 
-[The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) [9] is my research synthesis on AI-assisted delivery risk. [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) [20] is my developing doctrine and pattern language for Thinking Systems. They articulate the two engineering problems explored here; they are not independent experimental confirmation of this essay. The literary point of departure is Lem's [*Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) [4].
+[The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) [9] is my research synthesis on AI-assisted delivery risk. [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) [20] is my developing doctrine and pattern language for Thinking Systems. They articulate the two engineering problems explored here; they are not independent experimental confirmation of this essay.
 
 ## Sources & references
 
@@ -306,9 +334,9 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 3. [Jared Rubin. “Printing and Protestants: An Empirical Test of the Role of Printing in the Reformation.” Review of Economics and Statistics 96(2), 270–286 (2014).](https://digitalcommons.chapman.edu/economics_articles/99/)
 
-4. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae)
+4. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae) · [Quotation source: Bogna Konior, “Existential Technologies,” Antikythera.](https://existentialtech.antikythera.org/)
 
-    The literary allusion concerns technology and its wider consequences; it does not attribute this essay’s specific AI or SDLC claims to Lem.
+    The responsibility quotation in section 6 is reproduced in Konior’s English translation. Her note 18 cites the Polish edition (Kraków: Wydawnictwo Literackie, 2020), p. 471; note 1 identifies the translations as her own. The quotation was checked in Konior’s essay, not independently against that book page. It must not be attributed to Joanna Zylinska’s published English translation. The sentence on delegated power is Oborskyi’s argument, not a quotation from Lem.
 
 5. [Cognition. “Introducing Devin, the first AI software engineer” (12 March 2024).](https://cognition.com/blog/introducing-devin)
 
@@ -394,19 +422,23 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
     Operational risk-management framework, not certification of the example system.
 
+27. [Stanisław Lem. Fantastyka i futurologia. Quotation selected in Wiktor Jaźniewicz’s compilation, W strachu przed antymaterią. 1381 cytatów (Wydawnictwo Literackie, 2024).](https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/)
+
+    The Polish passage is reproduced under “TECHNOLOGIE JAKO TAKIE” in a publisher-supplied excerpt published by Instytut Spraw Obywatelskich on 22 July 2025, and attributed there to Fantastyka i futurologia—not Summa Technologiae. The English wording in section 5 is a translation prepared for this article from that Polish excerpt, not a quotation from a published English edition. No original-volume page number is supplied by the excerpt.
+
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R8, 16 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R9, 18 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR8,
+@misc{oborskyi2026sumR9,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R8, 16 October 2026; unpublished}
+  note = {Editorial draft R9, 18 October 2026; unpublished}
 }
 ```
 

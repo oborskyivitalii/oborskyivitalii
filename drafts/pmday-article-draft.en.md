@@ -1,9 +1,9 @@
-> **Editorial R8 — 16 October 2026. Review candidate, not a published edition.**
-> R8 preserves the R7 evidence revisions, user-adoption passage, six chapter-5 **What if not?** turns, seven source slides and 26-source bibliography. It restores exact short Microsoft quotations and the sharper review/recovery argument while retaining human architectural oversight and the bounded-feature qualification. The author explicitly requested synchronization of both this draft and the canonical manuscript.
+> **Editorial R9 — 18 October 2026. Review candidate, not a published edition.**
+> Author-approved changes: two sourced Lem quotations, a conditional systemic-responsibility conclusion and the author's own delegated-power/rigor thesis. The explanatory title-allusion passages leave the body; the book remains in the bibliography. Microsoft quotations retain their actual first-pass/architectural-oversight context. R8 evidence, six chapter-5 refrains, the customer-adoption argument and all image sources are retained.
 >
-> Article owner: [issue #2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2); execution: [PR #79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79), publisher owner #5. Inspected parent: `580ee31c94d0317f10ea5ba7bdab170383a01c11`. The R7 standalone PDF was the editing base; the previous integrated r3 is not the new reader.
+> Article owner: issue #2; execution: PR #79, publisher owner #5. Inspected parent: d7fbfeef7c2a612cad8309c47aed9a3da1aa20c3. The reader below and the canonical manuscript must match the R9 PDF input byte for byte. No publication, hosted-preview admission, rights approval or merge follows.
 >
-> Reader content is between ARTICLE START / ARTICLE END. Copy it exactly; captions and source-media constraints follow below. The named bibliography and How to cite section are intentional reader content. Updating source is not a publication, hosted-preview acceptance or permission to merge.
+> Reader content is bounded by ARTICLE START / ARTICLE END. The named bibliography and citation block are reader content; figure data and preparation notes are not.
 
 <!-- ARTICLE START -->
 
@@ -35,7 +35,7 @@ The important change was not simply more text. It was what became possible when 
 
 Large language models move another boundary. We can delegate interpretation, comparison, design proposals, implementation and explanation. *Delegating thinking* describes that practical change; it does not require a claim about consciousness.
 
-The title deliberately echoes Stanisław Lem's [*Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) [4]. The question is not just what a new capability lets us do. It is what happens to the larger system when we begin doing it.
+The question is not just what a new capability lets us do. It is what happens to the larger system when we begin doing it.
 
 Software gives us an immediate test. An AI agent can build an ordinary application. A conventionally staffed team can build a product that depends on model judgment. These are different shifts, with different failure modes. A convincing demonstration of either is not an answer to what happens when it stops working.
 
@@ -67,13 +67,13 @@ Now the narrative follows the next bottleneck. [Anthropic's Code Review announce
 
 > **“Don’t let code review become a bottleneck”**
 
-His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But naming the work to hand off is not demonstrating that its necessary outcomes survive the handoff.
+His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But architectural oversight is not a resource that appears because we name it. It depends on people continuing to understand the system whose implementation they increasingly do not inspect.
 
 **What if not?**
 
 Review gets faster, but the work of understanding the change no longer happens. Defect detection improves while incident investigation becomes harder. The team keeps the approval button and loses the capability that gave approval meaning. **The queue has cleared. The ownership gap has not.**
 
-**Identifying a bottleneck does not prove that its function can be removed.**
+**Identifying a bottleneck does not prove that its function can be removed.** An activity has been accelerated. Its responsibilities have not necessarily been discharged.
 
 There is important counterevidence. In its [October account of code review](https://claude.dev/blog/solving-code-review-at-anthropic/) [12], Anthropic reports that merged Claude Code PRs more than doubled while the reverted share fell by over 40% between June and September. It describes layered checks, risk-based approvals and staged release. Those are encouraging internal results from a redesigned workflow, not merely a promise.
 
@@ -259,6 +259,14 @@ Record the conditions of reliance and reassessment triggers. Turn incidents into
 
 Readiness means the design and capacity are feasible. Done means the candidate meets agreed evidence obligations. Release means an accountable owner accepts its operating scope. None means “safe forever”. We are maintaining the conditions under which the system may produce consequences.
 
+Stanisław Lem captured this reciprocal obligation:
+
+> “The more technology takes care of us, the more carefully we must take care of it.”
+
+*— Stanisław Lem; translated from Polish for this article, from a publisher-supplied anthology excerpt. Source and translation details: [27].*
+
+For a Thinking System, that care means maintaining evidence, enforceable limits and the human capacity to act—not merely keeping the model online.
+
 ![Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.](asset:pmday-slide-12)
 
 ## 6. What If Not?
@@ -272,6 +280,26 @@ You, your team and your organisation are not the vendor.
 You have different customers, commitments, systems and resources. A vendor's access to specialists does not staff your incident response. An API subscription does not supply the human judgment your architecture requires. A capable vendor can be wrong about timing, economics or the conditions needed elsewhere. Its confidence is not your risk acceptance.
 
 The problem is not moving to the next bottleneck. That is sensible systems work. It is removing a function before demonstrating how its necessary outcomes will be preserved. The history of generation followed by review redesign shows why the unit of adoption must be the workflow—not the tool's headline capability. [10], [11], [12]
+
+Lem's warning also applies to the people creating and promoting that capability:
+
+> “One cannot simultaneously make discoveries and avoid taking responsibility for their consequences.”
+
+*— Stanisław Lem, quoted and translated by Bogna Konior; source and edition details: [4].*
+
+What remains unclear to me is how much of the adoption story was designed with the full system in view—and how much emerged from competition, fragmented responsibility and locally convincing results.
+
+If foreseeable costs in verification, maintenance, recovery and human capacity were understood but left out of the adoption case, the concern is more than enthusiastic marketing. It is whether customers are being encouraged to take on risks and costs that the promise does not make visible.
+
+If those consequences were not seriously considered, the concern is different, but no more reassuring: a system-wide transformation is being promoted without system-level engineering. **That is not a new definition of engineering. It is a retreat from it.**
+
+These possibilities can coexist without a shared plan. Public messaging does not establish private intent. But customers should not have to solve that mystery before demanding an honest account of what they are being asked to operate.
+
+A foreseeable cost does not disappear because it sits outside the benchmark—or outside the vendor's balance sheet.
+
+**The more power we delegate, the more rigor we owe the systems that will bear its consequences.**
+
+For me, that means explicit assumptions, evidence proportionate to the consequences, viable human capacity and tested containment. As technology acts faster, across more systems, with effects harder to reverse, engineering must become more rigorous and more systemic—not more ceremonial. We cannot predict every effect. We can refuse to treat a local capability demonstration as sufficient justification for a system-wide commitment.
 
 An uncontrolled SDLC-wide proof of concept is not a strategy. Neither is paralysis. Start with a bounded decision:
 
@@ -301,7 +329,7 @@ Writing let ideas outlive their authors. AI expands how much work with those ide
 
 ### Further reading
 
-[The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) [9] is my research synthesis on AI-assisted delivery risk. [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) [20] is my developing doctrine and pattern language for Thinking Systems. They articulate the two engineering problems explored here; they are not independent experimental confirmation of this essay. The literary point of departure is Lem's [*Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) [4].
+[The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) [9] is my research synthesis on AI-assisted delivery risk. [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) [20] is my developing doctrine and pattern language for Thinking Systems. They articulate the two engineering problems explored here; they are not independent experimental confirmation of this essay.
 
 ## Sources & references
 
@@ -315,9 +343,9 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 3. [Jared Rubin. “Printing and Protestants: An Empirical Test of the Role of Printing in the Reformation.” Review of Economics and Statistics 96(2), 270–286 (2014).](https://digitalcommons.chapman.edu/economics_articles/99/)
 
-4. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae)
+4. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae) · [Quotation source: Bogna Konior, “Existential Technologies,” Antikythera.](https://existentialtech.antikythera.org/)
 
-    The literary allusion concerns technology and its wider consequences; it does not attribute this essay’s specific AI or SDLC claims to Lem.
+    The responsibility quotation in section 6 is reproduced in Konior’s English translation. Her note 18 cites the Polish edition (Kraków: Wydawnictwo Literackie, 2020), p. 471; note 1 identifies the translations as her own. The quotation was checked in Konior’s essay, not independently against that book page. It must not be attributed to Joanna Zylinska’s published English translation. The sentence on delegated power is Oborskyi’s argument, not a quotation from Lem.
 
 5. [Cognition. “Introducing Devin, the first AI software engineer” (12 March 2024).](https://cognition.com/blog/introducing-devin)
 
@@ -403,19 +431,23 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
     Operational risk-management framework, not certification of the example system.
 
+27. [Stanisław Lem. Fantastyka i futurologia. Quotation selected in Wiktor Jaźniewicz’s compilation, W strachu przed antymaterią. 1381 cytatów (Wydawnictwo Literackie, 2024).](https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/)
+
+    The Polish passage is reproduced under “TECHNOLOGIE JAKO TAKIE” in a publisher-supplied excerpt published by Instytut Spraw Obywatelskich on 22 July 2025, and attributed there to Fantastyka i futurologia—not Summa Technologiae. The English wording in section 5 is a translation prepared for this article from that Polish excerpt, not a quotation from a published English edition. No original-volume page number is supplied by the excerpt.
+
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R8, 16 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R9, 18 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR8,
+@misc{oborskyi2026sumR9,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R8, 16 October 2026; unpublished}
+  note = {Editorial draft R9, 18 October 2026; unpublished}
 }
 ```
 
@@ -423,23 +455,21 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 
 <!-- ARTICLE END -->
 
-## R8 assembly and review contract — not reader prose
+## R9 assembly and source contract — not reader prose
 
-### Editorial decisions
+Preserve the complete R9 reader. Do not substitute old R8/R7 text, suppress source notes, weaken the direct Microsoft quotations, add a new refrain to the customer-adoption passage, or attribute a blanket abolition of code review to Parikh. The first-pass review and human-oversight qualifications remain.
 
-- Preserve the current complete reader, not the superseded R6 draft or integrated r3. Six numbered chapters; R7's Anthropic counterevidence, controlled-intake example, NBER source trace, human-factors literature, adoption-capacity argument and bounded pilot remain.
-- The direct Microsoft phrases come from Jay Parikh's 2 June 2026 first-party article, sections 8, 3 and 10. They are not a statement that all review is unnecessary. The surrounding text retains first-pass agent review, human architectural oversight and well-bounded-feature disposability. Source 11 documents these boundaries. Do not replace a direct quote with an invented stronger attribution or soften the author's response into a neutral paraphrase.
-- Chapter 5 has six explicit assurances, each followed by the exact standalone refrain and a failure/control consequence. Keep the account-recovery scenario, meaningful Human Authority, availability/cognitive/latency constraints, and concrete withholding of access-changing permissions. Do not add another refrain in the user-adoption paragraph.
-- Preserve 26 continuously numbered references, including Bainbridge, Knight and Leveson, Parasuraman and Manzey, and the exact NBER Table 6 trace. Source 1 points to the single front presentation link; do not duplicate that external URL in the bibliography or restore source-ID boilerplate.
-- Keep the existing article ID/slug, review-pending rights and null canonical publication. Prepare a new R8 semantic edition; never modify prior edition records or assign publication dates based on this review export.
+The sentence beginning “The more power we delegate” is Vitalii Oborskyi's authorial argument, not a Lem quote. It has no Lem attribution and must remain outside the quotation block. New criticism distinguishes conditional cost externalisation, inadequate systems analysis and mixed incentives; it does not assert private intent or coordinated collusion as established fact.
 
-### Figures and exact identity
+Lem provenance: source 4 cites the responsibility sentence as quoted/translated by Bogna Konior in Existential Technologies, section 1, note 18; her note 1 identifies her own translations and her bibliography identifies the Polish 2020 edition p.471. That book page has not been independently inspected. Source 27 is the publisher-supplied excerpt hosted by Instytut Spraw Obywatelskich (22 July 2025), attributing the Polish care/technology passage to Fantastyka i futurologia. Its English rendering is prepared for this article, not taken from a verified published English edition. Do not assign it to Summa or invent an original page number. The body contains attributed quotations but no explanatory title-allusion passage.
 
-Seven full original v35 screenshots remain in reader order: slides 3, 5, 7, 9, 10, 12 and 14. Do not redraw, retouch or crop source slides. The PDF source SHA-256 is `b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782`, derived from UA commit `22639d311d5fb46a23f3d5cdd819800dbe1169d9`. Existing PNG hashes are retained in publication.json. Caption 10 explicitly distinguishes the slide's four-failure interval from the article's critical one-disclosure interval.
+Keep 27 continuously numbered bibliography entries and all 32 distinct named external source URLs. New links are https://existentialtech.antikythera.org/ and https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/. Bibliography and PDF citation annotations are intentional, not generated source-ID boilerplate.
 
-The R7/R8 standalone cover uses the lower 640 × 199 pixel detail of the original 640 × 335 illustration, crop box `(0, 136, 640, 335)`. Its pixel identity is recorded below. Preserve the original cover; the R8 selected derivative removes the competing embedded title without inventing new artwork. This is not a transformation of an empirical figure.
+### Retained figures
 
-<!-- R8 FIGURE DATA START -->
+Cover plus full v35 slides 3/5/7/9/10/12/14 remain unchanged, including source PNG hashes, original credits, captions and limitations. Do not redraw or crop the source slides. The R8 selected cover detail is retained. Diagram 10's aggregate four-failure interval remains distinct from the text's critical one-disclosure calculation.
+
+<!-- R9 FIGURE DATA START -->
 ```json
 {
   "cover": {
@@ -483,16 +513,10 @@ The R7/R8 standalone cover uses the lower 640 × 199 pixel detail of the origina
   }
 }
 ```
-<!-- R8 FIGURE DATA END -->
+<!-- R9 FIGURE DATA END -->
 
-### Delivered PDF and verification boundary
+### Standalone R9 PDF and acceptance boundary
 
-`The_Sum_of_Our_Technology_R8.pdf`: 17 pages, 1,625,712 bytes; SHA-256 `d884d392f376dbf3e4e54f1e19a0bb7374caccdc7e822018a90c17e4ce267819`. The document uses white print layout, eight displayed illustrations, clickable external sources and bookmarks, with larger landscape pages for slides 7 and 12. This is a standalone WeasyPrint review export, not the publisher's managed-CI PDF or a published website. The PDF is delivered in the conversation; no binary PDF is silently claimed committed here.
+Reader SHA-256: 7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd. The_Sum_of_Our_Technology_R9.pdf is a 19-page, 1,627,807-byte WeasyPrint 68.0 review export, SHA-256 0ae16014f95a0649e84cdd9c3d64c27a222ecbbc03dc6129298c9d68e77a5572. It is delivered in the conversation, not committed as the old article.pdf. Its 8 displayed images have the same RGB pixels as R8; all 32 distinct external URLs are represented, with 75 URL annotations and 19 bookmarks. Slides 7 and 12 have dedicated landscape pages. All-page rendering and local self-review remain separate from independent author, rights, scientific, managed publisher or hosted-device acceptance.
 
-Reader SHA-256: `d9c28aa95035d49678513ffab92c0973a2e37e8a7a3a89df8676fce970a90973`. Cover RGB pixel SHA-256: `5490e70dc1dc6e1ea5ff1cab16229fc309776f1e141cc08c900957d52e69ff20`. The PDF input and the canonical manuscript must have this same reader; layout may differ but may not introduce or omit sentences or citations.
-
-Local editorial checks covered all-page rendering, external link annotations, six second-part refrains, reference and figure inventories, and inherited R7 numerical/source limitations. These checks are self-review, not independent rights/scientific/author acceptance. Repository checks and actual Git identities are recorded in the issue-2 candidate handoff and live PR, not inferred from this appendix.
-
-### Next publication work
-
-Only when requested: build an isolated article HTML preview and check the existing per-document/media budgets without changing them; inspect responsive reading, citations, figure originals and content/semantic identity. LinkedIn/Medium adaptation, hosted promotion, production, merge and upstream deck disposition are outside this request. Do not treat a prepared PDF or synchronized source as passage of those separate gates.
+The preparation route synchronises canonical Markdown, draft, declared source URLs, a new review semantic edition and existing handoff/RI. No publisher-engine change, LinkedIn/Medium generation, hosted promotion, production or merge. Prior editions remain unchanged. Follow original issue #2 AC01–AC06 and #5 gates before publication; no old green run is R9 proof.
