@@ -246,6 +246,13 @@ function selectedCases(engine, selection = cases(engine)) {
     );
   return selection;
 }
+function validateEntryForms(row) {
+  assert.deepEqual(
+    row.entryForms,
+    row.mode === 'enabled' ? ['canonical', 'extensionless'] : undefined,
+    'missing or invalid analytics entry-form evidence'
+  );
+}
 function fixtureInputs(sourceRoot = root) {
   const inputs = [
     'site',
@@ -310,7 +317,17 @@ async function run(browser, engine, selection = cases(engine)) {
     fs.rmSync(dir, { recursive: true, force: true });
   }
 }
-module.exports = { run, cases, selectedCases, checks, modes, model, fixtureInputs, buildFixture };
+module.exports = {
+  run,
+  cases,
+  selectedCases,
+  validateEntryForms,
+  checks,
+  modes,
+  model,
+  fixtureInputs,
+  buildFixture,
+};
 if (require.main === module)
   (async () => {
     const { toolRequire, launchOptions, save } = require('./common.cjs'),

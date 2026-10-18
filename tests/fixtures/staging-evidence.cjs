@@ -200,6 +200,7 @@ function analyticsRow(selected) {
     pass: true,
     errors: [],
     externalRequests: [],
+    entryForms: selected.mode === 'enabled' ? ['canonical', 'extensionless'] : undefined,
     checks: Object.fromEntries(analytics.checks.map((key) => [key, true])),
     readyWhileSDKPending: selected.mode === 'delayed' ? true : 'not applicable',
     vendorRequests: ['offline', 'staging'].includes(selected.mode)

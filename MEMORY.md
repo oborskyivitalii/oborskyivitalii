@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 - Main/accepted production: 3af9100989c7dd6edc18b0b94c2d59f177cfd465,
   prod-2026-10-17.4. Canonical .ai is live on GitHub Pages; .com redirects.
-- Active separate Draft delivery under #102: plan items 3+4, finite analytics
+- Active PR105 delivery under #102: plan items 3+4, finite analytics
   aliases plus #103/#8 Google/Windsor access evidence. No deploy/merge claimed.
 - See review/issue-102/2026-10-18-analytics-and-search-access.md and sanitized
   provider JSON for source, baseline, actual access and remaining gates.
@@ -29,10 +29,13 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 ## Open work
 
-- Local Basic, 69 focused Node contracts, RI28/coupling20, style and pinned
-  formatting passed. Final clean policy/tree and Draft PR are recorded in #102.
-  Browser scenario source is extended; local browser installation failed
-  because the download was an invalid ZIP. Actual hosted/browser run remains.
+- Maintainer authorized next delivery phase and analytics staging protection.
+  Staging now selects ten vendor-stub cases covering canonical/extensionless
+  entry for all five pages plus SDK/origin/offline failure surfaces. Both
+  staging/full validators reject missing entry evidence; optional full stays13.
+- Follow-up hardening source tests86/86 passed; exact clean policy, ready-source
+  CI and actual staging result are recorded in PR105/#102. Prior local browser
+  download failed; CI execution is the browser evidence authority.
 - Make existing Windsor or read-only GSC bridge/property available; rediscover
   exact siteUrl before querying verification, sitemap/indexing/search totals.
 - After accepted deployment observe real-provider aliases/SPA/filter/history,
@@ -41,7 +44,7 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 ## Next session
 
-1. Revalidate active Draft PR, main, source/preview checks and #102/#103/#8.
+1. Revalidate PR105 state/head, main, source/preview/staging checks and #102/#103/#8.
 2. Continue exact current phase; do not repeat account connection assumptions.
 3. Stage/merge/release only with the applicable maintainer decision and gates.
 

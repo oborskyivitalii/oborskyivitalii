@@ -141,3 +141,36 @@ analytics correction when its source/hosted gates pass; it need not wait for the
 article. Keep PR79's editorial/reader work independent. If the maintainer chooses
 one later release, merge accepted changes normally and stage the resulting exact
 combined artifact; checks on separate PRs do not certify the combined source.
+
+
+## Later 18 October — staging regression protection
+
+The maintainer authorized advancing PR105 and explicitly requested regression
+protection. Existing staging selected only Home/Writing enabled entry scenarios;
+the optional full validator did not require the new `entryForms` evidence.
+The follow-up selects all five canonical/extensionless enabled entries plus
+blocked/delayed SDK, staging suppression and Home/Writing offline: **ten** bounded
+staging scenarios. Optional full remains **thirteen per engine**. No performance
+budget, engine/media/content/producer or production configuration changes.
+
+A shared entry-form validator now rejects missing, partial, duplicated or invalid
+evidence in both staging and optional full aggregation. The existing negative
+report mutations cover omission/canonical-only/duplicate-canonical evidence;
+registry tests separately require all five enabled entries. Existing SDK count,
+offline/origin/history/filter and delayed-vendor assertions remain. All vendor
+traffic is stubbed; these checks cannot establish real provider receipt.
+
+The owning policy reuses the maintained analytics, staging regression, staging
+gate and full-report validator suites. Initial focused hardening run: **86/86**,
+zero skips/failures. Final clean-source policy and actual CI/preview/staging
+results are recorded in PR105 and the issue, keeping the validated source fixed.
+Prior local browser-install failure remains historical; CI owns actual execution.
+
+Next delivery phase: move the unchanged implementation to ready source admission,
+then the existing owner staging controller after exact raw-head source/RI/owning
+checks pass. Stable staging, evidence-only regression, merge and production remain
+separate states. No merge or production activation is authorized by a green test.
+#103 connection/property access remains external and does not block deterministic
+analytics regression. Operator action is to make the existing intended Windsor
+source available, or reconnect/select the Search Console source in the existing
+read-only bridge; never add a second collector merely to get an inventory.

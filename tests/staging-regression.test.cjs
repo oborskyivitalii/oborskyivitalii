@@ -134,6 +134,14 @@ test('staging registry matches the actual bounded selectors and owns each analyt
   assert.equal(stage.registryCheck(), true);
   assert.equal(stage.journeyCases().length, 6);
   assert.equal(stage.failureCases().length, 10);
+  assert.equal(stage.analyticsCases().length, 10);
+  assert.deepEqual(
+    stage
+      .analyticsCases()
+      .filter((row) => row.mode === 'enabled')
+      .map((row) => row.entry),
+    ['index', 'research', 'writing', 'talks', 'credits']
+  );
   const analytics = require('../tools/quality/analytics-browser.cjs');
   assert.deepEqual(
     analytics.selectedCases('chromium', stage.analyticsCases()),
@@ -227,6 +235,9 @@ test('selected browser regression requires all route observations, navigation, f
     (r) => (r.failures.find((x) => x.mode === 'css-delayed').checks.beforeCSSNoPaint = false),
     (r) => (r.failures.find((x) => x.mode === 'draw-fault').checks.evidence.after.ready = true),
     (r) => r.analytics.pop(),
+    (r) => delete r.analytics[0].entryForms,
+    (r) => (r.analytics[0].entryForms = ['canonical']),
+    (r) => (r.analytics[0].entryForms = ['canonical', 'canonical']),
     (r) => (r.analytics[0] = structuredClone(r.analytics[1])),
     (r) => (r.analytics[0].checks.originIsolation = false),
     (r) =>

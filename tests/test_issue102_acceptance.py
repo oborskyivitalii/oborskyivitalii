@@ -14,7 +14,8 @@ class Issue102AcceptanceTests(unittest.TestCase):
 const runner = require('./tools/quality/source-tests.cjs');
 const report = runner.run(process.cwd(), {
   profile: 'issue102',
-  modules: ['tests/analytics.test.cjs'],
+  modules: ['tests/analytics.test.cjs', 'tests/quality.test.cjs',
+    'tests/staging-gate.test.cjs', 'tests/staging-regression.test.cjs'],
 });
 process.stdout.write(JSON.stringify(report));
 """
@@ -29,7 +30,15 @@ process.stdout.write(JSON.stringify(report));
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         report = json.loads(result.stdout)
         self.assertEqual(report["status"], "passed")
-        self.assertEqual(report["modules"], ["tests/analytics.test.cjs"])
+        self.assertEqual(
+            report["modules"],
+            [
+                "tests/analytics.test.cjs",
+                "tests/quality.test.cjs",
+                "tests/staging-gate.test.cjs",
+                "tests/staging-regression.test.cjs",
+            ],
+        )
         self.assertGreater(report["total"], 0)
         self.assertEqual(report["passed"], report["total"])
         for key in ("failed", "cancelled", "skipped", "todo"):

@@ -14,7 +14,7 @@
     {
       "id": "AC02",
       "intent": "Verify meaningful loader/history/filter behavior without manufactured provider events.",
-      "automated_scope": "ANALYTICS executes the maintained guard and real fixture producer contracts. Existing vendor-stub browser scenarios now visit both entry forms; actual browser execution and received-provider SPA behavior remain external evidence.",
+      "automated_scope": "ANALYTICS executes maintained guard, fixture producer, staging/full validator and malformed-report negatives. Bounded staging requires all five canonical/extensionless enabled entries plus blocked/delayed/staging/offline cases. Real browser and provider receipt remain external evidence.",
       "checks": ["ANALYTICS"],
       "gates": ["BROWSER", "LIVE"]
     },
@@ -61,7 +61,7 @@
     },
     "BROWSER": {
       "kind": "human",
-      "description": "Run existing thirteen vendor-stub scenarios per applicable engine on this exact candidate; source/VM checks alone are insufficient."
+      "description": "Run the applicable maintained vendor-stub browser profile on the exact candidate: ten bounded staging scenarios, including all five canonical/extensionless enabled entries; optional full retains thirteen per engine. Source/VM checks alone are insufficient."
     },
     "REVIEW": {
       "kind": "human",
