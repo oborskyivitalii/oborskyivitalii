@@ -104,8 +104,8 @@ destinations, history, reload, filters and one vendor request per document. Each
 enabled entry checks both canonical and extensionless URLs, including query/hash
 suffixes, within the existing thirteen-case matrix. The
 vendor is stubbed; these tests send no data and do not certify dashboard counts.
-The bounded staging profile selects ten Chromium scenarios: enabled canonical
-and extensionless entries for all five routes, blocked/delayed SDK, staging
+The bounded staging profile preserves seven Chromium scenarios: Home and Writing
+enabled scenarios probe canonical and extensionless entries for all five routes, blocked/delayed SDK, staging
 suppression and Home/Writing offline suppression. Staging and optional full
 validators reject missing/invalid entry-form evidence, not just a claimed pass.
 Missing fixture rows/assertions fail the existing aggregate; no #13 job is skipped.

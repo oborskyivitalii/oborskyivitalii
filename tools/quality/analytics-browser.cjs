@@ -152,15 +152,24 @@ async function scenario(browser, dir, producer, s) {
     await ready(page, s.entry);
     await vendorState(page, s.mode);
     if (s.mode === 'enabled') {
-      assert.equal(vendor.length, 1, 'canonical entry loads one vendor');
-      vendor.length = 0;
-      await page.goto(prefix + s.entry + '?entry=alias#content', {
-        waitUntil: 'domcontentloaded',
-      });
-      await ready(page, s.entry);
-      await vendorState(page, s.mode);
-      assert.equal(vendor.length, 1, 'extensionless entry loads one vendor');
+      for (const [index, entry] of entryRoutes(s.entry).entries()) {
+        if (index > 0) {
+          vendor.length = 0;
+          await page.goto(prefix + entry + '.html', { waitUntil: 'domcontentloaded' });
+          await ready(page, entry);
+          await vendorState(page, s.mode);
+        }
+        assert.equal(vendor.length, 1, entry + ' canonical entry loads one vendor');
+        vendor.length = 0;
+        await page.goto(prefix + entry + '?entry=alias#content', {
+          waitUntil: 'domcontentloaded',
+        });
+        await ready(page, entry);
+        await vendorState(page, s.mode);
+        assert.equal(vendor.length, 1, entry + ' extensionless entry loads one vendor');
+      }
       result.entryForms = ['canonical', 'extensionless'];
+      result.entryRoutes = entryRoutes(s.entry);
     }
     await page.evaluate(() => {
       window.__analyticsShell = {
@@ -246,11 +255,21 @@ function selectedCases(engine, selection = cases(engine)) {
     );
   return selection;
 }
+function entryRoutes(entry) {
+  return entry === 'writing'
+    ? ['writing', ...routes.filter((id) => !['index', 'writing'].includes(id))]
+    : [entry];
+}
 function validateEntryForms(row) {
   assert.deepEqual(
     row.entryForms,
     row.mode === 'enabled' ? ['canonical', 'extensionless'] : undefined,
     'missing or invalid analytics entry-form evidence'
+  );
+  assert.deepEqual(
+    row.entryRoutes,
+    row.mode === 'enabled' ? entryRoutes(row.entry) : undefined,
+    'missing or invalid analytics entry-route evidence'
   );
 }
 function fixtureInputs(sourceRoot = root) {
@@ -322,6 +341,7 @@ module.exports = {
   cases,
   selectedCases,
   validateEntryForms,
+  entryRoutes,
   checks,
   modes,
   model,

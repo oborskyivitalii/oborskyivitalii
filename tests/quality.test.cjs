@@ -177,6 +177,7 @@ function fixture() {
       errors: [],
       externalRequests: [],
       entryForms: s.mode === 'enabled' ? ['canonical', 'extensionless'] : undefined,
+      entryRoutes: s.mode === 'enabled' ? analytics.entryRoutes(s.entry) : undefined,
       checks: Object.fromEntries(analytics.checks.map((key) => [key, true])),
       readyWhileSDKPending: s.mode === 'delayed' ? true : 'not applicable',
       vendorRequests: ['staging', 'offline'].includes(s.mode)
@@ -227,6 +228,8 @@ test('complete source-bound PR evidence passes; missing and controlled failures 
     (x) => delete x.reports[3].analytics[0].entryForms,
     (x) => (x.reports[3].analytics[0].entryForms = ['canonical']),
     (x) => (x.reports[3].analytics[0].entryForms = ['canonical', 'canonical']),
+    (x) => delete x.reports[3].analytics[0].entryRoutes,
+    (x) => x.reports[3].analytics.find((row) => row.entry === 'writing').entryRoutes.pop(),
     (x) => x.reports[3].analytics[0].vendorRequests.push('https://unexpected.example.com/'),
     (x) =>
       x.reports[3].analytics

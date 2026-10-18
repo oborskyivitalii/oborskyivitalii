@@ -134,7 +134,7 @@
         "failure_engine": "chromium",
         "failure_route": "index",
         "failure_width": 320,
-        "analytics_rows": 10,
+        "analytics_rows": 7,
         "analytics_cases": [
           {
             "engine": "chromium",
@@ -143,22 +143,7 @@
           },
           {
             "engine": "chromium",
-            "entry": "research",
-            "mode": "enabled"
-          },
-          {
-            "engine": "chromium",
             "entry": "writing",
-            "mode": "enabled"
-          },
-          {
-            "engine": "chromium",
-            "entry": "talks",
-            "mode": "enabled"
-          },
-          {
-            "engine": "chromium",
-            "entry": "credits",
             "mode": "enabled"
           },
           {

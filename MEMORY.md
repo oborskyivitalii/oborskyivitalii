@@ -30,9 +30,10 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 ## Open work
 
 - Maintainer authorized next delivery phase and analytics staging protection.
-  Staging now selects ten vendor-stub cases covering canonical/extensionless
+  Staging preserves seven vendor-stub scenarios covering canonical/extensionless
   entry for all five pages plus SDK/origin/offline failure surfaces. Both
-  staging/full validators reject missing entry evidence; optional full stays13.
+  staging/full validators reject missing forms/routes; optional full stays13.
+  Seven-row coverage preserves released-main controller compatibility.
 - Follow-up hardening source tests86/86 passed; exact clean policy, ready-source
   CI and actual staging result are recorded in PR105/#102. Prior local browser
   download failed; CI execution is the browser evidence authority.

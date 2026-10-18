@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5030272861144adb91c467337b70335c0d4f52f23cb0a264b469dd31b4f515b3",
+    "digest": "30ac862c23b5ad9dbf3f12bbf000159a3eae616e2be91679631248bbdd1851be",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -47,7 +47,7 @@
       {
         "path": ".github/acceptance/issue-102.json",
         "identity_mode": "content",
-        "sha256": "b4198f0c8bc9a8aec0a2e33d413f9a925629c104d98e0ae406773d88f927c613"
+        "sha256": "f1d9aa53a3d5069c0066e64ee852f4b2918cf7bf5e7efd42f1214b96e3b459f3"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -166,7 +166,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0d545b9902327d58458902be95c092a449159e9f808b4abc3386479b05b82bdc"
+        "sha256": "830e8b4a2798640837d57b85d3d736ab93b07f0d6bb5bbe1bda793c7e9483a9a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -296,7 +296,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "017cbfad5c38c5900b57e8d6bba84387ae378741af8950c3b817cddce7fe1cd7"
+        "sha256": "5f858ce202ed01284907454257ea28bb9c945868eed57c6cc1ae1552a952ef89"
       },
       {
         "path": "NOTICE.md",
@@ -545,12 +545,12 @@
       {
         "path": "guides/SITE-ANALYTICS.md",
         "identity_mode": "content",
-        "sha256": "4e58c69005ce93c9264674a8bb26764a464334c8275c5f9165eadef30d7975b3"
+        "sha256": "9be2112cfb9b1a3b124fe7f44bde4ea259f70b9d69604769db9ff36b99aeb61d"
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "a7aeeaf3638126e49ab34865446fb6cfc47771f62517850735e819d3972c1481"
+        "sha256": "e16aff8ea47271f8bf7c69e2a182f71c864ff0313fafdc0e76b06a842faa7d7e"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -680,7 +680,7 @@
       {
         "path": "review/issue-102/2026-10-18-analytics-and-search-access.md",
         "identity_mode": "content",
-        "sha256": "5438ba3360af23092f452321f4911e083ff9947b8e3e1f6d69e8e9405eb189be"
+        "sha256": "076d990d6fca1d73d7cb181f159c2fec5011f392ad768c500f39d1dfbd33fccb"
       },
       {
         "path": "review/issue-102/2026-10-18-provider-evidence.json",
@@ -5640,7 +5640,7 @@
       {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
-        "sha256": "2b9386ab45bb64cea39941be300ca52bfd9969f0bbf9690dc1d5653c2d90a884"
+        "sha256": "be5498c726acec8304fb24df0cd3ff093e9946e111925da6a6d4d88c8e67a438"
       },
       {
         "path": "tests/flight.test.cjs",
@@ -5740,7 +5740,7 @@
       {
         "path": "tests/quality.test.cjs",
         "identity_mode": "content",
-        "sha256": "a9f3c53585f5a3d4874a420f0316de1b46cd2dab152c288cf32ae88a451265a2"
+        "sha256": "0603330a86a9a4966d212e074d40d817f626ac7992c4c66965c65d581e3e054e"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -5810,7 +5810,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "62cf538f39bc9de90f2d826adbd7d81eca120bf6c56738411cfabc145489291f"
+        "sha256": "bd4856d9db2ac95e96b5eca0341d8379544a6310cf7d41eaa8551937a6e5ead5"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -6105,7 +6105,7 @@
       {
         "path": "tools/quality/analytics-browser.cjs",
         "identity_mode": "content",
-        "sha256": "58ddf0101b89b702a60b1cd7fef651ba1ca1ac41b6e5190f9997689f30a54c7c"
+        "sha256": "f5a424bef7d95234941445933782e4b0c8d1f67d0039d4256d35ced090e27da7"
       },
       {
         "path": "tools/quality/architecture.cjs",
@@ -6415,7 +6415,7 @@
       {
         "path": "tools/quality/staging-regression.cjs",
         "identity_mode": "content",
-        "sha256": "64316b845297bf7fb0f35c9d335c706492e7e893af3229ba6dd610893ee8f63a"
+        "sha256": "8506723c4d4c68a73ff17bd9e72e5255351b52ec2acc4739f1e3c8fdb1c7636b"
       },
       {
         "path": "tools/quality/stylelint.cjs",
@@ -6430,7 +6430,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "9e648194b8787a7301e7d03906379df5912cb9e34f5d16e86358e3fe5e7446f8"
+        "sha256": "50ce3d48549ed366ed31a4da372a30464abce30f2b790206861866302a4c34a0"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

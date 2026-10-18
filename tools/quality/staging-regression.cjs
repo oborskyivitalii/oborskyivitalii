@@ -56,17 +56,15 @@ function failureCases() {
   }));
 }
 function analyticsCases() {
-  return routes
-    .map((entry) => ({ engine: 'chromium', entry, mode: 'enabled' }))
-    .concat(
-      [
-        ['index', 'blocked'],
-        ['index', 'delayed'],
-        ['index', 'staging'],
-        ['index', 'offline'],
-        ['writing', 'offline'],
-      ].map(([entry, mode]) => ({ engine: 'chromium', entry, mode }))
-    );
+  return [
+    ['index', 'enabled'],
+    ['writing', 'enabled'],
+    ['index', 'blocked'],
+    ['index', 'delayed'],
+    ['index', 'staging'],
+    ['index', 'offline'],
+    ['writing', 'offline'],
+  ].map(([entry, mode]) => ({ engine: 'chromium', entry, mode }));
 }
 function contract() {
   return {

@@ -148,9 +148,10 @@ combined artifact; checks on separate PRs do not certify the combined source.
 The maintainer authorized advancing PR105 and explicitly requested regression
 protection. Existing staging selected only Home/Writing enabled entry scenarios;
 the optional full validator did not require the new `entryForms` evidence.
-The follow-up selects all five canonical/extensionless enabled entries plus
-blocked/delayed SDK, staging suppression and Home/Writing offline: **ten** bounded
-staging scenarios. Optional full remains **thirteen per engine**. No performance
+The follow-up probes all five canonical/extensionless enabled entries inside
+the existing **seven** staging scenarios: Home owns Home; Writing also probes
+Research/Talks/Credits. Blocked/delayed SDK, staging suppression and Home/Writing
+offline scenarios remain. Optional full remains **thirteen per engine**. No performance
 budget, engine/media/content/producer or production configuration changes.
 
 A shared entry-form validator now rejects missing, partial, duplicated or invalid
@@ -174,3 +175,12 @@ separate states. No merge or production activation is authorized by a green test
 analytics regression. Operator action is to make the existing intended Windsor
 source available, or reconnect/select the Search Console source in the existing
 read-only bridge; never add a second collector merely to get an inventory.
+
+
+Controller compatibility was inspected before staging execution: released main's
+promotion validator requires seven stageContract1 analytics rows. The final
+candidate preserves that coverage schema and expands the observed entries inside
+the enabled scenarios. Both candidate validators require exact `entryRoutes`
+and `entryForms`; negative report mutations remove a route or entire evidence.
+The all-five direct-entry coverage is unchanged from the proposed ten-row form.
+No knowingly incompatible stable-staging run or controller bypass was performed.
