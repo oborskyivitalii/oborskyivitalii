@@ -1,0 +1,239 @@
+name: One-shot PMDay R10 editorial synchronization
+on:
+  push:
+    branches: [work/issue-5-publisher-pmday-20261012]
+    paths: [.github/workflows/pmday-r10-editorial-once.yml]
+permissions:
+  contents: write
+concurrency:
+  group: pmday-r10-source-sync
+  cancel-in-progress: false
+jobs:
+  synchronize:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Install the existing locked source toolchains
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
+      - name: Apply only the author-requested R10 editorial changes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          import re
+          import subprocess
+
+          root = Path.cwd()
+          pub = root / 'site/publications/pmday-ai-both-sides'
+          original = (pub / 'manuscript.en.md').read_text()
+          assert hashlib.sha256(original.encode()).hexdigest() == '7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd'
+          scoped_agents = [p for p in subprocess.check_output(['git', 'ls-files'], text=True).splitlines() if p.endswith('/AGENTS.md') and any(x.startswith(p.rsplit('/', 1)[0] + '/') for x in ['drafts/pmday-article-draft.en.md', 'site/publications/pmday-ai-both-sides/manuscript.en.md', 'review/issue-2/pmday-candidate-20261015/README.md'])]
+          assert not scoped_agents, ('New scoped instructions require inspection', scoped_agents)
+          draft_path = root / 'drafts/pmday-article-draft.en.md'
+          old_draft = draft_path.read_text()
+          assert old_draft.split('<!-- ARTICLE START -->')[1].split('<!-- ARTICLE END -->')[0].strip() + '\n' == original
+          reader = original
+          def replace(before, after, count=1):
+              global reader
+              assert reader.count(before) == count, before[:100]
+              reader = reader.replace(before, after)
+
+          chapter = '''## 4. More software is not more value
+
+          Suppose the redesigned workflow really does ship much faster. Review, testing and integration can keep up. The promise is no longer just more code: more ideas can become working features, reach customers sooner and create more value for them and for the business.
+
+          **What if not?**
+
+          We release more features, but the customer problem remains. A requested capability gets little use. A polished addition complicates the job it was meant to improve. We have shortened the journey from an assumption to an implementation without establishing that the assumption was right.
+
+          Cheap implementation makes experiments more affordable. It also makes it easier to bypass the conversation in which somebody asks whether a feature should exist. [Kohavi and colleagues](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) [17] report that only about one-third of well-designed Microsoft experiments improved their intended key metric. That is a finding from their setting, not a universal success rate for product ideas. A decision not to ship can be a successful outcome of faster engineering.
+
+          The [NBER study](https://www.nber.org/papers/w35275) [7] reports rising low-usage shares in new cohorts: iOS apps with fewer than ten ratings increased from about **78% to 87%**, and Chrome extensions with fewer than ten downloads from **19% to 33%**. These are first-three-month usage proxies, not welfare measures or proof of AI causation.
+
+          [METR's survey of 349 technical workers](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median speed gains of **3×**, against **1.4–2× work-value gains** across question formulations. These are self-reports; importantly, they describe perceived value gains, not merely a disappointing gap. The point is not to deny those gains. It is to establish which customer outcomes actually improve rather than treating additional output as the answer.
+
+          ### The user's capacity is part of the product
+
+          Now grant the stronger case: we have rebalanced the entire SDLC, and every feature is genuinely useful. Suppose we deliver twenty to thirty times as many customer-facing changes—a thought experiment, not the release multiplier measured by NBER. The expectation is that this greater supply of useful capability becomes more realised value for customers and a stronger competitive position for the business.
+
+          **What if not?**
+
+          The user is still a person. Faster delivery has not given them more attention, learning time or capacity to reorganise their work. A useful feature must be discovered, understood and incorporated into a routine before its potential benefit becomes a result.
+
+          Imagine someone using a reporting tool once a month while its workflow changes every week. Each improvement may make sense in isolation; each visit can still require relearning the job. Useful capabilities accumulate faster than the person can absorb them. The value exists as a possibility, but not yet as an improvement in their work.
+
+          **The comprehension problem has crossed the product boundary—from the team building the software to the people using it.**
+
+          [Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related trap: capabilities attractive before use can make a product harder to use afterwards. It does not establish a universal human learning rate. The relevant capacity depends on the user, task and change; no fixed cognitive multiplier is needed to recognise that it is finite.
+
+          Nor does every improvement impose learning work. A better default, faster response or repaired defect can help without asking the user to learn anything new. Extra delivery capacity remains valuable. It gives us more choices about what to improve—not a reason to expose users to every change we can produce.
+
+          Measure adoption of released changes, time to a useful result and support burden. Sequence changes people must learn; spend capacity on repairs, accessibility, better defaults and fewer steps. **The competitive advantage is not how much change we can deliver. It is how much better customers can work because of it.**
+
+          So far, people have had to understand the system we build and absorb the changes we deliver. In the second shift, their ability to judge and intervene becomes part of the running system's control architecture. These are different roles, with a shared constraint: human capability is not unlimited.
+
+          '''.replace('\n          ', '\n')
+          old_chapter = reader[reader.index('## 4.'):reader.index('## 5.')]
+          replace(old_chapter, chapter)
+          replace('> **“Don’t let code review become a bottleneck”**', '> **“Don’t let code review become a bottleneck”**\n\nThe framing is broader than review. Earlier, Parikh urges readers to **“Throw out the old playbook.”** He presents established workflows as unable to absorb the new volume of generated changes. That is a call to redesign the process, not merely install another tool. [11]')
+          replace('Sections 8 and 10 supply the direct review and disposability quotations; section 3 supplies the autopilot phrase.', 'The opening supplies the old-playbook instruction; sections 8 and 10 supply the review and disposability headings, and section 3 the autopilot phrase. These passages are quoted separately, not combined into a statement that review itself is just an obsolete habit.')
+          replace('Editorial draft R9, 18 October 2026', 'Editorial draft R10, 18 October 2026', 2)
+          replace('@misc{oborskyi2026sumR9,', '@misc{oborskyi2026sumR10,')
+          assert len(re.findall(r'^## [1-6]\.', reader, re.M)) == 6
+          assert reader.split('## 4.')[1].split('## 5.')[0].count('**What if not?**') == 2
+          assert reader.split('## 5.')[1].split('## 6.')[0] == original.split('## 5.')[1].split('## 6.')[0]
+          assert reader.split('## 6.')[1].split('## Sources & references')[0] == original.split('## 6.')[1].split('## Sources & references')[0]
+          assert re.findall(r'\]\(asset:[^)]+\)', reader) == re.findall(r'\]\(asset:[^)]+\)', original)
+          assert 'Summa Technologiae' not in reader.split('## Sources & references')[0]
+          assert [int(x) for x in re.findall(r'^(\d+)\. ', reader.split('## Sources & references')[1].split('## How to cite')[0], re.M)] == list(range(1, 28))
+          digest = hashlib.sha256(reader.encode()).hexdigest()
+          figure_data = old_draft.split('<!-- R9 FIGURE DATA START -->')[1].split('<!-- R9 FIGURE DATA END -->')[0].strip()
+          header = '''> **Editorial R10 — 18 October 2026. Review candidate, not a published edition.**
+          > Author-requested revision: two chapter-4 assurances now follow expectation → What if not? → failure mode → practical consequence. The second grants useful features and a hypothetical 20–30x customer-facing change rate; it does not confuse this scenario with measured NBER release effects. Source 11 adds the original Microsoft old-playbook instruction beside its review-bottleneck heading with their distinct contexts preserved. R9's Lem provenance, authorial rigor thesis, empirical limitations, six chapter-5 turns and all figures remain.
+          >
+          > Article owner #2; execution PR #79 / publisher #5. Inspected parent a70099637187aacbe241cb7b1c571593e5e487bd. This supersedes the earlier instruction to keep the adoption paragraph free of a refrain: the author now explicitly requests the second turn there. The draft reader and canonical manuscript must match exactly. No site promotion, platform adaptation or merge.
+
+          <!-- ARTICLE START -->
+
+          '''.replace('\n          ', '\n')
+          appendix = '''
+          <!-- ARTICLE END -->
+
+          ## R10 assembly and editorial contract — not reader prose
+
+          Preserve the complete R10 reader with six chapters, two exact chapter-4 What if not turns, and the unchanged six chapter-5 turns. The first chapter-4 assurance concerns feature selection; the second explicitly assumes useful features and tests realised value under finite user attention/learning capacity. The 20–30x scenario is not a measured result, nor an assertion that every improvement burdens users. Preserve the better-defaults/repairs and value-based adoption alternatives.
+
+          Source 11: the old-playbook instruction comes from the opening, review-bottleneck heading from section 8, autopilot from section 3 and disposability from section 10. Do not attribute a blanket abolition of review, or a literal old-habit label, to Parikh. First-pass agent review, human architectural oversight and bounded-feature qualifications remain. The four short excerpts contain 20 quoted words in total.
+
+          Both Lem quotes and their translation/source notes remain unchanged; the delegated-power sentence is the author's own. All 27 references, 32 distinct named URLs, seven original slide PNGs and selected cover bytes remain. Source evidence, shared context/recovery concerns, empirical caveats and author/rights gates are not weakened. Do not call an editorial self-review an independent external review.
+
+          <!-- R10 FIGURE DATA START -->
+          '''.replace('\n          ', '\n') + figure_data + '\n<!-- R10 FIGURE DATA END -->\n\nReader SHA-256: ' + digest + '. The standalone PDF will be generated and inspected from this source after synchronization; do not reuse the R9 PDF identity or claim hosted/managed-print acceptance. No LinkedIn/Medium generation or publication event.\n'
+          (pub / 'manuscript.en.md').write_text(reader)
+          draft_path.write_text(header + reader + '\n' + appendix.lstrip('\n'))
+          metadata_path = pub / 'publication.json'
+          metadata = json.loads(metadata_path.read_text())
+          assert metadata['edition'] == 'pmday-ai-both-sides-en-review-20261018-r9'
+          for asset in metadata['assets']:
+              assert hashlib.sha256((root / asset['path']).read_bytes()).hexdigest() == asset['sha256']
+          metadata['edition'] = 'pmday-ai-both-sides-en-review-20261018-r10'
+          metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
+          profile_path = pub / 'profile.json'
+          profile = json.loads(profile_path.read_text())
+          profile['id'] = 'pmday-ai-both-sides-review-20261018-r10'
+          profile_path.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + '\n')
+          (pub / 'blueprint.md').write_text('# The Sum of Our Technology — R10 review manuscript\n\nIssue #2 editorial; #5/PR79 publisher. The new chapter 4 has two explicit What if not assurances: useful outcome selection, then useful-feature absorption and competitive benefit. The 20–30x pace is hypothetical, not NBER releases. Microsoft quotations distinguish the old-playbook framing from the review heading; no blanket review-abolition claim. Preserve all R9 evidence, Lem attributions, the six unchanged chapter-5 pivots, seven slide bytes, 27 numbered sources and the original ending.\n\nDraft reader and canonical manuscript match exactly. New semantic review edition, old editions retained. The requested standalone PDF and candid editorial assessment are separate from website, rights, independent external review or public acceptance. No runtime, publisher, media-budget or platform-output changes.\n')
+          catalog_path = root / '.github/repository-paths.json'
+          catalog = json.loads(catalog_path.read_text())
+          edition_path = 'site/publications/pmday-ai-both-sides/editions/' + metadata['edition'] + '.json'
+          assert edition_path not in catalog['entries']
+          catalog['entries'][edition_path] = {'kind': 'file', 'purpose': 'R10 review source and semantic identity: value/adoption pivots and precise Microsoft framing.', 'role': 'source', 'owner': 'guides/ARTICLE-WORKFLOW.md'}
+          catalog['entries'] = dict(sorted(catalog['entries'].items()))
+          catalog_path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+          review_path = root / 'review/issue-2/pmday-candidate-20261015/README.md'
+          previous = review_path.read_text()
+          run_url = 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID']
+          review_path.write_text('# PMDay R10 article review\n\nArticle owner #2; execution #5 / PR79.\n\n## Editorial R10 — value, user adoption and exact vendor framing\n\nThe author explicitly supersedes the prior no-refrain request for chapter 4. Its first turn challenges output-to-value; its second grants useful features but asks whether people can absorb change and the business realises an advantage. The hypothetical 20–30x pace is not taken from NBER. The source Microsoft opening is now quoted beside the review-bottleneck heading; retained context prevents an obsolete-review strawman.\n\nReader SHA-256: ' + digest + '. Six chapters, 2 chapter-4 turns, 6 unchanged chapter-5 turns, 8 displayed figures, 27 numbered bibliography entries, 32 external URLs. Both Lem quotations, source nuances and conditional final critique remain. No image bytes, old edition records, runtime/publisher code or budgets change. The selected scripts perform exact-source parity, AST/publication validation, formatting, Basic, RI and coupling before committing. Read the actual run: ' + run_url + '. These checks are not independent external review or hosted/publication acceptance.\n\nThe standalone PDF will be delivered after local rendering, link and all-page inspection; existing PDFs/kits remain historical. No platform adaptation, stable staging, production or merge. Original #2 AC01–AC06 remain open; accepted recording AC07/08 are unchanged.\n\n## Earlier checkpoints\n\n' + previous)
+          memory_path = root / 'MEMORY.md'
+          memory = memory_path.read_text().replace('(#2/PR79 R9 only;', '(#2/PR79 R10 only;')
+          memory = memory.replace('R9 synchronizes the draft and canonical manuscript, retaining R8 evidence\n  and adding two sourced Lem quotations plus the systemic-responsibility argument.', 'R10 synchronizes two chapter-4 value/adoption pivots and exact Microsoft\n  old-playbook framing; R9 evidence, Lem sources and chapter 5 remain intact.')
+          memory = memory.replace('standalone R9 PDF', 'standalone R10 PDF')
+          assert len(memory.splitlines()) <= 120
+          memory_path.write_text(memory)
+          print(json.dumps({'readerSha256': digest, 'edition': metadata['edition'], 'chapter4Words': len(chapter.split()), 'parent': 'a70099637187aacbe241cb7b1c571593e5e487bd'}))
+          PY
+      - name: Freeze source references and semantic identity using the locked compiler
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const crypto = require('node:crypto');
+          const dir = 'site/publications/pmday-ai-both-sides/';
+          const reader = fs.readFileSync(dir + 'manuscript.en.md', 'utf8');
+          const meta = JSON.parse(fs.readFileSync(dir + 'publication.json', 'utf8'));
+          const assets = meta.assets.map(a => ({...a, url: 'assets/' + path.basename(a.path)}));
+          const result = require('./tools/publishing/article.cjs').compile(reader, assets, {title: meta.title});
+          const urls = [...new Set(result.model.links.map(l => l.url).filter(u => u.startsWith('https:')))];
+          if (urls.length !== 32 || result.model.figures.length !== 8) throw Error('Reference or figure inventory changed');
+          if (result.model.links.filter(l => l.url === meta.presentation.sourceUrl).length !== 1) throw Error('Presentation link count');
+          meta.references = urls.map((url, i) => ({id: 'source-' + (i + 1), url}));
+          fs.writeFileSync(dir + 'publication.json', JSON.stringify(meta, null, 2) + '\n');
+          const source = {path: 'manuscript.en.md', sha256: crypto.createHash('sha256').update(reader).digest('hex'), commit: null, blob: null};
+          const edition = {schema: 1, id: meta.edition, articleId: meta.id, language: meta.language, kind: 'full-article', source, owner: 'site', derivation: null, rights: 'review-pending', semanticSha256: require('./tools/publishing/semantic.cjs').semanticDigest(meta, source)};
+          fs.writeFileSync(dir + 'editions/' + edition.id + '.json', JSON.stringify(edition, null, 2) + '\n', {flag: 'wx'});
+          const out = path.join(process.env.RUNNER_TEMP, 'r10-reader');
+          fs.mkdirSync(path.join(out, 'assets'), {recursive: true});
+          fs.writeFileSync(path.join(out, 'manuscript.en.md'), reader);
+          fs.writeFileSync(path.join(out, 'article-body.html'), result.html);
+          fs.writeFileSync(path.join(out, 'publication.json'), JSON.stringify(meta, null, 2));
+          fs.writeFileSync(path.join(out, 'edition.json'), JSON.stringify(edition, null, 2));
+          fs.copyFileSync('drafts/pmday-article-draft.en.md', path.join(out, 'editorial-draft.md'));
+          for (const a of meta.assets) fs.copyFileSync(a.path, path.join(out, 'assets', path.basename(a.path)));
+          console.log(JSON.stringify({source: source.sha256, semantic: edition.semanticSha256, urls: urls.length, figures: result.model.figures.length}));
+          NODE
+      - name: Remove preparation workflow and stage only the affected owners
+        run: |
+          git rm .github/workflows/pmday-r10-editorial-once.yml
+          git add drafts/pmday-article-draft.en.md site/publications/pmday-ai-both-sides/ .github/repository-paths.json MEMORY.md review/issue-2/pmday-candidate-20261015/README.md
+      - name: Format using the explicit repository configuration
+        run: |
+          tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r10.json
+          git add .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/
+          node tools/quality/format.cjs --check
+      - name: Validate current article without producing platform renditions
+        run: node tools/publishing/cli.cjs validate pmday-ai-both-sides
+      - name: Verify repository intelligence and unchanged source-check routes
+        run: |
+          python3 tools/check_ri_ci.py refresh
+          tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
+          python3 tools/check_ri_ci.py verify
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
+          python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+      - name: Existing Basic and final formatting checks
+        run: |
+          node tools/quality/local.cjs
+          node tools/quality/format.cjs --check
+      - name: Verify reader parity and commit the coordinated review edition
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p = Path('site/publications/pmday-ai-both-sides/manuscript.en.md').read_bytes()
+          d = Path('drafts/pmday-article-draft.en.md').read_text().split('<!-- ARTICLE START -->')[1].split('<!-- ARTICLE END -->')[0].strip() + '\n'
+          assert p == d.encode()
+          print(hashlib.sha256(p).hexdigest())
+          PY
+          git add .github/ri-ci-map.json .github/repository-intelligence/ REPOSITORY-MAP.md
+          git diff --cached --check
+          git diff --cached --stat
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'content(article): R10 value/adoption pivots and precise Microsoft framing (Refs #5)'
+          test -z "$(git status --porcelain)"
+          remote_head=$(git ls-remote origin refs/heads/work/issue-5-publisher-pmday-20261012 | cut -f1)
+          test "$remote_head" = "$GITHUB_SHA"
+          git push origin HEAD:work/issue-5-publisher-pmday-20261012
+          git rev-parse HEAD > "$RUNNER_TEMP/r10-reader/source-commit.txt"
+      - name: Retain exact reader and original media for standalone author-review PDF
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: pmday-r10-reader-${{ github.run_id }}
+          path: ${{ runner.temp }}/r10-reader/
+          if-no-files-found: error
+          retention-days: 30
