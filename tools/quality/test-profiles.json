@@ -1994,7 +1994,9 @@
         "tools/quality/analytics-browser.cjs",
         "tools/quality/staging-regression.cjs",
         "tools/quality/staging-gate.cjs",
-        "tools/quality/validate.cjs"
+        "tools/quality/validate.cjs",
+        "tools/quality/secrets-publication.json",
+        "review/issue-102/2026-10-18-public-metadata-proof.json.gz"
       ]
     }
   ]

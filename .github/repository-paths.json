@@ -1015,6 +1015,12 @@
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md"
     },
+    "review/issue-102/2026-10-18-public-metadata-proof.json.gz": {
+      "kind": "file",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
+    },
     "review/issue-31": {
       "kind": "directory",
       "purpose": "Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR.",

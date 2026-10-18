@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "30ac862c23b5ad9dbf3f12bbf000159a3eae616e2be91679631248bbdd1851be",
+    "digest": "013f19c1186301d6bb661ef271c25f74e8762b2f2b076410ef1695cab4aff62c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -47,7 +47,7 @@
       {
         "path": ".github/acceptance/issue-102.json",
         "identity_mode": "content",
-        "sha256": "f1d9aa53a3d5069c0066e64ee852f4b2918cf7bf5e7efd42f1214b96e3b459f3"
+        "sha256": "2effe76a24f04719dd07fec85994b9c294a3397b0d49dab09a13c1607f3b6c3e"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -161,12 +161,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "e32f63932e3bb4cc5a4ad9a36824dce0f6ab45e50c952a4aab78c3920d4a6354"
+        "sha256": "2c21fba6b1246dab3fe065446200f6e1b9ac0975f6ac111da0fa45ba0daf32ff"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "830e8b4a2798640837d57b85d3d736ab93b07f0d6bb5bbe1bda793c7e9483a9a"
+        "sha256": "6eec79b97bda94c587173db2578fe8a29c7577ea203a84214089a217d7d15d42"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -296,7 +296,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5f858ce202ed01284907454257ea28bb9c945868eed57c6cc1ae1552a952ef89"
+        "sha256": "730ad359e82a6efff72f938fc9e7763c1ea6bc95015c96fc19508281719d2b67"
       },
       {
         "path": "NOTICE.md",
@@ -680,12 +680,17 @@
       {
         "path": "review/issue-102/2026-10-18-analytics-and-search-access.md",
         "identity_mode": "content",
-        "sha256": "076d990d6fca1d73d7cb181f159c2fec5011f392ad768c500f39d1dfbd33fccb"
+        "sha256": "84bd7509c0774167833a4d8b0af7ce74809795f47df05d799ba97508e36f32d3"
       },
       {
         "path": "review/issue-102/2026-10-18-provider-evidence.json",
         "identity_mode": "content",
         "sha256": "17b3fdc25a08fe891635409d2fcbf70c1bdbf68c870f9c79fda7c87ba6be31de"
+      },
+      {
+        "path": "review/issue-102/2026-10-18-public-metadata-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "17bcb6dc959d632d437280e40e2bea7b243ea8196df1a0023ab64dca81d6df69"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -5840,7 +5845,7 @@
       {
         "path": "tests/test_issue102_acceptance.py",
         "identity_mode": "content",
-        "sha256": "9993ba7e1841fe910a357212f9491c09e7aff31dcc5f670da984752a663c63c7"
+        "sha256": "34c9f3b5644c19a36a8a7bedf65dd1dfbe09e195d82d57589ffea9ffb8872fd7"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -6370,7 +6375,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "b30f9e533c82f295ca792fe3f21c9473f2f262eb9241acb6976e3712942f15a5"
+        "sha256": "8fa943b1a17b2d17ba733bbf6e7b22283187534a09d30588f7e8bd9ec3a53e72"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6430,7 +6435,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "50ce3d48549ed366ed31a4da372a30464abce30f2b790206861866302a4c34a0"
+        "sha256": "c873912bc5616cbb8423658be887a06670f20d4acfcd8bcdc836a916e9fcba50"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -8493,6 +8498,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-18-provider-evidence.json"
+    },
+    {
+      "path": "review/issue-102/2026-10-18-public-metadata-proof.json.gz",
+      "kind": "file",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions.",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-18-public-metadata-proof.json.gz"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",

@@ -34,6 +34,9 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
   entry for all five pages plus SDK/origin/offline failure surfaces. Both
   staging/full validators reject missing forms/routes; optional full stays13.
   Seven-row coverage preserves released-main controller compatibility.
+- First actual staging preflight passed25/26 guards; security blocked159 new
+  public identifiers (158 generated checksums, one unchanged beacon ID). Exact
+  provenance and predecessor-preserving ledger update are under issue102.
 - Follow-up hardening source tests86/86 passed; exact clean policy, ready-source
   CI and actual staging result are recorded in PR105/#102. Prior local browser
   download failed; CI execution is the browser evidence authority.

@@ -184,3 +184,22 @@ the enabled scenarios. Both candidate validators require exact `entryRoutes`
 and `entryForms`; negative report mutations remove a route or entire evidence.
 The all-five direct-entry coverage is unchanged from the proposed ten-row form.
 No knowingly incompatible stable-staging run or controller bypass was performed.
+
+
+## Staging preflight39161717739 — public metadata review
+
+Actual exact-source preflight passed25/26 guards. Its security report passed
+Semgrep and Bandit but rejected159 untriaged detector candidates before upload:
+158 generated checksums and one unchanged public Cloudflare browser identifier.
+Every value was individually matched to cold-checked output/revision/preview/
+bundle metadata or canonical analytics config. Compressed exact provenance is
+`2026-10-18-public-metadata-proof.json.gz`; raw hashed-only report is retained in
+Actions artifact12148917491. No new credential or actual secret was identified.
+
+Append only those exact path/type/value hashes to the existing publication
+ledger; preserve all predecessor dispositions, scanner rules, closed inputs and
+limits. A selected issue-policy test checks current public-value provenance and
+complete predecessor preservation. Rerun the pinned detector locally before a
+fresh staging attempt, then retain final exact-source CI and browser/staging
+outcomes in the PR without changing that validated source. This is implementer
+self-review; independent review and production acceptance remain unclaimed.

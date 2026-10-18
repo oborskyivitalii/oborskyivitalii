@@ -629,6 +629,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-102/2026-10-18-analytics-and-search-access.md](review/issue-102/2026-10-18-analytics-and-search-access.md) | 18 October combined route-coverage and Google/Windsor access self-review and handoff. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [review/issue-102/2026-10-18-provider-evidence.json](review/issue-102/2026-10-18-provider-evidence.json) | Sanitized bounded Cloudflare query and current Google/Windsor inventory observations. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [review/issue-102/2026-10-18-public-metadata-proof.json.gz](review/issue-102/2026-10-18-public-metadata-proof.json.gz) | Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 
 ## review/issue-31/
 
