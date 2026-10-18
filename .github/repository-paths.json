@@ -1729,6 +1729,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-18-step1-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Exact failed clean-source report/TAP and successful focused follow-up evidence; preserves identities and current R10 HTML-budget limitation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "review/issue-5/2026-10-18-step1-reconciliation.md": {
       "kind": "file",
       "purpose": "Issue5 step1 main/PR79 technical reconciliation, editorial preservation, current checks, blockers and revised incremental plan.",

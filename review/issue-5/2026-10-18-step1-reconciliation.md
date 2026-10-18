@@ -49,12 +49,32 @@ Original #5 AC01–AC15 and prospective AC16–AC20 retain their original gates.
 
 | Task | Paths / expected result | AC / finding | Check | Status |
 | --- | --- | --- | --- | --- |
-| T01 | Reconcile reader/publisher with current release, legal, analytics and navigation owners | AC08/11/12/15; F01–F05 | Relevant source suites; Basic; SEO; style/architecture | Prepared; final evidence below |
-| T02 | Regenerate public/offline outputs, catalog and RI/CI projections | AC11/12/15 | Build/check, preview/bundle, RI and coupling checks | Prepared; final evidence below |
-| T03 | Preserve editorial roots and concurrent branch history | AC06/07/12; F06 | Git blob identities and guarded branch update | Required at final branch checkpoint |
+| T01 | Reconcile reader/publisher with current release, legal, analytics and navigation owners | AC08/11/12/15; F01–F05 | Relevant source suites; Basic; SEO; style/architecture | Completed within this technical scope; evidence below |
+| T02 | Regenerate public/offline outputs, catalog and RI/CI projections | AC11/12/15 | Build/check, preview/bundle, RI and coupling checks | Completed within this technical scope; evidence below |
+| T03 | Preserve editorial roots and concurrent branch history | AC06/07/12; F06 | Git blob identities and guarded branch update | 54/54 unchanged; guarded branch update recorded in issue/PR |
 | T04 | Reassess original plan and report the next bounded increment | AC12; F04 | Dated plan amendment and issue/PR links | This record and updated plan |
 
 ## Acceptance evidence
+
+The clean-source PR selection ran67 modules on local merge4cb11f15 / tree
+0add9847cb300bd92a7828c6300f6087bf96b65d (remote merge75d6da51 has
+that identical tree): **896 cases,891 passed,5 failed;0 skipped/cancelled/todo**.
+The five failures were three real-R10 candidate cases rejected by the unchanged
+HTML byte guard, one obsolete literal workflow assertion, and one stale offline
+ZIP manifest. The assertion was updated to the bound CI adapter and the derived
+manifest regenerated. Both affected cases then passed in a focused **2/2** run.
+This is not an all-green896-test run: the three real-R10 cases remain blocked.
+
+Basic15+Color10, SEO on all5 routes, architecture and bounded style guard passed.
+RI28 and RI/CI coupling20 regressions passed, with15 coupled checks/13 layers.
+The companion JSON and compressed raw evidence retain exact source, failures,
+follow-up TAP and the explicit publication boundary. Final formatting/freshness
+verification passed after the evidence-only update.
+
+Pure-render size diagnosis (fixed-width digest placeholders): R10 alias113788B,
+snapshot113887B against100000B; the decorative Writing fallback alone is53744B
+and main reader55284B. The next task should reduce generated reader overhead,
+not remove prose or raise the budget.
 
 Final validation results are retained in the companion
 `2026-10-18-step1-validation.json` and the issue/PR checkpoint. They bind the exact

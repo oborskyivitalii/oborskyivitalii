@@ -706,12 +706,13 @@ test('staging and optional full diagnostics retain prepublication while producti
   const ready = read('site-checks');
   assert.match(
     ready,
-    /source-tests\.cjs --profile pr[^\n]*--report quality-reports\/source-tests\.json/
+    /source-tests\.cjs --ci-profile --require-clean --report quality-reports\/source-tests\.json/
   );
-  assert.match(
-    ready,
-    /source-tests\.cjs --profile staging[^\n]*--report quality-reports\/source-tests\.json/
-  );
+  // The CI adapter retains exact PR/staging selection and can reuse only bound content evidence.
+  assert.match(ready, /SITE_SOURCE_EVENT: \$\{\{ github\.event_name \}\}/);
+  assert.match(ready, /SITE_SOURCE_MANIFEST: quality-artifact\/artifact\.json/);
+  const runner = require('../tools/quality/source-tests.cjs');
+  assert.equal(typeof runner.ciProfile, 'function');
   const reusable = read('site-release-checks');
   const reusableBuild = reusable.slice(reusable.indexOf('  build:'), reusable.indexOf('  host:'));
   assert.equal((reusableBuild.match(/id: source_checks/g) || []).length, 1);

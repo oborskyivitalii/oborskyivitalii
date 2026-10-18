@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "dc54a35f920e9215636171c0794ea5eee1df6f371f70c7f75875fc934e0daa81",
+    "digest": "af151681b07b38df2c52b8443300007b61be258745878beec3514b75b7c8ecd8",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,12 +161,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b6af957c419f935868d1ee3e783063ac99b7f4fa87b172beb033c7dc05de9739"
+        "sha256": "8bb478c25c1a83faa2accb995868e714e094076fd76edf2e3a8596773262289b"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "68976a2c3dbb219bd9853b2f43b48d2c30a5ccd5a3a6ef334b333dd776cf52f6"
+        "sha256": "b79a098b4139b097cb3608d975f369b12c49ac2eb3d39ef2cb6a3ad954ef8a50"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1233,14 +1233,19 @@
         "sha256": "c81816c1686d630f0111f4b89cca4ee9d137d20d3c86760be83695bdcf6da285"
       },
       {
+        "path": "review/issue-5/2026-10-18-step1-evidence.json.gz",
+        "identity_mode": "content",
+        "sha256": "2bdb7a48b64d37539dd9580aec31e80ccf356f71d7e99217035bca133d2268c0"
+      },
+      {
         "path": "review/issue-5/2026-10-18-step1-reconciliation.md",
         "identity_mode": "content",
-        "sha256": "e409d4f6fc07ad32b4f6dd15c7ffb5c74f9df8462ba84401f00fb4f9b62fb094"
+        "sha256": "ec24134bf0610ffffd2ea8939e862f404089c637eac6f1acf30a149f77766279"
       },
       {
         "path": "review/issue-5/2026-10-18-step1-validation.json",
         "identity_mode": "content",
-        "sha256": "c7d7eeee0b6ef6d5be9d2617b8538526ecd065dfbc205569f946905050b2fc98"
+        "sha256": "f223ed67c24dde020e24a306fe2227f2b9cbfc41d9a2fa02e7393edb2a54c048"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -4660,7 +4665,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "1fe359b5f4fc482c386ac1b2f80f29adeafd291b116ee5df2e3ef6a15f5d2b9f"
+        "sha256": "5b7a33de4a436d4e0aeacf5e97fbe32c94642e39e8bf3c335d2f1de8f8988dd8"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -6280,7 +6285,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "c7ecb75a94b5f804be4a8f61a3c9e7462cb444c88c3fbd84ecf60f522cf9feac"
+        "sha256": "5d6c9e7155acb97cad2e4bb8c38106778eebd30ee07bc23b078b079337f9a905"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -10433,6 +10438,17 @@
         "AGENTS.md"
       ],
       "title": "Article-first delivery and independent static release lanes"
+    },
+    {
+      "path": "review/issue-5/2026-10-18-step1-evidence.json.gz",
+      "kind": "file",
+      "purpose": "Exact failed clean-source report/TAP and successful focused follow-up evidence; preserves identities and current R10 HTML-budget limitation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-18-step1-evidence.json.gz"
     },
     {
       "path": "review/issue-5/2026-10-18-step1-reconciliation.md",
