@@ -27,208 +27,45 @@ jobs:
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3
-      - name: Apply the reviewed R9 editorial changes to both reader owners
+      - name: Replay only the exact already-validated editorial and semantic transforms
         run: |
-          python3 - <<'PY'
+          tools/quality/toolchain/venv/bin/python - <<'PY'
           from pathlib import Path
-          import hashlib
-          import json
-          import os
-          import re
+          import subprocess
+          import yaml
 
-          root = Path.cwd()
-          pub = root / 'site/publications/pmday-ai-both-sides'
-          path = pub / 'manuscript.en.md'
-          original = path.read_text(encoding='utf-8')
-          old_hash = 'd9c28aa95035d49678513ffab92c0973a2e37e8a7a3a89df8676fce970a90973'
-          new_hash = '7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd'
-          assert hashlib.sha256(original.encode()).hexdigest() == old_hash, 'R8 source changed'
-          draft_path = root / 'drafts/pmday-article-draft.en.md'
-          old_draft = draft_path.read_text(encoding='utf-8')
-          assert old_draft.split('<!-- ARTICLE START -->')[1].split('<!-- ARTICLE END -->')[0].strip() + '\n' == original
-          reader = original
-          def replace(before, after, expected=1):
-              global reader
-              assert reader.count(before) == expected, ('Unexpected match count', before[:90])
-              reader = reader.replace(before, after)
-
-          replace("The title deliberately echoes Stanisław Lem's [*Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) [4]. The question is not just what a new capability lets us do. It is what happens to the larger system when we begin doing it.", "The question is not just what a new capability lets us do. It is what happens to the larger system when we begin doing it.")
-          replace('His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But naming the work to hand off is not demonstrating that its necessary outcomes survive the handoff.', 'His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But architectural oversight is not a resource that appears because we name it. It depends on people continuing to understand the system whose implementation they increasingly do not inspect.')
-          replace('**Identifying a bottleneck does not prove that its function can be removed.**', '**Identifying a bottleneck does not prove that its function can be removed.** An activity has been accelerated. Its responsibilities have not necessarily been discharged.')
-          replace('Readiness means the design and capacity are feasible. Done means the candidate meets agreed evidence obligations. Release means an accountable owner accepts its operating scope. None means “safe forever”. We are maintaining the conditions under which the system may produce consequences.', '''Readiness means the design and capacity are feasible. Done means the candidate meets agreed evidence obligations. Release means an accountable owner accepts its operating scope. None means “safe forever”. We are maintaining the conditions under which the system may produce consequences.
-
-          Stanisław Lem captured this reciprocal obligation:
-
-          > “The more technology takes care of us, the more carefully we must take care of it.”
-
-          *— Stanisław Lem; translated from Polish for this article, from a publisher-supplied anthology excerpt. Source and translation details: [27].*
-
-          For a Thinking System, that care means maintaining evidence, enforceable limits and the human capacity to act—not merely keeping the model online.'''.replace('\n          ', '\n'))
-          replace("The problem is not moving to the next bottleneck. That is sensible systems work. It is removing a function before demonstrating how its necessary outcomes will be preserved. The history of generation followed by review redesign shows why the unit of adoption must be the workflow—not the tool's headline capability. [10], [11], [12]", '''The problem is not moving to the next bottleneck. That is sensible systems work. It is removing a function before demonstrating how its necessary outcomes will be preserved. The history of generation followed by review redesign shows why the unit of adoption must be the workflow—not the tool's headline capability. [10], [11], [12]
-
-          Lem's warning also applies to the people creating and promoting that capability:
-
-          > “One cannot simultaneously make discoveries and avoid taking responsibility for their consequences.”
-
-          *— Stanisław Lem, quoted and translated by Bogna Konior; source and edition details: [4].*
-
-          What remains unclear to me is how much of the adoption story was designed with the full system in view—and how much emerged from competition, fragmented responsibility and locally convincing results.
-
-          If foreseeable costs in verification, maintenance, recovery and human capacity were understood but left out of the adoption case, the concern is more than enthusiastic marketing. It is whether customers are being encouraged to take on risks and costs that the promise does not make visible.
-
-          If those consequences were not seriously considered, the concern is different, but no more reassuring: a system-wide transformation is being promoted without system-level engineering. **That is not a new definition of engineering. It is a retreat from it.**
-
-          These possibilities can coexist without a shared plan. Public messaging does not establish private intent. But customers should not have to solve that mystery before demanding an honest account of what they are being asked to operate.
-
-          A foreseeable cost does not disappear because it sits outside the benchmark—or outside the vendor's balance sheet.
-
-          **The more power we delegate, the more rigor we owe the systems that will bear its consequences.**
-
-          For me, that means explicit assumptions, evidence proportionate to the consequences, viable human capacity and tested containment. As technology acts faster, across more systems, with effects harder to reverse, engineering must become more rigorous and more systemic—not more ceremonial. We cannot predict every effect. We can refuse to treat a local capability demonstration as sufficient justification for a system-wide commitment.'''.replace('\n          ', '\n'))
-          replace(" They articulate the two engineering problems explored here; they are not independent experimental confirmation of this essay. The literary point of departure is Lem's [*Summa Technologiae*](https://english.lem.pl/works/essays/summa-technologiae) [4].", ' They articulate the two engineering problems explored here; they are not independent experimental confirmation of this essay.')
-          replace('4. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae)\n\n    The literary allusion concerns technology and its wider consequences; it does not attribute this essay’s specific AI or SDLC claims to Lem.', '4. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae) · [Quotation source: Bogna Konior, “Existential Technologies,” Antikythera.](https://existentialtech.antikythera.org/)\n\n    The responsibility quotation in section 6 is reproduced in Konior’s English translation. Her note 18 cites the Polish edition (Kraków: Wydawnictwo Literackie, 2020), p. 471; note 1 identifies the translations as her own. The quotation was checked in Konior’s essay, not independently against that book page. It must not be attributed to Joanna Zylinska’s published English translation. The sentence on delegated power is Oborskyi’s argument, not a quotation from Lem.')
-          replace('## How to cite this draft', '27. [Stanisław Lem. Fantastyka i futurologia. Quotation selected in Wiktor Jaźniewicz’s compilation, W strachu przed antymaterią. 1381 cytatów (Wydawnictwo Literackie, 2024).](https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/)\n\n    The Polish passage is reproduced under “TECHNOLOGIE JAKO TAKIE” in a publisher-supplied excerpt published by Instytut Spraw Obywatelskich on 22 July 2025, and attributed there to Fantastyka i futurologia—not Summa Technologiae. The English wording in section 5 is a translation prepared for this article from that Polish excerpt, not a quotation from a published English edition. No original-volume page number is supplied by the excerpt.\n\n## How to cite this draft')
-          replace('Editorial draft R8, 16 October 2026', 'Editorial draft R9, 18 October 2026', 2)
-          replace('@misc{oborskyi2026sumR8,', '@misc{oborskyi2026sumR9,')
-          assert hashlib.sha256(reader.encode()).hexdigest() == new_hash, 'Mismatch with exact R9 PDF input'
-          assert len(re.findall(r'^## [1-6]\.', reader, re.M)) == 6
-          assert reader.split('## 5.')[1].split('## 6.')[0].count('**What if not?**') == 6
-          assert original.split('## 4.')[1].split('## 5.')[0] == reader.split('## 4.')[1].split('## 5.')[0]
-          assert re.findall(r'\]\(asset:[^)]+\)', reader) == re.findall(r'\]\(asset:[^)]+\)', original)
-          assert 'Summa Technologiae' not in reader.split('## Sources & references')[0]
-          assert [int(x) for x in re.findall(r'^(\d+)\. ', reader.split('## Sources & references')[1].split('## How to cite')[0], re.M)] == list(range(1, 28))
-          assert 'sandbox:' not in reader and '<!--' not in reader
-          data = old_draft.split('<!-- R8 FIGURE DATA START -->')[1].split('<!-- R8 FIGURE DATA END -->')[0].strip()
-          json.loads(data.split('```json\n')[1].split('\n```')[0])
-          header = '''> **Editorial R9 — 18 October 2026. Review candidate, not a published edition.**
-          > Author-approved changes: two sourced Lem quotations, a conditional systemic-responsibility conclusion and the author's own delegated-power/rigor thesis. The explanatory title-allusion passages leave the body; the book remains in the bibliography. Microsoft quotations retain their actual first-pass/architectural-oversight context. R8 evidence, six chapter-5 refrains, the customer-adoption argument and all image sources are retained.
-          >
-          > Article owner: issue #2; execution: PR #79, publisher owner #5. Inspected parent: d7fbfeef7c2a612cad8309c47aed9a3da1aa20c3. The reader below and the canonical manuscript must match the R9 PDF input byte for byte. No publication, hosted-preview admission, rights approval or merge follows.
-          >
-          > Reader content is bounded by ARTICLE START / ARTICLE END. The named bibliography and citation block are reader content; figure data and preparation notes are not.
-          
-          <!-- ARTICLE START -->
-          
-          '''.replace('\n          ', '\n')
-          appendix = '''
-          <!-- ARTICLE END -->
-
-          ## R9 assembly and source contract — not reader prose
-
-          Preserve the complete R9 reader. Do not substitute old R8/R7 text, suppress source notes, weaken the direct Microsoft quotations, add a new refrain to the customer-adoption passage, or attribute a blanket abolition of code review to Parikh. The first-pass review and human-oversight qualifications remain.
-
-          The sentence beginning “The more power we delegate” is Vitalii Oborskyi's authorial argument, not a Lem quote. It has no Lem attribution and must remain outside the quotation block. New criticism distinguishes conditional cost externalisation, inadequate systems analysis and mixed incentives; it does not assert private intent or coordinated collusion as established fact.
-
-          Lem provenance: source 4 cites the responsibility sentence as quoted/translated by Bogna Konior in Existential Technologies, section 1, note 18; her note 1 identifies her own translations and her bibliography identifies the Polish 2020 edition p.471. That book page has not been independently inspected. Source 27 is the publisher-supplied excerpt hosted by Instytut Spraw Obywatelskich (22 July 2025), attributing the Polish care/technology passage to Fantastyka i futurologia. Its English rendering is prepared for this article, not taken from a verified published English edition. Do not assign it to Summa or invent an original page number. The body contains attributed quotations but no explanatory title-allusion passage.
-
-          Keep 27 continuously numbered bibliography entries and all 32 distinct named external source URLs. New links are https://existentialtech.antikythera.org/ and https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/. Bibliography and PDF citation annotations are intentional, not generated source-ID boilerplate.
-
-          ### Retained figures
-
-          Cover plus full v35 slides 3/5/7/9/10/12/14 remain unchanged, including source PNG hashes, original credits, captions and limitations. Do not redraw or crop the source slides. The R8 selected cover detail is retained. Diagram 10's aggregate four-failure interval remains distinct from the text's critical one-disclosure calculation.
-
-          <!-- R9 FIGURE DATA START -->
-          '''.replace('\n          ', '\n') + data + '''
-          <!-- R9 FIGURE DATA END -->
-
-          ### Standalone R9 PDF and acceptance boundary
-
-          Reader SHA-256: 7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd. The_Sum_of_Our_Technology_R9.pdf is a 19-page, 1,627,807-byte WeasyPrint 68.0 review export, SHA-256 0ae16014f95a0649e84cdd9c3d64c27a222ecbbc03dc6129298c9d68e77a5572. It is delivered in the conversation, not committed as the old article.pdf. Its 8 displayed images have the same RGB pixels as R8; all 32 distinct external URLs are represented, with 75 URL annotations and 19 bookmarks. Slides 7 and 12 have dedicated landscape pages. All-page rendering and local self-review remain separate from independent author, rights, scientific, managed publisher or hosted-device acceptance.
-
-          The preparation route synchronises canonical Markdown, draft, declared source URLs, a new review semantic edition and existing handoff/RI. No publisher-engine change, LinkedIn/Medium generation, hosted promotion, production or merge. Prior editions remain unchanged. Follow original issue #2 AC01–AC06 and #5 gates before publication; no old green run is R9 proof.
-          '''.replace('\n          ', '\n')
-          draft_path.write_text(header + reader + '\n' + appendix.lstrip('\n'), encoding='utf-8')
-          path.write_text(reader, encoding='utf-8')
-          metadata_path = pub / 'publication.json'
-          metadata = json.loads(metadata_path.read_text())
-          assert metadata['edition'] == 'pmday-ai-both-sides-en-review-20261016-r8'
-          assert metadata['status'] == 'review' and metadata['canonical'] is None
-          for asset in metadata['assets']:
-              assert hashlib.sha256((root / asset['path']).read_bytes()).hexdigest() == asset['sha256'], asset['id']
-          metadata['edition'] = 'pmday-ai-both-sides-en-review-20261018-r9'
-          metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
-          profile_path = pub / 'profile.json'
-          profile = json.loads(profile_path.read_text())
-          profile['id'] = 'pmday-ai-both-sides-review-20261018-r9'
-          profile_path.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + '\n')
-          (pub / 'blueprint.md').write_text('''# The Sum of Our Technology — R9 review manuscript
-
-          Editorial owner #2; publisher execution #5 / PR #79. The approved R9 revision preserves the previous full article, seven original slide sources and quantified evidence; sharpens the architectural-oversight response; inserts two short, sourced Lem quotations; and strengthens the conditional systemic-responsibility conclusion. The delegated-power/rigor statement is the author's own, never attributed to Lem. Explanatory title-allusion paragraphs are removed from the main text; Summa remains in references.
-
-          Source 4 explicitly credits Bogna Konior's secondary quotation/English translation and original edition locator; source 27 identifies the publisher-supplied Polish excerpt, its separate Lem work, and translation for this article. The 27-entry bibliography and all 32 source URLs must stay readable and traceable.
-
-          Draft reader and canonical manuscript match the standalone PDF input. Freeze a new R9 review semantic edition without rewriting prior editions or changing original image hashes. Preserve six chapters, exactly six chapter-5 What if not turns, the customer-adoption paragraph without an additional refrain, and the original closing sentence. No changes to the publisher, runtime, catalog release, media budgets or downstream platform generation. Final editorial/rights/publication acceptance remains open.
-          '''.replace('\n          ', '\n'))
-          catalog_path = root / '.github/repository-paths.json'
-          catalog = json.loads(catalog_path.read_text())
-          edition_path = 'site/publications/pmday-ai-both-sides/editions/' + metadata['edition'] + '.json'
-          assert edition_path not in catalog['entries']
-          catalog['entries'][edition_path] = {'kind': 'file', 'purpose': 'R9 review article source and semantic identity, with sourced Lem quotations and systemic-responsibility revision; prior editions retained.', 'role': 'source', 'owner': 'guides/ARTICLE-WORKFLOW.md'}
-          catalog['entries'] = dict(sorted(catalog['entries'].items()))
-          catalog_path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
-          review_path = root / 'review/issue-2/pmday-candidate-20261015/README.md'
-          history = review_path.read_text()
-          run_url = 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID']
-          review = '''# PMDay article candidate — editorial review and export history
-
-          Execution: PR #79; article owner #2; publisher owner #5.
-
-          > **Current reader: R9, 18 October 2026.** The editorial draft and canonical manuscript contain the exact reader used for the standalone R9 PDF. Existing article.pdf and platform kit in this directory remain historical; no R9 binary is silently substituted or claimed committed.
-
-          ## Editorial R9 — Lem quotations and systemic responsibility
-
-          Author accepted the prior proposal, selecting the responsibility and reciprocal-care quotations and retaining the power-delegation statement as his own argument. Verified source pages: https://existentialtech.antikythera.org/ (Konior's English translation, notes 1/18, bibliography for the Polish 2020 edition p.471); https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/ (publisher-supplied Polish excerpt, Fantastyka i futurologia, 22 July 2025). The original book pages were not independently verified. Bibliography and quote attributions expose this provenance; the second quote's English wording was prepared for the article.
-
-          The main text no longer explains its title by naming Summa. It retains that book in reference 4, adds reference 27, and preserves existing references 1–26. The Microsoft quotation and autopilot/disposability language remain exact, with first-pass review, human oversight and bounded-feature scope. The new conclusion raises conditional concerns about foreseeable costs omitted from the adoption case or weak systems analysis; private intent or collusion is not asserted. The sentence on delegated power is not a Lem quotation.
-
-          Reader SHA-256: 7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd. PDF: The_Sum_of_Our_Technology_R9.pdf, 19 pages, 1,627,807 bytes, SHA-256 0ae16014f95a0649e84cdd9c3d64c27a222ecbbc03dc6129298c9d68e77a5572. Produced with WeasyPrint 68.0, locally rendered for all-page self-review; 8 unchanged image pixel payloads, all 32 distinct external URLs clickable, 75 external URL annotations, 19 bookmarks, no text spans outside checked page bounds. Source reader preserves six second-part refrains and unchanged section-4 adoption argument. This is local self-review, not managed publisher PDF proof or independent scientific/rights approval.
-
-          Source preparation uses the previously established R8 route: locked AST extraction, publisher validation, maintained formatting, Basic, RI build/verify and coupling regressions before final coordinated source commit. All existing media bytes and prior edition records are retained. The temporary job removes itself before RI checks/commit; it introduces no persistent test/controller change. Style scope is CS01/02/04/05/08/10; no runtime or CSS changes. Read the actual preparation run result below, not this plan as proof.
-
-          The first R9 preparation run 39128264066 failed its formatting check on the inherited generated .github/ri-ci-map.json. No R9 source commit was made by that run. The follow-up applies the already pinned formatter to that map before checking and again after generator refresh; no assertions or test budgets are relaxed. Toolchain installation also reported five existing high-severity npm audit findings in the quality toolchain; no unrelated dependency upgrade or claim of a clean security audit is made.
-
-          #2 AC01–AC06 and applicable #5 author/rights/publication gates remain open; AC07/08 recording acceptance remains separate. No site promotion, new hosted-preview acceptance, LinkedIn/Medium output, production, merge or upstream UA disposition. Existing base conflict remains separate.
-
-          '''.replace('\n          ', '\n')
-          review_path.write_text(review + 'Preparation run: ' + run_url + '\n\n## Historical R8 and earlier checkpoints\n\n' + history)
-          memory_path = root / 'MEMORY.md'
-          memory = memory_path.read_text()
-          memory = memory.replace('**2026-10-16** (#2/PR79 R8 only;', '**2026-10-18** (#2/PR79 R9 only;')
-          memory = memory.replace('R8 now synchronizes the excluded draft and canonical article manuscript,\n  preserving R7 evidence and restoring precise direct Microsoft quotations.', 'R9 synchronizes the draft and canonical manuscript, retaining R8 evidence\n  and adding two sourced Lem quotations plus the systemic-responsibility argument.')
-          memory = memory.replace('26 references and seven original slides', '27 references and seven original slides').replace('standalone R8 PDF', 'standalone R9 PDF')
-          assert len(memory.splitlines()) <= 120
-          memory_path.write_text(memory)
-          print(json.dumps({'readerSha256': new_hash, 'edition': metadata['edition'], 'preservedImageAssets': len(metadata['assets']), 'run': run_url}))
+          # The previous run verified these exact transforms and reader hash.
+          # Reuse the immutable authored script rather than copying the prose again.
+          source = 'c16210a3cac633ff74b07b16b84f310d1097c37d:.github/workflows/pmday-r9-source-sync-once.yml'
+          blob = subprocess.check_output(['git', 'rev-parse', source], text=True).strip()
+          assert blob == 'e39a31f96c4b36631d4abc7223768c80c85e4d34', 'Pinned transformation changed'
+          workflow = yaml.safe_load(subprocess.check_output(['git', 'show', source], text=True))
+          steps = workflow['jobs']['synchronize']['steps']
+          names = [
+              'Apply the reviewed R9 editorial changes to both reader owners',
+              'Extract exact named URLs and freeze the new review semantic edition',
+          ]
+          for name in names:
+              selected = [step for step in steps if step.get('name') == name]
+              assert len(selected) == 1 and isinstance(selected[0].get('run'), str)
+              print('::group::' + name, flush=True)
+              subprocess.run(['bash', '-e', '-o', 'pipefail', '-c', selected[0]['run']], check=True)
+              print('::endgroup::', flush=True)
+          review_path = Path('review/issue-2/pmday-candidate-20261015/README.md')
+          review = review_path.read_text()
+          anchor = '#2 AC01–AC06 and applicable #5 author/rights/publication gates remain open;'
+          detail = ('Follow-up run 39128822230 still failed the same map because the direct Prettier CLI used its defaults, while the repository guard supplies tools/quality/prettier.config.json explicitly. This run uses that exact checked configuration before and after CI-map refresh. Both failed runs remain historical failures; their reader/semantic checks succeeded, but neither committed R9. No quality assertion, path coverage or budget was weakened.\n\n')
+          assert anchor in review
+          review_path.write_text(review.replace(anchor, detail + anchor, 1))
           PY
-      - name: Extract exact named URLs and freeze the new review semantic edition
-        run: |
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const crypto = require('node:crypto');
-          const dir = 'site/publications/pmday-ai-both-sides/';
-          const reader = fs.readFileSync(dir + 'manuscript.en.md', 'utf8');
-          const metadata = JSON.parse(fs.readFileSync(dir + 'publication.json', 'utf8'));
-          const assets = metadata.assets.map((asset) => ({ ...asset, url: '/' + asset.path.slice(5) }));
-          const compiled = require('./tools/publishing/article.cjs').compile(reader, assets, { title: metadata.title });
-          const urls = [...new Set(compiled.model.links.map((link) => link.url).filter((url) => url.startsWith('https:')))];
-          if (urls.length !== 32) throw Error('Expected 32 distinct source URLs');
-          if (compiled.model.links.filter((link) => link.url === metadata.presentation.sourceUrl).length !== 1) throw Error('Expected one presentation PDF link');
-          if (compiled.model.figures.length !== 8) throw Error('Expected 8 unchanged figures');
-          metadata.references = urls.map((url, index) => ({ id: 'source-' + (index + 1), url }));
-          fs.writeFileSync(dir + 'publication.json', JSON.stringify(metadata, null, 2) + '\n');
-          const source = { path: 'manuscript.en.md', sha256: crypto.createHash('sha256').update(reader).digest('hex'), commit: null, blob: null };
-          const edition = { schema: 1, id: metadata.edition, articleId: metadata.id, language: metadata.language, kind: 'full-article', source, owner: 'site', derivation: null, rights: 'review-pending', semanticSha256: require('./tools/publishing/semantic.cjs').semanticDigest(metadata, source) };
-          fs.writeFileSync(dir + 'editions/' + edition.id + '.json', JSON.stringify(edition, null, 2) + '\n', { flag: 'wx' });
-          console.log(JSON.stringify({ edition: edition.id, source: source.sha256, semantic: edition.semanticSha256, sourceUrls: urls.length, figures: compiled.model.figures.length }));
-          NODE
       - name: Remove the temporary job and stage only the changed source owners
         run: |
           git rm .github/workflows/pmday-r9-source-sync-once.yml
           git add drafts/pmday-article-draft.en.md site/publications/pmday-ai-both-sides/
           git add .github/repository-paths.json MEMORY.md review/issue-2/pmday-candidate-20261015/README.md
-      - name: Apply existing formatting to touched JSON owners and inherited generated map
+      - name: Apply the exact repository formatter configuration to scoped JSON paths
         run: |
-          tools/quality/toolchain/node_modules/.bin/prettier --write .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r9.json
+          tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r9.json
           git add .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/
           node tools/quality/format.cjs --check
       - name: Validate the actual article without generating platform outputs
@@ -236,14 +73,16 @@ jobs:
       - name: Refresh and verify repository intelligence with existing checks
         run: |
           python3 tools/check_ri_ci.py refresh
-          tools/quality/toolchain/node_modules/.bin/prettier --write .github/ri-ci-map.json
+          tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
           python3 tools/check_ri_ci.py verify
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
           python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
           python3 -m unittest discover -s tests -p 'test_ri_ci.py'
-      - name: Run the existing Basic source checks
-        run: node tools/quality/local.cjs
+      - name: Run existing Basic source checks and final formatting verification
+        run: |
+          node tools/quality/local.cjs
+          node tools/quality/format.cjs --check
       - name: Verify exact reader parity and commit the coordinated R9 source
         run: |
           node - <<'NODE'
