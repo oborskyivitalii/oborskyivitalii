@@ -1,9 +1,7 @@
-> **Editorial R9 — 18 October 2026. Review candidate, not a published edition.**
-> Author-approved changes: two sourced Lem quotations, a conditional systemic-responsibility conclusion and the author's own delegated-power/rigor thesis. The explanatory title-allusion passages leave the body; the book remains in the bibliography. Microsoft quotations retain their actual first-pass/architectural-oversight context. R8 evidence, six chapter-5 refrains, the customer-adoption argument and all image sources are retained.
+> **Editorial R10 — 18 October 2026. Review candidate, not a published edition.**
+> Author-requested revision: two chapter-4 assurances now follow expectation → What if not? → failure mode → practical consequence. The second grants useful features and a hypothetical 20–30x customer-facing change rate; it does not confuse this scenario with measured NBER release effects. Source 11 adds the original Microsoft old-playbook instruction beside its review-bottleneck heading with their distinct contexts preserved. R9's Lem provenance, authorial rigor thesis, empirical limitations, six chapter-5 turns and all figures remain.
 >
-> Article owner: issue #2; execution: PR #79, publisher owner #5. Inspected parent: d7fbfeef7c2a612cad8309c47aed9a3da1aa20c3. The reader below and the canonical manuscript must match the R9 PDF input byte for byte. No publication, hosted-preview admission, rights approval or merge follows.
->
-> Reader content is bounded by ARTICLE START / ARTICLE END. The named bibliography and citation block are reader content; figure data and preparation notes are not.
+> Article owner #2; execution PR #79 / publisher #5. Inspected parent a70099637187aacbe241cb7b1c571593e5e487bd. This supersedes the earlier instruction to keep the adoption paragraph free of a refrain: the author now explicitly requests the second turn there. The draft reader and canonical manuscript must match exactly. No site promotion, platform adaptation or merge.
 
 <!-- ARTICLE START -->
 
@@ -66,6 +64,8 @@ I examine costs shifted into review, QA, architecture, maintenance and productio
 Now the narrative follows the next bottleneck. [Anthropic's Code Review announcement](https://claude.com/resources/articles/code-review) [10] addresses growing review pressure. [Microsoft's Jay Parikh](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) [11] turns it into an instruction:
 
 > **“Don’t let code review become a bottleneck”**
+
+The framing is broader than review. Earlier, Parikh urges readers to **“Throw out the old playbook.”** He presents established workflows as unable to absorb the new volume of generated changes. That is a call to redesign the process, not merely install another tool. [11]
 
 His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But architectural oversight is not a resource that appears because we name it. It depends on people continuing to understand the system whose implementation they increasingly do not inspect.
 
@@ -131,27 +131,35 @@ Try smaller changes, work-in-progress limits, better specifications, AI-assisted
 
 ## 4. More software is not more value
 
-Suppose the new workflow really does ship much faster.
+Suppose the redesigned workflow really does ship much faster. Review, testing and integration can keep up. The promise is no longer just more code: more ideas can become working features, reach customers sooner and create more value for them and for the business.
 
-What if we are shipping the wrong things?
+**What if not?**
+
+We release more features, but the customer problem remains. A requested capability gets little use. A polished addition complicates the job it was meant to improve. We have shortened the journey from an assumption to an implementation without establishing that the assumption was right.
 
 Cheap implementation makes experiments more affordable. It also makes it easier to bypass the conversation in which somebody asks whether a feature should exist. [Kohavi and colleagues](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) [17] report that only about one-third of well-designed Microsoft experiments improved their intended key metric. That is a finding from their setting, not a universal success rate for product ideas. A decision not to ship can be a successful outcome of faster engineering.
 
 The [NBER study](https://www.nber.org/papers/w35275) [7] reports rising low-usage shares in new cohorts: iOS apps with fewer than ten ratings increased from about **78% to 87%**, and Chrome extensions with fewer than ten downloads from **19% to 33%**. These are first-three-month usage proxies, not welfare measures or proof of AI causation.
 
-[METR's survey of 349 technical workers](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median speed gains of **3×**, against **1.4–2× work-value gains** across question formulations. These are self-reports; importantly, they describe perceived value gains, not merely a disappointing gap.
+[METR's survey of 349 technical workers](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median speed gains of **3×**, against **1.4–2× work-value gains** across question formulations. These are self-reports; importantly, they describe perceived value gains, not merely a disappointing gap. The point is not to deny those gains. It is to establish which customer outcomes actually improve rather than treating additional output as the answer.
 
 ### The user's capacity is part of the product
 
-Even if we rebalance the entire SDLC, and even if every feature we ship is genuinely useful, we can still run into another constraint: **how quickly users can absorb the change.**
+Now grant the stronger case: we have rebalanced the entire SDLC, and every feature is genuinely useful. Suppose we deliver twenty to thirty times as many customer-facing changes—a thought experiment, not the release multiplier measured by NBER. The expectation is that this greater supply of useful capability becomes more realised value for customers and a stronger competitive position for the business.
 
-A useful feature must be discovered, understood and incorporated into a routine. Imagine someone using a reporting tool once a month while its workflow changes every week. Each improvement may make sense in isolation; each visit can still require relearning the job.
+**What if not?**
 
-Useful capabilities can accumulate faster than their benefits are realised. The comprehension problem has crossed the product boundary—from the team building the software to the people using it.
+The user is still a person. Faster delivery has not given them more attention, learning time or capacity to reorganise their work. A useful feature must be discovered, understood and incorporated into a routine before its potential benefit becomes a result.
 
-[Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related trap: capabilities attractive before use can make a product harder to use afterwards. It does not establish a universal human learning rate. Nor does every improvement create learning work; a better default can remove it.
+Imagine someone using a reporting tool once a month while its workflow changes every week. Each improvement may make sense in isolation; each visit can still require relearning the job. Useful capabilities accumulate faster than the person can absorb them. The value exists as a possibility, but not yet as an improvement in their work.
 
-Measure adoption of released changes, time to a useful result and support burden. Spend capacity on repairs, accessibility, better defaults and fewer steps—not only more features to learn. The objective is improvements people can turn into better outcomes.
+**The comprehension problem has crossed the product boundary—from the team building the software to the people using it.**
+
+[Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related trap: capabilities attractive before use can make a product harder to use afterwards. It does not establish a universal human learning rate. The relevant capacity depends on the user, task and change; no fixed cognitive multiplier is needed to recognise that it is finite.
+
+Nor does every improvement impose learning work. A better default, faster response or repaired defect can help without asking the user to learn anything new. Extra delivery capacity remains valuable. It gives us more choices about what to improve—not a reason to expose users to every change we can produce.
+
+Measure adoption of released changes, time to a useful result and support burden. Sequence changes people must learn; spend capacity on repairs, accessibility, better defaults and fewer steps. **The competitive advantage is not how much change we can deliver. It is how much better customers can work because of it.**
 
 So far, people have had to understand the system we build and absorb the changes we deliver. In the second shift, their ability to judge and intervene becomes part of the running system's control architecture. These are different roles, with a shared constraint: human capability is not unlimited.
 
@@ -371,7 +379,7 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 11. [Jay Parikh / Microsoft. “Introducing Command Line, and the new rules for builders” (2 June 2026).](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/)
 
-    Sections 8 and 10 supply the direct review and disposability quotations; section 3 supplies the autopilot phrase. First-pass review moves to agents, human architectural oversight remains, and the disposability argument is limited to well-bounded features. These are not a blanket claim that all code review is unnecessary.
+    The opening supplies the old-playbook instruction; sections 8 and 10 supply the review and disposability headings, and section 3 the autopilot phrase. These passages are quoted separately, not combined into a statement that review itself is just an obsolete habit. First-pass review moves to agents, human architectural oversight remains, and the disposability argument is limited to well-bounded features. These are not a blanket claim that all code review is unnecessary.
 
 12. [Anthropic. “Solving Code Review at Anthropic” (15 October 2026).](https://claude.dev/blog/solving-code-review-at-anthropic/)
 
@@ -437,17 +445,17 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R9, 18 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R10, 18 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR9,
+@misc{oborskyi2026sumR10,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R9, 18 October 2026; unpublished}
+  note = {Editorial draft R10, 18 October 2026; unpublished}
 }
 ```
 
@@ -455,21 +463,15 @@ Text © 2026 Vitalii Oborskyi. Presentation and third-party credits remain appli
 
 <!-- ARTICLE END -->
 
-## R9 assembly and source contract — not reader prose
+## R10 assembly and editorial contract — not reader prose
 
-Preserve the complete R9 reader. Do not substitute old R8/R7 text, suppress source notes, weaken the direct Microsoft quotations, add a new refrain to the customer-adoption passage, or attribute a blanket abolition of code review to Parikh. The first-pass review and human-oversight qualifications remain.
+Preserve the complete R10 reader with six chapters, two exact chapter-4 What if not turns, and the unchanged six chapter-5 turns. The first chapter-4 assurance concerns feature selection; the second explicitly assumes useful features and tests realised value under finite user attention/learning capacity. The 20–30x scenario is not a measured result, nor an assertion that every improvement burdens users. Preserve the better-defaults/repairs and value-based adoption alternatives.
 
-The sentence beginning “The more power we delegate” is Vitalii Oborskyi's authorial argument, not a Lem quote. It has no Lem attribution and must remain outside the quotation block. New criticism distinguishes conditional cost externalisation, inadequate systems analysis and mixed incentives; it does not assert private intent or coordinated collusion as established fact.
+Source 11: the old-playbook instruction comes from the opening, review-bottleneck heading from section 8, autopilot from section 3 and disposability from section 10. Do not attribute a blanket abolition of review, or a literal old-habit label, to Parikh. First-pass agent review, human architectural oversight and bounded-feature qualifications remain. The four short excerpts contain 20 quoted words in total.
 
-Lem provenance: source 4 cites the responsibility sentence as quoted/translated by Bogna Konior in Existential Technologies, section 1, note 18; her note 1 identifies her own translations and her bibliography identifies the Polish 2020 edition p.471. That book page has not been independently inspected. Source 27 is the publisher-supplied excerpt hosted by Instytut Spraw Obywatelskich (22 July 2025), attributing the Polish care/technology passage to Fantastyka i futurologia. Its English rendering is prepared for this article, not taken from a verified published English edition. Do not assign it to Summa or invent an original page number. The body contains attributed quotations but no explanatory title-allusion passage.
+Both Lem quotes and their translation/source notes remain unchanged; the delegated-power sentence is the author's own. All 27 references, 32 distinct named URLs, seven original slide PNGs and selected cover bytes remain. Source evidence, shared context/recovery concerns, empirical caveats and author/rights gates are not weakened. Do not call an editorial self-review an independent external review.
 
-Keep 27 continuously numbered bibliography entries and all 32 distinct named external source URLs. New links are https://existentialtech.antikythera.org/ and https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/. Bibliography and PDF citation annotations are intentional, not generated source-ID boilerplate.
-
-### Retained figures
-
-Cover plus full v35 slides 3/5/7/9/10/12/14 remain unchanged, including source PNG hashes, original credits, captions and limitations. Do not redraw or crop the source slides. The R8 selected cover detail is retained. Diagram 10's aggregate four-failure interval remains distinct from the text's critical one-disclosure calculation.
-
-<!-- R9 FIGURE DATA START -->
+<!-- R10 FIGURE DATA START -->
 ```json
 {
   "cover": {
@@ -513,10 +515,6 @@ Cover plus full v35 slides 3/5/7/9/10/12/14 remain unchanged, including source P
   }
 }
 ```
-<!-- R9 FIGURE DATA END -->
+<!-- R10 FIGURE DATA END -->
 
-### Standalone R9 PDF and acceptance boundary
-
-Reader SHA-256: 7c3ab33f4940f27020318cfefd79a48c33af5a35e2921ed2aeb511f4ada97cbd. The_Sum_of_Our_Technology_R9.pdf is a 19-page, 1,627,807-byte WeasyPrint 68.0 review export, SHA-256 0ae16014f95a0649e84cdd9c3d64c27a222ecbbc03dc6129298c9d68e77a5572. It is delivered in the conversation, not committed as the old article.pdf. Its 8 displayed images have the same RGB pixels as R8; all 32 distinct external URLs are represented, with 75 URL annotations and 19 bookmarks. Slides 7 and 12 have dedicated landscape pages. All-page rendering and local self-review remain separate from independent author, rights, scientific, managed publisher or hosted-device acceptance.
-
-The preparation route synchronises canonical Markdown, draft, declared source URLs, a new review semantic edition and existing handoff/RI. No publisher-engine change, LinkedIn/Medium generation, hosted promotion, production or merge. Prior editions remain unchanged. Follow original issue #2 AC01–AC06 and #5 gates before publication; no old green run is R9 proof.
+Reader SHA-256: 5f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49. The standalone PDF will be generated and inspected from this source after synchronization; do not reuse the R9 PDF identity or claim hosted/managed-print acceptance. No LinkedIn/Medium generation or publication event.

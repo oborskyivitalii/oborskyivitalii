@@ -7141,6 +7141,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r10.json": {
+      "kind": "file",
+      "purpose": "R10 review source and semantic identity: value/adoption pivots and precise Microsoft framing.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r9.json": {
       "kind": "file",
       "purpose": "R9 review article source and semantic identity, with sourced Lem quotations and systemic-responsibility revision; prior editions retained.",

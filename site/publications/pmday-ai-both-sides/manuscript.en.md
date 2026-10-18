@@ -58,6 +58,8 @@ Now the narrative follows the next bottleneck. [Anthropic's Code Review announce
 
 > **“Don’t let code review become a bottleneck”**
 
+The framing is broader than review. Earlier, Parikh urges readers to **“Throw out the old playbook.”** He presents established workflows as unable to absorb the new volume of generated changes. That is a call to redesign the process, not merely install another tool. [11]
+
 His proposal is to move first-pass review to agents while people retain architectural oversight. Elsewhere in the same article, the promise becomes **“Execution runs on autopilot.”** The attraction is clear: less routine inspection, faster flow, human attention reserved for the difficult decisions. But architectural oversight is not a resource that appears because we name it. It depends on people continuing to understand the system whose implementation they increasingly do not inspect.
 
 **What if not?**
@@ -122,27 +124,35 @@ Try smaller changes, work-in-progress limits, better specifications, AI-assisted
 
 ## 4. More software is not more value
 
-Suppose the new workflow really does ship much faster.
+Suppose the redesigned workflow really does ship much faster. Review, testing and integration can keep up. The promise is no longer just more code: more ideas can become working features, reach customers sooner and create more value for them and for the business.
 
-What if we are shipping the wrong things?
+**What if not?**
+
+We release more features, but the customer problem remains. A requested capability gets little use. A polished addition complicates the job it was meant to improve. We have shortened the journey from an assumption to an implementation without establishing that the assumption was right.
 
 Cheap implementation makes experiments more affordable. It also makes it easier to bypass the conversation in which somebody asks whether a feature should exist. [Kohavi and colleagues](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) [17] report that only about one-third of well-designed Microsoft experiments improved their intended key metric. That is a finding from their setting, not a universal success rate for product ideas. A decision not to ship can be a successful outcome of faster engineering.
 
 The [NBER study](https://www.nber.org/papers/w35275) [7] reports rising low-usage shares in new cohorts: iOS apps with fewer than ten ratings increased from about **78% to 87%**, and Chrome extensions with fewer than ten downloads from **19% to 33%**. These are first-three-month usage proxies, not welfare measures or proof of AI causation.
 
-[METR's survey of 349 technical workers](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median speed gains of **3×**, against **1.4–2× work-value gains** across question formulations. These are self-reports; importantly, they describe perceived value gains, not merely a disappointing gap.
+[METR's survey of 349 technical workers](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median speed gains of **3×**, against **1.4–2× work-value gains** across question formulations. These are self-reports; importantly, they describe perceived value gains, not merely a disappointing gap. The point is not to deny those gains. It is to establish which customer outcomes actually improve rather than treating additional output as the answer.
 
 ### The user's capacity is part of the product
 
-Even if we rebalance the entire SDLC, and even if every feature we ship is genuinely useful, we can still run into another constraint: **how quickly users can absorb the change.**
+Now grant the stronger case: we have rebalanced the entire SDLC, and every feature is genuinely useful. Suppose we deliver twenty to thirty times as many customer-facing changes—a thought experiment, not the release multiplier measured by NBER. The expectation is that this greater supply of useful capability becomes more realised value for customers and a stronger competitive position for the business.
 
-A useful feature must be discovered, understood and incorporated into a routine. Imagine someone using a reporting tool once a month while its workflow changes every week. Each improvement may make sense in isolation; each visit can still require relearning the job.
+**What if not?**
 
-Useful capabilities can accumulate faster than their benefits are realised. The comprehension problem has crossed the product boundary—from the team building the software to the people using it.
+The user is still a person. Faster delivery has not given them more attention, learning time or capacity to reorganise their work. A useful feature must be discovered, understood and incorporated into a routine before its potential benefit becomes a result.
 
-[Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related trap: capabilities attractive before use can make a product harder to use afterwards. It does not establish a universal human learning rate. Nor does every improvement create learning work; a better default can remove it.
+Imagine someone using a reporting tool once a month while its workflow changes every week. Each improvement may make sense in isolation; each visit can still require relearning the job. Useful capabilities accumulate faster than the person can absorb them. The value exists as a possibility, but not yet as an improvement in their work.
 
-Measure adoption of released changes, time to a useful result and support burden. Spend capacity on repairs, accessibility, better defaults and fewer steps—not only more features to learn. The objective is improvements people can turn into better outcomes.
+**The comprehension problem has crossed the product boundary—from the team building the software to the people using it.**
+
+[Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related trap: capabilities attractive before use can make a product harder to use afterwards. It does not establish a universal human learning rate. The relevant capacity depends on the user, task and change; no fixed cognitive multiplier is needed to recognise that it is finite.
+
+Nor does every improvement impose learning work. A better default, faster response or repaired defect can help without asking the user to learn anything new. Extra delivery capacity remains valuable. It gives us more choices about what to improve—not a reason to expose users to every change we can produce.
+
+Measure adoption of released changes, time to a useful result and support burden. Sequence changes people must learn; spend capacity on repairs, accessibility, better defaults and fewer steps. **The competitive advantage is not how much change we can deliver. It is how much better customers can work because of it.**
 
 So far, people have had to understand the system we build and absorb the changes we deliver. In the second shift, their ability to judge and intervene becomes part of the running system's control architecture. These are different roles, with a shared constraint: human capability is not unlimited.
 
@@ -362,7 +372,7 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 11. [Jay Parikh / Microsoft. “Introducing Command Line, and the new rules for builders” (2 June 2026).](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/)
 
-    Sections 8 and 10 supply the direct review and disposability quotations; section 3 supplies the autopilot phrase. First-pass review moves to agents, human architectural oversight remains, and the disposability argument is limited to well-bounded features. These are not a blanket claim that all code review is unnecessary.
+    The opening supplies the old-playbook instruction; sections 8 and 10 supply the review and disposability headings, and section 3 the autopilot phrase. These passages are quoted separately, not combined into a statement that review itself is just an obsolete habit. First-pass review moves to agents, human architectural oversight remains, and the disposability argument is limited to well-bounded features. These are not a blanket claim that all code review is unnecessary.
 
 12. [Anthropic. “Solving Code Review at Anthropic” (15 October 2026).](https://claude.dev/blog/solving-code-review-at-anthropic/)
 
@@ -428,17 +438,17 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R9, 18 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R10, 18 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR9,
+@misc{oborskyi2026sumR10,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R9, 18 October 2026; unpublished}
+  note = {Editorial draft R10, 18 October 2026; unpublished}
 }
 ```
 

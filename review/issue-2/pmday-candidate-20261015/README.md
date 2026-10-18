@@ -1,3 +1,17 @@
+# PMDay R10 article review
+
+Article owner #2; execution #5 / PR79.
+
+## Editorial R10 — value, user adoption and exact vendor framing
+
+The author explicitly supersedes the prior no-refrain request for chapter 4. Its first turn challenges output-to-value; its second grants useful features but asks whether people can absorb change and the business realises an advantage. The hypothetical 20–30x pace is not taken from NBER. The source Microsoft opening is now quoted beside the review-bottleneck heading; retained context prevents an obsolete-review strawman.
+
+Reader SHA-256: 5f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49. Six chapters, 2 chapter-4 turns, 6 unchanged chapter-5 turns, 8 displayed figures, 27 numbered bibliography entries, 32 external URLs. Both Lem quotations, source nuances and conditional final critique remain. No image bytes, old edition records, runtime/publisher code or budgets change. The selected scripts perform exact-source parity, AST/publication validation, formatting, Basic, RI and coupling before committing. Read the actual run: https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39137362177. These checks are not independent external review or hosted/publication acceptance.
+
+The standalone PDF will be delivered after local rendering, link and all-page inspection; existing PDFs/kits remain historical. No platform adaptation, stable staging, production or merge. Original #2 AC01–AC06 remain open; accepted recording AC07/08 are unchanged.
+
+## Earlier checkpoints
+
 # PMDay article candidate — editorial review and export history
 
 Execution: PR #79; article owner #2; publisher owner #5.

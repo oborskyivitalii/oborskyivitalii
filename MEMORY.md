@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-18** (#2/PR79 R9 only; unrelated snapshots remain historical).
+Dated continuity, not live authority. Last verified: **2026-10-18** (#2/PR79 R10 only; unrelated snapshots remain historical).
 
 ## Snapshot
 
@@ -11,11 +11,11 @@ Dated continuity, not live authority. Last verified: **2026-10-18** (#2/PR79 R9 
   source/native/scanner results remain in live #39 and its versioned review.
 - [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) executes
   editorial [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
-  R9 synchronizes the draft and canonical manuscript, retaining R8 evidence
-  and adding two sourced Lem quotations plus the systemic-responsibility argument.
+  R10 synchronizes two chapter-4 value/adoption pivots and exact Microsoft
+  old-playbook framing; R9 evidence, Lem sources and chapter 5 remain intact.
   Source, semantic edition, 27 references and seven original slides are
   coordinated; review/issue-2/pmday-candidate-20261015/README.md owns evidence.
-  The standalone R9 PDF is not the historical r2 PDF/kit in that directory.
+  The standalone R10 PDF is not the historical r2 PDF/kit in that directory.
   Publisher fixture pmday-two-shifts and default public catalog are unchanged.
   No platform kit, hosted promotion, merge or publication was requested.
   Original editorial/rights/device/publication/upstream gates stay open.
