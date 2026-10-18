@@ -185,6 +185,8 @@ jobs:
 
           Source preparation uses the previously established R8 route: locked AST extraction, publisher validation, maintained formatting, Basic, RI build/verify and coupling regressions before final coordinated source commit. All existing media bytes and prior edition records are retained. The temporary job removes itself before RI checks/commit; it introduces no persistent test/controller change. Style scope is CS01/02/04/05/08/10; no runtime or CSS changes. Read the actual preparation run result below, not this plan as proof.
 
+          The first R9 preparation run 39128264066 failed its formatting check on the inherited generated .github/ri-ci-map.json. No R9 source commit was made by that run. The follow-up applies the already pinned formatter to that map before checking and again after generator refresh; no assertions or test budgets are relaxed. Toolchain installation also reported five existing high-severity npm audit findings in the quality toolchain; no unrelated dependency upgrade or claim of a clean security audit is made.
+
           #2 AC01–AC06 and applicable #5 author/rights/publication gates remain open; AC07/08 recording acceptance remains separate. No site promotion, new hosted-preview acceptance, LinkedIn/Medium output, production, merge or upstream UA disposition. Existing base conflict remains separate.
 
           '''.replace('\n          ', '\n')
@@ -224,16 +226,17 @@ jobs:
           git rm .github/workflows/pmday-r9-source-sync-once.yml
           git add drafts/pmday-article-draft.en.md site/publications/pmday-ai-both-sides/
           git add .github/repository-paths.json MEMORY.md review/issue-2/pmday-candidate-20261015/README.md
-      - name: Apply existing formatting to touched JSON owners
+      - name: Apply existing formatting to touched JSON owners and inherited generated map
         run: |
-          tools/quality/toolchain/node_modules/.bin/prettier --write .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r9.json
-          git add .github/repository-paths.json site/publications/pmday-ai-both-sides/
+          tools/quality/toolchain/node_modules/.bin/prettier --write .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r9.json
+          git add .github/ri-ci-map.json .github/repository-paths.json site/publications/pmday-ai-both-sides/
           node tools/quality/format.cjs --check
       - name: Validate the actual article without generating platform outputs
         run: node tools/publishing/cli.cjs validate pmday-ai-both-sides
       - name: Refresh and verify repository intelligence with existing checks
         run: |
           python3 tools/check_ri_ci.py refresh
+          tools/quality/toolchain/node_modules/.bin/prettier --write .github/ri-ci-map.json
           python3 tools/check_ri_ci.py verify
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
           python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
