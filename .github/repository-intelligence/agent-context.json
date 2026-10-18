@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "77fe78c1e757dbaf51e46fb7cb5e567a9eb9a631c2c43148efda6625dffa2bac",
+    "digest": "9ff7a2569c8fec4018c1fc1ac98c96ace1f208ac525fc686ecf74c81d8132e99",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -161,12 +161,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "580f10911cf8acea7601297b413048b159b141204039e92d67aa79957333a63f"
+        "sha256": "0c04b6cafeb9aada33dc4b9bcef36bf04a739714693640d9144ae454b8093c81"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ac52faa34d90a7b46458f8ac7e209124579e9e9a42321c23db674282a178aa87"
+        "sha256": "b6ecc785d4ed41e153350cb999b8c2f0748fa40a4a768073398f9ea63ae6c4c4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -281,7 +281,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "de24b5973f6ed7910cb5190a7c83335febf698fd7315e675c55b1646062bd7b0"
+        "sha256": "8192b0eead71ec3de87054da2684bd36aac4795ca168feb95dcacc4a5c5878bc"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -1006,6 +1006,11 @@
         "path": "review/issue-5/2026-10-15-presentation-review.md",
         "identity_mode": "content",
         "sha256": "4513ee9af34f5d5025afd6139dd217686c2d24391c3badfb947eab39decaf481"
+      },
+      {
+        "path": "review/issue-5/2026-10-18-release-segmentation.md",
+        "identity_mode": "content",
+        "sha256": "a4d3197324fce44309fc5214196e03bc768f872d63ffc46f268886c7d7488c6b"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -9585,6 +9590,17 @@
         "AGENTS.md"
       ],
       "title": "PR79 — 15 October 2026 presentation and export review"
+    },
+    {
+      "path": "review/issue-5/2026-10-18-release-segmentation.md",
+      "kind": "file",
+      "purpose": "Article-first R10 delivery and staged independent platform/content/media release plan with source-qualified findings and acceptance dependencies.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article-first delivery and independent static release lanes"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",

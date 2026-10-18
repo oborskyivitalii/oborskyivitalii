@@ -1453,6 +1453,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-5/2026-10-18-release-segmentation.md": {
+      "kind": "file",
+      "purpose": "Article-first R10 delivery and staged independent platform/content/media release plan with source-qualified findings and acceptance dependencies.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-5/pmday-candidate": {
       "kind": "directory",
       "purpose": "Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate.",

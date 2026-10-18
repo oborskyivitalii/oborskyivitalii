@@ -1,103 +1,76 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-18** (#2/PR79 R10 only; unrelated snapshots remain historical).
+Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 ## Snapshot
 
-- Live main advanced to `9b82f382d080f879528fac8bba94b3656ce14521` during
-  PR79 revision work: PR80 integrates the #39 controller/test foundation.
-  PR79 synchronizes that exact main while preserving its publisher/content route.
-  PR40 owns subsequent licensed preview/staging/production preparation; exact
-  source/native/scanner results remain in live #39 and its versioned review.
-- [#5 / PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79) executes
-  editorial [#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
-  R10 synchronizes two chapter-4 value/adoption pivots and exact Microsoft
-  old-playbook framing; R9 evidence, Lem sources and chapter 5 remain intact.
-  Source, semantic edition, 27 references and seven original slides are
-  coordinated; review/issue-2/pmday-candidate-20261015/README.md owns evidence.
-  The standalone R10 PDF is not the historical r2 PDF/kit in that directory.
-  Publisher fixture pmday-two-shifts and default public catalog are unchanged.
-  No platform kit, hosted promotion, merge or publication was requested.
-  Original editorial/rights/device/publication/upstream gates stay open.
-- PR75 source passed 410/410 cases in 40 modules, Basic13/Color10, RI and final
-  owning acceptance38166555675. Actual bounded hosted preview38166374177 passed;
-  independent native ZIP/file/contract audit passed. These are separate from
-  ordinary Staging admission. Site/runtime/build bytes were unchanged from main.
-- Its ordinary postmerge identity38167640337/1 failed `missing staging admission`.
-  Main navigation38167640287 passed. The approved bootstrap is not a green
-  postmerge admission result. Earlier bootstrap and stage failures stay failed.
-- #69 / PR71 code is integrated into main. Earlier failed stage38161511583
-  remains failed historical evidence; its remaining physical/lifecycle/full-cost
-  acceptance stays separate from merge and the new #76 preview.
-- Historical recovery114538536517 restored sourcec08741db. PR78 now has the
-  first successful ordinary both-host admission; earlier failures stay failed.
-- Production is disabled. Official project-base Pages configuration works;
-  complete administration, stable accepted revision and production remain distinct.
+- Live main/production: `3af9100989c7dd6edc18b0b94c2d59f177cfd465`,
+  tree `2a4a0d57f75eba7f651906e6ea097e88b6cf8f0b`.
+  Immutable prod-2026-10-17.4 and actual publisher39071850828 succeeded.
+  Canonical.ai and both.com301 redirects are live; #39 owns exact evidence.
+- Sole open Draft PR79 under #5/#2 was inspected at
+  `8d7a87091b461a18d618d8299a5614261fe6a451`; tree1d69853a.
+  GitHub reports mergeable:false/dirty against its older main base.
+  Preserve current main release/legal/security/analytics changes on reconciliation.
+- Article is R10, not R8 or an unwritten draft. Draft and canonical manuscript
+  match SHA2565f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49.
+  R10 source/PDF evidence lives in review/issue-2/pmday-candidate-20261015/README.md.
+  Prior standalone PDFs are review artifacts, not managed current site acceptance.
+  R10 PDF delivery was not established by this planning pass.
+- PR79 already has generation reuse and content-vs-platform PR classification.
+  Its guide retains ordinary staging/production gates; independent lightweight
+  production content admission is not delivered.
+- Planning owner: review/issue-5/2026-10-18-release-segmentation.md.
+  This pass changes planning/catalog/RI/memory only, not article/runtime/workflows.
+  No rebase, preview, merge or production action is claimed.
 
 ## Decisions
 
-- Issue39 records Apache-2.0 implementation and CC BY4.0 original editorial
-  licensing with explicit identity/third-party/upstream exceptions. PR40 owns
-  feature delivery; license choice does not establish exact-edition rights,
-  editorial/device acceptance or production activation. Preserve those gates.
-
-- Issue76 preview-first phase is visually approved. The12October instruction
-  authorizes ready-source checks, ordinary stable staging and merge of the
-  unchanged admitted tree. Repeated downward re-entry replaces one-shot reading;
-  existing fallbacks, resource limits and production boundary stay.
-
-- At21:20 Europe/Warsaw on11October the maintainer answered **«Ок давай»** to
-  concrete one-time PR75 controller integration before ordinary two-host staging,
-  followed by PR71 rebase, fresh staging and merge after its successful admission.
-  This new scoped decision is recorded in live #72/#69. No standing waiver,
-  protection change, relabelled failure or production/domain/DNS activation follows.
-- Earlier one-time controller decisions are exhausted and separate. Current
-  runtime promotion requires real raw-head source/RI/owning checks, owner `/stage`
-  while open, both publishers, fresh admission and unchanged-tree merge identity.
-- All five routes retain root CSS timing and Block transitions control:700ms
-  overlapping rows in fixed1000ms block phases, camera400/1000/350ms, total3750ms.
-  Credits shares blocks/fractal flight; neutral separators and interactive focus,
-  interrupted-room continuity and reduced/Off fallbacks remain.
-- Delay/final-envelope CSS serialization admits at most0.001ms; duration, first
-  delay, order, overlap and peer/layer equality remain strict. Raw readiness,
-  frozen equivalence and original execution/resource budgets remain unchanged.
-- Closed Color selection binds exact reviewed plain/staging runtime hashes before
-  browser execution. Legacy moving/spatial and fixed reading/native-block guards
-  stay separate; failed checks cannot retry or fall back to another contract.
-- Permanent Cloudflare staging is
-  `https://staging.oborskyi-author-ci-staging.pages.dev`; Pages staging uses the
-  configured project prefix. Additional required Staging admission administration
-  remains pending. Existing strict contexts and production-root boundary remain.
-- Duplicate #70 stays consolidated in #69 with all nine original criteria.
-  PR71 is the sole runtime execution route; PR53/68 work was not imported.
+- User prioritizes publishing the new site article quickly while retaining a
+  clean engine/assets/templates/content separation and future independent lanes.
+- Recommended sequence: minimal contract + reconcile PR79/current R10 in parallel,
+  current HTML preview/rights/reader acceptance, first article via existing
+  controller, then independent content/media production lane and real reuse proof.
+- Recommendation is one static monorepo with versioned platform/content/media
+  artifacts and one atomic assembler. Microservices/new hosting/CMS are not a
+  selected prerequisite. Source/rights/review decisions remain with their owners.
+- First article adds a reader/runtime capability: use applicable source and
+  bounded staging checks honestly. Later content-only changes can use targeted
+  checks with exact compatible-platform proof; unknown/shared-code changes escalate.
+- Keep stable articles/<slug>.html URLs, one canonical manuscript and declared
+  media/semantic editions. Existing PR79 source/export history stays preserved.
+- Full diagnostics remain optional under the accepted17October release policy.
+  Do not revive obsolete ribbon/shard/GTK campaigns for this planning task.
+- #7/#13 are closed completed for shipped scope; #45/#49 closed superseded.
+  #101 Turnstile is closed not applicable. #39 final independent review stays open.
 
 ## Open work
 
-| Owner                     | Next acceptance route                                                                                                                         |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| #76 / merged PR77         | Runtime is merged on verified main; original remaining device/lifecycle/visual gates and exact admission evidence stay in the live owner.     |
-| #69 / merged PR71         | Original physical Safari/iPad, bfcache/native find and full-cost gates stay separate; do not repeat its completed merge.                      |
-| #72                       | PR78 established ordinary both-host admission. Remaining whole controller/recovery and strict additional-setting criteria stay in this owner. |
-| #49 / Draft PR53          | Fragment-flight visual/source acceptance at its current head.                                                                                 |
-| #41 / Draft PR68          | Separate editorial and author-first intent; no task merge is inferred.                                                                        |
-| #39 / Draft PR40          | Canonical Pages/domain preparation and original release decisions.                                                                            |
-| #45 / #36 / #1 / #13 / #8 | Original visual, device, first-release, recovery, indexing and analytics gates.                                                               |
-| #5 / PR79 and #2          | Publisher technical evidence is retained; review the revised readable article/PDF candidate and hosted preview; author/rights/publication decisions remain. |
-| #7 / #6 / #11             | Rights, editions and post-launch guides.                                                                                                      |
+- #2: complete R10 editorial/source/figure/rights and current HTML publication;
+  original PDF/deck/upstream criteria remain separately reconciled.
+- #5/PR79: reconcile onto actual main, retain minimal reader/publisher integration;
+  then AC16–AC20 versioned boundaries, content-only production, media, assembly,
+  concurrency/rollback. Existing AC01–AC15 keep their exact historical scope.
+- #102: extensionless entry analytics gap; plan declared article-path coverage.
+  #103/#8: actual Windsor/Google property access, indexing and query baseline.
+  #104: conversion design after article/template contract; not a publication block.
+- #97 owner MFA action can run independently. #98 disclosure file and #99/#100
+  bot/crawler policies are not prerequisites for the article.
+- #6 harness follows settled publisher contracts; #11 guides use the resulting lane.
+- #36/#41 retain scoped current visual/editorial evidence obligations. No new
+  first-reader/device or independent approval is invented by source inspection.
 
 ## Next session
 
-1. Revalidate main, PR79 raw head, clean source, current checks and preview.
-   Read main's #39 publication-test/controller review for merged guard behavior.
-2. Read `review/issue-2/2026-10-15-editorial-draft.md` and the candidate README.
-   Real article authoring is resumed; do not restore the obsolete deferral.
-3. Continue in the same PR79 with issue5 policy and issue2 editorial acceptance.
-   Preserve final author/rights/device/publication/upstream decisions.
-4. Read current CI diagnostics before repeating checks. Do not treat historical
-   managed fixture PDF or local review browser as current-source release proof.
+1. Revalidate main and PR79 head; read owning #5/#2 dated plan and R10 evidence.
+2. Inventory and reconcile unique publisher changes against released main,
+   preserving current production controller, legal records, source/security fixes.
+3. Finish R10 review in parallel, reach a current immutable HTML preview, then
+   follow actual owner acceptance/release route. Full lane separation is later.
+4. Map added AC16–AC20 before their implementation; use targeted meaningful
+   content/baseline/compatibility/concurrent-publication negatives.
 
 ## Maintenance
 
-Keep these five sections and at most120lines. Replace stale observations at a
-meaningful handoff. Exact current refs/runs/settings/deployments belong in the
-live owner. Rebuild/verify RI after edits; never store secrets or private data.
+Keep these five sections and at most120lines. Rebuild/verify RI after indexed
+changes; use live issues/refs for current acceptance. Never store secrets.
