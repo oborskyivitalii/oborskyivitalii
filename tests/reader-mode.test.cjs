@@ -26,7 +26,7 @@ test('reader reuses the admitted AST without changing source or other renditions
     credit: 'Author and source credits.',
   };
   const input = article(
-    '# A different article\n\n*A separate subtitle*\n\n![A drawing](asset:drawing)\n\nThe hook stays first.\n\n## Another chapter\n\n### A subsection\n\nA paragraph.',
+    '# A different article\n\n*A separate subtitle*\n\n![A drawing](asset:drawing)\n\nThe hook stays first.\n\n## Another chapter\n\n### A subsection\n\nA paragraph.\n\n---',
     [asset]
   );
   input.furniture.cover = { id: 'drawing' };
@@ -45,6 +45,8 @@ test('reader reuses the admitted AST without changing source or other renditions
   assert.ok(!output.toc.includes('href="#a-subsection"'), 'contents shows chapters only');
   assert.ok(!output.body.includes('<h1'));
   assert.match(input.platformBodyHtml, /An important limitation remains visible\./);
+  assert.match(output.body, /<div class="reader-divider"><hr><\/div>/);
+  assert.ok(!input.platformBodyHtml.includes('reader-divider'));
   validateFragment(output.body + output.subtitle + output.toc, 'reader test');
 });
 

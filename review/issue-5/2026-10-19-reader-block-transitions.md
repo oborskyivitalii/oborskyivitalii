@@ -108,3 +108,53 @@ only current test pins and evidence; final source/CI binding belongs to PR79.
 ![Readable source annotations and descriptive return](reader-block-transitions/sources-2f09b957.jpg)
 
 ![Citation visibly focused after native return](reader-block-transitions/return-2f09b957.jpg)
+
+
+## Synthetic diagnostic follow-up
+
+Initial CI39327003063 passed actual article HTTP/reader/Color reports, including
+1440/390 normal,390 Off/reduced/no-canvas/no-JS,20 document flights and40 raw
+block phases. Article arrival had10 rows at1440 and9 at390; all principal
+article departures were forward/upward. The run as a whole FAILED on the
+separate isolated synthetic content fixture: the new evidence collector required
+frames on an empty zero-height tags placeholder. It also read only the first
+child's animations. That is a diagnostic defect, not a passed whole workflow.
+
+The collector now excludes only shell-and-direct-children geometry with no
+positive area and collects frames from every direct child. Positive-area bare
+text remains included and must have real motion. A bounded VM regression covers
+empty placeholder, hidden first child/later animated child, zero-height shell
+with painted child and bare-H4 missing frames. Evidence10/10, formatter and
+zero-error lint pass; existing28/28 lint warnings are unchanged. Canonical
+synthetic output was inspected: appendices always retain source/rights sections;
+no positive-area empty-container exemption or assertion relaxation was added.
+Runtime, tuples, browser cases and budgets are unchanged.
+
+The intermediate fe53cd23/tree07783372 exact policy passed11/11,
+evidence_valid:true and errors:[], report SHA256
+29cca18dba444d809d29763c1a97abbb07b8811748832c85ac37b7a1ff10eebf.
+Relevant current production/staging/modern-rights tests passed3/3. An optional
+broader local three-module diagnostic was canceled by network approval before
+a decision returned; it supplies no full-suite receipt. The bounded relevant
+paths and original owning/hosted routes remain the acceptance evidence.
+
+Independent visual reviewer checked both saved source/return states and found
+F01/F02 addressed, with no scoped visual blocker. This is bounded dark-desktop
+agent review; no human, physical-device or measured contrast acceptance.
+Final current-source policy and hosted receipt are recorded in PR79/issue5.
+
+
+## Complete supported leaf geometry
+
+Leaf inventory also needs a movable child for the admitted thematicBreak node:
+a bare nativehr has no child ink. The reader-only AST hook now emits a plain
+div.reader-divider around the nativehr. The existing preservation test covers
+this wrapper and unchanged AST/platform output. No layout/typography rule or
+new animation owner is introduced. The new exact producer family
+issue5ReaderBlockElements preserves all four runtime scripts and CSS byte for
+byte; previous reader-block families remain historical. Plain/staging/production
+registration, mandatory rights admission, current producer pins and block-evidence
+validation explicitly include the new identity. Independent read-only review
+found no blocker and checked the five equal file hashes across all three editions.
+Focused reader/evidence/Color39/39 and relevant independent3/3 checks passed.
+Final source policy/hosted receipts remain in the live PR/issue.

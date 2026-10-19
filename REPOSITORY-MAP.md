@@ -42,20 +42,20 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media](docs/media) | Generated content-addressed asset editions. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21](docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff](docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f](docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552](docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237](docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/1aafdf0fba7ddbff37dc164d7874775644ae369325432e032c9c05e81294075e](docs/snapshots/1aafdf0fba7ddbff37dc164d7874775644ae369325432e032c9c05e81294075e) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/25b3e4607119e740cae67681416dce873eadb40489bf57e1e2d93314a1fa1d2e](docs/snapshots/25b3e4607119e740cae67681416dce873eadb40489bf57e1e2d93314a1fa1d2e) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/61b814698e262781fa989d149e7ca23585688fcc1f3ef260bb1901efcd0b90c9](docs/snapshots/61b814698e262781fa989d149e7ca23585688fcc1f3ef260bb1901efcd0b90c9) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969](docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57](docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f](docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/c50befc9997dc53906300c477ffa0f7752c3c6e50aef2b701abda662849eda0f](docs/snapshots/c50befc9997dc53906300c477ffa0f7752c3c6e50aef2b701abda662849eda0f) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/c9787bf9602d091db57c2ffeb44a91e4c93cdcb1dabb270dabd89950556db51d](docs/snapshots/c9787bf9602d091db57c2ffeb44a91e4c93cdcb1dabb270dabd89950556db51d) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -309,21 +309,21 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/writing-paradigm.svg) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/archive.js](docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/archive.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/navigation.js](docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/navigation.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/space.js](docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/space.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/styles.css](docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/styles.css) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/theme.js](docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/theme.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-
 ## docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js](docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
+
+## docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/archive.js](docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/archive.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/navigation.js](docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/navigation.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/space.js](docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/space.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/styles.css](docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/styles.css) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/theme.js](docs/runtime/b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f/theme.js) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 
@@ -335,17 +335,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552/
+## docs/snapshots/1aafdf0fba7ddbff37dc164d7874775644ae369325432e032c9c05e81294075e/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552/writing.html](docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552/writing.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/1aafdf0fba7ddbff37dc164d7874775644ae369325432e032c9c05e81294075e/research.html](docs/snapshots/1aafdf0fba7ddbff37dc164d7874775644ae369325432e032c9c05e81294075e/research.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237/
+## docs/snapshots/25b3e4607119e740cae67681416dce873eadb40489bf57e1e2d93314a1fa1d2e/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237/credits.html](docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237/credits.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/25b3e4607119e740cae67681416dce873eadb40489bf57e1e2d93314a1fa1d2e/talks.html](docs/snapshots/25b3e4607119e740cae67681416dce873eadb40489bf57e1e2d93314a1fa1d2e/talks.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -353,17 +353,17 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/61b814698e262781fa989d149e7ca23585688fcc1f3ef260bb1901efcd0b90c9/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/61b814698e262781fa989d149e7ca23585688fcc1f3ef260bb1901efcd0b90c9/index.html](docs/snapshots/61b814698e262781fa989d149e7ca23585688fcc1f3ef260bb1901efcd0b90c9/index.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969/talks.html](docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969/talks.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
 
@@ -377,23 +377,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57/index.html](docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57/index.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f/research.html](docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f/research.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/c50befc9997dc53906300c477ffa0f7752c3c6e50aef2b701abda662849eda0f/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/c50befc9997dc53906300c477ffa0f7752c3c6e50aef2b701abda662849eda0f/credits.html](docs/snapshots/c50befc9997dc53906300c477ffa0f7752c3c6e50aef2b701abda662849eda0f/credits.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/c9787bf9602d091db57c2ffeb44a91e4c93cdcb1dabb270dabd89950556db51d/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/c9787bf9602d091db57c2ffeb44a91e4c93cdcb1dabb270dabd89950556db51d/writing.html](docs/snapshots/c9787bf9602d091db57c2ffeb44a91e4c93cdcb1dabb270dabd89950556db51d/writing.html) | Generated immutable runtime or document snapshot from canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 

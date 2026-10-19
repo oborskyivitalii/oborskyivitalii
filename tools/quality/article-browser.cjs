@@ -454,6 +454,24 @@ function installArticleFlightDiagnostics() {
   window.__articleFlightEvents = [];
   window.__articleBlockEvents = [];
   let active = null;
+  function blockUnit(element) {
+    const children = [...element.children];
+    const hasArea = [element, ...children].some((node) => {
+      const rect = node.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    });
+    if (!hasArea) return null;
+    return {
+      tag: element.tagName,
+      classes: element.className,
+      distance: Number.parseFloat(element.style.getPropertyValue('--route-block-distance')),
+      row: Number(element.dataset.routeRow),
+      state: element.dataset.routeBlock,
+      frames: children.flatMap((child) =>
+        child.getAnimations().flatMap((animation) => animation.effect?.getKeyframes() || [])
+      ),
+    };
+  }
   window.SiteEngineProbe = (event) => {
     if (window.__articleFlightEvents.length >= 4000)
       throw Error('article flight evidence overflow');
@@ -461,14 +479,7 @@ function installArticleFlightDiagnostics() {
       if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
       window.__articleBlockEvents.push({
         ...structuredClone(event),
-        units: [...document.querySelectorAll('[data-route-block]')].map((element) => ({
-          tag: element.tagName,
-          classes: element.className,
-          distance: Number.parseFloat(element.style.getPropertyValue('--route-block-distance')),
-          row: Number(element.dataset.routeRow),
-          state: element.dataset.routeBlock,
-          frames: element.firstElementChild?.getAnimations()[0]?.effect?.getKeyframes() || [],
-        })),
+        units: [...document.querySelectorAll('[data-route-block]')].map(blockUnit).filter(Boolean),
       });
     }
     if (event.kind === 'camera-travel' || event.kind === 'camera-travel-complete')
@@ -634,10 +645,12 @@ function validateArticleBlocks({ blocks, events, from, to, direction }) {
 
 function articleBlocksRequired(engine) {
   const motion = require('./color-motion-contract.cjs');
-  return ['plain', 'staging', 'production'].some((edition) => {
-    const { variant } = motion.reviewedRuntime('issue5-reader-blocks-' + edition);
-    return engine === variant.baseEngine || engine === variant.fingerprint;
-  });
+  return ['issue5-reader-blocks', 'issue5-reader-block-elements'].some((family) =>
+    ['plain', 'staging', 'production'].some((edition) => {
+      const { variant } = motion.reviewedRuntime(family + '-' + edition);
+      return engine === variant.baseEngine || engine === variant.fingerprint;
+    })
+  );
 }
 
 function validateRecordedArticleFlights(flights, engine) {
@@ -1253,7 +1266,9 @@ module.exports = {
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
   articleAnchorCount,
+  installArticleFlightDiagnostics,
   validateArticleFlight,
+  validateArticleBlocks,
   articleJourney,
   validateArticleJourney,
 };

@@ -5,6 +5,16 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 reader semantic rule shell; same leaf-block runtime and scene clock.
+  issue5ReaderBlockElements: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    baseEngine: 'b34f8929614cf1193b77348c1fcac699496a18376d7bc0d2a1cf5e34dd3d469f',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '3b8ab951f96b0b10887af06db22079124233a975a0b8217502d01b506be86bf7',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Issue5 article leaf-block wave and hierarchy directions; shared notes UI, same camera clock.
   issue5ReaderBlocks: {
     behavior: 'fixed-blocks',
@@ -285,6 +295,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-block-elements-production',
+    family: 'issue5ReaderBlockElements',
+    edition: 'production',
+    fingerprint: '441bb6356dfc8e2943e2a54ef891517cb803f8d27b7aee49887a1c3fa63c1bdc',
+    styles: '4353b7f0b9c42807aec027b2cdc1a72b0496c7874ae5086727fc08bfd66c8e0d',
+  },
+  {
+    id: 'issue5-reader-block-elements-plain',
+    family: 'issue5ReaderBlockElements',
+    edition: 'plain',
+    fingerprint: 'bc90a675857a4649ada8e8eb666c63eed54c3b6bf21d95d635b82f2571060e05',
+    styles: '4353b7f0b9c42807aec027b2cdc1a72b0496c7874ae5086727fc08bfd66c8e0d',
+  },
+  {
+    id: 'issue5-reader-block-elements-staging',
+    family: 'issue5ReaderBlockElements',
+    edition: 'staging',
+    fingerprint: '27155a5060cdae103e6afe9c9d1d9542f637214b9c1c4c47ccd91e431e1e2bba',
+    styles: '0bd3f89bf6407622cdb097baf63926c524898f8c69dafac59552bcb9d0129ab7',
+  },
   {
     id: 'issue5-reader-blocks-production',
     family: 'issue5ReaderBlocks',

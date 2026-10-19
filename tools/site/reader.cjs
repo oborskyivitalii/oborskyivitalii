@@ -98,6 +98,8 @@ function components(article, layout) {
   }
   let linkDepth = 0;
   const hooks = {
+    // A native rule needs a semantic shell so the common child-ink wave moves its border.
+    thematicBreak: () => '<div class="reader-divider"><hr></div>\n',
     paragraph: (node, { children, render: renderNode }) => {
       if (omitted.has(node)) return '';
       if (node.children.length === 1 && node.children[0].type === 'image')

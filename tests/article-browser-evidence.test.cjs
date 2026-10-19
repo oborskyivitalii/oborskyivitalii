@@ -4,6 +4,8 @@ const assert = require('node:assert/strict');
 const {
   validateArticleJourney,
   validateArticleFlight,
+  validateArticleBlocks,
+  installArticleFlightDiagnostics,
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
   articleAnchorCount,
@@ -204,8 +206,10 @@ test('reader-mode evidence requires stationary paragraphs while preserving legac
 
 test('reader-block evidence is required for every current identity while historical reports remain valid', () => {
   const motion = require('../tools/quality/color-motion-contract.cjs');
-  const identities = ['plain', 'staging', 'production'].map(
-    (edition) => motion.reviewedRuntime('issue5-reader-blocks-' + edition).variant
+  const identities = ['issue5-reader-blocks', 'issue5-reader-block-elements'].flatMap((family) =>
+    ['plain', 'staging', 'production'].map(
+      (edition) => motion.reviewedRuntime(family + '-' + edition).variant
+    )
   );
   const make = (selectedEngine) => {
     const detail = observed();
@@ -316,6 +320,66 @@ test('reader-block evidence is required for every current identity while histori
       baseURL,
     })
   );
+});
+
+test('block diagnostics omit empty shells, collect later child animations and retain bare painted text', () => {
+  const vm = require('node:vm');
+  const frames = [{ computedOffset: 0 }, { computedOffset: 1 }];
+  const node = ({
+    tag = 'DIV',
+    width = 200,
+    height = 24,
+    children = [],
+    animations = [],
+  } = {}) => ({
+    tagName: tag,
+    className: '',
+    children,
+    dataset: { routeRow: '0', routeBlock: 'departing' },
+    style: { getPropertyValue: () => '-600px' },
+    getBoundingClientRect: () => ({ width, height }),
+    getAnimations: () => animations,
+  });
+  const animated = () => node({ animations: [{ effect: { getKeyframes: () => frames } }] });
+  const empty = node({ height: 0 });
+  const hiddenFirst = node({ children: [node({ width: 0, height: 0 }), animated()] });
+  const childOnly = node({ height: 0, children: [animated()] });
+  const units = [empty, hiddenFirst, childOnly];
+  const scope = { window: {}, document: { querySelectorAll: () => units }, structuredClone };
+  vm.runInNewContext('(' + installArticleFlightDiagnostics.toString() + ')();', scope);
+  const phase = {
+    kind: 'route-block',
+    stage: 'departure',
+    direction: 'forward',
+    navigationId: 1,
+    rows: 1,
+    plannedDurationMs: 1000,
+  };
+  scope.window.SiteEngineProbe(phase);
+  const recorded = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[0]));
+  assert.equal(recorded.units.length, 2, 'zero-area placeholder has no painted motion to prove');
+  assert.deepEqual(
+    recorded.units.map((unit) => unit.frames),
+    [frames, frames]
+  );
+  const observedFlight = flight('article:' + key, 'writing', -1);
+  observedFlight.blocks = [
+    recorded,
+    {
+      ...recorded,
+      stage: 'arrival',
+      direction: 'backward',
+      units: recorded.units.map((unit) => ({ ...unit, state: 'arriving' })),
+    },
+  ];
+  validateArticleBlocks(observedFlight);
+  units.push(node({ tag: 'H4' }));
+  scope.window.SiteEngineProbe(phase);
+  observedFlight.blocks[0] = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[1]));
+  const bare = observedFlight.blocks[0].units.at(-1);
+  assert.equal(bare.tag, 'H4', 'positive-area bare text must remain in the diagnostic inventory');
+  assert.deepEqual(bare.frames, []);
+  assert.throws(() => validateArticleBlocks(observedFlight), /actual common CSS animation/);
 });
 
 test('selected articles reject omitted, duplicate, failed or wrong-source browser observations', () => {

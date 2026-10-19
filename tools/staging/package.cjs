@@ -198,6 +198,9 @@ function publicationRequired(source, revision) {
   // metadata cannot relabel a licensed Color artifact as a historical family.
   const motion = require('../quality/color-motion-contract.cjs');
   const licensed = [
+    'issue5-reader-block-elements-plain',
+    'issue5-reader-block-elements-staging',
+    'issue5-reader-block-elements-production',
     'issue5-reader-blocks-plain',
     'issue5-reader-blocks-staging',
     'issue5-reader-blocks-production',
