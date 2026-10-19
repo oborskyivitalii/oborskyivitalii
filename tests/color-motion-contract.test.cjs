@@ -635,3 +635,16 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   await assert.rejects(() => color.settled(page, 'research', unknown), /Color bytes/);
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
 });
+
+test('issue106 selected material lineage keeps exact Color byte checks', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-campaign-materials-' + edition;
+    assert.equal(motion.select(manifest(id)).id, id);
+    const changed = manifest(id);
+    changed.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});

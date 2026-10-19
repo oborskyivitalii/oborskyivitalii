@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "issue106-reviewed-runtime-bytes",
+  "role": "implementation-self-review; not independent/device/release acceptance",
+  "family": {
+    "behavior": "fixed-blocks",
+    "baseEngine": "4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d",
+    "theme": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+    "space": "d5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41",
+    "navigation": "f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e",
+    "archive": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad"
+  },
+  "runtimes": [
+    {
+      "id": "issue106-campaign-materials-plain",
+      "family": "issue106CampaignMaterials",
+      "edition": "plain",
+      "fingerprint": "11b5fdc76fa0cc21f0c18dcaac38846362bb9d97714b69fa742a66d832e8a141",
+      "styles": "ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c"
+    },
+    {
+      "id": "issue106-campaign-materials-staging",
+      "family": "issue106CampaignMaterials",
+      "edition": "staging",
+      "fingerprint": "109951890b2d2b09e65f88051c71e56f13bd9b8c96860510b38d70a05643f1fb",
+      "styles": "b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91"
+    },
+    {
+      "id": "issue106-campaign-materials-production",
+      "family": "issue106CampaignMaterials",
+      "edition": "production",
+      "fingerprint": "323dcdbcc9cfdce7f69b6188c7c347291fbb287d1f4c650915fe7c4be2926486",
+      "styles": "ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c"
+    }
+  ],
+  "sourceDirty": true,
+  "scope": "dirty preparatory artifact byte derivation; final exact-source checks recorded in PR"
+}

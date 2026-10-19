@@ -81,3 +81,19 @@ article release is performed by this increment.
 Next: review the synthetic common block, integrate accepted publisher/campaign
 baselines and prepare the first authored launch/carousel kit against the actual
 approved article. Keep original content/PDF/media and publication ownership intact.
+
+## Integration corrections before admission
+
+The first full publisher policy on c5b07968 failed on three integration surfaces:
+new public-file source metadata used a competing owner, offline image/download
+links were not in the selected resource transform, and the new producer identity
+was absent from the exact Color byte contract. PR107 preview39239299831 failed
+that same Color package check. Those failures remain failed evidence.
+
+Keep publication catalog ownership with ARTICLE-WORKFLOW, reuse the declared
+resource closure for native/offline material links and add only the bounded
+material-anchor hydration selector. The existing scene/clock does not change.
+New exact Color lineages and byte-tamper negatives are self-reviewed here and in
+the adjacent runtime-proof JSON; historical identities and rejection checks stay
+intact. This updates CS06's earlier no-runtime-delta observation for the reader:
+its narrow resource hydration selector changes, with no new loop/listener.

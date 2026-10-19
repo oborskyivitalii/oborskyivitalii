@@ -643,6 +643,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [review/issue-106/2026-10-19-campaign-plan.md](review/issue-106/2026-10-19-campaign-plan.md) | Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-draft-contract.md](review/issue-106/2026-10-19-draft-contract.md) | First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-materials-campaign-runtime-proof.json](review/issue-106/2026-10-19-materials-campaign-runtime-proof.json) | Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-public-materials.md](review/issue-106/2026-10-19-public-materials.md) | Public material implementation and publisher integration scope/evidence with pending human gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/

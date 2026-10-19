@@ -1063,6 +1063,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json": {
+      "kind": "file",
+      "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-106/2026-10-19-public-materials.md": {
       "kind": "file",
       "purpose": "Public material implementation and publisher integration scope/evidence with pending human gates.",

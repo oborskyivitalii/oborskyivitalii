@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "099e5ee715e5da4c6ff7e1656af27d71202c97b42ca4db4ff55a64d67f31a43f",
+    "digest": "62dd2bc5b2713f6c8a4e757d9754df2daa75a923a1708dd5e60f4c41885dee3e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0687ffe0f75f80d4aaecfb23198a6c0338ff1d25ab73ebef52ac48bb0787090f"
+        "sha256": "567da944b3b20d3c1774f38dfe346f7133b3975dc7c2193b69cd6a5978896d16"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b71e05131e10fdab572421da95022a011af104840af826841f5296007b70f90d"
+        "sha256": "b7d7379779f0bc4587d504dfe11f38d2734fe1051e94ed63cb3c87379d6cce3a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -723,9 +723,14 @@
         "sha256": "fc49ca7bbde97f6d878f593a855e7d6c8aca6ac19ed7af6678251c838bbc1aae"
       },
       {
+        "path": "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json",
+        "identity_mode": "content",
+        "sha256": "5d5528c162df274da5aaf5be230c3b8c16dd8099c7dd3827e6bf6031309e3099"
+      },
+      {
         "path": "review/issue-106/2026-10-19-public-materials.md",
         "identity_mode": "content",
-        "sha256": "dc93a96feb7fb6c1a5cf609c06e193b641ebcdace100fc3f20843160095fb548"
+        "sha256": "ca196728c3c5bb48b0e9e554194c797305d67f40827f640d5edbdfc71e13bb08"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -5640,7 +5645,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "e792f71273a05af9325f42a4ee86ac45a04c9f0b5f0c608b338b5e8fc013bcd3"
+        "sha256": "1233594d50c3943bae87061d860d3383e078db7f39d9a756c54ea111de11bdc7"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -6250,7 +6255,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "954492bd151cab0772f1e5e0617210ee9cc04fd2c144f3cfec7e295572aee4a0"
+        "sha256": "23f818ddab5030bba9a08d582a568c1163b0d3b61797d23a298218984de43c7b"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8650,6 +8655,17 @@
         "AGENTS.md"
       ],
       "title": "Issue106 — first draft campaign contract"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json",
+      "kind": "file",
+      "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-materials-campaign-runtime-proof.json"
     },
     {
       "path": "review/issue-106/2026-10-19-public-materials.md",

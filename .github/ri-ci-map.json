@@ -124,7 +124,8 @@
         "review/issue-106/2026-10-19-campaign-plan.md",
         "tests/test_issue106_acceptance.py",
         "review/issue-106/2026-10-19-draft-contract.md",
-        "review/issue-106/2026-10-19-public-materials.md"
+        "review/issue-106/2026-10-19-public-materials.md",
+        "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -540,7 +541,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "1590a9d8a63f453d416f00f27ccab5f1c472e1c221737d7157184c59cd71ac06",
+    "digest": "bdc03cb1049679ff52f0a2ea115f628c45732aca382ec6176762dd1390c15770",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -652,7 +653,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0687ffe0f75f80d4aaecfb23198a6c0338ff1d25ab73ebef52ac48bb0787090f"
+        "sha256": "567da944b3b20d3c1774f38dfe346f7133b3975dc7c2193b69cd6a5978896d16"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
