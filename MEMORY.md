@@ -4,6 +4,14 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- #108 site release: Ready PR111, head e73f592c5547957f200cbaeb931e62b86d4561bf,
+  tree493117e64bf4e16333d99c8ac1504dba3ab39283. Current source CI passed
+  Basic/navigation/owning6-check policy; retry staging39261682878 is running.
+- First staging39259059691 passed25/26 guards;56 public checksum/commit findings
+  were individually proved without changing scanners. Current local scan0 untriaged.
+  Follow review/issue-108/2026-10-19-site-delivery.md and live PR111 for actual
+  staging/merge/candidate/production outcomes. No site release is claimed yet.
+
 - Verified main/production:0098f804cb3b0d120173d4c8689043db42231c47.
   .ai production and .com redirect remain owned by #39/#8; no release here.
 - Active Draft PR107 / #106: reusable article campaign/public materials plus
@@ -18,6 +26,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   promote it as part of campaign tooling.
 
 ## Decisions
+
+- Maintainer requested exact UA Online PMDay 2026 Autumn naming across current
+  site materials and authorised the existing #108 stage/merge/production route.
+  PR111 is independent of PR107/PR79; preserve canonical URLs and frozen editions.
+  PR79 comment6267870198 records its unpublished-material naming requirement.
 
 - Maintainer approved event source, event-relative/exact dates, typed CTAs,
   presentation-derived promotion, per-piece EN/UA and kit/ICS export on19October.
