@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5f0bcdd0803647935ad4cc923aca2cc04d1538d8cc7d176710e58d075ecd03ff",
+    "digest": "a587f79d6938bbcbef3498bd0316bfb6a27110c4bb8355cc9bd44ea50a521579",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "60e775f57d6ee88e25ae98dbf41e7e1ba2feb25d5a0a5e0fbf3220004d22a70a"
+        "sha256": "ab87627c4b9f735290a4221bba7d2d9b6a695b4ae16f77b2de9b5e3291049164"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
         "identity_mode": "content",
-        "sha256": "606ce6e1ceb55047a8ab8f4764d767d06ed8987dba52a9de6f57beb94742087e"
+        "sha256": "42f190e08806c543b9117aa98422b422b1db7065086b4f4430648be5a03ffaf4"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -700,7 +700,7 @@
       {
         "path": "review/issue-108/2026-10-19-site-delivery.md",
         "identity_mode": "content",
-        "sha256": "2d2e32db782adedc4526a12c544194e6f2eacd8fb4d3dbcfa946a77da5e94f91"
+        "sha256": "0b8a916348edea327e6a6cc9f64148c46637f5520d6ec3c933c8a75dd3671866"
       },
       {
         "path": "review/issue-108/content-amendment.json",

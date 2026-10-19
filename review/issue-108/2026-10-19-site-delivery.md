@@ -61,3 +61,13 @@ permanent; no new browser matrix or duplicate release stage.
 Initial generated SEO reconciliation passes against the frozen public baseline.
 All later checks are reported with their actual source/run; this file does not
 supply human approval or a future green deployment.
+
+
+## CI correction
+
+Ready run39258003211 selected the correct issue108 policy but its EVENTS check
+failed before content assertions: the workflow only installed pinned HTML/SEO
+normalizer dependencies for earlier selected issues. Extend that same existing
+conditional installation to issue108. No checks, profiles, budgets or approval
+requirements are removed. The failed run remains observable; its green Basic,
+style and RI subset cannot establish complete acceptance.
