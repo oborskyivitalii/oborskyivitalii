@@ -1909,6 +1909,30 @@
       "role": "history",
       "owner": "review/issue-5/2026-10-19-reader-resources-and-notices.md"
     },
+    "review/issue-5/2026-10-19-reader-ux-evidence": {
+      "kind": "directory",
+      "purpose": "Original browser captures supporting the 19 October reader UX/UI review.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-19-reader-ux-evidence/intro-light.jpg": {
+      "kind": "file",
+      "purpose": "Original desktop light-theme opening screenshot of real R12 reader source84210af4.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-19-reader-ux-evidence/table-light.jpg": {
+      "kind": "file",
+      "purpose": "Original desktop light-theme table screenshot showing unnecessary two-axis scrolling on reader source84210af4.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-19-reader-ux-ui-review.md": {
+      "kind": "file",
+      "purpose": "Independent desktop reader UX/UI findings, bounded evidence, reading design and ordered correction tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-5/2026-10-19-real-article-preview.md": {
       "kind": "file",
       "purpose": "Real R12 native reader preview: bounded rendition/download policy, preservation and independent review evidence.",

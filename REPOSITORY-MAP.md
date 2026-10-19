@@ -79,6 +79,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5](review/issue-5) | Versioned migration execution, source audit, independent review and exact-source evidence for owning issue5. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-5/2026-10-19-reader-ux-evidence](review/issue-5/2026-10-19-reader-ux-evidence) | Original browser captures supporting the 19 October reader UX/UI review. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/pmday-candidate](review/issue-5/pmday-candidate) | Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
 | [review/issue-54](review/issue-54) | Issue54 source audit, architecture and ordered Sol refactor plan. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-56](review/issue-56) | Versioned R1 implementation, tool decision, parity and review evidence for issue56. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -857,8 +858,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-5/2026-10-19-reader-flight-review.md](review/issue-5/2026-10-19-reader-flight-review.md) | Dated independent reader navigation review and verification evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/2026-10-19-reader-resource-diagnostic.json](review/issue-5/2026-10-19-reader-resource-diagnostic.json) | Prepared source-hashed R10 reader, resource, transfer and exact-edition inventory diagnostic. | history | [review/issue-5/2026-10-19-reader-resources-and-notices.md](review/issue-5/2026-10-19-reader-resources-and-notices.md) |
 | [review/issue-5/2026-10-19-reader-resources-and-notices.md](review/issue-5/2026-10-19-reader-resources-and-notices.md) | Reader resource/notices self-review, real R10 transfer blocker and next bounded step. | history | [review/issue-5/2026-10-19-reader-resources-and-notices.md](review/issue-5/2026-10-19-reader-resources-and-notices.md) |
+| [review/issue-5/2026-10-19-reader-ux-ui-review.md](review/issue-5/2026-10-19-reader-ux-ui-review.md) | Independent desktop reader UX/UI findings, bounded evidence, reading design and ordered correction tasks. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/2026-10-19-real-article-preview.md](review/issue-5/2026-10-19-real-article-preview.md) | Real R12 native reader preview: bounded rendition/download policy, preservation and independent review evidence. | history | [guides/SITE-CONTENT-RELEASE.md](guides/SITE-CONTENT-RELEASE.md) |
 | [review/issue-5/writing-catalog-amendment.json](review/issue-5/writing-catalog-amendment.json) | Issue5 Writing/content-release continuation, immutable semantic amendment or exact-source review evidence. | history | [review/issue-5/2026-10-13-content-release.md](review/issue-5/2026-10-13-content-release.md) |
+
+## review/issue-5/2026-10-19-reader-ux-evidence/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-5/2026-10-19-reader-ux-evidence/intro-light.jpg](review/issue-5/2026-10-19-reader-ux-evidence/intro-light.jpg) | Original desktop light-theme opening screenshot of real R12 reader source84210af4. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-5/2026-10-19-reader-ux-evidence/table-light.jpg](review/issue-5/2026-10-19-reader-ux-evidence/table-light.jpg) | Original desktop light-theme table screenshot showing unnecessary two-axis scrolling on reader source84210af4. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-5/pmday-candidate/
 

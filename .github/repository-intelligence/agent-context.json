@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "f81a67eda04718488fbfee9ccd28531c460a1e554bd8842d0accf814a41972dc",
+    "digest": "e1839fdb6a2a24888b126338d593d161e1ad14b1c49c41ac6111165fe517dae6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "ac4d83214174db0187efdb2a4d30b78c9375e257a27b5e9a618a07016a24a2f3"
+        "sha256": "0ba850376af958f4e3c222d0aea59824ae5d82ee44b8ab1f8f576ff92b573a54"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "fbf9d68b6813e4fdd18d9d96e8e2e36e31f8d3e6e15b609e33dc9e18cf9a42d3"
+        "sha256": "9637ea1d5a28843e2cc60f3246e265992b04c99a94082eafcb57fead104db6bd"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "18f2fe846e078ff55b8266e6e6d06fa456cf4bdb8116939267799715a0cee85b"
+        "sha256": "3f8918272bae59e731861d44a08dbe43db9dc32d0a6cf505712e9f1e08468634"
       },
       {
         "path": "NOTICE.md",
@@ -1366,6 +1366,21 @@
         "path": "review/issue-5/2026-10-19-reader-resources-and-notices.md",
         "identity_mode": "content",
         "sha256": "07af2761c4a7b5070400968fca51195b6a58a4bce6046f53ed8dd7afc46a215f"
+      },
+      {
+        "path": "review/issue-5/2026-10-19-reader-ux-evidence/intro-light.jpg",
+        "identity_mode": "content",
+        "sha256": "878244e4643db5c546e87fe062cb2b92be844083a82f192129f306f3ed4607ef"
+      },
+      {
+        "path": "review/issue-5/2026-10-19-reader-ux-evidence/table-light.jpg",
+        "identity_mode": "content",
+        "sha256": "67672f03786a9b6ff775369e4cb0486952236b71040d02fd788f45c5eb16d72c"
+      },
+      {
+        "path": "review/issue-5/2026-10-19-reader-ux-ui-review.md",
+        "identity_mode": "content",
+        "sha256": "a6fdff28ef7e36e2b8ba903c0e3e077c5634559cc388eb63f6ef8edab1841461"
       },
       {
         "path": "review/issue-5/2026-10-19-real-article-preview.md",
@@ -11125,6 +11140,39 @@
         "AGENTS.md"
       ],
       "title": "Issue 5 — 19 October 2026 reader resources and notices"
+    },
+    {
+      "path": "review/issue-5/2026-10-19-reader-ux-evidence/intro-light.jpg",
+      "kind": "file",
+      "purpose": "Original desktop light-theme opening screenshot of real R12 reader source84210af4.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "intro-light.jpg"
+    },
+    {
+      "path": "review/issue-5/2026-10-19-reader-ux-evidence/table-light.jpg",
+      "kind": "file",
+      "purpose": "Original desktop light-theme table screenshot showing unnecessary two-axis scrolling on reader source84210af4.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "table-light.jpg"
+    },
+    {
+      "path": "review/issue-5/2026-10-19-reader-ux-ui-review.md",
+      "kind": "file",
+      "purpose": "Independent desktop reader UX/UI findings, bounded evidence, reading design and ordered correction tasks.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 5 — 2026-10-19 independent reader UX/UI review"
     },
     {
       "path": "review/issue-5/2026-10-19-real-article-preview.md",
@@ -25913,6 +25961,16 @@
       "path": "review/issue-5",
       "kind": "directory",
       "purpose": "Versioned migration execution, source audit, independent review and exact-source evidence for owning issue5.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-5/2026-10-19-reader-ux-evidence",
+      "kind": "directory",
+      "purpose": "Original browser captures supporting the 19 October reader UX/UI review.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [
