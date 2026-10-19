@@ -23,15 +23,12 @@ jobs:
           node-version: 24.19.0
       - name: Confirm bounded planning input and instruction scope
         run: |
-          test "$(git rev-parse HEAD~2)" = '0098f804cb3b0d120173d4c8689043db42231c47'
+          git merge-base --is-ancestor 0098f804cb3b0d120173d4c8689043db42231c47 HEAD
           test -z "$(git status --porcelain)"
           python3 - <<'PY'
           import subprocess
           from pathlib import Path
-          expected = {
-              'review/issue-106/2026-10-19-campaign-plan.md',
-              '.github/workflows/issue106-plan-prepare-once.yml',
-          }
+          expected = {'review/issue-106/2026-10-19-campaign-plan.md', '.github/workflows/issue106-plan-prepare-once.yml'}
           changed = set(subprocess.check_output(['git', 'diff', '--name-only', '0098f804cb3b0d120173d4c8689043db42231c47', 'HEAD'], text=True).splitlines())
           assert changed == expected, changed
           for item in ['review/AGENTS.md', 'review/issue-106/AGENTS.md', '.github/AGENTS.md', '.github/acceptance/AGENTS.md', '.github/workflows/AGENTS.md']:
@@ -48,8 +45,6 @@ jobs:
           python3 - <<'PY'
           import json
           from pathlib import Path
-
-          issue = 106
           policy_path = Path('.github/acceptance/issue-106.json')
           assert not policy_path.exists()
           intents = [
@@ -86,7 +81,7 @@ jobs:
           policy = {
               'schema_version': 1,
               'repository': 'oborskyivitalii/oborskyivitalii',
-              'issue': issue,
+              'issue': 106,
               'issue_url': 'https://github.com/oborskyivitalii/oborskyivitalii/issues/106',
               'criteria': criteria,
               'checks': checks,
@@ -111,20 +106,32 @@ jobs:
               catalog['entries'][item] = record
           catalog['entries'] = dict(sorted(catalog['entries'].items()))
           catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          # Explicitly register the new policy in the reviewed intent layer before refresh.
+          ci_path = Path('.github/ri-ci-map.json')
+          ci = json.loads(ci_path.read_text())
+          layer = next(layer for layer in ci['layers'] if layer['id'] == 'intent-acceptance')
+          for item in ['.github/acceptance/issue-106.json', 'review/issue-106/2026-10-19-campaign-plan.md']:
+              assert item not in layer['paths']
+              layer['paths'].append(item)
+          ci['review'] = {
+              'issue': 'https://github.com/oborskyivitalii/oborskyivitalii/issues/106',
+              'date': '2026-10-19',
+              'summary': 'Register the separate campaign planning policy and dated plan in the existing intent-acceptance layer. Existing CI commands, checks and budgets are unchanged. Planning-only checks do not establish campaign implementation; all implementation, author and independent gates remain explicit.',
+          }
+          ci_path.write_text(json.dumps(ci, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
           memory_path = Path('MEMORY.md')
           memory = memory_path.read_text()
-          assert '## Snapshot\n' in memory and '## Decisions\n' in memory and '## Next session\n' in memory
-          memory = memory.replace('## Snapshot\n', '## Snapshot\n\n- 19 October campaign-only checkpoint: #106 now separately owns distribution\n  workflow/planning. Base main0098f804; article/site work remains in DraftPR79.\n  Plan: review/issue-106/2026-10-19-campaign-plan.md; exact source/PR links in #106.\n  The older operational snapshots below retain their original dates.\n', 1)
-          memory = memory.replace('## Decisions\n', '## Decisions\n\n- Author explicitly split campaign work into #106 and its own Draft PR.\n  PR79/#2/#5 retain article publication; campaign completion never blocks it.\n  This increment is a plan/policy foundation, not implemented campaign tooling.\n', 1)
-          memory = memory.replace('## Next session\n', '## Next session\n\nFor #106, read its issue/linked Draft PR and versioned plan. Implement the bounded\nbrief/schema/validator next; revalidate the accepted publisher before integrating.\nNo social publication, outreach or reminders are authorised by this checkpoint.\n', 1)
+          memory = memory.replace('## Snapshot\n', '## Snapshot\n\n- 19 October campaign-only checkpoint: #106 / Draft PR107 separately owns\n  distribution workflow/planning. Base main0098f804; article/site stays PR79.\n  Plan: review/issue-106/2026-10-19-campaign-plan.md; exact source links in #106.\n  The older operational snapshots below retain their original dates.\n', 1)
+          memory = memory.replace('## Decisions\n', '## Decisions\n\n- Author explicitly split campaign work into #106 and its own Draft PR107.\n  PR79/#2/#5 retain article publication; campaign completion never blocks it.\n  This increment is a plan/policy foundation, not implemented campaign tooling.\n', 1)
+          memory = memory.replace('## Next session\n', '## Next session\n\nFor #106, read its issue/PR107 and versioned plan. Implement the bounded\nbrief/schema/validator next; revalidate the accepted publisher before integrating.\nNo social publication, outreach or reminders are authorised by this checkpoint.\n', 1)
           assert len(memory.splitlines()) <= 120
           memory_path.write_text(memory, encoding='utf-8')
-          print('Added issue106 plan catalog, provisional policy and bounded memory pointer; no site/article source changed.')
+          print('Added issue106 plan catalog, provisional policy, explicit RI/CI mapping and bounded memory pointer.')
           PY
       - name: Remove temporary preparation workflow and stage exact owners
         run: |
           git rm .github/workflows/issue106-plan-prepare-once.yml
-          git add review/issue-106/2026-10-19-campaign-plan.md .github/acceptance/issue-106.json .github/repository-paths.json MEMORY.md
+          git add review/issue-106/2026-10-19-campaign-plan.md .github/acceptance/issue-106.json .github/repository-paths.json .github/ri-ci-map.json MEMORY.md
       - name: Refresh derived navigation and format only changed JSON
         run: |
           tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/acceptance/issue-106.json .github/repository-paths.json
