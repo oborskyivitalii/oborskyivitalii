@@ -13,7 +13,7 @@ class Issue106AcceptanceTests(unittest.TestCase):
         script = """
 const runner = require('./tools/quality/source-tests.cjs');
 const report = runner.run(process.cwd(), {
-  profile: 'issue106', modules: ['tests/campaign.test.cjs', 'tests/article-materials.test.cjs', 'tests/event-campaign.test.cjs'],
+  profile: 'issue106', modules: ['tests/campaign.test.cjs', 'tests/article-materials.test.cjs', 'tests/event-campaign.test.cjs', 'tests/article-campaign-kit.test.cjs'],
 });
 process.stdout.write(JSON.stringify(report));
 """

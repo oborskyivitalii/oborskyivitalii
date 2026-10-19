@@ -9282,6 +9282,120 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/brief.en.md": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/carousels": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/plan.json": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/posts": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit.md": {
+      "kind": "file",
+      "purpose": "Issue106 first-article-kit scope, source/editorial/style review and exact-source evidence disposition.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tests/article-campaign-kit.test.cjs": {
+      "kind": "file",
+      "purpose": "Meaningful article-kit source/provider/frame/media/theme/isolation and stale-input refusal tests.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/article-kit.cjs": {
+      "kind": "file",
+      "purpose": "Bounded isolated article review-kit build with explicit exact-source canonical publisher bridge and input revalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/brand.cjs": {
+      "kind": "file",
+      "purpose": "Embed canonical site light-theme/font declarations in offline promotional cards.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/frames.cjs": {
+      "kind": "file",
+      "purpose": "Strict bounded source-media-bound article frame-script validation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "guides/ARTICLE-CAMPAIGN-REVIEW.md": {
+      "kind": "file",
+      "purpose": "Reusable manual D+7/D+21 aggregate campaign review template with unknown-data and privacy limits.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tests/article-campaign-render.test.cjs": {
+      "kind": "file",
+      "purpose": "Explicit real-browser frame/media/overflow export diagnostic, separate from routine source checks.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/publisher-model.cjs": {
+      "kind": "file",
+      "purpose": "Process-isolated exact-selected canonical publisher model projection for draft campaign kits.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
     }
   }
 }

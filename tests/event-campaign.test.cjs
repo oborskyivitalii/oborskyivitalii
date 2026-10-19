@@ -268,9 +268,10 @@ test('copy-only kit is isolated, immutable, nonpublishing and manifest-bound', a
   for (const directory of ['tools/distribution', 'tools/site']) {
     fs.cpSync(path.join(sourceRoot, directory), path.join(f.root, directory), { recursive: true });
   }
-  f.write(
-    'site/engine/styles.css',
-    fs.readFileSync(path.join(sourceRoot, 'site/engine/styles.css'))
+  fs.mkdirSync(path.join(f.root, 'site/engine'), { recursive: true });
+  fs.copyFileSync(
+    path.join(sourceRoot, 'site/engine/styles.css'),
+    path.join(f.root, 'site/engine/styles.css')
   );
   cp.execFileSync('git', ['init', '-q'], { cwd: f.root });
   cp.execFileSync('git', ['add', '-A'], { cwd: f.root });

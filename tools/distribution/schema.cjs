@@ -95,6 +95,7 @@ function piece(value, language) {
       'cta',
       'window',
       'approval',
+      ...(Object.hasOwn(value ?? {}, 'visual') ? ['visual'] : []),
     ],
     'campaign piece'
   );
@@ -107,6 +108,15 @@ function piece(value, language) {
   file(value.content, 'piece content');
   if (value.content.path !== `posts/${value.id}.${language}.md`) {
     throw Error('Piece content path must have one declared article-local owner');
+  }
+  if (Object.hasOwn(value, 'visual')) {
+    file(value.visual, 'frame script');
+    if (
+      !['feed', 'carousel'].includes(value.kind) ||
+      value.visual.path !== `carousels/${value.id}.${language}.json`
+    ) {
+      throw Error('Frame script must have one declared piece-local owner');
+    }
   }
   list(value.sections, 'sections', 50);
   value.sections.forEach(section);

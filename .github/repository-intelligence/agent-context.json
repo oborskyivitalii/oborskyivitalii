@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "de78608b6482447f2fde13a5257920ef3592f94a8d17417b533ddbc9a229f2b5",
+    "digest": "c752103edb33567d9b19bb5d1d09e2f8accb26fcb2a3318df7f0b4294ab85223",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -52,7 +52,7 @@
       {
         "path": ".github/acceptance/issue-106.json",
         "identity_mode": "content",
-        "sha256": "728b515b418177f74c84256cb0a1e4285f78ccb466deaace8a25bb7a865e3bf3"
+        "sha256": "1daed97baae80b55bd84b7f05812c754d981a9263f5ba4ff62dc8f7d0dcbb21c"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -166,17 +166,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "5088e0bd40bd203fab9a1ad8bfee7d121acacd9fecb9f0e20034ed834b168bf9"
+        "sha256": "d6b17049fc84f123abdde2262c1592017c0dd675449f733f8302d1d575c4e00d"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c7e5de57136c2a56e1cf3ff22324298a5a2308fbb9a8fb3daed92e5d17f92ef6"
+        "sha256": "bbbd36b88ce464b035350f7181ac5cbd247bc94ed1e288e5706157ee35422627"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",
         "identity_mode": "content",
-        "sha256": "58f45096ec22654001bdb1084835e2fbf2b7b36147ae5582724e93ec0fa1e3af"
+        "sha256": "4f4982bfca6f4d8da48f46b426eea1856d2489f1fbc803897c1cd217ae8ecc94"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -563,6 +563,11 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "guides/ARTICLE-CAMPAIGN-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "098b62e73e34fc15ec5fb0456f6d3e69189648f5b6b9443b38a768c3641a365f"
+      },
+      {
         "path": "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md",
         "identity_mode": "content",
         "sha256": "95161b919460744a858e2696576a8cede56b124f42f7259a277e93a526e5b38e"
@@ -570,7 +575,7 @@
       {
         "path": "guides/ARTICLE-DISTRIBUTION.md",
         "identity_mode": "content",
-        "sha256": "317e4a8d6e9869b7d69e1ccb8a109873d39594223ca47f53307fef9eb8210bd5"
+        "sha256": "eb1ab35f71d518e6d6f136b9d7d0aed59a1659f9e1cf98a01609d7624b3a8431"
       },
       {
         "path": "guides/ARTICLE-MATERIALS.md",
@@ -585,7 +590,7 @@
       {
         "path": "guides/EVENT-DISTRIBUTION.md",
         "identity_mode": "content",
-        "sha256": "0a50efe754590aab553f7582b9c45245fd1b95a303fc6ca29bbb64793731e6ca"
+        "sha256": "51b36d7fb1af54006fac7038b104d47e870005201276f0283ca6e8dd2439426d"
       },
       {
         "path": "guides/README.md",
@@ -781,6 +786,11 @@
         "path": "review/issue-106/2026-10-19-event-source-acceptance.json",
         "identity_mode": "content",
         "sha256": "d88bbd8f06bf9e98d7b725f0edd8f74e517060cf491009729c58766b014a249d"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit.md",
+        "identity_mode": "content",
+        "sha256": "a158cb11ec4ee1dd31533e7be46ad5a93a946ecc6cdcf2fd537f0188324c79d5"
       },
       {
         "path": "review/issue-106/2026-10-19-independent-review.md",
@@ -5453,6 +5463,36 @@
         "sha256": "0f9e23ccd550572f2c49093b4965090542d8eb2ee8d8f7f513fbd1b9871dd341"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/campaign/brief.en.md",
+        "identity_mode": "content",
+        "sha256": "271b55818a95cdad692581780cef515cbb89d402a7469f0ef174d01063c0787a"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json",
+        "identity_mode": "content",
+        "sha256": "d8f191a851b21f75fe70854d7022c6a00de3d00874ef8e7fc8553cfeed80c6a8"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json",
+        "identity_mode": "content",
+        "sha256": "cbf42bd3ff085271cdcadcccc418ea125235725197c16186567059954f631159"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/plan.json",
+        "identity_mode": "content",
+        "sha256": "d1a14c6f5700a84238c0ff5419c38ba322b9ba08b32ae7fb384b72300646a7fd"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md",
+        "identity_mode": "content",
+        "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md",
+        "identity_mode": "content",
+        "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62"
+      },
+      {
         "path": "site/retained/manifest.json",
         "identity_mode": "content",
         "sha256": "d42ad72f92a74c22795ca1dd4c98f2eaa49a798599469088491ef8bcefc10b47"
@@ -5743,6 +5783,16 @@
         "sha256": "ad1bdfa392e8cbf26418df74d2efaa324f2f407cb0aa241a002f6fc9cac90907"
       },
       {
+        "path": "tests/article-campaign-kit.test.cjs",
+        "identity_mode": "content",
+        "sha256": "9d75bf4617cb2a16a88e170aeff334e5e65f777c2634c7ea26c474b2dab98f59"
+      },
+      {
+        "path": "tests/article-campaign-render.test.cjs",
+        "identity_mode": "content",
+        "sha256": "80f0af7828e8716ae55d8f723698572b8c347440f5d2150832b94fe091f2d789"
+      },
+      {
         "path": "tests/article-materials.test.cjs",
         "identity_mode": "content",
         "sha256": "a16962c68401b80503e1f2efa1e150c24c8b8edca68198b143f4cde593846382"
@@ -5840,7 +5890,7 @@
       {
         "path": "tests/event-campaign.test.cjs",
         "identity_mode": "content",
-        "sha256": "3a9cdba0d02a8c6242a91ddab89e34c6e6403841f2f9827748b8d2f581160265"
+        "sha256": "3b48161ee7ddf1d935462614ade2e4d9f7917236b2ace809552b073619c7688a"
       },
       {
         "path": "tests/executive.test.cjs",
@@ -6065,7 +6115,7 @@
       {
         "path": "tests/test_issue106_acceptance.py",
         "identity_mode": "content",
-        "sha256": "fb226478bc8c13bd4c03719ea7bd9d15a69151c9353dbfa60dab1de133e55967"
+        "sha256": "7e500c6f767688c4f3d65b050489f4148c706a8a192d164904e25829ad10f2c8"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -6288,6 +6338,16 @@
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
       },
       {
+        "path": "tools/distribution/article-kit.cjs",
+        "identity_mode": "content",
+        "sha256": "7b4ddc0b82480c7be162c52c2c4eaba979301fd3ed0c7bdcdc4490a84a34639f"
+      },
+      {
+        "path": "tools/distribution/brand.cjs",
+        "identity_mode": "content",
+        "sha256": "8ac792d09d39e5567d2fda9d4a9f7b269db5b448321d224a37c4d949d3a4653c"
+      },
+      {
         "path": "tools/distribution/calendar.cjs",
         "identity_mode": "content",
         "sha256": "9646da0dbe216f2e8cfbb1a22aaa94dade2f48b8d8511df8dd5f8d9be29f62f6"
@@ -6295,17 +6355,22 @@
       {
         "path": "tools/distribution/campaign.cjs",
         "identity_mode": "content",
-        "sha256": "941d96621c975e546843d42793a1360574dcb8643d2c8e44a7af6806ecc91dae"
+        "sha256": "52d284ba6663cc5c2a5281b6b11bdbd78b6024f62a3d73640a524a982f4ba73e"
       },
       {
         "path": "tools/distribution/cli.cjs",
         "identity_mode": "content",
-        "sha256": "43481f80e0112f92542cf60466f3c5e8aa2f97ae2304c81e486385c73d60e6a5"
+        "sha256": "0781bbaa41636477b9dc274b993713711b56f22469a7d193a3232749399cf321"
       },
       {
         "path": "tools/distribution/event.cjs",
         "identity_mode": "content",
         "sha256": "6de5e53a6656caf897a36fa1596fab7cc62182ee8afb15907164ef066dec3eee"
+      },
+      {
+        "path": "tools/distribution/frames.cjs",
+        "identity_mode": "content",
+        "sha256": "902fb7fe5ba4a587096b7364cb5211c8fe2aaeb1ae45cf349804113cec014963"
       },
       {
         "path": "tools/distribution/inputs.cjs",
@@ -6315,12 +6380,17 @@
       {
         "path": "tools/distribution/kit.cjs",
         "identity_mode": "content",
-        "sha256": "e720139c171e7857a38e2f9019b4ae98abc07030a455815fbecc3061aaf81f46"
+        "sha256": "682c947d45da44fbdb45b4f3cf212157e359cf8222be5efaf001b4f88395c946"
+      },
+      {
+        "path": "tools/distribution/publisher-model.cjs",
+        "identity_mode": "content",
+        "sha256": "fdfbe7f0d2369dc3d13e0bcf666f7262340b3afb3b4613a691be4ae74a0f2d0e"
       },
       {
         "path": "tools/distribution/render.cjs",
         "identity_mode": "content",
-        "sha256": "ca3055e7d4e40d3249009ae7ff75a317da27fae9ad808820257970e8cb8d9edc"
+        "sha256": "f0a2baec792ab411460c15d10692e493cb761e751614f3dcff3646d39a1dfd11"
       },
       {
         "path": "tools/distribution/schedule.cjs",
@@ -6330,17 +6400,17 @@
       {
         "path": "tools/distribution/schema.cjs",
         "identity_mode": "content",
-        "sha256": "5175c0a25eca0f8005b955c1f8294fe16de94eb958b4966a32458372f156a923"
+        "sha256": "944d75909d217ddc4c14bdd009ec4f629d960ab5c6cfde6140efc20e52fdfcfa"
       },
       {
         "path": "tools/distribution/templates/card.css",
         "identity_mode": "content",
-        "sha256": "27ec05f8e4446bdae0506f421ef8254f37d3ebd381c7763254b889ff640430ac"
+        "sha256": "e24b07f15e4a0a296d897d4c03caba5496746d02a87c72155bf0f58e51885bdc"
       },
       {
         "path": "tools/distribution/templates/card.html",
         "identity_mode": "content",
-        "sha256": "3688b85d4296017663cffa78f441851b2d66d787a1892423051fada2fb4ebb56"
+        "sha256": "144cdce8dc0cb64b8314b90c9dad31467dbd89e43d8a90a6848dcee8b652f4e5"
       },
       {
         "path": "tools/distribution/templates/review.css",
@@ -6715,7 +6785,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "e3f58c554fdd1de1255ce9afa6971f1fd005865de2daa22462555a453b963208"
+        "sha256": "ac49d6ed8dc7e8816b098f2080ede74a7ade2df0e016a791b57d4f84e108d761"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -8521,6 +8591,17 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "guides/ARTICLE-CAMPAIGN-REVIEW.md",
+      "kind": "file",
+      "purpose": "Reusable manual D+7/D+21 aggregate campaign review template with unknown-data and privacy limits.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Manual campaign review at D+7 and D+21"
+    },
+    {
       "path": "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md",
       "kind": "file",
       "purpose": "Reusable distribution planning brief copied into an article campaign before derivative preparation.",
@@ -9003,6 +9084,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-19-event-source-acceptance.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit.md",
+      "kind": "file",
+      "purpose": "Issue106 first-article-kit scope, source/editorial/style review and exact-source evidence disposition.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 - first article launch and carousel kit"
     },
     {
       "path": "review/issue-106/2026-10-19-independent-review.md",
@@ -19279,6 +19371,72 @@
       "title": "output-lock.json"
     },
     {
+      "path": "site/publications/pmday-ai-both-sides/campaign/brief.en.md",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The Sum of Our Technology - first campaign kit"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.en.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.en.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/plan.json",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "plan.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.en.md"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.en.md"
+    },
+    {
       "path": "site/retained/manifest.json",
       "kind": "file",
       "purpose": "Verified imported prior-public manifest generated by tools/site/retain.cjs; preserve exact retained byte identities.",
@@ -19915,6 +20073,28 @@
         "AGENTS.md"
       ],
       "title": "archive.test.cjs"
+    },
+    {
+      "path": "tests/article-campaign-kit.test.cjs",
+      "kind": "file",
+      "purpose": "Meaningful article-kit source/provider/frame/media/theme/isolation and stale-input refusal tests.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-campaign-kit.test.cjs"
+    },
+    {
+      "path": "tests/article-campaign-render.test.cjs",
+      "kind": "file",
+      "purpose": "Explicit real-browser frame/media/overflow export diagnostic, separate from routine source checks.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-campaign-render.test.cjs"
     },
     {
       "path": "tests/article-materials.test.cjs",
@@ -21116,6 +21296,28 @@
       "title": "compact_site_recordings.cjs"
     },
     {
+      "path": "tools/distribution/article-kit.cjs",
+      "kind": "file",
+      "purpose": "Bounded isolated article review-kit build with explicit exact-source canonical publisher bridge and input revalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-kit.cjs"
+    },
+    {
+      "path": "tools/distribution/brand.cjs",
+      "kind": "file",
+      "purpose": "Embed canonical site light-theme/font declarations in offline promotional cards.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "brand.cjs"
+    },
+    {
       "path": "tools/distribution/calendar.cjs",
       "kind": "file",
       "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
@@ -21160,6 +21362,17 @@
       "title": "event.cjs"
     },
     {
+      "path": "tools/distribution/frames.cjs",
+      "kind": "file",
+      "purpose": "Strict bounded source-media-bound article frame-script validation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "frames.cjs"
+    },
+    {
       "path": "tools/distribution/inputs.cjs",
       "kind": "file",
       "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
@@ -21180,6 +21393,17 @@
         "AGENTS.md"
       ],
       "title": "kit.cjs"
+    },
+    {
+      "path": "tools/distribution/publisher-model.cjs",
+      "kind": "file",
+      "purpose": "Process-isolated exact-selected canonical publisher model projection for draft campaign kits.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publisher-model.cjs"
     },
     {
       "path": "tools/distribution/render.cjs",
@@ -23870,6 +24094,56 @@
       "purpose": "Production-origin-only optional external measurement integration.",
       "role": "source",
       "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
       "instructions": [
         "AGENTS.md"
       ]

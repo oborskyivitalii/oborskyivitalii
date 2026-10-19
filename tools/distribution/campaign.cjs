@@ -153,7 +153,7 @@ function bindSource(plan, article) {
   }
 }
 
-function loadCampaign(root, articleId, { loadArticle = publisherArticle } = {}) {
+function loadCampaignState(root, articleId, { loadArticle = publisherArticle } = {}) {
   id(articleId, 'selected article id');
   const article = loadArticle(root, articleId);
   const directory = `site/publications/${articleId}/campaign`;
@@ -162,8 +162,19 @@ function loadCampaign(root, articleId, { loadArticle = publisherArticle } = {}) 
   bindSource(plan, article);
   dependencies(plan.pieces);
   input.read(`${directory}/${plan.brief.path}`, plan.brief.sha256);
+  const visuals = new Map();
   const pieces = plan.pieces.map((piece) => {
     input.read(`${directory}/${piece.content.path}`, piece.content.sha256);
+    if (piece.visual) {
+      visuals.set(
+        piece.id,
+        require('./frames.cjs').validateFrames(
+          JSON.parse(input.read(`${directory}/${piece.visual.path}`, piece.visual.sha256)),
+          piece,
+          article
+        )
+      );
+    }
     const bindingSha256 = approvalBinding(plan, piece);
     if (piece.approval !== null) {
       input.read(`${directory}/${piece.approval.evidence.path}`, piece.approval.evidence.sha256);
@@ -180,7 +191,7 @@ function loadCampaign(root, articleId, { loadArticle = publisherArticle } = {}) 
       articleUrl: require('../site/article-materials.cjs').articleLink(article, piece.cta.section),
     };
   });
-  return {
+  const report = {
     schema: 1,
     articleId,
     revision: plan.revision,
@@ -191,6 +202,11 @@ function loadCampaign(root, articleId, { loadArticle = publisherArticle } = {}) 
     pieces,
     inputs: [...input.inputs.values()].sort((a, b) => a.path.localeCompare(b.path)),
   };
+  return { report, plan, article, directory, visuals };
 }
 
-module.exports = { digest, approvalBinding, loadCampaign };
+function loadCampaign(root, articleId, options) {
+  return loadCampaignState(root, articleId, options).report;
+}
+
+module.exports = { digest, approvalBinding, loadCampaign, loadCampaignState };

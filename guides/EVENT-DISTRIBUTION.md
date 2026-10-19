@@ -67,7 +67,7 @@ entries rather than promise app-independent deduplication.
 `announcement`, `slide` and `reminder` use one card template and stylesheet in
 `tools/distribution/templates/`. The renderer emits1080×1350 PNG, uniform single
 page PDF and self-contained HTML. It escapes authored text, forbids network
-requests, checks layout bounds and records actual Chromium version. CSS owns
+requests, checks decoded/visible media and layout bounds, and records actual Chromium version. CSS owns
 layout; `site/engine/styles.css` remains the single colour and typography owner.
 Both cards and review HTML embed its exact light `:root` block and use those
 variables. The source stylesheet is hashed in the kit manifest and rechecked
@@ -99,7 +99,8 @@ bounded diagnostic. That observation is not a pass on the locked CI browser.
 There is no new production dependency, paid-model call or external posting API.
 
 The manually selectable [campaign-kit workflow](../.github/workflows/campaign-kit.yml)
-checks out an exact source SHA, validates, runs the event source tests and builds
+selects article/event and an exact source SHA, validates, runs source tests and the
+explicit actual-render diagnostic, and builds
 one selected authored piece or all authored pieces. Downloaded artifacts contain
 copy, PNG/PDF/HTML, a review index, full campaign ICS, checklist and file/input
 manifests. Five planned future pieces do not become five fabricated posts.

@@ -7,7 +7,7 @@ const { loadEvent } = require('./event.cjs');
 const { inputs } = require('./inputs.cjs');
 const { digest } = require('./campaign.cjs');
 const { calendar } = require('./calendar.cjs');
-const { theme, renderCards } = require('./render.cjs');
+const { renderCards } = require('./render.cjs');
 const { escapeText, escapeAttribute } = require('../site/html.cjs');
 
 const producerFiles = [
@@ -18,6 +18,10 @@ const producerFiles = [
   'schedule.cjs',
   'calendar.cjs',
   'render.cjs',
+  'brand.cjs',
+  'frames.cjs',
+  'article-kit.cjs',
+  'publisher-model.cjs',
   'kit.cjs',
   'cli.cjs',
   'templates/card.html',
@@ -59,8 +63,15 @@ function sourceIdentity(root) {
   };
 }
 
+function reviewDocument(title, rows, links, root) {
+  const stylesheet =
+    require('./brand.cjs').themeCSS(root) +
+    '\n' +
+    fs.readFileSync(path.join(__dirname, 'templates/review.css'), 'utf8');
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(title)} — review kit</title><style>${stylesheet}</style><body><h1>${escapeText(title)}</h1><p>Draft preparation kit. Author, editorial, visual and rights acceptance remain separate. Nothing has been posted or scheduled.</p>${links}${rows}</body></html>`;
+}
+
 function preview(campaign, selected, root) {
-  const stylesheet = fs.readFileSync(path.join(__dirname, 'templates/review.css'), 'utf8');
   const rows = campaign.pieces
     .map((piece) => {
       const hasCopy = selected.some((entry) => entry.id === piece.id);
@@ -72,7 +83,12 @@ function preview(campaign, selected, root) {
       return `<section><h2>${escapeText(label)}</h2><p>${escapeText(piece.scheduledAt)} · ${escapeText(piece.state)}</p><p>${escapeText(piece.purpose)}</p>${image}<pre>${escapeText(hasCopy ? piece.copy : 'Awaiting authored copy and review.')}</pre></section>`;
     })
     .join('\n');
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(campaign.event.name)} — review kit</title><style>${theme(root)}\n${stylesheet}</style><body><h1>${escapeText(campaign.event.name)}</h1><p>Draft preparation kit. Author, editorial, visual and rights acceptance remain separate. Nothing has been posted or scheduled.</p><p><a href="calendar.ics">Calendar export</a> · <a href="manifest.json">Source manifest</a> · <a href="checklist.md">Review checklist</a></p>${rows}</body></html>`;
+  return reviewDocument(
+    campaign.event.name,
+    rows,
+    '<p><a href="calendar.ics">Calendar export</a> · <a href="manifest.json">Source manifest</a> · <a href="checklist.md">Review checklist</a></p>',
+    root
+  );
 }
 
 async function buildEvent(root, eventId, destination, pieceId = null) {
@@ -165,4 +181,4 @@ async function buildEvent(root, eventId, destination, pieceId = null) {
   }
 }
 
-module.exports = { buildEvent, outside };
+module.exports = { buildEvent, outside, sourceIdentity, producerFiles, reviewDocument };

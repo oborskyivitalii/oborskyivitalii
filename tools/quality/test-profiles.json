@@ -2068,6 +2068,39 @@
         ".github/workflows/campaign-kit.yml",
         "site/engine/styles.css"
       ]
+    },
+    {
+      "path": "tests/article-campaign-kit.test.cjs",
+      "language": "javascript",
+      "purpose": "Source-bound isolated article review kits, explicit clean publisher bridge, frame/media invalidation, canonical theme and no-publication negatives.",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Retain bounded source-only failures; card rendering runs on manual kit build and is reviewed separately.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-campaign-kit.test.cjs",
+        "tools/distribution/**",
+        "site/publications/**/campaign/**",
+        "site/engine/styles.css",
+        ".github/workflows/campaign-kit.yml"
+      ]
+    },
+    {
+      "path": "tests/article-campaign-render.test.cjs",
+      "language": "javascript",
+      "purpose": "Actual offline Chromium seven-page/PNG geometry, decoded visible media and overflow refusal diagnostics.",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "lifecycle": "diagnostic",
+      "profiles": ["diagnostic"],
+      "disposition": "Explicit manual campaign-kit browser diagnostic; no routine source-only pass or locked-browser substitution.",
+      "surviving_route": "node --test tests/article-campaign-render.test.cjs",
+      "inputs": [
+        "tests/article-campaign-render.test.cjs",
+        "tools/distribution/**",
+        "site/engine/styles.css",
+        ".github/workflows/campaign-kit.yml"
+      ]
     }
   ]
 }

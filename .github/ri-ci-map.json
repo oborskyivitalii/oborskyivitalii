@@ -544,7 +544,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "fd39b5cb2fbd12945a4aade6b21f486761f40f811ac2abb1383f8b7161162518",
+    "digest": "42e0b3e8bbd290b988bfea05de308af1592fd5c78545644828f4d39d3d82628d",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -568,7 +568,7 @@
       },
       {
         "path": ".github/acceptance/issue-106.json",
-        "sha256": "728b515b418177f74c84256cb0a1e4285f78ccb466deaace8a25bb7a865e3bf3"
+        "sha256": "1daed97baae80b55bd84b7f05812c754d981a9263f5ba4ff62dc8f7d0dcbb21c"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -656,11 +656,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "5088e0bd40bd203fab9a1ad8bfee7d121acacd9fecb9f0e20034ed834b168bf9"
+        "sha256": "d6b17049fc84f123abdde2262c1592017c0dd675449f733f8302d1d575c4e00d"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",
-        "sha256": "58f45096ec22654001bdb1084835e2fbf2b7b36147ae5582724e93ec0fa1e3af"
+        "sha256": "4f4982bfca6f4d8da48f46b426eea1856d2489f1fbc803897c1cd217ae8ecc94"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -788,7 +788,7 @@
       },
       {
         "path": "tests/test_issue106_acceptance.py",
-        "sha256": "fb226478bc8c13bd4c03719ea7bd9d15a69151c9353dbfa60dab1de133e55967"
+        "sha256": "7e500c6f767688c4f3d65b050489f4148c706a8a192d164904e25829ad10f2c8"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -900,7 +900,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "e3f58c554fdd1de1255ce9afa6971f1fd005865de2daa22462555a453b963208"
+        "sha256": "ac49d6ed8dc7e8816b098f2080ede74a7ade2df0e016a791b57d4f84e108d761"
       },
       {
         "path": "tools/repository_intelligence.py",

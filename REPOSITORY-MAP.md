@@ -145,6 +145,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/effects](site/effects) | Canonical optional effect descriptors and browser runtime helpers, independent of build tools. | source | [site/README.md](site/README.md) |
 | [site/engine](site/engine) | Shared Canvas geometry/lifecycle, renderer, native-scroll router, theme, filters and CSS. | source | [site/README.md](site/README.md) |
 | [site/integrations](site/integrations) | Production-origin-only optional external measurement integration. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [site/publications](site/publications) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides](site/publications/pmday-ai-both-sides) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign](site/publications/pmday-ai-both-sides/campaign) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/carousels](site/publications/pmday-ai-both-sides/campaign/carousels) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/posts](site/publications/pmday-ai-both-sides/campaign/posts) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [site/retained](site/retained) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
@@ -404,6 +409,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [guides/ARTICLE-CAMPAIGN-REVIEW.md](guides/ARTICLE-CAMPAIGN-REVIEW.md) | Reusable manual D+7/D+21 aggregate campaign review template with unknown-data and privacy limits. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [guides/ARTICLE-DISTRIBUTION-BRIEF.en.md](guides/ARTICLE-DISTRIBUTION-BRIEF.en.md) | Reusable distribution planning brief copied into an article campaign before derivative preparation. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) | Reusable draft campaign contract, source-bound review and pending publisher/release integration. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) | Public materials allowlist, reciprocal links, source/review pins and existing rights/resource contracts. | guide | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
@@ -678,6 +684,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-106/2026-10-19-event-preparation.md](review/issue-106/2026-10-19-event-preparation.md) | Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [review/issue-106/2026-10-19-event-render-diagnostic.json](review/issue-106/2026-10-19-event-render-diagnostic.json) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [review/issue-106/2026-10-19-event-source-acceptance.json](review/issue-106/2026-10-19-event-source-acceptance.json) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit.md](review/issue-106/2026-10-19-first-article-kit.md) | Issue106 first-article-kit scope, source/editorial/style review and exact-source evidence disposition. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [review/issue-106/2026-10-19-independent-review.md](review/issue-106/2026-10-19-independent-review.md) | Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-materials-campaign-runtime-proof.json](review/issue-106/2026-10-19-materials-campaign-runtime-proof.json) | Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-public-materials.md](review/issue-106/2026-10-19-public-materials.md) | Public material implementation and publisher integration scope/evidence with pending human gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1790,6 +1797,27 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/integrations/cloudflare.cjs](site/integrations/cloudflare.cjs) | Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 
+## site/publications/pmday-ai-both-sides/campaign/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/publications/pmday-ai-both-sides/campaign/brief.en.md](site/publications/pmday-ai-both-sides/campaign/brief.en.md) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/plan.json](site/publications/pmday-ai-both-sides/campaign/plan.json) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## site/publications/pmday-ai-both-sides/campaign/carousels/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json](site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json](site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## site/publications/pmday-ai-both-sides/campaign/posts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md](site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md](site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
 ## site/retained/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -1935,6 +1963,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/analytics.test.cjs](tests/analytics.test.cjs) | Behavioral/adversarial tests and fixtures for analytics. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/architecture.test.cjs](tests/architecture.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/archive.test.cjs](tests/archive.test.cjs) | Behavioral/adversarial tests and fixtures for archive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/article-campaign-kit.test.cjs](tests/article-campaign-kit.test.cjs) | Meaningful article-kit source/provider/frame/media/theme/isolation and stale-input refusal tests. | test | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tests/article-campaign-render.test.cjs](tests/article-campaign-render.test.cjs) | Explicit real-browser frame/media/overflow export diagnostic, separate from routine source checks. | test | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tests/article-materials.test.cjs](tests/article-materials.test.cjs) | Public/private selection, safe observed URLs, exact review/resource pins and backlink failures. | test | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [tests/browser-gate-diagnostics.test.cjs](tests/browser-gate-diagnostics.test.cjs) | Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-gate-trace.test.cjs](tests/browser-gate-trace.test.cjs) | Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -2062,12 +2092,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [tools/distribution/article-kit.cjs](tools/distribution/article-kit.cjs) | Bounded isolated article review-kit build with explicit exact-source canonical publisher bridge and input revalidation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/brand.cjs](tools/distribution/brand.cjs) | Embed canonical site light-theme/font declarations in offline promotional cards. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/distribution/calendar.cjs](tools/distribution/calendar.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/distribution/campaign.cjs](tools/distribution/campaign.cjs) | Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/distribution/cli.cjs](tools/distribution/cli.cjs) | Explicit source-only draft campaign validation with JSON stdout and no release mode. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/distribution/event.cjs](tools/distribution/event.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/frames.cjs](tools/distribution/frames.cjs) | Strict bounded source-media-bound article frame-script validation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/distribution/inputs.cjs](tools/distribution/inputs.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/distribution/kit.cjs](tools/distribution/kit.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/publisher-model.cjs](tools/distribution/publisher-model.cjs) | Process-isolated exact-selected canonical publisher model projection for draft campaign kits. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/distribution/render.cjs](tools/distribution/render.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/distribution/schedule.cjs](tools/distribution/schedule.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/distribution/schema.cjs](tools/distribution/schema.cjs) | Strict version1 draft campaign shape, finite identities and explicit pending publication boundary. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |

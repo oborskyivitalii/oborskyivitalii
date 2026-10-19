@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "articleId": "pmday-ai-both-sides",
+  "revision": 1,
+  "language": "en",
+  "brief": {
+    "path": "brief.en.md",
+    "sha256": "271b55818a95cdad692581780cef515cbb89d402a7469f0ef174d01063c0787a"
+  },
+  "source": {
+    "editionId": "pmday-ai-both-sides-en-review-20261019-r12-cover02",
+    "semanticSha256": "41ec0d3c37942b75f82770a191989868dfe33ae1a77e639618076241735549a5"
+  },
+  "budget": {
+    "paidPromotion": 0,
+    "paidServices": 0,
+    "paidInference": 0
+  },
+  "d0": null,
+  "channels": {
+    "linkedin": "pending",
+    "medium": "pending",
+    "reddit": "pending",
+    "pdf": "pending"
+  },
+  "pieces": [
+    {
+      "id": "launch",
+      "kind": "feed",
+      "channel": "linkedin",
+      "content": {
+        "path": "posts/launch.en.md",
+        "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62"
+      },
+      "sections": [
+        "2-we-accelerated-a-step-not-the-system",
+        "5-when-the-product-itself-makes-judgments",
+        "the-human-is-an-architectural-dependency",
+        "6-what-if-not"
+      ],
+      "references": ["source-1"],
+      "media": [
+        {
+          "id": "cover",
+          "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+        }
+      ],
+      "cta": {
+        "label": "Read the full essay",
+        "section": null
+      },
+      "window": {
+        "from": 0,
+        "to": 0,
+        "after": []
+      },
+      "approval": null,
+      "visual": {
+        "path": "carousels/launch.en.json",
+        "sha256": "cbf42bd3ff085271cdcadcccc418ea125235725197c16186567059954f631159"
+      }
+    },
+    {
+      "id": "delivery-constraint",
+      "kind": "carousel",
+      "channel": "linkedin",
+      "content": {
+        "path": "posts/delivery-constraint.en.md",
+        "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1"
+      },
+      "sections": [
+        "2-we-accelerated-a-step-not-the-system",
+        "3-the-scarce-resource-is-understanding",
+        "a-new-equilibrium-has-to-be-demonstrated"
+      ],
+      "references": ["source-1"],
+      "media": [
+        {
+          "id": "cover",
+          "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+        }
+      ],
+      "cta": {
+        "label": "Read the full essay",
+        "section": null
+      },
+      "window": {
+        "from": 4,
+        "to": 4,
+        "after": ["launch"]
+      },
+      "approval": null,
+      "visual": {
+        "path": "carousels/delivery-constraint.en.json",
+        "sha256": "d8f191a851b21f75fe70854d7022c6a00de3d00874ef8e7fc8553cfeed80c6a8"
+      }
+    }
+  ]
+}
