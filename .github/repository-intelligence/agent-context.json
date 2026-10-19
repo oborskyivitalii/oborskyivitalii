@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "87c1bdca76bc7c2bbd7cc593645f9a855cb03acd6510c01e3e1d71e853009bcb",
+    "digest": "d6ddd87cc007f2c9d07798e3145488dd4fbbc99e1081c83165bd89b247e92fae",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1295,7 +1295,7 @@
       {
         "path": "review/issue-5/2026-10-19-publication-tags.md",
         "identity_mode": "content",
-        "sha256": "92db8ee2c0649932e76a681eaa2bd69c03e3cddd69f14a19385823067c56bc7d"
+        "sha256": "4b3e129b75b0ce448a02eab3d1a5b975d9d624a929f6218ddf2487123706eb70"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
@@ -7015,7 +7015,7 @@
       {
         "path": "tools/quality/article-tags-browser.cjs",
         "identity_mode": "content",
-        "sha256": "288adb13e2945890029b9b4a761df326df3fa84966196dc41b913f384fba2198"
+        "sha256": "06ab2a2c3f486dc763dc6bfab7070ffe74b8d740b6726edb2e44367d46b7a30e"
       },
       {
         "path": "tools/quality/artifact.cjs",
@@ -7210,7 +7210,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "5af9f3796dfe70ccec11f6ce05c19053898b9e81114b21492ae2a981b30551e8"
+        "sha256": "b5aa237319a2e88c7e18e2b4d4fa304a2e44ee5703e90870b646d693d960c075"
       },
       {
         "path": "tools/quality/local.cjs",

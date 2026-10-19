@@ -7,6 +7,8 @@ async function journey(browser, baseURL, index, descriptors) {
   const base = new URL(baseURL.replace(/\/$/, '') + '/');
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
   const ready = () =>
     page.waitForFunction(() => document.body.dataset.tagsState === 'ready', null, {
       timeout: 10000,
@@ -14,6 +16,14 @@ async function journey(browser, baseURL, index, descriptors) {
   const observations = {};
   try {
     await page.goto(new URL('writing.html', base).href);
+    await page.waitForFunction(
+      () =>
+        !document.getElementById('site-content')?.hasAttribute('aria-busy') &&
+        document.querySelector('.space-scene')?.dataset.ready === 'true' &&
+        document.querySelector('.space-scene')?.dataset.travel === 'settled',
+      null,
+      { timeout: 10000 }
+    );
     await ready();
     assert.equal(
       await page.locator('li.publication .publication-tags').count(),
@@ -24,14 +34,16 @@ async function journey(browser, baseURL, index, descriptors) {
       return count > 0 && count < index.articles.length;
     });
     assert.ok(tag);
-    await page
+    const chip = page
       .locator('li.publication .publication-tags a')
       .filter({ hasText: index.vocabulary[tag] })
-      .first()
-      .click();
+      .first();
+    await chip.scrollIntoViewIfNeeded();
+    await chip.click();
     await page.waitForFunction(
       (expected) => new URL(location.href).searchParams.get('tag') === expected,
-      tag
+      tag,
+      { timeout: 10000 }
     );
     const expected = index.articles.filter((article) => article.tags.includes(tag)).length;
     assert.equal(await page.locator('li.publication:not([hidden])').count(), expected);
@@ -126,7 +138,27 @@ async function journey(browser, baseURL, index, descriptors) {
         }
       }
     }
+    assert.deepEqual(errors, [], 'tag journey has no browser exceptions');
     return { schema: 1, kind: 'publication-tags-journey', pass: true, observations };
+  } catch (error) {
+    throw new Error(
+      error.message +
+        '\nTag journey state: ' +
+        JSON.stringify(
+          await page.evaluate(() => ({
+            url: location.href,
+            page: document.body.dataset.page,
+            tags: document.body.dataset.tagsState,
+            selection: document.getElementById('archive-tag')?.value,
+            visible: document.querySelectorAll('li.publication:not([hidden])').length,
+            scene: document.querySelector('.space-scene')?.dataset.travel,
+            focus: document.activeElement?.outerHTML?.slice(0, 500),
+          }))
+        ) +
+        '\nBrowser exceptions: ' +
+        JSON.stringify(errors),
+      { cause: error }
+    );
   } finally {
     await context.close();
   }

@@ -545,6 +545,17 @@ async function main() {
   let browser, pass, articles, content, publicationTags;
   try {
     browser = await pw.chromium.launch(launchOptions('chromium'));
+    if (manifest.files['publication-index.json']) {
+      const index = JSON.parse(
+        fs.readFileSync(path.join(process.env.SITE_PUBLIC_DIR, 'publication-index.json'))
+      );
+      publicationTags = await require('./article-tags-browser.cjs').journey(
+        browser,
+        url,
+        index,
+        manifest.components.articles || {}
+      );
+    }
     for (const width of [1440, 390])
       for (const mode of ['normal', 'no-canvas']) {
         const row = await scenario(browser, url, manifest, variant, width, mode);
@@ -561,17 +572,6 @@ async function main() {
         articles,
         manifest.components.articles,
         { engine: manifest.components.engine, baseURL: url }
-      );
-    }
-    if (manifest.files['publication-index.json']) {
-      const index = JSON.parse(
-        fs.readFileSync(path.join(process.env.SITE_PUBLIC_DIR, 'publication-index.json'))
-      );
-      publicationTags = await require('./article-tags-browser.cjs').journey(
-        browser,
-        url,
-        index,
-        manifest.components.articles || {}
       );
     }
     if (contentDocuments(manifest)) content = await contentJourney(browser, url, manifest);

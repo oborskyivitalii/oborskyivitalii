@@ -70,11 +70,11 @@ complexity26 warning. This increment does not broaden lint exceptions.
 Maintained Prettier3.6.2/Ruff0.16.10, Basic, style guard, mapped issue policy,
 RI freshness/28 regressions and coupling20 regressions are final-source checks.
 
-| AC | Automated scope | Remaining observation/decision |
-| --- | --- | --- |
-| AC21 | Full published coverage; missing/unknown/duplicate tags, schema/URL/identity failures; archive filters/query/history/reset/print; private vocabulary projection; offline/cancellation | Initial labels remain editorially reviewable; current hosted browser proof and independent requirements |
-| AC22 | Stable relevance/self/tie/no-match bounds; actual tag-only index delta with unchanged HTML/runtime; canonical index tamper and original resource budgets; classifier | Actual bounded browser proof; independent production publisher/concurrency remains AC16–AC20 |
-| AC08/11/12/14/15 | Existing reader/delivery/source/rights/classification checks retained and extended | Original full independent/device/staging/publication gates remain |
+| AC               | Automated scope                                                                                                                                                                       | Remaining observation/decision                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| AC21             | Full published coverage; missing/unknown/duplicate tags, schema/URL/identity failures; archive filters/query/history/reset/print; private vocabulary projection; offline/cancellation | Initial labels remain editorially reviewable; current hosted browser proof and independent requirements |
+| AC22             | Stable relevance/self/tie/no-match bounds; actual tag-only index delta with unchanged HTML/runtime; canonical index tamper and original resource budgets; classifier                  | Actual bounded browser proof; independent production publisher/concurrency remains AC16–AC20            |
+| AC08/11/12/14/15 | Existing reader/delivery/source/rights/classification checks retained and extended                                                                                                    | Original full independent/device/staging/publication gates remain                                       |
 
 The new preview smoke additionally observes all29 tagged Writing cards, tag click,
 URL reload/reset/history, exact reader tag/related links and blocked/invalid-index
@@ -95,6 +95,12 @@ The first source policy also caught two incomplete positive fixtures: an accepte
 synthetic article needed an explicit tag assignment, and the finite public inventory
 needed the new JSON entry. Their original provenance/privacy assertions remain.
 Initial failures remain recorded; final exact-head rerun evidence belongs in PR79.
+CI39234975414 passed the unchanged four room rows and complete ordinary article
+journey, then timed out at the new tag journey's first click. A direct hosted UI
+click selected the expected7/29 records. The new journey now waits for the existing
+scene's ready/settled state as well as tag data, scrolls the actual chip into view
+before clicking, and reports URL/control/visible-row/scene/focus and browser errors
+on failure. No assertion is removed; final CI must establish the full result.
 
 ## Next steps
 
