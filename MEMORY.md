@@ -1,12 +1,12 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-18**.
+Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
-- 19 October campaign-only checkpoint: #106 / Draft PR107 separately owns
-  distribution workflow/planning. Base main0098f804; article/site stays PR79.
-  Plan: review/issue-106/2026-10-19-campaign-plan.md; exact source links in #106.
+- 19 October campaign checkpoint: #106 / Draft PR107 owns the first reusable
+  draft contract/brief/validator. Base main0098f804; article/site stays PR79.
+  Evidence: review/issue-106/2026-10-19-draft-contract.md; exact checks in PR107.
   The older operational snapshots below retain their original dates.
 
 - Main/accepted production: 3af9100989c7dd6edc18b0b94c2d59f177cfd465,
@@ -26,7 +26,7 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 - Author explicitly split campaign work into #106 and its own Draft PR107.
   PR79/#2/#5 retain article publication; campaign completion never blocks it.
-  This increment is a plan/policy foundation, not implemented campaign tooling.
+  First draft validation exists; real publisher integration/kit/release remain open.
 
 - Maintainer authorized one separate PR for plan3+4. Existing #102 owns code,
   #103 owns connector access and #8 retains full measurement/Search Console.
@@ -57,8 +57,8 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 ## Next session
 
-For #106, read its issue/PR107 and versioned plan. Implement the bounded
-brief/schema/validator next; revalidate the accepted publisher before integrating.
+For #106, read issue/PR107 and the draft-contract review. Integrate its facade
+against the accepted publisher, add ARTICLE-WORKFLOW hook, then first launch kit.
 No social publication, outreach or reminders are authorised by this checkpoint.
 
 1. Revalidate PR105 state/head, main, source/preview/staging checks and #102/#103/#8.

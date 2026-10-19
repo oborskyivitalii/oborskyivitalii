@@ -14,15 +14,15 @@
     {
       "id": "AC02",
       "intent": "Integrate a reusable distribution brief and campaign state model into article preparation without duplicating owners.",
-      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
-      "checks": ["CURRENT-RI"],
+      "automated_scope": "First increment: strict draft schema, two distinct synthetic articles, read-only loading and a link from the standing editorial guide. ARTICLE-WORKFLOW hook and actual publisher integration remain pending PR79 baseline; source checks cannot supply author review.",
+      "checks": ["CURRENT-RI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
     },
     {
       "id": "AC03",
       "intent": "Bind each campaign piece to its source edition, claims and media and invalidate stale approvals.",
-      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
-      "checks": ["CURRENT-RI"],
+      "automated_scope": "First increment: stale edition/semantic, section/reference/media, copy/brief and approval-binding negatives. References bind claims to the publisher semantic edition; accuracy and actual editorial approval remain human gates.",
+      "checks": ["CURRENT-RI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
     },
     {
@@ -35,8 +35,8 @@
     {
       "id": "AC05",
       "intent": "Preserve numerical and quotation scope, media identity, credits and separate editorial/rights review.",
-      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
-      "checks": ["CURRENT-RI"],
+      "automated_scope": "First increment: selected media and source-reference identity only. Numerical/quotation/rights accuracy and mobile visual review remain unimplemented or human gates.",
+      "checks": ["CURRENT-RI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
     },
     {
@@ -49,15 +49,15 @@
     {
       "id": "AC07",
       "intent": "Build a bounded isolated campaign kit without site deployment, social posting, paid-model calls or PMDay-only hardcoding.",
-      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
-      "checks": ["CURRENT-RI"],
+      "automated_scope": "First increment: reusable bounded read-only validation only; no kit renderer, PDF or manually selectable build workflow is implemented. Two synthetic articles exercise reuse; no site output is written.",
+      "checks": ["CURRENT-RI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
     },
     {
       "id": "AC08",
       "intent": "Keep authored, approved, published and corrected states distinct with actual observed publication evidence.",
-      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
-      "checks": ["CURRENT-RI"],
+      "automated_scope": "First increment: authored and approval-recorded draft states only; pretend publication fields are rejected. Observations, append-only correction history and operator publication workflow remain pending.",
+      "checks": ["CURRENT-RI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
     },
     {
@@ -70,8 +70,8 @@
     {
       "id": "AC10",
       "intent": "Map and run exact-source meaningful checks and applicable style/RI controls; retain human and merge gates.",
-      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
-      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "automated_scope": "Basic, style subset, RI/catalog/CI and campaign negatives on exact source. Applicable CS01/02/04/05/07/08/09/10 self-review is recorded; no CSS/runtime delta (CS03/06). Pending features and independent/editorial/merge gates remain explicit.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "INDEPENDENT-REVIEW", "MERGE"]
     }
   ],
@@ -90,6 +90,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "CAMPAIGN": {
+      "kind": "unittest",
+      "test": "test_issue106_acceptance.Issue106AcceptanceTests.test_campaign_draft_contract"
     }
   },
   "gates": {
@@ -99,7 +103,7 @@
     },
     "IMPLEMENTATION": {
       "kind": "human",
-      "description": "NOT IMPLEMENTED at planning intake. Add and run criterion-specific behavioral/negative tests before executing campaign code; a green planning-source policy cannot satisfy this gate."
+      "description": "First draft-contract increment only. Actual publisher integration, campaign assets/rendering, channel admission, observation/corrections and metrics templates remain pending. Partial checks cannot satisfy whole acceptance."
     },
     "AUTHOR-REVIEW": {
       "kind": "human",

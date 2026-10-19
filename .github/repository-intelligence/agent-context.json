@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7556b8a434997f7fb9151a2db9619b84940e2026d8ab7925e2fa99eb92cbeab2",
+    "digest": "9d8c87e07a688909ac3db2a900b879cc5b6684599d20ee6727984e43d5d404ab",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -52,7 +52,7 @@
       {
         "path": ".github/acceptance/issue-106.json",
         "identity_mode": "content",
-        "sha256": "dfdefcf1ddeea7ad2e0ad05731f3809bf72b3eb2ec623a92c04f00eb380eaa42"
+        "sha256": "5276337e15174674c09ab2a9ae11547599e86ff13f0d76b08f68a4873cd4e9c5"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "4e71375c11c638fba49260fdb48215bd8250759b36eda06adbf7d575d1f69e02"
+        "sha256": "c50c1e0ecabd47e5b0ddd9d6470ca48bc0fc6680c1c69186f1fc5bdafa9fa67c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "85b2c4458c4a36aaa5ca5d558d28579426d4db989241ee7d76fd958c87228efb"
+        "sha256": "cb5a59263c224c91522b96e2ec46c708d478230cf9ef2777331ce8e0fead9ea6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -301,7 +301,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a12c546640fb39acab243cc01e0a6856cb60aea0148aa08a4dacfb6252ee89e6"
+        "sha256": "8118be899a6a4093f597eb22a38faba7f5bd973b54f98fe3e448de93572dd44b"
       },
       {
         "path": "NOTICE.md",
@@ -533,6 +533,16 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md",
+        "identity_mode": "content",
+        "sha256": "95161b919460744a858e2696576a8cede56b124f42f7259a277e93a526e5b38e"
+      },
+      {
+        "path": "guides/ARTICLE-DISTRIBUTION.md",
+        "identity_mode": "content",
+        "sha256": "23defc9b9a4e06a270b0aa999db3c18290fc06bf24a874f0ef2f7edfdeb924cc"
+      },
+      {
         "path": "guides/CODE-STYLE.md",
         "identity_mode": "content",
         "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
@@ -540,7 +550,7 @@
       {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "05dc46d5147c8dfac709700ff1c5a86b954c47896477c5026662a0279642631f"
+        "sha256": "997badc1b3a54cbd5d28f26c143469c2e05d06cd41bab405571515a90353d29c"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -560,7 +570,7 @@
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "20d658138ec1a33112704a723ab6748b3f43e2f46b91ec6766a4149b2aaec5d5"
+        "sha256": "2137ec90fc022b055189fce4f633d2117b5e9663189be7d1f5d138fabc7338e9"
       },
       {
         "path": "guides/SITE-PRODUCTION.md",
@@ -701,6 +711,11 @@
         "path": "review/issue-106/2026-10-19-campaign-plan.md",
         "identity_mode": "content",
         "sha256": "5a3c4db46a4ae2ac203ff76c62d01ac0caf1ade2fafe2beb6f94f8d0014bae7e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-draft-contract.md",
+        "identity_mode": "content",
+        "sha256": "fc49ca7bbde97f6d878f593a855e7d6c8aca6ac19ed7af6678251c838bbc1aae"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -5583,6 +5598,11 @@
         "sha256": "d1e8c7a63c384e45dee401165cd1eba31240b0fd9561f01bd4e3dc913dcee7e5"
       },
       {
+        "path": "tests/campaign.test.cjs",
+        "identity_mode": "content",
+        "sha256": "9ad586f761dd5d71a7d3cb582788a46f3d75992b16c484f8d5e4e9e55eb7dc46"
+      },
+      {
         "path": "tests/cause-fix-probe.test.cjs",
         "identity_mode": "content",
         "sha256": "e088b701b826865cec6d004ad1204e83f2f0bf14fa47f3a57542b6cd48510c98"
@@ -5858,6 +5878,11 @@
         "sha256": "34c9f3b5644c19a36a8a7bedf65dd1dfbe09e195d82d57589ffea9ffb8872fd7"
       },
       {
+        "path": "tests/test_issue106_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "6a03292846e9e58b1284bec6448da37ef8ba80ec278dffdff39705867c7c40ec"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
         "sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a"
@@ -6076,6 +6101,21 @@
         "path": "tools/compact_site_recordings.cjs",
         "identity_mode": "content",
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
+      },
+      {
+        "path": "tools/distribution/campaign.cjs",
+        "identity_mode": "content",
+        "sha256": "375b78b97c7436323beee3776ce42137b12e08cb5991e6814af1270ba1205fea"
+      },
+      {
+        "path": "tools/distribution/cli.cjs",
+        "identity_mode": "content",
+        "sha256": "696076daa2d83c9fcbf4fa7dd12da5e35008293796cb7416396747b402ebc500"
+      },
+      {
+        "path": "tools/distribution/schema.cjs",
+        "identity_mode": "content",
+        "sha256": "5834b34428e3906dec1904bf9f6995b67dfd7d9f2b0d8ada55aea3b725fa8efb"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -6445,7 +6485,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "c873912bc5616cbb8423658be887a06670f20d4acfcd8bcdc836a916e9fcba50"
+        "sha256": "c9b242abf58cb1f8b0d5ec203dcf32aac82c7eb62a7b54da8ce3e33beb1ffe5d"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7104,7 +7144,7 @@
     {
       "path": ".github/acceptance/issue-106.json",
       "kind": "file",
-      "purpose": "Issue106 planning-source checks and explicit pending campaign implementation/author/independent gates; not completed campaign acceptance.",
+      "purpose": "Issue106 draft campaign behavior and source checks with pending full implementation, author, independent and merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -8169,6 +8209,28 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md",
+      "kind": "file",
+      "purpose": "Reusable distribution planning brief copied into an article campaign before derivative preparation.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Distribution brief — <article title>"
+    },
+    {
+      "path": "guides/ARTICLE-DISTRIBUTION.md",
+      "kind": "file",
+      "purpose": "Reusable draft campaign contract, source-bound review and pending publisher/release integration.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article distribution preparation"
+    },
+    {
       "path": "guides/CODE-STYLE.md",
       "kind": "file",
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
@@ -8541,6 +8603,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 106 — article distribution workflow and organic campaign plan"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-draft-contract.md",
+      "kind": "file",
+      "purpose": "First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — first draft campaign contract"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -19279,6 +19352,17 @@
       "title": "camera-view.test.cjs"
     },
     {
+      "path": "tests/campaign.test.cjs",
+      "kind": "file",
+      "purpose": "Permanent draft campaign reuse, stale-pin, approval, unsafe-resource and read-only CLI negatives.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "campaign.test.cjs"
+    },
+    {
       "path": "tests/cause-fix-probe.test.cjs",
       "kind": "file",
       "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
@@ -19884,6 +19968,17 @@
       "title": "test_issue102_acceptance.py"
     },
     {
+      "path": "tests/test_issue106_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue106 policy wrapper reusing maintained campaign behavior without publication acceptance.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue106_acceptance.py"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -20366,6 +20461,39 @@
         "AGENTS.md"
       ],
       "title": "compact_site_recordings.cjs"
+    },
+    {
+      "path": "tools/distribution/campaign.cjs",
+      "kind": "file",
+      "purpose": "Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "campaign.cjs"
+    },
+    {
+      "path": "tools/distribution/cli.cjs",
+      "kind": "file",
+      "purpose": "Explicit source-only draft campaign validation with JSON stdout and no release mode.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cli.cjs"
+    },
+    {
+      "path": "tools/distribution/schema.cjs",
+      "kind": "file",
+      "purpose": "Strict version1 draft campaign shape, finite identities and explicit pending publication boundary.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "schema.cjs"
     },
     {
       "path": "tools/issue_acceptance.py",
@@ -23149,6 +23277,16 @@
       "purpose": "Repository navigation, public generation and offline review/export entry points.",
       "role": "source",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/distribution",
+      "kind": "directory",
+      "purpose": "Bounded read-only article distribution preparation tooling.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
       "instructions": [
         "AGENTS.md"
       ]

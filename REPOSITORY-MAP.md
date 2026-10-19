@@ -162,6 +162,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures](tests/fixtures) | Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [tools/distribution](tools/distribution) | Bounded read-only article distribution preparation tooling. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/pages](tools/pages) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/toolchain](tools/quality/toolchain) | Pinned isolated quality tooling packages and Python dependencies. | configuration | [tools/quality/README.md](tools/quality/README.md) |
@@ -194,7 +195,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-102.json](.github/acceptance/issue-102.json) | Issue102 analytics AC policy: bounded source checks and explicit browser/live gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [.github/acceptance/issue-106.json](.github/acceptance/issue-106.json) | Issue106 planning-source checks and explicit pending campaign implementation/author/independent gates; not completed campaign acceptance. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-106.json](.github/acceptance/issue-106.json) | Issue106 draft campaign behavior and source checks with pending full implementation, author, independent and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -374,6 +375,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [guides/ARTICLE-DISTRIBUTION-BRIEF.en.md](guides/ARTICLE-DISTRIBUTION-BRIEF.en.md) | Reusable distribution planning brief copied into an article campaign before derivative preparation. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) | Reusable draft campaign contract, source-bound review and pending publisher/release integration. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
@@ -638,6 +641,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-106/2026-10-19-campaign-plan.md](review/issue-106/2026-10-19-campaign-plan.md) | Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-draft-contract.md](review/issue-106/2026-10-19-draft-contract.md) | First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
 
@@ -1869,6 +1873,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/browser-lifecycle.test.cjs](tests/browser-lifecycle.test.cjs) | Optional native browser/context/page event provenance and honest teardown versus operation failure Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/build-cohesion.test.cjs](tests/build-cohesion.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/camera-view.test.cjs](tests/camera-view.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/campaign.test.cjs](tests/campaign.test.cjs) | Permanent draft campaign reuse, stale-pin, approval, unsafe-resource and read-only CLI negatives. | test | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1921,6 +1926,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test-profile-selection.test.cjs](tests/test-profile-selection.test.cjs) | Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue102_acceptance.py](tests/test_issue102_acceptance.py) | Issue102 policy adapter for maintained analytics suite and failure accounting. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue106_acceptance.py](tests/test_issue106_acceptance.py) | Issue106 policy wrapper reusing maintained campaign behavior without publication acceptance. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -1981,6 +1987,14 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/run_repository_tests.py](tools/run_repository_tests.py) | Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+
+## tools/distribution/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/distribution/campaign.cjs](tools/distribution/campaign.cjs) | Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/cli.cjs](tools/distribution/cli.cjs) | Explicit source-only draft campaign validation with JSON stdout and no release mode. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/schema.cjs](tools/distribution/schema.cjs) | Strict version1 draft campaign shape, finite identities and explicit pending publication boundary. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 
 ## tools/pages/
 

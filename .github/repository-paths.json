@@ -63,31 +63,31 @@
     },
     ".github/acceptance/issue-106.json": {
       "kind": "file",
-      "purpose": "Issue106 planning-source checks and explicit pending campaign implementation/author/independent gates; not completed campaign acceptance.",
+      "purpose": "Issue106 draft campaign behavior and source checks with pending full implementation, author, independent and merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -123,13 +123,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -141,7 +141,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -153,13 +153,13 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -781,6 +781,18 @@
       "role": "guide",
       "owner": "guides/README.md"
     },
+    "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md": {
+      "kind": "file",
+      "purpose": "Reusable distribution planning brief copied into an article campaign before derivative preparation.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "guides/ARTICLE-DISTRIBUTION.md": {
+      "kind": "file",
+      "purpose": "Reusable draft campaign contract, source-bound review and pending publisher/release integration.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
     "guides/CODE-STYLE.md": {
       "kind": "file",
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
@@ -1036,6 +1048,12 @@
     "review/issue-106/2026-10-19-campaign-plan.md": {
       "kind": "file",
       "purpose": "Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-draft-contract.md": {
+      "kind": "file",
+      "purpose": "First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -1533,7 +1551,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -7453,6 +7471,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/campaign.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent draft campaign reuse, stale-pin, approval, unsafe-resource and read-only CLI negatives.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
     "tests/cause-fix-probe.test.cjs": {
       "kind": "file",
       "purpose": "Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
@@ -7789,6 +7813,12 @@
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "tests/test_issue106_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue106 policy wrapper reusing maintained campaign behavior without publication acceptance.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -8058,6 +8088,30 @@
       "purpose": "Site generation/offline review helper: compact site recordings; inspect its source and output contract before use.",
       "role": "source",
       "owner": "site/README.md"
+    },
+    "tools/distribution": {
+      "kind": "directory",
+      "purpose": "Bounded read-only article distribution preparation tooling.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/campaign.cjs": {
+      "kind": "file",
+      "purpose": "Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/cli.cjs": {
+      "kind": "file",
+      "purpose": "Explicit source-only draft campaign validation with JSON stdout and no release mode.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/schema.cjs": {
+      "kind": "file",
+      "purpose": "Strict version1 draft campaign shape, finite identities and explicit pending publication boundary.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
     },
     "tools/issue_acceptance.py": {
       "kind": "file",

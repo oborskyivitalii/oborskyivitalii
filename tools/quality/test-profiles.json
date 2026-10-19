@@ -1998,6 +1998,40 @@
         "tools/quality/secrets-publication.json",
         "review/issue-102/2026-10-18-public-metadata-proof.json.gz"
       ]
+    },
+    {
+      "path": "tests/campaign.test.cjs",
+      "language": "javascript",
+      "purpose": "Reusable read-only draft campaign schema, exact-edition/media/copy approval invalidation, unsafe input and absent-publisher negatives.",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain source-only campaign failure surfaces; no hosted matrix, publishing or historical task replay",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/campaign.test.cjs",
+        "tools/distribution/**",
+        "site/publications/**/campaign/**",
+        "tools/publishing/**",
+        "guides/ARTICLE-DISTRIBUTION.md",
+        "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md"
+      ]
+    },
+    {
+      "path": "tests/test_issue106_acceptance.py",
+      "language": "python",
+      "purpose": "Owning issue106 reuses permanent campaign draft behavior with honest partial acceptance.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning policy only; no duplicate routine or browser suite",
+      "surviving_route": ".github/acceptance/issue-106.json",
+      "inputs": [
+        "tests/test_issue106_acceptance.py",
+        "tests/campaign.test.cjs",
+        "tools/distribution/**",
+        ".github/acceptance/issue-106.json"
+      ]
     }
   ]
 }
