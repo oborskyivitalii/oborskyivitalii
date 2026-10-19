@@ -23,6 +23,7 @@ function checkSize(dir) {
       'archive.js',
       'navigation.js',
       'assets/favicon.svg',
+      ...(m.files['publication-index.json'] ? ['publication-index.json'] : []),
       ...(route === 'index' ? ['assets/vitalii-oborskyi-cutout.webp'] : []),
     ];
     const transfer = m.files[file].gzip + assets.reduce((n, f) => n + m.files[f].gzip, 0);
@@ -56,6 +57,7 @@ function checkSize(dir) {
       'archive.js',
       'navigation.js',
       'assets/favicon.svg',
+      ...(m.files['publication-index.json'] ? ['publication-index.json'] : []),
       ...descriptor.assets,
     ];
     const totalGzipBytes =
@@ -108,6 +110,7 @@ function validateArticleSizes(sizes, record) {
       'archive.js',
       'navigation.js',
       'assets/favicon.svg',
+      ...(record.files['publication-index.json'] ? ['publication-index.json'] : []),
       ...descriptor.assets,
     ];
     if (JSON.stringify(row.assets) !== JSON.stringify(assets))

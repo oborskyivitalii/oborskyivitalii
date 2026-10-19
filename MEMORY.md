@@ -9,9 +9,10 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 - Owner #5, same Draft PR79. Concurrent editorial work through794287b2 (Cover02
   and exact R12 PDF) is included unchanged. Preservation manifest and review:
   review/issue-5/2026-10-19-generic-reader-template.md and adjacent JSON.
-- New prepared increment: explicit synthetic template preview, bounded optional
-  lossless WebP, exact source/output/rights and offline MIME support.
-  Final exact-source checks and hosted CI status are recorded in PR79.
+- Generic template at a7c1f2f4 passed owning10/10 and CI39222489180.
+- New prepared increment: single runtime tag/related component plus separately
+  updated publication-index.json; canonical assignments cover all29 archive works.
+  Review: review/issue-5/2026-10-19-publication-tags.md; final evidence is in PR79.
 - #103 closed: verified Google owner and Windsor read-only exact-property access.
   #102 actual postrelease /writing receipt confirmed; AC03 checked. Sample too small
   and mixed with owner/CI traffic for organic-growth or per-vital conclusions.
@@ -24,6 +25,9 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   true retains the separate actual editorial selection and all original guards.
 - Original media/manuscripts/editions stay unchanged. Optional webp-lossless uses
   canonical pinned Pillow, preserves RGBA/dimensions/ICC, keeps original print data.
+- Tag-only base generation changes only index/binding data and preserves all
+  HTML/runtime bytes. Existing edition source stamps and independently admitted
+  production lanes remain separate work. Native reading survives absent index.
 - Frozen source reconstruction is generic producer evidence. It cannot establish
   actual article/PDF/rights/budget/publication acceptance or relax original ACs.
 - Keep static monorepo, versioned platform/content/media and coherent assembler.
@@ -32,13 +36,14 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Open work
 
-- Final generic-template preview CI/browser evidence must be inspected against
-  the exact current PR head. Draft smoke never substitutes for staging admission.
+- Current tag-component preview CI/browser evidence must match final PR head.
+  Draft smoke never substitutes for staging admission; no article publication.
 - Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
   The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
   later. No successful current article hosted acceptance is inferred.
 - #5 AC11/12 independent/hosted/release gates remain; AC14 unchecked.
   AC13/15 retain bounded catalog/classification scope; AC16–AC20 pending.
+  AC21/22 tag/index checks are mapped; semantic/independent/release gates remain.
 - #2 owns editorial/media/PDF/deck/upstream/publication acceptance. Do not edit
   actual manuscript or media while the other conversation continues its work.
 - #102 article paths/history/metrics/cost, #104 conversions follow reader contract.
@@ -48,7 +53,7 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 ## Next session
 
 1. Fetch live #5/PR79/current main and preserve any concurrent editorial commits.
-2. Inspect current template CI/preview and finish applicable platform admission.
+2. Inspect current tag/template CI/preview and finish applicable platform admission.
 3. Consume final article handoff later; verify its actual resource/rights/PDF
    gates separately, then obtain first-publication decision through the controller.
 4. Implement production content/media lanes and coherent concurrency after baseline.

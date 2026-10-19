@@ -305,3 +305,32 @@ test('a newly catalogued year filters, restores its fragment and prints without 
   page.reset();
   assert.equal(page.shown().length, total + 1);
 });
+
+test('asynchronously loaded tag filtering composes with topic, URL, history, reset and print', () => {
+  const page = visit('?tag=verification');
+  page.ids['archive-tag'] = {
+    value: 'all',
+    options: [
+      { value: 'all', textContent: 'All tags' },
+      { value: 'verification', textContent: 'Verification' },
+    ],
+  };
+  for (const row of page.rows)
+    row.dataset.tags = row.dataset.topic === 'delivery' ? 'verification' : 'architecture';
+  page.events['site:tags-ready']();
+  assert.equal(page.ids['archive-tag'].value, 'verification');
+  assert.ok(page.shown().length > 0 && page.shown().length < total);
+  assert.ok(page.shown().every((row) => row.dataset.tags === 'verification'));
+  page.change('topic', 'systems');
+  assert.equal(page.shown().length, 0);
+  page.events.beforeprint();
+  assert.equal(page.shown().length, total);
+  page.events.afterprint();
+  assert.equal(page.shown().length, 0);
+  page.reset();
+  assert.equal(page.shown().length, total);
+  assert.equal(new URL(page.window.location).searchParams.has('tag'), false);
+  page.back();
+  assert.equal(page.shown().length, 0);
+  assert.equal(page.ids['archive-tag'].value, 'verification');
+});

@@ -785,7 +785,12 @@ function build({
       const platformFiles = ['theme.js', 'archive.js', 'navigation.js', 'styles.css', 'space.js'];
       for (const name of platformFiles) put(name, fs.readFileSync(path.join(output, name)));
     } else {
-      for (const name of ['theme.js', 'archive.js']) put(name, read(root, 'site/engine/' + name));
+      put('theme.js', read(root, 'site/engine/theme.js'));
+      put(
+        'archive.js',
+        `/* Optional current publication metadata. */\nwindow.SiteArticleTags=(${factory(root, 'site/engine/article-tags.cjs').toString()})();\n` +
+          read(root, 'site/engine/archive.js')
+      );
       put(
         'navigation.js',
         `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
@@ -805,6 +810,8 @@ function build({
     }
     for (const [name, bytes] of Object.entries(measurement.assets))
       put(name, contentOnly ? fs.readFileSync(path.join(output, name)) : bytes);
+    const articleIndex = require('./article-index.cjs').compile(root, c, selectedArticles);
+    if (articleIndex) put('publication-index.json', articleIndex);
     if (versioned)
       emitRevision({
         root,

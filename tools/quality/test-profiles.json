@@ -88,7 +88,8 @@
         "site/publications/**.webp",
         "site/publications/**.avif",
         "site/publications/**.svg",
-        "site/publications/**.pdf"
+        "site/publications/**.pdf",
+        "site/content/article-tags.json"
       ],
       "derived_inputs": [
         "docs/**",
@@ -111,7 +112,8 @@
         "tests/content-rendering.test.cjs",
         "tests/archive.test.cjs",
         "tests/content-release.test.cjs",
-        "tests/article-media.test.cjs"
+        "tests/article-media.test.cjs",
+        "tests/article-tags.test.cjs"
       ]
     }
   },
@@ -347,7 +349,9 @@
         "tests/archive.test.cjs",
         "site/content/**",
         "site/templates/**",
-        "tests/fixtures/catalog.cjs"
+        "tests/fixtures/catalog.cjs",
+        "site/engine/article-tags.cjs",
+        "site/content/article-tags.json"
       ]
     },
     {
@@ -1996,7 +2000,8 @@
         "tests/color-build.test.cjs",
         "tests/release-controller.test.cjs",
         "tests/article-candidate-source.test.cjs",
-        "tests/article-media.test.cjs"
+        "tests/article-media.test.cjs",
+        "tests/article-tags.test.cjs"
       ]
     },
     {
@@ -2431,6 +2436,26 @@
         "site/assets/publications/**",
         "site/templates/**",
         "site/engine/navigation.js"
+      ]
+    },
+    {
+      "path": "tests/article-tags.test.cjs",
+      "language": "javascript",
+      "purpose": "Canonical published tag coverage, bounded shared schema/ranking, unsafe/missing input and abort/offline negatives; exact index-only generation with unchanged platform/HTML",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent current behavior and negative evidence surfaces; actual browser/device/editorial gates remain separate",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-tags.test.cjs",
+        "site/engine/article-tags.cjs",
+        "site/content/article-tags.json",
+        "site/content/catalog.json",
+        "tools/site/**",
+        "tools/quality/article-tags-browser.cjs",
+        "tools/quality/local-browser.cjs",
+        "tools/release/rights.cjs"
       ]
     }
   ]

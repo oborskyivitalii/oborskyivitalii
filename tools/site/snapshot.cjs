@@ -42,6 +42,7 @@ function inventory(names, requiredMedia = legacyMediaFiles, edition = null, arti
   for (const name of names)
     assert.ok(
       baseFiles.includes(name) ||
+        name === 'publication-index.json' ||
         immutable(name) ||
         hostFiles.includes(name) ||
         aliases.includes(name),
@@ -68,6 +69,16 @@ function verifyDocumentContract(html, revision, key = null, article = null) {
     { [key]: { url: article.alias, snapshot: article.url } },
     'article boot descriptor differs from current snapshot'
   );
+}
+
+function verifyPublicationIndex(read, files) {
+  if (read('archive.js').toString().includes('window.SiteArticleTags=')) {
+    assert.ok(files['publication-index.json'], 'missing current publication index');
+    const bytes = read('publication-index.json');
+    const tags = require('../../site/engine/article-tags.cjs')();
+    assert.ok(bytes.length <= tags.limit, 'publication index byte budget');
+    tags.validate(JSON.parse(bytes.toString('utf8')));
+  }
 }
 
 function verify(dir, record) {
@@ -111,6 +122,7 @@ function verify(dir, record) {
       'formula artifact requires current media declaration'
     );
   inventory(Object.keys(files), declaredMedia, record.edition?.id, articles);
+  verifyPublicationIndex(read, files);
   assert.deepEqual(revision.edition, record.edition, 'edition manifest differs from runtime');
   assert.equal(revision.schema, 1);
   assert.equal(revision.contract, 1);

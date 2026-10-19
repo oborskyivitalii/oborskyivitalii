@@ -364,3 +364,33 @@ Writing and Talks publication cards use one backdrop on the complete row, with
 the same shared 12px gutter and content-driven height. Metadata and copy do not
 paint independent panels. Child intrinsic widths remain ordinary text layout;
 only the row and the canonical shared inset determine the backdrop's bounds.
+
+## Publication tags and optional related reading
+
+`content/article-tags.json` owns the shared vocabulary and tag assignments.
+External catalogue entries use `records[recordId]`; local articles use
+`articles[articleId]`, including prepared drafts. A local catalogue record must
+not also own a competing assignment. Every published record requires tags.
+Draft assignments and unused vocabulary stay out of the public projection.
+
+The builder emits the separately updated, bounded `publication-index.json`.
+It contains published catalogue titles/URLs/languages/tags and tag context for
+selected reader documents; draft/reference documents never enter its article
+recommendations. This file is intentionally independent of document fingerprints.
+Tag-only base generation/content composition changes the index and binding locks,
+with old room/article HTML and runtime bytes unchanged. Current edition decoration
+and protected publication remain their own source-bound stages; independently
+admitted production lanes still belong to #5 AC16–AC20.
+
+One shared `engine/article-tags.cjs` factory assembles into the existing archive
+runtime. It loads a current schema1 index from the same origin on each mount,
+validates finite bytes/data/URLs, creates text-safe tag/related DOM, and disposes
+requests/listeners on navigation. Related reading uses Jaccard overlap, deterministic
+ID ties, up to three distinct published catalogue works and no unrelated filler.
+Alternate platform links stay inside the same logical catalogue record.
+
+The Writing tag filter composes with topic/year/language, query/history/reset and
+print through the existing archive owner. Without JS, on a standalone file or when
+the optional index is blocked/invalid/incompatible, full native content and Writing
+links remain available; live tag chips/filter/recommendations are unavailable.
+No backend, third-party request, additional runtime file or animation loop is added.

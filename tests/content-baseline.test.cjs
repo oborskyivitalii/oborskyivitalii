@@ -606,6 +606,7 @@ definition = {'schema_version': 1, 'review': {'issue': 'controlled fixture'},
   added.editions = [];
   added.discussions = [];
   catalog.records[newId] = added;
+  require('./fixtures/catalog.cjs').assignTags(f.directory, 'records', newId);
   catalog.structuredOrder.push({ record: newId });
   write('site/content/catalog.json', JSON.stringify(catalog));
   builder.build({ root: f.directory });

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
     "date": "2026-10-19",
-    "summary": "Issue5 generic reader: explicit synthetic template previews and bounded lossless WebP preparation; current editorial draft and production gates remain separate. Self-review only."
+    "summary": "Issue5 canonical tag store and optional live related-reading component; exact tag-only index update preserves old HTML/runtime. Original source/rights/native/release gates and budgets retained; self-review only."
   },
   "layers": [
     {
@@ -436,7 +436,12 @@
         "tools/publishing/web-media.py",
         "tools/site/article-media.cjs",
         "tools/site/article-selection.cjs",
-        "site/article-template-preview.json"
+        "site/article-template-preview.json",
+        "site/engine/article-tags.cjs",
+        "tools/site/article-index.cjs",
+        "site/content/article-tags.json",
+        "tools/quality/article-tags-browser.cjs",
+        "tests/article-tags.test.cjs"
       ],
       "checks": [
         "authored-dependencies",
@@ -621,7 +626,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "8117c61610dbb1f106d5b6ef8b7cf1e5e45999c7cdeb53490fa5fcc3f4e28ef0",
+    "digest": "0ead941cf70278402751eef28825c1b2ab38b13487d391fcdc377453fe267eeb",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -677,7 +682,7 @@
       },
       {
         "path": ".github/acceptance/issue-5.json",
-        "sha256": "539e9d9ff5672c5b9c252177a734462286ffd59c60bcfe0d87bb94df27ecb53b"
+        "sha256": "2fb3c4f3928ee017ffdfe797e3c569401ec3dc6fb16090133f7cb46d3f116741"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -733,7 +738,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "9fa9d7f9bf377d0cb44550314633407862244aab4551c9b50db7fff847df56ec"
+        "sha256": "6097cabf41c4d5c54e0c7a14d0aa8bccf76c80afafad08f893979e6d32bec997"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -845,7 +850,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "8834a5154141de177c39960972d7125fb664becb8073fbba6df8b2c0389c76b9"
+        "sha256": "0339aee5d264960f04baa4880c325d908b07947bd0bdb092bde5f6729e0c3a8c"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -901,7 +906,7 @@
       },
       {
         "path": "tests/test_issue5_acceptance.py",
-        "sha256": "67317c780689d0218bb540e528a4ed24c4dfb63fbc925a6f4caf9bad1ec5414c"
+        "sha256": "fc858b1867cdc5956e9db689a77ddf57d6d66e74752f07c5c070ac66e15db942"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -973,7 +978,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "22f9a4d90ff3d8d6564c74c5d4157818a8c9db042e8db98f46ae5d2e1a79030d"
+        "sha256": "a53ea826364cbd42948d0a8ce3ca1f4f4d096d92fb200c79dc8935623ec5e9c1"
       },
       {
         "path": "tools/repository_intelligence.py",

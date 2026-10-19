@@ -197,3 +197,19 @@ Systems Figure 3/8 modules are not publisher dependencies. An upgrade reviews
 old/new refs, licenses and behavior, reruns both profiles and the real article,
 and records the new toolchain/artifact identities. Code licenses do not resolve
 publication-specific rights or select a site-wide license under issue #7.
+
+### Tags and related reading
+
+Assign discovery tags in `site/content/article-tags.json`: `records[recordId]`
+for external archive publications, `articles[articleId]` for a local article.
+Use the shared vocabulary; do not duplicate a local article's assignment in its
+catalogue record or manuscript. Missing, unknown and duplicate tags fail public
+index generation. Initial archive assignments are reviewable topic classification,
+not a new claim about research validation or edition equivalence.
+
+The single browser component reads `publication-index.json` and updates chips,
+Writing's tag filter and related reading. Tag-only base generation reuses every
+old HTML/runtime byte and updates the index; new articles still need their own
+reader, Writing and sitemap. Without JS/file/network metadata the complete native
+reader and Writing remain available. Existing edition binding/admission and the
+independent production publisher still follow their own release contract.

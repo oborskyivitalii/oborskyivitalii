@@ -41,4 +41,14 @@ function nextYear(catalog) {
   return String(Math.max(...years) + 1);
 }
 
-module.exports = { legacySource, legacyCatalog, nextRecordId, nextYear };
+function assignTags(root, kind, id, values = ['verification']) {
+  const fs = require('node:fs'),
+    path = require('node:path');
+  const file = path.join(root, 'site/content/article-tags.json');
+  if (!fs.existsSync(file)) return;
+  const data = JSON.parse(fs.readFileSync(file));
+  data[kind][id] = values;
+  fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+}
+
+module.exports = { legacySource, legacyCatalog, nextRecordId, nextYear, assignTags };

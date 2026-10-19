@@ -26,8 +26,8 @@
 
 
 
-  <meta name="site-engine" content="d65f9a0b17a14a80292d0ef7638d18c3f4639a7ec02c4c84cedcac18d7e5e875">
-  <meta name="site-route" content="7dc47192ad5b91bcb54c9133dba59cb5d0c18a2c3d484a3d00a4235f38bce6fc">
+  <meta name="site-engine" content="77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa">
+  <meta name="site-route" content="8f53170e6d3b5bc872900bb4c055dc4484e8c6c23af9e759a5e036c4441427fd">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -1696,6 +1696,27 @@ body[data-page='writing'] #archive-results {
   max-inline-size: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Optional tags and related reading share the native publication surface. */
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.publication-tags a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article-related {
+  margin-block: 40px;
+}
+.article-related li {
+  margin-block: 12px;
 }
 
 /* Canonical reading backdrop paint for every route and base/Color rendition.

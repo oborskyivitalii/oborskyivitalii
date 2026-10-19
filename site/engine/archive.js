@@ -3,15 +3,21 @@
   'use strict';
   let detach = () => {},
     print = () => {};
+  const tagRoot =
+    window.SiteArticleTags &&
+    new URL(document.querySelector('meta[name="site-base"]')?.content || '.', window.location.href);
   function mount() {
     detach();
     print = () => {};
+    const stopTags = window.SiteArticleTags?.mount({ document, window, root: tagRoot });
+    detach = () => stopTags?.();
     const listeners = [];
     const on = (target, name, handler) => {
       target.addEventListener(name, handler);
       listeners.push(() => target.removeEventListener(name, handler));
     };
     detach = () => {
+      stopTags?.();
       for (const remove of listeners) remove();
     };
     const form = document.getElementById('archive-filters');
@@ -82,7 +88,9 @@
       const visibleYears = new Set();
       let count = 0;
       for (const row of rows) {
-        const hidden = active.some(([key, value]) => row.dataset[key] !== value);
+        const hidden = active.some(([key, value]) =>
+          key === 'tag' ? !row.dataset.tags?.split(' ').includes(value) : row.dataset[key] !== value
+        );
         if (row.hidden !== hidden) row.hidden = hidden;
         if (!hidden) {
           count++;
@@ -104,7 +112,9 @@
           controls.year.value !== year && !visibleYears.has(year);
       }
       heading.hidden = false;
-      heading.textContent = `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}`;
+      heading.textContent =
+        `${label(controls.topic)} · ${label(controls.year)} · ${label(controls.language)}` +
+        (controls.tag && controls.tag.value !== 'all' ? ' · ' + label(controls.tag) : '');
       countLabel.textContent = countText(count === rows.length ? 'print' : 'count', count);
       document.getElementById('archive-empty').hidden = count !== 0;
       emit('site:archive-layout', {});
@@ -141,6 +151,13 @@
     });
     on(window, 'hashchange', () => onNavigation('navigation'));
     on(window, 'popstate', () => onNavigation('history'));
+    on(window, 'site:tags-ready', () => {
+      const tag = document.getElementById('archive-tag');
+      if (tag) {
+        controls.tag = tag;
+        onNavigation('tags');
+      } else emit('site:archive-layout', {});
+    });
     print = () => {
       for (const element of [...rows, ...groups, ...years]) element.hidden = false;
       for (const year of yearValues) document.getElementById(`year-${year}`).hidden = false;

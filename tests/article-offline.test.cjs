@@ -159,6 +159,7 @@ function acceptUndated(root, article) {
   delete catalog.records['publication-99'].edition.datePublished;
   delete catalog.records['publication-99'].edition.dateModified;
   catalog.structuredOrder.push({ record: 'publication-99' });
+  require('./fixtures/catalog.cjs').assignTags(root, 'articles', article.metadata.id);
   json(root, 'site/content/catalog.json', catalog);
 }
 

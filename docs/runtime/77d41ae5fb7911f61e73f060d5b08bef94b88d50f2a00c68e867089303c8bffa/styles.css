@@ -1663,6 +1663,27 @@ body[data-page='writing'] #archive-results {
   overflow-wrap: anywhere;
 }
 
+/* Optional tags and related reading share the native publication surface. */
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.publication-tags a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article-related {
+  margin-block: 40px;
+}
+.article-related li {
+  margin-block: 12px;
+}
+
 /* Canonical reading backdrop paint for every route and base/Color rendition.
    Placement remains paint-only; text wrapping and line boxes are unchanged. */
 :where(:root) {

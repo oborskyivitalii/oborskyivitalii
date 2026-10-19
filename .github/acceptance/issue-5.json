@@ -108,6 +108,20 @@
       "automated_scope": "Exact ancestor/source/run/tree/archive admission, Draft-only negative, content versus unknown/runtime/template/policy cases, permanent mandatory content suites and ordinary workflow routes. Current runtime PR retains applicable platform regression. No successful packaging is relabeled source, staging, publication or production acceptance.",
       "checks": ["CONTENT-CI", "RI-CI", "CURRENT-RI"],
       "gates": []
+    },
+    {
+      "id": "AC21",
+      "intent": "One validated canonical tag store covers all published archive and local articles; optional runtime tag display/filter preserves native/offline reading.",
+      "automated_scope": "Shared vocabulary/index coverage, missing/unknown/duplicate tags and unsafe/duplicate links, archive URL/history/reset/print, bounded decoding/abort/file negatives; semantic archive-tag review and current browser/source admission remain separate.",
+      "checks": ["READER", "WRITING-CATALOG", "CONTENT-CI", "STYLE-GUARD"],
+      "gates": ["READER", "EDITORIAL"]
+    },
+    {
+      "id": "AC22",
+      "intent": "One reusable runtime component selects relevant published works from a separately updated index, preserving old HTML and engine on tag-only releases.",
+      "automated_scope": "Deterministic overlap/ranking/self/duplicate/no-match bounds, old reader/room/runtime byte equality on tag-only content generation, source/index/rights/resource validation and current classifier. Actual browser fallback/filter observations and production lane acceptance remain separate.",
+      "checks": ["READER", "DELIVERY", "CONTENT-RELEASE", "CONTENT-CI", "RI-CI"],
+      "gates": ["READER", "DELIVERY"]
     }
   ],
   "checks": {

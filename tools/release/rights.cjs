@@ -167,6 +167,8 @@ function validateManifest(sourceRoot, manifest) {
 }
 
 function publicBasis(name, bytes, manifest, hostedFiles = {}) {
+  if (name === 'publication-index.json')
+    return { bases: ['original-code', 'original-text', 'linked-metadata'], retained: false };
   if (Object.hasOwn(hostedFiles, name)) return hostedFiles[name];
   if (Object.hasOwn(manifest.retained, name)) {
     const retained = manifest.retained[name];
@@ -357,6 +359,22 @@ function compile(publicDirectory, record, options = {}) {
     );
   }
   const catalog = jsonSource(sourceRoot, 'site/content/catalog.json');
+  const revision = record.components || snapshot.verify(publicDirectory, record);
+  const index = require('../site/article-index.cjs').compile(
+    sourceRoot,
+    catalog,
+    Object.entries(revision.articles || {}).map(([key, item]) => ({
+      key,
+      metadata: { id: item.articleId },
+      candidate: item.candidate,
+    }))
+  );
+  if (index)
+    assert.deepEqual(
+      readSource(publicDirectory, 'publication-index.json'),
+      index,
+      'published tag index differs from canonical source'
+    );
   const linkedPublications = Object.fromEntries(
     Object.entries(catalog.records).map(([id, item]) => [
       id,

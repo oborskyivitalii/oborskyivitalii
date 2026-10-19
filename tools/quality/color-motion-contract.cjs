@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 self-review: optional tag/index component; scene and navigation behavior preserved.
+  issue5PublicationTags: {
+    behavior: 'fixed-blocks',
+    baseEngine: '77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: '081d79445f07b7a0fd0525de02d8e19f5dc3638e97f8a026117ed6c7ec44723e',
+    archive: '0d1bfbbea3736f49ae83e0e0fbaa603038764f6887a63760c1e4e982180f7745',
+  },
   // Issue5 self-review: explicit template selection and verified native offline WebP.
   issue5GenericReader: {
     behavior: 'fixed-blocks',
@@ -157,6 +166,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-publication-tags-production',
+    family: 'issue5PublicationTags',
+    edition: 'production',
+    fingerprint: '4149b67d2f4f2736f56b777501d14d6ea30626d65f2fb92734c42dde3d07f141',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-publication-tags-plain',
+    family: 'issue5PublicationTags',
+    edition: 'plain',
+    fingerprint: '622789e11a1bcf483e5dfb277226b873fec89d2d6694d8907daa348cad7cd630',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-publication-tags-staging',
+    family: 'issue5PublicationTags',
+    edition: 'staging',
+    fingerprint: '34072105decc5584d9a54e0c6a59bf708de9af14db0dfd5a426eb8e7e4a1e9c4',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue5-generic-reader-production',
     family: 'issue5GenericReader',
