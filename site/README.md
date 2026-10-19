@@ -266,6 +266,20 @@ Hosted routes do not embed the whole article registry. A local article embeds it
 own initial descriptor; first navigation selects compatible article descriptors
 from the bounded revision manifest. Article renderer compatibility is explicit.
 
+
+Article documents reference the canonical Writing fallback through one generated,
+content-addressed `article-media/<sha256>/writing-fallback.svg` group. The scene
+geometry and theme paint remain single-owned. Size reports include this resource
+and its instantiated SVG nodes. Standalone exports verify and inline its passive
+geometry, then declare only the body media that need runtime hydration; their
+original HTML and transfer limits still apply.
+
+Every hosted article carries exact-edition source/semantic identities, media
+credits and its declared rights status. Release rights reports bind those notices,
+source inputs and every resource to the selected document pair. Review previews
+can retain explicit pending clearance; production rejects pending article/media
+rights. This inventory does not supply editorial or human rights acceptance.
+
 Prior published versions must be imported explicitly from their verified artifact:
 
 ```sh

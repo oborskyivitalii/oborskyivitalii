@@ -219,22 +219,30 @@ function assets(environment) {
   const descriptor = environment.revision.articles[environment.articleKey];
   if (descriptor.assets.length > 50) throw Error('Finite standalone asset inventory');
   return Object.fromEntries(
-    descriptor.assets.map((name) => {
-      if (!/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|pdf)$/.test(name))
-        throw Error('Unsupported standalone article resource');
-      const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
-      const sha256 = artifact.digest(bytes);
-      if (bytes.length > budgets.assetRawBytes || sha256 !== name.split('/')[1])
-        throw Error('Standalone article asset bytes differ from descriptor');
-      return [
-        name,
-        {
-          mime: name.endsWith('.pdf') ? 'application/pdf' : 'image/png',
-          sha256,
-          bytes: bytes.length,
-        },
-      ];
-    })
+    descriptor.assets
+      .map((name) => {
+        const fallback = /^article-media\/[a-f0-9]{64}\/writing-fallback\.svg$/.test(name);
+        if (
+          !fallback &&
+          !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|pdf)$/.test(name)
+        )
+          throw Error('Unsupported standalone article resource');
+        const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
+        const sha256 = artifact.digest(bytes);
+        if (bytes.length > budgets.assetRawBytes || sha256 !== name.split('/')[1])
+          throw Error('Standalone article asset bytes differ from descriptor');
+        if (fallback) require('./fallback.cjs').resourceContent(name, bytes);
+        if (fallback) return null;
+        return [
+          name,
+          {
+            mime: name.endsWith('.pdf') ? 'application/pdf' : 'image/png',
+            sha256,
+            bytes: bytes.length,
+          },
+        ];
+      })
+      .filter(Boolean)
   );
 }
 
@@ -251,9 +259,22 @@ function presentationLinks(environment, inline = false) {
   );
 }
 
+function inlineFallback(html, environment) {
+  const descriptor = environment.revision.articles[environment.articleKey];
+  html = html.replace(/<use href="([^"]+)#writing-fallback"><\/use>/g, (_, name) => {
+    if (!descriptor.assets.includes(name)) throw Error('Unknown standalone fallback');
+    return require('./fallback.cjs').resourceContent(
+      name,
+      fs.readFileSync(path.join(environment.publicDirectory, name))
+    );
+  });
+  return html;
+}
+
 function inlineAssets(html, environment) {
   const resources = assets(environment);
   const used = new Set();
+  html = inlineFallback(html, environment);
   html = html.replace(/<img\b[^>]*src="([^"]+)"[^>]*>/g, (original, name) => {
     if (!Object.hasOwn(resources, name)) {
       if (name.startsWith('article-media/')) throw Error('Unknown standalone article image');
@@ -286,5 +307,6 @@ module.exports = {
   assets,
   presentationLinks,
   inlineAssets,
+  inlineFallback,
   assertOutput,
 };

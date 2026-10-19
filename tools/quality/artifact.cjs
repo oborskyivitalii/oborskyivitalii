@@ -39,7 +39,16 @@ function checkSize(dir) {
     const html = fs.readFileSync(path.join(dir, descriptor.alias), 'utf8');
     const svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
     if (!svg) throw Error('Missing article fallback ' + key);
-    const svgNodes = (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+    let svgNodes = (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+    const fallback = svg.match(/<use href="(?:\.\.\/)*([^"#]+)#writing-fallback"><\/use>/)?.[1];
+    if (fallback) {
+      if (!descriptor.assets.includes(fallback)) throw Error('Undeclared article fallback');
+      const content = require('../site/fallback.cjs').resourceContent(
+        fallback,
+        fs.readFileSync(path.join(dir, fallback))
+      );
+      svgNodes += 1 + (content.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
+    }
     const assets = [
       'styles.css',
       'theme.js',

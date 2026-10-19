@@ -2381,6 +2381,30 @@
         "tools/quality/python_toolchain.py",
         "tools/quality/toolchain/requirements.txt"
       ]
+    },
+    {
+      "path": "tests/test_issue102_acceptance.py",
+      "language": "python",
+      "purpose": "Issue102 policy adapter executes maintained analytics plus staging/full report rejection contracts.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning issue102 policy only; permanent Node guards and existing vendor-stub browser scenarios remain in their current profiles",
+      "surviving_route": ".github/acceptance/issue-102.json",
+      "inputs": [
+        "tests/test_issue102_acceptance.py",
+        ".github/acceptance/issue-102.json",
+        "tests/analytics.test.cjs",
+        "tests/staging-regression.test.cjs",
+        "tests/staging-gate.test.cjs",
+        "tests/quality.test.cjs",
+        "tools/quality/analytics-browser.cjs",
+        "tools/quality/staging-regression.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/validate.cjs",
+        "tools/quality/secrets-publication.json",
+        "review/issue-102/2026-10-18-public-metadata-proof.json.gz"
+      ]
     }
   ]
 }

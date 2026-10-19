@@ -1,7 +1,10 @@
-# Site measurement before the first release
+# Site measurement and provider access
 
-The adapter contract below remains applicable. Dated branch/hosting observations
-are historical; [MEMORY](../MEMORY.md) and live #8/#13 own the current status.
+Current post-release follow-up: [#102](https://github.com/oborskyivitalii/oborskyivitalii/issues/102)
+owns route coverage; [#103](https://github.com/oborskyivitalii/oborskyivitalii/issues/103)
+owns assistant access to Google/Windsor. [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8)
+retains overall measurement and Search Console acceptance. Dated evidence and
+remaining gates are recorded in the [18 October audit](../review/issue-102/2026-10-18-analytics-and-search-access.md).
 
 Owner [#8](https://github.com/oborskyivitalii/oborskyivitalii/issues/8), with
 [#13](https://github.com/oborskyivitalii/oborskyivitalii/issues/13) retaining release
@@ -35,8 +38,10 @@ Edit **`site/analytics.json`**, never generated `docs/` HTML. On 15 October the
 owner's Cloudflare Web Analytics site was registered for `vitaliioborskyi.ai`
 with automatic injection off; the returned public beacon identifier and exact
 `https://vitaliioborskyi.ai/` URL are configured with `enabled: true` for the first
-release. No production deployment or visitor counts are established by this
-preparation. `searchConsoleVerification` remains null pending owner access.
+release. Production `prod-2026-10-17.4` is now live. A bounded provider read on
+18 October confirmed received pageviews; see the dated audit for counts and
+coverage limits. `searchConsoleVerification` remains null because DNS verification
+is already present; this optional HTML field does not establish Google ownership.
 `schema: 1` and `provider: "cloudflare"` are
 finite. Unknown fields, wrong types, malformed tokens or incomplete activation
 fail before the last coherent public output is replaced.
@@ -58,8 +63,11 @@ The snapshot verifier checks the optional loader digest and dependency closure.
 Explicitly retained prior snapshots keep their original loader bytes.
 
 The adapter loads the official Cloudflare module once per document, at the exact
-configured origin and finite five page paths or Home `/` path. File URLs, HTTP,
-other origins, project prefixes, review names and immutable snapshot URLs cannot
+configured origin and declared `.html` routes, their extensionless aliases
+(including `/index`), and Home `/`. The adapter derives aliases only from the
+producer-declared route list. A configured project prefix remains mandatory; arbitrary
+article paths and trailing-slash room paths are not admitted. File URLs, HTTP,
+other origins, mismatched project prefixes, review names and immutable snapshot URLs cannot
 start tracking. Archive queries and anchors do not bypass that location guard.
 The provider owns automatic SPA measurement: our adapter does not wrap history
 or emit a second manual page view. Persistent route changes keep one SDK instance;
@@ -92,8 +100,14 @@ when disabled; checking must not repair the artifact being inspected.
 Each existing functional engine runs thirteen
 additional enabled-source fixtures: five entry routes, blocked/delayed SDK, a staging
 origin and five offline entry routes. They check persistent header/Canvas, all
-destinations, history, reload, filters and one vendor request per document. The
+destinations, history, reload, filters and one vendor request per document. Each
+enabled entry checks both canonical and extensionless URLs, including query/hash
+suffixes, within the existing thirteen-case matrix. The
 vendor is stubbed; these tests send no data and do not certify dashboard counts.
+The bounded staging profile preserves seven Chromium scenarios: Home and Writing
+enabled scenarios probe canonical and extensionless entries for all five routes, blocked/delayed SDK, staging
+suppression and Home/Writing offline suppression. Staging and optional full
+validators reject missing/invalid entry-form evidence, not just a claimed pass.
 Missing fixture rows/assertions fail the existing aggregate; no #13 job is skipped.
 The delayed-SDK case completes route/history/filter interactions while the SDK
 response is held, then releases it. Navigation waits for DOM readiness using the
@@ -110,7 +124,56 @@ tracking may count those URL changes. Compare actual reported paths/counts befor
 declaring route measurement accepted. Also test Back/Forward, native reload,
 tab hiding and an ad blocker; missing beacon data is a known coverage limit.
 
-## Activation at release time
+## Current provider access and operator steps
+
+As checked on 18 October 2026, the `.ai` site uses GitHub Pages with DNS-only
+Cloudflare records. Manual Web Analytics works in this configuration; edge Traffic
+Analytics is a different data source. Keep automatic beacon injection off. The
+public `robots.txt` and `sitemap.xml` already exist; do not create duplicates.
+
+The current assistant session has direct Cloudflare reads. Windsor is reported
+not installed in this session, and the available HYPD read-only bridge returns
+`sites: []` and `accountSummaries: []`. These observations do not establish whether
+the owner's provider-side accounts are connected. No exact Google property can be
+queried until it appears in the authorized inventory. No GA4 tag is needed merely
+to use Search Console, and Windsor is an aggregation/access bridge rather than a
+browser collector.
+
+To finish #103, make the existing Windsor connection available to this session,
+or use the existing HYPD connection: [connect/reconnect Search Console](https://app.hypd.ai/sources?manage=search-console),
+then [select its account](https://app.hypd.ai/sources?select=search-console).
+HYPD reports an ended trial and a Free limit of one active account across platforms;
+selection may be sufficient. A paid plan is not a prerequisite proposed by this PR.
+Use only read access for this audit. Rediscover the inventory and copy its exact
+`siteUrl` before querying; do not guess a domain versus URL-prefix property ID.
+
+Under #8, inspect the exact existing property in [Search Console](https://search.google.com/search-console),
+confirm verification, inspect `https://vitaliioborskyi.ai/sitemap.xml` submission
+and representative URLs, then record impressions/clicks/queries with date range.
+The Google verification TXT already exists: add or replace it only if an observed
+Google verification failure requires that change. A TXT record alone does not
+prove the Google property is verified, its sitemap submitted, or pages indexed.
+The bridge describes `webmasters.readonly`, sixteen-month retention and finalized
+search data lag of two to three days; anonymized query rows need not sum to totals.
+After the article is published, inspect its actual canonical URL separately.
+
+Cloudflare dimensions include path, referrer host (API also referrer path),
+country, device, browser, OS and navigation type. Dashboard bot exclusion can help
+segment data; it does not identify every automated visit or the owner's visits.
+Retain raw totals and label filtered views. Query `sampleInterval` for each metric
+and group: unsampled recent storage does not guarantee every query is unsampled.
+Web Analytics retains recent unsampled beacon data for seven days, then aggregated
+history; its documented query window is six months. Do not pool low-volume Core
+Web Vitals percentiles or treat pageview sample size as each vital's sample size.
+
+All automated browser fixtures stub the vendor and prevent real telemetry;
+loopback/staging/offline origins also fail the production guard. Do not delete
+historical traffic by guessed geography/referrer filters. Owner visits, prior
+live smoke checks, blockers and the extensionless entry gap limit the baseline.
+Real-provider SPA/filter/history receipt, individual vital sample sizes and hosted
+SDK cost remain live acceptance work after deployment, under unchanged budgets.
+
+## Activation and later reconfiguration
 
 1. Finalize the actual GitHub Pages URL and release/canonical/sitemap setup under
    #8. Production activation requires the applicable maintainer release decision.
@@ -132,7 +195,8 @@ tab hiding and an ad blocker; missing beacon data is a known coverage limit.
    in #8/#13. Production release, independent/device/rights acceptance and analytics
    acceptance are separate records. Never submit staging for indexing.
 
-Primary documentation checked 2026-10-04:
+Primary documentation (Cloudflare dimensions/FAQ rechecked 2026-10-18):
+[dimensions](https://developers.cloudflare.com/web-analytics/data-metrics/dimensions/),
 [manual setup](https://developers.cloudflare.com/web-analytics/get-started/),
 [automatic SPA tracking](https://developers.cloudflare.com/web-analytics/get-started/web-analytics-spa/),
 [provider limits/FAQ](https://developers.cloudflare.com/web-analytics/faq/),

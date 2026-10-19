@@ -65,6 +65,7 @@ class Issue5AcceptanceTests(unittest.TestCase):
                 "tests/pages-delivery.test.cjs",
                 "tests/color-build.test.cjs",
                 "tests/release-controller.test.cjs",
+                "tests/release-rights.test.cjs",
             ],
             10,
         )

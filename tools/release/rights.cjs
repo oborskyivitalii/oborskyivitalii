@@ -166,7 +166,8 @@ function validateManifest(sourceRoot, manifest) {
   return { provenance, notices };
 }
 
-function publicBasis(name, bytes, manifest) {
+function publicBasis(name, bytes, manifest, hostedFiles = {}) {
+  if (Object.hasOwn(hostedFiles, name)) return hostedFiles[name];
   if (Object.hasOwn(manifest.retained, name)) {
     const retained = manifest.retained[name];
     assert.equal(artifact.digest(bytes), retained.sha256, 'retained public bytes changed: ' + name);
@@ -205,6 +206,100 @@ function publicBasis(name, bytes, manifest) {
   throw Error('uncovered public rights input: ' + name);
 }
 
+function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
+  const reader = require('../site/articles.cjs');
+  const descriptors =
+    record.components?.articles || snapshot.verify(publicDirectory, record).articles || {};
+  if (!Object.keys(descriptors).length) return { files: {}, editions: [] };
+  const candidates = Object.values(descriptors)
+    .filter((item) => item.candidate)
+    .map((item) => item.articleId);
+  const catalog = jsonSource(sourceRoot, 'site/content/catalog.json');
+  const selected = reader.select(sourceRoot, candidates, catalog);
+  assert.deepEqual(
+    selected.map((item) => item.key).sort(),
+    Object.keys(descriptors).sort(),
+    'hosted source selection differs'
+  );
+  const files = {};
+  const editions = [];
+  for (const article of selected) {
+    const descriptor = descriptors[article.key];
+    const notice = reader.editionNotice(article);
+    for (const [key, value] of Object.entries({
+      articleId: article.metadata.id,
+      contentEdition: article.edition.id,
+      sourceSha256: article.source.sha256,
+      semanticSha256: article.edition.semanticSha256,
+    }))
+      assert.equal(descriptor[key], value, 'hosted exact edition differs: ' + key);
+    assert.ok(
+      record.edition?.id !== 'production' ||
+        (!article.candidate &&
+          article.metadata.rights.status === 'accepted' &&
+          article.edition.rights === 'accepted'),
+      'hosted production rights remain pending'
+    );
+    const documents = [descriptor.alias, descriptor.url];
+    for (const name of documents) {
+      const html = frozen.noticeHTML(readSource(publicDirectory, name).toString());
+      assert.equal(
+        html.split('data-article-rights="').length,
+        2,
+        'one hosted rights notice required'
+      );
+      assert.ok(
+        html.includes(reader.rebase(notice.html, name)),
+        'hosted exact-edition notice differs'
+      );
+      files[name] = {
+        bases: ['original-code', 'original-text', 'article-review-input'],
+        retained: false,
+      };
+    }
+    const resources = article.assets.map((asset) => {
+      const name = reader.assetName(asset);
+      const source = manifest.assets[asset.path.slice('site/assets/'.length)];
+      assert.ok(source, 'uncovered hosted resource source');
+      assert.ok(
+        record.edition?.id !== 'production' || !source.bases.includes('article-review-input'),
+        'hosted production media clearance remains pending'
+      );
+      assert.equal(source.sha256, asset.digest, 'hosted resource provenance differs');
+      assert.equal(
+        artifact.digest(readSource(publicDirectory, name)),
+        asset.digest,
+        'hosted resource bytes differ'
+      );
+      files[name] = { bases: source.bases, retained: false };
+      return name;
+    });
+    const svg = readSource(publicDirectory, 'writing.html')
+      .toString()
+      .match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
+    const fallback = require('../site/fallback.cjs').articleResource(svg || '');
+    assert.deepEqual(
+      readSource(publicDirectory, fallback.name),
+      fallback.bytes,
+      'hosted fallback geometry differs'
+    );
+    resources.push(fallback.name);
+    files[fallback.name] = { bases: ['original-code', 'original-diagram'], retained: false };
+    assert.deepEqual(descriptor.assets, resources, 'hosted resource closure differs');
+    editions.push({
+      key: article.key,
+      ...notice.data,
+      noticeDigest: notice.digest,
+      documents,
+      assets: resources,
+      inputs: Object.fromEntries(
+        article.inputs.map((name) => [name, artifact.digest(readSource(sourceRoot, name))])
+      ),
+    });
+  }
+  return { files, editions };
+}
+
 function publicNotices(publicDirectory, sourceRoot, record) {
   const credits = jsonSource(sourceRoot, 'site/content/pages/credits/main.json');
   const required = ['T004', 'T006', 'T008', 'T014', 'T043', 'T051', 'T052', 'T053'];
@@ -240,9 +335,10 @@ function compile(publicDirectory, record, options = {}) {
     assert.match(record[key], /^[a-f0-9]{40}$/);
   const manifest = jsonSource(sourceRoot, manifestPath);
   const { provenance, notices } = validateManifest(sourceRoot, manifest);
+  const hosted = hostedInventory(publicDirectory, sourceRoot, record, manifest);
   const files = {};
   for (const file of artifact.entries(publicDirectory)) {
-    const coverage = publicBasis(file.path, file.bytes, manifest);
+    const coverage = publicBasis(file.path, file.bytes, manifest, hosted.files);
     basesFor(manifest, coverage.bases);
     files[file.path] = { sha256: artifact.digest(file.bytes), ...coverage };
   }
@@ -296,13 +392,15 @@ function compile(publicDirectory, record, options = {}) {
     publicNotices: publicNotices(publicDirectory, sourceRoot, record),
     linkedPublications,
     materials: {
-      scope: 'linked-metadata-only',
-      hostedEditions: [],
+      scope: hosted.editions.length ? 'exact-hosted-editions' : 'linked-metadata-only',
+      hostedEditions: hosted.editions,
       linkedEditionCount: Object.values(linkedPublications).reduce(
         (count, item) => count + item.urls.length,
         0
       ),
-      reuse: 'External linked editions retain their own terms; no article bodies are shipped.',
+      reuse: hosted.editions.length
+        ? 'Hosted editions carry exact source, media credits and rights status. Pending clearance is not a reuse grant. External linked editions retain their own terms.'
+        : 'External linked editions retain their own terms; no article bodies are shipped.',
     },
     linkedDiscussions: Object.fromEntries(
       Object.entries(catalog.discussions).map(([id, item]) => [id, { url: item.url }])

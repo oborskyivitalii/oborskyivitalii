@@ -138,22 +138,74 @@ function sourceDetails(root, article) {
   const metadata = article.metadata;
   const rights = escapeText(metadata.rights.notice);
   if (article.profile.reader?.references === 'inline') {
-    return `<p class="article-sources">${rights}</p>`;
+    return editionNotice(article).html;
   }
-  return substitute(
-    fs.readFileSync(path.join(root, 'site/templates/articles/sources.html'), 'utf8'),
-    {
-      RIGHTS: rights,
-      EDITION: escapeText(metadata.edition),
-      SOURCES: metadata.references
-        .map(
-          (reference) =>
-            `<li><a href="${escapeAttribute(reference.url)}">${escapeText(reference.id)}</a></li>`
-        )
-        .join('\n'),
-    },
-    'article sources'
+  return (
+    substitute(
+      fs.readFileSync(path.join(root, 'site/templates/articles/sources.html'), 'utf8'),
+      {
+        RIGHTS: rights,
+        EDITION: escapeText(metadata.edition),
+        SOURCES: metadata.references
+          .map(
+            (reference) =>
+              `<li><a href="${escapeAttribute(reference.url)}">${escapeText(reference.id)}</a></li>`
+          )
+          .join('\n'),
+      },
+      'article sources'
+    ) + editionNotice(article).html
   );
+}
+
+function editionNotice(article) {
+  const data = {
+    articleId: article.metadata.id,
+    contentEdition: article.edition.id,
+    sourceSha256: article.source.sha256,
+    semanticSha256: article.edition.semanticSha256,
+    status: article.metadata.rights.status,
+    notice: article.metadata.rights.notice,
+    resources: article.assets
+      .filter((asset) => asset.mime === 'image/png')
+      .map((asset) => ({
+        path: asset.path,
+        sha256: asset.digest,
+        credit: asset.credit,
+      })),
+    presentation: article.presentation
+      ? {
+          path: article.presentation.file.path,
+          sha256: article.presentation.file.digest,
+          sourceUrl: article.presentation.sourceUrl,
+        }
+      : null,
+  };
+  const digest = require('node:crypto')
+    .createHash('sha256')
+    .update(JSON.stringify(data))
+    .digest('hex');
+  const resources = data.resources
+    .map(
+      (item) =>
+        `<li>${escapeText(item.path)} · SHA256 ${item.sha256}<p>${escapeText(item.credit)}</p></li>`
+    )
+    .join('');
+  const presentation = data.presentation
+    ? `<p>Presentation: ${escapeText(data.presentation.path)} · SHA256 ${data.presentation.sha256}. ` +
+      `<a href="${escapeAttribute(data.presentation.sourceUrl)}">Source edition and its credits</a>.</p>`
+    : '';
+  const html =
+    `<section class="article-sources" data-article-rights="${digest}">` +
+    '<details><summary>Edition rights and resources</summary>' +
+    `<p>${escapeText(data.notice)}</p>` +
+    `<p>Content edition: ${escapeText(data.contentEdition)}. Rights: ${escapeText(data.status)}. ` +
+    `Source SHA256 ${data.sourceSha256}; semantic SHA256 ${data.semanticSha256}.</p>` +
+    `<ul>${resources}</ul>${presentation}` +
+    '<p><a href="credits.html#license-scope">Site licenses and exclusions</a>. ' +
+    'Third-party material retains its own terms; pending clearance is not a reuse grant.</p>' +
+    '</details></section>';
+  return { data, digest, html };
 }
 
 function presentationBody(root, article) {
@@ -281,6 +333,7 @@ function immutableLinks(html, articles) {
 }
 
 module.exports = {
+  editionNotice,
   maximumArticles,
   articleId,
   articleURL,

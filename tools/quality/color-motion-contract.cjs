@@ -5,6 +5,16 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 self-review: reader resource/notices producer changed; all five runtime bytes match issue5Reconciled.
+  issue5ReaderResources: {
+    behavior: 'fixed-blocks',
+    baseEngine: '9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: 'f30dd4d3c8090cfe12f372d1f5e592e7627f1f8c4c138674a19175549a3debcf',
+    archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
+  },
+
   issue5Reconciled: {
     behavior: 'fixed-blocks',
     baseEngine: '2c6db864d4d349effa52078d3fa77d8dbc6c89d044c74c9cb55680c762285452',
@@ -138,6 +148,28 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-resources-plain',
+    family: 'issue5ReaderResources',
+    edition: 'plain',
+    fingerprint: '3e7f573d02a9f973eac2fabd1b0cc98fb91b82a527ace99b41d2fccb8651663a',
+    styles: '0febf1812d0748533e48b5ab6dfc4e8bac6c3c6a787ac9701aaf6ebbe61d5cdc',
+  },
+  {
+    id: 'issue5-reader-resources-staging',
+    family: 'issue5ReaderResources',
+    edition: 'staging',
+    fingerprint: '9b4f4cb63c1e1dc9a2b5d8a6a65e86560ab5504f8f2df65b0692710ff0f4271f',
+    styles: '12342444a81c54686eb840bda16c0afc40a569badd6644d8696437f031f8e64f',
+  },
+  {
+    id: 'issue5-reader-resources-production',
+    family: 'issue5ReaderResources',
+    edition: 'production',
+    fingerprint: '8aa18d270794908ce98dc95d631dba2d67f54c4de74176a5672ac53fbaa5f324',
+    styles: '0febf1812d0748533e48b5ab6dfc4e8bac6c3c6a787ac9701aaf6ebbe61d5cdc',
+  },
+
   {
     id: 'issue5-reconciled-production',
     family: 'issue5Reconciled',

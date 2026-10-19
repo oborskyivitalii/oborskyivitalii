@@ -217,6 +217,7 @@ function routePayloads(portrait, options = {}) {
     source = replaceStylesheet(source, '');
     source = inlineIcon(source, environment.publicDirectory);
     source = offline.documents(offline.articleLinks(source, environment), environment);
+    source = offline.inlineFallback(source, environment);
     const key = 'article:' + environment.articleKey;
     payload.files[key] = 'article-' + environment.articleKey.replace(':', '-') + '-offline.html';
     payload.pages[key] = rewriteLinks(
@@ -226,6 +227,9 @@ function routePayloads(portrait, options = {}) {
       offline.presentationLinks(environment)
     );
     payload.assets = offline.assets(environment);
+    // The standalone document owns inline scene geometry; only body media need
+    // runtime resource hydration. Its derivative descriptor reflects that scope.
+    payload.revision.articles[environment.articleKey].assets = Object.keys(payload.assets);
     if (Buffer.byteLength(payload.pages[key], 'utf8') > 100000)
       throw Error('Standalone article HTML byte budget');
     payload.revision.articles[environment.articleKey].sha256 = digest(payload.pages[key]);

@@ -557,6 +557,16 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
   try {
     await page.goto(urls.alias);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    await page.waitForFunction(
+      () => {
+        const use = document.querySelector('.space-fallback use');
+        if (!use) return false;
+        const bounds = use.getBBox();
+        return bounds.width > 0 && bounds.height > 0;
+      },
+      null,
+      { timeout }
+    );
     assert.ok(await page.locator('.article-body').innerText(), 'fallback retains full article');
     const anchor = page.locator('.article-toc a[href^="#"]').first();
     const fragment = await anchor.getAttribute('href');

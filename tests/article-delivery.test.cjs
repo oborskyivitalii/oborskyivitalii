@@ -115,7 +115,7 @@ test('article delivery includes a finite separate inventory, immutable document 
   assert.equal(record.components.preview, true);
   assert.equal(snapshot.immutable(article.alias), false);
   assert.equal(snapshot.immutable(article.url), true);
-  assert.equal(article.assets.length, 1);
+  assert.equal(article.assets.length, 2);
   for (const file of article.assets) {
     assert.equal(snapshot.immutable(file), true);
     assert.equal(artifact.digest(fs.readFileSync(path.join(publicDir, file))), file.split('/')[1]);
@@ -124,13 +124,55 @@ test('article delivery includes a finite separate inventory, immutable document 
   assert.throws(() => snapshot.inventory(Object.keys(record.files)), /unexpected public input/);
 });
 
-for (const name of ['alias', 'snapshot', 'asset']) {
+test('article fallback preserves exact scene geometry and its resources remain budgeted', (t) => {
+  const { publicDir, article } = fixture(t);
+  const fallback = require('../tools/site/fallback.cjs');
+  const writing = fs.readFileSync(path.join(publicDir, 'writing.html'), 'utf8');
+  const svg = writing.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)[0];
+  const resource = fallback.articleResource(svg);
+  assert.ok(article.assets.includes(resource.name));
+  assert.deepEqual(fs.readFileSync(path.join(publicDir, resource.name)), resource.bytes);
+  assert.equal(
+    fallback.resourceContent(resource.name, resource.bytes),
+    svg.slice(svg.indexOf('>') + 1, -6)
+  );
+  const html = fs.readFileSync(path.join(publicDir, article.alias), 'utf8');
+  assert.match(
+    html,
+    /<use href="\.\.\/article-media\/[a-f0-9]{64}\/writing-fallback\.svg#writing-fallback"/
+  );
+  const sizes = artifact.checkSize(publicDir);
+  const row = sizes.articleRows[0];
+  assert.ok(row.svgNodes >= (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length);
+  assert.ok(row.assets.includes(resource.name));
+  for (const injection of [
+    '<script>alert(1)</script>',
+    '<image href="https://example.com/a"/>',
+    '<path d="M0 0" onload="alert(1)"/>',
+    '<style>svg{display:none}</style>',
+  ]) {
+    const bytes = Buffer.from(
+      resource.bytes.toString().replace('</g></svg>', injection + '</g></svg>')
+    );
+    const name = `article-media/${artifact.digest(bytes)}/writing-fallback.svg`;
+    assert.throws(() => fallback.resourceContent(name, bytes), /Unsupported/);
+  }
+  assert.throws(() => fallback.resourceContent(resource.name, Buffer.from('changed')), /identity/);
+});
+
+for (const name of ['alias', 'snapshot', 'asset', 'fallback']) {
   test(
     'article ' + name + ' omission is rejected even with a recomputed artifact manifest',
     (t) => {
       const { publicDir, record, article } = fixture(t);
       const file =
-        name === 'alias' ? article.alias : name === 'snapshot' ? article.url : article.assets[0];
+        name === 'alias'
+          ? article.alias
+          : name === 'snapshot'
+            ? article.url
+            : name === 'fallback'
+              ? article.assets.at(-1)
+              : article.assets[0];
       fs.rmSync(path.join(publicDir, file));
       assert.throws(
         () => snapshot.verify(publicDir, refreshRecord(publicDir, record)),

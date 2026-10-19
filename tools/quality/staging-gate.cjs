@@ -37,7 +37,7 @@ function expectedCoverage(manifest) {
         : {}),
       navigation: 2,
       failures: 10,
-      analytics: 7,
+      analytics: regression.contract().analytics_rows,
     },
     performance: {
       routeSamples: 2,

@@ -206,7 +206,7 @@ The complete bounded matrix is executable in `tools/quality/staging-regression.c
 | No-Canvas route journeys | Chromium at both widths: two journeys visiting all five routes (10 route observations). |
 | Persistent navigation | Chromium 1440/light and Firefox 390/dark: two complete representative journeys. |
 | Capability/failure fixtures | Ten Chromium 320px cases, including the remaining original failure modes; no-Canvas is covered by the separate all-route journeys. |
-| Analytics fixtures | Seven Chromium fixtures: Home/Writing enabled, blocked/delayed SDK, staging suppression and Home/Writing offline suppression. Vendor traffic uses a local stub. |
+| Analytics fixtures | Seven Chromium fixtures containing all five canonical/extensionless entry probes (Home plus Writing/Research/Talks/Credits), blocked/delayed SDK, staging suppression and Home/Writing offline suppression. Vendor traffic uses a local stub; missing entry-form evidence fails the gate. |
 | Authored Color smoke | Two Chromium width cases when the artifact is the Color rendition. |
 | Lighthouse | Research and Writing: two sequential single mobile trials. Individual original mobile metric budgets apply; these are not three-run median release results. |
 | Sustained motion | Research/Writing at 390px and CPU ×4: idle, scroll, Off and reduced windows for each route, with positive paint probes and original applicable limits. |

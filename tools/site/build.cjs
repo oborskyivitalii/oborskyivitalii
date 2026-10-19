@@ -436,6 +436,10 @@ function emitArticles({
   for (const article of selectedArticles) {
     const input = article.input;
     const version = article.version;
+    if (!contentOnly) api ??= model(root, definitions);
+    const fallbackResource = require('./fallback.cjs').articleResource(
+      contentOnly ? baselineFallback(output, 'writing') : fallback(api, 'writing')
+    );
     const reusable =
       previous?.articles?.[article.key]?.version === version &&
       trusted?.articles?.[article.key]?.version === version &&
@@ -457,7 +461,7 @@ function emitArticles({
         input,
         api,
         measurement.head,
-        contentOnly ? baselineFallback(output, 'writing') : null
+        fallbackResource.html
       );
       if (versioned) html = versionHTML(html, version, components);
       html = articles.attachHead(html, article, selectedArticles, preview);
@@ -481,13 +485,14 @@ function emitArticles({
       if (asset.bytes.length > 2000000) throw Error('Article asset byte budget ' + asset.id);
       put(articles.assetName(asset), asset.bytes);
     }
+    put(fallbackResource.name, fallbackResource.bytes);
     result.articles[article.key] = {
       version,
       url: article.url,
       snapshot: article.snapshot,
       sha256: result.files[article.snapshot],
       inputs: input.inputs,
-      assets: article.assets.map(articles.assetName),
+      assets: [...article.assets.map(articles.assetName), fallbackResource.name],
       candidate: article.candidate,
       articleId: article.metadata.id,
       contentEdition: article.edition.id,

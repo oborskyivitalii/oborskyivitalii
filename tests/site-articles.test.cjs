@@ -319,9 +319,10 @@ test('links-only reader keeps one local PDF and recording link without duplicate
   assert.equal((document.match(new RegExp(`href="${recordingUrl}"`, 'g')) || []).length, 1);
   assert.doesNotMatch(
     document,
-    /presentation-toggle|presentation-viewer|<iframe|figure-pixel|Sources and edition|Content edition:|source-[12]</
+    /presentation-toggle|presentation-viewer|<iframe|figure-pixel|Sources and edition|source-[12]</
   );
   assert.match(document, /Review pending\./);
+  assert.match(document, /data-article-rights="[a-f0-9]{64}"/);
   assert.match(document, /href="https:\/\/example.com\/source">Research/);
   assert.deepEqual(fs.readFileSync(path.join(root, 'candidate', pdfPath)), bytes);
   snapshot.verify(path.join(root, 'candidate'), { files: result.files });
@@ -436,7 +437,7 @@ test('UTF-8 article limits reject oversized Unicode documents without replacing 
   const root = fixture(t);
   const record = publication(root);
   const before = preview(root);
-  record.manuscript += '\n\n' + 'Ж'.repeat(40000) + '\n';
+  record.manuscript += '\n\n' + 'Ж'.repeat(50000) + '\n';
   record.edition.source.sha256 = build.sha(record.manuscript);
   record.edition.semanticSha256 = require('../tools/publishing/article.cjs').semanticDigest(
     record.metadata,
