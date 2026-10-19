@@ -5,6 +5,17 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Editorial hierarchy/roles producer: reader typography changes; all four runtime scripts are identical.
+  issue5EditorialReader: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    baseEngine: 'de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '9d4dc3de3d0acec893c90e59d4039bf9974921937bf7a51a07840243c7208038',
+    archive: '0422f2dc13bf5e78b79221aa9a28840c1f996b08927288f47c096ab7835a203e',
+  },
+
   // Reusable reader mode: shared presentation/lifecycle; Writing scene geometry is unchanged.
   issue5ReaderMode: {
     behavior: 'fixed-blocks',
@@ -254,6 +265,28 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-editorial-reader-production',
+    family: 'issue5EditorialReader',
+    edition: 'production',
+    fingerprint: '615c5485744941ca65a00866cf97ac9638e4050949158b3b2208f7190c502641',
+    styles: 'b87628400e51f96ae836144ce749a64792a1944ca1ccfd77f5209e6baf905f09',
+  },
+  {
+    id: 'issue5-editorial-reader-plain',
+    family: 'issue5EditorialReader',
+    edition: 'plain',
+    fingerprint: '23521753d7a431dafc1538be77ea47c0db60cd329f1de02a8434e47a655dfafa',
+    styles: 'b87628400e51f96ae836144ce749a64792a1944ca1ccfd77f5209e6baf905f09',
+  },
+  {
+    id: 'issue5-editorial-reader-staging',
+    family: 'issue5EditorialReader',
+    edition: 'staging',
+    fingerprint: '49d7d90eb1101b04353d474ba15f416320c2755771f69cd4afea690b9089c8ee',
+    styles: 'dd184c812dc9fad32a8651ab061187c4ea1a5a2d4ca3335a6c24dcadc7403628',
+  },
+
   {
     id: 'issue5-reader-mode-production',
     family: 'issue5ReaderMode',

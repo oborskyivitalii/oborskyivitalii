@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
     "date": "2026-10-19",
-    "summary": "Integrate both parent control routes, preserve issue108 owners, and map delivery lanes without changing budgets."
+    "summary": "Editorial reader refinement: canonical source-bound roles, typography and native Contents; unchanged runtime scripts and original budgets."
   },
   "layers": [
     {
@@ -632,7 +632,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "2118f77042ea819b08bb92570266f58de7340999f401f0e845460b12d98cc957",
+    "digest": "cc547a2e86ab088bb0c3ba4ad45c5e839fb081131871a74251a9904ba739cb15",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -748,7 +748,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "d9f2a0c86b5e734a96d4bfc4af1fd77d07486935a86d3732e7060e7115570a49"
+        "sha256": "93151e378ceb501f6d43a1e7bc1b89a095fcbe90af9e637bc1f7ac8b1b1c371a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -860,7 +860,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "4f3bbacb2e258ed6862327a07b568430ca905a272ed4e37b5f09c9fd97a0233d"
+        "sha256": "866198b27d39eac7a3134a235581508653f8a25de7bd4791a286a07963105d23"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

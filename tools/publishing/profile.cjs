@@ -1,6 +1,7 @@
 'use strict';
 
 const { readSource } = require('./safety.cjs');
+const { blockDigest } = require('./semantic.cjs');
 
 const formats = ['html', 'md', 'txt', 'copy-ready'];
 const relationships = ['adaptation', 'equivalent-rendition'];
@@ -142,13 +143,72 @@ function readerSections(selection, article) {
   }
 }
 
+function readerElements(selection, article, appendices = []) {
+  if (!Array.isArray(selection) || !selection.length || selection.length > 50)
+    throw Error('Reader elements require 1–50 explicit source-bound roles');
+  const nodes = article.model.tree.children;
+  const selected = new Set();
+  for (const entry of selection) {
+    object(entry, ['role', 'sha256', 'attribution'], 'reader element');
+    const expected = { prompt: 'paragraph', quotation: 'blockquote', endnote: 'heading' }[
+      entry.role
+    ];
+    const matches = nodes.filter((node) => blockDigest(node) === entry.sha256);
+    if (
+      !expected ||
+      !digestPattern.test(entry.sha256) ||
+      selected.has(entry.sha256) ||
+      !matches.length ||
+      matches.some((node) => node.type !== expected) ||
+      (entry.role === 'endnote' && (matches.length !== 1 || matches[0].depth !== 3)) ||
+      (entry.role === 'prompt' &&
+        matches.some((node) => node.children.some((child) => child.type === 'image')))
+    )
+      throw Error('Reader element role must bind a distinct admitted source block');
+    if (entry.role === 'endnote') {
+      const start = nodes.indexOf(matches[0]);
+      const chapter = nodes
+        .slice(0, start)
+        .findLast((node) => node.type === 'heading' && node.depth === 2);
+      const following = nodes.slice(start + 1);
+      const end = following.findIndex((node) => node.type === 'heading' && node.depth === 2);
+      if (
+        !chapter ||
+        appendices?.includes(chapter.id) ||
+        (end < 0 ? following : following.slice(0, end)).some((node) => node.type === 'heading')
+      )
+        throw Error('Reader endnote requires a trailing H3 group in a main chapter');
+    }
+    selected.add(entry.sha256);
+    if (entry.attribution !== undefined) {
+      if (
+        entry.role !== 'quotation' ||
+        !digestPattern.test(entry.attribution) ||
+        matches.length !== 1
+      )
+        throw Error('Reader attribution requires one explicit quotation');
+      const following = nodes[nodes.indexOf(matches[0]) + 1];
+      if (
+        !following ||
+        following.type !== 'paragraph' ||
+        blockDigest(following) !== entry.attribution ||
+        following.children.some((child) => child.type === 'image')
+      )
+        throw Error('Reader attribution must bind the immediately following source paragraph');
+    }
+  }
+  for (const entry of selection)
+    if (entry.attribution && selected.has(entry.attribution))
+      throw Error('Reader attribution cannot also have another element role');
+}
+
 function readerSelection(profile, article) {
   if (profile.reader === undefined) {
     return;
   }
   const reader = object(
     profile.reader,
-    ['references', 'presentation', 'images', 'equivalentImages', 'sections'],
+    ['references', 'presentation', 'images', 'equivalentImages', 'sections', 'elements'],
     'reader'
   );
   if (
@@ -160,6 +220,8 @@ function readerSelection(profile, article) {
     throw new Error('Invalid profile reader selection');
   }
   if (reader.sections !== undefined) readerSections(reader.sections, article);
+  if (reader.elements !== undefined)
+    readerElements(reader.elements, article, reader.sections?.appendices);
   if (reader.equivalentImages !== undefined) {
     const selected = object(
       reader.equivalentImages,

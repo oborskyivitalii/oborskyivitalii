@@ -47,6 +47,20 @@ edition identifier when every declared reference already has a named manuscript
 link. The reader still shows the publication's rights notice; manifests retain
 the complete edition, source and provenance records. Unselected policies retain
 the existing viewer and source-list behavior.
+The shared website reader owns H2 chapter breaks, H3 typography, native
+progressive Contents and quotations. Optional `reader.elements` declares up to50
+web-only roles by `sha256` of the admitted top-level AST block using
+`blockDigest` from `tools/publishing/semantic.cjs`: `prompt` for a paragraph,
+`quotation` for a blockquote and `endnote` for a trailing H3 group. Identical
+prompt blocks share one explicit declaration. A quotation can declare an
+`attribution` block digest; it must be the immediately following paragraph and
+is grouped into the quote's caption without changing its text or citations.
+Endnote H3 content becomes a separate supporting-reading block after its chapter.
+Unknown, duplicate, stale or mistyped bindings fail; manuscript changes require
+reviewing and refreshing affected declarations. The adapter never infers roles
+from specific words or from bold formatting. Print/platform renditions retain
+the original AST and prose. Omitting these roles keeps ordinary article styles.
+
 No author-supplied HTML or general iframe channel is enabled. Small declared PDF
 resources can travel in bounded offline exports; a complete article plus deck
 that exceeds the existing800KB gzip limit is rejected with a hosted-edition route.

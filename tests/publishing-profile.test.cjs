@@ -305,3 +305,70 @@ test('reader section roles bind real trailing chapters and a bounded numbered re
     assert.throws(() => loadProfile(f.root, f.article));
   }
 });
+
+test('editorial roles reject stale blocks, wrong types, duplicate bindings and detached attribution', async (t) => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const f = await fixture(t, { illustrated: false, adaptation: false });
+  const compiled = compile(
+    '## Argument\n\n**A recurring prompt.**\n\n> Exact quotation.\n\n*Exact attribution.*\n\nOther text.\n\n### End reading\n\nMore sources.',
+    []
+  );
+  Object.assign(f.article, { model: compiled.model, sections: compiled.model.sections });
+  const nodes = compiled.model.tree.children;
+  const prompt = { role: 'prompt', sha256: blockDigest(nodes[1]) };
+  const quote = {
+    role: 'quotation',
+    sha256: blockDigest(nodes[2]),
+    attribution: blockDigest(nodes[3]),
+  };
+  const endnote = { role: 'endnote', sha256: blockDigest(nodes[5]) };
+  f.profile.reader = { elements: [prompt, quote, endnote] };
+  saveProfile(f.root, f.article.metadata.id, f.profile);
+  assert.deepEqual(loadProfile(f.root, f.article).profile.reader.elements, [
+    prompt,
+    quote,
+    endnote,
+  ]);
+  for (const elements of [
+    [],
+    [prompt, prompt],
+    [{ ...prompt, sha256: '0'.repeat(64) }],
+    [{ ...quote, role: 'prompt' }],
+    [{ ...prompt, attribution: quote.attribution }],
+    [{ ...quote, attribution: blockDigest(nodes[4]) }],
+    [quote, { role: 'prompt', sha256: quote.attribution }],
+    [{ ...endnote, sha256: blockDigest(nodes[0]) }],
+    [{ ...prompt, extra: true }],
+  ]) {
+    f.profile.reader.elements = elements;
+    saveProfile(f.root, f.article.metadata.id, f.profile);
+    assert.throws(() => loadProfile(f.root, f.article), /reader|profile/i);
+  }
+  f.profile.reader.elements = [quote];
+  nodes[3].children[0].children[0].value = 'Changed attribution.';
+  saveProfile(f.root, f.article.metadata.id, f.profile);
+  assert.throws(() => loadProfile(f.root, f.article), /attribution/i);
+});
+
+test('endnotes cannot extract reference lists or swallow later subsections', async (t) => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const f = await fixture(t, { illustrated: false, adaptation: false });
+  const compiled = compile(
+    '## Argument\n\n### Early group\n\nText.\n\n### Later subsection\n\nText.\n\n## Notes\n\n### Source group\n\n1. Source.',
+    []
+  );
+  Object.assign(f.article, { model: compiled.model, sections: compiled.model.sections });
+  for (const id of ['early-group', 'source-group']) {
+    f.profile.reader = {
+      sections: { references: 'notes', appendices: ['notes'] },
+      elements: [
+        {
+          role: 'endnote',
+          sha256: blockDigest(compiled.model.tree.children.find((node) => node.id === id)),
+        },
+      ],
+    };
+    saveProfile(f.root, f.article.metadata.id, f.profile);
+    assert.throws(() => loadProfile(f.root, f.article), /trailing H3 group/);
+  }
+});

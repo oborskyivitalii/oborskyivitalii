@@ -67,4 +67,4 @@ function adaptationDigest(metadata, source, fullEdition, platform) {
   return digest(identity);
 }
 
-module.exports = { semanticDigest, adaptationDigest };
+module.exports = { semanticDigest, adaptationDigest, blockDigest: digest };

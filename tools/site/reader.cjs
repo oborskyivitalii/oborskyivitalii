@@ -1,5 +1,6 @@
 'use strict';
 // Web-only presentation of the admitted article AST. No publication-specific layout rules.
+const { blockDigest } = require('../publishing/semantic.cjs');
 const { render, plain, escapeHtml } = require('../publishing/render.cjs');
 
 function partition(article) {
@@ -18,6 +19,15 @@ function partition(article) {
     if (node.type === 'heading' && node.depth === 2) chapters.push({ heading: node, nodes: [] });
     if (chapters.length) chapters.at(-1).nodes.push(node);
     else intro.push(node);
+  }
+  const endnoteHashes = new Set(
+    (article.profile.reader?.elements || [])
+      .filter((entry) => entry.role === 'endnote')
+      .map((entry) => entry.sha256)
+  );
+  for (const chapter of chapters) {
+    const start = chapter.nodes.findIndex((node) => endnoteHashes.has(blockDigest(node)));
+    if (start >= 0) chapter.endnote = chapter.nodes.splice(start);
   }
   const roles = article.profile.reader?.sections || {};
   const appendices = new Set(roles.appendices || []);
@@ -68,8 +78,33 @@ function components(article, layout) {
       note.uses.push(id);
       return `<a class="reader-citation" id="${id}" href="#${note.id}" role="doc-noteref" aria-label="Reference ${number}">${original}</a>`;
     });
+  const elements = new Map(
+    (article.profile.reader?.elements || []).map((entry) => [entry.sha256, entry])
+  );
+  const sourceNodes = article.model.tree.children;
+  const attributions = new Map();
+  const omitted = new Set();
+  for (const node of sourceNodes) {
+    const role = elements.get(blockDigest(node));
+    if (role?.attribution) {
+      const attribution = sourceNodes[sourceNodes.indexOf(node) + 1];
+      attributions.set(node, attribution);
+      omitted.add(attribution);
+    }
+  }
   let linkDepth = 0;
   const hooks = {
+    paragraph: (node, { children, render: renderNode }) => {
+      if (omitted.has(node)) return '';
+      if (node.children.length === 1 && node.children[0].type === 'image')
+        return renderNode(node.children[0]);
+      const role = elements.get(blockDigest(node));
+      return `<p${role?.role === 'prompt' ? ' class="reader-prompt"' : ''}>${children(node)}</p>\n`;
+    },
+    blockquote: (node, { children }) => {
+      const attribution = attributions.get(node);
+      return `<figure class="reader-quotation"><blockquote>${children(node)}</blockquote>${attribution ? '<figcaption>' + children(attribution) + '</figcaption>' : ''}</figure>\n`;
+    },
     text: (node) => (linkDepth ? escapeHtml(node.value) : citationText(node.value)),
     link: (node, { children }) => {
       linkDepth++;
@@ -141,7 +176,12 @@ function contents(layout) {
     .map(({ heading, nodes }) => {
       const link = (node) => `<a href="#${escapeHtml(node.id)}">${escapeHtml(plain(node))}</a>`;
       const children = nodes.filter((node) => node.type === 'heading' && node.depth === 3);
-      return `<li>${link(heading)}${children.length ? '<ol>' + children.map((node) => '<li>' + link(node) + '</li>').join('') + '</ol>' : ''}</li>`;
+      const subsections = children.length
+        ? `<details class="reader-subsections"><summary>Subsections<span class="sr-only"> in ${escapeHtml(plain(heading))}</span></summary><ol>` +
+          children.map((node) => '<li>' + link(node) + '</li>').join('') +
+          '</ol></details>'
+        : '';
+      return `<li>${link(heading)}${subsections}</li>`;
     })
     .join('\n');
 }
@@ -179,7 +219,15 @@ function prepare(article) {
     intro +
     '</div>' +
     layout.chapters
-      .map((chapter) => '<section class="reader-chapter">' + nodes(chapter.nodes) + '</section>')
+      .map(
+        (chapter) =>
+          '<section class="reader-chapter">' +
+          nodes(chapter.nodes) +
+          '</section>' +
+          (chapter.endnote
+            ? `<aside class="reader-endnote" aria-labelledby="${escapeHtml(chapter.endnote[0].id)}">${nodes(chapter.endnote)}</aside>`
+            : '')
+      )
       .join('');
   const appendices = layout.appendices
     .map(

@@ -4,6 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- 19 October latest #5/PR79 increment: user authorized editorial hierarchy and
+  preview after independent UX review. Shared headings/chapter rhythm, source-bound
+  prompt/quotation/endnote roles, native progressive Contents and mobile opening.
+  See review/issue-5/2026-10-19-editorial-reader.md; exact CI/preview belongs to PR79.
+
 - PR79 orbit follow-up supersedes same-scene depth excursions: center, circle the
   single Writing fractal and restore reading. Bounded independent review found
   and rechecked fixes for repeated escape retargets and unsafe orbit parameters.

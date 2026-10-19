@@ -298,3 +298,61 @@ test('same-document fragment history restores disclosure geometry before applyin
   });
   assert.deepEqual(calls, [['disclosures', [false, true, true]], ['scroll', 0, 1900], ['resume']]);
 });
+
+test('declared editorial roles preserve words, group attribution and keep prose emphasis out of contents', () => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const input = article(
+    '# A different article\n\n## Argument\n\n**Consider the alternative.**\n\n**An ordinary thesis.**\n\n> A quoted observation.\n\n*— Another author [1].*\n\n### An actual subsection\n\nMore prose.\n\n### Reading onward\n\nSupporting reading.\n\n## Sources\n\n1. [A source](https://example.com).'
+  );
+  const nodes = input.model.tree.children;
+  const prompt = nodes[2],
+    quote = nodes[4],
+    attribution = nodes[5];
+  input.profile.reader = {
+    sections: { references: 'sources', appendices: ['sources'] },
+    elements: [
+      { role: 'prompt', sha256: blockDigest(prompt) },
+      { role: 'quotation', sha256: blockDigest(quote), attribution: blockDigest(attribution) },
+      { role: 'endnote', sha256: blockDigest(nodes.find((node) => node.id === 'reading-onward')) },
+    ],
+  };
+  const before = JSON.stringify(input);
+  const output = prepare(input);
+  assert.equal(JSON.stringify(input), before);
+  assert.match(output.body, /class="reader-prompt"><strong>Consider the alternative/);
+  assert.match(output.body, /<p><strong>An ordinary thesis/);
+  assert.match(
+    output.body,
+    /<figure class="reader-quotation"><blockquote>.*?<\/blockquote><figcaption><em>— Another author/s
+  );
+  assert.equal((output.body.match(/Another author/g) || []).length, 1);
+  assert.match(output.appendices, /role="doc-backlink"/);
+  assert.match(output.toc, /<details class="reader-subsections"><summary>Subsections/);
+  assert.match(output.toc, /href="#an-actual-subsection"/);
+  assert.ok(!output.toc.includes('Consider the alternative'));
+  assert.ok(!output.toc.includes('#reading-onward'));
+  assert.match(
+    output.body,
+    /<\/section><aside class="reader-endnote" aria-labelledby="reading-onward">/
+  );
+  validateFragment(output.body + output.appendices + output.toc, 'editorial roles');
+});
+
+test('a declared supporting group stays after its own chapter and before later chapters', () => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const input = article(
+    '# A different article\n\n## First\n\nArgument.\n\n### Supporting reading\n\nFirst chapter sources.\n\n## Second\n\nSecond argument.'
+  );
+  input.profile.reader.elements = [
+    {
+      role: 'endnote',
+      sha256: blockDigest(
+        input.model.tree.children.find((node) => node.id === 'supporting-reading')
+      ),
+    },
+  ];
+  const output = prepare(input);
+  assert.ok(output.body.indexOf('First chapter sources.') < output.body.indexOf('<h2 id="second"'));
+  assert.ok(!output.toc.includes('#supporting-reading'));
+  assert.match(output.toc, /href="#second"/);
+});

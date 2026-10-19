@@ -44,6 +44,26 @@
     "sections": {
       "references": "sources-references",
       "appendices": ["sources-references", "how-to-cite-this-draft"]
-    }
+    },
+    "elements": [
+      {
+        "role": "prompt",
+        "sha256": "c6b1626abc38043da5c956bf51c3b05aaaa2157b55dbc15a6bb8cb1f6e4e4c48"
+      },
+      {
+        "role": "quotation",
+        "sha256": "264b4acdfaf886788b2a002e6b8143c109f1db17052dfcfa2a22129bf92ee8a1",
+        "attribution": "940675e280a6f71e0a5e53760b50808a0da21961b157e209809248b631884d79"
+      },
+      {
+        "role": "quotation",
+        "sha256": "b81f3755f09ff2ec9eebd88c95a100085c4bea800f7657934ba8a2a92444760c",
+        "attribution": "1e57907c66d2bcc2e17469b51a5bbba9a734d2af7e9f54cf7ada8d48ed356065"
+      },
+      {
+        "role": "endnote",
+        "sha256": "a7883b0c575a4571744b82c26bcc96dc27e9aa29e4f8ccda55f872dda69fe360"
+      }
+    ]
   }
 }
