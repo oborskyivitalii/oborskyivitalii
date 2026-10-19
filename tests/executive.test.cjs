@@ -355,7 +355,11 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     recordingRecord.changes.map((change) => [change.page, change.id]),
     [['talks', 'pmday-recording']]
   );
-  const html = readHTML(path.join(__dirname, '../docs/talks.html'));
+  const html = restoreContentAmendment(
+    readHTML(path.join(__dirname, '../docs/talks.html')),
+    'talks',
+    require('../review/issue-108/content-amendment.json')
+  );
   const preserved = restore(html, 'talks');
   const cards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)].map(
     (row) => row[0]

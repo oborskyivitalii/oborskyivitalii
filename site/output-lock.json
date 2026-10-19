@@ -113,7 +113,7 @@
       "snapshotSHA": "3b2c2bb518b174129a8ba06e66621b74f493ef8ad934117d57cae64e9e956762"
     },
     "talks": {
-      "version": "96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330",
+      "version": "13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb",
       "url": "talks.html",
       "inputs": [
         "site/content/pages/talks/intro.json",
@@ -125,7 +125,7 @@
         "site/templates/pages/talks/talks.html"
       ],
       "records": [],
-      "snapshotSHA": "c51fc1369d9848a48546cefa717e4a0024429458095d9b2eb1ea955f92b3ae4b"
+      "snapshotSHA": "c97cb7da5a1dc508e6490c8a1c9a8506a4cf67580ff1168cfc078f384db1414a"
     },
     "credits": {
       "version": "20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60",
@@ -151,8 +151,8 @@
     "snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html": "64d5f09ebb71d7ad9c00ee30abd6e26558f14bf5ec276ce43d9d23a25a216de6",
     "writing.html": "9d5824b1aae4dec47c879b0917275c05a7cc8220015cb3073034091be0587c21",
     "snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html": "3b2c2bb518b174129a8ba06e66621b74f493ef8ad934117d57cae64e9e956762",
-    "talks.html": "0ae583dd8259826daf57ec78966752782f4b4d6bbcfa4e8b73ac49ce6edf9f79",
-    "snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html": "c51fc1369d9848a48546cefa717e4a0024429458095d9b2eb1ea955f92b3ae4b",
+    "talks.html": "98e96c53528ccf057e5ddad88455e9751642d5cb11c37ab55cdc8b11710f1901",
+    "snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/talks.html": "c97cb7da5a1dc508e6490c8a1c9a8506a4cf67580ff1168cfc078f384db1414a",
     "credits.html": "d27bd18f3f9b41f5f8cdd2136e4b630874ff5d409153778ff31ccd5ee7470686",
     "snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html": "88eb203461f25731145cda36435d99580a54fb1a8e95713f06f4d606aa71c04d",
     "theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
@@ -185,6 +185,6 @@
     "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
     "snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942",
     "snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312",
-    "site-revision.json": "71f1b888fb8691dffe3dc4147c457e3eea02c0c50e155d47ccbfa5876cc2a4dc"
+    "site-revision.json": "4797136c125fa83b88a2401aa57b9e51b667be972db2a7bc3c1c44767fb2af17"
   }
 }
