@@ -71,3 +71,18 @@ normalizer dependencies for earlier selected issues. Extend that same existing
 conditional installation to issue108. No checks, profiles, budgets or approval
 requirements are removed. The failed run remains observable; its green Basic,
 style and RI subset cannot establish complete acceptance.
+
+
+## First actual staging preflight
+
+Run39259059691 on exact9f266b5 passed25/26 guards: source/Python tests, Basic,
+style, RI/coupling, formatting, architecture, generation, SEO, previews/bundle,
+artifact/package identity, edition rights inventory, lint and advisories. Security
+retained green Semgrep/Bandit results but rejected56 new entropy findings.
+Every finding is a public generated/content checksum or the existing immutable
+content baseline commit. The compressed per-finding proof authenticates the raw
+scanner report SHA256, path, type, line, value and named generating owner.
+The issue-only proof check reproduces every value and preserves all predecessor
+ledger rows. Only these exact dispositions are appended; scanners, input list,
+locks, profile cases and budgets remain unchanged. This is implementation
+self-review; independent final review is not supplied by the proof or green CI.

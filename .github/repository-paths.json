@@ -1033,6 +1033,12 @@
       "role": "history",
       "owner": "site/README.md"
     },
+    "review/issue-108/2026-10-19-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Issue108 exact per-finding public generated/content checksum and source-commit proof from actual failed staging; preserves scanner coverage and predecessor ledger.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "review/issue-108/2026-10-19-site-delivery.md": {
       "kind": "file",
       "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",

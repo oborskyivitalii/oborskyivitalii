@@ -2014,7 +2014,9 @@
         "tests/content.test.cjs",
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
-        "review/issue-108/content-amendment.json"
+        "review/issue-108/content-amendment.json",
+        "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
+        "tools/quality/secrets-publication.json"
       ]
     }
   ]

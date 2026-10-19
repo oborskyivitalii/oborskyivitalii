@@ -637,6 +637,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [review/issue-108/2026-10-19-public-checksum-proof.json.gz](review/issue-108/2026-10-19-public-checksum-proof.json.gz) | Issue108 exact per-finding public generated/content checksum and source-commit proof from actual failed staging; preserves scanner coverage and predecessor ledger. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-108/2026-10-19-site-delivery.md](review/issue-108/2026-10-19-site-delivery.md) | Issue108 exact PMDay event content amendment and source/delivery self-review. | history | [site/README.md](site/README.md) |
 | [review/issue-108/content-amendment.json](review/issue-108/content-amendment.json) | Issue108 exact PMDay event content amendment and source/delivery self-review. | history | [site/README.md](site/README.md) |
 

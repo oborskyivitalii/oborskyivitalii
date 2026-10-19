@@ -21,8 +21,8 @@
     {
       "id": "AC03",
       "intent": "Existing architecture and presentation",
-      "automated_scope": "Basic checks verify generated and offline source identities, package shape and existing bounded runtime contracts. The style guard, RI and RI/CI checks cover their declared mechanical subset. Separate review covers architectural/readability and actual visual/delivery decisions.",
-      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "automated_scope": "Basic checks verify generated and offline source identities, package shape and existing bounded runtime contracts. The style guard, RI and RI/CI checks cover their declared mechanical subset. Separate review covers architectural/readability and actual visual/delivery decisions. Exact per-path/type/value public-checksum/source-commit proof recomputes each of the56 scanner findings and preserves every predecessor disposition. Scanner scope, closed ledger inputs and budgets remain unchanged; independent final review stays separate.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI", "PUBLIC-CHECKSUMS"],
       "gates": ["SOURCE-REVIEW"]
     },
     {
@@ -42,15 +42,15 @@
     {
       "id": "AC06",
       "intent": "Organizer-correct Autumn edition naming",
-      "automated_scope": "Current maintained source checks verify exact confirmed names/date/online registration, unchanged prior destinations, omitted unconfirmed details, exact reversible content deltas and existing components. This bounded site policy does not establish campaign-tool completion, independent review, actual posting or deployment.",
-      "checks": ["EVENTS"],
+      "automated_scope": "Current maintained source checks verify exact confirmed names/date/online registration, unchanged prior destinations, omitted unconfirmed details, exact reversible content deltas and existing components. This bounded site policy does not establish campaign-tool completion, independent review, actual posting or deployment. Exact per-path/type/value public-checksum/source-commit proof recomputes each of the56 scanner findings and preserves every predecessor disposition. Scanner scope, closed ledger inputs and budgets remain unchanged; independent final review stays separate.",
+      "checks": ["EVENTS", "PUBLIC-CHECKSUMS"],
       "gates": ["EDITORIAL"]
     },
     {
       "id": "AC07",
       "intent": "Existing visual style and standard production delivery",
-      "automated_scope": "Basic checks verify generated and offline source identities, package shape and existing bounded runtime contracts. The style guard, RI and RI/CI checks cover their declared mechanical subset. Separate review covers architectural/readability and actual visual/delivery decisions.",
-      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "automated_scope": "Basic checks verify generated and offline source identities, package shape and existing bounded runtime contracts. The style guard, RI and RI/CI checks cover their declared mechanical subset. Separate review covers architectural/readability and actual visual/delivery decisions. Exact per-path/type/value public-checksum/source-commit proof recomputes each of the56 scanner findings and preserves every predecessor disposition. Scanner scope, closed ledger inputs and budgets remain unchanged; independent final review stays separate.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI", "PUBLIC-CHECKSUMS"],
       "gates": ["DELIVERY", "CAMPAIGN"]
     }
   ],
@@ -73,6 +73,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PUBLIC-CHECKSUMS": {
+      "kind": "unittest",
+      "test": "test_issue108_acceptance.Issue108AcceptanceTests.test_exact_public_findings_and_predecessor_preservation"
     }
   },
   "gates": {

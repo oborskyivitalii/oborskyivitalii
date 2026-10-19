@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "a587f79d6938bbcbef3498bd0316bfb6a27110c4bb8355cc9bd44ea50a521579",
+    "digest": "6436b0f54af160df1eb494ac3b020d998ec5f4dd7bbaf4f8116439dec10877f1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -52,7 +52,7 @@
       {
         "path": ".github/acceptance/issue-108.json",
         "identity_mode": "content",
-        "sha256": "0a07055618a33bd99f83fb56caa569345940aa845dde7e9760e551fa8d8e186f"
+        "sha256": "f1bf79f1c88fec50208ccbebf70cd1c7dedd7c99ba499b1d62351ce5863416fa"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8d73b76d0aa105d087a1f2400f632c9a2ecab4c689f4a878e2d69a2c7a830781"
+        "sha256": "d1a51882f9ccf06450cebe3bac64ed36a2584b0f6afb6662b78f7b74713ed031"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ab87627c4b9f735290a4221bba7d2d9b6a695b4ae16f77b2de9b5e3291049164"
+        "sha256": "5fe0e27c28cf5eff539ce2048635c773561184f04d4cde2ee17fbc156224a546"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -698,9 +698,14 @@
         "sha256": "17bcb6dc959d632d437280e40e2bea7b243ea8196df1a0023ab64dca81d6df69"
       },
       {
+        "path": "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "6349ddfeafdc874279a981168fd86a93b9e079aab1858101a4142360743eab7b"
+      },
+      {
         "path": "review/issue-108/2026-10-19-site-delivery.md",
         "identity_mode": "content",
-        "sha256": "0b8a916348edea327e6a6cc9f64148c46637f5520d6ec3c933c8a75dd3671866"
+        "sha256": "d7b00437a7ca144af82df8c7b078d13e2ff1a500c56401ab8cb5eabbee070192"
       },
       {
         "path": "review/issue-108/content-amendment.json",
@@ -5865,7 +5870,7 @@
       {
         "path": "tests/test_issue108_acceptance.py",
         "identity_mode": "content",
-        "sha256": "6c4526d8eb495b39d1546ef76aec4e4c57641e44a662fa0ca9d9bfe868ac811a"
+        "sha256": "dc62f5c1d2f4402ade4c7d4403455eb696c2d649b44223f59f703dfadec8e24a"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -6395,7 +6400,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "8fa943b1a17b2d17ba733bbf6e7b22283187534a09d30588f7e8bd9ec3a53e72"
+        "sha256": "b77de9bfc06a7adb607eaa67d337dba4ce722da65786a1b2fabd3df87a21e1eb"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6455,7 +6460,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "6acfeb0e2f631a5ffdf02cfaf01930c7d28ac31aec91fc35810012551c809fec"
+        "sha256": "8db675be9b355c9d4aa853ab3e40994416a47fca4b7b2402172f88f3f6984993"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -8540,6 +8545,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-18-public-metadata-proof.json.gz"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
+      "kind": "file",
+      "purpose": "Issue108 exact per-finding public generated/content checksum and source-commit proof from actual failed staging; preserves scanner coverage and predecessor ledger.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-public-checksum-proof.json.gz"
     },
     {
       "path": "review/issue-108/2026-10-19-site-delivery.md",
