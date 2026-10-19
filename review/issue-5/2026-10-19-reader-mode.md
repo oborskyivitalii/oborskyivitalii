@@ -82,6 +82,17 @@ retain their original entry-animation requirement. Positive/negative fixtures
 cover both contracts. This follow-up changes quality evidence only; emitted
 reader/scene/runtime bytes remain unchanged.
 
+At `fe8a7b86f7e3440d53f59896b011ddbfc16ebe93` the clean-source owning policy
+again passed11/11, report SHA256
+`7e8b3289588e93206998cfb5b513c9be6c196da35195b3ea30f8a0f0a0137708`.
+Final test-only maintenance refreshes the current Color tuple and modern
+publication-fixture expectations to the reader family; frozen historical
+expectations remain. Color contracts17/17 and both current plain/staging
+publication fixtures passed. The supplementary full publication-records module
+was stopped while Git was fetching absent blobs for frozen `cc115c4` sources;
+that partial run is not a pass. Existing current-source rights/publisher checks
+and the independent historical-family evidence-contract cases remain separate.
+
 ## Tasks and acceptance evidence
 
 | Task / AC | Expected behavior and check | Prepared disposition |

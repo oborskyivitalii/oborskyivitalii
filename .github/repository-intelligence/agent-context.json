@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3e69cd914c11362a021a9a642c5cba95eeced2face9bbaeddd235dc7d7284e0f",
+    "digest": "ef4c144cce2714c61b2bd25f66db0d5e128bf846c0982492012a6e96ace274a3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1360,7 +1360,7 @@
       {
         "path": "review/issue-5/2026-10-19-reader-mode.md",
         "identity_mode": "content",
-        "sha256": "4da3b6370ab58a9c7a2a4f1f6c019ad2368148a06f2eeeab1fa0f5ef9b67eada"
+        "sha256": "30f2cffa673f82c7142771ce4c5d54cc9c7df4473944484695d352d7c67bc714"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
@@ -6470,7 +6470,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "0fb183fec1e29cd7fcbfb99de20b48057df525667176c2649864a33087d0ff59"
+        "sha256": "3b1a45f20a52837e7a1fdfcaf1786753021972beeb5e3ceaa437526e89680317"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -6555,7 +6555,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "9af5e705d919bd08698e3f393151b039f6a7b640d8875546597f2786355a9725"
+        "sha256": "0892f48238dc5ad99e79f66d3341ebdb6b6dfe7f45d3a6e56fb5c1068843177d"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
