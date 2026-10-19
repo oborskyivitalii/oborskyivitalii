@@ -201,7 +201,8 @@ async function captureReader(page, key) {
 
 async function contentsAnchor(page) {
   const contents = page.locator('.reader-contents');
-  if ((await contents.getAttribute('open')) === null) await contents.locator('summary').click();
+  if ((await contents.getAttribute('open')) === null)
+    await contents.locator(':scope > summary').click();
   return page.locator('.article-toc a[href^="#"]').first();
 }
 

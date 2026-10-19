@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ee92356b684a6adcecef0233fd7a02e2c142e33d118808a91158ab16bf54ee2c",
+    "digest": "befb273ce46c774de29ecddf655b5ae8b637001e448911e57266b1a8c8d80d57",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1335,7 +1335,7 @@
       {
         "path": "review/issue-5/2026-10-19-editorial-reader.md",
         "identity_mode": "content",
-        "sha256": "079389c1b85913b8726dceb32021b8163f0040bb1c674c8facfeb56b216ac4cf"
+        "sha256": "bac2632e577b31d090e602a82aaf5ba1db1b6a5f106d37c3888fb7ee7cbbba06"
       },
       {
         "path": "review/issue-5/2026-10-19-events-migration.json",
@@ -7205,7 +7205,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "e42a7471386ebdb143d88f4a2f193f02053339b716a3f932e7e0cbffb726d5d5"
+        "sha256": "d519db41da6e493b43c9afe3a58bb585a8c4f75be36d6c6dd1eb276adf10b717"
       },
       {
         "path": "tools/quality/article-print.cjs",

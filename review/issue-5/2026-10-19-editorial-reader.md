@@ -100,3 +100,13 @@ The correction changes catalog/test/rights-admission bookkeeping only; all artic
 CSS, generated documents and runtime bytes match that hosted source. Corrected-head
 policy and hosted smoke are still pending at this checkpoint; final source-qualified
 results and the latest preview belong to the PR/issue evidence anchor.
+
+
+First hosted smoke retained an actual failure before its superseding cancellation:
+its Contents helper selected all nested summaries after progressive disclosure was
+introduced. Updated only that helper to the direct child summary; all journeys and
+assertions remain. The superseded corrected-head local policy was stopped before
+source changes; it is not a pass. Initial390px screenshots show the hook beginning
+aroundy662 instead of the previousy780; mobile H3/table screenshot was inspected.
+Independent live dark1363×936 review confirmed hierarchy, quote/attribution grouping,
+subsection navigation and current chapter state without a bounded blocker.
