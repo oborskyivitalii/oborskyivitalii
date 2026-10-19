@@ -81,6 +81,18 @@ resources. The existing rights/release controls continue to verify those files.
 No JavaScript is required to see or follow the links. Adding a material is a
 content change after this platform capability is admitted.
 
+The block's binding covers only selected reviewed public records. The raw
+allowlist stays in audit and build-concurrency inputs, while private/pending
+records do not participate in the public route identity. Adding, editing or
+removing those records preserves every public byte, including when no block exists.
+
+A new standalone export revalidates the current material files/reviews and the
+complete selected block against its public article. A changed selected review,
+file, approval or visibility requires a matching article rebuild first; the
+export cannot silently repackage an old selection as current. Its source manifest
+includes the declaration and selected material/evidence/template inputs. Existing
+historical exports remain historical artifacts.
+
 ## Links back to the article
 
 Campaign validation returns each piece's `articleUrl`, derived from the

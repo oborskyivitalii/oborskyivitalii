@@ -5,7 +5,13 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const net = require('node:net');
 const { TextDecoder } = require('node:util');
-const { escapeText, escapeAttribute, substitute, validateFragment } = require('./html.cjs');
+const {
+  escapeText,
+  escapeAttribute,
+  substitute,
+  validateFragment,
+  stableTagEndings,
+} = require('./html.cjs');
 const templatePath = 'site/templates/components/article-materials.html';
 const digest = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const idPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -250,7 +256,7 @@ function load(root, article) {
   try {
     fs.lstatSync(path.join(root, file));
   } catch (error) {
-    if (error.code === 'ENOENT') return { html: '', assets: [], inputs: [] };
+    if (error.code === 'ENOENT') return { html: '', assets: [], inputs: [], declaration: file };
     throw error;
   }
   const declaration = JSON.parse(
@@ -269,6 +275,7 @@ function load(root, article) {
   const inputs = [file];
   const assets = [];
   const rows = [];
+  const publicItems = [];
   const ids = new Set();
   for (const item of declaration.items) {
     object(
@@ -305,6 +312,7 @@ function load(root, article) {
       new RegExp(`^materials/reviews/${item.id}\\.md$`)
     );
     const selected = target(root, directory, item, article);
+    publicItems.push(item);
     inputs.push(evidence.path, ...selected.inputs);
     assets.push(...selected.assets);
     rows.push(
@@ -312,7 +320,7 @@ function load(root, article) {
         `<p>${escapeText(item.description)}</p><p>${escapeText(item.credit)}</p></li>`
     );
   }
-  if (!rows.length) return { html: '', assets: [], inputs };
+  if (!rows.length) return { html: '', assets: [], inputs, declaration: file };
   if (article.sections.some((section) => section.id === 'article-materials')) {
     throw Error('Article materials section id conflicts with authored content');
   }
@@ -320,9 +328,21 @@ function load(root, article) {
     throw Error('Public material aggregate byte bound');
   }
   const template = new TextDecoder('utf-8', { fatal: true }).decode(read(root, templatePath).bytes);
-  const html = substitute(template, { ITEMS: rows.join('\n') }, 'public article materials');
+  const binding = digest(
+    JSON.stringify(
+      stable({
+        schema: declaration.schema,
+        articleId,
+        source: declaration.source,
+        items: publicItems,
+      })
+    )
+  );
+  const html = stableTagEndings(
+    substitute(template, { ITEMS: rows.join('\n'), BINDING: binding }, 'public article materials')
+  );
   validateFragment(html, 'public article materials');
-  return { html, assets, inputs: [...new Set([...inputs, templatePath])] };
+  return { html, assets, inputs: [...new Set([...inputs, templatePath])], declaration: file };
 }
 
 module.exports = { load, reviewBinding, articleLink };

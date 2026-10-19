@@ -108,6 +108,31 @@ test('two articles render one shared native block and immutable selected assets'
   }
 });
 
+test('public block identity excludes private edits and binds the selected review record', (t) => {
+  const f = fixture(t);
+  f.approve();
+  const first = f.load();
+  const privateItem = {
+    ...structuredClone(f.declaration.items[0]),
+    id: 'private-copy',
+    visibility: 'private',
+    approval: null,
+  };
+  f.declaration.items.unshift(privateItem);
+  assert.equal(f.load().html, first.html);
+  privateItem.description = 'An unpublished revision.';
+  privateItem.visibility = 'public';
+  assert.equal(f.load().html, first.html, 'unreviewed public records remain pending');
+  f.declaration.items.shift();
+  assert.equal(f.load().html, first.html);
+  f.declaration.items[0].approval.reviewedAt = '2026-10-19T11:00:00Z';
+  assert.notEqual(f.load().html, first.html, 'a new selected review changes its public binding');
+  assert.ok(
+    first.inputs.includes(`${f.directory}/materials.json`),
+    'raw declaration retained for audit'
+  );
+});
+
 test('source, file, label and evidence changes reject old public review', (t) => {
   for (const change of [
     (f) => {

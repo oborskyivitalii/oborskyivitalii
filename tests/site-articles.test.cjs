@@ -292,6 +292,19 @@ test('selected public materials enter native article/resource closure; campaign 
     Object.keys(second.files).some((name) => /campaign|reviews|materials.json/.test(name)),
     false
   );
+  const pending = { ...structuredClone(declaration.items[0]), id: 'pending-copy', approval: null };
+  declaration.items.push(pending);
+  for (const visibility of ['private', 'public', 'private']) {
+    pending.visibility = visibility;
+    pending.description += ' Private or pending edit.';
+    json(root, `${record.directory}/materials.json`, declaration);
+    const unchanged = preview(root);
+    assert.equal(unchanged.articles['reader-profile:en'].version, selected.version);
+    assert.deepEqual(unchanged.files, first.files, 'unselected declarations cannot restamp output');
+  }
+  declaration.items.pop();
+  json(root, `${record.directory}/materials.json`, declaration);
+  assert.deepEqual(preview(root).files, first.files, 'removing pending records is also private');
   if (process.env.ARTICLE_MATERIALS_PREVIEW_DIR) {
     fs.cpSync(path.join(root, 'candidate'), process.env.ARTICLE_MATERIALS_PREVIEW_DIR, {
       recursive: true,
@@ -300,6 +313,46 @@ test('selected public materials enter native article/resource closure; campaign 
   declaration.items[0].target.sha256 = '0'.repeat(64);
   json(root, `${record.directory}/materials.json`, declaration);
   assert.throws(() => preview(root), /stale/i);
+});
+
+test('adding, editing and removing a private-only allowlist preserves all public bytes', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  const baseline = preview(root);
+  const declaration = {
+    schema: 1,
+    articleId: 'reader-profile',
+    source: { editionId: record.edition.id, semanticSha256: record.edition.semanticSha256 },
+    items: [
+      {
+        id: 'private-copy',
+        kind: 'pdf',
+        label: 'Unpublished idea',
+        description: 'First draft',
+        credit: 'Author',
+        visibility: 'private',
+        target: null,
+        approval: null,
+      },
+    ],
+  };
+  for (const visibility of ['private', 'public', 'private']) {
+    declaration.items[0].visibility = visibility;
+    declaration.items[0].description += ' Revised.';
+    json(root, `${record.directory}/materials.json`, declaration);
+    const result = preview(root);
+    assert.deepEqual(result.files, baseline.files);
+    assert.equal(
+      result.articles['reader-profile:en'].version,
+      baseline.articles['reader-profile:en'].version
+    );
+    assert.ok(
+      result.articles['reader-profile:en'].inputs.includes(`${record.directory}/materials.json`),
+      'raw declaration remains an audit input'
+    );
+  }
+  fs.unlinkSync(path.join(root, record.directory, 'materials.json'));
+  assert.deepEqual(preview(root).files, baseline.files);
 });
 
 test('default output excludes draft body, catalog descriptors, files and assets; preview selection is explicit', (t) => {

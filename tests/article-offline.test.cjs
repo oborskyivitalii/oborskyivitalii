@@ -279,6 +279,158 @@ function exportSelected(fixture, articleId, extra = {}) {
   });
 }
 
+test('standalone material exports reject stale or revoked selections until rebuilt', (t) => {
+  const f = fixture(t);
+  const article = f.english;
+  const material = require('../tools/site/article-materials.cjs');
+  const file = `site/assets/publications/${article.metadata.id}/materials/reading.pdf`;
+  const pdf = Buffer.from('%PDF-1.7\nsynthetic selected material\n%%EOF\n');
+  write(f.root, file, pdf);
+  const declaration = {
+    schema: 1,
+    articleId: article.metadata.id,
+    source: { editionId: article.edition.id, semanticSha256: article.edition.semanticSha256 },
+    items: [
+      {
+        id: 'reading-pdf',
+        kind: 'pdf',
+        label: 'Selected reading PDF',
+        description: 'Synthetic portable material.',
+        credit: 'Author',
+        visibility: 'public',
+        target: {
+          kind: 'file',
+          path: 'materials/reading.pdf',
+          sha256: builder.sha(pdf),
+          mime: 'application/pdf',
+        },
+        approval: null,
+      },
+      {
+        id: 'source-image',
+        kind: 'image',
+        label: 'Selected original image',
+        description: 'Existing source image.',
+        credit: 'Author',
+        visibility: 'public',
+        target: { kind: 'asset', id: 'pixel', sha256: builder.sha(pixel) },
+        approval: null,
+      },
+    ],
+  };
+  for (const item of declaration.items) {
+    const review = `Synthetic review: ${item.id}.\n`;
+    write(f.root, `${article.directory}/materials/reviews/${item.id}.md`, review);
+    item.approval = {
+      bindingSha256: material.reviewBinding(declaration, item),
+      reviewedAt: '2026-10-19T10:00:00Z',
+      evidence: { path: `materials/reviews/${item.id}.md`, sha256: builder.sha(review) },
+    };
+  }
+  const profilePath = path.join(f.root, article.directory, 'profile.json');
+  const profile = JSON.parse(fs.readFileSync(profilePath));
+  profile.reader = { images: 'webp-lossless' };
+  json(f.root, `${article.directory}/profile.json`, profile);
+  const save = () => json(f.root, `${article.directory}/materials.json`, declaration);
+  const rebuild = () =>
+    builder.build({
+      root: f.root,
+      output: f.publicDirectory,
+      cacheFile: path.join(f.root, 'candidate.cache.json'),
+      candidateArticles: [f.english.metadata.id, f.ukrainian.metadata.id],
+    });
+  save();
+  rebuild();
+  const baseline = exportSelected(f, article.metadata.id);
+  assert.match(baseline.html, /Selected reading PDF/);
+  assert.match(baseline.html, /data:image\/webp;base64/);
+  for (const name of [
+    `${article.directory}/materials.json`,
+    `${article.directory}/materials/reviews/reading-pdf.md`,
+    file,
+  ])
+    assert.ok(
+      Object.hasOwn(baseline.manifest.sourceInputs, name),
+      'selected source audit: ' + name
+    );
+  const original = structuredClone(declaration.items[0]);
+  const reviewPath = `${article.directory}/materials/reviews/reading-pdf.md`;
+  for (const mutate of [
+    () => write(f.root, reviewPath, 'Changed review.\n'),
+    () => write(f.root, file, Buffer.from('%PDF-1.7\nchanged bytes\n%%EOF\n')),
+    () => {
+      declaration.items[0].visibility = 'private';
+      save();
+    },
+    () => {
+      declaration.items[0].approval = null;
+      save();
+    },
+    () => fs.unlinkSync(path.join(f.root, article.directory, 'materials.json')),
+    () => {
+      declaration.items[0].label = 'New approved label';
+      declaration.items[0].approval.bindingSha256 = material.reviewBinding(
+        declaration,
+        declaration.items[0]
+      );
+      save();
+    },
+    () => {
+      declaration.items[0].approval.reviewedAt = '2026-10-19T11:00:00Z';
+      save();
+    },
+    () => {
+      const review = 'New approved review evidence.\n';
+      write(f.root, reviewPath, review);
+      declaration.items[0].approval.evidence.sha256 = builder.sha(review);
+      save();
+    },
+    () => {
+      const bytes = Buffer.from('%PDF-1.7\nnew approved material\n%%EOF\n');
+      write(f.root, file, bytes);
+      declaration.items[0].target.sha256 = builder.sha(bytes);
+      declaration.items[0].approval.bindingSha256 = material.reviewBinding(
+        declaration,
+        declaration.items[0]
+      );
+      save();
+    },
+  ]) {
+    declaration.items[0] = structuredClone(original);
+    write(f.root, file, pdf);
+    write(f.root, reviewPath, 'Synthetic review: reading-pdf.\n');
+    save();
+    mutate();
+    assert.throws(() => exportSelected(f, article.metadata.id), /stale|material|digest/i);
+  }
+  declaration.items[0] = structuredClone(original);
+  write(f.root, file, pdf);
+  write(f.root, reviewPath, 'Synthetic review: reading-pdf.\n');
+  save();
+  declaration.items.push({
+    ...structuredClone(original),
+    id: 'private-copy',
+    visibility: 'private',
+    approval: null,
+  });
+  save();
+  assert.equal(
+    exportSelected(f, article.metadata.id).html,
+    baseline.html,
+    'private changes do not stale a matching public selection'
+  );
+  declaration.items.pop();
+  declaration.items[0].visibility = 'private';
+  save();
+  rebuild();
+  const revoked = exportSelected(f, article.metadata.id);
+  assert.doesNotMatch(revoked.html, /Selected reading PDF/);
+  assert.equal(
+    Object.keys(revoked.manifest.assets).some((name) => name.endsWith('/reading.pdf')),
+    false
+  );
+});
+
 function assertNoNetworkResources(html) {
   const executable = html.replace(
     /<script[^>]*type="application\/json"[^>]*>[\s\S]*?<\/script>/g,

@@ -5,6 +5,14 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  issue106ReaderCorrections: {
+    behavior: 'fixed-blocks',
+    baseEngine: '2a8fc6d497c38a669e55417276b18f9359c2c7802111124f8bde053b34af4ec6',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '5f4dc5f28fd9425975e4faa5a587f3b63c0217b216b2210a2762f1dc6e4c5597',
+    navigation: '62b524beb9fb8f5364cd179b986628bda0e3694f824c646bf0338423fabda14f',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   // Issue5 independent reader-flight review: signed local document trip and history direction.
   issue5ReaderFlight: {
     behavior: 'fixed-blocks',
@@ -192,6 +200,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue106-reader-corrections-production',
+    family: 'issue106ReaderCorrections',
+    edition: 'production',
+    fingerprint: '7d9d02e53bc1fc1246089b1e396d1801333a72f25900c2a8971dbbcc300a090b',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue106-reader-corrections-plain',
+    family: 'issue106ReaderCorrections',
+    edition: 'plain',
+    fingerprint: 'cacdd8c68f82e349cffc80c7c46c11ea4b6788f1df8018f90bf54c4d8ba1b4f5',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue106-reader-corrections-staging',
+    family: 'issue106ReaderCorrections',
+    edition: 'staging',
+    fingerprint: '76fb6d23b495ae2fd98f0ebc540bdfd0b9616a89735137159b855bbc03a0eacf',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue5-reader-flight-production',
     family: 'issue5ReaderFlight',

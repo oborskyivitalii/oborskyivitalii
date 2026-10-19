@@ -248,12 +248,20 @@ function exportArticle({
     throw Error('Unknown or ambiguous explicit standalone article selection');
   const [articleKey, descriptor] = selected[0];
   const model = require('./publishing/article.cjs').loadArticle(repoRoot, articleId);
+  const material = require('./site/article-materials.cjs');
+  const rendered = require('./site/article-media.cjs').render(
+    repoRoot,
+    model,
+    require('./site/articles.cjs').assetName
+  );
+  const materials = material.load(repoRoot, rendered);
+  const sourceNames = [...new Set([...model.inputs, ...materials.inputs])];
   const sourceInputs = Object.fromEntries(
-    model.inputs.map((name) => [name, digest(fs.readFileSync(path.join(repoRoot, name)))])
+    sourceNames.map((name) => [name, digest(fs.readFileSync(path.join(repoRoot, name)))])
   );
   if (sourceInputs[model.source.path] !== model.source.sha256)
     throw Error('Standalone source changed during validation');
-  if (outputFile) offline.assertOutput(outputFile, base, model.inputs);
+  if (outputFile) offline.assertOutput(outputFile, base, sourceNames);
   if (
     model.metadata.language !== articleKey.split(':')[1] ||
     model.edition.id !== descriptor.contentEdition ||
@@ -262,6 +270,18 @@ function exportArticle({
   )
     throw Error('Standalone descriptor differs from the selected source edition identity');
   const environment = { ...base, articleKey };
+  let source = offline.rootURLs(
+    fs.readFileSync(path.join(publicDirectory, descriptor.alias), 'utf8'),
+    descriptor.alias
+  );
+  const blocks = [
+    ...source.matchAll(/<section\b[^>]*\bid="article-materials"[^>]*>[\s\S]*?<\/section>/g),
+  ];
+  if (
+    blocks.length !== Number(Boolean(materials.html)) ||
+    (blocks[0]?.[0] || '') !== materials.html.trim()
+  )
+    throw Error('Stale standalone materials selection; rebuild the public article');
   const portrait = fs.readFileSync(
     path.join(publicDirectory, 'assets/vitalii-oborskyi-cutout.webp')
   );
@@ -274,10 +294,6 @@ function exportArticle({
     })
   );
   const payload = routePayloads(portrait, { environment });
-  let source = offline.rootURLs(
-    fs.readFileSync(path.join(publicDirectory, descriptor.alias), 'utf8'),
-    descriptor.alias
-  );
   source = offline.inlineAssets(source, environment);
   // Reuse the existing producer; its review-only notice is removed by standalone.
   let html = renderInteractive(source, css, 'writing', portrait, scripts, payload, environment);
@@ -327,11 +343,12 @@ function exportArticle({
       base.record.artifactDigest ||
     Object.entries(sourceInputs).some(
       ([name, hash]) => digest(fs.readFileSync(path.join(repoRoot, name))) !== hash
-    )
+    ) ||
+    material.load(repoRoot, rendered).html !== materials.html
   )
     throw Error('Standalone source or public inputs changed during generation');
   if (outputFile) {
-    offline.assertOutput(outputFile, environment, model.inputs);
+    offline.assertOutput(outputFile, environment, sourceNames);
     require('./site/transaction.cjs').commitFiles([
       { target: outputFile, bytes: html },
       { target: outputFile + '.manifest.json', bytes: JSON.stringify(manifest, null, 2) + '\n' },

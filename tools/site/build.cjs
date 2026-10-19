@@ -365,6 +365,10 @@ function prepareArticles(root, selectedArticles, components, versioned, preview)
   for (const article of selectedArticles) {
     article.input = articles.input(root, article);
     article.inputDigests = fileDigests(root, article.input.inputs);
+    const publicInputs = { ...article.inputDigests };
+    // The native block binds only selected reviewed declarations. Keep the raw
+    // allowlist in audit/concurrency inputs without restamping private edits.
+    delete publicInputs[article.publicMaterials.declaration];
     if (
       article.inputDigests[article.source.path] !== article.source.sha256 ||
       article.assets.some(
@@ -379,7 +383,7 @@ function prepareArticles(root, selectedArticles, components, versioned, preview)
       json({
         components: documentComponents(components),
         key: article.key,
-        inputs: article.inputDigests,
+        inputs: publicInputs,
         rendered: sha(article.input.main),
         metadata: article.metadata,
         alternates: articles.alternates(article, selectedArticles).map((alternate) => ({
@@ -571,9 +575,13 @@ function emitRevision({ root, components, selectedArticles, result, temporary, p
 }
 
 function verifyArticleInputs(root, selectedArticles) {
-  for (const article of selectedArticles)
-    if (json(fileDigests(root, article.input.inputs)) !== json(article.inputDigests))
+  for (const article of selectedArticles) {
+    if (
+      json(fileDigests(root, article.input.inputs)) !== json(article.inputDigests) ||
+      require('./article-materials.cjs').load(root, article).html !== article.publicMaterials.html
+    )
       throw Error('Article source changed during generation');
+  }
 }
 
 function baselineFallback(output, route) {

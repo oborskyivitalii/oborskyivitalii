@@ -4,6 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- 19 October #106 corrections: offline source/selection binding, private public
+  identity isolation and transitive window validation fixed. Focused independent
+  re-review addresses F01–F03; exact policies/previews in owning PR107/PR79.
+  See review/issue-106/2026-10-19-corrections.md. No merge or release approval.
+
 - Production/main0098f804cb3b0d120173d4c8689043db42231c47, prod-2026-10-19.1.
   PR105 released; no production/main/stable promotion in the current increment.
 - Owner #5, same Draft PR79. Concurrent editorial work through794287b2 (Cover02
@@ -40,8 +45,8 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   history direction and related-block wave; bounded independent review and raw
   successful-camera-paint admission. Review: review/issue-5/2026-10-19-reader-flight-review.md.
   Exact final source/CI/preview evidence belongs to PR79; draft smoke is not staging admission.
-- Separate materials review F01 revoked/private offline export and F02 private-only
-  snapshot invalidation remain open; preserve PR107 materials/editorial ownership.
+- Materials F01/F02 corrections are implemented and focused independently re-reviewed;
+  final combined-source evidence belongs to PR79. Preserve PR107/editorial ownership.
 - Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
   The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
   later. No successful current article hosted acceptance is inferred.

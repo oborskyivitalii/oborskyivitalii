@@ -760,16 +760,16 @@ test('reader-link runtime tuples reproduce the complete current plain and stagin
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-reader-flight-plain');
+    assert.equal(motion.select(plain).id, 'issue106-reader-corrections-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-reader-flight-staging');
+    assert.equal(motion.select(staged).id, 'issue106-reader-corrections-staging');
     for (const record of [plain, staged]) {
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-reader-flight-plain').variant.baseEngine
+        motion.reviewedRuntime('issue106-reader-corrections-plain').variant.baseEngine
       );
     }
   } finally {
@@ -877,6 +877,27 @@ test('issue106 selected material lineage keeps exact Color byte checks', () => {
     const changed = manifest(id);
     changed.files['navigation.js'].sha256 = '0'.repeat(64);
     assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});
+
+test('issue106 correction lineage retains exact bytes and mandatory rights admission', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-reader-corrections-' + edition;
+    const current = motion.reviewedRuntime(id);
+    const previous = motion.reviewedRuntime('issue5-reader-flight-' + edition);
+    assert.deepEqual(current.files, previous.files, 'corrections do not change runtime behavior');
+    assert.equal(motion.select(manifest(id)).id, id);
+    const selected = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(selected, selected.components),
+      true
+    );
+    const tampered = manifest(id);
+    tampered.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(tampered), /unreviewed Color bytes/);
     const foreign = manifest(id);
     foreign.components.variant.baseEngine = '0'.repeat(64);
     assert.throws(() => motion.select(foreign), /Color motion identity/);
