@@ -2423,7 +2423,7 @@ test('retargeting each longer camera leg cancels its plan and completes from its
   }
 });
 
-test('reader document excursions paint signed fractal depth and return to the Writing anchor', () => {
+test('reader document orbits keep the same fractal centered and return continuously to its anchor', () => {
   for (const direction of [1, -1])
     for (const narrow of [false, true]) {
       const paints = [],
@@ -2436,7 +2436,8 @@ test('reader document excursions paint signed fractal depth and return to the Wr
         });
       p.settle();
       const anchor = p.trace(),
-        z = JSON.parse(anchor).position[2],
+        centered = model.documentCenterPose(JSON.parse(anchor)),
+        radius = centered.position[2] - centered.target[2],
         progress = [];
       p.window.SiteScene.navigate('writing', true, (value) => progress.push(value), null, {
         navigationId: 7,
@@ -2446,31 +2447,72 @@ test('reader document excursions paint signed fractal depth and return to the Wr
         toDocument: 'article:sample:en',
         direction,
       });
-      advanceUntil(p, () => progress.at(-1) === 1, 'reader flight finishes', 60);
-      const flight = paints.filter((paint) => paint.journey?.navigationId === 7);
-      const transit = flight.filter(
-        (paint) => paint.journey.elapsed >= 400 && paint.journey.elapsed < 1400
-      );
+      advanceUntil(p, () => progress.at(-1) === 1, 'reader orbit finishes', 60);
+      const flight = paints.filter((paint) => paint.journey?.navigationId === 7),
+        transit = flight.filter(
+          (paint) => paint.journey.elapsed >= 400 && paint.journey.elapsed < 1400
+        );
       assert.ok(transit.length > 5);
+      assert.ok(transit.some((paint) => paint.current.position[0] > radius * 0.7));
+      assert.ok(transit.some((paint) => paint.current.position[0] < -radius * 0.7));
       assert.ok(
-        transit.some((paint) => direction * (z - paint.current.position[2]) > 60),
-        'actual paint moves through room depth'
+        transit.some((paint) => paint.current.position[2] < centered.target[2] - radius * 0.7)
       );
-      assert.ok(transit.every((paint) => direction * (z - paint.current.position[2]) >= -0.001));
-      assert.ok(transit.every((paint) => paint.current.framing === 1));
+      for (const paint of transit) {
+        assert.ok(
+          Math.abs(
+            Math.hypot(paint.current.position[0], paint.current.position[2] - centered.target[2]) -
+              radius
+          ) < 1e-8,
+          'constant orbit radius'
+        );
+        assert.deepEqual(paint.current.target, centered.target, 'fixed scene center');
+        assert.equal(paint.current.framing, 1);
+      }
       assert.ok(
-        transit.some((paint) =>
-          paint.paintedRooms.includes(direction === 1 ? 'talks' : 'research')
-        ),
-        'adjacent fractal is actually painted'
+        flight.every((paint) => JSON.stringify(paint.paintedRooms) === '["writing"]'),
+        'no neighboring scene or depth-based fade during the orbit'
       );
+      assert.ok(flight.every((paint) => paint.roomVisibility.every((room) => room.opacity === 1)));
       assert.equal(p.trace(), anchor);
       assert.equal(p.scene.dataset.travel, 'settled');
       assert.ok(Number(p.scene.dataset.rooms) <= 3);
       assert.ok(Number(p.scene.dataset.roomModels) <= 6);
     }
 });
-test('retargeting a reader excursion preserves its exact displayed camera and room weights', () => {
+
+test('document orbit has continuous stage endpoints, opposite winding and a nonzero sightline', () => {
+  const pose = model.routePose('writing', model.poses[model.initialPoses.writing]),
+    centered = model.documentCenterPose(pose);
+  for (const direction of [1, -1]) {
+    let previous = centered;
+    let winding = 0;
+    let lastAngle = 0;
+    for (let step = 0; step <= 1000; step++) {
+      const current = model.documentTravelPose(centered, centered, step / 1000, direction),
+        angle = Math.atan2(current.position[0], current.position[2] - centered.target[2]);
+      let delta = angle - lastAngle;
+      if (delta > Math.PI) delta -= Math.PI * 2;
+      if (delta < -Math.PI) delta += Math.PI * 2;
+      winding += delta;
+      assert.ok(direction * delta >= -1e-10, 'one continuous direction');
+      assert.ok(
+        Math.hypot(...current.position.map((value, index) => value - previous.position[index])) <
+          0.6,
+        'no camera reset between adjacent poses'
+      );
+      assert.ok(
+        Math.hypot(...current.target.map((value, index) => value - current.position[index])) > 50
+      );
+      previous = current;
+      lastAngle = angle;
+    }
+    assert.ok(Math.abs(winding - direction * Math.PI * 2) < 1e-8);
+    assert.deepEqual(previous, centered);
+  }
+});
+
+test('retargeting a reader orbit preserves its exact displayed camera and room weights', () => {
   for (const direction of [1, -1])
     for (const elapsed of [200, 720, 1260, 1510]) {
       const paints = [],
@@ -2573,7 +2615,7 @@ test('repeating a principal destination before mount retargets without a reader 
   }
 });
 
-test('reader corridor models are prepared before the first flight paint in both directions', () => {
+test('reader orbit reuses the prepared Writing model without building a neighboring room', () => {
   for (const direction of [1, -1]) {
     const events = [],
       p = visit({ page: 'writing', probe: (event) => events.push(structuredClone(event)) });
@@ -2586,26 +2628,14 @@ test('reader corridor models are prepared before the first flight paint in both 
       sameSceneDocument: true,
       direction,
     });
-    finishFlight(p, 'prewarmed reader corridor settles');
-    const first = events.findIndex((event) => event.kind === 'paint');
-    assert.ok(first > 0);
-    assert.ok(
-      events
-        .slice(0, first)
-        .some(
-          (event) =>
-            event.kind === 'stage' &&
-            event.part === 'model-build' &&
-            event.route === (direction === 1 ? 'talks' : 'research')
-        )
-    );
+    finishFlight(p, 'same-model reader orbit settles');
     assert.deepEqual(
-      events.slice(first).filter((event) => event.kind === 'stage' && event.part === 'model-build'),
+      events.filter((event) => event.kind === 'stage' && event.part === 'model-build'),
       [],
-      'no cold room construction inside a flight frame'
+      'no cold construction before or during the orbit'
     );
-    assert.ok(Number(p.scene.dataset.rooms) <= 3);
-    assert.ok(Number(p.scene.dataset.roomModels) <= 6);
+    assert.equal(Number(p.scene.dataset.rooms), 1);
+    assert.ok(Number(p.scene.dataset.roomModels) <= 2);
   }
 });
 
@@ -2647,5 +2677,44 @@ test('reader activation after a principal midpoint preserves the remaining princ
   assert.deepEqual(
     JSON.parse(p.trace()),
     model.routePose('writing', model.poses[model.initialPoses.writing])
+  );
+});
+
+test('repeated principal retargets during orbit recovery keep its original scene anchor and sightline', () => {
+  const paints = [],
+    p = visit({
+      page: 'writing',
+      probe: (event) => {
+        if (event.kind === 'paint') paints.push(structuredClone(event));
+      },
+    });
+  p.settle();
+  p.window.SiteScene.navigate('writing', true, null, null, {
+    navigationId: 1,
+    documentChange: true,
+    sameSceneDocument: true,
+    direction: 1,
+  });
+  p.frame(20);
+  for (let time = 0; time < 940; time += 20) p.frame(20);
+  for (const [index, page] of ['research', 'talks', 'index', 'credits'].entries()) {
+    const before = p.trace();
+    p.window.SiteScene.navigate(page, true, null, null, { navigationId: index + 2 });
+    p.frame(20);
+    assert.equal(p.trace(), before, 'replacement starts at the exact displayed camera');
+    for (let time = 0; time < 200; time += 20) p.frame(20);
+  }
+  finishFlight(p, 'repeated orbit recovery reaches the principal destination');
+  for (const paint of paints) {
+    const { position, target } = paint.current;
+    assert.ok(
+      Math.hypot(...position.map((value, index) => value - target[index])) > 20,
+      'no zero sightline or eye inside the orbit center after another retarget'
+    );
+    assert.ok(paint.paintedRooms.length > 0, 'every actual camera paint retains visible geometry');
+  }
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('credits', model.poses[model.initialPoses.credits])
   );
 });

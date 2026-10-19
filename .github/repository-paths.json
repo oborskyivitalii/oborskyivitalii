@@ -523,6 +523,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e": {
+      "kind": "directory",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/archive.js": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/space.js": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/styles.css": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/theme.js": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -571,42 +607,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac/archive.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac/space.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac/styles.css": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac/theme.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -619,13 +619,49 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0c99ce585de788aed8105def24efbbb7a881035caafa536ba0754d254c05856c": {
+    "docs/snapshots/20bc9b11f4781a7c1c07ed4fbdadd25f7deb6637bf1137df979222e460eff15a": {
       "kind": "directory",
       "purpose": "Generated current site runtime and immutable route rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0c99ce585de788aed8105def24efbbb7a881035caafa536ba0754d254c05856c/credits.html": {
+    "docs/snapshots/20bc9b11f4781a7c1c07ed4fbdadd25f7deb6637bf1137df979222e460eff15a/writing.html": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2d89322c6244622e00440a069244e14698b05a7f2b852212e8e59739629072db": {
+      "kind": "directory",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2d89322c6244622e00440a069244e14698b05a7f2b852212e8e59739629072db/credits.html": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/423dc2e33cca33e107396ec2950db46da9be07cc1d49c5d4993ad186abf09b19": {
+      "kind": "directory",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/423dc2e33cca33e107396ec2950db46da9be07cc1d49c5d4993ad186abf09b19/research.html": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/49e01d8e468b57825a364d323b1edbd5aff98024d98de7e848ee2a08807624fe": {
+      "kind": "directory",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/49e01d8e468b57825a364d323b1edbd5aff98024d98de7e848ee2a08807624fe/talks.html": {
       "kind": "file",
       "purpose": "Generated current site runtime and immutable route rendition.",
       "role": "generated",
@@ -640,30 +676,6 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5f7101776ba2f44cb4a94c9a16e590aacce700334368423822e83706e81c8994": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5f7101776ba2f44cb4a94c9a16e590aacce700334368423822e83706e81c8994/research.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6d8a41d56f01d5f7a35f60216b3b44db7c2a322a650e6cf10a562a0bec5ae8bb": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6d8a41d56f01d5f7a35f60216b3b44db7c2a322a650e6cf10a562a0bec5ae8bb/writing.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -703,6 +715,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/9d201f6dafcd671fce03a9c1d442b0843c7f6fb13ef173db9ad4931cd4b3d766": {
+      "kind": "directory",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9d201f6dafcd671fce03a9c1d442b0843c7f6fb13ef173db9ad4931cd4b3d766/index.html": {
+      "kind": "file",
+      "purpose": "Generated current site runtime and immutable route rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -712,30 +736,6 @@
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d5f44051f51907b5fe86c3f85a51d4ac4bc61897ccc4e2510c6fce3214467fe4": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d5f44051f51907b5fe86c3f85a51d4ac4bc61897ccc4e2510c6fce3214467fe4/index.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d644f3fcb2529ddef6069c2177b95a27c94844dd441a2f40b3ed5a1d96e7c73a": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/d644f3fcb2529ddef6069c2177b95a27c94844dd441a2f40b3ed5a1d96e7c73a/talks.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },

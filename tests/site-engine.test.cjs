@@ -878,3 +878,29 @@ test('discussion metrics can be omitted while links, work counts and JSON-LD ret
     counts.primary.total + Object.values(c.records).reduce((n, r) => n + r.editions.length, 0)
   );
 });
+
+test('document orbit configuration rejects off-axis, degenerate and unsupported enclosing circles', (t) => {
+  const dir = fixture(t),
+    file = path.join(dir, 'site/scenes/paths.json'),
+    original = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.deepEqual(b.configuration(dir).definitions.documentOrbit.center, [0, 0, -32]);
+  for (const center of [
+    undefined,
+    [],
+    [0, 0],
+    [null, 0, -32],
+    [1, 0, -32],
+    [0, 1, -32],
+    [0, 0, 24],
+    [0, 0, -41],
+  ]) {
+    const changed = structuredClone(original);
+    changed.documentOrbit = { center };
+    fs.writeFileSync(file, JSON.stringify(changed));
+    assert.throws(() => b.configuration(dir), /Invalid document orbit center/);
+  }
+  const changed = structuredClone(original);
+  changed.poses.library.position[2] = -32;
+  fs.writeFileSync(file, JSON.stringify(changed));
+  assert.throws(() => b.configuration(dir), /Invalid document orbit radius/);
+});

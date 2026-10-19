@@ -452,20 +452,15 @@ function validateArticleFlight(events, from, to, direction) {
   const transit = paints.filter((paint) => paint.elapsed >= 400 && paint.elapsed < 1400);
   assert.ok(
     transit.every((paint) => paint.current.framing === 1),
-    'centered real depth transit'
-  );
-  assert.ok(
-    transit.some(
-      (paint) =>
-        direction * (plan.fromZ - paint.current.position[2]) > (plan.localDocument ? 48 : 1)
-    ),
-    'actual signed camera depth displacement'
+    'centered camera transit'
   );
   if (plan.localDocument) {
     assert.equal(plan.fromZ, plan.toZ);
+    validateArticleOrbit(plan, paints, transit);
+  } else {
     assert.ok(
-      transit.every((paint) => direction * (plan.fromZ - paint.current.position[2]) >= -0.001),
-      'document excursion direction'
+      transit.some((paint) => direction * (plan.fromZ - paint.current.position[2]) > 1),
+      'actual signed corridor displacement'
     );
   }
   assert.ok(
@@ -478,6 +473,40 @@ function validateArticleFlight(events, from, to, direction) {
   const complete = events.filter((event) => event.kind === 'camera-travel-complete');
   assert.equal(complete.length, 1, 'successful camera completion');
   assert.equal(complete[0].elapsedMs, 1750);
+}
+
+function validateArticleOrbit(plan, paints, transit) {
+  const center = plan.orbitCenter;
+  assert.ok(Array.isArray(center) && center.length === 3 && center.every(Number.isFinite));
+  assert.equal(center[0], 0);
+  assert.equal(center[1], 0);
+  const radius = plan.toZ - center[2];
+  assert.ok(radius > 20, 'camera stays outside the scene center');
+  assert.ok(
+    paints.every((paint) => JSON.stringify(paint.paintedRooms) === '["writing"]'),
+    'one unchanged fractal scene throughout document travel'
+  );
+  let previous = 0;
+  let winding = 0;
+  for (const paint of transit) {
+    const [x, y, z] = paint.current.position;
+    assert.ok([x, y, z].every(Number.isFinite));
+    assert.ok(Math.abs(y) < 0.001, 'horizontal camera orbit');
+    assert.ok(Math.abs(Math.hypot(x, z - center[2]) - radius) < 0.001, 'fixed orbit radius');
+    assert.deepEqual(paint.current.target, center, 'camera keeps looking at the scene center');
+    const angle = Math.atan2(x, z - center[2]);
+    let delta = angle - previous;
+    if (delta > Math.PI) delta -= Math.PI * 2;
+    if (delta < -Math.PI) delta += Math.PI * 2;
+    assert.ok(plan.direction * delta >= -0.001, 'continuous orbit in the history direction');
+    winding += delta;
+    previous = angle;
+  }
+  assert.ok(plan.direction * winding > 5.2, 'actual camera paints cover a complete circular pass');
+  assert.ok(plan.direction * winding <= Math.PI * 2 + 0.001, 'one orbit without extra turns');
+  assert.ok(transit.some((paint) => paint.current.position[0] > radius * 0.7));
+  assert.ok(transit.some((paint) => paint.current.position[0] < -radius * 0.7));
+  assert.ok(transit.some((paint) => paint.current.position[2] < center[2] - radius * 0.7));
 }
 
 async function takeArticleFlight(page, from, to, direction) {

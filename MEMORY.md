@@ -4,6 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- PR79 orbit follow-up supersedes same-scene depth excursions: center, circle the
+  single Writing fractal and restore reading. Bounded independent review found
+  and rechecked fixes for repeated escape retargets and unsafe orbit parameters.
+  Exact final source/policy/hosted evidence belongs to PR79, not the older checkpoints.
+
 - 19 October #106 corrections: offline source/selection binding, private public
   identity isolation and transitive window validation fixed. Focused independent
   re-review addresses F01–F03; exact policies/previews in owning PR107/PR79.
@@ -41,9 +46,9 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Open work
 
-- Reader-flight correction in the same PR79: explicit same-scene document travel,
-  history direction and related-block wave; bounded independent review and raw
-  successful-camera-paint admission. Review: review/issue-5/2026-10-19-reader-flight-review.md.
+- Reader orbit correction in the same PR79: one unchanged Writing scene, real
+  circular camera paints, preserved repeated-retarget return anchor and bounded
+  scene configuration. Review: review/issue-5/2026-10-19-reader-flight-review.md.
   Exact final source/CI/preview evidence belongs to PR79; draft smoke is not staging admission.
 - Materials F01/F02 corrections are implemented and focused independently re-reviewed;
   final combined-source evidence belongs to PR79. Preserve PR107/editorial ownership.

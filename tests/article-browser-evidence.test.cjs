@@ -29,6 +29,7 @@ function flight(from, to, direction) {
     toDocument: to,
     direction,
     localDocument,
+    ...(localDocument ? { orbitCenter: [0, 0, fromZ - 56] } : {}),
     fromZ,
     toZ,
     fromPose: { position: [0, 0, fromZ], target: [0, 0, fromZ - 8], framing: 0 },
@@ -44,33 +45,28 @@ function flight(from, to, direction) {
     direction,
     events: [
       plan,
-      ...[0, 200, 400, 800, 1000, 1400, 1600, 1750].map((elapsed) => ({
-        kind: 'paint',
-        navigationId: 1,
-        elapsed,
-        current: {
-          position: [
-            0,
-            0,
-            elapsed === 1750
-              ? toZ
-              : elapsed >= 400 && elapsed < 1400
-                ? fromZ - direction * 64
-                : fromZ,
-          ],
-          target: [
-            0,
-            0,
-            (elapsed === 1750
-              ? toZ
-              : elapsed >= 400 && elapsed < 1400
-                ? fromZ - direction * 64
-                : fromZ) - 8,
-          ],
-          framing: elapsed >= 400 && elapsed < 1400 ? 1 : 0,
-        },
-        paintedRooms: ['writing'],
-      })),
+      ...[0, 200, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1600, 1750].map(
+        (elapsed) => {
+          const transit = elapsed >= 400 && elapsed < 1400,
+            progress = (elapsed - 400) / 1000,
+            angle = direction * Math.PI * 2 * progress * progress * (3 - 2 * progress),
+            z = elapsed === 1750 ? toZ : transit ? fromZ - direction * 64 : fromZ;
+          return {
+            kind: 'paint',
+            navigationId: 1,
+            elapsed,
+            current: {
+              position:
+                localDocument && transit
+                  ? [56 * Math.sin(angle), 0, fromZ - 56 + 56 * Math.cos(angle)]
+                  : [0, 0, z],
+              target: localDocument && transit ? plan.orbitCenter : [0, 0, z - 8],
+              framing: transit ? 1 : 0,
+            },
+            paintedRooms: ['writing'],
+          };
+        }
+      ),
       { ...plan, kind: 'camera-travel-complete', elapsedMs: 1750 },
     ],
   };
@@ -544,7 +540,7 @@ test('bounded article history diagnostics retain original Back state and geometr
   assert.equal(content.inert, false);
 });
 
-test('article flight admission rejects static depth, wrong direction, mixed identities and missing stages', () => {
+test('article flight admission rejects axial excursions, reversed orbits, scene swaps and incomplete evidence', () => {
   const good = flight('writing', 'article:' + key, 1);
   validateArticleFlight(good.events, good.from, good.to, good.direction);
   for (const corrupt of [
@@ -556,6 +552,25 @@ test('article flight admission rejects static depth, wrong direction, mixed iden
       events
         .filter((event) => event.kind === 'paint' && event.elapsed >= 400 && event.elapsed < 1400)
         .forEach((event) => (event.current.position[2] = -186)),
+    (events) =>
+      events
+        .filter((event) => event.kind === 'paint' && event.elapsed >= 400 && event.elapsed < 1400)
+        .forEach((event) => {
+          event.current.position[0] *= -1;
+        }),
+    (events) => {
+      events.find((event) => event.kind === 'paint').paintedRooms = ['research'];
+    },
+    (events) => {
+      events.find((event) => event.kind === 'paint' && event.elapsed === 800).current.target = [
+        0, 0, -250,
+      ];
+    },
+    (events) => {
+      events.find(
+        (event) => event.kind === 'paint' && event.elapsed === 1000
+      ).current.position[0] += 10;
+    },
     (events) => {
       events[2].navigationId = 2;
     },

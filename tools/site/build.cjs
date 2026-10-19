@@ -77,6 +77,21 @@ function configuration(root) {
       throw Error('Invalid scene path');
   if (!Number.isFinite(paths.roomSpacing) || paths.roomSpacing < 100)
     throw Error('Invalid room spacing');
+  if (
+    !Array.isArray(paths.documentOrbit?.center) ||
+    paths.documentOrbit.center.length !== 3 ||
+    !paths.documentOrbit.center.every(Number.isFinite) ||
+    paths.documentOrbit.center[0] !== 0 ||
+    paths.documentOrbit.center[1] !== 0 ||
+    paths.documentOrbit.center[2] < -40 ||
+    paths.documentOrbit.center[2] > -32
+  )
+    throw Error('Invalid document orbit center');
+  // The supported Writing composition fits inside this enclosing horizontal
+  // camera circle. Changing its envelope requires a fresh geometry review.
+  const writing = config.routes.find((route) => route.id === 'writing'),
+    orbitRadius = paths.poses[writing.initialPose].position[2] - paths.documentOrbit.center[2];
+  if (orbitRadius < 56 || orbitRadius > 64) throw Error('Invalid document orbit radius');
   return {
     config,
     definitions: {

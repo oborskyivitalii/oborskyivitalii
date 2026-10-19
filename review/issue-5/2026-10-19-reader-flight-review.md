@@ -1,3 +1,83 @@
+# 19 October follow-up — same-scene camera orbit
+
+The maintainer rejects the depth out-and-back introduced below: the return breaks
+spatial continuity. This dated decision supersedes only that local camera path.
+Owner: [#5 orbit amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issue5-reader-orbit-20261019), same Draft PR79, baseline b0ff55d.
+
+Writing↔native article and article↔article now center the existing Writing model,
+complete a horizontal camera orbit around its shared pivot, and restore the exact
+reading pose. Back/Forward reverse winding. The same Writing geometry stays fully
+visible; Research/Talks models and depth-based room fading never enter local trips.
+Principal-section trips retain their corridor path. The existing400/1000/350ms
+center/transit/restore clock, one RAF, cancellation and cache limits remain.
+No editorial, selected material, original image, PDF or publication data changes.
+
+## Independent orbit findings and disposition
+
+Implementation: root Codex. Independent read-only technical AI reviewer:
+`/root/orbit_review`, under the existing AC11/CS10 independent-review requirement.
+
+| ID | Finding and meaningful negative | Correction and disposition |
+| --- | --- | --- |
+| O01 P1 | Orbit→Research→Talks during the unfinished return discarded orbital provenance. Independent replay reduced the sightline to zero at400ms. | Carry the unfinished orbit state **and original Writing return anchor** through repeated replacements, ending inheritance after centering. New regression repeats four principal targets; exact original independent replay retains radius56 and returns to Writing continuously. Addressed. |
+| O02 P2 | Arbitrary finite orbit centers violated the axial endpoint assumption or coincided with the eye. | Validate the supported shared axis, pivot envelope and enclosing56–64 radius. Off-axis/coincident originals plus missing/malformed/unsupported centers and changed zero-radius opening are rejected. Independent exact examples both reject. Addressed. |
+
+Independent re-review found no remaining blocker within these findings. Inspected
+prepared Git blobs: lifecycle d7439bb, projection e78b16b, producer d8f5c14,
+scene tests82ac629, config tests767cf31. A subsequent cohesive cameraDeparture
+snapshot and cameraPath extraction reduce the existing navigation complexity
+warning from29 to27; the same independent reviewer accepted ordering/provenance equivalence
+at final lifecycle blob7b114369c2d2b77c236b746be921365029ab0d16.
+Final regenerated source identity belongs to PR79. Its focused correction regressions2/2
+passed. The earlier focused normal/room/cancellation cases5/5 passed. This is
+bounded technical review, not whole-PR, article, rights, device or release approval.
+
+## Source, browser and style contract
+
+- Pure projection owns the orbit and continuous return arc; scene data owns pivot
+  parameters, producer validation owns their finite supported envelope, lifecycle
+  owns clocks, room selection/visibility and cancellation. No new service, model
+  registry, timer, runtime dependency or content/style owner: CS01/04/06/07.
+- Source tests observe full360° winding in both directions, fixed radius/target,
+  continuous endpoints, nonzero sightline, Writing-only paints, exact anchor,
+  no neighboring model construction and repeated retargets. Existing principal,
+  history, Off/reduced/hidden and resource cases remain: CS08.
+- Browser admission requires actual successful camera paints, navigation/document
+  identities, center/transit/restore phases, both sides and rear of the circle,
+  signed winding, constant radius and fixed target, Writing-only scene and complete
+  canonical arrival. Axial excursion, reverse direction, scene swap, drift, wrong
+  target, missing phases and mixed identities reject. Principal routes retain real
+  signed-depth observation rather than being relabeled as orbits: CS08/10.
+- Focused prepared verification: complete scene suite64/64 before the O01
+  follow-up; refreshed reader/orbit/retarget suite8/8; config regression1/1;
+  browser evidence7/7 and Color/current-historical controller suite24/24.
+  Exact clean final whole-source and hosted reports are recorded in PR79.
+- Maintained formatting/bounded guard, RI/CI and original byte/frame/cache budgets
+  remain required. No existing complexity exception is broadened: CS05/07/09.
+- The exact orbit runtime family is registered in the existing Color identity and
+  mandatory publication-rights discriminator; previous runtime families remain.
+  Current production selection assertions advance to the new identity. Missing or
+  substituted rights remain rejecting cases, not a new legacy exemption.
+- The independent sampled animated composition radius was approximately52.90
+  inside the current camera radius56. This is geometry inspection, not a native
+  device or hosted frame-performance claim.
+
+## Placement and remaining acceptance
+
+The bottom Writing link comes from the explicit preview-only `listing()` block
+headed “Test article previews”. The synthetic reference remains draft/nonpublishable
+and excluded from the catalog and recommendation candidates. Real local published
+articles enter the canonical catalog, grouped by year/topic and its explicit
+editorial order, with the common count/filter/tags. No automatic production or
+promotion is performed by this change.
+
+Full staging, actual article/media/PDF/rights, author/device decisions and independent
+production lanes remain their existing separate #5/#2 gates. No whole checkbox is
+newly ticked by this bounded increment. Final exact head, raw check and immutable
+preview links belong to PR79; the older review below remains historical evidence.
+
+---
+
 # Issue5 — 19 October reader flight correction and independent review
 
 Owner: [issue5 reader-flight amendment](https://github.com/oborskyivitalii/oborskyivitalii/issues/5#issue5-reader-flight-20261019), same Draft [PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79).

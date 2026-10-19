@@ -272,6 +272,13 @@ Hosted routes do not embed the whole article registry. A local article embeds it
 own initial descriptor; first navigation selects compatible article descriptors
 from the bounded revision manifest. Article renderer compatibility is explicit.
 
+Writing and its native article documents use the same fractal composition.
+Document-to-document navigation centers that composition, orbits the camera once
+around it, then restores the reading pose. History reverses the orbit direction.
+Principal-section trips retain corridor travel. One lifecycle owns timing,
+interruption, the original orbit-return anchor and motion/native fallbacks.
+The supported axis/pivot and enclosing radius are validated with the scene inputs.
+
 
 Article documents reference the canonical Writing fallback through one generated,
 content-addressed `article-media/<sha256>/writing-fallback.svg` group. The scene

@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 reader orbit: same-scene geometry and cancellation independently reviewed in PR79.
+  issue5ReaderOrbit: {
+    behavior: 'fixed-blocks',
+    baseEngine: '5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '26197e2d01b6b052db18864f7ac29c4d017810c1922e26bd2ce28364f9cb6a9b',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   // Issue5 independent native reader history review: bounded host alias recognition.
   issue5ReaderNativeHistory: {
     behavior: 'fixed-blocks',
@@ -209,6 +218,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-orbit-production',
+    family: 'issue5ReaderOrbit',
+    edition: 'production',
+    fingerprint: '41b1f53b5dd0f5eecbf93e5c5f63124c6400b45f071c12afbea2a5b583545fea',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-reader-orbit-plain',
+    family: 'issue5ReaderOrbit',
+    edition: 'plain',
+    fingerprint: '8c9bae11a7bef3ada0849d19e66bd10a583978d7cdd117a98c93bd1c78d30a77',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-reader-orbit-staging',
+    family: 'issue5ReaderOrbit',
+    edition: 'staging',
+    fingerprint: '51b3e2e4d1817f28fa2a02e9a4eb507362d299ecbee2e4a95df4bb10fff53c73',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue5-reader-native-history-production',
     family: 'issue5ReaderNativeHistory',

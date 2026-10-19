@@ -19,7 +19,9 @@ module.exports = function (api) {
     projectedWorld,
     paintShapes,
     routePose,
+    documentCenterPose,
     documentTravelPose,
+    documentReturnPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -160,6 +162,7 @@ module.exports = function (api) {
       toDocument: planned.toDocument,
       direction: planned.direction,
       localDocument: planned.localDocument,
+      ...(planned.localDocument ? { orbitCenter: planned.centeredTo.target } : {}),
       fromZ: planned.from.position[2],
       toZ: planned.to.position[2],
       fromPose: planned.from,
@@ -263,11 +266,7 @@ module.exports = function (api) {
     // Its logical source page may still be several rooms away from that paint.
     if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
     const targetIndex = routeOrder.indexOf(travel.toPage);
-    if (travel.localDocument) {
-      const near =
-        pose.position[2] < readingPose(travel.toPage).position[2] ? targetIndex : targetIndex - 1;
-      return [Math.max(0, near), Math.min(near + 1, routeOrder.length - 1)];
-    }
+    if (travel.localDocument) return [targetIndex];
     const first = Math.min(...travel.fromRooms, targetIndex),
       last = Math.max(...travel.fromRooms, targetIndex);
     let near = first;
@@ -291,8 +290,15 @@ module.exports = function (api) {
     const next = readingPose(routeOrder[index + 1]).position[2];
     return smooth(clamp((cameraDepth - next) / (depth - next)));
   }
+  function travelVisibility(travel, name, pose, elapsed = travel?.elapsed) {
+    if (!travel || travel.localDocument) return 1;
+    const opacity = roomVisibility(name, pose);
+    if (elapsed >= travel.centerDuration) return opacity;
+    const start = travel.fromOpacity[name] || 0;
+    return start + (opacity - start) * smooth(elapsed / travel.centerDuration);
+  }
   function visibleRooms() {
-    if (!journey || journeyStage() === 'restore') {
+    if (!journey || journey.localDocument || journeyStage() === 'restore') {
       const room = roomFor(page);
       const shapes = projectedWorld(
         room.world,
@@ -312,7 +318,7 @@ module.exports = function (api) {
     const names = travelRoomIndices(journey, current).map((index) => routeOrder[index]);
     const active = [...new Set(names)];
     const shapes = active.flatMap((name) => {
-      const opacity = roomVisibility(name, current);
+      const opacity = travelVisibility(journey, name, current);
       if (opacity === 0) return [];
       // Entire room envelope behind the camera cannot contribute geometry.
       const local = translatePose(current, -roomOffset(name));
@@ -401,7 +407,7 @@ module.exports = function (api) {
         roomVisibility: (!journey || journeyStage() === 'restore'
           ? [page]
           : travelRoomIndices(journey, current).map((index) => routeOrder[index])
-        ).map((name) => ({ route: name, opacity: roomVisibility(name, current) })),
+        ).map((name) => ({ route: name, opacity: travelVisibility(journey, name, current) })),
         ordinaryShapes: geometry.length,
         customShapes: custom.length,
       });
@@ -514,7 +520,10 @@ module.exports = function (api) {
     if (elapsed === 0) {
       current = journey.from;
     } else if (elapsed < centerEnd) {
-      current = mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
+      current =
+        journey.fromOrbit && !journey.localDocument
+          ? documentReturnPose(journey.from, journey.centeredFrom, elapsed / centerEnd)
+          : mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
     } else if (elapsed < transitEnd) {
       const progress = (elapsed - centerEnd) / (transitEnd - centerEnd);
       current = journey.localDocument
@@ -704,6 +713,51 @@ module.exports = function (api) {
   }
   observeLayout();
   document.fonts?.addEventListener?.('loadingdone', resize);
+
+  function cameraDeparture() {
+    const from = displayedCamera,
+      sourcePage = page,
+      fromRooms =
+        journey && displayedElapsed < journey.centerDuration + journey.transitDuration
+          ? travelRoomIndices(journey, from, displayedElapsed)
+          : [routeOrder.indexOf(sourcePage)],
+      fromOpacity = Object.fromEntries(
+        fromRooms.map((index) => {
+          const name = routeOrder[index];
+          return [name, travelVisibility(journey, name, from, displayedElapsed)];
+        })
+      ),
+      fromOrbit =
+        journey?.localDocument === true ||
+        (journey?.fromOrbit === true && displayedElapsed < journey.centerDuration),
+      orbitAnchor = journey?.orbitAnchor || readingPose(sourcePage);
+    return {
+      from,
+      sourcePage,
+      fromRooms,
+      fromOpacity,
+      fromOrbit,
+      orbitAnchor,
+      centeredDocument: documentCenterPose(from, fromOrbit),
+      centeredPrincipal: fromOrbit ? documentCenterPose(orbitAnchor) : centerPose(from),
+    };
+  }
+  function cameraPath(next, departure, metadata) {
+    const { sourcePage, from } = departure,
+      documentChange = metadata?.documentChange === true,
+      localDocument =
+        next === sourcePage &&
+        documentChange &&
+        metadata.sameSceneDocument === true &&
+        (!journey || journey.localDocument),
+      target = readingPose(next),
+      forward = localDocument
+        ? metadata.direction !== -1
+        : target.position[2] === from.position[2]
+          ? routeOrder.indexOf(next) > routeOrder.indexOf(sourcePage)
+          : target.position[2] < from.position[2];
+    return { documentChange, localDocument, target, forward };
+  }
   window.SiteScene = {
     motionState,
     managesLayout: true,
@@ -723,29 +777,14 @@ module.exports = function (api) {
         cancel();
         updateControl();
       }
-      const from = displayedCamera,
-        sourcePage = page,
-        fromRooms =
-          journey && displayedElapsed < journey.centerDuration + journey.transitDuration
-            ? travelRoomIndices(journey, from, displayedElapsed)
-            : [routeOrder.indexOf(sourcePage)];
+      const departure = cameraDeparture(),
+        { from, sourcePage, fromRooms, fromOpacity, fromOrbit, orbitAnchor } = departure;
       page = next;
       const metadata = options[1],
-        documentChange = metadata?.documentChange === true,
-        localDocument =
-          next === sourcePage &&
-          documentChange &&
-          metadata.sameSceneDocument === true &&
-          (!journey || journey.localDocument),
-        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel(),
-        target = readingPose();
+        { documentChange, localDocument, target, forward } = cameraPath(next, departure, metadata),
+        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
-      const forward = localDocument
-        ? metadata.direction !== -1
-        : target.position[2] === from.position[2]
-          ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
-          : target.position[2] < from.position[2];
       scene.dataset.direction = forward ? 'forward' : 'backward';
       if (travelling) {
         // The fourth router argument remains its native landing contract;
@@ -760,16 +799,19 @@ module.exports = function (api) {
           fromPage: sourcePage,
           toPage: page,
           localDocument,
+          fromOrbit,
+          orbitAnchor: localDocument ? target : orbitAnchor,
           direction: forward ? 1 : -1,
           fromDocument: metadata?.fromDocument,
           toDocument: metadata?.toDocument,
           fromRooms,
+          fromOpacity,
           from,
           to: target,
           elapsed: 0,
-          centeredFrom: centerPose(from),
-          centeredTo: centerPose(target),
-          // Center, depth travel and reading restoration share a fixed camera
+          centeredFrom: localDocument ? departure.centeredDocument : departure.centeredPrincipal,
+          centeredTo: localDocument ? documentCenterPose(target) : centerPose(target),
+          // Center, orbit/corridor and reading restoration share a fixed camera
           // budget. Direct route choices change distance, never waiting time.
           centerDuration,
           transitDuration,
@@ -792,18 +834,6 @@ module.exports = function (api) {
           for (const route of new Set([
             ...fromRooms.map((index) => routeOrder[index]),
             ...travelRoomIndices(journey, from).map((index) => routeOrder[index]),
-            ...(journey.localDocument
-              ? travelRoomIndices(
-                  journey,
-                  documentTravelPose(
-                    journey.centeredFrom,
-                    journey.centeredTo,
-                    0.5,
-                    journey.direction
-                  ),
-                  journey.centerDuration
-                ).map((index) => routeOrder[index])
-              : []),
             page,
           ]))
             roomFor(route);
