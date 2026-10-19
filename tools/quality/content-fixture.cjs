@@ -39,7 +39,13 @@ function manuscript(revised = false) {
 
 function publication(directory, revised = false) {
   const owner = 'site/publications/' + ARTICLE;
-  const body = manuscript(revised);
+  const body = manuscript(revised) + '\n\n![Synthetic one-pixel figure](asset:fixture-image)\n';
+  const image = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aJ1sAAAAASUVORK5CYII=',
+    'base64'
+  );
+  const imagePath = 'site/assets/publications/' + ARTICLE + '/fixture.png';
+  write(directory, imagePath, image);
   const launch = 'Synthetic diagnostic fixture; never a publication.\n';
   const metadata = {
     schema: 1,
@@ -57,7 +63,18 @@ function publication(directory, revised = false) {
     profile: 'profile.json',
     canonical: null,
     references: [],
-    assets: [],
+    assets: [
+      {
+        id: 'fixture-image',
+        path: imagePath,
+        sha256: builder.sha(image),
+        width: 1,
+        height: 1,
+        alt: 'Synthetic one-pixel figure',
+        caption: 'Synthetic diagnostic image.',
+        credit: 'Controlled fixture; never a publication.',
+      },
+    ],
     rights: { status: 'review-pending', notice: 'Synthetic fixture only.', references: [] },
     platforms: {
       linkedin: { mode: 'equivalent-rendition' },
@@ -93,8 +110,8 @@ function publication(directory, revised = false) {
     launch: { source: 'launch-post.en.md', sha256: builder.sha(launch) },
     seo: { title: metadata.title, summary: metadata.summary },
     assets: {
-      cover: { omitReason: 'Text-only synthetic fixture.' },
-      hero: { omitReason: 'Text-only synthetic fixture.' },
+      cover: { omitReason: 'Synthetic fixture uses one body image, without a cover.' },
+      hero: { omitReason: 'Synthetic fixture uses one body image, without a hero.' },
     },
     limits: {},
   });
@@ -144,6 +161,14 @@ function prepare({ sourceRoot = root, temporaryRoot = os.tmpdir() } = {}) {
     catalog.records[recordId].edition.url += '-synthetic-content-check';
     json(directory, catalogFile, catalog);
     publication(directory, true);
+    const events = JSON.parse(fs.readFileSync(path.join(directory, 'site/content/events.json')));
+    const added = structuredClone(events.groups[1].events[0]);
+    added.id = 'synthetic-event-' + events.groups[1].events.length;
+    added.anchor = added.id;
+    added.title = 'Synthetic event fixture ' + added.id;
+    events.groups[1].events.push(added);
+    events.groups[0].events[0].description += ' Synthetic event edit fixture.';
+    json(directory, 'site/content/events.json', events);
     const output = path.join(directory, 'current');
     const result = contentRelease.release({
       root: directory,
@@ -153,9 +178,9 @@ function prepare({ sourceRoot = root, temporaryRoot = os.tmpdir() } = {}) {
       output,
       candidateArticles: [ARTICLE],
     });
-    assert.deepEqual(result.report.builtRoutes, ['writing']);
+    assert.deepEqual(result.report.builtRoutes, ['writing', 'talks']);
     assert.deepEqual(result.report.builtArticles, [KEY]);
-    assert.deepEqual(result.report.reusedRoutes, ['index', 'research', 'talks', 'credits']);
+    assert.deepEqual(result.report.reusedRoutes, ['index', 'research', 'credits']);
     assert.equal(result.report.engine, builder.runtimeVersion(generation.components));
     const manifest = {
       schema: 1,
@@ -213,6 +238,45 @@ async function main({ reportFile = process.argv[2] } = {}) {
     assert.equal(report.content.writing.length, 2);
     assert.equal(report.content.articles.length, 1);
     assert.equal(report.content.articles[0].observations.length, 5);
+    report.contentDocuments = await require('./content-browser.cjs').observe(
+      browser,
+      url,
+      fixture.manifest
+    );
+    require('./content-gate.cjs').validateDocuments(report.contentDocuments, fixture.manifest);
+    assert.equal(report.contentDocuments.media.length >= 1, true);
+    const file = report.contentDocuments.media.find((row) =>
+      row.file.endsWith('/fixture.png')
+    ).file;
+    const corrupt = fs.readFileSync(path.join(fixture.output, file)).subarray(0, 33);
+    const brokenDirectory = path.join(fixture.directory, 'corrupt-media');
+    fs.cpSync(fixture.output, brokenDirectory, { recursive: true });
+    fs.writeFileSync(path.join(brokenDirectory, file), corrupt);
+    const broken = await require('./serve.cjs').start({
+      publicDir: brokenDirectory,
+      localOnly: true,
+    });
+    try {
+      const manifest = structuredClone(fixture.manifest);
+      manifest.files[file].sha256 = builder.sha(corrupt);
+      const media = await require('./content-browser.cjs').observeMedia(
+        browser,
+        broken.url,
+        manifest
+      );
+      const observed = media.find((row) => row.file === file);
+      assert.equal(observed.status, 200);
+      assert.equal(observed.sha256, builder.sha(corrupt));
+      assert.equal(observed.pass, false, 'valid MIME/signature/hash cannot replace actual decode');
+      report.corruptMedia = {
+        file,
+        status: observed.status,
+        digestVerified: true,
+        decodeRejected: true,
+      };
+    } finally {
+      await new Promise((resolve) => broken.server.close(resolve));
+    }
     report.pass = true;
     return report;
   } catch (error) {

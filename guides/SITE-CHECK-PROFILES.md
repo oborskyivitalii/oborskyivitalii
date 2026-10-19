@@ -82,7 +82,8 @@ in `source_profiles.content.mandatory_files`; each module retains its permanent
 staging and production routes. Ordinary PR source selection also recognizes this
 bounded authored scope. A classification is a plan, never evidence of execution.
 
-The admitted authored scope is the publication catalog, Home/Writing JSON prose,
+The admitted authored scope is the publication catalog, Home/Writing/Talks JSON prose,
+the canonical `site/content/events.json` event collection,
 article Markdown/JSON and declared publication image/PDF media. Generated public
 files/output lock, dated memory and regenerated RI views may accompany that
 scope. Publication inventory edits require an exact old/new Git comparison:
@@ -128,9 +129,20 @@ rebuilt article documents, each with the existing two-width normal and Off,
 no-Canvas/no-JS journeys. Their observed identity/count/reading/navigation
 results remain separate from source fixtures.
 
-This profile does not skip staging or production admission, performance,
-scanner, device, review or rights gates, or increase any budget. It does not
-claim an old runtime measurement covers a changed renderer. Offline all-route
+Accepted staging now selects a distinct `compatible-content-v1` policy from
+`content-baseline.selectAccepted`. It authenticates a merged ancestor's successful
+staging checkpoint and immutable public/gate uploads; source-only preview reuse
+is insufficient. Its `content-staging-gate` inherits compatible byte-identical
+platform acceptance, runs current scanners/content/rights/budgets, exact hosted
+bytes and affected desktop/mobile normal/no-JS documents, the bounded reader
+journey and actual current image decoding. It records omitted platform/performance
+regression as inherited, never executed. Ordinary platform gates keep their full
+original scope. Production derives the exact accepted generation, rechecks source
+and predecessor leases, and uses the shared protected publisher. Missing or
+incompatible accepted evidence explicitly selects the platform path.
+
+No review, rights or resource budget is relaxed. Old runtime measurements cannot
+cover a changed renderer. Offline all-route
 exports remain explicit commands rather than an automatic content-release
 side effect. Public deployment still uploads one complete verified package.
 

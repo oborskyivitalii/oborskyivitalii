@@ -3,6 +3,7 @@ const test = require('node:test'),
   assert = require('node:assert/strict');
 const gate = require('../tools/quality/staging-gate.cjs'),
   fixture = require('./fixtures/staging-evidence.cjs');
+const { flight } = require('./fixtures/article-flight.cjs');
 
 function articleAggregateFixture(count, color) {
   const f = fixture.aggregateFixture(color);
@@ -103,6 +104,20 @@ function articleAggregateFixture(count, color) {
         key,
         width,
         mode: 'normal',
+        relatedDeparture: { present: false, departed: false },
+        nativeHistory: [
+          flight('writing', 'article:' + key, -1),
+          flight('article:' + key, 'writing', 1),
+        ],
+        flights: [
+          flight('writing', 'article:' + key, 1),
+          flight('article:' + key, 'writing', -1),
+          flight('writing', 'article:' + key, 1),
+          flight('article:' + key, 'research', -1),
+          ...['index', 'writing', 'talks', 'credits'].map((to) =>
+            flight('article:' + key, to, ['index', 'writing'].includes(to) ? -1 : 1)
+          ),
+        ],
         head: structuredClone(head),
         reading: { entered: ['section'], departed: ['section'], maxEntering: 1, maxRoute: 1 },
         checks: { ...normalChecks, basePath: '/author/' },
@@ -117,6 +132,7 @@ function articleAggregateFixture(count, color) {
           anchors: true,
           writingLink: true,
           singleCanvas: true,
+          ...(mode === 'off' ? { reducedMotion: true } : {}),
           basePath: '/author/',
         },
       })),

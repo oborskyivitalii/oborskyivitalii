@@ -197,4 +197,4 @@ function archiveViews(templates, catalog, entries) {
   };
 }
 
-module.exports = { publication, discussionRows, dateLabel, archiveViews };
+module.exports = { component, publication, discussionRows, dateLabel, archiveViews };

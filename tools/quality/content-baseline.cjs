@@ -308,6 +308,134 @@ async function select({
   };
 }
 
+function inspectAccepted(directory, gate, authentication, expectedCandidates, components) {
+  assert.equal(authentication.kind, 'accepted-staging-source');
+  assert.equal(authentication.pass, true);
+  const result = inspect(
+    directory,
+    { head_sha: authentication.sourceCommit },
+    { id: authentication.public.id, digest: authentication.public.digest },
+    authentication.sourceTree,
+    expectedCandidates,
+    components
+  );
+  if (!result.reusable) throw Error(result.reason);
+  const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
+  require('./staging-gate.cjs').validateGate(manifest, gate, gate.hostedOrigin);
+  assert.deepEqual(gate.files, manifest.files, 'accepted gate inventory differs');
+  assert.deepEqual(gate.components, manifest.components, 'accepted gate components differ');
+  assert.equal(String(gate.githubArtifact.id), String(authentication.public.id));
+  assert.equal(
+    'sha256:' + gate.githubArtifact.uploadDigest.replace(/^sha256:/, ''),
+    authentication.public.digest
+  );
+  return result;
+}
+
+// Stable staging is a stronger trust boundary than preview/source-check reuse.
+// Only this route may inherit platform regression in a content/media gate.
+async function selectAccepted({ github, repo, candidate, root, temporaryRoot = os.tmpdir() }) {
+  assert.equal(git(root, ['rev-parse', 'HEAD']), candidate);
+  const registry = sourceTests.validateRegistry(root, sourceTests.loadRegistry(root));
+  const expectedCandidates = require('./artifact.cjs').previewSelection(undefined, root);
+  const context = { repo };
+  const { data: prs } = await github.rest.pulls.list({
+    ...repo,
+    state: 'closed',
+    base: 'main',
+    sort: 'updated',
+    direction: 'desc',
+    per_page: 30,
+  });
+  const observations = [];
+  for (const summary of prs) {
+    if (!summary.merged_at) continue;
+    const pr = (await github.rest.pulls.get({ ...repo, pull_number: summary.number })).data;
+    if (
+      cp.spawnSync('git', ['merge-base', '--is-ancestor', pr.merge_commit_sha, candidate], {
+        cwd: root,
+        stdio: 'ignore',
+      }).status !== 0
+    )
+      continue;
+    const classification = sourceTests.classifyContent(
+      registry,
+      sourceTests.readChangedPaths(root, pr.merge_commit_sha, candidate),
+      { root, base: pr.merge_commit_sha, head: candidate }
+    );
+    if (classification.mode !== 'content') {
+      observations.push({ pr: pr.number, reason: classification.reason });
+      continue;
+    }
+    let directory;
+    try {
+      const authentication = await require('../release/staging-policy.cjs').authenticate(
+        github,
+        context,
+        pr.number,
+        pr.head.sha
+      );
+      const download = async (record, suffix) => {
+        const response = await github.rest.actions.downloadArtifact({
+          ...repo,
+          artifact_id: record.id,
+          archive_format: 'zip',
+        });
+        const bytes = Buffer.from(response.data);
+        assert.equal(
+          'sha256:' + crypto.createHash('sha256').update(bytes).digest('hex'),
+          record.digest
+        );
+        return unpack(bytes, path.join(directory, suffix));
+      };
+      directory = fs.mkdtempSync(path.join(temporaryRoot, 'site-accepted-content-'));
+      // unpack owns its temporary ZIP parent; keep both extractions disjoint.
+      fs.mkdirSync(path.join(directory, 'public'));
+      fs.mkdirSync(path.join(directory, 'gate'));
+      const publicDirectory = await download(authentication.public, 'public');
+      const gateDirectory = await download(authentication.gate, 'gate');
+      const builder = require('../site/build.cjs');
+      const { config } = builder.configuration(root);
+      const gate = JSON.parse(fs.readFileSync(path.join(gateDirectory, 'release-manifest.json')));
+      const result = inspectAccepted(
+        publicDirectory,
+        gate,
+        authentication,
+        expectedCandidates,
+        builder.fingerprints(root, config, builder.catalog(root))
+      );
+      const admission = {
+        schema: 1,
+        kind: 'accepted-content-baseline',
+        authentication,
+        gateSha256: crypto.createHash('sha256').update(JSON.stringify(gate)).digest('hex'),
+        mergedSource: pr.merge_commit_sha,
+      };
+      fs.writeFileSync(
+        path.join(publicDirectory, 'content-admission.json'),
+        JSON.stringify(admission, null, 2) + '\n'
+      );
+      return {
+        mode: 'content',
+        lane: classification.lane,
+        ...result,
+        classification,
+        admission,
+        observations,
+      };
+    } catch (error) {
+      if (directory) fs.rmSync(directory, { recursive: true, force: true });
+      observations.push({ pr: pr.number, reason: error.message });
+    }
+  }
+  return {
+    mode: 'platform',
+    lane: 'platform',
+    reason: 'No compatible accepted staging generation; ordinary platform build required',
+    observations,
+  };
+}
+
 module.exports = {
   WORKFLOW,
   MAX_ARCHIVE_BYTES,
@@ -317,4 +445,6 @@ module.exports = {
   inspect,
   sourceEvidence,
   select,
+  selectAccepted,
+  inspectAccepted,
 };

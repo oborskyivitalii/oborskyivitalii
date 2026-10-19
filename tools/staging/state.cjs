@@ -359,7 +359,7 @@ async function recordCandidate() {
   return verified;
 }
 function promotionGate(gate, record, url) {
-  if (gate.kind === 'staging-gate') {
+  if (['staging-gate', 'content-staging-gate'].includes(gate.kind)) {
     require('../quality/staging-gate.cjs').validateGate(record.source, gate, url);
     assert.equal(
       String(gate.githubArtifact.id),

@@ -60,6 +60,10 @@ CommonJS factories are trusted code and require code review. They assemble into
 one classic browser script, with no runtime dependencies or import requirements.
 
 Page JSON has exactly `schema`, `template`, `text`, `attributes` and `urls`.
+Talks' repeated event records live in `content/events.json`; the bounded event
+renderer and `templates/components/event*.html` own their validated presentation.
+Adding/reordering/editing an event is content work. A new presentation/schema is
+platform work. Preserve existing group/event anchors and source-supported metadata.
 Templates consume context-typed finite slots, blocks and catalog references;
 values never execute expressions or supply raw markup. The renderer escapes each
 output context and rejects unsafe URLs, duplicate/missing/unused references and
@@ -96,8 +100,8 @@ at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
 During principal-route flight, the two projected adjacent rooms stay within that journey's
 source/destination interval. Distinct reader documents share Writing's canonical anchor:
-the router explicitly requests a signed half-room corridor excursion for those trips,
-using the existing camera clock and fixed400/1000/350ms legs. Real camera depth returns
+the router explicitly requests a signed horizontal orbit around the centered Writing
+fractal, using the existing camera clock and fixed400/1000/350ms legs. The camera returns
 to the same reading anchor; canonical neighboring room weights preserve retarget continuity.
 The router owns document/history direction, including Back/Forward; native anchors and
 filters do not start camera travel. Published reader aliases accept the host

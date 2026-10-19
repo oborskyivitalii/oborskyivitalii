@@ -208,11 +208,16 @@ function target(root, directory, item, article) {
     } else if (item.target.mime === 'image/png') {
       if (
         !file.path.endsWith('.png') ||
-        file.bytes.length < 24 ||
-        !file.bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))
+        file.bytes.length < 33 ||
+        !file.bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])) ||
+        file.bytes.subarray(12, 16).toString() !== 'IHDR'
       ) {
         throw Error('Material PNG signature/extension differs');
       }
+      const width = file.bytes.readUInt32BE(16),
+        height = file.bytes.readUInt32BE(20);
+      if (width < 1 || height < 1 || width > 8000 || height > 8000 || width * height > 16000000)
+        throw Error('Material PNG dimensions exceed the bounded image contract');
     } else {
       throw Error('Unsupported public material MIME');
     }

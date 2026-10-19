@@ -411,6 +411,12 @@ function classifyContent(registry, changedPaths, options = {}) {
   }
   return {
     mode: authored.length > 0 && platform.length === 0 ? 'content' : 'platform',
+    lane:
+      authored.length > 0 && platform.length === 0
+        ? authored.every((file) => /\.(?:png|jpe?g|webp|avif|svg|pdf)$/.test(file))
+          ? 'media'
+          : 'content'
+        : 'platform',
     authored,
     derived,
     platform,

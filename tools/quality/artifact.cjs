@@ -228,6 +228,9 @@ function storeContentBaseline(directory, baseline) {
     'public',
     'generation/public',
     'generation/output-lock.json',
+    ...(fs.existsSync(path.join(baseline, 'content-admission.json'))
+      ? ['content-admission.json']
+      : []),
   ]) {
     fs.mkdirSync(path.dirname(path.join(target, name)), { recursive: true });
     fs.cpSync(path.join(baseline, name), path.join(target, name), { recursive: true });
@@ -246,6 +249,20 @@ function composeContentGeneration({ projectRoot = root, out, contentBaseline, ar
       throw Error('Content artifact output must be separate from its trusted baseline');
   }
   const trusted = trustedContentBaseline(contentBaseline);
+  const admissionFile = path.join(baselineDirectory, 'content-admission.json');
+  let admission, lane;
+  if (fs.existsSync(admissionFile)) {
+    admission = JSON.parse(fs.readFileSync(admissionFile));
+    const sourceTests = require('./source-tests.cjs');
+    const classification = sourceTests.classifyContent(
+      sourceTests.loadRegistry(projectRoot),
+      sourceTests.readChangedPaths(projectRoot, admission.mergedSource, git(['rev-parse', 'HEAD'])),
+      { root: projectRoot, base: admission.mergedSource, head: git(['rev-parse', 'HEAD']) }
+    );
+    if (classification.mode !== 'content')
+      throw Error('Accepted content baseline rejects platform changes');
+    lane = classification.lane;
+  }
   if (JSON.stringify(trusted.record.articleCandidates || []) !== JSON.stringify(articleCandidates))
     throw Error('Content baseline candidate selection changed; run an explicit full build');
   const target = path.join(out, 'public');
@@ -277,6 +294,7 @@ function composeContentGeneration({ projectRoot = root, out, contentBaseline, ar
     declaration,
     report: {
       ...result.report,
+      ...(admission ? { admission, lane } : {}),
       artifactDigest: declaration.artifactDigest,
       retainedFinalSnapshots: retained,
       trustedBaseline: {
@@ -289,12 +307,59 @@ function composeContentGeneration({ projectRoot = root, out, contentBaseline, ar
   };
 }
 
-function build(out, { contentBaseline } = {}) {
+function stagedGeneration(out, directory, articleCandidates) {
+  for (const [first, second] of [
+    [out, directory],
+    [directory, out],
+  ]) {
+    const relative = path.relative(path.resolve(first), path.resolve(second));
+    if (relative === '' || (relative !== '..' && !relative.startsWith('..' + path.sep)))
+      throw Error('Accepted generation output must be separate from its immutable input');
+  }
+  const staged = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
+  if (
+    staged.sourceDirty ||
+    staged.sourceTree !== git(['rev-parse', 'HEAD^{tree}']) ||
+    staged.edition?.id !== 'staging' ||
+    JSON.stringify(staged.articleCandidates || []) !== JSON.stringify(articleCandidates)
+  )
+    throw Error('Accepted generation requires the identical staged source tree and selection');
+  const trusted = trustedContentBaseline({
+    directory,
+    expectedGenerationSha256: staged.generation?.outputLockSha256,
+    expectedArtifactDigest: staged.artifactDigest,
+  });
+  const builder = require('../site/build.cjs');
+  const { config } = builder.configuration(root);
+  if (
+    !require('node:util').isDeepStrictEqual(
+      trusted.generation.components,
+      builder.fingerprints(root, config, builder.catalog(root))
+    )
+  )
+    throw Error('Staged generation platform differs from current source');
+  fs.mkdirSync(out, { recursive: true });
+  const output = path.join(out, 'public');
+  fs.rmSync(output, { recursive: true, force: true });
+  fs.cpSync(trusted.publicDir, output, { recursive: true });
+  const generation = storeGeneration(
+    out,
+    output,
+    JSON.stringify(builder.outputLock(trusted.generation), null, 2) + '\n'
+  );
+  if (staged.contentRelease) storeContentBaseline(out, path.join(directory, 'content-baseline'));
+  return { generation, contentRelease: staged.contentRelease };
+}
+
+function build(out, { contentBaseline, acceptedGeneration } = {}) {
   const articleCandidates = previewSelection();
   const target = path.join(out, 'public');
   let generation;
   let contentRelease;
-  if (contentBaseline) {
+  if (acceptedGeneration) {
+    if (contentBaseline) throw Error('Choose one generation input');
+    ({ generation, contentRelease } = stagedGeneration(out, acceptedGeneration, articleCandidates));
+  } else if (contentBaseline) {
     const composed = composeContentGeneration({ out, contentBaseline, articleCandidates });
     generation = composed.declaration;
     contentRelease = composed.report;
@@ -355,22 +420,27 @@ if (require.main === module) {
     dir = process.argv[3];
   if (mode === 'build') {
     const extra = process.argv.slice(4);
-    const contentBaseline = {};
-    const options = {
-      '--content-baseline': 'directory',
-      '--generation-sha256': 'expectedGenerationSha256',
-      '--baseline-digest': 'expectedArtifactDigest',
-    };
-    for (let index = 0; index < extra.length; index += 2) {
-      const option = extra[index];
-      const value = extra[index + 1];
-      if (!options[option] || !value || Object.hasOwn(contentBaseline, options[option]))
-        throw Error('Unknown, duplicate or incomplete artifact content argument ' + option);
-      contentBaseline[options[option]] = value;
+    if (extra[0] === '--accepted-generation') {
+      if (extra.length !== 2) throw Error('Accepted generation requires one explicit directory');
+      console.log(build(path.resolve(dir), { acceptedGeneration: path.resolve(extra[1]) }));
+    } else {
+      const contentBaseline = {};
+      const options = {
+        '--content-baseline': 'directory',
+        '--generation-sha256': 'expectedGenerationSha256',
+        '--baseline-digest': 'expectedArtifactDigest',
+      };
+      for (let index = 0; index < extra.length; index += 2) {
+        const option = extra[index];
+        const value = extra[index + 1];
+        if (!options[option] || !value || Object.hasOwn(contentBaseline, options[option]))
+          throw Error('Unknown, duplicate or incomplete artifact content argument ' + option);
+        contentBaseline[options[option]] = value;
+      }
+      if (extra.length && Object.keys(contentBaseline).length !== 3)
+        throw Error('Content artifact requires baseline, generation SHA256 and artifact digest');
+      console.log(build(path.resolve(dir), extra.length ? { contentBaseline } : {}));
     }
-    if (extra.length && Object.keys(contentBaseline).length !== 3)
-      throw Error('Content artifact requires baseline, generation SHA256 and artifact digest');
-    console.log(build(path.resolve(dir), extra.length ? { contentBaseline } : {}));
   } else if (mode === 'sizes') console.log(checkSize(path.resolve(dir)));
   else if (mode === 'verify')
     verify(path.resolve(dir), JSON.parse(fs.readFileSync(process.argv[4])));
@@ -389,5 +459,6 @@ module.exports = {
   storeGeneration,
   trustedContentBaseline,
   composeContentGeneration,
+  stagedGeneration,
   retainFinalSnapshots,
 };

@@ -84,6 +84,19 @@ function fileChanges(previous, current) {
   };
 }
 
+function verifyEditions(previous, current) {
+  for (const [key, before] of Object.entries(previous.articles || {})) {
+    const after = current.articles?.[key];
+    if (
+      before.candidate !== true &&
+      after &&
+      before.semanticSha256 !== after.semanticSha256 &&
+      before.contentEdition === after.contentEdition
+    )
+      throw Error('Changed accepted article semantics require a new content edition: ' + key);
+  }
+}
+
 function release({
   root = defaultRoot,
   baseline,
@@ -134,8 +147,17 @@ function release({
       candidateArticles,
       contentOnly: true,
     });
-    if (generation.built.some((route) => !['index', 'writing'].includes(route)))
-      throw Error('Article content release changed another page; run an explicit full build');
+    verifyEditions(previous, generation);
+    if (generation.built.some((route) => !['index', 'writing', 'talks'].includes(route)))
+      throw Error('Content release changed a platform page; run an explicit full build');
+    const platformFiles = Object.fromEntries(
+      Object.entries(previous.files).filter(([name]) =>
+        /^(?:runtime\/|media\/|assets\/)|\.(?:js|css)$/.test(name)
+      )
+    );
+    for (const [name, digest] of Object.entries(platformFiles))
+      if (generation.files[name] !== digest)
+        throw Error('Content release changed platform bytes: ' + name);
     const manifest = publicArtifact.manifest(stagedOutput);
     snapshot.verify(stagedOutput, manifest);
     if (!isDeepStrictEqual(platform, currentComponents(root)))
@@ -146,6 +168,7 @@ function release({
       kind: 'content-release',
       baselineLockSha256: expectedBaselineLockSha256,
       engine: builder.runtimeVersion(platform),
+      platformFiles,
       builtRoutes: generation.built,
       reusedRoutes: generation.reused,
       builtArticles: generation.builtArticles || [],
@@ -193,4 +216,4 @@ if (require.main === module) {
   console.log(json(report));
 }
 
-module.exports = { release, verifyBaseline, lockFor, argumentsFor };
+module.exports = { release, verifyBaseline, verifyEditions, lockFor, argumentsFor };

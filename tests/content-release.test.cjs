@@ -14,6 +14,33 @@ const repo = path.resolve(__dirname, '..');
 const candidates = ['first-profile', 'second-profile'];
 let prepared;
 
+test('semantic text/figure changes of an accepted article require a distinct content edition; rerenders and drafts do not', () => {
+  const before = {
+    articles: {
+      'example:en': {
+        candidate: false,
+        contentEdition: 'edition-one',
+        semanticSha256: 'a'.repeat(64),
+      },
+    },
+  };
+  const changed = structuredClone(before);
+  changed.articles['example:en'].semanticSha256 = 'b'.repeat(64);
+  assert.throws(() => content.verifyEditions(before, changed), /new content edition/);
+  changed.articles['example:en'].contentEdition = 'edition-two';
+  assert.doesNotThrow(() => content.verifyEditions(before, changed));
+  assert.doesNotThrow(() => content.verifyEditions(before, structuredClone(before)));
+  const draft = structuredClone(before);
+  draft.articles['example:en'].candidate = true;
+  assert.doesNotThrow(() =>
+    content.verifyEditions(draft, {
+      articles: {
+        'example:en': { ...changed.articles['example:en'], contentEdition: 'edition-one' },
+      },
+    })
+  );
+});
+
 function write(root, name, bytes) {
   const target = path.join(root, name);
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -183,6 +210,110 @@ function changedCatalog(f) {
   json(f.root, 'site/content/catalog.json', catalog);
 }
 
+test('event edits and insertions rebuild only Talks and preserve every platform and unrelated route byte', (t) => {
+  const f = fixture(t);
+  const events = readJSON(f.root, 'site/content/events.json');
+  const added = structuredClone(events.groups[1].events[0]);
+  added.id = 'new-test-event';
+  added.anchor = 'new-test-event';
+  added.title = 'A new event';
+  events.groups[1].events.push(added);
+  events.groups[0].events[0].description += ' A changed event description.';
+  json(f.root, 'site/content/events.json', events);
+  const result = release(f);
+  assert.deepEqual(result.report.builtRoutes, ['talks']);
+  const prior = readJSON(f.directory, 'generation/output-lock.json');
+  for (const route of ['index', 'research', 'writing', 'credits'])
+    assert.equal(result.generation.files[route + '.html'], prior.files[route + '.html']);
+  assert.match(fs.readFileSync(path.join(f.root, 'release/talks.html'), 'utf8'), /A new event/);
+  for (const [name, hash] of Object.entries(result.report.platformFiles))
+    assert.equal(result.generation.files[name], hash);
+});
+
+test('accepted staging reuse binds the complete generation to its successful gate and native immutable artifact', (t) => {
+  const f = fixture(t);
+  const stage = require('../tools/quality/staging-gate.cjs');
+  const controlled = require('./fixtures/staging-evidence.cjs');
+  const gate = stage.aggregate(controlled.aggregateFixture(true));
+  for (const key of [
+    'sourceCommit',
+    'sourceTree',
+    'candidateCommit',
+    'artifactDigest',
+    'files',
+    'components',
+  ])
+    gate[key] = structuredClone(f.record[key]);
+  gate.variant = f.record.components.variant;
+  gate.coverage = stage.expectedCoverage(f.record);
+  gate.githubArtifact = { id: 123, uploadDigest: 'e'.repeat(64) };
+  const auth = {
+    kind: 'accepted-staging-source',
+    pass: true,
+    sourceCommit: f.record.sourceCommit,
+    sourceTree: f.record.sourceTree,
+    public: { id: 123, digest: 'sha256:' + 'e'.repeat(64) },
+  };
+  const inspect = (g, a = auth) =>
+    require('../tools/quality/content-baseline.cjs').inspectAccepted(
+      f.directory,
+      g,
+      a,
+      candidates,
+      readJSON(f.directory, 'generation/output-lock.json').components
+    );
+  assert.equal(inspect(gate).reusable, true);
+  for (const change of [
+    (g) => {
+      g.pass = false;
+    },
+    (g) => {
+      g.githubArtifact.id = 999;
+    },
+    (g) => {
+      g.githubArtifact.uploadDigest = 'f'.repeat(64);
+    },
+    (g) => {
+      g.sourceTree = 'f'.repeat(40);
+    },
+    (g) => {
+      g.jobs.staging.result = 'skipped';
+    },
+    (g) => {
+      g.files['writing.html'].sha256 = 'f'.repeat(64);
+    },
+  ]) {
+    const invalid = structuredClone(gate);
+    change(invalid);
+    assert.throws(() => inspect(invalid));
+  }
+  assert.throws(() => inspect(gate, { ...auth, pass: false }));
+});
+
+test('a selective content rollback is composed on the latest generation and preserves unrelated new work', (t) => {
+  const f = fixture(t);
+  publication(f.root, candidates[0], 'First edited article.');
+  publication(f.root, candidates[1], 'Unrelated newly accepted work.');
+  const latest = release(f);
+  const baseline = path.join(f.root, 'release');
+  const lock = baseline + '.output-lock.json';
+  const second = latest.generation.articles[candidates[1] + ':en'].version;
+  publication(f.root, candidates[0]);
+  const restored = content.release({
+    root: f.root,
+    baseline,
+    baselineLock: lock,
+    expectedBaselineLockSha256: builder.sha(fs.readFileSync(lock)),
+    output: path.join(f.root, 'rollback'),
+    candidateArticles: candidates,
+  });
+  assert.deepEqual(restored.report.builtArticles, [candidates[0] + ':en']);
+  assert.equal(restored.generation.articles[candidates[1] + ':en'].version, second);
+  assert.deepEqual(restored.generation.components, latest.generation.components);
+  const secondFile = restored.generation.articles[candidates[1] + ':en'].url;
+  assert.equal(restored.generation.files[secondFile], latest.generation.files[secondFile]);
+});
+
 test('an external link changes Writing while verified runtime and other routes are reused', (t) => {
   const f = fixture(t);
   changedCatalog(f);
@@ -230,7 +361,7 @@ test('platform, page-template and other page edits fail without replacing an exi
   const section = readJSON(f.root, 'site/content/pages/research/intro.json');
   section.text.T001 += ' Changed.';
   json(f.root, 'site/content/pages/research/intro.json', section);
-  assert.throws(() => release(f), /changed another page/);
+  assert.throws(() => release(f), /changed a platform page/);
   assert.equal(fs.readFileSync(path.join(output, 'sentinel.txt'), 'utf8'), 'Previous output.\n');
 });
 

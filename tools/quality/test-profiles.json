@@ -89,7 +89,9 @@
         "site/publications/**.avif",
         "site/publications/**.svg",
         "site/publications/**.pdf",
-        "site/content/article-tags.json"
+        "site/content/article-tags.json",
+        "site/content/pages/talks/**.json",
+        "site/content/events.json"
       ],
       "derived_inputs": [
         "docs/**",
@@ -114,7 +116,9 @@
         "tests/content-release.test.cjs",
         "tests/article-media.test.cjs",
         "tests/article-tags.test.cjs",
-        "tests/article-materials.test.cjs"
+        "tests/article-materials.test.cjs",
+        "tests/events.test.cjs",
+        "tests/content-delivery.test.cjs"
       ]
     }
   },
@@ -300,6 +304,19 @@
       "engines": [],
       "full_gate": false,
       "source_admission": "deferred until ready_for_review"
+    },
+    "content": {
+      "owner": "guides/SITE-CONTENT-RELEASE.md",
+      "policy": "compatible-content-v1",
+      "gate_kind": "content-staging-gate",
+      "required_jobs": ["build", "static", "host", "staging"],
+      "report_kinds": ["hosted", "lint", "security", "advisories", "content-functional"],
+      "widths": [390, 1440],
+      "modes": ["normal", "no-js"],
+      "article_observations": 5,
+      "performance_rerun": false,
+      "job_budget_minutes": 15,
+      "accepted_baseline_required": true
     }
   },
   "tests": [
@@ -989,7 +1006,8 @@
         "tools/staging/state.cjs",
         "tools/quality/transition-pacing.json",
         "tools/quality/transition-pacing.cjs",
-        "tools/quality/serve.cjs"
+        "tools/quality/serve.cjs",
+        "tests/fixtures/article-flight.cjs"
       ]
     },
     {
@@ -2081,7 +2099,8 @@
         "tools/quality/staging-regression.cjs",
         "tools/quality/staging-gate.cjs",
         "tools/quality/validate.cjs",
-        "tests/fixtures/staging-evidence.cjs"
+        "tests/fixtures/staging-evidence.cjs",
+        "tests/fixtures/article-flight.cjs"
       ]
     },
     {
@@ -2474,6 +2493,50 @@
         "site/templates/components/article-materials.html",
         "site/publications/**/materials.json",
         "site/assets/publications/**/materials/**"
+      ]
+    },
+    {
+      "path": "tests/events.test.cjs",
+      "language": "javascript",
+      "lifecycle": "permanent",
+      "purpose": "Validate canonical event records, insertion, preserved anchors and inert safe rendering.",
+      "owner": "guides/SITE-CONTENT-RELEASE.md",
+      "disposition": "Current independent delivery contract; synthetic validator fixtures never claim hosted admission.",
+      "surviving_route": "Content safety plus targeted platform/staging/production source profiles.",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "inputs": [
+        "tests/events.test.cjs",
+        "tools/site/events.cjs",
+        "site/content/events.json",
+        "site/templates/components/event*.html",
+        "tools/site/content.cjs",
+        "tools/check_site_seo.cjs",
+        "review/issue-5/2026-10-19-events-migration.json"
+      ]
+    },
+    {
+      "path": "tests/content-delivery.test.cjs",
+      "language": "javascript",
+      "lifecycle": "permanent",
+      "purpose": "Validate accepted content/media gate coverage, classification and production composition leases.",
+      "owner": "guides/SITE-CONTENT-RELEASE.md",
+      "disposition": "Current independent delivery contract; synthetic validator fixtures never claim hosted admission.",
+      "surviving_route": "Content safety plus targeted platform/staging/production source profiles.",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "inputs": [
+        "tests/content-delivery.test.cjs",
+        "tools/quality/content-gate.cjs",
+        "tools/quality/content-baseline.cjs",
+        "tools/release/**.cjs",
+        "tools/quality/source-tests.cjs",
+        "tools/quality/test-profiles.json",
+        "tests/fixtures/staging-evidence.cjs",
+        "tools/quality/content-browser.cjs",
+        "tools/quality/content-fixture.cjs",
+        ".github/workflows/site-color-review.yml",
+        ".github/workflows/site-release-checks.yml",
+        ".github/workflows/site-release-candidate.yml",
+        ".github/workflows/site-production.yml"
       ]
     }
   ]

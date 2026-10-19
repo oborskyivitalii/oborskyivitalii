@@ -110,6 +110,41 @@
       "gates": []
     },
     {
+      "id": "AC16",
+      "intent": "Explicit canonical component boundaries and compatibility preserve native URLs/output.",
+      "automated_scope": "Event collection/schema, trusted generation/byte equality, stable route/article IDs and native fallback.",
+      "checks": ["CONTENT-LANES", "CONTENT-RELEASE", "READER"],
+      "gates": ["INDEPENDENT"]
+    },
+    {
+      "id": "AC17",
+      "intent": "Content-only protected admission on an accepted platform; incompatible or unknown source selects platform.",
+      "automated_scope": "Distinct accepted-baseline policy, affected-document desktop/mobile/no-JS/reader proof and explicit full fallback. Real accepted article and live protected publication remain separate.",
+      "checks": ["CONTENT-LANES", "CONTENT-CI", "CONTENT-RELEASE"],
+      "gates": ["ARTICLE", "INDEPENDENT", "DELIVERY", "PUBLICATION"]
+    },
+    {
+      "id": "AC18",
+      "intent": "Immutable local media has checked identity, dimensions, decoding, budgets, rights and honest semantic impact.",
+      "automated_scope": "Canonical article-media hashes and edition semantics; changed compiler/global media selects platform; actual served image decoding is mandatory in content gate.",
+      "checks": ["CONTENT-LANES", "PUBLISHER", "DELIVERY"],
+      "gates": ["ARTICLE", "INDEPENDENT", "PUBLICATION"]
+    },
+    {
+      "id": "AC19",
+      "intent": "Independent lanes reuse one protected exact-source composition and publication mechanism.",
+      "automated_scope": "Immutable generation/rendition identity, inherited staging proof, rights and source binding through existing candidate/archive/Pages controller.",
+      "checks": ["CONTENT-LANES", "DELIVERY", "CONTENT-RELEASE"],
+      "gates": ["INDEPENDENT", "DELIVERY", "PUBLICATION"]
+    },
+    {
+      "id": "AC20",
+      "intent": "Concurrent updates, corrupt inputs and rollback preserve a coherent accepted composition.",
+      "automated_scope": "Exact-main and predecessor leases, missing/tampered baseline negatives, current-source component rollback preserves unrelated editions; existing whole-release recovery stays explicit.",
+      "checks": ["CONTENT-LANES", "CONTENT-RELEASE", "DELIVERY"],
+      "gates": ["INDEPENDENT", "DELIVERY"]
+    },
+    {
       "id": "AC21",
       "intent": "One validated canonical tag store covers all published archive and local articles; optional runtime tag display/filter preserves native/offline reading.",
       "automated_scope": "Shared vocabulary/index coverage, missing/unknown/duplicate tags and unsafe/duplicate links, archive URL/history/reset/print, bounded decoding/abort/file negatives; semantic archive-tag review and current browser/source admission remain separate.",
@@ -163,6 +198,10 @@
     "CONTENT-CI": {
       "kind": "unittest",
       "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_check_selection"
+    },
+    "CONTENT-LANES": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_independent_delivery_lanes"
     }
   },
   "gates": {

@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 delivery producer revision; orbit runtime bytes remain identical.
+  issue5Delivery: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '26197e2d01b6b052db18864f7ac29c4d017810c1922e26bd2ce28364f9cb6a9b',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   // Issue5 reader orbit: same-scene geometry and cancellation independently reviewed in PR79.
   issue5ReaderOrbit: {
     behavior: 'fixed-blocks',
@@ -218,6 +227,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-delivery-production',
+    family: 'issue5Delivery',
+    edition: 'production',
+    fingerprint: 'e9a32daab86aeff9f59af2d2e59fb445481d9c97fa5e4bf39a6ecf46b22c43e9',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-delivery-plain',
+    family: 'issue5Delivery',
+    edition: 'plain',
+    fingerprint: '1ea77dfc5472558a3885577175f0e2713eb120da23157a048ce234af378576d6',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-delivery-staging',
+    family: 'issue5Delivery',
+    edition: 'staging',
+    fingerprint: '67dccca08c0f6afa5b6122d9b2e1cae3e5bcef2f5f6604969a73932091cf71c1',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue5-reader-orbit-production',
     family: 'issue5ReaderOrbit',

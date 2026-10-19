@@ -311,7 +311,6 @@ test('authored content selection retains all mandatory safety modules and reject
     '.github/workflows/site-checks.yml',
     'site/content/site.json',
     'site/content/pages/research/metadata.json',
-    'site/content/pages/talks/talks.json',
     'site/publications/example/executable.cjs',
     'site/assets/publications/example/active.js',
     'site/assets/publications/example/PROVENANCE.md',

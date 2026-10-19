@@ -126,6 +126,8 @@ function validateSizes(sizes, manifest) {
   }
 }
 function validateGate(manifest, gate, hostedURL) {
+  if (gate.kind === 'content-staging-gate')
+    return require('./content-gate.cjs').validateGate(manifest, gate, hostedURL);
   validateIdentity(manifest);
   const target = require('./hosted-origin.cjs').target(hostedURL, 'staging');
   assert.equal(gate.schema, 1);
@@ -198,6 +200,15 @@ function aggregate({
   profile = 'staging',
   sourceChecks = null,
 }) {
+  if (manifest.contentRelease?.admission)
+    return require('./content-gate.cjs').aggregate({
+      manifest,
+      sizes,
+      reports,
+      jobs,
+      hostedURL,
+      sourceChecks,
+    });
   regression.registryCheck();
   validateIdentity(manifest);
   assert.equal(profile, 'staging', 'staging-only aggregate');

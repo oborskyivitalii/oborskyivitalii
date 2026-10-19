@@ -153,6 +153,11 @@ jobs:
             }
   build:
     needs: [target, begin-admission]
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      pull-requests: read
     if: >-
       always() && needs.target.result == 'success' && !cancelled() &&
       (needs.target.outputs.mode == 'preview' || needs.begin-admission.result == 'success')
@@ -203,7 +208,7 @@ jobs:
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
       - id: content_baseline
         name: Select a trusted earlier generation for authored content updates
-        if: needs.target.outputs.mode == 'preview' && needs.target.outputs.prototype != 'true'
+        if: needs.target.outputs.prototype != 'true'
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           CONTENT_BRANCH: ${{ github.event.pull_request.head.ref }}
@@ -211,7 +216,7 @@ jobs:
         with:
           script: |
             const fs=require('node:fs'),path=require('node:path');
-            const selection=await require('./tools/quality/content-baseline.cjs').select({
+            const selection=await require('./tools/quality/content-baseline.cjs').selectAccepted({
               github,repo:context.repo,branch:process.env.CONTENT_BRANCH,
               candidate:process.env.SITE_CANDIDATE_SHA,base:process.env.CONTENT_BASE_SHA,
               root:process.cwd(),

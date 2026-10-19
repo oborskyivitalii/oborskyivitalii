@@ -20,7 +20,21 @@ function catalog(root) {
 function fragment(root, file, c) {
   const content = load(root, file),
     template = documentTemplate(content, file);
-  return { html: renderSlots(read(root, template), content, c, file), inputs: [file, template] };
+  let html = renderSlots(read(root, template), content, c, file);
+  const inputs = [file, template];
+  if (html.includes('{{EVENT_GROUPS}}')) {
+    if (
+      file !== 'site/content/pages/talks/talks.json' ||
+      html.split('{{EVENT_GROUPS}}').length !== 2
+    )
+      throw Error('Event collection requires its unique Talks slot');
+    const events = 'site/content/events.json';
+    html = html.replace('{{EVENT_GROUPS}}', () =>
+      require('./events.cjs').render(load(root, events), loadComponents(root))
+    );
+    inputs.push(events);
+  }
+  return { html, inputs };
 }
 function loadComponents(root) {
   const dir = 'site/templates/components/';

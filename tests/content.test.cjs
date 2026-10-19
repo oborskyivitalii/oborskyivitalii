@@ -17,6 +17,7 @@ const schema = (html) =>
 const articleRows = (html) => [
   ...html.matchAll(/<li class="publication" data-language="(en|uk)"[^>]*>([\s\S]*?)<\/li>/g),
 ];
+const events = require('../site/content/events.json').groups.flatMap((group) => group.events);
 const talkRows = (html) =>
   [...html.matchAll(/<article class="publication"([^>]*)>([\s\S]*?)<\/article>/g)].map((row) => [
     row[0],
@@ -473,17 +474,18 @@ test('portrait is a real sized local asset and unverified talk languages are omi
   const talks = talkRows(pages.talks);
   assert.deepEqual(
     talks.map((row) => row[1]),
-    ['uk', undefined, undefined, undefined]
+    events.map((event) => event.language || undefined)
   );
-  for (const row of talks.slice(1)) {
+  for (const [index, row] of talks.entries()) {
+    if (events[index].language) continue;
     assert.doesNotMatch(row[0], /data-language|language-badge|Language unconfirmed/);
   }
   assert.doesNotMatch(pages.talks, /not yet been confirmed|Language unconfirmed/);
-  assert.ok(talks[0][2].includes('PMDay 2026 · Recording in Ukrainian'));
+  assert.ok(talks[0][2].includes(events[0].metadata[0].text));
   assert.ok(pages.talks.includes('id="ukrainian-talks"'));
 });
 
-test('Talks curates distinct events with source-supported dates, language and resources', () => {
+test('Talks follows canonical events while retaining the frozen provenance of its migrated collection', () => {
   const inventory = require('../review/issue-48/source-inventory.json').talks;
   const amendment = require('../review/issue-48/content-amendment.json');
   const recordingAmendment = require('../review/issue-61/content-amendment.json');
@@ -504,9 +506,10 @@ test('Talks curates distinct events with source-supported dates, language and re
       require('../tools/site/content.cjs').catalog(path.join(root, '..'))
     ).html
   );
+  const provenSection = require('../tools/check_site_seo.cjs').restoreEventsCatalog(currentSection);
   assert.equal(
     restoreContentAmendment(
-      restoreContentAmendment(currentSection, 'talks', positioningAmendment),
+      restoreContentAmendment(provenSection, 'talks', positioningAmendment),
       'talks',
       recordingAmendment
     ),
@@ -514,9 +517,10 @@ test('Talks curates distinct events with source-supported dates, language and re
     'the exact positioning and PMDay amendments preserve the earlier event inventory'
   );
   assert.ok(pages.talks.includes(currentSection), 'generated page carries the authored section');
-  const cards = talkRows(currentSection);
+  const cards = talkRows(provenSection);
+  assert.equal(talkRows(currentSection).length, events.length);
   const earlierCards = talkRows(
-    restoreContentAmendment(currentSection, 'talks', positioningAmendment)
+    restoreContentAmendment(provenSection, 'talks', positioningAmendment)
   );
   const priorCards = talkRows(section.after);
   const oldCards = talkRows(section.before);
@@ -537,7 +541,7 @@ test('Talks curates distinct events with source-supported dates, language and re
   assert.equal(earlierCards[1][0], oldCards[1][0], 'historical Corning remains exact');
   for (const old of oldCards) {
     for (const [, url] of old[0].matchAll(/href="([^"]+)"/g)) {
-      assert.ok(currentSection.includes(`href="${url}"`), 'existing event source survives');
+      assert.ok(provenSection.includes(`href="${url}"`), 'frozen event source survives');
     }
   }
   assert.deepEqual(
@@ -575,7 +579,7 @@ test('Talks curates distinct events with source-supported dates, language and re
     );
   });
   assert.deepEqual(
-    [...currentSection.matchAll(/<time datetime="([^"]+)"/g)].map((row) => row[1]),
+    [...provenSection.matchAll(/<time datetime="([^"]+)"/g)].map((row) => row[1]),
     ['2026-09-26']
   );
   assert.doesNotMatch(

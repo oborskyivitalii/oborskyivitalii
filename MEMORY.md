@@ -55,8 +55,13 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 - Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
   The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
   later. No successful current article hosted acceptance is inferred.
+- #5 delivery lanes implemented in PR79: authenticated accepted baseline, distinct
+  current-source content/media gate, canonical Talks event collection, exact raw
+  staged-generation reuse and protected main/predecessor leases. Bounded independent
+  review fixed literal dollar replacement; no remaining scoped blocker. Review:
+  review/issue-5/2026-10-19-delivery-lanes.md; exact final evidence belongs to PR79.
 - #5 AC11/12 independent/hosted/release gates remain; AC14 unchecked.
-  AC13/15 retain bounded catalog/classification scope; AC16–AC20 pending.
+  AC13/15 retain bounded catalog/classification scope; AC16–AC20 live gates pending.
   AC21/22 tag/index checks are mapped; semantic/independent/release gates remain.
 - #2 owns editorial/media/PDF/deck/upstream/publication acceptance. Do not edit
   actual manuscript or media while the other conversation continues its work.
@@ -76,7 +81,8 @@ No campaign or production publication. Original remaining gates stay open.
    then finish applicable platform admission. Do not equate bounded review with AC11 closure.
 3. Consume final article handoff later; verify its actual resource/rights/PDF
    gates separately, then obtain first-publication decision through the controller.
-4. Implement production content/media lanes and coherent concurrency after baseline.
+4. Admit the platform through staging, then exercise a real content/media release
+   against it. Synthetic/preview checks do not establish AC17 or live publication.
 
 ## Maintenance
 

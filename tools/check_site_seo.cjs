@@ -357,6 +357,62 @@ const writingCatalog = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-5/writing-catalog-amendment.json'), 'utf8')
 );
 const structuredMetadata = new Map();
+const eventMigration = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-5/2026-10-19-events-migration.json'))
+);
+const eventProducerInputs = [
+  'tools/site/content.cjs',
+  'tools/site/events.cjs',
+  'tools/site/render-records.cjs',
+  'tools/site/render-content.cjs',
+  'tools/site/html.cjs',
+  'tools/site/validate-catalog.cjs',
+  'site/templates/pages/talks/talks.html',
+  ...[
+    'event',
+    'event-group',
+    'event-meta',
+    'event-language',
+    'event-date',
+    'event-primary-link',
+    'event-link',
+    'event-arrow',
+  ].map((name) => 'site/templates/components/' + name + '.html'),
+].sort();
+
+function restoreEventsCatalog(html, projectRoot = root) {
+  assert.deepEqual(Object.keys(eventMigration.producerInputs).sort(), eventProducerInputs);
+  for (const file of eventProducerInputs) {
+    const stat = fs.lstatSync(path.join(projectRoot, file));
+    assert.ok(stat.isFile() && !stat.isSymbolicLink());
+    assert.equal(
+      crypto
+        .createHash('sha256')
+        .update(fs.readFileSync(path.join(projectRoot, file)))
+        .digest('hex'),
+      eventMigration.producerInputs[file],
+      'unreviewed event producer ' + file
+    );
+  }
+  assert.equal(
+    crypto.createHash('sha256').update(eventMigration.original).digest('hex'),
+    eventMigration.originalSha256,
+    'frozen event migration snapshot differs'
+  );
+  const content = require('./site/content.cjs');
+  const expected = normalizeHTML(
+    content.fragment(
+      projectRoot,
+      'site/content/pages/talks/talks.json',
+      content.catalog(projectRoot)
+    ).html
+  );
+  const normalized = normalizeHTML(html);
+  const blocks = normalized.match(/<section id="talks"[^>]*>[\s\S]*?<\/section>/g);
+  assert.equal(blocks?.length, 1, 'one complete current event collection');
+  assert.equal(blocks[0], expected, 'event output differs from validated canonical data');
+  return normalized.replace(blocks[0], () => normalizeHTML(eventMigration.original));
+}
 const writingProducerInputs = [
   'tools/site/content.cjs',
   'tools/site/validate-catalog.cjs',
@@ -746,6 +802,7 @@ function restoreResearchNavigation(html, page) {
 function restoreApprovedContent(html, page) {
   html = restoreResearchNavigation(normalizeHTML(html), page);
   html = normalizeHTML(html);
+  if (page === 'talks') html = restoreEventsCatalog(html);
   if (page === 'writing') {
     html = restoreWritingCatalog(html);
     html = restoreContentAmendment(html, page, writingCatalog);
@@ -950,6 +1007,7 @@ module.exports = {
   restoreCriticalMedia,
   restoreStructuredMetadata,
   restoreWritingCatalog,
+  restoreEventsCatalog,
   restoreWritingMetadata,
   verifyWritingProducers,
   restoreCompactMetadata,

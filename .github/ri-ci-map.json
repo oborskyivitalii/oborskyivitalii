@@ -628,7 +628,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "eed4b597e9f9ff85c20e78aebb085b845607adbe1502cc137856879be7486cd2",
+    "digest": "c917c8a690dd699a596710b2cac1b860563b354ddf8918ef763a89e318e41862",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -684,7 +684,7 @@
       },
       {
         "path": ".github/acceptance/issue-5.json",
-        "sha256": "fbc48058ad0397888b0296cf6074c6afe9e6d4648286c66792026331f521589f"
+        "sha256": "347359497fb88e49b6e7b2aa2e04a1aa5a4b5ff63f1a2ff2aafa2f474c170a5f"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -740,7 +740,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "3c34b1095bcbfbd0f450b15e8b9e5ca8274bc7f1c65ec2d43f0fb82a25413621"
+        "sha256": "dcbb75669e29e3be10fcd1e420da72f15c348879bd0d6223100a2e89ab68d6ea"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -772,7 +772,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "5a6a4976e2532e99bd1dd9db311ef225e418b4798ee845aaf4a672cc2a716c75"
+        "sha256": "488d5d73a4fd14c9442efda5715287be2a186ccf34f1d804f4580ac0daf70878"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -796,11 +796,11 @@
       },
       {
         "path": ".github/workflows/site-release-candidate.yml",
-        "sha256": "b035032db4fce0b00ca28370bb7faa03fd0ee7ab3f8df23a20bf92b7b277c9ca"
+        "sha256": "af1f221c8fb67e1c065fd5ad352d448ef434adae5fff9f8b9dcbf9d1d761f2dc"
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "8db1f73e6ad4f3706d0a13312e898567b49895d476b2d4a4ac5fd383dcddf4c7"
+        "sha256": "c7a1d12942923b62edae626c5e352dce2685efa4067a7134a8fde1cba7760f34"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -836,7 +836,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "be7e6f8f9f6c302eba55fbf40a5ffbe61651d3bee1755150fcae07b25e26e610"
+        "sha256": "74e799c42c097673a47f8cd9b598d2c5eeacf64f1e3d4773fc4040f3464873b2"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -848,7 +848,7 @@
       },
       {
         "path": "tests/staging-gate.test.cjs",
-        "sha256": "c81d6a456d3abd0e942fb38ae916fbaa940724cceb704854dd8833db9e19c403"
+        "sha256": "d135c4a270cdac2222bd9012f6146c89074fc5d4c9fe7ad41296adf5b519c117"
       },
       {
         "path": "tests/staging-regression.test.cjs",
@@ -856,7 +856,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "24eb9b0ef5b6491a7253c6258d2f42824e5d73fef0e547c449cb8aa6eafc899b"
+        "sha256": "f3164dfe957f7258893d8401c4f5d84fca0dfaffafa8096969773a560e1e0d89"
       },
       {
         "path": "tests/test_code_style.py",
@@ -908,7 +908,7 @@
       },
       {
         "path": "tests/test_issue5_acceptance.py",
-        "sha256": "a8c1bc994056842b9ade4804e86e2c540c9b22e454ee8bbfd6e06182993eccba"
+        "sha256": "e0eb039b73ae3dfc1d636570d6163d278ed37982cbe79a5530974461dfdfd7cb"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -964,15 +964,15 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "658e0a86c0cf9e79cea664fca10092d4aba7cccf536ed6909ef9cef182a454fa"
+        "sha256": "4b0656b1593a875f0b6c2c5ec353395c4c789b2c3b07e10cdeeb36e0d2e0378a"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "13952fcaea8715acfe062813f6d93278634a1c3b1b1410d54eabf7bf82d1303d"
+        "sha256": "c64add23f9673bde3e3f5d3092f1da0a651a8826f850df6a6ffea065cbdd777a"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "74568b4c10f1accb7ae6276a065f515946caaa39e8c0340bf2f03c47e3d9da28"
+        "sha256": "59c0446372f42f0feb3eddf61751cd0dc86cbb4bf99b2bed7c8ca3c588d74e01"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
@@ -980,7 +980,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "1bc539cb8a84aa46fa513878f6edbbc027a59b2aeae99bfb54b812b7cf3af158"
+        "sha256": "513a08875334fd05dc651c83a6b9f3447ab5bb08e22ee62ef7591d851e055785"
       },
       {
         "path": "tools/repository_intelligence.py",

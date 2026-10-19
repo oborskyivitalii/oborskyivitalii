@@ -105,6 +105,19 @@ class Issue5AcceptanceTests(unittest.TestCase):
             10,
         )
 
+    def test_independent_delivery_lanes(self):
+        self.run_node_contracts(
+            [
+                "tests/content-delivery.test.cjs",
+                "tests/architecture.test.cjs",
+                "tests/events.test.cjs",
+                "tests/content-release.test.cjs",
+                "tests/staging-gate.test.cjs",
+                "tests/release-controller.test.cjs",
+            ],
+            40,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

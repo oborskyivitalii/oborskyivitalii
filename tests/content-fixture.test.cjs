@@ -24,13 +24,8 @@ test('the explicit browser fixture composes a genuine content release without ch
     [...native, fixture.KEY].sort()
   );
   assert.equal(prepared.manifest.components.articles[fixture.KEY].candidate, true);
-  assert.deepEqual(prepared.manifest.contentRelease.builtRoutes, ['writing']);
-  assert.deepEqual(prepared.manifest.contentRelease.reusedRoutes, [
-    'index',
-    'research',
-    'talks',
-    'credits',
-  ]);
+  assert.deepEqual(prepared.manifest.contentRelease.builtRoutes, ['writing', 'talks']);
+  assert.deepEqual(prepared.manifest.contentRelease.reusedRoutes, ['index', 'research', 'credits']);
   assert.deepEqual(fs.readFileSync(catalogFile), before);
   assert.equal(fs.existsSync(path.join(root, 'site/publications', fixture.ARTICLE)), false);
   const catalog = JSON.parse(before);
@@ -90,6 +85,14 @@ test('isolated diagnostics preserve frozen Git provenance of an already accepted
   metadata.slug = id;
   metadata.owner.path = owner;
   metadata.status = 'accepted';
+  const assetOwner = 'site/assets/publications/' + id;
+  fs.cpSync(
+    path.join(source.directory, 'site/assets/publications', fixture.ARTICLE),
+    path.join(source.directory, assetOwner),
+    { recursive: true }
+  );
+  for (const asset of metadata.assets)
+    asset.path = asset.path.replace('site/assets/publications/' + fixture.ARTICLE, assetOwner);
   metadata.rights.status = 'accepted';
   const edition = read(owner + '/editions/fixture-edition.json');
   edition.articleId = id;

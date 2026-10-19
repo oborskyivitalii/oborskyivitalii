@@ -523,42 +523,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/archive.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/space.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/styles.css": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/5d32de3b5bd9856a376c7347f61b9964231c1f25f6dbdfbf56f66293cf32af3e/theme.js": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -607,6 +571,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e/archive.js": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e/space.js": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e/styles.css": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e/theme.js": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -616,54 +616,6 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/20bc9b11f4781a7c1c07ed4fbdadd25f7deb6637bf1137df979222e460eff15a": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/20bc9b11f4781a7c1c07ed4fbdadd25f7deb6637bf1137df979222e460eff15a/writing.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2d89322c6244622e00440a069244e14698b05a7f2b852212e8e59739629072db": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2d89322c6244622e00440a069244e14698b05a7f2b852212e8e59739629072db/credits.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/423dc2e33cca33e107396ec2950db46da9be07cc1d49c5d4993ad186abf09b19": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/423dc2e33cca33e107396ec2950db46da9be07cc1d49c5d4993ad186abf09b19/research.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/49e01d8e468b57825a364d323b1edbd5aff98024d98de7e848ee2a08807624fe": {
-      "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/49e01d8e468b57825a364d323b1edbd5aff98024d98de7e848ee2a08807624fe/talks.html": {
-      "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -679,6 +631,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/709ee11b15ff90c7035286146d276a07dcd93e47d15d969bdfb771676dba5f9b": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/709ee11b15ff90c7035286146d276a07dcd93e47d15d969bdfb771676dba5f9b/index.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -688,6 +652,18 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/84d387014dc51316b950e342c2998aa55004ca6bba3c685f260c92f12b64f494": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/84d387014dc51316b950e342c2998aa55004ca6bba3c685f260c92f12b64f494/talks.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -715,15 +691,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/9d201f6dafcd671fce03a9c1d442b0843c7f6fb13ef173db9ad4931cd4b3d766": {
+    "docs/snapshots/9675a455fd045f5cf28e1929b7fcd3c1297c462eb656ded6ae4b5f828b9110ea": {
       "kind": "directory",
-      "purpose": "Generated current site runtime and immutable route rendition.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/9d201f6dafcd671fce03a9c1d442b0843c7f6fb13ef173db9ad4931cd4b3d766/index.html": {
+    "docs/snapshots/9675a455fd045f5cf28e1929b7fcd3c1297c462eb656ded6ae4b5f828b9110ea/writing.html": {
       "kind": "file",
-      "purpose": "Generated current site runtime and immutable route rendition.",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ab6447fce8967cfbc21b92f6460317835af9ab44b73c35b1d3790d6f35eafeeb": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/ab6447fce8967cfbc21b92f6460317835af9ab44b73c35b1d3790d6f35eafeeb/credits.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -736,6 +724,18 @@
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e08ce5589d8f86ca48773f504444b65a1a4e25472c074b630b0f45804dff969b": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/e08ce5589d8f86ca48773f504444b65a1a4e25472c074b630b0f45804dff969b/research.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1830,6 +1830,18 @@
       "purpose": "Issue5 step1 exact editorial inventory, source parents, checks and explicit R10 publication blockers.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-19-delivery-lanes.md": {
+      "kind": "file",
+      "purpose": "Issue5 delivery lane plan, exact event migration/producers and independent acceptance evidence.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
+    "review/issue-5/2026-10-19-events-migration.json": {
+      "kind": "file",
+      "purpose": "Issue5 delivery lane plan, exact event migration/producers and independent acceptance evidence.",
+      "role": "history",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
     },
     "review/issue-5/2026-10-19-generic-reader-preservation.json": {
       "kind": "file",
@@ -7291,6 +7303,12 @@
       "role": "source",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
     },
+    "site/content/events.json": {
+      "kind": "file",
+      "purpose": "Canonical ordered Talks event records; data-only insertion/editing with preserved public anchors.",
+      "role": "source",
+      "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
     "site/content/pages": {
       "kind": "directory",
       "purpose": "Five route metadata and bounded JSON content documents; markup belongs to site/templates.",
@@ -8167,6 +8185,54 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/templates/components/event-arrow.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event-date.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event-group.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event-language.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event-link.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event-meta.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event-primary-link.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/event.html": {
+      "kind": "file",
+      "purpose": "Canonical semantic repeated event presentation consuming bounded validated records.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/templates/components/language-badge.html": {
       "kind": "file",
       "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
@@ -8527,6 +8593,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/content-delivery.test.cjs": {
+      "kind": "file",
+      "purpose": "Independent content/event/media admission, identity and rollback behavioral contracts or controlled validator fixture.",
+      "role": "test",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
     "tests/content-fixture.test.cjs": {
       "kind": "file",
       "purpose": "Permanent content diagnostic build and managed-browser execution contract with rejection cases.",
@@ -8581,6 +8653,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/events.test.cjs": {
+      "kind": "file",
+      "purpose": "Independent content/event/media admission, identity and rollback behavioral contracts or controlled validator fixture.",
+      "role": "test",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
     "tests/executive.test.cjs": {
       "kind": "file",
       "purpose": "Permanent SEO/editorial and semantic contrast failures plus exact-input HTML cache/batch bounds, complete parser coverage and raw/inline-byte preservation.",
@@ -8592,6 +8670,12 @@
       "purpose": "Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/fixtures/article-flight.cjs": {
+      "kind": "file",
+      "purpose": "Independent content/event/media admission, identity and rollback behavioral contracts or controlled validator fixture.",
+      "role": "test",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
     },
     "tests/fixtures/catalog.cjs": {
       "kind": "file",
@@ -9505,11 +9589,23 @@
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tools/quality/content-browser.cjs": {
+      "kind": "file",
+      "purpose": "Distinct accepted-content staging admission and bounded actual browser/media observations.",
+      "role": "validator",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
     "tools/quality/content-fixture.cjs": {
       "kind": "file",
       "purpose": "Explicit synthetic content-release diagnostic preserving frozen source history and separate admission evidence.",
       "role": "validator",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/content-gate.cjs": {
+      "kind": "file",
+      "purpose": "Distinct accepted-content staging admission and bounded actual browser/media observations.",
+      "role": "validator",
+      "owner": "guides/SITE-CONTENT-RELEASE.md"
     },
     "tools/quality/deploy-pages.example.yml": {
       "kind": "file",
@@ -10096,6 +10192,12 @@
     "tools/site/effects.cjs": {
       "kind": "file",
       "purpose": "Canonical active effect manifest, descriptor validation, ordered hosted assembly and compatible offline adapters.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "tools/site/events.cjs": {
+      "kind": "file",
+      "purpose": "Pure validated event collection rendering through canonical templates; no data/layout duplication.",
       "role": "source",
       "owner": "site/README.md"
     },

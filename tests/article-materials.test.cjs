@@ -242,6 +242,33 @@ test('article backlinks use the actual canonical or stay pending', (t) => {
   assert.throws(() => material.articleLink(f.article), /public|host/i);
 });
 
+test('selected public PNG material requires a bounded actual IHDR before hosted decode admission', (t) => {
+  const f = fixture(t);
+  const bytes = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jC9kAAAAASUVORK5CYII=',
+    'base64'
+  );
+  const select = (png) => {
+    const item = f.declaration.items[0];
+    item.kind = 'image';
+    item.target = { kind: 'file', ...f.write('materials/image.png', png), mime: 'image/png' };
+    f.approve();
+    return f.load();
+  };
+  assert.equal(select(bytes).assets[0].mime, 'image/png');
+  for (const [width, height] of [
+    [0, 1],
+    [8001, 1],
+    [8000, 8000],
+  ]) {
+    const oversized = Buffer.from(bytes);
+    oversized.writeUInt32BE(width, 16);
+    oversized.writeUInt32BE(height, 20);
+    assert.throws(() => select(oversized), /dimensions/);
+  }
+  assert.throws(() => select(bytes.subarray(0, 24)), /PNG/);
+});
+
 test('an existing declared image is reused without an independent media copy', (t) => {
   const f = fixture(t);
   f.article.assets.push({

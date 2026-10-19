@@ -471,9 +471,14 @@ function prepublication(level, directory, options = {}) {
   });
   // Independent source guards still run when another source guard fails.
   if (level === 'staging') node('basic', 'tools/quality/local.cjs');
+  const contentAdmission = artifactRecord?.contentRelease?.admission;
+  const contentSourceArgs = contentAdmission
+    ? ['--base', contentAdmission.mergedSource, '--head', identity.sourceCommit]
+    : [];
   node('source-tests', 'tools/quality/source-tests.cjs', [
     '--profile',
-    level,
+    contentAdmission ? 'content' : level,
+    ...contentSourceArgs,
     '--require-clean',
     '--report',
     path.join(reportDirectory, reportStem + '-source-tests-runner.json'),

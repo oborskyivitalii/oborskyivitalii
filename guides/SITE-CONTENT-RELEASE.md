@@ -121,5 +121,53 @@ supported Markdown/catalog content optimization.
 Content checks preserve current-source model/catalog/manifest/resource proof and
 mandatory hosted reader/navigation smoke. Runtime, template, policy or unknown
 changes select the ordinary applicable platform suites. Stable staging and production
-retain their existing admission profiles and budgets. A content-build report is not
-staging acceptance, a publication event or permission to activate production.
+retain their original budgets. A content-build report is not staging acceptance,
+a publication event or permission to activate production.
+
+## Accepted content and media lanes
+
+`site-color-review.yml` selects `content-baseline.selectAccepted` for preview and
+owner staging. The selector authenticates a merged ancestor's exact staging
+checkpoint, native immutable upload digests, original gate and complete raw
+generation. Basic/source-only preview success cannot inherit platform acceptance.
+Missing/expired evidence, a different article selection, changed platform/policy
+or incompatible generation records an explicit ordinary platform fallback.
+
+The content lane covers article owners, catalog/tags, Home/Writing/Talks page data
+and `site/content/events.json`. Events are ordered validated records in that single
+collection; adding an event requires no new template. Existing public group and
+Corning anchors, wording and source-supported metadata survive its migration.
+Templates, renderer/schema, scenes, engine, toolchains, CI/policy and globally
+active assets remain platform work. Local-media-only inputs have the `media`
+impact label; changing a selected figure's meaning/credit/alt/source creates a
+content edition through the existing semantic contract. An unreferenced uploaded
+asset does not become public merely because its path selects media impact.
+
+Both economical lanes use the same complete transactional assembler. The raw
+generation lock and final Color rendition must retain every declared platform
+byte. Only actual dependent Home/Writing/Talks/article documents rebuild;
+immutable prior snapshots/media stay available. Source, rights, semantic edition,
+MIME, per-file/route byte and existing dimension limits remain mandatory.
+The distinct `compatible-content-v1` / `content-staging-gate` requires current
+scanners, exact hosted bytes, all affected documents at desktop/mobile with JS
+and no JS, the existing bounded reader journey and decoded current PNG/WebP
+resources (including linked public materials). It explicitly records inherited
+platform regression and `performanceRerun: false`; it cannot claim omitted suites
+ran. The ordinary platform staging gate retains its original contract.
+
+The production candidate consumes the authenticated staging artifact's raw
+generation on the identical source tree, then applies the existing production
+edition/rights controller. It does not rebuild the platform. The accepted
+predecessor composition is frozen in admission, then rechecked by the serialized
+publisher together with exact current main before any publication. A delayed
+candidate must be prepared and tested again; it cannot replace newer accepted
+article/catalog/platform state. No compatible retained staging generation means
+an explicit platform path, rather than reconstructing raw bytes from an older
+release archive that never retained them.
+
+For a component rollback, revert the selected article/event/media inputs on
+current main and create a new content candidate. This preserves unrelated current
+editions, catalog entries and platform bytes. The controller's separately requested
+whole-release rollback/emergency compensation restores its complete archived
+composition; it is not presented as a selective article rollback. No partial live
+file patching or second publisher is introduced.
