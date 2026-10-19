@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6837fc4bf3f57ed7a5a892cd58b173995ff9b4e4e6a6ab2d7cf30b66a61e1931",
+    "digest": "de78608b6482447f2fde13a5257920ef3592f94a8d17417b533ddbc9a229f2b5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,7 +171,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f86c55a3045c150a40505588060748aa83dc6b2d74ab9e002f0787b7b932288b"
+        "sha256": "c7e5de57136c2a56e1cf3ff22324298a5a2308fbb9a8fb3daed92e5d17f92ef6"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",

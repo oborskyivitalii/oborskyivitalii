@@ -544,7 +544,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "3b45622af59c2adc8f696fe22bd250b99d8fed49304e2bfcb186eaefffcf0290",
+    "digest": "fd39b5cb2fbd12945a4aade6b21f486761f40f811ac2abb1383f8b7161162518",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -656,7 +656,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "970c123bcf07474b0a586b989666021cb46f0c305e42fe1406c326286587df23"
+        "sha256": "5088e0bd40bd203fab9a1ad8bfee7d121acacd9fecb9f0e20034ed834b168bf9"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",
