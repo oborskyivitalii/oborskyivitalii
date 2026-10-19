@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
     "date": "2026-10-19",
-    "summary": "Editorial reader refinement: canonical source-bound roles, typography and native Contents; unchanged runtime scripts and original budgets."
+    "summary": "Calm shared reader: centered column, closed chapter contents, source-bound process, consolidated closing, preserved scene/clock and original budgets."
   },
   "layers": [
     {
@@ -632,7 +632,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "ec7962434a99787c02a6abcff8fb0baacd4e804b88b9a49c1e09b524a7fc41bd",
+    "digest": "0869a5b0330c3fb2348954fafcf49b765f495573330f5d521c058c1827a70813",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -748,7 +748,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0765302af1578000efe335c453fc41da0ea6257c00d6e1801f429d08dc3055ec"
+        "sha256": "4946290ed3c6e22c3afaae4964fbdf877f875ca254d8ce8fea9ecbf563202569"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -860,7 +860,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "866198b27d39eac7a3134a235581508653f8a25de7bd4791a286a07963105d23"
+        "sha256": "6bcef0d402f4dab8506d319fd4811075021655389a675069b11aae2746b0aa8f"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

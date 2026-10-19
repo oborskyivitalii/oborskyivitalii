@@ -33,11 +33,7 @@ module.exports = function readerMode() {
       .map((link) => document.getElementById(fragmentId(link.hash)))
       .filter(Boolean);
     const contents = main.querySelector('.reader-contents');
-    const wide = window.matchMedia('(min-width: 1100px)');
-    if (contents) contents.open = wide.matches;
-    listen(wide, 'change', () => {
-      if (contents) contents.open = wide.matches;
-    });
+    if (contents) contents.open = false;
     const reveal = (hash) => {
       let target;
       try {
@@ -76,7 +72,7 @@ module.exports = function readerMode() {
       )
         return;
       reveal(url.hash);
-      if (anchor.closest('.article-toc') && contents && !wide.matches) contents.open = false;
+      if (anchor.closest('.article-toc') && contents) contents.open = false;
     });
     const current = (id) => {
       for (const link of links) {

@@ -2,6 +2,7 @@
 
 const { readSource } = require('./safety.cjs');
 const { blockDigest } = require('./semantic.cjs');
+const { plain } = require('./render.cjs');
 
 const formats = ['html', 'md', 'txt', 'copy-ready'];
 const relationships = ['adaptation', 'equivalent-rendition'];
@@ -149,10 +150,17 @@ function readerElements(selection, article, appendices = []) {
   const nodes = article.model.tree.children;
   const selected = new Set();
   for (const entry of selection) {
-    object(entry, ['role', 'sha256', 'attribution'], 'reader element');
-    const expected = { prompt: 'paragraph', quotation: 'blockquote', endnote: 'heading' }[
-      entry.role
-    ];
+    object(
+      entry,
+      ['role', 'sha256', 'attribution', 'separator', 'label', 'emphasizeStep'],
+      'reader element'
+    );
+    const expected = {
+      prompt: 'paragraph',
+      process: 'paragraph',
+      quotation: 'blockquote',
+      endnote: 'heading',
+    }[entry.role];
     const matches = nodes.filter((node) => blockDigest(node) === entry.sha256);
     if (
       !expected ||
@@ -165,6 +173,27 @@ function readerElements(selection, article, appendices = []) {
         matches.some((node) => node.children.some((child) => child.type === 'image')))
     )
       throw Error('Reader element role must bind a distinct admitted source block');
+    if (entry.role === 'process') {
+      text(entry.label, 120, 'reader process label');
+      text(entry.separator, 12, 'reader process separator');
+      const inlineText = (node) =>
+        ['text', 'strong', 'emphasis'].includes(node.type) &&
+        (node.children || []).every(inlineText);
+      const steps = plain(matches[0]).split(entry.separator);
+      if (
+        matches.length !== 1 ||
+        !matches[0].children.every(inlineText) ||
+        steps.length < 2 ||
+        steps.length > 12 ||
+        steps.some((step) => !step.trim() || step.length > 100) ||
+        !Number.isInteger(entry.emphasizeStep) ||
+        entry.emphasizeStep < 0 ||
+        entry.emphasizeStep >= steps.length
+      )
+        throw Error('Reader process requires 2–12 plain source steps and one valid emphasis index');
+    } else if (['separator', 'label', 'emphasizeStep'].some((key) => entry[key] !== undefined)) {
+      throw Error('Reader process fields require a process role');
+    }
     if (entry.role === 'endnote') {
       const start = nodes.indexOf(matches[0]);
       const chapter = nodes

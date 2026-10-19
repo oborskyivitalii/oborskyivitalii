@@ -109,18 +109,18 @@ function input(root, article) {
   const metadata = article.metadata;
   const reader = require('./reader.cjs').prepare(article);
   const boundary = '<!--reader-apparatus-->';
-  const [body, appendices] = presentationBody(
+  const [body, furtherReading, appendices] = presentationBody(
     root,
     article,
-    reader.body + boundary + reader.appendices
+    reader.body + boundary + reader.furtherReading + boundary + reader.appendices
   ).split(boundary);
   const main = substitute(
     fs.readFileSync(path.join(root, 'site/templates/pages/article.html'), 'utf8'),
     {
       TITLE: escapeText(metadata.title),
       TITLE_ID: escapeAttribute(article.titleId || 'article-title'),
-      SUMMARY: escapeText(metadata.summary),
       SUBTITLE: reader.subtitle,
+      FURTHER_READING: furtherReading,
       AUTHORS: metadata.authors.map((author) => escapeText(author.name)).join(', '),
       LANGUAGE: escapeAttribute(metadata.language),
       STATUS: article.technical

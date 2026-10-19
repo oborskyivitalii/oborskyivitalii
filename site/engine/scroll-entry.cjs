@@ -41,6 +41,7 @@ module.exports = function () {
     '.article-intro > *',
     '.article-toc',
     '.article-body > *',
+    '.reader-closing > *',
     '.article-sources',
     '.article-related',
     '.article-list',
@@ -61,6 +62,7 @@ module.exports = function () {
     '.next-route',
     '.discussion-row',
     '.empty-state',
+    '.reader-closing',
   ].join(',');
   const records = new Map();
   const routeUnits = new Map();

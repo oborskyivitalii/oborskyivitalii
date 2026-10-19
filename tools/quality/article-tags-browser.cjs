@@ -71,7 +71,7 @@ async function journey(browser, baseURL, index, descriptors) {
       await page.goto(new URL(descriptor.alias, base).href);
       await ready();
       assert.equal(
-        await page.locator('.article-intro .publication-tags a').count(),
+        await page.locator('.reader-tags-slot .publication-tags a').count(),
         reader.tags.length
       );
       const urls = await page
@@ -105,7 +105,7 @@ async function journey(browser, baseURL, index, descriptors) {
         );
         assert.equal(await safe.evaluate(() => window.tagInjection === true), false);
         assert.ok(
-          (await safe.locator('.article-intro .publication-tags').innerText()).includes('<img')
+          (await safe.locator('.reader-tags-slot .publication-tags').innerText()).includes('<img')
         );
         observations.textSafety = { controlledIndex: true, plainText: true };
       } finally {

@@ -63,6 +63,13 @@
       {
         "role": "endnote",
         "sha256": "a7883b0c575a4571744b82c26bcc96dc27e9aa29e4f8ccda55f872dda69fe360"
+      },
+      {
+        "role": "process",
+        "sha256": "691d50bb2f9eceef0d83569b36fdad67546408b64c62a981b3891c1b42dbc6af",
+        "label": "The software delivery lifecycle",
+        "separator": " → ",
+        "emphasizeStep": 3
       }
     ]
   }

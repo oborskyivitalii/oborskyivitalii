@@ -372,3 +372,44 @@ test('endnotes cannot extract reference lists or swallow later subsections', asy
     assert.throws(() => loadProfile(f.root, f.article), /trailing H3 group/);
   }
 });
+
+test('process roles reject lost markup, missing steps, excessive steps and invalid emphasis', async (t) => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const f = await fixture(t, { illustrated: false, adaptation: false });
+  const bind = (source, override = {}) => {
+    const { model } = compile(source, []);
+    Object.assign(f.article, { model, sections: model.sections });
+    f.profile.reader = {
+      elements: [
+        {
+          role: 'process',
+          sha256: blockDigest(model.tree.children[0]),
+          label: 'A process',
+          separator: ' → ',
+          emphasizeStep: 1,
+          ...override,
+        },
+      ],
+    };
+    saveProfile(f.root, f.article.metadata.id, f.profile);
+  };
+  bind('**Discover → Check → Deliver.**');
+  assert.equal(loadProfile(f.root, f.article).profile.reader.elements[0].role, 'process');
+  for (const [source, override] of [
+    ['Discover → Check', { emphasizeStep: 2 }],
+    ['Discover → Check', { emphasizeStep: -1 }],
+    ['Discover → Check', { separator: '' }],
+    ['Discover → Check', { label: '' }],
+    ['No chain', {}],
+    ['Discover →  → Check', {}],
+    [Array(13).fill('Step').join(' → '), {}],
+    ['[Discover](https://example.com) → Check', {}],
+    ['Discover → `Check`', {}],
+    ['Discover → Check\n\nDiscover → Check', {}],
+    ['Discover → Check', { role: 'prompt' }],
+    ['Discover → Check', { sha256: '0'.repeat(64) }],
+  ]) {
+    bind(source, override);
+    assert.throws(() => loadProfile(f.root, f.article), /process|reader|profile/i);
+  }
+});

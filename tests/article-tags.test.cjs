@@ -46,11 +46,14 @@ test('validated tab snapshot hydrates history synchronously while every mount re
     setAttribute() {}
     addEventListener() {}
     removeEventListener() {}
+    closest() {
+      return null;
+    }
   }
   const article = new Element(),
     intro = new Element();
   article.append(intro);
-  article.querySelector = (selector) => (selector === '.article-intro' ? intro : null);
+  article.querySelector = (selector) => (selector === '.reader-tags-slot' ? intro : null);
   const document = {
     body: { dataset: { article: 'reader-reference:en' } },
     querySelectorAll: () => [],

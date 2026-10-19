@@ -40,6 +40,7 @@ window.SiteScrollEntry=(function () {
     '.article-intro > *',
     '.article-toc',
     '.article-body > *',
+    '.reader-closing > *',
     '.article-sources',
     '.article-related',
     '.article-list',
@@ -60,6 +61,7 @@ window.SiteScrollEntry=(function () {
     '.next-route',
     '.discussion-row',
     '.empty-state',
+    '.reader-closing',
   ].join(',');
   const records = new Map();
   const routeUnits = new Map();
@@ -1211,11 +1213,7 @@ window.SiteReader=(function readerMode() {
       .map((link) => document.getElementById(fragmentId(link.hash)))
       .filter(Boolean);
     const contents = main.querySelector('.reader-contents');
-    const wide = window.matchMedia('(min-width: 1100px)');
-    if (contents) contents.open = wide.matches;
-    listen(wide, 'change', () => {
-      if (contents) contents.open = wide.matches;
-    });
+    if (contents) contents.open = false;
     const reveal = (hash) => {
       let target;
       try {
@@ -1254,7 +1252,7 @@ window.SiteReader=(function readerMode() {
       )
         return;
       reveal(url.hash);
-      if (anchor.closest('.article-toc') && contents && !wide.matches) contents.open = false;
+      if (anchor.closest('.article-toc') && contents) contents.open = false;
     });
     const current = (id) => {
       for (const link of links) {

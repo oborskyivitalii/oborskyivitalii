@@ -190,13 +190,39 @@ async function captureReader(page, key) {
   const directory = path.join(require('./common.cjs').out, 'reader');
   fs.mkdirSync(directory, { recursive: true });
   const prefix = key.replace(':', '-') + '-' + page.viewportSize().width;
+  assert.equal(
+    await page.locator('.reader-contents[open]').count(),
+    0,
+    'contents starts closed at either width'
+  );
+  assert.equal(
+    await page.locator('.article-toc details details').count(),
+    0,
+    'contents has one chapter level'
+  );
+  assert.equal(
+    await page.locator('.article-intro .publication-tags').count(),
+    0,
+    'discovery tags do not interrupt the opening'
+  );
   await page.screenshot({ path: path.join(directory, prefix + '-opening.png') });
-  const table = page.locator('.reader-table').first();
-  if (await table.count()) {
-    await table.scrollIntoViewIfNeeded();
-    await page.screenshot({ path: path.join(directory, prefix + '-table.png') });
-    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  for (const [name, selector] of [
+    ['process', '.reader-process'],
+    ['quotation', '.reader-quotation'],
+    ['table', '.reader-table'],
+    ['ending', '.reader-tags-slot'],
+  ]) {
+    const element = page.locator(selector).first();
+    if (!(await element.count())) continue;
+    await element.scrollIntoViewIfNeeded();
+    assert.equal(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      true,
+      'reader does not overflow the page'
+    );
+    await page.screenshot({ path: path.join(directory, prefix + '-' + name + '.png') });
   }
+  await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
 }
 
 async function contentsAnchor(page) {
@@ -231,7 +257,9 @@ async function observeReading(page) {
           element.getAttribute('data-route-block') === 'departing'
         ) {
           state.departed.push(
-            element.matches('.article-related') ? 'article-related' : element.id || element.tagName
+            element.matches('.article-related') || element.querySelector('.article-related')
+              ? 'article-related'
+              : element.id || element.tagName
           );
         }
       }

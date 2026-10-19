@@ -4,10 +4,10 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
-- 19 October latest #5/PR79 increment: user authorized editorial hierarchy and
-  preview after independent UX review. Shared headings/chapter rhythm, source-bound
-  prompt/quotation/endnote roles, native progressive Contents and mobile opening.
-  See review/issue-5/2026-10-19-editorial-reader.md; exact CI/preview belongs to PR79.
+- 19 October latest #5/PR79 increment: user accepted a fresh holistic Product Design
+  review and authorized calm reader simplification: one column, optional flat
+  Contents, compact header, reusable process, footer tags and consolidated ending.
+  See review/issue-5/2026-10-19-calm-reader.md; final exact CI/preview belongs to PR79.
 
 - PR79 orbit follow-up supersedes same-scene depth excursions: center, circle the
   single Writing fractal and restore reading. Bounded independent review found

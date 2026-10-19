@@ -42,7 +42,7 @@ test('reader reuses the admitted AST without changing source or other renditions
     /<figcaption><p>An important limitation remains visible\.<\/p><details/
   );
   assert.match(output.body, /Author and source credits\./);
-  assert.match(output.toc, /href="#a-subsection"/);
+  assert.ok(!output.toc.includes('href="#a-subsection"'), 'contents shows chapters only');
   assert.ok(!output.body.includes('<h1'));
   assert.match(input.platformBodyHtml, /An important limitation remains visible\./);
   validateFragment(output.body + output.subtitle + output.toc, 'reader test');
@@ -262,6 +262,72 @@ test('a short article has no fabricated contents or missing introduction', () =>
   assert.match(output.body, /Just the short essay/);
 });
 
+test('contents starts closed at desktop width, closes after selection and restores explicit history', () => {
+  const h = runtimeHarness();
+  h.media.matches = true;
+  h.reader.mount();
+  assert.equal(h.toc.open, false);
+  h.toc.open = true;
+  h.main.emit('click', { target: h.links[0] });
+  assert.equal(h.toc.open, false);
+  h.reader.restore([true, false, false]);
+  assert.equal(h.toc.open, true, 'an explicit saved disclosure choice is retained');
+  h.reader.destroy();
+});
+
+test('a declared process preserves ordered source steps, escaping and reference returns', () => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const input = article(
+    '# A different article\n\n## Work\n\n**Ask & learn → Check [1] → Deliver.**\n\n## Notes\n\n1. A source.'
+  );
+  const process = input.model.tree.children[2];
+  input.profile.reader = {
+    sections: { references: 'notes', appendices: ['notes'] },
+    elements: [
+      {
+        role: 'process',
+        sha256: blockDigest(process),
+        separator: ' → ',
+        label: 'A different process <example>',
+        emphasizeStep: 1,
+      },
+    ],
+  };
+  const before = JSON.stringify(input);
+  const output = prepare(input);
+  assert.equal(JSON.stringify(input), before, 'web presentation never changes the canonical AST');
+  assert.match(output.body, /A different process &lt;example&gt;/);
+  assert.match(
+    output.body,
+    /<li>Ask &amp; learn<\/li><li><strong>Check <a class="reader-citation"/
+  );
+  assert.match(output.body, /<li>Deliver\.<\/li>/);
+  assert.equal((output.body.match(/<strong>/g) || []).length, 1);
+  assert.match(output.appendices, /role="doc-backlink"/);
+  validateFragment(output.body + output.appendices, 'process');
+});
+
+test('an explicit process role takes precedence over inferred opening subtitle furniture', () => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const input = article(
+    '# A different article\n\n*Discover → Check → Deliver.*\n\n## Work\n\nAn argument.'
+  );
+  input.profile.reader.elements = [
+    {
+      role: 'process',
+      sha256: blockDigest(input.model.tree.children[1]),
+      separator: ' → ',
+      label: 'An opening process',
+      emphasizeStep: 1,
+    },
+  ];
+  const output = prepare(input);
+  assert.equal(output.subtitle, '');
+  assert.match(output.body, /reader-process/);
+  assert.match(output.body, /<strong>Check<\/strong>/);
+  assert.equal((output.body.match(/Discover/g) || []).length, 1);
+});
+
 test('same-document fragment history restores disclosure geometry before applying saved scroll', () => {
   const fs = require('node:fs'),
     path = require('node:path'),
@@ -327,15 +393,23 @@ test('declared editorial roles preserve words, group attribution and keep prose 
   );
   assert.equal((output.body.match(/Another author/g) || []).length, 1);
   assert.match(output.appendices, /role="doc-backlink"/);
-  assert.match(output.toc, /<details class="reader-subsections"><summary>Subsections/);
-  assert.match(output.toc, /href="#an-actual-subsection"/);
+  assert.ok(!output.toc.includes('Subsections'));
+  assert.ok(!output.toc.includes('href="#an-actual-subsection"'));
+  assert.match(
+    output.body,
+    /id="an-actual-subsection"/,
+    'subsection anchors remain in the article'
+  );
   assert.ok(!output.toc.includes('Consider the alternative'));
   assert.ok(!output.toc.includes('#reading-onward'));
   assert.match(
-    output.body,
-    /<\/section><aside class="reader-endnote" aria-labelledby="reading-onward">/
+    output.furtherReading,
+    /<aside class="reader-endnote" aria-labelledby="reading-onward">/
   );
-  validateFragment(output.body + output.appendices + output.toc, 'editorial roles');
+  validateFragment(
+    output.body + output.furtherReading + output.appendices + output.toc,
+    'editorial roles'
+  );
 });
 
 test('a declared supporting group stays after its own chapter and before later chapters', () => {

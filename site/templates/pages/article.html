@@ -2,22 +2,23 @@
   <article class="reader-mode" aria-labelledby="{{TITLE_ID}}">
     <header class="article-intro">
       <a class="reader-back" href="writing.html">← Back to Writing</a>
-      <p class="eyebrow">{{STATUS}}</p>
       <h1 id="{{TITLE_ID}}">{{TITLE}}</h1>
       {{SUBTITLE}}
-      <p class="article-summary">{{SUMMARY}}</p>
-      <p class="article-authors">{{AUTHORS}}</p>
+      <p class="article-authors">{{AUTHORS}} <span class="reader-status">· {{STATUS}}</span></p>
     </header>
     <div class="reader-layout">
       {{CONTENTS}}
       <div class="reader-content">
         <div class="article-body">{{BODY}}</div>
-        <nav class="reader-end" aria-label="After the article">
-          <a href="writing.html">← More writing</a>
-          <a href="#{{TITLE_ID}}">Back to top ↑</a>
-        </nav>
-        <div class="reader-related-slot"></div>
-        <div class="reader-appendices">{{APPENDICES}}{{SOURCES}}</div>
+        <footer class="reader-closing">
+          <div class="reader-tags-slot"></div>
+          {{FURTHER_READING}}
+          <div class="reader-appendices">{{APPENDICES}}{{SOURCES}}</div>
+          <nav class="reader-end" aria-label="After the article">
+            <a href="writing.html">← More writing</a>
+            <a href="#{{TITLE_ID}}">Back to top ↑</a>
+          </nav>
+        </footer>
       </div>
     </div>
   </article>

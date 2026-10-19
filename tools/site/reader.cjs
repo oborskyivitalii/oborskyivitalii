@@ -7,8 +7,12 @@ function partition(article) {
   const nodes = article.model.tree.children.slice();
   const title = nodes[0]?.id === article.titleId ? nodes.shift() : null;
   const first = nodes[0];
+  const declaredElements = new Set(
+    (article.profile.reader?.elements || []).map((entry) => entry.sha256)
+  );
   const subtitle =
     first?.type === 'paragraph' &&
+    !declaredElements.has(blockDigest(first)) &&
     first.children.length === 1 &&
     first.children[0].type === 'emphasis'
       ? nodes.shift()
@@ -99,6 +103,20 @@ function components(article, layout) {
       if (node.children.length === 1 && node.children[0].type === 'image')
         return renderNode(node.children[0]);
       const role = elements.get(blockDigest(node));
+      if (role?.role === 'process') {
+        const id = allocate('reader-process');
+        const steps = plain(node).split(role.separator);
+        return (
+          `<figure class="reader-process" aria-labelledby="${id}"><figcaption id="${id}">${escapeHtml(role.label)}</figcaption><ol role="list">` +
+          steps
+            .map(
+              (step, index) =>
+                `<li>${index === role.emphasizeStep ? '<strong>' + citationText(step) + '</strong>' : citationText(step)}</li>`
+            )
+            .join('') +
+          '</ol></figure>\n'
+        );
+      }
       return `<p${role?.role === 'prompt' ? ' class="reader-prompt"' : ''}>${children(node)}</p>\n`;
     },
     blockquote: (node, { children }) => {
@@ -173,15 +191,9 @@ function components(article, layout) {
 
 function contents(layout) {
   return layout.chapters
-    .map(({ heading, nodes }) => {
+    .map(({ heading }) => {
       const link = (node) => `<a href="#${escapeHtml(node.id)}">${escapeHtml(plain(node))}</a>`;
-      const children = nodes.filter((node) => node.type === 'heading' && node.depth === 3);
-      const subsections = children.length
-        ? `<details class="reader-subsections"><summary>Subsections<span class="sr-only"> in ${escapeHtml(plain(heading))}</span></summary><ol>` +
-          children.map((node) => '<li>' + link(node) + '</li>').join('') +
-          '</ol></details>'
-        : '';
-      return `<li>${link(heading)}${subsections}</li>`;
+      return `<li>${link(heading)}</li>`;
     })
     .join('\n');
 }
@@ -213,6 +225,10 @@ function prepare(article) {
     ? '<p class="reader-title-sources">Title sources: ' + nodes(titleLinks) + '</p>'
     : '';
   const intro = nodes(introduction) + (cover ? nodes([cover]) : '');
+  const finalEndnote = layout.chapters.at(-1)?.endnote;
+  const endnote = (group, recommendations = '') =>
+    `<aside class="reader-endnote" aria-labelledby="${escapeHtml(group[0].id)}">${nodes(group)}${recommendations}</aside>`;
+  const relatedSlot = '<div class="reader-related-slot"></div>';
   const body =
     '<div class="reader-introduction">' +
     titleSources +
@@ -224,9 +240,7 @@ function prepare(article) {
           '<section class="reader-chapter">' +
           nodes(chapter.nodes) +
           '</section>' +
-          (chapter.endnote
-            ? `<aside class="reader-endnote" aria-labelledby="${escapeHtml(chapter.endnote[0].id)}">${nodes(chapter.endnote)}</aside>`
-            : '')
+          (chapter.endnote && chapter.endnote !== finalEndnote ? endnote(chapter.endnote) : '')
       )
       .join('');
   const appendices = layout.appendices
@@ -236,11 +250,16 @@ function prepare(article) {
     )
     .join('');
   // All citations are known before reference return links are materialised.
-  const combined = finish(body + '<!--reader-appendices-->' + appendices);
-  const [reading, apparatus] = combined.split('<!--reader-appendices-->');
+  const furtherReading = finalEndnote ? endnote(finalEndnote, relatedSlot) : relatedSlot;
+  const combined = finish(
+    body + '<!--reader-ending-->' + furtherReading + '<!--reader-appendices-->' + appendices
+  );
+  const [readingAndEnding, apparatus] = combined.split('<!--reader-appendices-->');
+  const [reading, ending] = readingAndEnding.split('<!--reader-ending-->');
   return {
     subtitle,
     body: reading,
+    furtherReading: ending,
     appendices: apparatus,
     toc: contents(layout),
   };

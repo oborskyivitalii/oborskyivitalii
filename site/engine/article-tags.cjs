@@ -213,10 +213,11 @@ module.exports = function articleTags() {
     function appendRecommendations(data, reader) {
       const recommendations = related(data, reader);
       if (recommendations.length) {
+        const slot = article.querySelector('.reader-related-slot') || article;
         const section = make('section');
         section.className = 'article-related';
         section.setAttribute('aria-label', data.labels.related);
-        section.append(make('h2', data.labels.related));
+        if (!slot.closest('.reader-endnote')) section.append(make('h2', data.labels.related));
         const list = make('ul');
         for (const entry of recommendations) {
           const item = make('li');
@@ -235,7 +236,7 @@ module.exports = function articleTags() {
           list.append(item);
         }
         section.append(list);
-        add(article.querySelector('.reader-related-slot') || article, section);
+        add(slot, section);
       }
     }
     const render = (data, preservePosition = false) => {
@@ -271,8 +272,8 @@ module.exports = function articleTags() {
       const current = document.body.dataset.article;
       const reader = Object.hasOwn(data.readers, current) ? data.readers[current] : null;
       if (article && reader) {
-        const intro = article.querySelector('.article-intro');
-        if (intro) add(intro, tagList(reader.tags, data));
+        const tagSlot = article.querySelector('.reader-tags-slot');
+        if (tagSlot) add(tagSlot, tagList(reader.tags, data));
         appendRecommendations(data, reader);
       }
       window.dispatchEvent(new window.CustomEvent('site:tags-ready'));
