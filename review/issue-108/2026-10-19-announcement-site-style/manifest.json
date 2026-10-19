@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "eventId": "pmday-winter-2027",
+  "campaignRevision": 1,
+  "source": {
+    "commit": "53b141777775d2e1ce29b9f8f382c7f3e1285177",
+    "tree": "de13a121f5b7fc5c8911389161eb7ffe33312a4b",
+    "dirty": false
+  },
+  "readiness": "draft-only",
+  "releaseEligible": false,
+  "producedAt": "2026-10-19T13:15:04.495Z",
+  "contentUpdatedAt": "2026-10-19T12:06:37Z",
+  "observedPublications": [],
+  "inputs": [
+    {
+      "path": "drafts/events/pmday-winter-2027/brief.en.md",
+      "sha256": "b1de49fada9c7367869f322251fdae199aeb37897eea54ac391d4408a318a4a5",
+      "bytes": 1195
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/event.json",
+      "sha256": "0ad44e94da84b9ec3ee462ef1e21508beff4a08b4f46c1fffe4368adfb319ca0",
+      "bytes": 885
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/plan.json",
+      "sha256": "d95b6f0c006956bdb1f25e6f7f058e4b82c49aedaac81c56f0e1f08c35d158fd",
+      "bytes": 3674
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/posts/announcement.en.md",
+      "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3",
+      "bytes": 570
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/sources/organizer.md",
+      "sha256": "16ef897b6f11e1892ab07a81cbefe55550b92ccec4b67e17e590841dbfe4ce12",
+      "bytes": 532
+    },
+    {
+      "path": "site/engine/styles.css",
+      "sha256": "714212589e42d44f2c8396e235e05797e7d477fc5451ae592435f03cf319315d",
+      "bytes": 28783
+    },
+    {
+      "path": "tools/distribution/calendar.cjs",
+      "sha256": "9646da0dbe216f2e8cfbb1a22aaa94dade2f48b8d8511df8dd5f8d9be29f62f6",
+      "bytes": 3162
+    },
+    {
+      "path": "tools/distribution/campaign.cjs",
+      "sha256": "941d96621c975e546843d42793a1360574dcb8643d2c8e44a7af6806ecc91dae",
+      "bytes": 7198
+    },
+    {
+      "path": "tools/distribution/cli.cjs",
+      "sha256": "43481f80e0112f92542cf60466f3c5e8aa2f97ae2304c81e486385c73d60e6a5",
+      "bytes": 1034
+    },
+    {
+      "path": "tools/distribution/event.cjs",
+      "sha256": "6de5e53a6656caf897a36fa1596fab7cc62182ee8afb15907164ef066dec3eee",
+      "bytes": 8444
+    },
+    {
+      "path": "tools/distribution/inputs.cjs",
+      "sha256": "21d92e0a07ce67ac70c98d2b3d5df204183b08d72c958f624d094d8335dca5dc",
+      "bytes": 1872
+    },
+    {
+      "path": "tools/distribution/kit.cjs",
+      "sha256": "e720139c171e7857a38e2f9019b4ae98abc07030a455815fbecc3061aaf81f46",
+      "bytes": 7271
+    },
+    {
+      "path": "tools/distribution/render.cjs",
+      "sha256": "ca3055e7d4e40d3249009ae7ff75a317da27fae9ad808820257970e8cb8d9edc",
+      "bytes": 6096
+    },
+    {
+      "path": "tools/distribution/schedule.cjs",
+      "sha256": "76a69bb90ce7cb0418ee966c38a0d58e124f9eb8706a317f2ae7c2f9ff2187c0",
+      "bytes": 3503
+    },
+    {
+      "path": "tools/distribution/schema.cjs",
+      "sha256": "5175c0a25eca0f8005b955c1f8294fe16de94eb958b4966a32458372f156a923",
+      "bytes": 6001
+    },
+    {
+      "path": "tools/distribution/templates/card.css",
+      "sha256": "27ec05f8e4446bdae0506f421ef8254f37d3ebd381c7763254b889ff640430ac",
+      "bytes": 2155
+    },
+    {
+      "path": "tools/distribution/templates/card.html",
+      "sha256": "3688b85d4296017663cffa78f441851b2d66d787a1892423051fada2fb4ebb56",
+      "bytes": 1140
+    },
+    {
+      "path": "tools/distribution/templates/review.css",
+      "sha256": "05f29e6a3500dee0fb98052b01e415e621d3b5fbd59186cccfc8b3d8b6a940ff",
+      "bytes": 413
+    },
+    {
+      "path": "tools/site/html.cjs",
+      "sha256": "6dbfb79e88d569e53575325d9be47c8b8afcff6bb0f60d09fb0c59ca861f573f",
+      "bytes": 4256
+    }
+  ],
+  "pieces": [
+    {
+      "id": "announcement",
+      "language": "en",
+      "state": "authored",
+      "bindingSha256": "c609479149f5107087d18d468cc9aee299bce708e8b48dd06057969335361b0c",
+      "scheduledAt": "2026-10-20T07:00:00.000Z"
+    },
+    {
+      "id": "discussion",
+      "language": "en",
+      "state": "planned",
+      "bindingSha256": "74da1073aec76315d2d9c5b10bf1c9e499a45a0322cf36932144e9fe270af498",
+      "scheduledAt": "2026-12-08T08:00:00.000Z"
+    },
+    {
+      "id": "session",
+      "language": "uk",
+      "state": "planned",
+      "bindingSha256": "874d0c4b9e26b1ba5050964a43438481f84ceb9b690874af420ea674bc706f4a",
+      "scheduledAt": "2027-01-12T08:00:00.000Z"
+    },
+    {
+      "id": "slide",
+      "language": "uk",
+      "state": "planned",
+      "bindingSha256": "8f04c979c554c7b615ca6fc638439bfedf4e5d5e8be8dc82d33e720f8d0ab866",
+      "scheduledAt": "2027-01-21T08:00:00.000Z"
+    },
+    {
+      "id": "reminder",
+      "language": "uk",
+      "state": "planned",
+      "bindingSha256": "408480f72d364b30c32af7c8d28b21820d9be43fd432a2d20235d828ca5987bb",
+      "scheduledAt": "2027-01-28T08:00:00.000Z"
+    },
+    {
+      "id": "reflection",
+      "language": "en",
+      "state": "planned",
+      "bindingSha256": "fdfb72a786e791327102f21b47df7179e28ecdcba05a8a7f0e2b40d83f5fc85f",
+      "scheduledAt": "2027-02-01T08:00:00.000Z"
+    }
+  ],
+  "visual": {
+    "browser": "chromium",
+    "version": "138.0.7204.0",
+    "pages": [
+      {
+        "piece": "announcement",
+        "width": 1080,
+        "height": 1350,
+        "overflow": []
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "announcement.en.md",
+      "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3",
+      "bytes": 570
+    },
+    {
+      "path": "announcement.html",
+      "sha256": "fd18392e25e814849d09425951142b359489914659914660888ea67d0bd14bc2",
+      "bytes": 4093
+    },
+    {
+      "path": "announcement.pdf",
+      "sha256": "a2f2c0644bfe833a26be1def98f409af506c6a395860f8bbd5a83cc10917377a",
+      "bytes": 28206
+    },
+    {
+      "path": "announcement.png",
+      "sha256": "0ae43c7be40905c1cc79c6ceb5fdd3f447b3edd007fb8ab0d69f62d01c88b94e",
+      "bytes": 68044
+    },
+    {
+      "path": "calendar.ics",
+      "sha256": "4090fcca3d44054682784d9ca6e8090ba2e2170d94b6b41f88145c5020b4f3f9",
+      "bytes": 8452
+    },
+    {
+      "path": "checklist.md",
+      "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983",
+      "bytes": 737
+    },
+    {
+      "path": "index.html",
+      "sha256": "d82e549b6712d45c1cae67c6ce724ba88bcbec09e10f6128eb41bc56d9f4aa62",
+      "bytes": 3728
+    }
+  ]
+}

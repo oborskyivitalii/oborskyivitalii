@@ -1273,7 +1273,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1997,6 +1997,109 @@
         "tools/quality/validate.cjs",
         "tools/quality/secrets-publication.json",
         "review/issue-102/2026-10-18-public-metadata-proof.json.gz"
+      ]
+    },
+    {
+      "path": "tests/campaign.test.cjs",
+      "language": "javascript",
+      "purpose": "Reusable read-only draft campaign schema, exact-edition/media/copy approval invalidation, unsafe input and absent-publisher negatives.",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain source-only campaign failure surfaces; no hosted matrix, publishing or historical task replay",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/campaign.test.cjs",
+        "tools/distribution/**",
+        "site/publications/**/campaign/**",
+        "tools/publishing/**",
+        "guides/ARTICLE-DISTRIBUTION.md",
+        "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md"
+      ]
+    },
+    {
+      "path": "tests/test_issue106_acceptance.py",
+      "language": "python",
+      "purpose": "Owning issue106 reuses permanent campaign draft behavior with honest partial acceptance.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "owning policy only; no duplicate routine or browser suite",
+      "surviving_route": ".github/acceptance/issue-106.json",
+      "inputs": [
+        "tests/test_issue106_acceptance.py",
+        "tests/campaign.test.cjs",
+        "tools/distribution/**",
+        ".github/acceptance/issue-106.json",
+        "tests/event-campaign.test.cjs"
+      ]
+    },
+    {
+      "path": "tests/article-materials.test.cjs",
+      "language": "javascript",
+      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior.",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "source-only public material failure surfaces; publisher hook reuses existing article suite",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-materials.test.cjs",
+        "tools/site/article-materials.cjs",
+        "site/templates/components/article-materials.html",
+        "site/publications/**/materials.json",
+        "site/assets/publications/**/materials/**"
+      ]
+    },
+    {
+      "path": "tests/event-campaign.test.cjs",
+      "language": "javascript",
+      "purpose": "Event source/CTA/review, timezone/DST/dependency scheduling, mixed-language copy, RFC5545 UID/folding and isolated-kit negatives.",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Retain bounded source-only failures; card rendering runs on manual kit build and is reviewed separately.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/event-campaign.test.cjs",
+        "tools/distribution/**",
+        "drafts/events/**",
+        "guides/EVENT-DISTRIBUTION.md",
+        ".github/workflows/campaign-kit.yml",
+        "site/engine/styles.css"
+      ]
+    },
+    {
+      "path": "tests/article-campaign-kit.test.cjs",
+      "language": "javascript",
+      "purpose": "Source-bound isolated article review kits, explicit clean publisher bridge, frame/media invalidation, canonical theme and no-publication negatives.",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Retain bounded source-only failures; card rendering runs on manual kit build and is reviewed separately.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-campaign-kit.test.cjs",
+        "tools/distribution/**",
+        "site/publications/**/campaign/**",
+        "site/engine/styles.css",
+        ".github/workflows/campaign-kit.yml"
+      ]
+    },
+    {
+      "path": "tests/article-campaign-render.test.cjs",
+      "language": "javascript",
+      "purpose": "Actual offline Chromium seven-page/PNG geometry, decoded visible media and overflow refusal diagnostics.",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "lifecycle": "diagnostic",
+      "profiles": ["diagnostic"],
+      "disposition": "Explicit manual campaign-kit browser diagnostic; no routine source-only pass or locked-browser substitution.",
+      "surviving_route": "node --test tests/article-campaign-render.test.cjs",
+      "inputs": [
+        "tests/article-campaign-render.test.cjs",
+        "tools/distribution/**",
+        "site/engine/styles.css",
+        ".github/workflows/campaign-kit.yml"
       ]
     }
   ]

@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "kind": "pr-preview-http",
+  "pass": true,
+  "origin": "https://399a1dda.oborskyi-author-ci-staging.pages.dev",
+  "rows": [
+    {
+      "file": "index.html",
+      "sha256": "0ae5b8de8c297af2153846cf594a795df864cc44f1dbe4d680f9a919de5096d9",
+      "status": 200,
+      "redirects": 1
+    },
+    {
+      "file": "research.html",
+      "sha256": "40b272dc71809990ff631a8270216f14d4df18a7990357785f1992683e83428e",
+      "status": 200,
+      "redirects": 1
+    },
+    {
+      "file": "writing.html",
+      "sha256": "c8c7d253d8fe2f3f0a044393c943bf2b43c5e5729debed977516e76ad1934f97",
+      "status": 200,
+      "redirects": 1
+    },
+    {
+      "file": "talks.html",
+      "sha256": "144fc208b232bd99543fce1f80122bfaf2ecb98be34571894f72003778ffc9bb",
+      "status": 200,
+      "redirects": 1
+    },
+    {
+      "file": "credits.html",
+      "sha256": "ad94d4ff5d4cd259408627cd93ea49ad8aa2c39f5b56a986c44a72d6120b9404",
+      "status": 200,
+      "redirects": 1
+    },
+    {
+      "file": "site-revision.json",
+      "sha256": "9eba0c883083a9ff2a5721e7d8790969708e14343aabe1638185c39f33384d39",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "_staging/revision.json",
+      "sha256": "cb0fa9b78d64185794c3e442f26aa1db8d518935a3f834e90b71675c5d5839ba",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "runtime/9df7a7fe7eb59dd9de9ff9a8d926fbea140a3709c6cf11229aa2e336296e405b/space.js",
+      "sha256": "5f4dc5f28fd9425975e4faa5a587f3b63c0217b216b2210a2762f1dc6e4c5597",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "runtime/9df7a7fe7eb59dd9de9ff9a8d926fbea140a3709c6cf11229aa2e336296e405b/navigation.js",
+      "sha256": "26197e2d01b6b052db18864f7ac29c4d017810c1922e26bd2ce28364f9cb6a9b",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "runtime/9df7a7fe7eb59dd9de9ff9a8d926fbea140a3709c6cf11229aa2e336296e405b/styles.css",
+      "sha256": "0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "snapshots/33ca23d634294b1e611905bf17764d0dfc00b006398e1e8751ca94fb8b299bdb/credits.html",
+      "sha256": "a0bfa58c2295c852fb41bcf6d38bcef093b807d16848313415d729a5228c7ba1",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "snapshots/3f27553af6219e853c1f93926331d8e22f820bbbc41669051fc2d50bbca71ca1/index.html",
+      "sha256": "f2ba5de3c51cad5a87a39ec9cca707c32e4ddc8e2d1062ca58aef4d795634eb7",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "snapshots/5d7ef6e2b36df94beb2f994131325e36bce265f298ce9a2367c05b297a519eff/writing.html",
+      "sha256": "1170a05dbb9a336875a57d8ec52497d11d6993dee1b78d109be69a5621fd8599",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "snapshots/97131c3f0d77e64040c9dc63a7307e9d14afbfe52560344edffc9484f706d5fa/research.html",
+      "sha256": "bd84cb442a94350f1a33f4f3746d3f076e040eecf77c7110b1b66604cdf1d28f",
+      "status": 200,
+      "redirects": 0
+    },
+    {
+      "file": "snapshots/fb8727c61368465bf8a5ad9099682c984fa202ba29887f17045265316e6b97c8/talks.html",
+      "sha256": "b8939aa23322734295890519d6f76c0417259ea9ca349a8846845109d816a7b9",
+      "status": 200,
+      "redirects": 0
+    }
+  ],
+  "root": true,
+  "actual404": true,
+  "noindex": true,
+  "sourceCommit": "b0ff55d0e0e73c217b9e8c034e5b52fab81f1189",
+  "publicDigest": "bb5739ad9962a788cd54d2891dda8cc76b52a4f5abe930942b0471d9c6a89d80",
+  "variant": {
+    "id": "color",
+    "contract": 1,
+    "fingerprint": "9df7a7fe7eb59dd9de9ff9a8d926fbea140a3709c6cf11229aa2e336296e405b",
+    "baseEngine": "ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac",
+    "effects": [
+      "travel"
+    ]
+  }
+}

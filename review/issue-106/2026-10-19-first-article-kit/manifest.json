@@ -1,0 +1,352 @@
+{
+  "schema": 1,
+  "articleId": "pmday-ai-both-sides",
+  "campaignRevision": 1,
+  "source": {
+    "commit": "213b827015009654ced53c7dd5f3fc5156303975",
+    "tree": "89f9dafcae6929b22a50dbeaaa7c465a1c6652da",
+    "dirty": false
+  },
+  "publisher": {
+    "commit": "b0ff55d0e0e73c217b9e8c034e5b52fab81f1189",
+    "tree": "b28996c695788a63c9117c575dcdc93556565906",
+    "dirty": false,
+    "repository": "oborskyivitalii/oborskyivitalii"
+  },
+  "edition": {
+    "editionId": "pmday-ai-both-sides-en-review-20261019-r12-cover02",
+    "semanticSha256": "41ec0d3c37942b75f82770a191989868dfe33ae1a77e639618076241735549a5"
+  },
+  "readiness": "draft-only",
+  "releaseEligible": false,
+  "canonical": null,
+  "d0": null,
+  "observedPublications": [],
+  "producedAt": "2026-10-19T13:28:26.856Z",
+  "inputs": [
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/brief.en.md",
+      "sha256": "271b55818a95cdad692581780cef515cbb89d402a7469f0ef174d01063c0787a",
+      "bytes": 3090
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json",
+      "sha256": "d8f191a851b21f75fe70854d7022c6a00de3d00874ef8e7fc8553cfeed80c6a8",
+      "bytes": 3815
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json",
+      "sha256": "cbf42bd3ff085271cdcadcccc418ea125235725197c16186567059954f631159",
+      "bytes": 417
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/plan.json",
+      "sha256": "d1a14c6f5700a84238c0ff5419c38ba322b9ba08b32ae7fb384b72300646a7fd",
+      "bytes": 2635
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md",
+      "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1",
+      "bytes": 667
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md",
+      "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62",
+      "bytes": 789
+    },
+    {
+      "path": "tools/distribution/schema.cjs",
+      "sha256": "944d75909d217ddc4c14bdd009ec4f629d960ab5c6cfde6140efc20e52fdfcfa",
+      "bytes": 6372
+    },
+    {
+      "path": "tools/distribution/campaign.cjs",
+      "sha256": "52d284ba6663cc5c2a5281b6b11bdbd78b6024f62a3d73640a524a982f4ba73e",
+      "bytes": 7690
+    },
+    {
+      "path": "tools/distribution/inputs.cjs",
+      "sha256": "21d92e0a07ce67ac70c98d2b3d5df204183b08d72c958f624d094d8335dca5dc",
+      "bytes": 1872
+    },
+    {
+      "path": "tools/distribution/event.cjs",
+      "sha256": "6de5e53a6656caf897a36fa1596fab7cc62182ee8afb15907164ef066dec3eee",
+      "bytes": 8444
+    },
+    {
+      "path": "tools/distribution/schedule.cjs",
+      "sha256": "76a69bb90ce7cb0418ee966c38a0d58e124f9eb8706a317f2ae7c2f9ff2187c0",
+      "bytes": 3503
+    },
+    {
+      "path": "tools/distribution/calendar.cjs",
+      "sha256": "9646da0dbe216f2e8cfbb1a22aaa94dade2f48b8d8511df8dd5f8d9be29f62f6",
+      "bytes": 3162
+    },
+    {
+      "path": "tools/distribution/render.cjs",
+      "sha256": "f0a2baec792ab411460c15d10692e493cb761e751614f3dcff3646d39a1dfd11",
+      "bytes": 8613
+    },
+    {
+      "path": "tools/distribution/brand.cjs",
+      "sha256": "8ac792d09d39e5567d2fda9d4a9f7b269db5b448321d224a37c4d949d3a4653c",
+      "bytes": 617
+    },
+    {
+      "path": "tools/distribution/frames.cjs",
+      "sha256": "902fb7fe5ba4a587096b7364cb5211c8fe2aaeb1ae45cf349804113cec014963",
+      "bytes": 2349
+    },
+    {
+      "path": "tools/distribution/article-kit.cjs",
+      "sha256": "7b4ddc0b82480c7be162c52c2c4eaba979301fd3ed0c7bdcdc4490a84a34639f",
+      "bytes": 10102
+    },
+    {
+      "path": "tools/distribution/publisher-model.cjs",
+      "sha256": "fdfbe7f0d2369dc3d13e0bcf666f7262340b3afb3b4613a691be4ae74a0f2d0e",
+      "bytes": 703
+    },
+    {
+      "path": "tools/distribution/kit.cjs",
+      "sha256": "682c947d45da44fbdb45b4f3cf212157e359cf8222be5efaf001b4f88395c946",
+      "bytes": 7548
+    },
+    {
+      "path": "tools/distribution/cli.cjs",
+      "sha256": "0781bbaa41636477b9dc274b993713711b56f22469a7d193a3232749399cf321",
+      "bytes": 2503
+    },
+    {
+      "path": "tools/distribution/templates/card.html",
+      "sha256": "144cdce8dc0cb64b8314b90c9dad31467dbd89e43d8a90a6848dcee8b652f4e5",
+      "bytes": 1171
+    },
+    {
+      "path": "tools/distribution/templates/card.css",
+      "sha256": "e24b07f15e4a0a296d897d4c03caba5496746d02a87c72155bf0f58e51885bdc",
+      "bytes": 3706
+    },
+    {
+      "path": "tools/distribution/templates/review.css",
+      "sha256": "05f29e6a3500dee0fb98052b01e415e621d3b5fbd59186cccfc8b3d8b6a940ff",
+      "bytes": 413
+    },
+    {
+      "path": "tools/site/html.cjs",
+      "sha256": "6dbfb79e88d569e53575325d9be47c8b8afcff6bb0f60d09fb0c59ca861f573f",
+      "bytes": 4256
+    },
+    {
+      "path": "site/engine/styles.css",
+      "sha256": "714212589e42d44f2c8396e235e05797e7d477fc5451ae592435f03cf319315d",
+      "bytes": 28783
+    }
+  ],
+  "publisherInputs": [
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "bytes": 373126
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-03.png",
+      "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
+      "bytes": 115546
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png",
+      "sha256": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
+      "bytes": 103708
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png",
+      "sha256": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
+      "bytes": 172300
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
+      "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
+      "bytes": 188436
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png",
+      "sha256": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
+      "bytes": 182322
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
+      "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
+      "bytes": 170621
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png",
+      "sha256": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd",
+      "bytes": 186504
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
+      "sha256": "199d6d64849905eb047c23f7ce43eaab3ef98d949c5009878c8f15a5df7d1180",
+      "bytes": 22667
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/presentation-v35.pdf",
+      "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782",
+      "bytes": 663363
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12-cover02.json",
+      "sha256": "bb0be303ae693aa3f63e8b4505ad44d2bc0baa982b357a854f22032702c65df2",
+      "bytes": 493
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
+      "sha256": "5262c2436db2542db68b96cc1f5cf485431b510dede2bf8301c94cddbf344b05",
+      "bytes": 382
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+      "sha256": "5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b",
+      "bytes": 42707
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/profile.json",
+      "sha256": "610c1d41a118332b2762c1de5bf258d8bcf02023aa8e84e2025c61d01d39291b",
+      "bytes": 1027
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/publication.json",
+      "sha256": "4f70a229354b30ce8129dd90c24a04ca24944d3bdfa04d62274f414551f0bae0",
+      "bytes": 13185
+    }
+  ],
+  "pieces": [
+    {
+      "id": "launch",
+      "state": "authored",
+      "bindingSha256": "5fbb3fe8c230f2d45982c79ac8989acabc616135259e7adc6a2852757a13bc05",
+      "channel": "linkedin",
+      "admission": "pending",
+      "articleUrl": null
+    },
+    {
+      "id": "delivery-constraint",
+      "state": "authored",
+      "bindingSha256": "cdbf2f038e9c0cf9167ebe95ae1cd94c28b61156ba296c225d3a7338b3606ff2",
+      "channel": "linkedin",
+      "admission": "pending",
+      "articleUrl": null
+    }
+  ],
+  "visual": {
+    "browser": "chromium",
+    "version": "138.0.7204.0",
+    "pages": [
+      {
+        "piece": "launch",
+        "width": 1080,
+        "height": 1350,
+        "frames": 1,
+        "images": 1,
+        "overflow": []
+      },
+      {
+        "piece": "delivery-constraint",
+        "width": 1080,
+        "height": 1350,
+        "frames": 7,
+        "images": 1,
+        "overflow": []
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "checklist.md",
+      "sha256": "8ad6957a692734ea0fb513a2a089b29381077fab0c3c21bc0f5e88da84f3e7dd",
+      "bytes": 635
+    },
+    {
+      "path": "credits.md",
+      "sha256": "72b9abc5bc3617d6af11358592501e6d639a056496e2305028cf207e4713035d",
+      "bytes": 475
+    },
+    {
+      "path": "delivery-constraint-01.png",
+      "sha256": "a4aff0cecf3819d5ced7b4dc80aeef190c02ee4eec3ca5cecbc62e37d55f7a3a",
+      "bytes": 320719
+    },
+    {
+      "path": "delivery-constraint-02.png",
+      "sha256": "6722402a4853f7551bb072f6f9b84bd1ecb34720ac581ed5e888225445ac8147",
+      "bytes": 101136
+    },
+    {
+      "path": "delivery-constraint-03.png",
+      "sha256": "86a199bc21e669e5c44095fb8f15e3294d5ec0b6e8e8f8f0043800d1c697b5bd",
+      "bytes": 127932
+    },
+    {
+      "path": "delivery-constraint-04.png",
+      "sha256": "c5f5fe03a3e493babfd76f2a882d9e2e03908cc5082622857200d7e89390455e",
+      "bytes": 112936
+    },
+    {
+      "path": "delivery-constraint-05.png",
+      "sha256": "a1000f80e7984f8a5793fc957f3a0cb50bf719ca3df7ce44ab1f4f7bce0eee4b",
+      "bytes": 103647
+    },
+    {
+      "path": "delivery-constraint-06.png",
+      "sha256": "de7e2f51ed42b14c8f727254bc267d25188236940610fef58ce7da27e35fe075",
+      "bytes": 113437
+    },
+    {
+      "path": "delivery-constraint-07.png",
+      "sha256": "08126aa6fb80d3273ff489813ead7d10f30062369cb578d5eefe460684c42d24",
+      "bytes": 100516
+    },
+    {
+      "path": "delivery-constraint.en.md",
+      "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1",
+      "bytes": 667
+    },
+    {
+      "path": "delivery-constraint.html",
+      "sha256": "795f20738c361f34426d04ecfe8da7f7be6f36a4a7b0b631c8281d34d2a30a05",
+      "bytes": 509489
+    },
+    {
+      "path": "delivery-constraint.pdf",
+      "sha256": "60237564084c948b58bc934077bc91540f6b6321602ed542b58f28490bd03723",
+      "bytes": 619829
+    },
+    {
+      "path": "index.html",
+      "sha256": "1b24bd03a863675a173616530adce50f2c76b86acfe92a525dd53452b4b17514",
+      "bytes": 4736
+    },
+    {
+      "path": "launch.en.md",
+      "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62",
+      "bytes": 789
+    },
+    {
+      "path": "launch.html",
+      "sha256": "656f557254851701b8c6c7561ab8e9b39c99de6b8458a1121e4eb95c5e0cd3b1",
+      "bytes": 503356
+    },
+    {
+      "path": "launch.pdf",
+      "sha256": "a1a3f03a59a117752d1d909abf222283a3c00824c5f0cc96b262421bdf5f9119",
+      "bytes": 596726
+    },
+    {
+      "path": "launch.png",
+      "sha256": "cec30db20c813451bce098113c519e466d3abd888123cd5756bcf06489720a41",
+      "bytes": 319517
+    }
+  ]
+}

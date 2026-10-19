@@ -1,0 +1,136 @@
+{
+  "schema": 2,
+  "eventId": "pmday-winter-2027",
+  "revision": 1,
+  "updatedAt": "2026-10-19T12:06:37Z",
+  "sourceSha256": "0ad44e94da84b9ec3ee462ef1e21508beff4a08b4f46c1fffe4368adfb319ca0",
+  "timezone": "Europe/Warsaw",
+  "brief": {
+    "path": "brief.en.md",
+    "sha256": "b1de49fada9c7367869f322251fdae199aeb37897eea54ac391d4408a318a4a5"
+  },
+  "pieces": [
+    {
+      "id": "announcement",
+      "language": "en",
+      "purpose": "Confirm participation, date, online format and registration.",
+      "content": {
+        "path": "posts/announcement.en.md",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      "cta": {
+        "destination": "registration",
+        "label": "Event details and registration"
+      },
+      "window": {
+        "anchor": "date",
+        "from": "2026-10-20",
+        "to": "2026-10-20",
+        "time": "09:00",
+        "after": []
+      },
+      "visual": {
+        "template": "announcement",
+        "headline": "I’ll be speaking",
+        "support": "Session details to follow",
+        "page": null
+      },
+      "approval": null
+    },
+    {
+      "id": "discussion",
+      "language": "en",
+      "purpose": "Explore one delivery-system question; invite questions without inventing the session scope.",
+      "content": null,
+      "cta": {
+        "destination": "registration",
+        "label": "Event details and registration"
+      },
+      "window": {
+        "anchor": "date",
+        "from": "2026-12-08",
+        "to": "2026-12-08",
+        "time": "09:00",
+        "after": []
+      },
+      "visual": null,
+      "approval": null
+    },
+    {
+      "id": "session",
+      "language": "uk",
+      "purpose": "Announce the confirmed session title, audience and three concrete questions after approval.",
+      "content": null,
+      "cta": {
+        "destination": "registration",
+        "label": "Деталі події та реєстрація"
+      },
+      "window": {
+        "anchor": "date",
+        "from": "2027-01-12",
+        "to": "2027-01-12",
+        "time": "09:00",
+        "after": []
+      },
+      "visual": null,
+      "approval": null
+    },
+    {
+      "id": "slide",
+      "language": "uk",
+      "purpose": "Share one reviewed slide from the actual January deck with a useful thesis.",
+      "content": null,
+      "cta": {
+        "destination": "registration",
+        "label": "Деталі події та реєстрація"
+      },
+      "window": {
+        "anchor": "date",
+        "from": "2027-01-21",
+        "to": "2027-01-21",
+        "time": "09:00",
+        "after": []
+      },
+      "visual": null,
+      "approval": null
+    },
+    {
+      "id": "reminder",
+      "language": "uk",
+      "purpose": "Final reminder with the confirmed programme, time and timezone.",
+      "content": null,
+      "cta": {
+        "destination": "registration",
+        "label": "Деталі події та реєстрація"
+      },
+      "window": {
+        "anchor": "event",
+        "from": -2,
+        "to": -2,
+        "time": "09:00",
+        "after": []
+      },
+      "visual": null,
+      "approval": null
+    },
+    {
+      "id": "reflection",
+      "language": "en",
+      "purpose": "Reflect on actual audience questions and link only materials/recordings that exist.",
+      "content": null,
+      "cta": {
+        "destination": "registration",
+        "label": "Event details and registration"
+      },
+      "window": {
+        "anchor": "date",
+        "from": "2027-02-01",
+        "to": "2027-02-01",
+        "time": "09:00",
+        "after": []
+      },
+      "visual": null,
+      "approval": null
+    }
+  ]
+}

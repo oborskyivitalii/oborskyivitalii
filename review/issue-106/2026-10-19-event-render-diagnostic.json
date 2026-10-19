@@ -1,0 +1,19 @@
+{
+  "browser": "chromium",
+  "version": "138.0.7204.0",
+  "pages": [
+    {
+      "piece": "slide-demo",
+      "width": 1080,
+      "height": 1350,
+      "overflow": []
+    },
+    {
+      "piece": "reminder-demo",
+      "width": 1080,
+      "height": 1350,
+      "overflow": []
+    }
+  ],
+  "overflowNegative": true
+}

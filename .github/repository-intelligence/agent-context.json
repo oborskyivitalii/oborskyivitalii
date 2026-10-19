@@ -17,12 +17,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "013f19c1186301d6bb661ef271c25f74e8762b2f2b076410ef1695cab4aff62c",
+    "digest": "b1cdc686a80e5229d370de91825640b21a89511e6a28f25408687ffc4752095d",
     "inputs": [
       {
         "path": ".gitattributes",
         "identity_mode": "content",
-        "sha256": "6030a33a1cd826768f3c0ed65bde55a3a210e7131cca0a6d60d9b378e5268461"
+        "sha256": "cc1cd01a6b2a200e6deb7703df6d4b393ece86a36dc02008caf79f4a749af351"
       },
       {
         "path": ".github/ACCEPTANCE.md",
@@ -48,6 +48,11 @@
         "path": ".github/acceptance/issue-102.json",
         "identity_mode": "content",
         "sha256": "2effe76a24f04719dd07fec85994b9c294a3397b0d49dab09a13c1607f3b6c3e"
+      },
+      {
+        "path": ".github/acceptance/issue-106.json",
+        "identity_mode": "content",
+        "sha256": "1daed97baae80b55bd84b7f05812c754d981a9263f5ba4ff62dc8f7d0dcbb21c"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -147,7 +152,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
+        "sha256": "0ad23f233223ade6ce98442462e1ff451e5fc7741530543728aaec958dd0f533"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -161,12 +166,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2c21fba6b1246dab3fe065446200f6e1b9ac0975f6ac111da0fa45ba0daf32ff"
+        "sha256": "53b4b67b1f1815b5f08e6521a5645e42120a25142eb9a0cd29c2a4d05c969f71"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6eec79b97bda94c587173db2578fe8a29c7577ea203a84214089a217d7d15d42"
+        "sha256": "d0db89ad53804ead188432a345555cfce46abf798e1d95ad28435818a2086545"
+      },
+      {
+        "path": ".github/workflows/campaign-kit.yml",
+        "identity_mode": "content",
+        "sha256": "4f4982bfca6f4d8da48f46b426eea1856d2489f1fbc803897c1cd217ae8ecc94"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -296,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "730ad359e82a6efff72f938fc9e7763c1ea6bc95015c96fc19508281719d2b67"
+        "sha256": "da88451ba17ee0646ed22333f98d73c907fad575efc3ddee9f2defcae8cf5f0a"
       },
       {
         "path": "NOTICE.md",
@@ -350,12 +360,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "d27bd18f3f9b41f5f8cdd2136e4b630874ff5d409153778ff31ccd5ee7470686"
+        "sha256": "c5962a570d3ce3c4ebe0595b33b35400a84a5c164c154832b82898c3ec041220"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "ee3e70175ad6b61f5782f200b963eaace35de8ea5fb7b9c3ed0446e75d4274f8"
+        "sha256": "24e94bb1afca53563e243d0cf4440365c0a7e9473675e8202c3fe62214adf737"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -385,12 +395,37 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "37df73dfbddee876de2ee81e282b3d041e0bce9b3cbc0915a1716b8081d882fe"
+        "sha256": "8bff2b321c6fb528fa7f961b8c0eeec2095ccc79371947f27ead585d613227d5"
       },
       {
         "path": "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js",
         "identity_mode": "content",
         "sha256": "7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff"
+      },
+      {
+        "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/archive.js",
+        "identity_mode": "content",
+        "sha256": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad"
+      },
+      {
+        "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/navigation.js",
+        "identity_mode": "content",
+        "sha256": "571421564a822bacc5d3286c8a445565d7d7e30b81c181064a9116cc62b4cf83"
+      },
+      {
+        "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/space.js",
+        "identity_mode": "content",
+        "sha256": "006b6c5dd25db470482173a62b2753982bea6cd1e8493cb42bea7d386b610bd4"
+      },
+      {
+        "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/styles.css",
+        "identity_mode": "content",
+        "sha256": "d36bb181264b69d6852cef5276ccaf40fb96f00c44c8dc42f23bf57905c5d767"
+      },
+      {
+        "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js",
+        "identity_mode": "content",
+        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
       {
         "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
@@ -418,44 +453,14 @@
         "sha256": "d11f679af05442e8b01024e9a5fe3ba9aff73554f11bd8f3ff692d14f830f8fb"
       },
       {
-        "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js",
-        "identity_mode": "content",
-        "sha256": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad"
-      },
-      {
-        "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js",
-        "identity_mode": "content",
-        "sha256": "571421564a822bacc5d3286c8a445565d7d7e30b81c181064a9116cc62b4cf83"
-      },
-      {
-        "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js",
-        "identity_mode": "content",
-        "sha256": "006b6c5dd25db470482173a62b2753982bea6cd1e8493cb42bea7d386b610bd4"
-      },
-      {
-        "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css",
-        "identity_mode": "content",
-        "sha256": "d36bb181264b69d6852cef5276ccaf40fb96f00c44c8dc42f23bf57905c5d767"
-      },
-      {
-        "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js",
-        "identity_mode": "content",
-        "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
-      },
-      {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "71f1b888fb8691dffe3dc4147c457e3eea02c0c50e155d47ccbfa5876cc2a4dc"
+        "sha256": "cc1f400ea34b910c3d1ab9a96fa40e65c3056507c1f56aefffa99adfd7ec6247"
       },
       {
-        "path": "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html",
+        "path": "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html",
         "identity_mode": "content",
-        "sha256": "3b2c2bb518b174129a8ba06e66621b74f493ef8ad934117d57cae64e9e956762"
-      },
-      {
-        "path": "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html",
-        "identity_mode": "content",
-        "sha256": "88eb203461f25731145cda36435d99580a54fb1a8e95713f06f4d606aa71c04d"
+        "sha256": "c3933bfa5e7877db76a84f36f76c3374fb038ab493c02df36ed1da5b14d5b5ed"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -463,14 +468,19 @@
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
       },
       {
+        "path": "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html",
+        "identity_mode": "content",
+        "sha256": "439d528884c6897c177a2785e2c670cee3b04d1550545d3af85a1b814ce7fecc"
+      },
+      {
+        "path": "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html",
+        "identity_mode": "content",
+        "sha256": "fc6414f5940671b64939bcf4ec3c39a605bf699dca66e6e5eb541382423eba48"
+      },
+      {
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
         "identity_mode": "content",
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
-      },
-      {
-        "path": "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html",
-        "identity_mode": "content",
-        "sha256": "847fe81bf8f8a535a7f41ca20f0344df1d101cdd47c39734691d1bd05241c4f5"
       },
       {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -483,19 +493,19 @@
         "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
       },
       {
-        "path": "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html",
-        "identity_mode": "content",
-        "sha256": "c51fc1369d9848a48546cefa717e4a0024429458095d9b2eb1ea955f92b3ae4b"
-      },
-      {
         "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
         "identity_mode": "content",
         "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
       },
       {
-        "path": "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html",
+        "path": "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html",
         "identity_mode": "content",
-        "sha256": "64d5f09ebb71d7ad9c00ee30abd6e26558f14bf5ec276ce43d9d23a25a216de6"
+        "sha256": "aa21a47951a29facd419b9101b8a688aa2ae4838c3c1f3c09a7170206c41d145"
+      },
+      {
+        "path": "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html",
+        "identity_mode": "content",
+        "sha256": "987cc84c1eade331844fe6753dcd62a2cd81d75dac102e82a289c5ad9a26988f"
       },
       {
         "path": "docs/space.js",
@@ -510,7 +520,7 @@
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "0ae583dd8259826daf57ec78966752782f4b4d6bbcfa4e8b73ac49ce6edf9f79"
+        "sha256": "6bea0581bbb2608e974be85ba9644150dae51df691dc4f82ff07695e719ecc51"
       },
       {
         "path": "docs/theme.js",
@@ -520,7 +530,32 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "9d5824b1aae4dec47c879b0917275c05a7cc8220015cb3073034091be0587c21"
+        "sha256": "6eee98778e127e7750105d52c93fc65732507781dedc6ec5e0d77e71cbc95f8f"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/brief.en.md",
+        "identity_mode": "content",
+        "sha256": "b1de49fada9c7367869f322251fdae199aeb37897eea54ac391d4408a318a4a5"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/event.json",
+        "identity_mode": "content",
+        "sha256": "0ad44e94da84b9ec3ee462ef1e21508beff4a08b4f46c1fffe4368adfb319ca0"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/plan.json",
+        "identity_mode": "content",
+        "sha256": "d95b6f0c006956bdb1f25e6f7f058e4b82c49aedaac81c56f0e1f08c35d158fd"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/posts/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/sources/organizer.md",
+        "identity_mode": "content",
+        "sha256": "16ef897b6f11e1892ab07a81cbefe55550b92ccec4b67e17e590841dbfe4ce12"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -528,14 +563,39 @@
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
       },
       {
+        "path": "guides/ARTICLE-CAMPAIGN-REVIEW.md",
+        "identity_mode": "content",
+        "sha256": "098b62e73e34fc15ec5fb0456f6d3e69189648f5b6b9443b38a768c3641a365f"
+      },
+      {
+        "path": "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md",
+        "identity_mode": "content",
+        "sha256": "95161b919460744a858e2696576a8cede56b124f42f7259a277e93a526e5b38e"
+      },
+      {
+        "path": "guides/ARTICLE-DISTRIBUTION.md",
+        "identity_mode": "content",
+        "sha256": "eb1ab35f71d518e6d6f136b9d7d0aed59a1659f9e1cf98a01609d7624b3a8431"
+      },
+      {
+        "path": "guides/ARTICLE-MATERIALS.md",
+        "identity_mode": "content",
+        "sha256": "db49221305ab7c9a6ec7369a81953f6249f2c35dbd9792e3656bc6453e58e294"
+      },
+      {
         "path": "guides/CODE-STYLE.md",
         "identity_mode": "content",
         "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
       },
       {
+        "path": "guides/EVENT-DISTRIBUTION.md",
+        "identity_mode": "content",
+        "sha256": "51b36d7fb1af54006fac7038b104d47e870005201276f0283ca6e8dd2439426d"
+      },
+      {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "05dc46d5147c8dfac709700ff1c5a86b954c47896477c5026662a0279642631f"
+        "sha256": "69d291c7c052d1a999ea93b5dff7700ec9a6b7b1ebbd808fa9c7f15538cd94d2"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -555,7 +615,7 @@
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
         "identity_mode": "content",
-        "sha256": "20d658138ec1a33112704a723ab6748b3f43e2f46b91ec6766a4149b2aaec5d5"
+        "sha256": "2137ec90fc022b055189fce4f633d2117b5e9663189be7d1f5d138fabc7338e9"
       },
       {
         "path": "guides/SITE-PRODUCTION.md",
@@ -691,6 +751,331 @@
         "path": "review/issue-102/2026-10-18-public-metadata-proof.json.gz",
         "identity_mode": "content",
         "sha256": "17bcb6dc959d632d437280e40e2bea7b243ea8196df1a0023ab64dca81d6df69"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-campaign-plan.md",
+        "identity_mode": "content",
+        "sha256": "5a3c4db46a4ae2ac203ff76c62d01ac0caf1ade2fafe2beb6f94f8d0014bae7e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json",
+        "identity_mode": "content",
+        "sha256": "47204b7b02fa3d1f1270b00fc16f6c04c0a257e11333b87df28e95de07a2a8b3"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-corrections.md",
+        "identity_mode": "content",
+        "sha256": "a3ca25307ad153a7992605f04fdb5eea1d29e87d9b5c12beb0347f449ee99097"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-draft-contract.md",
+        "identity_mode": "content",
+        "sha256": "fc49ca7bbde97f6d878f593a855e7d6c8aca6ac19ed7af6678251c838bbc1aae"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-event-preparation.md",
+        "identity_mode": "content",
+        "sha256": "a60413bf69ebe4f4f2550dda9d020ac8845914e81cad89340d7773cde2bc639e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-event-render-diagnostic.json",
+        "identity_mode": "content",
+        "sha256": "a17b8239e0a8a542f0a16d62005e07257b2c107bf9071ede58f9bb8e55f2785e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-event-source-acceptance.json",
+        "identity_mode": "content",
+        "sha256": "d88bbd8f06bf9e98d7b725f0edd8f74e517060cf491009729c58766b014a249d"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit.md",
+        "identity_mode": "content",
+        "sha256": "50acd7f8376d10a8849b95d84d1814067c6eba9f5b890fd6d07f347e51713d6e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/checklist.md",
+        "identity_mode": "content",
+        "sha256": "8ad6957a692734ea0fb513a2a089b29381077fab0c3c21bc0f5e88da84f3e7dd"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/credits.md",
+        "identity_mode": "content",
+        "sha256": "72b9abc5bc3617d6af11358592501e6d639a056496e2305028cf207e4713035d"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png",
+        "identity_mode": "content",
+        "sha256": "a4aff0cecf3819d5ced7b4dc80aeef190c02ee4eec3ca5cecbc62e37d55f7a3a"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png",
+        "identity_mode": "content",
+        "sha256": "6722402a4853f7551bb072f6f9b84bd1ecb34720ac581ed5e888225445ac8147"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png",
+        "identity_mode": "content",
+        "sha256": "86a199bc21e669e5c44095fb8f15e3294d5ec0b6e8e8f8f0043800d1c697b5bd"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png",
+        "identity_mode": "content",
+        "sha256": "c5f5fe03a3e493babfd76f2a882d9e2e03908cc5082622857200d7e89390455e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png",
+        "identity_mode": "content",
+        "sha256": "a1000f80e7984f8a5793fc957f3a0cb50bf719ca3df7ce44ab1f4f7bce0eee4b"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png",
+        "identity_mode": "content",
+        "sha256": "de7e2f51ed42b14c8f727254bc267d25188236940610fef58ce7da27e35fe075"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png",
+        "identity_mode": "content",
+        "sha256": "08126aa6fb80d3273ff489813ead7d10f30062369cb578d5eefe460684c42d24"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md",
+        "identity_mode": "content",
+        "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html",
+        "identity_mode": "content",
+        "sha256": "795f20738c361f34426d04ecfe8da7f7be6f36a4a7b0b631c8281d34d2a30a05"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf",
+        "identity_mode": "content",
+        "sha256": "60237564084c948b58bc934077bc91540f6b6321602ed542b58f28490bd03723"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/index.html",
+        "identity_mode": "content",
+        "sha256": "1b24bd03a863675a173616530adce50f2c76b86acfe92a525dd53452b4b17514"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.en.md",
+        "identity_mode": "content",
+        "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.html",
+        "identity_mode": "content",
+        "sha256": "656f557254851701b8c6c7561ab8e9b39c99de6b8458a1121e4eb95c5e0cd3b1"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.pdf",
+        "identity_mode": "content",
+        "sha256": "a1a3f03a59a117752d1d909abf222283a3c00824c5f0cc96b262421bdf5f9119"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.png",
+        "identity_mode": "content",
+        "sha256": "cec30db20c813451bce098113c519e466d3abd888123cd5756bcf06489720a41"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/manifest.json",
+        "identity_mode": "content",
+        "sha256": "d9bfb532bc898f76096a9a535d72cb383befe67a7bb97c98d8c726ab439c7570"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png",
+        "identity_mode": "content",
+        "sha256": "bbeaaa0b61aa722da65fb5e41aeaeb016025fd9d40ac12bfc79bb7f0f186579a"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png",
+        "identity_mode": "content",
+        "sha256": "bda257a2276ced228ac97715810681ac6fe84adfefaaeaa9c4d1f30683ae5488"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png",
+        "identity_mode": "content",
+        "sha256": "17398fcbb47c7df1f0d471bdf03d2f7883436147934846ee2dec06c316198925"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json",
+        "identity_mode": "content",
+        "sha256": "e83542b95855cdd41c16e715b853d9d7eef5f20f8122dc626360fc72d684671e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json",
+        "identity_mode": "content",
+        "sha256": "293dfaa357d3b03613dd88ce4f34fb4fa0803db61a46251faae83467d776ce51"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json",
+        "identity_mode": "content",
+        "sha256": "8c2e67bd6628f58193d54304585d8ff2c5e140d334ccaf71ee7a99529903af1c"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json",
+        "identity_mode": "content",
+        "sha256": "4c2abdb6343455649f928e51ba427df94f348d145edec338782d078c02b19e42"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json",
+        "identity_mode": "content",
+        "sha256": "11fd3c149153b2ae01a87795449cc1ff46e8bb2bc95aa6f7b9dd83146254db49"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt",
+        "identity_mode": "content",
+        "sha256": "faa02dfe652a5e6acff529113bb6bf6068d3d6cfc9ac35a8027f5ecabcf9473d"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/visual-observations.json",
+        "identity_mode": "content",
+        "sha256": "7d36e121acf0345006a43468eec9c7184082626fb7848b08e065aa081856a151"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-independent-review.md",
+        "identity_mode": "content",
+        "sha256": "468baf5c0d35a664d504c1624d8c6862497d95f7c7fd404039cce9c765e221b2"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json",
+        "identity_mode": "content",
+        "sha256": "5d5528c162df274da5aaf5be230c3b8c16dd8099c7dd3827e6bf6031309e3099"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-public-materials.md",
+        "identity_mode": "content",
+        "sha256": "2abbf7c9be41c0a72adc95d01ee3bf306f01d6044eea89c9a94d2b2d798f5d3e"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html",
+        "identity_mode": "content",
+        "sha256": "aef160ab38ef66027501e85dda67ef3a6108a8082f6dbd4c1c35d332681df7d6"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf",
+        "identity_mode": "content",
+        "sha256": "85f8e18f3a5de63f54e87ed0bd6b7576be7a0bb387074f06e246252900716db1"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png",
+        "identity_mode": "content",
+        "sha256": "dfb1cade802a3706a27cc2226f5b031abad408bb4a4a0e005dc1b29e0ddc58a8"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics",
+        "identity_mode": "content",
+        "sha256": "b854fb37210b7ac956703c409504260edc79f4b96d88f9a8261c4094bc888ba6"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md",
+        "identity_mode": "content",
+        "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/index.html",
+        "identity_mode": "content",
+        "sha256": "d82e549b6712d45c1cae67c6ce724ba88bcbec09e10f6128eb41bc56d9f4aa62"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json",
+        "identity_mode": "content",
+        "sha256": "f4d87f18d1bf77c0318dfa349a9bd3a11d62169b9f1e890aeacdb4735814eab5"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.html",
+        "identity_mode": "content",
+        "sha256": "fd18392e25e814849d09425951142b359489914659914660888ea67d0bd14bc2"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.pdf",
+        "identity_mode": "content",
+        "sha256": "a2f2c0644bfe833a26be1def98f409af506c6a395860f8bbd5a83cc10917377a"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.png",
+        "identity_mode": "content",
+        "sha256": "0ae43c7be40905c1cc79c6ceb5fdd3f447b3edd007fb8ab0d69f62d01c88b94e"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/calendar.ics",
+        "identity_mode": "content",
+        "sha256": "4090fcca3d44054682784d9ca6e8090ba2e2170d94b6b41f88145c5020b4f3f9"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/checklist.md",
+        "identity_mode": "content",
+        "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/index.html",
+        "identity_mode": "content",
+        "sha256": "d82e549b6712d45c1cae67c6ce724ba88bcbec09e10f6128eb41bc56d9f4aa62"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/manifest.json",
+        "identity_mode": "content",
+        "sha256": "78bceaf407d75604f72c188f8ea95c6407a21005a68215a19b8ecc47f0eca0ff"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip",
+        "identity_mode": "content",
+        "sha256": "b05402e8dcfc640f3a470a399c31408b16999a667483774fb2e5ab3d67d34804"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.html",
+        "identity_mode": "content",
+        "sha256": "3f7e92e34aa899f5cd46996c4a7160ded75d0d205548192afb9def080d25bb9f"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.pdf",
+        "identity_mode": "content",
+        "sha256": "a7aa2becbce657d136eff48642e1c5bd9cd4618a49352897f8e8d2e712b0ced5"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.png",
+        "identity_mode": "content",
+        "sha256": "49bf39062b6e048fe56a65a89b912d0903b6b8dc9a832fbaa668402f9afc3301"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/calendar.ics",
+        "identity_mode": "content",
+        "sha256": "4f2d4a6784b1a9c124bc6b1d7edc555f88022131eb6519586e276e1b3b1d7730"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/checklist.md",
+        "identity_mode": "content",
+        "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/index.html",
+        "identity_mode": "content",
+        "sha256": "823171f20a31a2ccd8a6453cc1c88bb0e399eef0a2ca87c64ba11081cea5cde3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/manifest.json",
+        "identity_mode": "content",
+        "sha256": "a8dc2bd3d5d686a2bc0854b35cc5f41b12ffff67a3ed1bd7363aa7f5f7789947"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip",
+        "identity_mode": "content",
+        "sha256": "12b48447a2f074f1adfaca489e96556ec31914b3e1e164c20c21bee8246ed981"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -4335,22 +4720,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "a8f5dbc8434459461e7853a17ec039b475c3e920d804db5fd0d9762f59756905"
+        "sha256": "be5b4561b0fa6680b0576b9cb7c3acb0aadf7c566ce5aa5934dabdd318bee4f6"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "7fc8a8bab9a04146c6321355b6ae89618571f9a3cb3a2bca28d4820284efbf1f"
+        "sha256": "21d3e96d26c2caf4385eff294f466ce62fddc6de375fb346fadecd64fa760ac6"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "740b654d78abb25049d7f3da66434d79f24ddc21f9beca5b3fa990b4dc8612fc"
+        "sha256": "b7d00740c16d68725a9d0ede57690fc27217c8616e3dbc9b8defb6a1b8b8f0ec"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "d6436f6c9f74c52ecb2fcaf7390e1059e68fe1591a8260e6b04eae27c2f0a940"
+        "sha256": "e17cb8e7599c78c855dcd34d8652412dc43efbd2b6a77b82bb6315799d83a338"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -4360,57 +4745,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "a99a2ba1a5b09bd4a7943b0e118da8be2b8fb5a4120c2e27bb154f8c500cb721"
+        "sha256": "a9bd4506103f6d437882f978faf1ffd1b8d76b1712531573a885931b207495eb"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "681bddedb228814a57f9059a9b68b13da875961c9ea41cad587e7d6558c12371"
+        "sha256": "f26f1af2f109de2a22a3281018b2d64e6088f6d56b6fdd237b4f197899d2ccdb"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "d76666e419be4481573cba01b24182364fc0e53237d6eaeb2bd710fa8432d92e"
+        "sha256": "2c006ad04acd4d4212c0e6332a1fc90bb1f7ef78f07802a46c03761abcff3143"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "9969c2e173b30afc6ffe02ab9ef982417a82a4a77ea84616360fd6dde6aa3842"
+        "sha256": "c096913044b437f0340f229d3f35ff0516abfb0bfc6b645cf2920553419549a6"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "669ba300c10efdcafdac9202d6ef3a1a93de47680c779dbd27a7de9b3aafe8f4"
+        "sha256": "c7e553c3bb06bd420ce8aae9f65188e1ad9b36fa429cdad2705deb39c98beebc"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "8009dc585863eddb63515a44f2eb411a694b53c05e273b0e4088a24fba01d995"
+        "sha256": "43053d756861e811096330ef9bbbc07760f9edd113de575fd1c2ea3fa20b8f17"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "d780c6117265f4b0a4bb39a41765315b9f04fc7030863ffc88fc0929bd03a7c2"
+        "sha256": "1dd352010126c7db591d92d7fd76d18590ba6a174a1ccbbe2e4a5fdecf12e541"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "1c5ea388e7bae882f90128ccb5d12797220e832907649767986e6f7c0f4396b8"
+        "sha256": "958e8de4ef1d967b7ec5e317417debe52210a2384c4525da21a745c29ae9e5f3"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "19a694477079bd61da7f8114d207c9190c6cde57a16ba02a1bf0d5a945e2805e"
+        "sha256": "bb6853fcb033c0225f819eb32800e009677885cc0af9eb92cb0747c3847bd6be"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "936365b86d0fded24e51b272058669ce7a647439e719f242be37e726ef0eb961"
+        "sha256": "d46bb5807bfee5a34f5a2f1ec822056d52bb54de61acf609df91a45a9ea297a0"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "3fb653d6bd6c25c67e6bec6087231874da65292e392d9d649d7eeeca43e650bb"
+        "sha256": "2623f4ceacc971d3e175c5c1c79d144706a6ea917055784b751804afadd12133"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -4420,7 +4805,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "279e0937d32d33257513eb56649bdc504421382df3255434c7ccdffc1da970c1"
+        "sha256": "1ec8f2820af0f70dff1c8d8e2ede6feb4d51ee45e5103986fa65ee69f814cc94"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -4475,7 +4860,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "2053a8d2d3edb52c1b8fc5b777ddcbea5fef46abc59bf00e31bbd1fab701219c"
+        "sha256": "3db67849b7504849342b5cfb2a29cfdd89ab6b74b981f110d9697e31467836cd"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -5255,7 +5640,37 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "40a8241c74312f067f505d5a4025a51dffcf2c272b66dc24c30f05d8a55dc181"
+        "sha256": "0f9e23ccd550572f2c49093b4965090542d8eb2ee8d8f7f513fbd1b9871dd341"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/brief.en.md",
+        "identity_mode": "content",
+        "sha256": "271b55818a95cdad692581780cef515cbb89d402a7469f0ef174d01063c0787a"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json",
+        "identity_mode": "content",
+        "sha256": "d8f191a851b21f75fe70854d7022c6a00de3d00874ef8e7fc8553cfeed80c6a8"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json",
+        "identity_mode": "content",
+        "sha256": "cbf42bd3ff085271cdcadcccc418ea125235725197c16186567059954f631159"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/plan.json",
+        "identity_mode": "content",
+        "sha256": "d1a14c6f5700a84238c0ff5419c38ba322b9ba08b32ae7fb384b72300646a7fd"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md",
+        "identity_mode": "content",
+        "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1"
+      },
+      {
+        "path": "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md",
+        "identity_mode": "content",
+        "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62"
       },
       {
         "path": "site/retained/manifest.json",
@@ -5351,6 +5766,11 @@
         "path": "site/scenes/world.cjs",
         "identity_mode": "content",
         "sha256": "349504c5c67f963202694d379a367c894cf9da989ba5f3eea422b419137e0cac"
+      },
+      {
+        "path": "site/templates/components/article-materials.html",
+        "identity_mode": "content",
+        "sha256": "080de5fae560b0afee23b54b654fbdf32e7d2c9d9259f9d401c3c47f68f67eec"
       },
       {
         "path": "site/templates/components/discussion-counts.html",
@@ -5543,6 +5963,21 @@
         "sha256": "ad1bdfa392e8cbf26418df74d2efaa324f2f407cb0aa241a002f6fc9cac90907"
       },
       {
+        "path": "tests/article-campaign-kit.test.cjs",
+        "identity_mode": "content",
+        "sha256": "9d75bf4617cb2a16a88e170aeff334e5e65f777c2634c7ea26c474b2dab98f59"
+      },
+      {
+        "path": "tests/article-campaign-render.test.cjs",
+        "identity_mode": "content",
+        "sha256": "80f0af7828e8716ae55d8f723698572b8c347440f5d2150832b94fe091f2d789"
+      },
+      {
+        "path": "tests/article-materials.test.cjs",
+        "identity_mode": "content",
+        "sha256": "a16962c68401b80503e1f2efa1e150c24c8b8edca68198b143f4cde593846382"
+      },
+      {
         "path": "tests/browser-gate-diagnostics.test.cjs",
         "identity_mode": "content",
         "sha256": "da637a4148f6285a385d634f1ca2e6844a698473c7c4e66eab45f9162378826a"
@@ -5573,6 +6008,11 @@
         "sha256": "d1e8c7a63c384e45dee401165cd1eba31240b0fd9561f01bd4e3dc913dcee7e5"
       },
       {
+        "path": "tests/campaign.test.cjs",
+        "identity_mode": "content",
+        "sha256": "bf1a97390b1dd195fe188877ee104bc4bb4755ea0693818572368e4645a58a7b"
+      },
+      {
         "path": "tests/cause-fix-probe.test.cjs",
         "identity_mode": "content",
         "sha256": "e088b701b826865cec6d004ad1204e83f2f0bf14fa47f3a57542b6cd48510c98"
@@ -5590,7 +6030,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "e792f71273a05af9325f42a4ee86ac45a04c9f0b5f0c608b338b5e8fc013bcd3"
+        "sha256": "06049c3575a5e5251ab0995597d6cfa0425c02c8c5e8e92d2ceb69c435143117"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5626,6 +6066,11 @@
         "path": "tests/engine-browser-fixtures.test.cjs",
         "identity_mode": "content",
         "sha256": "06db85dd0adb712b6ec104f98c3fc81030dfce868bfba82b2bde13c219b6fb15"
+      },
+      {
+        "path": "tests/event-campaign.test.cjs",
+        "identity_mode": "content",
+        "sha256": "3b48161ee7ddf1d935462614ade2e4d9f7917236b2ace809552b073619c7688a"
       },
       {
         "path": "tests/executive.test.cjs",
@@ -5848,6 +6293,11 @@
         "sha256": "34c9f3b5644c19a36a8a7bedf65dd1dfbe09e195d82d57589ffea9ffb8872fd7"
       },
       {
+        "path": "tests/test_issue106_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "7e500c6f767688c4f3d65b050489f4148c706a8a192d164904e25829ad10f2c8"
+      },
+      {
         "path": "tests/test_issue31_acceptance.py",
         "identity_mode": "content",
         "sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a"
@@ -6068,6 +6518,86 @@
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
       },
       {
+        "path": "tools/distribution/article-kit.cjs",
+        "identity_mode": "content",
+        "sha256": "7b4ddc0b82480c7be162c52c2c4eaba979301fd3ed0c7bdcdc4490a84a34639f"
+      },
+      {
+        "path": "tools/distribution/brand.cjs",
+        "identity_mode": "content",
+        "sha256": "8ac792d09d39e5567d2fda9d4a9f7b269db5b448321d224a37c4d949d3a4653c"
+      },
+      {
+        "path": "tools/distribution/calendar.cjs",
+        "identity_mode": "content",
+        "sha256": "9646da0dbe216f2e8cfbb1a22aaa94dade2f48b8d8511df8dd5f8d9be29f62f6"
+      },
+      {
+        "path": "tools/distribution/campaign.cjs",
+        "identity_mode": "content",
+        "sha256": "52d284ba6663cc5c2a5281b6b11bdbd78b6024f62a3d73640a524a982f4ba73e"
+      },
+      {
+        "path": "tools/distribution/cli.cjs",
+        "identity_mode": "content",
+        "sha256": "0781bbaa41636477b9dc274b993713711b56f22469a7d193a3232749399cf321"
+      },
+      {
+        "path": "tools/distribution/event.cjs",
+        "identity_mode": "content",
+        "sha256": "6de5e53a6656caf897a36fa1596fab7cc62182ee8afb15907164ef066dec3eee"
+      },
+      {
+        "path": "tools/distribution/frames.cjs",
+        "identity_mode": "content",
+        "sha256": "902fb7fe5ba4a587096b7364cb5211c8fe2aaeb1ae45cf349804113cec014963"
+      },
+      {
+        "path": "tools/distribution/inputs.cjs",
+        "identity_mode": "content",
+        "sha256": "21d92e0a07ce67ac70c98d2b3d5df204183b08d72c958f624d094d8335dca5dc"
+      },
+      {
+        "path": "tools/distribution/kit.cjs",
+        "identity_mode": "content",
+        "sha256": "682c947d45da44fbdb45b4f3cf212157e359cf8222be5efaf001b4f88395c946"
+      },
+      {
+        "path": "tools/distribution/publisher-model.cjs",
+        "identity_mode": "content",
+        "sha256": "fdfbe7f0d2369dc3d13e0bcf666f7262340b3afb3b4613a691be4ae74a0f2d0e"
+      },
+      {
+        "path": "tools/distribution/render.cjs",
+        "identity_mode": "content",
+        "sha256": "f0a2baec792ab411460c15d10692e493cb761e751614f3dcff3646d39a1dfd11"
+      },
+      {
+        "path": "tools/distribution/schedule.cjs",
+        "identity_mode": "content",
+        "sha256": "76a69bb90ce7cb0418ee966c38a0d58e124f9eb8706a317f2ae7c2f9ff2187c0"
+      },
+      {
+        "path": "tools/distribution/schema.cjs",
+        "identity_mode": "content",
+        "sha256": "944d75909d217ddc4c14bdd009ec4f629d960ab5c6cfde6140efc20e52fdfcfa"
+      },
+      {
+        "path": "tools/distribution/templates/card.css",
+        "identity_mode": "content",
+        "sha256": "e24b07f15e4a0a296d897d4c03caba5496746d02a87c72155bf0f58e51885bdc"
+      },
+      {
+        "path": "tools/distribution/templates/card.html",
+        "identity_mode": "content",
+        "sha256": "144cdce8dc0cb64b8314b90c9dad31467dbd89e43d8a90a6848dcee8b652f4e5"
+      },
+      {
+        "path": "tools/distribution/templates/review.css",
+        "identity_mode": "content",
+        "sha256": "05f29e6a3500dee0fb98052b01e415e621d3b5fbd59186cccfc8b3d8b6a940ff"
+      },
+      {
         "path": "tools/issue_acceptance.py",
         "identity_mode": "content",
         "sha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97"
@@ -6180,7 +6710,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "954492bd151cab0772f1e5e0617210ee9cc04fd2c144f3cfec7e295572aee4a0"
+        "sha256": "de22d01a854167ac129473f1b01cd140407b01b894c7776866f8d0ec4894e934"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6435,7 +6965,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "c873912bc5616cbb8423658be887a06670f20d4acfcd8bcdc836a916e9fcba50"
+        "sha256": "ac49d6ed8dc7e8816b098f2080ede74a7ade2df0e016a791b57d4f84e108d761"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6603,6 +7133,11 @@
         "sha256": "9170499ce19a8dd4856af6415b77dcee493c89e028711a1cd6e7d6987ca2f1a7"
       },
       {
+        "path": "tools/site/article-materials.cjs",
+        "identity_mode": "content",
+        "sha256": "1b403d608ccb9db94ced2a7bbbf2f26dae7333ee22de9bd07e667b8b7e619f6f"
+      },
+      {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
         "sha256": "fb2f4bc189fa3f2e9108e9a1e802269fa330a789e33ca25b44b7c1937f401ecd"
@@ -6715,7 +7250,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "bacc9444d5a17f3655eaa99cbf0a949e6660c1365d8a1b6185975f31bfba5968"
+        "sha256": "8ce92878763209e2284616ecf10afc758a590f13f4d2df7cadc041b3c2de4e78"
       },
       {
         "path": "tools/staging/review-flow.cjs",
@@ -6743,7 +7278,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
+    "config_sha256": "0ad23f233223ade6ce98442462e1ff451e5fc7741530543728aaec958dd0f533"
   },
   "owners": [
     {
@@ -7014,6 +7549,17 @@
         "ліцензія коду",
         "ліцензія контенту"
       ]
+    },
+    {
+      "concern": "Event announcement campaigns, source-deck promotion and calendar kit export",
+      "path": "guides/EVENT-DISTRIBUTION.md",
+      "queries": [
+        "event campaign",
+        "speaker announcement",
+        "calendar export",
+        "анонс події",
+        "матеріали виступу"
+      ]
     }
   ],
   "terms": [],
@@ -7090,6 +7636,17 @@
         "AGENTS.md"
       ],
       "title": "issue-102.json"
+    },
+    {
+      "path": ".github/acceptance/issue-106.json",
+      "kind": "file",
+      "purpose": "Issue106 draft campaign behavior and source checks with pending full implementation, author, independent and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-106.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -7354,6 +7911,17 @@
         "AGENTS.md"
       ],
       "title": "ri-ci-map.json"
+    },
+    {
+      "path": ".github/workflows/campaign-kit.yml",
+      "kind": "file",
+      "purpose": "Manually selected exact-source event kit renderer; no site deployment, account write or external publication.",
+      "role": "workflow",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "campaign-kit.yml"
     },
     {
       "path": ".github/workflows/issue-acceptance.yml",
@@ -7851,6 +8419,61 @@
       "title": "analytics.js"
     },
     {
+      "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/archive.js",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "archive.js"
+    },
+    {
+      "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/navigation.js",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "navigation.js"
+    },
+    {
+      "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/space.js",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "space.js"
+    },
+    {
+      "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/styles.css",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "styles.css"
+    },
+    {
+      "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "theme.js"
+    },
+    {
       "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/archive.js",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -7906,61 +8529,6 @@
       "title": "theme.js"
     },
     {
-      "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js",
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "archive.js"
-    },
-    {
-      "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js",
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "navigation.js"
-    },
-    {
-      "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js",
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "space.js"
-    },
-    {
-      "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css",
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "styles.css"
-    },
-    {
-      "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js",
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "theme.js"
-    },
-    {
       "path": "docs/site-revision.json",
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -7972,26 +8540,15 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html",
+      "path": "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html",
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
       "title": "writing.html"
-    },
-    {
-      "path": "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html",
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "credits.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -8005,6 +8562,28 @@
       "title": "writing.html"
     },
     {
+      "path": "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
+    },
+    {
+      "path": "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "research.html"
+    },
+    {
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -8014,17 +8593,6 @@
         "AGENTS.md"
       ],
       "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html",
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
     },
     {
       "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -8049,17 +8617,6 @@
       "title": "research.html"
     },
     {
-      "path": "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html",
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
@@ -8071,15 +8628,26 @@
       "title": "index.html"
     },
     {
-      "path": "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html",
+      "path": "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html",
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "research.html"
+      "title": "credits.html"
+    },
+    {
+      "path": "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html",
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
     },
     {
       "path": "docs/space.js",
@@ -8137,6 +8705,61 @@
       "title": "writing.html"
     },
     {
+      "path": "drafts/events/pmday-winter-2027/brief.en.md",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "PMDay Winter 2027 — event distribution brief"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/event.json",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "event.json"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/plan.json",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "plan.json"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/posts/announcement.en.md",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/sources/organizer.md",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Official event observation — 19 October 2026"
+    },
+    {
       "path": "drafts/medium-profile-revision-20261001.html",
       "kind": "file",
       "purpose": "Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds.",
@@ -8148,6 +8771,50 @@
       "title": "medium-profile-revision-20261001.html"
     },
     {
+      "path": "guides/ARTICLE-CAMPAIGN-REVIEW.md",
+      "kind": "file",
+      "purpose": "Reusable manual D+7/D+21 aggregate campaign review template with unknown-data and privacy limits.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Manual campaign review at D+7 and D+21"
+    },
+    {
+      "path": "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md",
+      "kind": "file",
+      "purpose": "Reusable distribution planning brief copied into an article campaign before derivative preparation.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Distribution brief — <article title>"
+    },
+    {
+      "path": "guides/ARTICLE-DISTRIBUTION.md",
+      "kind": "file",
+      "purpose": "Reusable draft campaign contract, source-bound review and pending publisher/release integration.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article distribution preparation"
+    },
+    {
+      "path": "guides/ARTICLE-MATERIALS.md",
+      "kind": "file",
+      "purpose": "Public materials allowlist, reciprocal links, source/review pins and existing rights/resource contracts.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Public article materials"
+    },
+    {
       "path": "guides/CODE-STYLE.md",
       "kind": "file",
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
@@ -8157,6 +8824,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/EVENT-DISTRIBUTION.md",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "guide",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Event announcement preparation"
     },
     {
       "path": "guides/README.md",
@@ -8509,6 +9187,721 @@
         "AGENTS.md"
       ],
       "title": "2026-10-18-public-metadata-proof.json.gz"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-campaign-plan.md",
+      "kind": "file",
+      "purpose": "Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 106 — article distribution workflow and organic campaign plan"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json",
+      "kind": "file",
+      "purpose": "Exact correction producer lineage with unchanged runtime behavior and mandatory rights admission; preparatory byte derivation, not publication approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-corrections-campaign-runtime-proof.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-corrections.md",
+      "kind": "file",
+      "purpose": "Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — review corrections, 19 October 2026"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-draft-contract.md",
+      "kind": "file",
+      "purpose": "First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — first draft campaign contract"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-event-preparation.md",
+      "kind": "file",
+      "purpose": "Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — 19 October event preparation implementation"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-event-render-diagnostic.json",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-event-render-diagnostic.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-event-source-acceptance.json",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-event-source-acceptance.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit.md",
+      "kind": "file",
+      "purpose": "Issue106 first-article-kit scope, source/editorial/style review and exact-source evidence disposition.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 - first article launch and carousel kit"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/checklist.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article campaign review"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/credits.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Source and rights"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-01.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-02.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-03.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-04.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-05.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-06.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-07.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.en.md"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.html"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.pdf"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/index.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.en.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.en.md"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.html"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.pdf",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.pdf"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/manifest.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "phone-sheet-1.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "phone-sheet-2.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "phone-sheet-3.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "producer-acceptance.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-acceptance.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-color-preview-smoke.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-http.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-preview-smoke.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "renderer-diagnostic.txt"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/visual-observations.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "visual-observations.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-independent-review.md",
+      "kind": "file",
+      "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — independent technical review, 19 October 2026"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json",
+      "kind": "file",
+      "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-materials-campaign-runtime-proof.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-public-materials.md",
+      "kind": "file",
+      "purpose": "Public material implementation and publisher integration scope/evidence with pending human gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — selected public materials and reciprocal article links"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.pdf"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.png"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.ics"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author review before posting"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/index.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.html",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.pdf",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.pdf"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.png",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.png"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/calendar.ics",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.ics"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/checklist.md",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author review before posting"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/index.html",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/manifest.json",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-winter-announcement-site-style-kit.zip"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.en.md",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.html",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.pdf",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.pdf"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.png",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.png"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/calendar.ics",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.ics"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/checklist.md",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author review before posting"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/index.html",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/manifest.json",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-winter-announcement-kit.zip"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -18554,6 +19947,72 @@
       "title": "output-lock.json"
     },
     {
+      "path": "site/publications/pmday-ai-both-sides/campaign/brief.en.md",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The Sum of Our Technology - first campaign kit"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.en.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.en.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/plan.json",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "plan.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.en.md"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md",
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.en.md"
+    },
+    {
       "path": "site/retained/manifest.json",
       "kind": "file",
       "purpose": "Verified imported prior-public manifest generated by tools/site/retain.cjs; preserve exact retained byte identities.",
@@ -18761,6 +20220,17 @@
         "AGENTS.md"
       ],
       "title": "world.cjs"
+    },
+    {
+      "path": "site/templates/components/article-materials.html",
+      "kind": "file",
+      "purpose": "Shared native list of explicitly selected reviewed article materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-materials.html"
     },
     {
       "path": "site/templates/components/discussion-counts.html",
@@ -19181,6 +20651,39 @@
       "title": "archive.test.cjs"
     },
     {
+      "path": "tests/article-campaign-kit.test.cjs",
+      "kind": "file",
+      "purpose": "Meaningful article-kit source/provider/frame/media/theme/isolation and stale-input refusal tests.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-campaign-kit.test.cjs"
+    },
+    {
+      "path": "tests/article-campaign-render.test.cjs",
+      "kind": "file",
+      "purpose": "Explicit real-browser frame/media/overflow export diagnostic, separate from routine source checks.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-campaign-render.test.cjs"
+    },
+    {
+      "path": "tests/article-materials.test.cjs",
+      "kind": "file",
+      "purpose": "Public/private selection, safe observed URLs, exact review/resource pins and backlink failures.",
+      "role": "test",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-materials.test.cjs"
+    },
+    {
       "path": "tests/browser-gate-diagnostics.test.cjs",
       "kind": "file",
       "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
@@ -19245,6 +20748,17 @@
         "AGENTS.md"
       ],
       "title": "camera-view.test.cjs"
+    },
+    {
+      "path": "tests/campaign.test.cjs",
+      "kind": "file",
+      "purpose": "Permanent draft campaign reuse, stale-pin, approval, unsafe-resource and read-only CLI negatives.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "campaign.test.cjs"
     },
     {
       "path": "tests/cause-fix-probe.test.cjs",
@@ -19366,6 +20880,17 @@
         "AGENTS.md"
       ],
       "title": "engine-browser-fixtures.test.cjs"
+    },
+    {
+      "path": "tests/event-campaign.test.cjs",
+      "kind": "file",
+      "purpose": "Permanent event reuse, source/review invalidation, schedule/DST/CTA/input failure and private calendar/kit isolation behavior.",
+      "role": "test",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "event-campaign.test.cjs"
     },
     {
       "path": "tests/executive.test.cjs",
@@ -19852,6 +21377,17 @@
       "title": "test_issue102_acceptance.py"
     },
     {
+      "path": "tests/test_issue106_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue106 policy wrapper reusing maintained campaign behavior without publication acceptance.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue106_acceptance.py"
+    },
+    {
       "path": "tests/test_issue31_acceptance.py",
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -20334,6 +21870,182 @@
         "AGENTS.md"
       ],
       "title": "compact_site_recordings.cjs"
+    },
+    {
+      "path": "tools/distribution/article-kit.cjs",
+      "kind": "file",
+      "purpose": "Bounded isolated article review-kit build with explicit exact-source canonical publisher bridge and input revalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-kit.cjs"
+    },
+    {
+      "path": "tools/distribution/brand.cjs",
+      "kind": "file",
+      "purpose": "Embed canonical site light-theme/font declarations in offline promotional cards.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "brand.cjs"
+    },
+    {
+      "path": "tools/distribution/calendar.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.cjs"
+    },
+    {
+      "path": "tools/distribution/campaign.cjs",
+      "kind": "file",
+      "purpose": "Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "campaign.cjs"
+    },
+    {
+      "path": "tools/distribution/cli.cjs",
+      "kind": "file",
+      "purpose": "Explicit source-only draft campaign validation with JSON stdout and no release mode.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cli.cjs"
+    },
+    {
+      "path": "tools/distribution/event.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "event.cjs"
+    },
+    {
+      "path": "tools/distribution/frames.cjs",
+      "kind": "file",
+      "purpose": "Strict bounded source-media-bound article frame-script validation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "frames.cjs"
+    },
+    {
+      "path": "tools/distribution/inputs.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "inputs.cjs"
+    },
+    {
+      "path": "tools/distribution/kit.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "kit.cjs"
+    },
+    {
+      "path": "tools/distribution/publisher-model.cjs",
+      "kind": "file",
+      "purpose": "Process-isolated exact-selected canonical publisher model projection for draft campaign kits.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "publisher-model.cjs"
+    },
+    {
+      "path": "tools/distribution/render.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "render.cjs"
+    },
+    {
+      "path": "tools/distribution/schedule.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "schedule.cjs"
+    },
+    {
+      "path": "tools/distribution/schema.cjs",
+      "kind": "file",
+      "purpose": "Strict version1 draft campaign shape, finite identities and explicit pending publication boundary.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "schema.cjs"
+    },
+    {
+      "path": "tools/distribution/templates/card.css",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "card.css"
+    },
+    {
+      "path": "tools/distribution/templates/card.html",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "card.html"
+    },
+    {
+      "path": "tools/distribution/templates/review.css",
+      "kind": "file",
+      "purpose": "Canonical responsive offline kit-review typography, image sizing and copy wrapping.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review.css"
     },
     {
       "path": "tools/issue_acceptance.py",
@@ -21513,6 +23225,17 @@
       "title": "analytics.cjs"
     },
     {
+      "path": "tools/site/article-materials.cjs",
+      "kind": "file",
+      "purpose": "Shared public-material validation/rendering and canonical backlink derivation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-materials.cjs"
+    },
+    {
       "path": "tools/site/build.cjs",
       "kind": "file",
       "purpose": "Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners.",
@@ -21932,9 +23655,9 @@
       ]
     },
     {
-      "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62",
+      "path": "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -21942,9 +23665,9 @@
       ]
     },
     {
-      "path": "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb",
+      "path": "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62",
       "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -21962,19 +23685,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c",
+      "path": "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f",
       "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60",
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -21992,9 +23705,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
+      "path": "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22002,9 +23715,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281",
+      "path": "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4",
       "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22032,16 +23755,6 @@
       ]
     },
     {
-      "path": "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330",
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -22052,9 +23765,19 @@
       ]
     },
     {
-      "path": "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba",
+      "path": "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f",
       "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18",
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -22067,6 +23790,46 @@
       "purpose": "Unpublished article/profile proposals excluded from public builds.",
       "role": "draft",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/posts",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/sources",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -22157,6 +23920,66 @@
       "purpose": "Dated issue102 analytics source and provider/access evidence.",
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-106",
+      "kind": "directory",
+      "purpose": "Separate article distribution and organic campaign planning, review and aggregate evidence; not an article release gate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit",
+      "kind": "directory",
+      "purpose": "Retained source-bound campaign candidate and verification evidence.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108",
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement",
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer",
+      "kind": "directory",
+      "purpose": "Retained source-bound campaign candidate and verification evidence.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style",
+      "kind": "directory",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -22872,6 +24695,56 @@
       ]
     },
     {
+      "path": "site/publications",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/carousels",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/campaign/posts",
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "site/retained",
       "kind": "directory",
       "purpose": "Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner.",
@@ -23107,6 +24980,26 @@
       "purpose": "Repository navigation, public generation and offline review/export entry points.",
       "role": "source",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/distribution",
+      "kind": "directory",
+      "purpose": "Bounded read-only article distribution preparation tooling.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "tools/distribution/templates",
+      "kind": "directory",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -23374,6 +25267,24 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "Event campaign source and isolated kit behavior",
+      "paths": [
+        "tools/distribution/",
+        "drafts/events/",
+        "tests/event-campaign.test.cjs",
+        "guides/EVENT-DISTRIBUTION.md",
+        ".github/workflows/campaign-kit.yml"
+      ],
+      "commands": [
+        "node --test tests/event-campaign.test.cjs tests/campaign.test.cjs"
+      ],
+      "read": [
+        "guides/EVENT-DISTRIBUTION.md"
+      ],
+      "workflow": ".github/workflows/campaign-kit.yml",
+      "note": "Manual kit generation only. Source checks do not establish visual/editorial/rights acceptance, a calendar-account write or social publication."
     }
   ],
   "upstream": {

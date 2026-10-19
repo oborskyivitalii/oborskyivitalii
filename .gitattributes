@@ -7,3 +7,6 @@
 *.zip -text
 *.pdf -text
 *.pptx -text
+
+# RFC5545 calendars preserve required CRLF octets and kit-manifest identity.
+*.ics -text

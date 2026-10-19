@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="{{LANGUAGE}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src 'none'; script-src 'none'"
+    />
+    <title>{{TITLE}}</title>
+    <style>
+      {{CSS}}
+    </style>
+  </head>
+  <body>
+    <article class="card" data-template="{{TEMPLATE}}">
+      <header
+        ><span class="author" data-fit>{{SPEAKER}}</span
+        ><span class="edition">{{EDITION}}</span></header
+      >
+      <main>
+        <p class="eyebrow" data-fit>{{KICKER}}</p>
+        <h1 data-fit>{{HEADLINE}}</h1>
+        <div class="slide">{{IMAGE}}</div>
+        <p class="event" data-fit>{{EVENT}}</p>
+        <p class="support" data-fit>{{SUPPORT}}</p>
+        {{POINTS}} {{METRICS}}
+      </main>
+      <footer>
+        <p class="date" data-fit>{{DATE}}</p>
+        <p class="details" data-fit>{{DETAILS}}</p>
+        <p class="destination" data-fit>{{DESTINATION}}</p>
+        <p class="credit" data-fit>{{CREDIT}}</p>
+      </footer>
+    </article>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+# Article distribution preparation
+
+For forthcoming talks without an article, use the reusable
+[event campaign adapter](EVENT-DISTRIBUTION.md). Its source/date/CTA/calendar
+contract is separate from this preserved article D0 contract; both share the
+preparation CLI, strict field validators and review-record convention.
+
+Owner: [issue106](https://github.com/oborskyivitalii/oborskyivitalii/issues/106).
+Public reader materials follow [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md): an
+explicit reviewed allowlist, shared block and immutable selected assets. Campaign
+working files remain repository-only; validation now returns pending or actual
+article backlinks from the publisher canonical.
+The [campaign plan](../review/issue-106/2026-10-19-campaign-plan.md) owns the
+approved PMDay scope; this guide owns the reusable draft contract. Article/site
+publication remains PR79 / #2 / #5 and never waits for campaign completion.
+
+## First increment and publisher dependency
+
+Complete the [distribution brief](ARTICLE-DISTRIBUTION-BRIEF.en.md) during article
+planning, before writing derivative posts. Keep it with the selected article as
+`site/publications/<id>/campaign/brief.<language>.md`. The standing
+[editorial review route](SITE-CONTENT-REVIEW.md) links this step now.
+
+The publisher's `ARTICLE-WORKFLOW.md` and `loadArticle` facade are still in
+unmerged PR79 at the inspected checkpoint. Do not copy its manuscript, media or
+publisher into a campaign PR. After that baseline lands, add the distribution
+step to its existing authoring sequence. The default CLI still requires that baseline. Before integration, an operator may
+explicitly select a clean publisher checkout at an exact full commit SHA for
+draft preparation. The bridge executes its canonical facade in a fresh process
+for every call, including all facade dependencies, and checks its Git identity
+before and after. It does not copy publisher code or relax publisher validation.
+Only use a trusted repository checkout: selecting a publisher executes its code.
+Two synthetic articles exercise reuse, and the first PMDay kit binds the actual
+R12 Cover02 review edition. Neither establishes article/editorial acceptance.
+
+The adapter consumes the publisher's validated `metadata.id/language/references`,
+`edition.id/semanticSha256`, `sections[].id` and `assets[].id/sha256`. It neither
+calculates an alternative semantic edition nor creates publication events.
+References identify the claims/evidence used in a piece; claim accuracy remains
+editorial review. The semantic edition conservatively pins the entire article,
+so a changed source edition invalidates all its campaign pieces.
+
+## Authored owners and schema
+
+```text
+site/publications/<id>/campaign/
+  brief.en.md
+  plan.json
+  posts/<piece-id>.en.md
+  carousels/<piece-id>.en.json
+  reviews/<piece-id>.md
+```
+
+Use `uk` instead of `en` for a Ukrainian campaign. Each piece has one authored
+Markdown caption. An optional `visual` points to a distinct frame script, not a
+second copy of that caption. Existing publisher adapters retain full
+article/platform rendition ownership. Do not create three full manuscripts.
+
+[schema.cjs](../tools/distribution/schema.cjs) is the executable version1 schema:
+listed keys are required except optional piece `visual`; unknown keys and types fail. This example describes
+the format, not an accepted PMDay edition. Replace the illustrative digests with
+actual SHA256 bytes and the publisher's semantic digest; never use placeholder
+pins as evidence.
+
+```json
+{
+  "schema": 1,
+  "articleId": "example-article",
+  "revision": 1,
+  "language": "en",
+  "brief": {"path": "brief.en.md", "sha256": "<actual brief SHA256>"},
+  "source": {"editionId": "edition-one", "semanticSha256": "<publisher semantic SHA256>"},
+  "budget": {"paidPromotion": 0, "paidServices": 0, "paidInference": 0},
+  "d0": null,
+  "channels": {"linkedin": "pending", "medium": "pending", "reddit": "skipped", "pdf": "pending"},
+  "pieces": [{
+    "id": "launch", "kind": "feed", "channel": "linkedin",
+    "content": {"path": "posts/launch.en.md", "sha256": "<actual copy SHA256>"},
+    "sections": ["introduction"], "references": [], "media": [],
+    "cta": {"label": "Read the article", "section": null},
+    "window": {"from": 0, "to": 0, "after": []},
+    "approval": null
+  }]
+}
+```
+
+Piece kinds: `feed`, `carousel`, `article`, `pdf`; channels: `linkedin`, `medium`,
+`reddit`, `pdf`. Windows are relative days0–365, not created calendar schedules.
+`after` names existing pieces; duplicate IDs, cycles and impossible windows fail.
+Feasibility propagates the earliest possible day through all prerequisites, so
+indirect constraints and multiple predecessors apply regardless of declaration order.
+Media entries use `{ "id": "figure-id", "sha256": "<publisher asset SHA256>" }`.
+CTA destinations are the article or a validated section, never arbitrary URLs.
+Zero pieces is an explicit early planning draft, not a complete campaign.
+
+## Validation and approval records
+
+Run from the repository root after the publisher baseline is available:
+
+```sh
+node tools/distribution/cli.cjs validate ARTICLE_ID
+node --test tests/campaign.test.cjs
+```
+
+Validation writes JSON to stdout and does not modify the repository or public
+output. It reads at most32 pieces, 100KB per input and1MB total, requires regular
+article-local files, rejects symlinks/traversal, verifies UTF-8 and exact hashes,
+and checks the selected publisher edition, sections, references and media.
+
+Initial copy has `approval: null`. Validation returns each piece's deterministic
+`bindingSha256`, binding the source, brief, revision, admission state, authored
+copy, source references/media, CTA and relative dependencies. After an actual
+review, record its non-sensitive evidence at `reviews/<id>.md` and set:
+
+```json
+{
+  "bindingSha256": "<binding from current successful validation>",
+  "reviewedAt": "2026-10-19T10:00:00Z",
+  "evidence": {"path": "reviews/launch.md", "sha256": "<actual evidence SHA256>"}
+}
+```
+
+That object replaces `approval: null`; it is not a field beside it. The validator
+reports `approval-recorded`, not independently approved or published. It proves
+byte/source consistency, never the truth of an attested human decision. Keep
+review notes public-safe; no private names, messages or outreach lists.
+
+Any changed binding rejects stale approval. Clear the affected record and review
+again; do not mechanically repin old approval. Increment the campaign revision
+for a coordinated change. A piece's changed dependency must also be reviewed.
+
+## Explicitly pending release capabilities
+
+Every result says `draft-only`, `releaseEligible: false`, `d0: null`. Channels
+can be `pending`, `declined` or `skipped`; this schema cannot grant admission.
+There is no release-ready mode, actual URL/time record, social posting, deployment,
+reminder or paid-model dependency. A `published` state or
+invented URL is rejected as an unknown field. Draft validation is not channel,
+rights, mobile visual or article-publication acceptance.
+
+Next increments consume the accepted publisher's actual site publication event
+for D0/canonical, validate channel decisions/current rules, and preserve observed
+publication/correction history. The manual [D+7/D+21 template](ARTICLE-CAMPAIGN-REVIEW.md)
+is ready to copy only after actual publication; no metrics have been collected. Keep these criteria open until their behaviors and human
+decisions are verified. Never let unfinished campaign work gate the site article.
+
+
+## Frame scripts and isolated review kits
+
+A feed cover has one frame; a carousel has six to eight. `visual` contains
+`path: "carousels/<piece-id>.<language>.json"` and its exact `sha256`. Schema1
+scripts contain `frames` with unique `id`, `layout`, `kicker`, `headline`, `body`,
+`points`, `metrics`, `media` and `credit`. See the actual first campaign for the
+bounded shape. `cover` requires a source-bound selected image; `text`, `numbers`
+and `closing` forbid media. `numbers` requires three labelled values. The caption
+and frame-script pins are both part of approval invalidation.
+
+One shared renderer consumes the exact canonical site light `:root` palette/font
+block and layout CSS. It emits 1080×1350 PNGs and a uniform multipage carousel PDF,
+checks decoded/visible images and text bounds, and refuses external network requests.
+It preserves source images, their identity and credit. Visual fit cannot validate
+numerical claims, source-image text, rights or reading comfort on a real device.
+
+```sh
+node tools/distribution/cli.cjs validate-article ARTICLE_ID \
+  --publisher-root /path/to/trusted-clean-publisher --publisher-sha FULL_SHA
+node tools/distribution/cli.cjs build-article ARTICLE_ID /tmp/new-article-kit \
+  --publisher-root /path/to/trusted-clean-publisher --publisher-sha FULL_SHA
+```
+
+Omit both publisher flags after integration; supply an optional piece ID after the
+output path to build one authored piece. Both flags are required together. Output
+must be a new directory outside both repositories. Source, producer, theme,
+caption/frame and selected-image bytes are rechecked before atomic installation.
+Manifests pin both Git identities and every consumed input, actual browser and
+output hashes. No local checkout path is recorded in the manifest.
+
+The review index, captions, PNG/PDF/HTML, credits and checklist are repository-only
+outputs. Canonical is actual or pending; `d0:null`, `draft-only`,
+`releaseEligible:false` and empty observed publications remain explicit. The first
+PMDay launch/carousel is a review candidate; later pieces follow author review of
+this design. No article rewrite or full campaign completion is implied.
+
+The shared manual `campaign-kit` workflow selects article/event, exact source,
+optional exact publisher SHA and authored piece. It installs existing locked
+render dependencies and runs the explicit browser diagnostic before the selected
+build. Its definition must reach the default branch before it is selectable.
+`SITE_AUDIT_CHROME` observations identify a separate diagnostic browser and never
+count as locked-CI or physical-device acceptance. No website release is triggered.

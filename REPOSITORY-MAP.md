@@ -43,20 +43,24 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Generated public source rendition, immutable runtime/media or route snapshot; regenerate with tools/site/build.cjs. | generated | [site/README.md](site/README.md) |
 | [docs/runtime](docs/runtime) | Generated content-addressed browser runtime editions. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff](docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3](docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb](docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb) | Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots](docs/snapshots) | Generated exact-route HTML snapshots. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c](docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60](docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f](docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4](docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4](docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281](docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68](docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330](docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
-| [docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba](docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f](docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18](docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/events](drafts/events) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027](drafts/events/pmday-winter-2027) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/posts](drafts/events/pmday-winter-2027/posts) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/sources](drafts/events/pmday-winter-2027/sources) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/assets](review/assets) | Historical visual concept/portrait assets. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -66,6 +70,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/color-staging-20261006](review/color-staging-20261006) | Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-102](review/issue-102) | Dated issue102 analytics source and provider/access evidence. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [review/issue-106](review/issue-106) | Separate article distribution and organic campaign planning, review and aggregate evidence; not an article release gate. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-first-article-kit](review/issue-106/2026-10-19-first-article-kit) | Retained source-bound campaign candidate and verification evidence. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-108](review/issue-108) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement](review/issue-108/2026-10-19-announcement) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer](review/issue-108/2026-10-19-announcement-shared-renderer) | Retained source-bound campaign candidate and verification evidence. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style](review/issue-108/2026-10-19-announcement-site-style) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -137,6 +147,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/effects](site/effects) | Canonical optional effect descriptors and browser runtime helpers, independent of build tools. | source | [site/README.md](site/README.md) |
 | [site/engine](site/engine) | Shared Canvas geometry/lifecycle, renderer, native-scroll router, theme, filters and CSS. | source | [site/README.md](site/README.md) |
 | [site/integrations](site/integrations) | Production-origin-only optional external measurement integration. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [site/publications](site/publications) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides](site/publications/pmday-ai-both-sides) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign](site/publications/pmday-ai-both-sides/campaign) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/carousels](site/publications/pmday-ai-both-sides/campaign/carousels) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/posts](site/publications/pmday-ai-both-sides/campaign/posts) | Article-local campaign preparation inputs, outside public output. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [site/retained](site/retained) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
@@ -161,6 +176,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests](tests) | Behavioral, adversarial and fixture checks for RI, engine, exporters and CI/staging trust. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures](tests/fixtures) | Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [tools/distribution](tools/distribution) | Bounded read-only article distribution preparation tooling. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/templates](tools/distribution/templates) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/pages](tools/pages) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/toolchain](tools/quality/toolchain) | Pinned isolated quality tooling packages and Python dependencies. | configuration | [tools/quality/README.md](tools/quality/README.md) |
@@ -193,6 +210,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-102.json](.github/acceptance/issue-102.json) | Issue102 analytics AC policy: bounded source checks and explicit browser/live gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-106.json](.github/acceptance/issue-106.json) | Issue106 draft campaign behavior and source checks with pending full implementation, author, independent and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -221,6 +239,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [.github/workflows/campaign-kit.yml](.github/workflows/campaign-kit.yml) | Manually selected exact-source event kit renderer; no site deployment, account write or external publication. | workflow | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -282,6 +301,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js](docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
 
+## docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/archive.js](docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/archive.js) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/navigation.js](docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/navigation.js) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/space.js](docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/space.js) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/styles.css](docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/styles.css) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+| [docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js](docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+
 ## docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -292,27 +321,11 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/styles.css) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 | [docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js](docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62/theme.js) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/
+## docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js](docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js) | Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js](docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js) | Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js](docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js) | Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css](docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css) | Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes. | generated | [site/README.md](site/README.md) |
-| [docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js](docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js) | Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html](docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html](docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html](docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/
 
@@ -320,17 +333,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html](docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
+## docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html](docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html](docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+
 ## docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html](docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
-
-## docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html](docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
 
 ## docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/
 
@@ -344,23 +363,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html](docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/
-
-| Path | Purpose | Role | Owner / editing route |
-| --- | --- | --- | --- |
-| [docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html](docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
-
 ## docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html) | Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder. | generated | [site/README.md](site/README.md) |
 
-## docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/
+## docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html](docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html) | Generated public route/runtime output; edit canonical site owners and regenerate. | generated | [site/README.md](site/README.md) |
+| [docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html](docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
+
+## docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html](docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 
 ## drafts/
 
@@ -368,11 +387,36 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [drafts/medium-profile-revision-20261001.html](drafts/medium-profile-revision-20261001.html) | Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
+## drafts/events/pmday-winter-2027/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/pmday-winter-2027/brief.en.md](drafts/events/pmday-winter-2027/brief.en.md) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/event.json](drafts/events/pmday-winter-2027/event.json) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/plan.json](drafts/events/pmday-winter-2027/plan.json) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
+## drafts/events/pmday-winter-2027/posts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/pmday-winter-2027/posts/announcement.en.md](drafts/events/pmday-winter-2027/posts/announcement.en.md) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
+## drafts/events/pmday-winter-2027/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/pmday-winter-2027/sources/organizer.md](drafts/events/pmday-winter-2027/sources/organizer.md) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
 ## guides/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [guides/ARTICLE-CAMPAIGN-REVIEW.md](guides/ARTICLE-CAMPAIGN-REVIEW.md) | Reusable manual D+7/D+21 aggregate campaign review template with unknown-data and privacy limits. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [guides/ARTICLE-DISTRIBUTION-BRIEF.en.md](guides/ARTICLE-DISTRIBUTION-BRIEF.en.md) | Reusable distribution planning brief copied into an article campaign before derivative preparation. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) | Reusable draft campaign contract, source-bound review and pending publisher/release integration. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) | Public materials allowlist, reciprocal links, source/review pins and existing rights/resource contracts. | guide | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
+| [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | guide | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
@@ -630,6 +674,96 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-102/2026-10-18-analytics-and-search-access.md](review/issue-102/2026-10-18-analytics-and-search-access.md) | 18 October combined route-coverage and Google/Windsor access self-review and handoff. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [review/issue-102/2026-10-18-provider-evidence.json](review/issue-102/2026-10-18-provider-evidence.json) | Sanitized bounded Cloudflare query and current Google/Windsor inventory observations. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [review/issue-102/2026-10-18-public-metadata-proof.json.gz](review/issue-102/2026-10-18-public-metadata-proof.json.gz) | Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+
+## review/issue-106/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-106/2026-10-19-campaign-plan.md](review/issue-106/2026-10-19-campaign-plan.md) | Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json](review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json) | Exact correction producer lineage with unchanged runtime behavior and mandatory rights admission; preparatory byte derivation, not publication approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-corrections.md](review/issue-106/2026-10-19-corrections.md) | Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-draft-contract.md](review/issue-106/2026-10-19-draft-contract.md) | First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-event-preparation.md](review/issue-106/2026-10-19-event-preparation.md) | Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-event-render-diagnostic.json](review/issue-106/2026-10-19-event-render-diagnostic.json) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-event-source-acceptance.json](review/issue-106/2026-10-19-event-source-acceptance.json) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit.md](review/issue-106/2026-10-19-first-article-kit.md) | Issue106 first-article-kit scope, source/editorial/style review and exact-source evidence disposition. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-independent-review.md](review/issue-106/2026-10-19-independent-review.md) | Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-materials-campaign-runtime-proof.json](review/issue-106/2026-10-19-materials-campaign-runtime-proof.json) | Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-public-materials.md](review/issue-106/2026-10-19-public-materials.md) | Public material implementation and publisher integration scope/evidence with pending human gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-106/2026-10-19-first-article-kit/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-106/2026-10-19-first-article-kit/checklist.md](review/issue-106/2026-10-19-first-article-kit/checklist.md) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/credits.md](review/issue-106/2026-10-19-first-article-kit/credits.md) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png](review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md](review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html](review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf](review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/index.html](review/issue-106/2026-10-19-first-article-kit/index.html) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/launch.en.md](review/issue-106/2026-10-19-first-article-kit/launch.en.md) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/launch.html](review/issue-106/2026-10-19-first-article-kit/launch.html) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/launch.pdf](review/issue-106/2026-10-19-first-article-kit/launch.pdf) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/launch.png](review/issue-106/2026-10-19-first-article-kit/launch.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/manifest.json](review/issue-106/2026-10-19-first-article-kit/manifest.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png](review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png](review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png](review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json](review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json](review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json](review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json](review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json](review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt](review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [review/issue-106/2026-10-19-first-article-kit/visual-observations.json](review/issue-106/2026-10-19-first-article-kit/visual-observations.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## review/issue-108/2026-10-19-announcement/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-108/2026-10-19-announcement/announcement.en.md](review/issue-108/2026-10-19-announcement/announcement.en.md) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/announcement.html](review/issue-108/2026-10-19-announcement/announcement.html) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/announcement.pdf](review/issue-108/2026-10-19-announcement/announcement.pdf) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/announcement.png](review/issue-108/2026-10-19-announcement/announcement.png) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/calendar.ics](review/issue-108/2026-10-19-announcement/calendar.ics) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/checklist.md](review/issue-108/2026-10-19-announcement/checklist.md) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/index.html](review/issue-108/2026-10-19-announcement/index.html) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/manifest.json](review/issue-108/2026-10-19-announcement/manifest.json) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip](review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip) | Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
+## review/issue-108/2026-10-19-announcement-shared-renderer/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md](review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html](review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf](review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png](review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics](review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md](review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/index.html](review/issue-108/2026-10-19-announcement-shared-renderer/index.html) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json](review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json) | Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
+## review/issue-108/2026-10-19-announcement-site-style/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-108/2026-10-19-announcement-site-style/announcement.en.md](review/issue-108/2026-10-19-announcement-site-style/announcement.en.md) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/announcement.html](review/issue-108/2026-10-19-announcement-site-style/announcement.html) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/announcement.pdf](review/issue-108/2026-10-19-announcement-site-style/announcement.pdf) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/announcement.png](review/issue-108/2026-10-19-announcement-site-style/announcement.png) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/calendar.ics](review/issue-108/2026-10-19-announcement-site-style/calendar.ics) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/checklist.md](review/issue-108/2026-10-19-announcement-site-style/checklist.md) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/index.html](review/issue-108/2026-10-19-announcement-site-style/index.html) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/manifest.json](review/issue-108/2026-10-19-announcement-site-style/manifest.json) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip](review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip) | Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 
 ## review/issue-31/
 
@@ -1711,6 +1845,27 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [site/integrations/cloudflare.cjs](site/integrations/cloudflare.cjs) | Exact-origin opt-in Cloudflare analytics loader with offline/staging exclusion. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 
+## site/publications/pmday-ai-both-sides/campaign/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/publications/pmday-ai-both-sides/campaign/brief.en.md](site/publications/pmday-ai-both-sides/campaign/brief.en.md) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/plan.json](site/publications/pmday-ai-both-sides/campaign/plan.json) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## site/publications/pmday-ai-both-sides/campaign/carousels/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json](site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json](site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## site/publications/pmday-ai-both-sides/campaign/posts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md](site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md](site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md) | Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
 ## site/retained/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -1784,6 +1939,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [site/templates/components/article-materials.html](site/templates/components/article-materials.html) | Shared native list of explicitly selected reviewed article materials. | source | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [site/templates/components/discussion-counts.html](site/templates/components/discussion-counts.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 | [site/templates/components/discussion-link.html](site/templates/components/discussion-link.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
 | [site/templates/components/discussion-row.html](site/templates/components/discussion-row.html) | Canonical semantic page/shared/component template consuming validated context-typed content. | source | [site/README.md](site/README.md) |
@@ -1855,12 +2011,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/analytics.test.cjs](tests/analytics.test.cjs) | Behavioral/adversarial tests and fixtures for analytics. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/architecture.test.cjs](tests/architecture.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/archive.test.cjs](tests/archive.test.cjs) | Behavioral/adversarial tests and fixtures for archive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/article-campaign-kit.test.cjs](tests/article-campaign-kit.test.cjs) | Meaningful article-kit source/provider/frame/media/theme/isolation and stale-input refusal tests. | test | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tests/article-campaign-render.test.cjs](tests/article-campaign-render.test.cjs) | Explicit real-browser frame/media/overflow export diagnostic, separate from routine source checks. | test | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tests/article-materials.test.cjs](tests/article-materials.test.cjs) | Public/private selection, safe observed URLs, exact review/resource pins and backlink failures. | test | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [tests/browser-gate-diagnostics.test.cjs](tests/browser-gate-diagnostics.test.cjs) | Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-gate-trace.test.cjs](tests/browser-gate-trace.test.cjs) | Opt-in scheduler instrumentation, actual paints/events, observation retention and bounded traces Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-gate-variants.test.cjs](tests/browser-gate-variants.test.cjs) | Private fixed-ribbon/trace counterfactuals, matched mobile outputs and parent/patch identity Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/browser-lifecycle.test.cjs](tests/browser-lifecycle.test.cjs) | Optional native browser/context/page event provenance and honest teardown versus operation failure Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/build-cohesion.test.cjs](tests/build-cohesion.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/camera-view.test.cjs](tests/camera-view.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/campaign.test.cjs](tests/campaign.test.cjs) | Permanent draft campaign reuse, stale-pin, approval, unsafe-resource and read-only CLI negatives. | test | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tests/cause-fix-probe.test.cjs](tests/cause-fix-probe.test.cjs) | Private cold interventions each vary one factor; exact normal-source and Research control lineage Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/cause-probe.test.cjs](tests/cause-probe.test.cjs) | Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/color-build.test.cjs](tests/color-build.test.cjs) | Behavioral/adversarial tests and fixtures for color build. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1872,6 +2032,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/effects.test.cjs](tests/effects.test.cjs) | Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases. | test | [site/README.md](site/README.md) |
 | [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/engine-browser-fixtures.test.cjs](tests/engine-browser-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for engine browser fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/event-campaign.test.cjs](tests/event-campaign.test.cjs) | Permanent event reuse, source/review invalidation, schedule/DST/CTA/input failure and private calendar/kit isolation behavior. | test | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tests/executive.test.cjs](tests/executive.test.cjs) | Behavioral/adversarial tests and fixtures for executive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/flight.test.cjs](tests/flight.test.cjs) | Behavioral/adversarial tests and fixtures for flight. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/format-parity.test.cjs](tests/format-parity.test.cjs) | Permanent semantic formatting equivalence and changed-language-behavior negative fixtures. | test | [tools/quality/README.md](tools/quality/README.md) |
@@ -1913,6 +2074,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test-profile-selection.test.cjs](tests/test-profile-selection.test.cjs) | Exhaustive registry/futuremodule/unknownsource/exactref/source accounting and empty/skip/TODO failure regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/test_code_style.py](tests/test_code_style.py) | Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks. | test | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
 | [tests/test_issue102_acceptance.py](tests/test_issue102_acceptance.py) | Issue102 policy adapter for maintained analytics suite and failure accounting. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue106_acceptance.py](tests/test_issue106_acceptance.py) | Issue106 policy wrapper reusing maintained campaign behavior without publication acceptance. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue31_acceptance.py](tests/test_issue31_acceptance.py) | Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue33_acceptance.py](tests/test_issue33_acceptance.py) | Issue #33 source snapshot assertions for unchanged public bytes, historic reviews, locator exceptions, policy and handoff. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue35_acceptance.py](tests/test_issue35_acceptance.py) | Owning issue35 targeted snapshot, real Node accounting, full-guard, registry/RI and honest source/closure assertions; selected policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -1973,6 +2135,32 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/issue_acceptance.py](tools/issue_acceptance.py) | Bounded acceptance policy runner with deterministic unittest/basic checks and exact-source per-AC evidence. | validator | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tools/repository_intelligence.py](tools/repository_intelligence.py) | Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification. | source | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
 | [tools/run_repository_tests.py](tools/run_repository_tests.py) | Run all enduring Python regression suites while reserving exact numeric issue acceptance modules for their selected source-bound policies. | validator | [.github/REPOSITORY-INTELLIGENCE.md](.github/REPOSITORY-INTELLIGENCE.md) |
+
+## tools/distribution/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/distribution/article-kit.cjs](tools/distribution/article-kit.cjs) | Bounded isolated article review-kit build with explicit exact-source canonical publisher bridge and input revalidation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/brand.cjs](tools/distribution/brand.cjs) | Embed canonical site light-theme/font declarations in offline promotional cards. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/calendar.cjs](tools/distribution/calendar.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/campaign.cjs](tools/distribution/campaign.cjs) | Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/cli.cjs](tools/distribution/cli.cjs) | Explicit source-only draft campaign validation with JSON stdout and no release mode. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/event.cjs](tools/distribution/event.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/frames.cjs](tools/distribution/frames.cjs) | Strict bounded source-media-bound article frame-script validation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/inputs.cjs](tools/distribution/inputs.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/kit.cjs](tools/distribution/kit.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/publisher-model.cjs](tools/distribution/publisher-model.cjs) | Process-isolated exact-selected canonical publisher model projection for draft campaign kits. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/render.cjs](tools/distribution/render.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/schedule.cjs](tools/distribution/schedule.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/schema.cjs](tools/distribution/schema.cjs) | Strict version1 draft campaign shape, finite identities and explicit pending publication boundary. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## tools/distribution/templates/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/distribution/templates/card.css](tools/distribution/templates/card.css) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/templates/card.html](tools/distribution/templates/card.html) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/templates/review.css](tools/distribution/templates/review.css) | Canonical responsive offline kit-review typography, image sizing and copy wrapping. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 
 ## tools/pages/
 
@@ -2102,6 +2290,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [tools/site/analytics.cjs](tools/site/analytics.cjs) | Validate exact-origin analytics configuration and generate optional head/loader. | source | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [tools/site/article-materials.cjs](tools/site/article-materials.cjs) | Shared public-material validation/rendering and canonical backlink derivation. | source | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [tools/site/build.cjs](tools/site/build.cjs) | Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners. | source | [site/README.md](site/README.md) |
 | [tools/site/content.cjs](tools/site/content.cjs) | Cohesive validated content/render/geometry owner with explicit inputs and delivery boundaries. | source | [site/README.md](site/README.md) |
 | [tools/site/edition-retention.cjs](tools/site/edition-retention.cjs) | Capture and restore immutable prior-edition closure with exact collision checks for Color and production packaging. | source | [site/README.md](site/README.md) |

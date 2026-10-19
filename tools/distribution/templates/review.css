@@ -1,0 +1,26 @@
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.55 var(--sans);
+}
+section {
+  margin-block: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}

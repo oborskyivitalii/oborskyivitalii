@@ -1,0 +1,82 @@
+name: Prepare article or event campaign kit
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Exact repository commit SHA to prepare
+        required: true
+        type: string
+      campaign_kind:
+        description: Preparation source kind
+        required: true
+        default: event
+        type: choice
+        options: [event, article]
+      publisher_sha:
+        description: Exact publisher source SHA for an article draft (optional after integration)
+        required: false
+        type: string
+      campaign_id:
+        description: Event ID in drafts/events or article ID
+        required: true
+        type: string
+      piece_id:
+        description: Optional authored piece ID (blank builds all authored pieces)
+        required: false
+        type: string
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      CAMPAIGN_KIND: ${{ inputs.campaign_kind }}
+      CAMPAIGN_ID: ${{ inputs.campaign_id }}
+      PUBLISHER_SHA: ${{ inputs.publisher_sha }}
+      PIECE_ID: ${{ inputs.piece_id }}
+      SOURCE_SHA: ${{ inputs.source_sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.source_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Verify exact selected source
+        run: |
+          node -e "if(!/^[a-f0-9]{40}$/.test(process.env.SOURCE_SHA))throw Error('Use an exact SHA')"
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test -z "$(git status --porcelain)"
+      - name: Install locked offline renderer
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          node tools/quality/toolchain/node_modules/playwright/cli.js install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y poppler-utils
+      - name: Prepare an explicitly selected publisher source
+        if: inputs.campaign_kind == 'article' && inputs.publisher_sha != ''
+        run: |
+          node -e "if(!/^[a-f0-9]{40}$/.test(process.env.PUBLISHER_SHA))throw Error('Use an exact publisher SHA')"
+          git worktree add --detach "$RUNNER_TEMP/campaign-publisher" "$PUBLISHER_SHA"
+          npm ci --prefix "$RUNNER_TEMP/campaign-publisher/tools/publishing/toolchain" --ignore-scripts
+      - name: Validate preparation behavior
+        run: |
+          node --test tests/event-campaign.test.cjs tests/campaign.test.cjs tests/article-campaign-kit.test.cjs
+          node --test tests/article-campaign-render.test.cjs
+      - name: Build selected draft kit
+        run: |
+          args=()
+          if [ -n "$PIECE_ID" ]; then args+=("$PIECE_ID"); fi
+          if [ "$CAMPAIGN_KIND" = article ] && [ -n "$PUBLISHER_SHA" ]; then
+            args+=(--publisher-root "$RUNNER_TEMP/campaign-publisher" --publisher-sha "$PUBLISHER_SHA")
+          fi
+          node tools/distribution/cli.cjs "build-$CAMPAIGN_KIND" "$CAMPAIGN_ID" "$RUNNER_TEMP/campaign-kit" "${args[@]}"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: campaign-kit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/campaign-kit/
+          if-no-files-found: error
+          retention-days: 30

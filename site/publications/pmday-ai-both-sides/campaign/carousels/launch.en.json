@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "id": "cover",
+      "layout": "cover",
+      "kicker": "AI delivery and runtime judgment",
+      "headline": "The Sum of Our Technology",
+      "body": "AI changes how we build software - and what our software decides at runtime.",
+      "points": [],
+      "metrics": [],
+      "media": "cover",
+      "credit": "Cover02 - AI-generated under author direction"
+    }
+  ]
+}

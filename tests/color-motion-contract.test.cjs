@@ -635,3 +635,42 @@ test('legacy Color keeps its deadline and requires matching route, finished cont
   await assert.rejects(() => color.settled(page, 'research', unknown), /Color bytes/);
   assert.equal(waits, 1, 'unreviewed identity cannot start readiness polling');
 });
+
+test('issue106 selected material lineage keeps exact Color byte checks', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-campaign-materials-' + edition;
+    assert.equal(motion.select(manifest(id)).id, id);
+    const licensed = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(licensed, licensed.components),
+      true
+    );
+    const changed = manifest(id);
+    changed.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});
+
+test('issue106 correction lineage retains exact bytes and mandatory rights admission', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-campaign-corrections-' + edition;
+    const current = motion.reviewedRuntime(id);
+    const previous = motion.reviewedRuntime('issue106-campaign-materials-' + edition);
+    assert.deepEqual(current.files, previous.files, 'corrections do not change runtime behavior');
+    assert.equal(motion.select(manifest(id)).id, id);
+    const selected = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(selected, selected.components),
+      true
+    );
+    const tampered = manifest(id);
+    tampered.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(tampered), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});

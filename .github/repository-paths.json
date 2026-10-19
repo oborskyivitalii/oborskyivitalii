@@ -61,27 +61,33 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-106.json": {
+      "kind": "file",
+      "purpose": "Issue106 draft campaign behavior and source checks with pending full implementation, author, independent and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -117,13 +123,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -135,7 +141,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -147,13 +153,13 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -216,6 +222,12 @@
       "purpose": "Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/workflows/campaign-kit.yml": {
+      "kind": "file",
+      "purpose": "Manually selected exact-source event kit renderer; no site deployment, account write or external publication.",
+      "role": "workflow",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
@@ -523,6 +535,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3": {
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -559,42 +607,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -607,27 +619,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c": {
+    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f": {
       "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html": {
+    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -643,6 +643,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4": {
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4": {
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -652,18 +676,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -691,18 +703,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -715,15 +715,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba": {
+    "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f": {
       "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html": {
+    "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18": {
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -763,6 +775,60 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "drafts/events": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/brief.en.md": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/event.json": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/plan.json": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/posts": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/posts/announcement.en.md": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/sources": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/sources/organizer.md": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "drafts/medium-profile-revision-20261001.html": {
       "kind": "file",
       "purpose": "Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds.",
@@ -775,11 +841,35 @@
       "role": "guide",
       "owner": "guides/README.md"
     },
+    "guides/ARTICLE-DISTRIBUTION-BRIEF.en.md": {
+      "kind": "file",
+      "purpose": "Reusable distribution planning brief copied into an article campaign before derivative preparation.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "guides/ARTICLE-DISTRIBUTION.md": {
+      "kind": "file",
+      "purpose": "Reusable draft campaign contract, source-bound review and pending publisher/release integration.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "guides/ARTICLE-MATERIALS.md": {
+      "kind": "file",
+      "purpose": "Public materials allowlist, reciprocal links, source/review pins and existing rights/resource contracts.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-MATERIALS.md"
+    },
     "guides/CODE-STYLE.md": {
       "kind": "file",
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
+    },
+    "guides/EVENT-DISTRIBUTION.md": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "guide",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -1020,6 +1110,198 @@
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md",
       "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
+    },
+    "review/issue-106": {
+      "kind": "directory",
+      "purpose": "Separate article distribution and organic campaign planning, review and aggregate evidence; not an article release gate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-campaign-plan.md": {
+      "kind": "file",
+      "purpose": "Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json": {
+      "kind": "file",
+      "purpose": "Exact correction producer lineage with unchanged runtime behavior and mandatory rights admission; preparatory byte derivation, not publication approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-corrections.md": {
+      "kind": "file",
+      "purpose": "Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-draft-contract.md": {
+      "kind": "file",
+      "purpose": "First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-event-preparation.md": {
+      "kind": "file",
+      "purpose": "Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-event-render-diagnostic.json": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-event-source-acceptance.json": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-independent-review.md": {
+      "kind": "file",
+      "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json": {
+      "kind": "file",
+      "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-public-materials.md": {
+      "kind": "file",
+      "purpose": "Public material implementation and publisher integration scope/evidence with pending human gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-108": {
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement": {
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style": {
+      "kind": "directory",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.html": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.pdf": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.png": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/calendar.ics": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/checklist.md": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/index.html": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/manifest.json": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.en.md": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.html": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.pdf": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.png": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/calendar.ics": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/checklist.md": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/index.html": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/manifest.json": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "review/issue-31": {
       "kind": "directory",
@@ -1515,7 +1797,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -7123,6 +7405,12 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/templates/components/article-materials.html": {
+      "kind": "file",
+      "purpose": "Shared native list of explicitly selected reviewed article materials.",
+      "role": "source",
+      "owner": "guides/ARTICLE-MATERIALS.md"
+    },
     "site/templates/components/discussion-counts.html": {
       "kind": "file",
       "purpose": "Canonical semantic page/shared/component template consuming validated context-typed content.",
@@ -7399,6 +7687,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/article-materials.test.cjs": {
+      "kind": "file",
+      "purpose": "Public/private selection, safe observed URLs, exact review/resource pins and backlink failures.",
+      "role": "test",
+      "owner": "guides/ARTICLE-MATERIALS.md"
+    },
     "tests/browser-gate-diagnostics.test.cjs": {
       "kind": "file",
       "purpose": "Private causal-screen plan, CLI bounds, source lineage, raw trace completeness and honest failed-row reporting Retained for explicit diagnostic replay and relevant changed-source tests, excluded from routine staging/production.",
@@ -7434,6 +7728,12 @@
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/campaign.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent draft campaign reuse, stale-pin, approval, unsafe-resource and read-only CLI negatives.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
     },
     "tests/cause-fix-probe.test.cjs": {
       "kind": "file",
@@ -7500,6 +7800,12 @@
       "purpose": "Behavioral/adversarial tests and fixtures for engine browser fixtures.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/event-campaign.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent event reuse, source/review invalidation, schedule/DST/CTA/input failure and private calendar/kit isolation behavior.",
+      "role": "test",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "tests/executive.test.cjs": {
       "kind": "file",
@@ -7768,6 +8074,12 @@
     "tests/test_issue102_acceptance.py": {
       "kind": "file",
       "purpose": "Issue102 policy adapter for maintained analytics suite and failure accounting.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue106_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue106 policy wrapper reusing maintained campaign behavior without publication acceptance.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -8040,6 +8352,90 @@
       "purpose": "Site generation/offline review helper: compact site recordings; inspect its source and output contract before use.",
       "role": "source",
       "owner": "site/README.md"
+    },
+    "tools/distribution": {
+      "kind": "directory",
+      "purpose": "Bounded read-only article distribution preparation tooling.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/calendar.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/campaign.cjs": {
+      "kind": "file",
+      "purpose": "Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/cli.cjs": {
+      "kind": "file",
+      "purpose": "Explicit source-only draft campaign validation with JSON stdout and no release mode.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/event.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/inputs.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/kit.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/render.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/schedule.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/schema.cjs": {
+      "kind": "file",
+      "purpose": "Strict version1 draft campaign shape, finite identities and explicit pending publication boundary.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates": {
+      "kind": "directory",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates/card.css": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates/card.html": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates/review.css": {
+      "kind": "file",
+      "purpose": "Canonical responsive offline kit-review typography, image sizing and copy wrapping.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "tools/issue_acceptance.py": {
       "kind": "file",
@@ -8713,6 +9109,12 @@
       "role": "source",
       "owner": "guides/SITE-ANALYTICS.md"
     },
+    "tools/site/article-materials.cjs": {
+      "kind": "file",
+      "purpose": "Shared public-material validation/rendering and canonical backlink derivation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-MATERIALS.md"
+    },
     "tools/site/build.cjs": {
       "kind": "file",
       "purpose": "Dependency-aware source/hash/cache and transactional generation orchestration consuming pure content, validation, page and SVG owners.",
@@ -8880,6 +9282,348 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/brief.en.md": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/carousels/delivery-constraint.en.json": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/carousels": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/carousels/launch.en.json": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/plan.json": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/posts/delivery-constraint.en.md": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/posts": {
+      "kind": "directory",
+      "purpose": "Article-local campaign preparation inputs, outside public output.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "site/publications/pmday-ai-both-sides/campaign/posts/launch.en.md": {
+      "kind": "file",
+      "purpose": "Article-local source-bound first launch/carousel preparation input; repository-only and editorial/rights pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit.md": {
+      "kind": "file",
+      "purpose": "Issue106 first-article-kit scope, source/editorial/style review and exact-source evidence disposition.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tests/article-campaign-kit.test.cjs": {
+      "kind": "file",
+      "purpose": "Meaningful article-kit source/provider/frame/media/theme/isolation and stale-input refusal tests.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/article-kit.cjs": {
+      "kind": "file",
+      "purpose": "Bounded isolated article review-kit build with explicit exact-source canonical publisher bridge and input revalidation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/brand.cjs": {
+      "kind": "file",
+      "purpose": "Embed canonical site light-theme/font declarations in offline promotional cards.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/frames.cjs": {
+      "kind": "file",
+      "purpose": "Strict bounded source-media-bound article frame-script validation.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "guides/ARTICLE-CAMPAIGN-REVIEW.md": {
+      "kind": "file",
+      "purpose": "Reusable manual D+7/D+21 aggregate campaign review template with unknown-data and privacy limits.",
+      "role": "guide",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tests/article-campaign-render.test.cjs": {
+      "kind": "file",
+      "purpose": "Explicit real-browser frame/media/overflow export diagnostic, separate from routine source checks.",
+      "role": "test",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/publisher-model.cjs": {
+      "kind": "file",
+      "purpose": "Process-isolated exact-selected canonical publisher model projection for draft campaign kits.",
+      "role": "source",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit": {
+      "kind": "directory",
+      "purpose": "Retained source-bound campaign candidate and verification evidence.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/checklist.md": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/launch.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/index.html": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/launch.pdf": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/credits.md": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/visual-observations.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/launch.html": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/manifest.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/launch.en.md": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer": {
+      "kind": "directory",
+      "purpose": "Retained source-bound campaign candidate and verification evidence.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/index.html": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics": {
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     }
   }
 }

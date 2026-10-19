@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "id": "opening",
+      "layout": "cover",
+      "kicker": "Delivery system - 1 / 7",
+      "headline": "Faster coding. A balanced system?",
+      "body": "A local speedup does not, by itself, rebalance the path to a dependable result.",
+      "points": [],
+      "metrics": [],
+      "media": "cover",
+      "credit": "Cover02 - AI-generated under author direction"
+    },
+    {
+      "id": "chain",
+      "layout": "text",
+      "kicker": "Follow the whole path",
+      "headline": "Delivery has more than one step.",
+      "body": "Code generation sits inside a larger chain.",
+      "points": [
+        "Intent and requirements",
+        "Design and implementation",
+        "Review, test and integration",
+        "Deployment and operation"
+      ],
+      "metrics": [],
+      "media": null,
+      "credit": "Simplified delivery chain - chapter 2"
+    },
+    {
+      "id": "uncontrolled",
+      "layout": "numbers",
+      "kicker": "Synthetic scenario - per week",
+      "headline": "Admit everything. Grow the queue.",
+      "body": "Suppose generation rises from 8 to 100 comparable changes a week. Review and integration stay at 8; every change is admitted.",
+      "points": [],
+      "metrics": [
+        {
+          "value": "100",
+          "label": "generated changes / week"
+        },
+        {
+          "value": "8",
+          "label": "reviewed and integrated / week"
+        },
+        {
+          "value": "+92",
+          "label": "unfinished changes / week"
+        }
+      ],
+      "media": null,
+      "credit": "Hypothetical fixed-capacity model - not study results"
+    },
+    {
+      "id": "controlled",
+      "layout": "numbers",
+      "kicker": "Same synthetic capacities",
+      "headline": "Control intake. Keep the constraint.",
+      "body": "Admit only what downstream stages can finish. The queue need not grow; delivery still tops out at eight.",
+      "points": [],
+      "metrics": [
+        {
+          "value": "8",
+          "label": "changes admitted / week"
+        },
+        {
+          "value": "8",
+          "label": "reviewed and integrated / week"
+        },
+        {
+          "value": "0",
+          "label": "excess queue growth from intake"
+        }
+      ],
+      "media": null,
+      "credit": "Controlled-intake countercase - chapter 2"
+    },
+    {
+      "id": "locate",
+      "layout": "text",
+      "kicker": "The model is not your diagnosis",
+      "headline": "Find the bottleneck in your system.",
+      "body": "Start with end-to-end evidence.",
+      "points": [
+        "Where does work wait?",
+        "What consumes review and recovery time?",
+        "Can people explain and operate the result?"
+      ],
+      "metrics": [],
+      "media": null,
+      "credit": "Original argument - chapters 2-3 - Vitalii Oborskyi"
+    },
+    {
+      "id": "equilibrium",
+      "layout": "text",
+      "kicker": "Tools and learning can raise capacity",
+      "headline": "A new equilibrium has to be demonstrated.",
+      "body": "Treat a redesign as a hypothesis. Test it against a real baseline.",
+      "points": [
+        "Useful outcomes, not generated volume",
+        "Understanding, quality and recovery",
+        "Intake the team can sustain"
+      ],
+      "metrics": [],
+      "media": null,
+      "credit": "Original argument - chapters 2-3 - Vitalii Oborskyi"
+    },
+    {
+      "id": "decision",
+      "layout": "closing",
+      "kicker": "Before booking the speedup",
+      "headline": "What actually improved end to end?",
+      "body": "Show what changed beyond the accelerated step.",
+      "points": ["A bounded trial", "A comparable baseline", "Expand, redesign or stop"],
+      "metrics": [],
+      "media": null,
+      "credit": "Original argument - chapters 2-3 - Vitalii Oborskyi"
+    }
+  ]
+}

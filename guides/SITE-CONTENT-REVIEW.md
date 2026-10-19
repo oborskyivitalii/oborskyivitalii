@@ -6,6 +6,16 @@ provenance; [REPOSITORIES](REPOSITORIES.md) routes canonical UA/Subprime researc
 The owning issue and linked PR hold the exact candidate and acceptance evidence.
 Read [MEMORY](../MEMORY.md) and live GitHub records for current work.
 
+## Prepare distribution with the article
+
+During article planning, complete the reusable
+[distribution brief](ARTICLE-DISTRIBUTION-BRIEF.en.md) and follow the
+[draft campaign contract](ARTICLE-DISTRIBUTION.md). Keep campaign copy beside its
+article, bound to the publisher edition, with its own review records. Generated
+campaign kits are not public site inputs. Campaign readiness never blocks the
+article's publication. The publisher's ARTICLE-WORKFLOW hook follows its PR79
+baseline; this guide supplies the current standing preparation entry point.
+
 ## Review the exact edition
 
 1. Identify the owning issue, candidate commit/tree, authored source and changed

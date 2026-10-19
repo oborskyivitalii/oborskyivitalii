@@ -1,0 +1,562 @@
+{
+  "automation_pass": true,
+  "checks": {
+    "BASIC": {
+      "command": [
+        "node",
+        "tools/quality/local.cjs"
+      ],
+      "failure_detail": null,
+      "kind": "node-basic",
+      "result": {
+        "checks": [
+          "generated source",
+          "finite geometry",
+          "script syntax",
+          "single main heading",
+          "footer links",
+          "artifact snapshot integrity",
+          "size budgets"
+        ],
+        "deploymentAuthorized": false,
+        "extensions": {
+          "color": {
+            "focusedTests": {
+              "failed": 0,
+              "files": [
+                "tests/flight.test.cjs"
+              ],
+              "passed": 10,
+              "skipped": 0,
+              "total": 10
+            },
+            "status": "checked"
+          },
+          "sharedMotifs": {
+            "status": "checked",
+            "symbols": [
+              "brain",
+              "line-chart",
+              "bar-chart",
+              "scatter-chart",
+              "attention",
+              "softmax",
+              "entropy"
+            ]
+          }
+        },
+        "focusedTests": {
+          "failed": 0,
+          "files": [
+            "tests/theme.test.cjs",
+            "tests/archive.test.cjs"
+          ],
+          "passed": 14,
+          "skipped": 0,
+          "total": 14
+        },
+        "geometry": [
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 7344,
+            "finite": true,
+            "lines": 4735,
+            "modelBytes": 4851263,
+            "objects": 252,
+            "route": "index",
+            "vertices": 14070
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 5488,
+            "finite": true,
+            "lines": 3167,
+            "modelBytes": 4094842,
+            "objects": 252,
+            "route": "index",
+            "vertices": 10650
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 7842,
+            "finite": true,
+            "lines": 6145,
+            "modelBytes": 5360200,
+            "objects": 252,
+            "route": "research",
+            "vertices": 14644
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 5590,
+            "finite": true,
+            "lines": 3777,
+            "modelBytes": 4242120,
+            "objects": 252,
+            "route": "research",
+            "vertices": 10488
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 4798,
+            "finite": true,
+            "lines": 5057,
+            "modelBytes": 3875380,
+            "objects": 252,
+            "route": "writing",
+            "vertices": 11422
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 3890,
+            "finite": true,
+            "lines": 3549,
+            "modelBytes": 3447366,
+            "objects": 252,
+            "route": "writing",
+            "vertices": 9398
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 6460,
+            "finite": true,
+            "lines": 5039,
+            "modelBytes": 4612956,
+            "objects": 252,
+            "route": "talks",
+            "vertices": 13288
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 5474,
+            "finite": true,
+            "lines": 3535,
+            "modelBytes": 4306367,
+            "objects": 252,
+            "route": "talks",
+            "vertices": 11196
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 5998,
+            "finite": true,
+            "lines": 4311,
+            "modelBytes": 4162788,
+            "objects": 252,
+            "route": "credits",
+            "vertices": 11424
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 4928,
+            "finite": true,
+            "lines": 3311,
+            "modelBytes": 3938047,
+            "objects": 252,
+            "route": "credits",
+            "vertices": 9648
+          }
+        ],
+        "maxHtmlBytes": 95111,
+        "pass": true,
+        "profile": "local",
+        "routes": 5,
+        "uniqueScripts": 9,
+        "workflow": {
+          "idConsumption": true,
+          "unique": true,
+          "uploads": 78
+        }
+      },
+      "returncode": 0,
+      "status": "passed",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "54eecd467c504a17b5a7b625cbe72ad5409bbd24d41c55f3ad4f8499d91e45a2"
+    },
+    "CAMPAIGN": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue106_acceptance.Issue106AcceptanceTests.test_campaign_draft_contract",
+      "test_file_sha256": "fb226478bc8c13bd4c03719ea7bd9d15a69151c9353dbfa60dab1de133e55967",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "CURRENT-RI": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views",
+      "test_file_sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "RI-CI": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes",
+      "test_file_sha256": "b2e9b67e7a4f0f97809e7a32b6e754c440fe10b8d7d411566a1208eff12c446d",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "STYLE": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard",
+      "test_file_sha256": "6928de833df06bfaf092442c719db0919bd936d3cd19c33d8c04006f29c8ab1c",
+      "tests_run": 1,
+      "unexpected_successes": []
+    }
+  },
+  "criteria": [
+    {
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": [
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "PLAN-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC01",
+      "intent": "Preserve the approved plan, linked separate Draft PR and nonblocking ownership relation to article PR79.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "First increment: strict draft schema, two distinct synthetic articles, read-only loading and a link from the standing editorial guide. ARTICLE-WORKFLOW hook and actual publisher integration remain pending PR79 baseline; source checks cannot supply author review.",
+      "checks": [
+        "CURRENT-RI",
+        "CAMPAIGN"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC02",
+      "intent": "Integrate a reusable distribution brief and campaign state model into article preparation without duplicating owners.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "First increment: stale edition/semantic, section/reference/media, copy/brief and approval-binding negatives. References bind claims to the publisher semantic edition; accuracy and actual editorial approval remain human gates.",
+      "checks": [
+        "CURRENT-RI",
+        "CAMPAIGN"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC03",
+      "intent": "Bind each campaign piece to its source edition, claims and media and invalidate stale approvals.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": [
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC04",
+      "intent": "Prepare the complete six-piece, three-carousel organic PMDay campaign for author review.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "First increment: selected media and source-reference identity only. Numerical/quotation/rights accuracy and mobile visual review remain unimplemented or human gates.",
+      "checks": [
+        "CURRENT-RI",
+        "CAMPAIGN"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC05",
+      "intent": "Preserve numerical and quotation scope, media identity, credits and separate editorial/rights review.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": [
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC06",
+      "intent": "Require actual destinations and channel admission for release-ready output; allow explicit skipped channels.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "First increment: reusable bounded read-only validation only; no kit renderer, PDF or manually selectable build workflow is implemented. Two synthetic articles exercise reuse; no site output is written.",
+      "checks": [
+        "CURRENT-RI",
+        "CAMPAIGN"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC07",
+      "intent": "Build a bounded isolated campaign kit without site deployment, social posting, paid-model calls or PMDay-only hardcoding.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "First increment: authored and approval-recorded draft states only; pretend publication fields are rejected. Observations, append-only correction history and operator publication workflow remain pending.",
+      "checks": [
+        "CURRENT-RI",
+        "CAMPAIGN"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC08",
+      "intent": "Keep authored, approved, published and corrected states distinct with actual observed publication evidence.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": [
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "AUTHOR-REVIEW"
+      ],
+      "gates_status": "pending",
+      "id": "AC09",
+      "intent": "Provide honest aggregate D+7/D+21 reviews without private data, invented feedback or unsupported attribution.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Basic, style subset, RI/catalog/CI and campaign negatives on exact source. Applicable CS01/02/04/05/07/08/09/10 self-review is recorded; no CSS/runtime delta (CS03/06). Pending features and independent/editorial/merge gates remain explicit.",
+      "checks": [
+        "BASIC",
+        "STYLE",
+        "CURRENT-RI",
+        "RI-CI",
+        "CAMPAIGN"
+      ],
+      "gates": [
+        "IMPLEMENTATION",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC10",
+      "intent": "Map and run exact-source meaningful checks and applicable style/RI controls; retain human and merge gates.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Strict source/file/approval/URL/resource/dependency behavior and shared HTML tested with maintained fixtures. Actual reader integration, mobile/no-JS and author/rights/release acceptance are recorded separately.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC11",
+      "intent": "Render only selected source/review-bound public materials, preserve reciprocal article links and exclude working campaign inputs.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Two distinct event fixtures, absent publisher, pending session/deck, invalid and unobserved CTA/source inputs.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC12",
+      "intent": "Support confirmed event sources and typed observed destinations without an article.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Actual summer/winter conversions, invalid dates, DST gaps/ambiguity, graph cycles and transitive impossible windows.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC13",
+      "intent": "Resolve before/after and exact local dates with IANA zones and feasible dependencies.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Template safety, exact PDF pin and missing/changed deck negatives; actual PNG/PDF/browser overflow and phone/source-slide visual review are separate observed checks.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC14",
+      "intent": "Render three reusable promotion layouts and preserve selected source-deck page identity and credit.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Two distinct event fixtures contain independently owned English copy and planned Ukrainian pieces; schema and copy-owner constraints reject undeclared language.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC15",
+      "intent": "Allow English and Ukrainian pieces in one event campaign.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Copy-only transactional kit/manifest/source/public isolation and overwrite negatives; stable UID, revision sequence, UTC times and UTF8 folding. Actual render reviewed separately; no publication observation support is claimed.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC16",
+      "intent": "Produce isolated reviewable kits and stable private calendar-file exports.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Existing article and event source suites, Basic, style subset and RI/CI/profile checks. Independent/author/merge and actual publisher-related original gates remain open.",
+      "checks": [
+        "CAMPAIGN",
+        "CURRENT-RI",
+        "BASIC",
+        "STYLE",
+        "RI-CI"
+      ],
+      "gates": [
+        "AUTHOR-REVIEW",
+        "INDEPENDENT-REVIEW",
+        "MERGE"
+      ],
+      "gates_status": "pending",
+      "id": "AC17",
+      "intent": "Maintain compatible article checks and source/RI/style routes with truthful acceptance.",
+      "status": "automated-pass"
+    }
+  ],
+  "errors": [],
+  "evidence_valid": true,
+  "gates": {
+    "AUTHOR-REVIEW": {
+      "description": "Review actual content/media, source accuracy, channel rules and manual publishing/measurement operation. Actual public URLs and channel admission must be observed separately; no private data or auto-posting.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "IMPLEMENTATION": {
+      "description": "First draft-contract increment only. Actual publisher integration, campaign assets/rendering, channel admission, observation/corrections and metrics templates remain pending. Partial checks cannot satisfy whole acceptance. Event adapter/kit progress is recorded separately; original full article campaign, channel admission and observed publication history remain unfinished.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "INDEPENDENT-REVIEW": {
+      "description": "Required independent/editorial review of implemented behavior and applicable CS01-CS10; preparation self-review is not independent acceptance.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "MERGE": {
+      "description": "Normal maintainer merge decision after complete issue acceptance; campaign readiness cannot block the separate article publication in PR79.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "PLAN-REVIEW": {
+      "description": "Verify the actual linked issue/PR and versioned approved scope, source reference, relative schedule and explicit nonblocking separation from PR79. This is plan review, not campaign implementation.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    }
+  },
+  "github": {
+    "GITHUB_EVENT_NAME": null,
+    "GITHUB_REPOSITORY": null,
+    "GITHUB_RUN_ATTEMPT": null,
+    "GITHUB_RUN_ID": null
+  },
+  "issue": 106,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/106",
+  "limitations": [
+    "Repository-owned developer tests; not a target-owned untrusted-candidate validator.",
+    "Policy is an issue mapping, not proof it reproduces live issue intent.",
+    "Manual gates remain pending; this runner does not review, merge, deploy or close issues."
+  ],
+  "policy_path": ".github/acceptance/issue-106.json",
+  "policy_sha256": "728b515b418177f74c84256cb0a1e4285f78ccb466deaace8a25bb7a865e3bf3",
+  "producer_sha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97",
+  "ready_for_issue_closure": false,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "schema_version": 1,
+  "source": {
+    "commit_sha": "d1b777743db582a1675e7f46f856d2be8efc4e61",
+    "ri_source_digest": "53d09c277d6345ef9fda6010fabed4c6279433052739333a321f77f8b29fec4a",
+    "ri_surface_sha256": "5dfca4bc26fdcf40c72d9f4cc6e0e561d4a71adcd8cd1149730e00cf31cd20bb",
+    "source_dirty": false,
+    "tree_sha": "9aa184c0c64946efe24b6c5f35a0ddc942a553d5",
+    "working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
