@@ -101,6 +101,12 @@ click selected the expected7/29 records. The new journey now waits for the exist
 scene's ready/settled state as well as tag data, scrolls the actual chip into view
 before clicking, and reports URL/control/visible-row/scene/focus and browser errors
 on failure. No assertion is removed; final CI must establish the full result.
+CI39236527858 completed the entire tag journey and ordinary article journey.
+Its390 no-Canvas row failed because CDP discarded a response body after native
+document navigation. The observer now finishes the Writing index/byte reads before
+departure and drains owned response checks before a native document replacement.
+A deferred-read negative proves navigation waits and preserves verification failure;
+served-byte hashes, runtime errors and original budgets are still mandatory.
 
 ## Next steps
 

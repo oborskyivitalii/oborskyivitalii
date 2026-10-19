@@ -255,7 +255,12 @@ async function discussionAnchor(page) {
     { polling: 40, timeout: 3000 }
   );
 }
-async function discussionNavigation(page, url) {
+async function documentNavigation(page, url, responseChecks) {
+  // A new document discards CDP response bodies owned by the departing page.
+  await Promise.all(responseChecks);
+  await page.goto(url, { waitUntil: 'load' });
+}
+async function discussionNavigation(page, url, responseChecks) {
   await page.locator(routeSelector('index')).evaluate((el) => el.click());
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
@@ -292,13 +297,17 @@ async function discussionNavigation(page, url) {
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   await nav.click();
   await discussionAnchor(page);
-  await page.goto(url + '/research.html#acknowledgements', { waitUntil: 'load' });
+  await documentNavigation(page, url + '/research.html#acknowledgements', responseChecks);
   await ready(page, 'research');
   await discussionAnchor(page);
   await responseNames(page, 'research');
   return { home, research, cta: true, localNavigation: true, history: true, directAnchor: true };
 }
-async function writingControls(page) {
+async function writingControls(page, publicationIndex = false) {
+  if (publicationIndex)
+    await page.waitForFunction(() => document.body.dataset.tagsState === 'ready', null, {
+      timeout: 10000,
+    });
   await page.locator('#archive-topic').selectOption('systems');
   assert.ok(
     (await page.locator('#archive-results li.publication:visible').count()) > 0,
@@ -412,7 +421,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   });
   try {
     const served = await routeBytes(context, url, manifest);
-    await page.goto(url + '/index.html', { waitUntil: 'load' });
+    await documentNavigation(page, url + '/index.html', responseChecks);
     await ready(page, 'index');
     if (mode === 'normal')
       await page.waitForFunction(
@@ -470,7 +479,10 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         await page.locator('#space-motion').click();
       }
       await page.locator('.appearance summary').click();
-      if (id === 'writing') await writingControls(page);
+      if (id === 'writing') {
+        await writingControls(page, Boolean(manifest.files['publication-index.json']));
+        await Promise.all(responseChecks);
+      }
       if (id === 'research') await researchControls(page, mode, width);
       if (id === 'index' || id === 'research') await responseNames(page, id);
       rows.push({
@@ -492,7 +504,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     await ready(page, 'talks');
     await page.goForward();
     await ready(page, 'credits');
-    const discussion = await discussionNavigation(page, url);
+    const discussion = await discussionNavigation(page, url, responseChecks);
     await Promise.all(responseChecks);
     assert.deepEqual(errors, [], 'runtime and served-byte errors');
     assert.deepEqual(external, [], 'unexpected external requests');
@@ -633,6 +645,7 @@ module.exports = {
   state,
   artifactFile,
   verifyResponse,
+  documentNavigation,
   contentDocuments,
   contentJourney,
   writingControls,

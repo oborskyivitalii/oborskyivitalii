@@ -8,8 +8,39 @@ const {
   identity,
   verifyRuntimeIdentity,
   analyticsRequest,
+  documentNavigation,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
+test('native document navigation waits for owned byte reads and preserves their failures', async () => {
+  let finish,
+    navigated = false;
+  const response = new Promise((resolve) => {
+    finish = resolve;
+  });
+  const page = {
+    goto: async () => {
+      navigated = true;
+    },
+  };
+  const pending = documentNavigation(page, 'https://example.test/research.html', [response]);
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(
+    navigated,
+    false,
+    'departing response remains readable until verification completes'
+  );
+  finish();
+  await pending;
+  assert.equal(navigated, true);
+  navigated = false;
+  await assert.rejects(
+    documentNavigation(page, 'https://example.test/research.html', [
+      Promise.reject(Error('served bytes differ')),
+    ]),
+    /served bytes differ/
+  );
+  assert.equal(navigated, false, 'failed verification cannot be discarded by navigation');
+});
 test('content smoke requires every rebuilt article descriptor and retains explicit no-article catalog cases', () => {
   const { contentDocuments } = require('../tools/quality/local-browser.cjs');
   assert.equal(contentDocuments({}), null);
