@@ -1,0 +1,189 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Vitalii Oborskyi//Campaign preparation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:a9ec35fdc69983ce1f448148dbf79023@vitaliioborskyi.ai
+SEQUENCE:1000002
+DTSTAMP:20261019T120637Z
+LAST-MODIFIED:20261019T120637Z
+DTSTART:20261020T070000Z
+DTEND:20261020T072000Z
+SUMMARY:Review LinkedIn post: UA Online PMDay 2027 Winter / announcement
+DESCRIPTION:Private preparation reminder. Review current programme\, event 
+ facts\, copy and visual before posting.\n\nState: authored. Timezone: Euro
+ pe/Warsaw.\n\nPurpose: Confirm participation\, date\, online format and re
+ gistration.\n\nI’ll be speaking at UA Online PMDay 2027 Winter on 30 Jan
+ uary.\n\nMy work explores two connected shifts: how AI changes software de
+ livery\, and what happens when the products we build begin to exercise jud
+ gment themselves.\n\nBoth raise questions about how we organize work\, ver
+ ify outcomes and take responsibility for decisions.\n\nI’m glad to be re
+ turning to the PMDay community. I’ll share the session title and details
+  once confirmed.\n\n📅 30 January 2027\n🌐 Online\n\nEvent details and
+  registration:\nhttps://pmday.org/online\n\n#PMDay #SoftwareDelivery #AIGo
+ vernance\n\n\nEvent details and registration: https://pmday.org/online\n\n
+ Repository inputs: drafts/events/pmday-winter-2027/plan.json\n\nSource pla
+ n: https://github.com/oborskyivitalii/oborskyivitalii/blob/213b82701500965
+ 4ced53c7dd5f3fc5156303975/drafts/events/pmday-winter-2027/plan.json\n\nCop
+ y: https://github.com/oborskyivitalii/oborskyivitalii/blob/213b82701500965
+ 4ced53c7dd5f3fc5156303975/drafts/events/pmday-winter-2027/posts/announceme
+ nt.en.md\n\nKit files: announcement.en.md and announcement.png when author
+ ed/rendered.\n\nFile export does not schedule LinkedIn or write to a calen
+ dar account.
+URL:https://pmday.org/online
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Review the prepared event announcement
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fece1ff92054bafafab8e5c58f094542@vitaliioborskyi.ai
+SEQUENCE:1000002
+DTSTAMP:20261019T120637Z
+LAST-MODIFIED:20261019T120637Z
+DTSTART:20261208T080000Z
+DTEND:20261208T082000Z
+SUMMARY:Review LinkedIn post: UA Online PMDay 2027 Winter / discussion
+DESCRIPTION:Private preparation reminder. Review current programme\, event 
+ facts\, copy and visual before posting.\n\nState: planned. Timezone: Europ
+ e/Warsaw.\n\nPurpose: Explore one delivery-system question\; invite questi
+ ons without inventing the session scope.\n\nCopy and visual are still to b
+ e prepared. Do not publish this placeholder.\n\nEvent details and registra
+ tion: https://pmday.org/online\n\nRepository inputs: drafts/events/pmday-w
+ inter-2027/plan.json\n\nSource plan: https://github.com/oborskyivitalii/ob
+ orskyivitalii/blob/213b827015009654ced53c7dd5f3fc5156303975/drafts/events/
+ pmday-winter-2027/plan.json\n\n\n\nKit files: discussion.en.md and discuss
+ ion.png when authored/rendered.\n\nFile export does not schedule LinkedIn 
+ or write to a calendar account.
+URL:https://pmday.org/online
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Review the prepared event announcement
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c3c0cf477d5453ce14742ea740dc0c99@vitaliioborskyi.ai
+SEQUENCE:1000002
+DTSTAMP:20261019T120637Z
+LAST-MODIFIED:20261019T120637Z
+DTSTART:20270112T080000Z
+DTEND:20270112T082000Z
+SUMMARY:Review LinkedIn post: UA Online PMDay 2027 Winter / session
+DESCRIPTION:Private preparation reminder. Review current programme\, event 
+ facts\, copy and visual before posting.\n\nState: planned. Timezone: Europ
+ e/Warsaw.\n\nPurpose: Announce the confirmed session title\, audience and 
+ three concrete questions after approval.\n\nCopy and visual are still to b
+ e prepared. Do not publish this placeholder.\n\nДеталі події т
+ а реєстрація: https://pmday.org/online\n\nRepository inputs: dr
+ afts/events/pmday-winter-2027/plan.json\n\nSource plan: https://github.com
+ /oborskyivitalii/oborskyivitalii/blob/213b827015009654ced53c7dd5f3fc515630
+ 3975/drafts/events/pmday-winter-2027/plan.json\n\n\n\nKit files: session.u
+ k.md and session.png when authored/rendered.\n\nFile export does not sched
+ ule LinkedIn or write to a calendar account.
+URL:https://pmday.org/online
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Review the prepared event announcement
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:45f47532f14373884046835d59d09500@vitaliioborskyi.ai
+SEQUENCE:1000002
+DTSTAMP:20261019T120637Z
+LAST-MODIFIED:20261019T120637Z
+DTSTART:20270121T080000Z
+DTEND:20270121T082000Z
+SUMMARY:Review LinkedIn post: UA Online PMDay 2027 Winter / slide
+DESCRIPTION:Private preparation reminder. Review current programme\, event 
+ facts\, copy and visual before posting.\n\nState: planned. Timezone: Europ
+ e/Warsaw.\n\nPurpose: Share one reviewed slide from the actual January dec
+ k with a useful thesis.\n\nCopy and visual are still to be prepared. Do no
+ t publish this placeholder.\n\nДеталі події та реєстра
+ ція: https://pmday.org/online\n\nRepository inputs: drafts/events/pmday
+ -winter-2027/plan.json\n\nSource plan: https://github.com/oborskyivitalii/
+ oborskyivitalii/blob/213b827015009654ced53c7dd5f3fc5156303975/drafts/event
+ s/pmday-winter-2027/plan.json\n\n\n\nKit files: slide.uk.md and slide.png 
+ when authored/rendered.\n\nFile export does not schedule LinkedIn or write
+  to a calendar account.
+URL:https://pmday.org/online
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Review the prepared event announcement
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1fd0c0dcba4397dfa1068dc61ca24d87@vitaliioborskyi.ai
+SEQUENCE:1000002
+DTSTAMP:20261019T120637Z
+LAST-MODIFIED:20261019T120637Z
+DTSTART:20270128T080000Z
+DTEND:20270128T082000Z
+SUMMARY:Review LinkedIn post: UA Online PMDay 2027 Winter / reminder
+DESCRIPTION:Private preparation reminder. Review current programme\, event 
+ facts\, copy and visual before posting.\n\nState: planned. Timezone: Europ
+ e/Warsaw.\n\nPurpose: Final reminder with the confirmed programme\, time a
+ nd timezone.\n\nCopy and visual are still to be prepared. Do not publish t
+ his placeholder.\n\nДеталі події та реєстрація: htt
+ ps://pmday.org/online\n\nRepository inputs: drafts/events/pmday-winter-202
+ 7/plan.json\n\nSource plan: https://github.com/oborskyivitalii/oborskyivit
+ alii/blob/213b827015009654ced53c7dd5f3fc5156303975/drafts/events/pmday-win
+ ter-2027/plan.json\n\n\n\nKit files: reminder.uk.md and reminder.png when 
+ authored/rendered.\n\nFile export does not schedule LinkedIn or write to a
+  calendar account.
+URL:https://pmday.org/online
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Review the prepared event announcement
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:440f06d293b00c94f79a7b8222f69222@vitaliioborskyi.ai
+SEQUENCE:1000002
+DTSTAMP:20261019T120637Z
+LAST-MODIFIED:20261019T120637Z
+DTSTART:20270201T080000Z
+DTEND:20270201T082000Z
+SUMMARY:Review LinkedIn post: UA Online PMDay 2027 Winter / reflection
+DESCRIPTION:Private preparation reminder. Review current programme\, event 
+ facts\, copy and visual before posting.\n\nState: planned. Timezone: Europ
+ e/Warsaw.\n\nPurpose: Reflect on actual audience questions and link only m
+ aterials/recordings that exist.\n\nCopy and visual are still to be prepare
+ d. Do not publish this placeholder.\n\nEvent details and registration: htt
+ ps://pmday.org/online\n\nRepository inputs: drafts/events/pmday-winter-202
+ 7/plan.json\n\nSource plan: https://github.com/oborskyivitalii/oborskyivit
+ alii/blob/213b827015009654ced53c7dd5f3fc5156303975/drafts/events/pmday-win
+ ter-2027/plan.json\n\n\n\nKit files: reflection.en.md and reflection.png w
+ hen authored/rendered.\n\nFile export does not schedule LinkedIn or write 
+ to a calendar account.
+URL:https://pmday.org/online
+CLASS:PRIVATE
+TRANSP:TRANSPARENT
+STATUS:TENTATIVE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Review the prepared event announcement
+END:VALARM
+END:VEVENT
+END:VCALENDAR

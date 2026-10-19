@@ -31,28 +31,32 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Open work
 
-- Reconcile current source/CI and independent re-review of F01–F03 corrections;
-  old green checks cannot establish those defects were resolved.
-- Event source/calendar/kit behavior is implemented; exact-head evidence and
-  rendered first announcement kit are linked in the owning PR checkpoint.
-  Independent/author/mobile/rights and locked-browser CI gates remain separate.
-- The locally locked Chromium download returned invalid ZIPs. A separately
-  identified Chromium138.0.7204.0 rendered three card types and rejected overflow.
-  That diagnostic is not locked-CI or physical-device acceptance.
-- Complete original six-piece article campaign, three carousels, channel review,
-  shared actual publication/correction history and D+7/D+21 templates under #106.
-- Implement #108 Talks announcement independently; later confirmed title/slot/
-  deck updates need revalidation and actual content review.
-- Analytics/source-access follow-ups retain #102/#103/#8/#104; this work changes
-  neither their evidence nor external account state.
+- #106/PR107 first launch and seven-frame carousel are implemented through the
+  canonical publisher's explicit clean exact-SHA bridge, source/frame/media pins,
+  isolated PNG/PDF/HTML kit and shared actual site theme. Code213b827 / tree89f9daf.
+- Independent read-only re-review accepts originalF01–F03 and newK01–K03 producer
+  corrections within scope; whole editorial/rights/device/merge gates stay open.
+- First article kit and exact-source/visual evidence:
+  review/issue-106/2026-10-19-first-article-kit.md and sibling kit directory.
+  Clean code policy5/5, real-browser diagnostic2/2 and all9 PDF pages inspected
+  at390px. Chromium138 remains separate from locked CI/physical-device acceptance.
+- Manual D+7/D+21 template: guides/ARTICLE-CAMPAIGN-REVIEW.md. No metrics,
+  publication, D0, social post or calendar-account write is invented.
+- PR79b0ff55d / treeb28996c policy10/10 and CI39254627571 hosted smoke succeeded;
+  its separate new circular-reader request is not implemented by that evidence.
+- Complete remaining four feed pieces/two carousels after author design review;
+  accepted main publisher-flow hook, channel admission, actual URL/D0 and shared
+  publication/correction observations remain pending. Article release is separate.
+- #108 website announcement/Autumn naming uses its separate PR111 standard route;
+  do not run that release from this campaign checkout or replace historical decks.
 
 ## Next session
 
-1. Revalidate PR107 head, main, owning #106/#108 and exact source/check evidence.
-2. Review first event kit; confirm only actual event details. Reuse the canonical
-   deck when available instead of substituting the September PMDay presentation.
-3. Continue original campaign work and focused independent review in same owners.
-4. Merge, stage or publish only with applicable maintainer decision and gates.
+1. Revalidate PR107/main, #106/#108 and current source/check identities.
+2. Present first launch/carousel and event kit for author/visual/rights review.
+3. Continue remaining campaign pieces using the reviewed design and source edition.
+4. Bind actual public canonical/D0 only after article release; keep all outstanding
+   acceptance and release decisions with their existing owners.
 
 ## Maintenance
 

@@ -79,3 +79,48 @@ Chromium renderer2/2 pass; real PMDay validation succeeds against clean b0ff55d,
 with both destinations still null. The reviewer did not edit files or run full
 policy/RI. This is bounded technical review, not author/editorial/rights or
 whole-issue acceptance. Final Git/source and visual evidence follow separately.
+
+
+## Clean producer and retained evidence
+
+Code **213b827015009654ced53c7dd5f3fc5156303975**, tree
+**89f9dafcae6929b22a50dbeaaa7c465a1c6652da**, is clean before and after
+production. It preserves concurrent theme commit53b1417 and retained kit/catalog
+commitscaeb1e3/7d28a20. API-uploaded tree equals the locally checked tree.
+
+- Exact owning policy **5/5 passed**, evidence valid/errors empty:
+  [producer-acceptance](2026-10-19-first-article-kit/producer-acceptance.json).
+  Original human/implementation/merge gates remain open.
+- Actual [renderer diagnostic2/2](2026-10-19-first-article-kit/renderer-diagnostic.txt),
+  equal seven-page PDF and image decode/visibility/overflow refusals passed.
+- Basic/local checks, RI28/28 and coupling20/20, maintained formatter,
+  focused ESLint and card/review stylelint passed. No site runtime, source style,
+  generated public docs or shared material-owner bytes changed in this increment.
+- [Article kit](2026-10-19-first-article-kit/index.html) contains the launch and
+  first carousel, captions, PNG/PDF/HTML, credits/checklist and full manifest.
+  Publisher is cleanb0ff55d / treeb28996c. Every retained output hash/length was
+  checked; image originals and source edition remain unchanged.
+- [Event kit](../issue-108/2026-10-19-announcement-shared-renderer/index.html)
+  reuses the same clean producer and actual site theme. Earlier retained kits keep
+  historical source/bytes. No event source or authored copy changed.
+- All9 final PDF pages were rendered with Poppler and visually inspected at390px
+  width. Readable headings/body/numerical units/credits, uncropped Cover02 and no
+  overlap were observed. PNGs1080×1350; every PDF page810×1013.03998pt (Chromium
+  CSS-page rounding). Actual Chromium138.0.7204.0 is a local diagnostic, not the
+  locked CI browser or physical-device/author/rights acceptance.
+
+Reader follow-up was checked separately: clean PR79b0ff55d policy10/10 and
+[CI39254627571](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39254627571)
+succeeded:15 HTTP identity rows,4 room browser rows, article/material observations
+and2 Color rows. Downloaded smoke artifact12186927714 SHA256
+`fb25392b5122c40902d26cff235caa4f1d24e4b0d615b5f1df2b99ad4f21faf5` and exact
+source/tree/public digestbb5739ad were verified. Raw downloaded reports and its
+source policy are retained with this record. Deferred/full admissions remain
+skipped; this predates the new requested reader orbit and proves no orbit change.
+
+Remaining order: author review of this launch/carousel design → remaining four
+feed pieces/two carousels → accepted publisher flow, channel admission and actual
+canonical/D0 → manually observed publication/correction history → aggregate
+D+7/D+21 reviews. The website article can ship independently. Whole AC02–AC17 stay
+open; AC01 disposition is preserved. No merge, website release, calendar-account
+write or social posting occurred in this campaign execution.

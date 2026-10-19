@@ -1,0 +1,79 @@
+{
+  "source": "213b827015009654ced53c7dd5f3fc5156303975",
+  "browser": "138.0.7204.0",
+  "review": "implementing-agent visual self-review at390px; no physical-device or author/rights acceptance",
+  "documents": [
+    {
+      "piece": "launch",
+      "pdfPages": 1,
+      "pageSizesPt": [
+        [
+          810.0,
+          1013.03998
+        ]
+      ],
+      "pageTextLengths": [
+        230
+      ],
+      "pdfSha256": "a1a3f03a59a117752d1d909abf222283a3c00824c5f0cc96b262421bdf5f9119"
+    },
+    {
+      "piece": "delivery-constraint",
+      "pdfPages": 7,
+      "pageSizesPt": [
+        [
+          810.0,
+          1013.03998
+        ],
+        [
+          810.0,
+          1013.03998
+        ],
+        [
+          810.0,
+          1013.03998
+        ],
+        [
+          810.0,
+          1013.03998
+        ],
+        [
+          810.0,
+          1013.03998
+        ],
+        [
+          810.0,
+          1013.03998
+        ],
+        [
+          810.0,
+          1013.03998
+        ]
+      ],
+      "pageTextLengths": [
+        232,
+        288,
+        382,
+        350,
+        305,
+        349,
+        272
+      ],
+      "pdfSha256": "60237564084c948b58bc934077bc91540f6b6321602ed542b58f28490bd03723"
+    },
+    {
+      "piece": "announcement",
+      "pdfPages": 1,
+      "pageSizesPt": [
+        [
+          810.0,
+          1013.03998
+        ]
+      ],
+      "pageTextLengths": [
+        151
+      ],
+      "pdfSha256": "85f8e18f3a5de63f54e87ed0bd6b7576be7a0bb387074f06e246252900716db1"
+    }
+  ]
+}

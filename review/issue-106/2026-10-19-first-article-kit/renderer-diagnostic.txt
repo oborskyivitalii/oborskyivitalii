@@ -1,0 +1,10 @@
+✔ actual renderer emits seven equal-size pages and frame PNGs with decoded cover media (1797.764981ms)
+✔ actual renderer refuses undecodable media, hidden media and overflowing text before export (703.769133ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2638.72986

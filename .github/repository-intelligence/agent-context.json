@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c752103edb33567d9b19bb5d1d09e2f8accb26fcb2a3318df7f0b4294ab85223",
+    "digest": "d293fa9704578141ecab818f35aef7f83563e1739c40fcd4d76e0617d4b72209",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d6b17049fc84f123abdde2262c1592017c0dd675449f733f8302d1d575c4e00d"
+        "sha256": "53b4b67b1f1815b5f08e6521a5645e42120a25142eb9a0cd29c2a4d05c969f71"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "bbbd36b88ce464b035350f7181ac5cbd247bc94ed1e288e5706157ee35422627"
+        "sha256": "d0db89ad53804ead188432a345555cfce46abf798e1d95ad28435818a2086545"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e8d82fb835b11116bc2955b9faeba8ee5f8670bb6ee0c0318e3c04dc95e4afcb"
+        "sha256": "15cfc7eea9257d0210a37cd0057ef5ee819265f1dae9a1561500bca0412f2c88"
       },
       {
         "path": "NOTICE.md",
@@ -790,7 +790,147 @@
       {
         "path": "review/issue-106/2026-10-19-first-article-kit.md",
         "identity_mode": "content",
-        "sha256": "a158cb11ec4ee1dd31533e7be46ad5a93a946ecc6cdcf2fd537f0188324c79d5"
+        "sha256": "50acd7f8376d10a8849b95d84d1814067c6eba9f5b890fd6d07f347e51713d6e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/checklist.md",
+        "identity_mode": "content",
+        "sha256": "8ad6957a692734ea0fb513a2a089b29381077fab0c3c21bc0f5e88da84f3e7dd"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/credits.md",
+        "identity_mode": "content",
+        "sha256": "72b9abc5bc3617d6af11358592501e6d639a056496e2305028cf207e4713035d"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png",
+        "identity_mode": "content",
+        "sha256": "a4aff0cecf3819d5ced7b4dc80aeef190c02ee4eec3ca5cecbc62e37d55f7a3a"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png",
+        "identity_mode": "content",
+        "sha256": "6722402a4853f7551bb072f6f9b84bd1ecb34720ac581ed5e888225445ac8147"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png",
+        "identity_mode": "content",
+        "sha256": "86a199bc21e669e5c44095fb8f15e3294d5ec0b6e8e8f8f0043800d1c697b5bd"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png",
+        "identity_mode": "content",
+        "sha256": "c5f5fe03a3e493babfd76f2a882d9e2e03908cc5082622857200d7e89390455e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png",
+        "identity_mode": "content",
+        "sha256": "a1000f80e7984f8a5793fc957f3a0cb50bf719ca3df7ce44ab1f4f7bce0eee4b"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png",
+        "identity_mode": "content",
+        "sha256": "de7e2f51ed42b14c8f727254bc267d25188236940610fef58ce7da27e35fe075"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png",
+        "identity_mode": "content",
+        "sha256": "08126aa6fb80d3273ff489813ead7d10f30062369cb578d5eefe460684c42d24"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md",
+        "identity_mode": "content",
+        "sha256": "34540955f90874056ac0e24cec2a7f4360e3aabcb60ca0de5cb442f3e656fca1"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html",
+        "identity_mode": "content",
+        "sha256": "795f20738c361f34426d04ecfe8da7f7be6f36a4a7b0b631c8281d34d2a30a05"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf",
+        "identity_mode": "content",
+        "sha256": "60237564084c948b58bc934077bc91540f6b6321602ed542b58f28490bd03723"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/index.html",
+        "identity_mode": "content",
+        "sha256": "1b24bd03a863675a173616530adce50f2c76b86acfe92a525dd53452b4b17514"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.en.md",
+        "identity_mode": "content",
+        "sha256": "546575854c3110ce1e2596700646e9abedc2d7c84f1381da7f7e7a1dee175f62"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.html",
+        "identity_mode": "content",
+        "sha256": "656f557254851701b8c6c7561ab8e9b39c99de6b8458a1121e4eb95c5e0cd3b1"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.pdf",
+        "identity_mode": "content",
+        "sha256": "a1a3f03a59a117752d1d909abf222283a3c00824c5f0cc96b262421bdf5f9119"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/launch.png",
+        "identity_mode": "content",
+        "sha256": "cec30db20c813451bce098113c519e466d3abd888123cd5756bcf06489720a41"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/manifest.json",
+        "identity_mode": "content",
+        "sha256": "d9bfb532bc898f76096a9a535d72cb383befe67a7bb97c98d8c726ab439c7570"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png",
+        "identity_mode": "content",
+        "sha256": "bbeaaa0b61aa722da65fb5e41aeaeb016025fd9d40ac12bfc79bb7f0f186579a"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png",
+        "identity_mode": "content",
+        "sha256": "bda257a2276ced228ac97715810681ac6fe84adfefaaeaa9c4d1f30683ae5488"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png",
+        "identity_mode": "content",
+        "sha256": "17398fcbb47c7df1f0d471bdf03d2f7883436147934846ee2dec06c316198925"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json",
+        "identity_mode": "content",
+        "sha256": "e83542b95855cdd41c16e715b853d9d7eef5f20f8122dc626360fc72d684671e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json",
+        "identity_mode": "content",
+        "sha256": "293dfaa357d3b03613dd88ce4f34fb4fa0803db61a46251faae83467d776ce51"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json",
+        "identity_mode": "content",
+        "sha256": "8c2e67bd6628f58193d54304585d8ff2c5e140d334ccaf71ee7a99529903af1c"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json",
+        "identity_mode": "content",
+        "sha256": "4c2abdb6343455649f928e51ba427df94f348d145edec338782d078c02b19e42"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json",
+        "identity_mode": "content",
+        "sha256": "11fd3c149153b2ae01a87795449cc1ff46e8bb2bc95aa6f7b9dd83146254db49"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt",
+        "identity_mode": "content",
+        "sha256": "faa02dfe652a5e6acff529113bb6bf6068d3d6cfc9ac35a8027f5ecabcf9473d"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-first-article-kit/visual-observations.json",
+        "identity_mode": "content",
+        "sha256": "7d36e121acf0345006a43468eec9c7184082626fb7848b08e065aa081856a151"
       },
       {
         "path": "review/issue-106/2026-10-19-independent-review.md",
@@ -806,6 +946,46 @@
         "path": "review/issue-106/2026-10-19-public-materials.md",
         "identity_mode": "content",
         "sha256": "2abbf7c9be41c0a72adc95d01ee3bf306f01d6044eea89c9a94d2b2d798f5d3e"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html",
+        "identity_mode": "content",
+        "sha256": "aef160ab38ef66027501e85dda67ef3a6108a8082f6dbd4c1c35d332681df7d6"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf",
+        "identity_mode": "content",
+        "sha256": "85f8e18f3a5de63f54e87ed0bd6b7576be7a0bb387074f06e246252900716db1"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png",
+        "identity_mode": "content",
+        "sha256": "dfb1cade802a3706a27cc2226f5b031abad408bb4a4a0e005dc1b29e0ddc58a8"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics",
+        "identity_mode": "content",
+        "sha256": "b854fb37210b7ac956703c409504260edc79f4b96d88f9a8261c4094bc888ba6"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md",
+        "identity_mode": "content",
+        "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/index.html",
+        "identity_mode": "content",
+        "sha256": "d82e549b6712d45c1cae67c6ce724ba88bcbec09e10f6128eb41bc56d9f4aa62"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json",
+        "identity_mode": "content",
+        "sha256": "f4d87f18d1bf77c0318dfa349a9bd3a11d62169b9f1e890aeacdb4735814eab5"
       },
       {
         "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md",
@@ -9097,6 +9277,314 @@
       "title": "Issue106 - first article launch and carousel kit"
     },
     {
+      "path": "review/issue-106/2026-10-19-first-article-kit/checklist.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Article campaign review"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/credits.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Source and rights"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-01.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-01.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-02.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-02.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-03.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-03.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-04.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-04.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-05.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-05.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-06.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-06.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint-07.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint-07.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.en.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.en.md"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.html"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/delivery-constraint.pdf",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "delivery-constraint.pdf"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/index.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.en.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.en.md"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.html"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.pdf",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.pdf"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/launch.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "launch.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/manifest.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-1.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "phone-sheet-1.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-2.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "phone-sheet-2.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/phone-sheet-3.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "phone-sheet-3.png"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/producer-acceptance.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "producer-acceptance.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-acceptance.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-acceptance.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-color-preview-smoke.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-color-preview-smoke.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-http.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-http.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/reader-b0ff-preview-smoke.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-b0ff-preview-smoke.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/renderer-diagnostic.txt",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "renderer-diagnostic.txt"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-first-article-kit/visual-observations.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "visual-observations.json"
+    },
+    {
       "path": "review/issue-106/2026-10-19-independent-review.md",
       "kind": "file",
       "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
@@ -9128,6 +9616,94 @@
         "AGENTS.md"
       ],
       "title": "Issue106 — selected public materials and reciprocal article links"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.en.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.pdf",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.pdf"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/announcement.png",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.png"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/calendar.ics",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.ics"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/checklist.md",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author review before posting"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/index.html",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer/manifest.json",
+      "kind": "file",
+      "purpose": "Exact clean-producer campaign review candidate or source/render/hosted diagnostic evidence; no publication or rights acceptance.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
     },
     {
       "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md",
@@ -23359,6 +23935,16 @@
       ]
     },
     {
+      "path": "review/issue-106/2026-10-19-first-article-kit",
+      "kind": "directory",
+      "purpose": "Retained source-bound campaign candidate and verification evidence.",
+      "role": "history",
+      "owner": "guides/ARTICLE-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/issue-108",
       "kind": "directory",
       "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
@@ -23372,6 +23958,16 @@
       "path": "review/issue-108/2026-10-19-announcement",
       "kind": "directory",
       "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-shared-renderer",
+      "kind": "directory",
+      "purpose": "Retained source-bound campaign candidate and verification evidence.",
       "role": "history",
       "owner": "guides/EVENT-DISTRIBUTION.md",
       "instructions": [
