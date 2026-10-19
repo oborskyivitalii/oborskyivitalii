@@ -928,7 +928,9 @@ test('route movement includes media extending outside the semantic shell visual 
   for (const direction of [1, -1]) {
     const h = harness();
     const element = h.elements[0];
-    element.children = [{ getBoundingClientRect: () => ({ top: 16, bottom: 600 }) }];
+    element.children = [
+      { getBoundingClientRect: () => ({ top: 16, bottom: 600, width: 100, height: 584 }) },
+    ];
     const departure = h.controller.depart(direction);
     const exit = Number.parseFloat(element.styles.get('--route-block-distance'));
     assert.ok(
@@ -946,6 +948,57 @@ test('route movement includes media extending outside the semantic shell visual 
     );
     h.controller.cancel();
     assert.equal((await arrival).cancelled, true);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
+test('empty route placeholders cannot retain a phase while real overflowing children still move', async () => {
+  for (const direction of [1, -1]) {
+    const h = harness({ count: 3 });
+    const [empty, overflowing, child] = h.elements;
+    empty.height = 0;
+    overflowing.top = 200;
+    overflowing.height = 0;
+    child.top = 500;
+    child.height = 200;
+    child.parentElement = overflowing;
+    child.closest = () => overflowing;
+    overflowing.children = [
+      child,
+      ...[-500, 2500].map((top) => ({
+        getBoundingClientRect: () => ({ top, bottom: top, width: 0, height: 0 }),
+      })),
+    ];
+    overflowing.contains = (node) => node === overflowing || overflowing.children.includes(node);
+    const departing = h.controller.depart(direction, 17);
+    assert.equal(empty.attributes.get('data-route-block'), undefined);
+    assert.equal(overflowing.attributes.get('data-route-block'), 'departing');
+    assert.equal(
+      child.attributes.get('data-route-block'),
+      undefined,
+      'native parent retains the unit'
+    );
+    assert.equal(h.controller.diagnostics().routeActive, 1);
+    assert.equal(h.probes.at(-1).rows, 1);
+    assert.equal(h.probes.at(-1).count, 1);
+    assert.equal(
+      Number.parseFloat(overflowing.styles.get('--route-block-distance')),
+      direction > 0 ? -732 : 732
+    );
+    h.tick(1000);
+    h.root.emit('animationend', { animationName: 'route-block-depart', target: child });
+    assert.equal(
+      h.controller.diagnostics().routeStage,
+      'holding',
+      'real ink completes without watchdog slack'
+    );
+    assert.equal((await departing).completedBy, 'animationend');
+    h.controller.prepareArrival(direction, 17);
+    const arriving = h.controller.arrive(direction, 17);
+    h.controller.cancelRoute();
+    assert.equal((await arriving).cancelled, true);
+    assert.equal(h.root.attributes.get('data-route-blocks'), undefined);
+    assert.ok(h.elements.every((element) => !element.attributes.has('data-route-block')));
     assert.equal(h.tasks.size, 0);
   }
 });
@@ -1006,7 +1059,9 @@ test('route visual rows overlap within a shared phase while preserving native or
       h.elements[index].top = top;
       h.elements[index].height = index === 2 ? 120 : 60;
     });
-    h.elements[0].children = [{ getBoundingClientRect: () => ({ top: 100, bottom: 660 }) }];
+    h.elements[0].children = [
+      { getBoundingClientRect: () => ({ top: 100, bottom: 660, width: 100, height: 560 }) },
+    ];
     if (stage === 'arriving') h.controller.prepareArrival(direction, 9);
     const phase =
       stage === 'departing' ? h.controller.depart(direction, 9) : h.controller.arrive(direction, 9);

@@ -65,6 +65,8 @@ window.SiteScrollEntry=(function () {
     '.empty-state',
     '.reader-closing',
     '.reader-chapter',
+    '.article-toc',
+    '.reader-appendices',
   ].join(',');
   const records = new Map();
   const routeUnits = new Map();
@@ -537,7 +539,10 @@ window.SiteScrollEntry=(function () {
     refreshInventory();
     const measured = [...routeUnits].map(([element, record]) => {
       const rect = element.getBoundingClientRect();
-      const children = [...(element.children || [])].map((child) => child.getBoundingClientRect());
+      const children = [...(element.children || [])]
+        .map((child) => child.getBoundingClientRect())
+        .filter((child) => child.width > 0 && child.height > 0);
+      const painted = (rect.width > 0 && rect.height > 0) || children.length > 0;
       // Media may intentionally extend beyond its semantic shell (Home's
       // facets do). Move the complete native visual envelope past the edge.
       return {
@@ -548,7 +553,7 @@ window.SiteScrollEntry=(function () {
           top: Math.min(rect.top, ...children.map((child) => child.top)),
           bottom: Math.max(rect.bottom, ...children.map((child) => child.bottom)),
         },
-        visible: element.getClientRects().length > 0,
+        visible: element.getClientRects().length > 0 && painted,
       };
     });
     const visible = measured.filter(

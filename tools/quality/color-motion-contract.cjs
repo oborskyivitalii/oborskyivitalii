@@ -5,6 +5,16 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 visible block inventory: omit unpainted placeholders and keep overflow; same route and scene clocks.
+  issue5ReaderVisibleBlocks: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    baseEngine: 'a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: 'f34e5595bed38bff0a29123e4c92316bf25dad21baf073ca74ef0d0fddfefdf4',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Issue5 reader semantic rule shell; same leaf-block runtime and scene clock.
   issue5ReaderBlockElements: {
     behavior: 'fixed-blocks',
@@ -295,6 +305,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-visible-blocks-production',
+    family: 'issue5ReaderVisibleBlocks',
+    edition: 'production',
+    fingerprint: '7fb9d467d106f7f5eb6e0e0e242c4d58e15eba9593ac0373091461b44f87c826',
+    styles: 'd8018d672d2d5791d802f76f73df209838807fd1f0ce88a23d8baa3ccb09f4b9',
+  },
+  {
+    id: 'issue5-reader-visible-blocks-plain',
+    family: 'issue5ReaderVisibleBlocks',
+    edition: 'plain',
+    fingerprint: 'db9a862fc8a1c4efa5edeb492e50b6351801261b7bcbcf4f03885d2975a06a82',
+    styles: 'd8018d672d2d5791d802f76f73df209838807fd1f0ce88a23d8baa3ccb09f4b9',
+  },
+  {
+    id: 'issue5-reader-visible-blocks-staging',
+    family: 'issue5ReaderVisibleBlocks',
+    edition: 'staging',
+    fingerprint: 'd51a358cd7b5ac776212d36a0275830b146e39579b2c83981eb114eac5c53795',
+    styles: 'eb184154bda61f825c989318a21c052cdcf01a5b16a769e8fbc1415ed9c7258e',
+  },
   {
     id: 'issue5-reader-block-elements-production',
     family: 'issue5ReaderBlockElements',

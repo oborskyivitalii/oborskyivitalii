@@ -206,7 +206,11 @@ test('reader-mode evidence requires stationary paragraphs while preserving legac
 
 test('reader-block evidence is required for every current identity while historical reports remain valid', () => {
   const motion = require('../tools/quality/color-motion-contract.cjs');
-  const identities = ['issue5-reader-blocks', 'issue5-reader-block-elements'].flatMap((family) =>
+  const identities = [
+    'issue5-reader-blocks',
+    'issue5-reader-block-elements',
+    'issue5-reader-visible-blocks',
+  ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
     )

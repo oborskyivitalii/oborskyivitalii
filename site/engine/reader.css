@@ -452,6 +452,7 @@ body[data-article] .site-footer a[href='#main'] {
   .reader-back,
   .article-toc,
   .reader-end,
+  .reader-note-returns,
   .article-figure-original {
     display: none;
   }

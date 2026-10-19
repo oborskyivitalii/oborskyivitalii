@@ -158,3 +158,26 @@ validation explicitly include the new identity. Independent read-only review
 found no blocker and checked the five equal file hashes across all three editions.
 Focused reader/evidence/Color39/39 and relevant independent3/3 checks passed.
 Final source policy/hosted receipts remain in the live PR/issue.
+
+
+## Visible route units and shared divider ownership
+
+The empty-placeholder finding also exposed a real route-lifetime gap: an empty
+unit could remain pending without an animationend event until watchdog slack.
+The runtime measurement now requires positive native or immediate-child area,
+ignores zero-area child rectangles in its travel envelope, and retains native
+shell geometry/order and actual overflowing media. A bidirectional regression
+verifies one real unit completes by animationend at1000ms, with no placeholder
+row/pending entry, and canceled arrival releases holds/attributes/timers.
+Scroll-entry43/43 and the combined focused suite115/115 pass. Current
+production/staging/modern-rights paths3/3 pass. These are observed prepared
+results; clean final source receipts remain in the live PR.
+
+Contents and appendix native dividers now use the same existing separator
+ownership as chapter/closing dividers, so their lines move with their blocks.
+The final exact family is issue5ReaderVisibleBlocks; prior families remain
+registered. Current producer pins, mandatory rights and raw-block admission
+cover it explicitly. The navigation factory changes; scene/theme/archive remain their prior bytes.
+The new return controls join the existing print-only hidden navigation group;
+Styles on screen otherwise retain the reviewed state. Camera/history signs, the fixed content/camera
+clocks, sustained reading and fallbacks retain their existing owners.

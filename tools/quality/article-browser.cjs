@@ -645,7 +645,11 @@ function validateArticleBlocks({ blocks, events, from, to, direction }) {
 
 function articleBlocksRequired(engine) {
   const motion = require('./color-motion-contract.cjs');
-  return ['issue5-reader-blocks', 'issue5-reader-block-elements'].some((family) =>
+  return [
+    'issue5-reader-blocks',
+    'issue5-reader-block-elements',
+    'issue5-reader-visible-blocks',
+  ].some((family) =>
     ['plain', 'staging', 'production'].some((edition) => {
       const { variant } = motion.reviewedRuntime(family + '-' + edition);
       return engine === variant.baseEngine || engine === variant.fingerprint;
