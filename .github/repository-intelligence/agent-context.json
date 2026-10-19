@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "eddb49565be5f072053773ab59bddcfbbcc99e7921c92fc87d315512569473f3",
+    "digest": "5a3dc9e349357247fde54b2482feb4fc1687324b81bac99d941a1be27dfa8795",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,7 +171,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "cb037a5e6c2b4437fd4b208b7af7b44ab7f7df0c763ef5b61a3f595414af957f"
+        "sha256": "9a89021eb5b12a607a70e874136da5e2389a57781235c46b273d56c4a01c2f35"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -6980,7 +6980,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "1cc88a137ac173a1cf203796c4cb9ba7a45dc5672fac0d65769ed8f0193caaa5"
+        "sha256": "17d594effe9e043c9728b4f346515725d98a42b7c0ffd2d4a966f643f4cad60a"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -7325,7 +7325,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "362dd34fe5aca727ca99d12e797d098a3b0fa644467279be8eef5e8bc23d6b64"
+        "sha256": "22f9a4d90ff3d8d6564c74c5d4157818a8c9db042e8db98f46ae5d2e1a79030d"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
