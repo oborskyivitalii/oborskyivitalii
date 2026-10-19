@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 independent reader-flight review: signed local document trip and history direction.
+  issue5ReaderFlight: {
+    behavior: 'fixed-blocks',
+    baseEngine: '4dd8f591aa75d9dde64358c03481902d032ad893f535a36f1ed4a9cafd1d323e',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '5f4dc5f28fd9425975e4faa5a587f3b63c0217b216b2210a2762f1dc6e4c5597',
+    navigation: '62b524beb9fb8f5364cd179b986628bda0e3694f824c646bf0338423fabda14f',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   // Issue106 self-review: selected material links; exact new resource behavior is tested.
   issue106ReaderMaterials: {
     behavior: 'fixed-blocks',
@@ -183,6 +192,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-flight-production',
+    family: 'issue5ReaderFlight',
+    edition: 'production',
+    fingerprint: '4b89ff2b730bb3dc25cea506708c130457013afaaa9eb833d753a1129b2a3639',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-reader-flight-plain',
+    family: 'issue5ReaderFlight',
+    edition: 'plain',
+    fingerprint: 'e52d0469ebf5aad6dfd10a0cb7470d7de00379639bf76500c9768ec128089b0e',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-reader-flight-staging',
+    family: 'issue5ReaderFlight',
+    edition: 'staging',
+    fingerprint: 'ed26dfbd7db7261e16fdaa9c67f855c597a10221b672c24de636ea83d2aa9a49',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue106-reader-materials-production',
     family: 'issue106ReaderMaterials',

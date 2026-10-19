@@ -3,6 +3,7 @@
 module.exports = function (math, definitions) {
   const {
     add,
+    mix,
     dot,
     lerp,
     clamp,
@@ -417,6 +418,17 @@ module.exports = function (math, definitions) {
     ...(pose.framing !== undefined ? { framing: pose.framing } : {}),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
+  // Documents share Writing's reading anchor. A bounded corridor excursion
+  // still passes through real fractal depth and returns to that same anchor.
+  function documentTravelPose(from, to, progress, direction) {
+    const p = clamp(progress),
+      base = mix(from, to, smooth(p));
+    if (p === 0 || p === 1) return base;
+    return translatePose(
+      base,
+      ((-Math.sign(direction) * roomSpacing) / 2) * Math.sin(Math.PI * p) ** 2
+    );
+  }
   return {
     loopTransform,
     cameraVertices,
@@ -428,6 +440,7 @@ module.exports = function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    documentTravelPose,
     centerPose,
     roomOffset,
     translatePose,

@@ -19,6 +19,7 @@ module.exports = function (api) {
     projectedWorld,
     paintShapes,
     routePose,
+    documentTravelPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -155,8 +156,14 @@ module.exports = function (api) {
       navigationId: planned.navigationId,
       from: planned.fromPage,
       to: planned.toPage,
+      fromDocument: planned.fromDocument,
+      toDocument: planned.toDocument,
+      direction: planned.direction,
+      localDocument: planned.localDocument,
       fromZ: planned.from.position[2],
       toZ: planned.to.position[2],
+      fromPose: planned.from,
+      toPose: planned.to,
       plannedDurationMs: planned.duration,
       centerDurationMs: planned.centerDuration,
       transitDurationMs: planned.transitDuration,
@@ -256,6 +263,11 @@ module.exports = function (api) {
     // Its logical source page may still be several rooms away from that paint.
     if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
     const targetIndex = routeOrder.indexOf(travel.toPage);
+    if (travel.localDocument) {
+      const near =
+        pose.position[2] < readingPose(travel.toPage).position[2] ? targetIndex : targetIndex - 1;
+      return [Math.max(0, near), Math.min(near + 1, routeOrder.length - 1)];
+    }
     const first = Math.min(...travel.fromRooms, targetIndex),
       last = Math.max(...travel.fromRooms, targetIndex);
     let near = first;
@@ -504,11 +516,10 @@ module.exports = function (api) {
     } else if (elapsed < centerEnd) {
       current = mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
     } else if (elapsed < transitEnd) {
-      current = mix(
-        journey.centeredFrom,
-        journey.centeredTo,
-        smooth((elapsed - centerEnd) / (transitEnd - centerEnd))
-      );
+      const progress = (elapsed - centerEnd) / (transitEnd - centerEnd);
+      current = journey.localDocument
+        ? documentTravelPose(journey.centeredFrom, journey.centeredTo, progress, journey.direction)
+        : mix(journey.centeredFrom, journey.centeredTo, smooth(progress));
     } else if (elapsed < journey.duration) {
       current = mix(
         journey.centeredTo,
@@ -719,12 +730,20 @@ module.exports = function (api) {
             ? travelRoomIndices(journey, from, displayedElapsed)
             : [routeOrder.indexOf(sourcePage)];
       page = next;
-      const travelling = animate && next !== sourcePage && this.canTravel(),
+      const metadata = options[1],
+        documentChange = metadata?.documentChange === true,
+        localDocument =
+          next === sourcePage &&
+          documentChange &&
+          metadata.sameSceneDocument === true &&
+          (!journey || journey.localDocument),
+        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel(),
         target = readingPose();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
-      const forward =
-        target.position[2] === from.position[2]
+      const forward = localDocument
+        ? metadata.direction !== -1
+        : target.position[2] === from.position[2]
           ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
           : target.position[2] < from.position[2];
       scene.dataset.direction = forward ? 'forward' : 'backward';
@@ -740,6 +759,10 @@ module.exports = function (api) {
             Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
           fromPage: sourcePage,
           toPage: page,
+          localDocument,
+          direction: forward ? 1 : -1,
+          fromDocument: metadata?.fromDocument,
+          toDocument: metadata?.toDocument,
           fromRooms,
           from,
           to: target,
@@ -769,6 +792,18 @@ module.exports = function (api) {
           for (const route of new Set([
             ...fromRooms.map((index) => routeOrder[index]),
             ...travelRoomIndices(journey, from).map((index) => routeOrder[index]),
+            ...(journey.localDocument
+              ? travelRoomIndices(
+                  journey,
+                  documentTravelPose(
+                    journey.centeredFrom,
+                    journey.centeredTo,
+                    0.5,
+                    journey.direction
+                  ),
+                  journey.centerDuration
+                ).map((index) => routeOrder[index])
+              : []),
             page,
           ]))
             roomFor(route);

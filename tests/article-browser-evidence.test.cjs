@@ -3,6 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
   validateArticleJourney,
+  validateArticleFlight,
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
   articleAnchorCount,
@@ -14,6 +15,66 @@ const key = 'representative:en';
 const descriptors = { [key]: { version: 'f'.repeat(64), candidate: true } };
 const engine = fixture.manifest().components.engine;
 const baseURL = 'https://candidate.example.invalid/author';
+
+function flight(from, to, direction) {
+  const localDocument =
+    (from === 'writing' || from.startsWith('article:')) &&
+    (to === 'writing' || to.startsWith('article:'));
+  const fromZ = -250,
+    toZ = localDocument ? fromZ : fromZ - direction * 128;
+  const plan = {
+    kind: 'camera-travel',
+    navigationId: 1,
+    fromDocument: from,
+    toDocument: to,
+    direction,
+    localDocument,
+    fromZ,
+    toZ,
+    fromPose: { position: [0, 0, fromZ], target: [0, 0, fromZ - 8], framing: 0 },
+    toPose: { position: [0, 0, toZ], target: [0, 0, toZ - 8], framing: 0 },
+    plannedDurationMs: 1750,
+    centerDurationMs: 400,
+    transitDurationMs: 1000,
+    restoreDurationMs: 350,
+  };
+  return {
+    from,
+    to,
+    direction,
+    events: [
+      plan,
+      ...[0, 200, 400, 800, 1000, 1400, 1600, 1750].map((elapsed) => ({
+        kind: 'paint',
+        navigationId: 1,
+        elapsed,
+        current: {
+          position: [
+            0,
+            0,
+            elapsed === 1750
+              ? toZ
+              : elapsed >= 400 && elapsed < 1400
+                ? fromZ - direction * 64
+                : fromZ,
+          ],
+          target: [
+            0,
+            0,
+            (elapsed === 1750
+              ? toZ
+              : elapsed >= 400 && elapsed < 1400
+                ? fromZ - direction * 64
+                : fromZ) - 8,
+          ],
+          framing: elapsed >= 400 && elapsed < 1400 ? 1 : 0,
+        },
+        paintedRooms: ['writing'],
+      })),
+      { ...plan, kind: 'camera-travel-complete', elapsedMs: 1750 },
+    ],
+  };
+}
 
 function observed() {
   const normal = Object.fromEntries(
@@ -60,6 +121,16 @@ function observed() {
         key,
         width,
         mode: 'normal',
+        relatedDeparture: { present: false, departed: false },
+        flights: [
+          flight('writing', 'article:' + key, 1),
+          flight('article:' + key, 'writing', -1),
+          flight('writing', 'article:' + key, 1),
+          flight('article:' + key, 'research', -1),
+          ...['index', 'writing', 'talks', 'credits'].map((to) =>
+            flight('article:' + key, to, ['index', 'writing'].includes(to) ? -1 : 1)
+          ),
+        ],
         head: structuredClone(head),
         reading: {
           entered: ['first-section'],
@@ -79,6 +150,7 @@ function observed() {
           anchors: true,
           writingLink: true,
           singleCanvas: true,
+          ...(mode === 'off' ? { reducedMotion: true } : {}),
           basePath: '/author/',
         },
       })),
@@ -218,6 +290,11 @@ test('reader reference evidence requires served immutable material links in ever
     detail.documents = [name];
     detail.availableDocuments = [name];
     for (const row of detail.observations) {
+      if (row.flights)
+        row.flights = row.flights.map((item) =>
+          flight(item.from.replace(key, name), item.to.replace(key, name), item.direction)
+        );
+      if (row.relatedDeparture) row.relatedDeparture = { present: true, departed: true };
       row.key = name;
       row.head.key = name;
       row.head.materials = [
@@ -457,4 +534,35 @@ test('bounded article history diagnostics retain original Back state and geometr
   assert.equal(scope.history, originalHistory);
   assert.equal(scope.scrollTo, originalScroll);
   assert.equal(content.inert, false);
+});
+
+test('article flight admission rejects static depth, wrong direction, mixed identities and missing stages', () => {
+  const good = flight('writing', 'article:' + key, 1);
+  validateArticleFlight(good.events, good.from, good.to, good.direction);
+  for (const corrupt of [
+    (events) =>
+      events
+        .filter((event) => event.kind === 'paint')
+        .forEach((event) => (event.current.position[2] = -250)),
+    (events) =>
+      events
+        .filter((event) => event.kind === 'paint' && event.elapsed >= 400 && event.elapsed < 1400)
+        .forEach((event) => (event.current.position[2] = -186)),
+    (events) => {
+      events[2].navigationId = 2;
+    },
+    (events) => events.splice(1, 2),
+    (events) => events.pop(),
+    (events) => {
+      events[0].localDocument = false;
+    },
+    (events) => {
+      events.at(-2).current.target[0] = 1;
+    },
+  ]) {
+    const bad = structuredClone(good);
+    corrupt(bad.events);
+    assert.throws(() => validateArticleFlight(bad.events, bad.from, bad.to, bad.direction));
+  }
+  assert.throws(() => validateArticleFlight([good.events[0]], good.from, good.to, good.direction));
 });

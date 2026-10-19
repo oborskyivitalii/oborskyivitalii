@@ -94,8 +94,13 @@ geometry. Flights prepare each room at its settled adaptive detail before the
 first painted flight frame. Each of at most three active/pending rooms caches
 at most two detail variants; theme changes
 repaint their color tables. No independent render loop or runtime dependency is added.
-During a flight, the two projected adjacent rooms stay within that journey's
-source/destination interval. Complete room ink fades from zero at neighboring
+During principal-route flight, the two projected adjacent rooms stay within that journey's
+source/destination interval. Distinct reader documents share Writing's canonical anchor:
+the router explicitly requests a signed half-room corridor excursion for those trips,
+using the existing camera clock and fixed400/1000/350ms legs. Real camera depth returns
+to the same reading anchor; canonical neighboring room weights preserve retarget continuity.
+The router owns document/history direction, including Back/Forward; native anchors and
+filters do not start camera travel. Same-route scene cleanup without document intent stays instant. Complete room ink fades from zero at neighboring
 reading-depth anchors to full visibility at its own anchor, in either direction.
 Geometry is prepared before the first flight paint; pair and restoration switches
 remove only zero-weight rooms, without exposing a room beyond the destination.

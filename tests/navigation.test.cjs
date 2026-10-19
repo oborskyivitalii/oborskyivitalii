@@ -318,6 +318,7 @@ function routeHarness({
   blurDeparture = false,
   failNativeScroll = false,
   initialPage = 'index',
+  contentFlight = true,
 } = {}) {
   const calls = [],
     probes = [],
@@ -454,7 +455,7 @@ function routeHarness({
       refresh() {},
       detachTravel() {},
       navigate(next, animate, update, landing, metadata) {
-        calls.push({ kind: 'scene', next, animate, landing, navigationId: metadata.navigationId });
+        calls.push({ kind: 'scene', next, animate, landing, ...metadata });
         if (holdScene && metadata.navigationId === 1) {
           finishScene = () => update(1);
           resolveScene();
@@ -489,7 +490,7 @@ function routeHarness({
     scrollEntry,
     content,
     effects: { measure: (run) => run() },
-    presentation: null,
+    presentation: { contentFlight: () => contentFlight, canTravel: () => true },
     announcement: {},
     document: {
       hidden: false,
@@ -517,8 +518,8 @@ function routeHarness({
     metadata: 'fixture-metadata',
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
     routeFor: (url) =>
-      url.pathname === '/articles/sample-en.html'
-        ? 'article:sample:en'
+      url.pathname.startsWith('/articles/')
+        ? 'article:' + url.pathname.split('/').at(-1).replace('-en.html', ':en')
         : url.pathname.slice(1).replace('.html', ''),
     address: (url) => url,
     async read(next) {
@@ -556,7 +557,7 @@ function routeHarness({
   assert.ok(start > 0 && end > start, 'missing authored navigation lifecycle boundary');
   assert.ok(scrollStart > 0 && scrollEnd > scrollStart, 'missing authored scroll-save boundary');
   vm.runInNewContext(
-    `let page=${JSON.stringify(initialPage)},serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null;
+    `let page=${JSON.stringify(initialPage)},historyIndex=0,serial=0,request=null,transition=null,endpoint=null,inputTail=null,lastKey=null,scrollSave=null;
     ${section('save', 'push')}
     ${interruptSource}${section('motionAllowed', 'restoreScroll')}${section('restoreScroll', 'endpointProbe')}${flightSource}
     ${section('mount', 'prepare')}${source.slice(start, end)}
@@ -714,7 +715,7 @@ test('article Back restores the archive link and scroll captured before inert bl
   assert.deepEqual(h.blurredFocus, ['article-sample-en']);
   assert.deepEqual(h.historyEntries[0].state, {
     unrelated: 'retained',
-    site: { page: 'writing', scroll: [0, 705], focus: 'article-sample-en' },
+    site: { page: 'writing', index: 0, scroll: [0, 705], focus: 'article-sample-en' },
   });
   const articleState = h.historyEntries[1].state;
   await h.travel(-1);
@@ -741,6 +742,7 @@ test('initial navigation replaces the entry without storing departure state or p
   );
   assert.deepEqual(h.historyEntries[0].state.site, {
     page: 'article:sample:en',
+    index: 0,
     scroll: [0, 0],
     focus: 'main',
   });
@@ -826,6 +828,7 @@ test('hidden departure retarget preserves captured focus while explicit read-tim
     const scroll = explicitFocus ? 5750 : 5722;
     assert.deepEqual(h.historyEntries[0].state.site, {
       page: 'writing',
+      index: 0,
       scroll: [0, scroll],
       focus,
     });
@@ -1287,7 +1290,7 @@ function sequenceHarness() {
   const start = source.indexOf('  async function navigate(');
   const end = source.indexOf('  document.body.dataset.entryPage', start);
   vm.runInNewContext(
-    `let page='index',serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;
+    `let page='index',historyIndex=0,serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;
     ${section('departureUnavailable', 'push')}
     ${source.slice(start, end)}
     globalThis.currentPage=value=>page=value;
@@ -1479,4 +1482,43 @@ test('verified snapshot resources regain native root and nested article links at
   const footerLink = element({ href: '?view=credits' });
   context.rebase({ footer: element({}, [footerLink]) }, entry);
   assert.equal(footerLink.attributes.href, '?view=credits', 'offline query links stay native');
+});
+
+test('reader documents fly in both directions with history order and every principal destination', async () => {
+  const h = routeHarness({ initialPage: 'writing' });
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await h.navigate(new URL('https://fixture.test/articles/second-en.html'));
+  await h.travel(-1);
+  await h.travel(1);
+  await h.navigate(new URL('https://fixture.test/writing.html'));
+  const flights = h.calls.filter((call) => call.kind === 'scene');
+  assert.deepEqual(
+    flights.map((call) => call.direction),
+    [1, 1, -1, 1, -1]
+  );
+  assert.ok(flights.every((call) => call.animate && call.documentChange));
+  assert.deepEqual(
+    flights.map((call) => call.toDocument),
+    ['article:sample:en', 'article:second:en', 'article:sample:en', 'article:second:en', 'writing']
+  );
+  assert.deepEqual(h.assigned, []);
+  for (const destination of ['index', 'research', 'writing', 'talks', 'credits']) {
+    const reader = routeHarness({ initialPage: 'article:sample:en' });
+    await reader.navigate(new URL('https://fixture.test/' + destination + '.html'));
+    const flight = reader.calls.find((call) => call.kind === 'scene');
+    assert.equal(flight.animate, true, destination);
+    assert.equal(flight.toDocument, destination);
+    assert.deepEqual(reader.assigned, []);
+  }
+});
+
+test('Block transitions Off leaves document camera travel enabled without route waves', async () => {
+  const h = routeHarness({ initialPage: 'writing', contentFlight: false });
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  assert.equal(h.calls.find((call) => call.kind === 'scene').animate, true);
+  assert.equal(
+    h.calls.some((call) => ['departure', 'arrival'].includes(call.kind)),
+    false
+  );
+  assert.deepEqual(h.assigned, []);
 });

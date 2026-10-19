@@ -41,6 +41,7 @@ window.SiteScrollEntry=(function () {
     '.article-toc',
     '.article-body > *',
     '.article-sources',
+    '.article-related',
     '.article-list',
   ].join(',');
   const routeTargets = `${targets},.archive-filters,.section-nav,.topic-nav`;
@@ -1222,6 +1223,7 @@ window.SiteScrollEntry=(function () {
     : document.body.dataset.page;
   let pinned = null;
   let page = initialPage,
+    historyIndex = Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : 0,
     serial = 0,
     request = null,
     transition = null,
@@ -1499,6 +1501,7 @@ window.SiteScrollEntry=(function () {
           ...history.state,
           site: {
             page,
+            index: historyIndex,
             scroll: [window.scrollX, window.scrollY],
             focus:
               document.activeElement?.id ||
@@ -1541,7 +1544,11 @@ window.SiteScrollEntry=(function () {
   }
   function push(url) {
     save();
-    history.pushState({ site: { page, scroll: [window.scrollX, window.scrollY] } }, '', url);
+    history.pushState(
+      { site: { page, index: ++historyIndex, scroll: [window.scrollX, window.scrollY] } },
+      '',
+      url
+    );
   }
   function revisionValid(revision) {
     if (
@@ -1956,7 +1963,7 @@ window.SiteScrollEntry=(function () {
   document.fonts?.addEventListener?.('loadingdone', () => {
     if (!window.SiteScene?.managesLayout) reconcileEndpoint();
   });
-  function flight(next, animate, commit, own, departure, landing = null) {
+  function flight(next, animate, commit, own, departure, landing = null, documentTravel = null) {
     return new Promise((resolve, reject) => {
       let mounted = false,
         mountTimer = null,
@@ -2065,6 +2072,7 @@ window.SiteScrollEntry=(function () {
       if (window.SiteScene)
         window.SiteScene.navigate(next, animate, transition, landing, {
           navigationId: own,
+          ...documentTravel,
         });
       else transition(1);
     });
@@ -2180,7 +2188,19 @@ window.SiteScrollEntry=(function () {
     if (!navigableDestination(url, next)) return;
     const nextScene = routes.includes(next) ? next : 'writing';
     const currentScene = routes.includes(page) ? page : 'writing';
-    const direction = routes.indexOf(nextScene) >= routes.indexOf(currentScene) ? 1 : -1;
+    const targetIndex =
+      pop && Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : null;
+    const direction =
+      nextScene !== currentScene
+        ? routes.indexOf(nextScene) > routes.indexOf(currentScene)
+          ? 1
+          : -1
+        : pop && targetIndex !== null && targetIndex !== historyIndex
+          ? Math.sign(targetIndex - historyIndex)
+          : next === 'writing'
+            ? -1
+            : 1;
+    const fromDocument = page;
     const interruptedFocus = departureFocus();
     const interruptedPosition = departurePosition();
     const own = ++serial;
@@ -2212,7 +2232,7 @@ window.SiteScrollEntry=(function () {
       // Departure visibility and inert can both blur native links. Capture
       // reading state before either owner makes the outgoing content inaccessible.
       saveDeparture(destination, pop, initial, interruptedFocus);
-      let animate = !initial && nextScene !== currentScene && motionAllowed();
+      let animate = !initial && next !== page && motionAllowed();
       let blocks = animate && (presentation?.contentFlight?.() ?? true);
       if (blocks) {
         const result = await scrollEntry?.depart?.(direction, own);
@@ -2226,9 +2246,18 @@ window.SiteScrollEntry=(function () {
         () => {
           const start = window.SiteEngineStages ? performance.now() : 0;
           if (!pop && !initial && destination.href !== window.location.href) {
-            history.pushState({ site: { page: next, scroll: [0, 0] } }, '', destination);
+            history.pushState(
+              { site: { page: next, index: ++historyIndex, scroll: [0, 0] } },
+              '',
+              destination
+            );
           } else if (initial)
-            history.replaceState({ site: { page: next, scroll: [0, 0] } }, '', destination);
+            history.replaceState(
+              { site: { page: next, index: historyIndex, scroll: [0, 0] } },
+              '',
+              destination
+            );
+          else if (pop && targetIndex !== null) historyIndex = targetIndex;
           if (start) {
             const time = performance.now();
             window.SiteEngineProbe?.({
@@ -2244,7 +2273,14 @@ window.SiteScrollEntry=(function () {
         },
         own,
         null,
-        { position, hash: url.hash, search: url.search }
+        { position, hash: url.hash, search: url.search },
+        {
+          documentChange: next !== fromDocument,
+          sameSceneDocument: nextScene === currentScene && nextScene === 'writing',
+          fromDocument,
+          toDocument: next,
+          direction,
+        }
       );
       if (own !== serial) return;
       if (blocks && motionAllowed() && (presentation?.contentFlight?.() ?? true))
@@ -2353,6 +2389,7 @@ window.SiteScrollEntry=(function () {
     if (next && (next !== page || request))
       navigate(url, { pop: true, position: event.state?.site?.scroll || null });
     else {
+      if (Number.isSafeInteger(event.state?.site?.index)) historyIndex = event.state.site.index;
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
       if (event.state?.site?.scroll)

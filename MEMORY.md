@@ -36,10 +36,12 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Open work
 
-- Current tag-component preview CI/browser evidence must match final PR head.
-  Draft smoke never substitutes for staging admission; no article publication.
-  Initial CI39233209446 caught async tag reflow on Back; tab-memory hydration now
-  precedes restoration and still fetches current data. Recheck exact final browser.
+- Reader-flight correction in the same PR79: explicit same-scene document travel,
+  history direction and related-block wave; bounded independent review and raw
+  successful-camera-paint admission. Review: review/issue-5/2026-10-19-reader-flight-review.md.
+  Exact final source/CI/preview evidence belongs to PR79; draft smoke is not staging admission.
+- Separate materials review F01 revoked/private offline export and F02 private-only
+  snapshot invalidation remain open; preserve PR107 materials/editorial ownership.
 - Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
   The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
   later. No successful current article hosted acceptance is inferred.
@@ -60,7 +62,8 @@ review/issue-106/2026-10-19-public-materials.md and exact PR check/preview evide
 No campaign or production publication. Original remaining gates stay open.
 
 1. Fetch live #5/PR79/current main and preserve any concurrent editorial commits.
-2. Inspect current tag/template CI/preview and finish applicable platform admission.
+2. Verify final reader-flight CI/preview; resolve materials F01/F02 and re-review,
+   then finish applicable platform admission. Do not equate bounded review with AC11 closure.
 3. Consume final article handoff later; verify its actual resource/rights/PDF
    gates separately, then obtain first-publication decision through the controller.
 4. Implement production content/media lanes and coherent concurrency after baseline.

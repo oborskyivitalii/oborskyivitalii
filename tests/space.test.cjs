@@ -2360,7 +2360,9 @@ test('retargeted flights retain their displayed room pair, including reverse and
       assert.equal(p.scene.dataset.cameraStage, 'transit', 'interrupt an actual depth flight');
       const displayed = p.trace(),
         rooms = [...paints.at(-1).paintedRooms].sort(),
-        visibility = JSON.stringify(paints.at(-1).roomVisibility);
+        visibility = JSON.stringify(
+          paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)
+        );
       assert.ok(rooms.length > 0, 'the source geometry was actually painted');
       models.length = 0;
       p.window.SiteScene.navigate(next);
@@ -2378,7 +2380,7 @@ test('retargeted flights retain their displayed room pair, including reverse and
         'the first replacement paint keeps the same contributing rooms'
       );
       assert.equal(
-        JSON.stringify(paints.at(-1).roomVisibility),
+        JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
         visibility,
         'retargeting keeps the displayed spatial visibility weights'
       );
@@ -2419,4 +2421,231 @@ test('retargeting each longer camera leg cancels its plan and completes from its
     assert.deepEqual(JSON.parse(p.trace()), model.routePose('index', model.poses.overview));
     assert.equal(p.pending.size, 1);
   }
+});
+
+test('reader document excursions paint signed fractal depth and return to the Writing anchor', () => {
+  for (const direction of [1, -1])
+    for (const narrow of [false, true]) {
+      const paints = [],
+        p = visit({
+          page: 'writing',
+          narrow,
+          probe: (event) => {
+            if (event.kind === 'paint') paints.push(structuredClone(event));
+          },
+        });
+      p.settle();
+      const anchor = p.trace(),
+        z = JSON.parse(anchor).position[2],
+        progress = [];
+      p.window.SiteScene.navigate('writing', true, (value) => progress.push(value), null, {
+        navigationId: 7,
+        documentChange: true,
+        sameSceneDocument: true,
+        fromDocument: 'writing',
+        toDocument: 'article:sample:en',
+        direction,
+      });
+      advanceUntil(p, () => progress.at(-1) === 1, 'reader flight finishes', 60);
+      const flight = paints.filter((paint) => paint.journey?.navigationId === 7);
+      const transit = flight.filter(
+        (paint) => paint.journey.elapsed >= 400 && paint.journey.elapsed < 1400
+      );
+      assert.ok(transit.length > 5);
+      assert.ok(
+        transit.some((paint) => direction * (z - paint.current.position[2]) > 60),
+        'actual paint moves through room depth'
+      );
+      assert.ok(transit.every((paint) => direction * (z - paint.current.position[2]) >= -0.001));
+      assert.ok(transit.every((paint) => paint.current.framing === 1));
+      assert.ok(
+        transit.some((paint) =>
+          paint.paintedRooms.includes(direction === 1 ? 'talks' : 'research')
+        ),
+        'adjacent fractal is actually painted'
+      );
+      assert.equal(p.trace(), anchor);
+      assert.equal(p.scene.dataset.travel, 'settled');
+      assert.ok(Number(p.scene.dataset.rooms) <= 3);
+      assert.ok(Number(p.scene.dataset.roomModels) <= 6);
+    }
+});
+test('retargeting a reader excursion preserves its exact displayed camera and room weights', () => {
+  for (const direction of [1, -1])
+    for (const elapsed of [200, 720, 1260, 1510]) {
+      const paints = [],
+        p = visit({
+          page: 'writing',
+          probe: (event) => {
+            if (event.kind === 'paint') paints.push(structuredClone(event));
+          },
+        });
+      p.settle();
+      p.window.SiteScene.navigate('writing', true, null, null, {
+        navigationId: 1,
+        documentChange: true,
+        sameSceneDocument: true,
+        direction,
+      });
+      p.frame(20);
+      for (let time = 0; time < elapsed; time += 20) p.frame(20);
+      const camera = p.trace(),
+        weights = JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0));
+      p.window.SiteScene.navigate(direction === 1 ? 'research' : 'talks', true, null, null, {
+        navigationId: 2,
+      });
+      p.frame(20);
+      assert.equal(p.trace(), camera);
+      assert.equal(
+        JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
+        weights,
+        'no alpha discontinuity at replacement'
+      );
+      finishFlight(p, 'retarget settles');
+    }
+});
+test('reader document motion respects Off, reduced motion and hidden native completion', () => {
+  for (const options of [{ saved: 'off' }, { reduced: true }]) {
+    const p = visit({ page: 'writing', ...options });
+    p.settle();
+    const camera = p.trace(),
+      progress = [];
+    p.window.SiteScene.navigate('writing', true, (value) => progress.push(value), null, {
+      documentChange: true,
+      sameSceneDocument: true,
+      direction: 1,
+    });
+    p.frame(80);
+    assert.deepEqual(progress, [1]);
+    assert.equal(p.trace(), camera);
+  }
+  const p = visit({ page: 'writing' });
+  p.settle();
+  let done = 0;
+  p.window.SiteScene.navigate('writing', true, (value) => (done = value), null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    direction: 1,
+  });
+  p.frame(80);
+  const camera = p.trace();
+  p.hidden(true);
+  p.frame(30000);
+  assert.equal(p.trace(), camera);
+  assert.equal(p.pending.size, 0);
+  p.hidden(false);
+  advanceUntil(p, () => done === 1, 'visible reader resumes');
+});
+
+test('repeating a principal destination before mount retargets without a reader excursion', () => {
+  for (const [from, to] of [
+    ['research', 'writing'],
+    ['writing', 'research'],
+  ]) {
+    const paints = [],
+      p = visit({
+        page: from,
+        probe: (event) => {
+          if (event.kind === 'paint') paints.push(structuredClone(event));
+        },
+      });
+    p.settle();
+    p.window.SiteScene.navigate(to, true, null, null, {
+      navigationId: 1,
+      documentChange: true,
+      sameSceneDocument: false,
+    });
+    advanceUntil(p, () => p.scene.dataset.cameraStage === 'transit', 'first route reaches transit');
+    const camera = p.trace();
+    p.window.SiteScene.navigate(to, true, null, null, {
+      navigationId: 2,
+      documentChange: true,
+      sameSceneDocument: false,
+    });
+    p.frame(80);
+    assert.equal(p.trace(), camera);
+    assert.equal(paints.at(-1).journey.localDocument, false);
+    finishFlight(p, 'repeated route settles');
+    assert.deepEqual(
+      JSON.parse(p.trace()),
+      model.routePose(to, model.poses[model.initialPoses[to]])
+    );
+  }
+});
+
+test('reader corridor models are prepared before the first flight paint in both directions', () => {
+  for (const direction of [1, -1]) {
+    const events = [],
+      p = visit({ page: 'writing', probe: (event) => events.push(structuredClone(event)) });
+    p.settle();
+    p.window.SiteEngineStages = true;
+    events.length = 0;
+    p.window.SiteScene.navigate('writing', true, null, null, {
+      navigationId: 8,
+      documentChange: true,
+      sameSceneDocument: true,
+      direction,
+    });
+    finishFlight(p, 'prewarmed reader corridor settles');
+    const first = events.findIndex((event) => event.kind === 'paint');
+    assert.ok(first > 0);
+    assert.ok(
+      events
+        .slice(0, first)
+        .some(
+          (event) =>
+            event.kind === 'stage' &&
+            event.part === 'model-build' &&
+            event.route === (direction === 1 ? 'talks' : 'research')
+        )
+    );
+    assert.deepEqual(
+      events.slice(first).filter((event) => event.kind === 'stage' && event.part === 'model-build'),
+      [],
+      'no cold room construction inside a flight frame'
+    );
+    assert.ok(Number(p.scene.dataset.rooms) <= 3);
+    assert.ok(Number(p.scene.dataset.roomModels) <= 6);
+  }
+});
+
+test('reader activation after a principal midpoint preserves the remaining principal corridor', () => {
+  const paints = [],
+    p = visit({
+      page: 'credits',
+      probe: (event) => {
+        if (event.kind === 'paint') paints.push(structuredClone(event));
+      },
+    });
+  p.settle();
+  p.window.SiteScene.navigate('writing', true, null, null, {
+    navigationId: 1,
+    documentChange: true,
+    sameSceneDocument: false,
+  });
+  p.frame(20);
+  for (let elapsed = 0; elapsed < 900; elapsed += 20) p.frame(20);
+  const camera = p.trace(),
+    weights = JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0));
+  // The router has mounted Writing at midpoint; Scene is still arriving from Credits.
+  p.window.SiteScene.navigate('writing', true, null, null, {
+    navigationId: 2,
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'writing',
+    toDocument: 'article:sample:en',
+    direction: 1,
+  });
+  p.frame(20);
+  assert.equal(p.trace(), camera);
+  assert.equal(paints.at(-1).journey.localDocument, false);
+  assert.equal(
+    JSON.stringify(paints.at(-1).roomVisibility.filter((room) => room.opacity > 0)),
+    weights
+  );
+  finishFlight(p, 'reader activation finishes the existing corridor');
+  assert.deepEqual(
+    JSON.parse(p.trace()),
+    model.routePose('writing', model.poses[model.initialPoses.writing])
+  );
 });

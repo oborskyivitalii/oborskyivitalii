@@ -42,6 +42,7 @@ module.exports = function () {
     '.article-toc',
     '.article-body > *',
     '.article-sources',
+    '.article-related',
     '.article-list',
   ].join(',');
   const routeTargets = `${targets},.archive-filters,.section-nav,.topic-nav`;

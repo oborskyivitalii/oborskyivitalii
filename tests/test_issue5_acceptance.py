@@ -53,6 +53,8 @@ class Issue5AcceptanceTests(unittest.TestCase):
                 "tests/article-tags.test.cjs",
                 "tests/local-catalog-relationships.test.cjs",
                 "tests/navigation.test.cjs",
+                "tests/scroll-entry.test.cjs",
+                "tests/space.test.cjs",
             ],
             40,
         )

@@ -182,7 +182,9 @@ async function observeReading(page) {
           change.attributeName === 'data-route-block' &&
           element.getAttribute('data-route-block') === 'departing'
         ) {
-          state.departed.push(element.id || element.tagName);
+          state.departed.push(
+            element.matches('.article-related') ? 'article-related' : element.id || element.tagName
+          );
         }
       }
       state.maxEntering = Math.max(
@@ -370,12 +372,129 @@ async function articleAnchorCount(page, fragment) {
     );
 }
 
+// Installed only by the bounded browser journey. Retain successful paints,
+// rather than trusting route labels or a planned animation's duration.
+function installArticleFlightDiagnostics() {
+  window.__articleFlightEvents = [];
+  let active = null;
+  window.SiteEngineProbe = (event) => {
+    if (window.__articleFlightEvents.length >= 4000)
+      throw Error('article flight evidence overflow');
+    if (event.kind === 'camera-travel' || event.kind === 'camera-travel-complete')
+      window.__articleFlightEvents.push(structuredClone(event));
+    if (event.kind === 'camera-travel') active = event.navigationId;
+    if (event.kind === 'paint' && active)
+      window.__articleFlightEvents.push({
+        kind: 'paint',
+        time: event.time,
+        navigationId: active,
+        elapsed: event.journey?.elapsed ?? 1750,
+        current: structuredClone(event.current),
+        paintedRooms: [...event.paintedRooms],
+      });
+    if (event.kind === 'camera-travel-complete' || event.kind === 'camera-travel-cancelled')
+      active = null;
+  };
+}
+
+function validateArticleFlight(events, from, to, direction) {
+  assert.ok(Array.isArray(events), 'raw article flight evidence');
+  const plans = events.filter((event) => event.kind === 'camera-travel');
+  assert.equal(plans.length, 1, 'one observed camera plan per document trip');
+  const plan = plans[0],
+    id = plan.navigationId;
+  assert.ok(Number.isSafeInteger(id) && id > 0, 'router-bound camera identity');
+  assert.equal(plan.fromDocument, from);
+  assert.equal(plan.toDocument, to);
+  assert.equal(plan.direction, direction);
+  const writingDocument = (value) => value === 'writing' || value.startsWith('article:');
+  assert.equal(
+    plan.localDocument,
+    writingDocument(from) && writingDocument(to),
+    'document pair selects the correct camera path'
+  );
+  assert.equal(plan.plannedDurationMs, 1750);
+  assert.deepEqual(
+    [plan.centerDurationMs, plan.transitDurationMs, plan.restoreDurationMs],
+    [400, 1000, 350]
+  );
+  assert.ok(Number.isFinite(plan.fromZ) && Number.isFinite(plan.toZ));
+  for (const pose of [plan.fromPose, plan.toPose])
+    for (const vector of [pose?.position, pose?.target])
+      assert.ok(
+        Array.isArray(vector) && vector.length === 3 && vector.every(Number.isFinite),
+        'complete camera pose'
+      );
+  assert.ok(
+    events.every((event) => event.navigationId === id),
+    'camera evidence cannot mix navigation identities'
+  );
+  const paints = events.filter((event) => event.kind === 'paint');
+  assert.ok(paints.length >= 6, 'successful camera paints required');
+  assert.ok(
+    paints.every(
+      (paint) => Number.isFinite(paint.current?.position?.[2]) && paint.paintedRooms?.length > 0
+    )
+  );
+  assert.ok(
+    paints.every((paint, index) => index === 0 || paint.elapsed >= paints[index - 1].elapsed),
+    'ordered camera paints'
+  );
+  for (const [start, end] of [
+    [0, 400],
+    [400, 1400],
+    [1400, 1751],
+  ])
+    assert.ok(
+      paints.some((paint) => paint.elapsed >= start && paint.elapsed < end),
+      'every camera stage painted'
+    );
+  const transit = paints.filter((paint) => paint.elapsed >= 400 && paint.elapsed < 1400);
+  assert.ok(
+    transit.every((paint) => paint.current.framing === 1),
+    'centered real depth transit'
+  );
+  assert.ok(
+    transit.some(
+      (paint) =>
+        direction * (plan.fromZ - paint.current.position[2]) > (plan.localDocument ? 48 : 1)
+    ),
+    'actual signed camera depth displacement'
+  );
+  if (plan.localDocument) {
+    assert.equal(plan.fromZ, plan.toZ);
+    assert.ok(
+      transit.every((paint) => direction * (plan.fromZ - paint.current.position[2]) >= -0.001),
+      'document excursion direction'
+    );
+  }
+  assert.ok(
+    Math.abs(paints.at(-1).current.position[2] - plan.toZ) < 0.001,
+    'canonical final camera depth'
+  );
+  assert.equal(paints.at(-1).current.framing || 0, 0, 'native reading framing restored');
+  assert.deepEqual(paints[0].current, plan.fromPose, 'first paint retains departure pose');
+  assert.deepEqual(paints.at(-1).current, plan.toPose, 'complete canonical reading pose restored');
+  const complete = events.filter((event) => event.kind === 'camera-travel-complete');
+  assert.equal(complete.length, 1, 'successful camera completion');
+  assert.equal(complete[0].elapsedMs, 1750);
+}
+
+async function takeArticleFlight(page, from, to, direction) {
+  const events = await page.evaluate(() => window.__articleFlightEvents.splice(0));
+  validateArticleFlight(events, from, to, direction);
+  return { from, to, direction, events };
+}
+
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
     viewport: { width, height: width === 390 ? 844 : 900 },
   });
+  await context.addInitScript(installArticleFlightDiagnostics);
   const page = await context.newPage();
+  const flights = [];
+  let relatedDeparture = { present: false, departed: false };
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   try {
@@ -410,11 +529,13 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     assert.equal(departure?.focus, archiveFocus, 'actual article activation focus');
     const archiveScroll = departure.scroll;
     await settled(page, 'article:' + key, timeout);
+    flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
     const slideURL = await presentationJourney(page);
     await page.goBack();
     await settled(page, 'writing', timeout);
+    flights.push(await takeArticleFlight(page, 'article:' + key, 'writing', -1));
     await preserveShell(page);
     assert.deepEqual(await inspectHead(page), writingHead, 'Back restored complete archive head');
     if (slideURL)
@@ -447,6 +568,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await page.evaluate(() => window.__articleHistoryCleanup?.());
     await page.goForward();
     await settled(page, 'article:' + key, timeout);
+    flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     assert.deepEqual(
       await articleHead(page, key, descriptor, descriptors, timeout),
@@ -491,6 +613,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       .filter({ hasText: /^Research$/ })
       .click();
     await settled(page, 'research', timeout);
+    flights.push(await takeArticleFlight(page, 'article:' + key, 'research', -1));
     await preserveShell(page);
     const reading = await page.evaluate(() => {
       window.__articleObserver.disconnect();
@@ -504,6 +627,61 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       0,
       'arrival released transient blocks'
     );
+
+    for (const destination of ['index', 'writing', 'talks', 'credits']) {
+      const destinationLink =
+        destination === 'index'
+          ? page.locator('header .wordmark')
+          : destination === 'credits'
+            ? page.locator('footer a[href$="credits.html"]')
+            : page.locator('header nav a').filter({
+                hasText: new RegExp(
+                  '^' + destination[0].toUpperCase() + destination.slice(1) + '$'
+                ),
+              });
+      await page.goto(urls.alias);
+      await settled(page, 'article:' + key, timeout);
+      await page.waitForFunction(
+        () => document.querySelector('.space-scene')?.dataset.ready === 'true',
+        null,
+        { timeout }
+      );
+      if (destination === 'writing') {
+        if (key === 'reader-reference:en')
+          await page.waitForFunction(() => document.querySelector('.article-related'), null, {
+            timeout,
+          });
+        relatedDeparture.present = (await page.locator('.article-related').count()) > 0;
+        if (relatedDeparture.present) {
+          await page.evaluate(() =>
+            scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+          );
+          await observeReading(page);
+        }
+        await destinationLink.evaluate((element) => element.focus({ preventScroll: true }));
+        await page.keyboard.press('Enter');
+      } else await destinationLink.click();
+      await settled(page, destination, timeout);
+      if (destination === 'writing' && relatedDeparture.present) {
+        assert.equal(
+          await page.evaluate(() => {
+            window.__articleObserver.disconnect();
+            return window.__articleReading.departed.includes('article-related');
+          }),
+          true,
+          'visible related reading participates in departure'
+        );
+        relatedDeparture.departed = true;
+      }
+      flights.push(
+        await takeArticleFlight(
+          page,
+          'article:' + key,
+          destination,
+          ['index', 'writing'].includes(destination) ? -1 : 1
+        )
+      );
+    }
 
     await page.goto(urls.alias);
     await settled(page, 'article:' + key, timeout);
@@ -537,6 +715,8 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       head,
       archive,
       reading,
+      flights,
+      relatedDeparture,
       checks: {
         metadataTransition: true,
         filtersBackForward: true,
@@ -566,7 +746,11 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
     viewport: { width: 390, height: 844 },
     javaScriptEnabled: mode !== 'no-js',
   });
-  if (mode === 'off') await context.addInitScript(() => localStorage.setItem('vo.motion', 'off'));
+  if (mode === 'off')
+    await context.addInitScript(() => {
+      if (localStorage.getItem('vo.motion') !== 'on') localStorage.setItem('vo.motion', 'off');
+    });
+  if (mode !== 'no-js') await context.addInitScript(installArticleFlightDiagnostics);
   if (mode === 'no-canvas')
     await context.addInitScript(() => {
       HTMLCanvasElement.prototype.getContext = () => null;
@@ -620,6 +804,40 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
     assert.equal(await page.locator('body').getAttribute('data-article'), null);
     assert.equal(await page.locator('h1').count(), 1);
     assert.ok((await page.locator('canvas').count()) <= 1, 'fallback does not duplicate Canvas');
+    if (mode !== 'no-js')
+      assert.deepEqual(
+        await page.evaluate(() => window.__articleFlightEvents),
+        [],
+        'native fallback has no camera flight'
+      );
+    if (mode === 'off') {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.evaluate(() => localStorage.setItem('vo.motion', 'on'));
+      await page.goto(urls.alias);
+      await settled(page, 'article:' + key, timeout);
+      await page.waitForFunction(
+        () =>
+          document.querySelector('.space-scene')?.dataset.ready === 'true' &&
+          matchMedia('(prefers-reduced-motion: reduce)').matches &&
+          localStorage.getItem('vo.motion') === 'on' &&
+          document.querySelector('#space-motion')?.disabled === true &&
+          document.querySelector('#space-motion')?.textContent === 'Motion: reduced' &&
+          window.SiteScene?.canTravel() === false,
+        null,
+        { timeout }
+      );
+      await page
+        .locator('header nav a')
+        .filter({ hasText: /^Writing$/ })
+        .click();
+      await settled(page, 'writing', timeout);
+      assert.deepEqual(
+        await page.evaluate(() => window.__articleFlightEvents),
+        [],
+        'reduced motion overrides saved On'
+      );
+      assert.equal(await page.locator('[data-scroll-entry], [data-route-block]').count(), 0);
+    }
     assert.deepEqual(errors, []);
     return {
       key,
@@ -631,6 +849,7 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
         anchors: true,
         writingLink: true,
         singleCanvas: true,
+        ...(mode === 'off' ? { reducedMotion: true } : {}),
         basePath: new URL(urls.base).pathname,
       },
     };
@@ -766,7 +985,34 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
       assert.deepEqual(row.head.canonical, [], 'candidate observed canonical remains pending');
       assert.equal(article.datePublished, undefined, 'candidate observed publication date pending');
     }
+    if (row.mode === 'off')
+      assert.equal(row.checks.reducedMotion, true, 'reduced motion overrides saved On');
     if (row.mode !== 'normal') continue;
+    assert.equal(typeof row.relatedDeparture?.present, 'boolean', 'related inventory observed');
+    if (keys[0] === 'reader-reference:en')
+      assert.equal(row.relatedDeparture.present, true, 'reference recommendations required');
+    assert.equal(
+      row.relatedDeparture.departed,
+      row.relatedDeparture.present,
+      'visible recommendations share route departure'
+    );
+    assert.deepEqual(
+      row.flights?.map((flight) => [flight.from, flight.to, flight.direction]),
+      [
+        ['writing', 'article:' + keys[0], 1],
+        ['article:' + keys[0], 'writing', -1],
+        ['writing', 'article:' + keys[0], 1],
+        ['article:' + keys[0], 'research', -1],
+        ...['index', 'writing', 'talks', 'credits'].map((to) => [
+          'article:' + keys[0],
+          to,
+          ['index', 'writing'].includes(to) ? -1 : 1,
+        ]),
+      ],
+      'complete reader document flight inventory'
+    );
+    for (const flight of row.flights)
+      validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
     assert.ok(
       Array.isArray(row.reading?.entered) && row.reading.entered.length > 0,
       'observed article reading entries'
@@ -795,6 +1041,7 @@ module.exports = {
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
   articleAnchorCount,
+  validateArticleFlight,
   articleJourney,
   validateArticleJourney,
 };

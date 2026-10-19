@@ -951,7 +951,7 @@
     {
       "path": "tests/space.test.cjs",
       "language": "javascript",
-      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds; exhaustive finite Canvas argument/type/position rejection before drawing side effects with reusable VM preparation",
+      "purpose": "Stationary cameras, bounded route travel, zero-to-full spatial room visibility in both directions, deterministic distinct shared compositions, retarget/freeze and cache bounds; exhaustive finite Canvas argument/type/position rejection before drawing side effects with reusable VM preparation; signed same-scene document excursions, canonical full-pose return and geometry-continuous repeated/retargeted routes",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],
@@ -1352,7 +1352,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -2068,7 +2068,7 @@
     {
       "path": "tests/article-browser-evidence.test.cjs",
       "language": "javascript",
-      "purpose": "Mandatory conditional native article identity/evidence negatives and bounded history diagnostics; primitive activation capture precedes geometry/layout reads that can change the captured departure state",
+      "purpose": "Mandatory conditional native article identity/evidence negatives and bounded history diagnostics; primitive activation capture precedes geometry/layout reads that can change the captured departure state; raw successful-paint identity/depth/direction/stage/full-pose negatives and optional related-reading admission",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

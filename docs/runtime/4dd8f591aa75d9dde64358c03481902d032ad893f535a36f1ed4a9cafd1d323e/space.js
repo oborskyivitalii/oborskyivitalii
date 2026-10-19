@@ -2095,6 +2095,7 @@ const world=(function (math) {
 const projection=(function (math, definitions) {
   const {
     add,
+    mix,
     dot,
     lerp,
     clamp,
@@ -2509,6 +2510,17 @@ const projection=(function (math, definitions) {
     ...(pose.framing !== undefined ? { framing: pose.framing } : {}),
   });
   const routePose = (page, pose) => translatePose(pose, roomOffset(page));
+  // Documents share Writing's reading anchor. A bounded corridor excursion
+  // still passes through real fractal depth and returns to that same anchor.
+  function documentTravelPose(from, to, progress, direction) {
+    const p = clamp(progress),
+      base = mix(from, to, smooth(p));
+    if (p === 0 || p === 1) return base;
+    return translatePose(
+      base,
+      ((-Math.sign(direction) * roomSpacing) / 2) * Math.sin(Math.PI * p) ** 2
+    );
+  }
   return {
     loopTransform,
     cameraVertices,
@@ -2520,6 +2532,7 @@ const projection=(function (math, definitions) {
     journeyPose,
     blendColor,
     routePose,
+    documentTravelPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -3427,6 +3440,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     projectedWorld,
     paintShapes,
     routePose,
+    documentTravelPose,
     centerPose,
     roomOffset,
     translatePose,
@@ -3563,8 +3577,14 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       navigationId: planned.navigationId,
       from: planned.fromPage,
       to: planned.toPage,
+      fromDocument: planned.fromDocument,
+      toDocument: planned.toDocument,
+      direction: planned.direction,
+      localDocument: planned.localDocument,
       fromZ: planned.from.position[2],
       toZ: planned.to.position[2],
+      fromPose: planned.from,
+      toPose: planned.to,
       plannedDurationMs: planned.duration,
       centerDurationMs: planned.centerDuration,
       transitDurationMs: planned.transitDuration,
@@ -3664,6 +3684,11 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     // Its logical source page may still be several rooms away from that paint.
     if (elapsed < travel.centerDuration && travel.fromRooms.length > 1) return travel.fromRooms;
     const targetIndex = routeOrder.indexOf(travel.toPage);
+    if (travel.localDocument) {
+      const near =
+        pose.position[2] < readingPose(travel.toPage).position[2] ? targetIndex : targetIndex - 1;
+      return [Math.max(0, near), Math.min(near + 1, routeOrder.length - 1)];
+    }
     const first = Math.min(...travel.fromRooms, targetIndex),
       last = Math.max(...travel.fromRooms, targetIndex);
     let near = first;
@@ -3912,11 +3937,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     } else if (elapsed < centerEnd) {
       current = mix(journey.from, journey.centeredFrom, smooth(elapsed / centerEnd));
     } else if (elapsed < transitEnd) {
-      current = mix(
-        journey.centeredFrom,
-        journey.centeredTo,
-        smooth((elapsed - centerEnd) / (transitEnd - centerEnd))
-      );
+      const progress = (elapsed - centerEnd) / (transitEnd - centerEnd);
+      current = journey.localDocument
+        ? documentTravelPose(journey.centeredFrom, journey.centeredTo, progress, journey.direction)
+        : mix(journey.centeredFrom, journey.centeredTo, smooth(progress));
     } else if (elapsed < journey.duration) {
       current = mix(
         journey.centeredTo,
@@ -4127,12 +4151,20 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
             ? travelRoomIndices(journey, from, displayedElapsed)
             : [routeOrder.indexOf(sourcePage)];
       page = next;
-      const travelling = animate && next !== sourcePage && this.canTravel(),
+      const metadata = options[1],
+        documentChange = metadata?.documentChange === true,
+        localDocument =
+          next === sourcePage &&
+          documentChange &&
+          metadata.sameSceneDocument === true &&
+          (!journey || journey.localDocument),
+        travelling = animate && (next !== sourcePage || documentChange) && this.canTravel(),
         target = readingPose();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
-      const forward =
-        target.position[2] === from.position[2]
+      const forward = localDocument
+        ? metadata.direction !== -1
+        : target.position[2] === from.position[2]
           ? routeOrder.indexOf(page) > routeOrder.indexOf(sourcePage)
           : target.position[2] < from.position[2];
       scene.dataset.direction = forward ? 'forward' : 'backward';
@@ -4148,6 +4180,10 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
             Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
           fromPage: sourcePage,
           toPage: page,
+          localDocument,
+          direction: forward ? 1 : -1,
+          fromDocument: metadata?.fromDocument,
+          toDocument: metadata?.toDocument,
           fromRooms,
           from,
           to: target,
@@ -4177,6 +4213,18 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
           for (const route of new Set([
             ...fromRooms.map((index) => routeOrder[index]),
             ...travelRoomIndices(journey, from).map((index) => routeOrder[index]),
+            ...(journey.localDocument
+              ? travelRoomIndices(
+                  journey,
+                  documentTravelPose(
+                    journey.centeredFrom,
+                    journey.centeredTo,
+                    0.5,
+                    journey.direction
+                  ),
+                  journey.centerDuration
+                ).map((index) => routeOrder[index])
+              : []),
             page,
           ]))
             roomFor(route);
