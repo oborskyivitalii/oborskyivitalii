@@ -550,7 +550,7 @@ function routeHarness({
     rebaseResources() {},
   };
   context.document.activeElement = context.document.body;
-  const start = source.indexOf('  async function navigate('),
+  const start = source.indexOf('  function documentDirection('),
     end = source.indexOf('  document.body.dataset.entryPage = page;', start),
     scrollStart = source.indexOf('  // One write after a gesture'),
     scrollEnd = source.indexOf("  window.addEventListener('site:motion-preference'", scrollStart);
@@ -1287,7 +1287,7 @@ function sequenceHarness() {
     },
     AbortController,
   };
-  const start = source.indexOf('  async function navigate(');
+  const start = source.indexOf('  function documentDirection(');
   const end = source.indexOf('  document.body.dataset.entryPage', start);
   vm.runInNewContext(
     `let page='index',historyIndex=0,serial=0,request=null,endpoint=null,inputTail=null,lastKey=null;

@@ -181,6 +181,8 @@ function styles(root) {
     '\n' +
     reading +
     '\n' +
+    read(root, 'site/engine/reader.css') +
+    '\n' +
     read(root, 'site/engine/scroll-entry.css')
   );
 }
@@ -828,6 +830,7 @@ function build({
       put(
         'navigation.js',
         `/* Shared native reading-entry controller. */\nwindow.SiteScrollEntry=(${factory(root, 'site/engine/scroll-entry.cjs').toString()})();\n` +
+          `window.SiteReader=(${factory(root, 'site/engine/reader.cjs').toString()})();\n` +
           read(root, 'site/engine/navigation.js')
       );
       put('styles.css', styles(root));

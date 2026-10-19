@@ -107,13 +107,20 @@ function summary(article) {
 
 function input(root, article) {
   const metadata = article.metadata;
-  const sections = article.sections.filter((section) => section.depth === 2);
+  const reader = require('./reader.cjs').prepare(article);
+  const boundary = '<!--reader-apparatus-->';
+  const [body, appendices] = presentationBody(
+    root,
+    article,
+    reader.body + boundary + reader.appendices
+  ).split(boundary);
   const main = substitute(
     fs.readFileSync(path.join(root, 'site/templates/pages/article.html'), 'utf8'),
     {
       TITLE: escapeText(metadata.title),
       TITLE_ID: escapeAttribute(article.titleId || 'article-title'),
       SUMMARY: escapeText(metadata.summary),
+      SUBTITLE: reader.subtitle,
       AUTHORS: metadata.authors.map((author) => escapeText(author.name)).join(', '),
       LANGUAGE: escapeAttribute(metadata.language),
       STATUS: article.technical
@@ -121,13 +128,19 @@ function input(root, article) {
         : article.candidate
           ? 'Review candidate'
           : 'Article',
-      TOC: sections
-        .map(
-          (section) =>
-            `<li><a href="#${escapeAttribute(section.id)}">${escapeText(section.text || section.title)}</a></li>`
-        )
-        .join('\n'),
-      BODY: presentationBody(root, article),
+      CONTENTS: reader.toc
+        ? substitute(
+            fs.readFileSync(
+              path.join(root, 'site/templates/components/reader-contents.html'),
+              'utf8'
+            ),
+            { TOC: reader.toc },
+            'reader contents'
+          )
+        : '',
+
+      BODY: body,
+      APPENDICES: appendices,
       SOURCES: sourceDetails(root, article) + (article.publicMaterials?.html || ''),
     },
     'article reader'
@@ -244,32 +257,32 @@ function editionNotice(article) {
   return { data, digest, html };
 }
 
-function presentationBody(root, article) {
+function presentationBody(root, article, html = article.html) {
   const deck = article.presentation;
-  if (!deck) return article.html;
+  if (!deck) return html;
   if (['links', 'download'].includes(article.profile.reader?.presentation)) {
     const source = `href="${escapeAttribute(deck.sourceUrl)}"`;
-    if (article.html.split(source).length !== 2) {
+    if (html.split(source).length !== 2) {
       throw Error('Linked presentation requires exactly one PDF link in the reader');
     }
-    return article.html.replace(source, `href="${escapeAttribute(deck.file.url)}"`);
+    return html.replace(source, `href="${escapeAttribute(deck.file.url)}"`);
   }
   const marker = '<figure id="figure-' + deck.poster.id + '">';
-  const start = article.html.indexOf(marker);
-  const end = article.html.indexOf('</figure>', start);
-  if (start < 0 || end < start || article.html.indexOf(marker, start + 1) !== -1) {
+  const start = html.indexOf(marker);
+  const end = html.indexOf('</figure>', start);
+  if (start < 0 || end < start || html.indexOf(marker, start + 1) !== -1) {
     throw Error('Presentation requires exactly one poster figure in the manuscript');
   }
   const viewer = substitute(
     fs.readFileSync(path.join(root, 'site/templates/articles/presentation.html'), 'utf8'),
     {
       TITLE: escapeText(deck.title),
-      POSTER: article.html.slice(start, end + 9),
+      POSTER: html.slice(start, end + 9),
       PDF: escapeAttribute(deck.file.url),
     },
     'presentation viewer'
   );
-  return article.html.slice(0, start) + viewer + article.html.slice(end + 9);
+  return html.slice(0, start) + viewer + html.slice(end + 9);
 }
 
 function alternates(article, index) {

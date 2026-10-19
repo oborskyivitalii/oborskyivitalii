@@ -541,39 +541,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7": {
+    "docs/runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/archive.js": {
+    "docs/runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/archive.js": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/archive.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/navigation.js": {
+    "docs/runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/navigation.js": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/navigation.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/space.js": {
+    "docs/runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/space.js": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/space.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/styles.css": {
+    "docs/runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/styles.css": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/styles.css; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/theme.js": {
+    "docs/runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/theme.js": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: runtime/cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711/theme.js; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -625,6 +625,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/188b5ac4381d31cbeca58b2098eb6b4e6574eae4aedd75ad574f86470e70c3cb": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/188b5ac4381d31cbeca58b2098eb6b4e6574eae4aedd75ad574f86470e70c3cb/writing.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition: snapshots/188b5ac4381d31cbeca58b2098eb6b4e6574eae4aedd75ad574f86470e70c3cb/writing.html; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -637,15 +649,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6c3b312b27c3301604986401db047a5facf36a64395563566a0e522e425e80c3": {
+    "docs/snapshots/5b0ab5086b5b3bf0553217b60906730816e4676b42b7cbfd4ec649144cee0258": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6c3b312b27c3301604986401db047a5facf36a64395563566a0e522e425e80c3/writing.html": {
+    "docs/snapshots/5b0ab5086b5b3bf0553217b60906730816e4676b42b7cbfd4ec649144cee0258/talks.html": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: snapshots/5b0ab5086b5b3bf0553217b60906730816e4676b42b7cbfd4ec649144cee0258/talks.html; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6632856ab14e247967117d1909e32a1d624fae646cd37c0f661c6e5356483945": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6632856ab14e247967117d1909e32a1d624fae646cd37c0f661c6e5356483945/research.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition: snapshots/6632856ab14e247967117d1909e32a1d624fae646cd37c0f661c6e5356483945/research.html; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -685,42 +709,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/99a7a767001783e372178a22781d09b25c5255f1200c0b8bdcc68502f07ab676": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/99a7a767001783e372178a22781d09b25c5255f1200c0b8bdcc68502f07ab676/index.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a9f09f08152fc591e6fe186a52050cf7b6e1881ba101d8bb6c75cab8c2484821": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a9f09f08152fc591e6fe186a52050cf7b6e1881ba101d8bb6c75cab8c2484821/research.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ab63769731241bcfbdcb1f834377d3d3d1c782d60b01b25bd22cb16712b88811": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ab63769731241bcfbdcb1f834377d3d3d1c782d60b01b25bd22cb16712b88811/talks.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -733,15 +721,27 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/dfab5ae194e569b2d01274e002c6abbfb377fa304461ace36e320094ada68391": {
+    "docs/snapshots/c6a0a2a40fa26f0d76c7281eabbb35620133766d08427619226fd5a5c96cfa2f": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/dfab5ae194e569b2d01274e002c6abbfb377fa304461ace36e320094ada68391/credits.html": {
+    "docs/snapshots/c6a0a2a40fa26f0d76c7281eabbb35620133766d08427619226fd5a5c96cfa2f/credits.html": {
       "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "purpose": "Generated public rendition: snapshots/c6a0a2a40fa26f0d76c7281eabbb35620133766d08427619226fd5a5c96cfa2f/credits.html; regenerate from site sources with tools/site/build.cjs.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d45cb04ce640ceb057cb8646efc8de73788cb7d0b3d2e1903c4db23147308845": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d45cb04ce640ceb057cb8646efc8de73788cb7d0b3d2e1903c4db23147308845/index.html": {
+      "kind": "file",
+      "purpose": "Generated public rendition: snapshots/d45cb04ce640ceb057cb8646efc8de73788cb7d0b3d2e1903c4db23147308845/index.html; regenerate from site sources with tools/site/build.cjs.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1894,6 +1894,12 @@
     "review/issue-5/2026-10-19-reader-flight-review.md": {
       "kind": "file",
       "purpose": "Dated independent reader navigation review and verification evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-19-reader-mode.md": {
+      "kind": "file",
+      "purpose": "User-authorized reusable reader architecture, independent findings/corrections and exact-source acceptance handoff.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -7669,6 +7675,18 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/engine/reader.cjs": {
+      "kind": "file",
+      "purpose": "Optional reusable reader lifecycle: contents, note disclosure, history and print state; no new clock.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/engine/reader.css": {
+      "kind": "file",
+      "purpose": "Canonical reusable reader layout, typography and table/code/figure/reference component styles.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/engine/reading-surfaces.css": {
       "kind": "file",
       "purpose": "Single authored reading-backdrop paint: shared paper, opacity, crisp edges, outer corners and paint-only placement across routes and renditions.",
@@ -8323,6 +8341,12 @@
       "role": "source",
       "owner": "site/README.md"
     },
+    "site/templates/components/reader-contents.html": {
+      "kind": "file",
+      "purpose": "Reusable semantic article contents disclosure, omitted for articles without chapters.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
     "site/templates/head.html": {
       "kind": "file",
       "purpose": "Shared escaped metadata, JSON-LD, engine/effects identity and optional analytics head.",
@@ -8917,6 +8941,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/reader-mode.test.cjs": {
+      "kind": "file",
+      "purpose": "Reader reuse and source preservation, semantic components, citation roundtrips, Unicode/disclosure/history/print lifecycle.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/refactor-metrics.test.cjs": {
       "kind": "file",
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
@@ -9456,6 +9486,12 @@
       "purpose": "Exact source/resource digests and publication artifact provenance adapter derived from pinned UA helper.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "tools/publishing/render.cjs": {
+      "kind": "file",
+      "purpose": "Shared pure HTML renderer for the admitted publication AST; trusted web component hooks preserve default exports.",
+      "role": "source",
+      "owner": "site/README.md"
     },
     "tools/publishing/safety.cjs": {
       "kind": "file",
@@ -10308,6 +10344,12 @@
       "purpose": "Leaf complete public byte inventory and SHA256/gzip digest shared by artifact and content release.",
       "role": "source",
       "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
+    "tools/site/reader.cjs": {
+      "kind": "file",
+      "purpose": "Pure web reader presentation over the admitted article AST, shared components, contents and reference links.",
+      "role": "source",
+      "owner": "site/README.md"
     },
     "tools/site/render-content.cjs": {
       "kind": "file",

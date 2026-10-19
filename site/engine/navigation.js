@@ -3,6 +3,7 @@
   'use strict';
   const scrollEntry = window.SiteScrollEntry;
   scrollEntry?.boot();
+  window.SiteReader?.mount({ state: history.state?.site?.reader });
   const routes = ['index', 'research', 'writing', 'talks', 'credits'];
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
@@ -328,6 +329,7 @@
             page,
             index: historyIndex,
             scroll: [window.scrollX, window.scrollY],
+            ...(window.SiteReader?.snapshot?.() ? { reader: window.SiteReader.snapshot() } : {}),
             focus:
               document.activeElement?.id ||
               document.activeElement?.getAttribute?.('href') ||
@@ -931,6 +933,7 @@
       }
     };
     window.SiteArchive?.destroy();
+    window.SiteReader?.destroy();
     scrollEntry?.destroy();
     span('mount-unmount');
     if (blockDirection) {
@@ -965,6 +968,7 @@
     // Apply filters before the native scroll/style flush, so Writing does not
     // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
+    window.SiteReader?.mount({ state: history.state?.site?.reader });
     span('mount-archive');
     if (position === 'end') mountEndpoint();
     if (position === 'end')
@@ -1007,6 +1011,25 @@
       });
     return result;
   }
+  function documentDirection(next, nextScene, currentScene, pop, targetIndex) {
+    if (nextScene !== currentScene)
+      return routes.indexOf(nextScene) > routes.indexOf(currentScene) ? 1 : -1;
+    if (pop && targetIndex !== null && targetIndex !== historyIndex)
+      return Math.sign(targetIndex - historyIndex);
+    return next === 'writing' ? -1 : 1;
+  }
+  function restoreReadingFocus(pop) {
+    const savedFocus = pop ? history.state?.site?.focus : null;
+    const focused = savedFocus
+      ? document.getElementById(savedFocus) ||
+        [...content.querySelectorAll('a[href]')].find(
+          (link) => link.getAttribute('href') === savedFocus || link.href === savedFocus
+        )
+      : null;
+    (focused || content.querySelector('main')).focus({
+      preventScroll: true,
+    });
+  }
   async function navigate(
     url,
     { pop = false, position = null, initial = false, input = null } = {}
@@ -1017,16 +1040,7 @@
     const currentScene = routes.includes(page) ? page : 'writing';
     const targetIndex =
       pop && Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : null;
-    const direction =
-      nextScene !== currentScene
-        ? routes.indexOf(nextScene) > routes.indexOf(currentScene)
-          ? 1
-          : -1
-        : pop && targetIndex !== null && targetIndex !== historyIndex
-          ? Math.sign(targetIndex - historyIndex)
-          : next === 'writing'
-            ? -1
-            : 1;
+    const direction = documentDirection(next, nextScene, currentScene, pop, targetIndex);
     const fromDocument = page;
     const interruptedFocus = departureFocus();
     const interruptedPosition = departurePosition();
@@ -1115,16 +1129,7 @@
       else scrollEntry?.cancelRoute?.();
       if (own === serial) {
         arriveEndpoint();
-        const savedFocus = pop ? history.state?.site?.focus : null;
-        const focused = savedFocus
-          ? document.getElementById(savedFocus) ||
-            [...content.querySelectorAll('a[href]')].find(
-              (link) => link.getAttribute('href') === savedFocus || link.href === savedFocus
-            )
-          : null;
-        (focused || content.querySelector('main')).focus({
-          preventScroll: true,
-        });
+        restoreReadingFocus(pop);
         scrollEntry?.resume();
         announcement.textContent = data.title;
         save();
@@ -1219,11 +1224,13 @@
       if (Number.isSafeInteger(event.state?.site?.index)) historyIndex = event.state.site.index;
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
+      window.SiteReader?.restore(event.state?.site?.reader);
       if (event.state?.site?.scroll)
         restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
       scrollEntry?.resume();
     }
   });
+  window.addEventListener('site:reader-state', () => save());
   function finishText() {
     scrollEntry?.cancelRoute?.();
     window.SiteScene?.detachTravel();

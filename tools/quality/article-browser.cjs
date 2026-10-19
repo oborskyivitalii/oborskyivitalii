@@ -142,6 +142,32 @@ async function articleHead(page, key, descriptor, descriptors, timeout) {
   )) {
     assert.ok(image.complete && image.width > 0 && image.height > 0, 'article asset decoded');
   }
+  const reader = await page.evaluate(() => {
+    const surface = document.querySelector('.reader-mode');
+    const components = [...document.querySelectorAll('.reader-table,.reader-code pre')]
+      .filter((node) => node.getBoundingClientRect().width > 0)
+      .map((node) => ({
+        kind: node.matches('pre') ? 'code' : 'table',
+        clientWidth: node.clientWidth,
+        scrollWidth: node.scrollWidth,
+        clientHeight: node.clientHeight,
+        scrollHeight: node.scrollHeight,
+      }));
+    return {
+      surface: surface ? getComputedStyle(surface).backgroundColor : null,
+      paper: getComputedStyle(document.body).backgroundColor,
+      components,
+      stationary: !document.querySelector('.reader-mode [data-scroll-entry]'),
+    };
+  });
+  assert.ok(reader.surface, 'shared reader mode is present');
+  assert.equal(reader.surface, reader.paper, 'reader has complete opaque theme paper');
+  assert.ok(reader.stationary, 'sustained reading does not animate paragraphs');
+  for (const component of reader.components)
+    assert.ok(
+      component.scrollHeight <= component.clientHeight + 1,
+      'table/code has no decorative vertical overflow'
+    );
   return head;
 }
 
@@ -156,6 +182,21 @@ async function preserveShell(page) {
     true,
     'article navigation retained shell and Canvas'
   );
+}
+
+async function captureReader(page, key) {
+  const fs = require('node:fs'),
+    path = require('node:path');
+  const directory = path.join(require('./common.cjs').out, 'reader');
+  fs.mkdirSync(directory, { recursive: true });
+  const prefix = key.replace(':', '-') + '-' + page.viewportSize().width;
+  await page.screenshot({ path: path.join(directory, prefix + '-opening.png') });
+  const table = page.locator('.reader-table').first();
+  if (await table.count()) {
+    await table.scrollIntoViewIfNeeded();
+    await page.screenshot({ path: path.join(directory, prefix + '-table.png') });
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+  }
 }
 
 async function observeReading(page) {
@@ -562,6 +603,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
+    await captureReader(page, key);
     const slideURL = await presentationJourney(page);
     await page.goBack();
     await settled(page, 'writing', timeout);
@@ -634,9 +676,11 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       await page.mouse.wheel(0, 160);
       await page.waitForTimeout(80);
     }
-    await page.waitForFunction(() => window.__articleReading.entered.length > 0, null, {
-      timeout: 2500,
-    });
+    assert.equal(
+      await page.evaluate(() => window.__articleReading.entered.length),
+      0,
+      'ordinary article scrolling keeps every reading block stationary'
+    );
     await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
     await page
       .locator('header nav a')

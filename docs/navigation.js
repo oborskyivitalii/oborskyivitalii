@@ -187,7 +187,8 @@ window.SiteScrollEntry=(function () {
     return allowed() && window.CSS?.supports?.('overflow', 'clip');
   }
   function refreshInventory() {
-    const candidates = [...root.querySelectorAll(targets)];
+    // Sustained reading stays stationary; document-to-document waves retain their units.
+    const candidates = root.matches('.article-reader') ? [] : [...root.querySelectorAll(targets)];
     const units = [...root.querySelectorAll(routeTargets)];
     if (footer) units.push(...footer.querySelectorAll(':scope > p,:scope > a'));
     // A display:contents group has no movable paper or native box. Its visible
@@ -1177,11 +1178,134 @@ window.SiteScrollEntry=(function () {
     }),
   };
 })();
+window.SiteReader=(function readerMode() {
+  let dispose = () => {};
+  let snapshot = () => null;
+  let restore = () => {};
+  function destroy() {
+    dispose();
+    dispose = () => {};
+    snapshot = () => null;
+    restore = () => {};
+  }
+  function mount({ state = null } = {}) {
+    destroy();
+    const main = document.querySelector('main.article-reader');
+    if (!main) return;
+    const listeners = [],
+      printState = new Map();
+    const details = [...main.querySelectorAll('details')];
+    const listen = (target, event, handler) => {
+      target.addEventListener(event, handler);
+      listeners.push(() => target.removeEventListener(event, handler));
+    };
+    const fragmentId = (hash) => {
+      try {
+        return decodeURIComponent(hash.slice(1));
+      } catch {
+        return '';
+      }
+    };
+    const links = [...main.querySelectorAll('.article-toc a')];
+    const headings = links
+      .map((link) => document.getElementById(fragmentId(link.hash)))
+      .filter(Boolean);
+    const contents = main.querySelector('.reader-contents');
+    const wide = window.matchMedia('(min-width: 1100px)');
+    if (contents) contents.open = wide.matches;
+    listen(wide, 'change', () => {
+      if (contents) contents.open = wide.matches;
+    });
+    const reveal = (hash) => {
+      let target;
+      try {
+        target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      } catch {
+        return;
+      }
+      if (!target || !main.contains(target)) return;
+      for (let node = target.parentElement; node && node !== main; node = node.parentElement)
+        if (node.tagName === 'DETAILS') node.open = true;
+    };
+    for (const appendix of main.querySelectorAll('.reader-appendix')) appendix.open = false;
+    restore = (saved) => {
+      if (
+        Array.isArray(saved) &&
+        saved.length === details.length &&
+        saved.length <= 256 &&
+        saved.every((open) => typeof open === 'boolean')
+      )
+        details.forEach((detail, index) => {
+          detail.open = saved[index];
+        });
+      reveal(window.location.hash);
+    };
+    snapshot = () => details.map((detail) => printState.get(detail) ?? detail.open);
+    restore(state);
+    listen(window, 'hashchange', () => reveal(window.location.hash));
+    listen(main, 'click', (event) => {
+      const anchor = event.target.closest('a[href]');
+      if (!anchor) return;
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.origin !== window.location.origin ||
+        url.pathname !== window.location.pathname ||
+        url.search !== window.location.search
+      )
+        return;
+      reveal(url.hash);
+      if (anchor.closest('.article-toc') && contents && !wide.matches) contents.open = false;
+    });
+    const current = (id) => {
+      for (const link of links) {
+        if (fragmentId(link.hash) === id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+    };
+    const visible = new Set();
+    const observer = window.IntersectionObserver
+      ? new window.IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) visible.add(entry.target);
+              else visible.delete(entry.target);
+            }
+            const active = headings.find((heading) => visible.has(heading));
+            if (active) current(active.id);
+          },
+          { rootMargin: '-110px 0px -60% 0px', threshold: 0 }
+        )
+      : null;
+    for (const heading of headings) observer?.observe(heading);
+    listen(window, 'beforeprint', () => {
+      for (const detail of main.querySelectorAll('details')) {
+        printState.set(detail, detail.open);
+        detail.open = true;
+      }
+    });
+    const restorePrint = () => {
+      for (const [detail, open] of printState) detail.open = open;
+      printState.clear();
+    };
+    listen(window, 'afterprint', restorePrint);
+    for (const detail of details)
+      listen(detail, 'toggle', () => {
+        if (!printState.size) window.dispatchEvent(new window.Event('site:reader-state'));
+      });
+    dispose = () => {
+      observer?.disconnect();
+      for (const remove of listeners) remove();
+      restorePrint();
+    };
+  }
+  return { mount, destroy, snapshot: () => snapshot(), restore: (state) => restore(state) };
+})();
 /* One document, one header and one canvas. Every route remains ordinary HTML. */
 (() => {
   'use strict';
   const scrollEntry = window.SiteScrollEntry;
   scrollEntry?.boot();
+  window.SiteReader?.mount({ state: history.state?.site?.reader });
   const routes = ['index', 'research', 'writing', 'talks', 'credits'];
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
@@ -1507,6 +1631,7 @@ window.SiteScrollEntry=(function () {
             page,
             index: historyIndex,
             scroll: [window.scrollX, window.scrollY],
+            ...(window.SiteReader?.snapshot?.() ? { reader: window.SiteReader.snapshot() } : {}),
             focus:
               document.activeElement?.id ||
               document.activeElement?.getAttribute?.('href') ||
@@ -2110,6 +2235,7 @@ window.SiteScrollEntry=(function () {
       }
     };
     window.SiteArchive?.destroy();
+    window.SiteReader?.destroy();
     scrollEntry?.destroy();
     span('mount-unmount');
     if (blockDirection) {
@@ -2144,6 +2270,7 @@ window.SiteScrollEntry=(function () {
     // Apply filters before the native scroll/style flush, so Writing does not
     // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
+    window.SiteReader?.mount({ state: history.state?.site?.reader });
     span('mount-archive');
     if (position === 'end') mountEndpoint();
     if (position === 'end')
@@ -2186,6 +2313,25 @@ window.SiteScrollEntry=(function () {
       });
     return result;
   }
+  function documentDirection(next, nextScene, currentScene, pop, targetIndex) {
+    if (nextScene !== currentScene)
+      return routes.indexOf(nextScene) > routes.indexOf(currentScene) ? 1 : -1;
+    if (pop && targetIndex !== null && targetIndex !== historyIndex)
+      return Math.sign(targetIndex - historyIndex);
+    return next === 'writing' ? -1 : 1;
+  }
+  function restoreReadingFocus(pop) {
+    const savedFocus = pop ? history.state?.site?.focus : null;
+    const focused = savedFocus
+      ? document.getElementById(savedFocus) ||
+        [...content.querySelectorAll('a[href]')].find(
+          (link) => link.getAttribute('href') === savedFocus || link.href === savedFocus
+        )
+      : null;
+    (focused || content.querySelector('main')).focus({
+      preventScroll: true,
+    });
+  }
   async function navigate(
     url,
     { pop = false, position = null, initial = false, input = null } = {}
@@ -2196,16 +2342,7 @@ window.SiteScrollEntry=(function () {
     const currentScene = routes.includes(page) ? page : 'writing';
     const targetIndex =
       pop && Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : null;
-    const direction =
-      nextScene !== currentScene
-        ? routes.indexOf(nextScene) > routes.indexOf(currentScene)
-          ? 1
-          : -1
-        : pop && targetIndex !== null && targetIndex !== historyIndex
-          ? Math.sign(targetIndex - historyIndex)
-          : next === 'writing'
-            ? -1
-            : 1;
+    const direction = documentDirection(next, nextScene, currentScene, pop, targetIndex);
     const fromDocument = page;
     const interruptedFocus = departureFocus();
     const interruptedPosition = departurePosition();
@@ -2294,16 +2431,7 @@ window.SiteScrollEntry=(function () {
       else scrollEntry?.cancelRoute?.();
       if (own === serial) {
         arriveEndpoint();
-        const savedFocus = pop ? history.state?.site?.focus : null;
-        const focused = savedFocus
-          ? document.getElementById(savedFocus) ||
-            [...content.querySelectorAll('a[href]')].find(
-              (link) => link.getAttribute('href') === savedFocus || link.href === savedFocus
-            )
-          : null;
-        (focused || content.querySelector('main')).focus({
-          preventScroll: true,
-        });
+        restoreReadingFocus(pop);
         scrollEntry?.resume();
         announcement.textContent = data.title;
         save();
@@ -2398,11 +2526,13 @@ window.SiteScrollEntry=(function () {
       if (Number.isSafeInteger(event.state?.site?.index)) historyIndex = event.state.site.index;
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
+      window.SiteReader?.restore(event.state?.site?.reader);
       if (event.state?.site?.scroll)
         restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
       scrollEntry?.resume();
     }
   });
+  window.addEventListener('site:reader-state', () => save());
   function finishText() {
     scrollEntry?.cancelRoute?.();
     window.SiteScene?.detachTravel();

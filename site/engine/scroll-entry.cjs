@@ -188,7 +188,8 @@ module.exports = function () {
     return allowed() && window.CSS?.supports?.('overflow', 'clip');
   }
   function refreshInventory() {
-    const candidates = [...root.querySelectorAll(targets)];
+    // Sustained reading stays stationary; document-to-document waves retain their units.
+    const candidates = root.matches('.article-reader') ? [] : [...root.querySelectorAll(targets)];
     const units = [...root.querySelectorAll(routeTargets)];
     if (footer) units.push(...footer.querySelectorAll(':scope > p,:scope > a'));
     // A display:contents group has no movable paper or native box. Its visible

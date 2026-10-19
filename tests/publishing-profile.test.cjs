@@ -8,6 +8,7 @@ const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
 const { loadProfile } = require('../tools/publishing/profile.cjs');
+const { compile } = require('../tools/publishing/article.cjs');
 
 const hash = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const png = Buffer.from(
@@ -278,4 +279,29 @@ test('links-only presentations require one named PDF link and no displayed poste
   inputs.article.model.figures = [];
   delete inputs.article.presentation;
   assert.throws(() => loadProfile(inputs.root, inputs.article), /exactly one named PDF/);
+});
+
+test('reader section roles bind real trailing chapters and a bounded numbered reference list', async (t) => {
+  const f = await fixture(t, { illustrated: false, adaptation: false });
+  const compiled = compile(
+    '## Argument\n\nText.\n\n## Notes\n\n1. Source.\n\n## Cite\n\nCitation.',
+    []
+  );
+  Object.assign(f.article, { model: compiled.model, sections: compiled.model.sections });
+  const valid = { references: 'notes', appendices: ['notes', 'cite'] };
+  f.profile.reader = { sections: valid };
+  saveProfile(f.root, f.article.metadata.id, f.profile);
+  assert.deepEqual(loadProfile(f.root, f.article).profile.reader.sections, valid);
+  for (const sections of [
+    { references: 'missing', appendices: ['notes', 'cite'] },
+    { appendices: ['argument'] },
+    { appendices: ['cite', 'cite'] },
+    { appendices: ['cite', 'notes'] },
+    { references: 'cite', appendices: ['notes', 'cite'] },
+    { appendices: ['cite'], extra: true },
+  ]) {
+    f.profile.reader.sections = sections;
+    saveProfile(f.root, f.article.metadata.id, f.profile);
+    assert.throws(() => loadProfile(f.root, f.article));
+  }
 });

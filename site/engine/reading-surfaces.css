@@ -56,10 +56,6 @@
   .topic-nav > a,
   .site-footer > p,
   .site-footer > a,
-  .article-intro > *,
-  .article-toc,
-  .article-body > *,
-  .article-sources,
   .article-list
 ) {
   position: relative;
@@ -102,10 +98,6 @@
   .topic-nav > a,
   .site-footer > p,
   .site-footer > a,
-  .article-intro > *,
-  .article-toc,
-  .article-body > *,
-  .article-sources,
   .article-list
 )::before {
   content: '';
@@ -153,10 +145,6 @@
   .topic-nav > a,
   .site-footer > p,
   .site-footer > a,
-  .article-intro > *,
-  .article-toc,
-  .article-body > *,
-  .article-sources,
   .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
@@ -240,5 +228,17 @@
   .reading-title {
     background: transparent;
     box-shadow: none;
+  }
+}
+
+/* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
+.reader-mode,
+.reader-mode .article-toc {
+  background: var(--paper);
+  border-radius: var(--reading-surface-radius);
+}
+@media print {
+  .reader-mode {
+    background: transparent;
   }
 }

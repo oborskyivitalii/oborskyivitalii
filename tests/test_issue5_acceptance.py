@@ -47,6 +47,7 @@ class Issue5AcceptanceTests(unittest.TestCase):
         self.run_node_contracts(
             [
                 "tests/site-articles.test.cjs",
+                "tests/reader-mode.test.cjs",
                 "tests/site-transaction.test.cjs",
                 "tests/article-offline.test.cjs",
                 "tests/article-media.test.cjs",

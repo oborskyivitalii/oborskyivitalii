@@ -118,7 +118,8 @@
         "tests/article-tags.test.cjs",
         "tests/article-materials.test.cjs",
         "tests/events.test.cjs",
-        "tests/content-delivery.test.cjs"
+        "tests/content-delivery.test.cjs",
+        "tests/reader-mode.test.cjs"
       ]
     }
   },
@@ -2557,6 +2558,26 @@
         "review/issue-108/content-amendment.json",
         "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
         "tools/quality/secrets-publication.json"
+      ]
+    },
+    {
+      "path": "tests/reader-mode.test.cjs",
+      "language": "javascript",
+      "purpose": "Reusable reader AST components, source-preserving layout, semantic tables, citation roundtrips, disclosure/history/print lifecycle and observer state.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "retain independent reader presentation and lifecycle failure surfaces; hosted visual and physical-device review remain distinct",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/reader-mode.test.cjs",
+        "tools/site/reader.cjs",
+        "tools/publishing/**",
+        "site/engine/reader.cjs",
+        "site/engine/reader.css",
+        "site/engine/reading-surfaces.css",
+        "site/templates/pages/article.html",
+        "site/templates/components/reader-contents.html"
       ]
     }
   ]

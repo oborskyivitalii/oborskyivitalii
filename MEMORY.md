@@ -84,9 +84,9 @@ No campaign or production publication. Original remaining gates stay open.
 1. Fetch live #5/PR79/current main and preserve any concurrent editorial commits.
 2. Verify combined native reader history/materials CI/preview,
    then finish applicable platform admission. Do not equate bounded review with AC11 closure.
-3. Reader UX review of84210af4 found table/code overflow, incomplete backdrops and
-   structural friction. See review/issue-5/2026-10-19-reader-ux-ui-review.md. Correct
-   T01–T05 and obtain new reader review before remaining publication acceptance.
+3. Reader mode implementation follows the independent UX review, not a one-off
+   article layout. See review/issue-5/2026-10-19-reader-mode.md for architecture,
+   generic corrections, source checks and final preview/review evidence in PR79.
 4. Admit the platform through staging, then exercise a real content/media release
    against it. Synthetic/preview checks do not establish AC17 or live publication.
 

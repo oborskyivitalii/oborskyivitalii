@@ -50,7 +50,7 @@ test('validated tab snapshot hydrates history synchronously while every mount re
   const article = new Element(),
     intro = new Element();
   article.append(intro);
-  article.querySelector = () => intro;
+  article.querySelector = (selector) => (selector === '.article-intro' ? intro : null);
   const document = {
     body: { dataset: { article: 'reader-reference:en' } },
     querySelectorAll: () => [],

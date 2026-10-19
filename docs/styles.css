@@ -1536,69 +1536,9 @@ body[data-page='writing'] #archive-results {
   }
 }
 
-/* Native article reading uses the existing Writing room and shared paper tokens. */
-.article-reader {
-  max-width: 860px;
-  padding-top: 8rem;
-  padding-bottom: 4rem;
-}
-.article-reader article,
+/* Shared article component layout is authored in reader.css. */
 .article-list {
   padding: clamp(1rem, 4vw, 2.5rem);
-}
-.article-intro h1 {
-  font-size: clamp(2rem, 5vw, 3.8rem);
-  line-height: 1.12;
-  overflow-wrap: anywhere;
-}
-.article-summary {
-  font-size: 1.2rem;
-}
-.article-toc,
-.article-sources {
-  margin-block: 2.5rem;
-}
-.article-toc ol {
-  padding-left: 0;
-  list-style: none;
-}
-.article-body {
-  line-height: 1.75;
-  overflow-wrap: anywhere;
-}
-.article-body h2,
-.article-body h3 {
-  margin-top: 2.5rem;
-  scroll-margin-top: 6rem;
-}
-.article-body figure {
-  margin: 2rem 0;
-}
-.article-body img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-.article-body figcaption {
-  font-size: 0.9rem;
-  margin-top: 0.75rem;
-}
-.article-body pre {
-  overflow-x: auto;
-  padding: 1rem;
-  border: 1px solid currentColor;
-}
-.article-body table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
-}
-.article-body th,
-.article-body td {
-  padding: 0.5rem;
-  border: 1px solid currentColor;
-  text-align: left;
 }
 .article-list {
   margin-block: 2rem;
@@ -1634,26 +1574,6 @@ body[data-page='writing'] #archive-results {
   .presentation-toggle,
   .presentation-viewer {
     display: none;
-  }
-}
-@media print {
-  .article-reader {
-    max-width: none;
-    padding-top: 0;
-  }
-  .article-reader article {
-    padding: 0;
-    background: transparent;
-  }
-  .article-toc {
-    break-after: page;
-  }
-  .article-body figure {
-    break-inside: avoid;
-  }
-  .article-body h2,
-  .article-body h3 {
-    break-after: avoid;
   }
 }
 /* Full legal copies remain readable when expanded on narrow screens. */
@@ -1742,10 +1662,6 @@ body[data-page='writing'] #archive-results {
   .topic-nav > a,
   .site-footer > p,
   .site-footer > a,
-  .article-intro > *,
-  .article-toc,
-  .article-body > *,
-  .article-sources,
   .article-list
 ) {
   position: relative;
@@ -1788,10 +1704,6 @@ body[data-page='writing'] #archive-results {
   .topic-nav > a,
   .site-footer > p,
   .site-footer > a,
-  .article-intro > *,
-  .article-toc,
-  .article-body > *,
-  .article-sources,
   .article-list
 )::before {
   content: '';
@@ -1839,10 +1751,6 @@ body[data-page='writing'] #archive-results {
   .topic-nav > a,
   .site-footer > p,
   .site-footer > a,
-  .article-intro > *,
-  .article-toc,
-  .article-body > *,
-  .article-sources,
   .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
@@ -1926,6 +1834,396 @@ body[data-page='writing'] #archive-results {
   .reading-title {
     background: transparent;
     box-shadow: none;
+  }
+}
+
+/* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
+.reader-mode,
+.reader-mode .article-toc {
+  background: var(--paper);
+  border-radius: var(--reading-surface-radius);
+}
+@media print {
+  .reader-mode {
+    background: transparent;
+  }
+}
+
+/* Reader mode: shared long-form layout and components. Paint/palette retain their owners. */
+.article-reader.wrap {
+  width: min(1120px, calc(100% - 48px));
+  max-width: none;
+  padding-block: 2.5rem 4rem;
+}
+.reader-mode {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 68ch);
+  justify-content: center;
+  column-gap: 44px;
+  padding: clamp(24px, 4vw, 48px);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.article-intro {
+  grid-column: 2;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+.reader-back {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+.article-intro .eyebrow {
+  margin-block: 0 0.75rem;
+}
+.article-intro h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 2.85rem);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.article-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  margin-block: 1rem 0;
+}
+.article-subtitle em {
+  font-style: normal;
+}
+.article-summary {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-block: 1rem;
+}
+.article-authors {
+  font-size: 0.9rem;
+  margin-block: 1.25rem 0;
+}
+.reader-layout {
+  display: contents;
+}
+.reader-content {
+  grid-column: 2;
+  min-width: 0;
+}
+.article-toc {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  position: sticky;
+  top: var(--header-clearance, 110px);
+  max-height: calc(100svh - var(--header-clearance, 110px) - 24px);
+  overflow-y: auto;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.reader-mode summary {
+  cursor: pointer;
+}
+.reader-mode summary:focus-visible,
+.reader-table:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.article-toc summary {
+  font-weight: 650;
+  font-size: 0.875rem;
+  padding-block: 0.5rem;
+}
+.article-toc ol {
+  padding: 0;
+  margin: 0.75rem 0 0;
+  list-style: none;
+}
+.article-toc li {
+  margin-bottom: 0.8rem;
+}
+.article-toc li ol {
+  border-left: 1px solid var(--line);
+  padding-left: 0.8rem;
+}
+.article-toc li li {
+  margin-bottom: 0.55rem;
+  font-size: 0.75rem;
+}
+.article-toc a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+}
+.article-toc a:hover,
+.article-toc a[aria-current='location'] {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.article-toc a[aria-current='location'] {
+  font-weight: 650;
+}
+.article-body p {
+  margin-block: 0 1.25em;
+}
+.reader-chapter + .reader-chapter {
+  margin-top: 3rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+}
+.article-body :is(h2, h3, h4),
+.reader-appendices [id],
+.reader-citation {
+  scroll-margin-top: calc(var(--header-clearance, 110px) + 24px);
+}
+.article-body h2 {
+  font-size: 1.65rem;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  margin-block: 2rem 1.25rem;
+  text-wrap: balance;
+}
+.article-body h3 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-block: 2rem 1rem;
+}
+.article-body :is(ul, ol) {
+  padding-left: 1.5em;
+  margin-block: 0 1.5em;
+}
+.article-body li + li {
+  margin-top: 0.5em;
+}
+.article-body blockquote {
+  margin: 2rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+}
+.reader-mode figure {
+  margin: 2rem 0;
+}
+.reader-mode img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.reader-mode figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.reader-mode figcaption p {
+  margin-bottom: 0.5rem;
+}
+.reader-figure-credit {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.reader-figure-credit p {
+  margin-top: 0.5rem;
+}
+.article-figure-original {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.reader-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.reader-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925em;
+  line-height: 1.55;
+}
+.reader-table :is(th, td) {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.reader-table th {
+  background: var(--tint);
+  font-weight: 650;
+}
+.reader-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.reader-table .reader-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.reader-code {
+  margin-block: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--tint);
+}
+.reader-code pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.reader-citation {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+.reader-note-returns {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.reader-note-returns a {
+  margin-right: 0.5rem;
+}
+.reader-end {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+.reader-mode .article-related {
+  margin-block: 2.5rem;
+}
+.reader-mode .article-related h2 {
+  font-size: 1.2rem;
+}
+.reader-mode .article-related ul {
+  padding-left: 1.25rem;
+}
+.reader-language {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.reader-appendices {
+  border-top: 1px solid var(--line);
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+.reader-appendices :is(.reader-appendix, .article-sources, .article-materials) {
+  margin-block: 1rem;
+}
+.reader-appendix summary h2 {
+  display: inline;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.reader-appendix > :not(summary) {
+  margin-top: 1.25rem;
+}
+.reader-appendix ol {
+  padding-left: 1.5rem;
+}
+.reader-appendix li {
+  padding-left: 0.25rem;
+}
+.reader-mode :target {
+  outline-offset: 4px;
+}
+@media (max-width: 1099px) {
+  .reader-mode {
+    display: block;
+    max-width: 76ch;
+    margin-inline: auto;
+  }
+  .reader-layout {
+    display: block;
+  }
+  .article-toc {
+    z-index: 2;
+    margin-bottom: 1.5rem;
+    border-block: 1px solid var(--line);
+  }
+  .article-toc details[open] {
+    padding-bottom: 0.75rem;
+  }
+  .article-toc ol {
+    padding-inline: 0.5rem;
+  }
+  .article-body :is(h2, h3, h4),
+  .reader-appendices [id],
+  .reader-citation {
+    scroll-margin-top: calc(var(--header-clearance, 110px) + 72px);
+  }
+}
+@media (max-width: 640px) {
+  .article-reader.wrap {
+    width: calc(100% - 20px);
+    padding-block: 1rem 2rem;
+  }
+  .reader-mode {
+    padding: 24px 18px;
+    font-size: 1.0625rem;
+  }
+  .reader-back {
+    margin-bottom: 1.25rem;
+  }
+  .article-intro h1 {
+    font-size: 2rem;
+  }
+  .article-subtitle {
+    font-size: 1.15rem;
+  }
+  .article-body h2 {
+    font-size: 1.45rem;
+  }
+  .reader-table :is(th, td) {
+    padding: 0.6rem;
+  }
+}
+@media print {
+  .article-reader.wrap {
+    width: 100%;
+    padding: 0;
+  }
+  .reader-mode,
+  .reader-layout {
+    display: block;
+    max-width: none;
+    padding: 0;
+    font-size: 11pt;
+  }
+  .reader-back,
+  .article-toc,
+  .reader-end,
+  .article-figure-original {
+    display: none;
+  }
+  .reader-mode details::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+  .reader-mode details > :not(summary) {
+    display: block !important;
+  }
+  .reader-table,
+  .reader-code pre {
+    overflow: visible;
+  }
+  .reader-code pre {
+    white-space: pre-wrap;
+  }
+  .article-body figure,
+  .reader-table tr {
+    break-inside: avoid;
+  }
+  .article-body :is(h2, h3) {
+    break-after: avoid;
   }
 }
 

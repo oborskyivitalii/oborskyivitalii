@@ -1111,7 +1111,7 @@ test('unknown local article navigation falls back once when its manifest is unav
       AbortController,
     });
     const navigation = source.slice(
-      source.indexOf('  async function navigate('),
+      source.indexOf('  function documentDirection('),
       source.indexOf('  document.body.dataset.entryPage = page;')
     );
     vm.runInNewContext(

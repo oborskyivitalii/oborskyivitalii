@@ -210,6 +210,34 @@ module.exports = function articleTags() {
       for (const node of created.splice(0)) node.remove();
       for (const card of cards) delete card.dataset.tags;
     };
+    function appendRecommendations(data, reader) {
+      const recommendations = related(data, reader);
+      if (recommendations.length) {
+        const section = make('section');
+        section.className = 'article-related';
+        section.setAttribute('aria-label', data.labels.related);
+        section.append(make('h2', data.labels.related));
+        const list = make('ul');
+        for (const entry of recommendations) {
+          const item = make('li');
+          const anchor = link(entry.title, entry.url);
+          anchor.lang = entry.language;
+          item.append(anchor);
+          const language = make(
+            'span',
+            typeof Intl.DisplayNames === 'function'
+              ? new Intl.DisplayNames(['en'], { type: 'language' }).of(entry.language)
+              : entry.language.toUpperCase()
+          );
+          language.className = 'reader-language';
+          language.lang = 'en';
+          item.append(language);
+          list.append(item);
+        }
+        section.append(list);
+        add(article.querySelector('.reader-related-slot') || article, section);
+      }
+    }
     const render = (data, preservePosition = false) => {
       const position = preservePosition ? { left: window.scrollX, top: window.scrollY } : null;
       clear();
@@ -245,23 +273,7 @@ module.exports = function articleTags() {
       if (article && reader) {
         const intro = article.querySelector('.article-intro');
         if (intro) add(intro, tagList(reader.tags, data));
-        const recommendations = related(data, reader);
-        if (recommendations.length) {
-          const section = make('section');
-          section.className = 'article-related';
-          section.setAttribute('aria-label', data.labels.related);
-          section.append(make('h2', data.labels.related));
-          const list = make('ul');
-          for (const entry of recommendations) {
-            const item = make('li');
-            const anchor = link(entry.title, entry.url);
-            anchor.lang = entry.language;
-            item.append(anchor);
-            list.append(item);
-          }
-          section.append(list);
-          add(article, section);
-        }
+        appendRecommendations(data, reader);
       }
       window.dispatchEvent(new window.CustomEvent('site:tags-ready'));
       if (!form) window.dispatchEvent(new window.CustomEvent('site:archive-layout'));

@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Reusable reader mode: shared presentation/lifecycle; Writing scene geometry is unchanged.
+  issue5ReaderMode: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '9d4dc3de3d0acec893c90e59d4039bf9974921937bf7a51a07840243c7208038',
+    archive: '0422f2dc13bf5e78b79221aa9a28840c1f996b08927288f47c096ab7835a203e',
+  },
   // Real-article rendition producer; delivered orbit runtime bytes are unchanged.
   issue5RealArticle: {
     behavior: 'fixed-blocks',
@@ -244,6 +253,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-mode-production',
+    family: 'issue5ReaderMode',
+    edition: 'production',
+    fingerprint: 'adf507ae6c5c9b944213400780f50da062774695cd7a9212a5bc5173685c2489',
+    styles: 'd1b088cc317154259315a4dcaaf61502002bca186250ba3560c530a1a043f4df',
+  },
+  {
+    id: 'issue5-reader-mode-plain',
+    family: 'issue5ReaderMode',
+    edition: 'plain',
+    fingerprint: '13a3d5ba4775dc1ea0df1be000c910c0dff9824042350ca01067599926bc621e',
+    styles: 'd1b088cc317154259315a4dcaaf61502002bca186250ba3560c530a1a043f4df',
+  },
+  {
+    id: 'issue5-reader-mode-staging',
+    family: 'issue5ReaderMode',
+    edition: 'staging',
+    fingerprint: 'bb67700df7e832366cfd412bf2531d928df28e2ff2a1eaccaf8ca4c6ab71ce04',
+    styles: 'f3ae2161457cbdc43104df32c6b4667a92fad3596f62977cc66fbbfa5c98167d',
+  },
   {
     id: 'issue5-real-article-production',
     family: 'issue5RealArticle',

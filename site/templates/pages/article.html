@@ -1,19 +1,24 @@
 <main id="main" tabindex="-1" class="article-reader wrap" lang="{{LANGUAGE}}">
-  <article aria-labelledby="{{TITLE_ID}}">
+  <article class="reader-mode" aria-labelledby="{{TITLE_ID}}">
     <header class="article-intro">
+      <a class="reader-back" href="writing.html">← Back to Writing</a>
       <p class="eyebrow">{{STATUS}}</p>
       <h1 id="{{TITLE_ID}}">{{TITLE}}</h1>
+      {{SUBTITLE}}
       <p class="article-summary">{{SUMMARY}}</p>
-      <p>{{AUTHORS}}</p>
-      <p><a href="writing.html">Back to Writing</a></p>
+      <p class="article-authors">{{AUTHORS}}</p>
     </header>
-    <nav class="article-toc" aria-label="Article contents">
-      <h2>Contents</h2>
-      <ol>
-        {{TOC}}
-      </ol>
-    </nav>
-    <div class="article-body">{{BODY}}</div>
-    {{SOURCES}}
+    <div class="reader-layout">
+      {{CONTENTS}}
+      <div class="reader-content">
+        <div class="article-body">{{BODY}}</div>
+        <nav class="reader-end" aria-label="After the article">
+          <a href="writing.html">← More writing</a>
+          <a href="#{{TITLE_ID}}">Back to top ↑</a>
+        </nav>
+        <div class="reader-related-slot"></div>
+        <div class="reader-appendices">{{APPENDICES}}{{SOURCES}}</div>
+      </div>
+    </div>
   </article>
 </main>

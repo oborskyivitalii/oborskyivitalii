@@ -297,7 +297,35 @@ source inputs and every resource to the selected document pair. Review previews
 can retain explicit pending clearance; production rejects pending article/media
 rights. This inventory does not supply editorial or human rights acceptance.
 
-The shared reader can be exercised without the current article manuscript:
+The shared reader is independent of the current article manuscript.
+`tools/site/reader.cjs` is the reusable web presentation adapter over the admitted
+AST, with pure HTML rendering shared through `tools/publishing/render.cjs`.
+`templates/pages/article.html` and `templates/components/reader-contents.html`
+own the common shell and contents; `engine/reader.css` owns long-form layout,
+typography and table/code/figure/reference components. `engine/reading-surfaces.css`
+owns the reader's one opaque paper surface; the same Writing scene stays visible
+around it and retains document-orbit transitions. Ordinary paragraph-entry and
+page-edge scene gestures are disabled while reading an article.
+
+The optional `engine/reader.cjs` lifecycle adds responsive Contents, current-section
+tracking, source-note disclosure and print expansion. Its listeners/observer are
+disposed by the existing router. All disclosure states are stored in the router's
+per-history-entry record and restored before scroll. Native/no-JS HTML contains the
+full body and initially open apparatus; no new fetch, clock, runtime framework or
+publication registry is introduced.
+
+A leading stand-alone emphasized paragraph after the title is the article subtitle.
+Cover furniture can move after the authored introduction without changing prose
+or media. An optional profile `reader.sections` object declares `appendices` as a
+distinct ordered list of trailing H2 anchors and, optionally, `references` as one
+of those anchors. The reference section must contain exactly one positive numbered
+source list with at most100 notes. Only matching `[n]` text citations are linked;
+unknown numbers and code remain literal, and existing links are never nested.
+Every generated citation has a return link; source prose and critical figure
+limitations remain intact. No publication ID, chapter wording or specific source
+number is encoded in the reader's layout.
+
+Exercise it with
 `SITE_ARTICLE_PREVIEW=template node tools/quality/artifact.cjs build /tmp/reader-template`.
 `site/article-template-preview.json` selects only the synthetic, nonpublishable
 `reader-reference`. It remains a draft and cannot enter the publication catalog.

@@ -109,13 +109,46 @@ function namedLink(link, reference) {
   );
 }
 
+function readerSections(selection, article) {
+  const sections = object(selection, ['references', 'appendices'], 'reader sections');
+  const headings = article.sections
+    .filter((section) => section.depth === 2)
+    .map((section) => section.id);
+  const appendices = sections.appendices;
+  if (
+    !Array.isArray(appendices) ||
+    !appendices.length ||
+    appendices.length > 20 ||
+    new Set(appendices).size !== appendices.length ||
+    appendices.some((section) => typeof section !== 'string') ||
+    JSON.stringify(headings.slice(-appendices.length)) !== JSON.stringify(appendices) ||
+    (sections.references !== undefined && !appendices.includes(sections.references))
+  )
+    throw Error(
+      'Reader appendices require distinct trailing chapter anchors; references must belong to them'
+    );
+  if (sections.references !== undefined) {
+    const children = article.model.tree.children;
+    const start = children.findIndex((node) => node.id === sections.references);
+    const following = children.slice(start + 1);
+    const end = following.findIndex((node) => node.type === 'heading' && node.depth === 2);
+    const lists = (end < 0 ? following : following.slice(0, end)).filter(
+      (node) => node.type === 'list' && node.ordered
+    );
+    if (lists.length !== 1 || lists[0].children.length > 100 || lists[0].start < 1)
+      throw Error(
+        'Reader reference section requires one positive numbered source list, up to 100 notes'
+      );
+  }
+}
+
 function readerSelection(profile, article) {
   if (profile.reader === undefined) {
     return;
   }
   const reader = object(
     profile.reader,
-    ['references', 'presentation', 'images', 'equivalentImages'],
+    ['references', 'presentation', 'images', 'equivalentImages', 'sections'],
     'reader'
   );
   if (
@@ -126,6 +159,7 @@ function readerSelection(profile, article) {
   ) {
     throw new Error('Invalid profile reader selection');
   }
+  if (reader.sections !== undefined) readerSections(reader.sections, article);
   if (reader.equivalentImages !== undefined) {
     const selected = object(
       reader.equivalentImages,
