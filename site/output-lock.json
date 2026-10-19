@@ -3,7 +3,7 @@
   "components": {
     "contract": 1,
     "variant": "48153b94fbae4f314eaa11b156df8a20227dec429abfee9e45c14fda4a1f1b2a",
-    "producer": "24d737680c250178474bf1d21640ae4c9a6b1004c415c763063bad6d0ab637c0",
+    "producer": "0c9a1cdc3b63187a38c4e5b1735b2ffebe87074d8bd98d29a8aab10590101a32",
     "engine": "1735546e09f557edc65cd5d401e1ec8353863aba0891ca91eb16042fc3717087",
     "scenes": "0375c50289484250c0d44f693b1f9e3fb20ad4085701d09a1449c46403a0b1f7",
     "assets": "9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc",
@@ -14,7 +14,7 @@
   },
   "routes": {
     "index": {
-      "version": "6d545d55dcc6083c279566b5e176a5b8a70617a40e7a2c3ef484f1b2c7bf9c1f",
+      "version": "99a7a767001783e372178a22781d09b25c5255f1200c0b8bdcc68502f07ab676",
       "url": "index.html",
       "inputs": [
         "site/content/pages/index/about.json",
@@ -43,10 +43,10 @@
         "publication-07",
         "publication-08"
       ],
-      "snapshotSHA": "8db343fb9991512b539da72808a792cc936b2835d6b3f4955a3eb72cfacc2b4b"
+      "snapshotSHA": "84467034a34af99bfb882eee306f14fb244ba8aa4132d280c467dc662ad0a0be"
     },
     "research": {
-      "version": "a763da073d48ea2813fe775d75d666e26746aec2f2385f549b4cd62ebc4d0fcc",
+      "version": "a9f09f08152fc591e6fe186a52050cf7b6e1881ba101d8bb6c75cab8c2484821",
       "url": "research.html",
       "inputs": [
         "site/content/pages/research/acknowledgements.json",
@@ -64,10 +64,10 @@
         "site/templates/pages/research/topics.html"
       ],
       "records": [],
-      "snapshotSHA": "00104864928c0fa62167e4de6e024b655d97e308cac54d9849a5fa48ae52e40e"
+      "snapshotSHA": "f7f7944c6223ea6c8081b8722eb8ec31e6ee371a84d4803c0d3991d0b5b6d09e"
     },
     "writing": {
-      "version": "edc140f6e5e43a5b9d37ab95b0a3a3ac0ef8e5b24a2914a26ccc8279c40c4fbf",
+      "version": "6c3b312b27c3301604986401db047a5facf36a64395563566a0e522e425e80c3",
       "url": "writing.html",
       "inputs": [
         "site/content/pages/writing/main.json",
@@ -107,10 +107,10 @@
         "publication-28",
         "publication-29"
       ],
-      "snapshotSHA": "329a2700edeb0cbb1e36a7c36575cde25d77d5727d8a538a4ca7073a9bb3d4d6"
+      "snapshotSHA": "2cef57a39c7e48009ccb19d4a20adafa180b1b085b65994681d7aab5a9265824"
     },
     "talks": {
-      "version": "696baa34116d08ddf592ef50bcf5077bd988e4428288888d9ee198959e032bbe",
+      "version": "ab63769731241bcfbdcb1f834377d3d3d1c782d60b01b25bd22cb16712b88811",
       "url": "talks.html",
       "inputs": [
         "site/content/events.json",
@@ -123,10 +123,10 @@
         "site/templates/pages/talks/talks.html"
       ],
       "records": [],
-      "snapshotSHA": "b164d2cef755b695cc3d6a8f64588d09e964f41622fcc0ec86ded2b8c9696379"
+      "snapshotSHA": "d36a4d9d5f84e3e785d199687a2de34609aef20e0d58d29dd0fe0667f2b7a15d"
     },
     "credits": {
-      "version": "754af0f75024c86c13e079e5f0542edbc168b20a033ba0636e820a1ea32c1bd2",
+      "version": "dfab5ae194e569b2d01274e002c6abbfb377fa304461ace36e320094ada68391",
       "url": "credits.html",
       "inputs": [
         "LICENSE-CODE.md",
@@ -139,20 +139,20 @@
         "site/templates/pages/credits/main.html"
       ],
       "records": [],
-      "snapshotSHA": "96b3dd64f4b22e795ebe1e642b9733f3e24218cc00c42f3b239762411a554734"
+      "snapshotSHA": "bfd0c1ad338a4037fedb94a64055f42b048926dd40848a3b18c6d090f0edb513"
     }
   },
   "files": {
-    "index.html": "9ffd0f43769873105d94471eb7da1a87839f027c4ff7f5ef5562e3d444a674a2",
-    "snapshots/6d545d55dcc6083c279566b5e176a5b8a70617a40e7a2c3ef484f1b2c7bf9c1f/index.html": "8db343fb9991512b539da72808a792cc936b2835d6b3f4955a3eb72cfacc2b4b",
-    "research.html": "d3a4dd64720cfe64001d022f80daa365fc05667e5e2a6ae55bca4b844b0f98ed",
-    "snapshots/a763da073d48ea2813fe775d75d666e26746aec2f2385f549b4cd62ebc4d0fcc/research.html": "00104864928c0fa62167e4de6e024b655d97e308cac54d9849a5fa48ae52e40e",
-    "writing.html": "e097e645b8b9f6fb7b5bac6d567ef2c4791ab601f79c7fa87dcad7f64282480c",
-    "snapshots/edc140f6e5e43a5b9d37ab95b0a3a3ac0ef8e5b24a2914a26ccc8279c40c4fbf/writing.html": "329a2700edeb0cbb1e36a7c36575cde25d77d5727d8a538a4ca7073a9bb3d4d6",
-    "talks.html": "e5b591a30d1f462ed4cbc6de13a033bdb8febb91be8b4429ee23cae21fd2969f",
-    "snapshots/696baa34116d08ddf592ef50bcf5077bd988e4428288888d9ee198959e032bbe/talks.html": "b164d2cef755b695cc3d6a8f64588d09e964f41622fcc0ec86ded2b8c9696379",
-    "credits.html": "3d8179062c14a9384438b0b7db2cc6c86e63496dd6a1fa5437f6d0ee185c01f7",
-    "snapshots/754af0f75024c86c13e079e5f0542edbc168b20a033ba0636e820a1ea32c1bd2/credits.html": "96b3dd64f4b22e795ebe1e642b9733f3e24218cc00c42f3b239762411a554734",
+    "index.html": "fd352d3732a7bf80a0e296f2a023537419131cc91dfbed489a2b935bb845a131",
+    "snapshots/99a7a767001783e372178a22781d09b25c5255f1200c0b8bdcc68502f07ab676/index.html": "84467034a34af99bfb882eee306f14fb244ba8aa4132d280c467dc662ad0a0be",
+    "research.html": "f34f111e4632282afb831d9efc2900b5abb83a1ff830bf3fe52d93a4f1d93c6b",
+    "snapshots/a9f09f08152fc591e6fe186a52050cf7b6e1881ba101d8bb6c75cab8c2484821/research.html": "f7f7944c6223ea6c8081b8722eb8ec31e6ee371a84d4803c0d3991d0b5b6d09e",
+    "writing.html": "6b0f9c3976f8a49b4b72a838901e04f899410d195db1fe8982454291d204ecf4",
+    "snapshots/6c3b312b27c3301604986401db047a5facf36a64395563566a0e522e425e80c3/writing.html": "2cef57a39c7e48009ccb19d4a20adafa180b1b085b65994681d7aab5a9265824",
+    "talks.html": "dd6610589d8e0b86134c313ff2a769235a53bb89889a67ef92dfea12d0b813bf",
+    "snapshots/ab63769731241bcfbdcb1f834377d3d3d1c782d60b01b25bd22cb16712b88811/talks.html": "d36a4d9d5f84e3e785d199687a2de34609aef20e0d58d29dd0fe0667f2b7a15d",
+    "credits.html": "1555efece5df935087bd555c75b5037222210b1eca26c9b4a2f6b8328bfe6bb0",
+    "snapshots/dfab5ae194e569b2d01274e002c6abbfb377fa304461ace36e320094ada68391/credits.html": "bfd0c1ad338a4037fedb94a64055f42b048926dd40848a3b18c6d090f0edb513",
     "theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
     "archive.js": "e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760",
     "navigation.js": "365d60e6357e897732ec303cc39ceb60cb687c63b032130c2cfceab4ded4e6ab",
@@ -165,11 +165,11 @@
     "assets/writing-paradigm.svg": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
     "runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": "7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff",
     "publication-index.json": "eb1848a10d7cf7ef5e5f927a73ceab663bbbdcf4e346f6bbba90672b8b598745",
-    "runtime/51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900/theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
-    "runtime/51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900/space.js": "76bba190798909edfea08dedb2cd02079c36070e6b31e401729aa2c2d5081679",
-    "runtime/51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900/archive.js": "e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760",
-    "runtime/51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900/navigation.js": "365d60e6357e897732ec303cc39ceb60cb687c63b032130c2cfceab4ded4e6ab",
-    "runtime/51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900/styles.css": "aa8499742c7bf35eb3b2340991ac7c2666d690ec3faf219f6472e23cb3b2e82f",
+    "runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/theme.js": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+    "runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/space.js": "76bba190798909edfea08dedb2cd02079c36070e6b31e401729aa2c2d5081679",
+    "runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/archive.js": "e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760",
+    "runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/navigation.js": "365d60e6357e897732ec303cc39ceb60cb687c63b032130c2cfceab4ded4e6ab",
+    "runtime/b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7/styles.css": "aa8499742c7bf35eb3b2340991ac7c2666d690ec3faf219f6472e23cb3b2e82f",
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg": "a27a6f79b42bfa41fa8a8d3fe39e3c9570bcd992410c91a17d021de4dc28636e",
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi-cutout.webp": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
     "media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/vitalii-oborskyi.jpg": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
@@ -184,6 +184,6 @@
     "snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": "4284e646405e3c2dc1288fd3e222e15b8564e44cbaeca8be0b0b01927a248736",
     "snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942",
     "snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312",
-    "site-revision.json": "6f1f3b63a8b21c9ac120192f5d5b87d1e8e16472e1bedf87633f92c268012aaf"
+    "site-revision.json": "509488fc0814ceaf34dfe27e21535d6361ff34911fd1677fb3ff849c94a68de5"
   }
 }

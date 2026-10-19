@@ -37,7 +37,9 @@ function utf8(bytes, context) {
   try {
     return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
   } catch (error) {
-    throw new Error('Profile ' + context + ' must be valid UTF-8', { cause: error });
+    throw new Error('Profile ' + context + ' must be valid UTF-8', {
+      cause: error,
+    });
   }
 }
 
@@ -111,14 +113,37 @@ function readerSelection(profile, article) {
   if (profile.reader === undefined) {
     return;
   }
-  const reader = object(profile.reader, ['references', 'presentation', 'images'], 'reader');
+  const reader = object(
+    profile.reader,
+    ['references', 'presentation', 'images', 'equivalentImages'],
+    'reader'
+  );
   if (
     Object.keys(reader).length === 0 ||
     (reader.references !== undefined && reader.references !== 'inline') ||
-    (reader.presentation !== undefined && reader.presentation !== 'links') ||
+    (reader.presentation !== undefined && !['links', 'download'].includes(reader.presentation)) ||
     (reader.images !== undefined && reader.images !== 'webp-lossless')
   ) {
     throw new Error('Invalid profile reader selection');
+  }
+  if (reader.equivalentImages !== undefined) {
+    const selected = object(
+      reader.equivalentImages,
+      article.assets.map((asset) => asset.id),
+      'equivalent images'
+    );
+    if (reader.images !== 'webp-lossless' || !Object.keys(selected).length)
+      throw Error('Equivalent images require explicit lossless reader preparation');
+    for (const entry of Object.values(selected)) {
+      object(entry, ['path', 'sha256'], 'equivalent image');
+      if (
+        Object.keys(entry).length !== 2 ||
+        !/^site\/assets\/[a-zA-Z0-9/_.-]+\.jpg$/.test(entry.path) ||
+        entry.path.split('/').includes('..') ||
+        !/^[a-f0-9]{64}$/.test(entry.sha256)
+      )
+        throw Error('Equivalent image requires a pinned source JPEG');
+    }
   }
   const links = article.model?.links || [];
   if (
@@ -129,7 +154,7 @@ function readerSelection(profile, article) {
   ) {
     throw new Error('Inline references require a named manuscript link for every source');
   }
-  if (reader.presentation === 'links') {
+  if (['links', 'download'].includes(reader.presentation)) {
     const deck = article.presentation;
     if (
       !deck ||
@@ -161,7 +186,16 @@ function assetSelection(root, article, selection, role) {
     throw new Error('Profile ' + role + ' asset checksum mismatch');
   }
   const { path, sha256, width, height, alt, caption, credit } = asset;
-  return Object.freeze({ id, path, sha256, width, height, alt, caption, credit });
+  return Object.freeze({
+    id,
+    path,
+    sha256,
+    width,
+    height,
+    alt,
+    caption,
+    credit,
+  });
 }
 
 function loadProfile(root, article) {

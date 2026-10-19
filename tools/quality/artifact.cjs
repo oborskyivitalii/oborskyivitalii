@@ -28,7 +28,12 @@ function checkSize(dir) {
     ];
     const transfer = m.files[file].gzip + assets.reduce((n, f) => n + m.files[f].gzip, 0);
     if (transfer > budgets.routeGzipBytes) throw Error('Route transfer ' + route);
-    rows.push({ route, ...m.files[file], svgNodes: nodes, totalGzipBytes: transfer });
+    rows.push({
+      route,
+      ...m.files[file],
+      svgNodes: nodes,
+      totalGzipBytes: transfer,
+    });
   }
   for (const [file, info] of Object.entries(m.files)) {
     if (file.endsWith('.html') && info.raw > budgets.htmlRawBytes) throw Error('HTML size ' + file);
@@ -38,6 +43,9 @@ function checkSize(dir) {
   const revision = JSON.parse(fs.readFileSync(path.join(dir, 'site-revision.json'), 'utf8'));
   const articleRows = Object.entries(revision.articles || {}).map(([key, descriptor]) => {
     const html = fs.readFileSync(path.join(dir, descriptor.alias), 'utf8');
+    const downloads = require('../site/snapshot.cjs').downloads(descriptor, html, (name) =>
+      fs.readFileSync(path.join(dir, name))
+    );
     const svg = html.match(/<svg class="space-fallback"[\s\S]*?<\/svg>/)?.[0];
     if (!svg) throw Error('Missing article fallback ' + key);
     let svgNodes = (svg.match(/<[a-z][\w-]*(?:\s|>)/gi) || []).length;
@@ -64,7 +72,7 @@ function checkSize(dir) {
       m.files[descriptor.alias].gzip +
       assets.reduce((total, file) => {
         if (!m.files[file]) throw Error('Missing article size dependency ' + file);
-        return total + m.files[file].gzip;
+        return total + (downloads.includes(file) ? 0 : m.files[file].gzip);
       }, 0);
     if (svgNodes > budgets.svgElements || totalGzipBytes > budgets.routeGzipBytes)
       throw Error('Article transfer size ' + key);
@@ -74,6 +82,8 @@ function checkSize(dir) {
       ...m.files[descriptor.alias],
       svgNodes,
       assets,
+      downloads,
+      downloadGzipBytes: downloads.reduce((total, file) => total + m.files[file].gzip, 0),
       totalGzipBytes,
     };
   });
@@ -115,11 +125,25 @@ function validateArticleSizes(sizes, record) {
     ];
     if (JSON.stringify(row.assets) !== JSON.stringify(assets))
       throw Error('Article size dependency evidence differs ' + row.key);
+    const downloads = descriptor.downloads === undefined ? [] : descriptor.downloads;
+    if (
+      !Array.isArray(downloads) ||
+      downloads.length > 1 ||
+      downloads.some(
+        (name) =>
+          !assets.includes(name) ||
+          !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.pdf$/.test(name)
+      ) ||
+      JSON.stringify(row.downloads || []) !== JSON.stringify(downloads) ||
+      (row.downloadGzipBytes || 0) !==
+        downloads.reduce((total, name) => total + record.files[name].gzip, 0)
+    )
+      throw Error('Article download evidence differs ' + row.key);
     const transfer =
       file.gzip +
       assets.reduce((total, name) => {
         if (!record.files[name]) throw Error('Missing article size dependency ' + name);
-        return total + record.files[name].gzip;
+        return total + (downloads.includes(name) ? 0 : record.files[name].gzip);
       }, 0);
     if (row.totalGzipBytes !== transfer || transfer > budgets.routeGzipBytes)
       throw Error('Article transfer budget evidence ' + row.key);
@@ -161,7 +185,11 @@ function persistGeneration(directory, publicDir, lockBytes) {
     baselineLock: destination.lockFile,
     expectedBaselineLockSha256: outputLockSha256,
   });
-  return { schema: 1, outputLockSha256, artifactDigest: manifest(publicDir).artifactDigest };
+  return {
+    schema: 1,
+    outputLockSha256,
+    artifactDigest: manifest(publicDir).artifactDigest,
+  };
 }
 
 function storeGeneration(directory, publicDir, lockBytes) {
@@ -233,7 +261,9 @@ function storeContentBaseline(directory, baseline) {
       : []),
   ]) {
     fs.mkdirSync(path.dirname(path.join(target, name)), { recursive: true });
-    fs.cpSync(path.join(baseline, name), path.join(target, name), { recursive: true });
+    fs.cpSync(path.join(baseline, name), path.join(target, name), {
+      recursive: true,
+    });
   }
 }
 
@@ -257,7 +287,11 @@ function composeContentGeneration({ projectRoot = root, out, contentBaseline, ar
     const classification = sourceTests.classifyContent(
       sourceTests.loadRegistry(projectRoot),
       sourceTests.readChangedPaths(projectRoot, admission.mergedSource, git(['rev-parse', 'HEAD'])),
-      { root: projectRoot, base: admission.mergedSource, head: git(['rev-parse', 'HEAD']) }
+      {
+        root: projectRoot,
+        base: admission.mergedSource,
+        head: git(['rev-parse', 'HEAD']),
+      }
     );
     if (classification.mode !== 'content')
       throw Error('Accepted content baseline rejects platform changes');
@@ -360,7 +394,11 @@ function build(out, { contentBaseline, acceptedGeneration } = {}) {
     if (contentBaseline) throw Error('Choose one generation input');
     ({ generation, contentRelease } = stagedGeneration(out, acceptedGeneration, articleCandidates));
   } else if (contentBaseline) {
-    const composed = composeContentGeneration({ out, contentBaseline, articleCandidates });
+    const composed = composeContentGeneration({
+      out,
+      contentBaseline,
+      articleCandidates,
+    });
     generation = composed.declaration;
     contentRelease = composed.report;
   } else {
@@ -422,7 +460,11 @@ if (require.main === module) {
     const extra = process.argv.slice(4);
     if (extra[0] === '--accepted-generation') {
       if (extra.length !== 2) throw Error('Accepted generation requires one explicit directory');
-      console.log(build(path.resolve(dir), { acceptedGeneration: path.resolve(extra[1]) }));
+      console.log(
+        build(path.resolve(dir), {
+          acceptedGeneration: path.resolve(extra[1]),
+        })
+      );
     } else {
       const contentBaseline = {};
       const options = {

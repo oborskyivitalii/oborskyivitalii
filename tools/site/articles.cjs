@@ -73,6 +73,9 @@ function select(root, candidates = [], catalog = { records: {} }) {
         publicMaterials: materials,
         inputs: [...new Set([...article.inputs, ...materials.inputs])],
         assets: resources,
+        ...(article.profile.reader?.presentation === 'download'
+          ? { downloads: [assetName(article.presentation.file)] }
+          : {}),
         key: `${id}:${article.metadata.language}`,
         url: `articles/${article.metadata.slug}.html`,
         candidate: article.metadata.status !== 'accepted',
@@ -143,7 +146,8 @@ function input(root, article) {
       ...(article.profile.reader?.references === 'inline'
         ? []
         : ['site/templates/articles/sources.html']),
-      ...(article.presentation && article.profile.reader?.presentation !== 'links'
+      ...(article.presentation &&
+      !['links', 'download'].includes(article.profile.reader?.presentation)
         ? ['site/templates/articles/presentation.html']
         : [])
     ),
@@ -185,13 +189,19 @@ function editionNotice(article) {
     status: article.metadata.rights.status,
     notice: article.metadata.rights.notice,
     resources: article.assets
-      .filter((asset) => ['image/png', 'image/webp'].includes(asset.mime))
+      .filter((asset) => ['image/png', 'image/webp', 'image/jpeg'].includes(asset.mime))
       .map((asset) => ({
         path: asset.path,
         sha256: asset.sourceDigest || asset.digest,
         credit: asset.credit,
         ...(asset.rendition
-          ? { rendition: { ...asset.rendition, file: assetName(asset), sha256: asset.digest } }
+          ? {
+              rendition: {
+                ...asset.rendition,
+                file: assetName(asset),
+                sha256: asset.digest,
+              },
+            }
           : {}),
       })),
     presentation: article.presentation
@@ -211,7 +221,7 @@ function editionNotice(article) {
       (item) =>
         `<li>${escapeText(item.path)} · SHA256 ${item.sha256}<p>${escapeText(item.credit)}</p>` +
         (item.rendition
-          ? `<p>Lossless WebP copy: ${escapeText(item.rendition.file)} · SHA256 ${item.rendition.sha256}. ` +
+          ? `<p>${item.rendition.kind === 'equivalent-jpeg' ? 'Pixel-equivalent source JPEG' : 'Lossless WebP copy'}: ${escapeText(item.rendition.file)} · SHA256 ${item.rendition.sha256}. ` +
             `Decoded RGBA SHA256 ${item.rendition.pixelSha256}; color profile SHA256 ${item.rendition.iccSha256}.</p>`
           : '') +
         '</li>'
@@ -237,7 +247,7 @@ function editionNotice(article) {
 function presentationBody(root, article) {
   const deck = article.presentation;
   if (!deck) return article.html;
-  if (article.profile.reader?.presentation === 'links') {
+  if (['links', 'download'].includes(article.profile.reader?.presentation)) {
     const source = `href="${escapeAttribute(deck.sourceUrl)}"`;
     if (article.html.split(source).length !== 2) {
       throw Error('Linked presentation requires exactly one PDF link in the reader');
@@ -337,7 +347,9 @@ function listing(main, articles, scene = 'writing') {
     .join('\n');
   const content =
     `<section class="article-list wrap" aria-labelledby="article-list-heading">` +
-    `<h2 id="article-list-heading">Test article previews</h2><ul>${cards}</ul></section>`;
+    `<h2 id="article-list-heading">${candidates.every((article) => article.technical) ? 'Test article previews' : 'Article preview'}</h2><ul>${cards}</ul></section>`;
+  if (candidates.some((article) => !article.technical))
+    return main.replace(/<nav class="topic-nav\b/, content + '<nav class="topic-nav');
   return main.replace(/<\/main\s*>/, content + '</main>');
 }
 

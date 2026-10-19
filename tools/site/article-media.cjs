@@ -18,6 +18,14 @@ function encode(assets) {
         width: asset.width,
         height: asset.height,
         base64: asset.bytes.toString('base64'),
+        ...(asset.equivalentJpeg
+          ? {
+              equivalentJpeg: {
+                sha256: asset.equivalentJpeg.digest,
+                base64: asset.equivalentJpeg.bytes.toString('base64'),
+              },
+            }
+          : {}),
       })),
     }),
     encoding: 'utf8',
@@ -32,27 +40,38 @@ function encode(assets) {
   return result.images.map((item, index) => {
     const source = assets[index];
     const bytes = Buffer.from(item.base64, 'base64');
+    const jpeg = Boolean(source.equivalentJpeg);
     if (
       item.sourceSha256 !== source.digest ||
       item.sha256 !== digest(bytes) ||
       item.width !== source.width ||
       item.height !== source.height ||
-      bytes.toString('ascii', 0, 4) !== 'RIFF' ||
-      bytes.toString('ascii', 8, 12) !== 'WEBP' ||
+      item.kind !== (jpeg ? 'equivalent-jpeg' : 'webp-lossless') ||
+      (jpeg
+        ? !bytes.equals(source.equivalentJpeg.bytes)
+        : bytes.toString('ascii', 0, 4) !== 'RIFF' || bytes.toString('ascii', 8, 12) !== 'WEBP') ||
       !/^[a-f0-9]{64}$/.test(item.pixelSha256) ||
       !/^[a-f0-9]{64}$/.test(item.iccSha256)
     )
       throw Error('Lossless article media source or output identity differs');
+    const asset = { ...source };
+    delete asset.equivalentJpeg;
     return {
-      ...source,
+      ...asset,
       bytes,
       digest: item.sha256,
       sourceDigest: source.digest,
-      outputName: path.posix.basename(source.path).replace(/\.png$/, '.webp'),
-      mime: 'image/webp',
+      outputName: path.posix.basename(source.path).replace(/\.png$/, jpeg ? '.jpg' : '.webp'),
+      mime: jpeg ? 'image/jpeg' : 'image/webp',
       rendition: {
         schema: 1,
-        kind: 'webp-lossless',
+        kind: item.kind,
+        ...(jpeg
+          ? {
+              equivalentSource: source.equivalentJpeg.path,
+              equivalentSha256: source.equivalentJpeg.digest,
+            }
+          : {}),
         sourceSha256: source.digest,
         pixelSha256: item.pixelSha256,
         iccSha256: item.iccSha256,
@@ -65,7 +84,26 @@ function encode(assets) {
 
 function render(root, article, assetName) {
   if (article.profile.reader?.images !== 'webp-lossless' || !article.assets.length) return article;
-  const assets = encode(article.assets).map((asset) => ({ ...asset, url: assetName(asset) }));
+  const inputs = [...article.inputs];
+  const sources = article.assets.map((asset) => {
+    const selected = article.profile.reader.equivalentImages?.[asset.id];
+    if (!selected) return asset;
+    const source = readSource(root, selected.path, { maxBytes: 2000000 });
+    if (source.sha256 !== selected.sha256) throw Error('Equivalent JPEG checksum differs');
+    inputs.push(selected.path);
+    return {
+      ...asset,
+      equivalentJpeg: {
+        path: selected.path,
+        digest: source.sha256,
+        bytes: source.bytes,
+      },
+    };
+  });
+  const assets = encode(sources).map((asset) => ({
+    ...asset,
+    url: assetName(asset),
+  }));
   const source = readSource(root, article.source.path);
   if (source.sha256 !== article.source.sha256)
     throw Error('Article changed during media preparation');
@@ -81,6 +119,7 @@ function render(root, article, assetName) {
     html: rendered.bodyHtml,
     sections: rendered.model.sections.filter((section) => section.id !== rendered.titleId),
     assets,
+    inputs: [...new Set(inputs)],
   };
 }
 

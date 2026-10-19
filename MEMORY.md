@@ -31,10 +31,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Decisions
 
-- User stopped article-specific work; finish a common reader using stable technical
-  material. Article writing/editing and acceptance stay in the other conversation.
-- SITE_ARTICLE_PREVIEW=template selects only nonpublishable reader-reference.
-  true retains the separate actual editorial selection and all original guards.
+- Latest user scope: use real R12/Cover02 in the same PR79 native article preview,
+  then refine before publishing. Preserve prose, originals, semantic edition and PDFs;
+  #2 retains editorial/rights acceptance. Earlier stop on article adaptation is superseded.
+- SITE_ARTICLE_PREVIEW=template retains the isolated nonpublishable reader fixture.
+  true / Draft PR79 now selects only the real pmday-ai-both-sides article.
 - Original media/manuscripts/editions stay unchanged. Optional webp-lossless uses
   canonical pinned Pillow, preserves RGBA/dimensions/ICC, keeps original print data.
 - Tag-only base generation changes only index/binding data and preserves all
@@ -54,9 +55,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   Exact final source/CI/preview evidence belongs to PR79; draft smoke is not staging admission.
 - Materials F01/F02 corrections are implemented and focused independently re-reviewed;
   final combined-source evidence belongs to PR79. Preserve PR107/editorial ownership.
-- Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
-  The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
-  later. No successful current article hosted acceptance is inferred.
+- Real R12 native preview prepared: verified pixel-equivalent original JPEG cover,
+  all7 full lossless WebP slides, one explicit native PDF download. Reading730846B
+  versus800000B; PDF527746B reported separately with full immutable/rights closure.
+  Standalone JPEG is explicitly rejected; actual offline/AC14/rights gates stay open.
+  Review: review/issue-5/2026-10-19-real-article-preview.md; final source/CI in PR79.
 - #5 delivery lanes implemented in PR79: authenticated accepted baseline, distinct
   current-source content/media gate, canonical Talks event collection, exact raw
   staged-generation reuse and protected main/predecessor leases. Bounded independent
@@ -65,8 +68,8 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 - #5 AC11/12 independent/hosted/release gates remain; AC14 unchecked.
   AC13/15 retain bounded catalog/classification scope; AC16–AC20 live gates pending.
   AC21/22 tag/index checks are mapped; semantic/independent/release gates remain.
-- #2 owns editorial/media/PDF/deck/upstream/publication acceptance. Do not edit
-  actual manuscript or media while the other conversation continues its work.
+- #2 owns editorial/media/PDF/deck/upstream/publication acceptance. Current web
+  adaptation leaves manuscript, canonical metadata/edition and originals unchanged.
 - #102 article paths/history/metrics/cost, #104 conversions follow reader contract.
   #97 MFA owner-only; #98/#99/#100 separately selected; #39 review remains open.
 - #6 harness and #11 guide consolidation follow the proven publishing lane.
@@ -81,8 +84,8 @@ No campaign or production publication. Original remaining gates stay open.
 1. Fetch live #5/PR79/current main and preserve any concurrent editorial commits.
 2. Verify combined native reader history/materials CI/preview,
    then finish applicable platform admission. Do not equate bounded review with AC11 closure.
-3. Consume final article handoff later; verify its actual resource/rights/PDF
-   gates separately, then obtain first-publication decision through the controller.
+3. Inspect the real R12 hosted preview with the user, refine it, then verify remaining
+   article/rights/PDF gates and obtain first-publication decision through the controller.
 4. Admit the platform through staging, then exercise a real content/media release
    against it. Synthetic/preview checks do not establish AC17 or live publication.
 

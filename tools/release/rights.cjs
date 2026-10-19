@@ -168,7 +168,10 @@ function validateManifest(sourceRoot, manifest) {
 
 function publicBasis(name, bytes, manifest, hostedFiles = {}) {
   if (name === 'publication-index.json')
-    return { bases: ['original-code', 'original-text', 'linked-metadata'], retained: false };
+    return {
+      bases: ['original-code', 'original-text', 'linked-metadata'],
+      retained: false,
+    };
   if (Object.hasOwn(hostedFiles, name)) return hostedFiles[name];
   if (Object.hasOwn(manifest.retained, name)) {
     const retained = manifest.retained[name];
@@ -277,7 +280,23 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
         asset.digest,
         'hosted resource bytes differ'
       );
-      files[name] = { bases: source.bases, retained: false };
+      let bases = source.bases;
+      if (asset.rendition?.kind === 'equivalent-jpeg') {
+        const equivalent =
+          manifest.assets[asset.rendition.equivalentSource.slice('site/assets/'.length)];
+        assert.ok(equivalent, 'uncovered equivalent JPEG source');
+        assert.equal(
+          equivalent.sha256,
+          asset.rendition.equivalentSha256,
+          'equivalent JPEG rights identity differs'
+        );
+        bases = [...new Set([...bases, ...equivalent.bases])];
+        assert.ok(
+          record.edition?.id !== 'production' || !bases.includes('article-review-input'),
+          'hosted production JPEG clearance remains pending'
+        );
+      }
+      files[name] = { bases, retained: false };
       return name;
     });
     const svg = readSource(publicDirectory, 'writing.html')
@@ -290,8 +309,16 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
       'hosted fallback geometry differs'
     );
     resources.push(fallback.name);
-    files[fallback.name] = { bases: ['original-code', 'original-diagram'], retained: false };
+    files[fallback.name] = {
+      bases: ['original-code', 'original-diagram'],
+      retained: false,
+    };
     assert.deepEqual(descriptor.assets, resources, 'hosted resource closure differs');
+    assert.deepEqual(
+      descriptor.downloads || [],
+      article.downloads || [],
+      'hosted download classification differs'
+    );
     editions.push({
       key: article.key,
       ...notice.data,

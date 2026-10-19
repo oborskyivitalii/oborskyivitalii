@@ -760,16 +760,16 @@ test('reader-link runtime tuples reproduce the complete current plain and stagin
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-delivery-main-plain');
+    assert.equal(motion.select(plain).id, 'issue5-real-article-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-delivery-main-staging');
+    assert.equal(motion.select(staged).id, 'issue5-real-article-staging');
     for (const record of [plain, staged]) {
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-delivery-main-plain').variant.baseEngine
+        motion.reviewedRuntime('issue5-real-article-plain').variant.baseEngine
       );
     }
   } finally {

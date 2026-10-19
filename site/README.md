@@ -312,8 +312,21 @@ and binds both source and output hashes in its edition notice. Source PNGs and
 print/platform exports remain unchanged. Unsupported color/orientation/frame data
 requires explicit preparation; there is no automatic resize or lossy fallback.
 Standalone HTML embeds verified WebP with native image markup and correct MIME.
+An explicit `reader.equivalentImages` map may select an existing JPEG by declared
+asset id, source path and SHA256. Its dimensions, decoded RGBA, ICC and orientation
+must match the canonical PNG exactly. The original JPEG bytes are served unchanged;
+both source identities remain bound to the reader notice and source inputs.
+The current standalone codec supports PNG/WebP only and rejects this JPEG mode;
+hosted support does not claim standalone article acceptance.
 An ordinary PDF download remains available through `reader.presentation: "links"`;
 large decks and images still count against the existing complete transfer budget.
+The explicit `download` mode instead permits exactly one user-activated PDF anchor,
+without embed, preload or automatic loading. The PDF stays in the full immutable,
+rights, source and offline inventory under the unchanged 2000000-byte asset cap.
+Size evidence reports its download transfer separately. All displayed images,
+including every below-fold slide, still count toward the unchanged 800000-byte
+required reading transfer. Source reconstruction verifies this classification;
+neither mode establishes editorial, rights or release acceptance.
 
 Prior published versions must be imported explicitly from their verified artifact:
 

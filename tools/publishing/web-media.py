@@ -45,7 +45,10 @@ def encode(request):
     pixels = 0
     source_bytes = 0
     for item in images:
-        if set(item) != {"sha256", "width", "height", "base64"}:
+        if set(item) not in (
+            {"sha256", "width", "height", "base64"},
+            {"sha256", "width", "height", "base64", "equivalentJpeg"},
+        ):
             raise ValueError("Unknown web-media image fields")
         width, height = item["width"], item["height"]
         if (
@@ -83,17 +86,32 @@ def encode(request):
                 raise ValueError("Non-ICC PNG color metadata requires explicit preparation")
             rgba = source.convert("RGBA")
             original_pixels = rgba.tobytes()
-            output = io.BytesIO()
-            rgba.save(
-                output,
-                format="WEBP",
-                lossless=True,
-                exact=True,
-                method=6,
-                quality=100,
-                icc_profile=icc,
-            )
-            encoded = output.getvalue()
+            if "equivalentJpeg" not in item:
+                output = io.BytesIO()
+                rgba.save(
+                    output,
+                    format="WEBP",
+                    lossless=True,
+                    exact=True,
+                    method=6,
+                    quality=100,
+                    icc_profile=icc,
+                )
+                encoded = output.getvalue()
+        if "equivalentJpeg" in item:
+            equivalent = item["equivalentJpeg"]
+            if not isinstance(equivalent, dict) or set(equivalent) != {
+                "sha256",
+                "base64",
+            }:
+                raise ValueError("Unknown equivalent JPEG fields")
+            encoded = base64.b64decode(equivalent["base64"], validate=True)
+            source_bytes += len(encoded)
+            if source_bytes > 16_000_000 or digest(encoded) != equivalent["sha256"]:
+                raise ValueError("Equivalent JPEG source identity or byte budget differs")
+            with Image.open(io.BytesIO(encoded)) as jpeg:
+                if jpeg.format != "JPEG" or jpeg.getexif().get(274, 1) != 1:
+                    raise ValueError("Equivalent JPEG format or orientation differs")
         if len(encoded) > budget:
             raise ValueError("Web rendition exceeds the existing asset budget")
         with Image.open(io.BytesIO(encoded)) as decoded:
@@ -107,6 +125,7 @@ def encode(request):
         results.append(
             {
                 "sourceSha256": item["sha256"],
+                "kind": "equivalent-jpeg" if "equivalentJpeg" in item else "webp-lossless",
                 "sha256": digest(encoded),
                 "width": width,
                 "height": height,
@@ -115,7 +134,12 @@ def encode(request):
                 "base64": base64.b64encode(encoded).decode("ascii"),
             }
         )
-    return {"schema": 1, "pillow": PIL.__version__, "webp": WEBP_VERSION, "images": results}
+    return {
+        "schema": 1,
+        "pillow": PIL.__version__,
+        "webp": WEBP_VERSION,
+        "images": results,
+    }
 
 
 def main():

@@ -30,8 +30,12 @@ test.before(() => {
     'tools/build_scene_fallbacks.cjs',
     ...Object.values(require('../tools/site/legal.cjs').sources),
   ]) {
-    fs.mkdirSync(path.dirname(path.join(prepared, relative)), { recursive: true });
-    fs.cpSync(path.join(repo, relative), path.join(prepared, relative), { recursive: true });
+    fs.mkdirSync(path.dirname(path.join(prepared, relative)), {
+      recursive: true,
+    });
+    fs.cpSync(path.join(repo, relative), path.join(prepared, relative), {
+      recursive: true,
+    });
   }
 });
 test.after(() => fs.rmSync(prepared, { recursive: true, force: true }));
@@ -210,10 +214,190 @@ test('ICC bytes survive lossless preparation and animation or unowned color chan
   assert.equal(result.status, 0, result.stderr);
   const assets = JSON.parse(result.stdout).map((base64) => {
     const bytes = Buffer.from(base64, 'base64');
-    return { ...original.assets[0], width: 2, height: 2, bytes, digest: sha(bytes) };
+    return {
+      ...original.assets[0],
+      width: 2,
+      height: 2,
+      bytes,
+      digest: sha(bytes),
+    };
   });
   const [encoded] = media.encode([assets[0]]);
   assert.notEqual(encoded.rendition.iccSha256, sha(Buffer.alloc(0)));
   for (const asset of assets.slice(1))
     assert.throws(() => media.encode([asset]), /frame count|color metadata/);
+});
+
+test('existing JPEG rendition preserves canonical edition and rejects altered equivalence', () => {
+  const article = require('../tools/publishing/article.cjs').loadArticle(
+    repo,
+    'pmday-ai-both-sides'
+  );
+  const source = article.assets.find((asset) => asset.id === 'cover');
+  const selected = article.profile.reader.equivalentImages.cover;
+  const bytes = fs.readFileSync(path.join(repo, selected.path));
+  const asset = {
+    ...source,
+    equivalentJpeg: { path: selected.path, bytes, digest: selected.sha256 },
+  };
+  const [encoded] = media.encode([asset]);
+  assert.equal(encoded.mime, 'image/jpeg');
+  assert.deepEqual(encoded.bytes, bytes);
+  assert.equal(encoded.sourceDigest, source.digest);
+  assert.equal(encoded.rendition.equivalentSha256, selected.sha256);
+  for (const changed of [
+    {
+      ...asset,
+      equivalentJpeg: { ...asset.equivalentJpeg, digest: '0'.repeat(64) },
+    },
+    {
+      ...asset,
+      equivalentJpeg: {
+        ...asset.equivalentJpeg,
+        bytes: source.bytes,
+        digest: source.digest,
+      },
+    },
+    {
+      ...asset,
+      equivalentJpeg: {
+        ...asset.equivalentJpeg,
+        bytes: Buffer.from('corrupt'),
+        digest: sha('corrupt'),
+      },
+    },
+  ])
+    assert.throws(() => media.encode([changed]), /JPEG|cannot identify/);
+  const python = path.join(repo, 'tools/quality/toolchain/venv/bin/python');
+  const variants = cp.spawnSync(
+    python,
+    [
+      '-c',
+      [
+        'import sys,io,json,base64',
+        'from PIL import Image,ImageCms',
+        'a=Image.open(sys.argv[1]); result=[]',
+        'for kind in ["pixels","dimensions","orientation","icc"]:',
+        ' b=a.copy(); options={}',
+        ' if kind=="pixels": b.putpixel((0,0),(255,0,0))',
+        ' if kind=="dimensions": b=b.resize((640,199))',
+        ' if kind=="orientation": exif=b.getexif(); exif[274]=6; options["exif"]=exif',
+        ' if kind=="icc": options["icc_profile"]=ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()',
+        ' out=io.BytesIO(); b.save(out,format="JPEG",**options); result.append(base64.b64encode(out.getvalue()).decode())',
+        'print(json.dumps(result))',
+      ].join('\n'),
+      path.join(repo, selected.path),
+    ],
+    { encoding: 'utf8' }
+  );
+  assert.equal(variants.status, 0, variants.stderr);
+  for (const value of JSON.parse(variants.stdout)) {
+    const changed = Buffer.from(value, 'base64');
+    assert.throws(
+      () =>
+        media.encode([
+          {
+            ...asset,
+            equivalentJpeg: { bytes: changed, digest: sha(changed) },
+          },
+        ]),
+      /pixels|orientation|profile/
+    );
+  }
+});
+
+test('real R12 preview retains full edition and PDF closure inside unchanged reading budget', (t) => {
+  const root = fixture(t),
+    output = path.join(root, 'public');
+  assert.deepEqual(artifact.previewSelection('true', root), ['pmday-ai-both-sides']);
+  builder.build({
+    root,
+    output,
+    all: true,
+    candidateArticles: ['pmday-ai-both-sides'],
+    cacheFile: path.join(root, 'cache.json'),
+  });
+  const record = {
+    schema: 1,
+    sourceCommit: 'a'.repeat(40),
+    sourceTree: 'b'.repeat(40),
+    sourceDirty: false,
+    ...artifact.manifest(output),
+    articleCandidates: ['pmday-ai-both-sides'],
+    candidateCommit: 'a'.repeat(40),
+    articlePreviewMode: 'true',
+  };
+  const snapshot = require('../tools/site/snapshot.cjs');
+  record.components = snapshot.verify(output, record);
+  const descriptor = record.components.articles['pmday-ai-both-sides:en'];
+  const html = fs.readFileSync(path.join(output, descriptor.alias), 'utf8');
+  const sizes = artifact.checkSize(output),
+    row = sizes.articleRows[0];
+  assert.equal(artifact.validateArticleSizes(sizes, record), true);
+  const rights = require('../tools/release/rights.cjs').compile(output, record, {
+    sourceRoot: repo,
+  });
+  assert.equal(rights.inventoryPass, true);
+  assert.equal(rights.approvalPass, false);
+  assert.ok(row.totalGzipBytes < 800000);
+  assert.ok(row.downloadGzipBytes > 500000);
+  assert.equal(descriptor.assets.filter((name) => name.endsWith('.webp')).length, 8);
+  assert.equal(descriptor.assets.filter((name) => name.endsWith('.jpg')).length, 1);
+  assert.equal(
+    descriptor.sourceSha256,
+    '5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b'
+  );
+  assert.equal(descriptor.contentEdition, 'pmday-ai-both-sides-en-review-20261019-r12-cover02');
+  assert.equal(descriptor.downloads.length, 1);
+  // This increment delivers hosted/native reading. The existing standalone
+  // codec deliberately rejects JPEG rather than emitting an invalid payload.
+  assert.throws(
+    () =>
+      require('../tools/site/offline.cjs').assets({
+        articleKey: 'pmday-ai-both-sides:en',
+        revision: record.components,
+        publicDirectory: output,
+      }),
+    /Unsupported standalone article resource/
+  );
+  const pdf = descriptor.downloads[0],
+    read = (name) => fs.readFileSync(path.join(output, name));
+  assert.ok(descriptor.assets.includes(pdf));
+  assert.ok(!html.includes('data-presentation'));
+  const href = `href="../${pdf}"`;
+  assert.ok(html.includes(href));
+  for (const changed of [
+    html.replace(href, `src="../${pdf}"`),
+    html.replace('<a ' + href, '<iframe ' + href),
+    html + `<link rel="preload" href="../${pdf}">`,
+  ])
+    assert.throws(
+      () => snapshot.downloads(descriptor, changed, read),
+      /native link|ordinary anchor/
+    );
+  assert.throws(() =>
+    snapshot.downloads(
+      {
+        ...descriptor,
+        downloads: [descriptor.assets.find((name) => name.endsWith('.jpg'))],
+      },
+      html,
+      read
+    )
+  );
+  assert.throws(() => snapshot.downloads({ ...descriptor, downloads: null }, html, read));
+  assert.throws(
+    () => snapshot.downloads(descriptor, html, () => Buffer.from('%PDF-corrupt')),
+    /identity/
+  );
+  const forged = structuredClone(sizes);
+  forged.articleRows[0].downloadGzipBytes--;
+  assert.throws(() => artifact.validateArticleSizes(forged, record), /download evidence/);
+  const conservative = { ...descriptor };
+  delete conservative.downloads;
+  const revisionPath = path.join(output, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionPath));
+  revision.articles['pmday-ai-both-sides:en'] = conservative;
+  fs.writeFileSync(revisionPath, JSON.stringify(revision));
+  assert.throws(() => artifact.checkSize(output), /Article transfer size/);
 });

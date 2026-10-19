@@ -15,6 +15,28 @@ const baseFiles = [
   'site-revision.json',
 ].sort();
 const hash = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+// Optional downloads remain in the full immutable closure. Only a single native
+// anchor may reference one; displayed, preloaded or embedded bytes still count.
+function downloads(article, html, read) {
+  const names = article.downloads === undefined ? [] : article.downloads;
+  assert.ok(Array.isArray(names) && names.length <= 1, 'finite article downloads');
+  for (const name of names) {
+    assert.match(name, /^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.pdf$/);
+    assert.ok(article.assets.includes(name), 'download missing from full closure');
+    const bytes = read(name);
+    assert.ok(
+      bytes.length <= 2000000 && bytes.subarray(0, 5).toString() === '%PDF-',
+      'download PDF bytes'
+    );
+    assert.equal(hash(bytes), name.split('/')[1], 'download PDF identity');
+    assert.equal(html.split(name).length, 2, 'download must have one native link only');
+    const anchor = new RegExp(
+      '<a\\s+href="(?:\\.\\./)*' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"(?:\\s[^>]*)?>'
+    );
+    assert.ok(anchor.test(html), 'download requires an ordinary anchor, never automatic loading');
+  }
+  return names;
+}
 function immutable(name) {
   if (/^(?:article-media|article-snapshots)\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*$/.test(name))
     return !name.startsWith('article-snapshots/') || name.endsWith('.html');
@@ -177,6 +199,7 @@ function verify(dir, record) {
     assert.equal(hash(read(article.url)), article.sha256, 'article snapshot digest');
     for (const name of [article.alias, article.url]) {
       const html = read(name).toString();
+      downloads(article, html, read);
       assert.ok(Buffer.byteLength(html, 'utf8') <= 100000, 'article HTML byte budget');
       assert.ok(
         html.includes(`data-page="writing" data-article="${key}"`),
@@ -208,6 +231,7 @@ function verify(dir, record) {
   return revision;
 }
 module.exports = {
+  downloads,
   routes,
   runtimeFiles,
   mediaFiles,

@@ -136,7 +136,7 @@ function mediaFiles(manifest) {
     ...new Set(
       Object.values(manifest.components.articles || {})
         .flatMap((article) => article.assets)
-        .filter((file) => /\.(?:png|webp)$/.test(file))
+        .filter((file) => /\.(?:png|webp|jpg)$/.test(file))
     ),
   ].sort();
 }

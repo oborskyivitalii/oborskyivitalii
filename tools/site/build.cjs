@@ -437,6 +437,10 @@ function prepareArticles(root, selectedArticles, components, versioned, preview)
   }
 }
 
+function optionalDownloads(article) {
+  return article.downloads ? { downloads: article.downloads } : {};
+}
+
 function emitArticles({
   root,
   config,
@@ -514,6 +518,7 @@ function emitArticles({
       sha256: result.files[article.snapshot],
       inputs: input.inputs,
       assets: [...article.assets.map(articles.assetName), fallbackResource.name],
+      ...optionalDownloads(article),
       candidate: article.candidate,
       articleId: article.metadata.id,
       contentEdition: article.edition.id,
@@ -572,6 +577,7 @@ function emitRevision({ root, components, selectedArticles, result, temporary, p
                 alias: article.url,
                 scene: 'writing',
                 assets: article.assets,
+                ...optionalDownloads(article),
                 candidate: article.candidate,
                 articleId: article.articleId,
                 contentEdition: article.contentEdition,
@@ -621,7 +627,9 @@ function verifyContentBaseline(output, previous, trusted, components, versioned)
   for (const [name, digest] of Object.entries(trusted.files))
     if (sha(fs.readFileSync(path.join(output, name))) !== digest)
       throw Error('Content baseline bytes differ: ' + name);
-  const revision = require('./snapshot.cjs').verify(output, { files: trusted.files });
+  const revision = require('./snapshot.cjs').verify(output, {
+    files: trusted.files,
+  });
   if (revision.engine !== runtimeVersion(components) || revision.navigation?.articleRenderer !== 1)
     throw Error('Content baseline runtime contract differs');
 }
@@ -661,7 +669,10 @@ function emitRoutes({
           preview: preview,
           linkedArticles: selectedArticles
             .filter((article) => input.main.includes(`href="${article.url}`))
-            .map((article) => ({ key: article.key, snapshot: article.snapshot })),
+            .map((article) => ({
+              key: article.key,
+              snapshot: article.snapshot,
+            })),
         })
       );
     const old = previous?.routes[route.id],
@@ -868,7 +879,11 @@ if (require.main === module) {
     check: args[0] === '--check',
   });
   console.log(
-    JSON.stringify({ built: result.built, reused: result.reused, removed: result.removed })
+    JSON.stringify({
+      built: result.built,
+      reused: result.reused,
+      removed: result.removed,
+    })
   );
 }
 module.exports = {

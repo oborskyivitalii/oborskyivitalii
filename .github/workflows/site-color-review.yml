@@ -176,7 +176,7 @@ jobs:
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
-      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'template' || needs.target.outputs.prototype != 'true' && 'true' || 'false' }}
+      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'true' || needs.target.outputs.prototype != 'true' && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:

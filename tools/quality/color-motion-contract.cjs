@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Real-article rendition producer; delivered orbit runtime bytes are unchanged.
+  issue5RealArticle: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'b3990c073a30842dd982c166d16d59bc17588d9fecf5fb72edb7a368bf89efb7',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '26197e2d01b6b052db18864f7ac29c4d017810c1922e26bd2ce28364f9cb6a9b',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   // Issue5 delivery producer revision; orbit runtime bytes remain identical.
   issue5DeliveryMain: {
     behavior: 'fixed-blocks',
@@ -235,6 +244,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-real-article-production',
+    family: 'issue5RealArticle',
+    edition: 'production',
+    fingerprint: '586489b212ded320c20553b15586b73204c61cdffb5a882e54d318daf2d83a60',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-real-article-staging',
+    family: 'issue5RealArticle',
+    edition: 'staging',
+    fingerprint: '66f85f025e091091b1815a99cbffac896ea90348457f3c7daa356b6300356891',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
+  {
+    id: 'issue5-real-article-plain',
+    family: 'issue5RealArticle',
+    edition: 'plain',
+    fingerprint: '2d68478cf5fb583ad130da6874480db3884ab0b6be6142a600754bfb24e35678',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
   {
     id: 'issue5-delivery-main-production',
     family: 'issue5DeliveryMain',
