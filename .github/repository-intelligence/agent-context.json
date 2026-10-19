@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c20f249d1561ed8b330836cf3f966fd893e3ae025b5ce9e1240991c91fc5c21c",
+    "digest": "6837fc4bf3f57ed7a5a892cd58b173995ff9b4e4e6a6ab2d7cf30b66a61e1931",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,7 +166,7 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "970c123bcf07474b0a586b989666021cb46f0c305e42fe1406c326286587df23"
+        "sha256": "5088e0bd40bd203fab9a1ad8bfee7d121acacd9fecb9f0e20034ed834b168bf9"
       },
       {
         "path": ".github/ri-ci-map.json",
@@ -796,6 +796,51 @@
         "path": "review/issue-106/2026-10-19-public-materials.md",
         "identity_mode": "content",
         "sha256": "2abbf7c9be41c0a72adc95d01ee3bf306f01d6044eea89c9a94d2b2d798f5d3e"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.html",
+        "identity_mode": "content",
+        "sha256": "fd18392e25e814849d09425951142b359489914659914660888ea67d0bd14bc2"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.pdf",
+        "identity_mode": "content",
+        "sha256": "a2f2c0644bfe833a26be1def98f409af506c6a395860f8bbd5a83cc10917377a"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.png",
+        "identity_mode": "content",
+        "sha256": "0ae43c7be40905c1cc79c6ceb5fdd3f447b3edd007fb8ab0d69f62d01c88b94e"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/calendar.ics",
+        "identity_mode": "content",
+        "sha256": "4090fcca3d44054682784d9ca6e8090ba2e2170d94b6b41f88145c5020b4f3f9"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/checklist.md",
+        "identity_mode": "content",
+        "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/index.html",
+        "identity_mode": "content",
+        "sha256": "d82e549b6712d45c1cae67c6ce724ba88bcbec09e10f6128eb41bc56d9f4aa62"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/manifest.json",
+        "identity_mode": "content",
+        "sha256": "78bceaf407d75604f72c188f8ea95c6407a21005a68215a19b8ecc47f0eca0ff"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip",
+        "identity_mode": "content",
+        "sha256": "b05402e8dcfc640f3a470a399c31408b16999a667483774fb2e5ab3d67d34804"
       },
       {
         "path": "review/issue-108/2026-10-19-announcement/announcement.en.md",
@@ -8991,6 +9036,105 @@
         "AGENTS.md"
       ],
       "title": "Issue106 — selected public materials and reciprocal article links"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.html",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.pdf",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.pdf"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/announcement.png",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.png"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/calendar.ics",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.ics"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/checklist.md",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author review before posting"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/index.html",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/manifest.json",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip",
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-winter-announcement-site-style-kit.zip"
     },
     {
       "path": "review/issue-108/2026-10-19-announcement/announcement.en.md",
@@ -23004,6 +23148,16 @@
       "path": "review/issue-108/2026-10-19-announcement",
       "kind": "directory",
       "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement-site-style",
+      "kind": "directory",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
       "role": "history",
       "owner": "guides/EVENT-DISTRIBUTION.md",
       "instructions": [

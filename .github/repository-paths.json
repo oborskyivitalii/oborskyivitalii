@@ -1189,6 +1189,66 @@
       "role": "history",
       "owner": "guides/EVENT-DISTRIBUTION.md"
     },
+    "review/issue-108/2026-10-19-announcement-site-style": {
+      "kind": "directory",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.en.md": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.html": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.pdf": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/announcement.png": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/calendar.ics": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/checklist.md": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/index.html": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/manifest.json": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement-site-style/pmday-winter-announcement-site-style-kit.zip": {
+      "kind": "file",
+      "purpose": "Retained PMDay Winter site-style announcement kit; manifest binds clean producer and canonical theme, draft-only and not independently approved.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "review/issue-108/2026-10-19-announcement/announcement.en.md": {
       "kind": "file",
       "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
