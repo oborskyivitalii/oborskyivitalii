@@ -79,6 +79,16 @@ cache bounds and native/block controls own the complete behavior.
   full staging admission, and AC16–AC20 production lanes retain their original gates.
   No main/stable/production promotion is requested or performed by this correction.
 
+## Exact-source follow-up
+
+Initial clean policy at7a5482bd reported8/10 checks passed: READER and
+CONTENT-RELEASE both exposed the same stale isolated VM fixture in
+`tests/site-articles.test.cjs`. It extracted save() without the router
+historyIndex state; the production router already initializes that state.
+The corrected fixture supplies an explicit ordinal and asserts its preservation.
+No runtime/public bytes change in this follow-up. The failed source report is
+retained; final clean-head policy and hosted evidence must be read from PR79.
+
 ## Issue synopsis
 
 Reader document navigation now shares the fractal camera/route-block lifecycle,

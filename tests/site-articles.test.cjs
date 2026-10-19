@@ -641,6 +641,7 @@ test('project-base routing and history use distinct finite article keys while sc
       },
     },
     page: 'article:reader-profile:en',
+    historyIndex: 4,
     content: { inert: false, querySelector: () => ({ getAttribute: () => null }) },
     document: { activeElement: { id: 'article-title' } },
     window: {
@@ -688,6 +689,11 @@ test('project-base routing and history use distinct finite article keys while sc
   context.api.save();
   assert.equal(context.history.state.site.page, 'article:reader-profile:en');
   assert.equal(context.history.state.site.focus, 'article-title');
+  assert.equal(
+    context.history.state.site.index,
+    4,
+    'isolated fixture retains the router history ordinal'
+  );
   assert.deepEqual(Array.from(context.history.state.site.scroll), [0, 725]);
 });
 

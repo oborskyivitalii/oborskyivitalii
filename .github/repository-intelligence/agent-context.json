@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e4540ac8130341b1b19293e60c0883066ddf5fddf80b30df0c7189b22c7f66df",
+    "digest": "f3b1444d1c3a0b0f542e933b5f662345d922cc1a5a4144d4a04c8cf92640c5be",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1315,7 +1315,7 @@
       {
         "path": "review/issue-5/2026-10-19-reader-flight-review.md",
         "identity_mode": "content",
-        "sha256": "7deb8deb2c533cfbe481f9f126a1312145a6a196fadb127ce55009da3abfea75"
+        "sha256": "b518936ab7e48815f4d799c6540deae76f45cf65b8175971773293d883803143"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
@@ -6600,7 +6600,7 @@
       {
         "path": "tests/site-articles.test.cjs",
         "identity_mode": "content",
-        "sha256": "e1044dac3ebd886843498efb9cc1238de4db75cd682764ae53179a37afc37646"
+        "sha256": "d67e6cc707beaab0b82aecc0bec3a6e94f3e270a6f8b01698a5048011fb1beaa"
       },
       {
         "path": "tests/site-engine.test.cjs",
