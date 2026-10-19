@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 106,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/106",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Preserve the approved plan, linked separate Draft PR and nonblocking ownership relation to article PR79.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["PLAN-REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Integrate a reusable distribution brief and campaign state model into article preparation without duplicating owners.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Bind each campaign piece to its source edition, claims and media and invalidate stale approvals.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Prepare the complete six-piece, three-carousel organic PMDay campaign for author review.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Preserve numerical and quotation scope, media identity, credits and separate editorial/rights review.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Require actual destinations and channel admission for release-ready output; allow explicit skipped channels.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Build a bounded isolated campaign kit without site deployment, social posting, paid-model calls or PMDay-only hardcoding.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Keep authored, approved, published and corrected states distinct with actual observed publication evidence.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Provide honest aggregate D+7/D+21 reviews without private data, invented feedback or unsupported attribution.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["CURRENT-RI"],
+      "gates": ["IMPLEMENTATION", "AUTHOR-REVIEW"]
+    },
+    {
+      "id": "AC10",
+      "intent": "Map and run exact-source meaningful checks and applicable style/RI controls; retain human and merge gates.",
+      "automated_scope": "Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "gates": ["IMPLEMENTATION", "INDEPENDENT-REVIEW", "MERGE"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "PLAN-REVIEW": {
+      "kind": "human",
+      "description": "Verify the actual linked issue/PR and versioned approved scope, source reference, relative schedule and explicit nonblocking separation from PR79. This is plan review, not campaign implementation."
+    },
+    "IMPLEMENTATION": {
+      "kind": "human",
+      "description": "NOT IMPLEMENTED at planning intake. Add and run criterion-specific behavioral/negative tests before executing campaign code; a green planning-source policy cannot satisfy this gate."
+    },
+    "AUTHOR-REVIEW": {
+      "kind": "human",
+      "description": "Review actual content/media, source accuracy, channel rules and manual publishing/measurement operation. Actual public URLs and channel admission must be observed separately; no private data or auto-posting."
+    },
+    "INDEPENDENT-REVIEW": {
+      "kind": "human",
+      "description": "Required independent/editorial review of implemented behavior and applicable CS01-CS10; preparation self-review is not independent acceptance."
+    },
+    "MERGE": {
+      "kind": "human",
+      "description": "Normal maintainer merge decision after complete issue acceptance; campaign readiness cannot block the separate article publication in PR79."
+    }
+  }
+}

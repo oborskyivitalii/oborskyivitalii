@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "013f19c1186301d6bb661ef271c25f74e8762b2f2b076410ef1695cab4aff62c",
+    "digest": "7556b8a434997f7fb9151a2db9619b84940e2026d8ab7925e2fa99eb92cbeab2",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -48,6 +48,11 @@
         "path": ".github/acceptance/issue-102.json",
         "identity_mode": "content",
         "sha256": "2effe76a24f04719dd07fec85994b9c294a3397b0d49dab09a13c1607f3b6c3e"
+      },
+      {
+        "path": ".github/acceptance/issue-106.json",
+        "identity_mode": "content",
+        "sha256": "dfdefcf1ddeea7ad2e0ad05731f3809bf72b3eb2ec623a92c04f00eb380eaa42"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -161,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2c21fba6b1246dab3fe065446200f6e1b9ac0975f6ac111da0fa45ba0daf32ff"
+        "sha256": "4e71375c11c638fba49260fdb48215bd8250759b36eda06adbf7d575d1f69e02"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6eec79b97bda94c587173db2578fe8a29c7577ea203a84214089a217d7d15d42"
+        "sha256": "85b2c4458c4a36aaa5ca5d558d28579426d4db989241ee7d76fd958c87228efb"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -296,7 +301,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "730ad359e82a6efff72f938fc9e7763c1ea6bc95015c96fc19508281719d2b67"
+        "sha256": "a12c546640fb39acab243cc01e0a6856cb60aea0148aa08a4dacfb6252ee89e6"
       },
       {
         "path": "NOTICE.md",
@@ -691,6 +696,11 @@
         "path": "review/issue-102/2026-10-18-public-metadata-proof.json.gz",
         "identity_mode": "content",
         "sha256": "17bcb6dc959d632d437280e40e2bea7b243ea8196df1a0023ab64dca81d6df69"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-campaign-plan.md",
+        "identity_mode": "content",
+        "sha256": "5a3c4db46a4ae2ac203ff76c62d01ac0caf1ade2fafe2beb6f94f8d0014bae7e"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -7092,6 +7102,17 @@
       "title": "issue-102.json"
     },
     {
+      "path": ".github/acceptance/issue-106.json",
+      "kind": "file",
+      "purpose": "Issue106 planning-source checks and explicit pending campaign implementation/author/independent gates; not completed campaign acceptance.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-106.json"
+    },
+    {
       "path": ".github/acceptance/issue-31.json",
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -8509,6 +8530,17 @@
         "AGENTS.md"
       ],
       "title": "2026-10-18-public-metadata-proof.json.gz"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-campaign-plan.md",
+      "kind": "file",
+      "purpose": "Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 106 — article distribution workflow and organic campaign plan"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -22157,6 +22189,16 @@
       "purpose": "Dated issue102 analytics source and provider/access evidence.",
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-106",
+      "kind": "directory",
+      "purpose": "Separate article distribution and organic campaign planning, review and aggregate evidence; not an article release gate.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

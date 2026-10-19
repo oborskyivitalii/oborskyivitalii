@@ -4,6 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 
 ## Snapshot
 
+- 19 October campaign-only checkpoint: #106 / Draft PR107 separately owns
+  distribution workflow/planning. Base main0098f804; article/site stays PR79.
+  Plan: review/issue-106/2026-10-19-campaign-plan.md; exact source links in #106.
+  The older operational snapshots below retain their original dates.
+
 - Main/accepted production: 3af9100989c7dd6edc18b0b94c2d59f177cfd465,
   prod-2026-10-17.4. Canonical .ai is live on GitHub Pages; .com redirects.
 - Active PR105 delivery under #102: plan items 3+4, finite analytics
@@ -18,6 +23,10 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
   in another chat. Prior step1 reconciliation is recorded under review/issue-5.
 
 ## Decisions
+
+- Author explicitly split campaign work into #106 and its own Draft PR107.
+  PR79/#2/#5 retain article publication; campaign completion never blocks it.
+  This increment is a plan/policy foundation, not implemented campaign tooling.
 
 - Maintainer authorized one separate PR for plan3+4. Existing #102 owns code,
   #103 owns connector access and #8 retains full measurement/Search Console.
@@ -47,6 +56,10 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 - Future article integration must register canonical paths through reader contract.
 
 ## Next session
+
+For #106, read its issue/PR107 and versioned plan. Implement the bounded
+brief/schema/validator next; revalidate the accepted publisher before integrating.
+No social publication, outreach or reminders are authorised by this checkpoint.
 
 1. Revalidate PR105 state/head, main, source/preview/staging checks and #102/#103/#8.
 2. Continue exact current phase; do not repeat account connection assumptions.
