@@ -224,7 +224,7 @@ function assets(environment) {
         const fallback = /^article-media\/[a-f0-9]{64}\/writing-fallback\.svg$/.test(name);
         if (
           !fallback &&
-          !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|pdf)$/.test(name)
+          !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|pdf)$/.test(name)
         )
           throw Error('Unsupported standalone article resource');
         const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
@@ -236,7 +236,11 @@ function assets(environment) {
         return [
           name,
           {
-            mime: name.endsWith('.pdf') ? 'application/pdf' : 'image/png',
+            mime: name.endsWith('.pdf')
+              ? 'application/pdf'
+              : name.endsWith('.webp')
+                ? 'image/webp'
+                : 'image/png',
             sha256,
             bytes: bytes.length,
           },
@@ -283,7 +287,10 @@ function inlineAssets(html, environment) {
     used.add(name);
     const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
     return original
-      .replace(/src="[^"]+"/, `src="data:image/png;base64,${bytes.toString('base64')}"`)
+      .replace(
+        /src="[^"]+"/,
+        `src="data:${resources[name].mime};base64,${bytes.toString('base64')}"`
+      )
       .replace('<img', `<img data-offline-resource="${name}"`);
   });
   html = html.replace(/<a\b[^>]*href="([^"]+\.pdf)"[^>]*>/g, (original, name) => {

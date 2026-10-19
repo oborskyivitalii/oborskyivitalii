@@ -60,6 +60,18 @@ test('UTF8 byte oversize rejects article aliases and retained HTML before size e
   assert.throws(() => artifact.checkSize(f.directory), /HTML size/);
 });
 
+test('a complete media-heavy article still fails the original transfer budget', (t) => {
+  const f = fixture(t);
+  const bytes = require('node:crypto').randomBytes(810000);
+  const name = 'article-media/' + artifact.digest(bytes) + '/large.webp';
+  fs.mkdirSync(path.dirname(path.join(f.directory, name)), { recursive: true });
+  fs.writeFileSync(path.join(f.directory, name), bytes);
+  const revision = JSON.parse(fs.readFileSync(path.join(f.directory, 'site-revision.json')));
+  revision.articles['bounded-reader:en'].assets = [name];
+  fs.writeFileSync(path.join(f.directory, 'site-revision.json'), JSON.stringify(revision));
+  assert.throws(() => artifact.checkSize(f.directory), /Article transfer size/);
+});
+
 test('missing, duplicate, wrong-source and incomplete article transfer reports cannot pass admission', (t) => {
   const f = fixture(t);
   const original = artifact.checkSize(f.directory);

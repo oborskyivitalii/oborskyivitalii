@@ -280,6 +280,24 @@ source inputs and every resource to the selected document pair. Review previews
 can retain explicit pending clearance; production rejects pending article/media
 rights. This inventory does not supply editorial or human rights acceptance.
 
+The shared reader can be exercised without the current article manuscript:
+`SITE_ARTICLE_PREVIEW=template node tools/quality/artifact.cjs build /tmp/reader-template`.
+`site/article-template-preview.json` selects only the synthetic, nonpublishable
+`reader-reference`. It remains a draft and cannot enter the publication catalog.
+`SITE_ARTICLE_PREVIEW=true` retains the separate editorial selection in
+`site/article-preview.json`. Both preview purposes retain source, resource,
+rights and size checks; template evidence does not accept a real article.
+
+A publication may opt into `reader.images: "webp-lossless"` in its profile.
+The bounded producer uses the canonical pinned Pillow toolchain to create immutable
+WebP copies, verifies identical dimensions, RGBA pixels and ICC bytes after decode,
+and binds both source and output hashes in its edition notice. Source PNGs and
+print/platform exports remain unchanged. Unsupported color/orientation/frame data
+requires explicit preparation; there is no automatic resize or lossy fallback.
+Standalone HTML embeds verified WebP with native image markup and correct MIME.
+An ordinary PDF download remains available through `reader.presentation: "links"`;
+large decks and images still count against the existing complete transfer budget.
+
 Prior published versions must be imported explicitly from their verified artifact:
 
 ```sh

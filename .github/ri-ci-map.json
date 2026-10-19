@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
-    "date": "2026-10-17",
-    "summary": "Issue39 bounded post-deploy readiness: staging missing-file convergence and Pages whole-package readiness before live smoke/recovery; existing registered behavioral tests and protected delivery routes remain. Original cases, budgets and source/artifact admission preserved. Self-review; independent and live acceptance remain separate."
+    "date": "2026-10-19",
+    "summary": "Issue5 generic reader: explicit synthetic template previews and bounded lossless WebP preparation; current editorial draft and production gates remain separate. Self-review only."
   },
   "layers": [
     {
@@ -431,7 +431,12 @@
         "tools/site/public-artifact.cjs",
         "tests/content-release.test.cjs",
         "tests/fixtures/catalog.cjs",
-        "tools/quality/article-print.cjs"
+        "tools/quality/article-print.cjs",
+        "tests/article-media.test.cjs",
+        "tools/publishing/web-media.py",
+        "tools/site/article-media.cjs",
+        "tools/site/article-selection.cjs",
+        "site/article-template-preview.json"
       ],
       "checks": [
         "authored-dependencies",
@@ -616,7 +621,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "2415b023a4f797558bfc04a187fea2ae7b211d446ec384a2fbb484845391c126",
+    "digest": "39ce106f6b749a66943f21d52dca0fc7ce653d2aa397442c9fc1e2750f138ad2",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -728,11 +733,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "bea84a20964156ed16730d98390cd57f7cb964f371e691c3b8e33e3d1a21aa31"
+        "sha256": "8217fa9ba51fce2c057a0e4a699654ed968e8568c2c8d955c5f279ccd8da0c1f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
-        "sha256": "eedb02105f5071f795f8091f7cc8fb3c6f9ae737d23f77ce75da31e693f7d5c7"
+        "sha256": "6294f8b9585d9cdd94d1f977993cef88e00923db7f2fc82dba804562f055a91f"
       },
       {
         "path": ".github/workflows/navigation.yml",
@@ -756,11 +761,11 @@
       },
       {
         "path": ".github/workflows/site-checks.yml",
-        "sha256": "1763746b8f7d85b74afa04b4590d250325be30fc3dfe2196d2d5c3c8d5fa6539"
+        "sha256": "e08e5400330b71d09db099b750cb88d684c0b1d34a79b144c5b6d8b54cddd992"
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "536b6827ff4ecd5e94b0b670ddffa43f6431aef0d7027ec7afa3395ef2b39f73"
+        "sha256": "5a6a4976e2532e99bd1dd9db311ef225e418b4798ee845aaf4a672cc2a716c75"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -840,7 +845,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "4c08a98bcee39ce23bdd9053313c64d6ed51924d8b7ad4c032d81cb10caa142d"
+        "sha256": "8834a5154141de177c39960972d7125fb664becb8073fbba6df8b2c0389c76b9"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -896,7 +901,7 @@
       },
       {
         "path": "tests/test_issue5_acceptance.py",
-        "sha256": "412a1c17a1c5b7953d0b7f46bf6e0ff9406a6aa970fa3a3109fc43aacf128e7d"
+        "sha256": "67317c780689d0218bb540e528a4ed24c4dfb63fbc925a6f4caf9bad1ec5414c"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -968,7 +973,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "b10d73fa015520518ba9df572e3e0a31f36a43d2fbfdb417e928d421625be2f9"
+        "sha256": "ca290688f98fd69be64a6d47c42d7231c7d04b6fe220b717056d26afba5e5ea0"
       },
       {
         "path": "tools/repository_intelligence.py",

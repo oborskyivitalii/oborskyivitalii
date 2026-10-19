@@ -265,7 +265,11 @@ function hostedInventory(publicDirectory, sourceRoot, record, manifest) {
         record.edition?.id !== 'production' || !source.bases.includes('article-review-input'),
         'hosted production media clearance remains pending'
       );
-      assert.equal(source.sha256, asset.digest, 'hosted resource provenance differs');
+      assert.equal(
+        source.sha256,
+        asset.sourceDigest || asset.digest,
+        'hosted resource provenance differs'
+      );
       assert.equal(
         artifact.digest(readSource(publicDirectory, name)),
         asset.digest,

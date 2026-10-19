@@ -53,6 +53,10 @@ function verifyCandidateSource(directory, record, { repoRoot = root } = {}) {
   if (declared !== undefined && !Array.isArray(declared))
     throw Error('Candidate declaration must be an explicit array');
   const candidates = declared || [];
+  if (record.articlePreviewMode !== undefined && record.articlePreviewMode !== 'template')
+    throw Error('Unknown candidate preview purpose');
+  if (record.articlePreviewMode === 'template' && !candidates.length)
+    throw Error('Template preview requires its explicit candidate selection');
   if (!candidates.length) {
     if (candidateArtifact)
       throw Error('Candidate artifact requires its explicit preview declaration');
@@ -60,7 +64,8 @@ function verifyCandidateSource(directory, record, { repoRoot = root } = {}) {
   }
   if (
     candidates.length &&
-    (JSON.stringify(candidates) !== JSON.stringify(previewSelection('true', repoRoot)) ||
+    (JSON.stringify(candidates) !==
+      JSON.stringify(previewSelection(record.articlePreviewMode || 'true', repoRoot)) ||
       record.components?.preview !== true)
   )
     throw Error('Candidate artifact differs from its explicit preview declaration');

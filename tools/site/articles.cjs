@@ -15,7 +15,7 @@ const articleURL = /^articles\/[a-z][a-z0-9-]{0,79}\.html$/;
 const assetURL = /^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*$/;
 
 function assetName(asset) {
-  const name = path.posix.basename(asset.path);
+  const name = asset.outputName || path.posix.basename(asset.path);
   if (!/^[a-z0-9][a-z0-9._-]*$/.test(name) || !/^[a-f0-9]{64}$/.test(asset.digest))
     throw Error('Invalid article resource identity');
   return `article-media/${asset.digest}/${name}`;
@@ -34,26 +34,27 @@ function select(root, candidates = [], catalog = { records: {} }) {
     return [];
   }
   const publisher = require('../publishing/article.cjs');
-  const { readSource } = require('../publishing/safety.cjs');
   const ids = publisher.enumerateArticles(root);
   if (ids.length > maximumArticles || candidates.some((id) => !ids.includes(id)))
     throw Error('Article selection exceeds finite inventory or names a missing article');
   const accepted = Object.values(catalog.records)
     .filter((record) => record.kind === 'local-article')
     .map((record) => record.article);
+  const technical = new Set(require('./article-selection.cjs').technical(root));
+  if (accepted.some((id) => technical.has(id)))
+    throw Error('Template references cannot enter the publication catalog');
   const selected = ids
-    .filter((id) => {
-      const metadataInput = readSource(root, `site/publications/${id}/publication.json`, {
-        maxBytes: 100000,
-      });
-      const metadata = publisher.validateMetadata(
-        JSON.parse(metadataInput.bytes.toString('utf8')),
-        id
-      );
-      return (metadata.status === 'accepted' && accepted.includes(id)) || candidates.includes(id);
-    })
+    .filter((id) => accepted.includes(id) || candidates.includes(id))
     .map((id) => {
-      const article = publisher.loadArticle(root, id, { assetUrl: assetName });
+      const article = require('./article-media.cjs').render(
+        root,
+        publisher.loadArticle(root, id, { assetUrl: assetName }),
+        assetName
+      );
+      if (accepted.includes(id) && article.metadata.status !== 'accepted')
+        throw Error('Publication catalog requires an accepted article');
+      if (technical.has(id) && article.metadata.status !== 'draft')
+        throw Error('Template references must remain draft technical material');
       if (!articleId.test(article.metadata.slug)) throw Error('Invalid article slug');
       return {
         ...article,
@@ -63,6 +64,7 @@ function select(root, candidates = [], catalog = { records: {} }) {
         key: `${id}:${article.metadata.language}`,
         url: `articles/${article.metadata.slug}.html`,
         candidate: article.metadata.status !== 'accepted',
+        technical: technical.has(id),
       };
     });
   if (new Set(selected.map((article) => article.url)).size !== selected.length)
@@ -99,7 +101,11 @@ function input(root, article) {
       SUMMARY: escapeText(metadata.summary),
       AUTHORS: metadata.authors.map((author) => escapeText(author.name)).join(', '),
       LANGUAGE: escapeAttribute(metadata.language),
-      STATUS: article.candidate ? 'Review candidate' : 'Article',
+      STATUS: article.technical
+        ? 'Reader template · synthetic reference'
+        : article.candidate
+          ? 'Review candidate'
+          : 'Article',
       TOC: sections
         .map(
           (section) =>
@@ -167,11 +173,14 @@ function editionNotice(article) {
     status: article.metadata.rights.status,
     notice: article.metadata.rights.notice,
     resources: article.assets
-      .filter((asset) => asset.mime === 'image/png')
+      .filter((asset) => ['image/png', 'image/webp'].includes(asset.mime))
       .map((asset) => ({
         path: asset.path,
-        sha256: asset.digest,
+        sha256: asset.sourceDigest || asset.digest,
         credit: asset.credit,
+        ...(asset.rendition
+          ? { rendition: { ...asset.rendition, file: assetName(asset), sha256: asset.digest } }
+          : {}),
       })),
     presentation: article.presentation
       ? {
@@ -188,7 +197,12 @@ function editionNotice(article) {
   const resources = data.resources
     .map(
       (item) =>
-        `<li>${escapeText(item.path)} · SHA256 ${item.sha256}<p>${escapeText(item.credit)}</p></li>`
+        `<li>${escapeText(item.path)} · SHA256 ${item.sha256}<p>${escapeText(item.credit)}</p>` +
+        (item.rendition
+          ? `<p>Lossless WebP copy: ${escapeText(item.rendition.file)} · SHA256 ${item.rendition.sha256}. ` +
+            `Decoded RGBA SHA256 ${item.rendition.pixelSha256}; color profile SHA256 ${item.rendition.iccSha256}.</p>`
+          : '') +
+        '</li>'
     )
     .join('');
   const presentation = data.presentation

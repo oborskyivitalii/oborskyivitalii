@@ -171,7 +171,7 @@ jobs:
       variant: ${{ steps.rendition.outputs.variant }}
     env:
       SITE_CANDIDATE_SHA: ${{ needs.target.outputs.source }}
-      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype != 'true' && 'true' || 'false' }}
+      SITE_ARTICLE_PREVIEW: ${{ needs.target.outputs.prototype == 'true' && needs.target.outputs.number == '79' && 'template' || needs.target.outputs.prototype != 'true' && 'true' || 'false' }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
@@ -185,7 +185,7 @@ jobs:
         id: source_identity
         run: test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
-        if: needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
+        if: env.SITE_ARTICLE_PREVIEW != 'false' || needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
         with:
           python-version: 3.12.14
       - name: Install locked prepublication tools for an explicit staging attempt
@@ -196,8 +196,11 @@ jobs:
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
           tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
       - name: Install the locked article parser for admitted article previews
-        if: needs.target.outputs.prototype != 'true'
-        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
+        if: env.SITE_ARTICLE_PREVIEW != 'false'
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
       - id: content_baseline
         name: Select a trusted earlier generation for authored content updates
         if: needs.target.outputs.mode == 'preview' && needs.target.outputs.prototype != 'true'
@@ -404,12 +407,12 @@ jobs:
       - name: Verify current hosted routes, revision and runtime
         run: node tools/staging/review-flow.cjs http staging-package "$SITE_TEST_BASE_URL" staging-reports/http.json
       - name: Install locked Chromium smoke tools
-        if: needs.target.outputs.prototype != 'true'
+        if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: |
           npm ci --prefix tools/quality/toolchain --ignore-scripts
           tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
       - name: Minimal two-width hosted rendition smoke
-        if: needs.target.outputs.prototype != 'true'
+        if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: node tools/quality/local-browser.cjs --smoke
       - name: Install the locked parser for the issue-5 local diagnostic
         if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'

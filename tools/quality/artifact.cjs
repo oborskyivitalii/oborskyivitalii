@@ -140,21 +140,7 @@ function git(arg) {
   return r.stdout.trim();
 }
 function previewSelection(enabled = process.env.SITE_ARTICLE_PREVIEW, projectRoot = root) {
-  if (enabled === undefined || enabled === 'false') return [];
-  if (enabled !== 'true') throw Error('Unknown explicit article preview mode');
-  const selection = JSON.parse(
-    fs.readFileSync(path.join(projectRoot, 'site/article-preview.json'), 'utf8')
-  );
-  if (
-    selection.schema !== 1 ||
-    JSON.stringify(Object.keys(selection).sort()) !== JSON.stringify(['candidates', 'schema']) ||
-    !Array.isArray(selection.candidates) ||
-    selection.candidates.length > 50 ||
-    new Set(selection.candidates).size !== selection.candidates.length ||
-    selection.candidates.some((id) => typeof id !== 'string' || !/^[a-z][a-z0-9-]{0,79}$/.test(id))
-  )
-    throw Error('Invalid explicitly declared article preview selection');
-  return selection.candidates;
+  return require('../site/article-selection.cjs').select(enabled, projectRoot);
 }
 
 function generationPaths(directory) {
@@ -338,6 +324,7 @@ function build(out, { contentBaseline } = {}) {
     sourceTree: git(['rev-parse', 'HEAD^{tree}']),
     candidateCommit: process.env.SITE_CANDIDATE_SHA || git(['rev-parse', 'HEAD']),
     articleCandidates,
+    ...(process.env.SITE_ARTICLE_PREVIEW === 'template' ? { articlePreviewMode: 'template' } : {}),
     generation,
     ...(contentRelease ? { contentRelease } : {}),
     ...manifest(target),

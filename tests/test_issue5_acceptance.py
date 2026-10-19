@@ -49,6 +49,7 @@ class Issue5AcceptanceTests(unittest.TestCase):
                 "tests/site-articles.test.cjs",
                 "tests/site-transaction.test.cjs",
                 "tests/article-offline.test.cjs",
+                "tests/article-media.test.cjs",
                 "tests/local-catalog-relationships.test.cjs",
                 "tests/navigation.test.cjs",
             ],

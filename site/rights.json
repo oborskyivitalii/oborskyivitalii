@@ -140,20 +140,8 @@
       "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
       "bases": ["original-code"]
     },
-    "vitalii-oborskyi-cutout.webp": {
-      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
-      "bases": ["portrait-derivative"]
-    },
-    "vitalii-oborskyi.jpg": {
-      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
-      "bases": ["portrait-source"]
-    },
-    "writing-paradigm.svg": {
-      "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
-      "bases": ["original-diagram"]
-    },
     "publications/pmday-ai-both-sides/PROVENANCE.md": {
-      "sha256": "ab56dbc7a9453f56af9f626b6664eba8eb80f8f81a9b8aa121586e270b30afec",
+      "sha256": "d8843f4fe026725ca11a6d69476a97bf003fa94f25d16223aecf06c2f51b7f90",
       "bases": ["article-review-input"]
     },
     "publications/pmday-ai-both-sides/cover-detail-r8.png": {
@@ -162,6 +150,58 @@
     },
     "publications/pmday-ai-both-sides/cover.png": {
       "sha256": "2d688e19b820cd96ae32bd7fdab8a71418774231da340b6897709329a580fb25",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/README.md": {
+      "sha256": "1e3eb48f3850d7b9ba2c4b098d29806988fdcf49a0bc50ad863417f75b74669f",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg": {
+      "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png": {
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/linkedin-cover-1200x630.jpg": {
+      "sha256": "8fcee82455949af959a6e9885cfa00a3c911aadbf0d81347c0210a107bc97122",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/medium-cover-1400x788.jpg": {
+      "sha256": "f821e5631237ad63fe5b94d3b570c5ba84e5238deed8f8a6334649cf8cd7cb1d",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/pdf-cover-portrait.jpg": {
+      "sha256": "b80047b35a470c50491f911cb8fb20c03f7efe535e49a3a011b4350ff2bb682f",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/site-cover-1600x840.jpg": {
+      "sha256": "424eab9a653c08f3f3a8d4388287dad4aeb30b9322bc899706ed580a42b0ac42",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/assets/social-square-1080.jpg": {
+      "sha256": "7c00a7d37e6dc282b8fa83a72cb5166712fd2e04b482b7f7df8c75f17cb1336b",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/manifest.json": {
+      "sha256": "bb2ccd7c48ffee6a321a76697fd9b893bffae92e811eca7785a53879746e2a89",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/originals/cover-02-landscape.png": {
+      "sha256": "2a16a6a58262939975691c6b111b1a15d99275e53d43ba7a6e59ba967342567c",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/originals/cover-02-portrait.png": {
+      "sha256": "aafcad065f1700c4f5c61d2d34497e4c7b909c50f244e16279e93cf0d9796a58",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/originals/cover-02-square.png": {
+      "sha256": "3f85468fadc09bdae5fa41b34ff348251c13f7a61fb73494508447d304cd4aae",
+      "bases": ["article-review-input"]
+    },
+    "publications/pmday-ai-both-sides/cover02/originals/cover-02-widescreen.png": {
+      "sha256": "8020813c4c6db01d4cf4d2c265b1be195473d9149c034bdc73e8aa6e6826540f",
       "bases": ["article-review-input"]
     },
     "publications/pmday-ai-both-sides/delivery-queue.png": {
@@ -243,6 +283,22 @@
     "publications/pmday-two-shifts/pmday-v35-deck-review.pdf": {
       "sha256": "b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782",
       "bases": ["article-review-input"]
+    },
+    "publications/reader-reference/diagram.png": {
+      "sha256": "6a9867902510d7aea88f650b068c9592b598dc6dbcfdc4044bc99e1f176f82f7",
+      "bases": ["original-diagram"]
+    },
+    "vitalii-oborskyi-cutout.webp": {
+      "sha256": "4fa21ced928b1e79db5e0f8105fecb2a1052a9e27c40e3eba97fd7cbb72181ae",
+      "bases": ["portrait-derivative"]
+    },
+    "vitalii-oborskyi.jpg": {
+      "sha256": "5321e48f08b075cb1cbd522d0f36bc01276aece65d1a04cf09102aa5dd2b59bc",
+      "bases": ["portrait-source"]
+    },
+    "writing-paradigm.svg": {
+      "sha256": "02def4e19d34b76462f5e74bbe916323ff56a50d3e97a02834b3adf92723b31f",
+      "bases": ["original-diagram"]
     }
   },
   "retained": {

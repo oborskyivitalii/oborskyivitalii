@@ -367,7 +367,9 @@ function prepareArticles(root, selectedArticles, components, versioned, preview)
     article.inputDigests = fileDigests(root, article.input.inputs);
     if (
       article.inputDigests[article.source.path] !== article.source.sha256 ||
-      article.assets.some((asset) => article.inputDigests[asset.path] !== asset.digest) ||
+      article.assets.some(
+        (asset) => article.inputDigests[asset.path] !== (asset.sourceDigest || asset.digest)
+      ) ||
       Object.values(article.adaptations || {}).some(
         (adaptation) => article.inputDigests[adaptation.source.path] !== adaptation.source.sha256
       )

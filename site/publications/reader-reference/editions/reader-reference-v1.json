@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "reader-reference-v1",
+  "articleId": "reader-reference",
+  "language": "en",
+  "kind": "full-article",
+  "source": {
+    "path": "manuscript.en.md",
+    "sha256": "a11705043b03b6e157e9db20a43fe90d21fe8aee6b75cb5e4b07404b0a5d7d1b",
+    "commit": null,
+    "blob": null
+  },
+  "owner": "site",
+  "derivation": null,
+  "rights": "review-pending",
+  "semanticSha256": "9b4c68a9af14fadf270b0a3974ae7e697737f3f209cdb9e0627858be6fb1bcbf"
+}

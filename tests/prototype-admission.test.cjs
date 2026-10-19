@@ -317,7 +317,7 @@ test('actual merge identity requires the complete tested tree and the real lates
   }
 });
 
-test('Draft jobs cannot impersonate required contexts and browser installation is deferred', () => {
+test('Draft jobs cannot impersonate admission; issue5 template preview alone opts into bounded browser smoke', () => {
   for (const [file, deferred] of [
     ['site-checks.yml', 'Prototype source admission deferred'],
     ['navigation.yml', 'Prototype RI admission deferred'],
@@ -334,11 +334,15 @@ test('Draft jobs cannot impersonate required contexts and browser installation i
   const smoke = yaml.slice(yaml.indexOf('  smoke:'), yaml.indexOf('  stage-evidence:'));
   assert.match(
     smoke,
-    /Install locked Chromium smoke tools\n\s+if: needs.target.outputs.prototype != 'true'/
+    /Install locked Chromium smoke tools\n\s+if: needs.target.outputs.prototype != 'true' \|\| needs.target.outputs.number == '79'\n/
   );
   assert.match(
     smoke,
-    /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true'/
+    /Minimal two-width hosted rendition smoke\n\s+if: needs.target.outputs.prototype != 'true' \|\| needs.target.outputs.number == '79'\n/
+  );
+  assert.match(
+    yaml,
+    /SITE_ARTICLE_PREVIEW:.*prototype == 'true'.*number == '79'.*'template'.*prototype != 'true'.*'true'.*'false'/
   );
   assert.doesNotMatch(
     yaml,

@@ -69,6 +69,12 @@ test.before(() => {
     JSON.stringify(legacyCatalog(repo), null, 2) + '\n'
   );
   frozenTechnicalArticle(root);
+  // Reconstruction is a reusable producer check. The unfinished editorial
+  // selection keeps its own explicit preview and publication gates.
+  fs.writeFileSync(
+    path.join(root, 'site/article-preview.json'),
+    JSON.stringify({ schema: 1, candidates: ['pmday-two-shifts'] })
+  );
   const directory = path.join(root, 'artifact');
   const output = path.join(directory, 'public');
   const candidates = artifact.previewSelection('true', root);

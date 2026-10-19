@@ -1656,10 +1656,14 @@ window.SiteScrollEntry=(function () {
           throw Error('Embedded asset inventory differs');
         for (const [name, asset] of entries) {
           const value = embeddedAssetURLs.get(name);
-          const mime = name.endsWith('.pdf') ? 'application/pdf' : 'image/png';
+          const mime = name.endsWith('.pdf')
+            ? 'application/pdf'
+            : name.endsWith('.webp')
+              ? 'image/webp'
+              : 'image/png';
           const prefix = 'data:' + mime + ';base64,';
           if (
-            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|pdf)$/.test(name) ||
+            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|pdf)$/.test(name) ||
             asset.mime !== mime ||
             asset.sha256 !== name.split('/')[1] ||
             !Number.isSafeInteger(asset.bytes) ||

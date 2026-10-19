@@ -4,70 +4,56 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
-- Editorial media update19October: Cover02 originals, channel images and exact
-  compact R12 PDF are imported. Full supplied reader SHA256:
-  5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b.
-  Current evidence: review/issue-2/pmday-candidate-20261015/README.md.
-  The technical snapshots below retain their earlier measured-source scope.
-
-- Production/main0098f804cb3b0d120173d4c8689043db42231c47, accepted immutable
-  prod-2026-10-19.1. PR105 merged/released; actual publisher39193670432 succeeded.
-- Owner #5; same Draft PR79. Current increment normally merges released main
-  into115286c1, preserves concurrent R12 head7ebb17c5 and adds shared article SVG resources and exact-edition notices.
-- Record: review/issue-5/2026-10-19-reader-resources-and-notices.md.
-  Earlier step1 and architecture decisions remain in the18October records.
-- The technical R10 checkpoint preserved all54 original blobs. Final composition
-  preserves every protected R12 blob from the concurrent editorial handoff.
-  Current R12 editorial handoff7ebb17c5 is consumed unchanged. Manuscript SHA256:
-  46ff6a07e8f60119dcf6be352a3d642348c0c2b6f54f348b7b60d599f6f71276.
-- #103 is closed/completed: verified Google owner, Windsor read-only Google grant,
-  exact Search Console connector and sitemap read all confirmed. Google index
-  panels still process data; #8 owns actual indexing. No reconnect needed.
-- #102 confirmed actual post-release /writing receipt in Cloudflare. AC03 checked;
-  other whole criteria stay open. Tiny sample and known owner/CI traffic prevent
-  organic-growth or per-vital performance conclusions.
+- Production/main0098f804cb3b0d120173d4c8689043db42231c47, prod-2026-10-19.1.
+  PR105 released; no production/main/stable promotion in the current increment.
+- Owner #5, same Draft PR79. Concurrent editorial work through794287b2 (Cover02
+  and exact R12 PDF) is included unchanged. Preservation manifest and review:
+  review/issue-5/2026-10-19-generic-reader-template.md and adjacent JSON.
+- New prepared increment: explicit synthetic template preview, bounded optional
+  lossless WebP, exact source/output/rights and offline MIME support.
+  Final exact-source checks and hosted CI status are recorded in PR79.
+- #103 closed: verified Google owner and Windsor read-only exact-property access.
+  #102 actual postrelease /writing receipt confirmed; AC03 checked. Sample too small
+  and mixed with owner/CI traffic for organic-growth or per-vital conclusions.
 
 ## Decisions
 
-- User authorizes the next small technical increment, then report/reassessment.
-  Article writing/editing continues in another conversation and is excluded here.
-- Preserve manuscript, source media, budgets and production controls. No article
-  production release, main merge, account/security or DNS change in this increment.
-- Keep a static monorepo, versioned platform/content/media and one coherent
-  assembler. Runtime microservices are not selected.
-- Article HTML references exact canonical scene geometry in a generated immutable
-  SVG group. Offline exports inline verified passive geometry; no new runtime loop.
-- Exact hosted notices preserve pending rights and per-resource credits. Inventory
-  and source tests cannot supply independent/editorial/publication acceptance.
-- First article integration is a platform change. Actual independent content/media
-  production lanes and concurrency/rollback follow an accepted first baseline.
+- User stopped article-specific work; finish a common reader using stable technical
+  material. Article writing/editing and acceptance stay in the other conversation.
+- SITE_ARTICLE_PREVIEW=template selects only nonpublishable reader-reference.
+  true retains the separate actual editorial selection and all original guards.
+- Original media/manuscripts/editions stay unchanged. Optional webp-lossless uses
+  canonical pinned Pillow, preserves RGBA/dimensions/ICC, keeps original print data.
+- Frozen source reconstruction is generic producer evidence. It cannot establish
+  actual article/PDF/rights/budget/publication acceptance or relax original ACs.
+- Keep static monorepo, versioned platform/content/media and coherent assembler.
+  Runtime microservices are not selected; independent production lanes follow an
+  accepted platform baseline, explicit impact classification and concurrency checks.
 
 ## Open work
 
-- R12 HTML now fits100000B without prose changes. Its complete images/PDF/runtime
-  transfer exceeds800000B. Current immutable hosted-preview admission is blocked;
-  do not bypass the size gate or report a successful hosted browser run.
-- Next bounded task: optimize generated web-media renditions while retaining
-  original source bytes and figure meaning; then rerun exact candidate delivery
-  and inspect the current hosted mobile/no-JS/theme/navigation preview.
-- #5 AC11/12 retain independent/hosted/release gates; AC14 stays unchecked.
-  AC16–AC20 independent production lanes remain pending.
-- #2 owns separate editorial, rights, PDF/deck, upstream and publication outcomes.
-  R12 Cover02 import is complete; current delivery/rights acceptance remains open.
-- #102 needs declared article paths, live history/filter evidence and metric/cost
-  limits; #104 conversions follow the reader contract. #97 MFA is owner-only.
-- #98/#99/#100 are separately selected. #6 harness and #11 guides follow the
-  proven publisher lane. #39 independent review remains open.
+- Final generic-template preview CI/browser evidence must be inspected against
+  the exact current PR head. Draft smoke never substitutes for staging admission.
+- Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
+  The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
+  later. No successful current article hosted acceptance is inferred.
+- #5 AC11/12 independent/hosted/release gates remain; AC14 unchecked.
+  AC13/15 retain bounded catalog/classification scope; AC16–AC20 pending.
+- #2 owns editorial/media/PDF/deck/upstream/publication acceptance. Do not edit
+  actual manuscript or media while the other conversation continues its work.
+- #102 article paths/history/metrics/cost, #104 conversions follow reader contract.
+  #97 MFA owner-only; #98/#99/#100 separately selected; #39 review remains open.
+- #6 harness and #11 guide consolidation follow the proven publishing lane.
 
 ## Next session
 
-1. Read #5/PR79 latest exact checkpoint; revalidate branch/main and editorial handoff.
-2. Continue the bounded media-transfer blocker without editing source manuscripts
-   or accepting pending rights on the author's behalf.
-3. After accepted preview, use the existing bounded platform staging/controller
-   and obtain the actual first-publication decision before production activation.
+1. Fetch live #5/PR79/current main and preserve any concurrent editorial commits.
+2. Inspect current template CI/preview and finish applicable platform admission.
+3. Consume final article handoff later; verify its actual resource/rights/PDF
+   gates separately, then obtain first-publication decision through the controller.
+4. Implement production content/media lanes and coherent concurrency after baseline.
 
 ## Maintenance
 
 Keep these five sections and at most120lines. Rebuild/verify RI after indexed
-changes. Use live issue/refs for current evidence; never store secrets.
+changes. Use live issues/refs for current evidence; never store secrets.

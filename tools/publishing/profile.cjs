@@ -111,11 +111,12 @@ function readerSelection(profile, article) {
   if (profile.reader === undefined) {
     return;
   }
-  const reader = object(profile.reader, ['references', 'presentation'], 'reader');
+  const reader = object(profile.reader, ['references', 'presentation', 'images'], 'reader');
   if (
     Object.keys(reader).length === 0 ||
     (reader.references !== undefined && reader.references !== 'inline') ||
-    (reader.presentation !== undefined && reader.presentation !== 'links')
+    (reader.presentation !== undefined && reader.presentation !== 'links') ||
+    (reader.images !== undefined && reader.images !== 'webp-lossless')
   ) {
     throw new Error('Invalid profile reader selection');
   }

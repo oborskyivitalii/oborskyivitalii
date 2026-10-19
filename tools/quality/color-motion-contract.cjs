@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 self-review: explicit template selection and verified native offline WebP.
+  issue5GenericReader: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'd65f9a0b17a14a80292d0ef7638d18c3f4639a7ec02c4c84cedcac18d7e5e875',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: '081d79445f07b7a0fd0525de02d8e19f5dc3638e97f8a026117ed6c7ec44723e',
+    archive: '10c3d24bd56766a08c764c2b5a9fa81df78afd22e426a634e5450e8fb24f6efe',
+  },
   // Issue5 self-review: reader resource/notices producer changed; all five runtime bytes match issue5Reconciled.
   issue5ReaderResources: {
     behavior: 'fixed-blocks',
@@ -148,6 +157,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-generic-reader-production',
+    family: 'issue5GenericReader',
+    edition: 'production',
+    fingerprint: '04e2eaf048e5a8cbab0d674938cce20df26ff63d7fd24df40ec9dfc014b99b39',
+    styles: '0febf1812d0748533e48b5ab6dfc4e8bac6c3c6a787ac9701aaf6ebbe61d5cdc',
+  },
+  {
+    id: 'issue5-generic-reader-plain',
+    family: 'issue5GenericReader',
+    edition: 'plain',
+    fingerprint: '182939eafde360ec7371554bd8433680f6d59eeb318e54cb671babd9fb11c547',
+    styles: '0febf1812d0748533e48b5ab6dfc4e8bac6c3c6a787ac9701aaf6ebbe61d5cdc',
+  },
+  {
+    id: 'issue5-generic-reader-staging',
+    family: 'issue5GenericReader',
+    edition: 'staging',
+    fingerprint: 'f7241068e842a3d03cefe57d97701e2dd9f8bbd5cc571353b6467c58b02ea350',
+    styles: '12342444a81c54686eb840bda16c0afc40a569badd6644d8696437f031f8e64f',
+  },
   {
     id: 'issue5-reader-resources-plain',
     family: 'issue5ReaderResources',
