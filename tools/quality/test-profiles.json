@@ -10,7 +10,11 @@
   "source_profiles": {
     "pr": {
       "baseline_command": "node tools/quality/local.cjs",
-      "baseline_files": ["tests/theme.test.cjs", "tests/archive.test.cjs", "tests/flight.test.cjs"],
+      "baseline_files": [
+        "tests/theme.test.cjs",
+        "tests/archive.test.cjs",
+        "tests/flight.test.cjs"
+      ],
       "known_non_node_paths": [
         "AGENTS.md",
         "CONTRIBUTING.md",
@@ -58,7 +62,11 @@
     },
     "staging": {
       "baseline_command": "node tools/quality/local.cjs",
-      "baseline_files": ["tests/theme.test.cjs", "tests/archive.test.cjs", "tests/flight.test.cjs"],
+      "baseline_files": [
+        "tests/theme.test.cjs",
+        "tests/archive.test.cjs",
+        "tests/flight.test.cjs"
+      ],
       "selection": "all permanent JavaScript except baseline files already checked in this build; permanent Python selected separately"
     },
     "production": {
@@ -110,7 +118,8 @@
         "tests/content-baseline.test.cjs",
         "tests/content-rendering.test.cjs",
         "tests/archive.test.cjs",
-        "tests/content-release.test.cjs"
+        "tests/content-release.test.cjs",
+        "tests/article-media.test.cjs"
       ]
     }
   },
@@ -339,7 +348,13 @@
       "purpose": "Intersected filters, URL/fragment history, reset/focus, empty/no-JS archive behavior",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": ["pr-smoke", "pr-targeted", "staging", "production", "content"],
+      "profiles": [
+        "pr-smoke",
+        "pr-targeted",
+        "staging",
+        "production",
+        "content"
+      ],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/local.cjs",
       "inputs": [
@@ -373,7 +388,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/browser-gate-trace.test.cjs", "tools/quality/browser-gate-trace.cjs"]
+      "inputs": [
+        "tests/browser-gate-trace.test.cjs",
+        "tools/quality/browser-gate-trace.cjs"
+      ]
     },
     {
       "path": "tests/browser-gate-variants.test.cjs",
@@ -400,7 +418,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/browser-lifecycle.test.cjs", "tools/quality/browser-lifecycle.cjs"]
+      "inputs": [
+        "tests/browser-lifecycle.test.cjs",
+        "tools/quality/browser-lifecycle.cjs"
+      ]
     },
     {
       "path": "tests/cause-fix-probe.test.cjs",
@@ -624,7 +645,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/gtk-target-probe.test.cjs", "tools/quality/gtk-target-probe.cjs"]
+      "inputs": [
+        "tests/gtk-target-probe.test.cjs",
+        "tools/quality/gtk-target-probe.cjs"
+      ]
     },
     {
       "path": "tests/native-display.test.cjs",
@@ -635,7 +659,10 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/native-display.test.cjs", "tools/quality/native-display.cjs"]
+      "inputs": [
+        "tests/native-display.test.cjs",
+        "tools/quality/native-display.cjs"
+      ]
     },
     {
       "path": "tests/navigation-fixtures.test.cjs",
@@ -680,7 +707,12 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/navigation.test.cjs", "site/engine/**", "site/scenes/**", "site/site.json"]
+      "inputs": [
+        "tests/navigation.test.cjs",
+        "site/engine/**",
+        "site/scenes/**",
+        "site/site.json"
+      ]
     },
     {
       "path": "tests/preview-smoke.test.cjs",
@@ -1183,7 +1215,10 @@
       "profiles": ["pr-targeted", "staging", "production"],
       "disposition": "retain current independent contract",
       "surviving_route": "python3 tools/run_repository_tests.py",
-      "inputs": ["tests/test_repository_test_selection.py", "tools/run_repository_tests.py"]
+      "inputs": [
+        "tests/test_repository_test_selection.py",
+        "tools/run_repository_tests.py"
+      ]
     },
     {
       "path": "tests/test_ri_ci.py",
@@ -1227,7 +1262,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-diagnosis.test.cjs", "tools/quality/writing-diagnosis.cjs"]
+      "inputs": [
+        "tests/writing-diagnosis.test.cjs",
+        "tools/quality/writing-diagnosis.cjs"
+      ]
     },
     {
       "path": "tests/writing-geometry.test.cjs",
@@ -1238,7 +1276,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-geometry.test.cjs", "tools/quality/writing-geometry.cjs"]
+      "inputs": [
+        "tests/writing-geometry.test.cjs",
+        "tools/quality/writing-geometry.cjs"
+      ]
     },
     {
       "path": "tests/writing-layout.test.cjs",
@@ -1249,7 +1290,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-layout.test.cjs", "tools/quality/writing-layout.cjs"]
+      "inputs": [
+        "tests/writing-layout.test.cjs",
+        "tools/quality/writing-layout.cjs"
+      ]
     },
     {
       "path": "tests/writing-localization.test.cjs",
@@ -1260,7 +1304,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-localization.test.cjs", "tools/quality/writing-localization.cjs"]
+      "inputs": [
+        "tests/writing-localization.test.cjs",
+        "tools/quality/writing-localization.cjs"
+      ]
     },
     {
       "path": "tests/writing-models.test.cjs",
@@ -1271,7 +1318,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain explicit targeted/manual diagnostic; removed from routine release",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-models.test.cjs", "tools/quality/writing-models.cjs"]
+      "inputs": [
+        "tests/writing-models.test.cjs",
+        "tools/quality/writing-models.cjs"
+      ]
     },
     {
       "path": "tests/writing-paradigm-browser.test.cjs",
@@ -1297,7 +1347,10 @@
       "profiles": ["diagnostic", "pr-targeted"],
       "disposition": "retain bounded exact-baseline PR #38 diagnostic control; never launch browser/performance matrix on ordinary PR updates",
       "surviving_route": "node tools/quality/source-tests.cjs --profile diagnostic",
-      "inputs": ["tests/writing-paradigm-ci.test.cjs", ".github/workflows/site-writing-probe.yml"]
+      "inputs": [
+        "tests/writing-paradigm-ci.test.cjs",
+        ".github/workflows/site-writing-probe.yml"
+      ]
     },
     {
       "path": "tests/writing-paradigm-quality.test.cjs",
@@ -1757,7 +1810,10 @@
       "profiles": ["issue-policy"],
       "disposition": "owning policy only; reuse permanent behavior without recurring task history",
       "surviving_route": ".github/acceptance/issue-72.json",
-      "inputs": ["tests/test_issue72_acceptance.py", ".github/acceptance/issue-72.json"]
+      "inputs": [
+        "tests/test_issue72_acceptance.py",
+        ".github/acceptance/issue-72.json"
+      ]
     },
     {
       "path": "tests/color-motion-contract.test.cjs",
@@ -1857,7 +1913,11 @@
       "profiles": ["pr-targeted", "staging", "production", "content"],
       "disposition": "retain independent article behavior/failure surface; actual browser/PDF and editorial gates remain distinct",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
-      "inputs": ["tests/publishing-safety.test.cjs", "tools/publishing/**", "site/publications/**"]
+      "inputs": [
+        "tests/publishing-safety.test.cjs",
+        "tools/publishing/**",
+        "site/publications/**"
+      ]
     },
     {
       "path": "tests/publishing-print.test.cjs",
@@ -2414,7 +2474,7 @@
       "purpose": "Generic template selection, bounded lossless WebP with source/pixel/ICC identity, cold preview purpose and native offline corruption negatives",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
-      "profiles": ["pr-targeted", "staging", "production"],
+      "profiles": ["pr-targeted", "staging", "production", "content"],
       "disposition": "retain independent current behavior and negative evidence surfaces; actual browser/device/editorial gates remain separate",
       "surviving_route": "node tools/quality/source-tests.cjs --profile production",
       "inputs": [

@@ -64,6 +64,18 @@ The hosted CI run must be inspected for actual template article selection,
 immutable package/HTTP identities, desktop/mobile/no-JS/theme/navigation evidence.
 A green prototype or source check alone supplies none of those observations.
 
+The first exact-head policy at f9b98f79 passed9/10 groups; CONTENT-CI caught
+incorrect catalog ownership on the new reference. Its owner is corrected to
+the existing ARTICLE-WORKFLOW guide; the classifier is not broadened. The new
+media suite is also mandatory on the content profile.
+CI39221045429 built/published the exact template and passed all four room smoke
+rows, then failed the Off article scenario: its static Canvas correctly hides
+the SVG with display:none, while the test incorrectly required a visible SVG
+bounding box. The geometry assertion now runs only for no-Canvas/no-JS; Off
+retains its explicit ready Canvas, native blocks and Off-control assertions.
+Visible fallback geometry remains required. Final matching-source CI is separate;
+the earlier failed run is not relabelled as successful.
+
 ## Acceptance and next sequence
 
 | Scope | Evidence route | Remaining gates |

@@ -137,7 +137,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/assets/publications/pmday-ai-both-sides/cover02/originals](site/assets/publications/pmday-ai-both-sides/cover02/originals) | Selected Cover02 artwork originals and channel image adaptations with explicit provenance. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/pmday-ai-both-sides/source](site/assets/publications/pmday-ai-both-sides/source) | PMDay article source, presentation viewer or original publication media: source. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/assets/publications/pmday-two-shifts](site/assets/publications/pmday-two-shifts) | PMDay article-local original figures and bounded source-review renditions. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/assets/publications/reader-reference](site/assets/publications/reader-reference) | Nonpublishable synthetic reader reference and stable preview input. | source | [site/README.md](site/README.md) |
+| [site/assets/publications/reader-reference](site/assets/publications/reader-reference) | Nonpublishable synthetic reader reference and stable preview input. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/content](site/content) | Canonical publication/catalog and bounded context-typed prose, labels, URLs and page composition inputs. | source | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
 | [site/content/pages](site/content/pages) | Five route metadata and bounded JSON content documents; markup belongs to site/templates. | source | [site/README.md](site/README.md) |
 | [site/content/pages/credits](site/content/pages/credits) | Authored credits route metadata, layout and curated HTML blocks. | source | [site/README.md](site/README.md) |
@@ -155,8 +155,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/publications/pmday-two-shifts](site/publications/pmday-two-shifts) | PMDay article authored source/edition grouping. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/pmday-two-shifts/adaptations](site/publications/pmday-two-shifts/adaptations) | PMDay article authored source/edition grouping. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/pmday-two-shifts/editions](site/publications/pmday-two-shifts/editions) | PMDay article authored source/edition grouping. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
-| [site/publications/reader-reference](site/publications/reader-reference) | Nonpublishable synthetic reader reference and stable preview input. | source | [site/README.md](site/README.md) |
-| [site/publications/reader-reference/editions](site/publications/reader-reference/editions) | Nonpublishable synthetic reader reference and stable preview input. | source | [site/README.md](site/README.md) |
+| [site/publications/reader-reference](site/publications/reader-reference) | Nonpublishable synthetic reader reference and stable preview input. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/reader-reference/editions](site/publications/reader-reference/editions) | Nonpublishable synthetic reader reference and stable preview input. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/retained](site/retained) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media](site/retained/media) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
 | [site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc](site/retained/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc) | Verified immutable runtime/snapshot inputs retained from PR63 pre-removal source 0e10; generated compatibility copy, not an authored editing owner. | history | [site/README.md](site/README.md) |
@@ -1786,7 +1786,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/assets/publications/reader-reference/diagram.png](site/assets/publications/reader-reference/diagram.png) | Nonpublishable synthetic reader reference and stable preview input. | source | [site/README.md](site/README.md) |
+| [site/assets/publications/reader-reference/diagram.png](site/assets/publications/reader-reference/diagram.png) | Nonpublishable synthetic reader reference and stable preview input. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/content/
 
@@ -1943,16 +1943,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/publications/reader-reference/launch-post.en.md](site/publications/reader-reference/launch-post.en.md) | Nonpublishable synthetic reader reference and stable preview input. | source | [site/README.md](site/README.md) |
-| [site/publications/reader-reference/manuscript.en.md](site/publications/reader-reference/manuscript.en.md) | Nonpublishable synthetic reader reference and stable preview input. | source | [site/README.md](site/README.md) |
-| [site/publications/reader-reference/profile.json](site/publications/reader-reference/profile.json) | Nonpublishable synthetic reader reference and stable preview input. | configuration | [site/README.md](site/README.md) |
-| [site/publications/reader-reference/publication.json](site/publications/reader-reference/publication.json) | Nonpublishable synthetic reader reference and stable preview input. | configuration | [site/README.md](site/README.md) |
+| [site/publications/reader-reference/launch-post.en.md](site/publications/reader-reference/launch-post.en.md) | Nonpublishable synthetic reader reference and stable preview input. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/reader-reference/manuscript.en.md](site/publications/reader-reference/manuscript.en.md) | Nonpublishable synthetic reader reference and stable preview input. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/reader-reference/profile.json](site/publications/reader-reference/profile.json) | Nonpublishable synthetic reader reference and stable preview input. | configuration | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/reader-reference/publication.json](site/publications/reader-reference/publication.json) | Nonpublishable synthetic reader reference and stable preview input. | configuration | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/publications/reader-reference/editions/
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [site/publications/reader-reference/editions/reader-reference-v1.json](site/publications/reader-reference/editions/reader-reference-v1.json) | Nonpublishable synthetic reader reference and stable preview input. | configuration | [site/README.md](site/README.md) |
+| [site/publications/reader-reference/editions/reader-reference-v1.json](site/publications/reader-reference/editions/reader-reference-v1.json) | Nonpublishable synthetic reader reference and stable preview input. | configuration | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/retained/
 

@@ -1,50 +1,60 @@
-'use strict';
+"use strict";
 // A bounded article journey reuses the admitted browser and the five-route shell.
-const assert = require('node:assert/strict');
+const assert = require("node:assert/strict");
 
 function articleURLs(baseURL, descriptor) {
-  const base = new URL(baseURL.replace(/\/$/, '') + '/');
-  assert.ok(['http:', 'https:'].includes(base.protocol));
-  assert.equal(base.search + base.hash + base.username + base.password, '');
+  const base = new URL(baseURL.replace(/\/$/, "") + "/");
+  assert.ok(["http:", "https:"].includes(base.protocol));
+  assert.equal(base.search + base.hash + base.username + base.password, "");
   const urls = {};
   for (const [name, value] of [
-    ['alias', descriptor.alias],
-    ['snapshot', descriptor.url],
+    ["alias", descriptor.alias],
+    ["snapshot", descriptor.url],
   ]) {
-    assert.equal(typeof value, 'string');
-    assert.ok(!value.startsWith('/') && !value.includes('..') && !value.includes('\\'));
+    assert.equal(typeof value, "string");
+    assert.ok(
+      !value.startsWith("/") && !value.includes("..") && !value.includes("\\"),
+    );
     const url = new URL(value, base);
     assert.equal(url.origin, base.origin);
-    assert.ok(url.pathname.startsWith(base.pathname), 'article URL left selected base');
+    assert.ok(
+      url.pathname.startsWith(base.pathname),
+      "article URL left selected base",
+    );
     urls[name] = url.href;
   }
   return {
     ...urls,
-    writing: new URL('writing.html', base).href,
+    writing: new URL("writing.html", base).href,
     base: base.href,
   };
 }
 
 async function inspectHead(page) {
   return page.evaluate(() => {
-    const content = (name) => document.querySelector('meta[name="' + name + '"]')?.content || null;
+    const content = (name) =>
+      document.querySelector('meta[name="' + name + '"]')?.content || null;
     return {
       title: document.title,
       lang: document.documentElement.lang,
-      description: content('description'),
-      author: content('author'),
-      key: content('site-article'),
-      routeVersion: content('site-route'),
-      engine: content('site-engine'),
-      robots: content('robots'),
-      canonical: [...document.querySelectorAll('link[rel="canonical"]')].map((link) => link.href),
-      alternates: [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map((link) => ({
+      description: content("description"),
+      author: content("author"),
+      key: content("site-article"),
+      routeVersion: content("site-route"),
+      engine: content("site-engine"),
+      robots: content("robots"),
+      canonical: [...document.querySelectorAll('link[rel="canonical"]')].map(
+        (link) => link.href,
+      ),
+      alternates: [
+        ...document.querySelectorAll('link[rel="alternate"][hreflang]'),
+      ].map((link) => ({
         language: link.hreflang,
         href: link.href,
       })),
-      schemas: [...document.querySelectorAll('script[type="application/ld+json"]')].map((script) =>
-        JSON.parse(script.textContent)
-      ),
+      schemas: [
+        ...document.querySelectorAll('script[type="application/ld+json"]'),
+      ].map((script) => JSON.parse(script.textContent)),
     };
   });
 }
@@ -52,89 +62,119 @@ async function inspectHead(page) {
 async function settled(page, key, timeout) {
   await page.waitForFunction(
     (expected) => {
-      const content = document.querySelector('#site-content');
+      const content = document.querySelector("#site-content");
       return (
-        document.body.dataset.page === (expected.startsWith('article:') ? 'writing' : expected) &&
-        (expected.startsWith('article:')
+        document.body.dataset.page ===
+          (expected.startsWith("article:") ? "writing" : expected) &&
+        (expected.startsWith("article:")
           ? document.body.dataset.article === expected.slice(8)
           : !document.body.dataset.article) &&
         content &&
-        !content.hasAttribute('aria-busy')
+        !content.hasAttribute("aria-busy")
       );
     },
     key,
-    { polling: 50, timeout }
+    { polling: 50, timeout },
   );
 }
 
 async function articleHead(page, key, descriptor, descriptors, timeout) {
   const head = await inspectHead(page);
-  const language = key.split(':').at(-1);
-  assert.equal(head.key, key, 'article metadata key');
-  assert.equal(head.lang, language, 'article document language');
-  assert.equal(head.routeVersion, descriptor.version, 'article snapshot version');
-  assert.ok(head.title && head.description && head.author, 'complete article metadata');
-  const article = head.schemas.find((schema) => schema['@type'] === 'Article');
-  assert.ok(article, 'Article JSON-LD');
+  const language = key.split(":").at(-1);
+  assert.equal(head.key, key, "article metadata key");
+  assert.equal(head.lang, language, "article document language");
+  assert.equal(
+    head.routeVersion,
+    descriptor.version,
+    "article snapshot version",
+  );
+  assert.ok(
+    head.title && head.description && head.author,
+    "complete article metadata",
+  );
+  const article = head.schemas.find((schema) => schema["@type"] === "Article");
+  assert.ok(article, "Article JSON-LD");
   assert.equal(article.inLanguage, language);
-  assert.ok(article.headline && article.author, 'Article headline and author');
-  assert.equal(await page.locator('h1').count(), 1);
-  assert.equal(await page.locator('main.article-reader').count(), 1);
+  assert.ok(article.headline && article.author, "Article headline and author");
+  assert.equal(await page.locator("h1").count(), 1);
+  assert.equal(await page.locator("main.article-reader").count(), 1);
   const currentLink = page.locator('header nav a[aria-current="page"]');
   assert.equal(
     await currentLink.count(),
     1,
-    'article selects the existing Writing navigation link'
+    "article selects the existing Writing navigation link",
   );
-  assert.equal(await currentLink.innerText(), 'Writing');
+  assert.equal(await currentLink.innerText(), "Writing");
   if (descriptor.candidate) {
-    assert.match(head.robots || '', /noindex/);
-    assert.equal(head.canonical.length, 0, 'unaccepted article has no canonical claim');
-    assert.equal(article.datePublished, undefined, 'unaccepted article has no publication date');
+    assert.match(head.robots || "", /noindex/);
+    assert.equal(
+      head.canonical.length,
+      0,
+      "unaccepted article has no canonical claim",
+    );
+    assert.equal(
+      article.datePublished,
+      undefined,
+      "unaccepted article has no publication date",
+    );
   }
   for (const alternate of head.alternates) {
     assert.ok(
       Object.entries(descriptors).some(
         ([otherKey, other]) =>
-          otherKey.split(':').at(-1) === alternate.language &&
-          new URL(alternate.href).pathname.endsWith('/' + other.alias)
+          otherKey.split(":").at(-1) === alternate.language &&
+          new URL(alternate.href).pathname.endsWith("/" + other.alias),
       ),
-      'alternate targets an admitted language edition'
+      "alternate targets an admitted language edition",
     );
   }
   assert.equal(
-    await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
+    await page.evaluate(
+      () => document.documentElement.scrollWidth > innerWidth + 1,
+    ),
     false,
-    'article horizontal overflow'
+    "article horizontal overflow",
   );
   // Router readiness precedes image loading on a real hosted origin.
   await page.waitForFunction(
-    () => [...document.querySelectorAll('.article-body img')].every((image) => image.complete),
+    () =>
+      [...document.querySelectorAll(".article-body img")].every(
+        (image) => image.complete,
+      ),
     null,
-    { timeout }
+    { timeout },
   );
-  for (const image of await page.locator('.article-body img').evaluateAll((images) =>
-    images.map((image) => ({
-      complete: image.complete,
-      width: image.naturalWidth,
-      height: image.naturalHeight,
-    }))
-  )) {
-    assert.ok(image.complete && image.width > 0 && image.height > 0, 'article asset decoded');
+  for (const image of await page
+    .locator(".article-body img")
+    .evaluateAll((images) =>
+      images.map((image) => ({
+        complete: image.complete,
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      })),
+    )) {
+    assert.ok(
+      image.complete && image.width > 0 && image.height > 0,
+      "article asset decoded",
+    );
   }
   return head;
 }
 
 async function preserveShell(page) {
-  assert.equal(await page.locator('canvas').count(), 1, 'one persistent Canvas');
+  assert.equal(
+    await page.locator("canvas").count(),
+    1,
+    "one persistent Canvas",
+  );
   assert.equal(
     await page.evaluate(
       () =>
-        window.__articleShell.header === document.querySelector('header') &&
-        window.__articleShell.canvas === document.querySelector('canvas')
+        window.__articleShell.header === document.querySelector("header") &&
+        window.__articleShell.canvas === document.querySelector("canvas"),
     ),
     true,
-    'article navigation retained shell and Canvas'
+    "article navigation retained shell and Canvas",
   );
 }
 
@@ -146,38 +186,38 @@ async function observeReading(page) {
       maxEntering: 0,
       maxRoute: 0,
     };
-    const main = document.querySelector('main.article-reader');
+    const main = document.querySelector("main.article-reader");
     window.__articleObserver = new MutationObserver((changes) => {
       const state = window.__articleReading;
       for (const change of changes) {
         const element = change.target;
         if (!main.contains(element)) continue;
         if (
-          change.attributeName === 'data-scroll-entry' &&
-          element.getAttribute('data-scroll-entry') === 'entering'
+          change.attributeName === "data-scroll-entry" &&
+          element.getAttribute("data-scroll-entry") === "entering"
         ) {
           state.entered.push(element.id || element.tagName);
         }
         if (
-          change.attributeName === 'data-route-block' &&
-          element.getAttribute('data-route-block') === 'departing'
+          change.attributeName === "data-route-block" &&
+          element.getAttribute("data-route-block") === "departing"
         ) {
           state.departed.push(element.id || element.tagName);
         }
       }
       state.maxEntering = Math.max(
         state.maxEntering,
-        main.querySelectorAll('[data-scroll-entry="entering"]').length
+        main.querySelectorAll('[data-scroll-entry="entering"]').length,
       );
       state.maxRoute = Math.max(
         state.maxRoute,
-        main.querySelectorAll('[data-route-block="departing"]').length
+        main.querySelectorAll('[data-route-block="departing"]').length,
       );
     });
     window.__articleObserver.observe(main, {
       subtree: true,
       attributes: true,
-      attributeFilter: ['data-scroll-entry', 'data-route-block'],
+      attributeFilter: ["data-scroll-entry", "data-route-block"],
     });
   });
 }
@@ -185,32 +225,38 @@ async function observeReading(page) {
 function installArticleHistoryDiagnostics(anchor, scope = window) {
   scope.__articleHistoryCleanup?.();
   const document = scope.document;
-  const content = document.querySelector('#site-content');
+  const content = document.querySelector("#site-content");
   const state = { samples: [], dropped: 0 };
-  let phase = 'waiting';
+  let phase = "waiting";
   const box = (selector) => {
     const rect = document.querySelector(selector)?.getBoundingClientRect();
-    return rect ? { top: rect.top, bottom: rect.bottom, height: rect.height } : null;
+    return rect
+      ? { top: rect.top, bottom: rect.bottom, height: rect.height }
+      : null;
   };
   const snapshot = (kind, saved = null) => ({
     kind,
     time: scope.performance.now(),
     scroll: scope.scrollY,
     height: document.documentElement.scrollHeight,
-    maxScroll: Math.max(0, document.documentElement.scrollHeight - scope.innerHeight),
+    maxScroll: Math.max(
+      0,
+      document.documentElement.scrollHeight - scope.innerHeight,
+    ),
     viewportHeight: scope.innerHeight,
     focus: document.activeElement?.id || null,
     page: document.body.dataset.page,
     article: document.body.dataset.article || null,
     inert: content.inert,
-    busy: content.hasAttribute('aria-busy'),
+    busy: content.hasAttribute("aria-busy"),
     history: scope.structuredClone(scope.history.state?.site || null),
     saved: scope.structuredClone(saved),
-    main: box('main'),
-    articleList: box('.article-list'),
-    footer: box('#site-content footer'),
+    main: box("main"),
+    articleList: box(".article-list"),
+    footer: box("#site-content footer"),
     waiting: document.querySelectorAll('[data-scroll-entry="waiting"]').length,
-    entering: document.querySelectorAll('[data-scroll-entry="entering"]').length,
+    entering: document.querySelectorAll('[data-scroll-entry="entering"]')
+      .length,
   });
   const record = (kind, saved) => {
     if (state.samples.length >= 24) {
@@ -222,7 +268,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     return row;
   };
   const activate = () => {
-    phase = 'departure';
+    phase = "departure";
     scope.__articleArchiveDeparture = {
       scroll: scope.scrollY,
       focus: document.activeElement?.id,
@@ -230,7 +276,7 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     // Capture primitives before the navigation owner cancels native smooth scroll.
     // Geometry reads here could advance the viewport before that boundary.
     state.activation = {
-      kind: 'activation',
+      kind: "activation",
       time: scope.performance.now(),
       ...scope.__articleArchiveDeparture,
     };
@@ -241,58 +287,63 @@ function installArticleHistoryDiagnostics(anchor, scope = window) {
     }
   };
   const pop = (event) => {
-    phase = 'back';
+    phase = "back";
     const saved = event.state?.site || null;
-    state.popstate = record('back-popstate', saved) || snapshot('back-popstate', saved);
+    state.popstate =
+      record("back-popstate", saved) || snapshot("back-popstate", saved);
   };
   const mount = (event) => {
-    if (phase === 'departure') {
-      phase = 'article';
-      record('article-mount');
-    } else if (phase === 'back' || event.detail?.page === 'writing') {
-      phase = 'back';
-      record('back-mount');
+    if (phase === "departure") {
+      phase = "article";
+      record("article-mount");
+    } else if (phase === "back" || event.detail?.page === "writing") {
+      phase = "back";
+      record("back-mount");
     }
   };
   const ready = () => {
-    if (phase === 'back' && !state.restoration)
-      state.restoration = record('back-page-ready') || snapshot('back-page-ready');
+    if (phase === "back" && !state.restoration)
+      state.restoration =
+        record("back-page-ready") || snapshot("back-page-ready");
   };
   const scroll = (event) => {
-    if (phase === 'departure' || phase === 'back') {
-      const row = record('native-scroll');
+    if (phase === "departure" || phase === "back") {
+      const row = record("native-scroll");
       if (row) row.trusted = event.isTrusted;
     }
   };
   const observer = new scope.MutationObserver((changes) => {
     if (
-      phase === 'departure' &&
+      phase === "departure" &&
       !state.cleanup &&
-      changes.some((change) => change.oldValue && !change.target.hasAttribute('data-scroll-entry'))
+      changes.some(
+        (change) =>
+          change.oldValue && !change.target.hasAttribute("data-scroll-entry"),
+      )
     ) {
-      state.cleanup = record('reading-cleanup') || snapshot('reading-cleanup');
+      state.cleanup = record("reading-cleanup") || snapshot("reading-cleanup");
     }
   });
   observer.observe(content, {
     subtree: true,
     attributes: true,
     attributeOldValue: true,
-    attributeFilter: ['data-scroll-entry'],
+    attributeFilter: ["data-scroll-entry"],
   });
-  anchor.addEventListener('click', activate, { capture: true, once: true });
-  scope.addEventListener('popstate', pop, { capture: true, once: true });
-  scope.addEventListener('site:page-mount', mount);
-  scope.addEventListener('site:page-ready', ready);
-  scope.addEventListener('scroll', scroll);
+  anchor.addEventListener("click", activate, { capture: true, once: true });
+  scope.addEventListener("popstate", pop, { capture: true, once: true });
+  scope.addEventListener("site:page-mount", mount);
+  scope.addEventListener("site:page-ready", ready);
+  scope.addEventListener("scroll", scroll);
   scope.__articleHistoryDiagnostics = state;
-  scope.__articleHistorySnapshot = () => snapshot('checkpoint');
+  scope.__articleHistorySnapshot = () => snapshot("checkpoint");
   scope.__articleHistoryCleanup = () => {
     observer.disconnect();
-    anchor.removeEventListener('click', activate, true);
-    scope.removeEventListener('popstate', pop, true);
-    scope.removeEventListener('site:page-mount', mount);
-    scope.removeEventListener('site:page-ready', ready);
-    scope.removeEventListener('scroll', scroll);
+    anchor.removeEventListener("click", activate, true);
+    scope.removeEventListener("popstate", pop, true);
+    scope.removeEventListener("site:page-mount", mount);
+    scope.removeEventListener("site:page-ready", ready);
+    scope.removeEventListener("scroll", scroll);
   };
 }
 
@@ -303,27 +354,35 @@ function articleHistoryCheckpoint(scope = window) {
     history: scope.structuredClone(scope.history.state?.site || null),
     focus: scope.document.activeElement?.id,
     scroll: scope.scrollY,
-    busy: scope.document.querySelector('#site-content')?.hasAttribute('aria-busy'),
+    busy: scope.document
+      .querySelector("#site-content")
+      ?.hasAttribute("aria-busy"),
     historyDiagnostics: scope.__articleHistoryDiagnostics,
     geometry: scope.__articleHistorySnapshot?.(),
   };
 }
 
 async function presentationJourney(page) {
-  const control = page.locator('.presentation-toggle');
+  const control = page.locator(".presentation-toggle");
   if (!(await control.count())) return null;
-  assert.equal(await page.locator('.presentation-viewer iframe').count(), 0, 'lazy PDF viewer');
-  const pdf = await page.locator('.presentation-actions a[download]').getAttribute('href');
-  assert.ok(pdf.endsWith('.pdf'), 'native PDF fallback');
+  assert.equal(
+    await page.locator(".presentation-viewer iframe").count(),
+    0,
+    "lazy PDF viewer",
+  );
+  const pdf = await page
+    .locator(".presentation-actions a[download]")
+    .getAttribute("href");
+  assert.ok(pdf.endsWith(".pdf"), "native PDF fallback");
   await control.focus();
-  await page.keyboard.press('Enter');
-  const frame = page.locator('.presentation-viewer iframe');
+  await page.keyboard.press("Enter");
+  const frame = page.locator(".presentation-viewer iframe");
   await frame.waitFor();
-  const first = await frame.getAttribute('src');
-  assert.ok(first.startsWith('blob:'), 'viewer uses verified local PDF bytes');
-  assert.equal(await control.getAttribute('aria-expanded'), 'true');
+  const first = await frame.getAttribute("src");
+  assert.ok(first.startsWith("blob:"), "viewer uses verified local PDF bytes");
+  assert.equal(await control.getAttribute("aria-expanded"), "true");
   await control.click();
-  assert.equal(await frame.count(), 0, 'closing removes PDF viewer');
+  assert.equal(await frame.count(), 0, "closing removes PDF viewer");
   assert.equal(
     await page.evaluate(async (url) => {
       try {
@@ -334,69 +393,95 @@ async function presentationJourney(page) {
       }
     }, first),
     true,
-    'closing releases PDF memory'
+    "closing releases PDF memory",
   );
   await control.click();
   await frame.waitFor();
-  return frame.getAttribute('src');
+  return frame.getAttribute("src");
 }
 
 async function articleAnchorCount(page, fragment) {
   return page
-    .locator('[id]')
+    .locator("[id]")
     .evaluateAll(
       (elements, id) => elements.filter((element) => element.id === id).length,
-      decodeURIComponent(fragment.slice(1))
+      decodeURIComponent(fragment.slice(1)),
     );
 }
 
-async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
+async function normalJourney(
+  browser,
+  baseURL,
+  key,
+  descriptor,
+  descriptors,
+  width,
+  timeout,
+) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
     viewport: { width, height: width === 390 ? 844 : 900 },
   });
   const page = await context.newPage();
   const errors = [];
-  page.on('pageerror', (error) => errors.push(error.message));
+  page.on("pageerror", (error) => errors.push(error.message));
   try {
-    await page.goto(urls.writing + '?topic=systems&language=' + key.split(':').at(-1));
-    await settled(page, 'writing', timeout);
+    await page.goto(
+      urls.writing + "?topic=systems&language=" + key.split(":").at(-1),
+    );
+    await settled(page, "writing", timeout);
     await page.waitForFunction(
-      () => document.querySelector('.space-scene')?.dataset.ready === 'true',
+      () => document.querySelector(".space-scene")?.dataset.ready === "true",
       null,
-      { timeout }
+      { timeout },
     );
     const writingHead = await inspectHead(page);
     const archive = {
-      topic: await page.locator('#archive-topic').inputValue(),
-      language: await page.locator('#archive-language').inputValue(),
-      year: await page.locator('#archive-year').inputValue(),
+      topic: await page.locator("#archive-topic").inputValue(),
+      language: await page.locator("#archive-language").inputValue(),
+      year: await page.locator("#archive-year").inputValue(),
       search: new URL(page.url()).search,
     };
     await page.evaluate(() => {
       window.__articleShell = {
-        header: document.querySelector('header'),
-        canvas: document.querySelector('canvas'),
+        header: document.querySelector("header"),
+        canvas: document.querySelector("canvas"),
       };
     });
-    const articleLink = page.locator('.article-list a[href="' + descriptor.alias + '"]');
-    assert.equal(await articleLink.count(), 1, 'Writing lists the admitted article');
+    const articleLink = page.locator(
+      '.article-list a[href="' + descriptor.alias + '"]',
+    );
+    assert.equal(
+      await articleLink.count(),
+      1,
+      "Writing lists the admitted article",
+    );
     await articleLink.scrollIntoViewIfNeeded();
-    const archiveFocus = await articleLink.getAttribute('id');
-    assert.ok(archiveFocus, 'article link has a stable history focus identity');
+    const archiveFocus = await articleLink.getAttribute("id");
+    assert.ok(archiveFocus, "article link has a stable history focus identity");
     await articleLink.evaluate(installArticleHistoryDiagnostics);
     await articleLink.click();
-    const departure = await page.evaluate(() => window.__articleArchiveDeparture);
-    assert.equal(departure?.focus, archiveFocus, 'actual article activation focus');
+    const departure = await page.evaluate(
+      () => window.__articleArchiveDeparture,
+    );
+    assert.equal(
+      departure?.focus,
+      archiveFocus,
+      "actual article activation focus",
+    );
     const archiveScroll = departure.scroll;
-    await settled(page, 'article:' + key, timeout);
+    await settled(page, "article:" + key, timeout);
     await preserveShell(page);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
     const slideURL = await presentationJourney(page);
     await page.goBack();
-    await settled(page, 'writing', timeout);
+    await settled(page, "writing", timeout);
     await preserveShell(page);
-    assert.deepEqual(await inspectHead(page), writingHead, 'Back restored complete archive head');
+    assert.deepEqual(
+      await inspectHead(page),
+      writingHead,
+      "Back restored complete archive head",
+    );
     if (slideURL)
       assert.equal(
         await page.evaluate(async (url) => {
@@ -408,112 +493,149 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
           }
         }, slideURL),
         true,
-        'navigation releases PDF memory'
+        "navigation releases PDF memory",
       );
-    assert.equal(await page.locator('#archive-topic').inputValue(), archive.topic);
-    assert.equal(await page.locator('#archive-language').inputValue(), archive.language);
-    assert.equal(await page.locator('#archive-year').inputValue(), archive.year);
-    assert.equal(new URL(page.url()).search, archive.search, 'Back restored archive query');
+    assert.equal(
+      await page.locator("#archive-topic").inputValue(),
+      archive.topic,
+    );
+    assert.equal(
+      await page.locator("#archive-language").inputValue(),
+      archive.language,
+    );
+    assert.equal(
+      await page.locator("#archive-year").inputValue(),
+      archive.year,
+    );
+    assert.equal(
+      new URL(page.url()).search,
+      archive.search,
+      "Back restored archive query",
+    );
     await page.waitForFunction(
       (expected) =>
-        document.activeElement?.id === expected.focus && Math.abs(scrollY - expected.scroll) <= 2,
+        document.activeElement?.id === expected.focus &&
+        Math.abs(scrollY - expected.scroll) <= 2,
       { focus: archiveFocus, scroll: archiveScroll },
-      { polling: 50, timeout: 2000 }
+      { polling: 50, timeout: 2000 },
     );
     assert.ok(
       Math.abs((await page.evaluate(() => scrollY)) - archiveScroll) <= 2,
-      'Back restored archive native scroll position'
+      "Back restored archive native scroll position",
     );
     await page.evaluate(() => window.__articleHistoryCleanup?.());
     await page.goForward();
-    await settled(page, 'article:' + key, timeout);
+    await settled(page, "article:" + key, timeout);
     await preserveShell(page);
     assert.deepEqual(
       await articleHead(page, key, descriptor, descriptors, timeout),
       head,
-      'Forward restored article head'
+      "Forward restored article head",
     );
 
     const anchorLink = page.locator('.article-toc a[href^="#"]').first();
-    const fragment = await anchorLink.getAttribute('href');
-    assert.ok(fragment && fragment.length > 1, 'native article TOC anchor');
+    const fragment = await anchorLink.getAttribute("href");
+    assert.ok(fragment && fragment.length > 1, "native article TOC anchor");
     await anchorLink.click();
     await page.waitForFunction((hash) => location.hash === hash, fragment, {
       timeout,
     });
-    assert.equal(await articleAnchorCount(page, fragment), 1, 'TOC target exists');
+    assert.equal(
+      await articleAnchorCount(page, fragment),
+      1,
+      "TOC target exists",
+    );
     await page.reload();
-    await settled(page, 'article:' + key, timeout);
-    assert.equal(new URL(page.url()).hash, fragment, 'deep refresh retained anchor');
+    await settled(page, "article:" + key, timeout);
+    assert.equal(
+      new URL(page.url()).hash,
+      fragment,
+      "deep refresh retained anchor",
+    );
     assert.deepEqual(
       await articleHead(page, key, descriptor, descriptors, timeout),
       head,
-      'native refresh and persistent navigation agree on the complete article head'
+      "native refresh and persistent navigation agree on the complete article head",
     );
     await page.evaluate(() => {
       window.__articleShell = {
-        header: document.querySelector('header'),
-        canvas: document.querySelector('canvas'),
+        header: document.querySelector("header"),
+        canvas: document.querySelector("canvas"),
       };
-      scrollTo({ top: 0, behavior: 'instant' });
+      scrollTo({ top: 0, behavior: "instant" });
     });
     await observeReading(page);
     for (let step = 0; step < 8; step++) {
       await page.mouse.wheel(0, 160);
       await page.waitForTimeout(80);
     }
-    await page.waitForFunction(() => window.__articleReading.entered.length > 0, null, {
-      timeout: 2500,
-    });
-    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForFunction(
+      () => window.__articleReading.entered.length > 0,
+      null,
+      {
+        timeout: 2500,
+      },
+    );
+    await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
     await page
-      .locator('header nav a')
+      .locator("header nav a")
       .filter({ hasText: /^Research$/ })
       .click();
-    await settled(page, 'research', timeout);
+    await settled(page, "research", timeout);
     await preserveShell(page);
     const reading = await page.evaluate(() => {
       window.__articleObserver.disconnect();
       return window.__articleReading;
     });
-    assert.ok(reading.departed.length > 0, 'actual article units participated in route departure');
-    assert.ok(reading.maxEntering <= 6, 'article reading respects active block bound');
-    assert.ok(reading.maxRoute <= 24, 'article departure respects active route bound');
+    assert.ok(
+      reading.departed.length > 0,
+      "actual article units participated in route departure",
+    );
+    assert.ok(
+      reading.maxEntering <= 6,
+      "article reading respects active block bound",
+    );
+    assert.ok(
+      reading.maxRoute <= 24,
+      "article departure respects active route bound",
+    );
     assert.equal(
-      await page.locator('[data-route-block], [data-route-blocks]').count(),
+      await page.locator("[data-route-block], [data-route-blocks]").count(),
       0,
-      'arrival released transient blocks'
+      "arrival released transient blocks",
     );
 
     await page.goto(urls.alias);
-    await settled(page, 'article:' + key, timeout);
+    await settled(page, "article:" + key, timeout);
     await page.evaluate(() => {
       window.__articleShell = {
-        header: document.querySelector('header'),
-        canvas: document.querySelector('canvas'),
+        header: document.querySelector("header"),
+        canvas: document.querySelector("canvas"),
       };
     });
     await page
-      .locator('header nav a')
+      .locator("header nav a")
       .filter({ hasText: /^Research$/ })
       .click();
     await page
-      .locator('header nav a')
+      .locator("header nav a")
       .filter({ hasText: /^Writing$/ })
       .click();
-    await settled(page, 'writing', timeout);
+    await settled(page, "writing", timeout);
     await preserveShell(page);
     assert.equal(
-      await page.locator('[data-route-block], [data-route-blocks]').count(),
+      await page.locator("[data-route-block], [data-route-blocks]").count(),
       0,
-      'rapid cancellation released blocks'
+      "rapid cancellation released blocks",
     );
-    assert.deepEqual(errors, [], 'article browser runtime errors');
+    assert.deepEqual(errors, [], "article browser runtime errors");
     return {
       key,
       width,
-      mode: 'normal',
-      presentation: slideURL ? { keyboard: true, close: true, navigationCleanup: true } : null,
+      mode: "normal",
+      presentation: slideURL
+        ? { keyboard: true, close: true, navigationCleanup: true }
+        : null,
       head,
       archive,
       reading,
@@ -532,73 +654,93 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       },
     };
   } catch (error) {
-    error.articleCheckpoint = await page.evaluate(articleHistoryCheckpoint).catch(() => null);
+    error.articleCheckpoint = await page
+      .evaluate(articleHistoryCheckpoint)
+      .catch(() => null);
     throw error;
   } finally {
-    await page.evaluate(() => window.__articleHistoryCleanup?.()).catch(() => null);
+    await page
+      .evaluate(() => window.__articleHistoryCleanup?.())
+      .catch(() => null);
     await context.close();
   }
 }
 
-async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, mode, timeout) {
+async function fallbackJourney(
+  browser,
+  baseURL,
+  key,
+  descriptor,
+  descriptors,
+  mode,
+  timeout,
+) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
     viewport: { width: 390, height: 844 },
-    javaScriptEnabled: mode !== 'no-js',
+    javaScriptEnabled: mode !== "no-js",
   });
-  if (mode === 'off') await context.addInitScript(() => localStorage.setItem('vo.motion', 'off'));
-  if (mode === 'no-canvas')
+  if (mode === "off")
+    await context.addInitScript(() => localStorage.setItem("vo.motion", "off"));
+  if (mode === "no-canvas")
     await context.addInitScript(() => {
       HTMLCanvasElement.prototype.getContext = () => null;
     });
   const page = await context.newPage();
   const errors = [];
-  page.on('pageerror', (error) => errors.push(error.message));
+  page.on("pageerror", (error) => errors.push(error.message));
   try {
     await page.goto(urls.alias);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
-    await page.waitForFunction(
-      () => {
-        const use = document.querySelector('.space-fallback use');
-        if (!use) return false;
-        const bounds = use.getBBox();
-        return bounds.width > 0 && bounds.height > 0;
-      },
-      null,
-      { timeout }
+    if (mode !== "off")
+      await page.waitForFunction(
+        () => {
+          const use = document.querySelector(".space-fallback use");
+          if (!use) return false;
+          const bounds = use.getBBox();
+          return bounds.width > 0 && bounds.height > 0;
+        },
+        null,
+        { timeout },
+      );
+    assert.ok(
+      await page.locator(".article-body").innerText(),
+      "fallback retains full article",
     );
-    assert.ok(await page.locator('.article-body').innerText(), 'fallback retains full article');
     const anchor = page.locator('.article-toc a[href^="#"]').first();
-    const fragment = await anchor.getAttribute('href');
+    const fragment = await anchor.getAttribute("href");
     await anchor.click();
     assert.equal(new URL(page.url()).hash, fragment);
-    if (mode === 'off') {
+    if (mode === "off") {
       await page.waitForFunction(
-        () => document.querySelector('.space-scene')?.dataset.ready === 'true',
+        () => document.querySelector(".space-scene")?.dataset.ready === "true",
         null,
-        { timeout }
+        { timeout },
       );
-      assert.match(await page.locator('#space-motion').textContent(), /off/i);
+      assert.match(await page.locator("#space-motion").textContent(), /off/i);
       assert.equal(
-        await page.locator('[data-scroll-entry], [data-route-block]').count(),
+        await page.locator("[data-scroll-entry], [data-route-block]").count(),
         0,
-        'Off retains native article blocks'
+        "Off retains native article blocks",
       );
     } else {
       assert.equal(
-        await page.locator('.space-fallback').isVisible(),
+        await page.locator(".space-fallback").isVisible(),
         true,
-        'fallback scene is visible'
+        "fallback scene is visible",
       );
     }
     await page
-      .locator('header nav a')
+      .locator("header nav a")
       .filter({ hasText: /^Writing$/ })
       .click();
-    if (mode !== 'no-js') await settled(page, 'writing', timeout);
-    assert.equal(await page.locator('body').getAttribute('data-article'), null);
-    assert.equal(await page.locator('h1').count(), 1);
-    assert.ok((await page.locator('canvas').count()) <= 1, 'fallback does not duplicate Canvas');
+    if (mode !== "no-js") await settled(page, "writing", timeout);
+    assert.equal(await page.locator("body").getAttribute("data-article"), null);
+    assert.equal(await page.locator("h1").count(), 1);
+    assert.ok(
+      (await page.locator("canvas").count()) <= 1,
+      "fallback does not duplicate Canvas",
+    );
     assert.deepEqual(errors, []);
     return {
       key,
@@ -625,35 +767,58 @@ async function articleJourney(
     browser,
     widths = [1440, 390],
     timeout = 10000,
-    modes = ['normal', 'off', 'no-canvas', 'no-js'],
-  } = {}
+    modes = ["normal", "off", "no-canvas", "no-js"],
+  } = {},
 ) {
-  assert.ok(browser, 'article journey requires the existing admitted browser');
+  assert.ok(browser, "article journey requires the existing admitted browser");
   const entries = Object.entries(descriptors);
-  assert.ok(entries.length > 0 && entries.length <= 50, 'finite article journey inventory');
   assert.ok(
-    widths.length > 0 && widths.length <= 2 && widths.every((width) => [1440, 390].includes(width))
+    entries.length > 0 && entries.length <= 50,
+    "finite article journey inventory",
+  );
+  assert.ok(
+    widths.length > 0 &&
+      widths.length <= 2 &&
+      widths.every((width) => [1440, 390].includes(width)),
   );
   assert.ok(
     modes.length > 0 &&
-      modes.every((mode) => ['normal', 'off', 'no-canvas', 'no-js'].includes(mode))
+      modes.every((mode) =>
+        ["normal", "off", "no-canvas", "no-js"].includes(mode),
+      ),
   );
   const observations = [];
   const [key, descriptor] = entries[0];
   try {
-    if (modes.includes('normal')) {
+    if (modes.includes("normal")) {
       for (const width of widths)
         observations.push(
-          await normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout)
+          await normalJourney(
+            browser,
+            baseURL,
+            key,
+            descriptor,
+            descriptors,
+            width,
+            timeout,
+          ),
         );
     }
-    for (const mode of modes.filter((mode) => mode !== 'normal')) {
+    for (const mode of modes.filter((mode) => mode !== "normal")) {
       observations.push(
-        await fallbackJourney(browser, baseURL, key, descriptor, descriptors, mode, timeout)
+        await fallbackJourney(
+          browser,
+          baseURL,
+          key,
+          descriptor,
+          descriptors,
+          mode,
+          timeout,
+        ),
       );
     }
     return {
-      kind: 'bounded-article-journey',
+      kind: "bounded-article-journey",
       browser: browser.version(),
       documents: [key],
       availableDocuments: entries.map(([id]) => id),
@@ -670,90 +835,117 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
   if (!keys.length) {
     assert.ok(
       detail === undefined || detail === null,
-      'article evidence without selected articles'
+      "article evidence without selected articles",
     );
     return { documents: 0, observations: 0 };
   }
-  assert.ok(detail, 'selected articles require actual browser evidence');
-  assert.equal(detail.kind, 'bounded-article-journey');
-  assert.ok(typeof detail.browser === 'string' && detail.browser.length > 0);
-  assert.deepEqual(detail.availableDocuments, keys, 'article browser inventory');
-  assert.deepEqual(detail.documents, [keys[0]], 'one explicitly exercised representative article');
+  assert.ok(detail, "selected articles require actual browser evidence");
+  assert.equal(detail.kind, "bounded-article-journey");
+  assert.ok(typeof detail.browser === "string" && detail.browser.length > 0);
+  assert.deepEqual(
+    detail.availableDocuments,
+    keys,
+    "article browser inventory",
+  );
+  assert.deepEqual(
+    detail.documents,
+    [keys[0]],
+    "one explicitly exercised representative article",
+  );
   const cases = [
-    ['normal', 1440],
-    ['normal', 390],
-    ['off', 390],
-    ['no-canvas', 390],
-    ['no-js', 390],
+    ["normal", 1440],
+    ["normal", 390],
+    ["off", 390],
+    ["no-canvas", 390],
+    ["no-js", 390],
   ];
   assert.deepEqual(
     detail.observations.map((row) => [row.mode, row.width]),
     cases,
-    'complete bounded article browser cases'
+    "complete bounded article browser cases",
   );
   const normalChecks = [
-    'metadataTransition',
-    'filtersBackForward',
-    'focusAndScrollHistory',
-    'persistentCanvas',
-    'nativeAnchors',
-    'deepRefresh',
-    'readingBlocks',
-    'routeDeparture',
-    'rapidCancellation',
-    'assetsDecoded',
+    "metadataTransition",
+    "filtersBackForward",
+    "focusAndScrollHistory",
+    "persistentCanvas",
+    "nativeAnchors",
+    "deepRefresh",
+    "readingBlocks",
+    "routeDeparture",
+    "rapidCancellation",
+    "assetsDecoded",
   ];
-  const fallbackChecks = ['nativeReading', 'anchors', 'writingLink', 'singleCanvas'];
+  const fallbackChecks = [
+    "nativeReading",
+    "anchors",
+    "writingLink",
+    "singleCanvas",
+  ];
   for (const row of detail.observations) {
-    assert.equal(row.key, keys[0], 'article observation source');
-    for (const check of row.mode === 'normal' ? normalChecks : fallbackChecks)
-      assert.equal(row.checks?.[check], true, 'article observation ' + check);
+    assert.equal(row.key, keys[0], "article observation source");
+    for (const check of row.mode === "normal" ? normalChecks : fallbackChecks)
+      assert.equal(row.checks?.[check], true, "article observation " + check);
     assert.equal(row.head?.key, keys[0]);
-    assert.equal(row.head.lang, keys[0].split(':').at(-1));
+    assert.equal(row.head.lang, keys[0].split(":").at(-1));
     assert.equal(row.head.routeVersion, descriptors[keys[0]].version);
-    if (engine) assert.equal(row.head.engine, engine, 'article observed engine');
+    if (engine)
+      assert.equal(row.head.engine, engine, "article observed engine");
     if (baseURL)
       assert.equal(
         row.checks.basePath,
-        new URL(baseURL.replace(/\/$/, '') + '/').pathname,
-        'article observed host base'
+        new URL(baseURL.replace(/\/$/, "") + "/").pathname,
+        "article observed host base",
       );
     assert.deepEqual(
       row.head,
       detail.observations[0].head,
-      'every article capability case observed the complete same native head'
+      "every article capability case observed the complete same native head",
     );
-    for (const field of ['title', 'description', 'author'])
+    for (const field of ["title", "description", "author"])
       assert.ok(
-        typeof row.head[field] === 'string' && row.head[field].trim(),
-        'complete article observed metadata ' + field
+        typeof row.head[field] === "string" && row.head[field].trim(),
+        "complete article observed metadata " + field,
       );
-    const article = row.head.schemas?.find((schema) => schema['@type'] === 'Article');
-    assert.ok(article?.headline && article.author, 'complete observed Article schema');
+    const article = row.head.schemas?.find(
+      (schema) => schema["@type"] === "Article",
+    );
+    assert.ok(
+      article?.headline && article.author,
+      "complete observed Article schema",
+    );
     assert.equal(article.inLanguage, row.head.lang);
     if (descriptors[keys[0]].candidate) {
-      assert.match(row.head.robots || '', /noindex/);
-      assert.deepEqual(row.head.canonical, [], 'candidate observed canonical remains pending');
-      assert.equal(article.datePublished, undefined, 'candidate observed publication date pending');
+      assert.match(row.head.robots || "", /noindex/);
+      assert.deepEqual(
+        row.head.canonical,
+        [],
+        "candidate observed canonical remains pending",
+      );
+      assert.equal(
+        article.datePublished,
+        undefined,
+        "candidate observed publication date pending",
+      );
     }
-    if (row.mode !== 'normal') continue;
+    if (row.mode !== "normal") continue;
     assert.ok(
       Array.isArray(row.reading?.entered) && row.reading.entered.length > 0,
-      'observed article reading entries'
+      "observed article reading entries",
     );
     assert.ok(
       Array.isArray(row.reading.departed) && row.reading.departed.length > 0,
-      'observed article reading departure'
+      "observed article reading departure",
     );
     for (const [field, maximum] of [
-      ['maxEntering', 6],
-      ['maxRoute', 24],
+      ["maxEntering", 6],
+      ["maxRoute", 24],
     ])
       assert.ok(
         Number.isInteger(row.reading[field]) &&
           row.reading[field] >= 1 &&
           row.reading[field] <= maximum,
-        'bounded observed article reading ' + field
+        "bounded observed article reading " + field,
       );
   }
   return { documents: 1, observations: cases.length };

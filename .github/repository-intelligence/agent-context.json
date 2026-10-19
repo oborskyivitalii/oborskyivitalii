@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1479eb0c08806c03841bf5b86eaffd2f202fb85a71ed8af09bf34e898794307a",
+    "digest": "eddb49565be5f072053773ab59bddcfbbcc99e7921c92fc87d315512569473f3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8217fa9ba51fce2c057a0e4a699654ed968e8568c2c8d955c5f279ccd8da0c1f"
+        "sha256": "9fa9d7f9bf377d0cb44550314633407862244aab4551c9b50db7fff847df56ec"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "0847e30064bc7aa680efa07599d67d0de890fe7e464567c79440ac400b524835"
+        "sha256": "cb037a5e6c2b4437fd4b208b7af7b44ab7f7df0c763ef5b61a3f595414af957f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1285,7 +1285,7 @@
       {
         "path": "review/issue-5/2026-10-19-generic-reader-template.md",
         "identity_mode": "content",
-        "sha256": "e381198de31967e358618b5c662df04fc2bdafc8ffec2225b60a177f3026a31d"
+        "sha256": "84499d4eddc2f57f9c507e8d797e5ede21379635b858bd31d495dd4c2db9c934"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
@@ -6980,7 +6980,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "61ab75cfb4bee0396675137efba8fd3f463f04a6027a68480274489ae5997145"
+        "sha256": "1cc88a137ac173a1cf203796c4cb9ba7a45dc5672fac0d65769ed8f0193caaa5"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -7325,7 +7325,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "ca290688f98fd69be64a6d47c42d7231c7d04b6fe220b717056d26afba5e5ea0"
+        "sha256": "362dd34fe5aca727ca99d12e797d098a3b0fa644467279be8eef5e8bc23d6b64"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -19968,7 +19968,7 @@
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -20804,7 +20804,7 @@
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "configuration",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -20815,7 +20815,7 @@
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -20826,7 +20826,7 @@
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -20837,7 +20837,7 @@
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "configuration",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -20848,7 +20848,7 @@
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "configuration",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -25848,7 +25848,7 @@
       "kind": "directory",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -26028,7 +26028,7 @@
       "kind": "directory",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -26038,7 +26038,7 @@
       "kind": "directory",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
         "AGENTS.md"
       ]

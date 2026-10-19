@@ -7193,13 +7193,13 @@
       "kind": "directory",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/assets/publications/reader-reference/diagram.png": {
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/assets/vitalii-oborskyi-cutout.webp": {
       "kind": "file",
@@ -7757,43 +7757,43 @@
       "kind": "directory",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/reader-reference/editions": {
       "kind": "directory",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/reader-reference/editions/reader-reference-v1.json": {
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "configuration",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/reader-reference/launch-post.en.md": {
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/reader-reference/manuscript.en.md": {
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "source",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/reader-reference/profile.json": {
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "configuration",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/publications/reader-reference/publication.json": {
       "kind": "file",
       "purpose": "Nonpublishable synthetic reader reference and stable preview input.",
       "role": "configuration",
-      "owner": "site/README.md"
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "site/retained": {
       "kind": "directory",
