@@ -17,10 +17,10 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261019-r12",
+  "edition": "pmday-ai-both-sides-en-review-20261019-r12-cover02",
   "rights": {
     "status": "review-pending",
-    "notice": "Article by Vitalii Oborskyi and seven unchanged full-page PMDay v35 slides. Cover02 selected for the standalone PDF; repository image import pending. Original deck/source/third-party credits retained; exact-edition publication clearance pending.",
+    "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and seven original full-page PMDay v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
@@ -173,6 +173,16 @@
     }
   ],
   "assets": [
+    {
+      "id": "cover",
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096",
+      "width": 1280,
+      "height": 398,
+      "alt": "A solitary person stands before a narrow opening of light between monumental dark walls.",
+      "caption": "We can delegate more work. We still have to own the consequences.",
+      "credit": "Author-selected AI-generated Cover 02, prepared 18 October 2026. Title-free detail is a lossless PNG encoding of the approved JPEG pixels. Four originals and six channel-image variants are retained in cover02/manifest.json. Publication and rights acceptance remain separate."
+    },
     {
       "id": "presentation-cover",
       "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",

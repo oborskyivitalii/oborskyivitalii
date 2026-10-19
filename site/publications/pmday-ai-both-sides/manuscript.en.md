@@ -2,6 +2,8 @@
 
 *AI Changes Both Sides of Software Engineering*
 
+![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
+
 An agent opens a pull request. The tests are green. The explanation is fluent. Another arrives before anyone has understood the first.
 
 The dashboard calls this progress. The person handling the next incident has a different question.

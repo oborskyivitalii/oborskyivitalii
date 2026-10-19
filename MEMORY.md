@@ -4,6 +4,12 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- Editorial media update19October: Cover02 originals, channel images and exact
+  compact R12 PDF are imported. Full supplied reader SHA256:
+  5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b.
+  Current evidence: review/issue-2/pmday-candidate-20261015/README.md.
+  The technical snapshots below retain their earlier measured-source scope.
+
 - Production/main0098f804cb3b0d120173d4c8689043db42231c47, accepted immutable
   prod-2026-10-19.1. PR105 merged/released; actual publisher39193670432 succeeded.
 - Owner #5; same Draft PR79. Current increment normally merges released main
@@ -47,7 +53,7 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 - #5 AC11/12 retain independent/hosted/release gates; AC14 stays unchecked.
   AC16–AC20 independent production lanes remain pending.
 - #2 owns separate editorial, rights, PDF/deck, upstream and publication outcomes.
-  R12 selected cover02 import is explicitly pending in the editorial handoff.
+  R12 Cover02 import is complete; current delivery/rights acceptance remains open.
 - #102 needs declared article paths, live history/filter evidence and metric/cost
   limits; #104 conversions follow the reader contract. #97 MFA is owner-only.
 - #98/#99/#100 are separately selected. #6 harness and #11 guides follow the

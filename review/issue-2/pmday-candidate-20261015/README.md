@@ -1,3 +1,19 @@
+# PMDay R12 — selected Cover02 and complete review assets
+
+## R12 Cover02 import — 19 October 2026
+
+The author asked to upload all remaining required assets. **Cover02 is now imported and selected**, not pending. Four unmodified AI-generated PNG compositions, six previously prepared JPEG channel images and one publisher-compatible PNG detail are stored under the article's `cover02/` asset owner. `manifest.json` records their roles, dimensions, source and hashes. The old artwork and earlier editions remain historical.
+
+The draft reader and canonical manuscript are now byte-identical to the supplied R12: SHA-256 `5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b`. Restoring the single `asset:cover` marker is the only reader change. A new `pmday-ai-both-sides-en-review-20261019-r12-cover02` semantic edition accounts for the changed media and credits; the missing-cover R12 edition is not rewritten.
+
+[Compact R12 PDF](The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf): 15 pages, 1966163 bytes, SHA-256 `aa6ef80d0a7f02ce9355df91137737e106b0493078d69ffd1bf12a3ed47eca01`. This is the exact previously delivered review PDF, not regenerated, not the historical r2 `article.pdf`, and not a public release. Its 31 bibliography entries, 36 external URL targets, two chapter-4/six chapter-5 refrains and seven source slides are unchanged.
+
+[Import evidence](r12-cover02-import.json) binds input/output media, PDF, unchanged originals and source. Actual source validation, formatting, Basic and RI results are in [the preparation run](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39218519951). The temporary importer removes itself before the final commit. CS01/02/04/05/08/10 apply to canonical media/metadata, one-owner provenance, scoped formatting and bounded checks. No publishing-engine/runtime/test-budget change.
+
+**Remaining gates:** concurrent reader-resource work, complete web-transfer budget, offline export constraints, independent/editorial/rights and publication acceptance remain separate. This import does not clear those blockers or permit a no-cover publication. All #2 AC01–AC06 and applicable #5 external gates remain open. No site promotion, main merge, external posting or new LinkedIn/Medium article rendition.
+
+## Previous checkpoints — historical evidence, superseded cover-import limitations
+
 # PMDay article: current R12 source and retained history
 
 ## Editorial R12 — 19 October 2026 source synchronization

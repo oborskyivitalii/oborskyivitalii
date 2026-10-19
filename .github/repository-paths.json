@@ -55,6 +55,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-102.json": {
+      "kind": "file",
+      "purpose": "Issue102 analytics AC policy: bounded source checks and explicit browser/live gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -511,6 +517,54 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595": {
+      "kind": "directory",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -559,6 +613,54 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/011c2a4058977803eb6c0ca8589c69c2c62e2e6f3f66156bcca297f72dfa5e0f": {
+      "kind": "directory",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/011c2a4058977803eb6c0ca8589c69c2c62e2e6f3f66156bcca297f72dfa5e0f/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/03d90d23777004c217863f2e0367d38ca08e7fa9a0c39b67877914d0c2cf8f11": {
+      "kind": "directory",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/03d90d23777004c217863f2e0367d38ca08e7fa9a0c39b67877914d0c2cf8f11/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4329ab937768d03fdbdbc5e8a3a7b01c17e4e60b8123984f90f94899281a43e0": {
+      "kind": "directory",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/4329ab937768d03fdbdbc5e8a3a7b01c17e4e60b8123984f90f94899281a43e0/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/49745ab5d0e52fcf8056e286d5e9b5dbe36c181d48396e45779b1c8eea3b8da6": {
+      "kind": "directory",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/49745ab5d0e52fcf8056e286d5e9b5dbe36c181d48396e45779b1c8eea3b8da6/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -568,6 +670,18 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/621ed8b628302a438233a3c7e3a5500429fc2b6ece898043532d0270ff92c103": {
+      "kind": "directory",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/621ed8b628302a438233a3c7e3a5500429fc2b6ece898043532d0270ff92c103/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -907,6 +1021,30 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-102": {
+      "kind": "directory",
+      "purpose": "Dated issue102 analytics source and provider/access evidence.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-102/2026-10-18-analytics-and-search-access.md": {
+      "kind": "file",
+      "purpose": "18 October combined route-coverage and Google/Windsor access self-review and handoff.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-102/2026-10-18-provider-evidence.json": {
+      "kind": "file",
+      "purpose": "Sanitized bounded Cloudflare query and current Google/Windsor inventory observations.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-102/2026-10-18-public-metadata-proof.json.gz": {
+      "kind": "file",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
+    },
     "review/issue-2": {
       "kind": "directory",
       "purpose": "Dated editorial, source and publication review evidence for the PMDay article owner.",
@@ -931,6 +1069,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf": {
+      "kind": "file",
+      "purpose": "R12 Cover02 exact review PDF/import evidence; prior editions are preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "review/issue-2/pmday-candidate-20261015/article-journey-observations.json": {
       "kind": "file",
       "purpose": "Local review Chromium full real-article five-case journey evidence; not hosted CI admission.",
@@ -948,6 +1092,12 @@
       "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r12-cover02-import.json": {
+      "kind": "file",
+      "purpose": "R12 Cover02 exact review PDF/import evidence; prior editions are preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     },
     "review/issue-2/pmday-candidate-20261015/reader-links-observations.json": {
       "kind": "file",
@@ -1638,6 +1788,18 @@
       "purpose": "Issue5 step1 exact editorial inventory, source parents, checks and explicit R10 publication blockers.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-19-reader-resource-diagnostic.json": {
+      "kind": "file",
+      "purpose": "Prepared source-hashed R10 reader, resource, transfer and exact-edition inventory diagnostic.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-19-reader-resources-and-notices.md"
+    },
+    "review/issue-5/2026-10-19-reader-resources-and-notices.md": {
+      "kind": "file",
+      "purpose": "Reader resource/notices self-review, real R10 transfer blocker and next bounded step.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-19-reader-resources-and-notices.md"
     },
     "review/issue-5/pmday-candidate": {
       "kind": "directory",
@@ -6781,6 +6943,102 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/assets/publications/pmday-ai-both-sides/cover02": {
+      "kind": "directory",
+      "purpose": "Selected Cover02 artwork originals and channel image adaptations with explicit provenance.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/README.md": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets": {
+      "kind": "directory",
+      "purpose": "Selected Cover02 artwork originals and channel image adaptations with explicit provenance.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/linkedin-cover-1200x630.jpg": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/medium-cover-1400x788.jpg": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/pdf-cover-portrait.jpg": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/site-cover-1600x840.jpg": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/assets/social-square-1080.jpg": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/manifest.json": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/originals": {
+      "kind": "directory",
+      "purpose": "Selected Cover02 artwork originals and channel image adaptations with explicit provenance.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-landscape.png": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-portrait.png": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-square.png": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-widescreen.png": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/assets/publications/pmday-ai-both-sides/delivery-queue.png": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: delivery-queue.png.",
@@ -7348,6 +7606,12 @@
     "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261018-r9.json": {
       "kind": "file",
       "purpose": "R9 review article source and semantic identity, with sourced Lem quotations and systemic-responsibility revision; prior editions retained.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12-cover02.json": {
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -8448,6 +8712,12 @@
       "purpose": "Negative style-guard fixtures and actual code-path/bilingual agent/RI routing checks.",
       "role": "test",
       "owner": "guides/CODE-STYLE.md"
+    },
+    "tests/test_issue102_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue102 policy adapter for maintained analytics suite and failure accounting.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
@@ -9768,162 +10038,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    ".github/acceptance/issue-102.json": {
-      "kind": "file",
-      "purpose": "Issue102 analytics AC policy: bounded source checks and explicit browser/live gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "review/issue-102": {
-      "kind": "directory",
-      "purpose": "Dated issue102 analytics source and provider/access evidence.",
-      "role": "history",
-      "owner": "guides/SITE-ANALYTICS.md"
-    },
-    "review/issue-102/2026-10-18-analytics-and-search-access.md": {
-      "kind": "file",
-      "purpose": "18 October combined route-coverage and Google/Windsor access self-review and handoff.",
-      "role": "history",
-      "owner": "guides/SITE-ANALYTICS.md"
-    },
-    "review/issue-102/2026-10-18-provider-evidence.json": {
-      "kind": "file",
-      "purpose": "Sanitized bounded Cloudflare query and current Google/Windsor inventory observations.",
-      "role": "history",
-      "owner": "guides/SITE-ANALYTICS.md"
-    },
-    "review/issue-102/2026-10-18-public-metadata-proof.json.gz": {
-      "kind": "file",
-      "role": "history",
-      "owner": "guides/SITE-ANALYTICS.md",
-      "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
-    },
-    "tests/test_issue102_acceptance.py": {
-      "kind": "file",
-      "purpose": "Issue102 policy adapter for maintained analytics suite and failure accounting.",
-      "role": "test",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-5/2026-10-19-reader-resources-and-notices.md": {
-      "kind": "file",
-      "purpose": "Reader resource/notices self-review, real R10 transfer blocker and next bounded step.",
-      "role": "history",
-      "owner": "review/issue-5/2026-10-19-reader-resources-and-notices.md"
-    },
-    "review/issue-5/2026-10-19-reader-resource-diagnostic.json": {
-      "kind": "file",
-      "purpose": "Prepared source-hashed R10 reader, resource, transfer and exact-edition inventory diagnostic.",
-      "role": "history",
-      "owner": "review/issue-5/2026-10-19-reader-resources-and-notices.md"
-    },
-    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595": {
-      "kind": "directory",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/9aa5d9bba34f001dcc868a9ebdc64c5b58748ab62a0c09d432cc06282a4d3595/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/011c2a4058977803eb6c0ca8589c69c2c62e2e6f3f66156bcca297f72dfa5e0f": {
-      "kind": "directory",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/011c2a4058977803eb6c0ca8589c69c2c62e2e6f3f66156bcca297f72dfa5e0f/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/03d90d23777004c217863f2e0367d38ca08e7fa9a0c39b67877914d0c2cf8f11": {
-      "kind": "directory",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/03d90d23777004c217863f2e0367d38ca08e7fa9a0c39b67877914d0c2cf8f11/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4329ab937768d03fdbdbc5e8a3a7b01c17e4e60b8123984f90f94899281a43e0": {
-      "kind": "directory",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4329ab937768d03fdbdbc5e8a3a7b01c17e4e60b8123984f90f94899281a43e0/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/49745ab5d0e52fcf8056e286d5e9b5dbe36c181d48396e45779b1c8eea3b8da6": {
-      "kind": "directory",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/49745ab5d0e52fcf8056e286d5e9b5dbe36c181d48396e45779b1c8eea3b8da6/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/621ed8b628302a438233a3c7e3a5500429fc2b6ece898043532d0270ff92c103": {
-      "kind": "directory",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/621ed8b628302a438233a3c7e3a5500429fc2b6ece898043532d0270ff92c103/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable site resource or route snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
     }
   }
 }

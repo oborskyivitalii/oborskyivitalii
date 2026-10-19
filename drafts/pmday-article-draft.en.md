@@ -1,6 +1,7 @@
-> **Editorial R12 — 19 October 2026. Review source, not a public edition.**
-> Transferred from the delivered `The_Sum_of_Our_Technology_R12.md` under article issue #2 / PR #79, execution #5. The reader below retains the entire supplied R12, including its intended Cover02 marker. No additional editorial rewrite.
-> Supplied reader Git blob: `81c3c8257cc73db0141fa7e7bae0485083a88543`; SHA-256: `5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b`. Canonical manuscript prose and references are identical; the sole rendition delta omits the unresolved cover image line. The existing profile explicitly records that omission instead of displaying the wrong image.
+> **Editorial R12 — Cover02 media import, 19 October 2026. Review source, not a public edition.**
+> The full supplied R12 reader, including its selected cover marker, is now byte-identical to the canonical manuscript. No article prose, sources, quotations or numbers were edited. Source SHA-256: `5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b`.
+> Author-selected Cover02 originals, prepared image adaptations and renderer-compatible PNG are committed under `site/assets/publications/pmday-ai-both-sides/cover02/`. The exact previously delivered compact R12 PDF is retained in the issue-2 review directory. Current media/provenance evidence supersedes earlier cover-import omissions; earlier transfer observations remain historical, not instructions to omit the image.
+> Article owner #2; execution PR79 / publisher #5. This import preserves the concurrent technical reader/resource work. Website transfer, independent review, rights and release gates remain separate.
 
 <!-- ARTICLE START -->
 
@@ -475,3 +476,8 @@ Cover02 remains selected. The earlier bridge picture must not be reused under th
 Source-only transfer does not regenerate the PDF, platform packages, public catalog, stable staging or production. Older editions and the r2 PDF/kit are historical. A future selected-cover import must create a new media/semantic edition and reconcile metadata/profile roles before hosted visual and rights review. It must not overwrite the frozen R12 source record.
 
 Existing technical reconciliation, resource limits, runtime, templates and publishing code remain unchanged. Keep the PR Draft. Source checks are not independent editorial/scientific/rights or publication acceptance. Read the latest issue-2 candidate README for exact source results and remaining work.
+
+
+## Cover02 import completed — current assembly rule
+
+Use `cover02/manifest.json` for exact image roles and hashes. The restored `asset:cover` is the title-free PNG detail required by the unchanged publisher schema; the original JPEG pixels are preserved. Select the already-prepared site, LinkedIn, Medium, square or portrait image from the manifest when that output is requested. These files are image adaptations, not new platform article text. The imported PDF is the exact prior 15-page R12 review, not a managed publisher output or accepted public edition. Do not reuse the earlier omitted-cover semantic edition for these changed media bytes.

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "id": "pmday-ai-both-sides-review-20261019-r12",
+  "id": "pmday-ai-both-sides-review-20261019-r12-cover02",
   "platforms": {
     "linkedin": {
       "formats": ["html", "md", "txt", "copy-ready"],
@@ -21,10 +21,10 @@
   },
   "assets": {
     "cover": {
-      "omitReason": "Author selected Cover02, already present in the standalone compact R12 PDF. Its PNG bytes are not yet imported into the repository; do not substitute the old bridge illustration. Restore the selected asset through a new media/semantic edition before hosted publication."
+      "id": "cover"
     },
     "hero": {
-      "omitReason": "Author selected Cover02, already present in the standalone compact R12 PDF. Its PNG bytes are not yet imported into the repository; do not substitute the old bridge illustration. Restore the selected asset through a new media/semantic edition before hosted publication."
+      "id": "cover"
     }
   },
   "limits": {

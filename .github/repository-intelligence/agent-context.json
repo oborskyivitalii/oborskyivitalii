@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8c37ae51e8b5a833bc5ba950df691cf62db8601c93ba92d0becf486e62371c86",
+    "digest": "bd104b2fa0aa93542f7464f5ea5318639c82e67e9c42d879ca5d459582d84ebc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "96cbe557be93330a0c29c7bf97bbb3e73cee57d43f7cfdaedd3eb46047229715"
+        "sha256": "bea84a20964156ed16730d98390cd57f7cb964f371e691c3b8e33e3d1a21aa31"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6fc7f1ccb74257db36203d2c20e922ea740431ef931ea7db807e5bc40508d65a"
+        "sha256": "a9db800b8b5f9a2d58821fa9ab533afe9b050293690f94b22e4d3123f2f54172"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -301,7 +301,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "4372bbe4431c1a536fb7e7f18794be3b697776f006856c124368277d4756ab27"
+        "sha256": "75e30c0ccebd723291b15a010edfdf4edd0eef97fece4c5de2f7dd5f8c6f9260"
       },
       {
         "path": "NOTICE.md",
@@ -535,7 +535,7 @@
       {
         "path": "drafts/pmday-article-draft.en.md",
         "identity_mode": "content",
-        "sha256": "da556b9cba96dc716efd6677b99bee2ab04d9cfe1e78fe790bc362b7ee3caa7a"
+        "sha256": "4ed264b3060ca92678716592699ea0eb952ad3a960a3ef245d6552e62b87f7e4"
       },
       {
         "path": "guides/ARTICLE-WORKFLOW.md",
@@ -720,7 +720,12 @@
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
-        "sha256": "eaeb97125f88f1fe8bd13e93035d8fe8039d7e8d76a7ba2ccd46a2dbe430ccc1"
+        "sha256": "5ad9dae5937c9f990d96e4a03d9b0a1b29eeefe3308fe2e20a7494d8aa637809"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
+        "identity_mode": "content",
+        "sha256": "aa6ef80d0a7f02ce9355df91137737e106b0493078d69ffd1bf12a3ed47eca01"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -736,6 +741,11 @@
         "path": "review/issue-2/pmday-candidate-20261015/publication-kit.zip",
         "identity_mode": "content",
         "sha256": "ab74259d3d6a7e757c4fbaad58682cda999ae9ef8b8997a78c3f7d3d1af7d0a0"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/r12-cover02-import.json",
+        "identity_mode": "content",
+        "sha256": "20f54cc380491eefd9e264e53ccd67598d64d8f73fb5e3ffa48d34227e7d05b3"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
@@ -5275,7 +5285,7 @@
       {
         "path": "site/assets/publications/pmday-ai-both-sides/PROVENANCE.md",
         "identity_mode": "content",
-        "sha256": "ab56dbc7a9453f56af9f626b6664eba8eb80f8f81a9b8aa121586e270b30afec"
+        "sha256": "d8843f4fe026725ca11a6d69476a97bf003fa94f25d16223aecf06c2f51b7f90"
       },
       {
         "path": "site/assets/publications/pmday-ai-both-sides/cover-detail-r8.png",
@@ -5286,6 +5296,71 @@
         "path": "site/assets/publications/pmday-ai-both-sides/cover.png",
         "identity_mode": "content",
         "sha256": "2d688e19b820cd96ae32bd7fdab8a71418774231da340b6897709329a580fb25"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/README.md",
+        "identity_mode": "content",
+        "sha256": "1e3eb48f3850d7b9ba2c4b098d29806988fdcf49a0bc50ad863417f75b74669f"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg",
+        "identity_mode": "content",
+        "sha256": "a5e462dbd51cdf6bd99febb27b4701753e18cfea8304e8dd97dda67bee9160b5"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+        "identity_mode": "content",
+        "sha256": "843c22a1e6e16d16e824e8be74d593dea3c2f2e6e30b36504e1fff9617f82096"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/linkedin-cover-1200x630.jpg",
+        "identity_mode": "content",
+        "sha256": "8fcee82455949af959a6e9885cfa00a3c911aadbf0d81347c0210a107bc97122"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/medium-cover-1400x788.jpg",
+        "identity_mode": "content",
+        "sha256": "f821e5631237ad63fe5b94d3b570c5ba84e5238deed8f8a6334649cf8cd7cb1d"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/pdf-cover-portrait.jpg",
+        "identity_mode": "content",
+        "sha256": "b80047b35a470c50491f911cb8fb20c03f7efe535e49a3a011b4350ff2bb682f"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/site-cover-1600x840.jpg",
+        "identity_mode": "content",
+        "sha256": "424eab9a653c08f3f3a8d4388287dad4aeb30b9322bc899706ed580a42b0ac42"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/social-square-1080.jpg",
+        "identity_mode": "content",
+        "sha256": "7c00a7d37e6dc282b8fa83a72cb5166712fd2e04b482b7f7df8c75f17cb1336b"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/manifest.json",
+        "identity_mode": "content",
+        "sha256": "bb2ccd7c48ffee6a321a76697fd9b893bffae92e811eca7785a53879746e2a89"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-landscape.png",
+        "identity_mode": "content",
+        "sha256": "2a16a6a58262939975691c6b111b1a15d99275e53d43ba7a6e59ba967342567c"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-portrait.png",
+        "identity_mode": "content",
+        "sha256": "aafcad065f1700c4f5c61d2d34497e4c7b909c50f244e16279e93cf0d9796a58"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-square.png",
+        "identity_mode": "content",
+        "sha256": "3f85468fadc09bdae5fa41b34ff348251c13f7a61fb73494508447d304cd4aae"
+      },
+      {
+        "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-widescreen.png",
+        "identity_mode": "content",
+        "sha256": "8020813c4c6db01d4cf4d2c265b1be195473d9149c034bdc73e8aa6e6826540f"
       },
       {
         "path": "site/assets/publications/pmday-ai-both-sides/delivery-queue.png",
@@ -5650,7 +5725,7 @@
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
         "identity_mode": "content",
-        "sha256": "ee6cc4a1e863e1ee866819f7d69435d7a711a55c2aa79b2f51c69e0f713b9cbd"
+        "sha256": "1afa275436ade70654232b80b083e010b4a26037511e3ef431f13805a5a15f96"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -5683,6 +5758,11 @@
         "sha256": "07bd413921704ae23625a904eba2f526663f467babe54f3029899deb4d0eca32"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12-cover02.json",
+        "identity_mode": "content",
+        "sha256": "bb0be303ae693aa3f63e8b4505ad44d2bc0baa982b357a854f22032702c65df2"
+      },
+      {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12.json",
         "identity_mode": "content",
         "sha256": "6d4e0b36e9e820860d20784a585b6dfa82af179c5a9171282ca47b71ea9fbe47"
@@ -5695,17 +5775,17 @@
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "46ff6a07e8f60119dcf6be352a3d642348c0c2b6f54f348b7b60d599f6f71276"
+        "sha256": "5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "d26d8ba79b2dcbc89058df1933a1ab705e78efe89fddbc0c7df233152f5406cb"
+        "sha256": "610c1d41a118332b2762c1de5bf258d8bcf02023aa8e84e2025c61d01d39291b"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "9245c53f9cb107ae2bbe5e3d26c80e67c8ee865050c397d3fc0329c7c7df3a7f"
+        "sha256": "4f70a229354b30ce8129dd90c24a04ca24944d3bdfa04d62274f414551f0bae0"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -9355,7 +9435,18 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "PMDay article: current R12 source and retained history"
+      "title": "PMDay R12 — selected Cover02 and complete review assets"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
+      "kind": "file",
+      "purpose": "R12 Cover02 exact review PDF/import evidence; prior editions are preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -9389,6 +9480,17 @@
         "AGENTS.md"
       ],
       "title": "publication-kit.zip"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/r12-cover02-import.json",
+      "kind": "file",
+      "purpose": "R12 Cover02 exact review PDF/import evidence; prior editions are preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r12-cover02-import.json"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
@@ -19401,6 +19503,149 @@
       "title": "cover.png"
     },
     {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/README.md",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Cover 02 — selected R12 artwork"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.jpg",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-cover-detail-1280x398.jpg"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/article-cover-detail-1280x398.png",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "article-cover-detail-1280x398.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/linkedin-cover-1200x630.jpg",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "linkedin-cover-1200x630.jpg"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/medium-cover-1400x788.jpg",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "medium-cover-1400x788.jpg"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/pdf-cover-portrait.jpg",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pdf-cover-portrait.jpg"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/site-cover-1600x840.jpg",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "site-cover-1600x840.jpg"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets/social-square-1080.jpg",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "social-square-1080.jpg"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/manifest.json",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-landscape.png",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-02-landscape.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-portrait.png",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-02-portrait.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-square.png",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-02-square.png"
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals/cover-02-widescreen.png",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "cover-02-widescreen.png"
+    },
+    {
       "path": "site/assets/publications/pmday-ai-both-sides/delivery-queue.png",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: delivery-queue.png.",
@@ -20268,6 +20513,17 @@
         "AGENTS.md"
       ],
       "title": "pmday-ai-both-sides-en-review-20261018-r9.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12-cover02.json",
+      "kind": "file",
+      "purpose": "Author-selected Cover02 media, prepared channel image or new review semantic edition; provenance and roles in the article manifest.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261019-r12-cover02.json"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12.json",
@@ -25323,6 +25579,36 @@
       "path": "site/assets/publications/pmday-ai-both-sides",
       "kind": "directory",
       "purpose": "PMDay article source, presentation viewer or original publication media: pmday-ai-both-sides.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02",
+      "kind": "directory",
+      "purpose": "Selected Cover02 artwork originals and channel image adaptations with explicit provenance.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/assets",
+      "kind": "directory",
+      "purpose": "Selected Cover02 artwork originals and channel image adaptations with explicit provenance.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "site/assets/publications/pmday-ai-both-sides/cover02/originals",
+      "kind": "directory",
+      "purpose": "Selected Cover02 artwork originals and channel image adaptations with explicit provenance.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [

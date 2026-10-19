@@ -47,3 +47,9 @@ Source: SHA256 b3fa9fb0220a6620db0b28ac3d560b987791be0dfb6cdd02c53c04975d881782,
 ## R8 review cover detail and retained slide bytes
 
 The R8 reader preserves all seven full-slide PNG source bytes. Its cover selects cover-detail-r8.png, the RGB crop (0, 136, 640, 335) of the existing 640 by 335 cover.png. The original remains unchanged. Crop pixels match the R7/R8 standalone review cover: SHA-256 5490e70dc1dc6e1ea5ff1cab16229fc309776f1e141cc08c900957d52e69ff20. This removes the competing embedded title without redrawing any artwork or empirical figure. Per-item publication clearance remains pending.
+
+## Author-selected Cover02 — exact import, 19 October 2026
+
+Four original PNG compositions and six approved JPEG image adaptations are retained byte-for-byte under `cover02/`. `manifest.json` records source dimensions, hashes, derivations and channel roles. The active article PNG is a lossless encoding of the title-free JPEG decoded RGB pixels, preserving its artwork while satisfying the existing PNG-only article contract. No source slide, presentation PDF, old artwork or historical semantic edition was overwritten.
+
+The compact R12 PDF is stored as versioned review evidence, not a new production event. Cover selection is author direction, not independent third-party rights clearance. No additional platform prose, external post or production publication was generated.
