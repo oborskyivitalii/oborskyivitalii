@@ -840,6 +840,7 @@ test('page IDs, ARIA targets, local resources and fragments resolve without draf
     'index.html',
     'media',
     'navigation.js',
+    'publication-index.json',
     'research.html',
     'runtime',
     'site-revision.json',

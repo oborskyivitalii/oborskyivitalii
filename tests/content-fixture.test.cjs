@@ -139,6 +139,7 @@ test('isolated diagnostics preserve frozen Git provenance of an already accepted
   };
   catalog.structuredOrder.push({ record });
   write('site/content/catalog.json', catalog);
+  require('./fixtures/catalog.cjs').assignTags(source.directory, 'articles', id);
   const prepared = fixture.prepare({ sourceRoot: source.directory });
   t.after(() => fs.rmSync(prepared.directory, { recursive: true, force: true }));
   assert.ok(prepared.manifest.components.articles[id + ':en']);

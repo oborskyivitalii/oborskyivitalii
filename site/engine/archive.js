@@ -25,6 +25,8 @@
     const controls = Object.fromEntries(
       ['topic', 'year', 'language'].map((key) => [key, document.getElementById(`archive-${key}`)])
     );
+    const cachedTag = document.getElementById('archive-tag');
+    if (cachedTag) controls.tag = cachedTag;
     const results = document.getElementById('archive-results');
     const rows = [...results.querySelectorAll('li.publication')];
     const groups = [...results.querySelectorAll('.archive-group')];

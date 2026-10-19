@@ -523,37 +523,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa": {
+    "docs/runtime/7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5": {
       "kind": "directory",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa/archive.js": {
+    "docs/runtime/7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5/archive.js": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa/navigation.js": {
+    "docs/runtime/7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5/navigation.js": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa/space.js": {
+    "docs/runtime/7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5/space.js": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa/styles.css": {
+    "docs/runtime/7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5/styles.css": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa/theme.js": {
+    "docs/runtime/7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5/theme.js": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
@@ -619,25 +619,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3ce416ffd1d6b21161dc0d85ef5d9ae065a19956a8898d09cd7c18db78781a4b": {
+    "docs/snapshots/299c0a9548b8139404ed138143461c4eebdda069d01002723b12150a3376ba93": {
       "kind": "directory",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/3ce416ffd1d6b21161dc0d85ef5d9ae065a19956a8898d09cd7c18db78781a4b/research.html": {
-      "kind": "file",
-      "purpose": "Generated publication metadata and immutable site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4b56b4dce101b6b55ab15058b413dec65d5dfbba77d95ed7f80f01ab46d8cac0": {
-      "kind": "directory",
-      "purpose": "Generated publication metadata and immutable site rendition.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/4b56b4dce101b6b55ab15058b413dec65d5dfbba77d95ed7f80f01ab46d8cac0/talks.html": {
+    "docs/snapshots/299c0a9548b8139404ed138143461c4eebdda069d01002723b12150a3376ba93/credits.html": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
@@ -652,6 +640,18 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6c43e20ba58a132808d64173f5370db252215c06350b2d5e1d2c92250ed3472e": {
+      "kind": "directory",
+      "purpose": "Generated publication metadata and immutable site rendition.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/6c43e20ba58a132808d64173f5370db252215c06350b2d5e1d2c92250ed3472e/research.html": {
+      "kind": "file",
+      "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -679,13 +679,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8f53170e6d3b5bc872900bb4c055dc4484e8c6c23af9e759a5e036c4441427fd": {
+    "docs/snapshots/89ea09308a1b70b30f99a31d0fc55932169994053b5755c429e22fd0c00575f5": {
       "kind": "directory",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/8f53170e6d3b5bc872900bb4c055dc4484e8c6c23af9e759a5e036c4441427fd/writing.html": {
+    "docs/snapshots/89ea09308a1b70b30f99a31d0fc55932169994053b5755c429e22fd0c00575f5/writing.html": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
@@ -703,13 +703,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a2586428b0a87329daf9bea0775d0ee6400f5f0c8787e15ca3143c274f52395b": {
+    "docs/snapshots/9c59d413eef65327f58aae6433f006a77fd68fe2a84a0b638b2d27d0d9e794b8": {
       "kind": "directory",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a2586428b0a87329daf9bea0775d0ee6400f5f0c8787e15ca3143c274f52395b/credits.html": {
+    "docs/snapshots/9c59d413eef65327f58aae6433f006a77fd68fe2a84a0b638b2d27d0d9e794b8/talks.html": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
@@ -727,13 +727,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e25613782986c6dcc7996a317470f726016230407455d998d3731b39b44a8924": {
+    "docs/snapshots/ffb8aa148b3dbd54f136bab9c9f16be7d6faf06ceb6e217a59398d7f87f07c4a": {
       "kind": "directory",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/e25613782986c6dcc7996a317470f726016230407455d998d3731b39b44a8924/index.html": {
+    "docs/snapshots/ffb8aa148b3dbd54f136bab9c9f16be7d6faf06ceb6e217a59398d7f87f07c4a/index.html": {
       "kind": "file",
       "purpose": "Generated publication metadata and immutable site rendition.",
       "role": "generated",

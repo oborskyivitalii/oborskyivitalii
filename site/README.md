@@ -388,9 +388,13 @@ validates finite bytes/data/URLs, creates text-safe tag/related DOM, and dispose
 requests/listeners on navigation. Related reading uses Jaccard overlap, deterministic
 ID ties, up to three distinct published catalogue works and no unrelated filler.
 Alternate platform links stay inside the same logical catalogue record.
+The last validated snapshot is kept only in tab memory and hydrates synchronously
+before history restores scroll. Each mount still fetches current metadata; identical
+responses avoid reflow and changed responses replace enhancements while preserving
+the current scroll position. A failed refresh may retain that validated snapshot.
 
 The Writing tag filter composes with topic/year/language, query/history/reset and
 print through the existing archive owner. Without JS, on a standalone file or when
-the optional index is blocked/invalid/incompatible, full native content and Writing
-links remain available; live tag chips/filter/recommendations are unavailable.
+the optional index is blocked/invalid/incompatible on a fresh tab, full native
+content and Writing links remain available; live enhancements are unavailable.
 No backend, third-party request, additional runtime file or animation loop is added.

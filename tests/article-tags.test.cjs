@@ -30,6 +30,88 @@ function fixture(t) {
   return root;
 }
 
+test('validated tab snapshot hydrates history synchronously while every mount refreshes current tags', async () => {
+  const component = require('../site/engine/article-tags.cjs')();
+  class Element {
+    constructor() {
+      this.children = [];
+    }
+    append(child) {
+      child.parent = this;
+      this.children.push(child);
+    }
+    remove() {
+      this.parent.children = this.parent.children.filter((child) => child !== this);
+    }
+    setAttribute() {}
+    addEventListener() {}
+    removeEventListener() {}
+  }
+  const article = new Element(),
+    intro = new Element();
+  article.append(intro);
+  article.querySelector = () => intro;
+  const document = {
+    body: { dataset: { article: 'reader-reference:en' } },
+    querySelectorAll: () => [],
+    querySelector: () => article,
+    getElementById: () => null,
+    createElement: () => new Element(),
+  };
+  const positions = [],
+    pending = [];
+  const window = {
+    location: { origin: 'https://example.com' },
+    scrollX: 0,
+    scrollY: 705,
+    setTimeout,
+    clearTimeout,
+    scrollTo: (value) => positions.push(value),
+    dispatchEvent() {},
+    CustomEvent: class {},
+    fetch: () => new Promise((resolve) => pending.push(resolve)),
+  };
+  const mount = () => component.mount({ document, window, root: new URL('https://example.com/') });
+  const respond = async (data) => {
+    pending.shift()(
+      new Response(JSON.stringify(data), { headers: { 'content-type': 'application/json' } })
+    );
+    for (let i = 0; i < 20 && document.body.dataset.tagsState !== 'ready'; i++)
+      await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(document.body.dataset.tagsState, 'ready');
+  };
+  const data = index();
+  const first = mount();
+  assert.equal(intro.children.length, 0);
+  await respond(data);
+  assert.equal(intro.children.length, 1);
+  first();
+  assert.equal(intro.children.length, 0);
+  const second = mount();
+  assert.equal(intro.children.length, 1, 'old geometry is present before asynchronous refresh');
+  assert.equal(pending.length, 1, 'history reuse never suppresses the current request');
+  const updated = structuredClone(data);
+  updated.readers['reader-reference:en'].tags = ['verification'];
+  await respond(updated);
+  assert.equal(
+    intro.children.length,
+    1,
+    'current data replaces rather than duplicates the component'
+  );
+  assert.equal(intro.children[0].children.length, 1, 'new current assignment is rendered');
+  assert.deepEqual(positions, [{ left: 0, top: 705, behavior: 'instant' }]);
+  second();
+  const third = mount();
+  assert.equal(
+    intro.children[0].children.length,
+    1,
+    'next mount uses the latest validated snapshot'
+  );
+  await respond(updated);
+  assert.equal(positions.length, 1, 'unchanged data never reflows the restored page');
+  third();
+});
+
 test('all published archive entries have canonical tags; previews cannot enter recommendations', () => {
   const data = index(),
     catalog = builder.catalog(repo);

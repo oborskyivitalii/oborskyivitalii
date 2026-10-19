@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/39",
     "date": "2026-10-19",
-    "summary": "Issue5 canonical tag store and optional live related-reading component; exact tag-only index update preserves old HTML/runtime. Original source/rights/native/release gates and budgets retained; self-review only."
+    "summary": "Issue5 shared tag index and related-reading component; tab-memory hydration preserves history geometry while every mount refreshes current data. Tag-only index generation preserves HTML/runtime. Original source/rights/native/release gates and budgets retained; self-review only."
   },
   "layers": [
     {
@@ -626,7 +626,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "0ead941cf70278402751eef28825c1b2ab38b13487d391fcdc377453fe267eeb",
+    "digest": "6ccbe18003ad05eb18aed875c639f753d3df5d6026834d0e115c6fd122c1b104",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -738,7 +738,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6097cabf41c4d5c54e0c7a14d0aa8bccf76c80afafad08f893979e6d32bec997"
+        "sha256": "0bdf354d8d9b444195a1b3b91c318bd83f46bc76752c96a6cdd85efee1dce900"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -850,7 +850,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "0339aee5d264960f04baa4880c325d908b07947bd0bdb092bde5f6729e0c3a8c"
+        "sha256": "54f52b787f543cad5b324189cecef12557012a955d5d6f5a6bf145d1418f80ee"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

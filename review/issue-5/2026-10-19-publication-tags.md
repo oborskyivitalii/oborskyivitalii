@@ -83,6 +83,19 @@ separately from the ordinary four room rows and five article observations.
 No source or budget failure is relabelled as pass. Local managed Chromium download
 was unavailable; actual managed browser evidence comes from existing CI.
 
+Initial exact-source CI39233209446 exposed a real history regression: asynchronous
+tag insertion changed Writing geometry after Back restored scroll. The shared
+component now hydrates its last validated tab-memory snapshot synchronously before
+the existing router restores position. It still reads current data on every mount;
+identical responses avoid reflow and changed responses replace optional DOM while
+preserving current scroll. No persistent cache, navigation delay or relaxed history
+assertion was added. A dedicated lifecycle test covers synchronous reuse, fresh
+requests, changed assignments, unchanged-response stability and disposal.
+The first source policy also caught two incomplete positive fixtures: an accepted
+synthetic article needed an explicit tag assignment, and the finite public inventory
+needed the new JSON entry. Their original provenance/privacy assertions remain.
+Initial failures remain recorded; final exact-head rerun evidence belongs in PR79.
+
 ## Next steps
 
 Inspect the updated generic preview, then receive the final article handoff and

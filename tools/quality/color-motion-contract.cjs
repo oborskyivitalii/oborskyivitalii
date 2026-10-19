@@ -6,6 +6,14 @@ const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
   // Issue5 self-review: optional tag/index component; scene and navigation behavior preserved.
+  issue5TagHistory: {
+    behavior: 'fixed-blocks',
+    baseEngine: '7afd713fdbfc5b76bcc9a627d57c96be54900356251d2be52f228fb935e698b5',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'd5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41',
+    navigation: '081d79445f07b7a0fd0525de02d8e19f5dc3638e97f8a026117ed6c7ec44723e',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   issue5PublicationTags: {
     behavior: 'fixed-blocks',
     baseEngine: '77d41ae5fb7911f61e73f060d5b08bef94b88d50f2a00c68e867089303c8bffa',
@@ -166,6 +174,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-tag-history-production',
+    family: 'issue5TagHistory',
+    edition: 'production',
+    fingerprint: '9aa6ae46ca99367a738ac0cd8b892c5bedf279464121421722057382515d9d13',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-tag-history-plain',
+    family: 'issue5TagHistory',
+    edition: 'plain',
+    fingerprint: 'beb722380f784500d9d7a456f426569c0f87a56c7eeca0742d3e0e7ce55bdab0',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-tag-history-staging',
+    family: 'issue5TagHistory',
+    edition: 'staging',
+    fingerprint: '92c35192a76774b43602fa6c29ad1e29bf906200dd73b36d7364207cee5a3532',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue5-publication-tags-production',
     family: 'issue5PublicationTags',

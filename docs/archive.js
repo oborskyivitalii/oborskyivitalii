@@ -3,6 +3,8 @@ window.SiteArticleTags=(function articleTags() {
   const limit = 200000;
   const id = /^[a-z][a-z0-9-]{0,79}$/;
   const key = /^[a-z][a-z0-9-]{0,79}:(en|uk)$/;
+  let cached = null,
+    cachedKey = '';
   function exact(value, keys) {
     return (
       value &&
@@ -202,6 +204,72 @@ window.SiteArticleTags=(function articleTags() {
       listeners.push(() => list.removeEventListener('click', click));
       return list;
     }
+    const clear = () => {
+      for (const remove of listeners.splice(0)) remove();
+      for (const node of created.splice(0)) node.remove();
+      for (const card of cards) delete card.dataset.tags;
+    };
+    const render = (data, preservePosition = false) => {
+      const position = preservePosition ? { left: window.scrollX, top: window.scrollY } : null;
+      clear();
+      const indexed = new Map(data.articles.map((entry) => [new URL(entry.url, root).href, entry]));
+      for (const card of cards) {
+        const anchor = card.querySelector('a.publication-title');
+        const entry = anchor && indexed.get(anchor.href);
+        if (!entry) continue;
+        card.dataset.tags = entry.tags.join(' ');
+        add(anchor.parentElement, tagList(entry.tags, data));
+      }
+      const form = document.getElementById('archive-filters');
+      if (form) {
+        const label = make('label', data.labels.filter),
+          select = make('select');
+        select.id = 'archive-tag';
+        const all = make('option', data.labels.all);
+        all.value = 'all';
+        select.append(all);
+        for (const [tag, title] of Object.entries(data.vocabulary)) {
+          if (!data.articles.some((entry) => entry.tags.includes(tag))) continue;
+          const option = make('option', title);
+          option.value = tag;
+          select.append(option);
+        }
+        label.append(select);
+        add(form, label);
+        const reset = form.querySelector('button[type="reset"]');
+        if (reset) form.insertBefore(label, reset);
+      }
+      const current = document.body.dataset.article;
+      const reader = Object.hasOwn(data.readers, current) ? data.readers[current] : null;
+      if (article && reader) {
+        const intro = article.querySelector('.article-intro');
+        if (intro) add(intro, tagList(reader.tags, data));
+        const recommendations = related(data, reader);
+        if (recommendations.length) {
+          const section = make('section');
+          section.className = 'article-related';
+          section.setAttribute('aria-label', data.labels.related);
+          section.append(make('h2', data.labels.related));
+          const list = make('ul');
+          for (const entry of recommendations) {
+            const item = make('li');
+            const anchor = link(entry.title, entry.url);
+            anchor.lang = entry.language;
+            item.append(anchor);
+            list.append(item);
+          }
+          section.append(list);
+          add(article, section);
+        }
+      }
+      window.dispatchEvent(new window.CustomEvent('site:tags-ready'));
+      if (!form) window.dispatchEvent(new window.CustomEvent('site:archive-layout'));
+      if (position) window.scrollTo({ ...position, behavior: 'instant' });
+    };
+    // Reuse only this tab's last validated snapshot before the router restores
+    // history geometry. Every mount still reads current metadata from the server.
+    const initialKey = cachedKey;
+    if (cached) render(cached);
     load(new URL('publication-index.json', root).href, {
       signal: controller.signal,
       cache: 'no-store',
@@ -211,60 +279,10 @@ window.SiteArticleTags=(function articleTags() {
       .then((response) => read(response, controller.signal))
       .then((data) => {
         if (stopped || controller.signal.aborted) return;
-        const indexed = new Map(
-          data.articles.map((entry) => [new URL(entry.url, root).href, entry])
-        );
-        for (const card of cards) {
-          const anchor = card.querySelector('a.publication-title');
-          const entry = anchor && indexed.get(anchor.href);
-          if (!entry) continue;
-          card.dataset.tags = entry.tags.join(' ');
-          add(anchor.parentElement, tagList(entry.tags, data));
-        }
-        const form = document.getElementById('archive-filters');
-        if (form) {
-          const label = make('label', data.labels.filter),
-            select = make('select');
-          select.id = 'archive-tag';
-          const all = make('option', data.labels.all);
-          all.value = 'all';
-          select.append(all);
-          for (const [tag, title] of Object.entries(data.vocabulary)) {
-            if (!data.articles.some((entry) => entry.tags.includes(tag))) continue;
-            const option = make('option', title);
-            option.value = tag;
-            select.append(option);
-          }
-          label.append(select);
-          add(form, label);
-          const reset = form.querySelector('button[type="reset"]');
-          if (reset) form.insertBefore(label, reset);
-        }
-        const current = document.body.dataset.article;
-        const reader = Object.hasOwn(data.readers, current) ? data.readers[current] : null;
-        if (article && reader) {
-          const intro = article.querySelector('.article-intro');
-          if (intro) add(intro, tagList(reader.tags, data));
-          const recommendations = related(data, reader);
-          if (recommendations.length) {
-            const section = make('section');
-            section.className = 'article-related';
-            section.setAttribute('aria-label', data.labels.related);
-            section.append(make('h2', data.labels.related));
-            const list = make('ul');
-            for (const entry of recommendations) {
-              const item = make('li');
-              const anchor = link(entry.title, entry.url);
-              anchor.lang = entry.language;
-              item.append(anchor);
-              list.append(item);
-            }
-            section.append(list);
-            add(article, section);
-          }
-        }
-        window.dispatchEvent(new window.CustomEvent('site:tags-ready'));
-        if (!form) window.dispatchEvent(new window.CustomEvent('site:archive-layout'));
+        const currentKey = JSON.stringify(data);
+        if (currentKey !== initialKey) render(data, Boolean(initialKey));
+        cached = data;
+        cachedKey = currentKey;
         document.body.dataset.tagsState = 'ready';
       })
       .catch(() => {
@@ -275,9 +293,7 @@ window.SiteArticleTags=(function articleTags() {
       stopped = true;
       controller.abort();
       window.clearTimeout(timer);
-      for (const remove of listeners) remove();
-      for (const node of created) node.remove();
-      for (const card of cards) delete card.dataset.tags;
+      clear();
       delete document.body.dataset.tagsState;
     };
   }
@@ -310,6 +326,8 @@ window.SiteArticleTags=(function articleTags() {
     const controls = Object.fromEntries(
       ['topic', 'year', 'language'].map((key) => [key, document.getElementById(`archive-${key}`)])
     );
+    const cachedTag = document.getElementById('archive-tag');
+    if (cachedTag) controls.tag = cachedTag;
     const results = document.getElementById('archive-results');
     const rows = [...results.querySelectorAll('li.publication')];
     const groups = [...results.querySelectorAll('.archive-group')];

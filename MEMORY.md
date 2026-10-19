@@ -38,6 +38,8 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 - Current tag-component preview CI/browser evidence must match final PR head.
   Draft smoke never substitutes for staging admission; no article publication.
+  Initial CI39233209446 caught async tag reflow on Back; tab-memory hydration now
+  precedes restoration and still fetches current data. Recheck exact final browser.
 - Actual PMDay HTML/complete transfer/standalone/PDF/rights remains a distinct gate.
   The prior R12 transfer was1702475B versus800000B; new editorial Cover02 was imported
   later. No successful current article hosted acceptance is inferred.
