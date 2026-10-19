@@ -17,10 +17,10 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261018-r10",
+  "edition": "pmday-ai-both-sides-en-review-20261019-r12",
   "rights": {
     "status": "review-pending",
-    "notice": "Article by Vitalii Oborskyi, existing AI-generated cover, seven exact full-page PMDay v35 source screenshots. Original deck/source/third-party credits retained; per-item publication clearance pending.",
+    "notice": "Article by Vitalii Oborskyi and seven unchanged full-page PMDay v35 slides. Cover02 selected for the standalone PDF; repository image import pending. Original deck/source/third-party credits retained; exact-edition publication clearance pending.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
@@ -109,64 +109,70 @@
     },
     {
       "id": "source-21",
-      "url": "https://doi.org/10.1109/TSE.1986.6312924"
+      "url": "https://arxiv.org/abs/2302.12173v2"
     },
     {
       "id": "source-22",
-      "url": "https://doi.org/10.1177/0018720810376055"
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
     },
     {
       "id": "source-23",
-      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md"
+      "url": "https://doi.org/10.1109/TSE.1986.6312924"
     },
     {
       "id": "source-24",
-      "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+      "url": "https://doi.org/10.1177/0018720810376055"
     },
     {
       "id": "source-25",
-      "url": "https://english.lem.pl/works/essays/summa-technologiae"
+      "url": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md"
     },
     {
       "id": "source-26",
-      "url": "https://existentialtech.antikythera.org/"
+      "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
     },
     {
       "id": "source-27",
-      "url": "https://www.mertdemirer.com/Papers/Demirer_Writing_vs_shipping_code.pdf"
+      "url": "https://sre.google/workbook/canarying-releases/"
     },
     {
       "id": "source-28",
-      "url": "https://tc.ifac-control.org/4/1/newsletter/ironies-of-automation/@@download/file/Bainbridge1983_Automatica_Ironies%20of%20automation.pdf"
+      "url": "https://agilemanifesto.org/principles.html"
     },
     {
       "id": "source-29",
-      "url": "https://ai.stanford.edu/~ronnyk/ExPThinkWeek2009Public.pdf"
+      "url": "https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/"
     },
     {
       "id": "source-30",
-      "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm"
+      "url": "https://www.mertdemirer.com/Papers/Demirer_Writing_vs_shipping_code.pdf"
     },
     {
       "id": "source-31",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21077562/"
+      "url": "https://tc.ifac-control.org/4/1/newsletter/ironies-of-automation/@@download/file/Bainbridge1983_Automatica_Ironies%20of%20automation.pdf"
     },
     {
       "id": "source-32",
-      "url": "https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/"
+      "url": "https://ai.stanford.edu/~ronnyk/ExPThinkWeek2009Public.pdf"
+    },
+    {
+      "id": "source-33",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm"
+    },
+    {
+      "id": "source-34",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21077562/"
+    },
+    {
+      "id": "source-35",
+      "url": "https://english.lem.pl/works/essays/summa-technologiae"
+    },
+    {
+      "id": "source-36",
+      "url": "https://existentialtech.antikythera.org/"
     }
   ],
   "assets": [
-    {
-      "id": "cover",
-      "path": "site/assets/publications/pmday-ai-both-sides/cover-detail-r8.png",
-      "sha256": "e8bd4eacd048babcd0cf765e85f7b1a550a3f409b2b57b9dff58323ad081d8d0",
-      "width": 640,
-      "height": 199,
-      "alt": "Conceptual architecture connects software construction with a branching decision structure.",
-      "caption": "We can delegate more work. We still have to own the consequences.",
-      "credit": "Detail of the original AI-generated editorial illustration directed by Vitalii Oborskyi, 15 October 2026; same crop as the R7/R8 review PDF. Original master retained."
-    },
     {
       "id": "presentation-cover",
       "path": "site/assets/publications/pmday-ai-both-sides/presentation-cover.png",
@@ -184,7 +190,7 @@
       "width": 1921,
       "height": 1080,
       "alt": "Synthetic capacities: generation rises from eight to one hundred changes per week while review and integration remain at eight; the queue grows by ninety-two if every change is admitted.",
-      "caption": "Synthetic push-system capacities. Review and integration remain fixed; every generated change is admitted. The controlled-intake alternative is discussed in the text. PMDay 2026 · slide 3 · Vitalii Oborskyi. [1]",
+      "caption": "Synthetic fixed-capacity illustration. Uncontrolled intake accumulates work; controlled intake bounds the queue without proportionally increasing delivery. Both regimes are explained in the text. PMDay 2026 · slide 3 · Vitalii Oborskyi. [1]",
       "credit": "Full-page screenshot of PMDay 2026 v35 review slide 3 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
     },
     {

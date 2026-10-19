@@ -1,5 +1,9 @@
-# The Sum of Our Technology — R10 review manuscript
+# The Sum of Our Technology — R12 source review
 
-Issue #2 editorial; #5/PR79 publisher. The new chapter 4 has two explicit What if not assurances: useful outcome selection, then useful-feature absorption and competitive benefit. The 20–30x pace is hypothetical, not NBER releases. Microsoft quotations distinguish the old-playbook framing from the review heading; no blanket review-abolition claim. Preserve all R9 evidence, Lem attributions, the six unchanged chapter-5 pivots, seven slide bytes, 27 numbered sources and the original ending.
+Article owner #2; publisher/execution #5 / PR79.
 
-Draft reader and canonical manuscript match exactly. New semantic review edition, old editions retained. The requested standalone PDF and candid editorial assessment are separate from website, rights, independent external review or public acceptance. No runtime, publisher, media-budget or platform-output changes.
+Use the supplied R12, retaining six chapters, evidence-first flow, real-baseline comparison, adversarial-retrieval case, finite human capacity, both Lem placements, 31 numbered references and the systemic-engineering conclusion. No further rewriting was requested.
+
+The editorial draft retains the exact input. Canonical prose is identical; only the Cover02 image marker is omitted until real selected bytes can be imported. Existing profile omission reasons make the pending artwork explicit and prevent the obsolete bridge illustration appearing under its new description. All seven original slide PNGs and previous edition records remain unchanged.
+
+This is a review source, not a published article or accepted hosted rendition. Rights, image import, hosted reading, technical resource gates, production and upstream decisions remain separate.

@@ -7459,6 +7459,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12.json": {
+      "kind": "file",
+      "purpose": "R12 source review edition; supplied prose and 31 sources, with selected Cover02 image import explicitly pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/pmday-ai-both-sides/launch-post.en.md": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: launch-post.en.md.",

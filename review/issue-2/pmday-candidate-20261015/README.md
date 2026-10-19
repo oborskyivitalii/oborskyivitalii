@@ -1,3 +1,44 @@
+# PMDay article: current R12 source and retained history
+
+## Editorial R12 — 19 October 2026 source synchronization
+
+The author requested the R12 Markdown be transferred to this PR. This is a source update, not another rewrite or release. Full input is preserved in the editorial draft; canonical prose, punctuation, bibliography and citation wording are the same. The only deliberate rendition delta omits the cover-image marker until the selected image bytes can be imported.
+
+```json
+{
+  "suppliedReaderBlob": "81c3c8257cc73db0141fa7e7bae0485083a88543",
+  "suppliedReaderSha256": "5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b",
+  "canonicalReaderSha256": "46ff6a07e8f60119dcf6be352a3d642348c0c2b6f54f348b7b60d599f6f71276",
+  "renditionDelta": "Only the unavailable Cover02 image marker and following blank line are omitted from canonical; all article prose and references unchanged.",
+  "bibliographyCount": 31,
+  "originalSlideSha256": {
+    "pmday-slide-03": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
+    "pmday-slide-05": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
+    "pmday-slide-07": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
+    "pmday-slide-09": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
+    "pmday-slide-10": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
+    "pmday-slide-12": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
+    "pmday-slide-14": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd"
+  },
+  "coverImport": "PENDING: local runtime unavailable; supplied public R11 PDF URL returned HTTP 403. No PNGs substituted or fabricated.",
+  "preparationRun": "https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39206037802"
+}
+```
+
+### Implemented changes and preserved boundaries
+
+R11 compression/systemic conclusion and R12 baseline symmetry, evidence-first SDLC structure, hypothetical prompt injection, operational human/recovery checks, clear Thinking System definition, Lem at beginning/end and 31 first-mention references are retained. Two chapter-4 and six chapter-5 refrains remain. Seven source slides remain byte-unchanged; figure-1 caption now matches the before-slide controlled-intake explanation.
+
+The supplied 15-page R12 Cover02 PDF is the prior conversation deliverable; it was not regenerated here and is not the old r2 article.pdf/kit retained in this directory. No new local PDF hash/visual inspection is claimed. Cover02 import remains OPEN: the local execution service failed, the previously supplied public PDF link returned 403, and the prior asset archive could not be converted into a connector upload reference. The old artwork files are preserved as history but removed from active selection. Both profile roles have explicit omission reasons; publishing without the selected cover is not approved. A future real-byte import requires a new semantic/media edition.
+
+### Checks and acceptance
+
+The preparation run above records actual source checks: reader structure and first-occurrence citations, locked-AST reference extraction, article validation, scoped formatting, Basic, RI build/verify and RI/CI tests, and final prose parity. The first preparation run39205389704 failed on HTTP403 before installing any article source; it remains failed. No source/hosted/rights check is weakened to make it pass. Existing technical HTML-budget/notices blockers remain separate from this source checkpoint.
+
+Applicable CS01/02/04/05/08/10: canonical content and metadata owners, explicit profile omission, scoped mechanical formatting, source/figure checks and honest issue evidence. No publishing-engine/runtime/template/test-budget changes. #2 AC01–AC06 and applicable #5 independent/hosted/publication gates stay open. No merge, production, stable promotion or external posting.
+
+## Historical checkpoints (not current acceptance)
+
 # PMDay R10 article review
 
 Article owner #2; execution #5 / PR79.

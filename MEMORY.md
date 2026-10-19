@@ -1,6 +1,6 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-18**.
+Dated continuity, not live authority. Last verified: **2026-10-19** for R12 source; technical observations retain their dates.
 
 ## Snapshot
 
@@ -12,15 +12,18 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
   Plan: review/issue-5/2026-10-18-release-segmentation.md.
 - All54 starting files under drafts, site/publications, site/assets/publications
   and review/issue-2 retain their original Git blobs. No editorial changes.
-- Current R10 manuscript SHA256:
-  5f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49.
+- Current R12 canonical source SHA256: 46ff6a07e8f60119dcf6be352a3d642348c0c2b6f54f348b7b60d599f6f71276.
+  Exact supplied R12 is in drafts; canonical differs only by the cover marker.
+  Cover02 PNG import is pending; old illustration is not selected.
+  Evidence: review/issue-2/pmday-candidate-20261015/README.md.
 - Current-main release policy, legal owners, analytics, Cloudflare-only staging,
   native navigation corrections and source worker are preserved.
 
 ## Decisions
 
 - User authorizes step1 only, report/reassessment, then small subsequent steps.
-  Article writing/editing is explicitly excluded; it continues in another chat.
+  That technical step excluded writing. R12 was separately authorized
+  in the editorial conversation and is now the current article input.
 - Preserve authored article/edition/media history. Consume the latest editorial
   handoff rather than changing its text or manufacturing acceptance.
 - One static monorepo with versioned platform/templates/content/media artifacts
@@ -46,7 +49,7 @@ Dated continuity, not live authority. Last verified: **2026-10-18**.
 - After preview acceptance: bounded platform staging and existing controller
   publication; then independent content/media production and real reuse proof.
 - #2 original PDF/deck/upstream/editorial/publication gates remain separate;
-  this chat does not write or accept the article.
+  transferring source does not accept or publish the article.
 - #102 analytics entry/article route coverage; #8/#103 Google/Windsor access;
   #104 conversions after the reader contract. MFA #97 is independent.
 - #98/#99/#100 are separately selected, not first-article blockers.
