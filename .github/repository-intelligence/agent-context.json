@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "53b67c151894ad8be54466a12b909b95782ba3270f45f6c1b391854371bd1442",
+    "digest": "3acc0c4ce75c8b348ea48635efd4f2a931e95484186bd3bbaa513f93bb396072",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "567da944b3b20d3c1774f38dfe346f7133b3975dc7c2193b69cd6a5978896d16"
+        "sha256": "85ede3deac36296ab06e45cd06bba0220a800381b1e975457c606e8d55b189e5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b7d7379779f0bc4587d504dfe11f38d2734fe1051e94ed63cb3c87379d6cce3a"
+        "sha256": "60f3cedda37307169d657e6b6e2ed0d7df39401ea45a8324971550a9f452349f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -301,7 +301,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f488f9b26e78edbe166c1c0a34ecee0353aafe00d895c6a3c3765997888d78ad"
+        "sha256": "b3a619313c9b9fa29811d78be5cc2e68eda778bf5d19faaa5152213182cf5657"
       },
       {
         "path": "NOTICE.md",
@@ -721,6 +721,11 @@
         "path": "review/issue-106/2026-10-19-draft-contract.md",
         "identity_mode": "content",
         "sha256": "fc49ca7bbde97f6d878f593a855e7d6c8aca6ac19ed7af6678251c838bbc1aae"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-independent-review.md",
+        "identity_mode": "content",
+        "sha256": "468baf5c0d35a664d504c1624d8c6862497d95f7c7fd404039cce9c765e221b2"
       },
       {
         "path": "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json",
@@ -8655,6 +8660,17 @@
         "AGENTS.md"
       ],
       "title": "Issue106 — first draft campaign contract"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-independent-review.md",
+      "kind": "file",
+      "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — independent technical review, 19 October 2026"
     },
     {
       "path": "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json",

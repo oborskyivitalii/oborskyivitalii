@@ -4,6 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- 19 October independent technical review of PR107b0bf22/PR7910c887 requests
+  changes: stale offline material export, private allowlist public invalidation,
+  and transitive impossible campaign windows. No fixes or release approval.
+  See review/issue-106/2026-10-19-independent-review.md; all3 findings open.
+
 - 19 October campaign checkpoint: #106 / Draft PR107 owns the first reusable
   draft contract/brief/validator. Base main0098f804; article/site stays PR79.
   Evidence: review/issue-106/2026-10-19-draft-contract.md; exact checks in PR107.
@@ -57,10 +62,9 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Next session
 
-Issue106 public-material increment: explicit reviewed allowlist/shared native block;
-PR107 owns the contract, PR79 the minimal reader hook. See
-review/issue-106/2026-10-19-public-materials.md and exact PR check/preview evidence.
-No campaign or production publication. Original remaining gates stay open.
+Issue106 next: read the independent review, fix F01–F03 in existing PR107/PR79,
+add the missing behavioral negatives, then rerun exact-source checks and review.
+The earlier public-material preview proves its normal path, not those failures.
 
 For #106, read issue/PR107 and the draft-contract review. Integrate its facade
 against the accepted publisher, add ARTICLE-WORKFLOW hook, then first launch kit.

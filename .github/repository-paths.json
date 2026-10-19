@@ -1063,6 +1063,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-106/2026-10-19-independent-review.md": {
+      "kind": "file",
+      "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json": {
       "kind": "file",
       "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
