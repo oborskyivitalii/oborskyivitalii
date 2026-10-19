@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "90f1ba7374275f4c25c0f539e62b379f08d3a394692cf9a14a41d38ec373b2f8",
+    "digest": "ee92356b684a6adcecef0233fd7a02e2c142e33d118808a91158ab16bf54ee2c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "93151e378ceb501f6d43a1e7bc1b89a095fcbe90af9e637bc1f7ac8b1b1c371a"
+        "sha256": "0765302af1578000efe335c453fc41da0ea6257c00d6e1801f429d08dc3055ec"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f9846d60f3dcd786deae02d623ef13ab2999bac24a3915cef0ca684d5b9fcb41"
+        "sha256": "05f0c31c1023330f3ce772bfb9d7f9f8e6a68235b448d6a3f67574515a48a27e"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1335,7 +1335,7 @@
       {
         "path": "review/issue-5/2026-10-19-editorial-reader.md",
         "identity_mode": "content",
-        "sha256": "bf87e0a51fc19ed4d79387cdf319dd84f6971403b42b8faaa8546d291d58a0ca"
+        "sha256": "079389c1b85913b8726dceb32021b8163f0040bb1c674c8facfeb56b216ac4cf"
       },
       {
         "path": "review/issue-5/2026-10-19-events-migration.json",
@@ -6715,7 +6715,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "8870d42eec39bcf75c58e69effc3736858c616ec25cd1bdc18aafe11a8502648"
+        "sha256": "20c20b249ce1a1eb95c79750ab238e2726952f1a5df31bc19f756efb6e0e50b7"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -7905,7 +7905,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "0c3a43473deb6f47d37136fe2dfa5203c7260d4ab00d9657300d9999d09c5425"
+        "sha256": "31262938d0bc900b74bcdbfb606b00412d90a584a7d34e5f22d3c17199d2be0f"
       },
       {
         "path": "tools/staging/review-flow.cjs",
@@ -9129,7 +9129,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9140,7 +9140,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9151,7 +9151,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9162,7 +9162,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9173,7 +9173,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9195,7 +9195,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9206,7 +9206,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9217,7 +9217,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9228,7 +9228,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -9261,7 +9261,7 @@
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
@@ -25750,7 +25750,7 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -25770,7 +25770,7 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -25780,7 +25780,7 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -25790,7 +25790,7 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -25800,7 +25800,7 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]
@@ -25830,7 +25830,7 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs",
+      "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ]

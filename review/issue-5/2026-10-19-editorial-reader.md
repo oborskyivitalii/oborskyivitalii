@@ -64,6 +64,13 @@ bounded style guard passed. Four JS runtime files are byte-identical to the prio
 reader family; only CSS and renderer producer identity change. Canonical document
 and preview exports were regenerated. Clean-source owning policy and hosted results
 will be linked from PR79 after commit; no hosted pass is claimed at this checkpoint.
+The first broad local policy on clean b1820e5 (same tree as hosted b16081c)
+passed8/11 checks and failed CONTENT-CI, CONTENT-LANES and DELIVERY. It exposed
+catalogued generated snapshots using the builder rather than source-contract owner,
+a missing new-family publication-rights admission and a stale production test ID.
+Corrected the owner records, extended mandatory rights admission to all three new
+runtime editions and updated only the current production expectation. Historical
+runtime tuples and all negative checks remain. This failed run remains failed.
 A failed interim current-tuple test retained old reader-family expectations; update
 only current fixtures/registered identity, retaining historical tuples and all budgets.
 Physical Safari/iPad, whole-PR review, editorial/rights/PDF, accepted-platform staging
@@ -74,3 +81,22 @@ and real content/production publication remain separate open gates. PR stays Dra
 Shared editorial reader refinement prepared in PR79; original manuscript/PDF preserved.
 Independent review's endnote-order/apparatus gap corrected with negative regressions.
 Exact final source, check results and preview are linked from the owning issue/PR.
+
+## Integration correction checkpoint
+
+The four affected integration modules passed90/90 after correction; current
+formatter, bounded style, RI and RI/CI checks pass. Independent final source review
+confirmed no remaining bounded reader blocker, both endnote sibling selectors and
+unchanged four-script closure for plain/staging/production tuples.
+First hosted sourceb16081ce21335c6462eeaafc488c714c4f7c4d8d / tree
+5b214095228959f87b05e6f5cd7e149a7b6190cd built and deployed successfully in
+CI39302216434. [First preview](https://c93bd71b.oborskyi-author-ci-staging.pages.dev/articles/ai-changes-both-sides-of-software-engineering)
+was directly inspected in dark desktop1363px: body19/H2 31/H3 23/quote21/caption15px,
+no horizontal page overflow; quote attribution and restrained chapter boundary seen.
+Public ZIP12212139422 downloaded and SHA256 verified
+`db20ab86dff940ea51fdbbec5411b1b0d4a264f7e7c793f665282f048eea5965`;
+it binds source/tree/public digest3cfea516a49b00916167ec833c2d93c4735320d54238098e0d67781d7806455d.
+The correction changes catalog/test/rights-admission bookkeeping only; all article,
+CSS, generated documents and runtime bytes match that hosted source. Corrected-head
+policy and hosted smoke are still pending at this checkpoint; final source-qualified
+results and the latest preview belong to the PR/issue evidence anchor.

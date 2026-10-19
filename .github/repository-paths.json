@@ -581,37 +581,37 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196/space.js": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/runtime/de7565a27af4002f529e471b1476c00279e6182c1534f37a9fce38cc0d53e196/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/site-revision.json": {
       "kind": "file",
@@ -629,49 +629,49 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/192f4cca6944265205dc225583f2db873e3bc379aa596f53799eaf7884a232e6/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/1bc38154929a5dc8dc9ea4bca551be38780ca31262fd57f3f505d70e0ce91eed": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/1bc38154929a5dc8dc9ea4bca551be38780ca31262fd57f3f505d70e0ce91eed/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/428ab572850773befae488d5c84dba6d877018497b1f840b170d398614522827": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/428ab572850773befae488d5c84dba6d877018497b1f840b170d398614522827/research.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/4fbaea50fd42af4843ffdc4d5a8047b7b33fd5eb4d4e35a36e6f434010fbd299": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/4fbaea50fd42af4843ffdc4d5a8047b7b33fd5eb4d4e35a36e6f434010fbd299/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
@@ -701,13 +701,13 @@
       "kind": "directory",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/7ce549417c9e3aaf1077c1987b36f46e0e1751f881afaa3889d4d78cec35c98f/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
-      "owner": "tools/site/build.cjs"
+      "owner": "site/README.md"
     },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
       "kind": "directory",
