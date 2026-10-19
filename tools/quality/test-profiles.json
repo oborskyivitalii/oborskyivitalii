@@ -1273,7 +1273,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -1997,6 +1997,26 @@
         "tools/quality/validate.cjs",
         "tools/quality/secrets-publication.json",
         "review/issue-102/2026-10-18-public-metadata-proof.json.gz"
+      ]
+    },
+    {
+      "path": "tests/test_issue108_acceptance.py",
+      "language": "python",
+      "purpose": "Issue108 selects maintained event facts, exact naming, historical inventory and adversarial SEO reconciliation checks.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue108 policy only; permanent content/SEO cases retain existing source profiles.",
+      "surviving_route": ".github/acceptance/issue-108.json",
+      "inputs": [
+        "tests/test_issue108_acceptance.py",
+        ".github/acceptance/issue-108.json",
+        "tests/content.test.cjs",
+        "tests/executive.test.cjs",
+        "tools/check_site_seo.cjs",
+        "review/issue-108/content-amendment.json",
+        "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
+        "tools/quality/secrets-publication.json"
       ]
     }
   ]

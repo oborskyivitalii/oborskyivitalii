@@ -61,27 +61,33 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-108.json": {
+      "kind": "file",
+      "purpose": "Issue108 stable AC mapping for current PMDay facts, naming and standard delivery; human gates remain separate.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -117,13 +123,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -135,7 +141,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -147,13 +153,13 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -619,6 +625,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb": {
+      "kind": "directory",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -688,18 +706,6 @@
     "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946/research.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1020,6 +1026,30 @@
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md",
       "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
+    },
+    "review/issue-108": {
+      "kind": "directory",
+      "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "review/issue-108/2026-10-19-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Issue108 exact per-finding public generated/content checksum and source-commit proof from actual failed staging; preserves scanner coverage and predecessor ledger.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-108/2026-10-19-site-delivery.md": {
+      "kind": "file",
+      "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
+      "role": "history",
+      "owner": "site/README.md"
+    },
+    "review/issue-108/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
+      "role": "history",
+      "owner": "site/README.md"
     },
     "review/issue-31": {
       "kind": "directory",
@@ -1515,7 +1545,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -7768,6 +7798,12 @@
     "tests/test_issue102_acceptance.py": {
       "kind": "file",
       "purpose": "Issue102 policy adapter for maintained analytics suite and failure accounting.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue108_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue108 task-only adapter selecting maintained content and adversarial SEO cases.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },

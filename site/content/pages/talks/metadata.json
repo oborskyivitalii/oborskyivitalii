@@ -2,7 +2,7 @@
   "schema": 1,
   "lang": "en",
   "title": "Talks & Workshops | Vitalii Oborskyi",
-  "description": "Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.",
+  "description": "Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording, plus talks and workshops on AI architecture and software delivery.",
   "structuredData": {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

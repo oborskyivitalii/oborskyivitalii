@@ -110,6 +110,9 @@ const issue48 = JSON.parse(
 const issue61 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-61/content-amendment.json'), 'utf8')
 );
+const issue108 = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-108/content-amendment.json'), 'utf8')
+);
 const positioning = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-41/2026-10-09-positioning-amendment.json'), 'utf8')
 );
@@ -400,11 +403,15 @@ function restoreResearchNavigation(html, page) {
     assert.equal(matches?.length, 1, 'one frozen Research section navigation');
     const original = matches[0];
     assert.equal((original.match(/<\/a><a /g) || []).length, 4);
-    researchNavigation = { original, separated: original.replaceAll('</a><a ', '</a> <a ') };
+    researchNavigation = {
+      original,
+      separated: original.replaceAll('</a><a ', '</a> <a '),
+    };
   }
   return html.replace(researchNavigation.separated, () => researchNavigation.original);
 }
 function restoreApprovedContent(html, page) {
+  html = restoreContentAmendment(html, page, issue108);
   html = restoreResearchNavigation(normalizeHTML(html), page);
   html = normalizeHTML(html);
   html = restoreApprovedLicensing(html, page);
@@ -544,6 +551,7 @@ function verify() {
           ...amendment.changes,
           ...issue48.changes,
           ...issue61.changes,
+          ...issue108.changes,
           ...positioning.changes,
           ...sitecase.changes,
           ...arkadiy.changes,
