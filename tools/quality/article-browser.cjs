@@ -199,6 +199,12 @@ async function captureReader(page, key) {
   }
 }
 
+async function contentsAnchor(page) {
+  const contents = page.locator('.reader-contents');
+  if ((await contents.getAttribute('open')) === null) await contents.locator('summary').click();
+  return page.locator('.article-toc a[href^="#"]').first();
+}
+
 async function observeReading(page) {
   await page.evaluate(() => {
     window.__articleReading = {
@@ -648,7 +654,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       'Forward restored article head'
     );
 
-    const anchorLink = page.locator('.article-toc a[href^="#"]').first();
+    const anchorLink = await contentsAnchor(page);
     const fragment = await anchorLink.getAttribute('href');
     assert.ok(fragment && fragment.length > 1, 'native article TOC anchor');
     await anchorLink.click();
@@ -863,7 +869,7 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
         { timeout }
       );
     assert.ok(await page.locator('.article-body').innerText(), 'fallback retains full article');
-    const anchor = page.locator('.article-toc a[href^="#"]').first();
+    const anchor = await contentsAnchor(page);
     const fragment = await anchor.getAttribute('href');
     await anchor.click();
     assert.equal(new URL(page.url()).hash, fragment);

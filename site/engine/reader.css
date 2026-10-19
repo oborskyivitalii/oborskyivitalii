@@ -187,6 +187,7 @@
 .reader-table table {
   width: 100%;
   border-collapse: collapse;
+  overflow-wrap: normal;
   font-size: 0.925em;
   line-height: 1.55;
 }

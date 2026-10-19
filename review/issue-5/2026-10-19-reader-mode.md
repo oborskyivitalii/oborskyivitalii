@@ -42,7 +42,30 @@ direction and identified generic failures: fixed contents-ID collision, encoded
 Unicode fragments, presentation resources in appendices, figure sizing outside
 the main body, subtitle citation backlinks, lost disclosure geometry on Back,
 observer-delta handling and empty contents. Corrections are included with focused
-regressions; final source/hosted re-review remains pending at this checkpoint.
+regressions. Source re-review found no remaining bounded abstraction blocker.
+
+The first hosted candidate, `419243173014073dad8f218bfe8c4802b7b08f13`, was
+independently inspected at 1363×936 in dark theme. Both tables and BibTeX have
+matching client/scroll dimensions; citation 24 opens Sources below the header and
+returns to its exact passage. The opening, contents/current marker, captions and
+grouped apparatus are substantially clearer. The opaque paper disappears during
+departure; no paper obscures the orbit. Its abrupt boundary during the child wave
+is a nonblocking polish observation, not a reason to animate the full long article.
+
+CI39293074015 preserved HTTP identity and four room journeys, plus desktop reader
+navigation. Raw smoke ZIP12206617775 SHA256
+`2d6cb462c4566a4945dbfe04ad4937f62e5291ee90450d587f7a9ade683141cf`
+was downloaded and verified. The mobile screenshot exposed an inherited
+`overflow-wrap:anywhere` splitting the numeric-column heading. Shared table
+wrapping now retains ordinary word boundaries. The browser diagnostic also tried
+to click a link in the new collapsed mobile Contents: it now opens its native
+summary first in both normal and fallback journeys. The failed run remains failed.
+
+The initial clean-source policy passed all reader/publisher/basic/RI checks but
+exposed the new runtime family missing from the existing licensed-byte registry
+and an old expected production-family ID. Both are corrected without weakening
+the guards; controller/rights51/51 passed. Final exact-source policy and corrected
+hosted results are recorded in PR79 after execution.
 
 ## Tasks and acceptance evidence
 

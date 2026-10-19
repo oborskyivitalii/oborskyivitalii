@@ -8,7 +8,7 @@ const families = {
   // Reusable reader mode: shared presentation/lifecycle; Writing scene geometry is unchanged.
   issue5ReaderMode: {
     behavior: 'fixed-blocks',
-    baseEngine: 'cf93d66925892b6174f66e529ece5ca27584a39328b1a88d44f237aeca893711',
+    baseEngine: '1f94dbdfcd0d81e593164a085e9337f899738dddbe9e21d997c77c7e8e663eef',
     theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
     space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
     navigation: '9d4dc3de3d0acec893c90e59d4039bf9974921937bf7a51a07840243c7208038',
@@ -257,22 +257,22 @@ const runtimes = [
     id: 'issue5-reader-mode-production',
     family: 'issue5ReaderMode',
     edition: 'production',
-    fingerprint: 'adf507ae6c5c9b944213400780f50da062774695cd7a9212a5bc5173685c2489',
-    styles: 'd1b088cc317154259315a4dcaaf61502002bca186250ba3560c530a1a043f4df',
+    fingerprint: 'c8a34994ca50f6ac3c1859cd7b46f3191c3842c951807f67ee52bda73a5f3abc',
+    styles: 'ef62faa96b45ced4bdac6aae85d0cf6ab4c0885b01298d0a1413111ba16c6b59',
   },
   {
     id: 'issue5-reader-mode-plain',
     family: 'issue5ReaderMode',
     edition: 'plain',
-    fingerprint: '13a3d5ba4775dc1ea0df1be000c910c0dff9824042350ca01067599926bc621e',
-    styles: 'd1b088cc317154259315a4dcaaf61502002bca186250ba3560c530a1a043f4df',
+    fingerprint: '8bd1f8206e0a41cd9e8b92e7f3f74e63966397f8e172d67b3f162d84b8237b12',
+    styles: 'ef62faa96b45ced4bdac6aae85d0cf6ab4c0885b01298d0a1413111ba16c6b59',
   },
   {
     id: 'issue5-reader-mode-staging',
     family: 'issue5ReaderMode',
     edition: 'staging',
-    fingerprint: 'bb67700df7e832366cfd412bf2531d928df28e2ff2a1eaccaf8ca4c6ab71ce04',
-    styles: 'f3ae2161457cbdc43104df32c6b4667a92fad3596f62977cc66fbbfa5c98167d',
+    fingerprint: '0f8cc4ad0bc4166aa5967f5d1afb357529e12cfa63f1f9132e6faa0ade01bc78',
+    styles: 'd2b0501f5e1e73c14739a77b8c89e4fa12c6f1ac720779b7b3cba13ebd9f768c',
   },
   {
     id: 'issue5-real-article-production',
