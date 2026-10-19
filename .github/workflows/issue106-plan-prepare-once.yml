@@ -1,0 +1,181 @@
+name: One-shot issue106 planning preparation
+on:
+  push:
+    branches: [work/issue-106-article-distribution-20261019]
+    paths: [.github/workflows/issue106-plan-prepare-once.yml]
+permissions:
+  contents: write
+concurrency:
+  group: issue106-planning-only
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Confirm bounded planning input and instruction scope
+        run: |
+          test "$(git rev-parse HEAD~2)" = '0098f804cb3b0d120173d4c8689043db42231c47'
+          test -z "$(git status --porcelain)"
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          expected = {
+              'review/issue-106/2026-10-19-campaign-plan.md',
+              '.github/workflows/issue106-plan-prepare-once.yml',
+          }
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only', '0098f804cb3b0d120173d4c8689043db42231c47', 'HEAD'], text=True).splitlines())
+          assert changed == expected, changed
+          for item in ['review/AGENTS.md', 'review/issue-106/AGENTS.md', '.github/AGENTS.md', '.github/acceptance/AGENTS.md', '.github/workflows/AGENTS.md']:
+              assert not Path(item).exists(), 'Unreviewed nested instructions: ' + item
+          print('Exact main baseline and planning-only paths verified; root AGENTS is the applicable instruction owner.')
+          PY
+      - name: Install existing locked formatting tools
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3 packaging==26.3
+      - name: Classify plan and add explicitly provisional acceptance mapping
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          issue = 106
+          policy_path = Path('.github/acceptance/issue-106.json')
+          assert not policy_path.exists()
+          intents = [
+              'Preserve the approved plan, linked separate Draft PR and nonblocking ownership relation to article PR79.',
+              'Integrate a reusable distribution brief and campaign state model into article preparation without duplicating owners.',
+              'Bind each campaign piece to its source edition, claims and media and invalidate stale approvals.',
+              'Prepare the complete six-piece, three-carousel organic PMDay campaign for author review.',
+              'Preserve numerical and quotation scope, media identity, credits and separate editorial/rights review.',
+              'Require actual destinations and channel admission for release-ready output; allow explicit skipped channels.',
+              'Build a bounded isolated campaign kit without site deployment, social posting, paid-model calls or PMDay-only hardcoding.',
+              'Keep authored, approved, published and corrected states distinct with actual observed publication evidence.',
+              'Provide honest aggregate D+7/D+21 reviews without private data, invented feedback or unsupported attribution.',
+              'Map and run exact-source meaningful checks and applicable style/RI controls; retain human and merge gates.',
+          ]
+          checks = {
+              'BASIC': {'kind': 'node-basic'},
+              'STYLE': {'kind': 'unittest', 'test': 'test_code_style.CodeStyleRepositoryTests.test_current_repository_guard'},
+              'CURRENT-RI': {'kind': 'unittest', 'test': 'test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views'},
+              'RI-CI': {'kind': 'unittest', 'test': 'test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes'},
+          }
+          criteria = []
+          for number, intent in enumerate(intents, 1):
+              row = {
+                  'id': f'AC{number:02d}',
+                  'intent': intent,
+                  'automated_scope': 'Planning checkpoint only: existing checks verify source hygiene, style and navigation/CI consistency. They do not test campaign behavior or establish that this criterion is implemented. Before campaign implementation add meaningful behavioral assertions described in the versioned plan and revise this scope.',
+                  'checks': ['CURRENT-RI'],
+                  'gates': ['PLAN-REVIEW'] if number == 1 else ['IMPLEMENTATION', 'AUTHOR-REVIEW'],
+              }
+              if number == 10:
+                  row['checks'] = list(checks)
+                  row['gates'] = ['IMPLEMENTATION', 'INDEPENDENT-REVIEW', 'MERGE']
+              criteria.append(row)
+          policy = {
+              'schema_version': 1,
+              'repository': 'oborskyivitalii/oborskyivitalii',
+              'issue': issue,
+              'issue_url': 'https://github.com/oborskyivitalii/oborskyivitalii/issues/106',
+              'criteria': criteria,
+              'checks': checks,
+              'gates': {
+                  'PLAN-REVIEW': {'kind': 'human', 'description': 'Verify the actual linked issue/PR and versioned approved scope, source reference, relative schedule and explicit nonblocking separation from PR79. This is plan review, not campaign implementation.'},
+                  'IMPLEMENTATION': {'kind': 'human', 'description': 'NOT IMPLEMENTED at planning intake. Add and run criterion-specific behavioral/negative tests before executing campaign code; a green planning-source policy cannot satisfy this gate.'},
+                  'AUTHOR-REVIEW': {'kind': 'human', 'description': 'Review actual content/media, source accuracy, channel rules and manual publishing/measurement operation. Actual public URLs and channel admission must be observed separately; no private data or auto-posting.'},
+                  'INDEPENDENT-REVIEW': {'kind': 'human', 'description': 'Required independent/editorial review of implemented behavior and applicable CS01-CS10; preparation self-review is not independent acceptance.'},
+                  'MERGE': {'kind': 'human', 'description': 'Normal maintainer merge decision after complete issue acceptance; campaign readiness cannot block the separate article publication in PR79.'},
+              },
+          }
+          policy_path.write_text(json.dumps(policy, indent=2) + '\n', encoding='utf-8')
+          catalog_path = Path('.github/repository-paths.json')
+          catalog = json.loads(catalog_path.read_text())
+          additions = {
+              'review/issue-106': {'kind': 'directory', 'purpose': 'Separate article distribution and organic campaign planning, review and aggregate evidence; not an article release gate.', 'role': 'history', 'owner': 'CONTRIBUTING.md'},
+              'review/issue-106/2026-10-19-campaign-plan.md': {'kind': 'file', 'purpose': 'Approved organic campaign direction, explicit PR79 ownership split and bounded implementation/verification plan under issue106.', 'role': 'history', 'owner': 'CONTRIBUTING.md'},
+              '.github/acceptance/issue-106.json': {'kind': 'file', 'purpose': 'Issue106 planning-source checks and explicit pending campaign implementation/author/independent gates; not completed campaign acceptance.', 'role': 'configuration', 'owner': '.github/ACCEPTANCE.md'},
+          }
+          for item, record in additions.items():
+              assert item not in catalog['entries'], item
+              catalog['entries'][item] = record
+          catalog['entries'] = dict(sorted(catalog['entries'].items()))
+          catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          memory_path = Path('MEMORY.md')
+          memory = memory_path.read_text()
+          assert '## Snapshot\n' in memory and '## Decisions\n' in memory and '## Next session\n' in memory
+          memory = memory.replace('## Snapshot\n', '## Snapshot\n\n- 19 October campaign-only checkpoint: #106 now separately owns distribution\n  workflow/planning. Base main0098f804; article/site work remains in DraftPR79.\n  Plan: review/issue-106/2026-10-19-campaign-plan.md; exact source/PR links in #106.\n  The older operational snapshots below retain their original dates.\n', 1)
+          memory = memory.replace('## Decisions\n', '## Decisions\n\n- Author explicitly split campaign work into #106 and its own Draft PR.\n  PR79/#2/#5 retain article publication; campaign completion never blocks it.\n  This increment is a plan/policy foundation, not implemented campaign tooling.\n', 1)
+          memory = memory.replace('## Next session\n', '## Next session\n\nFor #106, read its issue/linked Draft PR and versioned plan. Implement the bounded\nbrief/schema/validator next; revalidate the accepted publisher before integrating.\nNo social publication, outreach or reminders are authorised by this checkpoint.\n', 1)
+          assert len(memory.splitlines()) <= 120
+          memory_path.write_text(memory, encoding='utf-8')
+          print('Added issue106 plan catalog, provisional policy and bounded memory pointer; no site/article source changed.')
+          PY
+      - name: Remove temporary preparation workflow and stage exact owners
+        run: |
+          git rm .github/workflows/issue106-plan-prepare-once.yml
+          git add review/issue-106/2026-10-19-campaign-plan.md .github/acceptance/issue-106.json .github/repository-paths.json MEMORY.md
+      - name: Refresh derived navigation and format only changed JSON
+        run: |
+          tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/acceptance/issue-106.json .github/repository-paths.json
+          python3 tools/check_ri_ci.py refresh
+          tools/quality/toolchain/node_modules/.bin/prettier --config tools/quality/prettier.config.json --write .github/ri-ci-map.json
+          python3 tools/check_ri_ci.py verify
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          git add .github/acceptance/issue-106.json .github/repository-paths.json .github/ri-ci-map.json .github/repository-intelligence/ REPOSITORY-MAP.md
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          node tools/quality/format.cjs --check
+      - name: Commit the isolated planning foundation before exact-source checks
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed = {
+              'review/issue-106/2026-10-19-campaign-plan.md',
+              '.github/acceptance/issue-106.json',
+              '.github/repository-paths.json',
+              '.github/ri-ci-map.json',
+              '.github/repository-intelligence/agent-context.json',
+              'REPOSITORY-MAP.md',
+              'MEMORY.md',
+          }
+          changed = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only', '0098f804cb3b0d120173d4c8689043db42231c47'], text=True).splitlines())
+          assert changed.issubset(allowed), changed - allowed
+          assert 'review/issue-106/2026-10-19-campaign-plan.md' in changed
+          print('Bounded final diff:', sorted(changed))
+          PY
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs(campaign): classify plan and map pending issue106 acceptance (Refs #106)'
+          test -z "$(git status --porcelain)"
+      - name: Run planning-source policy on the exact clean commit
+        run: |
+          python3 tools/issue_acceptance.py validate --policy .github/acceptance/issue-106.json
+          python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-106.json --report "$RUNNER_TEMP/issue106-planning-checks.json" --require-clean --expected-source "$(git rev-parse HEAD)"
+          python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
+          python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+          test -z "$(git status --porcelain)"
+      - name: Publish only the checked campaign branch without force
+        run: |
+          remote_head=$(git ls-remote origin refs/heads/work/issue-106-article-distribution-20261019 | cut -f1)
+          test "$remote_head" = "$GITHUB_SHA"
+          git push origin HEAD:work/issue-106-article-distribution-20261019
+          git rev-parse HEAD HEAD^{tree}
+      - name: Retain planning evidence, not campaign-readiness evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: issue106-planning-checks-${{ github.run_id }}
+          path: ${{ runner.temp }}/issue106-planning-checks.json
+          if-no-files-found: warn
+          retention-days: 14
