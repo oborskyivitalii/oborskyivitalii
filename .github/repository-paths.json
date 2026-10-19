@@ -10566,6 +10566,24 @@
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "review/issue-5/reader-block-transitions": {
+      "kind": "directory",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-block-transitions/return-2f09b957.jpg": {
+      "kind": "file",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-block-transitions/sources-2f09b957.jpg": {
+      "kind": "file",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

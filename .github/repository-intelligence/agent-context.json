@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "90f78a48ba2bf6b2785f36f4cfa83663a70a79ad189e1e060434bee0a8a7c31c",
+    "digest": "5ae5319d59d7544c768c01a31f4068aa5c86af2a62611681092a1c00104c9ace",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a5e3a8c2ebcf6b028fbd0e7ffbefdb222837963e714b8bbfb4a50bfed34fce64"
+        "sha256": "3796fdefa6107e0351ded372a1dfe47f8682386ff7197d4c5be17d35c65120b3"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1c1f40dc71d1791fa83934c719bd37a97198cd0681845342f8e895d1af142265"
+        "sha256": "1a841a954a1f89b389f47c5919e4f11536bd7c9df1325935be4b728393cb5f20"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1375,7 +1375,7 @@
       {
         "path": "review/issue-5/2026-10-19-reader-block-transitions.md",
         "identity_mode": "content",
-        "sha256": "7a17a5f53f2c7ba5a32cc9ad537099ea918aef6c269f36c8dfd988dbd3ef3f7c"
+        "sha256": "276c5724d1d45f720073de437383a443e5a9a6e0f29cf973d9334cac98f51742"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-flight-review.md",
@@ -1456,6 +1456,16 @@
         "path": "review/issue-5/pmday-candidate/publication-kit.zip",
         "identity_mode": "content",
         "sha256": "56adc1b84530e6b62779ea3f74030c80891ba783bde6572eaa73da289085c7ca"
+      },
+      {
+        "path": "review/issue-5/reader-block-transitions/return-2f09b957.jpg",
+        "identity_mode": "content",
+        "sha256": "a7cadc63334f6be0bcfda9148325ca893379e72d4d9137805b08535003bfe0cd"
+      },
+      {
+        "path": "review/issue-5/reader-block-transitions/sources-2f09b957.jpg",
+        "identity_mode": "content",
+        "sha256": "1f5f966130561e06eb4041b7168ecf2ca11a24ec3b2b037ee08d3769dedcb8d6"
       },
       {
         "path": "review/issue-5/reader-r13-audit/01-contents.jpg",
@@ -6630,7 +6640,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "6149d16ac2d818d10e0a918784ee6af794ff8d2db04bb177537930fc7ab802ee"
+        "sha256": "8edded259ab43b358e9bf5b94b32cf8643d7ccf6c87902454139608126c8f93c"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -6785,7 +6795,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "8f203557e3a342337ef511dd82c4d319297e6f05f1eb4a58af04a6a76e556bca"
+        "sha256": "29a3dbd23fbe2390505c5e837aeaef16638682365044880ec5ff273b5bcf0dcd"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6850,7 +6860,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "6bcef0d402f4dab8506d319fd4811075021655389a675069b11aae2746b0aa8f"
+        "sha256": "6a8ef3d87db08cc78254f4a52d112c8bbffd87f52191db61fe6d438721bfd2f3"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -11448,6 +11458,28 @@
         "AGENTS.md"
       ],
       "title": "publication-kit.zip"
+    },
+    {
+      "path": "review/issue-5/reader-block-transitions/return-2f09b957.jpg",
+      "kind": "file",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "return-2f09b957.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-block-transitions/sources-2f09b957.jpg",
+      "kind": "file",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "sources-2f09b957.jpg"
     },
     {
       "path": "review/issue-5/reader-r13-audit/01-contents.jpg",
@@ -26335,6 +26367,16 @@
       "purpose": "Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate.",
       "role": "history",
       "owner": "review/issue-5/2026-10-12-execution.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-5/reader-block-transitions",
+      "kind": "directory",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

@@ -78,3 +78,33 @@ Same Draft PR79: common readable-block article transitions, hierarchy departure
 independent of orbit/history, descriptive native returns and larger annotations.
 Original article/PDF unchanged. Exact current-source and hosted evidence belong
 to the live PR/issue; no whole acceptance or publication inferred.
+
+
+## Current-producer pin follow-up
+
+The initial exact-source policy on2f09b957/tree0005600b verified9/11 mapped checks;
+DELIVERY and CONTENT-LANES failed only because the production rendition test
+still expected the prior calm-reader identity. It was a real stale assertion,
+not a functional delivery failure, and remains recorded as failed evidence.
+Current production, authored staging and modern rights fixtures now explicitly
+expect the new reader-blocks runtime. Historical-family fixtures remain pinned.
+The focused production regression passes. Final exact-source policy/hosted
+receipts are recorded in the owning PR/issue; no budgets, negative checks or
+whole acceptance gates are relaxed.
+
+
+## Observed native source path
+
+Primary browser inspection of the2f09b957 runtime at
+https://119faf3c.oborskyi-author-ci-staging.pages.dev/articles/ai-changes-both-sides-of-software-engineering,
+dark desktop1363×936. Writing→article and return resolved with no retained
+route waves; ordinary reading has no scroll-entry records. Source29 opened
+with Enter. Measured note16px /28px; return136.906×44px. Enter on the return
+restored focus to reader-cite-29-1 at viewport top217.938px with a solid native
+outline. All44 generated returns have native targets. No measured contrast,
+physical-mobile or screen-reader acceptance is inferred. Follow-up changes
+only current test pins and evidence; final source/CI binding belongs to PR79.
+
+![Readable source annotations and descriptive return](reader-block-transitions/sources-2f09b957.jpg)
+
+![Citation visibly focused after native return](reader-block-transitions/return-2f09b957.jpg)

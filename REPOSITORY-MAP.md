@@ -81,6 +81,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-5](review/issue-5) | Versioned migration execution, source audit, independent review and exact-source evidence for owning issue5. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/2026-10-19-reader-ux-evidence](review/issue-5/2026-10-19-reader-ux-evidence) | Original browser captures supporting the 19 October reader UX/UI review. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/pmday-candidate](review/issue-5/pmday-candidate) | Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
+| [review/issue-5/reader-block-transitions](review/issue-5/reader-block-transitions) | Native reader source-return visual evidence on exact2f09b957 runtime. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-5/reader-r13-audit](review/issue-5/reader-r13-audit) | R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-54](review/issue-54) | Issue54 source audit, architecture and ordered Sol refactor plan. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-56](review/issue-56) | Versioned R1 implementation, tool decision, parity and review evidence for issue56. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -888,6 +889,13 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-5/pmday-candidate/offline-article.html](review/issue-5/pmday-candidate/offline-article.html) | Generated finite five-scene plus PMDay article standalone review document with bounded embedded native PNG resource. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
 | [review/issue-5/pmday-candidate/offline-article.manifest.json](review/issue-5/pmday-candidate/offline-article.manifest.json) | Exact candidate offline document, reader, source/semantic and embedded-resource byte/digest review manifest. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
 | [review/issue-5/pmday-candidate/publication-kit.zip](review/issue-5/pmday-candidate/publication-kit.zip) | Complete prepared PMDay candidate platform/print/source review kit archive with its own artifact manifest and declared omissions. | history | [review/issue-5/2026-10-12-execution.md](review/issue-5/2026-10-12-execution.md) |
+
+## review/issue-5/reader-block-transitions/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-5/reader-block-transitions/return-2f09b957.jpg](review/issue-5/reader-block-transitions/return-2f09b957.jpg) | Native reader source-return visual evidence on exact2f09b957 runtime. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-5/reader-block-transitions/sources-2f09b957.jpg](review/issue-5/reader-block-transitions/sources-2f09b957.jpg) | Native reader source-return visual evidence on exact2f09b957 runtime. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-5/reader-r13-audit/
 
