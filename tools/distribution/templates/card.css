@@ -7,9 +7,9 @@ body {
   padding: 0;
 }
 body {
-  background: #e9e5dc;
-  color: #18282c;
-  font-family: 'DejaVu Sans', Arial, sans-serif;
+  background: var(--tint);
+  color: var(--ink);
+  font-family: var(--sans);
 }
 .card {
   width: 1080px;
@@ -17,8 +17,8 @@ body {
   padding: 68px 76px 52px;
   display: flex;
   flex-direction: column;
-  border-top: 18px solid #22665e;
-  background: #f8f5ed;
+  border-top: 18px solid var(--accent);
+  background: var(--paper);
 }
 header {
   display: flex;
@@ -42,7 +42,7 @@ main {
 }
 .eyebrow {
   margin: 0 0 35px;
-  color: #22665e;
+  color: var(--accent);
   font-size: 29px;
   font-weight: 700;
 }
@@ -67,7 +67,7 @@ h1 {
   line-height: 1.4;
 }
 footer {
-  border-top: 2px solid #c6c9bd;
+  border-top: 2px solid var(--line);
   padding-top: 27px;
 }
 footer p {
@@ -84,7 +84,7 @@ footer p {
 .destination {
   margin-top: 27px;
   font-size: 25px;
-  color: #22665e;
+  color: var(--accent);
   overflow-wrap: anywhere;
 }
 .credit {
@@ -110,7 +110,7 @@ footer p {
   display: flex;
   height: 455px;
   margin-bottom: 30px;
-  background: white;
+  background: var(--scene-sheet);
   align-items: center;
   justify-content: center;
 }
@@ -128,7 +128,7 @@ footer p {
   max-height: 130px;
 }
 [data-template='reminder'] h1 {
-  color: #22665e;
+  color: var(--accent);
 }
 @page {
   size: 1080px 1350px;

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b3ad623a862d856512e16c8a412bf5715bafb938e8596e987d33cbcf65716ea3",
+    "digest": "c20f249d1561ed8b330836cf3f966fd893e3ae025b5ce9e1240991c91fc5c21c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,7 +171,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "d2652582f099f87905646884e4b623acbc05b426147fc7e9a0aa15e22ccabbae"
+        "sha256": "f86c55a3045c150a40505588060748aa83dc6b2d74ab9e002f0787b7b932288b"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",
@@ -585,7 +585,7 @@
       {
         "path": "guides/EVENT-DISTRIBUTION.md",
         "identity_mode": "content",
-        "sha256": "3967853299fc6ed5363febf7102707f64c9c6d9815a378c829e8504259e7d92f"
+        "sha256": "0a50efe754590aab553f7582b9c45245fd1b95a303fc6ca29bbb64793731e6ca"
       },
       {
         "path": "guides/README.md",
@@ -770,7 +770,7 @@
       {
         "path": "review/issue-106/2026-10-19-event-preparation.md",
         "identity_mode": "content",
-        "sha256": "f34681378befe72368a4e3da886dcf77796b969fe1d931b1ea2b9ccad4c27d93"
+        "sha256": "a60413bf69ebe4f4f2550dda9d020ac8845914e81cad89340d7773cde2bc639e"
       },
       {
         "path": "review/issue-106/2026-10-19-event-render-diagnostic.json",
@@ -5795,7 +5795,7 @@
       {
         "path": "tests/event-campaign.test.cjs",
         "identity_mode": "content",
-        "sha256": "71ad32831170fd6d7f9249e944507f724e5f9050caedfb5eacaed8e0c95392e8"
+        "sha256": "3a9cdba0d02a8c6242a91ddab89e34c6e6403841f2f9827748b8d2f581160265"
       },
       {
         "path": "tests/executive.test.cjs",
@@ -6270,12 +6270,12 @@
       {
         "path": "tools/distribution/kit.cjs",
         "identity_mode": "content",
-        "sha256": "39542efc8bb620aec5731ff72a35c9ed57694e2fe915c1d0b107491f49e09c56"
+        "sha256": "e720139c171e7857a38e2f9019b4ae98abc07030a455815fbecc3061aaf81f46"
       },
       {
         "path": "tools/distribution/render.cjs",
         "identity_mode": "content",
-        "sha256": "151a3b9b4ef1ae846881377f2f3895a8d62dc75bbfeec0f55187c19bb51a170d"
+        "sha256": "ca3055e7d4e40d3249009ae7ff75a317da27fae9ad808820257970e8cb8d9edc"
       },
       {
         "path": "tools/distribution/schedule.cjs",
@@ -6290,7 +6290,7 @@
       {
         "path": "tools/distribution/templates/card.css",
         "identity_mode": "content",
-        "sha256": "b2e93fe10811badacebb81538ef7548fe2502ba5ab916aaf2c031d98692fc6a8"
+        "sha256": "27ec05f8e4446bdae0506f421ef8254f37d3ebd381c7763254b889ff640430ac"
       },
       {
         "path": "tools/distribution/templates/card.html",
@@ -6300,7 +6300,7 @@
       {
         "path": "tools/distribution/templates/review.css",
         "identity_mode": "content",
-        "sha256": "bdae885703eb6eda5dfab047810263d7f61c2dad9a50fa8c9c4a138224f6f4f4"
+        "sha256": "05f29e6a3500dee0fb98052b01e415e621d3b5fbd59186cccfc8b3d8b6a940ff"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -6670,7 +6670,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "cb847c05a81ac7fa8c292b10375c8a1fa2ba7d7d81ce5454a97e85943f54d213"
+        "sha256": "e3f58c554fdd1de1255ce9afa6971f1fd005865de2daa22462555a453b963208"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

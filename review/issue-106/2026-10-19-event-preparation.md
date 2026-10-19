@@ -104,3 +104,27 @@ one-page PDF were inspected; six ICS records parsed at09:00 Warsaw with current
 immutable source links. The standalone diagnostic uses Chromium138.0.7204.0;
 locked-browser CI/author/mobile/rights gates remain pending. Whole AC12–AC17 stay
 open until their independent and human/merge gates are actually satisfied.
+
+## 19 October — canonical site style follow-up (#108)
+
+The maintainer asked whether the site style was reused. The initial promotional
+stylesheet used an approximate independent palette. The producer now embeds the
+exact light `:root` block from `site/engine/styles.css`; card and review CSS use
+its `--paper`, `--ink`, `--accent`, `--line`, `--tint`, `--scene-sheet` and
+`--sans` variables. No second authored palette or font owner remains. The source
+stylesheet joins the kit's hashed/rechecked producer inputs. Cards remain offline
+artifacts; no website runtime, theme switch, network access or scene is imported.
+
+The added maintained failure case changes the canonical paper token and observes
+a changed card, then removes a required token and requires failure. The existing
+copy-only kit case verifies the theme source is in its manifest. The complete
+article/material/event source suites pass **31/31**, with no skipped cases.
+Formatting and focused ESLint/stylelint pass. A newly rendered announcement PNG
+and PDF were inspected with Chromium138.0.7204.0 as a local diagnostic; the locked
+CI browser, independent visual/editorial/rights gates remain separate.
+
+The original retained kit is historical and keeps its exact source/bytes. A new
+site-style kit is produced from the clean updated producer commit. Website
+announcement and Autumn naming ship separately in #108/PR111. The exact Autumn
+prepublication naming requirement is recorded in PR79; no old deck is used for
+the future Winter session and no article is published by this change.

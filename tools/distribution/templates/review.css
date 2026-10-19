@@ -2,16 +2,14 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 24px;
-  background: #f8f5ed;
-  color: #18282c;
-  font:
-    17px/1.55 Arial,
-    sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.55 var(--sans);
 }
 section {
   margin-block: 48px;
   padding-top: 24px;
-  border-top: 1px solid #c6c9bd;
+  border-top: 1px solid var(--line);
 }
 pre {
   white-space: pre-wrap;
@@ -23,6 +21,6 @@ img {
   height: auto;
 }
 a {
-  color: #22665e;
+  color: var(--accent);
   overflow-wrap: anywhere;
 }

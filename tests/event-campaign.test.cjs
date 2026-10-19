@@ -268,6 +268,10 @@ test('copy-only kit is isolated, immutable, nonpublishing and manifest-bound', a
   for (const directory of ['tools/distribution', 'tools/site']) {
     fs.cpSync(path.join(sourceRoot, directory), path.join(f.root, directory), { recursive: true });
   }
+  f.write(
+    'site/engine/styles.css',
+    fs.readFileSync(path.join(sourceRoot, 'site/engine/styles.css'))
+  );
   cp.execFileSync('git', ['init', '-q'], { cwd: f.root });
   cp.execFileSync('git', ['add', '-A'], { cwd: f.root });
   cp.execFileSync(
@@ -289,6 +293,7 @@ test('copy-only kit is isolated, immutable, nonpublishing and manifest-bound', a
   const before = fs.readFileSync(path.join(f.root, f.directory, 'plan.json'));
   const manifest = await buildEvent(f.root, f.event.id, output);
   assert.equal(manifest.readiness, 'draft-only');
+  assert.ok(manifest.inputs.some((entry) => entry.path === 'site/engine/styles.css'));
   assert.equal(manifest.observedPublications.length, 0);
   for (const record of manifest.files) {
     assert.equal(digest(fs.readFileSync(path.join(output, record.path))), record.sha256);
@@ -312,4 +317,21 @@ test('event CLI is read-only and rejects unauthored selection or unknown command
     encoding: 'utf8',
   });
   assert.notEqual(invalid.status, 0);
+});
+
+test('promotion cards follow the canonical site theme without a duplicate palette', (t) => {
+  const f = fixture(t);
+  const canonical = fs.readFileSync(path.resolve(__dirname, '../site/engine/styles.css'), 'utf8');
+  f.write('site/engine/styles.css', canonical);
+  const campaign = f.load();
+  const original = card(campaign, campaign.pieces[0], null, f.root);
+  assert.ok(original.includes('--paper: #f3f1ea'));
+  assert.ok(original.includes('background: var(--paper)'));
+  assert.ok(original.includes('font-family: var(--sans)'));
+  f.write('site/engine/styles.css', canonical.replace('--paper: #f3f1ea', '--paper: #ffffff'));
+  const changed = card(campaign, campaign.pieces[0], null, f.root);
+  assert.notEqual(changed, original, 'a source theme edit changes the generated card');
+  assert.ok(changed.includes('--paper: #ffffff'));
+  f.write('site/engine/styles.css', canonical.replace('--ink:', '--unrelated:'));
+  assert.throws(() => card(campaign, campaign.pieces[0], null, f.root), /Missing site theme token/);
 });

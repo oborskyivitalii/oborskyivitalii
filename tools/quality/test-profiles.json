@@ -2065,7 +2065,8 @@
         "tools/distribution/**",
         "drafts/events/**",
         "guides/EVENT-DISTRIBUTION.md",
-        ".github/workflows/campaign-kit.yml"
+        ".github/workflows/campaign-kit.yml",
+        "site/engine/styles.css"
       ]
     }
   ]

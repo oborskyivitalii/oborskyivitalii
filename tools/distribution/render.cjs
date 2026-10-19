@@ -5,7 +5,18 @@ const path = require('node:path');
 const cp = require('node:child_process');
 const { escapeText, escapeAttribute } = require('../site/html.cjs');
 
-function card(campaign, piece, image = null) {
+// The site remains the only palette/type owner; standalone kits embed its light root.
+function theme(root = path.resolve(__dirname, '../..')) {
+  const css = require('./inputs.cjs').inputs(root).read('site/engine/styles.css');
+  const match = css.match(/^:root\s*\{[^{}]+\}/);
+  if (!match || /<\/style/i.test(match[0])) throw Error('Missing canonical site theme');
+  for (const token of ['paper', 'ink', 'accent', 'line', 'sans', 'scene-sheet', 'tint']) {
+    if (!match[0].includes(`--${token}:`)) throw Error('Missing site theme token: ' + token);
+  }
+  return match[0];
+}
+
+function card(campaign, piece, image = null, root = path.resolve(__dirname, '../..')) {
   if (!piece.visual) return null;
   const language = piece.language;
   const uk = language === 'uk';
@@ -42,7 +53,7 @@ function card(campaign, piece, image = null) {
   const css = fs.readFileSync(path.join(__dirname, 'templates/card.css'), 'utf8');
   if (/<\/style/i.test(css)) throw Error('Unsafe card stylesheet');
   return template.replace(/\{\{([A-Z]+)\}\}/g, (_token, key) => {
-    if (key === 'CSS') return css;
+    if (key === 'CSS') return theme(root) + '\n' + css;
     if (key === 'IMAGE') {
       return image
         ? `<img src="data:image/png;base64,${image.toString('base64')}" alt="${escapeAttribute(uk ? 'Вихідний слайд' : 'Source slide')}">`
@@ -97,7 +108,7 @@ async function renderCards(root, campaign, selected, output) {
         piece.visual.template === 'slide'
           ? extractSlide(root, campaign.event.deck, piece.visual.page, output)
           : null;
-      const html = card(campaign, piece, image);
+      const html = card(campaign, piece, image, root);
       fs.writeFileSync(path.join(output, piece.id + '.html'), html);
       const page = await context.newPage();
       await page.setContent(html, { waitUntil: 'load' });
@@ -138,4 +149,4 @@ async function renderCards(root, campaign, selected, output) {
   return { browser: 'chromium', version: browser.version(), pages };
 }
 
-module.exports = { card, extractSlide, renderCards };
+module.exports = { theme, card, extractSlide, renderCards };

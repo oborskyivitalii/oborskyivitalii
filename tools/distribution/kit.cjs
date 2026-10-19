@@ -7,7 +7,7 @@ const { loadEvent } = require('./event.cjs');
 const { inputs } = require('./inputs.cjs');
 const { digest } = require('./campaign.cjs');
 const { calendar } = require('./calendar.cjs');
-const { renderCards } = require('./render.cjs');
+const { theme, renderCards } = require('./render.cjs');
 const { escapeText, escapeAttribute } = require('../site/html.cjs');
 
 const producerFiles = [
@@ -25,7 +25,7 @@ const producerFiles = [
   'templates/review.css',
 ]
   .map((file) => 'tools/distribution/' + file)
-  .concat(['tools/site/html.cjs']);
+  .concat(['tools/site/html.cjs', 'site/engine/styles.css']);
 
 function outside(root, destination) {
   const output = path.resolve(destination);
@@ -59,7 +59,7 @@ function sourceIdentity(root) {
   };
 }
 
-function preview(campaign, selected) {
+function preview(campaign, selected, root) {
   const stylesheet = fs.readFileSync(path.join(__dirname, 'templates/review.css'), 'utf8');
   const rows = campaign.pieces
     .map((piece) => {
@@ -72,7 +72,7 @@ function preview(campaign, selected) {
       return `<section><h2>${escapeText(label)}</h2><p>${escapeText(piece.scheduledAt)} · ${escapeText(piece.state)}</p><p>${escapeText(piece.purpose)}</p>${image}<pre>${escapeText(hasCopy ? piece.copy : 'Awaiting authored copy and review.')}</pre></section>`;
     })
     .join('\n');
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(campaign.event.name)} — review kit</title><style>${stylesheet}</style><body><h1>${escapeText(campaign.event.name)}</h1><p>Draft preparation kit. Author, editorial, visual and rights acceptance remain separate. Nothing has been posted or scheduled.</p><p><a href="calendar.ics">Calendar export</a> · <a href="manifest.json">Source manifest</a> · <a href="checklist.md">Review checklist</a></p>${rows}</body></html>`;
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(campaign.event.name)} — review kit</title><style>${theme(root)}\n${stylesheet}</style><body><h1>${escapeText(campaign.event.name)}</h1><p>Draft preparation kit. Author, editorial, visual and rights acceptance remain separate. Nothing has been posted or scheduled.</p><p><a href="calendar.ics">Calendar export</a> · <a href="manifest.json">Source manifest</a> · <a href="checklist.md">Review checklist</a></p>${rows}</body></html>`;
 }
 
 async function buildEvent(root, eventId, destination, pieceId = null) {
@@ -98,7 +98,7 @@ async function buildEvent(root, eventId, destination, pieceId = null) {
     const visual = selected.some((piece) => piece.visual)
       ? await renderCards(root, campaign, selected, temporary)
       : null;
-    fs.writeFileSync(path.join(temporary, 'index.html'), preview(campaign, selected));
+    fs.writeFileSync(path.join(temporary, 'index.html'), preview(campaign, selected, root));
     fs.writeFileSync(
       path.join(temporary, 'checklist.md'),
       [

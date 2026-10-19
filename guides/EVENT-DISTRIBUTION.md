@@ -68,7 +68,11 @@ entries rather than promise app-independent deduplication.
 `tools/distribution/templates/`. The renderer emits1080×1350 PNG, uniform single
 page PDF and self-contained HTML. It escapes authored text, forbids network
 requests, checks layout bounds and records actual Chromium version. CSS owns
-appearance; the browser is an offline build dependency, never a site runtime.
+layout; `site/engine/styles.css` remains the single colour and typography owner.
+Both cards and review HTML embed its exact light `:root` block and use those
+variables. The source stylesheet is hashed in the kit manifest and rechecked
+before completion; a theme edit requires a new kit and visual inspection.
+The browser is an offline build dependency, never a site runtime.
 
 A slide visual names a page of the event's actual pinned PDF deck. The build
 copies those exact bytes into a temporary extraction snapshot, extracts the full
