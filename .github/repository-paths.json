@@ -517,37 +517,37 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d": {
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d/archive.js": {
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/archive.js": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d/navigation.js": {
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/navigation.js": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d/space.js": {
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/space.js": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d/styles.css": {
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/styles.css": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/4da1b7f6a67aeee3d41b59acc012f03112b2d34fbe68d93e644758b44d55236d/theme.js": {
+    "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -613,13 +613,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0f684e87ab1a611947aaab48d6db78825736955ed4f67ecef92d7f20ee079904": {
+    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0f684e87ab1a611947aaab48d6db78825736955ed4f67ecef92d7f20ee079904/index.html": {
+    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -637,25 +637,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5fb1c0c5e3cf27dd6bae2d7edd4fc6f4b242db6d5c17a92bdf01d55e8741c988": {
+    "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5fb1c0c5e3cf27dd6bae2d7edd4fc6f4b242db6d5c17a92bdf01d55e8741c988/research.html": {
+    "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6a9410d7cb295ad21a63570d3bf698a7f88c5c3caf67f2b569edcbc09e5ba199": {
+    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6a9410d7cb295ad21a63570d3bf698a7f88c5c3caf67f2b569edcbc09e5ba199/writing.html": {
+    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -697,13 +697,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/926efd915f8f565a46067e057a83a06a3edb57da598fe5a4b8c474ddb1a7e0f1": {
+    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/926efd915f8f565a46067e057a83a06a3edb57da598fe5a4b8c474ddb1a7e0f1/talks.html": {
+    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -721,13 +721,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c5148d4240662f2b88e9f47f4ff4b9477b67881a2e9964be843b11f590b9e172": {
+    "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c5148d4240662f2b88e9f47f4ff4b9477b67881a2e9964be843b11f590b9e172/credits.html": {
+    "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -1057,6 +1057,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json": {
+      "kind": "file",
+      "purpose": "Exact correction producer lineage with unchanged runtime behavior and mandatory rights admission; preparatory byte derivation, not publication approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-106/2026-10-19-draft-contract.md": {
       "kind": "file",
       "purpose": "First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates.",
@@ -1072,6 +1078,12 @@
     "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json": {
       "kind": "file",
       "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-corrections.md": {
+      "kind": "file",
+      "purpose": "Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

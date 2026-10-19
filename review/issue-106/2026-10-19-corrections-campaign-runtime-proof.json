@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "kind": "issue106-correction-runtime-bytes",
+  "role": "preparatory implementation byte derivation; actual guarded release checks remain required",
+  "family": {
+    "behavior": "fixed-blocks",
+    "baseEngine": "9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3",
+    "theme": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a",
+    "space": "d5d1593e9c0c76910e68d5c965714f68af73bf2b26480f8835f784b02f953c41",
+    "navigation": "f01ebd2fecef1164f68f40b032e0857ba232ba89b9af4bb85c208a3e10e3203e",
+    "archive": "1307b2405daa50937e5746f4d8a71230842718377d853b4d0cf4704e7f2de9ad"
+  },
+  "runtimes": [
+    {
+      "id": "issue106-campaign-corrections-plain",
+      "family": "issue106CampaignCorrections",
+      "edition": "plain",
+      "fingerprint": "636a64ce02ee79440f2faea7cb30796478f1ca7d9b225b70ec5f99f1a909049d",
+      "styles": "ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c"
+    },
+    {
+      "id": "issue106-campaign-corrections-staging",
+      "family": "issue106CampaignCorrections",
+      "edition": "staging",
+      "fingerprint": "4846a620e4dac30e569ddecd91961a45fee7811fed3b50751f3520801bd8ca05",
+      "styles": "b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91"
+    },
+    {
+      "id": "issue106-campaign-corrections-production",
+      "family": "issue106CampaignCorrections",
+      "edition": "production",
+      "fingerprint": "eff143e9e6bc0364f0d10da3a4f761039d0c9656889ab42930d396d915898ec0",
+      "styles": "ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c"
+    }
+  ],
+  "sourceDirty": true
+}

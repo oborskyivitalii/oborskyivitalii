@@ -243,6 +243,38 @@ test('duplicate IDs, unknown dependencies and cycles fail', (t) => {
   assert.throws(f.load, /cycle/i);
 });
 
+test('dependency windows propagate through chains and multiple predecessors in any order', (t) => {
+  for (const order of [
+    ['a', 'b', 'c'],
+    ['c', 'b', 'a'],
+    ['b', 'c', 'a'],
+  ]) {
+    const f = fixture(t);
+    const original = f.plan.pieces[0];
+    const windows = {
+      a: { from: 10, to: 10, after: [] },
+      b: { from: 0, to: 10, after: ['a'] },
+      c: { from: 0, to: 0, after: ['b'] },
+    };
+    f.plan.pieces = order.map((id) => ({
+      ...structuredClone(original),
+      id,
+      content: f.write(`posts/${id}.en.md`, `Authored argument ${id}.\n`),
+      window: windows[id],
+    }));
+    assert.throws(f.load, /impossible.*window/i);
+    windows.c.to = 10;
+    assert.equal(f.load().readiness, 'draft-only', 'feasible overlapping chain');
+    windows.b.after = [];
+    windows.b.from = 5;
+    windows.c.after = ['b', 'a'];
+    windows.c.to = 6;
+    assert.throws(f.load, /impossible.*window/i, 'latest prerequisite controls feasibility');
+    windows.c.to = 10;
+    assert.equal(f.load().pieces.length, 3);
+  }
+});
+
 test('changed predecessor copy invalidates downstream approval', (t) => {
   const f = fixture(t);
   const followup = structuredClone(f.plan.pieces[0]);

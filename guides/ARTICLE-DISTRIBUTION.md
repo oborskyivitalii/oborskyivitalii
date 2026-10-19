@@ -76,6 +76,8 @@ pins as evidence.
 Piece kinds: `feed`, `carousel`, `article`, `pdf`; channels: `linkedin`, `medium`,
 `reddit`, `pdf`. Windows are relative days0–365, not created calendar schedules.
 `after` names existing pieces; duplicate IDs, cycles and impossible windows fail.
+Feasibility propagates the earliest possible day through all prerequisites, so
+indirect constraints and multiple predecessors apply regardless of declaration order.
 Media entries use `{ "id": "figure-id", "sha256": "<publisher asset SHA256>" }`.
 CTA destinations are the article or a validated section, never arbitrary URLs.
 Zero pieces is an explicit early planning draft, not a complete campaign.

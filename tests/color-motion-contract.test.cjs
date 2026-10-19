@@ -653,3 +653,24 @@ test('issue106 selected material lineage keeps exact Color byte checks', () => {
     assert.throws(() => motion.select(foreign), /Color motion identity/);
   }
 });
+
+test('issue106 correction lineage retains exact bytes and mandatory rights admission', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-campaign-corrections-' + edition;
+    const current = motion.reviewedRuntime(id);
+    const previous = motion.reviewedRuntime('issue106-campaign-materials-' + edition);
+    assert.deepEqual(current.files, previous.files, 'corrections do not change runtime behavior');
+    assert.equal(motion.select(manifest(id)).id, id);
+    const selected = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(selected, selected.components),
+      true
+    );
+    const tampered = manifest(id);
+    tampered.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(tampered), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
+  }
+});

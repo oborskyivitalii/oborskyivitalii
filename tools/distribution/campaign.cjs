@@ -106,20 +106,21 @@ function publisherArticle(root, articleId) {
 function dependencies(pieces) {
   const byId = new Map(pieces.map((piece) => [piece.id, piece]));
   const active = new Set();
-  const completed = new Set();
+  const completed = new Map();
   function visit(piece) {
     if (active.has(piece.id)) throw Error('Campaign dependency cycle');
-    if (completed.has(piece.id)) return;
+    if (completed.has(piece.id)) return completed.get(piece.id);
     active.add(piece.id);
+    let earliest = piece.window.from;
     for (const dependency of piece.window.after) {
       const preceding = byId.get(dependency);
       if (!preceding) throw Error(`Unknown campaign dependency: ${dependency}`);
-      visit(preceding);
-      if (preceding.window.from > piece.window.to)
-        throw Error('Impossible campaign dependency window');
+      earliest = Math.max(earliest, visit(preceding));
     }
+    if (earliest > piece.window.to) throw Error('Impossible campaign dependency window');
     active.delete(piece.id);
-    completed.add(piece.id);
+    completed.set(piece.id, earliest);
+    return earliest;
   }
   for (const piece of pieces) visit(piece);
 }
