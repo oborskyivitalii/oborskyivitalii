@@ -6,36 +6,36 @@
   "criteria": [
     {
       "id": "AC01",
-      "intent": "Deliver an editable 13-slide English edition with notes and the explicit 23+5+2 timing plan.",
-      "automated_scope": "No generic repository check establishes slide count, English wording, actual note attachment or speaking duration. Record the exact PPTX relationship and note audit in the versioned review; rehearsal remains AC06.",
+      "intent": "Deliver an editable English edition with attached notes and the explicit 23+5+2 timing plan; the 19 October 2026 R2 amendment replaces the R1 13-slide selection with 11 agreed screens.",
+      "automated_scope": "No generic repository check establishes slide count, English wording, actual note attachment or speaking duration. Record the exact 11-slide PPTX relationship and note audit against the dated plan in the R2 review. The 23-minute speaking allocation, 5-minute Q&A and 2-minute reserve are a plan; measured rehearsal remains AC06.",
       "checks": [],
       "gates": ["ARTIFACT-REVIEW"]
     },
     {
       "id": "AC02",
-      "intent": "Retain the selected PMDay dimensions, native visuals and complete evidence slide, recording every visible change.",
-      "automated_scope": "The selected upstream PPTX and derivative require an exact package comparison, including chart/workbook, tables, artwork and all visible text changes. The reports slide must differ only in pagination. These artifact observations are recorded separately; RI hashes do not prove reuse or semantic preservation.",
+      "intent": "Retain PMDay dimensions, native visual components and the complete evidence slide, recording every visible change; the 19 October 2026 R2 amendment permits the agreed condensation and rearrangement into 11 screens.",
+      "automated_scope": "Compare the pinned source and exact R2 PPTX package, including chart/workbook, tables, artwork and changed visible text. Native component reuse must implement the agreed visual plan rather than preserve superseded whole-slide content. Use PMDay bases 1, 3, 4, 5, 7, 9, 10, 12, 13, 14 and 15, merging ideas from 2, 6, 8 and 11. The complete reports slide must differ only in pagination. Record package and render observations separately; RI hashes do not prove native reuse or semantic preservation.",
       "checks": [],
       "gates": ["ARTIFACT-REVIEW"]
     },
     {
       "id": "AC03",
-      "intent": "Independently review the SDLC equilibrium, cognitive delegation and sociotechnical narrative and every rendered slide.",
-      "automated_scope": "Narrative quality, consistency with the English notes and all-slide readability require a recorded independent content and visual review of the exact candidate. Successful conversion, generic source checks and self-review do not supply that evidence.",
+      "intent": "Independently review every rendered R2 slide against the agreed visual plan and the SDLC equilibrium, cognitive delegation and sociotechnical narrative.",
+      "automated_scope": "The 19 October 2026 R2 review must compare the original agreed plan and its dated QR amendment in drafts/devcon-romania-2026/plan.md with all 11 rendered screens, then check notes-to-slide consistency and readability. Notes-to-deck agreement alone is insufficient. Explicitly resolve the eight R1 visual mismatches and inspect the exact final hashes. Successful conversion, generic source checks, prior R1 review and authoring self-review cannot supply this independent evidence.",
       "checks": [],
       "gates": ["INDEPENDENT-REVIEW"]
     },
     {
       "id": "AC04",
-      "intent": "Commit matching review deliverables, mapping, notes, provenance and revision decisions in an issue-linked Draft PR.",
-      "automated_scope": "Record the actual PPTX/PDF checksums and correspondence, selected source identity, per-item provenance, notes and visible-change mapping. Observe the committed files and live Draft PR linkage separately; the repository policy cannot create or verify a GitHub approval.",
+      "intent": "Commit matching versioned review deliverables, mapping, notes, provenance and revision decisions in the same issue109-linked Draft PR110, preserving the R1 predecessor and its four versioned files.",
+      "automated_scope": "Record the actual R2 PPTX/PDF checksums and correspondence, pinned PMDay source identity, native-component and visible-change mapping, notes and the dated plan amendment. Preserve R1 PPTX, PDF, notes and edition metadata byte-for-byte at predecessor f1531f321a9ea0b983ccee427cf485a161ab3b21; the common README becomes the edition index. Observe the committed files and live Draft PR110 linkage separately; repository policy cannot create or verify a GitHub approval.",
       "checks": [],
       "gates": ["DELIVERY-LINKAGE"]
     },
     {
       "id": "AC05",
       "intent": "Maintain the exact draft's path catalog, acceptance mapping, bounded checks, RI freshness and versioned handoff.",
-      "automated_scope": "BASIC checks the existing site source/output contract without a new browser matrix. STYLE checks its declared source guard subset. CURRENT-RI verifies the complete catalog and fresh generated views; RI-CI verifies the unchanged workflow routes and mapped new policy. Review the exact draft-only diff, AC mapping and applicable CS01, CS02, CS04, CS05, CS08-CS10 separately. No builder, runtime, public site output, workflow or test budget changes are introduced.",
+      "automated_scope": "BASIC checks the existing site source/output contract without a new browser matrix. STYLE checks its declared source guard subset. CURRENT-RI verifies the complete catalog and fresh generated views; RI-CI verifies unchanged workflow routes and the amended owning policy. Review the exact draft-only diff, AC01-AC08 mapping and applicable CS01, CS02, CS04, CS05, CS08-CS10 separately. The event record consumes the pinned existing PR107 adapter; no copied or rewritten engine, public site output, workflow, source-test selection or test budget changes are introduced.",
       "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
       "gates": ["HANDOFF-REVIEW"]
     },
@@ -45,6 +45,20 @@
       "automated_scope": "Author acceptance, real speaking time and behavior on the presenting device are not established by local rendering or any repository check. Preserve them as pending until the author's exact-edition evidence is recorded.",
       "checks": [],
       "gates": ["AUTHOR-ACCEPTANCE"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Apply the 19 October 2026 QR amendment: the final slide has one QR for https://vitaliioborskyi.ai/ and a readable matching URL labeled Research · Articles · Talks.",
+      "automated_scope": "Generic repository checks cannot establish QR decoding or projected readability. Record exact payload decoding from the PPTX QR asset and final rendered PDF slide, count the single visible QR, and inspect the displayed URL and label at presentation scale. This is a homepage link, not a claim that these draft slides are published. Actual presenting-device and projection acceptance remains AC06.",
+      "checks": [],
+      "gates": ["QR-REVIEW"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Bind the R2 version, preserved R1 predecessor and DevCon event/campaign records to the exact lowercase repository PDF path and hashes using the existing pinned event adapter.",
+      "automated_scope": "Record byte-level R1 preservation, R2 edition/artifact correspondence and the strict schema1 event deck path, sha256 and credit plus schema2 campaign pieces[] and source/brief hashes. Run the existing event CLI from PR107 producer head 5ce3a256be5ce882bc871f9bdf976b06727d3e69 against the exact PR110 checkout, retaining command, producer/source identities and result. This bounded compatibility observation is separate from the four AC05 repository checks and from approval, scheduling, publication or public deck availability.",
+      "checks": [],
+      "gates": ["VERSION-EVENT-BINDING"]
     }
   ],
   "checks": {
@@ -67,23 +81,31 @@
   "gates": {
     "ARTIFACT-REVIEW": {
       "kind": "human",
-      "description": "Review exact source and derivative hashes, 13-slide order, editable native objects, internally attached English notes, 23+5+2 timing declaration and the exhaustive visible-change log. Compare all retained dimensions, diagrams, native tables, chart/workbook and artwork; prove the complete reports slide changes only its page number. Record the audit and its limits in review/issue-109/2026-10-19-review.md."
+      "description": "Review exact source and R2 artifact hashes, 11-screen order, native component reuse, attached English notes, 23+5+2 timing and exhaustive visible-change mapping against drafts/devcon-romania-2026/plan.md. Inspect retained dimensions, diagrams, tables, chart/workbook and artwork; prove the complete reports slide changes only pagination. Record measured audit evidence and limitations in review/issue-109/2026-10-19-r2-review.md. R1 evidence remains historical and cannot establish R2 artifact acceptance."
     },
     "INDEPENDENT-REVIEW": {
       "kind": "human",
-      "description": "Record independent content and all-slide visual review against the accepted SDLC equilibrium and cognitive-delegation framing. Check that operating-model proposals remain hypotheses, the complete reports slide is retained and English notes explain every selected slide. Identify the reviewer role, inspected artifact hashes, findings and dispositions; self-review is not independent acceptance."
+      "description": "Record independent content and all-11-slide visual review of the exact final R2 candidate against the agreed plan and dated QR amendment, not only against the notes. For each planned screen compare intended visible message, hierarchy, retained native components, merged/removed content and actual render. Explicitly resolve the eight R1 mismatches covering cover, comprehension, equilibrium, runtime, evaluation, control, roles and conclusion. Check English notes, preserved evidence and hypothetical operating models. Identify reviewer role, inspected PPTX/PDF hashes, findings and dispositions; authoring self-review and historical R1 passes are insufficient."
     },
     "DELIVERY-LINKAGE": {
       "kind": "human",
-      "description": "Observe matching PPTX/PDF, source and rights/provenance records, source-to-derivative mapping, notes and revision decisions in a commit linked with Refs #109 and one Draft PR. Record exact file/commit links and separate preparation from public publication, merge or conference acceptance."
+      "description": "Observe matching versioned R2 PPTX/PDF, source and rights/provenance records, plan-to-render mapping, notes and revision decisions in a commit linked with Refs #109 and the same Draft PR110 on work/issue-109-devcon-romania-r1. Record exact file/commit links and preserved R1 predecessor f1531f321a9ea0b983ccee427cf485a161ab3b21. Separate preparation from public publication, merge or conference acceptance."
     },
     "HANDOFF-REVIEW": {
       "kind": "human",
-      "description": "Review the policy against all six unchanged issue109 criteria, draft-only file scope, source owners, readable JSON and the bounded CS01, CS02, CS04, CS05, CS08-CS10 obligations. Record fresh RI/coupling and exact-source check results, retained failures and actual issue checkbox reconciliation. Draft-deferred CI remains skipped, not passed; no site staging or production run is required for these repository-only deliverables."
+      "description": "Review stable AC01-AC06 plus the dated R2 scope and appended AC07-AC08, draft-only files, source owners, readable JSON and bounded CS01, CS02, CS04, CS05, CS08-CS10 obligations. Record fresh RI/coupling and exact-source check results, retained failures and actual issue checkbox reconciliation. Four unchanged repository checks map only to AC05. Draft-deferred CI remains skipped, not passed; these draft deliverables do not require a site staging or production run."
     },
     "AUTHOR-ACCEPTANCE": {
       "kind": "human",
       "description": "Record the author's review of this exact edition, timed rehearsal fitting the 30-minute slot including questions and reserve, and actual presenting-device acceptance before calling it the final DevCon conference edition. Preparing or pushing a Draft PR does not require this final-edition gate to be complete."
+    },
+    "QR-REVIEW": {
+      "kind": "human",
+      "description": "On the exact R2 final slide verify one visible QR, decoded payload exactly https://vitaliioborskyi.ai/, a readable matching URL and Research · Articles · Talks label. Decode both the PPTX asset and final PDF raster, inspect placement and quiet zone, and record hashes plus method/results in the R2 review. Retain actual projection/device acceptance under AC06. No slides-published claim is permitted by this homepage QR."
+    },
+    "VERSION-EVENT-BINDING": {
+      "kind": "human",
+      "description": "Verify R1 PPTX/PDF/notes/edition bytes against predecessor f1531f321a9ea0b983ccee427cf485a161ab3b21, and verify R2 edition identities against the actual files. Inspect drafts/events/devcon-romania-2026/event.json as strict schema1 with deck {path, sha256, credit} pointing to drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf. Inspect plan.json as strict schema2 with pieces[], event source hash and pinned brief. Record a successful existing CLI validation using PR107 producer head 5ce3a256be5ce882bc871f9bdf976b06727d3e69 with the PR110 checkout as its working directory; do not copy or rewrite that unmerged engine. Keep source compatibility, approval, timing, public destinations and publication states distinct."
     }
   }
 }

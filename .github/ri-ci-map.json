@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
     "date": "2026-10-19",
-    "summary": "Issue109 adds a draft-only DevCon edition and maps its policy to existing bounded repository checks. The new policy joins the existing intent layer; workflow commands, test selection, runtime owners and budgets are unchanged. Artifact, independent, author and device evidence remain separate."
+    "summary": "Issue109 R2 preserves AC01-AC06, applies the dated 11-screen native-component and agreed-plan/render correction, and adds AC07 QR and AC08 version/event binding gates. Four unchanged repository checks remain AC05 only. The versioned R2 review joins the existing intent layer. Workflow commands, test selection, runtime owners and budgets are unchanged; the draft event records consume the separately pinned unmerged PR107 adapter without copying its engine. Artifact, independent plan/render, author and device evidence remain separate."
   },
   "layers": [
     {
@@ -128,7 +128,8 @@
         "tests/test_issue102_acceptance.py",
         "review/issue-102/2026-10-18-analytics-and-search-access.md",
         "review/issue-102/2026-10-18-provider-evidence.json",
-        ".github/acceptance/issue-109.json"
+        ".github/acceptance/issue-109.json",
+        "review/issue-109/2026-10-19-r2-review.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -640,7 +641,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5608db39afee4c872786d709fea13cf4b5d86b2f303b4f93d6188c5d1e8c39a5",
+    "digest": "276067df1347697ef07e941d1c35160ec56146834d206d919865383f8c6e56bf",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -664,7 +665,7 @@
       },
       {
         "path": ".github/acceptance/issue-109.json",
-        "sha256": "545994a8ae177ec537bb3dc66342c8e9beae5af5d250610a9681c614f010635d"
+        "sha256": "6831d8f122eaa5bb366b3a7c68f5125152a1e60dca21b70ba02412b9eeb4e4a1"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -752,7 +753,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "cda9dc3b90e1196f2bbf8f554965e0b064f713b08d8ffb01054d102db6e496f6"
+        "sha256": "6550e46fd181eecc6d905ca04a685328d94934d265933ae0035547d0e4f65e87"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

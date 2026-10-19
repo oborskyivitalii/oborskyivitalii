@@ -56,8 +56,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330](docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba](docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
-| [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
-| [drafts/devcon-romania-2026](drafts/devcon-romania-2026) | Review-only English DevCon Romania edition derived from pinned PMDay v35 native slides under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts](drafts) | Unpublished article/profile proposals, presentation editions and event campaign records excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/devcon-romania-2026](drafts/devcon-romania-2026) | Versioned review-only English DevCon Romania editions derived from pinned PMDay v35 native components under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2](drafts/devcon-romania-2026/r2) | DevCon R2 editable 11-screen edition, matching PDF, attached English notes and exact version/provenance metadata. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/events](drafts/events) | Unpublished event sources and campaign plans prepared for the separately owned event distribution adapter. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/events/devcon-romania-2026](drafts/events/devcon-romania-2026) | Issue109 DevCon event source, campaign plan, brief and organizer evidence bound to the exact R2 PDF. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
+| [drafts/events/devcon-romania-2026/sources](drafts/events/devcon-romania-2026/sources) | Bounded organizer observations used as evidence by the draft DevCon event source. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/assets](review/assets) | Historical visual concept/portrait assets. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -195,7 +199,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-102.json](.github/acceptance/issue-102.json) | Issue102 analytics AC policy: bounded source checks and explicit browser/live gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
-| [.github/acceptance/issue-109.json](.github/acceptance/issue-109.json) | Issue109 DevCon draft AC01-AC06 mapping: bounded repository checks and explicit artifact, independent-review, linkage and author gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-109.json](.github/acceptance/issue-109.json) | Issue109 DevCon R2 AC01-AC08 mapping: four bounded repository checks and explicit artifact, agreed-plan/render review, linkage, author, QR and version/event binding gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -377,9 +381,33 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf](drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf) | Derived PDF review rendition of the issue109 editable DevCon R1 deck; not a public or final conference edition. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
 | [drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx](drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx) | Authored editable 13-slide English DevCon R1 edition reusing selected PMDay v35 native slides and attached notes. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
-| [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) | Issue109 DevCon edition entry point: audience, timing, slide reuse, revision decisions, source/provenance and review status. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) | Issue109 DevCon edition index: preserved R1, current R2, agreed-plan amendments, timing, provenance and pending acceptance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
 | [drafts/devcon-romania-2026/edition.json](drafts/devcon-romania-2026/edition.json) | DevCon R1 artifact identities, pinned upstream source, selected-slide mapping and explicit derivative provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/plan.md](drafts/devcon-romania-2026/plan.md) | Original agreed DevCon visual plan and dated R2/QR amendments, preserving the acceptance target for plan-to-render review. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
 | [drafts/devcon-romania-2026/speaker-notes.md](drafts/devcon-romania-2026/speaker-notes.md) | English speaking notes and per-slide timing for the 23-minute DevCon R1 talk with separate questions and reserve. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/devcon-romania-2026/r2/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf](drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf) | Derived PDF review rendition of the DevCon R2 native deck, pinned by the draft event record and distinct from a published conference edition. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pptx](drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pptx) | Authored editable 11-screen English DevCon R2 deck adapting PMDay native components to the agreed visual plan and homepage QR amendment. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2/edition.json](drafts/devcon-romania-2026/r2/edition.json) | DevCon R2 artifact hashes, immutable R1/source identities, native-component and visible-change mapping, provenance and version/event binding. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/r2/speaker-notes.md](drafts/devcon-romania-2026/r2/speaker-notes.md) | English spoken script and per-screen timing for the 11-screen DevCon R2 edition with 23 minutes speaking, 5 minutes Q&A and 2 minutes reserve. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+
+## drafts/events/devcon-romania-2026/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/devcon-romania-2026/brief.en.md](drafts/events/devcon-romania-2026/brief.en.md) | English DevCon campaign brief defining audience, scope, destinations and pending editorial decisions without asserting publication. | draft | [drafts/events/devcon-romania-2026/plan.json](drafts/events/devcon-romania-2026/plan.json) |
+| [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) | Strict schema1 DevCon event source with organizer evidence and exact lowercase R2 PDF path, SHA256 and source credit for the pinned PR107 adapter. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
+| [drafts/events/devcon-romania-2026/plan.json](drafts/events/devcon-romania-2026/plan.json) | Strict schema2 draft DevCon campaign plan with pieces, event/brief hash bindings and explicit unapproved states. | draft | [drafts/events/devcon-romania-2026/plan.json](drafts/events/devcon-romania-2026/plan.json) |
+
+## drafts/events/devcon-romania-2026/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/devcon-romania-2026/sources/organizer.md](drafts/events/devcon-romania-2026/sources/organizer.md) | Dated public organizer evidence for DevCon event identity and destinations, retaining observation limits. | draft | [drafts/events/devcon-romania-2026/event.json](drafts/events/devcon-romania-2026/event.json) |
 
 ## guides/
 
@@ -648,6 +676,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [review/issue-109/2026-10-19-r2-review.md](review/issue-109/2026-10-19-r2-review.md) | Issue109 R2 correction review: eight missed R1 visual mismatches, agreed-plan/render acceptance, QR/version/event bindings and exact-source evidence with pending gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-109/2026-10-19-review.md](review/issue-109/2026-10-19-review.md) | Issue109 derivative-source decisions, artifact and independent-review evidence, CS/AC mapping and remaining author/device acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
