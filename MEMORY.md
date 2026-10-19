@@ -4,16 +4,18 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
-- #108 site release: Ready PR111, head e73f592c5547957f200cbaeb931e62b86d4561bf,
-  tree493117e64bf4e16333d99c8ac1504dba3ab39283. Current source CI passed
-  Basic/navigation/owning6-check policy; retry staging39261682878 is running.
+- #108 site release: PR111 merged as82b57b8948c6c30143213b846ee2848d06f8d200,
+  tree493117e64bf4e16333d99c8ac1504dba3ab39283, identical to staged e73f592.
+  Basic/navigation/owning6-check policy and staging39261682878 passed.
 - First staging39259059691 passed25/26 guards;56 public checksum/commit findings
   were individually proved without changing scanners. Current local scan0 untriaged.
   Follow review/issue-108/2026-10-19-site-delivery.md and live PR111 for actual
-  staging/merge/candidate/production outcomes. No site release is claimed yet.
+  staging/merge/candidate/production outcomes. Frozen candidate39264348934 passed.
 
-- Verified main/production:0098f804cb3b0d120173d4c8689043db42231c47.
-  .ai production and .com redirect remain owned by #39/#8; no release here.
+- Main82b57b8; previous accepted production0098f804 / prod-2026-10-19.1.
+  Maintainer approved the exact preview/rights; PR111 comment6271419358 records
+  source/public/rights digests. Production dispatch39281830660 awaits its outcome.
+  .ai production and .com redirect remain owned by #39/#8.
 - Active Draft PR107 / #106: reusable article campaign/public materials plus
   authorized event campaign adapter, offline promotion kits and calendar export.
 - Concurrent material/campaign corrections are committed at c7877983ad64480e152d8abbeac97e2a80f2ccc2.
@@ -36,8 +38,10 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   presentation-derived promotion, per-piece EN/UA and kit/ICS export on19October.
 - #106 / PR107 owns generic preparation; #108 owns real PMDay content and Talks.
   Original article campaign AC02–AC11 remain open and are not replaced by events.
-- Calendar output is a file with stable UID/revision, not an account write or
-  LinkedIn scheduling. Plain calendar imports may duplicate in some apps.
+- ICS export remains a file with stable UID/revision; it is not an account write.
+  On19October the maintainer separately authorised six private Calendar reminders.
+  All six were created/read back at09:00 Warsaw, popup30min, with post drafts,
+  visual/carousel briefs and source links. No LinkedIn scheduling/posting.
 - Working inputs/kits stay repository-only unless explicitly selected for public
   publication. Actual posting and author/editorial/rights decisions remain manual.
 - No paid promotion/services/inference, social credentials or private outreach.

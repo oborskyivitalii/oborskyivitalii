@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b1cdc686a80e5229d370de91825640b21a89511e6a28f25408687ffc4752095d",
+    "digest": "e4dc27f9cbe9d5ecf0c3a9428a469b9428047f7c5d57a7d2573492deace11ad6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "da88451ba17ee0646ed22333f98d73c907fad575efc3ddee9f2defcae8cf5f0a"
+        "sha256": "385d71b35626d4f2fdb12e098cc8c652707b9047c1cfaad9999b69b879be2f36"
       },
       {
         "path": "NOTICE.md",
