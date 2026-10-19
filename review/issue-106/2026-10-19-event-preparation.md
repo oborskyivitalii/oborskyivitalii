@@ -83,3 +83,24 @@ Do not tick whole ACs based on partial tests. Final commit/evidence and linked k
 are recorded in the PR/issue checkpoint. The manual workflow is available after
 GitHub admits its definition on the default branch. No merge/deploy/publication
 or calendar-account modification is performed by this increment.
+
+## Integrated source checkpoint
+
+Code source d1b777743db582a1675e7f46f856d2be8efc4e61, tree
+9aa184c0c64946efe24b6c5f35a0ddc942a553d5, clean before/after. This
+includes the separately committed c787798 corrections without replacing them.
+The event extension changes no site/docs/tools-site bytes against that corrected
+parent. No independent re-review of those corrections is claimed here.
+
+Owning policy5/5 passed, evidence_valid:true, errors empty. Permanent combined
+source groups30/30 passed; RI28/28 and RI/CI20/20 passed. Maintained formatting,
+ESLint and both card/review stylesheet correctness checks passed. The first
+Stylelint diagnostic used its runner module as configuration and failed; rerunning
+with the actual maintained stylelint.config.cjs passed.
+
+Exact clean-source kit: review/issue-108/2026-10-19-announcement/. Manifest binds
+that code commit/tree, authored copy and every produced byte. PNG1080×1350 and
+one-page PDF were inspected; six ICS records parsed at09:00 Warsaw with current
+immutable source links. The standalone diagnostic uses Chromium138.0.7204.0;
+locked-browser CI/author/mobile/rights gates remain pending. Whole AC12–AC17 stay
+open until their independent and human/merge gates are actually satisfied.

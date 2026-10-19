@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; font-src 'none'; script-src 'none'"
+    />
+    <title>UA Online PMDay 2027 Winter</title>
+    <style>
+      * {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #e9e5dc;
+  color: #18282c;
+  font-family: 'DejaVu Sans', Arial, sans-serif;
+}
+.card {
+  width: 1080px;
+  height: 1350px;
+  padding: 68px 76px 52px;
+  display: flex;
+  flex-direction: column;
+  border-top: 18px solid #22665e;
+  background: #f8f5ed;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 30px;
+}
+.author {
+  font-size: 30px;
+  font-weight: 700;
+}
+.edition {
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+main {
+  padding-top: 105px;
+  flex: 1;
+  min-height: 0;
+}
+.eyebrow {
+  margin: 0 0 35px;
+  color: #22665e;
+  font-size: 29px;
+  font-weight: 700;
+}
+h1 {
+  margin: 0 0 46px;
+  max-height: 300px;
+  font-size: 91px;
+  line-height: 1.08;
+  letter-spacing: -3px;
+}
+.event {
+  max-height: 235px;
+  margin: 0 0 35px;
+  font-size: 55px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+.support {
+  max-height: 190px;
+  margin: 0;
+  font-size: 33px;
+  line-height: 1.4;
+}
+footer {
+  border-top: 2px solid #c6c9bd;
+  padding-top: 27px;
+}
+footer p {
+  margin: 0;
+}
+.date {
+  font-size: 42px;
+  font-weight: 700;
+}
+.details {
+  margin-top: 12px;
+  font-size: 27px;
+}
+.destination {
+  margin-top: 27px;
+  font-size: 25px;
+  color: #22665e;
+  overflow-wrap: anywhere;
+}
+.credit {
+  margin-top: 14px;
+  font-size: 18px;
+  max-height: 55px;
+}
+.slide {
+  display: none;
+}
+[data-template='slide'] main {
+  padding-top: 55px;
+}
+[data-template='slide'] h1 {
+  font-size: 57px;
+  max-height: 135px;
+  margin-bottom: 30px;
+}
+[data-template='slide'] .eyebrow {
+  margin-bottom: 22px;
+}
+[data-template='slide'] .slide {
+  display: flex;
+  height: 455px;
+  margin-bottom: 30px;
+  background: white;
+  align-items: center;
+  justify-content: center;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+[data-template='slide'] .event {
+  font-size: 27px;
+  margin-bottom: 17px;
+}
+[data-template='slide'] .support {
+  font-size: 28px;
+  max-height: 130px;
+}
+[data-template='reminder'] h1 {
+  color: #22665e;
+}
+@page {
+  size: 1080px 1350px;
+  margin: 0;
+}
+
+    </style>
+  </head>
+  <body>
+    <article class="card" data-template="announcement">
+      <header
+        ><span class="author" data-fit>Vitalii Oborskyi</span
+        ><span class="edition">Speaking</span></header
+      >
+      <main>
+        <p class="eyebrow" data-fit>Upcoming event</p>
+        <h1 data-fit>I’ll be speaking</h1>
+        <div class="slide"></div>
+        <p class="event" data-fit>UA Online PMDay 2027 Winter</p>
+        <p class="support" data-fit>Session details to follow</p>
+      </main>
+      <footer>
+        <p class="date" data-fit>30 January 2027</p>
+        <p class="details" data-fit>Online</p>
+        <p class="destination" data-fit>pmday.org/online</p>
+        <p class="credit" data-fit></p>
+      </footer>
+    </article>
+  </body>
+</html>

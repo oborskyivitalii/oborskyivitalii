@@ -17,12 +17,12 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "53d09c277d6345ef9fda6010fabed4c6279433052739333a321f77f8b29fec4a",
+    "digest": "b3ad623a862d856512e16c8a412bf5715bafb938e8596e987d33cbcf65716ea3",
     "inputs": [
       {
         "path": ".gitattributes",
         "identity_mode": "content",
-        "sha256": "6030a33a1cd826768f3c0ed65bde55a3a210e7131cca0a6d60d9b378e5268461"
+        "sha256": "cc1cd01a6b2a200e6deb7703df6d4b393ece86a36dc02008caf79f4a749af351"
       },
       {
         "path": ".github/ACCEPTANCE.md",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "bc40cb065506e11c4afef2840eee3e2076bccf5dfc8e6df932b4d38c5e5f7bfe"
+        "sha256": "970c123bcf07474b0a586b989666021cb46f0c305e42fe1406c326286587df23"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "ff174e1f66a7399875be75f4f1931266ee4e26ad2131004df1c187c313ed6f9b"
+        "sha256": "d2652582f099f87905646884e4b623acbc05b426147fc7e9a0aa15e22ccabbae"
       },
       {
         "path": ".github/workflows/campaign-kit.yml",
@@ -770,7 +770,17 @@
       {
         "path": "review/issue-106/2026-10-19-event-preparation.md",
         "identity_mode": "content",
-        "sha256": "f30348fcf9405d3e87ecad8df2907d1f38c0e3cfd7db281994b9e5c23ce27425"
+        "sha256": "f34681378befe72368a4e3da886dcf77796b969fe1d931b1ea2b9ccad4c27d93"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-event-render-diagnostic.json",
+        "identity_mode": "content",
+        "sha256": "a17b8239e0a8a542f0a16d62005e07257b2c107bf9071ede58f9bb8e55f2785e"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-event-source-acceptance.json",
+        "identity_mode": "content",
+        "sha256": "d88bbd8f06bf9e98d7b725f0edd8f74e517060cf491009729c58766b014a249d"
       },
       {
         "path": "review/issue-106/2026-10-19-independent-review.md",
@@ -786,6 +796,51 @@
         "path": "review/issue-106/2026-10-19-public-materials.md",
         "identity_mode": "content",
         "sha256": "2abbf7c9be41c0a72adc95d01ee3bf306f01d6044eea89c9a94d2b2d798f5d3e"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.html",
+        "identity_mode": "content",
+        "sha256": "3f7e92e34aa899f5cd46996c4a7160ded75d0d205548192afb9def080d25bb9f"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.pdf",
+        "identity_mode": "content",
+        "sha256": "a7aa2becbce657d136eff48642e1c5bd9cd4618a49352897f8e8d2e712b0ced5"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/announcement.png",
+        "identity_mode": "content",
+        "sha256": "49bf39062b6e048fe56a65a89b912d0903b6b8dc9a832fbaa668402f9afc3301"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/calendar.ics",
+        "identity_mode": "content",
+        "sha256": "4f2d4a6784b1a9c124bc6b1d7edc555f88022131eb6519586e276e1b3b1d7730"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/checklist.md",
+        "identity_mode": "content",
+        "sha256": "def1aef92b65ff7879c388dd1ad861bae65fcd4724c424450741d1196b158983"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/index.html",
+        "identity_mode": "content",
+        "sha256": "823171f20a31a2ccd8a6453cc1c88bb0e399eef0a2ca87c64ba11081cea5cde3"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/manifest.json",
+        "identity_mode": "content",
+        "sha256": "a8dc2bd3d5d686a2bc0854b35cc5f41b12ffff67a3ed1bd7363aa7f5f7789947"
+      },
+      {
+        "path": "review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip",
+        "identity_mode": "content",
+        "sha256": "12b48447a2f074f1adfaca489e96556ec31914b3e1e164c20c21bee8246ed981"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -8883,6 +8938,28 @@
       "title": "Issue106 — 19 October event preparation implementation"
     },
     {
+      "path": "review/issue-106/2026-10-19-event-render-diagnostic.json",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-event-render-diagnostic.json"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-event-source-acceptance.json",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-19-event-source-acceptance.json"
+    },
+    {
       "path": "review/issue-106/2026-10-19-independent-review.md",
       "kind": "file",
       "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
@@ -8914,6 +8991,105 @@
         "AGENTS.md"
       ],
       "title": "Issue106 — selected public materials and reciprocal article links"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.en.md",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.html",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.pdf",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.pdf"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/announcement.png",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.png"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/calendar.ics",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.ics"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/checklist.md",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Author review before posting"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/index.html",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/manifest.json",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip",
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-winter-announcement-kit.zip"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -22810,6 +22986,26 @@
       "purpose": "Separate article distribution and organic campaign planning, review and aggregate evidence; not an article release gate.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108",
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-108/2026-10-19-announcement",
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
       "instructions": [
         "AGENTS.md"
       ]

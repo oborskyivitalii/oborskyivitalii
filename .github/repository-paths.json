@@ -1147,6 +1147,18 @@
       "role": "history",
       "owner": "guides/EVENT-DISTRIBUTION.md"
     },
+    "review/issue-106/2026-10-19-event-render-diagnostic.json": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-106/2026-10-19-event-source-acceptance.json": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "review/issue-106/2026-10-19-independent-review.md": {
       "kind": "file",
       "purpose": "Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix.",
@@ -1164,6 +1176,72 @@
       "purpose": "Public material implementation and publisher integration scope/evidence with pending human gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-108": {
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement": {
+      "kind": "directory",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.en.md": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.html": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.pdf": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/announcement.png": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/calendar.ics": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/checklist.md": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/index.html": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/manifest.json": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "review/issue-108/2026-10-19-announcement/pmday-winter-announcement-kit.zip": {
+      "kind": "file",
+      "purpose": "Source-bound PMDay first announcement kit or exact event preparation verification evidence; candidate only, no external publication.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "review/issue-31": {
       "kind": "directory",
