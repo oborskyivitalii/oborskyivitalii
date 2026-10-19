@@ -67,6 +67,21 @@ and an old expected production-family ID. Both are corrected without weakening
 the guards; controller/rights51/51 passed. Final exact-source policy and corrected
 hosted results are recorded in PR79 after execution.
 
+The correction source `43b187b6d13237fd31ab0955d8e028710d422799` passed the complete
+clean-source policy11/11 (report SHA256
+`ff588f981084a729884c737226efb7b78cc3c93ca6800e1636d2203740e5c18f`).
+CI39295014795's downloaded raw ZIP12206099563 SHA256
+`289bca590d550f61b52780b2669c49477f61bd1748d89c7ddb7711f6acc169fd`
+preserves exact HTTP identity, four passing room rows and the corrected390px
+table screenshot. The final evidence reducer still required paragraph-entry
+animations after the collector had enforced stationary reading, so that run
+remains failed. The registered reader family now explicitly declares stationary
+article reading: the reducer requires zero entries and zero active entry units,
+while keeping nonempty bounded route-departure proof. Historical runtime families
+retain their original entry-animation requirement. Positive/negative fixtures
+cover both contracts. This follow-up changes quality evidence only; emitted
+reader/scene/runtime bytes remain unchanged.
+
 ## Tasks and acceptance evidence
 
 | Task / AC | Expected behavior and check | Prepared disposition |

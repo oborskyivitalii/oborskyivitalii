@@ -152,6 +152,56 @@ test('article evidence is conditional and complete without changing the five-roo
   assert.deepEqual(after, before);
 });
 
+test('reader-mode evidence requires stationary paragraphs while preserving legacy entry evidence', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  const current = motion.reviewedRuntime('issue5-reader-mode-staging').variant.fingerprint;
+  const detail = observed();
+  for (const row of detail.observations) {
+    row.head.engine = current;
+    if (row.reading) {
+      row.reading.entered = [];
+      row.reading.maxEntering = 0;
+    }
+  }
+  assert.deepEqual(validateArticleJourney(detail, descriptors, { engine: current, baseURL }), {
+    documents: 1,
+    observations: 5,
+  });
+  for (const corrupt of [
+    (row) => {
+      row.reading.entered = ['section'];
+    },
+    (row) => {
+      row.reading.maxEntering = 1;
+    },
+    (row) => {
+      row.reading.departed = [];
+    },
+    (row) => {
+      row.reading.maxRoute = 25;
+    },
+  ]) {
+    const wrong = structuredClone(detail);
+    corrupt(wrong.observations[0]);
+    assert.throws(() => validateArticleJourney(wrong, descriptors, { engine: current, baseURL }));
+  }
+  assert.equal(motion.articleReadingMode(current), 'stationary');
+  assert.equal(
+    motion.articleReadingMode(
+      motion.reviewedRuntime('issue5-reader-mode-plain').variant.baseEngine
+    ),
+    'stationary'
+  );
+  assert.equal(
+    motion.articleReadingMode(
+      motion.reviewedRuntime('issue5-real-article-staging').variant.fingerprint
+    ),
+    'entry'
+  );
+  assert.equal(motion.articleReadingMode('d'.repeat(64)), 'entry');
+  assert.doesNotThrow(() => validateArticleJourney(observed(), descriptors, { engine, baseURL }));
+});
+
 test('selected articles reject omitted, duplicate, failed or wrong-source browser observations', () => {
   assert.throws(() => validateArticleJourney(undefined, descriptors), /require actual browser/);
   assert.throws(() => validateArticleJourney(observed(), {}), /without selected/);

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ea44f9fe127e4afebe1b7fea8f61bde37257afe4698664fcb784bac2b1e0d9ce",
+    "digest": "3e69cd914c11362a021a9a642c5cba95eeced2face9bbaeddd235dc7d7284e0f",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -176,7 +176,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "05f7aa42d2de22ad5746c37e82d47fc9e001f4373954723eb5b8cdb8a3397309"
+        "sha256": "8a22a602befbe3547fe370f1130ea91e55cd4be193cac0ddd2a01344405735cb"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1360,7 +1360,7 @@
       {
         "path": "review/issue-5/2026-10-19-reader-mode.md",
         "identity_mode": "content",
-        "sha256": "c483368ed080a9b44a8826d0d5ffd8c5d3cf0989d0a9440f8d5679838d857bb1"
+        "sha256": "4da3b6370ab58a9c7a2a4f1f6c019ad2368148a06f2eeeab1fa0f5ef9b67eada"
       },
       {
         "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
@@ -6385,7 +6385,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "bae59e1487a177451b883149cb75d81d1903fb18179df35ee8a67b18a882d8bd"
+        "sha256": "6deae9200b1ea3559746b5d4382b5b78fda6d0fa43137490153a0e01e0707d3d"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -6775,7 +6775,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "54f52b787f543cad5b324189cecef12557012a955d5d6f5a6bf145d1418f80ee"
+        "sha256": "4f3bbacb2e258ed6862327a07b568430ca905a272ed4e37b5f09c9fd97a0233d"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -7200,7 +7200,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "c86b854f5d862a23583b810f5d7c5bb12ee1b2bbb5b1882d16c2f1a52948365d"
+        "sha256": "e42a7471386ebdb143d88f4a2f193f02053339b716a3f932e7e0cbffb726d5d5"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -7280,7 +7280,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "e68943baa6fb3e63ffda3d14422fd8885c168da1e6df51ae75ba087a4da9a499"
+        "sha256": "f0515fd2a50308385c113cbdc557a21389345e07d83481443024f0dc0bd692dc"
       },
       {
         "path": "tools/quality/common.cjs",

@@ -1001,6 +1001,32 @@ async function articleJourney(
   }
 }
 
+function validateArticleReading(reading, engine) {
+  const stationary =
+    require('./color-motion-contract.cjs').articleReadingMode(engine) === 'stationary';
+  if (stationary) {
+    assert.deepEqual(reading?.entered, [], 'ordinary article reading remains stationary');
+    assert.equal(reading.maxEntering, 0, 'no paragraph-entry animation while reading');
+  } else {
+    assert.ok(
+      Array.isArray(reading?.entered) && reading.entered.length > 0,
+      'observed article reading entries'
+    );
+    assert.ok(
+      Number.isInteger(reading.maxEntering) && reading.maxEntering >= 1 && reading.maxEntering <= 6,
+      'bounded observed article reading maxEntering'
+    );
+  }
+  assert.ok(
+    Array.isArray(reading.departed) && reading.departed.length > 0,
+    'observed article reading departure'
+  );
+  assert.ok(
+    Number.isInteger(reading.maxRoute) && reading.maxRoute >= 1 && reading.maxRoute <= 24,
+    'bounded observed article reading maxRoute'
+  );
+}
+
 function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
   const keys = Object.keys(descriptors || {});
   if (!keys.length) {
@@ -1119,24 +1145,7 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
     );
     for (const flight of row.nativeHistory)
       validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
-    assert.ok(
-      Array.isArray(row.reading?.entered) && row.reading.entered.length > 0,
-      'observed article reading entries'
-    );
-    assert.ok(
-      Array.isArray(row.reading.departed) && row.reading.departed.length > 0,
-      'observed article reading departure'
-    );
-    for (const [field, maximum] of [
-      ['maxEntering', 6],
-      ['maxRoute', 24],
-    ])
-      assert.ok(
-        Number.isInteger(row.reading[field]) &&
-          row.reading[field] >= 1 &&
-          row.reading[field] <= maximum,
-        'bounded observed article reading ' + field
-      );
+    validateArticleReading(row.reading, engine);
   }
   return { documents: 1, observations: cases.length };
 }

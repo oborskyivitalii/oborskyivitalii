@@ -8,6 +8,7 @@ const families = {
   // Reusable reader mode: shared presentation/lifecycle; Writing scene geometry is unchanged.
   issue5ReaderMode: {
     behavior: 'fixed-blocks',
+    articleReading: 'stationary',
     baseEngine: '1f94dbdfcd0d81e593164a085e9337f899738dddbe9e21d997c77c7e8e663eef',
     theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
     space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
@@ -886,6 +887,13 @@ function select(manifest) {
 function flightCheck(manifest) {
   return select(manifest).behavior === 'fixed-blocks' ? 'blockFlight' : 'spatialFlight';
 }
+function articleReadingMode(engine) {
+  const runtime = runtimes.find((value) => value.fingerprint === engine);
+  const family = runtime
+    ? families[runtime.family]
+    : Object.values(families).find((value) => value.baseEngine === engine);
+  return family?.articleReading || 'entry';
+}
 function fixedReadingEvidence(row) {
   const scroll = row.home?.scroll,
     model = require('../../docs/space.js');
@@ -944,6 +952,7 @@ module.exports = {
   select,
   reviewedRuntime,
   flightCheck,
+  articleReadingMode,
   validateFlight,
   contract,
   rowPlan,
