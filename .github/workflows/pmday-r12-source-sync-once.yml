@@ -1,0 +1,299 @@
+name: One-shot PMDay R12 source synchronization
+on:
+  push:
+    branches: [work/issue-5-publisher-pmday-20261012]
+    paths: [.github/workflows/pmday-r12-source-sync-once.yml]
+permissions:
+  contents: write
+concurrency:
+  group: pmday-r12-editorial-source
+  cancel-in-progress: false
+jobs:
+  synchronize:
+    if: github.repository == 'oborskyivitalii/oborskyivitalii'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Install the existing source toolchains and bounded image reader
+        run: |
+          npm ci --prefix tools/publishing/toolchain --ignore-scripts
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          python3 -m venv tools/quality/toolchain/venv
+          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps ruff==0.16.10 PyYAML==6.0.3 Pillow==11.3.0 PyMuPDF==1.26.7
+      - name: Transfer the author-supplied R12 reader without editorial rewriting
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tools/quality/toolchain/venv/bin/python - <<'PY'
+          from pathlib import Path
+          import base64
+          import hashlib
+          import io
+          import json
+          import os
+          import re
+          import subprocess
+          import urllib.request
+          import fitz
+          from PIL import Image
+
+          root = Path.cwd()
+          temporary = Path(os.environ['RUNNER_TEMP']) / 'pmday-r12-source'
+          temporary.mkdir()
+          repository = os.environ['GITHUB_REPOSITORY']
+          reader_blob = '81c3c8257cc73db0141fa7e7bae0485083a88543'
+          request = urllib.request.Request(
+              'https://api.github.com/repos/' + repository + '/git/blobs/' + reader_blob,
+              headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'},
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              remote_blob = json.load(response)
+          reader_bytes = base64.b64decode(remote_blob['content'])
+          assert hashlib.sha1(b'blob ' + str(len(reader_bytes)).encode() + b'\0' + reader_bytes).hexdigest() == reader_blob
+          reader = reader_bytes.decode('utf-8')
+          assert reader.endswith('\n') and '\r' not in reader
+          assert 'Editorial draft R12, 19 October 2026' in reader
+          assert '<!--' not in reader and 'sandbox:' not in reader
+          assert len(re.findall(r'^## [1-6]\.', reader, re.M)) == 6
+          assert reader.split('## 4.')[1].split('## 5.')[0].count('**What if not?**') == 2
+          assert reader.split('## 5.')[1].split('## 6.')[0].count('**What if not?**') == 6
+          bibliography = reader.split('## Sources & references')[1].split('## How to cite')[0]
+          assert [int(number) for number in re.findall(r'^(\d+)\. ', bibliography, re.M)] == list(range(1, 32))
+          first_mentions = list(dict.fromkeys(re.findall(r'\[(\d+)\]', reader.split('## Sources & references')[0])))
+          assert first_mentions == [str(number) for number in range(1, 32)]
+          figures = re.findall(r'^!\[(.*?)\]\(asset:([a-z0-9-]+)\)$', reader, re.M)
+          assert [key for alt, key in figures] == ['cover', 'pmday-slide-03', 'pmday-slide-05', 'pmday-slide-07', 'pmday-slide-09', 'pmday-slide-10', 'pmday-slide-12', 'pmday-slide-14']
+          assert 'Compare the proposed system with the one you actually operate' in reader
+          assert 'indirect prompt-injection' in reader
+          assert 'The more technology takes care of us' in reader.split('## 1.')[1].split('## 2.')[0]
+          assert 'One cannot simultaneously make discoveries' in reader.split('## 6.')[1]
+          reader_sha = hashlib.sha256(reader_bytes).hexdigest()
+
+          directory = root / 'site/publications/pmday-ai-both-sides'
+          media = root / 'site/assets/publications/pmday-ai-both-sides'
+          metadata_file = directory / 'publication.json'
+          metadata = json.loads(metadata_file.read_text())
+          assert metadata['edition'] == 'pmday-ai-both-sides-en-review-20261018-r10'
+          assert metadata['status'] == 'review' and metadata['canonical'] is None
+          original_slides = {}
+          for asset in metadata['assets']:
+              actual = hashlib.sha256((root / asset['path']).read_bytes()).hexdigest()
+              assert actual == asset['sha256'], asset['id']
+              if asset['id'].startswith('pmday-slide-'):
+                  original_slides[asset['id']] = actual
+          assert len(original_slides) == 7
+
+          # This exact public PDF URL was supplied by the author in the review discussion.
+          # Only its already-approved Cover02 image is used; no R11 text is imported.
+          supplied_pdf_url = 'https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/140501333/7eec46b1-ecdc-4cef-901d-d5a95eefe5ee/The_Sum_of_Our_Technology_R11_Cover02_Compact.pdf'
+          with urllib.request.urlopen(supplied_pdf_url, timeout=45) as response:
+              pdf_bytes = response.read(20_000_001)
+          assert len(pdf_bytes) < 20_000_001 and pdf_bytes.startswith(b'%PDF-')
+          source_pdf = fitz.open(stream=pdf_bytes, filetype='pdf')
+          assert len(source_pdf) == 15, 'Unexpected source edition for approved Cover02'
+          image_info = max(source_pdf[0].get_images(full=True), key=lambda item: item[2] * item[3])
+          image_data = source_pdf.extract_image(image_info[0])['image']
+          portrait = Image.open(io.BytesIO(image_data)).convert('RGB')
+          width, height = portrait.size
+          assert width >= 600 and height > width and 0.64 < width / height < 0.76
+          portrait_path = media / 'cover02-portrait-r12.png'
+          portrait.save(portrait_path, format='PNG', optimize=True)
+          # A mechanically defined text-free detail preserves the selected doorway and figure.
+          crop_width = round(width * 0.48)
+          crop_height = round(crop_width * 335 / 640)
+          left = round(width * 0.49)
+          top = round(height * 0.72 - crop_height / 2)
+          box = (left, top, left + crop_width, top + crop_height)
+          assert 0 <= left < box[2] <= width and 0 <= top < box[3] <= height
+          hero = portrait.crop(box)
+          hero_path = media / 'cover02-hero-r12.png'
+          hero.save(hero_path, format='PNG', optimize=True)
+          portrait_sha = hashlib.sha256(portrait_path.read_bytes()).hexdigest()
+          hero_sha = hashlib.sha256(hero_path.read_bytes()).hexdigest()
+          alt_lookup = {key: alt for alt, key in figures}
+          for asset in metadata['assets']:
+              if asset['id'] in alt_lookup:
+                  asset['alt'] = alt_lookup[asset['id']]
+              if asset['id'] == 'cover':
+                  asset.update(path=hero_path.relative_to(root).as_posix(), sha256=hero_sha, width=hero.width, height=hero.height)
+                  asset['caption'] = 'We can delegate more work. We still have to own the consequences.'
+                  asset['credit'] = 'Cover02: author-selected AI-generated editorial illustration, 18 October 2026. Text-free detail of the selected cover; source and crop in PROVENANCE.md.'
+              if asset['id'] == 'pmday-slide-03':
+                  asset['caption'] = 'Synthetic fixed-capacity illustration. Uncontrolled intake accumulates work; controlled intake bounds the queue without proportionally increasing delivery. Both regimes are explained in the text. PMDay 2026 · slide 3 · Vitalii Oborskyi. [1]'
+          metadata['assets'].append({
+              'id': 'cover02-portrait', 'path': portrait_path.relative_to(root).as_posix(),
+              'sha256': portrait_sha, 'width': width, 'height': height,
+              'alt': alt_lookup['cover'], 'caption': 'The Sum of Our Technology — selected Cover02.',
+              'credit': 'Author-selected AI-generated Cover02, 18 October 2026. Embedded image recovered from the exact author-supplied R11 cover PDF; original generated-master byte identity is not claimed.',
+          })
+          metadata['edition'] = 'pmday-ai-both-sides-en-review-20261019-r12'
+          metadata['rights']['notice'] = 'Article by Vitalii Oborskyi; author-selected AI-generated Cover02 and seven unchanged full-page PMDay v35 slides. Original deck/source/third-party credits retained; exact-edition publication clearance pending.'
+          metadata_file.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
+          (directory / 'manuscript.en.md').write_bytes(reader_bytes)
+          profile_file = directory / 'profile.json'
+          profile = json.loads(profile_file.read_text())
+          profile['id'] = 'pmday-ai-both-sides-review-20261019-r12'
+          profile['assets']['cover']['id'] = 'cover02-portrait'
+          profile['assets']['hero']['id'] = 'cover'
+          profile_file.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + '\n')
+
+          draft_header = '> **Editorial R12 — 19 October 2026. Author-review source, not a public edition.**\n> Transferred from the delivered `The_Sum_of_Our_Technology_R12.md` under issue #2 / PR #79, execution #5. This replaces the R10 editorial input; the technical reconciliation remains unchanged. The reader below is the supplied R12 text, not a new rewrite.\n> Reader Git blob: `' + reader_blob + '`; SHA-256: `' + reader_sha + '`. The standalone compact R12 Cover02 PDF was delivered separately and is not the old r2 artifact retained in the review directory.\n\n<!-- ARTICLE START -->\n\n'
+          draft_tail = '''
+          <!-- ARTICLE END -->
+
+          ## R12 assembly contract — not reader prose
+
+          The canonical manuscript and ARTICLE START–END block must remain identical. Preserve six chapters, two chapter-4 and six chapter-5 What if not pivots, 31 first-mention-numbered references, source qualifiers and both attributed Lem quotations: reciprocal care in chapter 1, responsibility in chapter 6. The author's delegated-power sentence remains outside the quotation blocks.
+
+          This revision includes the R11 compression/systemic-engineering conclusion plus R12 baseline symmetry, evidence-first flow, hypothetical indirect prompt injection and concrete human/recovery checks. Do not restore R10 vendor-intent speculation, remove actual vendor quotations or silently compress empirical caveats.
+
+          Seven original slide PNGs remain byte-unchanged and in order 3/5/7/9/10/12/14. Figure 10 distinguishes all four failures from the one-disclosure critical-class interval. The selected Cover02 replaces the old architectural-bridge illustration. Publication metadata owns exact media paths, hashes, alt, captions and credits; the profile names portrait cover and text-free hero separately. The original artwork and every prior content edition remain historical inputs, not active R12 selections.
+
+          The compact standalone R12 PDF has already been supplied for author review; no new PDF or platform text is generated in this source synchronization. HTML, PDF and platform implementations must consume this reader and the declared figures, not a previous edition or generated page. Article/site resources and rights gates remain unchanged; successful source validation does not constitute hosted, independent, publication or upstream acceptance.
+
+          Read the current review/issue-2/pmday-candidate-20261015/README.md checkpoint for exact source/check results and the separate technical blockers. No merge, stable staging, production, external posting, runtime or publishing-engine changes are authorised by this edit.
+          '''
+          (root / 'drafts/pmday-article-draft.en.md').write_text(draft_header + reader + '\n' + draft_tail.replace('\n          ', '\n').lstrip())
+          (directory / 'blueprint.md').write_text('# The Sum of Our Technology — R12 review edition\n\nArticle owner #2; publisher/execution #5 and PR #79.\n\nThe full reader is the author-supplied R12 Markdown, synchronized with the excluded editorial draft. Preserve the compressed six-chapter structure, systemic engineering conclusion, actual-baseline comparison, hostile-retrieval case, finite human capacity, empirical qualifications and 31 numbered source records. Lem quotations sit in chapters 1 and 6.\n\nUse author-selected Cover02, with profile-owned portrait and text-free hero roles, and unchanged full slides 3/5/7/9/10/12/14. Preserve historical originals/editions. Review-pending rights and null public canonical remain. The prior technical reconciliation, publisher logic, resource limits and public catalog are not altered.\n\nNo hosted, platform or production acceptance is inferred from transferring the source.\n')
+          provenance = {
+              'source': supplied_pdf_url, 'sourcePdfSha256': hashlib.sha256(pdf_bytes).hexdigest(),
+              'sourcePdfPages': len(source_pdf), 'sourcePage': 1, 'coverImageXref': image_info[0],
+              'portrait': {'path': portrait_path.relative_to(root).as_posix(), 'sha256': portrait_sha, 'width': width, 'height': height},
+              'hero': {'path': hero_path.relative_to(root).as_posix(), 'sha256': hero_sha, 'cropPixels': box, 'width': hero.width, 'height': hero.height},
+              'originalSlideSha256': original_slides,
+              'limitations': 'Exact embedded PDF image, not a claim of byte identity with the generated PNG masters. No creative redraw, source-slide change or publication/rights acceptance.',
+          }
+          with (media / 'PROVENANCE.md').open('a') as stream:
+              stream.write('\n## R12: approved Cover02 source and selected cover/hero\n\nThe user selected Cover02 on 18 October 2026. Local execution was unavailable during synchronization; the same selected artwork was recovered from the first page of the public compact-cover PDF URL supplied by the author in the review discussion. No PDF prose is imported. Exact retrieval, image and crop identities follow; retain all older artwork as history.\n\n```json\n' + json.dumps(provenance, ensure_ascii=False, indent=2) + '\n```\n')
+          catalog_file = root / '.github/repository-paths.json'
+          catalog = json.loads(catalog_file.read_text())
+          edition_path = directory / 'editions' / (metadata['edition'] + '.json')
+          for target, purpose in [
+              (portrait_path, 'Author-selected Cover02 portrait recovered from the supplied PDF; provenance and original master limitations in PROVENANCE.md.'),
+              (hero_path, 'Text-free Cover02 hero detail for the R12 article; exact source/crop identity in PROVENANCE.md.'),
+              (edition_path, 'R12 review semantic/source edition for the supplied author Markdown, references and selected media.'),
+          ]:
+              key = target.relative_to(root).as_posix()
+              assert key not in catalog['entries']
+              catalog['entries'][key] = {'kind': 'file', 'purpose': purpose, 'role': 'source', 'owner': 'guides/ARTICLE-WORKFLOW.md'}
+          catalog['entries'] = dict(sorted(catalog['entries'].items()))
+          catalog_file.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + '\n')
+          report = {'readerBlob': reader_blob, 'readerSha256': reader_sha, 'readerBytes': len(reader_bytes), 'figures': [key for alt, key in figures], 'bibliographyCount': 31, 'cover': provenance}
+          (temporary / 'source-checks.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(json.dumps(report, indent=2))
+          PY
+      - name: Extract references with the locked compiler and create the new edition
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+          const directory = 'site/publications/pmday-ai-both-sides/';
+          const reader = fs.readFileSync(directory + 'manuscript.en.md', 'utf8');
+          const metadata = JSON.parse(fs.readFileSync(directory + 'publication.json', 'utf8'));
+          const assets = metadata.assets.map((asset) => ({ ...asset, url: '/' + asset.path.slice(5) }));
+          const compiled = require('./tools/publishing/article.cjs').compile(reader, assets, { title: metadata.title });
+          const urls = [...new Set(compiled.model.links.map((link) => link.url).filter((url) => url.startsWith('https:')))];
+          if (urls.length !== 36 || compiled.model.figures.length !== 8) throw Error('R12 source/image inventory mismatch');
+          if (compiled.model.links.filter((link) => link.url === metadata.presentation.sourceUrl).length !== 1) throw Error('Presentation link must occur exactly once');
+          metadata.references = urls.map((url, index) => ({ id: 'source-' + (index + 1), url }));
+          fs.writeFileSync(directory + 'publication.json', JSON.stringify(metadata, null, 2) + '\n');
+          const source = { path: 'manuscript.en.md', sha256: crypto.createHash('sha256').update(reader).digest('hex'), commit: null, blob: null };
+          const edition = { schema: 1, id: metadata.edition, articleId: metadata.id, language: metadata.language, kind: 'full-article', source, owner: 'site', derivation: null, rights: 'review-pending', semanticSha256: require('./tools/publishing/semantic.cjs').semanticDigest(metadata, source) };
+          fs.writeFileSync(directory + 'editions/' + edition.id + '.json', JSON.stringify(edition, null, 2) + '\n', { flag: 'wx' });
+          console.log(JSON.stringify({ edition: edition.id, semanticSha256: edition.semanticSha256, references: urls.length }));
+          NODE
+      - name: Update current editorial handoff without overwriting technical history
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          root = Path.cwd()
+          reader = (root / 'site/publications/pmday-ai-both-sides/manuscript.en.md').read_bytes()
+          run = 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID']
+          checkpoint = '''## Editorial R12 — 19 October 2026 source synchronization
+
+          The author requested transferring the delivered R12 Markdown into the existing PR. The canonical manuscript and draft reader are identical, using prepared blob 81c3c8257cc73db0141fa7e7bae0485083a88543. Reader SHA-256: READER_SHA.
+
+          R12 includes R11 compression/systemic conclusion and the new evidence-first SDLC ordering, scrutiny of the real baseline, hypothetical prompt-injection case, operational human/recovery checks, clarified Thinking System definition, Lem at beginning/end and 31 references renumbered by first use. It keeps two chapter-4 and six chapter-5 refrains and seven original slide bytes. The supplied 15-page compact Cover02 PDF is a separate already-delivered review artifact, not the r2 article.pdf/kit retained here. No new PDF is generated by this pass and no byte-level reinspection of that local PDF is claimed.
+
+          Cover02 replaces the previous bridge artwork. Because the local execution service was unavailable, its image was recovered from the exact author-supplied public R11 Cover02 PDF; PROVENANCE.md records the source PDF and image hashes, dimensions and text-free crop. The portrait/hero are declared separately in the existing profile, including future equivalent LinkedIn/Medium renditions. Generated PNG-master identity is not claimed. Original assets, prior editions and source deck remain intact. Full platform packages and hosted mobile/visual acceptance are not produced by this source-only pass.
+
+          Checks: source structure, citations/figure inventory, exact draft/canonical parity, unchanged slide hashes, existing publisher validation, configured formatting, Basic, RI and RI/CI regressions. Run results at RUN_URL are authoritative; no preceding failure is relabelled. Source checks are not independent editorial/scientific/rights approval. Original #2 AC01–AC06 and #5 technical/publication gates remain open. The existing HTML budget/rights blocks from the technical step-1 record are not waived. No merge, staging, production or external publication.
+
+          '''.replace('\n          ', '\n').replace('READER_SHA', hashlib.sha256(reader).hexdigest()).replace('RUN_URL', run)
+          review = root / 'review/issue-2/pmday-candidate-20261015/README.md'
+          previous = review.read_text()
+          review.write_text('# PMDay article: current R12 and historical checkpoints\n\n' + checkpoint + '## Retained prior checkpoint history\n\n' + previous)
+          memory = root / 'MEMORY.md'
+          text = memory.read_text()
+          text = text.replace('Last verified: **2026-10-18**.', 'Last verified: **2026-10-19** for R12 editorial source; technical observations retain their dates.')
+          text = text.replace('- Current R10 manuscript SHA256:\n  5f86917f65c51c7cf77164d9dd801c05e92d84353b96496bab458f38fd8f7b49.', '- Current editorial source: R12, 19 October; manuscript and draft synchronized.\n  Source SHA256: ' + hashlib.sha256(reader).hexdigest() + '.\n  Exact editorial/cover/check evidence: review/issue-2/pmday-candidate-20261015/README.md.')
+          text = text.replace('  Article writing/editing is explicitly excluded; it continues in another chat.', '  The technical step excluded editorial work; R12 was separately authorized\n  in the editorial conversation and is now the current article input.')
+          text = text.replace('  this chat does not write or accept the article.', '  source synchronization does not accept or publish the article.')
+          assert len(text.splitlines()) <= 120
+          memory.write_text(text)
+          PY
+      - name: Remove one-shot workflow and stage the exact source owners
+        run: |
+          git rm .github/workflows/pmday-r12-source-sync-once.yml
+          git add drafts/pmday-article-draft.en.md site/publications/pmday-ai-both-sides/
+          git add site/assets/publications/pmday-ai-both-sides/cover02-portrait-r12.png site/assets/publications/pmday-ai-both-sides/cover02-hero-r12.png site/assets/publications/pmday-ai-both-sides/PROVENANCE.md
+          git add .github/repository-paths.json MEMORY.md review/issue-2/pmday-candidate-20261015/README.md
+      - name: Format only affected JSON using the repository configuration
+        run: |
+          config=$(node -e "const fs=require('fs'),path=require('path'); const list=[]; function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name); if(e.isDirectory()){if(!['node_modules','venv','.venv'].includes(e.name))walk(p);}else if(/prettier.*\\.json$/.test(e.name)||e.name==='.prettierrc')list.push(p);}} walk('.github'); if(list.length!==1)throw Error('Ambiguous prettier config: '+list); process.stdout.write(list[0]);")
+          tools/quality/toolchain/node_modules/.bin/prettier --config "$config" --write .github/repository-paths.json site/publications/pmday-ai-both-sides/publication.json site/publications/pmday-ai-both-sides/profile.json site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r12.json
+          git add .github/repository-paths.json site/publications/pmday-ai-both-sides/
+          node tools/quality/format.cjs --check
+      - name: Validate R12 source through the existing publisher
+        run: node tools/publishing/cli.cjs validate pmday-ai-both-sides
+      - name: Refresh and verify unchanged repository-intelligence routes
+        run: |
+          python3 tools/check_ri_ci.py refresh
+          python3 tools/check_ri_ci.py verify
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json build
+          python3 tools/repository_intelligence.py --config .github/repository-intelligence-config.json verify
+          python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'
+          python3 -m unittest discover -s tests -p 'test_ri_ci.py'
+      - name: Existing Basic source checks
+        run: node tools/quality/local.cjs
+      - name: Assert final parity, scope and unchanged slide originals before pushing
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import os
+          import subprocess
+          root = Path.cwd()
+          draft = (root / 'drafts/pmday-article-draft.en.md').read_text()
+          reader = (root / 'site/publications/pmday-ai-both-sides/manuscript.en.md').read_bytes()
+          assert draft.split('<!-- ARTICLE START -->')[1].split('<!-- ARTICLE END -->')[0].strip().encode() + b'\n' == reader
+          assert hashlib.sha1(b'blob ' + str(len(reader)).encode() + b'\0' + reader).hexdigest() == '81c3c8257cc73db0141fa7e7bae0485083a88543'
+          report = json.loads((Path(os.environ['RUNNER_TEMP']) / 'pmday-r12-source/source-checks.json').read_text())
+          metadata = json.loads((root / 'site/publications/pmday-ai-both-sides/publication.json').read_text())
+          for asset in metadata['assets']:
+              if asset['id'] in report['cover']['originalSlideSha256']:
+                  assert hashlib.sha256((root / asset['path']).read_bytes()).hexdigest() == report['cover']['originalSlideSha256'][asset['id']]
+          allowed = ['drafts/pmday-article-draft.en.md', 'site/publications/pmday-ai-both-sides/', 'site/assets/publications/pmday-ai-both-sides/cover02-', 'site/assets/publications/pmday-ai-both-sides/PROVENANCE.md', '.github/repository-paths.json', '.github/repository-intelligence/', '.github/ri-ci-map.json', 'REPOSITORY-MAP.md', 'MEMORY.md', 'review/issue-2/pmday-candidate-20261015/README.md', '.github/workflows/pmday-r12-source-sync-once.yml']
+          changed = subprocess.check_output(['git', 'diff', 'HEAD', '--name-only'], text=True).splitlines()
+          assert all(any(name == prefix or name.startswith(prefix) for prefix in allowed) for name in changed), changed
+          print(json.dumps({'readerSha256': hashlib.sha256(reader).hexdigest(), 'changed': changed}))
+          PY
+          git add .github/ri-ci-map.json .github/repository-intelligence/ REPOSITORY-MAP.md
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'content(article): synchronize supplied R12 reader, references and selected cover (Refs #5)'
+          test -z "$(git status --porcelain)"
+          test "$(git ls-remote origin refs/heads/work/issue-5-publisher-pmday-20261012 | cut -f1)" = "$GITHUB_SHA"
+          git push origin HEAD:work/issue-5-publisher-pmday-20261012
