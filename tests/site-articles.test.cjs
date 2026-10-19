@@ -389,6 +389,18 @@ test('nested article native HTML keeps Writing shell, TOC, figures, language, so
   assert.match(document, /data-page="writing" data-article="uk-profile:uk"/);
   assert.equal((document.match(/id="space-canvas"/g) || []).length, 1);
   assert.equal((document.match(/class="site-header(?:\s|")/g) || []).length, 1);
+  assert.equal((document.match(/<footer\b/g) || []).length, 1, 'the router has one global footer');
+  const main = document.match(/<main\b[\s\S]*?<\/main>/)[0];
+  assert.doesNotMatch(
+    main,
+    /<footer\b/,
+    'article resources cannot impersonate the shared shell footer'
+  );
+  assert.match(
+    main,
+    /class="reader-closing"[\s\S]*class="reader-tags-slot"[\s\S]*class="reader-related-slot"/,
+    'reader discovery slots stay in the main document'
+  );
   assert.match(document, /href="\.\.\/writing\.html" aria-current="page"/);
   assert.match(document, /href="#first-section"/);
   assert.match(document, /src="\.\.\/article-media\/[a-f0-9]{64}\/pixel.png"/);

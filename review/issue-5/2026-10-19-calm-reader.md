@@ -99,3 +99,30 @@ test rejected deleted generated paths still in the unstaged Git inventory. These
 attempts are not passes. Correct invocation and staging the generated inventory
 resolved them; build/verify and28/28 now pass. Hosted/exact clean-head policy is
 still pending. No changed manuscript, edition, media or PDF is present in the diff.
+
+## First hosted correction — shell footer ownership
+
+Source69a1a7fddf3c797bda329beecb1dde6544b1be30/tree56309e739d3edc79094698b014f082cd95c6f58c
+passed clean owning policy11/11 with evidence_valid:true and no errors.
+CI39310741620 built and deployed successfully, but hosted smoke FAILED before
+reader capture: the tag journey observed0 versus4 tags. The failed run stays failed.
+Live DOM showed the new nested footer being moved outside the article by the
+router's existing global footer lookup, also preventing related hydration.
+The closing wrapper is corrected to a neutral div, retaining CSS/classes and
+route ownership. Native article tests now enforce the single global footer and
+main containment of reader discovery slots; browser count is scoped to the article.
+Independent source re-review confirmed the dependency and correction. The earlier
+bounded source pass missed this whole-document selector dependency; hosted evidence
+is required and its failed result was not described as a stale test.
+
+First immutable previewfe5886ba was directly inspected at1363px dark: centered724px
+body, closed flat Contents, compact header and separated nine-step process with code
+emphasis; no page overflow. These observations do not cover the broken footer or
+mobile. Initial public ZIP12215009556 was downloaded and verified SHA256
+d911aa7470a15670745560a9f5f8bd3a741b79534b9e02f2f9ace31fbceb57ea.
+The correction reuses the exact admitted runtime tuple: all four scripts, CSS and
+base engine remain byte-identical to69a1a7f. Only the article document changes.
+Corrected exact policy and hosted results are pending.
+Independent correction review reran the strengthened native case1/1 and found no
+remaining bounded source consequence; correction diff SHA256
+6ae683118e3b1969a8aefe3a2c2add922a043f9ddf272ff73045317054c76bfa.

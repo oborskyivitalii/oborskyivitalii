@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c1dc15c42e2e393c32de6016014ed6494df99940ee34d8c8d7fea78f1ca23031",
+    "digest": "ac5023150e15229522a3689cc41797c373727bceebea0afcabcaeeb39e47e4f7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1330,7 +1330,7 @@
       {
         "path": "review/issue-5/2026-10-19-calm-reader.md",
         "identity_mode": "content",
-        "sha256": "de638b919ff7338611d12d67197c4e59551eaef3284c59c0b0c35d51e043ea67"
+        "sha256": "3f8ecbccd7a370fde1810bf265607ec5995afa79e15aee2c3e87162b8a8c1f17"
       },
       {
         "path": "review/issue-5/2026-10-19-delivery-lanes.md",
@@ -5870,7 +5870,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "809fbe3969592615dc18566d61c2f0a76e7c9e61dda073c82094db6e1143895c"
+        "sha256": "e023b555219c1b80ecc133bbb0cf3180c60a8f7cc970d1dc6114ad969f659de0"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -6260,7 +6260,7 @@
       {
         "path": "site/templates/pages/article.html",
         "identity_mode": "content",
-        "sha256": "6531a88c690e61e161126eb6bc43b3b399b828608c753f8ee8a8dbe05cc5b789"
+        "sha256": "1297c45b063214f62a217b4e32518041736e970dbafa22bd7f0a50d36b666341"
       },
       {
         "path": "site/templates/pages/credits/main.html",
@@ -6755,7 +6755,7 @@
       {
         "path": "tests/site-articles.test.cjs",
         "identity_mode": "content",
-        "sha256": "2eede576e6f0273b9e597fa86678ac58e9b11bde3f8a08449df28346d35e8765"
+        "sha256": "43740eab352183b80812d3f968888b2bd426ed1186a3ce1f39181ede908d3ad8"
       },
       {
         "path": "tests/site-engine.test.cjs",
@@ -7220,7 +7220,7 @@
       {
         "path": "tools/quality/article-tags-browser.cjs",
         "identity_mode": "content",
-        "sha256": "7fa4c04dfe2015e5be51bfa6ae9b8c9fa64fb23479e8394ef67f9ad8559be227"
+        "sha256": "a8249ab827a9830bb93937c749be6af478999529ad28fcdd42b72fe6741e3693"
       },
       {
         "path": "tools/quality/artifact.cjs",

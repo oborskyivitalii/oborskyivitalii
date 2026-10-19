@@ -71,7 +71,9 @@ async function journey(browser, baseURL, index, descriptors) {
       await page.goto(new URL(descriptor.alias, base).href);
       await ready();
       assert.equal(
-        await page.locator('.reader-tags-slot .publication-tags a').count(),
+        await page
+          .locator('main.article-reader article .reader-tags-slot .publication-tags a')
+          .count(),
         reader.tags.length
       );
       const urls = await page
