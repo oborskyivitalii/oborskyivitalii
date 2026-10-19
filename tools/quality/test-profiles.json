@@ -2032,6 +2032,23 @@
         "tools/distribution/**",
         ".github/acceptance/issue-106.json"
       ]
+    },
+    {
+      "path": "tests/article-materials.test.cjs",
+      "language": "javascript",
+      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior.",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "source-only public material failure surfaces; publisher hook reuses existing article suite",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-materials.test.cjs",
+        "tools/site/article-materials.cjs",
+        "site/templates/components/article-materials.html",
+        "site/publications/**/materials.json",
+        "site/assets/publications/**/materials/**"
+      ]
     }
   ]
 }

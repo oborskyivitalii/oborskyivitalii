@@ -1,6 +1,10 @@
 # Article distribution preparation
 
 Owner: [issue106](https://github.com/oborskyivitalii/oborskyivitalii/issues/106).
+Public reader materials follow [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md): an
+explicit reviewed allowlist, shared block and immutable selected assets. Campaign
+working files remain repository-only; validation now returns pending or actual
+article backlinks from the publisher canonical.
 The [campaign plan](../review/issue-106/2026-10-19-campaign-plan.md) owns the
 approved PMDay scope; this guide owns the reusable draft contract. Article/site
 publication remains PR79 / #2 / #5 and never waits for campaign completion.

@@ -176,6 +176,7 @@ function loadCampaign(root, articleId, { loadArticle = publisherArticle } = {}) 
       bindingSha256,
       channel: piece.channel,
       admission: plan.channels[piece.channel],
+      articleUrl: require('../site/article-materials.cjs').articleLink(article, piece.cta.section),
     };
   });
   return {

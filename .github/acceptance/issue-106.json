@@ -73,6 +73,13 @@
       "automated_scope": "Basic, style subset, RI/catalog/CI and campaign negatives on exact source. Applicable CS01/02/04/05/07/08/09/10 self-review is recorded; no CSS/runtime delta (CS03/06). Pending features and independent/editorial/merge gates remain explicit.",
       "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI", "CAMPAIGN"],
       "gates": ["IMPLEMENTATION", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC11",
+      "intent": "Render only selected source/review-bound public materials, preserve reciprocal article links and exclude working campaign inputs.",
+      "automated_scope": "Strict source/file/approval/URL/resource/dependency behavior and shared HTML tested with maintained fixtures. Actual reader integration, mobile/no-JS and author/rights/release acceptance are recorded separately.",
+      "checks": ["CAMPAIGN", "CURRENT-RI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
     }
   ],
   "checks": {

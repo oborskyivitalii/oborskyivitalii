@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/106",
     "date": "2026-10-19",
-    "summary": "Review first issue106 draft campaign acceptance wrapper and canonical test-profile routes. Existing unconditional CI commands and budgets are unchanged; publisher/release integration and whole campaign gates remain pending."
+    "summary": "Review public-material acceptance and maintained source-test routes; no workflow commands or budgets changed."
   },
   "layers": [
     {
@@ -123,7 +123,8 @@
         ".github/acceptance/issue-106.json",
         "review/issue-106/2026-10-19-campaign-plan.md",
         "tests/test_issue106_acceptance.py",
-        "review/issue-106/2026-10-19-draft-contract.md"
+        "review/issue-106/2026-10-19-draft-contract.md",
+        "review/issue-106/2026-10-19-public-materials.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -539,7 +540,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "2c96668ea8a5468523a795415695766bbfe4175bcd79ffd8112afe1d38beb87a",
+    "digest": "1590a9d8a63f453d416f00f27ccab5f1c472e1c221737d7157184c59cd71ac06",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -563,7 +564,7 @@
       },
       {
         "path": ".github/acceptance/issue-106.json",
-        "sha256": "5276337e15174674c09ab2a9ae11547599e86ff13f0d76b08f68a4873cd4e9c5"
+        "sha256": "e84a23db35155fa96f6b2cb545f46651a38004a34a18f24ad0205fba5e5e6d9b"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -651,7 +652,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "c50c1e0ecabd47e5b0ddd9d6470ca48bc0fc6680c1c69186f1fc5bdafa9fa67c"
+        "sha256": "0687ffe0f75f80d4aaecfb23198a6c0338ff1d25ab73ebef52ac48bb0787090f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -779,7 +780,7 @@
       },
       {
         "path": "tests/test_issue106_acceptance.py",
-        "sha256": "6a03292846e9e58b1284bec6448da37ef8ba80ec278dffdff39705867c7c40ec"
+        "sha256": "c436a0888c77b1eddee2fe55317cba93b734653acb1fe73af9550933841370a9"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -891,7 +892,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "c9b242abf58cb1f8b0d5ec203dcf32aac82c7eb62a7b54da8ce3e33beb1ffe5d"
+        "sha256": "21a502b96ca76c2025b526ce2c383b81722b1a4a399d9ef6c58847c7af071f5a"
       },
       {
         "path": "tools/repository_intelligence.py",

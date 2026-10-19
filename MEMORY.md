@@ -57,6 +57,11 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Next session
 
+Issue106 public-material increment: explicit reviewed allowlist/shared native block;
+PR107 owns the contract, PR79 the minimal reader hook. See
+review/issue-106/2026-10-19-public-materials.md and exact PR check/preview evidence.
+No campaign or production publication. Original remaining gates stay open.
+
 For #106, read issue/PR107 and the draft-contract review. Integrate its facade
 against the accepted publisher, add ARTICLE-WORKFLOW hook, then first launch kit.
 No social publication, outreach or reminders are authorised by this checkpoint.

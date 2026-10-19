@@ -17,6 +17,7 @@ acceptance live in issues/PRs; [MEMORY](../MEMORY.md) is a dated continuity hint
 | [SITE-SOURCE-AUDIT](SITE-SOURCE-AUDIT.md) | Public claim/edition provenance and source-reader limitations | Content issue and canonical source record |
 | [SITE-CONTENT-REVIEW](SITE-CONTENT-REVIEW.md) | Editorial, exact-edition, attribution and rights review | Content issue; rights #7; launch/release #1/#8/#13 |
 | [ARTICLE-DISTRIBUTION](ARTICLE-DISTRIBUTION.md) | Reusable source-bound distribution brief, strict draft campaign schema and validation; publication capabilities remain pending | Distribution #106; publisher #5; editorial owner per article |
+| [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md) | Reviewed public files and observed publication links in the common article reader | Distribution #106; reader/publisher #5 |
 | [SITE-RIGHTS](SITE-RIGHTS.md) | Source, media and retained-edition rights inventory, reuse-policy decision and release approval evidence | Rights #7; production preparation #39; release gates #13 |
 | [SITE-SEO](SITE-SEO.md) | Topic vocabulary, visible content mapping and discoverability evidence | Content owner; production measurement #8; later guides #11 |
 | [SITE-ANALYTICS](SITE-ANALYTICS.md) | Disabled-by-default measurement adapter and actual-origin activation | Hosting/analytics #8; release coverage #13 |
