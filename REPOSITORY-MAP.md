@@ -57,6 +57,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7](docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7) | Generated immutable runtime or route snapshot directory. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba](docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba) | Generated public output identity directory; owned by the site producer. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/devcon-romania-2026](drafts/devcon-romania-2026) | Review-only English DevCon Romania edition derived from pinned PMDay v35 native slides under issue109. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/assets](review/assets) | Historical visual concept/portrait assets. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -66,6 +67,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/color-staging-20261006](review/color-staging-20261006) | Color hosted variant provider/package identity and target evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/color-staging-20261006/evidence](review/color-staging-20261006/evidence) | Color hosted variant provider/package identity and target evidence. Contains evidence artifacts. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-102](review/issue-102) | Dated issue102 analytics source and provider/access evidence. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+| [review/issue-109](review/issue-109) | Versioned DevCon edition preparation and exact-source review evidence under issue109. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -193,6 +195,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [.github/acceptance/issue-102.json](.github/acceptance/issue-102.json) | Issue102 analytics AC policy: bounded source checks and explicit browser/live gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-109.json](.github/acceptance/issue-109.json) | Issue109 DevCon draft AC01-AC06 mapping: bounded repository checks and explicit artifact, independent-review, linkage and author gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -367,6 +370,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [drafts/medium-profile-revision-20261001.html](drafts/medium-profile-revision-20261001.html) | Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## drafts/devcon-romania-2026/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf](drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf) | Derived PDF review rendition of the issue109 editable DevCon R1 deck; not a public or final conference edition. | generated | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx](drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx) | Authored editable 13-slide English DevCon R1 edition reusing selected PMDay v35 native slides and attached notes. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) | Issue109 DevCon edition entry point: audience, timing, slide reuse, revision decisions, source/provenance and review status. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/edition.json](drafts/devcon-romania-2026/edition.json) | DevCon R1 artifact identities, pinned upstream source, selected-slide mapping and explicit derivative provenance. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
+| [drafts/devcon-romania-2026/speaker-notes.md](drafts/devcon-romania-2026/speaker-notes.md) | English speaking notes and per-slide timing for the 23-minute DevCon R1 talk with separate questions and reserve. | draft | [drafts/devcon-romania-2026/README.md](drafts/devcon-romania-2026/README.md) |
 
 ## guides/
 
@@ -630,6 +643,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-102/2026-10-18-analytics-and-search-access.md](review/issue-102/2026-10-18-analytics-and-search-access.md) | 18 October combined route-coverage and Google/Windsor access self-review and handoff. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [review/issue-102/2026-10-18-provider-evidence.json](review/issue-102/2026-10-18-provider-evidence.json) | Sanitized bounded Cloudflare query and current Google/Windsor inventory observations. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
 | [review/issue-102/2026-10-18-public-metadata-proof.json.gz](review/issue-102/2026-10-18-public-metadata-proof.json.gz) | Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions. | history | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
+
+## review/issue-109/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-109/2026-10-19-review.md](review/issue-109/2026-10-19-review.md) | Issue109 derivative-source decisions, artifact and independent-review evidence, CS/AC mapping and remaining author/device acceptance. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
 

@@ -61,6 +61,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-109.json": {
+      "kind": "file",
+      "purpose": "Issue109 DevCon draft AC01-AC06 mapping: bounded repository checks and explicit artifact, independent-review, linkage and author gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -763,6 +769,42 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "drafts/devcon-romania-2026": {
+      "kind": "directory",
+      "purpose": "Review-only English DevCon Romania edition derived from pinned PMDay v35 native slides under issue109.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pdf": {
+      "kind": "file",
+      "purpose": "Derived PDF review rendition of the issue109 editable DevCon R1 deck; not a public or final conference edition.",
+      "role": "generated",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/DevCon-Romania-2026-R1.pptx": {
+      "kind": "file",
+      "purpose": "Authored editable 13-slide English DevCon R1 edition reusing selected PMDay v35 native slides and attached notes.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/README.md": {
+      "kind": "file",
+      "purpose": "Issue109 DevCon edition entry point: audience, timing, slide reuse, revision decisions, source/provenance and review status.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/edition.json": {
+      "kind": "file",
+      "purpose": "DevCon R1 artifact identities, pinned upstream source, selected-slide mapping and explicit derivative provenance.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
+    "drafts/devcon-romania-2026/speaker-notes.md": {
+      "kind": "file",
+      "purpose": "English speaking notes and per-slide timing for the 23-minute DevCon R1 talk with separate questions and reserve.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md"
+    },
     "drafts/medium-profile-revision-20261001.html": {
       "kind": "file",
       "purpose": "Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds.",
@@ -1020,6 +1062,18 @@
       "role": "history",
       "owner": "guides/SITE-ANALYTICS.md",
       "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
+    },
+    "review/issue-109": {
+      "kind": "directory",
+      "purpose": "Versioned DevCon edition preparation and exact-source review evidence under issue109.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-109/2026-10-19-review.md": {
+      "kind": "file",
+      "purpose": "Issue109 derivative-source decisions, artifact and independent-review evidence, CS/AC mapping and remaining author/device acceptance.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-31": {
       "kind": "directory",
