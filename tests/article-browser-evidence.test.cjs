@@ -211,6 +211,45 @@ test('selected articles reject omitted, duplicate, failed or wrong-source browse
   }
 });
 
+test('reader reference evidence requires served immutable material links in every observation', () => {
+  const name = 'reader-reference:en';
+  const make = () => {
+    const detail = observed();
+    detail.documents = [name];
+    detail.availableDocuments = [name];
+    for (const row of detail.observations) {
+      row.key = name;
+      row.head.key = name;
+      row.head.materials = [
+        {
+          label: 'Original diagram',
+          status: 200,
+          sha256: 'a'.repeat(64),
+          href: baseURL + '/article-media/' + 'a'.repeat(64) + '/diagram.webp',
+        },
+      ];
+    }
+    return detail;
+  };
+  const selected = { [name]: descriptors[key] };
+  validateArticleJourney(make(), selected);
+  for (const mutate of [
+    (detail) => {
+      delete detail.observations[0].head.materials;
+    },
+    (detail) => {
+      detail.observations[4].head.materials[0].status = 404;
+    },
+    (detail) => {
+      detail.observations[1].head.materials[0].sha256 = 'b'.repeat(64);
+    },
+  ]) {
+    const detail = make();
+    mutate(detail);
+    assert.throws(() => validateArticleJourney(detail, selected));
+  }
+});
+
 test('the staging collector exercises articles only on its admitted Chromium and joins failures and cleanup', async () => {
   for (const articles of [true, false]) {
     for (const fails of articles ? [false, true] : [false]) {

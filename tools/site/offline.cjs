@@ -250,17 +250,23 @@ function assets(environment) {
   );
 }
 
-function presentationLinks(environment, inline = false) {
+function resourceLinks(environment, inline = false, mime = null) {
   return new Set(
     Object.entries(assets(environment))
-      .filter(([, resource]) => resource.mime === 'application/pdf')
-      .map(([name]) =>
+      .filter(([, resource]) => mime === null || resource.mime === mime)
+      .map(([name, resource]) =>
         inline
-          ? 'data:application/pdf;base64,' +
+          ? 'data:' +
+            resource.mime +
+            ';base64,' +
             fs.readFileSync(path.join(environment.publicDirectory, name)).toString('base64')
           : name
       )
   );
+}
+
+function presentationLinks(environment, inline = false) {
+  return resourceLinks(environment, inline, 'application/pdf');
 }
 
 function inlineFallback(html, environment) {
@@ -293,14 +299,22 @@ function inlineAssets(html, environment) {
       )
       .replace('<img', `<img data-offline-resource="${name}"`);
   });
-  html = html.replace(/<a\b[^>]*href="([^"]+\.pdf)"[^>]*>/g, (original, name) => {
+  const inlineLink = (original, name) => {
     if (!Object.hasOwn(resources, name)) return original;
     used.add(name);
     const bytes = fs.readFileSync(path.join(environment.publicDirectory, name));
     return original
-      .replace(/href="[^"]+"/, `href="data:application/pdf;base64,${bytes.toString('base64')}"`)
+      .replace(
+        /href="[^"]+"/,
+        `href="data:${resources[name].mime};base64,${bytes.toString('base64')}"`
+      )
       .replace('<a', `<a data-offline-resource="${name}"`);
-  });
+  };
+  html = html.replace(/<a\b[^>]*href="([^"]+\.pdf)"[^>]*>/g, inlineLink);
+  html = html.replace(
+    /<section\b[^>]*id="article-materials"[^>]*>[\s\S]*?<\/section>/g,
+    (section) => section.replace(/<a\b[^>]*href="([^"]+)"[^>]*>/g, inlineLink)
+  );
   if (used.size !== Object.keys(resources).length)
     throw Error('Standalone article asset closure differs');
   return html;
@@ -313,6 +327,7 @@ module.exports = {
   documents,
   assets,
   presentationLinks,
+  resourceLinks,
   inlineAssets,
   inlineFallback,
   assertOutput,

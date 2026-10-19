@@ -511,7 +511,9 @@
   }
   function hydrateEmbeddedImages(result, descriptor) {
     const used = new Set();
-    for (const image of result.main.querySelectorAll('img[src],.article-presentation a[href]')) {
+    for (const image of result.main.querySelectorAll(
+      'img[src],.article-presentation a[href],#article-materials a[href]'
+    )) {
       const attribute = image.tagName === 'IMG' ? 'src' : 'href';
       const name = image.getAttribute(attribute);
       if (!name.startsWith('article-media/')) continue;

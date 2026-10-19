@@ -51,6 +51,18 @@ function select(root, candidates = [], catalog = { records: {} }) {
         publisher.loadArticle(root, id, { assetUrl: assetName }),
         assetName
       );
+      const materials = require('./article-materials.cjs').load(root, article);
+      const resources = [
+        ...article.assets,
+        ...(article.presentation ? [article.presentation.file] : []),
+        ...materials.assets,
+      ];
+      if (
+        resources.length > 50 ||
+        resources.reduce((total, asset) => total + asset.bytes.length, 0) > 16000000
+      ) {
+        throw Error('Article materials exceed the existing resource inventory/byte bound');
+      }
       if (accepted.includes(id) && article.metadata.status !== 'accepted')
         throw Error('Publication catalog requires an accepted article');
       if (technical.has(id) && article.metadata.status !== 'draft')
@@ -58,9 +70,9 @@ function select(root, candidates = [], catalog = { records: {} }) {
       if (!articleId.test(article.metadata.slug)) throw Error('Invalid article slug');
       return {
         ...article,
-        assets: article.presentation
-          ? [...article.assets, article.presentation.file]
-          : article.assets,
+        publicMaterials: materials,
+        inputs: [...new Set([...article.inputs, ...materials.inputs])],
+        assets: resources,
         key: `${id}:${article.metadata.language}`,
         url: `articles/${article.metadata.slug}.html`,
         candidate: article.metadata.status !== 'accepted',
@@ -113,7 +125,7 @@ function input(root, article) {
         )
         .join('\n'),
       BODY: presentationBody(root, article),
-      SOURCES: sourceDetails(root, article),
+      SOURCES: sourceDetails(root, article) + (article.publicMaterials?.html || ''),
     },
     'article reader'
   );

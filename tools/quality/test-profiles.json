@@ -113,7 +113,8 @@
         "tests/archive.test.cjs",
         "tests/content-release.test.cjs",
         "tests/article-media.test.cjs",
-        "tests/article-tags.test.cjs"
+        "tests/article-tags.test.cjs",
+        "tests/article-materials.test.cjs"
       ]
     }
   },
@@ -1901,7 +1902,7 @@
     {
       "path": "tests/site-articles.test.cjs",
       "language": "javascript",
-      "purpose": "Native reader, local catalog/dates/translations, draft isolation, byte bounds, cold equality, retained immutable closure and history",
+      "purpose": "Native reader, local catalog/dates/translations, draft isolation, byte bounds, cold equality, retained immutable closure and history; selected public material source/resource closure and working campaign isolation",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production", "content"],
@@ -2456,6 +2457,23 @@
         "tools/quality/article-tags-browser.cjs",
         "tools/quality/local-browser.cjs",
         "tools/release/rights.cjs"
+      ]
+    },
+    {
+      "path": "tests/article-materials.test.cjs",
+      "language": "javascript",
+      "purpose": "Selected reviewed public files/links, immutable source/asset bindings, private leakage and reciprocal canonical behavior.",
+      "owner": "guides/ARTICLE-MATERIALS.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production", "content"],
+      "disposition": "source-only public material failure surfaces; publisher hook reuses existing article suite",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/article-materials.test.cjs",
+        "tools/site/article-materials.cjs",
+        "site/templates/components/article-materials.html",
+        "site/publications/**/materials.json",
+        "site/assets/publications/**/materials/**"
       ]
     }
   ]

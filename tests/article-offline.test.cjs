@@ -18,6 +18,40 @@ const pixel = Buffer.from(
 );
 let prepared;
 
+test('offline material anchors hydrate only declared verified resources', () => {
+  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+  const start = source.indexOf('  function hydrateEmbeddedImages(');
+  const end = source.indexOf('  async function read(', start);
+  const name = 'article-media/' + 'a'.repeat(64) + '/carousel.pdf';
+  const attributes = new Map([['href', name]]);
+  const link = {
+    tagName: 'A',
+    getAttribute: (key) => attributes.get(key),
+    setAttribute: (key, value) => attributes.set(key, value),
+  };
+  const context = { embeddedAssetURLs: new Map([[name, 'data:application/pdf;base64,JVBERg==']]) };
+  vm.createContext(context);
+  vm.runInContext(
+    source.slice(start, end) + '\nglobalThis.hydrate=hydrateEmbeddedImages;',
+    context
+  );
+  const result = {
+    main: {
+      querySelectorAll(selector) {
+        assert.ok(selector.includes('#article-materials a[href]'));
+        return [link];
+      },
+    },
+  };
+  context.hydrate(result, { assets: [name] });
+  assert.equal(attributes.get('data-offline-resource'), name);
+  assert.equal(attributes.get('href'), 'data:application/pdf;base64,JVBERg==');
+  attributes.set('href', name);
+  assert.throws(() => context.hydrate(result, { assets: [] }), /unknown/i);
+  context.embeddedAssetURLs.clear();
+  assert.throws(() => context.hydrate(result, { assets: [name] }), /unknown/i);
+});
+
 function write(root, relative, bytes) {
   const file = path.join(root, relative);
   fs.mkdirSync(path.dirname(file), { recursive: true });

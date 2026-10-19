@@ -45,6 +45,10 @@ async function inspectHead(page) {
       schemas: [...document.querySelectorAll('script[type="application/ld+json"]')].map((script) =>
         JSON.parse(script.textContent)
       ),
+      materials: [...document.querySelectorAll('#article-materials a')].map((link) => ({
+        href: link.href,
+        label: link.textContent.trim(),
+      })),
     };
   });
 }
@@ -80,6 +84,22 @@ async function articleHead(page, key, descriptor, descriptors, timeout) {
   assert.ok(article.headline && article.author, 'Article headline and author');
   assert.equal(await page.locator('h1').count(), 1);
   assert.equal(await page.locator('main.article-reader').count(), 1);
+  if (key === 'reader-reference:en') {
+    assert.equal(await page.locator('#article-materials').count(), 1, 'one shared materials block');
+    assert.equal(head.materials.length, 1, 'one explicitly selected reference material');
+    for (const link of head.materials) {
+      const response = await page.request.get(link.href);
+      const bytes = await response.body();
+      link.status = response.status();
+      link.sha256 = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+      assert.equal(link.status, 200, 'native material URL is served');
+      assert.ok(link.label, 'material has an accessible link label');
+      assert.ok(
+        new URL(link.href).pathname.includes('/article-media/' + link.sha256 + '/'),
+        'served material bytes match immutable URL'
+      );
+    }
+  }
   const currentLink = page.locator('header nav a[aria-current="page"]');
   assert.equal(
     await currentLink.count(),
@@ -710,6 +730,15 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
     for (const check of row.mode === 'normal' ? normalChecks : fallbackChecks)
       assert.equal(row.checks?.[check], true, 'article observation ' + check);
     assert.equal(row.head?.key, keys[0]);
+    if (keys[0] === 'reader-reference:en') {
+      assert.equal(row.head.materials?.length, 1, 'reference materials observation is required');
+      for (const link of row.head.materials) {
+        assert.equal(link.status, 200, 'observed material response');
+        assert.match(link.sha256, /^[a-f0-9]{64}$/);
+        assert.ok(new URL(link.href).pathname.includes('/article-media/' + link.sha256 + '/'));
+        assert.ok(link.label, 'observed material label');
+      }
+    }
     assert.equal(row.head.lang, keys[0].split(':').at(-1));
     assert.equal(row.head.routeVersion, descriptors[keys[0]].version);
     if (engine) assert.equal(row.head.engine, engine, 'article observed engine');

@@ -231,6 +231,77 @@ function accept(root, record) {
   json(root, 'site/content/catalog.json', catalog);
 }
 
+test('selected public materials enter native article/resource closure; campaign drafts stay private', (t) => {
+  const root = fixture(t);
+  const record = publication(root);
+  const pdf = Buffer.from('%PDF-1.7\nsynthetic material fixture\n%%EOF\n');
+  const file = 'site/assets/publications/reader-profile/materials/reading.pdf';
+  write(root, file, pdf);
+  const review = 'Synthetic review evidence; no real author acceptance.\n';
+  write(root, `${record.directory}/materials/reviews/reading-pdf.md`, review);
+  const declaration = {
+    schema: 1,
+    articleId: 'reader-profile',
+    source: { editionId: record.edition.id, semanticSha256: record.edition.semanticSha256 },
+    items: [
+      {
+        id: 'reading-pdf',
+        kind: 'pdf',
+        label: 'Full reading PDF',
+        description: 'Synthetic review fixture.',
+        credit: 'Synthetic author fixture.',
+        visibility: 'public',
+        target: {
+          kind: 'file',
+          path: 'materials/reading.pdf',
+          sha256: build.sha(pdf),
+          mime: 'application/pdf',
+        },
+        approval: null,
+      },
+    ],
+  };
+  const material = require('../tools/site/article-materials.cjs');
+  declaration.items[0].approval = {
+    bindingSha256: material.reviewBinding(declaration, declaration.items[0]),
+    reviewedAt: '2026-10-19T10:00:00Z',
+    evidence: { path: 'materials/reviews/reading-pdf.md', sha256: build.sha(review) },
+  };
+  json(root, `${record.directory}/materials.json`, declaration);
+  const first = preview(root);
+  const article = html(root, 'articles/reader-profile.html');
+  assert.match(article, /id="article-materials"/);
+  assert.match(article, /Full reading PDF/);
+  const revision = snapshot.verify(path.join(root, 'candidate'), { files: first.files });
+  const selected = revision.articles['reader-profile:en'];
+  const download = `article-media/${build.sha(pdf)}/reading.pdf`;
+  assert.ok(selected.assets.includes(download));
+  assert.deepEqual(fs.readFileSync(path.join(root, 'candidate', download)), pdf);
+  assert.ok(
+    first.articles['reader-profile:en'].inputs.includes(`${record.directory}/materials.json`)
+  );
+  write(root, `${record.directory}/campaign/brief.en.md`, 'Private campaign plan.\n');
+  write(root, `${record.directory}/campaign/posts/launch.en.md`, 'Private draft copy.\n');
+  const second = preview(root);
+  assert.equal(
+    second.articles['reader-profile:en'].version,
+    first.articles['reader-profile:en'].version
+  );
+  assert.deepEqual(second.files, first.files);
+  assert.equal(
+    Object.keys(second.files).some((name) => /campaign|reviews|materials.json/.test(name)),
+    false
+  );
+  if (process.env.ARTICLE_MATERIALS_PREVIEW_DIR) {
+    fs.cpSync(path.join(root, 'candidate'), process.env.ARTICLE_MATERIALS_PREVIEW_DIR, {
+      recursive: true,
+    });
+  }
+  declaration.items[0].target.sha256 = '0'.repeat(64);
+  json(root, `${record.directory}/materials.json`, declaration);
+  assert.throws(() => preview(root), /stale/i);
+});
+
 test('default output excludes draft body, catalog descriptors, files and assets; preview selection is explicit', (t) => {
   const root = fixture(t);
   publication(root);

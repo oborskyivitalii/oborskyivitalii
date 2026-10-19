@@ -38,3 +38,5 @@ The archive records byte identity and original source links. Historical proposal
 pause statements, counts and execution steps do not replace maintained rules.
 `docs/` contains generated public output; these guides and review evidence stay
 outside that publication directory.
+
+Public article attachments and observed platform/video links follow [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md), owned by issue106 with the existing reader integration in issue5.

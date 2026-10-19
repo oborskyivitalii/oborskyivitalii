@@ -4,6 +4,12 @@ Issue #5 owns the reusable publisher; each publication keeps its editorial and
 rights owner (PMDay: issue #2). This workflow prepares review candidates. It does
 not publish the site or post to LinkedIn or Medium.
 
+Prepare an optional source-bound [public-materials allowlist](ARTICLE-MATERIALS.md)
+for the common reader. Only explicitly public review-bound files and observed
+publication links render under “Materials and other formats”. Working campaign
+briefs, posts and review notes stay repository-only. This optional feature and
+the separate campaign in issue106 never gate publication of the article itself.
+
 On 13 October the author deferred the real PMDay article until its author-approved
 chapters are supplied. The existing PMDay manuscript, blueprint and exports are
 technical test artifacts for the publisher. They do not establish editorial

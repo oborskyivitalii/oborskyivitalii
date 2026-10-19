@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "articleId": "reader-reference",
+  "source": {
+    "editionId": "reader-reference-v1",
+    "semanticSha256": "9b4c68a9af14fadf270b0a3974ae7e697737f3f209cdb9e0627858be6fb1bcbf"
+  },
+  "items": [
+    {
+      "id": "source-diagram",
+      "kind": "image",
+      "label": "Original diagram",
+      "description": "Synthetic technical reference — no measured data.",
+      "credit": "Original technical test figure generated for the reader reference. No measured data.",
+      "visibility": "public",
+      "target": {
+        "kind": "asset",
+        "id": "diagram",
+        "sha256": "6a9867902510d7aea88f650b068c9592b598dc6dbcfdc4044bc99e1f176f82f7"
+      },
+      "approval": {
+        "bindingSha256": "8906e0251520e19fc05b5ebd645cbcccfceb3dad076e679188c06c239eecf21c",
+        "reviewedAt": "2026-10-19T10:30:00Z",
+        "evidence": {
+          "path": "materials/reviews/source-diagram.md",
+          "sha256": "502380bee4b91e22123289750ec4e3e8afa85bda485d3715c5c0cf7fc9c5bbab"
+        }
+      }
+    }
+  ]
+}

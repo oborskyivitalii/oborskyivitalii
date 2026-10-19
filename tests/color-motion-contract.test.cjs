@@ -760,16 +760,16 @@ test('reader-link runtime tuples reproduce the complete current plain and stagin
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-tag-history-plain');
+    assert.equal(motion.select(plain).id, 'issue106-reader-materials-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-tag-history-staging');
+    assert.equal(motion.select(staged).id, 'issue106-reader-materials-staging');
     for (const record of [plain, staged]) {
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-tag-history-plain').variant.baseEngine
+        motion.reviewedRuntime('issue106-reader-materials-plain').variant.baseEngine
       );
     }
   } finally {
@@ -862,5 +862,23 @@ test('reader-link producer identities retain exact runtime bytes and reject mixe
       delete wrongEdition.edition;
     }
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
+
+test('issue106 selected material lineage keeps exact Color byte checks', () => {
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue106-reader-materials-' + edition;
+    assert.equal(motion.select(manifest(id)).id, id);
+    const licensed = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(licensed, licensed.components),
+      true
+    );
+    const changed = manifest(id);
+    changed.files['navigation.js'].sha256 = '0'.repeat(64);
+    assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
+    const foreign = manifest(id);
+    foreign.components.variant.baseEngine = '0'.repeat(64);
+    assert.throws(() => motion.select(foreign), /Color motion identity/);
   }
 });

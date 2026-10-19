@@ -140,7 +140,7 @@ function renderInteractive(
   );
   let html = replaceStylesheet(source, `<style>\n${css}</style>`);
   html = inlineIcon(html, environment.publicDirectory);
-  html = rewriteLinks(html, 'light', true, offline.presentationLinks(environment, true));
+  html = rewriteLinks(html, 'light', true, offline.resourceLinks(environment, true));
   html = html.replace(
     'src="assets/vitalii-oborskyi-cutout.webp"',
     () => `src="data:image/webp;base64,${portrait.toString('base64')}"`
@@ -220,12 +220,7 @@ function routePayloads(portrait, options = {}) {
     source = offline.inlineFallback(source, environment);
     const key = 'article:' + environment.articleKey;
     payload.files[key] = 'article-' + environment.articleKey.replace(':', '-') + '-offline.html';
-    payload.pages[key] = rewriteLinks(
-      source,
-      'light',
-      true,
-      offline.presentationLinks(environment)
-    );
+    payload.pages[key] = rewriteLinks(source, 'light', true, offline.resourceLinks(environment));
     payload.assets = offline.assets(environment);
     // The standalone document owns inline scene geometry; only body media need
     // runtime resource hydration. Its derivative descriptor reflects that scope.
