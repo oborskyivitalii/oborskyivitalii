@@ -1,4 +1,23 @@
-# PMDay R12 — selected Cover02 and complete review assets
+# PMDay R13 — chapter-6 transition and retained Cover02 assets
+
+## R13 bounded correction — 19 October 2026
+
+The author requests removing the repeated rhetorical prompt inside chapter 6.
+The internal line is now **The two shifts fail differently**. The following
+paragraph, chapter title, final acceptance-criterion sentence, other refrains,
+sources and media remain. Canonical manuscript and draft ARTICLE body agree;
+the new `pmday-ai-both-sides-en-review-20261019-r13-cover02` semantic edition
+selects this changed source. R12 records/PDF below remain historical.
+
+[R13 compact review PDF](The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf):
+15 pages, 2172560 bytes, SHA256
+`845641da117f45a9c448cc9a56a64805000790407e063d28fa6853947224e8ad`.
+It preserves the R12 layout and native links, with one prompt and 19 revision-label
+changes. The adjacent `r13-pdf-edit.py` is a bounded review operation, not the
+managed publisher exporter. See the [current correction and fresh reader audit](../../issue-5/2026-10-19-reader-r13-followup.md)
+for independent PDF/source review, the two-line monospace subset qualification,
+screenshots, proposed reader improvements and evidence limits. Original editorial,
+rights, device and publication acceptance remains separate in #2/#5 and Draft PR79.
 
 ## R12 Cover02 import — 19 October 2026
 

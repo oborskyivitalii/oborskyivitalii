@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ac5023150e15229522a3689cc41797c373727bceebea0afcabcaeeb39e47e4f7",
+    "digest": "d4f5eb8a8f79084c7576af01b322c0dfc521ceccf4e270428a4803ba3fb82457",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "4946290ed3c6e22c3afaae4964fbdf877f875ca254d8ce8fea9ecbf563202569"
+        "sha256": "d1736c2777afca0fefc103f7544e727a96437599b3fe179d4d298be4c5ea2e6a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3e89e3f1e27fd027cae8f6be1147f6445dd36d9d5515f3833b04ac243c6483d1"
+        "sha256": "682722c047d8a2924fec26c85d594598d50915d5b00b465f11b12df22ed00a1b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "59cba84cd6c8472b1239a7b026e0f83234efc3143e6fda2ccf883c4c62599485"
+        "sha256": "d7e53cf25209838bd6bd62e410761791744c6253e148ed586157cca8c29f1974"
       },
       {
         "path": "NOTICE.md",
@@ -545,7 +545,7 @@
       {
         "path": "drafts/pmday-article-draft.en.md",
         "identity_mode": "content",
-        "sha256": "4ed264b3060ca92678716592699ea0eb952ad3a960a3ef245d6552e62b87f7e4"
+        "sha256": "3aec728c88b3b27a29b281499ad0c4741d5b8f8694d4ecd5e93bf454677b8bb1"
       },
       {
         "path": "guides/ARTICLE-MATERIALS.md",
@@ -770,12 +770,17 @@
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
-        "sha256": "5ad9dae5937c9f990d96e4a03d9b0a1b29eeefe3308fe2e20a7494d8aa637809"
+        "sha256": "8af768df942786018501f5a101b7165fe7f20b1d58ea8ca2b22bb51ea24803fb"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
         "identity_mode": "content",
         "sha256": "aa6ef80d0a7f02ce9355df91137737e106b0493078d69ffd1bf12a3ed47eca01"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf",
+        "identity_mode": "content",
+        "sha256": "845641da117f45a9c448cc9a56a64805000790407e063d28fa6853947224e8ad"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -796,6 +801,11 @@
         "path": "review/issue-2/pmday-candidate-20261015/r12-cover02-import.json",
         "identity_mode": "content",
         "sha256": "20f54cc380491eefd9e264e53ccd67598d64d8f73fb5e3ffa48d34227e7d05b3"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/r13-pdf-edit.py",
+        "identity_mode": "content",
+        "sha256": "8ff5ab2de3180afbd8e9e10fdf27f9db6257631bf164b035621b3385a44f2977"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
@@ -1373,6 +1383,11 @@
         "sha256": "30f2cffa673f82c7142771ce4c5d54cc9c7df4473944484695d352d7c67bc714"
       },
       {
+        "path": "review/issue-5/2026-10-19-reader-r13-followup.md",
+        "identity_mode": "content",
+        "sha256": "cea047ec85a74b75e07587fcef3cf3735a6f973efad46d24083398fd578e5964"
+      },
+      {
         "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
         "identity_mode": "content",
         "sha256": "9e5d8e8b45024593c343955ad49136b95ec8866ac326dab949451c0b191921ed"
@@ -1436,6 +1451,46 @@
         "path": "review/issue-5/pmday-candidate/publication-kit.zip",
         "identity_mode": "content",
         "sha256": "56adc1b84530e6b62779ea3f74030c80891ba783bde6572eaa73da289085c7ca"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/01-contents.jpg",
+        "identity_mode": "content",
+        "sha256": "286d4e156a1aab4b7d947202fcf06db13ce0eadfdb180f77c5c387c1fc4033e1"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/02-process.jpg",
+        "identity_mode": "content",
+        "sha256": "59be43f06867326d05439986ec0c69f2e33519fd7bb4e0473d03fd4767e34efa"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/03-quotation.jpg",
+        "identity_mode": "content",
+        "sha256": "bfcb17ef0f19197ee67e97045afdb62abce44464d779a528106e6161ee566e10"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/04-chapter.jpg",
+        "identity_mode": "content",
+        "sha256": "47b5209766310947c4d0812879f6f3b243c9036c3b636ea38d07edb239b4b307"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/05-table.jpg",
+        "identity_mode": "content",
+        "sha256": "f16837650b710ac1b40522b7ccb34ac2d99b46f2f554ef8661de1fa186dfbcdd"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/06-reference.jpg",
+        "identity_mode": "content",
+        "sha256": "7b7ec9d0d6fa3267304d76982e90d1140ff7f8a6c200bf4dbf816a387c1e2f7d"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/07-return.jpg",
+        "identity_mode": "content",
+        "sha256": "322d766322c200f92523d98163872c9e5e79dab5331a6d2944b2482eb210b390"
+      },
+      {
+        "path": "review/issue-5/reader-r13-audit/08-ending.jpg",
+        "identity_mode": "content",
+        "sha256": "c621912865e42f00d9d7c79ca2de095205fff86a43a5e9a2d21c67186560cece"
       },
       {
         "path": "review/issue-5/writing-catalog-amendment.json",
@@ -4820,7 +4875,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "0c0d20cadf0e3b1079b133645d5b7429e92323dd275db24ca04b99627cc12dfe"
+        "sha256": "c72cf90426e97bca43a4cab398c5e27d9c4b5b69db0fcf1eaf89955e34ee457e"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -5875,7 +5930,7 @@
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
         "identity_mode": "content",
-        "sha256": "1afa275436ade70654232b80b083e010b4a26037511e3ef431f13805a5a15f96"
+        "sha256": "eb787400230fc3dee3d3598a37f685c81a5f11af0aff5cf45757b359d10eb401"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -5918,6 +5973,11 @@
         "sha256": "6d4e0b36e9e820860d20784a585b6dfa82af179c5a9171282ca47b71ea9fbe47"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r13-cover02.json",
+        "identity_mode": "content",
+        "sha256": "9804793dc66182684c35b30b2309dbc4dc03543ec019974d2c36b88dcf03f252"
+      },
+      {
         "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
         "identity_mode": "content",
         "sha256": "5262c2436db2542db68b96cc1f5cf485431b510dede2bf8301c94cddbf344b05"
@@ -5925,17 +5985,17 @@
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b"
+        "sha256": "c9760da3dcc5003011777b7250d064a4232a0abea27505d3cedc057abf569d3f"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "1a39a81881c54c2d4784067bb087bd1877090785c8153b8198242b9f5a7cb21c"
+        "sha256": "b3542d163990f4f10ea46d0d3c350f125b02027a26fdc50d67aa0c6f30cbbd6a"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "4f70a229354b30ce8129dd90c24a04ca24944d3bdfa04d62274f414551f0bae0"
+        "sha256": "69aa52f5d6ffb39b8ebd478b61dee4349c6a4cc49a49a472fa6d7058a6c93379"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -6420,7 +6480,7 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "28d01ce54ca10e392c5434b96160044bd40ec1e04b533a717660a85493760a4f"
+        "sha256": "da5fe227cb5b3950b3635b85dc41865512dcebbf01c5d22ca9d5e7e85087be00"
       },
       {
         "path": "tests/article-offline.test.cjs",
@@ -9875,7 +9935,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "PMDay R12 — selected Cover02 and complete review assets"
+      "title": "PMDay R13 — chapter-6 transition and retained Cover02 assets"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
@@ -9887,6 +9947,17 @@
         "AGENTS.md"
       ],
       "title": "The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -9931,6 +10002,17 @@
         "AGENTS.md"
       ],
       "title": "r12-cover02-import.json"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/r13-pdf-edit.py",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r13-pdf-edit.py"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
@@ -11198,6 +11280,17 @@
       "title": "Issue 5 — 2026-10-19 reusable reader mode"
     },
     {
+      "path": "review/issue-5/2026-10-19-reader-r13-followup.md",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 5 — R13 correction and fresh Product Design reader audit"
+    },
+    {
       "path": "review/issue-5/2026-10-19-reader-resource-diagnostic.json",
       "kind": "file",
       "purpose": "Prepared source-hashed R10 reader, resource, transfer and exact-edition inventory diagnostic.",
@@ -11339,6 +11432,94 @@
         "AGENTS.md"
       ],
       "title": "publication-kit.zip"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/01-contents.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "01-contents.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/02-process.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "02-process.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/03-quotation.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "03-quotation.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/04-chapter.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "04-chapter.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/05-table.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "05-table.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/06-reference.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "06-reference.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/07-return.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "07-return.jpg"
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit/08-ending.jpg",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "08-ending.jpg"
     },
     {
       "path": "review/issue-5/writing-catalog-amendment.json",
@@ -21197,6 +21378,17 @@
       "title": "pmday-ai-both-sides-en-review-20261019-r12.json"
     },
     {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r13-cover02.json",
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261019-r13-cover02.json"
+    },
+    {
       "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: launch-post.en.md.",
@@ -26127,6 +26319,16 @@
       "purpose": "Prepared PMDay candidate review artifacts with source/byte identities; acceptance and publication observations remain separate.",
       "role": "history",
       "owner": "review/issue-5/2026-10-12-execution.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-5/reader-r13-audit",
+      "kind": "directory",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

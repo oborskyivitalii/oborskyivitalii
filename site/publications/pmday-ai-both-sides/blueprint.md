@@ -11,3 +11,7 @@ This is a review source, not a published article or accepted hosted rendition. R
 ## Current R12 media selection — 19 October 2026
 
 Cover02 import is complete. Restore the full supplied R12 reader including `asset:cover`; no text revision. Use the new `r12-cover02` semantic edition and image-role manifest under the article asset owner. The compact PDF is versioned in the issue-2 review directory. Older missing-cover and R10 observations are historical; current hosted-transfer and rights checks remain open.
+
+## R13 chapter-6 correction — 19 October 2026
+
+The author requests removing the repeated rhetorical prompt inside chapter 6. Replace that standalone prompt with **The two shifts fail differently**; keep the following paragraph, chapter title and final acceptance-criterion sentence. Other chapter refrains, claims, sources and media remain. R13 supersedes the prose-preservation restriction above only for this exact edit and revision labels. The canonical manuscript, editorial draft, new semantic edition and distinct R13 review PDF must agree. R12 source/edition/PDF remain historical.

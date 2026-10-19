@@ -1,7 +1,7 @@
-> **Editorial R12 — Cover02 media import, 19 October 2026. Review source, not a public edition.**
-> The full supplied R12 reader, including its selected cover marker, is now byte-identical to the canonical manuscript. No article prose, sources, quotations or numbers were edited. Source SHA-256: `5258aa9e232fb082f4c34353fb0c31601cf092dde15b977d1bdfe2d890e3364b`.
-> Author-selected Cover02 originals, prepared image adaptations and renderer-compatible PNG are committed under `site/assets/publications/pmday-ai-both-sides/cover02/`. The exact previously delivered compact R12 PDF is retained in the issue-2 review directory. Current media/provenance evidence supersedes earlier cover-import omissions; earlier transfer observations remain historical, not instructions to omit the image.
-> Article owner #2; execution PR79 / publisher #5. This import preserves the concurrent technical reader/resource work. Website transfer, independent review, rights and release gates remain separate.
+> **Editorial R13 — chapter-6 transition, 19 October 2026. Review source, not a public edition.**
+> Author-requested correction: replace only the standalone rhetorical prompt inside chapter 6 with **The two shifts fail differently** The following paragraph, chapter title, final acceptance-criterion sentence, other refrains, sources and media remain. Revision labels advance to R13.
+> Canonical reader SHA-256: `c9760da3dcc5003011777b7250d064a4232a0abea27505d3cedc057abf569d3f`. R12 and its exact PDF remain historical; the R13 review PDF preserves its layout with a bounded text correction.
+> Article owner #2; execution PR79 / publisher #5. Reader design recommendations remain review proposals.
 
 <!-- ARTICLE START -->
 
@@ -273,7 +273,7 @@ Small releases and rapid learning work when we can bound exposure, evaluate effe
 
 Have we grown so accustomed to correcting software after release that we stopped treating recoverability as something to establish? We will deploy, observe and improve; we expect to discover mistakes soon enough and retain the means to put them right.
 
-**What if not?**
+**The two shifts fail differently**
 
 In delivery, changes outpace understanding. In the running product, delegated judgment creates consequences before anyone can intervene. The software remains easy to redeploy. The consequences do not become easy to undo.
 
@@ -447,17 +447,17 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R12, 19 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R13, 19 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR12,
+@misc{oborskyi2026sumR13,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R12, 19 October 2026; unpublished}
+  note = {Editorial draft R13, 19 October 2026; unpublished}
 }
 ```
 

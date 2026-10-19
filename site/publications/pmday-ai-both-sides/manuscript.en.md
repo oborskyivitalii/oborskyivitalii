@@ -266,7 +266,7 @@ Small releases and rapid learning work when we can bound exposure, evaluate effe
 
 Have we grown so accustomed to correcting software after release that we stopped treating recoverability as something to establish? We will deploy, observe and improve; we expect to discover mistakes soon enough and retain the means to put them right.
 
-**What if not?**
+**The two shifts fail differently**
 
 In delivery, changes outpace understanding. In the running product, delegated judgment creates consequences before anyone can intervene. The software remains easy to redeploy. The consequences do not become easy to undo.
 
@@ -440,17 +440,17 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R12, 19 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R13, 19 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR12,
+@misc{oborskyi2026sumR13,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R12, 19 October 2026; unpublished}
+  note = {Editorial draft R13, 19 October 2026; unpublished}
 }
 ```
 

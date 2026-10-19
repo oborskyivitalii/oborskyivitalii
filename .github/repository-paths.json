@@ -10482,6 +10482,84 @@
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r13-pdf-edit.py": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-5/2026-10-19-reader-r13-followup.md": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit": {
+      "kind": "directory",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/01-contents.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/02-process.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/03-quotation.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/04-chapter.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/05-table.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/06-reference.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/07-return.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/08-ending.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r13-cover02.json": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     }
   }
 }

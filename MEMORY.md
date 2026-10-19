@@ -8,6 +8,9 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   review and authorized calm reader simplification: one column, optional flat
   Contents, compact header, reusable process, footer tags and consolidated ending.
   See review/issue-5/2026-10-19-calm-reader.md; final exact CI/preview belongs to PR79.
+- Latest #2/#5 amendment: R13 removes only the inner chapter-6 refrain; new review
+  PDF/edition preserves R12. Fresh reader audit proposes clearer citation returns
+  and easier source annotations. See review/issue-5/2026-10-19-reader-r13-followup.md.
 
 - PR79 orbit follow-up supersedes same-scene depth excursions: center, circle the
   single Writing fractal and restore reading. Bounded independent review found
