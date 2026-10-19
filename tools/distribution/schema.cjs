@@ -188,4 +188,4 @@ function validatePlan(plan, articleId) {
   return plan;
 }
 
-module.exports = { id, validatePlan };
+module.exports = { object, text, id, sha, integer, list, file, timestamp, validatePlan };

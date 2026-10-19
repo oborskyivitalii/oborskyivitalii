@@ -282,6 +282,17 @@
         "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f \u043a\u043e\u0434\u0443",
         "\u043b\u0456\u0446\u0435\u043d\u0437\u0456\u044f \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0443"
       ]
+    },
+    {
+      "concern": "Event announcement campaigns, source-deck promotion and calendar kit export",
+      "path": "guides/EVENT-DISTRIBUTION.md",
+      "queries": [
+        "event campaign",
+        "speaker announcement",
+        "calendar export",
+        "анонс події",
+        "матеріали виступу"
+      ]
     }
   ],
   "map_output": "REPOSITORY-MAP.md",
@@ -505,6 +516,20 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "Event campaign source and isolated kit behavior",
+      "paths": [
+        "tools/distribution/",
+        "drafts/events/",
+        "tests/event-campaign.test.cjs",
+        "guides/EVENT-DISTRIBUTION.md",
+        ".github/workflows/campaign-kit.yml"
+      ],
+      "commands": ["node --test tests/event-campaign.test.cjs tests/campaign.test.cjs"],
+      "read": ["guides/EVENT-DISTRIBUTION.md"],
+      "workflow": ".github/workflows/campaign-kit.yml",
+      "note": "Manual kit generation only. Source checks do not establish visual/editorial/rights acceptance, a calendar-account write or social publication."
     }
   ]
 }

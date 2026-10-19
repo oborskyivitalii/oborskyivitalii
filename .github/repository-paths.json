@@ -69,25 +69,25 @@
     },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
-      "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
+      "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-33.json": {
       "kind": "file",
-      "purpose": "Bootstrap/root optimization AC01\u2013AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
+      "purpose": "Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-35.json": {
       "kind": "file",
-      "purpose": "Test optimization AC01\u2013AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
+      "purpose": "Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-36.json": {
       "kind": "file",
-      "purpose": "Writing formula AC01\u2013AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
+      "purpose": "Writing formula AC01–AC05 mapped to canonical asset, native cache/integration, source-bound browser and paired performance evidence, with remaining human/release gates explicit.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -123,13 +123,13 @@
     },
     ".github/acceptance/issue-56.json": {
       "kind": "file",
-      "purpose": "Issue56 AC01\u2013AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
+      "purpose": "Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-58.json": {
       "kind": "file",
-      "purpose": "Shared issue58 AC01\u2013AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
+      "purpose": "Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -141,7 +141,7 @@
     },
     ".github/acceptance/issue-61.json": {
       "kind": "file",
-      "purpose": "PMDay recording AC01\u2013AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
+      "purpose": "PMDay recording AC01–AC03 mapped to existing current-source content/semantic/RI checks and explicit review/CI/linkage gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -153,13 +153,13 @@
     },
     ".github/acceptance/issue-69.json": {
       "kind": "file",
-      "purpose": "Issue69 AC01\u2013AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
+      "purpose": "Issue69 AC01–AC10 mapped entry, stationary camera, sequential navigation, shared delivery and exact-source checks with explicit external acceptance gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     ".github/acceptance/issue-72.json": {
       "kind": "file",
-      "purpose": "Issue72 AC01\u2013AC10 deterministic mapping and separate live/release/merge gates.",
+      "purpose": "Issue72 AC01–AC10 deterministic mapping and separate live/release/merge gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -222,6 +222,12 @@
       "purpose": "Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/workflows/campaign-kit.yml": {
+      "kind": "file",
+      "purpose": "Manually selected exact-source event kit renderer; no site deployment, account write or external publication.",
+      "role": "workflow",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
@@ -517,6 +523,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
@@ -550,18 +568,6 @@
     "docs/runtime/9db6dd1a71a8e84d692eef9e2d99f3c3d68f5df8c43d6459fa5bd35b8e25cfb3/theme.js": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -613,13 +619,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18": {
+    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html": {
+    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -637,6 +643,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4": {
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4": {
       "kind": "directory",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
@@ -644,18 +662,6 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/5ee2788bab2eaeb96ef94f2d38a7820b2fece577f0a44e1a87745f3d0cf5d9e4/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f": {
-      "kind": "directory",
-      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/234ca58e9826de2b229c72408aa8f7cbaf0cf376ac547d5f33330fcda10e946f/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -697,18 +703,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4": {
-      "kind": "directory",
-      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5dcd9942f1efbfc3bf9b78c2ac2d07b4e5058d95e15661636bcccc74703eb0d4/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -728,6 +722,18 @@
       "owner": "site/README.md"
     },
     "docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18": {
+      "kind": "directory",
+      "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18/index.html": {
       "kind": "file",
       "purpose": "Generated immutable public runtime/route snapshot derived from the canonical site sources.",
       "role": "generated",
@@ -769,6 +775,60 @@
       "role": "draft",
       "owner": "CONTRIBUTING.md"
     },
+    "drafts/events": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/brief.en.md": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/event.json": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/plan.json": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/posts": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/posts/announcement.en.md": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/sources": {
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "drafts/events/pmday-winter-2027/sources/organizer.md": {
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "drafts/medium-profile-revision-20261001.html": {
       "kind": "file",
       "purpose": "Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds.",
@@ -804,6 +864,12 @@
       "purpose": "Mandatory agent coding, content/template/CSS boundaries, performance and verification standards.",
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
+    },
+    "guides/EVENT-DISTRIBUTION.md": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "guide",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "guides/README.md": {
       "kind": "file",
@@ -1063,11 +1129,23 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-106/2026-10-19-corrections.md": {
+      "kind": "file",
+      "purpose": "Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-106/2026-10-19-draft-contract.md": {
       "kind": "file",
       "purpose": "First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-106/2026-10-19-event-preparation.md": {
+      "kind": "file",
+      "purpose": "Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "review/issue-106/2026-10-19-independent-review.md": {
       "kind": "file",
@@ -1078,12 +1156,6 @@
     "review/issue-106/2026-10-19-materials-campaign-runtime-proof.json": {
       "kind": "file",
       "purpose": "Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-106/2026-10-19-corrections.md": {
-      "kind": "file",
-      "purpose": "Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -1587,7 +1659,7 @@
     },
     "review/issue-58": {
       "kind": "directory",
-      "purpose": "Single R2\u2013R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
+      "purpose": "Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60.",
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -7591,6 +7663,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/event-campaign.test.cjs": {
+      "kind": "file",
+      "purpose": "Permanent event reuse, source/review invalidation, schedule/DST/CTA/input failure and private calendar/kit isolation behavior.",
+      "role": "test",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "tests/executive.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for executive.",
@@ -8143,6 +8221,12 @@
       "role": "source",
       "owner": "guides/ARTICLE-DISTRIBUTION.md"
     },
+    "tools/distribution/calendar.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "tools/distribution/campaign.cjs": {
       "kind": "file",
       "purpose": "Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation.",
@@ -8155,11 +8239,65 @@
       "role": "source",
       "owner": "guides/ARTICLE-DISTRIBUTION.md"
     },
+    "tools/distribution/event.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/inputs.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/kit.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/render.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/schedule.cjs": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
     "tools/distribution/schema.cjs": {
       "kind": "file",
       "purpose": "Strict version1 draft campaign shape, finite identities and explicit pending publication boundary.",
       "role": "source",
       "owner": "guides/ARTICLE-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates": {
+      "kind": "directory",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates/card.css": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates/card.html": {
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
+    },
+    "tools/distribution/templates/review.css": {
+      "kind": "file",
+      "purpose": "Canonical responsive offline kit-review typography, image sizing and copy wrapping.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md"
     },
     "tools/issue_acceptance.py": {
       "kind": "file",

@@ -4,77 +4,58 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
-- 19 October #106 corrections: offline source/selection binding, private public
-  identity isolation and transitive window validation fixed. Focused independent
-  re-review addresses F01–F03; exact policies/previews in owning PR107/PR79.
-  See review/issue-106/2026-10-19-corrections.md. No merge or release approval.
-
-- 19 October campaign checkpoint: #106 / Draft PR107 owns the first reusable
-  draft contract/brief/validator. Base main0098f804; article/site stays PR79.
-  Evidence: review/issue-106/2026-10-19-draft-contract.md; exact checks in PR107.
-  The older operational snapshots below retain their original dates.
-
-- Main/accepted production: 3af9100989c7dd6edc18b0b94c2d59f177cfd465,
-  prod-2026-10-17.4. Canonical .ai is live on GitHub Pages; .com redirects.
-- Active PR105 delivery under #102: plan items 3+4, finite analytics
-  aliases plus #103/#8 Google/Windsor access evidence. No deploy/merge claimed.
-- See review/issue-102/2026-10-18-analytics-and-search-access.md and sanitized
-  provider JSON for source, baseline, actual access and remaining gates.
-- Cloudflare bounded read: 174 pageviews/154 visits through18Oct18:00UTC;
-  sampleInterval1 for total/path groups. These are not unique people.
-- Windsor unavailable in this session; HYPD sites/accountSummaries empty.
-  Existing Google DNS verification and live sitemap do not establish indexing.
-- PR79 remains a separate Draft article/reader branch; article writing continues
-  in another chat. Prior step1 reconciliation is recorded under review/issue-5.
+- Verified main/production:0098f804cb3b0d120173d4c8689043db42231c47.
+  .ai production and .com redirect remain owned by #39/#8; no release here.
+- Active Draft PR107 / #106: reusable article campaign/public materials plus
+  authorized event campaign adapter, offline promotion kits and calendar export.
+- Concurrent material/campaign corrections are committed at c7877983ad64480e152d8abbeac97e2a80f2ccc2.
+  Its tree matches earlier a68af7d; do not overwrite those corrections.
+- Event implementation and self-review:
+  review/issue-106/2026-10-19-event-preparation.md and guides/EVENT-DISTRIBUTION.md.
+- First real consumer #108: drafts/events/pmday-winter-2027. One authored English
+  announcement; five later pieces explicitly planned. Session/deck remain unknown.
+- Article/reader work remains PR79 / #2 / #5. Do not alter its manuscript or
+  promote it as part of campaign tooling.
 
 ## Decisions
 
-- Author explicitly split campaign work into #106 and its own Draft PR107.
-  PR79/#2/#5 retain article publication; campaign completion never blocks it.
-  First draft validation exists; real publisher integration/kit/release remain open.
-
-- Maintainer authorized one separate PR for plan3+4. Existing #102 owns code,
-  #103 owns connector access and #8 retains full measurement/Search Console.
-- Keep aliases in the separately hashed integration adapter against declared
-  routes, preserving engine/producer identity and existing budgets.
-- No new GA4, paid plan, DNS or account-security change. No wildcard article paths.
-- Article editorial work and PR79 remain independent. Microservices are deferred;
-  static component contracts/release lanes remain the planned direction.
+- Maintainer approved event source, event-relative/exact dates, typed CTAs,
+  presentation-derived promotion, per-piece EN/UA and kit/ICS export on19October.
+- #106 / PR107 owns generic preparation; #108 owns real PMDay content and Talks.
+  Original article campaign AC02–AC11 remain open and are not replaced by events.
+- Calendar output is a file with stable UID/revision, not an account write or
+  LinkedIn scheduling. Plain calendar imports may duplicate in some apps.
+- Working inputs/kits stay repository-only unless explicitly selected for public
+  publication. Actual posting and author/editorial/rights decisions remain manual.
+- No paid promotion/services/inference, social credentials or private outreach.
 
 ## Open work
 
-- Maintainer authorized next delivery phase and analytics staging protection.
-  Staging preserves seven vendor-stub scenarios covering canonical/extensionless
-  entry for all five pages plus SDK/origin/offline failure surfaces. Both
-  staging/full validators reject missing forms/routes; optional full stays13.
-  Seven-row coverage preserves released-main controller compatibility.
-- First actual staging preflight passed25/26 guards; security blocked159 new
-  public identifiers (158 generated checksums, one unchanged beacon ID). Exact
-  provenance and predecessor-preserving ledger update are under issue102.
-- Follow-up hardening source tests86/86 passed; exact clean policy, ready-source
-  CI and actual staging result are recorded in PR105/#102. Prior local browser
-  download failed; CI execution is the browser evidence authority.
-- Make existing Windsor or read-only GSC bridge/property available; rediscover
-  exact siteUrl before querying verification, sitemap/indexing/search totals.
-- After accepted deployment observe real-provider aliases/SPA/filter/history,
-  per-vital sample sizes and hosted SDK cost. Keep #102/#103/#8 open meanwhile.
-- Future article integration must register canonical paths through reader contract.
+- Reconcile current source/CI and independent re-review of F01–F03 corrections;
+  old green checks cannot establish those defects were resolved.
+- Event source/calendar/kit behavior is implemented; exact-head evidence and
+  rendered first announcement kit are linked in the owning PR checkpoint.
+  Independent/author/mobile/rights and locked-browser CI gates remain separate.
+- The locally locked Chromium download returned invalid ZIPs. A separately
+  identified Chromium138.0.7204.0 rendered three card types and rejected overflow.
+  That diagnostic is not locked-CI or physical-device acceptance.
+- Complete original six-piece article campaign, three carousels, channel review,
+  shared actual publication/correction history and D+7/D+21 templates under #106.
+- Implement #108 Talks announcement independently; later confirmed title/slot/
+  deck updates need revalidation and actual content review.
+- Analytics/source-access follow-ups retain #102/#103/#8/#104; this work changes
+  neither their evidence nor external account state.
 
 ## Next session
 
-Issue106 next: verify the corrected exact PR heads and their evidence, accept
-relevant publisher baseline, then prepare the smallest actual launch/carousel kit.
-See the correction/re-review record; whole campaign/publication gates stay open.
-
-For #106, read issue/PR107 and the draft-contract review. Integrate its facade
-against the accepted publisher, add ARTICLE-WORKFLOW hook, then first launch kit.
-No social publication, outreach or reminders are authorised by this checkpoint.
-
-1. Revalidate PR105 state/head, main, source/preview/staging checks and #102/#103/#8.
-2. Continue exact current phase; do not repeat account connection assumptions.
-3. Stage/merge/release only with the applicable maintainer decision and gates.
+1. Revalidate PR107 head, main, owning #106/#108 and exact source/check evidence.
+2. Review first event kit; confirm only actual event details. Reuse the canonical
+   deck when available instead of substituting the September PMDay presentation.
+3. Continue original campaign work and focused independent review in same owners.
+4. Merge, stage or publish only with applicable maintainer decision and gates.
 
 ## Maintenance
 
 - Keep five sections and120-line cap; rebuild RI after indexed changes.
-- Git-backed website code is not duplicated into file storage.
+- Git-backed code and campaign artifacts are not duplicated into file storage.
+- Never store private correspondence, credentials or speculative publication state.

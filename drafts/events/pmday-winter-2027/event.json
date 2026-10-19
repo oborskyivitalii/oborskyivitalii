@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "pmday-winter-2027",
+  "revision": 1,
+  "name": "UA Online PMDay 2027 Winter",
+  "date": "2027-01-30",
+  "timezone": "Europe/Kyiv",
+  "format": "online",
+  "organizer": "UA Project Management Day",
+  "speaker": "Vitalii Oborskyi",
+  "session": {
+    "title": null,
+    "time": null,
+    "language": null,
+    "track": null
+  },
+  "destinations": [
+    {
+      "id": "registration",
+      "kind": "registration",
+      "url": "https://pmday.org/online",
+      "evidence": {
+        "path": "sources/organizer.md",
+        "sha256": "16ef897b6f11e1892ab07a81cbefe55550b92ccec4b67e17e590841dbfe4ce12",
+        "observedAt": "2026-10-19T11:53:00Z"
+      }
+    }
+  ],
+  "deck": null,
+  "evidence": {
+    "path": "sources/organizer.md",
+    "sha256": "16ef897b6f11e1892ab07a81cbefe55550b92ccec4b67e17e590841dbfe4ce12",
+    "observedAt": "2026-10-19T11:53:00Z"
+  }
+}

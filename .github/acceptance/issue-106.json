@@ -80,6 +80,48 @@
       "automated_scope": "Strict source/file/approval/URL/resource/dependency behavior and shared HTML tested with maintained fixtures. Actual reader integration, mobile/no-JS and author/rights/release acceptance are recorded separately.",
       "checks": ["CAMPAIGN", "CURRENT-RI"],
       "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC12",
+      "intent": "Support confirmed event sources and typed observed destinations without an article.",
+      "automated_scope": "Two distinct event fixtures, absent publisher, pending session/deck, invalid and unobserved CTA/source inputs.",
+      "checks": ["CAMPAIGN", "CURRENT-RI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC13",
+      "intent": "Resolve before/after and exact local dates with IANA zones and feasible dependencies.",
+      "automated_scope": "Actual summer/winter conversions, invalid dates, DST gaps/ambiguity, graph cycles and transitive impossible windows.",
+      "checks": ["CAMPAIGN", "CURRENT-RI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC14",
+      "intent": "Render three reusable promotion layouts and preserve selected source-deck page identity and credit.",
+      "automated_scope": "Template safety, exact PDF pin and missing/changed deck negatives; actual PNG/PDF/browser overflow and phone/source-slide visual review are separate observed checks.",
+      "checks": ["CAMPAIGN", "CURRENT-RI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC15",
+      "intent": "Allow English and Ukrainian pieces in one event campaign.",
+      "automated_scope": "Two distinct event fixtures contain independently owned English copy and planned Ukrainian pieces; schema and copy-owner constraints reject undeclared language.",
+      "checks": ["CAMPAIGN", "CURRENT-RI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC16",
+      "intent": "Produce isolated reviewable kits and stable private calendar-file exports.",
+      "automated_scope": "Copy-only transactional kit/manifest/source/public isolation and overwrite negatives; stable UID, revision sequence, UTC times and UTF8 folding. Actual render reviewed separately; no publication observation support is claimed.",
+      "checks": ["CAMPAIGN", "CURRENT-RI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
+    },
+    {
+      "id": "AC17",
+      "intent": "Maintain compatible article checks and source/RI/style routes with truthful acceptance.",
+      "automated_scope": "Existing article and event source suites, Basic, style subset and RI/CI/profile checks. Independent/author/merge and actual publisher-related original gates remain open.",
+      "checks": ["CAMPAIGN", "CURRENT-RI", "BASIC", "STYLE", "RI-CI"],
+      "gates": ["AUTHOR-REVIEW", "INDEPENDENT-REVIEW", "MERGE"]
     }
   ],
   "checks": {
@@ -110,7 +152,7 @@
     },
     "IMPLEMENTATION": {
       "kind": "human",
-      "description": "First draft-contract increment only. Actual publisher integration, campaign assets/rendering, channel admission, observation/corrections and metrics templates remain pending. Partial checks cannot satisfy whole acceptance."
+      "description": "First draft-contract increment only. Actual publisher integration, campaign assets/rendering, channel admission, observation/corrections and metrics templates remain pending. Partial checks cannot satisfy whole acceptance. Event adapter/kit progress is recorded separately; original full article campaign, channel admission and observed publication history remain unfinished."
     },
     "AUTHOR-REVIEW": {
       "kind": "human",

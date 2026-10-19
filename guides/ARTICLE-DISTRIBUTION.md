@@ -1,5 +1,10 @@
 # Article distribution preparation
 
+For forthcoming talks without an article, use the reusable
+[event campaign adapter](EVENT-DISTRIBUTION.md). Its source/date/CTA/calendar
+contract is separate from this preserved article D0 contract; both share the
+preparation CLI, strict field validators and review-record convention.
+
 Owner: [issue106](https://github.com/oborskyivitalii/oborskyivitalii/issues/106).
 Public reader materials follow [ARTICLE-MATERIALS](ARTICLE-MATERIALS.md): an
 explicit reviewed allowlist, shared block and immutable selected assets. Campaign

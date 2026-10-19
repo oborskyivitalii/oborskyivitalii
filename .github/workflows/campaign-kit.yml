@@ -1,0 +1,63 @@
+name: Prepare event campaign kit
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Exact repository commit SHA to prepare
+        required: true
+        type: string
+      event_id:
+        description: Event ID in drafts/events
+        required: true
+        type: string
+      piece_id:
+        description: Optional authored piece ID (blank builds all authored pieces)
+        required: false
+        type: string
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      EVENT_ID: ${{ inputs.event_id }}
+      PIECE_ID: ${{ inputs.piece_id }}
+      SOURCE_SHA: ${{ inputs.source_sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ inputs.source_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 24.19.0
+      - name: Verify exact selected source
+        run: |
+          node -e "if(!/^[a-f0-9]{40}$/.test(process.env.SOURCE_SHA))throw Error('Use an exact SHA')"
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test -z "$(git status --porcelain)"
+      - name: Install locked offline renderer
+        run: |
+          npm ci --prefix tools/quality/toolchain --ignore-scripts
+          node tools/quality/toolchain/node_modules/playwright/cli.js install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y poppler-utils
+      - name: Validate source and event behavior
+        run: |
+          node --test tests/event-campaign.test.cjs tests/campaign.test.cjs
+          node tools/distribution/cli.cjs validate-event "$EVENT_ID"
+      - name: Build selected draft kit
+        run: |
+          if [ -n "$PIECE_ID" ]; then
+            node tools/distribution/cli.cjs build-event "$EVENT_ID" "$RUNNER_TEMP/event-kit" "$PIECE_ID"
+          else
+            node tools/distribution/cli.cjs build-event "$EVENT_ID" "$RUNNER_TEMP/event-kit"
+          fi
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: event-campaign-kit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/event-kit/
+          if-no-files-found: error
+          retention-days: 30

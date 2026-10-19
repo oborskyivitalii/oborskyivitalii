@@ -57,6 +57,10 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f](docs/snapshots/b9728ea1333981d70340292895ebbad9e6be305ae60661ef3c227c64ea97b49f) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 | [docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18](docs/snapshots/c1d9514b04e35a7729d3dcbde69eb94ffc7bd05bff90ea563f0657ea84184b18) | Generated immutable public runtime/route snapshot derived from the canonical site sources. | generated | [site/README.md](site/README.md) |
 | [drafts](drafts) | Unpublished article/profile proposals excluded from public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [drafts/events](drafts/events) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027](drafts/events/pmday-winter-2027) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/posts](drafts/events/pmday-winter-2027/posts) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/sources](drafts/events/pmday-winter-2027/sources) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [guides](guides) | Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface. | guide | [guides/README.md](guides/README.md) |
 | [review](review) | Dated plans, evidence, captures and renditions; current Color/export inputs are explicitly marked. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/assets](review/assets) | Historical visual concept/portrait assets. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -163,6 +167,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/fixtures](tests/fixtures) | Shared controlled evidence builders for selected staging validator/consumer tests; fixtures do not claim actual browser or CI execution. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tools](tools) | Repository navigation, public generation and offline review/export entry points. | source | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [tools/distribution](tools/distribution) | Bounded read-only article distribution preparation tooling. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/templates](tools/distribution/templates) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/pages](tools/pages) | Issue72 source-bound staging and Pages delivery controller. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/quality](tools/quality) | Maintained source, security, browser, hosted-origin, performance and release checks. | validator | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [tools/quality/toolchain](tools/quality/toolchain) | Pinned isolated quality tooling packages and Python dependencies. | configuration | [tools/quality/README.md](tools/quality/README.md) |
@@ -224,6 +229,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [.github/workflows/campaign-kit.yml](.github/workflows/campaign-kit.yml) | Manually selected exact-source event kit renderer; no site deployment, account write or external publication. | workflow | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [.github/workflows/issue-acceptance.yml](.github/workflows/issue-acceptance.yml) | Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report. | workflow | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/workflows/navigation.yml](.github/workflows/navigation.yml) | GitHub Actions: Local navigation checks; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [.github/workflows/site-browser-gate-probe.yml](.github/workflows/site-browser-gate-probe.yml) | GitHub Actions: Browser gate causal diagnostic; inspect trigger/profile before running. | workflow | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -371,6 +377,26 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [drafts/medium-profile-revision-20261001.html](drafts/medium-profile-revision-20261001.html) | Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds. | draft | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
+## drafts/events/pmday-winter-2027/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/pmday-winter-2027/brief.en.md](drafts/events/pmday-winter-2027/brief.en.md) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/event.json](drafts/events/pmday-winter-2027/event.json) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [drafts/events/pmday-winter-2027/plan.json](drafts/events/pmday-winter-2027/plan.json) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
+## drafts/events/pmday-winter-2027/posts/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/pmday-winter-2027/posts/announcement.en.md](drafts/events/pmday-winter-2027/posts/announcement.en.md) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
+## drafts/events/pmday-winter-2027/sources/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [drafts/events/pmday-winter-2027/sources/organizer.md](drafts/events/pmday-winter-2027/sources/organizer.md) | PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots. | draft | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+
 ## guides/
 
 | Path | Purpose | Role | Owner / editing route |
@@ -379,6 +405,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) | Reusable draft campaign contract, source-bound review and pending publisher/release integration. | guide | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) | Public materials allowlist, reciprocal links, source/review pins and existing rights/resource contracts. | guide | [guides/ARTICLE-MATERIALS.md](guides/ARTICLE-MATERIALS.md) |
 | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) | Mandatory agent coding, content/template/CSS boundaries, performance and verification standards. | guide | [guides/CODE-STYLE.md](guides/CODE-STYLE.md) |
+| [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | guide | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
@@ -645,6 +672,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json](review/issue-106/2026-10-19-corrections-campaign-runtime-proof.json) | Exact correction producer lineage with unchanged runtime behavior and mandatory rights admission; preparatory byte derivation, not publication approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-corrections.md](review/issue-106/2026-10-19-corrections.md) | Corrections for independent material/offline/campaign findings, focused re-review source hashes, verification and remaining campaign gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-draft-contract.md](review/issue-106/2026-10-19-draft-contract.md) | First campaign implementation scope, CS/AC mapping, self-review and remaining publisher/author gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-106/2026-10-19-event-preparation.md](review/issue-106/2026-10-19-event-preparation.md) | Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates. | history | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [review/issue-106/2026-10-19-independent-review.md](review/issue-106/2026-10-19-independent-review.md) | Independent technical AI review of exact campaign/material sources, reproduced open defects and ordered correction plan; no approval or code fix. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-materials-campaign-runtime-proof.json](review/issue-106/2026-10-19-materials-campaign-runtime-proof.json) | Exact preparatory Color runtime bytes and derived edition identities; self-review, not release approval. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-106/2026-10-19-public-materials.md](review/issue-106/2026-10-19-public-materials.md) | Public material implementation and publisher integration scope/evidence with pending human gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -1893,6 +1921,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/effects.test.cjs](tests/effects.test.cjs) | Permanent explicit effect composition, malformed descriptor, isolation and serialization regression cases. | test | [site/README.md](site/README.md) |
 | [tests/endpoint-fixtures.test.cjs](tests/endpoint-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for endpoint fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/engine-browser-fixtures.test.cjs](tests/engine-browser-fixtures.test.cjs) | Behavioral/adversarial tests and fixtures for engine browser fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/event-campaign.test.cjs](tests/event-campaign.test.cjs) | Permanent event reuse, source/review invalidation, schedule/DST/CTA/input failure and private calendar/kit isolation behavior. | test | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tests/executive.test.cjs](tests/executive.test.cjs) | Behavioral/adversarial tests and fixtures for executive. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/flight.test.cjs](tests/flight.test.cjs) | Behavioral/adversarial tests and fixtures for flight. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/format-parity.test.cjs](tests/format-parity.test.cjs) | Permanent semantic formatting equivalence and changed-language-behavior negative fixtures. | test | [tools/quality/README.md](tools/quality/README.md) |
@@ -2000,9 +2029,23 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [tools/distribution/calendar.cjs](tools/distribution/calendar.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/distribution/campaign.cjs](tools/distribution/campaign.cjs) | Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
 | [tools/distribution/cli.cjs](tools/distribution/cli.cjs) | Explicit source-only draft campaign validation with JSON stdout and no release mode. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+| [tools/distribution/event.cjs](tools/distribution/event.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/inputs.cjs](tools/distribution/inputs.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/kit.cjs](tools/distribution/kit.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/render.cjs](tools/distribution/render.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/schedule.cjs](tools/distribution/schedule.cjs) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 | [tools/distribution/schema.cjs](tools/distribution/schema.cjs) | Strict version1 draft campaign shape, finite identities and explicit pending publication boundary. | source | [guides/ARTICLE-DISTRIBUTION.md](guides/ARTICLE-DISTRIBUTION.md) |
+
+## tools/distribution/templates/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [tools/distribution/templates/card.css](tools/distribution/templates/card.css) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/templates/card.html](tools/distribution/templates/card.html) | Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
+| [tools/distribution/templates/review.css](tools/distribution/templates/review.css) | Canonical responsive offline kit-review typography, image sizing and copy wrapping. | source | [guides/EVENT-DISTRIBUTION.md](guides/EVENT-DISTRIBUTION.md) |
 
 ## tools/pages/
 

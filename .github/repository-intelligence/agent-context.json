@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "25b56b43791e87d43cc79a4825b4f5f16b4c4ff42d06ae6bb913731156e66bea",
+    "digest": "53d09c277d6345ef9fda6010fabed4c6279433052739333a321f77f8b29fec4a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -52,7 +52,7 @@
       {
         "path": ".github/acceptance/issue-106.json",
         "identity_mode": "content",
-        "sha256": "e84a23db35155fa96f6b2cb545f46651a38004a34a18f24ad0205fba5e5e6d9b"
+        "sha256": "728b515b418177f74c84256cb0a1e4285f78ccb466deaace8a25bb7a865e3bf3"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -152,7 +152,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
+        "sha256": "0ad23f233223ade6ce98442462e1ff451e5fc7741530543728aaec958dd0f533"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -166,12 +166,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "ca84329571e5ec5a8a930fa468797671929a05f8cb8f7ce0197336e21dcc747b"
+        "sha256": "bc40cb065506e11c4afef2840eee3e2076bccf5dfc8e6df932b4d38c5e5f7bfe"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "f4410216485c72c6d929e0c5db35470a190bf21f12dbf4da8125f6d5824ce2e0"
+        "sha256": "ff174e1f66a7399875be75f4f1931266ee4e26ad2131004df1c187c313ed6f9b"
+      },
+      {
+        "path": ".github/workflows/campaign-kit.yml",
+        "identity_mode": "content",
+        "sha256": "58f45096ec22654001bdb1084835e2fbf2b7b36147ae5582724e93ec0fa1e3af"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -301,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9bd8e442025f393d592aec7be92e86e197eaa1198e5d2d82fdf1526be053c5c1"
+        "sha256": "e8d82fb835b11116bc2955b9faeba8ee5f8670bb6ee0c0318e3c04dc95e4afcb"
       },
       {
         "path": "NOTICE.md",
@@ -528,6 +533,31 @@
         "sha256": "6eee98778e127e7750105d52c93fc65732507781dedc6ec5e0d77e71cbc95f8f"
       },
       {
+        "path": "drafts/events/pmday-winter-2027/brief.en.md",
+        "identity_mode": "content",
+        "sha256": "b1de49fada9c7367869f322251fdae199aeb37897eea54ac391d4408a318a4a5"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/event.json",
+        "identity_mode": "content",
+        "sha256": "0ad44e94da84b9ec3ee462ef1e21508beff4a08b4f46c1fffe4368adfb319ca0"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/plan.json",
+        "identity_mode": "content",
+        "sha256": "d95b6f0c006956bdb1f25e6f7f058e4b82c49aedaac81c56f0e1f08c35d158fd"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/posts/announcement.en.md",
+        "identity_mode": "content",
+        "sha256": "14061bc780f4005d4ec76aec27774db285b35da8afbe33d13722beeaa9d707b3"
+      },
+      {
+        "path": "drafts/events/pmday-winter-2027/sources/organizer.md",
+        "identity_mode": "content",
+        "sha256": "16ef897b6f11e1892ab07a81cbefe55550b92ccec4b67e17e590841dbfe4ce12"
+      },
+      {
         "path": "drafts/medium-profile-revision-20261001.html",
         "identity_mode": "content",
         "sha256": "8500a3a89bd091df6638caad812824cf03ad3233f674b207e37c73bb4c26cc01"
@@ -540,7 +570,7 @@
       {
         "path": "guides/ARTICLE-DISTRIBUTION.md",
         "identity_mode": "content",
-        "sha256": "c3e51c06f5f270f476b765ddf06e2bcc6eb02b213a26adc64ddb8bec30c71b4b"
+        "sha256": "317e4a8d6e9869b7d69e1ccb8a109873d39594223ca47f53307fef9eb8210bd5"
       },
       {
         "path": "guides/ARTICLE-MATERIALS.md",
@@ -553,9 +583,14 @@
         "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
       },
       {
+        "path": "guides/EVENT-DISTRIBUTION.md",
+        "identity_mode": "content",
+        "sha256": "3967853299fc6ed5363febf7102707f64c9c6d9815a378c829e8504259e7d92f"
+      },
+      {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "e4a62b2543ad6939d8a7c27deffedf75a078c631dc32497065fef15fbe25b772"
+        "sha256": "69d291c7c052d1a999ea93b5dff7700ec9a6b7b1ebbd808fa9c7f15538cd94d2"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -731,6 +766,11 @@
         "path": "review/issue-106/2026-10-19-draft-contract.md",
         "identity_mode": "content",
         "sha256": "fc49ca7bbde97f6d878f593a855e7d6c8aca6ac19ed7af6678251c838bbc1aae"
+      },
+      {
+        "path": "review/issue-106/2026-10-19-event-preparation.md",
+        "identity_mode": "content",
+        "sha256": "f30348fcf9405d3e87ecad8df2907d1f38c0e3cfd7db281994b9e5c23ce27425"
       },
       {
         "path": "review/issue-106/2026-10-19-independent-review.md",
@@ -5698,6 +5738,11 @@
         "sha256": "06db85dd0adb712b6ec104f98c3fc81030dfce868bfba82b2bde13c219b6fb15"
       },
       {
+        "path": "tests/event-campaign.test.cjs",
+        "identity_mode": "content",
+        "sha256": "71ad32831170fd6d7f9249e944507f724e5f9050caedfb5eacaed8e0c95392e8"
+      },
+      {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
         "sha256": "32ae9c5e6dfda3a647a1805db46c0611e83ba74a78b33e36fa5d9ec2a589aa66"
@@ -5920,7 +5965,7 @@
       {
         "path": "tests/test_issue106_acceptance.py",
         "identity_mode": "content",
-        "sha256": "c436a0888c77b1eddee2fe55317cba93b734653acb1fe73af9550933841370a9"
+        "sha256": "fb226478bc8c13bd4c03719ea7bd9d15a69151c9353dbfa60dab1de133e55967"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -6143,6 +6188,11 @@
         "sha256": "e237d23acc21844768a3bf334066bfc8efe410d123b8cbc98aae3aff3a5abc65"
       },
       {
+        "path": "tools/distribution/calendar.cjs",
+        "identity_mode": "content",
+        "sha256": "9646da0dbe216f2e8cfbb1a22aaa94dade2f48b8d8511df8dd5f8d9be29f62f6"
+      },
+      {
         "path": "tools/distribution/campaign.cjs",
         "identity_mode": "content",
         "sha256": "941d96621c975e546843d42793a1360574dcb8643d2c8e44a7af6806ecc91dae"
@@ -6150,12 +6200,52 @@
       {
         "path": "tools/distribution/cli.cjs",
         "identity_mode": "content",
-        "sha256": "696076daa2d83c9fcbf4fa7dd12da5e35008293796cb7416396747b402ebc500"
+        "sha256": "43481f80e0112f92542cf60466f3c5e8aa2f97ae2304c81e486385c73d60e6a5"
+      },
+      {
+        "path": "tools/distribution/event.cjs",
+        "identity_mode": "content",
+        "sha256": "6de5e53a6656caf897a36fa1596fab7cc62182ee8afb15907164ef066dec3eee"
+      },
+      {
+        "path": "tools/distribution/inputs.cjs",
+        "identity_mode": "content",
+        "sha256": "21d92e0a07ce67ac70c98d2b3d5df204183b08d72c958f624d094d8335dca5dc"
+      },
+      {
+        "path": "tools/distribution/kit.cjs",
+        "identity_mode": "content",
+        "sha256": "39542efc8bb620aec5731ff72a35c9ed57694e2fe915c1d0b107491f49e09c56"
+      },
+      {
+        "path": "tools/distribution/render.cjs",
+        "identity_mode": "content",
+        "sha256": "151a3b9b4ef1ae846881377f2f3895a8d62dc75bbfeec0f55187c19bb51a170d"
+      },
+      {
+        "path": "tools/distribution/schedule.cjs",
+        "identity_mode": "content",
+        "sha256": "76a69bb90ce7cb0418ee966c38a0d58e124f9eb8706a317f2ae7c2f9ff2187c0"
       },
       {
         "path": "tools/distribution/schema.cjs",
         "identity_mode": "content",
-        "sha256": "5834b34428e3906dec1904bf9f6995b67dfd7d9f2b0d8ada55aea3b725fa8efb"
+        "sha256": "5175c0a25eca0f8005b955c1f8294fe16de94eb958b4966a32458372f156a923"
+      },
+      {
+        "path": "tools/distribution/templates/card.css",
+        "identity_mode": "content",
+        "sha256": "b2e93fe10811badacebb81538ef7548fe2502ba5ab916aaf2c031d98692fc6a8"
+      },
+      {
+        "path": "tools/distribution/templates/card.html",
+        "identity_mode": "content",
+        "sha256": "3688b85d4296017663cffa78f441851b2d66d787a1892423051fada2fb4ebb56"
+      },
+      {
+        "path": "tools/distribution/templates/review.css",
+        "identity_mode": "content",
+        "sha256": "bdae885703eb6eda5dfab047810263d7f61c2dad9a50fa8c9c4a138224f6f4f4"
       },
       {
         "path": "tools/issue_acceptance.py",
@@ -6525,7 +6615,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "21a502b96ca76c2025b526ce2c383b81722b1a4a399d9ef6c58847c7af071f5a"
+        "sha256": "cb847c05a81ac7fa8c292b10375c8a1fa2ba7d7d81ce5454a97e85943f54d213"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6838,7 +6928,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
+    "config_sha256": "0ad23f233223ade6ce98442462e1ff451e5fc7741530543728aaec958dd0f533"
   },
   "owners": [
     {
@@ -7108,6 +7198,17 @@
         "ліцензування сайту",
         "ліцензія коду",
         "ліцензія контенту"
+      ]
+    },
+    {
+      "concern": "Event announcement campaigns, source-deck promotion and calendar kit export",
+      "path": "guides/EVENT-DISTRIBUTION.md",
+      "queries": [
+        "event campaign",
+        "speaker announcement",
+        "calendar export",
+        "анонс події",
+        "матеріали виступу"
       ]
     }
   ],
@@ -7460,6 +7561,17 @@
         "AGENTS.md"
       ],
       "title": "ri-ci-map.json"
+    },
+    {
+      "path": ".github/workflows/campaign-kit.yml",
+      "kind": "file",
+      "purpose": "Manually selected exact-source event kit renderer; no site deployment, account write or external publication.",
+      "role": "workflow",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "campaign-kit.yml"
     },
     {
       "path": ".github/workflows/issue-acceptance.yml",
@@ -8243,6 +8355,61 @@
       "title": "writing.html"
     },
     {
+      "path": "drafts/events/pmday-winter-2027/brief.en.md",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "PMDay Winter 2027 — event distribution brief"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/event.json",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "event.json"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/plan.json",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "plan.json"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/posts/announcement.en.md",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "announcement.en.md"
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/sources/organizer.md",
+      "kind": "file",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Official event observation — 19 October 2026"
+    },
+    {
       "path": "drafts/medium-profile-revision-20261001.html",
       "kind": "file",
       "purpose": "Unpublished proposed content: medium-profile-revision-20261001.html; excluded from current public builds.",
@@ -8296,6 +8463,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/EVENT-DISTRIBUTION.md",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "guide",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Event announcement preparation"
     },
     {
       "path": "guides/README.md",
@@ -8692,6 +8870,17 @@
         "AGENTS.md"
       ],
       "title": "Issue106 — first draft campaign contract"
+    },
+    {
+      "path": "review/issue-106/2026-10-19-event-preparation.md",
+      "kind": "file",
+      "purpose": "Event adapter/kit scope, meaningful source and actual diagnostic render/calendar evidence, CS/AC self-review and remaining gates.",
+      "role": "history",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue106 — 19 October event preparation implementation"
     },
     {
       "path": "review/issue-106/2026-10-19-independent-review.md",
@@ -19617,6 +19806,17 @@
       "title": "engine-browser-fixtures.test.cjs"
     },
     {
+      "path": "tests/event-campaign.test.cjs",
+      "kind": "file",
+      "purpose": "Permanent event reuse, source/review invalidation, schedule/DST/CTA/input failure and private calendar/kit isolation behavior.",
+      "role": "test",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "event-campaign.test.cjs"
+    },
+    {
       "path": "tests/executive.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for executive.",
@@ -20596,6 +20796,17 @@
       "title": "compact_site_recordings.cjs"
     },
     {
+      "path": "tools/distribution/calendar.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "calendar.cjs"
+    },
+    {
       "path": "tools/distribution/campaign.cjs",
       "kind": "file",
       "purpose": "Publisher facade consumer, bounded campaign inputs and source/copy/dependency approval invalidation.",
@@ -20618,6 +20829,61 @@
       "title": "cli.cjs"
     },
     {
+      "path": "tools/distribution/event.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "event.cjs"
+    },
+    {
+      "path": "tools/distribution/inputs.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "inputs.cjs"
+    },
+    {
+      "path": "tools/distribution/kit.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "kit.cjs"
+    },
+    {
+      "path": "tools/distribution/render.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "render.cjs"
+    },
+    {
+      "path": "tools/distribution/schedule.cjs",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "schedule.cjs"
+    },
+    {
       "path": "tools/distribution/schema.cjs",
       "kind": "file",
       "purpose": "Strict version1 draft campaign shape, finite identities and explicit pending publication boundary.",
@@ -20627,6 +20893,39 @@
         "AGENTS.md"
       ],
       "title": "schema.cjs"
+    },
+    {
+      "path": "tools/distribution/templates/card.css",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "card.css"
+    },
+    {
+      "path": "tools/distribution/templates/card.html",
+      "kind": "file",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "card.html"
+    },
+    {
+      "path": "tools/distribution/templates/review.css",
+      "kind": "file",
+      "purpose": "Canonical responsive offline kit-review typography, image sizing and copy wrapping.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "review.css"
     },
     {
       "path": "tools/issue_acceptance.py",
@@ -22376,6 +22675,46 @@
       ]
     },
     {
+      "path": "drafts/events",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/posts",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "drafts/events/pmday-winter-2027/sources",
+      "kind": "directory",
+      "purpose": "PMDay Winter event facts, source evidence, multilingual authored campaign and pending preparation slots.",
+      "role": "draft",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "guides",
       "kind": "directory",
       "purpose": "Maintained topic guides for repository boundaries, publication, quality and hosting; root stays an entry surface.",
@@ -23436,6 +23775,16 @@
       ]
     },
     {
+      "path": "tools/distribution/templates",
+      "kind": "directory",
+      "purpose": "Bounded reusable event preparation, date/CTA validation, source-deck promotion and isolated calendar/kit generation.",
+      "role": "source",
+      "owner": "guides/EVENT-DISTRIBUTION.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "tools/pages",
       "kind": "directory",
       "purpose": "Issue72 source-bound staging and Pages delivery controller.",
@@ -23698,6 +24047,24 @@
       ],
       "workflow": ".github/workflows/site-checks.yml",
       "note": "Changed-source tests are selected through test-profiles.json; issue39 selects its source-bound implementation checks. Fixtures cannot supply maintainer reuse-policy or rights decisions, protected settings, actual domain migration, device acceptance or publication approval."
+    },
+    {
+      "concern": "Event campaign source and isolated kit behavior",
+      "paths": [
+        "tools/distribution/",
+        "drafts/events/",
+        "tests/event-campaign.test.cjs",
+        "guides/EVENT-DISTRIBUTION.md",
+        ".github/workflows/campaign-kit.yml"
+      ],
+      "commands": [
+        "node --test tests/event-campaign.test.cjs tests/campaign.test.cjs"
+      ],
+      "read": [
+        "guides/EVENT-DISTRIBUTION.md"
+      ],
+      "workflow": ".github/workflows/campaign-kit.yml",
+      "note": "Manual kit generation only. Source checks do not establish visual/editorial/rights acceptance, a calendar-account write or social publication."
     }
   ],
   "upstream": {
