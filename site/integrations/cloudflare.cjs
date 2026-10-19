@@ -4,7 +4,11 @@ module.exports = function cloudflare(config) {
   if (
     location.protocol !== 'https:' ||
     location.origin !== config.origin ||
-    !config.pathnames.includes(location.pathname)
+    !config.pathnames.some(
+      (pathname) =>
+        location.pathname === pathname ||
+        (pathname.endsWith('.html') && location.pathname === pathname.slice(0, -5))
+    )
   )
     return;
   const id = 'site-cloudflare-beacon';

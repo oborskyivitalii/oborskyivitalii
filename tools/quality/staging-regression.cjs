@@ -83,7 +83,7 @@ function contract() {
     failure_engine: 'chromium',
     failure_route: 'index',
     failure_width: 320,
-    analytics_rows: 7,
+    analytics_rows: analyticsCases().length,
     analytics_cases: analyticsCases(),
   };
 }
@@ -255,6 +255,7 @@ function validateAnalytics(row) {
   const analytics = require('./analytics-browser.cjs');
   clean(row, 'analytics fixture');
   assert.equal(row.model, analytics.model);
+  analytics.validateEntryForms(row);
   for (const key of analytics.checks)
     assert.equal(row.checks?.[key], true, 'missing analytics ' + key);
   assert.equal(row.readyWhileSDKPending, row.mode === 'delayed' ? true : 'not applicable');
@@ -294,7 +295,7 @@ function validateFunctional(report, manifest) {
     noCanvasRouteObservations: 10,
     navigation: 2,
     failures: 10,
-    analytics: 7,
+    analytics: analyticsCases().length,
   };
 }
 function validateMeasurement(row, kind, zero = false) {

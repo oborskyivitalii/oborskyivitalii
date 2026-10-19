@@ -219,7 +219,7 @@ test('one shared immutable adapter covers all five routes and changes metadata w
   assert.deepEqual(b.build({ root: dir }).built, []);
   b.build({ root: dir, check: true });
 });
-test('the vendor loads once only at the configured HTTPS origin and canonical routes, including a project prefix', (t) => {
+test('the vendor loads once at canonical and extensionless declared routes with exact origin and project isolation', (t) => {
   const dir = fixture(t);
   configure(dir, enabled());
   const { assets } = analytics.compile(
@@ -227,7 +227,11 @@ test('the vendor loads once only at the configured HTTPS origin and canonical ro
       snapshot.routes.map((id) => id + '.html')
     ),
     bytes = Object.values(assets)[0];
-  for (const pathname of ['/author/', ...snapshot.routes.map((id) => '/author/' + id + '.html')]) {
+  const entries = [
+    '/author/',
+    ...snapshot.routes.flatMap((id) => ['/author/' + id + '.html', '/author/' + id]),
+  ];
+  for (const pathname of entries) {
     const page = browser(
       bytes,
       'https://analytics.example.com' + pathname + '?topic=systems#section'
@@ -254,7 +258,13 @@ test('the vendor loads once only at the configured HTTPS origin and canonical ro
     'https://analytics.example.com/',
     'https://analytics.example.com/other/writing.html',
     'https://analytics.example.com/author/review.html',
+    'https://analytics.example.com/author/review',
+    'https://analytics.example.com/author/writing/',
+    'https://analytics.example.com/author/writing-extra',
+    'https://analytics.example.com/author/articles/unpublished',
+    'https://analytics.example.com/author/staging/writing',
     'https://analytics.example.com/author/snapshots/version/writing.html',
+    'https://analytics.example.com/author/snapshots/version/writing',
   ])
     assert.equal(browser(bytes, url).elements.length, 0, url);
   configure(dir, { ...enabled(), siteURL: 'https://analytics.example.com/' });
@@ -264,8 +274,17 @@ test('the vendor loads once only at the configured HTTPS origin and canonical ro
       snapshot.routes.map((id) => id + '.html')
     ).assets
   )[0];
-  assert.equal(browser(rootBytes, 'https://analytics.example.com/').elements.length, 1);
-  assert.equal(browser(rootBytes, 'https://analytics.example.com/writing.html').elements.length, 1);
+  for (const pathname of [
+    '/',
+    ...snapshot.routes.flatMap((id) => ['/' + id + '.html', '/' + id]),
+  ]) {
+    const page = browser(
+      rootBytes,
+      'https://analytics.example.com' + pathname + '?topic=systems#row'
+    );
+    page.run();
+    assert.equal(page.elements.length, 1, pathname);
+  }
   assert.equal(
     browser(rootBytes, 'https://analytics.example.com/author/writing.html').elements.length,
     0

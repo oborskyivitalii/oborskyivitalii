@@ -566,6 +566,7 @@ function analytics(r, engines) {
       assert.equal(row.pass, true, row.error);
       assert.deepEqual(row.errors, []);
       assert.deepEqual(row.externalRequests, []);
+      fixture.validateEntryForms(row);
       for (const key of fixture.checks)
         assert.equal(row.checks?.[key], true, 'missing analytics ' + key);
       assert.equal(

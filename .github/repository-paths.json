@@ -55,6 +55,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-102.json": {
+      "kind": "file",
+      "purpose": "Issue102 analytics AC policy: bounded source checks and explicit browser/live gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01\u2013AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -505,15 +511,15 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310": {
+    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
-      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/68b2de16d0d332602383550d757785d56a3725b8052e00848aef4043ac18f310/analytics.js": {
+    "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
       "kind": "file",
-      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -553,6 +559,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb": {
+      "kind": "directory",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -562,6 +604,30 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -589,6 +655,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -613,6 +691,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/96b2a1862b38520ac258f4dbf75325c8e3c4062b89e5c2f61c5bf7a43165f330/talks.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -622,6 +712,18 @@
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -895,6 +997,30 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-102": {
+      "kind": "directory",
+      "purpose": "Dated issue102 analytics source and provider/access evidence.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-102/2026-10-18-analytics-and-search-access.md": {
+      "kind": "file",
+      "purpose": "18 October combined route-coverage and Google/Windsor access self-review and handoff.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-102/2026-10-18-provider-evidence.json": {
+      "kind": "file",
+      "purpose": "Sanitized bounded Cloudflare query and current Google/Windsor inventory observations.",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md"
+    },
+    "review/issue-102/2026-10-18-public-metadata-proof.json.gz": {
+      "kind": "file",
+      "role": "history",
+      "owner": "guides/SITE-ANALYTICS.md",
+      "purpose": "Issue102 compressed exact public-checksum/beacon provenance for actual staging scanner findings; no credentials or broad exclusions."
+    },
     "review/issue-31": {
       "kind": "directory",
       "purpose": "Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR.",
@@ -1075,17 +1201,149 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-16-compact-controller.md": {
+      "kind": "file",
+      "purpose": "Finite source-only compact JSON-LD metadata identity controller prerequisite; unchanged runtime byte proof, exact rights enforcement and remaining PR40 release gates.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-39/2026-10-16-compact-tuples.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact plain/staging/production compact-metadata tuple proof from cold immutable/current-source builds and independent Python JSON/SHA256 derivation; all canonical/immutable runtime bytes remain identical; no release acceptance.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-compact-controller.md"
+    },
+    "review/issue-39/2026-10-16-native-writing-controller.md": {
+      "kind": "file",
+      "purpose": "Issue39 bounded native current Writing measurements and eventual exact trusted-controller registration, failure retention and stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-native-writing-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Inert verified native Writing six-row cause record with exact runner/source/artifact/profile and original raw hashes; five ordinary trials plus separately sampled CPU attribution, no hosted admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "review/issue-39/2026-10-16-positioning-integration.md": {
       "kind": "file",
       "purpose": "Versioned PR68 editorial source evidence or selected PR40 integration decision",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-39/2026-10-16-production-finalization-native.json.gz": {
+      "kind": "file",
+      "purpose": "Original source96 native production regression failure logs, reports, job metadata and exact upload digests; bounded historical evidence, not new admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-production-finalization.md": {
+      "kind": "file",
+      "purpose": "Issue39 actual GitHub production setup, native frozen candidate/recovery and production regression blocker follow-up.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Individual clean-source proof for215 exact public checksum/editorial Git secret-scanner fingerprints; cold public generation and historical Git/fragment reproduction, with the finite operator recipe; self-review only.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-readiness-execution.md"
+    },
+    "review/issue-39/2026-10-16-python-audit-compatibility.md": {
+      "kind": "file",
+      "purpose": "Source-only trusted-main Python audit installer compatibility prerequisite for PR40; exact package graph and public-byte preservation evidence.",
+      "role": "history",
+      "owner": "review/REVIEW-TEMPLATE.md"
+    },
     "review/issue-39/2026-10-16-readiness-execution.md": {
       "kind": "file",
       "purpose": "PR40 current-code readiness findings, finite remediation, exact-source checks and remaining release gates.",
       "role": "history",
       "owner": "review/REVIEW-TEMPLATE.md"
+    },
+    "review/issue-39/2026-10-16-secret-ledger-merge.json.gz": {
+      "kind": "file",
+      "purpose": "Verbatim provenance for six identical-disposition secret-review reason variants during PR40/main ledger reconciliation; original PR40 rows and all newer exact IDs remain preserved.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-readiness-execution.md"
+    },
+    "review/issue-39/2026-10-16-stable-merge-ledger.json.gz": {
+      "kind": "file",
+      "purpose": "Exact PR40/current-main ledger union proof preserving all prior feature rows and same-disposition reason variants.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-stable-preflight-failure.json.gz": {
+      "kind": "file",
+      "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-stable-staging.md"
+    },
+    "review/issue-39/2026-10-16-stable-staging.md": {
+      "kind": "file",
+      "purpose": "Issue39 current-main reconciliation, Ready/preflight/stable staging source-bound evidence and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-writing-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Per-finding independent recomputation of exact newly generated Writing revision/output/preview/bundle/runtime and source-reference public checksums; no scanner exclusion.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-writing-tbt.md"
+    },
+    "review/issue-39/2026-10-16-writing-controller-tuples.json.gz": {
+      "kind": "file",
+      "purpose": "Inert exact clean-source Writing runtime tuple proof with independent Python base/Color/edition and canonical/immutable SHA256 derivation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-writing-controller.md": {
+      "kind": "file",
+      "purpose": "Issue39 exact Writing plain/staging trusted-controller prerequisite, native evidence, preservation and bounded stop/report.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-16-writing-tbt-evidence.json.gz": {
+      "kind": "file",
+      "purpose": "Original local metric dispositions, source/runtime identities, trace hashes and screenshot-free persistent export identity for bounded Writing TBT diagnosis.",
+      "role": "history",
+      "owner": "review/issue-39/2026-10-16-writing-tbt.md"
+    },
+    "review/issue-39/2026-10-16-writing-tbt.md": {
+      "kind": "file",
+      "purpose": "Bounded Writing TBT self-analysis, complete local measurement dispositions, allocation-only correction and remaining exact-source native/trusted-controller gates.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-39/2026-10-17-native-navigation.json.gz": {
+      "kind": "file",
+      "purpose": "Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-native-navigation.md": {
+      "kind": "file",
+      "purpose": "Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-production-cutover.md": {
+      "kind": "file",
+      "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-39/2026-10-17-production-policy.md": {
+      "kind": "file",
+      "purpose": "Dated issue39 self-review of accepted staging-led production admission, optional full diagnostics, smoke and preserved recovery.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-39/2026-10-17-staging-admission.md": {
+      "kind": "file",
+      "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "review/issue-41": {
       "kind": "directory",
@@ -7507,6 +7765,12 @@
       "role": "test",
       "owner": "guides/CODE-STYLE.md"
     },
+    "tests/test_issue102_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue102 policy adapter for maintained analytics suite and failure accounting.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "tests/test_issue31_acceptance.py": {
       "kind": "file",
       "purpose": "Issue 31 observable acceptance checks for RI provenance, inventory, memory, workflow, unchanged site and bootstrap.",
@@ -7873,6 +8137,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/block-observation.cjs": {
+      "kind": "file",
+      "purpose": "Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/browser-gate-diagnostics.cjs": {
       "kind": "file",
       "purpose": "Maintained quality/check helper for browser gate diagnostics; applicable profiles are selected by SITE-CHECK-PROFILES.",
@@ -7938,6 +8208,12 @@
       "purpose": "Maintained quality/check helper for display probe; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/edge-input.cjs": {
+      "kind": "file",
+      "purpose": "Bounded900ms native endpoint preparation and source-bound Color edge evidence validation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/engine-browser.cjs": {
       "kind": "file",
@@ -8407,6 +8683,12 @@
       "role": "validator",
       "owner": "guides/SITE-RIGHTS.md"
     },
+    "tools/release/staging-policy.cjs": {
+      "kind": "file",
+      "purpose": "Authenticate successful staging and identical merged source trees; bind separate production edition admission without optional full diagnostics.",
+      "role": "validator",
+      "owner": "guides/SITE-RELEASE-GATES.md"
+    },
     "tools/repository_intelligence.py": {
       "kind": "file",
       "purpose": "Bounded deterministic site RI producer, catalog validation, scoped lookup and generated-view verification.",
@@ -8598,252 +8880,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "review/issue-39/2026-10-16-python-audit-compatibility.md": {
-      "kind": "file",
-      "purpose": "Source-only trusted-main Python audit installer compatibility prerequisite for PR40; exact package graph and public-byte preservation evidence.",
-      "role": "history",
-      "owner": "review/REVIEW-TEMPLATE.md"
-    },
-    "review/issue-39/2026-10-16-public-checksum-proof.json.gz": {
-      "kind": "file",
-      "purpose": "Individual clean-source proof for215 exact public checksum/editorial Git secret-scanner fingerprints; cold public generation and historical Git/fragment reproduction, with the finite operator recipe; self-review only.",
-      "role": "history",
-      "owner": "review/issue-39/2026-10-16-readiness-execution.md"
-    },
-    "review/issue-39/2026-10-16-compact-controller.md": {
-      "kind": "file",
-      "purpose": "Finite source-only compact JSON-LD metadata identity controller prerequisite; unchanged runtime byte proof, exact rights enforcement and remaining PR40 release gates.",
-      "role": "history",
-      "owner": "review/REVIEW-TEMPLATE.md"
-    },
-    "review/issue-39/2026-10-16-compact-tuples.json.gz": {
-      "kind": "file",
-      "purpose": "Inert exact plain/staging/production compact-metadata tuple proof from cold immutable/current-source builds and independent Python JSON/SHA256 derivation; all canonical/immutable runtime bytes remain identical; no release acceptance.",
-      "role": "history",
-      "owner": "review/issue-39/2026-10-16-compact-controller.md"
-    },
-    "review/issue-39/2026-10-16-secret-ledger-merge.json.gz": {
-      "kind": "file",
-      "purpose": "Verbatim provenance for six identical-disposition secret-review reason variants during PR40/main ledger reconciliation; original PR40 rows and all newer exact IDs remain preserved.",
-      "role": "history",
-      "owner": "review/issue-39/2026-10-16-readiness-execution.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1fdf2ddd5904bda6af834675a9aa958ce522906fa19aaefa7d620a77e6151bed": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2a4f1a54e89288af67dc59ab78acf44f7bc90d960e5d7dc6b4881067208cd4ce": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/23bdcbce34b6c51c5bbff8584db4fd992858fb5dafc2706da6547ae1f856585c": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/59cd8343a795aaca116bf79596ca66b54ebd919266246d3a38a16d22fe2ff662": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bf5ac4445098c18eccdba25f67e4173b5711bf16ca16d374174aa39b600193ba": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/1fdf2ddd5904bda6af834675a9aa958ce522906fa19aaefa7d620a77e6151bed/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2a4f1a54e89288af67dc59ab78acf44f7bc90d960e5d7dc6b4881067208cd4ce/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/23bdcbce34b6c51c5bbff8584db4fd992858fb5dafc2706da6547ae1f856585c/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/59cd8343a795aaca116bf79596ca66b54ebd919266246d3a38a16d22fe2ff662/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/bf5ac4445098c18eccdba25f67e4173b5711bf16ca16d374174aa39b600193ba/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "review/issue-39/2026-10-16-writing-tbt.md": {
-      "kind": "file",
-      "purpose": "Bounded Writing TBT self-analysis, complete local measurement dispositions, allocation-only correction and remaining exact-source native/trusted-controller gates.",
-      "role": "history",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
-    },
-    "review/issue-39/2026-10-16-writing-tbt-evidence.json.gz": {
-      "kind": "file",
-      "purpose": "Original local metric dispositions, source/runtime identities, trace hashes and screenshot-free persistent export identity for bounded Writing TBT diagnosis.",
-      "role": "history",
-      "owner": "review/issue-39/2026-10-16-writing-tbt.md"
-    },
-    "review/issue-39/2026-10-16-writing-checksum-proof.json.gz": {
-      "kind": "file",
-      "purpose": "Per-finding independent recomputation of exact newly generated Writing revision/output/preview/bundle/runtime and source-reference public checksums; no scanner exclusion.",
-      "role": "history",
-      "owner": "review/issue-39/2026-10-16-writing-tbt.md"
-    },
-    "review/issue-39/2026-10-16-native-writing-controller.md": {
-      "kind": "file",
-      "purpose": "Issue39 bounded native current Writing measurements and eventual exact trusted-controller registration, failure retention and stop/report.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-native-writing-evidence.json.gz": {
-      "kind": "file",
-      "purpose": "Inert verified native Writing six-row cause record with exact runner/source/artifact/profile and original raw hashes; five ordinary trials plus separately sampled CPU attribution, no hosted admission.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-writing-controller.md": {
-      "kind": "file",
-      "purpose": "Issue39 exact Writing plain/staging trusted-controller prerequisite, native evidence, preservation and bounded stop/report.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-writing-controller-tuples.json.gz": {
-      "kind": "file",
-      "purpose": "Inert exact clean-source Writing runtime tuple proof with independent Python base/Color/edition and canonical/immutable SHA256 derivation.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-stable-merge-ledger.json.gz": {
-      "kind": "file",
-      "purpose": "Exact PR40/current-main ledger union proof preserving all prior feature rows and same-disposition reason variants.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-stable-staging.md": {
-      "kind": "file",
-      "purpose": "Issue39 current-main reconciliation, Ready/preflight/stable staging source-bound evidence and bounded stop/report.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-stable-preflight-failure.json.gz": {
-      "kind": "file",
-      "purpose": "Exact failed native stage38945614659 preflight, original Python streams and scanner summaries; all raw hashes verified, no candidate upload.",
-      "role": "history",
-      "owner": "review/issue-39/2026-10-16-stable-staging.md"
-    },
-    "review/issue-39/2026-10-16-production-finalization.md": {
-      "kind": "file",
-      "purpose": "Issue39 actual GitHub production setup, native frozen candidate/recovery and production regression blocker follow-up.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-16-production-finalization-native.json.gz": {
-      "kind": "file",
-      "purpose": "Original source96 native production regression failure logs, reports, job metadata and exact upload digests; bounded historical evidence, not new admission.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "tools/quality/edge-input.cjs": {
-      "kind": "file",
-      "purpose": "Bounded900ms native endpoint preparation and source-bound Color edge evidence validation.",
-      "role": "validator",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
-    },
-    "tools/quality/block-observation.cjs": {
-      "kind": "file",
-      "purpose": "Shared native CSSAnimation observations and strict separator path/clock/movement checks; base and version-selected Color keep distinct pacing.",
-      "role": "validator",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
-    },
-    "review/issue-39/2026-10-17-native-navigation.md": {
-      "kind": "file",
-      "purpose": "Issue39 PR85 measured Firefox endpoint and WebKit animation sampling diagnosis, scoped corrections, checks and release boundaries.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-17-native-navigation.json.gz": {
-      "kind": "file",
-      "purpose": "Retained local same-artifact diagnostics, original failures, corrected observations and honest environment/source provenance; not native release admission.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-17-staging-admission.md": {
-      "kind": "file",
-      "purpose": "Issue39 PR85 observed required-check eligibility failure after actual successful staging, scoped read-only PR verification, checks and remaining gates.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-39/2026-10-17-production-cutover.md": {
-      "kind": "file",
-      "purpose": "Issue39 verified PR85 protected merge/staging delivery, exact native artifacts and scoped next canonical production transaction analysis before implementation.",
-      "role": "history",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "tools/release/staging-policy.cjs": {
-      "kind": "file",
-      "purpose": "Authenticate successful staging and identical merged source trees; bind separate production edition admission without optional full diagnostics.",
-      "role": "validator",
-      "owner": "guides/SITE-RELEASE-GATES.md"
-    },
-    "review/issue-39/2026-10-17-production-policy.md": {
-      "kind": "file",
-      "purpose": "Dated issue39 self-review of accepted staging-led production admission, optional full diagnostics, smoke and preserved recovery.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
     }
   }
 }
