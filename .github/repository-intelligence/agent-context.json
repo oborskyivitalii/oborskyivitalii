@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "449bd1f409ad39c494a70f9e69093ed7ef5061255398c37ba3d72039bcbdf36a",
+    "digest": "2c6fd571d67f0ba595a23867ce97560192581418e6a731b61e07a30d57e42a65",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -176,7 +176,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6205fe786d03a99cc561a0795b4a3324cea8f0962c17d4aee5a3d93f5df97e1c"
+        "sha256": "3fa901206383cea367eaecc56e9d09c8c4f08003f4246b13d5e1a626613dcba4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -216,7 +216,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "488d5d73a4fd14c9442efda5715287be2a186ccf34f1d804f4580ac0daf70878"
+        "sha256": "fd7f81a236d0b1ee357ab9285e5259c634c52d1a775905d870e415cdea0393c9"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -1330,7 +1330,7 @@
       {
         "path": "review/issue-5/2026-10-19-delivery-lanes.md",
         "identity_mode": "content",
-        "sha256": "534b70baf6be2f797400f7dbadf9aaea551a04dde420e43db82aab6ba3c3bc07"
+        "sha256": "14fc3c0174b0942cee7ffc640dae6a2a68858ba78142b885ff8ce2b6bcdd9e62"
       },
       {
         "path": "review/issue-5/2026-10-19-events-migration.json",

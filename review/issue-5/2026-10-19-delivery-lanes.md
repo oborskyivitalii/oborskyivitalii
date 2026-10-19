@@ -132,3 +132,8 @@ and the source reversal order, with4/4 focused factual/event cases. Reviewed
 blobs: renderer73eb7c0, data8980583, SEOaa62bea, migration99be8ad.
 The owning #5 CI policy installs the locked quality Node tools used by its new
 workflow/schema tests, alongside the existing locked Python and publisher tools.
+
+The existing Draft PR79 browser exception now includes the parser, isolated
+content fixture and its raw artifact upload. The former nonprototype condition
+would have skipped the new observer in this Draft preview. The article-PDF and
+full platform/admission gates retain their existing conditions.

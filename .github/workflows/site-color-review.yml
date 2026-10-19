@@ -420,10 +420,10 @@ jobs:
         if: needs.target.outputs.prototype != 'true' || needs.target.outputs.number == '79'
         run: node tools/quality/local-browser.cjs --smoke
       - name: Install the locked parser for the issue-5 local diagnostic
-        if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        if: needs.target.outputs.number == '79'
         run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
       - name: Exercise genuine content release on an isolated local fixture
-        if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        if: needs.target.outputs.number == '79'
         run: node tools/quality/content-fixture.cjs "$RUNNER_TEMP/content-fixture-report.json"
       - name: Export and verify the article PDF with locked managed Chromium
         if: needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
@@ -436,7 +436,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
-        if: always() && needs.target.outputs.prototype != 'true' && needs.target.outputs.number == '79'
+        if: always() && needs.target.outputs.number == '79'
         with:
           name: site-content-fixture-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/content-fixture-report.json
