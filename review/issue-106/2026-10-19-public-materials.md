@@ -97,3 +97,7 @@ New exact Color lineages and byte-tamper negatives are self-reviewed here and in
 the adjacent runtime-proof JSON; historical identities and rejection checks stay
 intact. This updates CS06's earlier no-runtime-delta observation for the reader:
 its narrow resource hydration selector changes, with no new loop/listener.
+
+The new exact runtime families remain in the mandatory publication-rights layer;
+byte-bound relabelling negatives are retained. Current-runtime test expectations
+advance to the new reviewed lineage while historical tuples stay immutable.

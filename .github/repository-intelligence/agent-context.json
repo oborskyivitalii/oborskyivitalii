@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "62dd2bc5b2713f6c8a4e757d9754df2daa75a923a1708dd5e60f4c41885dee3e",
+    "digest": "53b67c151894ad8be54466a12b909b95782ba3270f45f6c1b391854371bd1442",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -730,7 +730,7 @@
       {
         "path": "review/issue-106/2026-10-19-public-materials.md",
         "identity_mode": "content",
-        "sha256": "ca196728c3c5bb48b0e9e554194c797305d67f40827f640d5edbdfc71e13bb08"
+        "sha256": "2abbf7c9be41c0a72adc95d01ee3bf306f01d6044eea89c9a94d2b2d798f5d3e"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -5645,7 +5645,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "1233594d50c3943bae87061d860d3383e078db7f39d9a756c54ea111de11bdc7"
+        "sha256": "f41c8a03a84f310ee3f697b61cb6db699510f7aa09099607292485e23b9238e1"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -6795,7 +6795,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "bacc9444d5a17f3655eaa99cbf0a949e6660c1365d8a1b6185975f31bfba5968"
+        "sha256": "1cff9813186cc296fc012a4f8d8c25bf76b932ec15d1a93d0ae89c065ce67b66"
       },
       {
         "path": "tools/staging/review-flow.cjs",

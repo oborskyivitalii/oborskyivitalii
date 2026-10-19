@@ -640,6 +640,11 @@ test('issue106 selected material lineage keeps exact Color byte checks', () => {
   for (const edition of ['plain', 'staging', 'production']) {
     const id = 'issue106-campaign-materials-' + edition;
     assert.equal(motion.select(manifest(id)).id, id);
+    const licensed = manifest(id);
+    assert.equal(
+      require('../tools/staging/package.cjs').publicationRequired(licensed, licensed.components),
+      true
+    );
     const changed = manifest(id);
     changed.files['navigation.js'].sha256 = '0'.repeat(64);
     assert.throws(() => motion.select(changed), /unreviewed Color bytes/);
