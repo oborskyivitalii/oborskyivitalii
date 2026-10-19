@@ -908,9 +908,11 @@ test('Home provides the agreed reader path, precise public actions and a real co
     home.includes('href="https://calendar.app.google/zy9rAnUcoWygSdxH7">Book a conversation')
   );
   assert.ok(home.includes('href="mailto:oborskyivitalii@gmail.com">oborskyivitalii@gmail.com'));
-  // Generated decorative coordinates/opacity decimals are not author claims.
+  // Decorative SVG and exact engine/route identities are not author claims.
   assert.doesNotMatch(
-    home.replace(/<svg\b[\s\S]*?<\/svg>/g, ''),
+    home
+      .replace(/<svg\b[\s\S]*?<\/svg>/g, '')
+      .replace(/<meta name="site-(?:engine|route)" content="[a-f0-9]{64}"\s*\/?>/g, ''),
     /href="#"|Trusted by|CPC|RankSpot|4400|4,400|established consultancy|consulting firm|service packages|guaranteed outcomes/
   );
   for (const text of [

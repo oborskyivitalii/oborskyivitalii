@@ -56,6 +56,15 @@ byte/identity/mandatory-rights negatives. The final exact commits, owning policy
 results, formatting/RI checks and preview evidence are recorded in their PRs.
 Do not transfer clean-source evidence between the two branches.
 
+Combined reader head `be8421d9953eec2348114eef1fa4e1798fc67458` passed9/10
+owning checks; WRITING-CATALOG37/38 exposed a false positive: generated
+`site-route` digest contained `4400`, triggering the unsupported reader-claim
+guard. The assertion now excludes only64-hex `site-engine`/`site-route` metadata,
+as it already excludes decorative SVG. All placeholder-link and unsupported
+marketing/number checks remain on the rest of the HTML. No public/runtime bytes
+change in this test follow-up. The failed exact-source report remains retained;
+final owning and hosted results belong to the final PR head.
+
 No authored browser JS or CSS changes in this correction pass. Producer identity
 changes require new exact runtime lineages; their four JS files and edition CSS
 are asserted equal to the previous material family (PR107) or the concurrent

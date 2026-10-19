@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "cbc960a3af0b8cb623c5dbe1c23f811b90a285c5dec5267fd8b68d8a13340003",
+    "digest": "60ca11b180a37abc94bcad7ec20d0c8cdcf77a9467212c062f2041cf78b63b02",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -730,7 +730,7 @@
       {
         "path": "review/issue-106/2026-10-19-corrections.md",
         "identity_mode": "content",
-        "sha256": "75d199aa2da5ca9bc7bc19b566d7d555fe27ba33a3e26ba1c546b48cf8c5fbae"
+        "sha256": "ac1a7409e0a86370a8690382b5ea66cad539adc70928e51c0543e52a94aa621b"
       },
       {
         "path": "review/issue-106/2026-10-19-materials-reader-runtime-proof.json",
@@ -6385,7 +6385,7 @@
       {
         "path": "tests/content.test.cjs",
         "identity_mode": "content",
-        "sha256": "214e80f6e4eb57001d5971ade0e21f79d8ffc08e32887897561fb5d0bf04628d"
+        "sha256": "235dfb3082ddf83c5510de31010200b3e8298869c24d8fc89b5f85441bbf9d1c"
       },
       {
         "path": "tests/edition-retention.test.cjs",
