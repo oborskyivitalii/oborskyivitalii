@@ -236,6 +236,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue5-reader-mode',
     'issue5-editorial-reader',
     'issue5-calm-reader',
+    'issue5-reader-blocks',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -277,6 +278,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue5-reader-mode',
     'issue5-editorial-reader',
     'issue5-calm-reader',
+    'issue5-reader-blocks',
   ]) {
     const plain = motion.reviewedRuntime(family + '-plain'),
       production = motion.reviewedRuntime(family + '-production');
@@ -766,16 +768,16 @@ test('reader-link runtime tuples reproduce the complete current plain and stagin
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-calm-reader-plain');
+    assert.equal(motion.select(plain).id, 'issue5-reader-blocks-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-calm-reader-staging');
+    assert.equal(motion.select(staged).id, 'issue5-reader-blocks-staging');
     for (const record of [plain, staged]) {
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-calm-reader-plain').variant.baseEngine
+        motion.reviewedRuntime('issue5-reader-blocks-plain').variant.baseEngine
       );
     }
   } finally {

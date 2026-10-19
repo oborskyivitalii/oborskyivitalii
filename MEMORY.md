@@ -4,6 +4,12 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
 
 ## Snapshot
 
+- 19 October latest #5/PR79 request: shared article leaf-block route wave;
+  article→principal exits upward independently of camera/history direction.
+  Accepted reader audit F01/F02: descriptive44px returns, native target outline
+  and16px annotations. Manuscript/edition/PDF unchanged. Review:
+  review/issue-5/2026-10-19-reader-block-transitions.md; exact evidence in PR79.
+
 - 19 October latest #5/PR79 increment: user accepted a fresh holistic Product Design
   review and authorized calm reader simplification: one column, optional flat
   Contents, compact header, reusable process, footer tags and consolidated ending.

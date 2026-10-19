@@ -10387,102 +10387,6 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
-    "docs/snapshots/3af2ac7abe4f818cadddfd192ed3692cb4266b6bace80da7dbb22bcf821d1c7d": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ed6cb52c237f46207cc71c442f83bab9297f6381e670048ab7d98c20f0af4a9e": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ed00fd945fec8fc792a80788b07d61a991af68994be917cb645088b2157e03ae": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9da9df58c3fd3330d637924fbd04d8167c1c1de09ac398742e2dfce26099e770": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/95da442164d01c050bd4798d3130b35d80f58b99549a01f4ee738b62b3594fc4": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/3af2ac7abe4f818cadddfd192ed3692cb4266b6bace80da7dbb22bcf821d1c7d/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ed6cb52c237f46207cc71c442f83bab9297f6381e670048ab7d98c20f0af4a9e/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/ed00fd945fec8fc792a80788b07d61a991af68994be917cb645088b2157e03ae/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9da9df58c3fd3330d637924fbd04d8167c1c1de09ac398742e2dfce26099e770/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/95da442164d01c050bd4798d3130b35d80f58b99549a01f4ee738b62b3594fc4/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf": {
       "kind": "file",
       "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
@@ -10560,6 +10464,108 @@
       "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-5/2026-10-19-reader-block-transitions.md": {
+      "kind": "file",
+      "purpose": "Dated article block-wave and source-reading correction review for issue5 and PR79.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/0871db02a588baa1e0dba3998966c51d7fea7626e92339bd535aa5cdbb423552/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/344079fcf038d909d6c0cbd605e8d02fa5ea98b28ede45bc864ec35d82a05237/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7ec160927396257bb829657afc426e4a5a5a0838a80aafb935ac7adceaddc969/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/a27474fd836d55cd513240dc0aeeb110aac0bf40b5424707f72a3ee1626bea0f/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "role": "generated",
+      "owner": "site/README.md"
     }
   }
 }

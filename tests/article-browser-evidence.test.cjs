@@ -202,6 +202,122 @@ test('reader-mode evidence requires stationary paragraphs while preserving legac
   assert.doesNotThrow(() => validateArticleJourney(observed(), descriptors, { engine, baseURL }));
 });
 
+test('reader-block evidence is required for every current identity while historical reports remain valid', () => {
+  const motion = require('../tools/quality/color-motion-contract.cjs');
+  const identities = ['plain', 'staging', 'production'].map(
+    (edition) => motion.reviewedRuntime('issue5-reader-blocks-' + edition).variant
+  );
+  const make = (selectedEngine) => {
+    const detail = observed();
+    for (const row of detail.observations) {
+      row.head.engine = selectedEngine;
+      if (row.mode !== 'normal') continue;
+      row.reading.entered = [];
+      row.reading.maxEntering = 0;
+      for (const item of [...row.flights, ...row.nativeHistory])
+        item.blocks = ['departure', 'arrival'].map((stage) => {
+          const departure = stage === 'departure';
+          const source = departure ? item.from : item.to;
+          const other = departure ? item.to : item.from;
+          const sign =
+            source.startsWith('article:') && !other.startsWith('article:') ? 1 : item.direction;
+          return {
+            stage,
+            direction: sign > 0 ? 'forward' : 'backward',
+            navigationId: item.events[0].navigationId,
+            rows: 1,
+            plannedDurationMs: 1000,
+            units: [
+              {
+                tag: 'P',
+                classes: '',
+                distance: (departure ? -sign : sign) * 600,
+                row: 0,
+                state: departure ? 'departing' : 'arriving',
+                frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
+              },
+            ],
+          };
+        });
+    }
+    return detail;
+  };
+  for (const current of [identities[0].baseEngine, ...identities.map((item) => item.fingerprint)]) {
+    assert.deepEqual(
+      validateArticleJourney(make(current), descriptors, {
+        engine: current,
+        baseURL,
+      }),
+      {
+        documents: 1,
+        observations: 5,
+      }
+    );
+    for (const inventory of ['flights', 'nativeHistory']) {
+      const absent = make(current);
+      delete absent.observations[0][inventory][0].blocks;
+      assert.throws(
+        () =>
+          validateArticleJourney(absent, descriptors, {
+            engine: current,
+            baseURL,
+          }),
+        /block evidence/
+      );
+    }
+  }
+  const current = identities[0].baseEngine;
+  for (const corrupt of [
+    (item) => {
+      item.blocks = [];
+    },
+    (item) => {
+      item.blocks[0].stage = 'arrival';
+    },
+    (item) => {
+      item.blocks[0].direction = 'backward';
+    },
+    (item) => {
+      item.blocks[0].navigationId++;
+    },
+    (item) => {
+      item.blocks[0].units = [];
+    },
+    (item) => {
+      item.blocks[0].units[0].distance *= -1;
+    },
+    (item) => {
+      item.blocks[0].units[0].frames = [];
+    },
+    (item) => {
+      item.blocks[0].units[0].classes = 'reader-chapter';
+    },
+    (item) => {
+      item.blocks[0].units[0].classes = 'reader-introduction';
+    },
+    (item) => {
+      item.blocks[0].units[0].state = 'holding';
+    },
+    (item) => {
+      item.blocks[0].units[0].row = 24;
+    },
+  ]) {
+    const detail = make(current);
+    corrupt(detail.observations[0].flights[0]);
+    assert.throws(() => validateArticleJourney(detail, descriptors, { engine: current, baseURL }));
+  }
+  const historical = motion.reviewedRuntime('issue5-calm-reader-plain').variant.baseEngine;
+  const legacy = make(historical);
+  for (const row of legacy.observations)
+    for (const item of [...(row.flights || []), ...(row.nativeHistory || [])]) delete item.blocks;
+  assert.doesNotThrow(() =>
+    validateArticleJourney(legacy, descriptors, {
+      engine: historical,
+      baseURL,
+    })
+  );
+});
+
 test('selected articles reject omitted, duplicate, failed or wrong-source browser observations', () => {
   assert.throws(() => validateArticleJourney(undefined, descriptors), /require actual browser/);
   assert.throws(() => validateArticleJourney(observed(), {}), /without selected/);

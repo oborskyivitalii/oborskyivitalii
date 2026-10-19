@@ -452,10 +452,25 @@ async function articleAnchorCount(page, fragment) {
 // rather than trusting route labels or a planned animation's duration.
 function installArticleFlightDiagnostics() {
   window.__articleFlightEvents = [];
+  window.__articleBlockEvents = [];
   let active = null;
   window.SiteEngineProbe = (event) => {
     if (window.__articleFlightEvents.length >= 4000)
       throw Error('article flight evidence overflow');
+    if (event.kind === 'route-block' && ['departure', 'arrival'].includes(event.stage)) {
+      if (window.__articleBlockEvents.length >= 40) throw Error('article block evidence overflow');
+      window.__articleBlockEvents.push({
+        ...structuredClone(event),
+        units: [...document.querySelectorAll('[data-route-block]')].map((element) => ({
+          tag: element.tagName,
+          classes: element.className,
+          distance: Number.parseFloat(element.style.getPropertyValue('--route-block-distance')),
+          row: Number(element.dataset.routeRow),
+          state: element.dataset.routeBlock,
+          frames: element.firstElementChild?.getAnimations()[0]?.effect?.getKeyframes() || [],
+        })),
+      });
+    }
     if (event.kind === 'camera-travel' || event.kind === 'camera-travel-complete')
       window.__articleFlightEvents.push(structuredClone(event));
     if (event.kind === 'camera-travel') active = event.navigationId;
@@ -585,10 +600,63 @@ function validateArticleOrbit(plan, paints, transit) {
   assert.ok(transit.some((paint) => paint.current.position[2] < center[2] - radius * 0.7));
 }
 
+function validateArticleBlocks({ blocks, events, from, to, direction }) {
+  assert.ok(Array.isArray(blocks), 'raw article block evidence');
+  assert.equal(blocks.length, 2, 'one departure and arrival on the common block lifecycle');
+  for (const [index, block] of blocks.entries()) {
+    const departure = index === 0;
+    const source = departure ? from : to;
+    const other = departure ? to : from;
+    const sign = source.startsWith('article:') && !other.startsWith('article:') ? 1 : direction;
+    assert.equal(block.stage, departure ? 'departure' : 'arrival');
+    assert.equal(block.direction, sign > 0 ? 'forward' : 'backward');
+    assert.equal(block.navigationId, events[0].navigationId);
+    assert.ok(Number.isInteger(block.rows) && block.rows > 0 && block.rows <= 24);
+    assert.equal(block.plannedDurationMs, 1000);
+    assert.ok(
+      Array.isArray(block.units) && block.units.length > 0,
+      'actual DOM blocks participated'
+    );
+    for (const unit of block.units) {
+      assert.ok(Number.isFinite(unit.distance) && unit.distance !== 0);
+      assert.equal(Math.sign(unit.distance), departure ? -sign : sign);
+      assert.ok(Number.isInteger(unit.row) && unit.row >= 0 && unit.row < block.rows);
+      assert.equal(unit.state, departure ? 'departing' : 'arriving');
+      assert.ok(
+        Array.isArray(unit.frames) && unit.frames.length >= 2,
+        'actual common CSS animation exists'
+      );
+      assert.equal(typeof unit.classes, 'string');
+      assert.ok(!/\breader-(chapter|introduction)\b/.test(unit.classes), 'readable leaf unit');
+    }
+  }
+}
+
+function articleBlocksRequired(engine) {
+  const motion = require('./color-motion-contract.cjs');
+  return ['plain', 'staging', 'production'].some((edition) => {
+    const { variant } = motion.reviewedRuntime('issue5-reader-blocks-' + edition);
+    return engine === variant.baseEngine || engine === variant.fingerprint;
+  });
+}
+
+function validateRecordedArticleFlights(flights, engine) {
+  const blockEvidenceRequired = articleBlocksRequired(engine);
+  for (const flight of flights) {
+    validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
+    if (blockEvidenceRequired) validateArticleBlocks(flight);
+  }
+}
+
 async function takeArticleFlight(page, from, to, direction) {
-  const events = await page.evaluate(() => window.__articleFlightEvents.splice(0));
+  const { events, blocks } = await page.evaluate(() => ({
+    events: window.__articleFlightEvents.splice(0),
+    blocks: window.__articleBlockEvents.splice(0),
+  }));
+  const flight = { from, to, direction, events, blocks };
   validateArticleFlight(events, from, to, direction);
-  return { from, to, direction, events };
+  validateArticleBlocks(flight);
+  return flight;
 }
 
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
@@ -1162,8 +1230,6 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
       ],
       'complete reader document flight inventory'
     );
-    for (const flight of row.flights)
-      validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
     assert.deepEqual(
       row.nativeHistory?.map((flight) => [flight.from, flight.to, flight.direction]),
       [
@@ -1172,8 +1238,10 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
       ],
       'native direct-entry article Back/Forward inventory'
     );
-    for (const flight of row.nativeHistory)
-      validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
+    validateRecordedArticleFlights(
+      [...row.flights, ...row.nativeHistory],
+      engine || row.head.engine
+    );
     validateArticleReading(row.reading, engine);
   }
   return { documents: 1, observations: cases.length };

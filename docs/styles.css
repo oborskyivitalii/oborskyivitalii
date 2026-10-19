@@ -2127,12 +2127,22 @@ body[data-page='writing'] #archive-results {
   font-size: 0.8em;
   white-space: nowrap;
 }
+.reader-citation:target {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 .reader-note-returns {
-  display: inline-block;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
 }
 .reader-note-returns a {
-  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.5rem;
 }
 .reader-closing {
   border-top: 1px solid var(--line);
@@ -2187,8 +2197,8 @@ body[data-article] .site-footer a[href='#main'] {
   border-top: 1px solid var(--line);
   margin-top: 2.5rem;
   padding-top: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 .reader-appendices :is(.reader-appendix, .article-sources, .article-materials) {
   margin-block: 1rem;

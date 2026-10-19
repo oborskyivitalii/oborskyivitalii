@@ -176,7 +176,7 @@ function components(article, layout) {
       const returns = note.uses
         .map(
           (id, index) =>
-            `<a href="#${id}" role="doc-backlink" aria-label="Return to reference ${number}, occurrence ${index + 1}">↩${note.uses.length > 1 ? index + 1 : ''}</a>`
+            `<a href="#${id}" role="doc-backlink" aria-label="Return to reference ${number}, occurrence ${index + 1}">Return to passage${note.uses.length > 1 ? ' ' + (index + 1) : ''}</a>`
         )
         .join(' ');
       html = html.replace(

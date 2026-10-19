@@ -319,6 +319,7 @@ function routeHarness({
   failNativeScroll = false,
   initialPage = 'index',
   contentFlight = true,
+  lazyArticleAdmission = false,
 } = {}) {
   const calls = [],
     probes = [],
@@ -340,7 +341,8 @@ function routeHarness({
     releaseRead,
     resolveDeparture,
     releaseDeparture,
-    nativeSmooth = null;
+    nativeSmooth = null,
+    articleRegistryReady = !lazyArticleAdmission;
   const departureStarted = new Promise((resolve) => (resolveDeparture = resolve)),
     departureGate = new Promise((resolve) => (releaseDeparture = resolve)),
     sceneStarted = new Promise((resolve) => (resolveScene = resolve)),
@@ -517,10 +519,16 @@ function routeHarness({
     innerHeight: 600,
     metadata: 'fixture-metadata',
     routes: ['index', 'research', 'writing', 'talks', 'credits'],
-    routeFor: (url) =>
-      url.pathname.startsWith('/articles/')
-        ? 'article:' + url.pathname.split('/').at(-1).replace('-en.html', ':en')
-        : url.pathname.slice(1).replace('.html', ''),
+    routeFor(url) {
+      if (!url.pathname.startsWith('/articles/')) return url.pathname.slice(1).replace('.html', '');
+      if (!articleRegistryReady) return null;
+      return 'article:' + url.pathname.split('/').at(-1).replace('-en.html', ':en');
+    },
+    articleTarget: (url) => url.pathname.startsWith('/articles/'),
+    async pin() {
+      articleRegistryReady = true;
+      calls.push({ kind: 'admission' });
+    },
     address: (url) => url,
     async read(next) {
       if (holdRead && next.startsWith('article:')) {
@@ -1484,6 +1492,20 @@ test('verified snapshot resources regain native root and nested article links at
   assert.equal(footerLink.attributes.href, '?view=credits', 'offline query links stay native');
 });
 
+test('first hosted article activation admits its registry before selecting block directions', async () => {
+  const h = routeHarness({ initialPage: 'writing', lazyArticleAdmission: true });
+  await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  assert.deepEqual(
+    h.calls.map((call) => call.kind),
+    ['admission', 'departure', 'scene', 'prepare-arrival', 'arrival']
+  );
+  assert.equal(h.calls.find((call) => call.kind === 'scene').toDocument, 'article:sample:en');
+  for (const kind of ['departure', 'prepare-arrival', 'arrival'])
+    assert.equal(h.calls.find((call) => call.kind === kind).direction, 1);
+  assert.equal(h.content.main.getAttribute('data-route-blocks'), null);
+  assert.deepEqual(h.assigned, []);
+});
+
 test('reader documents fly in both directions with history order and every principal destination', async () => {
   const h = routeHarness({ initialPage: 'writing' });
   await h.navigate(new URL('https://fixture.test/articles/sample-en.html'));
@@ -1502,14 +1524,33 @@ test('reader documents fly in both directions with history order and every princ
     ['article:sample:en', 'article:second:en', 'article:sample:en', 'article:second:en', 'writing']
   );
   assert.deepEqual(h.assigned, []);
+  assert.deepEqual(
+    h.calls.filter((call) => call.kind === 'departure').map((call) => call.direction),
+    [1, 1, -1, 1, 1],
+    'return to Writing exits upward while camera/history direction stays backward'
+  );
   for (const destination of ['index', 'research', 'writing', 'talks', 'credits']) {
     const reader = routeHarness({ initialPage: 'article:sample:en' });
     await reader.navigate(new URL('https://fixture.test/' + destination + '.html'));
     const flight = reader.calls.find((call) => call.kind === 'scene');
     assert.equal(flight.animate, true, destination);
     assert.equal(flight.toDocument, destination);
+    assert.equal(reader.calls.find((call) => call.kind === 'departure').direction, 1);
     assert.deepEqual(reader.assigned, []);
   }
+  const back = routeHarness({ initialPage: 'writing' });
+  await back.navigate(new URL('https://fixture.test/articles/sample-en.html'));
+  await back.travel(-1);
+  await back.travel(1);
+  assert.deepEqual(
+    back.calls.filter((call) => call.kind === 'departure').map((call) => call.direction),
+    [1, 1, 1]
+  );
+  assert.deepEqual(
+    back.calls.filter((call) => call.kind === 'arrival').map((call) => call.direction),
+    [1, -1, 1],
+    'article arrives from below on both entry and Forward; principal arrival keeps its policy'
+  );
 });
 
 test('Block transitions Off leaves document camera travel enabled without route waves', async () => {

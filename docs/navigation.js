@@ -39,7 +39,9 @@ window.SiteScrollEntry=(function () {
     '.next-route > a',
     '.article-intro > *',
     '.article-toc',
-    '.article-body > *',
+    '.reader-introduction > *',
+    '.reader-chapter > *',
+    '.article-body > .reader-endnote > *',
     '.reader-closing > *',
     '.article-sources',
     '.article-related',
@@ -62,6 +64,7 @@ window.SiteScrollEntry=(function () {
     '.discussion-row',
     '.empty-state',
     '.reader-closing',
+    '.reader-chapter',
   ].join(',');
   const records = new Map();
   const routeUnits = new Map();
@@ -247,7 +250,7 @@ window.SiteScrollEntry=(function () {
   }
   function wrapInk(element, record) {
     // Inline text needs one movable layer; publication/grid children stay intact.
-    if (!element.matches('p,h1,h2,h3,a')) return;
+    if (!element.matches('p,h1,h2,h3,h4,h5,h6,a')) return;
     const ink = document.createElement('span');
     ink.setAttribute('data-scroll-ink', '');
     ink.append(...element.childNodes);
@@ -2366,6 +2369,12 @@ window.SiteReader=(function readerMode() {
       // Fresh reading input during the asynchronous read still reaches saveDeparture.
       restoreScroll(interruptedPosition[0], interruptedPosition[1]);
       next = await admittedDestination(url, next, controller.signal);
+      // Admission resolves article aliases absent from a principal page's boot registry.
+      // Hierarchy controls the block wave independently of camera/history travel.
+      const departureDirection =
+        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction;
+      const arrivalDirection =
+        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction;
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);
@@ -2376,7 +2385,7 @@ window.SiteReader=(function readerMode() {
       let animate = !initial && next !== page && motionAllowed();
       let blocks = animate && (presentation?.contentFlight?.() ?? true);
       if (blocks) {
-        const result = await scrollEntry?.depart?.(direction, own);
+        const result = await scrollEntry?.depart?.(departureDirection, own);
         blocks = result?.completed === true;
       }
       animate = animate && motionAllowed();
@@ -2410,7 +2419,7 @@ window.SiteReader=(function readerMode() {
               page: next,
             });
           }
-          mount(prepared, destination, position, blocks ? direction : null, own);
+          mount(prepared, destination, position, blocks ? arrivalDirection : null, own);
         },
         own,
         null,
@@ -2425,7 +2434,7 @@ window.SiteReader=(function readerMode() {
       );
       if (own !== serial) return;
       if (blocks && motionAllowed() && (presentation?.contentFlight?.() ?? true))
-        await scrollEntry?.arrive?.(direction, own);
+        await scrollEntry?.arrive?.(arrivalDirection, own);
       else scrollEntry?.cancelRoute?.();
       if (own === serial) {
         arriveEndpoint();

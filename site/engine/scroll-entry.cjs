@@ -40,7 +40,9 @@ module.exports = function () {
     '.next-route > a',
     '.article-intro > *',
     '.article-toc',
-    '.article-body > *',
+    '.reader-introduction > *',
+    '.reader-chapter > *',
+    '.article-body > .reader-endnote > *',
     '.reader-closing > *',
     '.article-sources',
     '.article-related',
@@ -63,6 +65,7 @@ module.exports = function () {
     '.discussion-row',
     '.empty-state',
     '.reader-closing',
+    '.reader-chapter',
   ].join(',');
   const records = new Map();
   const routeUnits = new Map();
@@ -248,7 +251,7 @@ module.exports = function () {
   }
   function wrapInk(element, record) {
     // Inline text needs one movable layer; publication/grid children stay intact.
-    if (!element.matches('p,h1,h2,h3,a')) return;
+    if (!element.matches('p,h1,h2,h3,h4,h5,h6,a')) return;
     const ink = document.createElement('span');
     ink.setAttribute('data-scroll-ink', '');
     ink.append(...element.childNodes);

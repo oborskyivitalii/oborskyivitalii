@@ -85,6 +85,13 @@ test('numbered references return to every real citation and never create nested 
   for (const [, hash] of html.matchAll(/href="#([^"]+)"/g))
     assert.ok(ids.includes(hash), 'every reference and return has a target');
   assert.equal((html.match(/role="doc-backlink"/g) || []).length, 3);
+  for (const occurrence of [1, 2, 3])
+    assert.ok(
+      html.includes(
+        `aria-label="Return to reference 1, occurrence ${occurrence}">Return to passage ${occurrence}</a>`
+      ),
+      'visible numbered returns retain distinct native citation destinations'
+    );
   assert.match(
     output.appendices,
     /<details class="reader-appendix" open><summary><h2 id="evidence"/

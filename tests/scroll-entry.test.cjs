@@ -715,6 +715,27 @@ test('route blocks leave in page order and remain held until the destination is 
   }
 });
 
+test('bare deep headings receive a movable ink layer without losing their text', async () => {
+  for (const tag of ['h4', 'h5', 'h6']) {
+    const h = harness({ count: 1 });
+    const heading = h.elements[0];
+    const text = { nodeType: 3, textContent: 'A deep heading' };
+    heading.matches = (selector) => selector.split(',').includes(tag);
+    heading.childNodes = [text];
+    const departing = h.controller.depart(1);
+    const ink = heading.children[0];
+    assert.ok(ink, tag + ' needs an element for the existing child animation');
+    assert.equal(ink.attributes.get('data-scroll-ink'), '');
+    assert.equal(ink.children[0], text, tag + ' retains the original bare text node');
+    assert.equal(heading.attributes.get('data-route-block'), 'departing');
+    assert.ok(Number.parseFloat(heading.styles.get('--route-block-distance')) < 0);
+    h.controller.cancelRoute();
+    assert.equal((await departing).cancelled, true);
+    assert.equal(heading.attributes.get('data-route-block'), undefined);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
 test('route arrival starts outside the correct edge and releases only after every visible block', async () => {
   for (const direction of [1, -1]) {
     const h = harness({ count: 8 });

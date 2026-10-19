@@ -32,8 +32,8 @@
 
 
 
-  <meta name="site-engine" content="2435a6dae3b843c6fb9c926e90635818c575b331ea2f61247091dd1b2ec9e898">
-  <meta name="site-route" content="95da442164d01c050bd4798d3130b35d80f58b99549a01f4ee738b62b3594fc4">
+  <meta name="site-engine" content="499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21">
+  <meta name="site-route" content="9a775b25b9944fc9453fba3976c22b05bee224398b2d38df1d2a262584f98a57">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -2168,12 +2168,22 @@ body[data-page='writing'] #archive-results {
   font-size: 0.8em;
   white-space: nowrap;
 }
+.reader-citation:target {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 .reader-note-returns {
-  display: inline-block;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
 }
 .reader-note-returns a {
-  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.5rem;
 }
 .reader-closing {
   border-top: 1px solid var(--line);
@@ -2228,8 +2238,8 @@ body[data-article] .site-footer a[href='#main'] {
   border-top: 1px solid var(--line);
   margin-top: 2.5rem;
   padding-top: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 .reader-appendices :is(.reader-appendix, .article-sources, .article-materials) {
   margin-block: 1rem;

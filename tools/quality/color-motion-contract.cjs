@@ -5,6 +5,16 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 article leaf-block wave and hierarchy directions; shared notes UI, same camera clock.
+  issue5ReaderBlocks: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    baseEngine: '499425a331ec84cb35108453d1ed3f71353ab842928e100f2f9e316527777d21',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '3b8ab951f96b0b10887af06db22079124233a975a0b8217502d01b506be86bf7',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Issue5 calm reader: shared single column, native contents and grouped closing; same scene and clock.
   issue5CalmReader: {
     behavior: 'fixed-blocks',
@@ -275,6 +285,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-blocks-production',
+    family: 'issue5ReaderBlocks',
+    edition: 'production',
+    fingerprint: '43df9670f9ad33bdb3877ac3bb2cd1c0f7a961f8e88c439bba9223b057ce8045',
+    styles: '4353b7f0b9c42807aec027b2cdc1a72b0496c7874ae5086727fc08bfd66c8e0d',
+  },
+  {
+    id: 'issue5-reader-blocks-plain',
+    family: 'issue5ReaderBlocks',
+    edition: 'plain',
+    fingerprint: '8018ef3137d35551e38020c0f7a8ba6cea4d0a6e6ba52f0d558fb5384d54e266',
+    styles: '4353b7f0b9c42807aec027b2cdc1a72b0496c7874ae5086727fc08bfd66c8e0d',
+  },
+  {
+    id: 'issue5-reader-blocks-staging',
+    family: 'issue5ReaderBlocks',
+    edition: 'staging',
+    fingerprint: 'adcd94efb13038267e8f33e1ec13d7050ab82372ecf0c029452df537f5c53526',
+    styles: '0bd3f89bf6407622cdb097baf63926c524898f8c69dafac59552bcb9d0129ab7',
+  },
   {
     id: 'issue5-calm-reader-production',
     family: 'issue5CalmReader',
