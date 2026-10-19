@@ -281,9 +281,13 @@
       );
     }
     const article = Object.entries(articles).find(([, descriptor]) =>
-      [descriptor.url, descriptor.snapshot]
-        .filter(Boolean)
-        .some((file) => new URL(file, directory).pathname === url.pathname)
+      [descriptor.url, descriptor.snapshot].filter(Boolean).some((file) => {
+        const path = new URL(file, directory).pathname;
+        return (
+          path === url.pathname ||
+          (file === descriptor.url && path.endsWith('.html') && path.slice(0, -5) === url.pathname)
+        );
+      })
     );
     if (article) return 'article:' + article[0];
     return (
@@ -464,7 +468,9 @@
       !embedded &&
       url.origin === entry.origin &&
       url.pathname.startsWith(directory.pathname) &&
-      /^articles\/[a-z][a-z0-9-]{0,79}\.html$/.test(url.pathname.slice(directory.pathname.length))
+      /^articles\/[a-z][a-z0-9-]{0,79}(?:\.html)?$/.test(
+        url.pathname.slice(directory.pathname.length)
+      )
     );
   }
   async function matchesBytes(html, hash) {

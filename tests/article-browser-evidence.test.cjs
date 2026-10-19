@@ -122,6 +122,10 @@ function observed() {
         width,
         mode: 'normal',
         relatedDeparture: { present: false, departed: false },
+        nativeHistory: [
+          flight('writing', 'article:' + key, -1),
+          flight('article:' + key, 'writing', 1),
+        ],
         flights: [
           flight('writing', 'article:' + key, 1),
           flight('article:' + key, 'writing', -1),
@@ -292,6 +296,10 @@ test('reader reference evidence requires served immutable material links in ever
     for (const row of detail.observations) {
       if (row.flights)
         row.flights = row.flights.map((item) =>
+          flight(item.from.replace(key, name), item.to.replace(key, name), item.direction)
+        );
+      if (row.nativeHistory)
+        row.nativeHistory = row.nativeHistory.map((item) =>
           flight(item.from.replace(key, name), item.to.replace(key, name), item.direction)
         );
       if (row.relatedDeparture) row.relatedDeparture = { present: true, departed: true };

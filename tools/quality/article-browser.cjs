@@ -494,6 +494,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
   await context.addInitScript(installArticleFlightDiagnostics);
   const page = await context.newPage();
   const flights = [];
+  const nativeHistory = [];
   let relatedDeparture = { present: false, departed: false };
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
@@ -646,6 +647,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
         null,
         { timeout }
       );
+      const nativeEntry = page.url();
       if (destination === 'writing') {
         if (key === 'reader-reference:en')
           await page.waitForFunction(() => document.querySelector('.article-related'), null, {
@@ -681,6 +683,20 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
           ['index', 'writing'].includes(destination) ? -1 : 1
         )
       );
+      if (destination === 'writing') {
+        await page.goBack();
+        await settled(page, 'article:' + key, timeout);
+        assert.equal(page.url(), nativeEntry, 'Back retains the host native article address');
+        assert.equal(
+          await page.locator('header .wordmark').evaluate((element) => element.href),
+          urls.base,
+          'Back restores the header base'
+        );
+        nativeHistory.push(await takeArticleFlight(page, 'writing', 'article:' + key, -1));
+        await page.goForward();
+        await settled(page, 'writing', timeout);
+        nativeHistory.push(await takeArticleFlight(page, 'article:' + key, 'writing', 1));
+      }
     }
 
     await page.goto(urls.alias);
@@ -716,6 +732,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       archive,
       reading,
       flights,
+      nativeHistory,
       relatedDeparture,
       checks: {
         metadataTransition: true,
@@ -1012,6 +1029,16 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
       'complete reader document flight inventory'
     );
     for (const flight of row.flights)
+      validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
+    assert.deepEqual(
+      row.nativeHistory?.map((flight) => [flight.from, flight.to, flight.direction]),
+      [
+        ['writing', 'article:' + keys[0], -1],
+        ['article:' + keys[0], 'writing', 1],
+      ],
+      'native direct-entry article Back/Forward inventory'
+    );
+    for (const flight of row.nativeHistory)
       validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
     assert.ok(
       Array.isArray(row.reading?.entered) && row.reading.entered.length > 0,

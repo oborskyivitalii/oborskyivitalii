@@ -140,7 +140,8 @@ clone, changes an external URL and one synthetic draft, then exercises two-width
 no-JS Writing plus the draft's five existing article cases in the managed
 Chromium job. Each normal article case observes raw successful camera paints for
 Writing/reader/Back/Forward and every principal destination, with signed depth,
-all three fixed camera stages and canonical final framing. Visible recommendations
+all three fixed camera stages and canonical final framing. A direct native article
+entry also exercises Back/Forward, including host extensionless aliases and restored header URLs. Visible recommendations
 participate in departure. The Off case also checks reduced motion against saved On;
 static-depth, mixed-ID and missing-stage evidence fails admission. Shared read-only Git objects preserve any existing accepted
 article's frozen provenance; fixture mutations never touch author sources.

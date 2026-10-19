@@ -739,6 +739,29 @@ test('project-base routing and history use distinct finite article keys while sc
     context.api.address(snapshotURL, 'article:reader-profile:en').href,
     'https://author.invalid/project/articles/reader-profile.html#second-section'
   );
+  assert.equal(
+    context.api.routeFor(
+      new URL('https://author.invalid/project/articles/reader-profile#first-section')
+    ),
+    'article:reader-profile:en',
+    'native extensionless reader is the same document'
+  );
+  assert.equal(
+    context.api.routeFor(new URL('https://author.invalid/other/articles/reader-profile')),
+    null
+  );
+  assert.equal(
+    context.api.routeFor(
+      new URL(
+        'https://author.invalid/project/' +
+          context.articles['reader-profile:en'].snapshot.slice(0, -5)
+      )
+    ),
+    null,
+    'immutable snapshots require exact filenames'
+  );
+  context.window.location.href =
+    'https://author.invalid/project/articles/reader-profile#first-section';
   context.api.save();
   assert.equal(context.history.state.site.page, 'article:reader-profile:en');
   assert.equal(context.history.state.site.focus, 'article-title');
@@ -975,6 +998,10 @@ test('unchanged open platform pages admit new article registry once and pin it f
   assert.equal(h.requests(), 0, 'no idle fetch');
   assert.equal(h.api.routeFor(url), null, 'the HTML carries no global article registry');
   assert.equal(h.api.articleTarget(url), true);
+  assert.equal(
+    h.api.articleTarget(new URL('https://author.invalid/project/articles/reader-profile')),
+    true
+  );
   assert.equal(
     h.api.articleTarget(new URL('https://author.invalid/other/articles/reader-profile.html')),
     false

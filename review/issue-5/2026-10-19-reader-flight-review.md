@@ -10,7 +10,7 @@ whole-PR approval or release acceptance.
 Baseline inspected:10c887e721d54d02ee0bb3438300cdcdf836f18f,
 tree1711ea7e007850686736b2ecc30bcaedd17af7c6. Follow-up inspects the prepared
 runtime/test source whose eight-path SHA256 map has aggregate hash
-`f4e3b84b587028091a1cab2177aa3764aa1e6da9b5c017a3f2c41e2a73ef8563`.
+`4ceb25ec448335bbce373196f527fbbfe87d376afda66c8c0d1573e0b76ecc94`.
 The final PR records exact commit/tree/source-policy and hosted artifact evidence.
 
 ## Intent and acceptance
@@ -42,6 +42,8 @@ cache bounds and native/block controls own the complete behavior.
 | F09 independent follow-up | Forward local flight built Talks inside its first transit paint, violating preflight preparation. | AC08/11 | Explicit future corridor pair is prepared before camera start; both directions prove no model build after first paint within original cache bounds. |
 | F10 root follow-up | Opening a reader after a long principal midpoint must preserve the still-arriving principal corridor. | AC08 | Local excursion is selected only from settled or existing local travel; source regression preserves complete displayed pose/positive room weights through canonical arrival. |
 
+| F11 hosted follow-up | Native host extensionless article entry was not recognized on Back, leaving Writing under the article URL and breaking relative header links. | AC08/12 | Mutable aliases recognize extensionless paths; immutable snapshots retain exact filenames. Browser admission now requires native-entry Back/Forward, retained native URL, restored root header and actual complete camera trips. Focused independent re-review accepted with3/3 routing/admission and7/7 evidence tests. |
+
 ## Ownership and style review
 
 | Rules | Changed concern and verification |
@@ -69,12 +71,13 @@ cache bounds and native/block controls own the complete behavior.
   Exact final source/browser run is recorded in PR79. Failed runs must remain visible; a pending hosted run is not acceptance.
 - RI28/28 and RI/CI coupling20/20 passed; lint has zero errors and four
   complexity warnings in touched existing owner functions; no complexity waiver is added.
-- All existing manuscript, media, template-material module/guide and public material
-  selections remain byte-identical to10c887e. Concurrent PR107 ownership is preserved.
+- Manuscripts, PDFs, media and selected material declarations remain unchanged.
+  The initial navigation increment preserved all10c887e material code; the final
+  follow-up preserves the separately corrected e276bb2 material owners byte-for-byte.
 - Separate materials review at7ad7d4bd997aa503fc38b17df35805b59d4faf39
-  (`review/issue-106/2026-10-19-independent-review.md`) has open P2 findings:
+  (`review/issue-106/2026-10-19-independent-review.md`) originally reported P2 findings:
   revoked/private material retention in a new offline export and private-only
-  allowlist changes invalidating public snapshots. They are not resolved here.
+  allowlist changes invalidating public snapshots. They were subsequently corrected in concurrent parent be8421d/e276bb2, with focused independent material re-review; see review/issue-106/2026-10-19-corrections.md. This navigation follow-up preserves those exact owner sources.
 - #5 remains open/Draft. Whole AC11, actual article/PDF/rights/device/publication,
   full staging admission, and AC16–AC20 production lanes retain their original gates.
   No main/stable/production promotion is requested or performed by this correction.
@@ -94,5 +97,8 @@ retained; final clean-head policy and hosted evidence must be read from PR79.
 Reader document navigation now shares the fractal camera/route-block lifecycle,
 with real bounded depth, correct Back/Forward and visible related-reading departure.
 Independent review reproduced the old failure and required concrete retarget and
-admission corrections. Use exact final PR/source/preview evidence; finish the
-separate materials findings and platform admission before a release decision.
+admission corrections. Use exact final PR/source/preview evidence; preserve the independently reviewed materials corrections and finish platform admission before a release decision.
+
+Native alias follow-up integrates concurrent parent e276bb2 and preserves its material module/template/build/export owners. Exact final parent/head, regenerated runtime tuples and policy/browser evidence belong to PR79. Whole article/editorial/rights/device/release gates remain distinct.
+
+Final native alias navigation SHA256: 79272658d952d9befc5107ca871bdb35cc0a082f7a9ba6458dfd9db6130784fd. Lifecycle retains the accepted475aef8d source. Final authored eight-path binding above includes the F11 correction.

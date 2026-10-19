@@ -5,6 +5,15 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Issue5 independent native reader history review: bounded host alias recognition.
+  issue5ReaderNativeHistory: {
+    behavior: 'fixed-blocks',
+    baseEngine: 'ef7716cb697d2af720e04c3a8f1d7ccbb0b6a62f78aabbfdf4b8610e1d7b75ac',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '5f4dc5f28fd9425975e4faa5a587f3b63c0217b216b2210a2762f1dc6e4c5597',
+    navigation: '26197e2d01b6b052db18864f7ac29c4d017810c1922e26bd2ce28364f9cb6a9b',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   issue106ReaderCorrections: {
     behavior: 'fixed-blocks',
     baseEngine: '2a8fc6d497c38a669e55417276b18f9359c2c7802111124f8bde053b34af4ec6',
@@ -200,6 +209,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-native-history-production',
+    family: 'issue5ReaderNativeHistory',
+    edition: 'production',
+    fingerprint: 'f86384348c19d23023799eddd65ef34fde0fec4e93acccebdfc381bd87bf2123',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-reader-native-history-plain',
+    family: 'issue5ReaderNativeHistory',
+    edition: 'plain',
+    fingerprint: '71f9ff318f0f968cc342e49210ca7abc955c85701c4795945f5c8a2ee24adf03',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-reader-native-history-staging',
+    family: 'issue5ReaderNativeHistory',
+    edition: 'staging',
+    fingerprint: '9df7a7fe7eb59dd9de9ff9a8d926fbea140a3709c6cf11229aa2e336296e405b',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
   {
     id: 'issue106-reader-corrections-production',
     family: 'issue106ReaderCorrections',

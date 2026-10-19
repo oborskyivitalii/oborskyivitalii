@@ -67,7 +67,7 @@ review/issue-106/2026-10-19-public-materials.md and exact PR check/preview evide
 No campaign or production publication. Original remaining gates stay open.
 
 1. Fetch live #5/PR79/current main and preserve any concurrent editorial commits.
-2. Verify final reader-flight CI/preview; resolve materials F01/F02 and re-review,
+2. Verify combined native reader history/materials CI/preview,
    then finish applicable platform admission. Do not equate bounded review with AC11 closure.
 3. Consume final article handoff later; verify its actual resource/rights/PDF
    gates separately, then obtain first-publication decision through the controller.
