@@ -1,0 +1,272 @@
+{
+  "edition": "DevCon Romania 2026 R1",
+  "status": "author-review-draft",
+  "author": "Vitalii Oborskyi",
+  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "language": "en",
+  "speaking_minutes": 23,
+  "qa_minutes": 5,
+  "reserve_minutes": 2,
+  "source": {
+    "repository": "UncertaintyArchitectureGroup/uncertainty-architecture",
+    "commit": "22639d311d5fb46a23f3d5cdd819800dbe1169d9",
+    "pptx": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/ai-changes-both-sides.pptx",
+    "sha256": "d40acf0d3e716eb1324acb3ff1b21a6b43d0225687b84984a818a9518f098ecc",
+    "content": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/README.md",
+    "evidence": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/EVIDENCE.md",
+    "artwork_provenance": "https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/assets/presentations/pmday-2026/artwork/PROVENANCE.md"
+  },
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "source_slide": 1,
+      "title": "AI Changes the Delivery System and the Product Itself",
+      "time": "00:00–01:30",
+      "source_part": "ppt/slides/slide1.xml",
+      "edition_part": "ppt/slides/slide1.xml",
+      "content_edits": [
+        {
+          "from": "New capabilities shift constraints. Engineering must adapt around them.",
+          "to": "DevCon Romania · DevOps Stage · 4 November 2026"
+        }
+      ],
+      "pagination": {
+        "from": "01",
+        "to": "01"
+      }
+    },
+    {
+      "slide": 2,
+      "source_slide": 3,
+      "title": "We Accelerated a Step. Not the System.",
+      "time": "01:30–03:30",
+      "source_part": "ppt/slides/slide3.xml",
+      "edition_part": "ppt/slides/slide2.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "03",
+        "to": "02"
+      }
+    },
+    {
+      "slide": 3,
+      "source_slide": 4,
+      "title": "The Evidence Is Already Messy",
+      "time": "03:30–08:00",
+      "source_part": "ppt/slides/slide4.xml",
+      "edition_part": "ppt/slides/slide3.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "04",
+        "to": "03"
+      }
+    },
+    {
+      "slide": 4,
+      "source_slide": 5,
+      "title": "The New Scarcity Is Human Comprehension",
+      "time": "08:00–09:30",
+      "source_part": "ppt/slides/slide5.xml",
+      "edition_part": "ppt/slides/slide4.xml",
+      "content_edits": [
+        {
+          "from": "Illustrative overload hypothesis — motivated by slide 4, not measured by those studies.",
+          "to": "Illustrative overload hypothesis — motivated by the evidence, not measured by those studies."
+        }
+      ],
+      "pagination": {
+        "from": "05",
+        "to": "04"
+      }
+    },
+    {
+      "slide": 5,
+      "source_slide": 6,
+      "title": "The Team Is the Last Line of Defense",
+      "time": "09:30–10:30",
+      "source_part": "ppt/slides/slide6.xml",
+      "edition_part": "ppt/slides/slide5.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "06",
+        "to": "05"
+      }
+    },
+    {
+      "slide": 6,
+      "source_slide": 7,
+      "title": "We Are Searching for a New SDLC Equilibrium",
+      "time": "10:30–12:30",
+      "source_part": "ppt/slides/slide7.xml",
+      "edition_part": "ppt/slides/slide6.xml",
+      "content_edits": [
+        {
+          "from": "EXPLORE / TEST",
+          "to": "WORKING HYPOTHESES"
+        },
+        {
+          "from": "Candidate countermeasures — not proven fixes.",
+          "to": "Candidate operating models: test their fit and sufficiency."
+        }
+      ],
+      "pagination": {
+        "from": "07",
+        "to": "06"
+      }
+    },
+    {
+      "slide": 7,
+      "source_slide": 8,
+      "title": "When Software Starts Thinking",
+      "time": "12:30–13:15",
+      "source_part": "ppt/slides/slide8.xml",
+      "edition_part": "ppt/slides/slide7.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "08",
+        "to": "07"
+      }
+    },
+    {
+      "slide": 8,
+      "source_slide": 9,
+      "title": "Requirements Become Boundaries",
+      "time": "13:15–14:00",
+      "source_part": "ppt/slides/slide9.xml",
+      "edition_part": "ppt/slides/slide8.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "09",
+        "to": "08"
+      }
+    },
+    {
+      "slide": 9,
+      "source_slide": 10,
+      "title": "One Green Test Proves Almost Nothing",
+      "time": "14:00–16:00",
+      "source_part": "ppt/slides/slide10.xml",
+      "edition_part": "ppt/slides/slide9.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "10",
+        "to": "09"
+      }
+    },
+    {
+      "slide": 10,
+      "source_slide": 12,
+      "title": "Production Needs a Control Loop",
+      "time": "16:00–18:00",
+      "source_part": "ppt/slides/slide12.xml",
+      "edition_part": "ppt/slides/slide10.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "12",
+        "to": "10"
+      }
+    },
+    {
+      "slide": 11,
+      "source_slide": 13,
+      "title": "The Roles Move With the System",
+      "time": "18:00–20:30",
+      "source_part": "ppt/slides/slide13.xml",
+      "edition_part": "ppt/slides/slide11.xml",
+      "content_edits": [
+        {
+          "from": "Two shifts change the delivery system, its roles and operating model.",
+          "to": "AI redistributes cognitive work across the sociotechnical system."
+        },
+        {
+          "from": "PM RESPONSIBILITY: KEEP THE OPERATING MODEL FIT FOR DELIVERY",
+          "to": "OPERATING MODEL: CAPACITY, OWNERSHIP AND DECISION RIGHTS"
+        }
+      ],
+      "pagination": {
+        "from": "13",
+        "to": "11"
+      }
+    },
+    {
+      "slide": 12,
+      "source_slide": 14,
+      "title": "Engineering Rigor Moves — It Doesn’t Disappear",
+      "time": "20:30–23:00",
+      "source_part": "ppt/slides/slide14.xml",
+      "edition_part": "ppt/slides/slide12.xml",
+      "content_edits": [
+        {
+          "from": "EXISTING TEAM CADENCE · Project Manager coordinates decisions",
+          "to": "EXISTING TEAM CADENCE · Coordinate evidence and decisions"
+        },
+        {
+          "from": "Start with one workflow: approved limits, evidence, owners and a rehearsed fallback.",
+          "to": "Which imbalance? What mechanism? What system outcome? What would change our mind?"
+        }
+      ],
+      "pagination": {
+        "from": "14",
+        "to": "12"
+      }
+    },
+    {
+      "slide": 13,
+      "source_slide": 15,
+      "title": "Continue the Conversation",
+      "time": "23:00–28:00",
+      "source_part": "ppt/slides/slide15.xml",
+      "edition_part": "ppt/slides/slide13.xml",
+      "content_edits": [],
+      "pagination": {
+        "from": "15",
+        "to": "13"
+      }
+    }
+  ],
+  "omitted_source_slides": [
+    {
+      "slide": 2,
+      "reason": "Delegation explained briefly in opening notes."
+    },
+    {
+      "slide": 11,
+      "reason": "Release criteria retained in evaluation/control notes; detailed DoR/DoD table omitted."
+    }
+  ],
+  "reuse": {
+    "source_slide_count": 15,
+    "retained_slide_count": 13,
+    "redrawn_layouts": 0,
+    "evidence_content_preserved": true,
+    "chart_and_workbook_preserved": true,
+    "shared_parts_preserved": true
+  },
+  "derivation": "Selected existing native slide parts; edited listed text runs and pagination; replaced notes with the shortened English script. No layout round trip or new presentation engine.",
+  "rights": {
+    "author_owned_text": "CC BY 4.0 under repository content scope",
+    "upstream_terms": "Retained; see pinned source and repository LICENSING.md. Third-party sources, personal identity and generated cover provenance retain their separate boundaries."
+  },
+  "artifacts": {
+    "DevCon-Romania-2026-R1.pptx": {
+      "kind": "editable-presentation",
+      "bytes": 1402885,
+      "sha256": "21db89dd1f5c60eefd44bd32ae533e7e17c164ad7a4cacdc8862ae7b36da935f"
+    },
+    "DevCon-Romania-2026-R1.pdf": {
+      "kind": "derived-pdf",
+      "bytes": 646315,
+      "sha256": "818a9dec0422b225c775ad9f61586bcd051835479fbcc5b0d4acde21f99fcae2"
+    },
+    "speaker-notes.md": {
+      "kind": "spoken-script",
+      "bytes": 21127,
+      "sha256": "3bc6263a246483a5f154087f2bee37402776cb70c453be7206e6e3b3c8310b1c"
+    }
+  },
+  "pdf_renderer": "LibreOffice Impress PDF export; inspected via PyMuPDF rasterization."
+}

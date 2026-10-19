@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 109,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Deliver an editable 13-slide English edition with notes and the explicit 23+5+2 timing plan.",
+      "automated_scope": "No generic repository check establishes slide count, English wording, actual note attachment or speaking duration. Record the exact PPTX relationship and note audit in the versioned review; rehearsal remains AC06.",
+      "checks": [],
+      "gates": ["ARTIFACT-REVIEW"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Retain the selected PMDay dimensions, native visuals and complete evidence slide, recording every visible change.",
+      "automated_scope": "The selected upstream PPTX and derivative require an exact package comparison, including chart/workbook, tables, artwork and all visible text changes. The reports slide must differ only in pagination. These artifact observations are recorded separately; RI hashes do not prove reuse or semantic preservation.",
+      "checks": [],
+      "gates": ["ARTIFACT-REVIEW"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Independently review the SDLC equilibrium, cognitive delegation and sociotechnical narrative and every rendered slide.",
+      "automated_scope": "Narrative quality, consistency with the English notes and all-slide readability require a recorded independent content and visual review of the exact candidate. Successful conversion, generic source checks and self-review do not supply that evidence.",
+      "checks": [],
+      "gates": ["INDEPENDENT-REVIEW"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Commit matching review deliverables, mapping, notes, provenance and revision decisions in an issue-linked Draft PR.",
+      "automated_scope": "Record the actual PPTX/PDF checksums and correspondence, selected source identity, per-item provenance, notes and visible-change mapping. Observe the committed files and live Draft PR linkage separately; the repository policy cannot create or verify a GitHub approval.",
+      "checks": [],
+      "gates": ["DELIVERY-LINKAGE"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Maintain the exact draft's path catalog, acceptance mapping, bounded checks, RI freshness and versioned handoff.",
+      "automated_scope": "BASIC checks the existing site source/output contract without a new browser matrix. STYLE checks its declared source guard subset. CURRENT-RI verifies the complete catalog and fresh generated views; RI-CI verifies the unchanged workflow routes and mapped new policy. Review the exact draft-only diff, AC mapping and applicable CS01, CS02, CS04, CS05, CS08-CS10 separately. No builder, runtime, public site output, workflow or test budget changes are introduced.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "gates": ["HANDOFF-REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Obtain the author's review, timed rehearsal and presenting-device acceptance before designating a final conference edition.",
+      "automated_scope": "Author acceptance, real speaking time and behavior on the presenting device are not established by local rendering or any repository check. Preserve them as pending until the author's exact-edition evidence is recorded.",
+      "checks": [],
+      "gates": ["AUTHOR-ACCEPTANCE"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "ARTIFACT-REVIEW": {
+      "kind": "human",
+      "description": "Review exact source and derivative hashes, 13-slide order, editable native objects, internally attached English notes, 23+5+2 timing declaration and the exhaustive visible-change log. Compare all retained dimensions, diagrams, native tables, chart/workbook and artwork; prove the complete reports slide changes only its page number. Record the audit and its limits in review/issue-109/2026-10-19-review.md."
+    },
+    "INDEPENDENT-REVIEW": {
+      "kind": "human",
+      "description": "Record independent content and all-slide visual review against the accepted SDLC equilibrium and cognitive-delegation framing. Check that operating-model proposals remain hypotheses, the complete reports slide is retained and English notes explain every selected slide. Identify the reviewer role, inspected artifact hashes, findings and dispositions; self-review is not independent acceptance."
+    },
+    "DELIVERY-LINKAGE": {
+      "kind": "human",
+      "description": "Observe matching PPTX/PDF, source and rights/provenance records, source-to-derivative mapping, notes and revision decisions in a commit linked with Refs #109 and one Draft PR. Record exact file/commit links and separate preparation from public publication, merge or conference acceptance."
+    },
+    "HANDOFF-REVIEW": {
+      "kind": "human",
+      "description": "Review the policy against all six unchanged issue109 criteria, draft-only file scope, source owners, readable JSON and the bounded CS01, CS02, CS04, CS05, CS08-CS10 obligations. Record fresh RI/coupling and exact-source check results, retained failures and actual issue checkbox reconciliation. Draft-deferred CI remains skipped, not passed; no site staging or production run is required for these repository-only deliverables."
+    },
+    "AUTHOR-ACCEPTANCE": {
+      "kind": "human",
+      "description": "Record the author's review of this exact edition, timed rehearsal fitting the 30-minute slot including questions and reserve, and actual presenting-device acceptance before calling it the final DevCon conference edition. Preparing or pushing a Draft PR does not require this final-edition gate to be complete."
+    }
+  }
+}
