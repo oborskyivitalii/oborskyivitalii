@@ -64,7 +64,7 @@ test('event schema rejects duplicate identities/anchors, unsafe URLs, invalid da
       data.groups[0].events[0].links[0].url = 'https://user:password@example.test';
     },
     (data) => {
-      data.groups[0].events[0].links[1].primary = true;
+      data.groups.find((group) => group.id === 'ukrainian-talks').events[0].links[1].primary = true;
     },
     (data) => {
       data.groups[0].events[0].html = '<div>';

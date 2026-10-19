@@ -110,3 +110,25 @@ candidates remain, including earlier source evidence. This is not clean scanner
 admission; no review ledger or historical source guard was broadly waived.
 Managed hosted CI and actual accepted-platform/content publication remain
 separate observations, with no merge or production activation in this increment.
+
+## Concurrent main integration
+
+Main advanced to82b57b8 with #108/#111 while final checks were running. Both
+parents are preserved by a merge on the task branch; no main merge is performed.
+The exact new Winter facts, original four cards, Autumn naming, nav and metadata
+are transferred into the same canonical collection. The source snapshot now pins
+that main input, and reconstruction reverses event migration before the existing
+#108 amendment. Upcoming/ukrainian/other are stable ordered groups; a date may
+have an empty prefix. A real event insertion still needs only validated data.
+Both parents’ exact reviewed secret-ledger rows survive without overlapping
+variants; main’s proof and its original historical evidence remain untouched.
+The new issue5DeliveryMain family retains the earlier delivery family and binds
+the integrated producer; delivered Color runtime bytes are unchanged.
+Focused integrated event/content/release/fixture/profile checks passed62/62.
+The interrupted b0c331b policy is superseded, not final admission evidence.
+
+The independent integration pass accepted exact normalized main Talks equality
+and the source reversal order, with4/4 focused factual/event cases. Reviewed
+blobs: renderer73eb7c0, data8980583, SEOaa62bea, migration99be8ad.
+The owning #5 CI policy installs the locked quality Node tools used by its new
+workflow/schema tests, alongside the existing locked Python and publisher tools.

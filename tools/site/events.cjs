@@ -41,7 +41,7 @@ function metadata(item, templates) {
   assert.equal(item.kind, 'date');
   validateDate(item.date);
   return component(templates, 'event-date', {
-    PREFIX: escapeText(text(item.prefix)),
+    PREFIX: item.prefix === '' ? '' : escapeText(text(item.prefix)),
     DATE: escapeAttribute(item.date),
     TEXT: escapeText(text(item.text)),
   });
@@ -90,10 +90,10 @@ function event(record, templates, seen) {
 function render(data, templates) {
   object(data, ['schema', 'groups']);
   assert.equal(data.schema, 1);
-  assert.ok(Array.isArray(data.groups) && data.groups.length === 2);
+  assert.ok(Array.isArray(data.groups) && data.groups.length === 3);
   assert.deepEqual(
     data.groups.map((group) => group.id),
-    ['ukrainian-talks', 'other-talks'],
+    ['upcoming-talks', 'ukrainian-talks', 'other-talks'],
     'preserve public Talks group anchors'
   );
   const seen = new Set(),

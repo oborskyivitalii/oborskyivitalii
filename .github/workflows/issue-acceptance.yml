@@ -38,12 +38,15 @@ jobs:
         if: >-
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-39.json' ||
-          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json'
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-108.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json'
         run: npm ci --prefix tools/quality/toolchain --ignore-scripts
       - name: Install locked Python tools for acceptance parity
         if: >-
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-58.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-41.json' ||
+          env.ACCEPTANCE_POLICY == '.github/acceptance/issue-108.json' ||
           env.ACCEPTANCE_POLICY == '.github/acceptance/issue-5.json'
         run: |
           python3 -m venv tools/quality/toolchain/venv

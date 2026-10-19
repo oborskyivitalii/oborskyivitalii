@@ -506,7 +506,11 @@ test('Talks follows canonical events while retaining the frozen provenance of it
       require('../tools/site/content.cjs').catalog(path.join(root, '..'))
     ).html
   );
-  const provenSection = require('../tools/check_site_seo.cjs').restoreEventsCatalog(currentSection);
+  const provenSection = restoreContentAmendment(
+    require('../tools/check_site_seo.cjs').restoreEventsCatalog(currentSection),
+    'talks',
+    require('../review/issue-108/content-amendment.json')
+  );
   assert.equal(
     restoreContentAmendment(
       restoreContentAmendment(provenSection, 'talks', positioningAmendment),
@@ -644,7 +648,7 @@ test('Talks follows canonical events while retaining the frozen provenance of it
   const description = require('../site/content/pages/talks/metadata.json').description;
   assert.equal(
     description,
-    'Talks and workshops on AI architecture and software delivery, including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua, with public sources.'
+    'Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording, plus talks and workshops on AI architecture and software delivery.'
   );
   for (const tag of [
     '<meta name="description"',
@@ -942,4 +946,45 @@ test('Home provides the agreed reader path, precise public actions and a real co
         .digest('hex'),
       hash
     );
+});
+
+test('PMDay upcoming and Autumn naming preserve confirmed facts and existing presentation', () => {
+  const { restoreEventsCatalog, restoreContentAmendment } = require('../tools/check_site_seo.cjs');
+  const record = require('../review/issue-108/content-amendment.json');
+  const html = restoreEventsCatalog(pages.talks);
+  const cards = talkRows(html);
+  assert.equal(cards.length, 5);
+  const upcoming = cards[0][0];
+  assert.match(upcoming, /id="pmday-winter-2027"/);
+  assert.match(upcoming, /<span>Upcoming<\/span><span>Online conference<\/span>/);
+  assert.match(upcoming, /<time datetime="2027-01-30">30 January 2027<\/time>/);
+  assert.match(upcoming, /<h3 class="talk-title">UA Online PMDay 2027 Winter<\/h3>/);
+  assert.match(upcoming, /I’ll be speaking at UA Online PMDay 2027 Winter/);
+  assert.match(upcoming, /href="https:\/\/pmday.org\/online">Programme &amp; registration /);
+  assert.doesNotMatch(upcoming, /data-language|language-badge|datetime="[^"T]+T|slides|recording/i);
+  assert.match(cards[1][0], /UA Online PMDay 2026 Autumn · Recording in Ukrainian/);
+  assert.equal(cards[1][1], 'uk');
+  assert.match(cards[1][0], /datetime="2026-09-26"/);
+  assert.ok(html.indexOf('id="upcoming-talks"') < html.indexOf('id="ukrainian-talks"'));
+  assert.match(html, /href="#upcoming-talks">Upcoming<\/a>/);
+  const earlier = talkRows(restoreContentAmendment(html, 'talks', record));
+  assert.deepEqual(cards.slice(2), earlier.slice(1), 'all other talk cards remain exact');
+  assert.deepEqual(
+    [...cards[1][0].matchAll(/href="([^"]+)"/g)].map((row) => row[1]),
+    [...earlier[0][0].matchAll(/href="([^"]+)"/g)].map((row) => row[1]),
+    'Autumn recording, original announcement and reflection destinations survive'
+  );
+  const preserved = restoreContentAmendment(html, 'talks', record);
+  for (const [from, to] of [
+    ['UA Online PMDay 2027 Winter', 'UA Online PMDay 2026 Autumn'],
+    ['datetime="2027-01-30"', 'datetime="2027-01-31"'],
+    ['https://pmday.org/online', 'https://example.com/tickets'],
+    ['UA Online PMDay 2026 Autumn ·', 'PMDay 2026 ·'],
+    ['<span>Online conference</span>', '<span>In-person conference</span>'],
+    [upcoming, upcoming.replace('<article ', '<article data-language="en" ')],
+    [upcoming, ''],
+  ]) {
+    assert.ok(html.includes(from));
+    assert.notEqual(restoreContentAmendment(html.replace(from, to), 'talks', record), preserved);
+  }
 });

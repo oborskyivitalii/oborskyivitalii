@@ -14,7 +14,9 @@ Dated continuity, not live authority. Last verified: **2026-10-19**.
   re-review addresses F01–F03; exact policies/previews in owning PR107/PR79.
   See review/issue-106/2026-10-19-corrections.md. No merge or release approval.
 
-- Production/main0098f804cb3b0d120173d4c8689043db42231c47, prod-2026-10-19.1.
+- Main advanced to82b57b8 (#111/#108 Winter announcement and Autumn naming);
+  integrated into PR79 without changing those facts. Production release state
+  must be revalidated; previous observation was prod-2026-10-19.1.
   PR105 released; no production/main/stable promotion in the current increment.
 - Owner #5, same Draft PR79. Concurrent editorial work through794287b2 (Cover02
   and exact R12 PDF) is included unchanged. Preservation manifest and review:

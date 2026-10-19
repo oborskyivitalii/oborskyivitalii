@@ -2,6 +2,43 @@
   "schema": 1,
   "groups": [
     {
+      "id": "upcoming-talks",
+      "title": "Upcoming conferences",
+      "events": [
+        {
+          "id": "pmday-winter-2027",
+          "anchor": "pmday-winter-2027",
+          "language": null,
+          "title": "UA Online PMDay 2027 Winter",
+          "description": "I’ll be speaking at UA Online PMDay 2027 Winter, an online conference for the project management community. Explore the programme and registration details on the organiser’s website.",
+          "metadata": [
+            {
+              "kind": "text",
+              "text": "Upcoming"
+            },
+            {
+              "kind": "text",
+              "text": "Online conference"
+            },
+            {
+              "kind": "date",
+              "prefix": "",
+              "date": "2027-01-30",
+              "text": "30 January 2027"
+            }
+          ],
+          "links": [
+            {
+              "label": "Programme & registration ",
+              "url": "https://pmday.org/online",
+              "primary": true,
+              "arrow": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "ukrainian-talks",
       "title": "Ukrainian-language talks",
       "events": [
@@ -14,7 +51,7 @@
           "metadata": [
             {
               "kind": "text",
-              "text": "PMDay 2026 · Recording in Ukrainian"
+              "text": "UA Online PMDay 2026 Autumn · Recording in Ukrainian"
             },
             {
               "kind": "language",

@@ -2538,6 +2538,26 @@
         ".github/workflows/site-release-candidate.yml",
         ".github/workflows/site-production.yml"
       ]
+    },
+    {
+      "path": "tests/test_issue108_acceptance.py",
+      "language": "python",
+      "purpose": "Issue108 selects maintained event facts, exact naming, historical inventory and adversarial SEO reconciliation checks.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Owning issue108 policy only; permanent content/SEO cases retain existing source profiles.",
+      "surviving_route": ".github/acceptance/issue-108.json",
+      "inputs": [
+        "tests/test_issue108_acceptance.py",
+        ".github/acceptance/issue-108.json",
+        "tests/content.test.cjs",
+        "tests/executive.test.cjs",
+        "tools/check_site_seo.cjs",
+        "review/issue-108/content-amendment.json",
+        "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
+        "tools/quality/secrets-publication.json"
+      ]
     }
   ]
 }

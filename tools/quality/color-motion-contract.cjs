@@ -6,6 +6,14 @@ const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
   // Issue5 delivery producer revision; orbit runtime bytes remain identical.
+  issue5DeliveryMain: {
+    behavior: 'fixed-blocks',
+    baseEngine: '51766901172d964490fa2495a4c85b9c010eda52541a03c75b76a5219ccb1900',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4fafe059ff287ad5accc9b1404fbc75c4db4a034f8ba2581824b31405f0680f2',
+    navigation: '26197e2d01b6b052db18864f7ac29c4d017810c1922e26bd2ce28364f9cb6a9b',
+    archive: 'e5077478895fbe15af0cbd3fe586bcefbdc4327b2921efcc84b64ace50c52760',
+  },
   issue5Delivery: {
     behavior: 'fixed-blocks',
     baseEngine: 'fe06ca108e5588c1e08c0e87cd9a308e970e89a0c598fcb6644d0b142d65fb7e',
@@ -227,6 +235,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-delivery-main-production',
+    family: 'issue5DeliveryMain',
+    edition: 'production',
+    fingerprint: 'ecb227ed244c75be6155719055df8d3cef76e008a6374aef85f97b18c7654ce7',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
+  {
+    id: 'issue5-delivery-main-staging',
+    family: 'issue5DeliveryMain',
+    edition: 'staging',
+    fingerprint: 'ead120e3f8afad7908ba13cc961db6de38cb104a7adcb92c620b54123da3c10e',
+    styles: '0f172ce76a054c39df2d0c2ad36c945dcb402f0143bf89d434ece6bb75ea1180',
+  },
+  {
+    id: 'issue5-delivery-main-plain',
+    family: 'issue5DeliveryMain',
+    edition: 'plain',
+    fingerprint: 'b3fa2b9423ab425bd81744b55e3ec7d98c3bc7524d0f1e24279978aaf66e1c2d',
+    styles: '358112c885a415ab809328d463f3ff0786c8b090e1fc377a62f35f2a04725189',
+  },
   {
     id: 'issue5-delivery-production',
     family: 'issue5Delivery',
