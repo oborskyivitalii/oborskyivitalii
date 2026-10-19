@@ -14,15 +14,16 @@ constraints and responsibility across the sociotechnical system.
 
 The session is **AI Changes the Delivery System and the Product Itself**.
 The author confirmed the DevOps Stage slot on 4 November 2026, 12:30–13:00 in
-Europe/Bucharest. The working presentation allocates 23 minutes to speaking,
-5 minutes to questions and 2 minutes of reserve, subject to rehearsal.
+Europe/Bucharest. The working presentation allocates up to 20 minutes to explanation,
+7 minutes to questions and 3 minutes of reserve, subject to rehearsal. The nine
+slides have 3–5-sentence English cues, not a twenty-minute verbatim script.
 
 ## Presentation owner
 
 The [presentation directory](../../devcon-romania-2026/README.md) owns the native
-PPTX, English speaker notes, source mapping and edition history. R1 is retained;
-the R2 package is a separately reviewable revision. The event's `deck` record
-selects the exact R2 PDF by repository path and SHA256. Each edition keeps its
+PPTX, English speaker notes, source mapping and edition history. R1 and R2 are
+retained; the R3 package is a separately reviewable nine-slide revision. The event's `deck` record
+selects the exact R3 PDF by repository path and SHA256. Each edition keeps its
 own artifact identities and review evidence under the DevCon owner.
 
 Preserve the accepted argument: AI changes both the delivery system and the

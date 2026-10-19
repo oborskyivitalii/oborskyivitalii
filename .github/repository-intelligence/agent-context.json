@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "8b5bb18e861aac18ea947b78a0f68faffacb772d9b0629a286228bcec4200ea4",
+    "digest": "1a16eb2dddc040fd544994964d347d6b03163b9a4fd6b5df8b665ddb4e62345c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -52,7 +52,7 @@
       {
         "path": ".github/acceptance/issue-109.json",
         "identity_mode": "content",
-        "sha256": "6831d8f122eaa5bb366b3a7c68f5125152a1e60dca21b70ba02412b9eeb4e4a1"
+        "sha256": "e3b97b08625c5af394e0b3083535589a329fbbb7f30f85c32cffa9ae4550d76b"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -166,12 +166,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6550e46fd181eecc6d905ca04a685328d94934d265933ae0035547d0e4f65e87"
+        "sha256": "0e666ab9a68d8b77ed7dae20bc6bd44b4be6c1eba0e5e5483fa1fc70b9b816fd"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b33508e642b3336bdda5317a6ae057f3e7a09488accf864522162f32b769f677"
+        "sha256": "434ece1a20c79177deffe44d95b55031a1766b435e3085e836d27940f379e7c3"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -301,7 +301,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a4ecd2079b71a2b37777b7fabd9b5eeb48d30c7f9995b3b60493e4c05fc8915a"
+        "sha256": "94fd5b46758b06d1c8ab811768edb8690f6610368adfd35e985ef0359e0de773"
       },
       {
         "path": "NOTICE.md",
@@ -540,7 +540,7 @@
       {
         "path": "drafts/devcon-romania-2026/README.md",
         "identity_mode": "content",
-        "sha256": "bfa880ee669d758091373da6407ae67fc39c3cb937857ec51f2077ada36af611"
+        "sha256": "a4ad0b4e4a68af9b38c6ea9b161104fcc3cbe06cbd846562ebba91ed850dbdc6"
       },
       {
         "path": "drafts/devcon-romania-2026/edition.json",
@@ -550,7 +550,7 @@
       {
         "path": "drafts/devcon-romania-2026/plan.md",
         "identity_mode": "content",
-        "sha256": "fd5070c60b7c4c2a2c6e2f5fa09be3e98cfa58bbc04fae2e83b6d2ca17ecff13"
+        "sha256": "792954ee56dee7fca53f5c61767ee21b6b60f7a91635494fd179970aef1feac7"
       },
       {
         "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
@@ -573,6 +573,26 @@
         "sha256": "d3ddb1efad0919c0ba193eb9da1aedc8acf90216107495baec82bed2c7477e58"
       },
       {
+        "path": "drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf",
+        "identity_mode": "content",
+        "sha256": "1464372a8af005c95f183d4673c1cdd91dfe57c7ebea3a2f26d32ccb59eaef20"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pptx",
+        "identity_mode": "content",
+        "sha256": "ba7a4099a22fc62644abdce9985e1747d4113abdbe5622905969a93b7e90ff1d"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r3/edition.json",
+        "identity_mode": "content",
+        "sha256": "9a208d830618d256e4cb8ec6cbd8c330f567a457600a9d0360520f5c5425d71a"
+      },
+      {
+        "path": "drafts/devcon-romania-2026/r3/speaker-notes.md",
+        "identity_mode": "content",
+        "sha256": "e39177eb4b32a71c40dc46181237b09224b61588d162fb875c007b06a5212ddd"
+      },
+      {
         "path": "drafts/devcon-romania-2026/speaker-notes.md",
         "identity_mode": "content",
         "sha256": "3bc6263a246483a5f154087f2bee37402776cb70c453be7206e6e3b3c8310b1c"
@@ -580,17 +600,17 @@
       {
         "path": "drafts/events/devcon-romania-2026/brief.en.md",
         "identity_mode": "content",
-        "sha256": "c7dfdef098de33167182005bb3681ccc075412bb7e70d6a6bb4322e22b343c4c"
+        "sha256": "ec9859a77a6e11a05dd60e03e48a873b95af6b595515b94006d3e7ff4cce3024"
       },
       {
         "path": "drafts/events/devcon-romania-2026/event.json",
         "identity_mode": "content",
-        "sha256": "78c1381e7d39be016d62aa741c042e52c825e3fa667d9857f887b99874ba16fa"
+        "sha256": "33da892a727ff385396350cec90f36084322ae8223cd9b0922b39c5d52099c20"
       },
       {
         "path": "drafts/events/devcon-romania-2026/plan.json",
         "identity_mode": "content",
-        "sha256": "0554ddb10562e9968db34aad37e39fb318a783da1a4e6423046e3c645e66b72d"
+        "sha256": "0dc6ee1c6437831cc86805fb4b84525c5c88475b3ad23a223cf0a1afe6513f9a"
       },
       {
         "path": "drafts/events/devcon-romania-2026/sources/organizer.md",
@@ -771,6 +791,11 @@
         "path": "review/issue-109/2026-10-19-r2-review.md",
         "identity_mode": "content",
         "sha256": "610b17993a9de171a5c12c07f121d66f89a065e2baa9d81735fc494cb097b9e4"
+      },
+      {
+        "path": "review/issue-109/2026-10-19-r3-review.md",
+        "identity_mode": "content",
+        "sha256": "f3ec08b7aec5e7633d249206f0576ed765d84da65ff6c11e5efbc2b736401dd2"
       },
       {
         "path": "review/issue-109/2026-10-19-review.md",
@@ -7179,7 +7204,7 @@
     {
       "path": ".github/acceptance/issue-109.json",
       "kind": "file",
-      "purpose": "Issue109 DevCon R2 AC01-AC08 mapping: four bounded repository checks and explicit artifact, agreed-plan/render review, linkage, author, QR and version/event binding gates.",
+      "purpose": "Issue109 DevCon R3 stable AC01-AC08 mapping: nine-slide short-cue compression, four bounded repository checks and separate artifact, independent review, linkage, author, QR and event gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -8257,7 +8282,7 @@
     {
       "path": "drafts/devcon-romania-2026/README.md",
       "kind": "file",
-      "purpose": "Issue109 DevCon edition index: preserved R1, current R2, agreed-plan amendments, timing, provenance and pending acceptance.",
+      "purpose": "Issue109 DevCon edition index: preserved R1/R2, current nine-slide R3, dated plan amendments, provisional timing, provenance and pending author acceptance.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -8279,7 +8304,7 @@
     {
       "path": "drafts/devcon-romania-2026/plan.md",
       "kind": "file",
-      "purpose": "Original agreed DevCon visual plan and dated R2/QR amendments, preserving the acceptance target for plan-to-render review.",
+      "purpose": "Original agreed DevCon visual plan with dated R2/QR and R3 compression amendments; independent target for visible-slide and cue-card review.",
       "role": "draft",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -8290,7 +8315,7 @@
     {
       "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
       "kind": "file",
-      "purpose": "Derived PDF review rendition of the DevCon R2 native deck, pinned by the draft event record and distinct from a published conference edition.",
+      "purpose": "Preserved derived PDF of the DevCon R2 native deck and prior draft event selection; distinct from the current R3 selection and final conference acceptance.",
       "role": "generated",
       "owner": "drafts/devcon-romania-2026/README.md",
       "instructions": [
@@ -8332,6 +8357,50 @@
       "title": "DevCon Romania 2026 speaker notes R2"
     },
     {
+      "path": "drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf",
+      "kind": "file",
+      "purpose": "Derived PDF review rendition of the native R3 deck, selected by the draft event through exact path and hash; author timing/device acceptance remains pending.",
+      "role": "generated",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r3.pdf"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pptx",
+      "kind": "file",
+      "purpose": "Authored editable nine-slide DevCon R3 presentation: compressed SDLC/delegation argument, full reports slide, sociotechnical synthesis, four questions and homepage QR.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "devcon-romania-2026-r3.pptx"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r3/edition.json",
+      "kind": "file",
+      "purpose": "DevCon R3 artifact and cue-card identities, preserved R1/R2 predecessors, pinned PMDay source, retained/removed slide mapping and provisional timing limits.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "edition.json"
+    },
+    {
+      "path": "drafts/devcon-romania-2026/r3/speaker-notes.md",
+      "kind": "file",
+      "purpose": "Nine English cue cards of 3-5 sentences each, synchronized with R3 notes; 20+7+3 is a provisional presentation/Q&A/reserve budget, not a verbatim-script duration.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "DevCon Romania R3: concise English speaker notes"
+    },
+    {
       "path": "drafts/devcon-romania-2026/speaker-notes.md",
       "kind": "file",
       "purpose": "English speaking notes and per-slide timing for the 23-minute DevCon R1 talk with separate questions and reserve.",
@@ -8356,7 +8425,7 @@
     {
       "path": "drafts/events/devcon-romania-2026/event.json",
       "kind": "file",
-      "purpose": "Strict schema1 DevCon event source with organizer evidence and exact lowercase R2 PDF path, SHA256 and source credit for the pinned PR107 adapter.",
+      "purpose": "Strict schema1 DevCon event source with organizer evidence and exact lowercase current R3 PDF path, SHA256 and source credit for the pinned PR107 adapter.",
       "role": "draft",
       "owner": "drafts/events/devcon-romania-2026/event.json",
       "instructions": [
@@ -8770,6 +8839,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 109 — 19 October 2026 DevCon R2 correction review"
+    },
+    {
+      "path": "review/issue-109/2026-10-19-r3-review.md",
+      "kind": "file",
+      "purpose": "Issue109 R3 timing/compression review: nine total slides, concise cue cards, retained reports, removed lessons, exact artifacts/history/event binding and pending author rehearsal.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 109 — 19 October 2026 DevCon R3 compression review"
     },
     {
       "path": "review/issue-109/2026-10-19-review.md",
@@ -22364,6 +22444,16 @@
       ]
     },
     {
+      "path": "drafts/devcon-romania-2026/r3",
+      "kind": "directory",
+      "purpose": "DevCon R3 nine-slide review edition with matching PDF, attached 3-5-sentence English cue cards and exact version/provenance metadata.",
+      "role": "draft",
+      "owner": "drafts/devcon-romania-2026/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "drafts/events",
       "kind": "directory",
       "purpose": "Unpublished event sources and campaign plans prepared for the separately owned event distribution adapter.",
@@ -22376,7 +22466,7 @@
     {
       "path": "drafts/events/devcon-romania-2026",
       "kind": "directory",
-      "purpose": "Issue109 DevCon event source, campaign plan, brief and organizer evidence bound to the exact R2 PDF.",
+      "purpose": "Issue109 DevCon event source, campaign plan, brief and organizer evidence selecting the exact current R3 PDF while prior deck editions remain preserved.",
       "role": "draft",
       "owner": "drafts/events/devcon-romania-2026/event.json",
       "instructions": [

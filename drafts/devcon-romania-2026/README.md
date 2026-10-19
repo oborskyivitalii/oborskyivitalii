@@ -3,11 +3,47 @@
 **AI Changes the Delivery System and the Product Itself**  
 Vitalii Oborskyi · DevOps Stage · 4 November 2026
 
-**Current author-review draft: R2 — 11 screens, 23 minutes speaking + 5 minutes Q&A + 2 minutes reserve.** Actual speaking time remains subject to rehearsal.
+**Current author-review draft: R3 — 9 slides in total, including the closing QR.** The pacing target is **20 minutes presenting + 7 minutes Q&A + 3 minutes reserve**. This is an editorial budget requiring a timed rehearsal, not a measured duration.
 
 One thread of intent and execution: [issue 109](https://github.com/oborskyivitalii/oborskyivitalii/issues/109) and [draft PR110](https://github.com/oborskyivitalii/oborskyivitalii/pull/110).
 
-## Review R2
+## Review R3
+
+- [Editable PowerPoint with attached English cue cards](r3/devcon-romania-2026-r3.pptx)
+- [Matching PDF for visual review](r3/devcon-romania-2026-r3.pdf)
+- [Three to five English sentences per slide and pacing boundaries](r3/speaker-notes.md)
+- [Original visual plan with dated R2 and R3 amendments](plan.md)
+- [Edition identity, retained-slide mapping and artifact hashes](r3/edition.json)
+- [R3 compression and timing review](../../review/issue-109/2026-10-19-r3-review.md)
+- [Event record selecting the current draft PDF](../events/devcon-romania-2026/event.json)
+
+## Why R3 is a shorter talk
+
+The author's timing challenge is valid: reducing slide count without removing explanatory work does not make a 45-minute talk fit a 23-minute allocation. R1 had 13 screens; R2 corrected the argument in 11 screens but retained separate evaluation and technical control lessons. Neither allocation was established by rehearsal.
+
+R3 removes those two lessons from the presenting sequence. The HOW/WHAT table now synthesizes the sociotechnical consequence of delegation, including evidence, authority and capability. The retained runtime scenario is the single concrete product example. The reports slide stays complete, while its oral explanation focuses on the contrast between measured outcomes rather than reading every cell.
+
+The conclusion shows the four existing questions at larger type. R2's laboratory workflow and feedback diagram is removed from that screen so the closing argument does not introduce another process lesson.
+
+The short English notes are **cue cards**, with three to five sentences per slide. They capture the point, example and transition. Reading those paragraphs verbatim would be much shorter than 20 minutes; the budget includes deliberate explanation of the retained visuals, examples, transitions and pauses. Rehearsal must test that budget and decide what needs further cutting.
+
+| R3 | R2 source | Visible title | Target interval |
+| ---: | ---: | --- | --- |
+| 1 | 1 | AI Changes the Delivery System and the Product Itself | 00:00–01:00 |
+| 2 | 2 | We Accelerated a Step. Not the System. | 01:00–03:30 |
+| 3 | 3 | The Evidence Is Already Messy | 03:30–07:30 |
+| 4 | 4 | The New Scarcity Is Human Comprehension | 07:30–09:30 |
+| 5 | 5 | We Are Searching for a New SDLC Equilibrium | 09:30–11:30 |
+| 6 | 6 | When Software Starts Thinking | 11:30–14:30 |
+| 7 | 9, recast | Delegation Changes the Sociotechnical System | 14:30–17:30 |
+| 8 | 10 | Engineering Rigor Moves — It Doesn’t Disappear | 17:30–19:30 |
+| 9 | 11 | Continue the Conversation | 19:30–20:00 |
+| | | Questions; final QR remains visible | 20:00–27:00 |
+| | | Reserve | 27:00–30:00 |
+
+The four-minute report allocation and twenty-minute total are limits to test, not evidence of the author's delivery speed. Author rehearsal and presenting-device acceptance remain open under AC06.
+
+## Preserved R2
 
 - [Editable PowerPoint with English speaker notes](r2/devcon-romania-2026-r2.pptx)
 - [Matching PDF for visual review](r2/devcon-romania-2026-r2.pdf)
@@ -15,7 +51,7 @@ One thread of intent and execution: [issue 109](https://github.com/oborskyivital
 - [Agreed visual plan, with dated R2 amendments](plan.md)
 - [Edition identity, source mapping and artifact hashes](r2/edition.json)
 - [R2 plan-to-render review and verification](../../review/issue-109/2026-10-19-r2-review.md)
-- [Event record selecting this PDF](../events/devcon-romania-2026/event.json)
+- The event selected this PDF during R2 preparation; the current selection is recorded separately above.
 
 ## Audience and argument
 
@@ -31,16 +67,19 @@ The full original reports slide remains intact. The talk offers questions for as
 
 | Edition | Status and purpose | Files |
 |---|---|---|
-| R2 | Current corrected 11-screen draft for author review and DevCon preparation | [PPTX](r2/devcon-romania-2026-r2.pptx), [PDF](r2/devcon-romania-2026-r2.pdf), [notes](r2/speaker-notes.md), [edition](r2/edition.json) |
+| R3 | Current 9-slide draft with short cue cards and reduced explanatory scope | [PPTX](r3/devcon-romania-2026-r3.pptx), [PDF](r3/devcon-romania-2026-r3.pdf), [notes](r3/speaker-notes.md), [edition](r3/edition.json) |
+| R2 | Preserved 11-screen correction of R1's visual drift; 23+5+2 was an unverified pacing plan | [PPTX](r2/devcon-romania-2026-r2.pptx), [PDF](r2/devcon-romania-2026-r2.pdf), [notes](r2/speaker-notes.md), [edition](r2/edition.json) |
 | R1 | Preserved 13-screen first draft; comparison/history after the author identified visual drift | [PPTX](DevCon-Romania-2026-R1.pptx), [PDF](DevCon-Romania-2026-R1.pdf), [notes](speaker-notes.md), [edition](edition.json) |
 
 R1's four edition files are unchanged from commit `f1531f321a9ea0b983ccee427cf485a161ab3b21`. Its original README and review remain available in that commit; the [R1 review](../../review/issue-109/2026-10-19-review.md) is retained as historical evidence. The earlier review did not adequately compare the visible slides with the agreed outline. Its positive notes/deck assessment must not be read as acceptance of plan alignment.
+
+R2's four edition files remain those from `a2aac3e395c190dc31a3974d83d5da065d12c304`. Its artifact and visual-review evidence apply to that edition; they do not accept R3 or prove a speaking duration.
 
 An edition is a coherent review milestone: PPTX, PDF, notes and a source/artifact manifest. Preserve an edition once it has been shown to the author. Use Git history for routine edits within the next draft. Temporary renders and authoring scratch files do not need to enter the repository.
 
 The plan remains a review input. An edition must either implement it visibly or record a dated editorial amendment. Moving the intended argument only into speaker notes is insufficient.
 
-## R2 corrections after the author's review
+## Historical R2 corrections after the author's review
 
 | Area | R1 discrepancy | Visible R2 correction |
 |---|---|---|
@@ -55,7 +94,7 @@ The plan remains a review input. An edition must either implement it visibly or 
 
 The final resource screen has one large QR to **https://vitaliioborskyi.ai/** and a readable address. It remains on screen during Q&A. “Research · Articles · Talks” describes the resource; it does not claim the DevCon deck is already published on the site.
 
-## Sequence and timing
+## Historical R2 sequence and timing
 
 | R2 | Primary PMDay slide; other contribution | Visible title | Target time |
 |---:|---|---|---|
@@ -76,19 +115,19 @@ The main narration contains approximately 2,402 spoken words. The report slide r
 
 ## Binding the edition to the event
 
-The [DevCon event record](../events/devcon-romania-2026/event.json) owns event facts and chooses one exact PDF through `deck.path`, `deck.sha256` and `deck.credit`. R2 is selected for preparation. The file remains at its edition path; it is not copied into the event directory.
+The [DevCon event record](../events/devcon-romania-2026/event.json) owns event facts and chooses one exact PDF through `deck.path`, `deck.sha256` and `deck.credit`. R3 is selected for preparation. The file remains at its edition path; it is not copied into the event directory.
 
 The [English event brief](../events/devcon-romania-2026/brief.en.md) records context and presentation ownership. [Organizer evidence](../events/devcon-romania-2026/sources/organizer.md) distinguishes official public facts from author-confirmed session details. The [event plan](../events/devcon-romania-2026/plan.json) pins the event record and brief, with `pieces: []`; no distribution content, schedule or messages are created.
 
-These data follow the event contract in issue 106 / PR107, validated using its pinned producer commit `5ce3a256be5ce882bc871f9bdf976b06727d3e69`. That shared implementation is still separate work. No copy of its adapter or validator is introduced here. Event/campaign revision numbers describe event planning; R1/R2 describe presentation milestones.
+These data follow the event contract in issue 106 / PR107, checked using its pinned producer commit `5ce3a256be5ce882bc871f9bdf976b06727d3e69`. That shared implementation is still separate work. No copy of its adapter or validator is introduced here. Event/campaign revision numbers describe event planning; R1/R2/R3 describe presentation milestones.
 
 When a later deck edition is chosen, update the event's exact PDF path/hash and refresh the event-plan source pin together. Keep earlier editions available for comparison. Selecting a draft for event preparation does not publish it on the website, approve a release, merge a PR or authorize sending messages. The article-specific public-material selection workflow is not an event publication registry.
 
 ## Editing, reuse and provenance
 
-The PPTX is the editable native presentation. `r2/speaker-notes.md` owns the English narration; changes must be synchronized with the corresponding PPTX notes. The PDF is exported from the same finalized PPTX. `r2/edition.json` pins the plan, source, mapping, predecessor and all three artifact identities.
+The PPTX is the editable native presentation. `r3/speaker-notes.md` owns the short English cue cards, synchronized with the attached PPTX notes. The PDF is exported from the same finalized PPTX. `r3/edition.json` records the plan, source, mapping, predecessors and artifact identities. R3 drops the evaluation chart and detailed control slide from the presenting sequence; the original R2 components and narration remain available in R2.
 
-R2 reuses native components from the existing PMDay deck: paired artwork, delivery flow, complete evidence composition, comprehension curve, behavioral-space diagram, chart/workbook, HOW/WHAT table, control nodes, laboratory nodes and resource-slide style. The source theme, master/layout parts, original media, chart and embedded workbook remain byte-identical. Layouts are deliberately adapted where needed to implement the agreed argument. The new QR is a functional encoded asset.
+R3 retains R2's paired artwork, delivery flow, complete evidence composition, comprehension curve, behavioral-space diagram, HOW/WHAT table, four-question conclusion and resource-slide style. The R2 review records its wider native-component preservation, including the chart/workbook and laboratory diagram now omitted from the R3 sequence. Layouts are deliberately adapted where needed to implement the agreed argument. The homepage QR is a functional encoded asset.
 
 The source is [PMDay v35 in UA PR113](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/pull/113), pinned to commit `22639d311d5fb46a23f3d5cdd819800dbe1169d9`:
 
@@ -102,4 +141,4 @@ The author-owned adaptation follows [content terms](../../LICENSE-CONTENT.md) an
 
 ## Remaining author decisions
 
-Review R2's content and emphasis, then rehearse the English script and confirm the deck on the actual presenting device/projection setup. Record changes and actual timing in issue 109 / PR110. R2 remains an author-review draft until those decisions are recorded.
+Review R3's content, emphasis and short cue cards, then rehearse the exact English edition with the visible diagrams and record elapsed times. Confirm the deck on the presenting device/projection setup. These pending observations determine the final conference edition through issue 109 / PR110.

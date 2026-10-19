@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "devcon-romania-2026",
-  "revision": 1,
+  "revision": 2,
   "name": "DevCon Romania",
   "date": "2026-11-04",
   "timezone": "Europe/Bucharest",
@@ -27,9 +27,9 @@
     }
   ],
   "deck": {
-    "path": "drafts/devcon-romania-2026/r2/devcon-romania-2026-r2.pdf",
-    "sha256": "3db8521f94cb58cd54f877b9c7b17c9587430e978f0606de8723807627f9ce08",
-    "credit": "Vitalii Oborskyi. DevCon Romania 2026 R2, adapted from PMDay v35. Author-owned text CC BY 4.0; artwork and third-party material retain their recorded terms."
+    "path": "drafts/devcon-romania-2026/r3/devcon-romania-2026-r3.pdf",
+    "sha256": "1464372a8af005c95f183d4673c1cdd91dfe57c7ebea3a2f26d32ccb59eaef20",
+    "credit": "Vitalii Oborskyi. DevCon Romania 2026 R3, adapted from PMDay v35. Author-owned text CC BY 4.0; artwork and third-party material retain their recorded terms."
   },
   "evidence": {
     "path": "sources/organizer.md",

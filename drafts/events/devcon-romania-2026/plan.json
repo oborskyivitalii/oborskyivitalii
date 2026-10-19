@@ -1,13 +1,13 @@
 {
   "schema": 2,
   "eventId": "devcon-romania-2026",
-  "revision": 1,
-  "updatedAt": "2026-10-19T13:39:25Z",
-  "sourceSha256": "78c1381e7d39be016d62aa741c042e52c825e3fa667d9857f887b99874ba16fa",
+  "revision": 2,
+  "updatedAt": "2026-10-19T16:22:48Z",
+  "sourceSha256": "33da892a727ff385396350cec90f36084322ae8223cd9b0922b39c5d52099c20",
   "timezone": "Europe/Bucharest",
   "brief": {
     "path": "brief.en.md",
-    "sha256": "c7dfdef098de33167182005bb3681ccc075412bb7e70d6a6bb4322e22b343c4c"
+    "sha256": "ec9859a77a6e11a05dd60e03e48a873b95af6b595515b94006d3e7ff4cce3024"
   },
   "pieces": []
 }

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/109",
     "date": "2026-10-19",
-    "summary": "Issue109 R2 preserves AC01-AC06, applies the dated 11-screen native-component and agreed-plan/render correction, and adds AC07 QR and AC08 version/event binding gates. Four unchanged repository checks remain AC05 only. The versioned R2 review joins the existing intent layer. Workflow commands, test selection, runtime owners and budgets are unchanged; the draft event records consume the separately pinned unmerged PR107 adapter without copying its engine. Artifact, independent plan/render, author and device evidence remain separate."
+    "summary": "Issue109 R3 preserves stable AC01-AC08 and R1/R2 history, implements the dated nine-total-slide compression and 3-5-sentence cue-card requirement, and explicitly leaves 20+7+3 pacing unverified until rehearsal. The R3 review joins the existing intent layer. Four unchanged checks remain AC05 only; workflow commands, test selection, runtime owners and budgets are unchanged. The current PDF event selection consumes the pinned PR107 adapter without copying its engine. Artifact, independent final-render, author and device evidence remain separate."
   },
   "layers": [
     {
@@ -129,7 +129,8 @@
         "review/issue-102/2026-10-18-analytics-and-search-access.md",
         "review/issue-102/2026-10-18-provider-evidence.json",
         ".github/acceptance/issue-109.json",
-        "review/issue-109/2026-10-19-r2-review.md"
+        "review/issue-109/2026-10-19-r2-review.md",
+        "review/issue-109/2026-10-19-r3-review.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -641,7 +642,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "276067df1347697ef07e941d1c35160ec56146834d206d919865383f8c6e56bf",
+    "digest": "04ac199a66d5d639079723430874d1e44f32d97dd0c36df789d85bc75ea490ec",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -665,7 +666,7 @@
       },
       {
         "path": ".github/acceptance/issue-109.json",
-        "sha256": "6831d8f122eaa5bb366b3a7c68f5125152a1e60dca21b70ba02412b9eeb4e4a1"
+        "sha256": "e3b97b08625c5af394e0b3083535589a329fbbb7f30f85c32cffa9ae4550d76b"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -753,7 +754,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6550e46fd181eecc6d905ca04a685328d94934d265933ae0035547d0e4f65e87"
+        "sha256": "0e666ab9a68d8b77ed7dae20bc6bd44b4be6c1eba0e5e5483fa1fc70b9b816fd"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
