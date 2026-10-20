@@ -1,3 +1,41 @@
+# R18 — corrected event name, PDF and native article preview
+
+20 October 2026, author-requested rendition update in Draft PR79; editorial owner #2,
+publisher owner #5. R18 is the prose base; no substantive rewrite in this pass.
+The event is **UA Online PMDay 2026 Autumn**, following the organiser's public
+speaker announcement linked in source note1. The manuscript introduction, recording
+reference and current figure labels now use that name. Original slide/deck pixels
+and previous editions are preserved.
+
+[Compact R18 review PDF](The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf) —
+18 pages, 8 image placements, 23 bookmarks and all40 external URL targets.
+All220 AST text segments are present; checked text spans remain within page bounds.
+All18 page renders were visually self-reviewed, including the portrait Cover02,
+two landscape figures, bibliography and BibTeX ending. This is a **WeasyPrint68.0
+review export**, not the managed publisher's Chromium proof. The [source archive](r18-review-source.zip)
+and [exact review record](r18-pdf-review.json) preserve rendition inputs and hashes.
+
+The selected semantic edition is `pmday-ai-both-sides-en-review-20261020-r18-cover02`;
+review rights and null committed-source pins remain explicit. Metadata includes the
+two R18 comprehension studies and organiser source. Figure captions retain full event
+names; concise credits avoid duplicate event attribution and keep the existing50000
+character review bound. No resource or test budget is raised.
+
+Local publisher validation and native preview artifact construction pass with the
+R18 source. Draft hosted packaging/HTTP results belong to the fresh PR79 workflow,
+not the old R13 run. Normal managed Chromium download returned empty archives in
+this environment; the separately generated Chromium kit uses the existing explicit
+review producer. A local native-browser observation was interrupted by the sandbox
+browser process, so hosted browser coverage is not inferred from it.
+
+Scope/AC: #2AC01–AC03 and #5 publication/preview checks are addressed only for the
+current review candidate. Source/render checks do not close author, rights,
+independent whole-PR, physical-device, upstream, merge or publication gates.
+CS01/02/04/05/08/10: canonical manuscript/metadata; shared publisher and reader reused;
+no engine, template, workflow, default catalog or production setting changes.
+
+## Earlier editions and evidence — preserved history
+
 # PMDay R13 — chapter-6 transition and retained Cover02 assets
 
 ## R13 bounded correction — 19 October 2026

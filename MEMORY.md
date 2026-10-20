@@ -1,8 +1,13 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-19**.
+Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Snapshot
+
+- 20 October #2/PR79: author requests R18 PDF/native preview and official event name
+  **UA Online PMDay 2026 Autumn**. Current semantic edition selects R18/Cover02;
+  compact PDF/source archive and exact review live in
+  review/issue-2/pmday-candidate-20261015/README.md. Fresh hosted proof belongs to PR79.
 
 - 19 October latest #5/PR79 request: shared article leaf-block route wave;
   article→principal exits upward independently of camera/history direction.

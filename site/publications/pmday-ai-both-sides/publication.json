@@ -17,10 +17,10 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261019-r13-cover02",
+  "edition": "pmday-ai-both-sides-en-review-20261020-r18-cover02",
   "rights": {
     "status": "review-pending",
-    "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and seven original full-page PMDay v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
+    "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and seven original full-page UA Online PMDay 2026 Autumn v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
@@ -170,6 +170,22 @@
     {
       "id": "source-36",
       "url": "https://existentialtech.antikythera.org/"
+    },
+    {
+      "id": "source-37",
+      "url": "https://arxiv.org/html/2007.12520v1"
+    },
+    {
+      "id": "source-38",
+      "url": "https://link.springer.com/article/10.1007/s10664-023-10396-7"
+    },
+    {
+      "id": "source-40",
+      "url": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od"
+    },
+    {
+      "id": "source-41",
+      "url": "https://doi.org/10.1145/3382494.3410636"
     }
   ],
   "assets": [
@@ -200,8 +216,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Synthetic capacities: generation rises from eight to one hundred changes per week while review and integration remain at eight; the queue grows by ninety-two if every change is admitted.",
-      "caption": "Synthetic fixed-capacity illustration. Uncontrolled intake accumulates work; controlled intake bounds the queue without proportionally increasing delivery. Both regimes are explained in the text. PMDay 2026 · slide 3 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 3 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Synthetic fixed-capacity illustration. Uncontrolled intake accumulates work; controlled intake bounds the queue without proportionally increasing delivery. Both regimes are explained in the text. UA Online PMDay 2026 Autumn · slide 3 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 3 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-05",
@@ -210,8 +226,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Illustrative generation and comprehension curves diverge, showing a possible overload scenario rather than a measured human limit.",
-      "caption": "An illustrative overload hypothesis, not a measured limit on cognition. Tools and learning can change the team’s comprehension capacity. PMDay 2026 · slide 5 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 5 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "An illustrative overload hypothesis, not a measured limit on cognition. Tools and learning can change the team’s comprehension capacity. UA Online PMDay 2026 Autumn · slide 5 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 5 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-07",
@@ -220,8 +236,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Measurement and candidate countermeasures for finding a sustainable AI-assisted SDLC equilibrium.",
-      "caption": "Measures and candidate responses, not universally validated remedies. Faster generation alone does not establish a sustainable new equilibrium. PMDay 2026 · slide 7 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 7 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Measures and candidate responses, not universally validated remedies. Faster generation alone does not establish a sustainable new equilibrium. UA Online PMDay 2026 Autumn · slide 7 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 7 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-09",
@@ -230,8 +246,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Acceptable answers, clarification and escalation occupy a bounded response space; unauthorised disclosure is outside it.",
-      "caption": "The drawing is schematic, not a probability map. Answering, clarifying or escalating can all be correct; unauthorised disclosure remains outside the boundary. PMDay 2026 · slide 9 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 9 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "The drawing is schematic, not a probability map. Answering, clarifying or escalating can all be correct; unauthorised disclosure remains outside the boundary. UA Online PMDay 2026 Autumn · slide 9 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 9 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-10",
@@ -240,8 +256,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Synthetic evaluation: 196 acceptable responses, three incorrect recovery instructions and one unauthorised disclosure.",
-      "caption": "Synthetic 196 / 3 / 1 outcomes. The slide’s four-failure interval concerns all failures; the article separately calculates uncertainty for the one critical disclosure. PMDay 2026 · slide 10 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 10 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Synthetic 196 / 3 / 1 outcomes. The slide’s four-failure interval concerns all failures; the article separately calculates uncertainty for the one critical disclosure. UA Online PMDay 2026 Autumn · slide 10 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 10 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-12",
@@ -250,8 +266,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.",
-      "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Real human capacity and response time must be supplied and tested. PMDay 2026 · slide 12 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 12 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Real human capacity and response time must be supplied and tested. UA Online PMDay 2026 Autumn · slide 12 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 12 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-14",
@@ -260,8 +276,8 @@
       "width": 1921,
       "height": 1080,
       "alt": "Delivery commitments continue alongside an experiment-and-reassessment loop informed by production outcomes and incidents.",
-      "caption": "Production observations and incidents update assumptions and controls. Learning does not suspend delivery or service obligations.  PMDay 2026 · slide 14 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page screenshot of PMDay 2026 v35 review slide 14 by Vitalii Oborskyi. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Production observations and incidents update assumptions and controls. Learning does not suspend delivery or service obligations.  UA Online PMDay 2026 Autumn · slide 14 · Vitalii Oborskyi. [1]",
+      "credit": "Full-page slide 14 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     }
   ],
   "platforms": {

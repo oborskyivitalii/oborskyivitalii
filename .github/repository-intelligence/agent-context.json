@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d0972a752c8843b8749e2cdf78fe97eeac5d424e6eb696042cfca3f6655f8427",
+    "digest": "e0fdb97e4f81697c9c96bc9979e60d371619137c976ecb542bd145c27a68e226",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7bcf6cf945386cc03134c340e20fd141cc2dcd6bf7250b6cfec45f50ef509355"
+        "sha256": "369c38ff2b255dd64a610c6fd37857425181556b253472a541c1663a7ea5423b"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "20b2357c718da8ffbaee70ead50dd36881348fcbe699e965438fa2c916510ffc"
+        "sha256": "82d8e83577ab3a475f2354d0efe0a3fe80f091a36bb6f30ac5582c3b4d9e4380"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c1667c31d758820d5532330153d33c655f20f51b2e1a1d2511b7573ec148f2f0"
+        "sha256": "d1140ffddddaa05262cb29a7ed63dacc5803d764292daee7195e7873d86f7938"
       },
       {
         "path": "NOTICE.md",
@@ -770,7 +770,7 @@
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
         "identity_mode": "content",
-        "sha256": "8af768df942786018501f5a101b7165fe7f20b1d58ea8ca2b22bb51ea24803fb"
+        "sha256": "209212fa9d3ef81384fe53a1c7fe32cf11e193558f5b3610dcd7636d1773abe2"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
@@ -781,6 +781,11 @@
         "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf",
         "identity_mode": "content",
         "sha256": "845641da117f45a9c448cc9a56a64805000790407e063d28fa6853947224e8ad"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf",
+        "identity_mode": "content",
+        "sha256": "9ff7d10f4b48584c9c676a295f1e1feee9365ee8e8516c6ead9b0d35c58ceac4"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -806,6 +811,16 @@
         "path": "review/issue-2/pmday-candidate-20261015/r13-pdf-edit.py",
         "identity_mode": "content",
         "sha256": "8ff5ab2de3180afbd8e9e10fdf27f9db6257631bf164b035621b3385a44f2977"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/r18-pdf-review.json",
+        "identity_mode": "content",
+        "sha256": "5eb42a795484492e4998a173fefabb69679fa721231a2f38d06e298fdf4d03e6"
+      },
+      {
+        "path": "review/issue-2/pmday-candidate-20261015/r18-review-source.zip",
+        "identity_mode": "content",
+        "sha256": "9def116d2b126591018e1cc4a4db1994b2b8ef44cced3864c91d83f2c67e71c6"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
@@ -5993,6 +6008,11 @@
         "sha256": "9804793dc66182684c35b30b2309dbc4dc03543ec019974d2c36b88dcf03f252"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261020-r18-cover02.json",
+        "identity_mode": "content",
+        "sha256": "a4651172f784f65f77283502fdcc4661d6ac9f4f7c53fa1088b27586781221cb"
+      },
+      {
         "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
         "identity_mode": "content",
         "sha256": "5262c2436db2542db68b96cc1f5cf485431b510dede2bf8301c94cddbf344b05"
@@ -6000,17 +6020,17 @@
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "c9760da3dcc5003011777b7250d064a4232a0abea27505d3cedc057abf569d3f"
+        "sha256": "34c0795691712308ccdc925046ed7a811ee15291b2d9518b52dd01797f6a23a3"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "b3542d163990f4f10ea46d0d3c350f125b02027a26fdc50d67aa0c6f30cbbd6a"
+        "sha256": "ec04861752467b6b90288e69aafe558606a403a749ab052704136dc717dcd01b"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "69aa52f5d6ffb39b8ebd478b61dee4349c6a4cc49a49a472fa6d7058a6c93379"
+        "sha256": "514ddeca34eb43e148fdd41fb9333e6e19c4a4b67316245463c6b85e6e7b4a6d"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -9950,7 +9970,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "PMDay R13 — chapter-6 transition and retained Cover02 assets"
+      "title": "R18 — corrected event name, PDF and native article preview"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R12_Cover02_Compact.pdf",
@@ -9973,6 +9993,17 @@
         "AGENTS.md"
       ],
       "title": "The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf",
+      "kind": "file",
+      "purpose": "R18 compact review PDF, 18 pages, derived from the current canonical manuscript and original media.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/article-journey-observations.json",
@@ -10028,6 +10059,28 @@
         "AGENTS.md"
       ],
       "title": "r13-pdf-edit.py"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/r18-pdf-review.json",
+      "kind": "file",
+      "purpose": "Exact R18 review-PDF hashes, prose/link/image checks, producer and acceptance limits.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r18-pdf-review.json"
+    },
+    {
+      "path": "review/issue-2/pmday-candidate-20261015/r18-review-source.zip",
+      "kind": "file",
+      "purpose": "Source-bound R18 review-PDF HTML, CSS, fonts, manuscript and original media snapshot.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "r18-review-source.zip"
     },
     {
       "path": "review/issue-2/pmday-candidate-20261015/reader-links-observations.json",
@@ -21435,6 +21488,17 @@
         "AGENTS.md"
       ],
       "title": "pmday-ai-both-sides-en-review-20261019-r13-cover02.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261020-r18-cover02.json",
+      "kind": "file",
+      "purpose": "R18 author-review semantic edition after the official event-name correction; earlier editions preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261020-r18-cover02.json"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",

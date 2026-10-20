@@ -12,7 +12,7 @@ The dashboard calls this progress. The person handling the next incident has a d
 
 What if faster generation does not improve delivery—or leaves us unable to recover what we built? What if the person entrusted with the final decision cannot meaningfully make it?
 
-My PMDay talk connects two shifts: AI changes **how we build software**, and model judgment changes **what software does at runtime**. We can delegate more work. We still have to own the consequences.
+My talk at UA Online PMDay 2026 Autumn connects two shifts: AI changes **how we build software**, and model judgment changes **what software does at runtime**. We can delegate more work. We still have to own the consequences.
 
 [Slides (PDF)](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) [1] · [Recording (Ukrainian)](https://youtu.be/xSgWjuGqC9I) [2]
 
@@ -334,11 +334,11 @@ Writing let ideas outlive their authors. AI expands the work we can delegate. Th
 
 Numbers beside named links connect claims to these sources. Source notes distinguish empirical findings, vendor-reported results, hypothetical examples and the author’s architectural argument.
 
-1. Vitalii Oborskyi. *AI Changes the Delivery System and the Product Itself*. PMDay 2026 presentation. See the Slides (PDF) link at the beginning of this article.
+1. Vitalii Oborskyi. *AI Changes the Delivery System and the Product Itself*. UA Online PMDay 2026 Autumn presentation. See the Slides (PDF) link at the beginning of this article.
 
-    Figures reproduce full slides 3, 5, 7, 9, 10, 12 and 14 from the v35 presentation copy. Original slide credits and notices remain applicable. Scenarios and proposed countermeasures are not empirical results.
+    Figures reproduce full slides 3, 5, 7, 9, 10, 12 and 14 from the v35 presentation copy. The event name follows the [organiser’s announcement](https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od). Original slide credits and notices remain applicable. Scenarios and proposed countermeasures are not empirical results.
 
-2. [Vitalii Oborskyi. PMDay 2026 talk recording (Ukrainian).](https://youtu.be/xSgWjuGqC9I)
+2. [Vitalii Oborskyi. UA Online PMDay 2026 Autumn talk recording (Ukrainian).](https://youtu.be/xSgWjuGqC9I)
 
 3. [Jared Rubin. “Printing and Protestants: An Empirical Test of the Role of Printing in the Reformation.” Review of Economics and Statistics 96(2), 270–286 (2014).](https://digitalcommons.chapman.edu/economics_articles/99/)
 

@@ -10584,6 +10584,30 @@
       "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf": {
+      "kind": "file",
+      "purpose": "R18 compact review PDF, 18 pages, derived from the current canonical manuscript and original media.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r18-pdf-review.json": {
+      "kind": "file",
+      "purpose": "Exact R18 review-PDF hashes, prose/link/image checks, producer and acceptance limits.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r18-review-source.zip": {
+      "kind": "file",
+      "purpose": "Source-bound R18 review-PDF HTML, CSS, fonts, manuscript and original media snapshot.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261020-r18-cover02.json": {
+      "kind": "file",
+      "purpose": "R18 author-review semantic edition after the official event-name correction; earlier editions preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     }
   }
 }

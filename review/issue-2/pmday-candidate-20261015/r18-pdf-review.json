@@ -1,0 +1,53 @@
+{
+  "pages": 18,
+  "imagePlacements": 8,
+  "bookmarks": 23,
+  "urlTargets": 40,
+  "missingUrls": [],
+  "missingParagraphs": [],
+  "sha256": "9ff7d10f4b48584c9c676a295f1e1feee9365ee8e8516c6ead9b0d35c58ceac4",
+  "sourceSha256": "34c0795691712308ccdc925046ed7a811ee15291b2d9518b52dd01797f6a23a3",
+  "lastPageTextCharacters": 5305,
+  "checkedTextSegments": 220,
+  "outOfPageText": [],
+  "schema": 1,
+  "kind": "r18-review-pdf",
+  "basedOnCommit": "653cac2fc4f9ac8d346e119c68bf6e4efc786a91",
+  "sourcePath": "site/publications/pmday-ai-both-sides/manuscript.en.md",
+  "contentEdition": "pmday-ai-both-sides-en-review-20261020-r18-cover02",
+  "semanticSha256": "b4d88bd694bdf5742530254cc7c43b46e31121fd021a2061729c16d2de9b88d5",
+  "eventName": "UA Online PMDay 2026 Autumn",
+  "eventSource": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od",
+  "producer": {
+    "name": "WeasyPrint",
+    "version": "68.0",
+    "reviewOnly": true,
+    "managedPublisherExport": false
+  },
+  "visualReview": "All 18 rendered pages self-reviewed; compact portrait cover and two landscape slides. No clipping observed.",
+  "unchangedOriginalSlideHashes": {
+    "pmday-slide-03": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
+    "pmday-slide-05": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
+    "pmday-slide-07": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
+    "pmday-slide-09": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
+    "pmday-slide-10": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
+    "pmday-slide-12": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
+    "pmday-slide-14": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd"
+  },
+  "artifacts": {
+    "The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf": {
+      "sha256": "9ff7d10f4b48584c9c676a295f1e1feee9365ee8e8516c6ead9b0d35c58ceac4",
+      "bytes": 1873643
+    },
+    "r18-review-source.zip": {
+      "sha256": "9def116d2b126591018e1cc4a4db1994b2b8ef44cced3864c91d83f2c67e71c6",
+      "bytes": 2977084
+    }
+  },
+  "remainingGates": [
+    "author/editorial acceptance",
+    "rights/publication clearance",
+    "physical iPad/Safari review",
+    "merge and production publication"
+  ]
+}
