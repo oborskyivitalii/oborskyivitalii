@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "4e29750ec314f2389bc99a71573d4b2fdb61bf6bd14be85a622cd832de9ccb01",
+    "digest": "aee762bb44a3c13fd5b5ec1cb5489b9a71b45fe3ec9b8ad294a906dc205e14ba",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "6c35baa8a5712cda52e1c747471b7303e3e1737f356a721d867c834a1dda0a76"
+        "sha256": "39bfef28b7025260acf802b5dc498af3d43a203ab71cc136f888035b4cced12c"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6865,7 +6865,7 @@
       {
         "path": "tests/site-engine.test.cjs",
         "identity_mode": "content",
-        "sha256": "b974091232183683e824e88c672086c826013874868fdcdc95457bcc90c8dee0"
+        "sha256": "fbaa56eac6fe36c793b7762219e757cb1bcbaf43af3a91a5b6264383401c26bd"
       },
       {
         "path": "tests/site-face-preparation.test.cjs",
@@ -6905,7 +6905,7 @@
       {
         "path": "tests/staging.test.cjs",
         "identity_mode": "content",
-        "sha256": "4d7f7c60aba84fe25e7a3db26081a30ee0be14d3a6a2e51fea91a2305d152e64"
+        "sha256": "ecf337f9e72cc47caf87e2e384f78184583706a76f9b18717dfa8ddb5582b3b4"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",

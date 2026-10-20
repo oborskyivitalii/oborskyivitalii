@@ -559,13 +559,20 @@ test('critical media has one canonical stylesheet slot and exact dependency-boun
     source = fs.readFileSync(path.join(dir, 'site/engine/critical-media.css'), 'utf8'),
     authoredStyles = fs.readFileSync(path.join(dir, 'site/engine/styles.css'), 'utf8'),
     readingStyles = fs.readFileSync(path.join(dir, 'site/engine/reading-surfaces.css'), 'utf8'),
+    readerStyles = fs.readFileSync(path.join(dir, 'site/engine/reader.css'), 'utf8'),
     entryStyles = fs.readFileSync(path.join(dir, 'site/engine/scroll-entry.css'), 'utf8'),
     stylesheet = fs.readFileSync(path.join(dir, 'docs/styles.css'), 'utf8');
   const marker = '/* {{CRITICAL_MEDIA}} */\n';
   assert.equal(authoredStyles.split(marker).length - 1, 1, 'one declared stylesheet position');
   assert.equal(
     stylesheet,
-    authoredStyles.replace(marker, source) + '\n' + readingStyles + '\n' + entryStyles,
+    authoredStyles.replace(marker, source) +
+      '\n' +
+      readingStyles +
+      '\n' +
+      readerStyles +
+      '\n' +
+      entryStyles,
     'current canonical sources retain their declared order and exact bytes'
   );
   assert.equal(stylesheet.split(source).length - 1, 1);
@@ -587,6 +594,7 @@ test('reading entry shares immutable hosted and Color runtime without adding rou
   const navigation = fs.readFileSync(path.join(dir, 'docs/navigation.js'), 'utf8');
   const context = {
     window: {},
+    history: { state: null },
     document: {
       readyState: 'interactive',
       addEventListener() {},

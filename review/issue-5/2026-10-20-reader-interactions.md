@@ -248,3 +248,13 @@ failed/unavailable/empty groups cannot borrow success from another group, and
 later independent evidence survives a first failure. Content-only reuse remains
 the existing single-process format. This is workload isolation, not new release
 acceptance. Current-source Ready/staging measurements remain required.
+
+CI39430462999 completed both native batches within their original limits:
+Space68/68 in122994.8ms; remaining943 in165290.4ms, with three failures and no
+skips/cancellations. The remaining fixtures omitted reader.css from exact style
+composition, lacked native history in the VM document, and fed current
+publication-index.json to the pre-index historical publisher. Include the real
+reader stylesheet/history and construct the historical fixture from its actual
+cc115c42 docs tree; retain byte-for-byte old/new package comparisons and current
+fixture coverage separately. Prepared engine/staging43/43 pass. No runtime,
+selector, budget or original historical package is changed by these fixes.

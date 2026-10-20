@@ -78,12 +78,36 @@ test('controlled HTTP model serves exact production robots and sitemap with thei
     fs.rmSync(dir, { recursive: true, force: true });
   }
 });
-function fixture() {
+function copyHistoricalPublic(ref, directory) {
+  const root = path.resolve(__dirname, '..');
+  const files = cp
+    .execFileSync('git', ['ls-tree', '-r', '--name-only', ref, 'docs'], {
+      cwd: root,
+      encoding: 'utf8',
+    })
+    .trim()
+    .split('\n');
+  assert.ok(files.length > 0 && files.every((file) => file.startsWith('docs/')));
+  for (const file of files) {
+    const target = path.join(directory, file.slice('docs/'.length));
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(
+      target,
+      cp.execFileSync('git', ['show', ref + ':' + file], {
+        cwd: root,
+        maxBuffer: 4 * 1024 * 1024,
+      })
+    );
+  }
+}
+function fixture(ref) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'site-staging-test-')),
     input = path.join(dir, 'input'),
     out = path.join(dir, 'package');
   fs.mkdirSync(input);
-  fs.cpSync(path.resolve(__dirname, '../docs'), path.join(input, 'public'), { recursive: true });
+  if (ref) copyHistoricalPublic(ref, path.join(input, 'public'));
+  else
+    fs.cpSync(path.resolve(__dirname, '../docs'), path.join(input, 'public'), { recursive: true });
   const source = {
     schema: 1,
     sourceDirty: false,
@@ -123,8 +147,8 @@ function fixture() {
 }
 // Synthetic legacy-declaration fixture exercises consumer compatibility only;
 // current scene/browser behavior remains owned by the actual joint artifact.
-function legacyFixture() {
-  const f = fixture(),
+function legacyFixture(ref) {
+  const f = fixture(ref),
     publicDir = path.join(f.input, 'public'),
     revisionFile = path.join(publicDir, 'site-revision.json');
   const revision = JSON.parse(fs.readFileSync(revisionFile));
@@ -158,8 +182,8 @@ function legacyFixture() {
   fs.writeFileSync(path.join(f.input, 'gate/release-manifest.json'), JSON.stringify(f.gate));
   return f;
 }
-function formulaFixture() {
-  const f = fixture(),
+function formulaFixture(ref) {
+  const f = fixture(ref),
     publicDir = path.join(f.input, 'public'),
     revisionFile = path.join(publicDir, 'site-revision.json');
   const revision = JSON.parse(fs.readFileSync(revisionFile));
@@ -285,7 +309,7 @@ test('default staging host generation and archived legacy verification preserve 
   const baseline = 'cc115c4241197d59205934bdc18f209109d5ee87',
     root = path.resolve(__dirname, '..');
   for (const create of [fixture, legacyFixture, formulaFixture]) {
-    const f = create();
+    const f = create(baseline);
     try {
       const previous = path.join(f.dir, 'previous'),
         oldOutput = path.join(f.dir, 'old-package'),
