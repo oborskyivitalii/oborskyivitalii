@@ -89,6 +89,7 @@ window.SiteScrollEntry=(function () {
   let routeGeneration = 0;
   let routePhase = null;
   let routePrepared = null;
+  let routePaper = null;
   let holdTask = null;
   let nextUnitId = 0;
   let readingDistance = 0;
@@ -499,6 +500,7 @@ window.SiteScrollEntry=(function () {
     holdTask = null;
     for (const element of routeUnits.keys()) clearRouteUnit(element);
     routeActive.clear();
+    clearRoutePaper();
     routePrepared = null;
     routeState(null);
   }
@@ -536,6 +538,7 @@ window.SiteScrollEntry=(function () {
   function measureRoute() {
     // One native read batch per phase, including footer leaves. Header and
     // appearance controls belong to the persistent shell, never this inventory.
+    clearRoutePaper();
     clearSeparators('route');
     refreshInventory();
     const measured = [...routeUnits].map(([element, record]) => {
@@ -566,11 +569,70 @@ window.SiteScrollEntry=(function () {
         Number.isFinite(unit.rect.bottom)
     );
     measured.separators = measureSeparators(visible, true);
+    measured.paper = measureRoutePaper();
     materializeSeparators(measured.separators, measured);
     const style = window.getComputedStyle(document.documentElement);
     measured.duration = Number.parseFloat(style.getPropertyValue('--block-motion-duration'));
     measured.phase = Number.parseFloat(style.getPropertyValue('--block-motion-phase'));
     return measured;
+  }
+  function clearRoutePaper() {
+    if (!routePaper) return;
+    routePaper.removeAttribute('data-route-paper');
+    for (const name of [
+      'left',
+      'top',
+      'width',
+      'height',
+      'top-radius',
+      'bottom-radius',
+      'distance',
+      'duration',
+      'delay',
+    ])
+      routePaper.style.removeProperty('--route-paper-' + name);
+    routePaper = null;
+  }
+  function measureRoutePaper() {
+    if (!root.matches('.article-reader')) return null;
+    const element = root.querySelector?.('.reader-mode');
+    if (!element?.getClientRects().length) return null;
+    const rect = element.getBoundingClientRect();
+    const top = Math.max(0, rect.top),
+      bottom = Math.min(window.innerHeight, rect.bottom);
+    if (
+      ![rect.left, rect.width, top, bottom].every(Number.isFinite) ||
+      rect.width <= 0 ||
+      bottom <= top
+    )
+      return null;
+    const style = window.getComputedStyle(element);
+    const radius = Number.parseFloat(style.getPropertyValue('border-top-left-radius')) || 0;
+    return {
+      element,
+      left: rect.left,
+      top,
+      width: rect.width,
+      height: bottom - top,
+      'top-radius': top === rect.top ? radius : 0,
+      'bottom-radius': bottom === rect.bottom ? radius : 0,
+    };
+  }
+  function prepareRoutePaper(model, timing, upward, state) {
+    if (!model) return;
+    routePaper = model.element;
+    for (const name of ['left', 'top', 'width', 'height', 'top-radius', 'bottom-radius'])
+      routePaper.style.setProperty('--route-paper-' + name, model[name] + 'px');
+    const distance = upward
+      ? -(model.top + model.height + 32)
+      : window.innerHeight - model.top + 32;
+    routePaper.style.setProperty('--route-paper-distance', distance + 'px');
+    // Paper arrives with the first row and leaves with the last, keeping opaque
+    // paint behind the readable blocks throughout the existing wave.
+    routePaper.style.setProperty('--route-paper-duration', timing.rowDurationMs + 'ms');
+    const delay = state === 'departing' ? timing.plannedDurationMs - timing.rowDurationMs : 0;
+    routePaper.style.setProperty('--route-paper-delay', delay + 'ms');
+    routePaper.setAttribute('data-route-paper', '');
   }
   function routeTiming(rows, measured, state, navigationId) {
     const specified = measured.duration;
@@ -619,7 +681,12 @@ window.SiteScrollEntry=(function () {
       row.bottom = Math.max(row.bottom, unit.native.bottom);
       row.units.push(unit);
     }
-    const timing = routeTiming(rows.length, measured, state, navigationId);
+    const timing = routeTiming(
+      Math.max(rows.length, measured.paper ? 1 : 0),
+      measured,
+      state,
+      navigationId
+    );
     const duration = timing.rowDurationMs;
     // Exceptional geometry falls back to fully native content. Admitted rows
     // keep their identity and share a fixed-duration directional wave.
@@ -630,6 +697,7 @@ window.SiteScrollEntry=(function () {
     for (const { element, record } of selected)
       if (!wholeBlocks && !record.ink) wrapInk(element, record);
     attachSeparators(measured.separators, 'route');
+    prepareRoutePaper(measured.paper, timing, upward, state);
     for (const [index, row] of rows.entries()) {
       // Wave rows only travel far enough to clear their own complete paint.
       // Native peers share this envelope so ink, paper and dividers stay aligned.
@@ -720,13 +788,19 @@ window.SiteScrollEntry=(function () {
         resolve,
         timer: null,
       };
+      if (routePaper)
+        routePhase.pending.set(
+          routePaper,
+          Number.parseFloat(routePaper.style.getPropertyValue('--route-paper-duration')) +
+            Number.parseFloat(routePaper.style.getPropertyValue('--route-paper-delay'))
+        );
       // Missing/cancelled events receive the same finite slack after the fixed
       // wave envelope; page density cannot extend the planned transition.
       routePhase.timer = window.setTimeout(
         guarded(() => completeRoute(own, 'watchdog')),
         timing.plannedDurationMs + 1000
       );
-      if (!routeActive.size) completeRoute(own, 'empty');
+      if (!routePhase.pending.size) completeRoute(own, 'empty');
     });
   }
   function depart(travelDirection = 1, navigationId = null) {
@@ -998,7 +1072,10 @@ window.SiteScrollEntry=(function () {
       ) {
         const expected =
           routePhase?.state === 'departing' ? 'route-block-depart' : 'route-block-arrive';
-        const element = event.target.closest('[data-route-block]');
+        const element =
+          event.target === routePaper && event.pseudoElement === '::before'
+            ? routePaper
+            : event.target.closest('[data-route-block]');
         if (event.animationName !== expected || !routePhase?.pending.has(element)) return;
         // A queued event from a cancelled animation on this retained node
         // cannot consume its new row before the new planned end has elapsed.

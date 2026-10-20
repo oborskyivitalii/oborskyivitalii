@@ -481,6 +481,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-reader-visible-blocks',
     'issue5-reader-interactions',
     'issue5-reader-motion',
+    'issue5-reader-paper',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
@@ -507,6 +508,23 @@ test('reader-block evidence is required for every current identity while histori
             navigationId: item.events[0].navigationId,
             rows: 1,
             plannedDurationMs: 1000,
+            rowDurationMs: 1000,
+            completedBy: 'animationend',
+            paper:
+              motion.readerPaperRequired(selectedEngine) && source.startsWith('article:')
+                ? {
+                    top: 0,
+                    width: 800,
+                    height: 900,
+                    viewport: 900,
+                    distance: (departure ? -1 : 1) * 932,
+                    duration: 1000,
+                    delay: 0,
+                    nativeBackground: 'rgba(0, 0, 0, 0)',
+                    background: 'rgb(248, 247, 243)',
+                    frames: [{ computedOffset: 0 }, { computedOffset: 1 }],
+                  }
+                : null,
             units: [
               {
                 tag: 'P',
@@ -551,6 +569,34 @@ test('reader-block evidence is required for every current identity while histori
           }),
         /block evidence/
       );
+    }
+    if (motion.readerPaperRequired(current)) {
+      for (const change of [
+        (block) => {
+          delete block.paper;
+        },
+        (block) => {
+          block.paper.frames = [];
+        },
+        (block) => {
+          block.paper.height = 30000;
+        },
+        (block) => {
+          block.paper.distance *= -1;
+        },
+        (block) => {
+          block.paper.nativeBackground = 'rgb(248, 247, 243)';
+        },
+        (block) => {
+          block.completedBy = 'watchdog';
+        },
+      ]) {
+        const invalid = make(current);
+        change(invalid.observations[0].flights[0].blocks[1]);
+        assert.throws(() =>
+          validateArticleJourney(invalid, descriptors, { engine: current, baseURL })
+        );
+      }
     }
     if (motion.readerWholeBlocksRequired(current)) {
       for (const [change, message] of [
@@ -667,7 +713,7 @@ test('block diagnostics omit empty shells, collect later child animations and re
   const units = [empty, hiddenFirst, childOnly];
   const scope = {
     window: {},
-    document: { querySelectorAll: () => units },
+    document: { querySelectorAll: () => units, querySelector: () => null },
     structuredClone,
   };
   vm.runInNewContext('(' + installArticleFlightDiagnostics.toString() + ')();', scope);
@@ -713,6 +759,31 @@ test('block diagnostics omit empty shells, collect later child animations and re
   assert.equal(whole.layer, 'self');
   assert.deepEqual(whole.frames, frames, 'the actual component box owns its CSS animation');
   assert.equal(whole.childAnimations, 0);
+  const paper = node();
+  paper.style.getPropertyValue = () => '700px';
+  paper.getAnimations = (options) => {
+    assert.equal(options.subtree, true, 'pseudo-element animations require the subtree inventory');
+    return [
+      { effect: { target: paper, pseudoElement: '::before', getKeyframes: () => frames } },
+      {
+        effect: {
+          target: component,
+          pseudoElement: '::before',
+          getKeyframes: () => [{ wrong: true }],
+        },
+      },
+    ];
+  };
+  scope.document.querySelector = () => paper;
+  scope.window.innerHeight = 900;
+  scope.getComputedStyle = (_element, pseudo) => ({
+    backgroundColor: pseudo ? 'rgb(248, 247, 243)' : 'rgba(0, 0, 0, 0)',
+  });
+  scope.window.SiteEngineProbe(phase);
+  const paint = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[3].paper));
+  assert.deepEqual(paint.frames, frames, 'paper evidence excludes descendant pseudo-elements');
+  scope.window.SiteEngineProbe({ ...phase, stage: 'holding', completedBy: 'animationend' });
+  assert.equal(scope.window.__articleBlockEvents[3].completedBy, 'animationend');
 });
 
 test('selected articles reject omitted, duplicate, failed or wrong-source browser observations', () => {

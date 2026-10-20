@@ -5,6 +5,7 @@
   padding-block: 2.5rem 4rem;
 }
 .reader-mode {
+  isolation: isolate;
   padding: clamp(24px, 4vw, 48px);
   font-size: 1.1875rem;
   line-height: 1.7;

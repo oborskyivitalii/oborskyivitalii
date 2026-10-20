@@ -160,3 +160,41 @@ Color/staging84/84. These are dirty prepared results; final exact-source policy,
 hosted real/synthetic browser observations and fresh visual checks belong to PR79
 and the issue after the implementation commit. No whole-PR independent, physical
 device, editorial/rights or public-release acceptance is inferred.
+
+## Shared paper motion correction
+
+The user inspected c39813b9/tree9e9ab8ca after CI39415469393 passed and identified
+the remaining common paper snapping into/out of view. That run proves component
+motion and common ambience, not complete reader-paint acceptance. This correction
+continues the same scope and Draft PR79; primary implementation/self-review only.
+
+The native multi-page paper is temporarily replaced by its viewport-visible paint
+in the existing reader pseudo-element. Geometry/radius are measured once per phase;
+the native document is never translated or resized. This bounded opaque layer uses
+the common easing/duration: arrival with the first row, departure with the last.
+Native paper is transparent only while the measured layer owns it, and its CSS
+animation completion participates in the same pending map. Hold exposes the orbit;
+arrival restores identical native paint at rest. Cancellation, Off/reduced/print
+and disposal release the marker/properties through the same owner. No new timer,
+RAF, content clone, opacity fade or article-specific rule is introduced.
+
+Paint remains in reading-surfaces.css, geometry/phase CSS in scroll-entry.css and
+measurement/completion in scroll-entry.cjs. Isolation keeps the bounded paper
+behind content without changing native layout. CS01–CS10 and existing budgets,
+1000ms/24-row limits and fallback remain. New issue5ReaderPaper tuples retain all
+historical families; the collector requires actual paper CSS frames, bounded
+viewport geometry, correct direction/row timing, transparent replaced native
+paint and completion by animationend. Negative cases reject omitted/static/long
+paper, incorrect direction, opaque native paint and watchdog completion.
+
+Prepared checks: scroll-entry46/46 (including deep-scroll and empty-viewport paper,
+content-before-paper completion, native restoration and print cancellation),
+collector/Color/staging51/51. All three actual generated editions are admitted
+against their pinned bytes; production is a temporary local rendition only.
+Final clean-source policy/CI/visual evidence belongs to the live PR/issue.
+
+The paper collector uses the subtree inventory and filters the exact host/::before
+effect, retaining actual pseudo-element CSS frames rather than child ink. This
+uses the documented [Element animation inventory](https://developer.mozilla.org/en-US/docs/Web/API/Element/getAnimations).
+A diagnostic regression excludes descendant pseudo-elements and binds completion
+to the same phase/navigation identity.

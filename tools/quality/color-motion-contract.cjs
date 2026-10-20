@@ -5,8 +5,22 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Shared paper joins the bounded reader component wave.
+  issue5ReaderPaper: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    baseEngine: 'fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '470e7ee294aa005ae84e71e5d2087eea0e07f289ab86d357823be94f291f6e8e',
+    navigation: 'def30421363bb90dd537cccf4f0c734d281c61050067d3f1fa434c9a01a7f4a1',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Complete reader component paint; common ambient scene lifecycle.
   issue5ReaderMotion: {
+    readerWholeBlocks: true,
     behavior: 'fixed-blocks',
     articleReading: 'stationary',
     readerInteractions: true,
@@ -327,6 +341,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-paper-production',
+    family: 'issue5ReaderPaper',
+    edition: 'production',
+    fingerprint: 'de4418f3425cf647475a4529c96e2394c5fb1355f6ba98cd94f858f944472464',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-paper-plain',
+    family: 'issue5ReaderPaper',
+    edition: 'plain',
+    fingerprint: 'f2d01b7048192df64b125adddd52934765f9d84ce4d896ec074ecbcbb44b4e58',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-paper-staging',
+    family: 'issue5ReaderPaper',
+    edition: 'staging',
+    fingerprint: 'fd8fa1dc7d409f31cf363ff6cbb24d6317b3f07b9cf44c9f3ada22625d93e2d1',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
   {
     id: 'issue5-reader-motion-production',
     family: 'issue5ReaderMotion',
@@ -1112,27 +1147,23 @@ function select(manifest) {
 function flightCheck(manifest) {
   return select(manifest).behavior === 'fixed-blocks' ? 'blockFlight' : 'spatialFlight';
 }
-function articleReadingMode(engine) {
+function readerFamily(engine) {
   const runtime = runtimes.find((value) => value.fingerprint === engine);
-  const family = runtime
+  return runtime
     ? families[runtime.family]
     : Object.values(families).find((value) => value.baseEngine === engine);
-  return family?.articleReading || 'entry';
+}
+function articleReadingMode(engine) {
+  return readerFamily(engine)?.articleReading || 'entry';
 }
 function readerWholeBlocksRequired(engine) {
-  return (
-    engine === families.issue5ReaderMotion.baseEngine ||
-    runtimes.some(
-      (runtime) => runtime.family === 'issue5ReaderMotion' && runtime.fingerprint === engine
-    )
-  );
+  return readerFamily(engine)?.readerWholeBlocks === true;
+}
+function readerPaperRequired(engine) {
+  return readerFamily(engine)?.readerPaper === true;
 }
 function readerInteractionsRequired(engine) {
-  const runtime = runtimes.find((value) => value.fingerprint === engine);
-  const family = runtime
-    ? families[runtime.family]
-    : Object.values(families).find((value) => value.baseEngine === engine);
-  return family?.readerInteractions === true;
+  return readerFamily(engine)?.readerInteractions === true;
 }
 function fixedReadingEvidence(row) {
   const scroll = row.home?.scroll,
@@ -1195,6 +1226,7 @@ module.exports = {
   articleReadingMode,
   readerInteractionsRequired,
   readerWholeBlocksRequired,
+  readerPaperRequired,
   validateFlight,
   contract,
   rowPlan,

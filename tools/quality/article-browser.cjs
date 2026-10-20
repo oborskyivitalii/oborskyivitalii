@@ -960,6 +960,30 @@ function installArticleFlightDiagnostics() {
       ),
     };
   }
+  function paperUnit() {
+    const element = document.querySelector('.reader-mode[data-route-paper]');
+    if (!element) return null;
+    const value = (name) =>
+      Number.parseFloat(element.style.getPropertyValue('--route-paper-' + name));
+    return {
+      top: value('top'),
+      width: value('width'),
+      height: value('height'),
+      distance: value('distance'),
+      duration: value('duration'),
+      delay: value('delay'),
+      viewport: window.innerHeight,
+      nativeBackground: getComputedStyle(element).backgroundColor,
+      background: getComputedStyle(element, '::before').backgroundColor,
+      frames: element
+        .getAnimations({ subtree: true })
+        .filter(
+          (animation) =>
+            animation.effect?.target === element && animation.effect?.pseudoElement === '::before'
+        )
+        .flatMap((animation) => animation.effect?.getKeyframes() || []),
+    };
+  }
   window.SiteEngineProbe = (event) => {
     if (window.__articleFlightEvents.length >= 4000)
       throw Error('article flight evidence overflow');
@@ -968,7 +992,19 @@ function installArticleFlightDiagnostics() {
       window.__articleBlockEvents.push({
         ...structuredClone(event),
         units: [...document.querySelectorAll('[data-route-block]')].map(blockUnit).filter(Boolean),
+        paper: paperUnit(),
       });
+    }
+    if (
+      event.kind === 'route-block' &&
+      event.completedBy &&
+      ['holding', 'settled'].includes(event.stage)
+    ) {
+      const stage = event.stage === 'holding' ? 'departure' : 'arrival';
+      const block = window.__articleBlockEvents.findLast(
+        (item) => item.stage === stage && item.navigationId === event.navigationId
+      );
+      if (block) block.completedBy = event.completedBy;
     }
     if (event.kind === 'camera-travel' || event.kind === 'camera-travel-complete')
       window.__articleFlightEvents.push(structuredClone(event));
@@ -1133,6 +1169,11 @@ function validateArticleBlocks({ blocks, events, from, to, direction }, engine =
     assert.equal(block.navigationId, events[0].navigationId);
     assert.ok(Number.isInteger(block.rows) && block.rows > 0 && block.rows <= 24);
     assert.equal(block.plannedDurationMs, 1000);
+    if (
+      source.startsWith('article:') &&
+      require('./color-motion-contract.cjs').readerPaperRequired(engine)
+    )
+      validateArticlePaper(block, departure);
     assert.ok(
       Array.isArray(block.units) && block.units.length > 0,
       'actual DOM blocks participated'
@@ -1145,6 +1186,48 @@ function validateArticleBlocks({ blocks, events, from, to, direction }, engine =
         wholeReader: source.startsWith('article:') && wholeReader,
       });
   }
+}
+function validateArticlePaper(block, departure) {
+  const paper = block.paper;
+  assert.ok(paper, 'shared reader paper participates in the wave');
+  assert.ok(
+    [
+      paper.top,
+      paper.width,
+      paper.height,
+      paper.viewport,
+      paper.distance,
+      paper.duration,
+      paper.delay,
+    ].every(Number.isFinite)
+  );
+  assert.ok(paper.width > 0 && paper.height > 0 && paper.top >= 0);
+  assert.ok(
+    paper.top + paper.height <= paper.viewport + 0.1,
+    'paper geometry is clipped to the viewport'
+  );
+  assert.equal(Math.sign(paper.distance), departure ? -1 : 1, 'paper follows the reader direction');
+  assert.ok(
+    Math.abs(paper.distance) <= paper.viewport + 32,
+    'paper never travels the full article height'
+  );
+  assert.equal(paper.duration, block.rowDurationMs);
+  assert.equal(paper.delay, departure ? block.plannedDurationMs - block.rowDurationMs : 0);
+  assert.equal(
+    paper.nativeBackground,
+    'rgba(0, 0, 0, 0)',
+    'native paper cannot snap during the wave'
+  );
+  assert.ok(
+    paper.background && !['transparent', 'rgba(0, 0, 0, 0)'].includes(paper.background),
+    'the moving paper is painted'
+  );
+  assert.ok(Array.isArray(paper.frames) && paper.frames.length >= 2, 'actual paper CSS frames');
+  assert.equal(
+    block.completedBy,
+    'animationend',
+    'paper and content complete through native CSS events'
+  );
 }
 
 function articleBlocksRequired(engine) {

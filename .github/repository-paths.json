@@ -541,42 +541,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957": {
-      "kind": "directory",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957/archive.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957/space.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957/styles.css": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957/theme.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -613,6 +577,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2": {
+      "kind": "directory",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2/archive.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2/space.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2/styles.css": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2/theme.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -625,13 +625,13 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/46665014749566dad94257125577f97817832499769f6539447c64e4bf2b2d14": {
+    "docs/snapshots/3730613037a5991c6d8e76ad20f134762eb9733189d51a52a5acf14a45d7877a": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/46665014749566dad94257125577f97817832499769f6539447c64e4bf2b2d14/index.html": {
+    "docs/snapshots/3730613037a5991c6d8e76ad20f134762eb9733189d51a52a5acf14a45d7877a/writing.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
@@ -649,18 +649,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/6f27afe2a91e22a6cc4c02a40bbd067afc9fd30cae924b33b20122b3cd607d3f": {
-      "kind": "directory",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/6f27afe2a91e22a6cc4c02a40bbd067afc9fd30cae924b33b20122b3cd607d3f/research.html": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -670,18 +658,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/87b43060dd4d7a56fb7680569466b67bcaac02667242f1780baa552ad9593252": {
-      "kind": "directory",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/87b43060dd4d7a56fb7680569466b67bcaac02667242f1780baa552ad9593252/writing.html": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -709,6 +685,30 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/9224b712c08be261864ac23a49f1b31025822c086e2005bc788102ab76f14af8": {
+      "kind": "directory",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/9224b712c08be261864ac23a49f1b31025822c086e2005bc788102ab76f14af8/talks.html": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/98259194b52a8fe3a0548b464ca47b8e6f0f1a7c3b4ada7fca344618f1292322": {
+      "kind": "directory",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/98259194b52a8fe3a0548b464ca47b8e6f0f1a7c3b4ada7fca344618f1292322/research.html": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -721,25 +721,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c990fcd68b57bbe31a86bf572cbfe6f41273abe1c10454fc5e4e799bb876a6a4": {
+    "docs/snapshots/c9ab572afb52783660294357074ccaa7500553866242f89013a67c57759b64df": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c990fcd68b57bbe31a86bf572cbfe6f41273abe1c10454fc5e4e799bb876a6a4/credits.html": {
+    "docs/snapshots/c9ab572afb52783660294357074ccaa7500553866242f89013a67c57759b64df/credits.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ec229c1e8b2e5b293118c9454664e1a671e8a9dd706781bb3cdb22afc3d389ea": {
+    "docs/snapshots/f1d9261d6fc42a988cd1699d1066df4138bbfe95ea1b103ec0a3c502f01ed366": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ec229c1e8b2e5b293118c9454664e1a671e8a9dd706781bb3cdb22afc3d389ea/talks.html": {
+    "docs/snapshots/f1d9261d6fc42a988cd1699d1066df4138bbfe95ea1b103ec0a3c502f01ed366/index.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",

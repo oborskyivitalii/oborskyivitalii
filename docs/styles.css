@@ -1843,6 +1843,14 @@ body[data-page='writing'] #archive-results {
   background: var(--paper);
   border-radius: var(--reading-surface-radius);
 }
+.reader-mode[data-route-paper] {
+  background: transparent;
+}
+[data-route-paper]::before {
+  background: var(--paper);
+  border-radius: var(--route-paper-top-radius) var(--route-paper-top-radius)
+    var(--route-paper-bottom-radius) var(--route-paper-bottom-radius);
+}
 @media print {
   .reader-mode {
     background: transparent;
@@ -1856,6 +1864,7 @@ body[data-page='writing'] #archive-results {
   padding-block: 2.5rem 4rem;
 }
 .reader-mode {
+  isolation: isolate;
   padding: clamp(24px, 4vw, 48px);
   font-size: 1.1875rem;
   line-height: 1.7;
@@ -2624,6 +2633,30 @@ body[data-page] [data-entry-border-source] {
   --route-block-delay: 0ms;
   --route-block-duration: var(--block-motion-duration);
 }
+/* Only the paper currently inside the viewport travels. The complete article
+   keeps its native multi-page geometry and its ordinary paper at rest. */
+.reader-mode[data-route-paper]::before {
+  content: '';
+  position: fixed;
+  left: var(--route-paper-left);
+  top: var(--route-paper-top);
+  width: var(--route-paper-width);
+  height: var(--route-paper-height);
+  z-index: -1;
+  pointer-events: none;
+  visibility: hidden;
+  --route-block-distance: var(--route-paper-distance);
+}
+[data-route-blocks='departing'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-depart var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-blocks='arriving'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-arrive var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
 [data-route-block='departing'][data-route-layer='self'],
 [data-route-block='departing']:not([data-route-layer='self']) > *,
 [data-route-block='departing']:not([data-route-layer='self'])::before {
@@ -2665,6 +2698,7 @@ body[data-page] [data-entry-border-source] {
   [data-scroll-entry] > *,
   [data-scroll-entry]::before,
   [data-route-layer='self'],
+  .reader-mode[data-route-paper]::before,
   [data-route-block] > *,
   [data-route-block]::before {
     animation: none;
@@ -2672,6 +2706,9 @@ body[data-page] [data-entry-border-source] {
   }
 }
 @media print {
+  .reader-mode[data-route-paper]::before {
+    display: none;
+  }
   #site-content-frame {
     overflow: visible;
   }

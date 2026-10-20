@@ -17,7 +17,9 @@ Within-page reading keeps each route's opening camera pose stationary, including
 scrolling in both directions, Writing filters, anchors, history and reflow. The
 fractal keeps the common passive animation on principal pages and articles when
 motion is enabled. Reader components move their complete native box during route
-waves, including paper, borders and markers; motion preferences retain one owner. Native range,
+waves, including paper, borders and markers; motion preferences retain one owner.
+The visible portion of the shared article paper joins the same phase, arriving
+with the first row and leaving with the last; the long native document stays fixed. Native range,
 semantic markers and actual footer/bottom are still measured for content and edge
 navigation; they no longer drive camera travel. All-route browser synchronization
 checks verify stationary camera and unchanged native reading geometry; generation

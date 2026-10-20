@@ -1503,3 +1503,97 @@ test('reader route waves move complete component paint and clear their own anima
   assert.equal(contents.children.length, 0);
   assert.equal(h.tasks.size, 0);
 });
+
+test('reader paper uses bounded viewport paint and completes with the common component wave', async () => {
+  for (const top of [120, -18000]) {
+    const h = harness({ count: 3 });
+    const paper = h.document.createElement('article');
+    paper.top = top;
+    paper.height = 30000;
+    h.root.matches = (selector) => selector === '.article-reader';
+    h.root.querySelector = (selector) => (selector === '.reader-mode' ? paper : null);
+    h.elements.forEach((element, index) => {
+      element.top = 160 + index * 180;
+      element.height = 80;
+    });
+    h.controller.mount(h.root);
+    const native = paper.getBoundingClientRect();
+    const departure = h.controller.depart(1, 50);
+    assert.equal(paper.attributes.get('data-route-paper'), '');
+    assert.equal(paper.styles.get('--route-paper-top'), Math.max(0, top) + 'px');
+    assert.equal(paper.styles.get('--route-paper-height'), 900 - Math.max(0, top) + 'px');
+    assert.equal(paper.styles.get('--route-paper-distance'), '-932px');
+    assert.equal(paper.styles.get('--route-paper-duration'), '700ms');
+    assert.equal(paper.styles.get('--route-paper-delay'), '300ms');
+    assert.deepEqual(
+      paper.getBoundingClientRect(),
+      native,
+      'the long article keeps its native geometry'
+    );
+    h.tick(1000);
+    for (const target of h.elements)
+      h.root.emit('animationend', { animationName: 'route-block-depart', target });
+    assert.equal(
+      h.controller.diagnostics().routeStage,
+      'departing',
+      'content cannot hide the paper before its own animation ends'
+    );
+    h.root.emit('animationend', {
+      animationName: 'route-block-depart',
+      target: paper,
+      pseudoElement: '::before',
+    });
+    assert.equal((await departure).completedBy, 'animationend');
+    assert.equal(h.root.attributes.get('data-route-blocks'), 'holding');
+    h.controller.prepareArrival(1, 51);
+    const arrival = h.controller.arrive(1, 51);
+    assert.equal(paper.styles.get('--route-paper-distance'), 932 - Math.max(0, top) + 'px');
+    assert.equal(paper.styles.get('--route-paper-duration'), '700ms');
+    assert.equal(paper.styles.get('--route-paper-delay'), '0ms');
+    h.tick(700);
+    h.root.emit('animationend', {
+      animationName: 'route-block-arrive',
+      target: paper,
+      pseudoElement: '::before',
+    });
+    assert.equal(h.controller.diagnostics().routeStage, 'arriving');
+    h.tick(300);
+    for (const target of h.elements)
+      h.root.emit('animationend', { animationName: 'route-block-arrive', target });
+    assert.equal((await arrival).completedBy, 'animationend');
+    assert.equal(paper.attributes.has('data-route-paper'), false);
+    assert.equal(
+      [...paper.styles.keys()].some((key) => key.startsWith('--route-paper-')),
+      false
+    );
+    assert.deepEqual(paper.getBoundingClientRect(), native);
+    const interrupted = h.controller.depart(1, 52);
+    h.window.emit('beforeprint');
+    assert.equal((await interrupted).cancelled, true);
+    assert.equal(paper.attributes.has('data-route-paper'), false);
+    assert.equal(h.tasks.size, 0);
+  }
+});
+
+test('visible reader paper crosses an otherwise empty viewport instead of completing instantly', async () => {
+  const h = harness({ count: 0 });
+  const paper = h.document.createElement('article');
+  paper.top = -18000;
+  paper.height = 30000;
+  h.root.matches = (selector) => selector === '.article-reader';
+  h.root.querySelector = () => paper;
+  h.controller.mount(h.root);
+  const departure = h.controller.depart(1);
+  assert.equal(h.controller.diagnostics().routeStage, 'departing');
+  assert.equal(paper.styles.get('--route-paper-duration'), '1000ms');
+  h.tick(1000);
+  h.root.emit('animationend', {
+    animationName: 'route-block-depart',
+    target: paper,
+    pseudoElement: '::before',
+  });
+  assert.equal((await departure).completedBy, 'animationend');
+  h.controller.cancelRoute();
+  assert.equal(paper.attributes.has('data-route-paper'), false);
+  assert.equal(h.tasks.size, 0);
+});

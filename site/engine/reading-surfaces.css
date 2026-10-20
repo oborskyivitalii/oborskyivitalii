@@ -239,6 +239,14 @@
   background: var(--paper);
   border-radius: var(--reading-surface-radius);
 }
+.reader-mode[data-route-paper] {
+  background: transparent;
+}
+[data-route-paper]::before {
+  background: var(--paper);
+  border-radius: var(--route-paper-top-radius) var(--route-paper-top-radius)
+    var(--route-paper-bottom-radius) var(--route-paper-bottom-radius);
+}
 @media print {
   .reader-mode {
     background: transparent;
