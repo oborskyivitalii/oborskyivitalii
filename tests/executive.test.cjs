@@ -975,25 +975,21 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
       'only the canonical paper-alpha material may mix color'
     );
   }
+  function expectedBackground(selector) {
+    const readerPaper = /\.reader-mode|\.reader-dialog|\[data-route-paper\]::before/.test(selector);
+    if (readerPaper) {
+      if (selector.includes('[data-route-paper]') && !selector.includes('::before'))
+        return 'transparent';
+      return 'var(--paper)';
+    }
+    if (/::before|\.reading-title|\.display-controls/.test(selector))
+      return 'var(--reading-surface-color)';
+    return 'transparent';
+  }
   function verifyMaterial(rule) {
-    const readerPaper = /\.reader-mode|\.reader-dialog|\[data-route-paper\]::before/.test(
-      rule.selector
-    );
     for (const [property, value] of properties(rule.body)) {
       if (property === 'background')
-        assertValue(
-          value,
-          readerPaper
-            ? rule.selector.includes('[data-route-paper]') && !rule.selector.includes('::before')
-              ? 'transparent'
-              : 'var(--paper)'
-            : rule.selector.includes('::before') ||
-                rule.selector.includes('.reading-title') ||
-                rule.selector.includes('.display-controls')
-              ? 'var(--reading-surface-color)'
-              : 'transparent',
-          'one theme-paper material'
-        );
+        assertValue(value, expectedBackground(rule.selector), 'one theme-paper material');
       if (property === 'opacity') assertValue(value, 'var(--reading-surface-opacity)');
       if (property === 'border-radius')
         assert.ok(

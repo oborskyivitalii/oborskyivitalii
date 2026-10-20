@@ -229,3 +229,10 @@ the existing long files. A real five-file barrier regression proves four overlap
 the fifth stays queued and all five complete; cancellation/failure/zero-skip
 accounting remains. Prepared selector/scheduler31/31 passes. These are required
 admission fixes in the same owner, not removed checks or relaxed browser budgets.
+
+Source7430f661 passed all95 navigation profile/gate/scanner cases, then found the
+ARTICLE-MATERIALS guide missing from the active-Markdown inventory. Basic lint
+also rejected the expanded material test's cognitive complexity. Include the
+existing guide in the authoritative inventory and extract the material decision
+into a named helper; preserve its assertions and the25-complexity limit. Prepared
+root-layout, paint negatives and focused ESLint pass before the next source.

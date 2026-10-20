@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "311f2ce37e27185e025e4ee45960d19536de822ad0feb0ec16b27369c1081edc",
+    "digest": "adfd68cbaac79ac917e7db77b0c97d08f9a1ba737431ab7f27b54db00cae141a",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -166,7 +166,7 @@
       {
         "path": ".github/repository-layout.json",
         "identity_mode": "content",
-        "sha256": "643adfe6d9d89b32bc08816cda4ed7e85e289f9336da4a7b9f5c1f886776e6b6"
+        "sha256": "6e2769401cd41e7cd0e1d59a70939d320be481a1e4a8d3193d6f9d456d5e021b"
       },
       {
         "path": ".github/repository-paths.json",
@@ -176,7 +176,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "9d0c455366063ab069846448aecfab67fd321a3035a08be650b99851892cffdc"
+        "sha256": "20f198effb20088b20b4858097f294e555113bf0d268f08201af1a26bb54b8e8"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "ee64c9fd5b542b846e4b68163f15725cd5dec2c41b2971c4d29fb754c25a2a83"
+        "sha256": "6b505e25f8166f13d68722efdceecabaa1c3e350c1acb99a4780ee7c82b34e94"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6650,7 +6650,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "3b8d8ff97ed09d9998d612ad86251dd4312a767e980d4e5ea24a6d1212862075"
+        "sha256": "187b918ae4c71c50c5ae0e954d1358c54b2cf15b2ca533209fef6281a546f83f"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
