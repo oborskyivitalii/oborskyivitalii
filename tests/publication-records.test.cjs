@@ -260,7 +260,8 @@ test('prepublication preserves inner source timeout evidence before its distinct
       result.checks.filter((row) => !row.pass).map((row) => row.id),
       ['source-tests']
     );
-    assert.equal(sourceDeadline, 210000);
+    // Full staging/production selects two bounded native batches plus report grace.
+    assert.equal(sourceDeadline, 390000);
     assert.ok(otherDeadlines.length > 0);
     assert.ok(otherDeadlines.every((timeout) => timeout === 180000));
     const raw = JSON.parse(fs.readFileSync(runnerReport, 'utf8')),
@@ -271,7 +272,7 @@ test('prepublication preserves inner source timeout evidence before its distinct
     assert.equal(fs.readFileSync(raw.files.tap, 'utf8'), 'original partial child TAP\n');
     assert.equal(fs.readFileSync(raw.files.stderr, 'utf8'), 'original inner timeout stderr\n');
     assert.deepEqual(JSON.parse(fs.readFileSync(wrapper.stdout, 'utf8')), raw);
-    assert.equal(wrapper.timeoutMs, 210000);
+    assert.equal(wrapper.timeoutMs, 390000);
     assert.equal(result.checks.find((row) => row.id === 'security').pass, true);
     assert.equal(result.checks.find((row) => row.id === 'unchanged-source').pass, true);
   }

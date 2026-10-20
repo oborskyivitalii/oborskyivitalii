@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "cc059d80543b54f3882e706ea4dceb3eb5ae2be60bee385d9aa6056fd374f8ae",
+    "digest": "d683d826e1860cc2a5a3da53ca2238df662d7eb5055e9d9dc42d106f76adfc09",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "5793af51f51d01d16d9f3644ca663956ee99289f2dfb9bd88dcddde1f7c6e815"
+        "sha256": "9272d034a86c2fdfeb800f04f7c86dad710cf68cad3cfa51940e5922c2dd7537"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6770,7 +6770,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "5d6c9e7155acb97cad2e4bb8c38106778eebd30ee07bc23b078b079337f9a905"
+        "sha256": "788682653edd81b35574989e2ea505241cd7559530ff75e0d1385f5c54cf5b18"
       },
       {
         "path": "tests/publishing-history.test.cjs",
