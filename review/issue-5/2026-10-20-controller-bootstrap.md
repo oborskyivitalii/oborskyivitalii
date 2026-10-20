@@ -199,3 +199,93 @@ source/tree, CI, actual staging and remaining gates. Keep that PR open; its
 feature merge and production activation require their separate maintainer
 decision. Original whole criteria stay open until all their checks and gates
 are satisfied.
+
+
+## Continuation: current main and advisory remediation
+
+Candidate parent6c63b98f6b4725b00e9193d4d0599f1c54535c38 had source1024/1024,
+owning12/12 with all23 automated mappings, and protected-main article publication.
+Actual owner staging39480944615/1 failed the cold Index-to-Writing equivalent
+readiness:3202.5ms against the unchanged3200ms limit. Other functional and
+performance cases passed; no stable promotion occurred. The retained failure
+ZIP12292946517 has SHA256
+813611ae7ac5c85f9172dca590b856913575a55467e40e3bff83456da767fe65.
+The single controlled repeat39485203354/1 stopped before hosted browsers:
+25/26 preflight guards passed, but the advisory feed now rejected the locked
+certifi2026.7.22 for GHSA-6q48-6c7w-9gw2. It produced no new performance result.
+Retained preflight ZIP12293108963 SHA256
+dd9ecd9b7a6639ea8540a2be64f0c3e243ce2e60b068ca8d856b589ee9af7aa4.
+Both ZIP digests were checked against GitHub artifact metadata.
+
+This iteration integrates actual mainca70a66f340a8e804e4263c02aa9abe79a062765
+(PR115), preserving its mandatory separate-subagent review protocol, policy,
+templates and evidence. Only the three new task-intake query aliases are applied
+to PR79's current RI configuration; feature routing and the combined catalog
+remain. Generated RI and coupling views are regenerated from those owners.
+
+The single dependency change pins certifi2026.10.19. The maintainer advisory
+[GHSA-6q48-6c7w-9gw2](https://github.com/certifi/python-certifi/security/advisories/GHSA-6q48-6c7w-9gw2),
+published20 October2026, identifies compromised emSign intermediates and the
+root removal in2026.10.18. The official
+[2026.10.19 release](https://pypi.org/project/certifi/2026.10.19/) is available;
+its wheel SHA256 is42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b.
+The audit feed recommends2026.10.19. No advisory waiver, dependency looseness,
+scanner exception, performance assertion or budget changes. Article, media,
+PDF, browser runtime and content source remain unchanged.
+
+CS01/04/05: the exact pin stays in the canonical audit lock; protocol integration
+retains the accepted main owner and changes no runtime. CS08/09/10: verify the
+complete installed Python graph and live advisories, Basic, formatter, RI and
+coupling, with new exact-source CI and actual staging after independent review.
+The prior performance failure remains failed; a later success cannot rewrite it.
+Separate whole-feature/editorial/rights/device/publication acceptance remains open.
+
+
+### Independent iteration review — verbatim receipt
+
+Independent review by `/root/pr79_iteration_review` found **no blocking source defects** in commit `257cc6acbe4a0aa20df40b4f23229393391cbc8c`, tree `e7af6aebfb61fb07078364f951dc509473a02bdb`, against parents `6c63b98f6b4725b00e9193d4d0599f1c54535c38` and `ca70a66f340a8e804e4263c02aa9abe79a062765`. I did not implement these changes.
+
+I independently inspected issue5’s original intent and AC01/04/11/12/23, current instructions, actual sixteen-file diff, parsed navigation/catalog/coupling changes, requirements and scanner contracts, existing review evidence, local test reports and retained failed artifacts.
+
+Risks examined:
+
+- **Protocol loss during integration:** eight accepted main protocol/template/policy/evidence files are byte-identical. Feature RI configuration retains every previous owner and validation route, adding exactly three intake aliases. Catalog changes are exactly three main entries. Coupling retains existing checks/layers and adds the two required routes.
+- **Security bypass or unrelated dependency drift:** the requirements delta is solely `certifi==2026.7.22` → `certifi==2026.10.19`. Scanner, exceptions and remaining pins are unchanged. The maintainer advisory and official PyPI release support the remediation. Retained pip-audit evidence identifies this sole vulnerable pin and recommends `2026.10.19`.
+- **Reader/content/controller regression:** `site/`, `docs/`, `tools/site/`, `tools/publishing/`, tests, workflows, staging code and issue5 policy are unchanged from the prior feature head. No manuscript, media, PDF, browser runtime, performance assertion or budget changed.
+- **False delivery evidence:** independently recomputed both failed ZIP hashes and inspected raw performance/advisory reports. Cold Writing remains **3202.5ms against3200ms**, failed. The controlled repeat stopped on advisories without a new browser measurement. Neither proves stable promotion.
+
+Observed Basic16+Color10, full formatter (`changed:[]`), Python115/115, fresh RI and coupling pass. My independent RI/coupling verification passed. The copied local venv’s duplicate-certifi failure is an environment problem being corrected through a fresh full installation; **current clean-environment graph/advisory success remains pending**, alongside fresh remote CI and actual article staging. Local security packaging has no article candidates and cannot supply article-delivery evidence.
+
+This review satisfies the **current integration/remediation source-review scope**. It does not complete whole-feature architecture/export, editorial, rights, device, publication or stable-delivery acceptance. No corrective source iteration is requested.
+
+Manifest uses sorted UTF-8 lines `SHA256␠␠path\n`; SHA256:
+`9d86deca850bcf1b83dcb9921e2a1796b4949d77788afb7460a1f0103f46df41`.
+
+```text
+d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b  .github/ACCEPTANCE.md
+29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9  .github/ISSUE_TEMPLATE/work-item.md
+0db03f6fd2d0408fc259110512646e0f27d663b76c0d2e9d6b21aea3e1e17f36  .github/acceptance/issue-114.json
+99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1  .github/pull_request_template.md
+00be6d8e4762095c3b3455b9fb02133e559ed7421421dbc4b540f808e50f2da5  .github/repository-intelligence-config.json
+742f8a4d69faf5d8955a3922c5d1b559fd8af6514abd9c2ccdae9a23642ad3a4  .github/repository-paths.json
+d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0  AGENTS.md
+f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5  CONTRIBUTING.md
+ebd148bc73dd85510a1a030ec4e3fe01bf1430d6a5cf1389c6ebd2305ae8a1d0  MEMORY.md
+b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d  review/REVIEW-TEMPLATE.md
+2bb7a26a983fa4c247acbab0ea3f7eb6c278785cdbaaaf95771e037efedfacd3  tools/quality/toolchain/requirements.txt
+```
+
+Excluded from this manifest: generated RI views/coupling identity, preexisting issue114 review evidence, and the issue5 review file receiving this receipt. Their changes were inspected. The issue5 file’s reviewed pre-receipt SHA256 is `dfcc9c59a2c7f34dc52e78cef5b4431a1db2d377eff10e98ab63541424ff13fe`; preserve its existing bytes when appending. Refresh coupling and RI afterward because the review file is a coupling input.
+
+### Independent operational addendum — verbatim receipt
+
+20 October 2026, operational addendum by `/root/pr79_iteration_review`: independently verified unchanged clean commit `257cc6acbe4a0aa20df40b4f23229393391cbc8c`, tree `e7af6aebfb61fb07078364f951dc509473a02bdb`.
+
+Fresh installed-graph verification **passes:89 packages,143 dependencies**. Final complete advisory scanner **passes all three engines**. Python audit covers89 packages with zero vulnerabilities, including `certifi2026.10.19`. Quality npm retains only the existing reviewed braces advisory; publication npm reports zero vulnerabilities. No new waiver or source change.
+
+Verified report SHA256 values:
+
+- `advisories.json`: `0a6c13b2fecc4a43be38b0864b6403adb2b0c0227a35f79bc3cb178b089f13a9`
+- `pip-audit.json`: `894fc1f354ca0e0f0f1cb0aac1ef7bb96602d5448f56f4857fb044ebbc9b3376`
+
+This supersedes the prior receipt’s pending local graph/advisory limitation. Fresh remote CI and actual article staging remain pending; previous staging failures retain their failed dispositions.

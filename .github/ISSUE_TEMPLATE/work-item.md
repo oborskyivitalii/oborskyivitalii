@@ -37,6 +37,8 @@ Next step and related issue/PR links. Preserve initial intent; append approved c
 
 ### Review / analysis / model handoff — YYYY-MM-DD
 
+Apply [independent subagent review after every iteration](../../CONTRIBUTING.md#independent-review-after-every-iteration).
+Iteration / separate reviewer identity / inspected source / findings and re-review outcome:
 Short synopsis and decision/task status:
 Owning PR and exact versioned `review/issue-N/YYYY-MM-DD-kind.md` section link:
 Keep technical findings and tasks there; this dated heading is the issue anchor.

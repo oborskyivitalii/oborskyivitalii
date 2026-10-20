@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "7a707005b1c76b6588f908b74c85a6953555b161c7d4aa040d8cfed3514a25a7",
+    "digest": "c132f312e294244065acb923ccd6c23e4afd19036f3f58d5a2f03c2a72a7673b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,7 +27,7 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "c13f1e51d3055a02741798fadb06b023764116e6348c4b620f68625d13c2f991"
+        "sha256": "d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -37,7 +37,7 @@
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
         "identity_mode": "content",
-        "sha256": "c9b6d6a36ed145002834952eff069e2a7fbfd179a7cff7d5425421881655fa24"
+        "sha256": "29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
@@ -53,6 +53,11 @@
         "path": ".github/acceptance/issue-108.json",
         "identity_mode": "content",
         "sha256": "f1bf79f1c88fec50208ccbebf70cd1c7dedd7c99ba499b1d62351ce5863416fa"
+      },
+      {
+        "path": ".github/acceptance/issue-114.json",
+        "identity_mode": "content",
+        "sha256": "0db03f6fd2d0408fc259110512646e0f27d663b76c0d2e9d6b21aea3e1e17f36"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -152,12 +157,12 @@
       {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
-        "sha256": "c8c3d6209a86c42842c5f649a8f0837de4ff5af955b8c27769eabf7763c9a28f"
+        "sha256": "99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1"
       },
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "437f986bc1d2001ac699ec2447d26036b1f3525d048a9f4da442964276332a79"
+        "sha256": "00be6d8e4762095c3b3455b9fb02133e559ed7421421dbc4b540f808e50f2da5"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -171,12 +176,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "40503c227519f4581201c016d90fd95e15e55333967aa1e65028eb95801103ee"
+        "sha256": "742f8a4d69faf5d8955a3922c5d1b559fd8af6514abd9c2ccdae9a23642ad3a4"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c2da92923af8d0a7aff9fef5553087bfe3af4a39829c652dd1193fa3784b8126"
+        "sha256": "1e20d3538e9566af325d9f6477c8c982ee4c7ece1fc3c8b14a40bc5132d63d75"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -281,12 +286,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "60e88a430d100d72926bfea030495353f92085fe073e95cc9d0405d0f70d78cc"
+        "sha256": "d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "663a9d493914270419d3aedd0f27e7dfcae00b5816028c3deb05159935a744d5"
+        "sha256": "f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -306,7 +311,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9350440ad1a66d914fe73bed46e356bb5baa70f01325ddf9aea7120ab96e5233"
+        "sha256": "ebd148bc73dd85510a1a030ec4e3fe01bf1430d6a5cf1389c6ebd2305ae8a1d0"
       },
       {
         "path": "NOTICE.md",
@@ -635,7 +640,7 @@
       {
         "path": "review/REVIEW-TEMPLATE.md",
         "identity_mode": "content",
-        "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
+        "sha256": "b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d"
       },
       {
         "path": "review/assets/site-day-night-concept-20261002.png",
@@ -761,6 +766,11 @@
         "path": "review/issue-108/content-amendment.json",
         "identity_mode": "content",
         "sha256": "8c74d973a988139da089aad75da7f7007547c7fecacae91fd4da3dc6f8809daf"
+      },
+      {
+        "path": "review/issue-114/2026-10-20-review.md",
+        "identity_mode": "content",
+        "sha256": "0707e0ee47a5d89ff141f87befcc2dc1722ae20f752458ebe229d86391e37c81"
       },
       {
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -1440,7 +1450,7 @@
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
         "identity_mode": "content",
-        "sha256": "f2277b31a85d1f4752543d907a9dbd66375c5aff6560e2cd2694f8aed9ef9c0d"
+        "sha256": "ec43471294a0b0726cd228a55a359232307c51cdb69f6ed726ce07169e1ce5a8"
       },
       {
         "path": "review/issue-5/2026-10-20-controller-ledger-merge.json.gz",
@@ -7720,7 +7730,7 @@
       {
         "path": "tools/quality/toolchain/requirements.txt",
         "identity_mode": "content",
-        "sha256": "c36b786b3326c92db028a3a993298534d659b6a825dd2d171dfc95a054ea134e"
+        "sha256": "2bb7a26a983fa4c247acbab0ea3f7eb6c278785cdbaaaf95771e037efedfacd3"
       },
       {
         "path": "tools/quality/transition-pacing.cjs",
@@ -8073,7 +8083,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "437f986bc1d2001ac699ec2447d26036b1f3525d048a9f4da442964276332a79"
+    "config_sha256": "00be6d8e4762095c3b3455b9fb02133e559ed7421421dbc4b540f808e50f2da5"
   },
   "owners": [
     {
@@ -8124,6 +8134,9 @@
       "path": "CONTRIBUTING.md",
       "queries": [
         "issue workflow",
+        "independent subagent review",
+        "iteration review",
+        "незалежне ревю субагентом",
         "backlog",
         "ішью",
         "беклог"
@@ -8427,6 +8440,17 @@
         "AGENTS.md"
       ],
       "title": "issue-108.json"
+    },
+    {
+      "path": ".github/acceptance/issue-114.json",
+      "kind": "file",
+      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-114.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -9989,6 +10013,17 @@
         "AGENTS.md"
       ],
       "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-114/2026-10-20-review.md",
+      "kind": "file",
+      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue114 — 2026-10-20 iteration review"
     },
     {
       "path": "review/issue-2/2026-10-15-editorial-draft.md",
@@ -26429,6 +26464,16 @@
       "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
       "role": "history",
       "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-114",
+      "kind": "directory",
+      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

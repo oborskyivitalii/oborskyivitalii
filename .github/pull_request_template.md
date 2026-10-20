@@ -25,7 +25,9 @@ Review of applicable rules outside the automatic guard (or reason not applicable
 
 ## Review and rights
 
-Independent reviewer/materials/outcome:
+Per-iteration [independent subagent review](../CONTRIBUTING.md#independent-review-after-every-iteration):
+Iteration / separate reviewer identity / inspected source/diff / materials and limits:
+Findings with AC impact / dispositions / correction re-review and final reviewed identity:
 Editorial/rights review if publishing:
 Source identity, upstream adapter pin/license and edition manifest:
 Unresolved decisions:

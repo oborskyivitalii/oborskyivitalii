@@ -28,6 +28,11 @@ the authority for whether these IDs and check scopes reproduce its intent.
 
 At the end of implementation/session work:
 
+Apply [independent subagent review after every iteration](../CONTRIBUTING.md#independent-review-after-every-iteration)
+before advancing the candidate. Record current reviewed identity, finding dispositions
+and correction re-review in the owning review artifact. This is a mandatory external
+review gate; deterministic checks and implementer self-review cannot supply it.
+
 1. Complete or update the criterion mapping and deterministic checks, plus the
    applicable GitHub Actions workflow/policy. A session ending early records
    missing checks honestly instead of claiming the criteria passed.

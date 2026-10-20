@@ -54,7 +54,15 @@
     {
       "concern": "task intake and closure",
       "path": "CONTRIBUTING.md",
-      "queries": ["issue workflow", "backlog", "ішью", "беклог"]
+      "queries": [
+        "issue workflow",
+        "independent subagent review",
+        "iteration review",
+        "незалежне ревю субагентом",
+        "backlog",
+        "ішью",
+        "беклог"
+      ]
     },
     {
       "concern": "author profile entry point",

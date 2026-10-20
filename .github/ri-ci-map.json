@@ -152,7 +152,9 @@
         "review/issue-108/content-amendment.json",
         "review/issue-5/2026-10-20-reader-interactions.md",
         "review/issue-5/2026-10-20-controller-bootstrap.md",
-        "review/issue-5/2026-10-20-controller-ledger-merge.json.gz"
+        "review/issue-5/2026-10-20-controller-ledger-merge.json.gz",
+        ".github/acceptance/issue-114.json",
+        "review/issue-114/2026-10-20-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -639,11 +641,11 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "103b1fc900fd21a72e1563f77df19b1b01277d14d628ba65ca1db0304b1b3df6",
+    "digest": "daa6a8d6c87a07ce0be6be3d93f590616ba2e304671ea7bd434e538558e2c206",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
-        "sha256": "c13f1e51d3055a02741798fadb06b023764116e6348c4b620f68625d13c2f991"
+        "sha256": "d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -651,7 +653,7 @@
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
-        "sha256": "c9b6d6a36ed145002834952eff069e2a7fbfd179a7cff7d5425421881655fa24"
+        "sha256": "29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
@@ -664,6 +666,10 @@
       {
         "path": ".github/acceptance/issue-108.json",
         "sha256": "f1bf79f1c88fec50208ccbebf70cd1c7dedd7c99ba499b1d62351ce5863416fa"
+      },
+      {
+        "path": ".github/acceptance/issue-114.json",
+        "sha256": "0db03f6fd2d0408fc259110512646e0f27d663b76c0d2e9d6b21aea3e1e17f36"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -743,11 +749,11 @@
       },
       {
         "path": ".github/pull_request_template.md",
-        "sha256": "c8c3d6209a86c42842c5f649a8f0837de4ff5af955b8c27769eabf7763c9a28f"
+        "sha256": "99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1"
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "437f986bc1d2001ac699ec2447d26036b1f3525d048a9f4da442964276332a79"
+        "sha256": "00be6d8e4762095c3b3455b9fb02133e559ed7421421dbc4b540f808e50f2da5"
       },
       {
         "path": ".github/repository-layout.json",
@@ -755,7 +761,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "40503c227519f4581201c016d90fd95e15e55333967aa1e65028eb95801103ee"
+        "sha256": "742f8a4d69faf5d8955a3922c5d1b559fd8af6514abd9c2ccdae9a23642ad3a4"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -835,11 +841,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "60e88a430d100d72926bfea030495353f92085fe073e95cc9d0405d0f70d78cc"
+        "sha256": "d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "663a9d493914270419d3aedd0f27e7dfcae00b5816028c3deb05159935a744d5"
+        "sha256": "f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -855,11 +861,11 @@
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
-        "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
+        "sha256": "b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d"
       },
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
-        "sha256": "f2277b31a85d1f4752543d907a9dbd66375c5aff6560e2cd2694f8aed9ef9c0d"
+        "sha256": "ec43471294a0b0726cd228a55a359232307c51cdb69f6ed726ce07169e1ce5a8"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",

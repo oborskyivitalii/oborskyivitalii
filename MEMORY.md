@@ -8,7 +8,8 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
   39475965776/1 and merged as c4ed3dad7197bef2f9638c9500d66c12606f6eff.
   Source6aae30a/tree8025e6af:661/661, all26 preflight guards, complete staging,
   exact stable HTTP, recovery and merge admission passed.
-- PR79 continues from1d2d195 with this protected-main baseline. Its live PR and
+- PR79 continues from1d2d195 and integrates accepted main
+  ca70a66f340a8e804e4263c02aa9abe79a062765, including PR115 review rules. Its live PR and
   issue5 delivery receipt hold the final head/tree/CI/staging outcome; revalidate
   them before the next phase. Versioned integration and authenticated artifacts:
   review/issue-5/2026-10-20-controller-bootstrap.md#continuation-accepted-bootstrap-and-canonical-feature-integration.
@@ -32,6 +33,11 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Open work
 
+- PR79 source6c63b98 passed1024 source tests and owning12/12. First stage
+  39480944615 missed one unchanged3200ms flight limit by2.5ms; no promotion.
+  Controlled repeat39485203354 stopped before browsers on newly reported
+  certifi advisory GHSA-6q48-6c7w-9gw2. Update the exact pin to2026.10.19,
+  obtain independent iteration review, fresh source admission and actual staging.
 - Consult the current PR79 receipt for source/RI/owning checks, actual /stage,
   exact stable article/media verification and native reader observations.
 - Reconcile original issue5 criteria against complete evidence; umbrella5 and
