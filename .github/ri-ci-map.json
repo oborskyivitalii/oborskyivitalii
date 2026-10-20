@@ -138,7 +138,7 @@
         "review/issue-39/2026-10-15-implementation.md",
         "review/issue-39/2026-10-15-licensing-proposal.md",
         "review/issue-5/2026-10-18-step1-reconciliation.md",
-        "review/issue-5/2026-10-18-step1-validation.json",
+        "review/issue-5/2026-10-18-step1-validation.json.gz",
         "review/issue-5/2026-10-18-step1-evidence.json.gz",
         ".github/acceptance/issue-102.json",
         "tests/test_issue102_acceptance.py",
@@ -633,7 +633,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "75f60fdd228edf6bb2f111ce738b2e55e0167444cac6783fa0415b29f16acb29",
+    "digest": "4d3cc93ac2f29d98a89b89b3d89191dcbc6877a0e5cbd3d2ae3ea0be846bd162",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -749,7 +749,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "217658365db4195ccbc9ec9d38e231e7b443ec2bb185d1e4d3e01c772f9463b8"
+        "sha256": "b62fb6dfd350a6f757933d811887d0cc467c15a695a0dc704cd282a3be34dcea"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -845,7 +845,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "e519a77511ce62028ce30390a4c87fcc51c6d379a4fcea5fc94093fb043b0690"
+        "sha256": "7528eb08c583ceeb66bffb1af8b7c679a2c268bb787273a47cfae25f31b57d01"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -861,7 +861,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "e7753264c8cd654578662243bf94feadbb93a43da9d31667b004595fd5db0bf5"
+        "sha256": "17b81f61a5556645ebed5a50a8f820ab1a8e14052840a5d2326635856ce4942a"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -977,11 +977,11 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "4b0656b1593a875f0b6c2c5ec353395c4c789b2c3b07e10cdeeb36e0d2e0378a"
+        "sha256": "4901b839aeceaf62fd4a710b8c3f0119b2752382f408aad84ca52ffbac3fc54b"
       },
       {
         "path": "tools/quality/source-tests.cjs",
-        "sha256": "92c094bfc7436bbea6ed536d96ef1e00fc246f65fb27006c5ed1ecd6c006fcb7"
+        "sha256": "757bc8ca6c746124baaadca5998b56b8547fe3e1748055adc73f71bc22bb89be"
       },
       {
         "path": "tools/quality/staging-gate.cjs",

@@ -591,12 +591,23 @@ function executeBatch(root, modules, execute) {
     argv,
   };
 }
-function executeBatches(root, modules, execute) {
+function selectedBatches(modules) {
   const scene = 'tests/space.test.cjs';
-  const batches =
-    modules.includes(scene) && modules.length > 1
-      ? [[scene], modules.filter((file) => file !== scene)]
-      : [modules];
+  return modules.includes(scene) && modules.length > 1
+    ? [[scene], modules.filter((file) => file !== scene)]
+    : [modules];
+}
+function wrapperTimeout(root, profile) {
+  const modules =
+    profile === 'content'
+      ? loadRegistry(root).source_profiles.content.mandatory_files
+      : select(root, profile).modules;
+  return (
+    selectedBatches(modules).length * executionLimits.timeoutMs + executionLimits.reportGraceMs
+  );
+}
+function executeBatches(root, modules, execute) {
+  const batches = selectedBatches(modules);
   const outcomes = batches.map((selected) => {
     try {
       return { result: executeBatch(root, selected, execute) };
@@ -909,6 +920,7 @@ if (require.main === module) {
 module.exports = {
   REGISTRY,
   executionLimits,
+  wrapperTimeout,
   safePath,
   matches,
   classifyContent,

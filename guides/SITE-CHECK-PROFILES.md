@@ -310,6 +310,10 @@ counts. Reports identify each actual argv/result and concatenate original raw
 streams without relabelling them as one TAP run. A failed batch keeps the whole
 gate failed while the independent remaining batch still records its result.
 Content-only plans retain their existing single-process evidence and reuse.
+The prepublication wrapper derives its deadline from that actual selected batch
+count:210s for one native process,390s for two, including the same30s reporting
+grace. Native180s/16MiB bounds, scanner180s bounds and the10-minute build job stay
+unchanged; the wrapper must not terminate a valid second native process early.
 SIGTERM/SIGINT
 abort the owned runner and reap its children before timeout evidence is retained.
 

@@ -5,6 +5,19 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Build-time reader correction; browser scripts and paper paint are unchanged.
+  issue5ReaderStaging: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    baseEngine: 'b75ffa5ea6716d564b3bbb07d18e2186642dc898c0f81a4090538d5e27344b0d',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '470e7ee294aa005ae84e71e5d2087eea0e07f289ab86d357823be94f291f6e8e',
+    navigation: 'def30421363bb90dd537cccf4f0c734d281c61050067d3f1fa434c9a01a7f4a1',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Shared paper joins the bounded reader component wave.
   issue5ReaderPaper: {
     behavior: 'fixed-blocks',
@@ -341,6 +354,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-staging-production',
+    family: 'issue5ReaderStaging',
+    edition: 'production',
+    fingerprint: '3c736ea414c48e87addf18c2b7de4cf6a8f1317bb86c52ac86b9b3fa7c994a87',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-staging-plain',
+    family: 'issue5ReaderStaging',
+    edition: 'plain',
+    fingerprint: '023756b3578cea9d41a42fd848e6722b24ddb3318319cdda1baed5fa619c4a36',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-staging-staging',
+    family: 'issue5ReaderStaging',
+    edition: 'staging',
+    fingerprint: 'a2fda4ebe2311b62ea9f962ca3cc52c483b32b82a2743586e23fb61645fe7dd8',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
   {
     id: 'issue5-reader-paper-production',
     family: 'issue5ReaderPaper',

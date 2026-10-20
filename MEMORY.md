@@ -5,9 +5,9 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 ## Snapshot
 
 - 20 October #5/PR79: author accepts reader preview and authorizes permanent staging.
-  Ready1eb9ecde exposed stale offline review exports in navigation39425928566;
-  canonical regeneration fixes checksum freshness without changing hosted runtime.
-  R18 media/PDF preserved. Final Ready/staging evidence belongs to the live PR/issue:
+  Ready3407b55 passes1011/1011. Staging39432995449 stopped before upload on wrapper
+  timing, regex scanning and absent publisher dependencies in old main controller.
+  Bounded compatibility correction preserves R18 media/PDF; final evidence in PR/issue:
   review/issue-5/2026-10-20-reader-interactions.md#permanent-staging-admission.
 
 - 20 October #2/PR79: author requests R18 PDF/native preview and official event name

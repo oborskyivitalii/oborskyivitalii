@@ -218,6 +218,15 @@ RI/CI routes as required by SITE-CHECK-PROFILES.
 
 ## One pre-upload preflight and Cloudflare admission
 
+PR79 includes a finite build-CLI bridge for the exact82b57b89 main controller,
+which predates the locked publisher install and explicit article-preview mode.
+Only its main workflow/ref/event, original workspace and color-artifact command
+can prepare the already pinned publisher and declared article preview. Explicit
+modes, nested validation, ordinary builds and production remain on their existing
+paths. Admission, all source/scanner/browser gates, protected publication and
+recovery still belong to the trusted controller. Remove this bridge after the
+updated workflow is integrated into main; a newer controller cannot select it.
+
 Before an explicit stable-staging or optional full diagnostic upload, prepare the
 selected frozen artifact once, then run the existing local check owner:
 

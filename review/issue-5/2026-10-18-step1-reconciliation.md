@@ -77,7 +77,7 @@ and main reader55284B. The next task should reduce generated reader overhead,
 not remove prose or raise the budget.
 
 Final validation results are retained in the companion
-`2026-10-18-step1-validation.json` and the issue/PR checkpoint. They bind the exact
+`2026-10-18-step1-validation.json.gz` and the issue/PR checkpoint. They bind the exact
 technical source identities and editorial inventory. Initial integration failures
 were used to resolve fixture dependency gaps, current runtime tuples and staging
 isolation; failed attempts are not successful acceptance evidence.

@@ -208,6 +208,16 @@ test('actual preflight producer and consumer agree on complete source guards and
       }
     );
     assert.equal(result.pass, true);
+    assert.equal(
+      result.checks.find((row) => row.id === 'source-tests').timeoutMs,
+      390000,
+      'the wrapper covers both independently bounded native source batches plus reporting grace'
+    );
+    assert.equal(
+      result.checks.find((row) => row.id === 'security').timeoutMs,
+      180000,
+      'scanner deadlines remain unchanged'
+    );
     assert.deepEqual(result.checks.find((row) => row.id === 'python-tests').command, [
       path.join(
         require('../tools/quality/common.cjs').tools,

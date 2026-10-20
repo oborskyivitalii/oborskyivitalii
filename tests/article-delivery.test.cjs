@@ -16,6 +16,79 @@ const { articleURLs } = require('../tools/quality/article-browser.cjs');
 const key = 'pmday-two-shifts:en';
 let prepared;
 
+test('legacy trusted staging build prepares the locked publisher without changing ordinary or production builds', () => {
+  const root = path.resolve(__dirname, '..'),
+    out = path.join(root, 'color-artifact'),
+    environment = {
+      CI: 'true',
+      GITHUB_REPOSITORY: 'oborskyivitalii/oborskyivitalii',
+      GITHUB_SHA: '82b57b8948c6c30143213b846ee2848d06f8d200',
+      GITHUB_WORKFLOW_REF:
+        'oborskyivitalii/oborskyivitalii/.github/workflows/site-color-review.yml@refs/heads/main',
+      GITHUB_REF: 'refs/heads/main',
+      GITHUB_WORKSPACE: root,
+      GITHUB_EVENT_NAME: 'issue_comment',
+      SITE_CANDIDATE_SHA: require('node:child_process')
+        .execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' })
+        .trim(),
+    };
+  assert.deepEqual(artifact.legacyStagingOptions(out, environment), { articlePreviewMode: 'true' });
+  assert.deepEqual(artifact.legacyStagingOptions(out, {}), {});
+  for (const [key, value] of [
+    ['CI', 'false'],
+    ['GITHUB_REPOSITORY', 'foreign/repository'],
+    ['GITHUB_SHA', 'a'.repeat(40)],
+    ['GITHUB_REF', 'refs/pull/79/merge'],
+    ['GITHUB_WORKSPACE', '/another-workspace'],
+    ['GITHUB_EVENT_NAME', 'pull_request'],
+    [
+      'GITHUB_WORKFLOW_REF',
+      'oborskyivitalii/oborskyivitalii/.github/workflows/site-release-candidate.yml@refs/heads/main',
+    ],
+    ['SITE_ARTICLE_PREVIEW', 'false'],
+    ['SITE_ARTICLE_PREVIEW', 'template'],
+    ['SITE_VALIDATION_LEVEL', 'staging'],
+    ['SITE_ARTIFACT_MANIFEST', '/frozen/artifact.json'],
+  ])
+    assert.deepEqual(artifact.legacyStagingOptions(out, { ...environment, [key]: value }), {});
+  assert.deepEqual(
+    artifact.legacyStagingOptions(path.join(root, 'quality-artifact'), environment),
+    {}
+  );
+  const calls = [];
+  const execute = (...args) => {
+    calls.push(args);
+    return { status: 0 };
+  };
+  assert.deepEqual(artifact.prepareLegacyStaging(out, environment, execute), {
+    articlePreviewMode: 'true',
+  });
+  assert.deepEqual(calls[0].slice(0, 2), [
+    'npm',
+    ['ci', '--prefix', 'tools/publishing/toolchain', '--ignore-scripts'],
+  ]);
+  assert.equal(calls[0][2].cwd, root);
+  assert.throws(
+    () =>
+      artifact.prepareLegacyStaging(
+        out,
+        { ...environment, SITE_CANDIDATE_SHA: 'a'.repeat(40) },
+        execute
+      ),
+    /candidate differs/
+  );
+  assert.throws(
+    () => artifact.prepareLegacyStaging(out, environment, () => ({ status: 1 })),
+    /preparation failed/
+  );
+  assert.deepEqual(
+    artifact.prepareLegacyStaging(out, {}, () => {
+      throw Error('no ordinary install');
+    }),
+    {}
+  );
+});
+
 test.before(() => {
   prepared = fs.mkdtempSync(path.join(os.tmpdir(), 'article-delivery-source-'));
   require('../tools/site/build.cjs').build({

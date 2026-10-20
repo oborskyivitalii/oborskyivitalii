@@ -160,7 +160,7 @@ function components(article, layout) {
       linkDepth++;
       try {
         const next = parent?.children[parent.children.indexOf(node) + 1];
-        const citation = next?.type === 'text' && /^\s*\[(\d{1,3})\]/.exec(next.value);
+        const citation = next?.type === 'text' && next.value.match(/^\s*\[(\d{1,3})\]/);
         const duplicate =
           !noteDepth &&
           !protectedLinks.has(node) &&

@@ -258,3 +258,48 @@ reader stylesheet/history and construct the historical fixture from its actual
 cc115c42 docs tree; retain byte-for-byte old/new package comparisons and current
 fixture coverage separately. Prepared engine/staging43/43 pass. No runtime,
 selector, budget or original historical package is changed by these fixes.
+
+Ready3407b557 passes1011/1011 and its clean11/11 policy. Owner command6292307683
+started trusted-main staging39432995449/1 on controller82b57b89. Prepublication
+stopped before upload: its old210s wrapper terminated the now-two-process source
+run, Semgrep interpreted literal RegExp.exec as a shell call, and generated
+publication checks lacked the publisher dependencies in this pre-publisher main
+controller. All other guards, including advisories/Bandit, passed in that attempt.
+
+Derive the wrapper deadline from the actual selected one/two batch inventory and
+retain each native180s/16MiB, scanner180s and job10-minute bound. Use the equivalent
+String.match reader expression; scanner policy is unchanged. Browser JS and CSS
+bytes remain identical, but source-derived engine identity changes, so add the
+exact issue5ReaderStaging plain/staging/production family while retaining history.
+All three actual temporary renditions match their pins; no production action.
+
+Bridge only the exact old82b57b89 main workflow, main ref, authorized event type,
+repository/workspace and color-artifact command when no explicit preview mode or
+validation context is supplied. Its CLI installs the existing exact locked
+publisher with ignore-scripts and selects the existing explicit article preview.
+Ordinary APIs/builds, nested validation, explicit modes and production workflows
+retain their behavior. The existing controller still owns source admission,
+protected environments, all guards, promotion and recovery. No direct upload or
+new publishing authority is added. Retire this finite compatibility bridge after
+the updated workflow is on main; newer controllers cannot select it. Prepared
+103 owning compatibility/reader/Color/profile checks pass, including adversarial
+context, wrong-source and failed-install cases.
+
+Pinned detect-secrets1.5.0 was also run locally on the same1230 tracked text inputs
+and default no-verify selector. After the existing generated/publication proof,
+725 exact non-RI observations lacked historical triage:704 SHA256 literals,
+18 recorded Git identity occurrences and3 synthetic credential-URL rejection
+fixtures. Each literal was matched to its observed hashed value and inspected
+field role. Current runtime bytes/three editions were reproduced; three distinct
+historical local commit objects are unavailable and remain explicitly unverified.
+Retained CI/edition metadata is classified as public identity data, not accepted
+historical execution or editorial correctness. The fixture URLs are rejected
+before networking. Append only exact path/type/hash entries to the existing
+publication ledger, retaining every predecessor row, all scanner rules and the
+2MB limit. The existing historical-evidence convention stores the step1 raw JSON losslessly as json.gz: decompressing reproduces every original byte; all314 findings in it were inspected before archival. The prior Git blob and this review preserve recovery. Only411 still-applicable text findings are appended; no existing row is removed. Implementation self-review; whole
+independent review remains pending. The raw scan, excluding only the now-archived historical path, is rechecked with the same producer proof and closed-ledger admission before CI. RI/coupling
+checksums retain their existing separately verified dynamic owner.
+
+Archived step1 validation: uncompressed SHA256 `f223ed67c24dde020e24a306fe2227f2b9cbfc41d9a2fa02e7393edb2a54c048`; original source is the unchanged path in3407b557, lossless gzip uses mtime0. This is storage of already inspected dated diagnostics, not a scanner exclusion or acceptance claim.
+
+Prepared final checks: Basic16+Color10, quality/scanner34, maintained Python115, focused compatibility/reader103 and engine/controller72 pass; ESLint passes. A fresh pinned scan of1229 tracked text inputs is admitted by the unchanged generated, exact-ledger and verified RI/CI owners with zero unknown findings. Native Ready and complete stable staging must still run on the clean committed source.

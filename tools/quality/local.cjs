@@ -367,7 +367,7 @@ function sourceIdentity() {
 function prepublication(level, directory, options = {}) {
   assert.ok(['staging', 'production'].includes(level), 'unknown prepublication level');
   const input = path.resolve(directory),
-    sourceLimits = require('./source-tests.cjs').executionLimits;
+    sourceTests = require('./source-tests.cjs');
   const reportFile = path.resolve(
     options.report ||
       path.join(
@@ -419,10 +419,11 @@ function prepublication(level, directory, options = {}) {
     const started = Date.now();
     // The reporting wrapper must outlive its own bounded test child so timeout
     // cleanup and original TAP/stderr can finish before the outer deadline.
-    const timeoutMs =
-      id === 'source-tests' ? sourceLimits.timeoutMs + sourceLimits.reportGraceMs : 180000;
+    let timeoutMs = 180000;
     let result;
     try {
+      if (id === 'source-tests')
+        timeoutMs = sourceTests.wrapperTimeout(root, args[args.indexOf('--profile') + 1]);
       result = execute(command, args, {
         cwd: root,
         env: environment,
