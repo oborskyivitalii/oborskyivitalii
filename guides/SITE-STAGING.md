@@ -247,7 +247,7 @@ the production-candidate freeze instead authenticates successful staging without
 repeating its checks. Ordinary Draft preview keeps its existing bounded path. Diagnostic reports are
 retained even when preparation fails. The later native upload identity binding,
 host/browser/performance/live leases and release decisions remain mandatory;
-preflight never grants production eligibility or deployment authority. The CLI uses two slots for independent guards; package proof and final identity checks wait for preceding work. Commands, per-process time/output bounds, failure retention and the overall controller budget stay unchanged.
+preflight never grants production eligibility or deployment authority. The CLI uses two slots for independent guards, with source tests and security scans running alone; package proof and final identity checks wait for preceding work. Commands, per-process time/output bounds, failure retention and the overall controller budget stay unchanged.
 
 Run the separately selected current owning-issue policy on that same clean
 source before preparation; the enduring Python runner excludes numbered task
@@ -318,3 +318,5 @@ legacy package verification remains for historical/recovery consumers. Canonical
 migration from the current project-prefix origin, live deployment and actual
 compensation remain separate #39 cutover acceptance, not fixture results. See the scoped
 [execution record](../review/issue-72/2026-10-16-cloudflare-only-staging.md).
+
+Source tests and security scans have exclusive CPU phases; other independent preflight guards retain at most two slots. Package proof and final identity checks remain barriers. Lossless WebP uses the faster method4 encoder setting at quality100; RGBA, ICC, dimensions, originals, input/output limits and pinned codec verification remain mandatory. The reviewed R18 slide bytes are identical to method6.

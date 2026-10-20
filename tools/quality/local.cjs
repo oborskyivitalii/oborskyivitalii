@@ -414,6 +414,7 @@ function preparePrepublication(level, directory, options = {}) {
       args,
       dependencies,
       barrier: ['package-proof', 'artifact-unchanged'].includes(id),
+      exclusive: ['source-tests', 'security'].includes(id),
     });
   const node = (id, file, args = [], dependencies = []) =>
     check(id, process.execPath, [file, ...args], dependencies);

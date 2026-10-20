@@ -634,7 +634,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "51446045f8952b7fb53b1fe9772a32d6016b6e6413bc171e89592842ad0a73c9",
+    "digest": "671dcda5d3dfa0b143cffe25a7be15d42ff45302169cd731711c902fe7e5b708",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -750,7 +750,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "18b4d70468471d077df76c7debabd4dd10a83d546bd56b05141c9747f051ff23"
+        "sha256": "f17e98e469c5640d5645a72d11498f5031d3c5468412ea5ef59142cc4f1e9894"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -846,7 +846,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "3eab91aa4c7c3fd6b13f7d3e5d308fe89161fd341c4f0608324724de5c5fe89c"
+        "sha256": "5a69e37a219d84fe8fd8de7ede61cee34e5b43ed5de435a8208a5995e95d8b6e"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -862,7 +862,7 @@
       },
       {
         "path": "tests/staging-regression.test.cjs",
-        "sha256": "17b81f61a5556645ebed5a50a8f820ab1a8e14052840a5d2326635856ce4942a"
+        "sha256": "c5cef63d18b1857ba01ac6ef2a9b4802e6007e3a32c9792c9249910cd2aa4346"
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
@@ -978,7 +978,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "76dca6e580be82b7d1a4997b3c25ffde5888d2fda6a2c019c3873832093f8c84"
+        "sha256": "4bc45ea2e9b861bd244294c02ec0041e7822c98952a845e61fdd7e36317ad53f"
       },
       {
         "path": "tools/quality/source-tests.cjs",

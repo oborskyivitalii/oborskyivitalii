@@ -1,5 +1,5 @@
 'use strict';
-// Independent guards share two slots; package/final identity checks are barriers.
+// Light guards share two slots; CPU-heavy guards run alone, with final barriers.
 const fs = require('node:fs');
 const path = require('node:path');
 const cp = require('node:child_process');
@@ -132,33 +132,41 @@ async function runTask(task, prepared, execute, signal) {
   record(task, prepared, result, started, options.timeout);
 }
 
+function advance(prepared, remaining, running, state, execute, controller) {
+  for (const task of remaining) {
+    if (controller.signal.aborted) {
+      blocked(task, prepared.checks, ['interrupted']);
+      remaining.delete(task);
+    } else if (state.exclusive || (task.exclusive && running.size)) break;
+    else if (running.size < 2 && ready(task, prepared)) {
+      remaining.delete(task);
+      const missing = dependencies(task, prepared.checks);
+      if (missing.length) blocked(task, prepared.checks, missing);
+      else {
+        state.exclusive = Boolean(task.exclusive);
+        const work = runTask(task, prepared, execute, controller.signal).finally(() => {
+          running.delete(work);
+          if (task.exclusive) state.exclusive = false;
+        });
+        running.add(work);
+      }
+    }
+  }
+}
+
 async function runParallel(prepared, { execute = executeAsync, signal } = {}) {
   const controller = new AbortController();
   const interrupt = () => controller.abort();
   const remaining = new Set(prepared.tasks);
   const running = new Set();
+  const state = { exclusive: false };
   process.once('SIGTERM', interrupt);
   process.once('SIGINT', interrupt);
   signal?.addEventListener('abort', interrupt, { once: true });
   if (signal?.aborted) interrupt();
   try {
     while (remaining.size || running.size) {
-      for (const task of remaining) {
-        if (controller.signal.aborted) {
-          blocked(task, prepared.checks, ['interrupted']);
-          remaining.delete(task);
-        } else if (running.size < 2 && ready(task, prepared)) {
-          remaining.delete(task);
-          const missing = dependencies(task, prepared.checks);
-          if (missing.length) blocked(task, prepared.checks, missing);
-          else {
-            const work = runTask(task, prepared, execute, controller.signal).finally(() =>
-              running.delete(work)
-            );
-            running.add(work);
-          }
-        }
-      }
+      advance(prepared, remaining, running, state, execute, controller);
       if (running.size) await Promise.race(running);
       else if (remaining.size) throw Error('Unresolved prepublication guard dependencies');
     }

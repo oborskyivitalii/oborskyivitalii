@@ -93,7 +93,7 @@ def encode(request):
                     format="WEBP",
                     lossless=True,
                     exact=True,
-                    method=6,
+                    method=4,
                     quality=100,
                     icc_profile=icc,
                 )

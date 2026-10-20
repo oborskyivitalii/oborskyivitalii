@@ -75,10 +75,48 @@ test('parallel preflight overlaps real guards in two slots and waits before pack
   }
 });
 
+test('CPU-heavy preflight guards run alone while other real guards retain two slots', async (t) => {
+  const directory = delivery.temporary(t),
+    runner = require('../tools/quality/prepublication-runner.cjs');
+  const prepared = {
+    checks: [],
+    tasks: ['a', 'b', 'source-tests', 'c', 'security', 'end'].map((id) => ({
+      id,
+      command: process.execPath,
+      args: ['-e', 'setTimeout(()=>process.stdout.write(process.argv[1]),50)', id],
+      dependencies: [],
+      exclusive: ['source-tests', 'security'].includes(id),
+    })),
+    execution: {
+      root: directory,
+      environment: process.env,
+      reportDirectory: directory,
+      reportStem: 'exclusive',
+      timeout: () => 3000,
+    },
+  };
+  const active = new Set();
+  await runner.runParallel(prepared, {
+    execute: async (command, args, options) => {
+      const id = args.at(-1);
+      if (['source-tests', 'security'].includes(id)) assert.equal(active.size, 0);
+      else assert.ok(!active.has('source-tests') && !active.has('security'));
+      active.add(id);
+      try {
+        return await runner.executeAsync(command, args, options);
+      } finally {
+        active.delete(id);
+      }
+    },
+  });
+  assert.equal(active.size, 0);
+  assert.equal(prepared.checks.length, 6);
+  assert.ok(prepared.checks.every((row) => row.pass));
+});
+
 test('parallel preflight retains every independent failure, blocks dependencies and preserves canonical accounting', async (t) => {
   const directory = delivery.temporary(t),
     calls = [];
-  let releaseSource;
   const result = await local.prepublicationParallel('staging', path.join(directory, 'artifact'), {
     report: path.join(directory, 'reports/preflight.json'),
     identify: () => ({
@@ -88,14 +126,7 @@ test('parallel preflight retains every independent failure, blocks dependencies 
     }),
     execute: async (_command, args) => {
       calls.push(args[0] + ':' + (args[1] || ''));
-      if (args[0] === 'tools/quality/source-tests.cjs')
-        return new Promise((resolve) => {
-          releaseSource = () => resolve({ status: 0, stdout: 'source complete', stderr: '' });
-        });
-      if (args[0] === 'tools/quality/scanners.cjs' && args[1] === 'security') releaseSource();
       const fail = args[0] === 'tools/quality/artifact.cjs' && args[1] === 'verify';
-      // An invalid artifact blocks the security task, so independently finish the source.
-      if (fail) releaseSource();
       return {
         status: fail ? 1 : 0,
         stdout: 'native output',
@@ -134,7 +165,6 @@ test('parallel preflight retains every independent failure, blocks dependencies 
 test('parallel preflight completes the full guard inventory before final source admission', async (t) => {
   const directory = delivery.temporary(t);
   for (const level of ['staging', 'production']) {
-    let finishSource;
     let sourceFinished = false;
     let identities = 0;
     const result = await local.prepublicationParallel(level, path.join(directory, 'artifact'), {
@@ -145,14 +175,10 @@ test('parallel preflight completes the full guard inventory before final source 
         sourceDirty: level === 'production' && ++identities > 1,
       }),
       execute: async (_command, args) => {
-        if (args[0] === 'tools/quality/source-tests.cjs')
-          return new Promise((resolve) => {
-            finishSource = () => {
-              sourceFinished = true;
-              resolve({ status: 0, stdout: 'original source output', stderr: '' });
-            };
-          });
-        if (args[0] === 'tools/quality/scanners.cjs' && args[1] === 'security') finishSource();
+        if (args[0] === 'tools/quality/source-tests.cjs') {
+          sourceFinished = true;
+          return { status: 0, stdout: 'original source output', stderr: '' };
+        }
         if (args.includes('--package-gate')) assert.equal(sourceFinished, true);
         return { status: 0, stdout: 'original guard output', stderr: '' };
       },

@@ -5,8 +5,8 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 ## Snapshot
 
 - 20 October #5/PR79: author accepts reader preview and authorizes permanent staging.
-  Readya55b4fb passes1012/1012; staging39441774601 reached the10-minute build ceiling
-  after source/Python/security success. Two-slot preflight retains every guard/limit.
+  Ready3a0b20b passes1017/1017; staging39447032022 hit per-process CPU limits.
+  Isolate heavy guards; lossless method4 keeps all7 R18 slide bytes, ~10x faster.
   Bounded compatibility correction preserves R18 media/PDF; final evidence in PR/issue:
   review/issue-5/2026-10-20-reader-interactions.md#permanent-staging-admission.
 
