@@ -8,41 +8,22 @@
       "id": "AC01",
       "intent": "Mandatory substantive independent subagent review after each work iteration",
       "automated_scope": "Existing guide/style routing and bounds checks establish mechanical structure only. Independent semantic review must inspect the actual rule, independence and iteration/correction/unavailable-review cases.",
-      "checks": [
-        "ROUTES",
-        "BOUNDS"
-      ],
-      "gates": [
-        "REVIEW"
-      ]
+      "checks": ["ROUTES", "BOUNDS"],
+      "gates": ["REVIEW"]
     },
     {
       "id": "AC02",
       "intent": "Recoverable iteration and correction review evidence without recursive paperwork",
       "automated_scope": "Existing catalog/freshness and route checks establish navigation and source identities only. They cannot establish that a subagent performed a substantive review or accepted dispositions.",
-      "checks": [
-        "CURRENT-RI",
-        "ROUTES"
-      ],
-      "gates": [
-        "REVIEW"
-      ]
+      "checks": ["CURRENT-RI", "ROUTES"],
+      "gates": ["REVIEW"]
     },
     {
       "id": "AC03",
       "intent": "Focused current-source integration, bounded checks, independent review and normal merge",
       "automated_scope": "Basic, style, current navigation and RI/CI checks cover their existing mechanical subsets. Independent review must inspect the complete diff, unchanged site/docs and CS applicability; actual GitHub linkage, merge decision and merged-source verification remain external.",
-      "checks": [
-        "BASIC",
-        "STYLE",
-        "CURRENT-RI",
-        "RI-CI"
-      ],
-      "gates": [
-        "REVIEW",
-        "LIVE",
-        "MERGED"
-      ]
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "gates": ["REVIEW", "LIVE", "MERGED"]
     }
   ],
   "checks": {

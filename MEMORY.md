@@ -6,7 +6,7 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 - Verified main: c4ed3dad7197bef2f9638c9500d66c12606f6eff, PR113 merged.
 - Current task: issue114, mandatory substantive independent subagent review
-  after every completed work iteration; branch work/issue-114-iteration-review.
+  after every completed work iteration; PR115/work/issue-114-iteration-review.
 - Canonical rule: CONTRIBUTING, routed from AGENTS and existing review templates.
 - Evidence: review/issue-114/2026-10-20-review.md. Verify its current candidate,
   actual independent review, checks and PR/merge status before continuation.
@@ -21,8 +21,13 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Open work
 
-- Complete issue114 independent review and exact clean-source checks, link the
-  PR and reconcile live acceptance. Normal merge verification precedes closure.
+- Issue114 I1 independent review and local exact-source acceptance passed.
+  GitHub navigation/acceptance pass; Basic39482689723 failed only policy JSON
+  formatting. I2 applies pinned formatting without changing the policy value.
+- Finish I2 independent correction review, current-source CI and required
+  staging/normal merge. User explicitly authorized publication and incorporation.
+- Other active owner staging was PR79 run39480944615; revalidate before staging
+  PR115, preserving serialization and recovery/lease checks.
 - PR79's article/stable-staging continuation stays with issue5/PR79. PR113's
   bootstrap is merged; revalidate that branch and retire bridge adapters under
   its own accepted route. This instruction change does not execute that work.
