@@ -10021,6 +10021,12 @@
       "role": "validator",
       "owner": "tools/quality/README.md"
     },
+    "tools/quality/prepublication-runner.cjs": {
+      "kind": "file",
+      "purpose": "Bounded two-slot prepublication guard execution, preserved native streams, dependency failures, package barriers and cancellation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/prepublication.cjs": {
       "kind": "file",
       "purpose": "Authenticate and verify complete same-run/attempt staging preflight reports and immutable original scanner bytes without rerunning guards.",

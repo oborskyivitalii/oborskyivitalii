@@ -329,3 +329,5 @@ tooling findings to exact source/line bytes, rules, owners and a review deadline
 Raw findings remain in the report; new/source-changed/expired findings fail.
 Secrets admission for generated RI/coupling checksum fields requires actual
 verification; other public metadata hashes use exact reviewed baseline entries.
+
+Prepublication CLI guards use at most two concurrent native commands. Dependency failures block their consumers; package proof and final identity checks wait for earlier work. The synchronous API retains the same guard inventory and reports. Native time/output limits, source-file concurrency and controller budgets are unchanged; real barrier, failure, timeout, overflow and cancellation regressions are in publication-records.test.cjs.

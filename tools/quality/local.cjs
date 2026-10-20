@@ -364,7 +364,7 @@ function sourceIdentity() {
   };
 }
 
-function prepublication(level, directory, options = {}) {
+function preparePrepublication(level, directory, options = {}) {
   assert.ok(['staging', 'production'].includes(level), 'unknown prepublication level');
   const input = path.resolve(directory),
     sourceTests = require('./source-tests.cjs');
@@ -405,55 +405,16 @@ function prepublication(level, directory, options = {}) {
     SITE_REPORT_DIR: reportDirectory,
     SITE_VALIDATION_LEVEL: level,
   };
-  const execute =
-    options.execute || ((command, args, execution) => cp.spawnSync(command, args, execution));
   const checks = [];
-  function check(id, command, args, dependencies = []) {
-    const blocked = dependencies.filter(
-      (name) => !checks.some((row) => row.id === name && row.pass)
-    );
-    if (blocked.length) {
-      checks.push({ id, pass: false, status: 'blocked', blockedBy: blocked });
-      return;
-    }
-    const started = Date.now();
-    // The reporting wrapper must outlive its own bounded test child so timeout
-    // cleanup and original TAP/stderr can finish before the outer deadline.
-    let timeoutMs = 180000;
-    let result;
-    try {
-      if (id === 'source-tests')
-        timeoutMs = sourceTests.wrapperTimeout(root, args[args.indexOf('--profile') + 1]);
-      result = execute(command, args, {
-        cwd: root,
-        env: environment,
-        encoding: 'utf8',
-        timeout: timeoutMs,
-        maxBuffer: 16 * 1024 * 1024,
-      });
-    } catch (error) {
-      result = { status: null, error, stdout: '', stderr: error.message };
-    }
-    const stdout = path.join(reportDirectory, reportStem + '-' + id + '.stdout');
-    const stderr = path.join(reportDirectory, reportStem + '-' + id + '.stderr');
-    fs.writeFileSync(stdout, String(result.stdout || ''));
-    fs.writeFileSync(stderr, String(result.stderr || result.error?.message || ''));
-    checks.push({
+  const tasks = [];
+  const check = (id, command, args, dependencies = []) =>
+    tasks.push({
       id,
-      command: [command, ...args],
-      pass: result.status === 0 && !result.error,
-      status: result.status === 0 && !result.error ? 'passed' : 'failed',
-      exitCode: result.status ?? null,
-      signal: result.signal || null,
-      error: result.error
-        ? { name: result.error.name, message: result.error.message, code: result.error.code }
-        : null,
-      timeoutMs,
-      elapsedMs: Date.now() - started,
-      stdout,
-      stderr,
+      command,
+      args,
+      dependencies,
+      barrier: ['package-proof', 'artifact-unchanged'].includes(id),
     });
-  }
   const node = (id, file, args = [], dependencies = []) =>
     check(id, process.execPath, [file, ...args], dependencies);
   const python = (id, file, args = []) => check(id, 'python3', [file, ...args]);
@@ -545,22 +506,18 @@ function prepublication(level, directory, options = {}) {
     node(kind, 'tools/quality/scanners.cjs', [kind], ['artifact-source']);
   node('selftest', 'tools/quality/selftest.cjs');
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'site-prepublication-'));
-  try {
-    node(
-      'package-proof',
-      'tools/quality/local.cjs',
-      ['--package-gate', input],
-      ['artifact-source', 'edition-rights']
-    );
-    node(
-      'package',
-      'tools/staging/package.cjs',
-      ['build', input, path.join(temporary, 'package')],
-      ['package-proof']
-    );
-  } finally {
-    fs.rmSync(temporary, { recursive: true, force: true });
-  }
+  node(
+    'package-proof',
+    'tools/quality/local.cjs',
+    ['--package-gate', input],
+    ['artifact-source', 'edition-rights']
+  );
+  node(
+    'package',
+    'tools/staging/package.cjs',
+    ['build', input, path.join(temporary, 'package')],
+    ['package-proof']
+  );
   node(
     'artifact-unchanged',
     '-e',
@@ -572,39 +529,81 @@ function prepublication(level, directory, options = {}) {
     ],
     ['artifact-source']
   );
-  const finalIdentity = identify();
-  checks.push({
-    id: 'unchanged-source',
-    pass: JSON.stringify(identity) === JSON.stringify(finalIdentity),
-    status: JSON.stringify(identity) === JSON.stringify(finalIdentity) ? 'passed' : 'failed',
-  });
-  const result = {
-    schema: 1,
-    kind: 'prepublication-preflight',
-    execution: {
-      runId: process.env.GITHUB_RUN_ID || null,
-      attempt: process.env.GITHUB_RUN_ATTEMPT || null,
-    },
-    ...identity,
-    candidateCommit: environment.SITE_CANDIDATE_SHA,
-    validationLevel: level,
-    artifactManifest: path.join(input, 'artifact.json'),
+  return {
+    tasks,
     checks,
-    artifactDigest: artifactRecord?.artifactDigest || null,
-    artifactManifestDigest,
-    edition: artifactRecord?.edition || null,
-    pass: checks.every((row) => row.pass),
-    fullGate: false,
-    productionEligible: false,
-    deploymentAuthorized: false,
+    execution: {
+      root,
+      environment,
+      reportDirectory,
+      reportStem,
+      timeout: (task) =>
+        task.id === 'source-tests'
+          ? sourceTests.wrapperTimeout(root, task.args[task.args.indexOf('--profile') + 1])
+          : 180000,
+    },
+    dispose: () => fs.rmSync(temporary, { recursive: true, force: true }),
+    finish: () => {
+      checks.sort(
+        (left, right) =>
+          require('./prepublication.cjs').checkIds(level).indexOf(left.id) -
+          require('./prepublication.cjs').checkIds(level).indexOf(right.id)
+      );
+      const finalIdentity = identify();
+      checks.push({
+        id: 'unchanged-source',
+        pass: JSON.stringify(identity) === JSON.stringify(finalIdentity),
+        status: JSON.stringify(identity) === JSON.stringify(finalIdentity) ? 'passed' : 'failed',
+      });
+      const result = {
+        schema: 1,
+        kind: 'prepublication-preflight',
+        execution: {
+          runId: process.env.GITHUB_RUN_ID || null,
+          attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+        },
+        ...identity,
+        candidateCommit: environment.SITE_CANDIDATE_SHA,
+        validationLevel: level,
+        artifactManifest: path.join(input, 'artifact.json'),
+        checks,
+        artifactDigest: artifactRecord?.artifactDigest || null,
+        artifactManifestDigest,
+        edition: artifactRecord?.edition || null,
+        pass: checks.every((row) => row.pass),
+        fullGate: false,
+        productionEligible: false,
+        deploymentAuthorized: false,
+      };
+      assert.deepEqual(
+        checks.map((row) => row.id),
+        require('./prepublication.cjs').checkIds(level)
+      );
+      result.files = require('./prepublication.cjs').capture(reportDirectory, reportFile);
+      fs.writeFileSync(reportFile, JSON.stringify(result, null, 2) + '\n');
+      return result;
+    },
   };
-  assert.deepEqual(
-    checks.map((row) => row.id),
-    require('./prepublication.cjs').checkIds(level)
-  );
-  result.files = require('./prepublication.cjs').capture(reportDirectory, reportFile);
-  fs.writeFileSync(reportFile, JSON.stringify(result, null, 2) + '\n');
-  return result;
+}
+
+function prepublication(level, directory, options = {}) {
+  const prepared = preparePrepublication(level, directory, options);
+  try {
+    require('./prepublication-runner.cjs').runSync(prepared, options.execute);
+    return prepared.finish();
+  } finally {
+    prepared.dispose();
+  }
+}
+
+async function prepublicationParallel(level, directory, options = {}) {
+  const prepared = preparePrepublication(level, directory, options);
+  try {
+    await require('./prepublication-runner.cjs').runParallel(prepared, options);
+    return prepared.finish();
+  } finally {
+    prepared.dispose();
+  }
 }
 
 if (require.main === module) {
@@ -615,9 +614,16 @@ if (require.main === module) {
         level && directory && !extra.length && (!flag || (flag === '--report' && report)),
         'Usage: local.cjs --prepublication staging|production DIRECTORY [--report FILE]'
       );
-      const result = prepublication(level, directory, { report });
-      console.log(JSON.stringify(result));
-      if (!result.pass) process.exitCode = 1;
+      prepublicationParallel(level, directory, { report }).then(
+        (result) => {
+          console.log(JSON.stringify(result));
+          if (!result.pass) process.exitCode = 1;
+        },
+        (error) => {
+          console.error(error.message);
+          process.exitCode = 1;
+        }
+      );
     } else if (process.argv[2] === '--ci-package') ciPackage(path.resolve(process.argv[3]));
     else if (process.argv[2] === '--content-package')
       checkContent(contentArguments(process.argv.slice(3)));
@@ -645,4 +651,5 @@ module.exports = {
   finiteGeometry,
   tests,
   prepublication,
+  prepublicationParallel,
 };

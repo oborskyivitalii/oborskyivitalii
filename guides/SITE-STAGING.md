@@ -247,7 +247,7 @@ the production-candidate freeze instead authenticates successful staging without
 repeating its checks. Ordinary Draft preview keeps its existing bounded path. Diagnostic reports are
 retained even when preparation fails. The later native upload identity binding,
 host/browser/performance/live leases and release decisions remain mandatory;
-preflight never grants production eligibility or deployment authority.
+preflight never grants production eligibility or deployment authority. The CLI uses two slots for independent guards; package proof and final identity checks wait for preceding work. Commands, per-process time/output bounds, failure retention and the overall controller budget stay unchanged.
 
 Run the separately selected current owning-issue policy on that same clean
 source before preparation; the enduring Python runner excludes numbered task

@@ -243,7 +243,8 @@
         "review/issue-5/2026-10-13-color-runtime.json",
         "tools/quality/source-test-worker.cjs",
         "tools/quality/prepublication.cjs",
-        "tests/prepublication-reuse.test.cjs"
+        "tests/prepublication-reuse.test.cjs",
+        "tools/quality/prepublication-runner.cjs"
       ],
       "checks": [
         "acceptance-policy",
@@ -633,7 +634,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "4d3cc93ac2f29d98a89b89b3d89191dcbc6877a0e5cbd3d2ae3ea0be846bd162",
+    "digest": "51446045f8952b7fb53b1fe9772a32d6016b6e6413bc171e89592842ad0a73c9",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -749,7 +750,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "b62fb6dfd350a6f757933d811887d0cc467c15a695a0dc704cd282a3be34dcea"
+        "sha256": "18b4d70468471d077df76c7debabd4dd10a83d546bd56b05141c9747f051ff23"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -845,7 +846,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "7528eb08c583ceeb66bffb1af8b7c679a2c268bb787273a47cfae25f31b57d01"
+        "sha256": "3eab91aa4c7c3fd6b13f7d3e5d308fe89161fd341c4f0608324724de5c5fe89c"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -977,7 +978,7 @@
       },
       {
         "path": "tools/quality/local.cjs",
-        "sha256": "4901b839aeceaf62fd4a710b8c3f0119b2752382f408aad84ca52ffbac3fc54b"
+        "sha256": "76dca6e580be82b7d1a4997b3c25ffde5888d2fda6a2c019c3873832093f8c84"
       },
       {
         "path": "tools/quality/source-tests.cjs",

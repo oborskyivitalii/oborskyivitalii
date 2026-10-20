@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d683d826e1860cc2a5a3da53ca2238df662d7eb5055e9d9dc42d106f76adfc09",
+    "digest": "5d47d44c36d27de1da689a4337e738007856e56c63974404ee1a51e4f6fee70d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "b62fb6dfd350a6f757933d811887d0cc467c15a695a0dc704cd282a3be34dcea"
+        "sha256": "18b4d70468471d077df76c7debabd4dd10a83d546bd56b05141c9747f051ff23"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "6c826636914df428144e883def2ffa33153166bcc92dcd1e43806f4631813b75"
+        "sha256": "d0bd75261e55fceed3772cd6c6146f11cd4f96146e02ab4683444927a2365bdc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "42c281baa3daf3198c32cde5037ead278a4a6e29db812d82977620cf7270bb81"
+        "sha256": "d303f7bd510469cd2d11801f36bf5ae3526aaf618c60914453b38ce5e4b095f3"
       },
       {
         "path": "NOTICE.md",
@@ -580,7 +580,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "7528eb08c583ceeb66bffb1af8b7c679a2c268bb787273a47cfae25f31b57d01"
+        "sha256": "3eab91aa4c7c3fd6b13f7d3e5d308fe89161fd341c4f0608324724de5c5fe89c"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -625,7 +625,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "979f2250280c1f415ecfc2a572aac87df77a35c0a98c1077b7b116cb88b8e352"
+        "sha256": "3c63bd170599e14319a71367f591fd498f6210410975de3b1b7d9a318b36670b"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "9272d034a86c2fdfeb800f04f7c86dad710cf68cad3cfa51940e5922c2dd7537"
+        "sha256": "45847286d2c1b54c2a17cefc16474784e873566f623da94c79ae46f070e1fa9d"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6770,7 +6770,7 @@
       {
         "path": "tests/publication-records.test.cjs",
         "identity_mode": "content",
-        "sha256": "788682653edd81b35574989e2ea505241cd7559530ff75e0d1385f5c54cf5b18"
+        "sha256": "39d27348e0a67e685a4f0df70bdf65c5e6e4db943083443e2021d8afd7ae03d4"
       },
       {
         "path": "tests/publishing-history.test.cjs",
@@ -7535,7 +7535,7 @@
       {
         "path": "tools/quality/local.cjs",
         "identity_mode": "content",
-        "sha256": "4901b839aeceaf62fd4a710b8c3f0119b2752382f408aad84ca52ffbac3fc54b"
+        "sha256": "76dca6e580be82b7d1a4997b3c25ffde5888d2fda6a2c019c3873832093f8c84"
       },
       {
         "path": "tools/quality/motion.cjs",
@@ -7556,6 +7556,11 @@
         "path": "tools/quality/phase-checkpoint.cjs",
         "identity_mode": "content",
         "sha256": "07c5fb1cf3e59983e613879b629756f373b8107a0918d5f6b7a8e71a3d8a8bc0"
+      },
+      {
+        "path": "tools/quality/prepublication-runner.cjs",
+        "identity_mode": "content",
+        "sha256": "50a47b925f9ade48b1fdc0f1b244556d863e1994dc5056966d8babfd1b3b38fe"
       },
       {
         "path": "tools/quality/prepublication.cjs",
@@ -24908,6 +24913,17 @@
         "AGENTS.md"
       ],
       "title": "phase-checkpoint.cjs"
+    },
+    {
+      "path": "tools/quality/prepublication-runner.cjs",
+      "kind": "file",
+      "purpose": "Bounded two-slot prepublication guard execution, preserved native streams, dependency failures, package barriers and cancellation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "prepublication-runner.cjs"
     },
     {
       "path": "tools/quality/prepublication.cjs",

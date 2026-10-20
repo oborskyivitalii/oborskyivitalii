@@ -5,8 +5,8 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 ## Snapshot
 
 - 20 October #5/PR79: author accepts reader preview and authorizes permanent staging.
-  Ready3407b55 passes1011/1011. Staging39432995449 stopped before upload on wrapper
-  timing, regex scanning and absent publisher dependencies in old main controller.
+  Readya55b4fb passes1012/1012; staging39441774601 reached the10-minute build ceiling
+  after source/Python/security success. Two-slot preflight retains every guard/limit.
   Bounded compatibility correction preserves R18 media/PDF; final evidence in PR/issue:
   review/issue-5/2026-10-20-reader-interactions.md#permanent-staging-admission.
 
