@@ -233,7 +233,8 @@
 
 /* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
 .reader-mode,
-.reader-mode .article-toc {
+.reader-mode .article-toc,
+.reader-dialog {
   background: var(--paper);
   border-radius: var(--reading-surface-radius);
 }

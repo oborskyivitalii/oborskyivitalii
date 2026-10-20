@@ -33,6 +33,10 @@
   },
   "reader": {
     "references": "inline",
-    "images": "webp-lossless"
+    "images": "webp-lossless",
+    "sections": {
+      "references": "sources-and-downloads",
+      "appendices": ["sources-and-downloads"]
+    }
   }
 }

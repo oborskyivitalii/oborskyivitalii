@@ -311,6 +311,7 @@ function inlineAssets(html, environment) {
       .replace('<a', `<a data-offline-resource="${name}"`);
   };
   html = html.replace(/<a\b[^>]*href="([^"]+\.pdf)"[^>]*>/g, inlineLink);
+  html = html.replace(/<a\b[^>]*class="reader-image-open"[^>]*href="([^"]+)"[^>]*>/g, inlineLink);
   html = html.replace(
     /<section\b[^>]*id="article-materials"[^>]*>[\s\S]*?<\/section>/g,
     (section) => section.replace(/<a\b[^>]*href="([^"]+)"[^>]*>/g, inlineLink)

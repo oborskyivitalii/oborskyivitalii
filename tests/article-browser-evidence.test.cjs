@@ -9,6 +9,7 @@ const {
   installArticleHistoryDiagnostics,
   articleHistoryCheckpoint,
   articleAnchorCount,
+  validateReaderInteractions,
 } = require('../tools/quality/article-browser.cjs');
 const stage = require('../tools/quality/staging-regression.cjs');
 const fixture = require('./fixtures/staging-evidence.cjs');
@@ -105,6 +106,214 @@ function observed() {
     ],
   };
 }
+
+function readerObserved(mode) {
+  const before = {
+    url: 'https://candidate.example.invalid/author/article.html',
+    scroll: 600,
+  };
+  const rect = {
+    top: 24,
+    bottom: 700,
+    left: 16,
+    right: 374,
+    width: 358,
+    height: 676,
+  };
+  const opened = {
+    ...before,
+    open: true,
+    focusInside: true,
+    focusRestored: false,
+    viewport: { width: 390, height: 844 },
+    bounds: rect,
+    close: {
+      top: 44,
+      bottom: 88,
+      left: 270,
+      right: 354,
+      width: 84,
+      height: 44,
+    },
+    image: {
+      src: 'https://candidate.example.invalid/author/image.webp',
+      alt: 'Synthetic grid',
+      width: 310,
+      naturalWidth: 640,
+    },
+    original: 'https://candidate.example.invalid/author/image.webp',
+    stage: { width: 310, overflow: 'auto' },
+    pressed: 'false',
+    zoomed: false,
+  };
+  const closed = {
+    ...opened,
+    open: false,
+    focusInside: false,
+    focusRestored: true,
+    image: null,
+  };
+  const fragment = (hash) => ({
+    hash,
+    top: 190,
+    bottom: 220,
+    height: 844,
+    occlusion: 170,
+    appendixOpen: true,
+    dialogs: 0,
+  });
+  return {
+    inventory: {
+      headings: ['inspecting-a-figure'],
+      topics: [{ href: '#inspecting-a-figure', label: 'Inspecting a figure' }],
+      images: [
+        {
+          src: opened.image.src,
+          href: opened.image.src,
+          alt: opened.image.alt,
+        },
+      ],
+      citations: [{ id: 'reader-cite-1-1', href: '#reader-note-1', target: true }],
+    },
+    image:
+      mode === 'no-js'
+        ? null
+        : {
+            before,
+            opened,
+            zoomed: {
+              ...opened,
+              pressed: 'true',
+              zoomed: true,
+              image: { ...opened.image, width: 640 },
+            },
+            escape: closed,
+            close: closed,
+          },
+    source: {
+      expected: 'Format reference',
+      ...(mode === 'no-js'
+        ? { native: fragment('#reader-note-1') }
+        : {
+            before,
+            opened: {
+              ...opened,
+              image: null,
+              text: 'Format reference',
+              full: '#reader-note-1',
+              duplicateIds: 0,
+              returns: 0,
+            },
+            escape: closed,
+            full: fragment('#reader-note-1'),
+          }),
+      returned: fragment('#reader-cite-1-1'),
+    },
+    topic: {
+      ...fragment('#inspecting-a-figure'),
+      menu: {
+        before: { top: 90, bottom: 142, scroll: 900 },
+        opened: { top: 90, bottom: 500, scroll: 900 },
+      },
+    },
+    ...(mode === 'no-js' ? { native: { count: 2, hidden: true } } : {}),
+    ...(mode === 'normal'
+      ? {
+          cleanup: {
+            opened: true,
+            open: false,
+            images: 0,
+            connected: false,
+            live: 0,
+            overflow: 'auto',
+          },
+        }
+      : {}),
+  };
+}
+
+test('reader interaction evidence covers native fallbacks and measured dialog usability', () => {
+  for (const mode of ['normal', 'off', 'no-canvas', 'no-js'])
+    assert.doesNotThrow(() => validateReaderInteractions(readerObserved(mode), mode));
+  for (const corrupt of [
+    (row) => {
+      row.inventory.topics = [];
+    },
+    (row) => {
+      row.inventory.images[0].href += '?different';
+    },
+    (row) => {
+      row.inventory.citations[0].target = false;
+    },
+    (row) => {
+      row.image.opened.url += '#changed';
+    },
+    (row) => {
+      row.image.opened.scroll += 40;
+    },
+    (row) => {
+      row.image.opened.close.bottom = 900;
+    },
+    (row) => {
+      row.image.opened.focusInside = false;
+    },
+    (row) => {
+      row.image.zoomed.image.width = 310;
+    },
+    (row) => {
+      row.image.zoomed.stage.overflow = 'hidden';
+    },
+    (row) => {
+      row.image.escape.focusRestored = false;
+    },
+    (row) => {
+      row.image.close.image = row.image.opened.image;
+    },
+    (row) => {
+      row.source.opened.full = '#wrong-source';
+    },
+    (row) => {
+      row.source.opened.text = 'Truncated reference';
+    },
+    (row) => {
+      row.source.opened.duplicateIds = 1;
+    },
+    (row) => {
+      row.source.opened.returns = 1;
+    },
+    (row) => {
+      row.source.full.appendixOpen = false;
+    },
+    (row) => {
+      row.source.returned.hash = '#wrong-passage';
+    },
+    (row) => {
+      row.topic.top = 100;
+    },
+    (row) => {
+      row.topic.menu.opened.scroll = 400;
+    },
+    (row) => {
+      row.topic.menu.opened.bottom = 1000;
+    },
+    (row) => {
+      row.cleanup.open = true;
+    },
+    (row) => {
+      row.cleanup.images = 1;
+    },
+    (row) => {
+      row.cleanup.overflow = 'hidden';
+    },
+  ]) {
+    const wrong = structuredClone(readerObserved('normal'));
+    corrupt(wrong);
+    assert.throws(() => validateReaderInteractions(wrong, 'normal'));
+  }
+  const native = readerObserved('no-js');
+  native.native.hidden = false;
+  assert.throws(() => validateReaderInteractions(native, 'no-js'));
+});
 
 test('article anchor lookup accepts numeric HTML IDs and literal CSS punctuation', async () => {
   const numeric = '1-when-ideas-outlive-their-authors';
@@ -210,6 +419,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-reader-blocks',
     'issue5-reader-block-elements',
     'issue5-reader-visible-blocks',
+    'issue5-reader-interactions',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
@@ -219,6 +429,7 @@ test('reader-block evidence is required for every current identity while histori
     const detail = observed();
     for (const row of detail.observations) {
       row.head.engine = selectedEngine;
+      if (motion.readerInteractionsRequired(selectedEngine)) row.reader = readerObserved(row.mode);
       if (row.mode !== 'normal') continue;
       row.reading.entered = [];
       row.reading.maxEntering = 0;
@@ -250,7 +461,9 @@ test('reader-block evidence is required for every current identity while histori
     }
     return detail;
   };
-  for (const current of [identities[0].baseEngine, ...identities.map((item) => item.fingerprint)]) {
+  for (const current of new Set(
+    identities.flatMap((item) => [item.baseEngine, item.fingerprint])
+  )) {
     assert.deepEqual(
       validateArticleJourney(make(current), descriptors, {
         engine: current,
@@ -272,6 +485,18 @@ test('reader-block evidence is required for every current identity while histori
           }),
         /block evidence/
       );
+    }
+    if (motion.readerInteractionsRequired(current)) {
+      for (const row of make(current).observations) {
+        const absent = make(current);
+        delete absent.observations.find(
+          (item) => item.mode === row.mode && item.width === row.width
+        ).reader;
+        assert.throws(
+          () => validateArticleJourney(absent, descriptors, { engine: current, baseURL }),
+          /interaction observations/
+        );
+      }
     }
   }
   const current = identities[0].baseEngine;
@@ -346,10 +571,16 @@ test('block diagnostics omit empty shells, collect later child animations and re
   });
   const animated = () => node({ animations: [{ effect: { getKeyframes: () => frames } }] });
   const empty = node({ height: 0 });
-  const hiddenFirst = node({ children: [node({ width: 0, height: 0 }), animated()] });
+  const hiddenFirst = node({
+    children: [node({ width: 0, height: 0 }), animated()],
+  });
   const childOnly = node({ height: 0, children: [animated()] });
   const units = [empty, hiddenFirst, childOnly];
-  const scope = { window: {}, document: { querySelectorAll: () => units }, structuredClone };
+  const scope = {
+    window: {},
+    document: { querySelectorAll: () => units },
+    structuredClone,
+  };
   vm.runInNewContext('(' + installArticleFlightDiagnostics.toString() + ')();', scope);
   const phase = {
     kind: 'route-block',

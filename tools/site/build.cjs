@@ -443,6 +443,19 @@ function optionalDownloads(article) {
   return article.downloads ? { downloads: article.downloads } : {};
 }
 
+function reusableArticle(article, previous, trusted, output) {
+  return (
+    previous?.articles?.[article.key]?.version === article.version &&
+    trusted?.articles?.[article.key]?.version === article.version &&
+    [article.url, article.snapshot].every(
+      (name) =>
+        previous.files[name] === trusted.files[name] &&
+        fs.existsSync(path.join(output, name)) &&
+        sha(fs.readFileSync(path.join(output, name))) === trusted.files[name]
+    )
+  );
+}
+
 function emitArticles({
   root,
   config,
@@ -467,16 +480,7 @@ function emitArticles({
     const fallbackResource = require('./fallback.cjs').articleResource(
       contentOnly ? baselineFallback(output, 'writing') : fallback(api, 'writing')
     );
-    const reusable =
-      previous?.articles?.[article.key]?.version === version &&
-      trusted?.articles?.[article.key]?.version === version &&
-      [article.url, article.snapshot].every(
-        (name) =>
-          previous.files[name] === trusted.files[name] &&
-          fs.existsSync(path.join(output, name)) &&
-          sha(fs.readFileSync(path.join(output, name))) === trusted.files[name]
-      );
-    if (reusable) {
+    if (reusableArticle(article, previous, trusted, output)) {
       put(article.url, fs.readFileSync(path.join(output, article.url)));
       put(article.snapshot, fs.readFileSync(path.join(output, article.snapshot)));
       result.reusedArticles.push(article.key);

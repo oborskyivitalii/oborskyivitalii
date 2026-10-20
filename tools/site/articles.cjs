@@ -122,6 +122,14 @@ function input(root, article) {
       SUBTITLE: reader.subtitle,
       FURTHER_READING: furtherReading,
       AUTHORS: metadata.authors.map((author) => escapeText(author.name)).join(', '),
+      PUBLISHED: metadata.published
+        ? `<time datetime="${escapeAttribute(metadata.published)}">${escapeText(metadata.published)}</time> · `
+        : '',
+      READING_MINUTES: reader.readingMinutes,
+      READER_TOOLS: fs.readFileSync(
+        path.join(root, 'site/templates/components/reader-tools.html'),
+        'utf8'
+      ),
       LANGUAGE: escapeAttribute(metadata.language),
       STATUS: article.technical
         ? 'Reader template · synthetic reference'
@@ -156,6 +164,8 @@ function input(root, article) {
     schema: { '@context': 'https://schema.org', ...summary(article) },
     inputs: article.inputs.concat(
       'site/templates/pages/article.html',
+      'site/templates/components/reader-tools.html',
+      ...(reader.toc ? ['site/templates/components/reader-contents.html'] : []),
       ...(article.profile.reader?.references === 'inline'
         ? []
         : ['site/templates/articles/sources.html']),

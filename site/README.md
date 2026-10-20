@@ -15,7 +15,9 @@ enhance that HTML; a content editor does not need a server, CMS or browser build
 
 Within-page reading keeps each route's opening camera pose stationary, including
 scrolling in both directions, Writing filters, anchors, history and reflow. The
-fractal keeps its existing passive animation when motion is enabled. Native range,
+fractal keeps its existing passive animation when motion is enabled on principal
+pages. Settled articles retain their last scene paint without an ambient animation
+loop; requested route transitions and motion preferences remain unchanged. Native range,
 semantic markers and actual footer/bottom are still measured for content and edge
 navigation; they no longer drive camera travel. All-route browser synchronization
 checks verify stationary camera and unchanged native reading geometry; generation
@@ -307,8 +309,15 @@ owns the reader's one opaque paper surface; the same Writing scene stays visible
 around it and retains document-orbit transitions. Ordinary paragraph-entry and
 page-edge scene gestures are disabled while reading an article.
 
-The optional `engine/reader.cjs` lifecycle adds responsive Contents, current-section
-tracking, source-note disclosure and print expansion. Its listeners/observer are
+The optional `engine/reader.cjs` lifecycle adds hierarchical H2/H3 Contents,
+current-topic tracking, image zoom, compact reference previews and print expansion.
+The enhanced Contents control stays reachable while reading and closes on selection;
+without JavaScript, native Contents scrolls with the page so it cannot cover anchor destinations.
+`templates/components/reader-tools.html` owns the progressively enhanced native
+dialogs. Image and citation anchors remain usable in ordinary HTML; supported
+dialogs preserve reading position, restore focus, and close on Escape or backdrop.
+Verified standalone resources hydrate both images and their viewer links.
+Its listeners/observer are
 disposed by the existing router. All disclosure states are stored in the router's
 per-history-entry record and restored before scroll. Native/no-JS HTML contains the
 full body and initially open apparatus; no new fetch, clock, runtime framework or
@@ -321,6 +330,11 @@ distinct ordered list of trailing H2 anchors and, optionally, `references` as on
 of those anchors. The reference section must contain exactly one positive numbered
 source list with at most100 notes. Only matching `[n]` text citations are linked;
 unknown numbers and code remain literal, and existing links are never nested.
+An inline external link directly followed by a matching citation is rendered as
+ordinary text only when that note explicitly contains the same URL; the numbered
+citation and full source remain. Other links and resource rows keep their native
+destinations. Reading time counts essay prose, excluding declared appendices and
+sources; a publication date is shown only when it exists in canonical metadata.
 Every generated citation has a return link; source prose and critical figure
 limitations remain intact. No publication ID, chapter wording or specific source
 number is encoded in the reader's layout.

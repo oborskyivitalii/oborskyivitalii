@@ -84,6 +84,13 @@ async function verifyResponse(response, base, manifest, checkedFiles) {
   checkedFiles.add(file);
   return { observed: true, file, status, sha256: digest };
 }
+async function verifyRequest(request, base, manifest, checkedFiles) {
+  // Register ownership before response headers arrive. A pending request must
+  // not become invisible to the document-navigation body-read barrier.
+  const response = await request.response();
+  assert.ok(response, 'request failed before response ' + request.url());
+  return verifyResponse(response, base, manifest, checkedFiles);
+}
 function identity(manifest) {
   if (process.env.SITE_EXPECTED_PUBLIC_DIGEST)
     assert.equal(
@@ -257,8 +264,16 @@ async function discussionAnchor(page) {
 }
 async function documentNavigation(page, url, responseChecks) {
   // A new document discards CDP response bodies owned by the departing page.
-  await Promise.all(responseChecks);
+  await drainResponses(responseChecks);
   await page.goto(url, { waitUntil: 'load' });
+}
+async function drainResponses(responseChecks) {
+  let checked = 0;
+  while (checked < responseChecks.length) {
+    const batch = responseChecks.slice(checked);
+    checked = responseChecks.length;
+    await Promise.all(batch);
+  }
 }
 async function discussionNavigation(page, url, responseChecks) {
   await page.locator(routeSelector('index')).evaluate((el) => el.click());
@@ -271,9 +286,11 @@ async function discussionNavigation(page, url, responseChecks) {
   await ready(page, 'research');
   await discussionAnchor(page);
   const research = await responseNames(page, 'research');
+  await drainResponses(responseChecks);
   await page.goBack();
   await ready(page, 'index');
   await responseNames(page, 'index');
+  await drainResponses(responseChecks);
   await page.goForward();
   await ready(page, 'research');
   await discussionAnchor(page);
@@ -408,16 +425,16 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('request', (request) => {
     const value = request.url();
-    if (value.startsWith(url + '/')) return;
+    if (value.startsWith(url + '/')) {
+      responseChecks.push(
+        verifyRequest(request, url, manifest, checkedFiles).catch((error) => {
+          errors.push(error.message);
+        })
+      );
+      return;
+    }
     if (analyticsRequest(value, url, manifest)) analytics.push(value);
     else external.push(value);
-  });
-  page.on('response', (response) => {
-    responseChecks.push(
-      verifyResponse(response, url, manifest, checkedFiles).catch((error) => {
-        errors.push(error.message);
-      })
-    );
   });
   try {
     const served = await routeBytes(context, url, manifest);
@@ -481,7 +498,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       await page.locator('.appearance summary').click();
       if (id === 'writing') {
         await writingControls(page, Boolean(manifest.files['publication-index.json']));
-        await Promise.all(responseChecks);
+        await drainResponses(responseChecks);
       }
       if (id === 'research') await researchControls(page, mode, width);
       if (id === 'index' || id === 'research') await responseNames(page, id);
@@ -500,12 +517,14 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         ],
       });
     }
+    await drainResponses(responseChecks);
     await page.goBack();
     await ready(page, 'talks');
+    await drainResponses(responseChecks);
     await page.goForward();
     await ready(page, 'credits');
     const discussion = await discussionNavigation(page, url, responseChecks);
-    await Promise.all(responseChecks);
+    await drainResponses(responseChecks);
     assert.deepEqual(errors, [], 'runtime and served-byte errors');
     assert.deepEqual(external, [], 'unexpected external requests');
     return {
@@ -527,7 +546,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     await page
       .screenshot({ path: path.join(out, 'preview-' + width + '-' + mode + '.png') })
       .catch(() => {});
-    await Promise.all(responseChecks);
+    await drainResponses(responseChecks);
     return {
       width,
       mode,
@@ -645,6 +664,7 @@ module.exports = {
   state,
   artifactFile,
   verifyResponse,
+  verifyRequest,
   documentNavigation,
   contentDocuments,
   contentJourney,

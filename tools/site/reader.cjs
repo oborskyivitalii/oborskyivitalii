@@ -55,6 +55,10 @@ function referenceNotes(layout, allocate) {
   return notes;
 }
 
+function linksWithin(node) {
+  return node.type === 'link' ? [node] : (node.children || []).flatMap(linksWithin);
+}
+
 function components(article, layout) {
   const reserved = new Set([
     'main',
@@ -73,6 +77,31 @@ function components(article, layout) {
   };
   const notes = referenceNotes(layout, allocate);
   const items = new Map([...notes].map(([number, note]) => [note.item, number]));
+  const noteUrls = new Map(
+    [...notes].map(([number, note]) => [
+      number,
+      new Set(linksWithin(note.item).map((node) => node.url)),
+    ])
+  );
+  const protectedLinks = new Set();
+  const outsideLinks = (node) =>
+    node.type === 'link' ? '' : node.value || (node.children || []).map(outsideLinks).join('');
+  const protectResources = (node) => {
+    // Standalone link collections are reader resources, even when they carry citations.
+    if (
+      node.type === 'heading' ||
+      (node.type === 'paragraph' &&
+        !/[\p{L}\p{N}]/u.test(outsideLinks(node).replace(/\[\d{1,3}\]/g, '')))
+    ) {
+      for (const link of linksWithin(node)) protectedLinks.add(link);
+    } else for (const child of node.children || []) protectResources(child);
+  };
+  protectResources(article.model.tree);
+  const resourceUrls = new Set([
+    ...article.assets.map((asset) => asset.url),
+    article.presentation?.sourceUrl,
+    article.presentation?.file?.url,
+  ]);
   const citationText = (text) =>
     escapeHtml(text).replace(/\[(\d{1,3})\]/g, (original, value) => {
       const number = Number(value),
@@ -96,7 +125,8 @@ function components(article, layout) {
       omitted.add(attribution);
     }
   }
-  let linkDepth = 0;
+  let linkDepth = 0,
+    noteDepth = 0;
   const hooks = {
     // A native rule needs a semantic shell so the common child-ink wave moves its border.
     thematicBreak: () => '<div class="reader-divider"><hr></div>\n',
@@ -126,10 +156,20 @@ function components(article, layout) {
       return `<figure class="reader-quotation"><blockquote>${children(node)}</blockquote>${attribution ? '<figcaption>' + children(attribution) + '</figcaption>' : ''}</figure>\n`;
     },
     text: (node) => (linkDepth ? escapeHtml(node.value) : citationText(node.value)),
-    link: (node, { children }) => {
+    link: (node, { children, parent }) => {
       linkDepth++;
       try {
-        return `<a href="${escapeHtml(node.url)}">${children(node)}</a>`;
+        const next = parent?.children[parent.children.indexOf(node) + 1];
+        const citation = next?.type === 'text' && /^\s*\[(\d{1,3})\]/.exec(next.value);
+        const duplicate =
+          !noteDepth &&
+          !protectedLinks.has(node) &&
+          !resourceUrls.has(node.url) &&
+          !/\.(?:pdf|png|jpe?g|gif|webp|svg|mp[34]|zip)(?:[?#]|$)/i.test(node.url) &&
+          citation &&
+          noteUrls.get(Number(citation[1]))?.has(node.url);
+        const label = children(node);
+        return duplicate ? label : `<a href="${escapeHtml(node.url)}">${label}</a>`;
       } finally {
         linkDepth--;
       }
@@ -138,7 +178,12 @@ function components(article, layout) {
       const number = items.get(node);
       if (!items.has(node)) return `<li>${children(node)}</li>`;
       const note = notes.get(number);
-      return `<li id="${note.id}" tabindex="-1">${children(node)}<!--reader-returns-${number}--></li>`;
+      noteDepth++;
+      try {
+        return `<li id="${note.id}" tabindex="-1">${children(node)}<!--reader-returns-${number}--></li>`;
+      } finally {
+        noteDepth--;
+      }
     },
     code: (node) =>
       `<div class="reader-code"><pre><code>${escapeHtml(node.value)}</code></pre></div>\n`,
@@ -146,7 +191,7 @@ function components(article, layout) {
       const asset = article.assets.find((entry) => entry.id === node.assetId);
       const url = escapeHtml(asset.url);
       return (
-        `<figure id="figure-${asset.id}"><img src="${url}" alt="${escapeHtml(asset.alt)}" width="${asset.width}" height="${asset.height}">` +
+        `<figure id="figure-${asset.id}"><a class="reader-image-open" href="${url}" aria-label="Enlarge image: ${escapeHtml(asset.alt)}"><img src="${url}" alt="${escapeHtml(asset.alt)}" width="${asset.width}" height="${asset.height}"></a>` +
         `<figcaption><p>${citationText(asset.caption)}</p><details class="reader-figure-credit"><summary>Source and image details</summary><p>${escapeHtml(asset.credit)}</p></details></figcaption>` +
         `<a class="article-figure-original" href="${url}">Open full-size image</a></figure>\n`
       );
@@ -192,12 +237,25 @@ function components(article, layout) {
 }
 
 function contents(layout) {
+  const link = (node) => `<a href="#${escapeHtml(node.id)}">${escapeHtml(plain(node))}</a>`;
   return layout.chapters
-    .map(({ heading }) => {
-      const link = (node) => `<a href="#${escapeHtml(node.id)}">${escapeHtml(plain(node))}</a>`;
-      return `<li>${link(heading)}</li>`;
+    .map(({ heading, nodes }) => {
+      const subsections = nodes.filter((node) => node.type === 'heading' && node.depth === 3);
+      const topics = subsections.length
+        ? `<details class="reader-subcontents"><summary aria-label="Topics in ${escapeHtml(plain(heading))}">Topics</summary><ol>${subsections.map((node) => `<li>${link(node)}</li>`).join('')}</ol></details>`
+        : '';
+      return `<li>${link(heading)}${topics}</li>`;
     })
     .join('\n');
+}
+
+function readingMinutes(layout) {
+  const text = [...layout.intro, ...layout.chapters.flatMap((chapter) => chapter.nodes)]
+    .map(plain)
+    .join(' ')
+    .trim();
+  // A transparent prose estimate; source appendices and supporting reading are excluded.
+  return Math.max(1, Math.ceil((text ? text.split(/\s+/u).length : 0) / 220));
 }
 
 function prepare(article) {
@@ -264,6 +322,7 @@ function prepare(article) {
     furtherReading: ending,
     appendices: apparatus,
     toc: contents(layout),
+    readingMinutes: readingMinutes(layout),
   };
 }
 

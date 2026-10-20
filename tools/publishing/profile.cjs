@@ -144,6 +144,38 @@ function readerSections(selection, article) {
   }
 }
 
+function readerProcess(entry, matches) {
+  text(entry.label, 120, 'reader process label');
+  text(entry.separator, 12, 'reader process separator');
+  const inlineText = (node) =>
+    ['text', 'strong', 'emphasis'].includes(node.type) && (node.children || []).every(inlineText);
+  const steps = plain(matches[0]).split(entry.separator);
+  if (
+    matches.length !== 1 ||
+    !matches[0].children.every(inlineText) ||
+    steps.length < 2 ||
+    steps.length > 12 ||
+    steps.some((step) => !step.trim() || step.length > 100) ||
+    !Number.isInteger(entry.emphasizeStep) ||
+    entry.emphasizeStep < 0 ||
+    entry.emphasizeStep >= steps.length
+  )
+    throw Error('Reader process requires 2–12 plain source steps and one valid emphasis index');
+}
+
+function readerAttribution(entry, matches, nodes) {
+  if (entry.role !== 'quotation' || !digestPattern.test(entry.attribution) || matches.length !== 1)
+    throw Error('Reader attribution requires one explicit quotation');
+  const following = nodes[nodes.indexOf(matches[0]) + 1];
+  if (
+    !following ||
+    following.type !== 'paragraph' ||
+    blockDigest(following) !== entry.attribution ||
+    following.children.some((child) => child.type === 'image')
+  )
+    throw Error('Reader attribution must bind the immediately following source paragraph');
+}
+
 function readerElements(selection, article, appendices = []) {
   if (!Array.isArray(selection) || !selection.length || selection.length > 50)
     throw Error('Reader elements require 1–50 explicit source-bound roles');
@@ -174,23 +206,7 @@ function readerElements(selection, article, appendices = []) {
     )
       throw Error('Reader element role must bind a distinct admitted source block');
     if (entry.role === 'process') {
-      text(entry.label, 120, 'reader process label');
-      text(entry.separator, 12, 'reader process separator');
-      const inlineText = (node) =>
-        ['text', 'strong', 'emphasis'].includes(node.type) &&
-        (node.children || []).every(inlineText);
-      const steps = plain(matches[0]).split(entry.separator);
-      if (
-        matches.length !== 1 ||
-        !matches[0].children.every(inlineText) ||
-        steps.length < 2 ||
-        steps.length > 12 ||
-        steps.some((step) => !step.trim() || step.length > 100) ||
-        !Number.isInteger(entry.emphasizeStep) ||
-        entry.emphasizeStep < 0 ||
-        entry.emphasizeStep >= steps.length
-      )
-        throw Error('Reader process requires 2–12 plain source steps and one valid emphasis index');
+      readerProcess(entry, matches);
     } else if (['separator', 'label', 'emphasizeStep'].some((key) => entry[key] !== undefined)) {
       throw Error('Reader process fields require a process role');
     }
@@ -209,22 +225,7 @@ function readerElements(selection, article, appendices = []) {
         throw Error('Reader endnote requires a trailing H3 group in a main chapter');
     }
     selected.add(entry.sha256);
-    if (entry.attribution !== undefined) {
-      if (
-        entry.role !== 'quotation' ||
-        !digestPattern.test(entry.attribution) ||
-        matches.length !== 1
-      )
-        throw Error('Reader attribution requires one explicit quotation');
-      const following = nodes[nodes.indexOf(matches[0]) + 1];
-      if (
-        !following ||
-        following.type !== 'paragraph' ||
-        blockDigest(following) !== entry.attribution ||
-        following.children.some((child) => child.type === 'image')
-      )
-        throw Error('Reader attribution must bind the immediately following source paragraph');
-    }
+    if (entry.attribution !== undefined) readerAttribution(entry, matches, nodes);
   }
   for (const entry of selection)
     if (entry.attribution && selected.has(entry.attribution))

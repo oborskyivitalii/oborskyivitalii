@@ -188,7 +188,12 @@ function visit(options = {}) {
   const document = {
     readyState: options.readyState,
     hidden: false,
-    body: { dataset: { page: options.page || 'index' } },
+    body: {
+      dataset: {
+        page: options.page || 'index',
+        ...(options.article ? { article: options.article } : {}),
+      },
+    },
     documentElement: {
       get scrollHeight() {
         rangeReads++;
@@ -427,6 +432,99 @@ test('continuous gestures and pointer events never influence the reading camera'
   p.frame(60);
   assert.equal(p.trace(), camera);
   assert.equal(p.pending.size, 1);
+});
+test('settled articles keep one painted scene through layout, appearance and lifecycle changes without an ambient RAF', () => {
+  for (const narrow of [false, true]) {
+    const p = visit({ page: 'writing', article: 'sample:en', narrow, saved: 'on' });
+    p.settle();
+    const camera = p.trace(),
+      phase = p.phase();
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.window.SiteScene.canTravel(), true, 'reader rest keeps route motion available');
+    assert.equal(p.stored(), 'on', 'reader rest does not rewrite the global preference');
+    p.frame(60000);
+    p.scroll(1500);
+    for (const repaint of [
+      () => p.mutate(),
+      () => p.event('resize'),
+      () => p.layout([]),
+      () => {
+        p.hidden(true);
+        p.hidden(false);
+      },
+      () => {
+        p.events.beforeprint();
+        p.events.afterprint();
+      },
+    ]) {
+      const before = p.draws();
+      repaint();
+      p.settle();
+      assert.ok(p.draws() > before, 'the still scene can repaint when its environment changes');
+      assert.equal(p.trace(), camera);
+      assert.equal(p.phase(), phase);
+      assert.equal(p.pending.size, 0);
+    }
+  }
+});
+test('article rest preserves the same-scene orbit and resumes ambient motion only after leaving the reader', () => {
+  const p = visit({ page: 'writing' });
+  p.settle();
+  const scene = p.window.SiteScene,
+    phase = p.phase();
+  scene.navigate('writing', true, null, null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'writing',
+    toDocument: 'article:sample:en',
+    direction: 1,
+  });
+  p.document.body.dataset.article = 'sample:en';
+  scene.refresh();
+  finishFlight(p, 'entering the reader completes the circular journey');
+  assert.ok(p.phase() > phase, 'ambient scene accompanies the requested journey');
+  assert.equal(p.pending.size, 0, 'arrival stops the decorative loop');
+  const arrival = p.phase(),
+    camera = p.trace();
+  p.frame(60000);
+  assert.equal(p.phase(), arrival);
+  scene.navigate('writing', true, null, null, {
+    documentChange: true,
+    sameSceneDocument: true,
+    fromDocument: 'article:sample:en',
+    toDocument: 'writing',
+    direction: -1,
+  });
+  p.frame(80);
+  assert.equal(p.phase(), arrival, 'a resting reader does not accumulate elapsed time');
+  assert.equal(p.scene.dataset.travel, 'flying');
+  delete p.document.body.dataset.article;
+  scene.refresh();
+  finishFlight(p, 'leaving the reader completes the return orbit');
+  assert.equal(p.trace(), camera);
+  assert.equal(p.pending.size, 1, 'Writing retains its ordinary ambient loop');
+  const returned = p.phase();
+  p.frame(80);
+  assert.ok(p.phase() > returned);
+});
+test('article scene rest retains Off and reduced-motion behavior across document changes', () => {
+  for (const options of [{ saved: 'off' }, { saved: 'on', reduced: true }]) {
+    const p = visit({ page: 'writing', article: 'sample:en', ...options });
+    p.settle();
+    assert.equal(p.window.SiteScene.canTravel(), false);
+    p.window.SiteScene.navigate('writing', true, null, null, {
+      documentChange: true,
+      sameSceneDocument: true,
+      direction: -1,
+    });
+    delete p.document.body.dataset.article;
+    p.window.SiteScene.refresh();
+    p.settle();
+    assert.equal(p.scene.dataset.travel, 'settled');
+    assert.equal(p.phase(), 0);
+    assert.equal(p.pending.size, 0);
+    assert.equal(p.stored(), options.saved);
+  }
 });
 test('Off freezes the exact displayed camera and phase through theme, resize, layout, hidden and print', () => {
   const p = visit({ blockedStorage: true });

@@ -3996,6 +3996,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       journey.elapsed = journey.duration;
     }
   }
+  function readerResting() {
+    return Boolean(document.body.dataset.article) && !journey;
+  }
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
@@ -4007,8 +4010,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     }
     const delta = lastFrame === null ? 0 : Math.min(80, Math.max(0, time - lastFrame));
     lastFrame = time;
-    const living = enabled && !hold && owns(initialPoses, page);
-    if (living) {
+    const living = enabled && !hold && owns(initialPoses, page),
+      ambient = living && !readerResting();
+    if (ambient) {
       ambientTime = (ambientTime + delta) % LOOP_MS;
       detailTier += (tier - detailTier) * (1 - Math.exp(-delta / 180));
     }
@@ -4017,7 +4021,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate = Math.min([30, 20, 15][tier], cadenceFor(costAverage, compact, true));
     const interval = 1000 / (journey ? Math.max(idleRate, cameraRate) : idleRate);
-    if (nextDraw === null || time + 0.5 >= nextDraw || !living) {
+    if (nextDraw === null || time + 0.5 >= nextDraw || !ambient) {
       const start = clock(),
         arrived = journey && journey.elapsed === journey.duration ? journey : null;
       try {
@@ -4036,9 +4040,12 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       nextDraw = nextDeadline(nextDraw, time, interval);
       // Decorative quality responds to rendering cost. The entire callback,
       // including route mount, is still measured by the outer frame/ready gate.
-      if (living) quality(renderCost, time);
+      if (ambient) quality(renderCost, time);
     }
-    if (living && !hold) schedule();
+    // A settled article retains its painted scene without spending a background
+    // RAF. Navigation still owns the same clock and can restart the orbit.
+    if (living && !hold && !readerResting()) schedule();
+    else lastFrame = nextDraw = null;
   }
   function updateControl() {
     if (failed) return;
@@ -4214,6 +4221,39 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
           : target.position[2] < from.position[2];
     return { documentChange, localDocument, target, forward };
   }
+  function cameraJourney(next, departure, path, metadata) {
+    const { from, sourcePage, fromRooms, fromOpacity, fromOrbit, orbitAnchor } = departure,
+      { localDocument, target, forward } = path,
+      navigationId = metadata?.navigationId,
+      centerDuration = 400,
+      transitDuration = 1000,
+      restoreDuration = 350;
+    return {
+      navigationId: Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
+      fromPage: sourcePage,
+      toPage: next,
+      localDocument,
+      fromOrbit,
+      orbitAnchor: localDocument ? target : orbitAnchor,
+      direction: forward ? 1 : -1,
+      fromDocument: metadata?.fromDocument,
+      toDocument: metadata?.toDocument,
+      fromRooms,
+      fromOpacity,
+      from,
+      to: target,
+      elapsed: 0,
+      centeredFrom: localDocument ? departure.centeredDocument : departure.centeredPrincipal,
+      centeredTo: localDocument ? documentCenterPose(target) : centerPose(target),
+      // Center, orbit/corridor and reading restoration share a fixed camera
+      // budget. Direct route choices change distance, never waiting time.
+      centerDuration,
+      transitDuration,
+      restoreDuration,
+      duration: centerDuration + transitDuration + restoreDuration,
+      started: false,
+    };
+  }
   window.SiteScene = {
     motionState,
     managesLayout: true,
@@ -4234,10 +4274,11 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
         updateControl();
       }
       const departure = cameraDeparture(),
-        { from, sourcePage, fromRooms, fromOpacity, fromOrbit, orbitAnchor } = departure;
+        { from, sourcePage, fromRooms } = departure;
       page = next;
       const metadata = options[1],
-        { documentChange, localDocument, target, forward } = cameraPath(next, departure, metadata),
+        path = cameraPath(next, departure, metadata),
+        { documentChange, target, forward } = path,
         travelling = animate && (next !== sourcePage || documentChange) && this.canTravel();
       cameraDiagnostic('camera-travel-cancelled', journey, travelling ? 'retargeted' : 'instant');
       current = from;
@@ -4245,36 +4286,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       if (travelling) {
         // The fourth router argument remains its native landing contract;
         // the optional fifth argument carries navigation measurement identity.
-        const navigationId = options[1]?.navigationId,
-          centerDuration = 400,
-          transitDuration = 1000,
-          restoreDuration = 350;
-        journey = {
-          navigationId:
-            Number.isSafeInteger(navigationId) && navigationId > 0 ? navigationId : null,
-          fromPage: sourcePage,
-          toPage: page,
-          localDocument,
-          fromOrbit,
-          orbitAnchor: localDocument ? target : orbitAnchor,
-          direction: forward ? 1 : -1,
-          fromDocument: metadata?.fromDocument,
-          toDocument: metadata?.toDocument,
-          fromRooms,
-          fromOpacity,
-          from,
-          to: target,
-          elapsed: 0,
-          centeredFrom: localDocument ? departure.centeredDocument : departure.centeredPrincipal,
-          centeredTo: localDocument ? documentCenterPose(target) : centerPose(target),
-          // Center, orbit/corridor and reading restoration share a fixed camera
-          // budget. Direct route choices change distance, never waiting time.
-          centerDuration,
-          transitDuration,
-          restoreDuration,
-          duration: centerDuration + transitDuration + restoreDuration,
-          started: false,
-        };
+        journey = cameraJourney(next, departure, path, metadata);
       } else {
         journey = null;
         current = target;

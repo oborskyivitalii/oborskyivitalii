@@ -1221,7 +1221,127 @@ window.SiteReader=(function readerMode() {
       .map((link) => document.getElementById(fragmentId(link.hash)))
       .filter(Boolean);
     const contents = main.querySelector('.reader-contents');
-    if (contents) contents.open = false;
+    const currentLabel = main.querySelector('[data-reader-current]');
+    if (contents) {
+      contents.open = false;
+      contents.setAttribute('data-reader-enhanced', '');
+    }
+    let activeDialog = null;
+    const finishDialog = (record, returnFocus) => {
+      if (!record) return;
+      if (activeDialog === record) activeDialog = null;
+      const trigger = record.trigger;
+      record.trigger = null;
+      record.reset();
+      if (returnFocus && trigger?.isConnected) trigger.focus({ preventScroll: true });
+    };
+    const closeDialog = (returnFocus = true) => {
+      const record = activeDialog;
+      if (!record) return;
+      activeDialog = null;
+      if (record.element.open) record.element.close();
+      finishDialog(record, returnFocus);
+    };
+    const dialog = (selector, reset) => {
+      const element = main.querySelector(selector);
+      if (
+        !element ||
+        typeof element.showModal !== 'function' ||
+        typeof element.close !== 'function'
+      )
+        return null;
+      const close = element.querySelector('[data-reader-close]');
+      if (!close) return null;
+      const record = { element, close, reset, trigger: null };
+      element.hidden = false;
+      listen(close, 'click', () => closeDialog());
+      listen(element, 'cancel', (event) => {
+        event.preventDefault();
+        closeDialog();
+      });
+      listen(element, 'click', (event) => {
+        if (event.target === element) closeDialog();
+      });
+      listen(element, 'close', () => {
+        if (!element.open && activeDialog === record) finishDialog(record, true);
+      });
+      return record;
+    };
+    const openDialog = (record, trigger) => {
+      if (!record) return false;
+      closeDialog(false);
+      record.trigger = trigger;
+      try {
+        record.element.showModal();
+      } catch {
+        finishDialog(record, false);
+        return false;
+      }
+      activeDialog = record;
+      record.close.focus({ preventScroll: true });
+      return true;
+    };
+    const imageStage = main.querySelector('[data-reader-image]');
+    const imageCaption = main.querySelector('[data-reader-image-caption]');
+    const imageOriginal = main.querySelector('[data-reader-image-original]');
+    const zoom = main.querySelector('[data-reader-zoom]');
+    const imageDialog =
+      imageStage && imageCaption && imageOriginal && zoom
+        ? dialog('.reader-image-dialog', () => {
+            imageStage.replaceChildren();
+            imageCaption.textContent = '';
+            imageDialog.element.classList.remove('reader-zoomed');
+            zoom.setAttribute('aria-pressed', 'false');
+          })
+        : null;
+    if (imageDialog)
+      listen(zoom, 'click', () => {
+        const enlarged = imageDialog.element.classList.toggle('reader-zoomed');
+        zoom.setAttribute('aria-pressed', String(enlarged));
+      });
+    const noteBody = main.querySelector('[data-reader-note-body]');
+    const noteTitle = main.querySelector('[data-reader-note-title]');
+    const noteFull = main.querySelector('[data-reader-note-full]');
+    const noteDialog =
+      noteBody && noteTitle && noteFull
+        ? dialog('.reader-note-dialog', () => noteBody.replaceChildren())
+        : null;
+    const enhancedLinks = [...main.querySelectorAll('.reader-citation, .reader-image-open')].filter(
+      (anchor) => (anchor.classList.contains('reader-citation') ? noteDialog : imageDialog)
+    );
+    for (const anchor of enhancedLinks) anchor.setAttribute('aria-haspopup', 'dialog');
+    const showImage = (anchor) => {
+      const image = anchor.querySelector('img');
+      if (!imageDialog || !image) return false;
+      const copy = image.cloneNode(false);
+      copy.removeAttribute('id');
+      const caption = anchor.closest('figure')?.querySelector('figcaption > p');
+      if (!openDialog(imageDialog, anchor)) return false;
+      imageStage.replaceChildren(copy);
+      imageCaption.textContent = caption?.textContent || image.alt;
+      imageOriginal.href = anchor.href;
+      return true;
+    };
+    const showNote = (anchor, url) => {
+      const note = document.getElementById(fragmentId(url.hash));
+      if (!noteDialog || !note || !main.contains(note) || !note.closest('.reader-appendix'))
+        return false;
+      const copy = note.cloneNode(true);
+      // Cloned source text retains links and caveats, never duplicate anchors or return controls.
+      for (const child of copy.querySelectorAll('.reader-note-returns, [role="doc-backlink"]'))
+        child.remove();
+      for (const child of copy.querySelectorAll('[id], [aria-labelledby], [aria-describedby]')) {
+        child.removeAttribute('id');
+        child.removeAttribute('aria-labelledby');
+        child.removeAttribute('aria-describedby');
+      }
+      if (!openDialog(noteDialog, anchor)) return false;
+      noteTitle.textContent = anchor.getAttribute('aria-label') || 'Reference';
+      noteDialog.element.setAttribute('aria-label', noteTitle.textContent);
+      noteBody.replaceChildren(...copy.childNodes);
+      noteFull.setAttribute('href', url.hash);
+      return true;
+    };
     const reveal = (hash) => {
       let target;
       try {
@@ -1248,10 +1368,27 @@ window.SiteReader=(function readerMode() {
     };
     snapshot = () => details.map((detail) => printState.get(detail) ?? detail.open);
     restore(state);
-    listen(window, 'hashchange', () => reveal(window.location.hash));
+    listen(window, 'hashchange', () => {
+      closeDialog(false);
+      reveal(window.location.hash);
+    });
     listen(main, 'click', (event) => {
-      const anchor = event.target.closest('a[href]');
+      if (
+        event.defaultPrevented ||
+        (event.button !== undefined && event.button !== 0) ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      const anchor = event.target.closest?.('a[href]');
       if (!anchor) return;
+      if (anchor.hasAttribute?.('download') || anchor.getAttribute?.('target')) return;
+      if (anchor.classList?.contains('reader-image-open') && showImage(anchor)) {
+        event.preventDefault();
+        return;
+      }
       const url = new URL(anchor.href, window.location.href);
       if (
         url.origin !== window.location.origin ||
@@ -1259,6 +1396,11 @@ window.SiteReader=(function readerMode() {
         url.search !== window.location.search
       )
         return;
+      if (anchor.classList?.contains('reader-citation') && showNote(anchor, url)) {
+        event.preventDefault();
+        return;
+      }
+      if (anchor === noteFull) closeDialog(false);
       reveal(url.hash);
       if (anchor.closest('.article-toc') && contents) contents.open = false;
     });
@@ -1267,6 +1409,7 @@ window.SiteReader=(function readerMode() {
         if (fragmentId(link.hash) === id) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       }
+      if (currentLabel) currentLabel.textContent = document.getElementById(id)?.textContent || '';
     };
     const visible = new Set();
     const observer = window.IntersectionObserver
@@ -1284,6 +1427,7 @@ window.SiteReader=(function readerMode() {
       : null;
     for (const heading of headings) observer?.observe(heading);
     listen(window, 'beforeprint', () => {
+      closeDialog(false);
       for (const detail of main.querySelectorAll('details')) {
         printState.set(detail, detail.open);
         detail.open = true;
@@ -1294,11 +1438,15 @@ window.SiteReader=(function readerMode() {
       printState.clear();
     };
     listen(window, 'afterprint', restorePrint);
+    listen(window, 'pagehide', () => closeDialog(false));
     for (const detail of details)
       listen(detail, 'toggle', () => {
         if (!printState.size) window.dispatchEvent(new window.Event('site:reader-state'));
       });
     dispose = () => {
+      closeDialog(false);
+      contents?.removeAttribute('data-reader-enhanced');
+      for (const anchor of enhancedLinks) anchor.removeAttribute('aria-haspopup');
       observer?.disconnect();
       for (const remove of listeners) remove();
       restorePrint();
@@ -1680,7 +1828,13 @@ window.SiteReader=(function readerMode() {
   function push(url) {
     save();
     history.pushState(
-      { site: { page, index: ++historyIndex, scroll: [window.scrollX, window.scrollY] } },
+      {
+        site: {
+          page,
+          index: ++historyIndex,
+          scroll: [window.scrollX, window.scrollY],
+        },
+      },
       '',
       url
     );
@@ -1834,7 +1988,7 @@ window.SiteReader=(function readerMode() {
   function hydrateEmbeddedImages(result, descriptor) {
     const used = new Set();
     for (const image of result.main.querySelectorAll(
-      'img[src],.article-presentation a[href],#article-materials a[href]'
+      'img[src],.reader-image-open[href],.article-presentation a[href],#article-materials a[href]'
     )) {
       const attribute = image.tagName === 'IMG' ? 'src' : 'href';
       const name = image.getAttribute(attribute);
@@ -2326,6 +2480,15 @@ window.SiteReader=(function readerMode() {
       return Math.sign(targetIndex - historyIndex);
     return next === 'writing' ? -1 : 1;
   }
+  function contentDirections(fromDocument, next, direction) {
+    // Hierarchy controls the block wave independently of camera/history travel.
+    return {
+      departureDirection:
+        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction,
+      arrivalDirection:
+        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction,
+    };
+  }
   function restoreReadingFocus(pop) {
     const savedFocus = pop ? history.state?.site?.focus : null;
     const focused = savedFocus
@@ -2375,11 +2538,11 @@ window.SiteReader=(function readerMode() {
       restoreScroll(interruptedPosition[0], interruptedPosition[1]);
       next = await admittedDestination(url, next, controller.signal);
       // Admission resolves article aliases absent from a principal page's boot registry.
-      // Hierarchy controls the block wave independently of camera/history travel.
-      const departureDirection =
-        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction;
-      const arrivalDirection =
-        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction;
+      const { departureDirection, arrivalDirection } = contentDirections(
+        fromDocument,
+        next,
+        direction
+      );
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);

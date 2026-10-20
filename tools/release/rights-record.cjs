@@ -105,7 +105,10 @@ function publication(record, report, expectedEdition = record.edition?.id) {
       expectedEdition !== 'production' || (item.status === 'accepted' && !descriptor.candidate),
       'hosted production rights remain pending'
     );
-    const { key, noticeDigest, documents, assets, inputs, ...data } = item;
+    const data = { ...item },
+      { noticeDigest, inputs } = item;
+    for (const field of ['key', 'noticeDigest', 'documents', 'assets', 'inputs'])
+      delete data[field];
     assert.equal(
       artifact.digest(JSON.stringify(data)),
       noticeDigest,

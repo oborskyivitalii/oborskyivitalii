@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "e0fdb97e4f81697c9c96bc9979e60d371619137c976ecb542bd145c27a68e226",
+    "digest": "ccf793d57dea133265b7dcd291db5398d9abc4dfe060d967d9ea2454d81c1a97",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -171,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "369c38ff2b255dd64a610c6fd37857425181556b253472a541c1663a7ea5423b"
+        "sha256": "4f62fdf2479f9f9d16871d8d5a81e7744edeeaafd636fe06180f0c8b200f6e77"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "82d8e83577ab3a475f2354d0efe0a3fe80f091a36bb6f30ac5582c3b4d9e4380"
+        "sha256": "27fe9614775ee013fe55d5bfdd0e7636bc0ee777940dd46a3536dba0a0518b05"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d1140ffddddaa05262cb29a7ed63dacc5803d764292daee7195e7873d86f7938"
+        "sha256": "a3d987ea5cb4712e468b079037b66d1de13f3e87b52d55240d85596913cd509d"
       },
       {
         "path": "NOTICE.md",
@@ -360,12 +360,12 @@
       {
         "path": "docs/credits.html",
         "identity_mode": "content",
-        "sha256": "40f452feed22a2da6b08074f34344a5c1a0c060f3790601eb99a2aacecd6ef33"
+        "sha256": "c6c488dc0b9ec2240f09c9df8e8f965a42c3bb45f9b3558f9c958fe5303be9a0"
       },
       {
         "path": "docs/index.html",
         "identity_mode": "content",
-        "sha256": "da677afafa863362d73bb2a4786b77ba369e06d1a0d1fa8f91907e586bb643ca"
+        "sha256": "5272ca12fb6dfbc64d54f1f70f257c9d1f5987296e2a3444546f32fc1bc952a0"
       },
       {
         "path": "docs/media/9cd6654775f7265c8f8b89bff1b440546fe6ae7e1c001837e0c18f60d4040cdc/favicon.svg",
@@ -390,7 +390,7 @@
       {
         "path": "docs/navigation.js",
         "identity_mode": "content",
-        "sha256": "738773a9a38ce2b323afd89a62af1d1faf5d18cc93174c091fe5a7b7641e88f6"
+        "sha256": "11544b693b09d549141ebf1734adab9d11ee3ba140f2c9b32391b9d1780a70ca"
       },
       {
         "path": "docs/publication-index.json",
@@ -400,7 +400,7 @@
       {
         "path": "docs/research.html",
         "identity_mode": "content",
-        "sha256": "9912bcf155f2ffbe9340d79ea241fc5695f1ab23e33ac5824be2e1ff7bd210c2"
+        "sha256": "b342fd235e8ac7a67c004a0104c01b0a208b1004371a6b9d1f758b8030748e1c"
       },
       {
         "path": "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js",
@@ -408,27 +408,27 @@
         "sha256": "7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff"
       },
       {
-        "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/archive.js",
+        "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/archive.js",
         "identity_mode": "content",
         "sha256": "24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383"
       },
       {
-        "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/navigation.js",
+        "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/navigation.js",
         "identity_mode": "content",
-        "sha256": "738773a9a38ce2b323afd89a62af1d1faf5d18cc93174c091fe5a7b7641e88f6"
+        "sha256": "11544b693b09d549141ebf1734adab9d11ee3ba140f2c9b32391b9d1780a70ca"
       },
       {
-        "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/space.js",
+        "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/space.js",
         "identity_mode": "content",
-        "sha256": "76bba190798909edfea08dedb2cd02079c36070e6b31e401729aa2c2d5081679"
+        "sha256": "bc1c82e8e4f2379cc3599002e6b23dcd96ad4ecbe6bf2fe6d7ac0fa72aebbd6c"
       },
       {
-        "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/styles.css",
+        "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/styles.css",
         "identity_mode": "content",
-        "sha256": "ee985f5b945c2772bc43610389b9a5cfad34d49578ab0498758cd420b4f807c2"
+        "sha256": "2da18c0ec2e707ba3092a17a4fa1cf12b3a408083f27d1649aedf8301aa72c68"
       },
       {
-        "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/theme.js",
+        "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/theme.js",
         "identity_mode": "content",
         "sha256": "6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a"
       },
@@ -460,17 +460,32 @@
       {
         "path": "docs/site-revision.json",
         "identity_mode": "content",
-        "sha256": "28d9744c137ed306b29d1bd69d0797b8fde0cdcc77a24ac0d6c791cfe3dd8f46"
+        "sha256": "2aad0968f00c72291a2997b7bb73a603bdeb59433eb4b6ee8486d697ea53a895"
       },
       {
-        "path": "docs/snapshots/0c0e7e1861618e5d30e6ce7c3bdf7cf0b250ebdb66690d7415502f7ee857709c/credits.html",
+        "path": "docs/snapshots/1d995e424b265616ea6cd1481af12d096ef6affa052f8c6c2fa35c4761ff6e76/writing.html",
         "identity_mode": "content",
-        "sha256": "916de71a8e7ba8d161ae61fb2f9064571295ce488aa9cfcc3e28391b65a3586d"
+        "sha256": "99e80d13c6c1cbf49b3b69da9ce66571fabdc6c6f3907253e8425f13e5d08eca"
       },
       {
-        "path": "docs/snapshots/2ab5f65acb961e2dce5ae35708e865b219054a6acc2d8b35509f981aa484def1/writing.html",
+        "path": "docs/snapshots/2b89921aeb2f07862d47db46fc0b54ac23d737c8e303cfba267ae1c0f86c0796/index.html",
         "identity_mode": "content",
-        "sha256": "811b1e170de884c9318a3e9c46a2e4b24177750e96f506138daebfd346d9d512"
+        "sha256": "914ec508e59980826fb66217c39f6036758159e22f2c2cd081ef90accd72db19"
+      },
+      {
+        "path": "docs/snapshots/30ece2261c5e34b336252d8177f897b7839113598352ddd9ae8462efe28dd9e3/credits.html",
+        "identity_mode": "content",
+        "sha256": "98d40275de4f2709b20492bb048c49d1483f7869efd0d5ad9debe3e9d19761f8"
+      },
+      {
+        "path": "docs/snapshots/342f69fb2fb0388106e03f28b92a1f26f96fcac18e08111956bfc3ef62c653f3/research.html",
+        "identity_mode": "content",
+        "sha256": "e4ba59ff74e78b64f8a1bb1e138a9c77c5204ed05822c3a20b0a2d10f2801a33"
+      },
+      {
+        "path": "docs/snapshots/3c40d83a35ffb1be02c86d10e0978a1d77778dc644fcf11cccf2f8b83df5e484/talks.html",
+        "identity_mode": "content",
+        "sha256": "4e908683253aeb7b01ba37420da3307f368e21b3781f079927646f76707d068e"
       },
       {
         "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -478,19 +493,9 @@
         "sha256": "3dd82a25eee6f3915f0748192a6dc34bfbd214879b0ed933f116b3d47a363df7"
       },
       {
-        "path": "docs/snapshots/5d5bef0d795a85624fabbf710c1746f49c9ac3ff6589c7a0b44dfa68777591a7/research.html",
-        "identity_mode": "content",
-        "sha256": "85f274e38d5a788275c551455fea8c8b7cbb0ba432e0301bce3397bbc9d46fef"
-      },
-      {
         "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
         "identity_mode": "content",
         "sha256": "e19095652eec29ccea5cb8ba5397356e998d2b15235b06486675b0fefd151c5d"
-      },
-      {
-        "path": "docs/snapshots/877809aed07881f41170f3b3349560b5cf08643f6739b2ad70d0e7db4666ef50/talks.html",
-        "identity_mode": "content",
-        "sha256": "bcea6a6277b92e18a1004e2971e93d8aa8cf838384f3b66379a85c3a3797824c"
       },
       {
         "path": "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html",
@@ -503,11 +508,6 @@
         "sha256": "b5f2a67bafcaa7275bdf27c5a4b174168c6e9442614ed592a19b1ea748eec942"
       },
       {
-        "path": "docs/snapshots/9b8f20236c87e80418b86025bf207dfb491ca05f9238662a044f808f998f4e78/index.html",
-        "identity_mode": "content",
-        "sha256": "ccb2e0beefff241f8a0a255c1019e69a2838bf5ebb90b04d7a45568bb425881d"
-      },
-      {
         "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
         "identity_mode": "content",
         "sha256": "1d7a5aeb831c51e49667095bb29f51108ff47e32cf89853b54002ffad693e312"
@@ -515,17 +515,17 @@
       {
         "path": "docs/space.js",
         "identity_mode": "content",
-        "sha256": "76bba190798909edfea08dedb2cd02079c36070e6b31e401729aa2c2d5081679"
+        "sha256": "bc1c82e8e4f2379cc3599002e6b23dcd96ad4ecbe6bf2fe6d7ac0fa72aebbd6c"
       },
       {
         "path": "docs/styles.css",
         "identity_mode": "content",
-        "sha256": "ee985f5b945c2772bc43610389b9a5cfad34d49578ab0498758cd420b4f807c2"
+        "sha256": "2da18c0ec2e707ba3092a17a4fa1cf12b3a408083f27d1649aedf8301aa72c68"
       },
       {
         "path": "docs/talks.html",
         "identity_mode": "content",
-        "sha256": "a0cab5e189fc09462ce51a3f2c3e63842243f000ecc68a237bfde73b04725af3"
+        "sha256": "1fce405d63e11dc33952851bcf30e7f7a866eaa11e95e50e2e34dce47f93ea60"
       },
       {
         "path": "docs/theme.js",
@@ -535,7 +535,7 @@
       {
         "path": "docs/writing.html",
         "identity_mode": "content",
-        "sha256": "31a4a16cd814a74715fd759e9060aca856764435a116d6ce0514b1f4c38e46e1"
+        "sha256": "a29ff89c00919ee0e2160347b2d3f948b092dbca099daf556f780f1d728c9c1d"
       },
       {
         "path": "drafts/medium-profile-revision-20261001.html",
@@ -1436,6 +1436,11 @@
         "path": "review/issue-5/2026-10-19-real-article-preview.md",
         "identity_mode": "content",
         "sha256": "521370061e2d8e9dec575f745e436c4835a657045763e300ed63be31fda97b55"
+      },
+      {
+        "path": "review/issue-5/2026-10-20-reader-interactions.md",
+        "identity_mode": "content",
+        "sha256": "1a75328134d02c93fe8a1d05d02fae590459cd428e4b3f1e5f2874d472822090"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -5460,7 +5465,7 @@
       {
         "path": "site/README.md",
         "identity_mode": "content",
-        "sha256": "6f51706dfc50f5b5318e077407cd0ec95b4ad9cd7d46706dd4b62d312aca7fd8"
+        "sha256": "6b6f7c19226099d25c745b62c77947f091023348f8b0a2dcac88dba26cfc872f"
       },
       {
         "path": "site/analytics.json",
@@ -5890,7 +5895,7 @@
       {
         "path": "site/engine/lifecycle.cjs",
         "identity_mode": "content",
-        "sha256": "39b76580b6c727ced628bfbe573e8eaf4f9fe690a6de5e5497f625715c001f87"
+        "sha256": "3c68b4130d191759a0a96482b0efcd9f2f3ebac3d3814d52607130bfd633c2cf"
       },
       {
         "path": "site/engine/math.cjs",
@@ -5900,7 +5905,7 @@
       {
         "path": "site/engine/navigation.js",
         "identity_mode": "content",
-        "sha256": "df116c3c2fe87bcd9a4457ca1be48d2b05edf0f153333c226ea13d55100adde3"
+        "sha256": "c0197a9765b45a137e84fcd32062c423e5b2a064a03b31c7ba4be574d26a45b3"
       },
       {
         "path": "site/engine/projection.cjs",
@@ -5910,17 +5915,17 @@
       {
         "path": "site/engine/reader.cjs",
         "identity_mode": "content",
-        "sha256": "81cd6d9bff18065d8ffb274e7b0e7f5af3b182f6b7753ecbe529175afa7eee7a"
+        "sha256": "9550521620e1a3755690ed80b6cb0a5ac50f175fdc51bbf2fc5f00b79a112160"
       },
       {
         "path": "site/engine/reader.css",
         "identity_mode": "content",
-        "sha256": "9b704f36d79edf55e26273f032483339c6c2d280d982bee4356f3a7b2d8682e4"
+        "sha256": "ebf07916d1581b46ee6be427039d577c6c249c9647a273bc1c3da12d574f6730"
       },
       {
         "path": "site/engine/reading-surfaces.css",
         "identity_mode": "content",
-        "sha256": "10f0c1c97fa2ccec1b06e579f71b692ca0cb35cf4d23179ed8c968eca526c351"
+        "sha256": "9a90493d20a87a3c99f0c30d9848e8ca8394d50a413a880d2ef4c045e5e65ec0"
       },
       {
         "path": "site/engine/renderer.cjs",
@@ -5940,7 +5945,7 @@
       {
         "path": "site/engine/styles.css",
         "identity_mode": "content",
-        "sha256": "7e72c28320985b14aa31e907a2ec6844f45672f2081b646a290cef1fa336169e"
+        "sha256": "6d208b03310c787fa53fc84e074cee9088abe92306e77c83b6e9005911970bf7"
       },
       {
         "path": "site/engine/theme.js",
@@ -5955,7 +5960,7 @@
       {
         "path": "site/output-lock.json",
         "identity_mode": "content",
-        "sha256": "1fb9eb9312acaff2ef5d2badf9c5b543b27625550c5155f9e2e661dee68d8619"
+        "sha256": "1bf635b43cff5951fe60ecbe3a3c8e7943394d92cbf7dcdb32d7de64beab0b69"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
@@ -6085,7 +6090,7 @@
       {
         "path": "site/publications/reader-reference/editions/reader-reference-v1.json",
         "identity_mode": "content",
-        "sha256": "824a4bbffec4f210824d68997c4a2040fd519c8b585a7719f5fcb2a3dfb24e6e"
+        "sha256": "dbc0aa308eb74352145ea5cded0d47aa12db67130a6f43dd030779482e96ae95"
       },
       {
         "path": "site/publications/reader-reference/launch-post.en.md",
@@ -6095,22 +6100,22 @@
       {
         "path": "site/publications/reader-reference/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "a11705043b03b6e157e9db20a43fe90d21fe8aee6b75cb5e4b07404b0a5d7d1b"
+        "sha256": "016b9d23cdbeb88b0e4e0d1c2634ff96f4db84bfe578eb12d122d4b55df9b0f3"
       },
       {
         "path": "site/publications/reader-reference/materials.json",
         "identity_mode": "content",
-        "sha256": "d5e4c30626eb4eaa21329eb3dfb304da6308c80f1d87e1303068366932c1122c"
+        "sha256": "87147955896737b0385d4b301a7ef0bb0c23b9ffe35f8013cba72eeb9df72457"
       },
       {
         "path": "site/publications/reader-reference/materials/reviews/source-diagram.md",
         "identity_mode": "content",
-        "sha256": "502380bee4b91e22123289750ec4e3e8afa85bda485d3715c5c0cf7fc9c5bbab"
+        "sha256": "0c26fcb6e781cb7435e33147c5d571ebebe2ead4046f27bc5d3e74bd0aff7999"
       },
       {
         "path": "site/publications/reader-reference/profile.json",
         "identity_mode": "content",
-        "sha256": "ade1860feda28a42ff74c9bacfe11dee3610eab0b20feb4ee071810c5732d12b"
+        "sha256": "ae5de0e9218e33213953f62f3c47e651dce005fd36d68fa4a0fa340581ea9b68"
       },
       {
         "path": "site/publications/reader-reference/publication.json",
@@ -6345,7 +6350,12 @@
       {
         "path": "site/templates/components/reader-contents.html",
         "identity_mode": "content",
-        "sha256": "60aedbb28a44cde0764a91be5fb66f0fcf04beb7423b20467dbef14b44b9411e"
+        "sha256": "476798c94b09cdd5800a382c5c155d9d855a961c72f447270f137fa1fb6d2baa"
+      },
+      {
+        "path": "site/templates/components/reader-tools.html",
+        "identity_mode": "content",
+        "sha256": "d40d3fa84c46075a7d7b4d55e66799969bde516f9356529ea6e83cc041209d3e"
       },
       {
         "path": "site/templates/head.html",
@@ -6355,7 +6365,7 @@
       {
         "path": "site/templates/pages/article.html",
         "identity_mode": "content",
-        "sha256": "1297c45b063214f62a217b4e32518041736e970dbafa22bd7f0a50d36b666341"
+        "sha256": "6b4d543a6b4f5c1374f047d90850d9c0ecc3abe0e07f4c610e8408297cf7236a"
       },
       {
         "path": "site/templates/pages/credits/main.html",
@@ -6490,7 +6500,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "472e4dee03783ae665993488d8e2b00f3f7e6769dfc757dd5bd0abc4bf290de4"
+        "sha256": "16925df030a02606122ee80f1b44fad28f785866bccb4fdca4b1ef2158c02361"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -6515,12 +6525,12 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "da5fe227cb5b3950b3635b85dc41865512dcebbf01c5d22ca9d5e7e85087be00"
+        "sha256": "8290b6db0dd9658aaf925fe43d385a0153331f7b9107cebf73d2938451b5acb8"
       },
       {
         "path": "tests/article-offline.test.cjs",
         "identity_mode": "content",
-        "sha256": "b8275073c03399ba6959f977a92db9eaa35333d76960bcaa3c8b2148ac767fdf"
+        "sha256": "0565a4c64623cf0908acd13dbcb5fe394ad9a23b2e2ebdc19eeb52264b58646a"
       },
       {
         "path": "tests/article-tags.test.cjs",
@@ -6575,7 +6585,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "5024333a3b9c8b1122f34a1382509d39b9ef48329d0b4d68e37db61dc676738f"
+        "sha256": "76ca99851266d8065ee91439aa0af8963bfd568563ef540fefabda33bf1f0aa5"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -6660,7 +6670,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "63d6d8ac3c46994b8882abaaf5eb90fba9d03e7bc4565a4dc0605458bf1a0dce"
+        "sha256": "da452df6f8681cc4abf82a712f8a70eb173260260f75bc51183d6be4dcd45063"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -6745,7 +6755,7 @@
       {
         "path": "tests/preview-smoke.test.cjs",
         "identity_mode": "content",
-        "sha256": "dd66f785b7cb03b2ad71be484b567df0f275ec46c445e7e46aca3ec1fa678dfc"
+        "sha256": "56db899c5caaaa0afd0e2c951338d658f4abdde8a7ca115e7988b8cfe16adb75"
       },
       {
         "path": "tests/preview.test.cjs",
@@ -6800,7 +6810,7 @@
       {
         "path": "tests/reader-mode.test.cjs",
         "identity_mode": "content",
-        "sha256": "ba2f3e5d2099a38ead4eca88e83e9e2174c30724bc012ea60ea6a9d48836a7e9"
+        "sha256": "d3993843b27ad6a24bf05244047ace86eda148f101471736b139cdf72bd1d55e"
       },
       {
         "path": "tests/refactor-metrics.test.cjs",
@@ -6815,7 +6825,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "a790c104b735e06f41e251b6e0966064e638245ddeb35f7629ec0225e86b2e28"
+        "sha256": "f810c2f9ed4d7a9e83dbe6402cd65476c9948c6ab85668846f6807417ed2c875"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6870,7 +6880,7 @@
       {
         "path": "tests/space.test.cjs",
         "identity_mode": "content",
-        "sha256": "48f26e18b8b7cbb4117bfa113ef89b136972fca5b3cdf95248c735286c3cf523"
+        "sha256": "3e3ac21041fc13fd925d13d0934659416c4ae7e3848b6b61a3d5b8be92292b9a"
       },
       {
         "path": "tests/staging-gate.test.cjs",
@@ -6880,7 +6890,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "e603e540833096bac8994bddbe0d018218174e7de182b032a9cb099fbf191c46"
+        "sha256": "8d78369870857c301fb3dac472ed3df75978c44f1ead4884ff50ef87d186bdc1"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -7230,7 +7240,7 @@
       {
         "path": "tools/publishing/profile.cjs",
         "identity_mode": "content",
-        "sha256": "ecf5c7a00b29a666ffd82d37ec88219548dd667e5737b7601662eb6e07ed32f7"
+        "sha256": "04df709ffb412c96b1b6652d9d59796818d2b35b5f20d480d20eae9b37ab7e92"
       },
       {
         "path": "tools/publishing/provenance.cjs",
@@ -7305,7 +7315,7 @@
       {
         "path": "tools/quality/article-browser.cjs",
         "identity_mode": "content",
-        "sha256": "fc97122eabf0dc5e04d9d67715d2f1db7b0a1111f3a7012d71e69edea05872e2"
+        "sha256": "9be12aa2f919f3944ae6b99effdaec2fa3d21234e097b88757a7fa90fffc0b9f"
       },
       {
         "path": "tools/quality/article-print.cjs",
@@ -7385,7 +7395,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "23b51c754dca00e8b8214881d1f3e84a0dac75c70b1e41ae14fab18220fbbbfb"
+        "sha256": "fd52b1d3c30b42e199576646ff888258cef02c200e767d8bbf8e461ac68c3656"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -7520,7 +7530,7 @@
       {
         "path": "tools/quality/local-browser.cjs",
         "identity_mode": "content",
-        "sha256": "2e8db6144d718fec5e9dfc022482535bfbc2b00a1b3f6e651e11e3aa75186fbb"
+        "sha256": "d4b89c298035fe0dc71480d38ac948ee08faa97fa25aabf84e29bc316dd3a1a0"
       },
       {
         "path": "tools/quality/local.cjs",
@@ -7805,7 +7815,7 @@
       {
         "path": "tools/release/rights-record.cjs",
         "identity_mode": "content",
-        "sha256": "5e861e0f802ce5d0612f42f48d228c403f4321d0e08124dc46f1f0ca2f048406"
+        "sha256": "ba8614fd16fef93ad5db4dcb86fb95825da2bcb1b163e6ef13b6b3a94b61d200"
       },
       {
         "path": "tools/release/rights.cjs",
@@ -7855,12 +7865,12 @@
       {
         "path": "tools/site/articles.cjs",
         "identity_mode": "content",
-        "sha256": "4feee21a8e9aa47bfc78688d884a77f8ddfcc881678abe821a9738a90aee399e"
+        "sha256": "c9c8c0af7cb114b534ff6df815a3e710d7e2356836ec864bf4f990d78ebadb44"
       },
       {
         "path": "tools/site/build.cjs",
         "identity_mode": "content",
-        "sha256": "a6ae45d1ce6ffa6e407bee0e409b6ade597dc162bd1eb5cd0e72cd6dbed598c5"
+        "sha256": "36de786fffa612a3f42c494d5a1acd0efcccd853138dc4667a23ed9efa28d115"
       },
       {
         "path": "tools/site/content-release.cjs",
@@ -7920,7 +7930,7 @@
       {
         "path": "tools/site/offline.cjs",
         "identity_mode": "content",
-        "sha256": "4cd0f0bc5e03202327781287ba1d200d4f7721ae7eaf63c6aa89f462d9c54175"
+        "sha256": "67f7e3456eb0493044920a2f366f1a7f1e387f82b255fd7bc70667e3052e836f"
       },
       {
         "path": "tools/site/public-artifact.cjs",
@@ -7930,7 +7940,7 @@
       {
         "path": "tools/site/reader.cjs",
         "identity_mode": "content",
-        "sha256": "141d3ed7b2ddeb613b9e61fffabe0c29149acde8a6c612820c31e6b10fc7562a"
+        "sha256": "7fdb11a9a81abc5fd6d2b5d7f478ef0ad73fc9f010b619cf88c0f449bd01ff90"
       },
       {
         "path": "tools/site/render-content.cjs",
@@ -8005,7 +8015,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "61b197d665594f1a9c7554313f4d0d1cc9c8495e2a63a3104dd36883b41a53e7"
+        "sha256": "5b3c6898498f24679386f84a8f0e63c2f95b2398be6fe1ad95800c1f71ba2f4d"
       },
       {
         "path": "tools/staging/review-flow.cjs",
@@ -9170,9 +9180,9 @@
       "title": "analytics.js"
     },
     {
-      "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/archive.js",
+      "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/archive.js",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9181,9 +9191,9 @@
       "title": "archive.js"
     },
     {
-      "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/navigation.js",
+      "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/navigation.js",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9192,9 +9202,9 @@
       "title": "navigation.js"
     },
     {
-      "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/space.js",
+      "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/space.js",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9203,9 +9213,9 @@
       "title": "space.js"
     },
     {
-      "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/styles.css",
+      "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/styles.css",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9214,9 +9224,9 @@
       "title": "styles.css"
     },
     {
-      "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/theme.js",
+      "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/theme.js",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9291,9 +9301,31 @@
       "title": "site-revision.json"
     },
     {
-      "path": "docs/snapshots/0c0e7e1861618e5d30e6ce7c3bdf7cf0b250ebdb66690d7415502f7ee857709c/credits.html",
+      "path": "docs/snapshots/1d995e424b265616ea6cd1481af12d096ef6affa052f8c6c2fa35c4761ff6e76/writing.html",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "writing.html"
+    },
+    {
+      "path": "docs/snapshots/2b89921aeb2f07862d47db46fc0b54ac23d737c8e303cfba267ae1c0f86c0796/index.html",
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "index.html"
+    },
+    {
+      "path": "docs/snapshots/30ece2261c5e34b336252d8177f897b7839113598352ddd9ae8462efe28dd9e3/credits.html",
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9302,15 +9334,26 @@
       "title": "credits.html"
     },
     {
-      "path": "docs/snapshots/2ab5f65acb961e2dce5ae35708e865b219054a6acc2d8b35509f981aa484def1/writing.html",
+      "path": "docs/snapshots/342f69fb2fb0388106e03f28b92a1f26f96fcac18e08111956bfc3ef62c653f3/research.html",
       "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "writing.html"
+      "title": "research.html"
+    },
+    {
+      "path": "docs/snapshots/3c40d83a35ffb1be02c86d10e0978a1d77778dc644fcf11cccf2f8b83df5e484/talks.html",
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "talks.html"
     },
     {
       "path": "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html",
@@ -9324,31 +9367,9 @@
       "title": "writing.html"
     },
     {
-      "path": "docs/snapshots/5d5bef0d795a85624fabbf710c1746f49c9ac3ff6589c7a0b44dfa68777591a7/research.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "research.html"
-    },
-    {
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html",
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "talks.html"
-    },
-    {
-      "path": "docs/snapshots/877809aed07881f41170f3b3349560b5cf08643f6739b2ad70d0e7db4666ef50/talks.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -9377,17 +9398,6 @@
         "AGENTS.md"
       ],
       "title": "research.html"
-    },
-    {
-      "path": "docs/snapshots/9b8f20236c87e80418b86025bf207dfb491ca05f9238662a044f808f998f4e78/index.html",
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ],
-      "title": "index.html"
     },
     {
       "path": "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7/index.html",
@@ -11434,6 +11444,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 5 — 2026-10-19 real article preview"
+    },
+    {
+      "path": "review/issue-5/2026-10-20-reader-interactions.md",
+      "kind": "file",
+      "purpose": "Issue5 reusable reader interaction iteration, independent findings, shared ownership and bounded acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 5 — reusable reader interactions"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",
@@ -22238,6 +22259,17 @@
       "title": "reader-contents.html"
     },
     {
+      "path": "site/templates/components/reader-tools.html",
+      "kind": "file",
+      "purpose": "Shared progressive native image and source dialogs for every article reader template.",
+      "role": "source",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-tools.html"
+    },
+    {
       "path": "site/templates/head.html",
       "kind": "file",
       "purpose": "Shared escaped metadata, JSON-LD, engine/effects identity and optional analytics head.",
@@ -26056,9 +26088,9 @@
       ]
     },
     {
-      "path": "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343",
+      "path": "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -26086,9 +26118,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/0c0e7e1861618e5d30e6ce7c3bdf7cf0b250ebdb66690d7415502f7ee857709c",
+      "path": "docs/snapshots/1d995e424b265616ea6cd1481af12d096ef6affa052f8c6c2fa35c4761ff6e76",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -26096,9 +26128,39 @@
       ]
     },
     {
-      "path": "docs/snapshots/2ab5f65acb961e2dce5ae35708e865b219054a6acc2d8b35509f981aa484def1",
+      "path": "docs/snapshots/2b89921aeb2f07862d47db46fc0b54ac23d737c8e303cfba267ae1c0f86c0796",
       "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/30ece2261c5e34b336252d8177f897b7839113598352ddd9ae8462efe28dd9e3",
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/342f69fb2fb0388106e03f28b92a1f26f96fcac18e08111956bfc3ef62c653f3",
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "docs/snapshots/3c40d83a35ffb1be02c86d10e0978a1d77778dc644fcf11cccf2f8b83df5e484",
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -26116,29 +26178,9 @@
       ]
     },
     {
-      "path": "docs/snapshots/5d5bef0d795a85624fabbf710c1746f49c9ac3ff6589c7a0b44dfa68777591a7",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
       "path": "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/877809aed07881f41170f3b3349560b5cf08643f6739b2ad70d0e7db4666ef50",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [
@@ -26159,16 +26201,6 @@
       "path": "docs/snapshots/91f8a641646cb7bddbade09bc53e70b34a715f7f5cc0a1e14678b17ec6872946",
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md",
-      "instructions": [
-        "AGENTS.md"
-      ]
-    },
-    {
-      "path": "docs/snapshots/9b8f20236c87e80418b86025bf207dfb491ca05f9238662a044f808f998f4e78",
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
       "role": "generated",
       "owner": "site/README.md",
       "instructions": [

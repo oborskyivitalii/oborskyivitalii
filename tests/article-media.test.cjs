@@ -306,7 +306,7 @@ test('existing JPEG rendition preserves canonical edition and rejects altered eq
   }
 });
 
-test('real R13 preview retains full edition and PDF closure inside unchanged reading budget', (t) => {
+test('real R18 preview retains full edition and PDF closure inside unchanged reading budget', (t) => {
   const root = fixture(t),
     output = path.join(root, 'public');
   assert.deepEqual(artifact.previewSelection('true', root), ['pmday-ai-both-sides']);
@@ -345,9 +345,9 @@ test('real R13 preview retains full edition and PDF closure inside unchanged rea
   assert.equal(descriptor.assets.filter((name) => name.endsWith('.jpg')).length, 1);
   assert.equal(
     descriptor.sourceSha256,
-    'c9760da3dcc5003011777b7250d064a4232a0abea27505d3cedc057abf569d3f'
+    '34c0795691712308ccdc925046ed7a811ee15291b2d9518b52dd01797f6a23a3'
   );
-  assert.equal(descriptor.contentEdition, 'pmday-ai-both-sides-en-review-20261019-r13-cover02');
+  assert.equal(descriptor.contentEdition, 'pmday-ai-both-sides-en-review-20261020-r18-cover02');
   assert.equal(descriptor.downloads.length, 1);
   // This increment delivers hosted/native reading. The existing standalone
   // codec deliberately rejects JPEG rather than emitting an invalid payload.

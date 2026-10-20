@@ -541,6 +541,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/d1d485683411259806d9b3bac5a2c04b91678a2ef8da98d0d203033c77a02d62": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -586,6 +622,66 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1d995e424b265616ea6cd1481af12d096ef6affa052f8c6c2fa35c4761ff6e76": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1d995e424b265616ea6cd1481af12d096ef6affa052f8c6c2fa35c4761ff6e76/writing.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2b89921aeb2f07862d47db46fc0b54ac23d737c8e303cfba267ae1c0f86c0796": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/2b89921aeb2f07862d47db46fc0b54ac23d737c8e303cfba267ae1c0f86c0796/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/30ece2261c5e34b336252d8177f897b7839113598352ddd9ae8462efe28dd9e3": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/30ece2261c5e34b336252d8177f897b7839113598352ddd9ae8462efe28dd9e3/credits.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/342f69fb2fb0388106e03f28b92a1f26f96fcac18e08111956bfc3ef62c653f3": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/342f69fb2fb0388106e03f28b92a1f26f96fcac18e08111956bfc3ef62c653f3/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3c40d83a35ffb1be02c86d10e0978a1d77778dc644fcf11cccf2f8b83df5e484": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/3c40d83a35ffb1be02c86d10e0978a1d77778dc644fcf11cccf2f8b83df5e484/talks.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; regenerate from canonical site owners.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1051,6 +1147,18 @@
       "role": "history",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf": {
+      "kind": "file",
+      "purpose": "R18 compact review PDF, 18 pages, derived from the current canonical manuscript and original media.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "review/issue-2/pmday-candidate-20261015/article-journey-observations.json": {
       "kind": "file",
       "purpose": "Local review Chromium full real-article five-case journey evidence; not hosted CI admission.",
@@ -1072,6 +1180,24 @@
     "review/issue-2/pmday-candidate-20261015/r12-cover02-import.json": {
       "kind": "file",
       "purpose": "R12 Cover02 exact review PDF/import evidence; prior editions are preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r13-pdf-edit.py": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r18-pdf-review.json": {
+      "kind": "file",
+      "purpose": "Exact R18 review-PDF hashes, prose/link/image checks, producer and acceptance limits.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/pmday-candidate-20261015/r18-review-source.zip": {
+      "kind": "file",
+      "purpose": "Source-bound R18 review-PDF HTML, CSS, fonts, manuscript and original media snapshot.",
       "role": "history",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -1765,6 +1891,12 @@
       "role": "history",
       "owner": ".github/ACCEPTANCE.md"
     },
+    "review/issue-5/2026-10-19-calm-reader.md": {
+      "kind": "file",
+      "purpose": "Fresh Product Design audit dispositions, authorized shared calm reader implementation and exact-source preview evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-5/2026-10-19-delivery-lanes.md": {
       "kind": "file",
       "purpose": "Issue5 delivery lane plan, exact event migration/producers and independent acceptance evidence.",
@@ -1801,6 +1933,12 @@
       "owner": "CONTRIBUTING.md",
       "purpose": "Issue5 runtime publication-index architecture, tag backfill limits, AC/style mapping and source/browser evidence boundary."
     },
+    "review/issue-5/2026-10-19-reader-block-transitions.md": {
+      "kind": "file",
+      "purpose": "Dated article block-wave and source-reading correction review for issue5 and PR79.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-5/2026-10-19-reader-flight-review.md": {
       "kind": "file",
       "purpose": "Dated independent reader navigation review and verification evidence.",
@@ -1810,6 +1948,12 @@
     "review/issue-5/2026-10-19-reader-mode.md": {
       "kind": "file",
       "purpose": "User-authorized reusable reader architecture, independent findings/corrections and exact-source acceptance handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-19-reader-r13-followup.md": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -1854,6 +1998,12 @@
       "purpose": "Real R12 native reader preview: bounded rendition/download policy, preservation and independent review evidence.",
       "role": "history",
       "owner": "guides/SITE-CONTENT-RELEASE.md"
+    },
+    "review/issue-5/2026-10-20-reader-interactions.md": {
+      "kind": "file",
+      "purpose": "Issue5 reusable reader interaction iteration, independent findings, shared ownership and bounded acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-5/pmday-candidate": {
       "kind": "directory",
@@ -1902,6 +2052,78 @@
       "purpose": "Complete prepared PMDay candidate platform/print/source review kit archive with its own artifact manifest and declared omissions.",
       "role": "history",
       "owner": "review/issue-5/2026-10-12-execution.md"
+    },
+    "review/issue-5/reader-block-transitions": {
+      "kind": "directory",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-block-transitions/return-2f09b957.jpg": {
+      "kind": "file",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-block-transitions/sources-2f09b957.jpg": {
+      "kind": "file",
+      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit": {
+      "kind": "directory",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/01-contents.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/02-process.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/03-quotation.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/04-chapter.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/05-table.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/06-reference.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/07-return.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/reader-r13-audit/08-ending.jpg": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-5/writing-catalog-amendment.json": {
       "kind": "file",
@@ -7723,6 +7945,18 @@
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r13-cover02.json": {
+      "kind": "file",
+      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261020-r18-cover02.json": {
+      "kind": "file",
+      "purpose": "R18 author-review semantic edition after the official event-name correction; earlier editions preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
     "site/publications/pmday-ai-both-sides/launch-post.en.md": {
       "kind": "file",
       "purpose": "PMDay article source, presentation viewer or original publication media: launch-post.en.md.",
@@ -8254,6 +8488,12 @@
     "site/templates/components/reader-contents.html": {
       "kind": "file",
       "purpose": "Reusable semantic article contents disclosure, omitted for articles without chapters.",
+      "role": "source",
+      "owner": "site/README.md"
+    },
+    "site/templates/components/reader-tools.html": {
+      "kind": "file",
+      "purpose": "Shared progressive native image and source dialogs for every article reader template.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -10380,234 +10620,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "review/issue-5/2026-10-19-calm-reader.md": {
-      "kind": "file",
-      "purpose": "Fresh Product Design audit dispositions, authorized shared calm reader implementation and exact-source preview evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R13_Cover02_Compact.pdf": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "review/issue-2/pmday-candidate-20261015/r13-pdf-edit.py": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "review/issue-5/2026-10-19-reader-r13-followup.md": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit": {
-      "kind": "directory",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/01-contents.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/02-process.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/03-quotation.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/04-chapter.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/05-table.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/06-reference.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/07-return.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-r13-audit/08-ending.jpg": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261019-r13-cover02.json": {
-      "kind": "file",
-      "purpose": "R13 bounded chapter-6 editorial correction and fresh reader audit evidence; R12 history preserved.",
-      "role": "source",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "review/issue-5/2026-10-19-reader-block-transitions.md": {
-      "kind": "file",
-      "purpose": "Dated article block-wave and source-reading correction review for issue5 and PR79.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-block-transitions": {
-      "kind": "directory",
-      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-block-transitions/return-2f09b957.jpg": {
-      "kind": "file",
-      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-5/reader-block-transitions/sources-2f09b957.jpg": {
-      "kind": "file",
-      "purpose": "Native reader source-return visual evidence on exact2f09b957 runtime.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0c0e7e1861618e5d30e6ce7c3bdf7cf0b250ebdb66690d7415502f7ee857709c": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/0c0e7e1861618e5d30e6ce7c3bdf7cf0b250ebdb66690d7415502f7ee857709c/credits.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2ab5f65acb961e2dce5ae35708e865b219054a6acc2d8b35509f981aa484def1": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/2ab5f65acb961e2dce5ae35708e865b219054a6acc2d8b35509f981aa484def1/writing.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5d5bef0d795a85624fabbf710c1746f49c9ac3ff6589c7a0b44dfa68777591a7": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5d5bef0d795a85624fabbf710c1746f49c9ac3ff6589c7a0b44dfa68777591a7/research.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/877809aed07881f41170f3b3349560b5cf08643f6739b2ad70d0e7db4666ef50": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/877809aed07881f41170f3b3349560b5cf08643f6739b2ad70d0e7db4666ef50/talks.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9b8f20236c87e80418b86025bf207dfb491ca05f9238662a044f808f998f4e78": {
-      "kind": "directory",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/9b8f20236c87e80418b86025bf207dfb491ca05f9238662a044f808f998f4e78/index.html": {
-      "kind": "file",
-      "purpose": "Generated immutable runtime or document snapshot from canonical site sources.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf": {
-      "kind": "file",
-      "purpose": "R18 compact review PDF, 18 pages, derived from the current canonical manuscript and original media.",
-      "role": "history",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "review/issue-2/pmday-candidate-20261015/r18-pdf-review.json": {
-      "kind": "file",
-      "purpose": "Exact R18 review-PDF hashes, prose/link/image checks, producer and acceptance limits.",
-      "role": "history",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "review/issue-2/pmday-candidate-20261015/r18-review-source.zip": {
-      "kind": "file",
-      "purpose": "Source-bound R18 review-PDF HTML, CSS, fonts, manuscript and original media snapshot.",
-      "role": "history",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
-    },
-    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261020-r18-cover02.json": {
-      "kind": "file",
-      "purpose": "R18 author-review semantic edition after the official event-name correction; earlier editions preserved.",
-      "role": "source",
-      "owner": "guides/ARTICLE-WORKFLOW.md"
     }
   }
 }

@@ -3,7 +3,7 @@
   "articleId": "reader-reference",
   "source": {
     "editionId": "reader-reference-v1",
-    "semanticSha256": "9b4c68a9af14fadf270b0a3974ae7e697737f3f209cdb9e0627858be6fb1bcbf"
+    "semanticSha256": "37c435e9f9ae258899d8acc51fea2b9f48c274feccb61aace90711c045eb7ed6"
   },
   "items": [
     {
@@ -19,11 +19,11 @@
         "sha256": "6a9867902510d7aea88f650b068c9592b598dc6dbcfdc4044bc99e1f176f82f7"
       },
       "approval": {
-        "bindingSha256": "8906e0251520e19fc05b5ebd645cbcccfceb3dad076e679188c06c239eecf21c",
-        "reviewedAt": "2026-10-19T10:30:00Z",
+        "bindingSha256": "001cd93c8c0150e9e0204e7d87a9935a7a6832a7e82bcd55af0663f4e8e98e66",
+        "reviewedAt": "2026-10-20T00:00:00Z",
         "evidence": {
           "path": "materials/reviews/source-diagram.md",
-          "sha256": "502380bee4b91e22123289750ec4e3e8afa85bda485d3715c5c0cf7fc9c5bbab"
+          "sha256": "0c26fcb6e781cb7435e33147c5d571ebebe2ead4046f27bc5d3e74bd0aff7999"
         }
       }
     }

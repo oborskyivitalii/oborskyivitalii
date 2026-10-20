@@ -18,39 +18,43 @@ const pixel = Buffer.from(
 );
 let prepared;
 
-test('offline material anchors hydrate only declared verified resources', () => {
-  const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
-  const start = source.indexOf('  function hydrateEmbeddedImages(');
-  const end = source.indexOf('  async function read(', start);
-  const name = 'article-media/' + 'a'.repeat(64) + '/carousel.pdf';
-  const attributes = new Map([['href', name]]);
-  const link = {
-    tagName: 'A',
-    getAttribute: (key) => attributes.get(key),
-    setAttribute: (key, value) => attributes.set(key, value),
-  };
-  const context = { embeddedAssetURLs: new Map([[name, 'data:application/pdf;base64,JVBERg==']]) };
-  vm.createContext(context);
-  vm.runInContext(
-    source.slice(start, end) + '\nglobalThis.hydrate=hydrateEmbeddedImages;',
-    context
-  );
-  const result = {
-    main: {
-      querySelectorAll(selector) {
-        assert.ok(selector.includes('#article-materials a[href]'));
-        return [link];
+for (const [file, dataURL, selector] of [
+  ['carousel.pdf', 'data:application/pdf;base64,JVBERg==', '#article-materials a[href]'],
+  ['pixel.png', 'data:image/png;base64,' + pixel.toString('base64'), '.reader-image-open[href]'],
+])
+  test('offline ' + file + ' anchors hydrate only declared verified resources', () => {
+    const source = fs.readFileSync(path.join(repo, 'site/engine/navigation.js'), 'utf8');
+    const start = source.indexOf('  function hydrateEmbeddedImages(');
+    const end = source.indexOf('  async function read(', start);
+    const name = 'article-media/' + 'a'.repeat(64) + '/' + file;
+    const attributes = new Map([['href', name]]);
+    const link = {
+      tagName: 'A',
+      getAttribute: (key) => attributes.get(key),
+      setAttribute: (key, value) => attributes.set(key, value),
+    };
+    const context = { embeddedAssetURLs: new Map([[name, dataURL]]) };
+    vm.createContext(context);
+    vm.runInContext(
+      source.slice(start, end) + '\nglobalThis.hydrate=hydrateEmbeddedImages;',
+      context
+    );
+    const result = {
+      main: {
+        querySelectorAll(actual) {
+          assert.ok(actual.includes(selector));
+          return [link];
+        },
       },
-    },
-  };
-  context.hydrate(result, { assets: [name] });
-  assert.equal(attributes.get('data-offline-resource'), name);
-  assert.equal(attributes.get('href'), 'data:application/pdf;base64,JVBERg==');
-  attributes.set('href', name);
-  assert.throws(() => context.hydrate(result, { assets: [] }), /unknown/i);
-  context.embeddedAssetURLs.clear();
-  assert.throws(() => context.hydrate(result, { assets: [name] }), /unknown/i);
-});
+    };
+    context.hydrate(result, { assets: [name] });
+    assert.equal(attributes.get('data-offline-resource'), name);
+    assert.equal(attributes.get('href'), dataURL);
+    attributes.set('href', name);
+    assert.throws(() => context.hydrate(result, { assets: [] }), /unknown/i);
+    context.embeddedAssetURLs.clear();
+    assert.throws(() => context.hydrate(result, { assets: [name] }), /unknown/i);
+  });
 
 function write(root, relative, bytes) {
   const file = path.join(root, relative);
@@ -289,7 +293,10 @@ test('standalone material exports reject stale or revoked selections until rebui
   const declaration = {
     schema: 1,
     articleId: article.metadata.id,
-    source: { editionId: article.edition.id, semanticSha256: article.edition.semanticSha256 },
+    source: {
+      editionId: article.edition.id,
+      semanticSha256: article.edition.semanticSha256,
+    },
     items: [
       {
         id: 'reading-pdf',
@@ -324,7 +331,10 @@ test('standalone material exports reject stale or revoked selections until rebui
     item.approval = {
       bindingSha256: material.reviewBinding(declaration, item),
       reviewedAt: '2026-10-19T10:00:00Z',
-      evidence: { path: `materials/reviews/${item.id}.md`, sha256: builder.sha(review) },
+      evidence: {
+        path: `materials/reviews/${item.id}.md`,
+        sha256: builder.sha(review),
+      },
     };
   }
   const profilePath = path.join(f.root, article.directory, 'profile.json');
@@ -503,9 +513,10 @@ test('explicit article export contains one selected document, bounded inert HTML
   assert.deepEqual(Buffer.from(inlinePNG[1], 'base64'), pixel);
   assert.equal(
     result.html.split(pixel.toString('base64')).length - 1,
-    1,
-    'selected PNG bytes are embedded once'
+    2,
+    'selected PNG bytes appear only in the native image and its full-size fallback link'
   );
+  assert.match(nativeMain, /class="reader-image-open" href="data:image\/png;base64,/);
   assert.equal(
     builder.sha(Buffer.from(inlinePNG[1], 'base64')),
     data.assets[descriptor.assets[0]].sha256

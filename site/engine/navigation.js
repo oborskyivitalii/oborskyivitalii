@@ -372,7 +372,13 @@
   function push(url) {
     save();
     history.pushState(
-      { site: { page, index: ++historyIndex, scroll: [window.scrollX, window.scrollY] } },
+      {
+        site: {
+          page,
+          index: ++historyIndex,
+          scroll: [window.scrollX, window.scrollY],
+        },
+      },
       '',
       url
     );
@@ -526,7 +532,7 @@
   function hydrateEmbeddedImages(result, descriptor) {
     const used = new Set();
     for (const image of result.main.querySelectorAll(
-      'img[src],.article-presentation a[href],#article-materials a[href]'
+      'img[src],.reader-image-open[href],.article-presentation a[href],#article-materials a[href]'
     )) {
       const attribute = image.tagName === 'IMG' ? 'src' : 'href';
       const name = image.getAttribute(attribute);
@@ -1018,6 +1024,15 @@
       return Math.sign(targetIndex - historyIndex);
     return next === 'writing' ? -1 : 1;
   }
+  function contentDirections(fromDocument, next, direction) {
+    // Hierarchy controls the block wave independently of camera/history travel.
+    return {
+      departureDirection:
+        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction,
+      arrivalDirection:
+        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction,
+    };
+  }
   function restoreReadingFocus(pop) {
     const savedFocus = pop ? history.state?.site?.focus : null;
     const focused = savedFocus
@@ -1067,11 +1082,11 @@
       restoreScroll(interruptedPosition[0], interruptedPosition[1]);
       next = await admittedDestination(url, next, controller.signal);
       // Admission resolves article aliases absent from a principal page's boot registry.
-      // Hierarchy controls the block wave independently of camera/history travel.
-      const departureDirection =
-        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction;
-      const arrivalDirection =
-        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction;
+      const { departureDirection, arrivalDirection } = contentDirections(
+        fromDocument,
+        next,
+        direction
+      );
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);

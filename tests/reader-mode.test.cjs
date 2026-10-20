@@ -42,7 +42,12 @@ test('reader reuses the admitted AST without changing source or other renditions
     /<figcaption><p>An important limitation remains visible\.<\/p><details/
   );
   assert.match(output.body, /Author and source credits\./);
-  assert.ok(!output.toc.includes('href="#a-subsection"'), 'contents shows chapters only');
+  assert.match(output.toc, /href="#a-subsection"/, 'contents includes actual H3 topics');
+  assert.match(output.toc, /class="reader-subcontents"/);
+  assert.match(
+    output.body,
+    /<a class="reader-image-open" href="article-media\/[a-f0-9]{64}\/image\.png" aria-label="Enlarge image: A drawing"><img/
+  );
   assert.ok(!output.body.includes('<h1'));
   assert.match(input.platformBodyHtml, /An important limitation remains visible\./);
   assert.match(output.body, /<div class="reader-divider"><hr><\/div>/);
@@ -100,6 +105,134 @@ test('numbered references return to every real citation and never create nested 
   );
   assert.match(output.appendices, /\[1\] remains code/);
   assert.ok(!output.toc.includes('#evidence'), 'appendices do not compete with the main chapters');
+});
+
+test('hierarchical contents keeps native targets and excludes deep headings and supporting sections', () => {
+  const input = article(
+    '# A different article\n\n## First & second\n\n### A topic\n\nParagraph.\n\n#### A detail\n\nMore prose.\n\n### Another topic\n\n## Last chapter\n\nA short chapter.\n\n## Appendix\n\n### Appendix topic\n\nSupporting material.'
+  );
+  input.profile.reader.sections = { appendices: ['appendix'] };
+  const output = prepare(input);
+  assert.match(output.toc, /Topics in First &amp; second/);
+  assert.equal((output.toc.match(/<details/g) || []).length, 1);
+  assert.equal((output.toc.match(/<a /g) || []).length, 4);
+  for (const id of ['first-second', 'a-topic', 'another-topic', 'last-chapter']) {
+    assert.ok(output.toc.includes(`href="#${id}"`));
+    assert.ok(output.body.includes(`id="${id}"`));
+  }
+  assert.doesNotMatch(output.toc, /#a-detail|#appendix/);
+  validateFragment(output.toc, 'hierarchical contents');
+});
+
+test('only adjacent citations to the exact source replace redundant prose links', () => {
+  const input = article(
+    [
+      '# [A different article](https://example.com/source)',
+      '## [A linked heading](https://example.com/source) [1]',
+      'The [**same source**](https://example.com/source) [1] keeps its words and emphasis.',
+      'A [different source](https://example.com/different) [1] stays linked.',
+      'A [missing note](https://example.com/source) [99] stays linked.',
+      'A [separated mention](https://example.com/source) has context before [1].',
+      'A **[different inline parent](https://example.com/source)** [1] stays linked.',
+      '[A recording](https://example.com/source) [1] · [A resource](https://example.com/deck) [2]',
+      'Download the [presentation](https://example.com/deck) [2] and [file](https://example.com/paper.pdf) [3].',
+      '## Evidence',
+      '1. [Full source](https://example.com/source) [1].',
+      '2. [Full presentation](https://example.com/deck).',
+      '3. [Full file](https://example.com/paper.pdf).',
+    ].join('\n\n')
+  );
+  input.profile.reader.sections = { references: 'evidence', appendices: ['evidence'] };
+  input.presentation = { sourceUrl: 'https://example.com/deck' };
+  const before = JSON.stringify(input);
+  const output = prepare(input);
+  assert.equal(JSON.stringify(input), before, 'source AST and other renditions remain unchanged');
+  assert.match(output.body, /The <strong>same source<\/strong> <a class="reader-citation"/);
+  assert.doesNotMatch(output.body, /<a href="[^"]+"><strong>same source/);
+  for (const label of [
+    'A different article',
+    'A linked heading',
+    'different source',
+    'missing note',
+    'separated mention',
+    'different inline parent',
+    'A recording',
+    'A resource',
+    'presentation',
+    'file',
+  ])
+    assert.match(output.body, new RegExp('<a href="[^"]+">' + label + '</a>'));
+  assert.match(output.appendices, /<a href="https:\/\/example.com\/source">Full source<\/a>/);
+  assert.match(
+    input.platformBodyHtml,
+    /<a href="https:\/\/example.com\/source"><strong>same source/
+  );
+  validateFragment(output.body + output.appendices, 'deduplicated citations');
+});
+
+test('reading time counts the essay rather than the reference apparatus', () => {
+  const input = article(
+    '# A different article\n\n## Argument\n\n' +
+      'word '.repeat(220) +
+      '\n\n## Sources\n\n' +
+      'reference '.repeat(2200)
+  );
+  input.profile.reader.sections = { appendices: ['sources'] };
+  assert.equal(prepare(input).readingMinutes, 2);
+  assert.equal(prepare(article('# A different article\n\nA short essay.')).readingMinutes, 1);
+});
+
+test('article composition binds shared controls and contents as source inputs with native fallback', () => {
+  const path = require('node:path');
+  const input = article('# A different article\n\n## Main topic\n\n### A detail\n\nAn argument.');
+  Object.assign(input, {
+    metadata: {
+      id: 'another-article',
+      title: 'A different article',
+      authors: [{ name: 'Another author' }],
+      language: 'en',
+      summary: 'A synthetic reader integration.',
+      published: '2026-10-20',
+      rights: { status: 'review-pending', notice: 'Synthetic reference.' },
+    },
+    source: { sha256: 'a'.repeat(64) },
+    edition: { id: 'test-edition', semanticSha256: 'b'.repeat(64) },
+    inputs: [],
+  });
+  input.profile.reader.references = 'inline';
+  const output = require('../tools/site/articles.cjs').input(path.resolve(__dirname, '..'), input);
+  assert.match(output.main, /<time datetime="2026-10-20">2026-10-20<\/time>/);
+  assert.match(output.main, /About 1 min read/);
+  assert.match(output.main, /href="#a-detail"/);
+  assert.match(output.main, /reader-image-dialog"[^>]*hidden/);
+  assert.match(output.main, /reader-note-dialog"[^>]*hidden/);
+  assert.ok(output.inputs.includes('site/templates/components/reader-tools.html'));
+  assert.ok(output.inputs.includes('site/templates/components/reader-contents.html'));
+  validateFragment(output.main, 'shared article tools');
+});
+
+test('real and reference publications use the same reader template and admitted image destinations', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const root = path.resolve(__dirname, '..');
+  const articles = require('../tools/site/articles.cjs');
+  const publisher = require('../tools/publishing/article.cjs');
+  const tools = fs.readFileSync(
+    path.join(root, 'site/templates/components/reader-tools.html'),
+    'utf8'
+  );
+  for (const id of ['reader-reference', 'pmday-ai-both-sides']) {
+    const input = publisher.loadArticle(root, id, { assetUrl: articles.assetName });
+    const output = articles.input(root, input);
+    assert.ok(output.main.includes(tools), id + ' uses the shared semantic controls');
+    assert.match(output.main, /About \d+ min read/);
+    for (const asset of input.assets) {
+      if (!output.main.includes(`id="figure-${asset.id}"`)) continue;
+      assert.ok(output.main.includes(`class="reader-image-open" href="${asset.url}"`));
+      assert.ok(output.main.includes(`class="article-figure-original" href="${asset.url}"`));
+    }
+    validateFragment(output.main, id + ' reader composition');
+  }
 });
 
 function runtimeHarness() {
@@ -201,6 +334,8 @@ function runtimeHarness() {
     window,
     media,
     observers,
+    Surface,
+    document,
   };
 }
 
@@ -209,6 +344,7 @@ test('reader restores all disclosure geometry before scroll, reveals references 
   h.reader.mount();
   assert.equal(h.appendix.open, false);
   assert.equal(h.toc.open, false);
+  assert.equal(h.toc.attributes.has('data-reader-enhanced'), true);
   assert.equal(
     h.observers[0].observed[0].id,
     'перший',
@@ -223,9 +359,11 @@ test('reader restores all disclosure geometry before scroll, reveals references 
   h.credit.open = true;
   const state = [...h.reader.snapshot()];
   h.reader.destroy();
+  assert.equal(h.toc.attributes.has('data-reader-enhanced'), false);
   assert.ok(h.observers[0].disconnected);
   assert.equal(h.reader.snapshot(), null);
   h.reader.mount({ state });
+  assert.equal(h.toc.attributes.has('data-reader-enhanced'), true);
   assert.deepEqual(
     [...h.reader.snapshot()],
     state,
@@ -342,8 +480,8 @@ test('same-document fragment history restores disclosure geometry before applyin
     path = require('node:path'),
     vm = require('node:vm');
   const source = fs.readFileSync(path.join(__dirname, '../site/engine/navigation.js'), 'utf8');
-  const start = source.indexOf("  window.addEventListener('popstate'");
-  const end = source.indexOf('  function finishText', start);
+  const start = source.indexOf("window.addEventListener('popstate'");
+  const end = source.indexOf("window.addEventListener('site:reader-state'", start);
   assert.ok(start > 0 && end > start);
   const events = {},
     calls = [];
@@ -403,7 +541,7 @@ test('declared editorial roles preserve words, group attribution and keep prose 
   assert.equal((output.body.match(/Another author/g) || []).length, 1);
   assert.match(output.appendices, /role="doc-backlink"/);
   assert.ok(!output.toc.includes('Subsections'));
-  assert.ok(!output.toc.includes('href="#an-actual-subsection"'));
+  assert.ok(output.toc.includes('href="#an-actual-subsection"'));
   assert.match(
     output.body,
     /id="an-actual-subsection"/,
@@ -438,4 +576,345 @@ test('a declared supporting group stays after its own chapter and before later c
   assert.ok(output.body.indexOf('First chapter sources.') < output.body.indexOf('<h2 id="second"'));
   assert.ok(!output.toc.includes('#supporting-reading'));
   assert.match(output.toc, /href="#second"/);
+});
+
+function interactionHarness({ supported = true, failedModal = false } = {}) {
+  const h = runtimeHarness();
+  class Node extends h.Surface {
+    constructor(tag, attributes = {}, text = '') {
+      super();
+      this.tagName = tag.toUpperCase();
+      this.childNodes = [];
+      this.text = text;
+      this.isConnected = true;
+      this.hidden = tag === 'dialog';
+      for (const [name, value] of Object.entries(attributes)) this.setAttribute(name, value);
+      this.classList = {
+        contains: (name) => (this.getAttribute('class') || '').split(' ').includes(name),
+        remove: (name) =>
+          this.setAttribute(
+            'class',
+            (this.getAttribute('class') || '')
+              .split(' ')
+              .filter((value) => value !== name)
+              .join(' ')
+          ),
+        toggle: (name) => {
+          const present = this.classList.contains(name);
+          if (present) this.classList.remove(name);
+          else this.setAttribute('class', ((this.getAttribute('class') || '') + ' ' + name).trim());
+          return !present;
+        },
+      };
+      if (tag === 'dialog' && supported) {
+        this.showModal = () => {
+          if (failedModal) throw Error('Modal unavailable');
+          this.open = true;
+        };
+        this.close = () => {
+          this.open = false;
+          this.emit('close');
+        };
+      }
+    }
+    getAttribute(name) {
+      return this.attributes.get(name) ?? null;
+    }
+    hasAttribute(name) {
+      return this.attributes.has(name);
+    }
+    get id() {
+      return this.getAttribute('id');
+    }
+    get href() {
+      return new URL(this.getAttribute('href'), h.window.location.href).href;
+    }
+    set href(value) {
+      this.setAttribute('href', value);
+    }
+    get hash() {
+      return new URL(this.href).hash;
+    }
+    get alt() {
+      return this.getAttribute('alt');
+    }
+    get textContent() {
+      return this.text + this.childNodes.map((node) => node.textContent).join('');
+    }
+    set textContent(value) {
+      this.text = value;
+      this.childNodes = [];
+    }
+    focus(options) {
+      h.document.activeElement = this;
+      this.lastFocus = options;
+    }
+    matches(selector) {
+      if (selector.startsWith('.')) return this.classList.contains(selector.slice(1));
+      const attribute = /^\[([^=\]]+)(?:="([^"]+)")?\]$/.exec(selector);
+      if (attribute)
+        return (
+          this.hasAttribute(attribute[1]) &&
+          (attribute[2] === undefined || this.getAttribute(attribute[1]) === attribute[2])
+        );
+      if (selector === 'a[href]') return this.tagName === 'A' && this.hasAttribute('href');
+      return this.tagName.toLowerCase() === selector;
+    }
+    closest(selector) {
+      for (let node = this; node; node = node.parentElement) {
+        if (node.matches?.(selector)) return node;
+        if (node === h.appendix && selector === '.reader-appendix') return node;
+      }
+      return null;
+    }
+    querySelectorAll(selector) {
+      const matches = [];
+      const visit = (node) => {
+        for (const child of node.childNodes) {
+          if (selector.split(',').some((part) => child.matches(part.trim()))) matches.push(child);
+          visit(child);
+        }
+      };
+      visit(this);
+      return matches;
+    }
+    querySelector(selector) {
+      return this.querySelectorAll(selector)[0] || null;
+    }
+    replaceChildren(...children) {
+      this.childNodes = children;
+      for (const child of children) child.parentElement = this;
+    }
+    remove() {
+      if (this.parentElement)
+        this.parentElement.childNodes = this.parentElement.childNodes.filter(
+          (node) => node !== this
+        );
+    }
+    cloneNode(deep) {
+      const copy = new Node(
+        this.tagName.toLowerCase(),
+        Object.fromEntries(this.attributes),
+        this.text
+      );
+      if (deep) copy.replaceChildren(...this.childNodes.map((child) => child.cloneNode(true)));
+      return copy;
+    }
+  }
+  const node = (tag, attrs, text) => new Node(tag, attrs, text);
+  const imageDialog = node('dialog'),
+    noteDialog = node('dialog');
+  const imageClose = node('button', { 'data-reader-close': '' });
+  const noteClose = node('button', { 'data-reader-close': '' });
+  const stage = node('div'),
+    caption = node('p'),
+    original = node('a');
+  const zoom = node('button', { 'aria-pressed': 'false' });
+  const noteTitle = node('h2'),
+    noteBody = node('div'),
+    fullNote = node('a');
+  imageDialog.replaceChildren(imageClose, stage, caption, original, zoom);
+  noteDialog.replaceChildren(noteClose, noteTitle, noteBody, fullNote);
+  const citation = node(
+    'a',
+    { href: '#reader-note-1', class: 'reader-citation', 'aria-label': 'Reference 1' },
+    '[1]'
+  );
+  const source = node(
+    'p',
+    { id: 'source-heading', 'aria-describedby': 'source-detail' },
+    'A source title.'
+  );
+  const caveat = node('p', { id: 'source-detail' }, 'An important qualification stays complete.');
+  const backlink = node(
+    'a',
+    { href: '#reader-cite-1-1', role: 'doc-backlink' },
+    'Return to passage'
+  );
+  const returns = node('span', { class: 'reader-note-returns' });
+  returns.replaceChildren(backlink);
+  const note = node('li', { id: 'reader-note-1' });
+  note.replaceChildren(source, caveat, returns);
+  note.parentElement = h.appendix;
+  const image = node('img', {
+    src: 'article-media/verified/image.png',
+    width: '1600',
+    height: '900',
+    alt: 'Useful evidence',
+  });
+  const imageLink = node('a', {
+    href: '/article-media/verified/image.png',
+    class: 'reader-image-open',
+  });
+  imageLink.replaceChildren(image);
+  const figure = node('figure');
+  figure.replaceChildren(imageLink);
+  figure.querySelector = (selector) =>
+    selector === 'figcaption > p' ? node('p', {}, 'The original figure limitation.') : null;
+  const query = h.main.querySelector;
+  const queryAll = h.main.querySelectorAll;
+  const byId = h.document.getElementById;
+  const contains = h.main.contains;
+  const hooks = {
+    '.reader-image-dialog': imageDialog,
+    '.reader-note-dialog': noteDialog,
+    '[data-reader-image]': stage,
+    '[data-reader-image-caption]': caption,
+    '[data-reader-image-original]': original,
+    '[data-reader-zoom]': zoom,
+    '[data-reader-note-title]': noteTitle,
+    '[data-reader-note-body]': noteBody,
+    '[data-reader-note-full]': fullNote,
+  };
+  h.main.querySelector = (selector) => hooks[selector] || query(selector);
+  h.main.querySelectorAll = (selector) =>
+    selector === '.reader-citation, .reader-image-open'
+      ? [citation, imageLink]
+      : queryAll(selector);
+  h.document.getElementById = (id) => (id === note.id ? note : byId(id));
+  h.main.contains = (target) => target === note || contains(target);
+  const click = (target, extra = {}) => {
+    const event = {
+      target,
+      button: 0,
+      defaultPrevented: false,
+      preventDefault() {
+        this.defaultPrevented = true;
+      },
+      ...extra,
+    };
+    h.main.emit('click', event);
+    return event;
+  };
+  return {
+    ...h,
+    citation,
+    imageDialog,
+    noteDialog,
+    imageClose,
+    noteClose,
+    imageLink,
+    image,
+    stage,
+    caption,
+    original,
+    zoom,
+    noteTitle,
+    noteBody,
+    fullNote,
+    click,
+    hooks,
+  };
+}
+
+test('source preview preserves complete evidence without moving the document or cloning anchors', () => {
+  const h = interactionHarness();
+  h.reader.mount();
+  const before = h.window.location.href;
+  assert.equal(h.click(h.citation).defaultPrevented, true);
+  assert.equal(h.citation.getAttribute('aria-haspopup'), 'dialog');
+  assert.equal(h.window.location.href, before);
+  assert.equal(h.appendix.open, false, 'preview does not expand distant bibliography');
+  assert.equal(h.noteDialog.open, true);
+  assert.equal(h.noteTitle.textContent, 'Reference 1');
+  assert.equal(h.noteBody.textContent, 'A source title.An important qualification stays complete.');
+  assert.equal(h.noteBody.querySelectorAll('[id]').length, 0);
+  assert.equal(h.noteBody.querySelectorAll('[aria-describedby]').length, 0);
+  assert.equal(h.noteBody.querySelectorAll('[role="doc-backlink"]').length, 0);
+  assert.equal(
+    h.fullNote.getAttribute('href'),
+    '#reader-note-1',
+    'full source retains native fragment navigation'
+  );
+  assert.equal(h.document.activeElement, h.noteClose);
+  h.noteDialog.emit('cancel', { preventDefault() {} });
+  assert.equal(h.noteDialog.open, false);
+  assert.equal(h.document.activeElement, h.citation);
+  assert.equal(h.citation.lastFocus.preventScroll, true);
+  assert.equal(h.noteBody.childNodes.length, 0);
+  h.reader.destroy();
+  assert.equal(h.citation.hasAttribute('aria-haspopup'), false);
+});
+
+test('preview full-source link opens the native appendix and modified citation clicks stay native', () => {
+  const h = interactionHarness();
+  h.reader.mount();
+  assert.equal(h.click(h.citation, { ctrlKey: true }).defaultPrevented, false);
+  assert.equal(h.noteDialog.open, false);
+  h.click(h.citation);
+  const event = h.click(h.fullNote);
+  assert.equal(event.defaultPrevented, false);
+  assert.equal(h.appendix.open, true);
+  assert.equal(h.noteDialog.open, false);
+  h.reader.destroy();
+});
+
+test('image detail supports zoom, backdrop close, focus restoration and complete disposal', () => {
+  const h = interactionHarness();
+  h.reader.mount();
+  assert.equal(
+    h.click(h.image).defaultPrevented,
+    true,
+    'the image inside its native anchor activates detail'
+  );
+  assert.equal(h.imageDialog.open, true);
+  assert.equal(h.stage.childNodes[0].getAttribute('src'), h.image.getAttribute('src'));
+  assert.equal(h.caption.textContent, 'The original figure limitation.');
+  assert.equal(h.original.href, h.imageLink.href);
+  h.zoom.emit('click');
+  assert.equal(h.zoom.getAttribute('aria-pressed'), 'true');
+  assert.equal(h.imageDialog.classList.contains('reader-zoomed'), true);
+  h.imageDialog.emit('click', { target: h.imageDialog });
+  assert.equal(h.imageDialog.open, false);
+  assert.equal(h.document.activeElement, h.imageLink);
+  assert.equal(h.zoom.getAttribute('aria-pressed'), 'false');
+  h.click(h.imageLink);
+  h.reader.destroy();
+  assert.equal(h.imageDialog.open, false);
+  assert.equal(h.stage.childNodes.length, 0);
+  for (const target of [
+    h.main,
+    h.window,
+    h.imageClose,
+    h.noteClose,
+    h.zoom,
+    h.imageDialog,
+    h.noteDialog,
+    ...h.details,
+  ])
+    assert.ok([...target.listeners.values()].every((set) => set.size === 0));
+});
+
+test('unsupported or failed dialogs preserve native image and citation destinations', () => {
+  for (const options of [{ supported: false }, { failedModal: true }]) {
+    const h = interactionHarness(options);
+    h.reader.mount();
+    assert.equal(h.click(h.imageLink).defaultPrevented, false);
+    assert.equal(h.click(h.citation).defaultPrevented, false);
+    assert.equal(h.appendix.open, true);
+    assert.equal(h.imageDialog.open, false);
+    assert.equal(h.noteDialog.open, false);
+    if (options.supported === false) {
+      assert.equal(h.citation.hasAttribute('aria-haspopup'), false);
+      assert.equal(h.imageLink.hasAttribute('aria-haspopup'), false);
+    }
+    h.reader.destroy();
+  }
+});
+
+test('print and pagehide close overlays without persisting temporary preview state', () => {
+  const h = interactionHarness();
+  h.reader.mount();
+  const before = [...h.reader.snapshot()];
+  h.click(h.citation);
+  h.window.emit('beforeprint');
+  assert.equal(h.noteDialog.open, false);
+  assert.deepEqual([...h.reader.snapshot()], before);
+  assert.ok(h.details.every((detail) => detail.open));
+  h.window.emit('afterprint');
+  h.click(h.imageLink);
+  h.window.emit('pagehide');
+  assert.equal(h.imageDialog.open, false);
+  assert.equal(h.stage.childNodes.length, 0);
+  h.reader.destroy();
 });

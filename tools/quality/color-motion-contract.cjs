@@ -5,6 +5,17 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Shared reader dialogs and topic navigation; settled article scene is calm.
+  issue5ReaderInteractions: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    baseEngine: '806518c1e872d906ec7a33fb80d68da25dd4a10bbbe7680376c32ac942b688a5',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '4bc594dfdff3d567d497a840a03e26aadb5d8de5d701010bac5380dc9f3c31ea',
+    navigation: '4c5c31e71e2e49d2ea5a4a46c969ed1dea182140070442975de03c2764a866a8',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Issue5 visible block inventory: omit unpainted placeholders and keep overflow; same route and scene clocks.
   issue5ReaderVisibleBlocks: {
     behavior: 'fixed-blocks',
@@ -305,6 +316,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-interactions-production',
+    family: 'issue5ReaderInteractions',
+    edition: 'production',
+    fingerprint: 'c5ec995aec98995936375c9e1fb3a7f67377b9787a2959c4cfc05f84619a38e0',
+    styles: '872c08ea2a3aafce1b4710e4abeb0858747999fbd7ff443c1c1818f356a03976',
+  },
+  {
+    id: 'issue5-reader-interactions-plain',
+    family: 'issue5ReaderInteractions',
+    edition: 'plain',
+    fingerprint: '836acdd8ae81a87c727616de6e4c05d4e26d870c0922b764cd248292adaba713',
+    styles: '872c08ea2a3aafce1b4710e4abeb0858747999fbd7ff443c1c1818f356a03976',
+  },
+  {
+    id: 'issue5-reader-interactions-staging',
+    family: 'issue5ReaderInteractions',
+    edition: 'staging',
+    fingerprint: 'dab2b0647855ad081de1e7a9e35b3a9200c763b9ba8a817aec503947d3802383',
+    styles: '88c95097a8f8f7c28fba80a7c9c4547920a088678101de4b1a8bb97def079126',
+  },
   {
     id: 'issue5-reader-visible-blocks-production',
     family: 'issue5ReaderVisibleBlocks',
@@ -1027,7 +1059,11 @@ function select(manifest) {
     runtime.edition === 'staging'
       ? { id: 'staging', indexable: false, analytics: false }
       : runtime.edition === 'production'
-        ? { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' }
+        ? {
+            id: 'production',
+            indexable: true,
+            origin: 'https://vitaliioborskyi.ai',
+          }
         : undefined,
     'Color runtime edition differs'
   );
@@ -1050,6 +1086,13 @@ function articleReadingMode(engine) {
     ? families[runtime.family]
     : Object.values(families).find((value) => value.baseEngine === engine);
   return family?.articleReading || 'entry';
+}
+function readerInteractionsRequired(engine) {
+  const runtime = runtimes.find((value) => value.fingerprint === engine);
+  const family = runtime
+    ? families[runtime.family]
+    : Object.values(families).find((value) => value.baseEngine === engine);
+  return family?.readerInteractions === true;
 }
 function fixedReadingEvidence(row) {
   const scroll = row.home?.scroll,
@@ -1110,6 +1153,7 @@ module.exports = {
   reviewedRuntime,
   flightCheck,
   articleReadingMode,
+  readerInteractionsRequired,
   validateFlight,
   contract,
   rowPlan,

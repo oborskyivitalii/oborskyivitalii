@@ -1536,8 +1536,6 @@ body[data-page='writing'] #archive-results {
 /* Shared article component layout is authored in reader.css. */
 .article-list {
   padding: clamp(1rem, 4vw, 2.5rem);
-}
-.article-list {
   margin-block: 2rem;
 }
 .article-list li + li {

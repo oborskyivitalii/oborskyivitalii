@@ -4,6 +4,12 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Snapshot
 
+- 20 October #5/PR79: next reusable reader iteration adds image/reference dialogs,
+  hierarchical sticky Contents, quiet settled scene and shared metadata/type.
+  R18 manuscript/media/PDF preserved; synthetic fixture bindings refreshed.
+  Independent source review resolved deep-reading Contents jump. Review:
+  review/issue-5/2026-10-20-reader-interactions.md; final CI/preview in PR79.
+
 - 20 October #2/PR79: author requests R18 PDF/native preview and official event name
   **UA Online PMDay 2026 Autumn**. Current semantic edition selects R18/Cover02;
   compact PDF/source archive and exact review live in
@@ -15,10 +21,8 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
   and16px annotations. Manuscript/edition/PDF unchanged. Review:
   review/issue-5/2026-10-19-reader-block-transitions.md; exact evidence in PR79.
 
-- 19 October latest #5/PR79 increment: user accepted a fresh holistic Product Design
-  review and authorized calm reader simplification: one column, optional flat
-  Contents, compact header, reusable process, footer tags and consolidated ending.
-  See review/issue-5/2026-10-19-calm-reader.md; final exact CI/preview belongs to PR79.
+- Prior calm-reader decisions: one column, compact header, reusable process,
+  footer tags and consolidated ending. See review/issue-5/2026-10-19-calm-reader.md.
 - Latest #2/#5 amendment: R13 removes only the inner chapter-6 refrain; new review
   PDF/edition preserves R12. Fresh reader audit proposes clearer citation returns
   and easier source annotations. See review/issue-5/2026-10-19-reader-r13-followup.md.
@@ -50,7 +54,7 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Decisions
 
-- Latest user scope: use real R12/Cover02 in the same PR79 native article preview,
+- Latest user scope: use real R18/Cover02 in the same PR79 native article preview,
   then refine before publishing. Preserve prose, originals, semantic edition and PDFs;
   #2 retains editorial/rights acceptance. Earlier stop on article adaptation is superseded.
 - SITE_ARTICLE_PREVIEW=template retains the isolated nonpublishable reader fixture.

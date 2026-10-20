@@ -196,16 +196,18 @@ async function captureReader(page, key) {
     'contents starts closed at either width'
   );
   assert.equal(
-    await page.locator('.article-toc details details').count(),
+    await page.locator('.reader-subcontents .reader-subcontents').count(),
     0,
-    'contents has one chapter level'
+    'contents bounds topic disclosure to one nested level'
   );
   assert.equal(
     await page.locator('.article-intro .publication-tags').count(),
     0,
     'discovery tags do not interrupt the opening'
   );
-  await page.screenshot({ path: path.join(directory, prefix + '-opening.png') });
+  await page.screenshot({
+    path: path.join(directory, prefix + '-opening.png'),
+  });
   for (const [name, selector] of [
     ['process', '.reader-process'],
     ['quotation', '.reader-quotation'],
@@ -220,7 +222,9 @@ async function captureReader(page, key) {
       true,
       'reader does not overflow the page'
     );
-    await page.screenshot({ path: path.join(directory, prefix + '-' + name + '.png') });
+    await page.screenshot({
+      path: path.join(directory, prefix + '-' + name + '.png'),
+    });
   }
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
 }
@@ -230,6 +234,409 @@ async function contentsAnchor(page) {
   if ((await contents.getAttribute('open')) === null)
     await contents.locator(':scope > summary').click();
   return page.locator('.article-toc a[href^="#"]').first();
+}
+
+async function readerInventory(page) {
+  const inventory = await page.evaluate(() => ({
+    headings: [...document.querySelectorAll('.reader-chapter > h3')].map((heading) => heading.id),
+    topics: [...document.querySelectorAll('.reader-subcontents a')].map((anchor) => ({
+      href: anchor.getAttribute('href'),
+      label: anchor.textContent.trim(),
+    })),
+    images: [...document.querySelectorAll('.article-body img')].map((image) => ({
+      src: image.src,
+      href: image.closest('.reader-image-open')?.href || null,
+      alt: image.alt,
+    })),
+    citations: [...document.querySelectorAll('.reader-citation')].map((anchor) => ({
+      href: anchor.getAttribute('href'),
+      id: anchor.id,
+      target: Boolean(document.getElementById(anchor.hash.slice(1))),
+    })),
+  }));
+  validateReaderInventory(inventory);
+  return inventory;
+}
+
+function validateReaderInventory(inventory) {
+  assert.ok(inventory, 'reader feature inventory observed');
+  assert.deepEqual(
+    inventory.topics.map((topic) => decodeURIComponent(topic.href.slice(1))),
+    inventory.headings,
+    'every reading H3 has one native topic link in source order'
+  );
+  for (const topic of inventory.topics) assert.ok(topic.label, 'topic has a readable label');
+  for (const image of inventory.images) {
+    assert.equal(image.href, image.src, 'image enlargement retains the exact native asset link');
+    assert.ok(image.alt, 'image retains alternative text');
+  }
+  for (const citation of inventory.citations) {
+    assert.ok(citation.id && citation.href.startsWith('#'), 'native citation identity');
+    assert.equal(citation.target, true, 'native citation target exists');
+  }
+}
+
+// Measurements come from actual dialogs and native anchors in the existing five
+// article cases; these checks do not create another browser or viewport matrix.
+async function dialogState(dialog, trigger) {
+  return dialog.evaluate((element, selector) => {
+    const bounds = (node) => {
+      const rect = node?.getBoundingClientRect();
+      return rect
+        ? {
+            top: rect.top,
+            bottom: rect.bottom,
+            left: rect.left,
+            right: rect.right,
+            width: rect.width,
+            height: rect.height,
+          }
+        : null;
+    };
+    const image = element.querySelector('[data-reader-image] img');
+    const stage = element.querySelector('[data-reader-image]');
+    return {
+      url: location.href,
+      scroll: scrollY,
+      open: element.open,
+      focusInside: element.contains(document.activeElement),
+      focusRestored: document.activeElement === document.querySelector(selector),
+      viewport: { width: innerWidth, height: innerHeight },
+      bounds: bounds(element),
+      close: bounds(element.querySelector('[data-reader-close]')),
+      image: image
+        ? {
+            src: image.src,
+            alt: image.alt,
+            width: image.getBoundingClientRect().width,
+            naturalWidth: image.naturalWidth,
+          }
+        : null,
+      stage: stage
+        ? {
+            width: stage.clientWidth,
+            overflow: getComputedStyle(stage).overflowX,
+          }
+        : null,
+      zoomed: element.classList.contains('reader-zoomed'),
+      pressed: element.querySelector('[data-reader-zoom]')?.getAttribute('aria-pressed'),
+      text: element.querySelector('[data-reader-note-body]')?.textContent.trim() || '',
+      duplicateIds: element.querySelectorAll('[data-reader-note-body] [id]').length,
+      returns: element.querySelectorAll('[data-reader-note-body] [role="doc-backlink"]').length,
+      full: element.querySelector('[data-reader-note-full]')?.getAttribute('href') || null,
+      original: element.querySelector('[data-reader-image-original]')?.href || null,
+    };
+  }, trigger);
+}
+
+function validateOpenDialog(state, before) {
+  assert.equal(state.open, true, 'dialog actually opened');
+  assert.equal(state.url, before.url, 'preview does not navigate or add a hash');
+  assert.ok(Math.abs(state.scroll - before.scroll) <= 2, 'preview retains reading position');
+  assert.equal(state.focusInside, true, 'dialog receives keyboard focus');
+  for (const rect of [state.bounds, state.close]) {
+    assert.ok(rect && rect.width > 0 && rect.height > 0, 'dialog controls are painted');
+    assert.ok(rect.left >= -1 && rect.right <= state.viewport.width + 1, 'dialog fits width');
+    assert.ok(rect.top >= -1 && rect.bottom <= state.viewport.height + 1, 'dialog fits height');
+  }
+}
+
+function validateClosedDialog(state, before) {
+  assert.equal(state.open, false, 'dialog closes');
+  assert.equal(state.url, before.url, 'closing retains the article address');
+  assert.ok(Math.abs(state.scroll - before.scroll) <= 2, 'closing retains reading position');
+  assert.equal(state.focusRestored, true, 'closing restores the activating control');
+}
+
+function validateReaderInteractions(reader, mode) {
+  assert.ok(reader, 'current reader requires interaction observations');
+  const inventory = reader.inventory;
+  validateReaderInventory(inventory);
+  if (mode === 'no-js') {
+    assert.equal(reader.image, null, 'native image uses the admitted asset link');
+    assert.equal(reader.native?.count, 2, 'native enhancement template inventory');
+    assert.equal(reader.native.hidden, true, 'native dialogs do not obstruct reading');
+  } else if (inventory.images.length) {
+    const image = reader.image;
+    assert.ok(image, 'available image requires an observed viewer');
+    validateOpenDialog(image.opened, image.before);
+    assert.equal(image.opened.image?.src, inventory.images[0].src, 'viewer source is admitted');
+    assert.equal(image.opened.original, inventory.images[0].src, 'viewer retains native original');
+    assert.equal(image.opened.image.alt, inventory.images[0].alt, 'viewer preserves alt text');
+    assert.equal(image.zoomed.pressed, 'true', 'zoom exposes its state');
+    assert.equal(image.zoomed.zoomed, true, 'zoom layout is applied');
+    validateOpenDialog(image.zoomed, image.before);
+    assert.ok(image.zoomed.image.width >= image.opened.image.width, 'zoom does not shrink');
+    if (image.zoomed.image.naturalWidth > image.opened.image.width + 1)
+      assert.ok(image.zoomed.image.width > image.opened.image.width + 1, 'zoom reveals detail');
+    assert.match(image.zoomed.stage.overflow, /^(auto|scroll)$/, 'zoom is scrollable');
+    for (const closed of [image.escape, image.close]) {
+      validateClosedDialog(closed, image.before);
+      assert.equal(closed.image, null, 'closing releases image content');
+    }
+  } else assert.equal(reader.image, null);
+  if (inventory.citations.length) {
+    const citation = inventory.citations[0],
+      source = reader.source;
+    assert.ok(source, 'available source requires an observed citation journey');
+    if (mode === 'no-js') {
+      validateVisibleFragment(source.native, citation.href);
+      assert.equal(source.native.appendixOpen, true, 'native sources remain expanded');
+      assert.equal(source.native.dialogs, 0, 'native citation does not require a dialog');
+    } else {
+      validateOpenDialog(source.opened, source.before);
+      assert.ok(source.expected, 'native source text was observed');
+      assert.equal(source.opened.text, source.expected, 'preview retains the native source text');
+      assert.equal(source.opened.full, citation.href, 'full bibliography remains reachable');
+      assert.equal(source.opened.duplicateIds, 0);
+      assert.equal(source.opened.returns, 0);
+      validateClosedDialog(source.escape, source.before);
+      validateVisibleFragment(source.full, citation.href);
+      assert.equal(source.full.appendixOpen, true);
+      assert.equal(source.full.dialogs, 0);
+    }
+    validateVisibleFragment(source.returned, '#' + citation.id);
+  } else assert.equal(reader.source, null);
+  if (inventory.topics.length) validateVisibleFragment(reader.topic, inventory.topics[0].href);
+  else assert.equal(reader.topic, null);
+  if (inventory.topics.length && mode !== 'no-js') {
+    assert.ok(reader.topic.menu.before.top >= 0, 'Contents is reachable while reading');
+    assert.ok(
+      reader.topic.menu.opened.bottom <= reader.topic.height + 1,
+      'open Contents remains in the viewport'
+    );
+    assert.ok(
+      Math.abs(reader.topic.menu.before.scroll - reader.topic.menu.opened.scroll) <= 2,
+      'opening Contents retains the reading position'
+    );
+  }
+  if (mode === 'normal') {
+    const cleanup = reader.cleanup;
+    assert.equal(cleanup?.opened, inventory.images.length > 0 || inventory.citations.length > 0);
+    assert.equal(cleanup.open, false, 'route departure closes the active dialog');
+    assert.equal(cleanup.images, 0, 'route departure releases cloned images');
+    assert.equal(cleanup.connected, false, 'old reader is detached');
+    assert.equal(cleanup.live, 0, 'shared shell has no surviving modal');
+    assert.notEqual(cleanup.overflow, 'hidden', 'route departure releases body scrolling');
+  }
+}
+
+async function imageJourney(page, inventory) {
+  if (!inventory.images.length) return null;
+  const selector = '.reader-image-open',
+    trigger = page.locator(selector).first();
+  const dialog = page.locator('.reader-image-dialog');
+  await trigger.scrollIntoViewIfNeeded();
+  await trigger.focus();
+  const before = await page.evaluate(() => ({
+    url: location.href,
+    scroll: scrollY,
+  }));
+  await page.keyboard.press('Enter');
+  await dialog.locator('[data-reader-image] img').waitFor();
+  const opened = await dialogState(dialog, selector);
+  validateOpenDialog(opened, before);
+  assert.equal(opened.image.src, inventory.images[0].src);
+  assert.equal(opened.original, inventory.images[0].src);
+  assert.equal(opened.image.alt, inventory.images[0].alt);
+  await dialog.locator('[data-reader-zoom]').click();
+  const zoomed = await dialogState(dialog, selector);
+  validateOpenDialog(zoomed, before);
+  assert.equal(zoomed.pressed, 'true');
+  assert.equal(zoomed.zoomed, true);
+  assert.ok(zoomed.image.width >= opened.image.width, 'zoom never shrinks an image');
+  if (zoomed.image.naturalWidth > opened.image.width + 1)
+    assert.ok(zoomed.image.width > opened.image.width + 1, 'zoom exposes image detail');
+  assert.match(zoomed.stage.overflow, /^(auto|scroll)$/, 'zoom remains scrollable');
+  await page.keyboard.press('Escape');
+  const escape = await dialogState(dialog, selector);
+  validateClosedDialog(escape, before);
+  assert.equal(escape.image, null, 'close releases the cloned image');
+  await page.keyboard.press('Enter');
+  await dialog.locator('[data-reader-close]').click();
+  const close = await dialogState(dialog, selector);
+  validateClosedDialog(close, before);
+  return { before, opened, zoomed, escape, close };
+}
+
+async function fragmentState(page, fragment) {
+  await page.evaluate(() => {
+    window.__readerAnchorSample = { scroll: null, stable: 0 };
+  });
+  await page.waitForFunction(
+    (hash) => {
+      const sample = window.__readerAnchorSample;
+      sample.stable = Math.abs(scrollY - sample.scroll) < 0.5 ? sample.stable + 1 : 0;
+      sample.scroll = scrollY;
+      return location.hash === hash && sample.stable >= 3;
+    },
+    fragment,
+    { polling: 50, timeout: 2000 }
+  );
+  return page.evaluate((hash) => {
+    delete window.__readerAnchorSample;
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    const rect = target?.getBoundingClientRect();
+    const header = document.querySelector('header')?.getBoundingClientRect();
+    const contents = document.querySelector('.article-toc')?.getBoundingClientRect();
+    const occlusion = Math.max(
+      0,
+      header?.bottom || 0,
+      contents && contents.top >= 0 && contents.bottom <= innerHeight ? contents.bottom : 0
+    );
+    return {
+      hash: location.hash,
+      top: rect?.top,
+      bottom: rect?.bottom,
+      height: innerHeight,
+      occlusion,
+      appendixOpen: target?.closest('.reader-appendix')?.open ?? null,
+      dialogs: document.querySelectorAll('.reader-dialog[open]').length,
+    };
+  }, fragment);
+}
+
+function validateVisibleFragment(state, fragment) {
+  assert.equal(state.hash, fragment, 'native fragment address retained');
+  assert.ok(
+    state.top >= state.occlusion - 1 && state.top < state.height,
+    'fragment target is visible below navigation'
+  );
+  assert.ok(state.bottom > state.top, 'fragment target is painted');
+}
+
+async function sourceAndTopicsJourney(page, inventory, native = false) {
+  let source = null,
+    topic = null;
+  if (inventory.citations.length) {
+    const citation = inventory.citations[0];
+    const trigger = page.locator('.reader-citation').first();
+    const expected = await trigger.evaluate((anchor) => {
+      const copy = document.getElementById(anchor.hash.slice(1)).cloneNode(true);
+      for (const node of copy.querySelectorAll('.reader-note-returns')) node.remove();
+      return copy.textContent.trim();
+    });
+    await trigger.scrollIntoViewIfNeeded();
+    await trigger.focus();
+    const before = await page.evaluate(() => ({
+      url: location.href,
+      scroll: scrollY,
+    }));
+    await page.keyboard.press('Enter');
+    if (native) {
+      await page.waitForFunction((hash) => location.hash === hash, citation.href);
+      source = { expected, native: await fragmentState(page, citation.href) };
+      validateVisibleFragment(source.native, citation.href);
+    } else {
+      const dialog = page.locator('.reader-note-dialog');
+      const opened = await dialogState(dialog, '.reader-citation');
+      validateOpenDialog(opened, before);
+      assert.equal(opened.text, expected, 'source preview retains the native source text');
+      assert.equal(opened.full, citation.href, 'preview retains full bibliography target');
+      assert.equal(opened.duplicateIds, 0, 'preview does not duplicate native anchors');
+      assert.equal(opened.returns, 0, 'preview omits unrelated passage returns');
+      await page.keyboard.press('Escape');
+      const escape = await dialogState(dialog, '.reader-citation');
+      validateClosedDialog(escape, before);
+      await page.keyboard.press('Enter');
+      await dialog.locator('[data-reader-note-full]').click();
+      await page.waitForFunction((hash) => location.hash === hash, citation.href);
+      const full = await fragmentState(page, citation.href);
+      validateVisibleFragment(full, citation.href);
+      assert.equal(full.appendixOpen, true, 'full source reveals its native appendix');
+      assert.equal(full.dialogs, 0, 'full source closes the preview');
+      source = { expected, before, opened, escape, full };
+    }
+    const backlinks = page.locator('[role="doc-backlink"]');
+    const returnIndex = await backlinks.evaluateAll(
+      (anchors, href) => anchors.findIndex((anchor) => anchor.getAttribute('href') === href),
+      '#' + citation.id
+    );
+    assert.ok(returnIndex >= 0, 'native source includes its passage return');
+    const returnLink = backlinks.nth(returnIndex);
+    await returnLink.click();
+    await page.waitForFunction((hash) => location.hash === hash, '#' + citation.id);
+    source.returned = await fragmentState(page, '#' + citation.id);
+    validateVisibleFragment(source.returned, '#' + citation.id);
+  }
+  if (inventory.topics.length) {
+    const menu = {};
+    if (!native) {
+      await page.locator('.reader-chapter').last().locator('h2').scrollIntoViewIfNeeded();
+      menu.before = await page.locator('.article-toc').evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, scroll: scrollY };
+      });
+      assert.ok(
+        menu.before.top >= 0 && menu.before.bottom <= page.viewportSize().height,
+        'closed Contents is reachable deep in the article'
+      );
+    }
+    await contentsAnchor(page);
+    const disclosure = page.locator('.reader-subcontents').first();
+    if ((await disclosure.getAttribute('open')) === null)
+      await disclosure.locator(':scope > summary').click();
+    if (!native) {
+      menu.opened = await page.locator('.article-toc').evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, scroll: scrollY };
+      });
+      assert.ok(
+        Math.abs(menu.opened.scroll - menu.before.scroll) <= 2,
+        'opening topic navigation retains reading position'
+      );
+      assert.ok(
+        menu.opened.top >= 0 && menu.opened.bottom <= page.viewportSize().height + 1,
+        'open topic navigation remains in the viewport'
+      );
+    }
+    const anchor = disclosure.locator('a').first();
+    const fragment = await anchor.getAttribute('href');
+    await anchor.click();
+    await page.waitForFunction((hash) => location.hash === hash, fragment);
+    topic = await fragmentState(page, fragment);
+    if (!native) topic.menu = menu;
+    validateVisibleFragment(topic, fragment);
+  }
+  return { source, topic };
+}
+
+async function retainOpenReaderDialog(page, inventory) {
+  const trigger = inventory.images.length
+    ? '.reader-image-open'
+    : inventory.citations.length
+      ? '.reader-citation'
+      : null;
+  if (!trigger) return false;
+  await page.locator(trigger).first().click();
+  await page.evaluate(() => {
+    window.__readerDepartureDialog = document.querySelector('.reader-dialog[open]');
+  });
+  assert.equal(await page.locator('.reader-dialog[open]').count(), 1);
+  return true;
+}
+
+async function readerDialogCleanup(page, opened) {
+  const cleanup = await page.evaluate(() => {
+    const dialog = window.__readerDepartureDialog;
+    const result = {
+      opened: Boolean(dialog),
+      open: dialog?.open || false,
+      images: dialog?.querySelectorAll('[data-reader-image] img').length || 0,
+      connected: dialog?.isConnected || false,
+      live: document.querySelectorAll('.reader-dialog[open]').length,
+      overflow: getComputedStyle(document.body).overflowY,
+    };
+    delete window.__readerDepartureDialog;
+    return result;
+  });
+  assert.equal(cleanup.opened, opened);
+  assert.equal(cleanup.open, false, 'departure closes the existing dialog');
+  assert.equal(cleanup.images, 0, 'departure releases cloned image nodes');
+  assert.equal(cleanup.connected, false, 'departure removes the old reader');
+  assert.equal(cleanup.live, 0, 'departure leaves no modal in the shared shell');
+  assert.notEqual(cleanup.overflow, 'hidden', 'departure releases reading scroll');
+  return cleanup;
 }
 
 async function observeReading(page) {
@@ -645,15 +1052,15 @@ function validateArticleBlocks({ blocks, events, from, to, direction }) {
 
 function articleBlocksRequired(engine) {
   const motion = require('./color-motion-contract.cjs');
-  return [
-    'issue5-reader-blocks',
-    'issue5-reader-block-elements',
-    'issue5-reader-visible-blocks',
-  ].some((family) =>
-    ['plain', 'staging', 'production'].some((edition) => {
-      const { variant } = motion.reviewedRuntime(family + '-' + edition);
-      return engine === variant.baseEngine || engine === variant.fingerprint;
-    })
+  return (
+    motion.readerInteractionsRequired(engine) ||
+    ['issue5-reader-blocks', 'issue5-reader-block-elements', 'issue5-reader-visible-blocks'].some(
+      (family) =>
+        ['plain', 'staging', 'production'].some((edition) => {
+          const { variant } = motion.reviewedRuntime(family + '-' + edition);
+          return engine === variant.baseEngine || engine === variant.fingerprint;
+        })
+    )
   );
 }
 
@@ -674,6 +1081,14 @@ async function takeArticleFlight(page, from, to, direction) {
   validateArticleFlight(events, from, to, direction);
   validateArticleBlocks(flight);
   return flight;
+}
+
+function principalDestinationLink(page, destination) {
+  if (destination === 'index') return page.locator('header .wordmark');
+  if (destination === 'credits') return page.locator('footer a[href$="credits.html"]');
+  return page.locator('header nav a').filter({
+    hasText: new RegExp('^' + destination[0].toUpperCase() + destination.slice(1) + '$'),
+  });
 }
 
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
@@ -724,11 +1139,15 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await preserveShell(page);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
     await captureReader(page, key);
+    const reader = { inventory: await readerInventory(page) };
+    reader.image = await imageJourney(page, reader.inventory);
     const slideURL = await presentationJourney(page);
+    const dialogAtDeparture = await retainOpenReaderDialog(page, reader.inventory);
     await page.goBack();
     await settled(page, 'writing', timeout);
     flights.push(await takeArticleFlight(page, 'article:' + key, 'writing', -1));
     await preserveShell(page);
+    reader.cleanup = await readerDialogCleanup(page, dialogAtDeparture);
     assert.deepEqual(await inspectHead(page), writingHead, 'Back restored complete archive head');
     if (slideURL)
       assert.equal(
@@ -768,6 +1187,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       'Forward restored article head'
     );
 
+    Object.assign(reader, await sourceAndTopicsJourney(page, reader.inventory));
     const anchorLink = await contentsAnchor(page);
     const fragment = await anchorLink.getAttribute('href');
     assert.ok(fragment && fragment.length > 1, 'native article TOC anchor');
@@ -823,16 +1243,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     );
 
     for (const destination of ['index', 'writing', 'talks', 'credits']) {
-      const destinationLink =
-        destination === 'index'
-          ? page.locator('header .wordmark')
-          : destination === 'credits'
-            ? page.locator('footer a[href$="credits.html"]')
-            : page.locator('header nav a').filter({
-                hasText: new RegExp(
-                  '^' + destination[0].toUpperCase() + destination.slice(1) + '$'
-                ),
-              });
+      const destinationLink = principalDestinationLink(page, destination);
       await page.goto(urls.alias);
       await settled(page, 'article:' + key, timeout);
       await page.waitForFunction(
@@ -849,7 +1260,10 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
         relatedDeparture.present = (await page.locator('.article-related').count()) > 0;
         if (relatedDeparture.present) {
           await page.evaluate(() =>
-            scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+            scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: 'instant',
+            })
           );
           await observeReading(page);
         }
@@ -927,6 +1341,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       flights,
       nativeHistory,
       relatedDeparture,
+      reader,
       checks: {
         metadataTransition: true,
         filtersBackForward: true,
@@ -983,6 +1398,17 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
         { timeout }
       );
     assert.ok(await page.locator('.article-body').innerText(), 'fallback retains full article');
+    const reader = { inventory: await readerInventory(page) };
+    reader.image = mode === 'no-js' ? null : await imageJourney(page, reader.inventory);
+    Object.assign(reader, await sourceAndTopicsJourney(page, reader.inventory, mode === 'no-js'));
+    if (mode === 'no-js') {
+      reader.native = await page.locator('.reader-dialog').evaluateAll((dialogs) => ({
+        count: dialogs.length,
+        hidden: dialogs.every((dialog) => dialog.hidden && !dialog.open),
+      }));
+      assert.equal(reader.native.count, 2, 'native reader retains both enhancement templates');
+      assert.equal(reader.native.hidden, true, 'no-JS keeps enhancement dialogs out of reading');
+    }
     const anchor = await contentsAnchor(page);
     const fragment = await anchor.getAttribute('href');
     await anchor.click();
@@ -1054,6 +1480,7 @@ async function fallbackJourney(browser, baseURL, key, descriptor, descriptors, m
       width: 390,
       mode,
       head,
+      reader,
       checks: {
         nativeReading: true,
         anchors: true,
@@ -1141,6 +1568,37 @@ function validateArticleReading(reading, engine) {
   );
 }
 
+function validateReaderCapability(row, detail, key, engine) {
+  if (row.mode === 'off')
+    assert.equal(row.checks.reducedMotion, true, 'reduced motion overrides saved On');
+  if (!require('./color-motion-contract.cjs').readerInteractionsRequired(engine || row.head.engine))
+    return;
+  validateReaderInteractions(row.reader, row.mode);
+  if (key === 'reader-reference:en') {
+    for (const feature of ['images', 'citations', 'topics'])
+      assert.ok(
+        row.reader.inventory[feature].length > 0,
+        'reference article exercises reader ' + feature
+      );
+  }
+  assert.deepEqual(
+    row.reader.inventory,
+    detail.observations[0].reader.inventory,
+    'every capability case retains the same native reader content'
+  );
+}
+
+function validateRelatedDeparture(row, key) {
+  assert.equal(typeof row.relatedDeparture?.present, 'boolean', 'related inventory observed');
+  if (key === 'reader-reference:en')
+    assert.equal(row.relatedDeparture.present, true, 'reference recommendations required');
+  assert.equal(
+    row.relatedDeparture.departed,
+    row.relatedDeparture.present,
+    'visible recommendations share route departure'
+  );
+}
+
 function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
   const keys = Object.keys(descriptors || {});
   if (!keys.length) {
@@ -1221,17 +1679,9 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
       assert.deepEqual(row.head.canonical, [], 'candidate observed canonical remains pending');
       assert.equal(article.datePublished, undefined, 'candidate observed publication date pending');
     }
-    if (row.mode === 'off')
-      assert.equal(row.checks.reducedMotion, true, 'reduced motion overrides saved On');
+    validateReaderCapability(row, detail, keys[0], engine);
     if (row.mode !== 'normal') continue;
-    assert.equal(typeof row.relatedDeparture?.present, 'boolean', 'related inventory observed');
-    if (keys[0] === 'reader-reference:en')
-      assert.equal(row.relatedDeparture.present, true, 'reference recommendations required');
-    assert.equal(
-      row.relatedDeparture.departed,
-      row.relatedDeparture.present,
-      'visible recommendations share route departure'
-    );
+    validateRelatedDeparture(row, keys[0]);
     assert.deepEqual(
       row.flights?.map((flight) => [flight.from, flight.to, flight.direction]),
       [
@@ -1273,6 +1723,7 @@ module.exports = {
   installArticleFlightDiagnostics,
   validateArticleFlight,
   validateArticleBlocks,
+  validateReaderInteractions,
   articleJourney,
   validateArticleJourney,
 };
