@@ -84,7 +84,11 @@ The presentation's widening gap is therefore a scenario to investigate. Tools an
 
 ![Illustrative generation and comprehension curves diverge, showing a possible overload scenario rather than a measured human limit.](asset:pmday-slide-05)
 
-An LLM can explain the code, maintain documentation and help investigate a failure. Specifications may become more durable than implementation. But now we have an implementation and a story about it, and both can inherit the same wrong assumption. Even a faithful explanation of the code cannot establish that it meets the customer's need.
+An LLM can explain the code, maintain documentation and help investigate a failure. Specifications may become more durable than implementation. We expect those explanations to preserve the understanding needed to operate the system.
+
+**What if not?**
+
+We now have an implementation and a story about it, and both can inherit the same wrong assumption. Even a faithful explanation of the code cannot establish that it meets the customer's need.
 
 The useful test is concrete: can a responsible maintainer, with the team's actual tools, trace a critical decision and diagnose an agreed failure? Tie explanations to exact revisions, observed behaviour and independent requirements. Discover missing context before an incident forces the question.
 
@@ -110,7 +114,9 @@ Cheap experiments can help us reject weak ideas. [Kohavi and colleagues](https:/
 
 More output offers little assurance by itself. [NBER](https://www.nber.org/papers/w35275) [7] reports rising low-usage shares among new iOS apps and Chrome extensions; these proxies establish neither AI causation nor customer welfare. [METR's 349-person survey](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median self-assessed speed gains of 3× and work-value gains of 1.4–2×, depending on wording. These are perceived gains, with speed and work value measured separately.
 
-Now grant the stronger case: every feature is useful. A balanced delivery system produces twenty to thirty times more customer-facing changes. This is a thought experiment, not NBER's release estimate.
+Now grant the stronger case: every feature is useful. A balanced delivery system produces twenty to thirty times more customer-facing changes. This is a thought experiment, not NBER's release estimate. We expect customers to get more value, sooner.
+
+**What if not?**
 
 A customer uses the reporting tool monthly; its workflow changes weekly. Each improvement makes sense. Each visit still requires relearning the job.
 
@@ -148,7 +154,7 @@ We test the assistant. The presentation uses 200 synthetic responses:
 | Incorrect recovery instructions | 3 |
 | Restricted information disclosed | 1 |
 
-Ninety-eight percent acceptable. Ready to take responsibility?
+Ninety-eight percent acceptable. On the headline score, the assistant looks ready.
 
 **What if not?**
 
@@ -167,6 +173,8 @@ Test the checker against verified failures, valid outputs and shared-error cases
 ### The human is an architectural dependency
 
 We still have a human escalation path. A qualified person will inspect the evidence, recognise the exception and intervene.
+
+**What if not?**
 
 At night, the queue is unattended. At peak load, reviewers cannot keep up. A tired reviewer approves a polished summary without seeing the underlying evidence. The path exists; the capacity to operate it does not.
 
@@ -204,7 +212,9 @@ Iteration helps when exposure is bounded, effects can be evaluated and intervent
 
 **A working recovery mechanism is not the same as a recoverable consequence.**
 
-That distinction belongs in the adoption decision. Establish the workflow outcome to improve, the actions the system may take, the results it must never produce and the people and controls needed to operate it. Rehearse containment and recovery. Decide what evidence would justify expansion, restriction or a stop.
+The question becomes useful when it changes a decision. If the assistant depends on qualified approval, we must examine what happens when nobody can respond in time—and remove its permission to change access if that approval cannot be supplied.
+
+Establish the workflow outcome to improve, the actions the system may take, the results it must never produce and the people and controls needed to operate it. Rehearse containment and recovery. Decide what evidence would justify expansion, restriction or a stop.
 
 Those requirements cost money and attention. Organisations can copy a visible workflow while leaving its supporting expertise and response capacity unfunded. The cost of discovering the omission then falls on the people exposed to it.
 
@@ -350,17 +360,17 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R15, 20 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R16, 20 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR15,
+@misc{oborskyi2026sumR16,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R15, 20 October 2026; unpublished}
+  note = {Editorial draft R16, 20 October 2026; unpublished}
 }
 ```
 
