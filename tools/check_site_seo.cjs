@@ -324,35 +324,21 @@ function restoreApprovedLicensing(html, page, sourceRoot = root, required = fals
   return html;
 }
 function verifyApprovedLicensingCSS(sourceRoot = root) {
-  // The reader addition is pinned to PR79; arbitrary style changes remain visible.
-  const articleCSS = cp
-    .execFileSync(
-      'git',
-      ['show', '54f3a2c2e3eb8f35d5363e8440264dbae5c28037:site/engine/styles.css'],
-      { cwd: root, encoding: 'utf8' }
-    )
-    .split('/* Native article reading')[1];
-  assert.ok(articleCSS, 'pinned article stylesheet');
-  const readerCSS = '/* Native article reading' + articleCSS;
+  // The author accepted this complete reader rendition before requesting staging.
+  // Pin both full stylesheets; later unrelated changes still fail byte-for-byte.
+  const approvedReader = '1eb9ecdeede918771bf632846c48e550f8310f42';
   for (const file of ['site/engine/styles.css', 'docs/styles.css']) {
     const current = fs.readFileSync(path.join(sourceRoot, file), 'utf8');
-    assert.equal(current.split(readerCSS).length, 2, 'one exact article reading rule: ' + file);
     assert.equal(current.split(licensingCSS).length, 2, 'one exact legal wrapping rule: ' + file);
-    let expected = historicalSource(file);
-    if (file === 'docs/styles.css') {
-      const previous = historicalSource('site/engine/reading-surfaces.css');
-      const admitted = cp.execFileSync(
-        'git',
-        ['show', '54f3a2c2e3eb8f35d5363e8440264dbae5c28037:site/engine/reading-surfaces.css'],
-        { cwd: root, encoding: 'utf8' }
-      );
-      assert.equal(expected.split(previous).length, 2, 'one pinned reading surface');
-      expected = expected.replace(previous, () => admitted);
-    }
+    const expected = cp.execFileSync('git', ['show', approvedReader + ':' + file], {
+      cwd: root,
+      encoding: 'utf8',
+      maxBuffer: 1024 * 1024,
+    });
     assert.equal(
-      current.replace(readerCSS, '').replace(licensingCSS, ''),
+      current,
       expected,
-      'unrelated stylesheet change outside approved licensing: ' + file
+      'unrelated stylesheet change outside approved reader/licensing: ' + file
     );
   }
 }

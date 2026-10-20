@@ -26,8 +26,8 @@
 
 
 
-  <meta name="site-engine" content="a7bc7a337754e9b6c2f7c56d3b6b94bc236becfff4245e19c8cda877046a3343">
-  <meta name="site-route" content="2ab5f65acb961e2dce5ae35708e865b219054a6acc2d8b35509f981aa484def1">
+  <meta name="site-engine" content="fce0a3284a9ed13b3fe77e933843d45ecb201c0e57bc5f498317fc31fbd1c5c2">
+  <meta name="site-route" content="3730613037a5991c6d8e76ad20f134762eb9733189d51a52a5acf14a45d7877a">
   <meta name="site-contract" content="1">
   <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
@@ -1574,8 +1574,6 @@ body[data-page='writing'] #archive-results {
 /* Shared article component layout is authored in reader.css. */
 .article-list {
   padding: clamp(1rem, 4vw, 2.5rem);
-}
-.article-list {
   margin-block: 2rem;
 }
 .article-list li + li {
@@ -1874,9 +1872,19 @@ body[data-page='writing'] #archive-results {
 
 /* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
 .reader-mode,
-.reader-mode .article-toc {
+.reader-mode .article-toc,
+.reader-mode .reader-contents[data-reader-enhanced] > ol,
+.reader-dialog {
   background: var(--paper);
   border-radius: var(--reading-surface-radius);
+}
+.reader-mode[data-route-paper] {
+  background: transparent;
+}
+[data-route-paper]::before {
+  background: var(--paper);
+  border-radius: var(--route-paper-top-radius) var(--route-paper-top-radius)
+    var(--route-paper-bottom-radius) var(--route-paper-bottom-radius);
 }
 @media print {
   .reader-mode {
@@ -1891,6 +1899,7 @@ body[data-page='writing'] #archive-results {
   padding-block: 2.5rem 4rem;
 }
 .reader-mode {
+  isolation: isolate;
   padding: clamp(24px, 4vw, 48px);
   font-size: 1.1875rem;
   line-height: 1.7;
@@ -1924,6 +1933,11 @@ body[data-page='writing'] #archive-results {
   font-size: 0.875rem;
   margin-block: 1.25rem 0;
 }
+.reader-metadata {
+  margin-block: 0.25rem 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
 .reader-status {
   color: var(--muted);
 }
@@ -1936,6 +1950,18 @@ body[data-page='writing'] #archive-results {
   font-size: 1rem;
   line-height: 1.5;
 }
+.article-toc:has(.reader-contents[data-reader-enhanced]) {
+  position: sticky;
+  top: var(--header-clearance, 110px);
+  z-index: 3;
+  overflow-anchor: none;
+}
+.article-toc .reader-contents[data-reader-enhanced] > ol {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  border: 1px solid var(--line);
+}
 .reader-mode summary {
   cursor: pointer;
 }
@@ -1947,6 +1973,41 @@ body[data-page='writing'] #archive-results {
 .article-toc summary {
   font-weight: 500;
   padding-block: 0.875rem;
+}
+.reader-contents > summary {
+  min-height: 52px;
+  padding-inline: 0.75rem;
+}
+[data-reader-current] {
+  float: right;
+  max-width: 65%;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.article-toc .reader-contents > ol {
+  max-height: calc(100dvh - var(--header-clearance, 110px) - 100px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-inline: 0.75rem;
+}
+.article-toc .reader-subcontents {
+  margin: 0 0 0.5rem 1rem;
+}
+.article-toc .reader-subcontents summary {
+  min-height: 44px;
+  padding-block: 0.625rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.article-toc .reader-subcontents ol {
+  border-left: 1px solid var(--line);
+  padding: 0 0 0 1rem;
+}
+.article-toc .reader-subcontents a {
+  min-height: 44px;
 }
 .article-toc ol {
   padding: 0 0 0.5rem;
@@ -2019,7 +2080,7 @@ body[data-page='writing'] #archive-results {
 .reader-endnote h3,
 .reader-appendices [id],
 .reader-citation {
-  scroll-margin-top: calc(var(--header-clearance, 110px) + 24px);
+  scroll-margin-top: calc(var(--header-clearance, 110px) + 76px);
 }
 .article-body h2 {
   font-size: 1.9375rem;
@@ -2033,6 +2094,14 @@ body[data-page='writing'] #archive-results {
   font-size: 1.4375rem;
   line-height: 1.35;
   margin-block: 2.25rem 0.875rem;
+  text-wrap: pretty;
+  break-after: avoid;
+}
+.article-body h4 {
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-block: 2.5rem 0.625rem;
   text-wrap: pretty;
   break-after: avoid;
 }
@@ -2113,6 +2182,115 @@ body[data-page='writing'] #archive-results {
   display: inline-block;
   font-size: 0.8rem;
   margin-top: 0.5rem;
+}
+.reader-image-open {
+  display: block;
+  cursor: zoom-in;
+}
+.reader-image-open:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+/* Modal controls share the article's theme and keep the reading position intact. */
+body:has(.reader-dialog[open]) {
+  overflow: hidden;
+}
+.reader-dialog {
+  box-sizing: border-box;
+  width: min(1100px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font: 1rem/1.6 var(--sans);
+  overflow-wrap: anywhere;
+}
+.reader-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.reader-dialog::backdrop {
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+}
+.reader-dialog-header,
+.reader-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  flex: none;
+}
+.reader-dialog-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.reader-dialog button,
+.reader-dialog-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--control-line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+.reader-dialog button:hover,
+.reader-dialog-actions a:hover {
+  background: var(--tint);
+}
+.reader-dialog :is(button, a):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.reader-image-stage {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-image-stage img {
+  display: block;
+  flex: none;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 65dvh;
+  object-fit: contain;
+}
+.reader-zoomed .reader-image-stage {
+  display: block;
+}
+.reader-zoomed .reader-image-stage img {
+  max-width: none;
+  max-height: none;
+}
+.reader-image-caption {
+  max-height: 5em;
+  overflow: auto;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.reader-note-dialog {
+  width: min(640px, calc(100% - 32px));
+}
+.reader-note-body {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-note-body > :first-child {
+  margin-top: 0;
+}
+.reader-note-body > :last-child {
+  margin-bottom: 0;
 }
 .reader-table {
   max-width: 100%;
@@ -2305,6 +2483,18 @@ body[data-article] .site-footer a[href='#main'] {
   .article-body h3 {
     font-size: 1.3125rem;
   }
+  .article-body h4 {
+    font-size: 1.1875rem;
+    margin-top: 2rem;
+  }
+  .reader-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 1rem;
+  }
+  .reader-note-dialog {
+    margin: auto 8px 8px;
+  }
   .reader-quotation blockquote {
     font-size: 1.1875rem;
   }
@@ -2340,6 +2530,10 @@ body[data-article] .site-footer a[href='#main'] {
   .reader-end,
   .reader-note-returns,
   .article-figure-original {
+    display: none;
+  }
+  .reader-dialog,
+  .reader-dialog[open] {
     display: none;
   }
   .reader-mode details::details-content {
@@ -2474,13 +2668,39 @@ body[data-page] [data-entry-border-source] {
   --route-block-delay: 0ms;
   --route-block-duration: var(--block-motion-duration);
 }
-[data-route-block='departing'] > *,
-[data-route-block='departing']::before {
+/* Only the paper currently inside the viewport travels. The complete article
+   keeps its native multi-page geometry and its ordinary paper at rest. */
+.reader-mode[data-route-paper]::before {
+  content: '';
+  position: fixed;
+  left: var(--route-paper-left);
+  top: var(--route-paper-top);
+  width: var(--route-paper-width);
+  height: var(--route-paper-height);
+  z-index: -1;
+  pointer-events: none;
+  visibility: hidden;
+  --route-block-distance: var(--route-paper-distance);
+}
+[data-route-blocks='departing'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-depart var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-blocks='arriving'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-arrive var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-block='departing'][data-route-layer='self'],
+[data-route-block='departing']:not([data-route-layer='self']) > *,
+[data-route-block='departing']:not([data-route-layer='self'])::before {
   animation: route-block-depart var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
-[data-route-block='arriving'] > *,
-[data-route-block='arriving']::before {
+[data-route-block='arriving'][data-route-layer='self'],
+[data-route-block='arriving']:not([data-route-layer='self']) > *,
+[data-route-block='arriving']:not([data-route-layer='self'])::before {
   animation: route-block-arrive var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
@@ -2512,6 +2732,8 @@ body[data-page] [data-entry-border-source] {
   }
   [data-scroll-entry] > *,
   [data-scroll-entry]::before,
+  [data-route-layer='self'],
+  .reader-mode[data-route-paper]::before,
   [data-route-block] > *,
   [data-route-block]::before {
     animation: none;
@@ -2519,6 +2741,9 @@ body[data-page] [data-entry-border-source] {
   }
 }
 @media print {
+  .reader-mode[data-route-paper]::before {
+    display: none;
+  }
   #site-content-frame {
     overflow: visible;
   }

@@ -633,7 +633,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "47e786b19eec6fbd5dab1cf5ad309bd8a9a6c694f52e4da32bdd011e36973974",
+    "digest": "14a08fe0e5ed9ea38311a60462c8bcbe5158f90d5643fd417c08981ac0690304",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -845,7 +845,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "74e799c42c097673a47f8cd9b598d2c5eeacf64f1e3d4773fc4040f3464873b2"
+        "sha256": "0b64d0877177f8612854c2140fbe54b4a516a5a8e5652b9b1cfe88ac95ac6072"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -865,7 +865,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "f3164dfe957f7258893d8401c4f5d84fca0dfaffafa8096969773a560e1e0d89"
+        "sha256": "78ae019ad11e4bcb128406760261a7988cc2e43867d070a50062fac93806bf9c"
       },
       {
         "path": "tests/test_code_style.py",

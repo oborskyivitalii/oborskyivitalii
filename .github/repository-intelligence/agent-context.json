@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "dcd10f61c6a91d7072144418711cf62f3874e01da79351da58029a3a0507a881",
+    "digest": "311f2ce37e27185e025e4ee45960d19536de822ad0feb0ec16b27369c1081edc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -176,7 +176,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "092d53c0871186441cee9a2dc899b95a536ccedf47f8d8b6ef7617d060f576aa"
+        "sha256": "9d0c455366063ab069846448aecfab67fd321a3035a08be650b99851892cffdc"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "1a00abcdd8c92094bfc80c9c76ae2fc09f270d29d9cea392dd871ea27db494ee"
+        "sha256": "6772c7aeee94854a689e9b04877afad608edd7cda01057b790ea8ee62a8cca48"
       },
       {
         "path": "NOTICE.md",
@@ -580,7 +580,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "74e799c42c097673a47f8cd9b598d2c5eeacf64f1e3d4773fc4040f3464873b2"
+        "sha256": "0b64d0877177f8612854c2140fbe54b4a516a5a8e5652b9b1cfe88ac95ac6072"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "eb17a2f5d852b05c1077e158709557328807adb7ec1d90cbc5b5d198a76b29d7"
+        "sha256": "ee64c9fd5b542b846e4b68163f15725cd5dec2c41b2971c4d29fb754c25a2a83"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -4825,22 +4825,22 @@
       {
         "path": "review/site-v1-20261004-v11-credits-day.html",
         "identity_mode": "content",
-        "sha256": "4bb0e20feaea13c598f89c88c8c9cbbce667e5c10646222278b9f8fd9de9bd12"
+        "sha256": "8ef7323e4307b71c6e6c4c1d902e90cd0b9b8789c032a72d6f246095b5e860ed"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-interactive.html",
         "identity_mode": "content",
-        "sha256": "85e7a79cecc3b7853c381bf8161aaf7e337c5b257c78f2c62a400e2e9462c0e0"
+        "sha256": "fd39bd1429e937fbf76c285d98f72d5a1ac967a0aef962122477f3f8a3207ef6"
       },
       {
         "path": "review/site-v1-20261004-v11-credits-night.html",
         "identity_mode": "content",
-        "sha256": "7bd55a271abb56d84b1ae81220bcae9b426e735091d7a1b03c7f4802bdb5c66d"
+        "sha256": "f6e2d114abcbdaf4d1b18294ac69c40167d878411fa2f6cce4d5e99a5898ea3e"
       },
       {
         "path": "review/site-v1-20261004-v11-day.html",
         "identity_mode": "content",
-        "sha256": "7f3aae85bf7a45e8655dceb7c4beeeac4fc52ce7b91a93f3bd253e0f5987eb2c"
+        "sha256": "9a5daa005cb4a66f9e919650255d229164257f93c813e64f85220ac340d1577b"
       },
       {
         "path": "review/site-v1-20261004-v11-index.html",
@@ -4850,57 +4850,57 @@
       {
         "path": "review/site-v1-20261004-v11-interactive.html",
         "identity_mode": "content",
-        "sha256": "cf407eb695c8505e7c003a851ec434b4dcc21575649fa1f6fa95d0afc4a39991"
+        "sha256": "65eb0a9cdba311b8c05bc3fee5bb1bb2b8317bd8e245f70cb506bf40a5fcd624"
       },
       {
         "path": "review/site-v1-20261004-v11-night.html",
         "identity_mode": "content",
-        "sha256": "313e04c478d01929a1190bdc66a032f4fcffb74d5a3b946615241aeb490f6cb4"
+        "sha256": "f1f37e43f0d546956848c4279e02704e330eed8f41c0dc8ed7782a90abe58ba2"
       },
       {
         "path": "review/site-v1-20261004-v11-research-day.html",
         "identity_mode": "content",
-        "sha256": "68a35b107c6c90193703a1c144700738e7570f4e702f93f7771caf3d5882269d"
+        "sha256": "17f4bf92deaf27b5b52327a5581efd3affd4a20c1bd6b72177dd9fd375d834c7"
       },
       {
         "path": "review/site-v1-20261004-v11-research-interactive.html",
         "identity_mode": "content",
-        "sha256": "825b93c192e48ee43dbc10cbbf18e64d27f56c49353e8fef32a079157279045c"
+        "sha256": "0362e40754a77eed72d4b12d2945efb91bdf80f52a31369675e71461d79f3b43"
       },
       {
         "path": "review/site-v1-20261004-v11-research-night.html",
         "identity_mode": "content",
-        "sha256": "2e0340d8230f7876f4e7200473a298c1e19c9eb336ee3ded8528e6c9acba978d"
+        "sha256": "0f265de189ceff5447f801b6b00e8fc0318b1aeae41d64d2c5551fff9dc77d10"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-day.html",
         "identity_mode": "content",
-        "sha256": "bba85adfcf707567f9bb3c5ffd1dfd6804f5047bda8731fc325c5ae39992d01b"
+        "sha256": "47c8989d442dc16142bc881c8a5b29e52355de78fdc5a2f7f25ff2f75512af16"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-interactive.html",
         "identity_mode": "content",
-        "sha256": "a17a424ec27872fde15c024f862a6bccc4b2a2234cff5e0406140947a2dfbd8c"
+        "sha256": "19459ff544888c16563541b7d2634571afb19ba1c62b461be63f8a947ef40000"
       },
       {
         "path": "review/site-v1-20261004-v11-talks-night.html",
         "identity_mode": "content",
-        "sha256": "c8a3350fb0822cd5b710f8df7996d4b2b3b9ac7a20c150244aae357001db9a17"
+        "sha256": "9ba2920ca4fb3f31d465504fe7a05be3c1813d85a2db7ffaec6f6079c2ab169c"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-day.html",
         "identity_mode": "content",
-        "sha256": "56f8fdcc63a03e4935b835facb087cba780800b358e20a865cbe7ed2e9a37acb"
+        "sha256": "9885c9d2822ed453e22e4802fdae6f3ef4980cbfe320cb8642e55e5325434600"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-interactive.html",
         "identity_mode": "content",
-        "sha256": "452a6b42eaa1ab9989d63e3b3093c7cabbda77dc91baeca55122fa2d6602afdb"
+        "sha256": "69dcc8d337d9707928735b62bd0118fcbbf97ddfe6c708cb2cc689fab9525660"
       },
       {
         "path": "review/site-v1-20261004-v11-writing-night.html",
         "identity_mode": "content",
-        "sha256": "c517ed30944fe5000f19f156ed52747e09b7d946afd30caa4fe28f6e3a53200f"
+        "sha256": "6317fc88d7094ad9a4093ae1bdf37cca81d068cbc20bbc23f99b2d69affd7c5b"
       },
       {
         "path": "review/site-v1-offline-bundle-v10.json",
@@ -4910,7 +4910,7 @@
       {
         "path": "review/site-v1-offline-bundle-v11.json",
         "identity_mode": "content",
-        "sha256": "8346d3d6efae0a32b67086023a43d5d24f0a6e1ebab8d6fdda079dc5a34a05f1"
+        "sha256": "49c550c9727a7b02be68d5d79c038674482646951c76a704f5f91e79687385b0"
       },
       {
         "path": "review/site-v1-offline-bundle-v3.json",
@@ -4965,7 +4965,7 @@
       {
         "path": "review/site-v1-static-previews-v11.json",
         "identity_mode": "content",
-        "sha256": "feaf0ccc5e5e2ad5f304ea39a7d259f75b5fa54fec5c25e481fb173d3eff1ee9"
+        "sha256": "8decb7de8ae2882d2a51ef94a9241cffa3d83e106fea4412c5c7adfeb98e8695"
       },
       {
         "path": "review/site-v1-static-previews-v2.json",
@@ -6650,7 +6650,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "74588add41dcd91cc840e15ba8f7fe94cd43d3fa88aeada686fa1aaef7c132e4"
+        "sha256": "3b8d8ff97ed09d9998d612ad86251dd4312a767e980d4e5ea24a6d1212862075"
       },
       {
         "path": "tests/fixtures/article-flight.cjs",
@@ -6820,7 +6820,7 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "02e9f67507fbd1cdfdfcc2296e2d9c5d0cb68d3627278d4845b474d213b37cdb"
+        "sha256": "24bd3efaa18254cd292496cb7b3911277a91718472314f4cc47485d27eb9201b"
       },
       {
         "path": "tests/release-controller.test.cjs",
@@ -6910,7 +6910,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "f3164dfe957f7258893d8401c4f5d84fca0dfaffafa8096969773a560e1e0d89"
+        "sha256": "78ae019ad11e4bcb128406760261a7988cc2e43867d070a50062fac93806bf9c"
       },
       {
         "path": "tests/test_code_style.py",
@@ -7145,7 +7145,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "b34970cf533a642abba71ec4cf12a538515a110109738f98b50db73f849fcbf1"
+        "sha256": "a129ffdc62b6fd30cefeb6c846fbe573bf87cd9273feb00a418f0e1ed74a2203"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -7645,7 +7645,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "cb93e4b237616b8951a6ec420cd20b052fa3f03a0cc991baedfa580cff2c9386"
+        "sha256": "88ae4ac7fb7e13d4fdcbb6377ea9d89810e589577accda518ba6c576f44838bb"
       },
       {
         "path": "tools/quality/source-tests.cjs",

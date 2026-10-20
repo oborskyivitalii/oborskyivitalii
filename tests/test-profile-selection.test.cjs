@@ -747,7 +747,7 @@ test('source scheduling starts expensive files early with isolated processes and
     'run-source.cjs',
     'require(' +
       JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
-      ').runFiles(JSON.parse(process.argv[2]),{parallelism:2});\n'
+      ').runFiles(JSON.parse(process.argv[2]),{parallelism:1});\n'
   );
   const child = cp.spawnSync(
     process.execPath,
@@ -774,6 +774,73 @@ test('source scheduling starts expensive files early with isolated processes and
   ]) {
     f.write(file, body);
     assert.throws(() => runner.run(f.directory, plan));
+  }
+});
+
+test('source scheduling caps simultaneous isolated files at four without dropping queued coverage', async (t) => {
+  const f = fixture(t),
+    active = path.join(f.directory, 'active'),
+    release = path.join(f.directory, 'release'),
+    files = Array.from({ length: 5 }, (_, index) => 'tests/slot-' + index + '.test.cjs');
+  fs.mkdirSync(active);
+  for (const [index, file] of files.entries())
+    f.write(
+      file,
+      "const fs=require('node:fs'),test=require('node:test');" +
+        "test('bounded slot " +
+        index +
+        "',async()=>{" +
+        'const marker=' +
+        JSON.stringify(path.join(active, String(index))) +
+        ';' +
+        "fs.writeFileSync(marker,'active');" +
+        'while(!fs.existsSync(' +
+        JSON.stringify(release) +
+        '))await new Promise(r=>setTimeout(r,10));' +
+        'fs.unlinkSync(marker);});\n'
+    );
+  f.write(
+    'run-source.cjs',
+    'require(' +
+      JSON.stringify(path.join(root, 'tools/quality/source-test-worker.cjs')) +
+      ').runFiles(' +
+      JSON.stringify(files) +
+      ',{parallelism:64});\n'
+  );
+  const env = { ...process.env };
+  delete env.NODE_TEST_CONTEXT;
+  const child = cp.spawn(process.execPath, [path.join(f.directory, 'run-source.cjs')], {
+    cwd: f.directory,
+    env,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '',
+    stderr = '';
+  child.stdout.on('data', (bytes) => {
+    stdout += bytes;
+  });
+  child.stderr.on('data', (bytes) => {
+    stderr += bytes;
+  });
+  const closed = new Promise((resolve, reject) => {
+    child.once('error', reject);
+    child.once('close', resolve);
+  });
+  try {
+    const deadline = Date.now() + 5000;
+    while (fs.readdirSync(active).length < 4) {
+      assert.ok(Date.now() < deadline, 'four actual source files must overlap');
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    assert.equal(fs.readdirSync(active).length, 4, 'fifth file stays queued');
+    fs.writeFileSync(release, 'release');
+    assert.equal(await closed, 0, stderr || stdout);
+    assert.equal(runner.accounting(stdout, { modules: files, root: f.directory }).passed, 5);
+  } finally {
+    fs.writeFileSync(release, 'release');
+    if (child.exitCode === null) child.kill('SIGTERM');
+    await closed;
   }
 });
 

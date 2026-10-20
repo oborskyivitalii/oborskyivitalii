@@ -586,15 +586,12 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
     recordingRecord.changes.map((change) => [change.page, change.id]),
     [['talks', 'pmday-recording']]
   );
-  const html = restoreContentAmendment(
-    readHTML(path.join(__dirname, '../docs/talks.html')),
-    'talks',
-    require('../review/issue-108/content-amendment.json')
-  );
+  const html = readHTML(path.join(__dirname, '../docs/talks.html'));
   const preserved = restore(html, 'talks');
-  const cards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)].map(
-    (row) => row[0]
-  );
+  const cards = [...html.matchAll(/<article class="publication"[\s\S]*?<\/article>/g)]
+    .map((row) => row[0])
+    .filter((card) => !card.includes('<span>Upcoming</span>'));
+  assert.equal(cards.length, 4, 'the four retained historical event cards');
   const recordingUrl = 'https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE';
   const mutations = [
     [cards[3], ''],
@@ -618,13 +615,16 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
       ),
     ],
     [
-      'including PMDay, Corning Learn-AI-Palooza, Betelgeuse and swarchua',
+      'Upcoming UA Online PMDay 2027 Winter and the UA Online PMDay 2026 Autumn recording',
       'including invented events',
     ],
     [recordingUrl, 'https://youtu.be/OtherVideo'],
     [cards[0], cards[0].replace(/<a class="text-link"[^>]+>Watch the recording[\s\S]*?<\/a>/, '')],
     ['AI Changes the Delivery System and the Product Itself', 'AI Proves Delivery Success'],
-    ['PMDay 2026 · Recording in Ukrainian', 'PMDay 2026 · Recording in English'],
+    [
+      'UA Online PMDay 2026 Autumn · Recording in Ukrainian',
+      'UA Online PMDay 2026 Autumn · Recording in English',
+    ],
     [cards[0], cards[0].replace('data-language="uk"', 'data-language="en"')],
     [cards[0], cards[0].replace('<h3 class="talk-title">', '<h3 class="talk-title" lang="uk">')],
     [
@@ -636,15 +636,24 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
   for (const [from, to] of mutations) {
     assert.ok(html.includes(from), 'mutation input exists');
     assert.notEqual(from, to, 'mutation is meaningful');
-    assert.notEqual(
-      restore(html.replace(from, to), 'talks'),
-      preserved,
-      'unsupported event/source/date/language/resource edit remains visible'
-    );
+    try {
+      assert.notEqual(
+        restore(html.replace(from, to), 'talks'),
+        preserved,
+        'unsupported event/source/date/language/resource edit remains visible'
+      );
+    } catch (error) {
+      assert.match(error.message, /event output differs from validated canonical data/);
+    }
   }
+  const historicalHtml = restoreContentAmendment(
+    require('../tools/check_site_seo.cjs').restoreEventsCatalog(html),
+    'talks',
+    require('../review/issue-108/content-amendment.json')
+  );
   const positioningRecord = require('../review/issue-41/2026-10-09-positioning-amendment.json');
   const earlierHtml = restoreContentAmendment(
-    restoreContentAmendment(html, 'talks', positioningRecord),
+    restoreContentAmendment(historicalHtml, 'talks', positioningRecord),
     'talks',
     recordingRecord
   );
@@ -666,7 +675,7 @@ test('Talks reconciliation rejects missing events, substituted sources and inven
   }
   const [recordingChange] = recordingRecord.changes;
   const earlierCards = [
-    ...restoreContentAmendment(html, 'talks', positioningRecord).matchAll(
+    ...restoreContentAmendment(historicalHtml, 'talks', positioningRecord).matchAll(
       /<article class="publication"[\s\S]*?<\/article>/g
     ),
   ].map((row) => row[0]);
@@ -740,6 +749,11 @@ test('practical positioning allowances reject unsupported claims, status and con
         () => restore(html.replace(from, to), page),
         /count matches displayed entries/,
         'an altered count cannot be normalized as catalog output'
+      );
+    } else if (page === 'talks') {
+      assert.throws(
+        () => restore(html.replace(from, to), page),
+        /event output differs from validated canonical data/
       );
     } else {
       assert.notEqual(
@@ -962,15 +976,22 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     );
   }
   function verifyMaterial(rule) {
+    const readerPaper = /\.reader-mode|\.reader-dialog|\[data-route-paper\]::before/.test(
+      rule.selector
+    );
     for (const [property, value] of properties(rule.body)) {
       if (property === 'background')
         assertValue(
           value,
-          rule.selector.includes('::before') ||
-            rule.selector.includes('.reading-title') ||
-            rule.selector.includes('.display-controls')
-            ? 'var(--reading-surface-color)'
-            : 'transparent',
+          readerPaper
+            ? rule.selector.includes('[data-route-paper]') && !rule.selector.includes('::before')
+              ? 'transparent'
+              : 'var(--paper)'
+            : rule.selector.includes('::before') ||
+                rule.selector.includes('.reading-title') ||
+                rule.selector.includes('.display-controls')
+              ? 'var(--reading-surface-color)'
+              : 'transparent',
           'one theme-paper material'
         );
       if (property === 'opacity') assertValue(value, 'var(--reading-surface-opacity)');
@@ -979,6 +1000,11 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
           [
             'var(--reading-surface-radius)',
             'max(0px,calc(var(--reading-surface-radius) - var(--reading-title-outset)))',
+            ...(rule.selector.trim() === '[data-route-paper]::before'
+              ? [
+                  'var(--route-paper-top-radius) var(--route-paper-top-radius) var(--route-paper-bottom-radius) var(--route-paper-bottom-radius)',
+                ]
+              : []),
           ].some((expected) => sameValue(value, expected)),
           'shared outside radius including title spread'
         );
@@ -999,7 +1025,8 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     }
   }
   function verify(reading, ordinary, authoredColor, publicCSS) {
-    if (publicCSS.endsWith('\n' + entry)) publicCSS = publicCSS.slice(0, -entry.length - 1);
+    const suffix = '\n' + reader + '\n' + entry;
+    if (publicCSS.endsWith(suffix)) publicCSS = publicCSS.slice(0, -suffix.length);
     assert.equal(
       publicCSS,
       ordinary + '\n' + reading,
@@ -1102,7 +1129,8 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
         }
     }
   }
-  const entry = read('site/engine/scroll-entry.css');
+  const entry = read('site/engine/scroll-entry.css'),
+    reader = read('site/engine/reader.css');
   assert.ok(generated.endsWith('\n' + entry), 'canonical finite entry styles are appended once');
   for (const rule of rules(entry))
     assert.ok(

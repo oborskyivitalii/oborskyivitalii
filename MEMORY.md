@@ -4,11 +4,11 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Snapshot
 
-- 20 October #5/PR79: next reusable reader iteration adds image/reference dialogs,
-  hierarchical sticky Contents and shared metadata/type. New correction restores
-  common ambient motion and complete component/paper waves; R18 media/PDF preserved.
-  Independent source review resolved deep-reading Contents jump. Review:
-  review/issue-5/2026-10-20-reader-interactions.md; final CI/preview in PR79.
+- 20 October #5/PR79: author accepts reader preview and authorizes permanent staging.
+  Ready1eb9ecde exposed stale offline review exports in navigation39425928566;
+  canonical regeneration fixes checksum freshness without changing hosted runtime.
+  R18 media/PDF preserved. Final Ready/staging evidence belongs to the live PR/issue:
+  review/issue-5/2026-10-20-reader-interactions.md#permanent-staging-admission.
 
 - 20 October #2/PR79: author requests R18 PDF/native preview and official event name
   **UA Online PMDay 2026 Autumn**. Current semantic edition selects R18/Cover02;

@@ -37,7 +37,8 @@ them. Hosted smoke remains a distinct report and cannot authorize stable staging
 Preview packaging uses `local.cjs --package-gate` and emits `package-gate` with
 `sourceTestsRun: false`; it proves generated/public/upload identity without
 repeating Basic source tests. The required Basic check remains independent.
-Selected Node source files execute in isolated processes with two file workers;
+Selected Node source files execute in isolated processes using the available CPU
+allocation, capped at four file workers;
 tests within a file retain their serial default. The stable sorted selection is
 reported separately from execution order: selected Space and executive suites
 start first, then the remaining selected files. This overlaps measured expensive
@@ -297,9 +298,9 @@ not counted as an automatic speed improvement.
 
 The source runner delegates execution to
 [`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
-the measured long `space`, `executive` and `release-rights` modules first, then
+the measured long `space`, `executive`, `article-media` and `release-rights` modules first, then
 the remaining selected files lexically, retaining the same selected set, Node
-process isolation, default worker allocation, native TAP and strict accounting.
+process isolation, a maximum of four workers, native TAP and strict accounting.
 The fixed 180-second child bound and 16MiB output bound remain; SIGTERM/SIGINT
 abort the owned runner and reap its children before timeout evidence is retained.
 

@@ -198,3 +198,34 @@ effect, retaining actual pseudo-element CSS frames rather than child ink. This
 uses the documented [Element animation inventory](https://developer.mozilla.org/en-US/docs/Web/API/Element/getAnimations).
 A diagnostic regression excludes descendant pseudo-elements and binds completion
 to the same phase/navigation identity.
+
+## Permanent staging admission
+
+The author accepts the visual iteration and authorizes permanent staging through
+the existing controller and required tests. Ready source1eb9ecde/tree493346f2
+exposed stale generated review-only offline HTML in navigation run39425928566:
+the checksum scanner correctly rejected old embedded runtime/route identities.
+This is a generated-output freshness defect, not a scanner exception. Regenerate
+the fifteen canonical review exports and their offline/source manifests through
+their existing generators; preserve hosted runtime, R18 manuscript/media/PDF,
+test selectors and budgets. CS01/04/05/08/10 retain canonical ownership and exact
+source evidence. The existing controlled scanner regression passes after the
+regeneration. Final Ready and complete applicable staging receipts belong to the
+live PR/issue; no stable result is inferred from this prepared correction.
+
+Ready Basic39425928640 also retained seven failures before its180s timeout:
+stale exact reader CSS, event negatives reversing the current108 successor before
+canonical event validation, outdated CSS composition, stale review exports and
+an archive fixture missing the new shared tag-validator dependency. Pin complete
+CSS to the author's accepted1eb9ecde rendition, preserving byte-exact legal and
+unrelated-style negatives; exercise current events before historical reversal,
+retaining all missing/source/date/language/resource negatives. Update the shared
+paint/composition assertions and isolated archive dependency closure. Prepared
+executive/archive30/30, SEO and navigation94/94 pass.
+
+The original180s/16MiB source-process bounds remain. Use available CPUs capped at
+four isolated file workers and start the measured long article-media module with
+the existing long files. A real five-file barrier regression proves four overlap,
+the fifth stays queued and all five complete; cancellation/failure/zero-skip
+accounting remains. Prepared selector/scheduler31/31 passes. These are required
+admission fixes in the same owner, not removed checks or relaxed browser budgets.
