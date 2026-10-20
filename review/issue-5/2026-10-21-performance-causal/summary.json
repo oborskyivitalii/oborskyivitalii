@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "role": "Causal diagnostic and proposed optimization, not release acceptance or a runtime fix",
+  "sourceCommit": "92b671f9d94b1be2e7ab9735e6fe267deb6c4aff",
+  "frozenTarget": {
+    "commit": "283b32f65f0589e85c0aa914d0990704dcf8ac38",
+    "tree": "643304fa64c945c01f3b21e6d1d4f0d85696f8f5",
+    "publicDigest": "edb8d18387d65ef2c6d67e109f93b95ed6f2fa859dd5afc0c4d87b2e5e14f406"
+  },
+  "startedAt": "2026-10-20T23:26:50.924Z",
+  "finishedAt": "2026-10-20T23:28:31.471Z",
+  "scenarios": {
+    "baseline": {
+      "definition": "Exact unchanged frozen article and assets",
+      "trials": [
+        {
+          "round": 1,
+          "metrics": {
+            "first-contentful-paint": 1065.144,
+            "largest-contentful-paint": 4230.2880000000005,
+            "total-blocking-time": 68,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1196.379160749701
+          },
+          "observedLcpMs": 191,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 746085,
+          "performanceScore": 0.85
+        },
+        {
+          "round": 2,
+          "metrics": {
+            "first-contentful-paint": 1051.018,
+            "largest-contentful-paint": 4202.036,
+            "total-blocking-time": 120,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1199.9435279578006
+          },
+          "observedLcpMs": 198,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 746085,
+          "performanceScore": 0.85
+        },
+        {
+          "round": 3,
+          "metrics": {
+            "first-contentful-paint": 1051.18,
+            "largest-contentful-paint": 4202.360000000001,
+            "total-blocking-time": 323,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1230.120676098233
+          },
+          "observedLcpMs": 204,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 746085,
+          "performanceScore": 0.79
+        }
+      ],
+      "medians": {
+        "first-contentful-paint": 1051.18,
+        "largest-contentful-paint": 4202.360000000001,
+        "total-blocking-time": 120,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1199.9435279578006
+      },
+      "observedLcpMedianMs": 198
+    },
+    "lazy-images": {
+      "definition": "Only add loading=lazy to all8 article img tags; this blanket diagnostic is not the final responsive/visible-image policy",
+      "trials": [
+        {
+          "round": 1,
+          "metrics": {
+            "first-contentful-paint": 1054.637,
+            "largest-contentful-paint": 2031.9555,
+            "total-blocking-time": 80.49999999999989,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1054.637
+          },
+          "observedLcpMs": 173,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 1,
+          "imageTransferBytes": 95670,
+          "totalTransferBytes": 245062,
+          "performanceScore": 0.99
+        },
+        {
+          "round": 2,
+          "metrics": {
+            "first-contentful-paint": 1050.737,
+            "largest-contentful-paint": 2026.1055000000001,
+            "total-blocking-time": 81.68425000000002,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1050.737
+          },
+          "observedLcpMs": 181,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 1,
+          "imageTransferBytes": 95670,
+          "totalTransferBytes": 245062,
+          "performanceScore": 0.99
+        },
+        {
+          "round": 3,
+          "metrics": {
+            "first-contentful-paint": 1051.452,
+            "largest-contentful-paint": 2027.1779999999999,
+            "total-blocking-time": 260.4999999999998,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1051.452
+          },
+          "observedLcpMs": 189,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 1,
+          "imageTransferBytes": 95670,
+          "totalTransferBytes": 245062,
+          "performanceScore": 0.94
+        }
+      ],
+      "medians": {
+        "first-contentful-paint": 1051.452,
+        "largest-contentful-paint": 2027.1779999999999,
+        "total-blocking-time": 81.68425000000002,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1051.452
+      },
+      "observedLcpMedianMs": 181
+    },
+    "without-scene": {
+      "definition": "Remove only space.js script tag; deliberately loses interactive scene, for attribution only, not proposed visual acceptance",
+      "trials": [
+        {
+          "round": 1,
+          "metrics": {
+            "first-contentful-paint": 1057.553,
+            "largest-contentful-paint": 3988.21775,
+            "total-blocking-time": 42,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1057.553
+          },
+          "observedLcpMs": 149,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 710984,
+          "performanceScore": 0.88
+        },
+        {
+          "round": 2,
+          "metrics": {
+            "first-contentful-paint": 1050.865,
+            "largest-contentful-paint": 3976.5137499999996,
+            "total-blocking-time": 46,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1050.865
+          },
+          "observedLcpMs": 150,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 710984,
+          "performanceScore": 0.88
+        },
+        {
+          "round": 3,
+          "metrics": {
+            "first-contentful-paint": 1050.455,
+            "largest-contentful-paint": 3975.79625,
+            "total-blocking-time": 43,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1050.455
+          },
+          "observedLcpMs": 133,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 710984,
+          "performanceScore": 0.88
+        }
+      ],
+      "medians": {
+        "first-contentful-paint": 1050.865,
+        "largest-contentful-paint": 3976.5137499999996,
+        "total-blocking-time": 43,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1050.865
+      },
+      "observedLcpMedianMs": 149
+    },
+    "without-navigation": {
+      "definition": "Remove only navigation.js script tag; deliberately loses reader/router enhancements, for attribution only, not proposed acceptance",
+      "trials": [
+        {
+          "round": 1,
+          "metrics": {
+            "first-contentful-paint": 1061.932,
+            "largest-contentful-paint": 3992.898,
+            "total-blocking-time": 51,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1097.3184835474149
+          },
+          "observedLcpMs": 113,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 699490,
+          "performanceScore": 0.88
+        },
+        {
+          "round": 2,
+          "metrics": {
+            "first-contentful-paint": 1050.69,
+            "largest-contentful-paint": 3976.0350000000003,
+            "total-blocking-time": 105,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1118.1833642354145
+          },
+          "observedLcpMs": 124,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 699490,
+          "performanceScore": 0.87
+        },
+        {
+          "round": 3,
+          "metrics": {
+            "first-contentful-paint": 1052.022,
+            "largest-contentful-paint": 3978.0329999999994,
+            "total-blocking-time": 146,
+            "cumulative-layout-shift": 0,
+            "speed-index": 1111.411010901277
+          },
+          "observedLcpMs": 119,
+          "lcpSelector": "div.reader-content > div.article-body > div.reader-introduction > p",
+          "imageRequests": 8,
+          "imageTransferBytes": 596703,
+          "totalTransferBytes": 699490,
+          "performanceScore": 0.86
+        }
+      ],
+      "medians": {
+        "first-contentful-paint": 1052.022,
+        "largest-contentful-paint": 3978.0329999999994,
+        "total-blocking-time": 105,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1111.411010901277
+      },
+      "observedLcpMedianMs": 119
+    }
+  },
+  "performanceAcceptanceOutcomeUnchanged": "FAIL: no real runtime candidate has been implemented or admitted",
+  "configSettings": {
+    "output": "json",
+    "maxWaitForFcp": 30000,
+    "maxWaitForLoad": 45000,
+    "pauseAfterFcpMs": 1000,
+    "pauseAfterLoadMs": 1000,
+    "networkQuietThresholdMs": 1000,
+    "cpuQuietThresholdMs": 1000,
+    "formFactor": "mobile",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "throttlingMethod": "simulate",
+    "screenEmulation": {
+      "mobile": true,
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75,
+      "disabled": false
+    },
+    "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+    "auditMode": false,
+    "gatherMode": false,
+    "clearStorageTypes": [
+      "file_systems",
+      "shader_cache",
+      "service_workers",
+      "cache_storage"
+    ],
+    "disableStorageReset": false,
+    "debugNavigation": false,
+    "channel": "node",
+    "usePassiveGathering": false,
+    "disableFullPageScreenshot": false,
+    "skipAboutBlank": false,
+    "blankPage": "about:blank",
+    "ignoreStatusCode": false,
+    "locale": "en-US",
+    "blockedUrlPatterns": null,
+    "additionalTraceCategories": null,
+    "extraHeaders": null,
+    "precomputedLanternData": null,
+    "onlyAudits": null,
+    "onlyCategories": [
+      "performance",
+      "accessibility",
+      "best-practices"
+    ],
+    "skipAudits": null
+  }
+}
