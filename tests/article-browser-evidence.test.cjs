@@ -212,7 +212,13 @@ function readerObserved(mode) {
     topic: {
       ...fragment('#inspecting-a-figure'),
       menu: {
-        before: { top: 90, bottom: 142, scroll: 900 },
+        before: {
+          top: 90,
+          bottom: 142,
+          scroll: 900,
+          scrollPaddingTop: 80,
+          summary: { top: 90, bottom: 142 },
+        },
         opened: { top: 90, bottom: 500, scroll: 900 },
       },
     },
@@ -292,6 +298,9 @@ test('reader interaction evidence covers native fallbacks and measured dialog us
     },
     (row) => {
       row.topic.menu.opened.scroll = 400;
+    },
+    (row) => {
+      row.topic.menu.before.summary.top = 79;
     },
     (row) => {
       row.topic.menu.opened.bottom = 1000;

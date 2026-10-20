@@ -104,3 +104,11 @@ outgoing-response sequencing fix, but still rejected the Contents position check
 The enhanced sticky control now excludes itself and its descendants from native
 scroll anchoring; the underlying article remains eligible. The strict collector
 also includes measured before/after geometry in any subsequent failure.
+
+Native inspection of b839e3bd localized the remaining trigger: the sticky summary
+started at82px while the document's scroll-padding began at97px. Focusing that
+partly excluded control repeatedly moved scrollY by408px; excluding scroll
+anchoring alone did not help. The shared sticky top now uses the same header
+clearance as the document, keeping the entire control inside the focus viewport.
+This is consistent with the [CSSWG sticky-focus discussion](https://github.com/w3c/csswg-drafts/issues/7930);
+actual final browser evidence remains required rather than inferred from that source.

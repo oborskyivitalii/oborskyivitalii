@@ -402,6 +402,14 @@ function validateReaderInteractions(reader, mode) {
   if (inventory.topics.length && mode !== 'no-js') {
     assert.ok(reader.topic.menu.before.top >= 0, 'Contents is reachable while reading');
     assert.ok(
+      Number.isFinite(reader.topic.menu.before.scrollPaddingTop),
+      'native focus viewport inset was measured'
+    );
+    assert.ok(
+      reader.topic.menu.before.summary.top >= reader.topic.menu.before.scrollPaddingTop,
+      'Contents summary lies inside the native focus viewport'
+    );
+    assert.ok(
       reader.topic.menu.opened.top >= 0,
       'open Contents panel stays below the viewport top'
     );
@@ -534,6 +542,9 @@ function readerMenuGeometry(element) {
     root: bounds(root),
     summary: bounds(root.querySelector('.reader-contents > summary')),
     panel: bounds(root.querySelector('.reader-contents > ol')),
+    scrollPaddingTop: Number.parseFloat(
+      getComputedStyle(document.documentElement).scrollPaddingTop
+    ),
     overflowAnchor: getComputedStyle(root).overflowAnchor,
     focus: focus
       ? {
@@ -608,6 +619,11 @@ async function sourceAndTopicsJourney(page, inventory, native = false) {
       assert.ok(
         menu.before.top >= 0 && menu.before.bottom <= page.viewportSize().height,
         'closed Contents is reachable deep in the article'
+      );
+      assert.ok(
+        Number.isFinite(menu.before.scrollPaddingTop) &&
+          menu.before.summary.top >= menu.before.scrollPaddingTop,
+        'closed Contents fits the native focus viewport: ' + JSON.stringify(menu.before)
       );
     }
     await contentsAnchor(page);

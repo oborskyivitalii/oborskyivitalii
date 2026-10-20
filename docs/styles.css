@@ -1911,7 +1911,7 @@ body[data-article] .space-scene[data-travel='settled'] {
 }
 .article-toc:has(.reader-contents[data-reader-enhanced]) {
   position: sticky;
-  top: calc(var(--header-clearance, 110px) - 16px);
+  top: var(--header-clearance, 110px);
   z-index: 3;
   overflow-anchor: none;
 }
