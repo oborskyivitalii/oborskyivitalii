@@ -16,7 +16,7 @@ My PMDay talk connects two shifts: AI changes how we build software, and model j
 
 [Slides (PDF)](https://github.com/oborskyivitalii/oborskyivitalii/blob/4d5bcdb7c0b30bd7ba5926007fc24e3752242905/site/assets/publications/pmday-two-shifts/pmday-v35-deck-review.pdf) [1] · [Recording (Ukrainian)](https://youtu.be/xSgWjuGqC9I) [2]
 
-## 1. When ideas outlive their authors
+## When ideas outlive their authors
 
 Writing let ideas survive their authors. Printing changed how far and cheaply they travelled. A thought could escape a conversation, cross a border and enter a discovery centuries later.
 
@@ -34,7 +34,9 @@ Stanisław Lem captured that reciprocal obligation:
 
 Software delivery is already testing how carefully we intend to do that.
 
-## 2. We accelerated a step. Not the system.
+## I. How We Build
+
+### We accelerated a step. Not the system.
 
 The early story was spectacular. [Cognition introduced Devin](https://cognition.com/blog/introducing-devin) [5] in 2024 as the “first AI software engineer”. In March 2025, [Dario Amodei forecast AI writing 90% of code within three to six months](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic) [6], potentially essentially all within a year. Those horizons have passed; the forecast is historical context, not a verified industry-wide code share. Both accounts retained human responsibilities.
 
@@ -68,7 +70,7 @@ A better arrangement is possible. [Anthropic reports](https://claude.dev/blog/so
 
 What deserves attention is the surrounding work. The team redesigned more than the review step. Whether that redesign preserves the knowledge needed to maintain the system is the next question.
 
-## 3. The scarce resource is understanding
+### The scarce resource is understanding
 
 Picture the next incident: customers cannot complete transactions. The agent proposes two fixes; neither restores service. A rewrite looks tempting, but existing data and integrations cannot be discarded. Someone has to decide what to stop, what to preserve and how to tell whether recovery worked.
 
@@ -81,8 +83,6 @@ There are reasons to examine the burden closely. [Agarwal, He and Vasilescu](htt
 The presentation's widening gap is therefore a scenario to investigate. Tools and learning can raise our capacity to understand. We need to see whether they do so in the workflow we actually operate.
 
 ![Illustrative generation and comprehension curves diverge, showing a possible overload scenario rather than a measured human limit.](asset:pmday-slide-05)
-
-### The explanation and the system
 
 An LLM can explain the code, maintain documentation and help investigate a failure. Specifications may become more durable than implementation. But now we have an implementation and a story about it, and both can inherit the same wrong assumption. Even a faithful explanation of the code cannot establish that it meets the customer's need.
 
@@ -100,7 +100,7 @@ The old workflow deserves the same scrutiny. Compare against the system you actu
 
 ![Measurement and candidate countermeasures for finding a sustainable AI-assisted SDLC equilibrium.](asset:pmday-slide-07)
 
-## 4. More software is not more value
+### More software is not more value
 
 Suppose we succeed. The redesigned workflow ships faster, downstream work keeps up, and the team can maintain what it builds.
 
@@ -122,7 +122,7 @@ Some improvements remove work without demanding new learning: better defaults, f
 
 So far, the software has been something people must build, understand and use. The second shift takes delegation further. A product can now interpret a request and decide what to recommend or do. The person encountering its mistake may have no opportunity to inspect or approve that particular decision beforehand.
 
-## 5. When the product itself makes judgments
+## II. What We Build
 
 Consider an account-recovery assistant. It interprets requests, retrieves guidance and proposes actions. Its flexibility comes partly from model judgment exercised while the product runs. An unsafe answer can therefore become an operational event without a pull request.
 
@@ -192,7 +192,7 @@ Record the model, data, permissions, workload and human coverage that supported 
 
 ![Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.](asset:pmday-slide-12)
 
-## 6. What If Not?
+## III. What If Not?
 
 Return to the person facing the incident. Faster generation has helped create the system they must now understand. Model judgment may already have produced a consequence they cannot reverse. Their ability to act depends on decisions made long before the alert.
 
@@ -242,7 +242,7 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 4. [Stanisław Lem. Fantastyka i futurologia. Quotation selected in Wiktor Jaźniewicz’s compilation, W strachu przed antymaterią. 1381 cytatów (Wydawnictwo Literackie, 2024).](https://instytutsprawobywatelskich.pl/stanislaw-lem-wiktor-jazniewicz-w-strachu-przed-antymateria-1381-cytatow/)
 
-    The Polish passage is reproduced under “TECHNOLOGIE JAKO TAKIE” in a publisher-supplied excerpt published by Instytut Spraw Obywatelskich on 22 July 2025, and attributed there to Fantastyka i futurologia—not Summa Technologiae. The English wording in section 1 is a translation prepared for this article from that Polish excerpt, not a quotation from a published English edition. No original-volume page number is supplied by the excerpt.
+    The Polish passage is reproduced under “TECHNOLOGIE JAKO TAKIE” in a publisher-supplied excerpt published by Instytut Spraw Obywatelskich on 22 July 2025, and attributed there to Fantastyka i futurologia—not Summa Technologiae. The English wording in the prologue is a translation prepared for this article from that Polish excerpt, not a quotation from a published English edition. No original-volume page number is supplied by the excerpt.
 
 5. [Cognition. “Introducing Devin, the first AI software engineer” (12 March 2024).](https://cognition.com/blog/introducing-devin)
 
@@ -346,21 +346,21 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 31. [Stanisław Lem. Summa Technologiae (1964).](https://english.lem.pl/works/essays/summa-technologiae) · [Quotation source: Bogna Konior, “Existential Technologies,” Antikythera.](https://existentialtech.antikythera.org/)
 
-    The responsibility quotation in section 6 is reproduced in Konior’s English translation. Her note 18 cites the Polish edition (Kraków: Wydawnictwo Literackie, 2020), p. 471; note 1 identifies the translations as her own. The quotation was checked in Konior’s essay, not independently against that book page. It must not be attributed to Joanna Zylinska’s published English translation. The surrounding argument on delegated work and judgment is Oborskyi’s, not a quotation from Lem.
+    The responsibility quotation in part III is reproduced in Konior’s English translation. Her note 18 cites the Polish edition (Kraków: Wydawnictwo Literackie, 2020), p. 471; note 1 identifies the translations as her own. The quotation was checked in Konior’s essay, not independently against that book page. It must not be attributed to Joanna Zylinska’s published English translation. The surrounding argument on delegated work and judgment is Oborskyi’s, not a quotation from Lem.
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R14, 20 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R15, 20 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR14,
+@misc{oborskyi2026sumR15,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R14, 20 October 2026; unpublished}
+  note = {Editorial draft R15, 20 October 2026; unpublished}
 }
 ```
 
