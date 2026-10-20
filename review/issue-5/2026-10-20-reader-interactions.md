@@ -97,3 +97,10 @@ The enhanced Contents list is now an opaque absolute dropdown below the sticky
 control, preserving both document geometry and native no-JS flow. The collector's
 strict reading-position assertion remains unchanged. This failed run is historical
 diagnosis, not final hosted acceptance; the final source/run belongs to PR79.
+
+The next source292ff618 also passed its owning11/11 automated policy. Hosted
+CI39402572217 passed all four principal normal/no-Canvas rows, confirming the
+outgoing-response sequencing fix, but still rejected the Contents position check.
+The enhanced sticky control now excludes itself and its descendants from native
+scroll anchoring; the underlying article remains eligible. The strict collector
+also includes measured before/after geometry in any subsequent failure.

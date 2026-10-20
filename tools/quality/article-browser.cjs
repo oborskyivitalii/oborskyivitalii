@@ -513,6 +513,39 @@ function validateVisibleFragment(state, fragment) {
   assert.ok(state.bottom > state.top, 'fragment target is painted');
 }
 
+function readerMenuGeometry(element) {
+  const bounds = (node) => {
+    if (!node) return null;
+    const rect = node.getBoundingClientRect();
+    return {
+      top: rect.top,
+      bottom: rect.bottom,
+      left: rect.left,
+      right: rect.right,
+      width: rect.width,
+      height: rect.height,
+    };
+  };
+  const root = element.closest('.article-toc');
+  const focus = document.activeElement;
+  return {
+    ...bounds(element),
+    scroll: scrollY,
+    root: bounds(root),
+    summary: bounds(root.querySelector('.reader-contents > summary')),
+    panel: bounds(root.querySelector('.reader-contents > ol')),
+    overflowAnchor: getComputedStyle(root).overflowAnchor,
+    focus: focus
+      ? {
+          tag: focus.tagName,
+          id: focus.id,
+          href: focus.getAttribute('href'),
+          bounds: bounds(focus),
+        }
+      : null,
+  };
+}
+
 async function sourceAndTopicsJourney(page, inventory, native = false) {
   let source = null,
     topic = null;
@@ -571,27 +604,22 @@ async function sourceAndTopicsJourney(page, inventory, native = false) {
     const menu = {};
     if (!native) {
       await page.locator('.reader-chapter').last().locator('h2').scrollIntoViewIfNeeded();
-      menu.before = await page.locator('.article-toc').evaluate((element) => {
-        const rect = element.getBoundingClientRect();
-        return { top: rect.top, bottom: rect.bottom, scroll: scrollY };
-      });
+      menu.before = await page.locator('.article-toc').evaluate(readerMenuGeometry);
       assert.ok(
         menu.before.top >= 0 && menu.before.bottom <= page.viewportSize().height,
         'closed Contents is reachable deep in the article'
       );
     }
     await contentsAnchor(page);
+    menu.expanded = await page.locator('.reader-contents > ol').evaluate(readerMenuGeometry);
     const disclosure = page.locator('.reader-subcontents').first();
     if ((await disclosure.getAttribute('open')) === null)
       await disclosure.locator(':scope > summary').click();
     if (!native) {
-      menu.opened = await page.locator('.reader-contents > ol').evaluate((element) => {
-        const rect = element.getBoundingClientRect();
-        return { top: rect.top, bottom: rect.bottom, scroll: scrollY };
-      });
+      menu.opened = await page.locator('.reader-contents > ol').evaluate(readerMenuGeometry);
       assert.ok(
         Math.abs(menu.opened.scroll - menu.before.scroll) <= 2,
-        'opening topic navigation retains reading position'
+        'opening topic navigation retains reading position: ' + JSON.stringify(menu)
       );
       assert.ok(
         menu.opened.top >= 0 &&

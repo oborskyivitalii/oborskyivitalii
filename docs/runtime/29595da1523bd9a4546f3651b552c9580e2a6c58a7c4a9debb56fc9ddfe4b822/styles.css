@@ -1913,6 +1913,7 @@ body[data-article] .space-scene[data-travel='settled'] {
   position: sticky;
   top: calc(var(--header-clearance, 110px) - 16px);
   z-index: 3;
+  overflow-anchor: none;
 }
 .article-toc .reader-contents[data-reader-enhanced] > ol {
   position: absolute;

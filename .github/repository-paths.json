@@ -529,6 +529,42 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/runtime/29595da1523bd9a4546f3651b552c9580e2a6c58a7c4a9debb56fc9ddfe4b822": {
+      "kind": "directory",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/29595da1523bd9a4546f3651b552c9580e2a6c58a7c4a9debb56fc9ddfe4b822/archive.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/29595da1523bd9a4546f3651b552c9580e2a6c58a7c4a9debb56fc9ddfe4b822/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/29595da1523bd9a4546f3651b552c9580e2a6c58a7c4a9debb56fc9ddfe4b822/space.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/29595da1523bd9a4546f3651b552c9580e2a6c58a7c4a9debb56fc9ddfe4b822/styles.css": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/29595da1523bd9a4546f3651b552c9580e2a6c58a7c4a9debb56fc9ddfe4b822/theme.js": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -538,42 +574,6 @@
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
       "kind": "file",
       "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a8eb948e3eb8b4ddfa470c1bc1d296f59718fbcf284e2b1a37c2dcf90ff9dd1a": {
-      "kind": "directory",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a8eb948e3eb8b4ddfa470c1bc1d296f59718fbcf284e2b1a37c2dcf90ff9dd1a/archive.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a8eb948e3eb8b4ddfa470c1bc1d296f59718fbcf284e2b1a37c2dcf90ff9dd1a/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a8eb948e3eb8b4ddfa470c1bc1d296f59718fbcf284e2b1a37c2dcf90ff9dd1a/space.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a8eb948e3eb8b4ddfa470c1bc1d296f59718fbcf284e2b1a37c2dcf90ff9dd1a/styles.css": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/a8eb948e3eb8b4ddfa470c1bc1d296f59718fbcf284e2b1a37c2dcf90ff9dd1a/theme.js": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -625,25 +625,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0e0c722a1ade45f5ebeef39937043d07c4091f3cc17d8b845650f467abb5c789": {
+    "docs/snapshots/1927203e61d63fa61ff6212e46d59ea72e4e29456efe9bf88ee4cf7c8934a1b8": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/0e0c722a1ade45f5ebeef39937043d07c4091f3cc17d8b845650f467abb5c789/research.html": {
+    "docs/snapshots/1927203e61d63fa61ff6212e46d59ea72e4e29456efe9bf88ee4cf7c8934a1b8/writing.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/550121c43db302dbeee066105b35be4abfeae6a6c0880d3bf7b9c8ed8b5abddf": {
+    "docs/snapshots/27ac0673c56384b2ad28ebbff35bc88d2f1ca7fb36f30e672778e206365431db": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/550121c43db302dbeee066105b35be4abfeae6a6c0880d3bf7b9c8ed8b5abddf/credits.html": {
+    "docs/snapshots/27ac0673c56384b2ad28ebbff35bc88d2f1ca7fb36f30e672778e206365431db/talks.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
@@ -661,6 +661,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/682eae10c64cd67b41d6391f229c714a8360a7abc1b832ac4106666e6a2ddd0e": {
+      "kind": "directory",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/682eae10c64cd67b41d6391f229c714a8360a7abc1b832ac4106666e6a2ddd0e/credits.html": {
+      "kind": "file",
+      "purpose": "Generated site runtime and rendition output.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -670,18 +682,6 @@
     "docs/snapshots/7cd6dba3776ce08c5cf92f69a105e2cad0df1b05c1568f3c0bed23bf951022aa/talks.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/81a1de1bdc04df52148a68c18b50913f0c2b8ede57c261b74d5099380b54781b": {
-      "kind": "directory",
-      "purpose": "Generated site runtime and rendition output.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/81a1de1bdc04df52148a68c18b50913f0c2b8ede57c261b74d5099380b54781b/writing.html": {
-      "kind": "file",
-      "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -721,25 +721,25 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c61f64c24c59c2e3c32d03b955a05617a7f898c9cd78a4f9d97b23f1dbcb27b2": {
+    "docs/snapshots/e41cfceb3aca5929ac16d7695baa20c3ad3f39d36bf4d4d04cb4f54f19d00ef6": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/c61f64c24c59c2e3c32d03b955a05617a7f898c9cd78a4f9d97b23f1dbcb27b2/talks.html": {
+    "docs/snapshots/e41cfceb3aca5929ac16d7695baa20c3ad3f39d36bf4d4d04cb4f54f19d00ef6/index.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f7c83c30ad3d3cc78977528a51538f5cff294fae4aac5bcc5c458640c10a2055": {
+    "docs/snapshots/e799d3ec0867b51d67bfc3634380f71055a4dcc2562edf365cecd421bb9b3674": {
       "kind": "directory",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/f7c83c30ad3d3cc78977528a51538f5cff294fae4aac5bcc5c458640c10a2055/index.html": {
+    "docs/snapshots/e799d3ec0867b51d67bfc3634380f71055a4dcc2562edf365cecd421bb9b3674/research.html": {
       "kind": "file",
       "purpose": "Generated site runtime and rendition output.",
       "role": "generated",
