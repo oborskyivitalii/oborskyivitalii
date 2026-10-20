@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "faf6d08c96d7a1de01233fd056a0dc3cd819a0fec4ad1e26e1e6b139884c9a4e",
+    "digest": "293090eefc331da1684dbbfaaec5b01e17f0b2154ef93d38a282bd27a99760cc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -53,6 +53,11 @@
         "path": ".github/acceptance/issue-108.json",
         "identity_mode": "content",
         "sha256": "f1bf79f1c88fec50208ccbebf70cd1c7dedd7c99ba499b1d62351ce5863416fa"
+      },
+      {
+        "path": ".github/acceptance/issue-112.json",
+        "identity_mode": "content",
+        "sha256": "b97d27b4269b939ab671ee5f69a5778a572a3d3bef558b74bb68f7c5b1b97c2c"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -176,12 +181,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "7bb4c7bfc357242be96e8f8ff1afa206c4976869f96527ed7d75c9a1327e6337"
+        "sha256": "8a70a858cd2a18af1a61cd11c8a328274b4d7aa39ed190a36519d99143978f5a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "3064b89d6d470e10b0a2ce131e03d2e95e2eb64d9f83298ea0886066906e2250"
+        "sha256": "4c1ffe542cf2cc25720edd830230e3a442d5e098661fa7c734b78807bc461251"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -565,7 +570,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "e16aff8ea47271f8bf7c69e2a182f71c864ff0313fafdc0e76b06a842faa7d7e"
+        "sha256": "9d83d44b9ae8491e66137c6fd2df74ef9153069f0c00b668b0f64a6cb9a0131d"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -721,6 +726,11 @@
         "path": "review/issue-108/content-amendment.json",
         "identity_mode": "content",
         "sha256": "8c74d973a988139da089aad75da7f7007547c7fecacae91fd4da3dc6f8809daf"
+      },
+      {
+        "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
+        "identity_mode": "content",
+        "sha256": "13c37b9940863edf273fe9dcda3a7b6e9d0961e4ab2b892af2f608ff8239efa2"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -5728,6 +5738,11 @@
         "sha256": "ad81d9b432b49525796301211e4a7977fa1e17745c7569029fdf273b0ad473e8"
       },
       {
+        "path": "tests/lcp-diagnostic.test.cjs",
+        "identity_mode": "content",
+        "sha256": "25bf0c9e7cca1c551aba089eba8654df45633a6a6bf5322b56e851818aede5cb"
+      },
+      {
         "path": "tests/native-display.test.cjs",
         "identity_mode": "content",
         "sha256": "1df71ef38b76fe007d61533fa13e68dcd230a3e41c9fbfd88738dcb1d427caf3"
@@ -5906,6 +5921,11 @@
         "path": "tests/test_issue108_acceptance.py",
         "identity_mode": "content",
         "sha256": "dc62f5c1d2f4402ade4c7d4403455eb696c2d649b44223f59f703dfadec8e24a"
+      },
+      {
+        "path": "tests/test_issue112_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "36c86b1376805f6a4a520015751bae733d674e5d5e389b70e179e78b3d9974c5"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -6348,6 +6368,16 @@
         "sha256": "1b813bf2de5f2ff3d2505cb1760a936c3237108cb2f3a95a4cce0cb4c4ffece0"
       },
       {
+        "path": "tools/quality/lcp-browser.cjs",
+        "identity_mode": "content",
+        "sha256": "0baa2a39c79121e9a56dcd68e4036855871ab8feaa99f8a5b594c1ff1c2be8e9"
+      },
+      {
+        "path": "tools/quality/lcp-diagnostic.cjs",
+        "identity_mode": "content",
+        "sha256": "f344e9010c6c0df73eed3cbf29f6bf719d60250691d04ff2f86882445d99ea7b"
+      },
+      {
         "path": "tools/quality/lighthouse.cjs",
         "identity_mode": "content",
         "sha256": "e3a6b3f51bd65766216b5925ce98d48db8ee745d3c17921b8ac5fbce15a86591"
@@ -6500,7 +6530,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "d61112aaadf505a65ccced741715942aee21b72b18cb6d54bcf9c71a4e379c08"
+        "sha256": "fec6bbc105a8c030bbca9403dc89cd9023acfeed7615e35c2ac502e0c1a92ec9"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7179,6 +7209,17 @@
         "AGENTS.md"
       ],
       "title": "issue-108.json"
+    },
+    {
+      "path": ".github/acceptance/issue-112.json",
+      "kind": "file",
+      "purpose": "Issue112 original and diagnostic-continuation AC mapping with exact source checks and private/browser/review/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-112.json"
     },
     {
       "path": ".github/acceptance/issue-114.json",
@@ -8653,6 +8694,17 @@
         "AGENTS.md"
       ],
       "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
+      "kind": "file",
+      "purpose": "Issue112 authorized diagnostic continuation, exact frozen inputs, code-style mapping, review and bounded execution handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 112 — 21 October 2026 diagnostic implementation"
     },
     {
       "path": "review/issue-114/2026-10-20-review.md",
@@ -19666,6 +19718,17 @@
       "title": "gtk-target-probe.test.cjs"
     },
     {
+      "path": "tests/lcp-diagnostic.test.cjs",
+      "kind": "file",
+      "purpose": "Meaningful LCP attribution, missing timing, telemetry interception, artifact mutation and calibration-completeness negative controls.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-diagnostic.test.cjs"
+    },
+    {
       "path": "tests/native-display.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for native display.",
@@ -20060,6 +20123,17 @@
         "AGENTS.md"
       ],
       "title": "test_issue108_acceptance.py"
+    },
+    {
+      "path": "tests/test_issue112_acceptance.py",
+      "kind": "file",
+      "purpose": "Issue112 source behavior, unchanged public/runtime/budgets and targeted diagnostic allocation checks.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue112_acceptance.py"
     },
     {
       "path": "tests/test_issue31_acceptance.py",
@@ -21028,6 +21102,28 @@
         "AGENTS.md"
       ],
       "title": "hosted.cjs"
+    },
+    {
+      "path": "tools/quality/lcp-browser.cjs",
+      "kind": "file",
+      "purpose": "Bounded sequential Home LCP calibration, origin-preserving route/SDK replay and private raw-evidence collection.",
+      "role": "validator",
+      "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-browser.cjs"
+    },
+    {
+      "path": "tools/quality/lcp-diagnostic.cjs",
+      "kind": "file",
+      "purpose": "Opt-in source-bound Home LCP collector/admission and per-document timing analysis, with no production admission claim.",
+      "role": "validator",
+      "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-diagnostic.cjs"
     },
     {
       "path": "tools/quality/lighthouse.cjs",
@@ -22410,6 +22506,16 @@
       "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
       "role": "history",
       "owner": "site/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-112",
+      "kind": "directory",
+      "purpose": "Dated sanitized Home LCP diagnostic implementation/review and execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
       "instructions": [
         "AGENTS.md"
       ]

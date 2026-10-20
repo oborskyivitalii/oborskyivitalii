@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 112,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/112",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Exact production/archive/served bytes and private original-window evidence",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["UNCHANGED"],
+      "gates": ["PRIVATE", "BROWSER"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Actual LCP candidates and resource/render/lifecycle path",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC"],
+      "gates": ["BROWSER"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Bounded reproduction with explicit cache/navigation/simulation limits",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC", "DISPOSITION"],
+      "gates": ["BROWSER"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Evidence-based RCA or bounded next diagnostic without remediation",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Production unchanged and public evidence sanitized",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["UNCHANGED"],
+      "gates": ["REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Trustworthy same-navigation collector with discriminating controls",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC"],
+      "gates": ["BROWSER", "REVIEW"]
+    },
+    {
+      "id": "AC07",
+      "intent": "Available first-wave execution, real SDK identity and honest native limits",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC", "DISPOSITION"],
+      "gates": ["BROWSER", "REVIEW"]
+    },
+    {
+      "id": "AC08",
+      "intent": "Maintainable opt-in delivery, unchanged budgets and independent review",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI", "DISPOSITION", "UNCHANGED"],
+      "gates": ["REVIEW", "LIVE", "MERGED"]
+    }
+  ],
+  "checks": {
+    "DIAGNOSTIC": {
+      "kind": "unittest",
+      "test": "test_issue112_acceptance.Issue112AcceptanceTests.test_diagnostic_behavior_and_negative_controls"
+    },
+    "UNCHANGED": {
+      "kind": "unittest",
+      "test": "test_issue112_acceptance.Issue112AcceptanceTests.test_production_sources_and_budgets_unchanged"
+    },
+    "DISPOSITION": {
+      "kind": "unittest",
+      "test": "test_issue112_acceptance.Issue112AcceptanceTests.test_opt_in_test_disposition"
+    },
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "PRIVATE": {
+      "kind": "human",
+      "description": "Retain private exact archive/current HTTP and original fixed-window analytics receipts; later queries stay separate; no raw private data in GitHub."
+    },
+    "BROWSER": {
+      "kind": "human",
+      "description": "Inspect actual sequential exact-archive calibration/routes and real-SDK evidence, all predefined trials/errors/trace identities. Native Windows/macOS T01 stays pending unless observed. Unavailable/blocked/partial is not pass; no historical RCA inferred from lab success."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Separate non-implementing reviewer subagent inspects actual code, issue intent/ACs, raw and sanitized evidence, privacy, CS01/04/05/07/08/09/10, limitations and corrections. Source/green CI is not independent or performance acceptance."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Verify exact issue/PR/source/check links and reconcile whole-criterion checkbox status. No production remediation or deployment authorized."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Maintainer merge decision and accepted-source/main verification before closing tooling delivery. Investigation issue can remain open while real-session cause is unresolved."
+    }
+  }
+}

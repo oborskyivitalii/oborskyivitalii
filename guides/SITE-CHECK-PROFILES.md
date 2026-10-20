@@ -171,6 +171,18 @@ retained recovery. Production activation remains outside routine staging.
 
 ## Registry and issue completion
 
+Issue #112 adds opt-in Home LCP diagnostics in `tools/quality/lcp-browser.cjs`:
+three trials of explicit calibration, isolated cold route opens and captured
+real-SDK journeys, with pre-script LCP/Timing/lifecycle collection. Exact archive
+and SDK bytes are bound before use; all RUM is intercepted, unknown requests
+are blocked and raw evidence stays private. Routed production-origin replay is
+cache-disabled and does not prove real CDN/warm/native behavior. The companion
+source negatives are diagnostic/changed-helper tests, not an added staging or
+production browser matrix. Missing SDK execution, timing or native platforms
+remain incomplete observations; collector success is not a performance pass.
+The dated [execution record](../review/issue-112/2026-10-21-lcp-diagnostics.md)
+owns actual source, calibration and report identities.
+
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
 source suites instead of a wildcard that revives every historical snapshot.
