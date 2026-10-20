@@ -939,13 +939,23 @@ function installArticleFlightDiagnostics() {
       return rect.width > 0 && rect.height > 0;
     });
     if (!hasArea) return null;
+    const whole = element.dataset.routeLayer === 'self';
+    const layers = whole ? [element] : children;
     return {
       tag: element.tagName,
       classes: element.className,
       distance: Number.parseFloat(element.style.getPropertyValue('--route-block-distance')),
       row: Number(element.dataset.routeRow),
       state: element.dataset.routeBlock,
-      frames: children.flatMap((child) =>
+      layer: whole ? 'self' : 'children',
+      childAnimations: whole
+        ? children
+            .flatMap((child) => child.getAnimations())
+            .filter((animation) =>
+              ['route-block-depart', 'route-block-arrive'].includes(animation.animationName)
+            ).length
+        : 0,
+      frames: layers.flatMap((child) =>
         child.getAnimations().flatMap((animation) => animation.effect?.getKeyframes() || [])
       ),
     };
@@ -1089,14 +1099,35 @@ function validateArticleOrbit(plan, paints, transit) {
   assert.ok(transit.some((paint) => paint.current.position[2] < center[2] - radius * 0.7));
 }
 
-function validateArticleBlocks({ blocks, events, from, to, direction }) {
+function validateArticleBlockUnit(unit, { departure, sign, rows, wholeReader }) {
+  if (wholeReader) {
+    assert.equal(unit.layer, 'self', 'complete reader component paint moves together');
+    assert.equal(unit.childAnimations, 0, 'reader children cannot duplicate the component wave');
+  }
+  assert.ok(Number.isFinite(unit.distance) && unit.distance !== 0);
+  assert.equal(Math.sign(unit.distance), departure ? -sign : sign);
+  assert.ok(Number.isInteger(unit.row) && unit.row >= 0 && unit.row < rows);
+  assert.equal(unit.state, departure ? 'departing' : 'arriving');
+  assert.ok(
+    Array.isArray(unit.frames) && unit.frames.length >= 2,
+    'actual common CSS animation exists'
+  );
+  assert.equal(typeof unit.classes, 'string');
+  assert.ok(!/\breader-(chapter|introduction)\b/.test(unit.classes), 'readable leaf unit');
+}
+
+function validateArticleBlocks({ blocks, events, from, to, direction }, engine = null) {
   assert.ok(Array.isArray(blocks), 'raw article block evidence');
   assert.equal(blocks.length, 2, 'one departure and arrival on the common block lifecycle');
   for (const [index, block] of blocks.entries()) {
     const departure = index === 0;
     const source = departure ? from : to;
     const other = departure ? to : from;
-    const sign = source.startsWith('article:') && !other.startsWith('article:') ? 1 : direction;
+    const wholeReader = require('./color-motion-contract.cjs').readerWholeBlocksRequired(engine);
+    const sign =
+      source.startsWith('article:') && (wholeReader || !other.startsWith('article:'))
+        ? 1
+        : direction;
     assert.equal(block.stage, departure ? 'departure' : 'arrival');
     assert.equal(block.direction, sign > 0 ? 'forward' : 'backward');
     assert.equal(block.navigationId, events[0].navigationId);
@@ -1106,18 +1137,13 @@ function validateArticleBlocks({ blocks, events, from, to, direction }) {
       Array.isArray(block.units) && block.units.length > 0,
       'actual DOM blocks participated'
     );
-    for (const unit of block.units) {
-      assert.ok(Number.isFinite(unit.distance) && unit.distance !== 0);
-      assert.equal(Math.sign(unit.distance), departure ? -sign : sign);
-      assert.ok(Number.isInteger(unit.row) && unit.row >= 0 && unit.row < block.rows);
-      assert.equal(unit.state, departure ? 'departing' : 'arriving');
-      assert.ok(
-        Array.isArray(unit.frames) && unit.frames.length >= 2,
-        'actual common CSS animation exists'
-      );
-      assert.equal(typeof unit.classes, 'string');
-      assert.ok(!/\breader-(chapter|introduction)\b/.test(unit.classes), 'readable leaf unit');
-    }
+    for (const unit of block.units)
+      validateArticleBlockUnit(unit, {
+        departure,
+        sign,
+        rows: block.rows,
+        wholeReader: source.startsWith('article:') && wholeReader,
+      });
   }
 }
 
@@ -1139,18 +1165,19 @@ function validateRecordedArticleFlights(flights, engine) {
   const blockEvidenceRequired = articleBlocksRequired(engine);
   for (const flight of flights) {
     validateArticleFlight(flight.events, flight.from, flight.to, flight.direction);
-    if (blockEvidenceRequired) validateArticleBlocks(flight);
+    if (blockEvidenceRequired) validateArticleBlocks(flight, engine);
   }
 }
 
 async function takeArticleFlight(page, from, to, direction) {
-  const { events, blocks } = await page.evaluate(() => ({
+  const { events, blocks, engine } = await page.evaluate(() => ({
     events: window.__articleFlightEvents.splice(0),
     blocks: window.__articleBlockEvents.splice(0),
+    engine: document.querySelector('meta[name="site-engine"]')?.content,
   }));
   const flight = { from, to, direction, events, blocks };
   validateArticleFlight(events, from, to, direction);
-  validateArticleBlocks(flight);
+  validateArticleBlocks(flight, engine);
   return flight;
 }
 

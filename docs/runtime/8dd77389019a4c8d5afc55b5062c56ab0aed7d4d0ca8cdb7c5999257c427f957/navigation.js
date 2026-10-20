@@ -486,6 +486,7 @@ window.SiteScrollEntry=(function () {
   function clearRouteUnit(element) {
     clearSeparators('route', element);
     element.removeAttribute('data-route-block');
+    element.removeAttribute('data-route-layer');
     element.removeAttribute('data-route-direction');
     element.removeAttribute('data-route-delay');
     element.removeAttribute('data-route-row');
@@ -625,7 +626,9 @@ window.SiteScrollEntry=(function () {
     if (!timing.bounded) return timing;
     const upward = state === 'departing' ? travelDirection > 0 : travelDirection < 0;
     for (const { element } of measured) clearRouteUnit(element);
-    for (const { element, record } of selected) if (!record.ink) wrapInk(element, record);
+    const wholeBlocks = root.matches('.article-reader');
+    for (const { element, record } of selected)
+      if (!wholeBlocks && !record.ink) wrapInk(element, record);
     attachSeparators(measured.separators, 'route');
     for (const [index, row] of rows.entries()) {
       // Wave rows only travel far enough to clear their own complete paint.
@@ -634,6 +637,9 @@ window.SiteScrollEntry=(function () {
         ? -(Math.max(...row.units.map((unit) => unit.rect.bottom)) + 32)
         : window.innerHeight - Math.min(...row.units.map((unit) => unit.rect.top)) + 32;
       for (const { element } of row.units) {
+        // Reader components own their background, borders and native markers.
+        // Move the complete box once instead of leaving shell paint behind.
+        if (wholeBlocks) element.setAttribute('data-route-layer', 'self');
         const order = travelDirection > 0 ? index : rows.length - 1 - index;
         element.style.setProperty('--route-block-distance', `${Math.round(distance)}px`);
         element.style.setProperty('--route-block-delay', `${order * timing.rowStepMs}ms`);
@@ -2499,10 +2505,8 @@ window.SiteReader=(function readerMode() {
   function contentDirections(fromDocument, next, direction) {
     // Hierarchy controls the block wave independently of camera/history travel.
     return {
-      departureDirection:
-        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction,
-      arrivalDirection:
-        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction,
+      departureDirection: fromDocument.startsWith('article:') ? 1 : direction,
+      arrivalDirection: next.startsWith('article:') ? 1 : direction,
     };
   }
   function restoreReadingFocus(pop) {

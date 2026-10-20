@@ -3996,9 +3996,6 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       journey.elapsed = journey.duration;
     }
   }
-  function readerResting() {
-    return Boolean(document.body.dataset.article) && !journey;
-  }
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
@@ -4010,9 +4007,8 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     }
     const delta = lastFrame === null ? 0 : Math.min(80, Math.max(0, time - lastFrame));
     lastFrame = time;
-    const living = enabled && !hold && owns(initialPoses, page),
-      ambient = living && !readerResting();
-    if (ambient) {
+    const living = enabled && !hold && owns(initialPoses, page);
+    if (living) {
       ambientTime = (ambientTime + delta) % LOOP_MS;
       detailTier += (tier - detailTier) * (1 - Math.exp(-delta / 180));
     }
@@ -4021,7 +4017,7 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
     // retain fractional phase instead of rounding every frame down to 20/15Hz.
     const cameraRate = Math.min([30, 20, 15][tier], cadenceFor(costAverage, compact, true));
     const interval = 1000 / (journey ? Math.max(idleRate, cameraRate) : idleRate);
-    if (nextDraw === null || time + 0.5 >= nextDraw || !ambient) {
+    if (nextDraw === null || time + 0.5 >= nextDraw || !living) {
       const start = clock(),
         arrived = journey && journey.elapsed === journey.duration ? journey : null;
       try {
@@ -4040,11 +4036,9 @@ if(typeof module!=="undefined"&&module.exports)module.exports=api;
       nextDraw = nextDeadline(nextDraw, time, interval);
       // Decorative quality responds to rendering cost. The entire callback,
       // including route mount, is still measured by the outer frame/ready gate.
-      if (ambient) quality(renderCost, time);
+      if (living) quality(renderCost, time);
     }
-    // A settled article retains its painted scene without spending a background
-    // RAF. Navigation still owns the same clock and can restart the orbit.
-    if (living && !hold && !readerResting()) schedule();
+    if (living && !hold) schedule();
     else lastFrame = nextDraw = null;
   }
   function updateControl() {

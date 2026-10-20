@@ -5,6 +5,17 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Complete reader component paint; common ambient scene lifecycle.
+  issue5ReaderMotion: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    baseEngine: '8dd77389019a4c8d5afc55b5062c56ab0aed7d4d0ca8cdb7c5999257c427f957',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '470e7ee294aa005ae84e71e5d2087eea0e07f289ab86d357823be94f291f6e8e',
+    navigation: '41eb305c17ef1be2ab6cd302a7aef65a79d8a548b30fa38d971867692d2653b9',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Shared reader dialogs and topic navigation; settled article scene is calm.
   issue5ReaderInteractions: {
     behavior: 'fixed-blocks',
@@ -316,6 +327,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-motion-production',
+    family: 'issue5ReaderMotion',
+    edition: 'production',
+    fingerprint: '0d7981f896208aeffd0016aecacf2357e6bfc94e64175b8463e2fc5b04c91c3f',
+    styles: '1c63819933458fc2aedd2ca54bfab4a0e000d59971b68da6e56abd6c048455ae',
+  },
+  {
+    id: 'issue5-reader-motion-plain',
+    family: 'issue5ReaderMotion',
+    edition: 'plain',
+    fingerprint: 'e1868e73b02f18d08267428f5c66331be7eb988efce5941c836d9887b2b358ea',
+    styles: '1c63819933458fc2aedd2ca54bfab4a0e000d59971b68da6e56abd6c048455ae',
+  },
+  {
+    id: 'issue5-reader-motion-staging',
+    family: 'issue5ReaderMotion',
+    edition: 'staging',
+    fingerprint: '670c37166c2dcd925d8f2c995029bad2f08334737d44eda6fdaaf9d504c49587',
+    styles: '65d357b68be405b2fdb482f49dc5aa77594761d06e771d2c0d5365b3072643b7',
+  },
   {
     id: 'issue5-reader-interactions-production',
     family: 'issue5ReaderInteractions',
@@ -1087,6 +1119,14 @@ function articleReadingMode(engine) {
     : Object.values(families).find((value) => value.baseEngine === engine);
   return family?.articleReading || 'entry';
 }
+function readerWholeBlocksRequired(engine) {
+  return (
+    engine === families.issue5ReaderMotion.baseEngine ||
+    runtimes.some(
+      (runtime) => runtime.family === 'issue5ReaderMotion' && runtime.fingerprint === engine
+    )
+  );
+}
 function readerInteractionsRequired(engine) {
   const runtime = runtimes.find((value) => value.fingerprint === engine);
   const family = runtime
@@ -1154,6 +1194,7 @@ module.exports = {
   flightCheck,
   articleReadingMode,
   readerInteractionsRequired,
+  readerWholeBlocksRequired,
   validateFlight,
   contract,
   rowPlan,

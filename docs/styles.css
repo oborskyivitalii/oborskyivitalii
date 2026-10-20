@@ -1850,9 +1850,6 @@ body[data-page='writing'] #archive-results {
 }
 
 /* Reader mode: shared long-form layout and components. Paint/palette retain their owners. */
-body[data-article] .space-scene[data-travel='settled'] {
-  opacity: 0.45;
-}
 .article-reader.wrap {
   width: min(820px, calc(100% - 48px));
   max-width: none;
@@ -2627,13 +2624,15 @@ body[data-page] [data-entry-border-source] {
   --route-block-delay: 0ms;
   --route-block-duration: var(--block-motion-duration);
 }
-[data-route-block='departing'] > *,
-[data-route-block='departing']::before {
+[data-route-block='departing'][data-route-layer='self'],
+[data-route-block='departing']:not([data-route-layer='self']) > *,
+[data-route-block='departing']:not([data-route-layer='self'])::before {
   animation: route-block-depart var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
-[data-route-block='arriving'] > *,
-[data-route-block='arriving']::before {
+[data-route-block='arriving'][data-route-layer='self'],
+[data-route-block='arriving']:not([data-route-layer='self']) > *,
+[data-route-block='arriving']:not([data-route-layer='self'])::before {
   animation: route-block-arrive var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
@@ -2665,6 +2664,7 @@ body[data-page] [data-entry-border-source] {
   }
   [data-scroll-entry] > *,
   [data-scroll-entry]::before,
+  [data-route-layer='self'],
   [data-route-block] > *,
   [data-route-block]::before {
     animation: none;

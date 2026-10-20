@@ -1462,3 +1462,44 @@ test('a stored Off preference survives motion readiness without consuming unread
   h.controller.destroy();
   assert.equal(h.tasks.size, 0);
 });
+
+test('reader route waves move complete component paint and clear their own animation layers', async () => {
+  const h = harness({ count: 3 });
+  h.root.matches = (selector) => selector === '.article-reader';
+  h.elements.forEach((element, index) => {
+    element.top = 100 + index * 160;
+    element.height = 90;
+  });
+  const contents = h.elements[1];
+  contents.borders = {
+    'border-top-width': '1px',
+    'border-top-style': 'solid',
+    'border-top-color': 'rgb(10, 40, 70)',
+    'border-bottom-width': '1px',
+    'border-bottom-style': 'solid',
+    'border-bottom-color': 'rgb(10, 40, 70)',
+  };
+  h.controller.mount(h.root);
+  const departure = h.controller.depart(1, 41);
+  for (const element of h.elements) {
+    assert.equal(element.attributes.get('data-route-layer'), 'self');
+    assert.ok(Number.parseFloat(element.styles.get('--route-block-distance')) < 0);
+  }
+  assert.equal(contents.children.length, 2, 'both dividers belong to the moving component');
+  h.routeWatchdog();
+  await departure;
+  h.controller.prepareArrival(1, 42);
+  const arrival = h.controller.arrive(1, 42);
+  for (const element of h.elements) {
+    assert.equal(element.attributes.get('data-route-layer'), 'self');
+    assert.ok(Number.parseFloat(element.styles.get('--route-block-distance')) > 0);
+  }
+  h.controller.cancelRoute();
+  assert.equal((await arrival).cancelled, true);
+  for (const element of h.elements) {
+    assert.equal(element.attributes.get('data-route-layer'), undefined);
+    assert.equal(element.attributes.get('data-route-block'), undefined);
+  }
+  assert.equal(contents.children.length, 0);
+  assert.equal(h.tasks.size, 0);
+});

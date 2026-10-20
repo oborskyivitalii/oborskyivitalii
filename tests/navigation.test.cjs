@@ -1526,8 +1526,13 @@ test('reader documents fly in both directions with history order and every princ
   assert.deepEqual(h.assigned, []);
   assert.deepEqual(
     h.calls.filter((call) => call.kind === 'departure').map((call) => call.direction),
-    [1, 1, -1, 1, 1],
-    'return to Writing exits upward while camera/history direction stays backward'
+    [1, 1, 1, 1, 1],
+    'every article exits upward while the camera retains its history direction'
+  );
+  assert.deepEqual(
+    h.calls.filter((call) => call.kind === 'arrival').map((call) => call.direction),
+    [1, 1, 1, 1, -1],
+    'every article arrives from below, including backward article history'
   );
   for (const destination of ['index', 'research', 'writing', 'talks', 'credits']) {
     const reader = routeHarness({ initialPage: 'article:sample:en' });

@@ -1027,10 +1027,8 @@
   function contentDirections(fromDocument, next, direction) {
     // Hierarchy controls the block wave independently of camera/history travel.
     return {
-      departureDirection:
-        fromDocument.startsWith('article:') && routes.includes(next) ? 1 : direction,
-      arrivalDirection:
-        next.startsWith('article:') && routes.includes(fromDocument) ? 1 : direction,
+      departureDirection: fromDocument.startsWith('article:') ? 1 : direction,
+      arrivalDirection: next.startsWith('article:') ? 1 : direction,
     };
   }
   function restoreReadingFocus(pop) {

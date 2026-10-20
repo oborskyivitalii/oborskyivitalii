@@ -433,16 +433,17 @@ test('continuous gestures and pointer events never influence the reading camera'
   assert.equal(p.trace(), camera);
   assert.equal(p.pending.size, 1);
 });
-test('settled articles keep one painted scene through layout, appearance and lifecycle changes without an ambient RAF', () => {
+test('articles use the common ambient loop through layout, appearance and lifecycle changes', () => {
   for (const narrow of [false, true]) {
     const p = visit({ page: 'writing', article: 'sample:en', narrow, saved: 'on' });
     p.settle();
     const camera = p.trace(),
       phase = p.phase();
-    assert.equal(p.pending.size, 0);
-    assert.equal(p.window.SiteScene.canTravel(), true, 'reader rest keeps route motion available');
-    assert.equal(p.stored(), 'on', 'reader rest does not rewrite the global preference');
-    p.frame(60000);
+    assert.equal(p.pending.size, 1);
+    assert.equal(p.window.SiteScene.canTravel(), true);
+    assert.equal(p.stored(), 'on');
+    p.frame(80);
+    assert.ok(p.phase() > phase, 'article ambient time advances like Writing');
     p.scroll(1500);
     for (const repaint of [
       () => p.mutate(),
@@ -457,17 +458,18 @@ test('settled articles keep one painted scene through layout, appearance and lif
         p.events.afterprint();
       },
     ]) {
-      const before = p.draws();
+      const before = p.draws(),
+        previousPhase = p.phase();
       repaint();
       p.settle();
-      assert.ok(p.draws() > before, 'the still scene can repaint when its environment changes');
+      assert.ok(p.draws() > before, 'the common scene repaints when its environment changes');
       assert.equal(p.trace(), camera);
-      assert.equal(p.phase(), phase);
-      assert.equal(p.pending.size, 0);
+      assert.ok(p.phase() > previousPhase);
+      assert.equal(p.pending.size, 1);
     }
   }
 });
-test('article rest preserves the same-scene orbit and resumes ambient motion only after leaving the reader', () => {
+test('article navigation retains continuous ambient motion and the same-scene orbit', () => {
   const p = visit({ page: 'writing' });
   p.settle();
   const scene = p.window.SiteScene,
@@ -483,11 +485,11 @@ test('article rest preserves the same-scene orbit and resumes ambient motion onl
   scene.refresh();
   finishFlight(p, 'entering the reader completes the circular journey');
   assert.ok(p.phase() > phase, 'ambient scene accompanies the requested journey');
-  assert.equal(p.pending.size, 0, 'arrival stops the decorative loop');
+  assert.equal(p.pending.size, 1, 'article arrival retains the common ambient loop');
   const arrival = p.phase(),
     camera = p.trace();
-  p.frame(60000);
-  assert.equal(p.phase(), arrival);
+  p.frame(80);
+  assert.ok(p.phase() > arrival);
   scene.navigate('writing', true, null, null, {
     documentChange: true,
     sameSceneDocument: true,
@@ -496,7 +498,7 @@ test('article rest preserves the same-scene orbit and resumes ambient motion onl
     direction: -1,
   });
   p.frame(80);
-  assert.equal(p.phase(), arrival, 'a resting reader does not accumulate elapsed time');
+  assert.ok(p.phase() > arrival, 'ambient time continues through the return orbit');
   assert.equal(p.scene.dataset.travel, 'flying');
   delete p.document.body.dataset.article;
   scene.refresh();
@@ -507,7 +509,7 @@ test('article rest preserves the same-scene orbit and resumes ambient motion onl
   p.frame(80);
   assert.ok(p.phase() > returned);
 });
-test('article scene rest retains Off and reduced-motion behavior across document changes', () => {
+test('articles retain common Off and reduced-motion behavior across document changes', () => {
   for (const options of [{ saved: 'off' }, { saved: 'on', reduced: true }]) {
     const p = visit({ page: 'writing', article: 'sample:en', ...options });
     p.settle();

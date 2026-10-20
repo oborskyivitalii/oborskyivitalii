@@ -15,9 +15,9 @@ enhance that HTML; a content editor does not need a server, CMS or browser build
 
 Within-page reading keeps each route's opening camera pose stationary, including
 scrolling in both directions, Writing filters, anchors, history and reflow. The
-fractal keeps its existing passive animation when motion is enabled on principal
-pages. Settled articles retain their last scene paint without an ambient animation
-loop; requested route transitions and motion preferences remain unchanged. Native range,
+fractal keeps the common passive animation on principal pages and articles when
+motion is enabled. Reader components move their complete native box during route
+waves, including paper, borders and markers; motion preferences retain one owner. Native range,
 semantic markers and actual footer/bottom are still measured for content and edge
 navigation; they no longer drive camera travel. All-route browser synchronization
 checks verify stationary camera and unchanged native reading geometry; generation
@@ -25,29 +25,29 @@ freshness alone is insufficient.
 
 ## Authoritative sources and dependencies
 
-| Source | Responsibility | Dependent output |
-| --- | --- | --- |
-| `templates/head.html`, `shell.html`, `templates/shared/*.html` | Shared structure and controls | All five HTML pages |
-| `content/pages/<id>/metadata.json` | Title, description, structured metadata, ordered block names | That route |
-| `content/pages/<id>/*.json`, `content/shared/*.json` | Bounded text, attributes, URLs and explicit template/block references | That route or shared header/footer |
-| `templates/pages/<id>/*.html`, `templates/components/*.html` | Page-specific semantic layout and reusable publication/discussion markup | Declared route compositions |
-| `content/catalog.json` | Primary editions, bounded alternates/discussions, presentation records, topics and labels; five featured selections | Writing; selected featured records also Home and shared labels |
-| `publications/<id>/` | Authored article metadata, blueprint, manuscript, profile/adaptation and observed edition records under [ARTICLE-WORKFLOW](../guides/ARTICLE-WORKFLOW.md) | Validated article model; explicit candidate or eligible public document selection |
-| `../tools/publishing/` | Build-only Markdown AST, provenance and PDF/platform adapters with a pinned toolchain | Article model and separate review kits; no browser parser or second deploy pipeline |
-| `routes.json` | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs | Runtime, pages and fallback |
-| `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs` | Math, projection and single Canvas/RAF lifecycle | Assembled `space.js` |
-| `engine/renderer.cjs` | Ordered Canvas commands, adjacent-line batching and visible outlines | Assembled `space.js` |
-| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback | Shared browser files and pages |
-| `engine/scroll-entry.cjs`, `scroll-entry.css` | Native reading entry and opaque directional route-block departure/hold/arrival; router sequences completion and scene owns motion state | Composed `navigation.js`, shared stylesheet, hosted and standalone outputs |
-| `scenes/world.cjs`, `paths.json` | Authored motifs, rest geometry and finite camera paths | Runtime and projected SVG fallbacks |
-| `effects/flight.cjs`, `effects/*.css` | Current Color travel descriptor and canonical static reading/control CSS | Shared hosted/offline Color runtime |
-| `effects/ribbons.cjs` | Optional historical comparison factory; not serialized into active Color | Explicit legacy diagnostics only; full scanner coverage remains |
-| `../tools/site/effects.cjs`, `export.cjs` | Canonical effect source manifest, explicit delivery adapters and standalone export | Supported Color selection, scanner coverage and offline HTML |
-| `assets/` | Existing portrait, cutout, favicon and `.nojekyll` source | Exact image/icon bytes |
-| `analytics.json`, `integrations/cloudflare.cjs` | Optional production-only measurement under #8; disabled by default | Shared head and one separately hashed loader when enabled |
-| `retained/` when explicitly imported | Previous verified immutable public files | Coherent prior snapshot support |
-| `output-lock.json` | Generated, reviewed output hashes and dependency identity | Cache verification and freshness check |
-| `../docs/` | Generated-only complete public output | Tested public artifact and offline exports |
+| Source                                                                                                       | Responsibility                                                                                                                                            | Dependent output                                                                    |
+| ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `templates/head.html`, `shell.html`, `templates/shared/*.html`                                               | Shared structure and controls                                                                                                                             | All five HTML pages                                                                 |
+| `content/pages/<id>/metadata.json`                                                                           | Title, description, structured metadata, ordered block names                                                                                              | That route                                                                          |
+| `content/pages/<id>/*.json`, `content/shared/*.json`                                                         | Bounded text, attributes, URLs and explicit template/block references                                                                                     | That route or shared header/footer                                                  |
+| `templates/pages/<id>/*.html`, `templates/components/*.html`                                                 | Page-specific semantic layout and reusable publication/discussion markup                                                                                  | Declared route compositions                                                         |
+| `content/catalog.json`                                                                                       | Primary editions, bounded alternates/discussions, presentation records, topics and labels; five featured selections                                       | Writing; selected featured records also Home and shared labels                      |
+| `publications/<id>/`                                                                                         | Authored article metadata, blueprint, manuscript, profile/adaptation and observed edition records under [ARTICLE-WORKFLOW](../guides/ARTICLE-WORKFLOW.md) | Validated article model; explicit candidate or eligible public document selection   |
+| `../tools/publishing/`                                                                                       | Build-only Markdown AST, provenance and PDF/platform adapters with a pinned toolchain                                                                     | Article model and separate review kits; no browser parser or second deploy pipeline |
+| `routes.json`                                                                                                | Contract 1: ordered five route IDs, native URLs, scenes and stop IDs                                                                                      | Runtime, pages and fallback                                                         |
+| `engine/math.cjs`, `projection.cjs`, `lifecycle.cjs`                                                         | Math, projection and single Canvas/RAF lifecycle                                                                                                          | Assembled `space.js`                                                                |
+| `engine/renderer.cjs`                                                                                        | Ordered Canvas commands, adjacent-line batching and visible outlines                                                                                      | Assembled `space.js`                                                                |
+| `engine/theme.js`, `archive.js`, `navigation.js`, `styles.css`, `critical-media.css`, `reading-surfaces.css` | Theme, filtering, routing and canonical presentation, including Home media fallback                                                                       | Shared browser files and pages                                                      |
+| `engine/scroll-entry.cjs`, `scroll-entry.css`                                                                | Native reading entry and opaque directional route-block departure/hold/arrival; router sequences completion and scene owns motion state                   | Composed `navigation.js`, shared stylesheet, hosted and standalone outputs          |
+| `scenes/world.cjs`, `paths.json`                                                                             | Authored motifs, rest geometry and finite camera paths                                                                                                    | Runtime and projected SVG fallbacks                                                 |
+| `effects/flight.cjs`, `effects/*.css`                                                                        | Current Color travel descriptor and canonical static reading/control CSS                                                                                  | Shared hosted/offline Color runtime                                                 |
+| `effects/ribbons.cjs`                                                                                        | Optional historical comparison factory; not serialized into active Color                                                                                  | Explicit legacy diagnostics only; full scanner coverage remains                     |
+| `../tools/site/effects.cjs`, `export.cjs`                                                                    | Canonical effect source manifest, explicit delivery adapters and standalone export                                                                        | Supported Color selection, scanner coverage and offline HTML                        |
+| `assets/`                                                                                                    | Existing portrait, cutout, favicon and `.nojekyll` source                                                                                                 | Exact image/icon bytes                                                              |
+| `analytics.json`, `integrations/cloudflare.cjs`                                                              | Optional production-only measurement under #8; disabled by default                                                                                        | Shared head and one separately hashed loader when enabled                           |
+| `retained/` when explicitly imported                                                                         | Previous verified immutable public files                                                                                                                  | Coherent prior snapshot support                                                     |
+| `output-lock.json`                                                                                           | Generated, reviewed output hashes and dependency identity                                                                                                 | Cache verification and freshness check                                              |
+| `../docs/`                                                                                                   | Generated-only complete public output                                                                                                                     | Tested public artifact and offline exports                                          |
 
 This catalog migrates the existing public inventory. [SITE-SOURCE-AUDIT](../guides/SITE-SOURCE-AUDIT.md)
 continues to own provenance; [SITE-SEO](../guides/SITE-SEO.md) owns discoverability and
@@ -284,7 +284,6 @@ around it, then restores the reading pose. History reverses the orbit direction.
 Principal-section trips retain corridor travel. One lifecycle owns timing,
 interruption, the original orbit-return anchor and motion/native fallbacks.
 The supported axis/pivot and enclosing radius are validated with the scene inputs.
-
 
 Article documents reference the canonical Writing fallback through one generated,
 content-addressed `article-media/<sha256>/writing-fallback.svg` group. The scene

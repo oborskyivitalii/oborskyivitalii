@@ -480,6 +480,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-reader-block-elements',
     'issue5-reader-visible-blocks',
     'issue5-reader-interactions',
+    'issue5-reader-motion',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
@@ -509,6 +510,11 @@ test('reader-block evidence is required for every current identity while histori
             units: [
               {
                 tag: 'P',
+                layer:
+                  motion.readerWholeBlocksRequired(selectedEngine) && source.startsWith('article:')
+                    ? 'self'
+                    : 'children',
+                childAnimations: 0,
                 classes: '',
                 distance: (departure ? -sign : sign) * 600,
                 row: 0,
@@ -545,6 +551,29 @@ test('reader-block evidence is required for every current identity while histori
           }),
         /block evidence/
       );
+    }
+    if (motion.readerWholeBlocksRequired(current)) {
+      for (const [change, message] of [
+        [
+          (unit) => {
+            unit.layer = 'children';
+          },
+          /complete reader component/,
+        ],
+        [
+          (unit) => {
+            unit.childAnimations = 1;
+          },
+          /duplicate the component/,
+        ],
+      ]) {
+        const invalid = make(current);
+        change(invalid.observations[0].flights[0].blocks[1].units[0]);
+        assert.throws(
+          () => validateArticleJourney(invalid, descriptors, { engine: current, baseURL }),
+          message
+        );
+      }
     }
     if (motion.readerInteractionsRequired(current)) {
       for (const row of make(current).observations) {
@@ -675,6 +704,15 @@ test('block diagnostics omit empty shells, collect later child animations and re
   assert.equal(bare.tag, 'H4', 'positive-area bare text must remain in the diagnostic inventory');
   assert.deepEqual(bare.frames, []);
   assert.throws(() => validateArticleBlocks(observedFlight), /actual common CSS animation/);
+  const component = animated();
+  component.dataset.routeLayer = 'self';
+  component.children.push(node());
+  units.splice(0, units.length, component);
+  scope.window.SiteEngineProbe(phase);
+  const whole = JSON.parse(JSON.stringify(scope.window.__articleBlockEvents[2].units[0]));
+  assert.equal(whole.layer, 'self');
+  assert.deepEqual(whole.frames, frames, 'the actual component box owns its CSS animation');
+  assert.equal(whole.childAnimations, 0);
 });
 
 test('selected articles reject omitted, duplicate, failed or wrong-source browser observations', () => {

@@ -122,3 +122,41 @@ host with the same50ms interval,2s deadline,3 stable observations and strict tar
 visibility. Negative cases retain wrong-fragment and moving-target rejection.
 Current390px captures also exposed a stale topic label after jumping past headings;
 the shared reader now derives it from heading positions on scroll and layout events.
+
+## Complete reader motion follow-up
+
+Owner: issue5 dated reader-complete-motion-20261020 amendment; same Draft PR79.
+Prepared against917c21d82b78d97c63308e7d65b2586239cb1293/tree2078e2bc75ebafc9c60d5c7ff8c76440488e6db2.
+Primary implementation and self-review by Codex. Previous independent review
+applies to the earlier increment; it does not review this correction.
+
+The author observes stationary Contents/divider paint and fragmented transitions.
+Child-only animation cannot carry a component's own opaque paper, rounded border
+or native list/details marker. Reader route units now animate the complete native
+box once, using the existing wave's timing, geometry and completion/cancellation
+owner. The ordinary principal-page child/ink layers retain their behavior. Ancestor
+separators still use measured ownership and move with the selected reader leaf.
+No per-article ID or manuscript-specific rule is introduced. All article arrivals
+are from below and departures upward, including article-history travel; camera
+orbit/history direction remains separate.
+
+The user also explicitly supersedes quiet settled articles. Reader-only ambient
+RAF suppression and the0.45 scene-opacity override are removed. Articles now use
+the common On/Off/reduced, hidden/print, device-cost and scene lifecycle. The
+opaque reading surface retains its canonical paint owner.
+
+CS01–CS10: canonical scroll-entry/navigation/lifecycle and CSS owners; existing
+1000ms phase,24-row bound, fallback/cleanup and budgets preserved. Native text,
+links, no-JS and print remain available. The collector observes the actual box's
+CSS frames and rejects child-only/doubled reader animation for the new exact
+issue5ReaderMotion family. Historical family tuples and validation remain intact.
+New plain/staging/production identities are derived from actual canonical output
+and all three admitted against their actual bytes; production is only a temporary
+local rendition, with no release action. Mandatory rights admission and producer
+fixtures include this new family.
+
+Prepared checks: scroll-entry44/44; scene lifecycle68/68; navigation/collector/
+Color/staging84/84. These are dirty prepared results; final exact-source policy,
+hosted real/synthetic browser observations and fresh visual checks belong to PR79
+and the issue after the implementation commit. No whole-PR independent, physical
+device, editorial/rights or public-release acceptance is inferred.

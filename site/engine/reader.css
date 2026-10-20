@@ -1,7 +1,4 @@
 /* Reader mode: shared long-form layout and components. Paint/palette retain their owners. */
-body[data-article] .space-scene[data-travel='settled'] {
-  opacity: 0.45;
-}
 .article-reader.wrap {
   width: min(820px, calc(100% - 48px));
   max-width: none;

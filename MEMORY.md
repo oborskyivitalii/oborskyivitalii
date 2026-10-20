@@ -5,8 +5,8 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 ## Snapshot
 
 - 20 October #5/PR79: next reusable reader iteration adds image/reference dialogs,
-  hierarchical sticky Contents, quiet settled scene and shared metadata/type.
-  R18 manuscript/media/PDF preserved; synthetic fixture bindings refreshed.
+  hierarchical sticky Contents and shared metadata/type. New correction restores
+  common ambient motion and complete component waves; R18 media/PDF preserved.
   Independent source review resolved deep-reading Contents jump. Review:
   review/issue-5/2026-10-20-reader-interactions.md; final CI/preview in PR79.
 
