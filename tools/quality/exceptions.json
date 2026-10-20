@@ -1,7 +1,0 @@
-{
-  "owner": "Vitalii Oborskyi",
-  "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/13",
-  "reviewBy": "2026-11-03",
-  "reason": "The source-bound Color Ribbon projector debt was removed through R5 camera/strip/cell/curve decomposition in issue58. Original issue56 bindings and reviewed immutable baseline remain in Git history; no active complexity allowance remains.",
-  "complexity": []
-}

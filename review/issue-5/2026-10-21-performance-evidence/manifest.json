@@ -1,0 +1,680 @@
+{
+  "schema": 1,
+  "sourceCommit": "283b32f65f0589e85c0aa914d0990704dcf8ac38",
+  "sourceTree": "643304fa64c945c01f3b21e6d1d4f0d85696f8f5",
+  "collectorCommit": "f65f8629f2dac810d2e50739515f9da1c3d5477e",
+  "collectorTree": "b6f06780c73c9ea68b3982ff88b42e9b06256af3",
+  "inputArtifactId": 12296496248,
+  "inputArtifactRun": 39490652746,
+  "inputZipSha256": "9116977727fc050c3845dcfba0cefc522a4e6c444eb07c8aecd0ea0828e25a62",
+  "archives": [
+    {
+      "file": "raw-01.zip",
+      "bytes": 3161213,
+      "sha256": "2732c1146a4c1097cd54383ce5352559a5c47ea1026d2cd3571b4df8a124e80b",
+      "members": 10
+    },
+    {
+      "file": "raw-02.zip",
+      "bytes": 3091884,
+      "sha256": "87b955dbdcd9636dce49b85371b115d18a7836d28a8a8c101cf011544359b980",
+      "members": 6
+    },
+    {
+      "file": "raw-03.zip",
+      "bytes": 3104789,
+      "sha256": "e6162f86c282bf9c1c01e9e313a5fc26bbf01076a7efd39b9d822125e648735d",
+      "members": 5
+    },
+    {
+      "file": "raw-04.zip",
+      "bytes": 2578346,
+      "sha256": "14496ae958ac24ce1cb4cdde4701fde544f71c7e4422cf783d9e6351b4b33578",
+      "members": 3
+    },
+    {
+      "file": "raw-05.zip",
+      "bytes": 3310527,
+      "sha256": "fd3515b569530b419040411542b0ee1d0d1ffaf1945f0f80f2e7ca136c5f10b6",
+      "members": 5
+    },
+    {
+      "file": "raw-06.zip",
+      "bytes": 2289778,
+      "sha256": "28a38072ee9c8564dc6ad99c3cdfc2a8361470089956966a53f0311ff908fba8",
+      "members": 8
+    },
+    {
+      "file": "raw-07.zip",
+      "bytes": 2957838,
+      "sha256": "e48783b4ab6a956ef9e2376c09593dbd1bbf53170b07bca6d2382fc5897792cd",
+      "members": 3
+    },
+    {
+      "file": "raw-08.zip",
+      "bytes": 2959296,
+      "sha256": "096cd629ccab12a29ee75ed92820d85c4f62e08d82a87ae4faff3a6407a73d28",
+      "members": 3
+    },
+    {
+      "file": "raw-09.zip",
+      "bytes": 3297945,
+      "sha256": "0b80f0784b4918c686e1918dc89ef0119e61d26f059d5239ecc894b1527a1b0e",
+      "members": 9
+    },
+    {
+      "file": "raw-10.zip",
+      "bytes": 3164673,
+      "sha256": "77e67d7e62ba8acf3fe1a12a3161345959afef817b023739c6247f4979ad617b",
+      "members": 3
+    },
+    {
+      "file": "raw-11.zip",
+      "bytes": 2593675,
+      "sha256": "3c3fbfba69969c88aa502e3c83d724a0addc97f49eb90dbb0e012824d87ba039",
+      "members": 3
+    },
+    {
+      "file": "raw-12.zip",
+      "bytes": 3049899,
+      "sha256": "d6e3a3652793063314a59b8690ae42a09125b1b4deed151ab37a71ad8079d07a",
+      "members": 3
+    },
+    {
+      "file": "raw-13.zip",
+      "bytes": 2923234,
+      "sha256": "bd1a6cad9e29212e0a4b45dd6469efcebddbde345c62fdaabc0b69e458d90b87",
+      "members": 3
+    },
+    {
+      "file": "raw-14.zip",
+      "bytes": 2939190,
+      "sha256": "bbfdcee8bb60ae30c783187bbded4659b7e31d083106b31bee080028f57ec4ab",
+      "members": 3
+    },
+    {
+      "file": "raw-15.zip",
+      "bytes": 2976294,
+      "sha256": "d0f9cb90647d230e435b33769e3a86fc27052c291025cd6e2a3e270fa0184076",
+      "members": 29
+    }
+  ],
+  "members": [
+    {
+      "path": "original/artifact-after.log",
+      "archive": "raw-01.zip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original/artifact-before.log",
+      "archive": "raw-01.zip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "original/lighthouse-credits-desktop-1.json",
+      "archive": "raw-01.zip",
+      "bytes": 797766,
+      "sha256": "b2459caabdcb1e4920700288aa0bca525eb4b28194e4800d45f664867fb80f4f"
+    },
+    {
+      "path": "original/lighthouse-credits-desktop-2.json",
+      "archive": "raw-01.zip",
+      "bytes": 797580,
+      "sha256": "fff78a8941d483ee58caa9ba5388c455d57697e518424e0b3b2d8c24ef7f5137"
+    },
+    {
+      "path": "original/lighthouse-credits-desktop-3.json",
+      "archive": "raw-01.zip",
+      "bytes": 797027,
+      "sha256": "146f803f00797c2ae1c7a6ac877dc284125cd25fc290bda66b60a9b99ca178b0"
+    },
+    {
+      "path": "original/lighthouse-credits-mobile-1.json",
+      "archive": "raw-01.zip",
+      "bytes": 798096,
+      "sha256": "307f0910a474860f6011d02148fecb4d06466db63f002c8e3c66cf48a30837ad"
+    },
+    {
+      "path": "original/lighthouse-credits-mobile-2.json",
+      "archive": "raw-01.zip",
+      "bytes": 798233,
+      "sha256": "c17355ae157c4400a1324c459d1b9a78fcf52280ae39e8c4ce6898fa055c7d30"
+    },
+    {
+      "path": "original/lighthouse-credits-mobile-3.json",
+      "archive": "raw-01.zip",
+      "bytes": 797999,
+      "sha256": "1fd27d7783d372e74de44724dc6fe576ed79d47b1daaab638753146dd9101a03"
+    },
+    {
+      "path": "original/lighthouse-index-desktop-1.json",
+      "archive": "raw-01.zip",
+      "bytes": 1008045,
+      "sha256": "7fc974bdd5130df25381b99f3d3b3ffaa90b9e02d2294d5cfb22e66fad702f39"
+    },
+    {
+      "path": "original/lighthouse-index-desktop-2.json",
+      "archive": "raw-01.zip",
+      "bytes": 1011873,
+      "sha256": "6080e7a877aa896ce13dbdc2cba00b42dd2a247e631ac019604a37cbbd9b9b90"
+    },
+    {
+      "path": "original/lighthouse-index-desktop-3.json",
+      "archive": "raw-02.zip",
+      "bytes": 1010561,
+      "sha256": "f149240fa1cbd126facacf4c2b267eec870f0f21fcaf73aff01e27f84593efa5"
+    },
+    {
+      "path": "original/lighthouse-index-mobile-1.json",
+      "archive": "raw-02.zip",
+      "bytes": 903117,
+      "sha256": "9de010592b38b4f7ba4c61127a0b1e121b35eb01fb93b73b0a6a52f3ef675eee"
+    },
+    {
+      "path": "original/lighthouse-index-mobile-2.json",
+      "archive": "raw-02.zip",
+      "bytes": 898976,
+      "sha256": "2e0296932dc53f28d373998463b3f5ce284188e0e06e8fecbb63b80435fc17e3"
+    },
+    {
+      "path": "original/lighthouse-index-mobile-3.json",
+      "archive": "raw-02.zip",
+      "bytes": 899240,
+      "sha256": "6c9bc7a16fd5f80332caa5555595d89aef95950b4020c78b7fc325ee8dad7145"
+    },
+    {
+      "path": "original/lighthouse-research-desktop-1.json",
+      "archive": "raw-02.zip",
+      "bytes": 943315,
+      "sha256": "2cb667b06fd4570289c1428c472899fc9be52171adaa2392815699830b8ea9ad"
+    },
+    {
+      "path": "original/lighthouse-research-desktop-2.json",
+      "archive": "raw-02.zip",
+      "bytes": 937698,
+      "sha256": "3ed0823659d434c74054ebf73ade82e53afb3b9b5d1ebb7a1fb7121dfbb4d411"
+    },
+    {
+      "path": "original/lighthouse-research-desktop-3.json",
+      "archive": "raw-03.zip",
+      "bytes": 937264,
+      "sha256": "ec74e92c9d6a37f9be3bc9e975a605e4226e9a6d323aa432e0eab0dc9a31c6a5"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-1-devtoolslog.json.gz",
+      "archive": "raw-03.zip",
+      "bytes": 3632,
+      "sha256": "4b0563cb9119a16a3f21672a9195a4c9a6f4ac1dae23a13684e429e672679c7a"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-1-trace.json.gz",
+      "archive": "raw-03.zip",
+      "bytes": 2208527,
+      "sha256": "053d54301d15cb025bfb3a05febb0d8e19d47cecbf857aaa87a4d0fca57a7538"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-1.json",
+      "archive": "raw-03.zip",
+      "bytes": 891672,
+      "sha256": "30513c2fca6f327cf1331d22efaa7f68d7ffcc75e96880846d856f6847c071ae"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-2-devtoolslog.json.gz",
+      "archive": "raw-03.zip",
+      "bytes": 3643,
+      "sha256": "c4e1a8437ef1549de8d9a6f8e396c16c7ad5596f28bd56e0fa3f3672d88bc515"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-2-trace.json.gz",
+      "archive": "raw-04.zip",
+      "bytes": 2211827,
+      "sha256": "576bff5fb30813285b85e31da0ac5b47db7376c9c47c97bde7b45d37d1d189fd"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-2.json",
+      "archive": "raw-04.zip",
+      "bytes": 890845,
+      "sha256": "5766ceb8e00e3ea8f40c75fd16c0f028096aadc8f22a6f41fc16a5f80cb95b0b"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-3-devtoolslog.json.gz",
+      "archive": "raw-04.zip",
+      "bytes": 3633,
+      "sha256": "3cefce71f6535187d5077be8586c4cf5a2ad0df661ce2860f3fd25acd81ef559"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-3-trace.json.gz",
+      "archive": "raw-05.zip",
+      "bytes": 2215152,
+      "sha256": "d69e834979417fb7a44631c1c1d6e550a1a25ba271c296b5617b81790f390bc0"
+    },
+    {
+      "path": "original/lighthouse-research-mobile-3.json",
+      "archive": "raw-05.zip",
+      "bytes": 893007,
+      "sha256": "fe0c57bc39e2bc4e8443593fbb45fa0405c49075f5cffe3e5a8af2bdcc45a891"
+    },
+    {
+      "path": "original/lighthouse-summary.json",
+      "archive": "raw-05.zip",
+      "bytes": 111160,
+      "sha256": "50386beffdab111a26eaf210accb0b8c2430556af6792c7c3c1d5c0a2f221ea8"
+    },
+    {
+      "path": "original/lighthouse-talks-desktop-1.json",
+      "archive": "raw-05.zip",
+      "bytes": 716051,
+      "sha256": "4e9bd7f4778de783f8eb93c31adef3000cf9d23a3edf3f7ca2066e0497a63b47"
+    },
+    {
+      "path": "original/lighthouse-talks-desktop-2.json",
+      "archive": "raw-05.zip",
+      "bytes": 715590,
+      "sha256": "84c24b700bc09e1d9fd15d6059b9671ffd413c365d8ee379a1513f192108528d"
+    },
+    {
+      "path": "original/lighthouse-talks-desktop-3.json",
+      "archive": "raw-06.zip",
+      "bytes": 718074,
+      "sha256": "14c1cc259e641950e3dc55b8acd96c95c6819df4619041c5202dd9130f7451c5"
+    },
+    {
+      "path": "original/lighthouse-talks-mobile-1.json",
+      "archive": "raw-06.zip",
+      "bytes": 651245,
+      "sha256": "b1d471fb17fe5ddc65f3fd92f98def7bd6250cb4c5ab9c68a607d0b3e3f4bcc8"
+    },
+    {
+      "path": "original/lighthouse-talks-mobile-2.json",
+      "archive": "raw-06.zip",
+      "bytes": 648998,
+      "sha256": "42d4048449a37f02389122f2d390edd3dcdbf8108be114af5601b74781acbae0"
+    },
+    {
+      "path": "original/lighthouse-talks-mobile-3.json",
+      "archive": "raw-06.zip",
+      "bytes": 650452,
+      "sha256": "ab84233bb99b0186c220177a5b3ce72bb53571b8eeebade628b7f3db165d0a72"
+    },
+    {
+      "path": "original/lighthouse-writing-desktop-1.json",
+      "archive": "raw-06.zip",
+      "bytes": 933131,
+      "sha256": "f5553221e50896a125e1e19ea0d02c0cb7f77223fdd10636d227ee6e5bfc18e3"
+    },
+    {
+      "path": "original/lighthouse-writing-desktop-2.json",
+      "archive": "raw-06.zip",
+      "bytes": 934226,
+      "sha256": "19281f99f679782d6d61e4a97a84f9f944a290b42c3fbb2f46bc166a75ec39d5"
+    },
+    {
+      "path": "original/lighthouse-writing-desktop-3.json",
+      "archive": "raw-06.zip",
+      "bytes": 935725,
+      "sha256": "5a1c27794f8775af884d579b5583008ff217ed2193769b3b2318b9d1a0106f87"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-1-devtoolslog.json.gz",
+      "archive": "raw-06.zip",
+      "bytes": 4096,
+      "sha256": "7a5d9b62f33862a2ae2b3cc746236cae41f25fe4c924d4f686492c1a7ac3d89a"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-1-trace.json.gz",
+      "archive": "raw-07.zip",
+      "bytes": 2462640,
+      "sha256": "906a1c32531a9624dd2478255dc70e570d61ada76bce2629cdef06e3b4c022fa"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-1.json",
+      "archive": "raw-07.zip",
+      "bytes": 906365,
+      "sha256": "8c055ca28f721a4daad09e35878537adaa9647833b14a1bf67b3211286f5ba1b"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-2-devtoolslog.json.gz",
+      "archive": "raw-07.zip",
+      "bytes": 4117,
+      "sha256": "e2a11e9f5648cd3986404357b74f5be4262c9ec68ad65c2faa1a32f9e47af4bc"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-2-trace.json.gz",
+      "archive": "raw-08.zip",
+      "bytes": 2461295,
+      "sha256": "c169cb637adafbae6d3ac7e79f43dc77bbb08dc778b3d17a06c55146e029c7af"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-2.json",
+      "archive": "raw-08.zip",
+      "bytes": 904574,
+      "sha256": "648bf7f693fcbd6e021b109c717fc1cde2898c32d94a9f1d4ef7899953deff14"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-3-devtoolslog.json.gz",
+      "archive": "raw-08.zip",
+      "bytes": 4112,
+      "sha256": "08a7ee92433f75e229f935f427a0c51ec9be8a77eff56fbb0844e6a1e26e0011"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-3-trace.json.gz",
+      "archive": "raw-09.zip",
+      "bytes": 2475817,
+      "sha256": "91b67e5036656497680d70733e4794147163a44d497024fba7250aacf4fda1d1"
+    },
+    {
+      "path": "original/lighthouse-writing-mobile-3.json",
+      "archive": "raw-09.zip",
+      "bytes": 908815,
+      "sha256": "73b7699eaae67606e27d392b965b3274b672e00b80bbfb99441abe593b147dd5"
+    },
+    {
+      "path": "original/lighthouse.json",
+      "archive": "raw-09.zip",
+      "bytes": 123003,
+      "sha256": "c09c7370bb1b6d8ec830c81751a739d2fc024572f2cb5c3adfcbc354f5316948"
+    },
+    {
+      "path": "original/lighthouse.log",
+      "archive": "raw-09.zip",
+      "bytes": 27844,
+      "sha256": "ae4d372173aea94b814f654987aae198351e2d5a98c169b10e519b043ec7de66"
+    },
+    {
+      "path": "original/motion.json",
+      "archive": "raw-09.zip",
+      "bytes": 5454880,
+      "sha256": "166d99579a10a02d1151ef292cf4cc48add8c5526fdc8744bcad3705556a2ddb"
+    },
+    {
+      "path": "original/motion.log",
+      "archive": "raw-09.zip",
+      "bytes": 17265,
+      "sha256": "06b9a65ae3b7ae0c048284ccd5fb8307696f8b4f8cca0089881f66bcbb514693"
+    },
+    {
+      "path": "original/suite-execution.json",
+      "archive": "raw-09.zip",
+      "bytes": 2270,
+      "sha256": "b75612b9576e335844b1c147665880403bd70cc29f68f9e828cf32368f5dab93"
+    },
+    {
+      "path": "reader/execution.log",
+      "archive": "raw-09.zip",
+      "bytes": 5832,
+      "sha256": "88e8f988e7c5368492c02b0780d1a4c88a1a0d158c3b53056d41016294465f8f"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-1-devtoolslog.json.gz",
+      "archive": "raw-09.zip",
+      "bytes": 7116,
+      "sha256": "4177d674f536da7527bef9dcb04bd216cc43d1c35c7ad3821f056e53b66ccd57"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-1-trace.json.gz",
+      "archive": "raw-10.zip",
+      "bytes": 2115865,
+      "sha256": "bec0a3981549b04820a40e7bb5093995c3d243ec824eda6b0d53333c887f4a37"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-1.json",
+      "archive": "raw-10.zip",
+      "bytes": 1798889,
+      "sha256": "79749e6f051c1c99df99ab436980f2725c3dcceef78e37763d887cbc80586728"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-2-devtoolslog.json.gz",
+      "archive": "raw-10.zip",
+      "bytes": 7111,
+      "sha256": "2785afd9a18e7156a0a0e3d40a92af4a3ef6e000e3793e71c396875fadba6220"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-2-trace.json.gz",
+      "archive": "raw-11.zip",
+      "bytes": 1568838,
+      "sha256": "83348b570abe88cef9b53248bc9f0e58e2b37b4af679accc3249946f1accb6ef"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-2.json",
+      "archive": "raw-11.zip",
+      "bytes": 1795609,
+      "sha256": "c55cc3bb8a00d55b7040f3044a9453401038d25d8cd78be57f7b4371868dc98c"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-3-devtoolslog.json.gz",
+      "archive": "raw-11.zip",
+      "bytes": 7090,
+      "sha256": "5d32baaecbad05f386ecc6fdbd6e182fd9dbc231ae6c8c7ce585c73ec17254ff"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-3-trace.json.gz",
+      "archive": "raw-12.zip",
+      "bytes": 2001375,
+      "sha256": "e05428b9685ffb4ecd7ad67c2630e1ae88591ae713282c6bd8ed28ac590954ee"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-desktop-3.json",
+      "archive": "raw-12.zip",
+      "bytes": 1797392,
+      "sha256": "1f3505375122f93acd0581f16ecdda81d171c5dc3a17bab8261e5de9ca364937"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-1-devtoolslog.json.gz",
+      "archive": "raw-12.zip",
+      "bytes": 7140,
+      "sha256": "8fdd42d58869e9bf155db8adbd4df045134d8dac5caca055c386af38b8b94761"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-1-trace.json.gz",
+      "archive": "raw-13.zip",
+      "bytes": 2235102,
+      "sha256": "1a106e3649ace316bb138143c413b410433add2f88893fb0f0020d091b27337f"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-1.json",
+      "archive": "raw-13.zip",
+      "bytes": 1341563,
+      "sha256": "f012ae01ef1359d193f2aeef6916429bccf75c43f01a1676dc396c0eb4586168"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-2-devtoolslog.json.gz",
+      "archive": "raw-13.zip",
+      "bytes": 7226,
+      "sha256": "1d59f8fbee98b9636e24cb7067e8ff89df25b3bd0d49c7b2bd9cefc982732714"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-2-trace.json.gz",
+      "archive": "raw-14.zip",
+      "bytes": 2256040,
+      "sha256": "f8fdabaa32331a902402b071aed6ff90e5b1fd4fbe2e905a091d64fdc421e586"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-2.json",
+      "archive": "raw-14.zip",
+      "bytes": 1346639,
+      "sha256": "40fa3d5004bd5839182e689f4ddd80447bec8aa86aecb6c3849cfee080d83b8e"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-3-devtoolslog.json.gz",
+      "archive": "raw-14.zip",
+      "bytes": 7082,
+      "sha256": "f4763fc4d1c00b48e7cb781171ee39201a5a7bd149804881bb7ab6b552740519"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-3-trace.json.gz",
+      "archive": "raw-15.zip",
+      "bytes": 2217258,
+      "sha256": "9b72ee30bc1e8ed66252595a18c223e9f0a03affbc6f97598dea746a6bf500e0"
+    },
+    {
+      "path": "reader/lighthouse-reader-1-mobile-3.json",
+      "archive": "raw-15.zip",
+      "bytes": 1343405,
+      "sha256": "e0e07a7c76dcf5a29f7cbf4df980f1191131a7d16d4aa92004bc0a68f981f4ca"
+    },
+    {
+      "path": "reader/lighthouse-summary.json",
+      "archive": "raw-15.zip",
+      "bytes": 23987,
+      "sha256": "c80bd7ab9b903c36dc636dd71b4e97cbed6678638ff93e686b66d18d6cf7c7fe"
+    },
+    {
+      "path": "reader/reader-performance.json",
+      "archive": "raw-15.zip",
+      "bytes": 307020,
+      "sha256": "f77619135c15bc2d16296118ed0449e5c348f19d14c4406ecb34d86a1b310aed"
+    },
+    {
+      "path": "collector-source-checks/additional-checks.json",
+      "archive": "raw-15.zip",
+      "bytes": 1069,
+      "sha256": "8d1888487887de35810c867bdd9ad08c31040baca257c16d5c82bf85f5f279c0"
+    },
+    {
+      "path": "collector-source-checks/artifact.log",
+      "archive": "raw-15.zip",
+      "bytes": 9453,
+      "sha256": "ed0ff77da90d1e03ac86c6439f386ac40c4f431017487303c42388419bff27f5"
+    },
+    {
+      "path": "collector-source-checks/basic.log",
+      "archive": "raw-15.zip",
+      "bytes": 2209,
+      "sha256": "f203e7202b6d2249affff6cefed9342ecf52ea0ddc1e8a4e85a043b7d96f507a"
+    },
+    {
+      "path": "collector-source-checks/eslint.json",
+      "archive": "raw-15.zip",
+      "bytes": 68605,
+      "sha256": "7a767bbc73daf01d6e48cf0eab9cb0cd729222de5b4cd49a7b863e3d208e48a9"
+    },
+    {
+      "path": "collector-source-checks/execution.json",
+      "archive": "raw-15.zip",
+      "bytes": 3339,
+      "sha256": "377f81d5132be1eac3d465e2c1cb5cff04571e3f009e2a7be74de2808dcb1646"
+    },
+    {
+      "path": "collector-source-checks/focused.log",
+      "archive": "raw-15.zip",
+      "bytes": 9130,
+      "sha256": "82abd81fcade60d4dfc29eca9af7d3960631781e6c23b706d9e2f2df531c7d81"
+    },
+    {
+      "path": "collector-source-checks/lint.json",
+      "archive": "raw-15.zip",
+      "bytes": 36777,
+      "sha256": "be63adf53bc98fe2a987a897edab09df62146481b41d4dcb090c6d5b664b0831"
+    },
+    {
+      "path": "collector-source-checks/lint.log",
+      "archive": "raw-15.zip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "collector-source-checks/python.log",
+      "archive": "raw-15.zip",
+      "bytes": 119,
+      "sha256": "571e1c42d5baa4621149238fe36ee2f625633059578443cdcb87dd30eefb10e7"
+    },
+    {
+      "path": "collector-source-checks/ri-ci.log",
+      "archive": "raw-15.zip",
+      "bytes": 191,
+      "sha256": "be4fb2c617c5af8864845249fb3e69edc809f3564634988c8cb905f4b7666cf2"
+    },
+    {
+      "path": "collector-source-checks/ri-tests.log",
+      "archive": "raw-15.zip",
+      "bytes": 127,
+      "sha256": "643b4e151fa9e1c735c0928f92a90f5fe55960c92d8a84a7cc81d2fa53a361fd"
+    },
+    {
+      "path": "collector-source-checks/ri.log",
+      "archive": "raw-15.zip",
+      "bytes": 42,
+      "sha256": "9db167fb4686f396d5b72bf6e0c08077a4fe188a311ed246dda72f77fc45fa2a"
+    },
+    {
+      "path": "collector-source-checks/ruff-coverage.json",
+      "archive": "raw-15.zip",
+      "bytes": 1414,
+      "sha256": "3d424d701fdd219076f6c68c42578e6d682ebd86a7de0c8438bab37c2bc1e611"
+    },
+    {
+      "path": "collector-source-checks/ruff.json",
+      "archive": "raw-15.zip",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "collector-source-checks/style-tests-prepared-ri-stale-2.log",
+      "archive": "raw-15.zip",
+      "bytes": 6200,
+      "sha256": "736e3aa2aa22e9ae489e798a6339487127f626f15e75ce3b8f07e6ad1e241f07"
+    },
+    {
+      "path": "collector-source-checks/style-tests-prepared-ri-stale.log",
+      "archive": "raw-15.zip",
+      "bytes": 7730,
+      "sha256": "bc5ce1871bfa0bef3052036fc1705f68f19cfc5ff5cb1d4742a3f96bf385e06e"
+    },
+    {
+      "path": "collector-source-checks/style-tests.log",
+      "archive": "raw-15.zip",
+      "bytes": 6200,
+      "sha256": "736e3aa2aa22e9ae489e798a6339487127f626f15e75ce3b8f07e6ad1e241f07"
+    },
+    {
+      "path": "collector-source-checks/style.log",
+      "archive": "raw-15.zip",
+      "bytes": 243,
+      "sha256": "96845deb7be5da72c45f5974d9d8558070f8fa0c9a6948c09fc8a36035856912"
+    },
+    {
+      "path": "collector-source-checks/stylelint.json",
+      "archive": "raw-15.zip",
+      "bytes": 2245,
+      "sha256": "f17ccfd7292106e32c95d404289b693ce08a6ebc11e85e74b996d484961e25aa"
+    },
+    {
+      "path": "hosted-identity/hosted.json",
+      "archive": "raw-15.zip",
+      "bytes": 17259,
+      "sha256": "a8a1e1d51d1bde91a9129ec3b393eb6e9f2501bfbce2ddc992d585082d06d883"
+    },
+    {
+      "path": "collector.git.bundle",
+      "archive": "raw-15.zip",
+      "bytes": 15557,
+      "sha256": "1ddc89cf2158469658a6748888e0741c21780473e27f5f5efbe71f80c0bfc69d"
+    },
+    {
+      "path": "frozen-artifact.json",
+      "archive": "raw-15.zip",
+      "bytes": 14876,
+      "sha256": "cfc36c9807a8bd30465ffe7f7c6cc7db55fd569fb0f9975b567f8f205c238e67"
+    },
+    {
+      "path": "collector-artifact.json",
+      "archive": "raw-15.zip",
+      "bytes": 11179,
+      "sha256": "4cc8a8f251b0e81c430b82ac3e1dd86aa4080300d55fd666e10c4001107575f2"
+    },
+    {
+      "path": "recipes/original-execution.py",
+      "archive": "raw-15.zip",
+      "bytes": 2682,
+      "sha256": "0989a26e71bc7acd12b2e35905ebbb6931c4fa1cfbbe02bc48ae9f79f223de0c"
+    },
+    {
+      "path": "recipes/supplement-execution.py",
+      "archive": "raw-15.zip",
+      "bytes": 3396,
+      "sha256": "9d8457b0e67c68d757b3f171c239d57813da95643f23f47a402e3840f70aad08"
+    }
+  ]
+}
