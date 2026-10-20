@@ -115,6 +115,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-5.json": {
+      "kind": "file",
+      "purpose": "Issue5 controller prerequisite mapping; original feature criteria remain manual pending until PR79 restores its full policy.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-54.json": {
       "kind": "file",
       "purpose": "Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping.",
@@ -1518,6 +1524,18 @@
       "purpose": "Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance.",
       "role": "history",
       "owner": "guides/SITE-SOURCE-AUDIT.md"
+    },
+    "review/issue-5": {
+      "kind": "directory",
+      "purpose": "Issue5 versioned publisher/reader and trusted-controller decision and verification evidence.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-20-controller-bootstrap.md": {
+      "kind": "file",
+      "purpose": "Author-approved minimal trusted controller prerequisite, frozen provenance, self-review and delivery evidence.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md"
     },
     "review/issue-54": {
       "kind": "directory",
@@ -7555,6 +7573,18 @@
       "role": "test",
       "owner": "guides/SITE-STAGING.md"
     },
+    "tests/fixtures/reader-staging-gate.json.gz": {
+      "kind": "file",
+      "purpose": "Frozen 1d2d195 staging-regression report for validator tests only; not fresh admission evidence.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "tests/fixtures/reader-staging-package.json.gz": {
+      "kind": "file",
+      "purpose": "Frozen e24168e real reader package metadata for runtime/rights tests only; not live approval.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md"
+    },
     "tests/fixtures/staging-evidence.cjs": {
       "kind": "file",
       "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
@@ -7680,6 +7710,12 @@
       "purpose": "Behavioral/adversarial tests and fixtures for quality.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/reader-controller.test.cjs": {
+      "kind": "file",
+      "purpose": "Article-aware trusted controller package, rights, bounded size, source evidence and stable HTTP rejection contracts.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md"
     },
     "tests/refactor-metrics.test.cjs": {
       "kind": "file",
@@ -7864,6 +7900,12 @@
     "tests/test_issue58_acceptance.py": {
       "kind": "file",
       "purpose": "Issue58 phase-specific R2 exact formatter/semantic/source/serialization evidence; selected by the shared owning policy only.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue5_acceptance.py": {
+      "kind": "file",
+      "purpose": "Task-only owning issue5 controller acceptance wrapper; retained feature acceptance stays in PR79.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -8890,6 +8932,18 @@
     "tools/staging/package.cjs": {
       "kind": "file",
       "purpose": "Verified public artifact packaging and staging-only headers/noindex additions.",
+      "role": "source",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "tools/staging/reader-index.cjs": {
+      "kind": "file",
+      "purpose": "Finite data-only publication index validator for the controller prerequisite; no DOM runtime or publication generation.",
+      "role": "source",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "tools/staging/reader-snapshot.cjs": {
+      "kind": "file",
+      "purpose": "Finite trusted-main article artifact validator used until PR79 installs its canonical producer contract; never changes public output.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
     },

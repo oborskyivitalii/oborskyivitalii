@@ -1,56 +1,42 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-18**.
+Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Snapshot
 
-- Main/accepted production: 3af9100989c7dd6edc18b0b94c2d59f177cfd465,
-  prod-2026-10-17.4. Canonical .ai is live on GitHub Pages; .com redirects.
-- Active PR105 delivery under #102: plan items 3+4, finite analytics
-  aliases plus #103/#8 Google/Windsor access evidence. No deploy/merge claimed.
-- See review/issue-102/2026-10-18-analytics-and-search-access.md and sanitized
-  provider JSON for source, baseline, actual access and remaining gates.
-- Cloudflare bounded read: 174 pageviews/154 visits through18Oct18:00UTC;
-  sampleInterval1 for total/path groups. These are not unique people.
-- Windsor unavailable in this session; HYPD sites/accountSummaries empty.
-  Existing Google DNS verification and live sitemap do not establish indexing.
-- PR79 remains a separate Draft article/reader branch; article writing continues
-  in another chat. Prior step1 reconciliation is recorded under review/issue-5.
+- Verified main: 82b57b8948c6c30143213b846ee2848d06f8d200.
+- PR79 reader: 1d2d195f354d67ba4a7a72f5f31a468ac2d11123, Ready/open.
+- User accepted preview and authorized permanent staging and its necessary
+  trusted-controller prerequisite under existing issue5, prospective AC23.
+- See review/issue-5/2026-10-20-controller-bootstrap.md for exact contracts,
+  frozen evidence, verification and remaining delivery. No production change.
 
 ## Decisions
 
-- Maintainer authorized one separate PR for plan3+4. Existing #102 owns code,
-  #103 owns connector access and #8 retains full measurement/Search Console.
-- Keep aliases in the separately hashed integration adapter against declared
-  routes, preserving engine/producer identity and existing budgets.
-- No new GA4, paid plan, DNS or account-security change. No wildcard article paths.
-- Article editorial work and PR79 remain independent. Microservices are deferred;
-  static component contracts/release lanes remain the planned direction.
+- Bootstrap from main preserves site/, docs/ and tools/site/ exactly.
+- Preserve existing protected-main publisher authority, leases and all budgets.
+- Private finite staging validators bridge the article format without changing
+  old producer identity; retire them when integrating main into PR79.
+- PR79 remains open until its own new actual staging admission. Its original
+  AC01–AC22, independent/human gates and editorial work stay distinct.
 
 ## Open work
 
-- Maintainer authorized next delivery phase and analytics staging protection.
-  Staging preserves seven vendor-stub scenarios covering canonical/extensionless
-  entry for all five pages plus SDK/origin/offline failure surfaces. Both
-  staging/full validators reject missing forms/routes; optional full stays13.
-  Seven-row coverage preserves released-main controller compatibility.
-- First actual staging preflight passed25/26 guards; security blocked159 new
-  public identifiers (158 generated checksums, one unchanged beacon ID). Exact
-  provenance and predecessor-preserving ledger update are under issue102.
-- Follow-up hardening source tests86/86 passed; exact clean policy, ready-source
-  CI and actual staging result are recorded in PR105/#102. Prior local browser
-  download failed; CI execution is the browser evidence authority.
-- Make existing Windsor or read-only GSC bridge/property available; rediscover
-  exact siteUrl before querying verification, sitemap/indexing/search totals.
-- After accepted deployment observe real-provider aliases/SPA/filter/history,
-  per-vital sample sizes and hosted SDK cost. Keep #102/#103/#8 open meanwhile.
-- Future article integration must register canonical paths through reader contract.
+- Complete bootstrap CI, actual /stage and stable verification, then merge it
+  under the author's prerequisite authorization.
+- Integrate new main into PR79; restore full feature policy and canonical
+  imports, retire bootstrap adapters and old-main toolchain bridge.
+- Obtain fresh current-source checks and actual owner /stage for PR79; inspect
+  exact stable article/media plus native Writing-reader transitions.
+- Retained label run39457580370/1 is successful evidence only; it did not promote.
+- Prior analytics/Search Console follow-up remains owned by issues102/103/8;
+  do not infer account/provider state or changes from this reader task.
 
 ## Next session
 
-1. Revalidate PR105 state/head, main, source/preview/staging checks and #102/#103/#8.
-2. Continue exact current phase; do not repeat account connection assumptions.
-3. Stage/merge/release only with the applicable maintainer decision and gates.
+1. Revalidate bootstrap PR/head/main/checks and issue5 before continuing.
+2. Follow current delivery phase; do not rerun old failed sources as fresh proof.
+3. Report deployed/staged/merged separately and reconcile whole criteria only.
 
 ## Maintenance
 

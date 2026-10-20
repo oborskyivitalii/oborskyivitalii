@@ -700,6 +700,8 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
     'tools/release/rights.cjs',
     'tools/release/rights-record.cjs',
     'tools/quality/artifact.cjs',
+    'tools/staging/reader-snapshot.cjs',
+    'tools/staging/reader-index.cjs',
     'tools/quality/budgets.json',
     'tools/quality/common.cjs',
     'tools/quality/color-motion-contract.cjs',

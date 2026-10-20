@@ -249,6 +249,11 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
     ...(record.hostPolicy === pkg.hostPolicies.snapshotProxy
       ? Object.keys(record.source.files).filter((file) => file.startsWith('snapshots/'))
       : []),
+    ...Object.keys(record.source.files).filter(
+      (file) =>
+        /^(?:articles|article-media|article-snapshots)\//.test(file) ||
+        file === 'publication-index.json'
+    ),
   ];
   const work = names.map(async (file) => {
     try {
@@ -260,7 +265,7 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
         assert.equal(result.redirects, 0, 'immutable snapshot proxy redirected ' + file);
       hosted.responseHeaders(
         result.response.headers,
-        require('../site/snapshot.cjs').immutable(file)
+        require('./reader-snapshot.cjs').immutable(file)
       );
       assertContentType(file, result.response.headers.get('content-type'));
       sameBytes(digest(result.bytes), record.files[file].sha256, file);

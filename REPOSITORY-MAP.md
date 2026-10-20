@@ -75,6 +75,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-41](review/issue-41) | Dated source inventory and content-authority analysis for the same-PR Sol handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-45](review/issue-45) | Issue45 versioned reading clarity findings, implementation and exact-source review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48](review/issue-48) | Issue48 bounded source intake, exact content amendment and dated implementation/review handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-5](review/issue-5) | Issue5 versioned publisher/reader and trusted-controller decision and verification evidence. | guide | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-54](review/issue-54) | Issue54 source audit, architecture and ordered Sol refactor plan. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-56](review/issue-56) | Versioned R1 implementation, tool decision, parity and review evidence for issue56. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [review/issue-58](review/issue-58) | Single R2–R6 refactoring handoff, immutable phase observations and integrated evidence under continuing DraftPR60. | history | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -203,6 +204,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-41.json](.github/acceptance/issue-41.json) | Issue41 AC01-AC06 implementation mapping for exact inputs, admitted editions, generated content, SEO and runtime scope; explicit editorial/browser/review-merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-45.json](.github/acceptance/issue-45.json) | Issue45 scoped formula and heading reading-clarity criterion mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-48.json](.github/acceptance/issue-48.json) | Issue48 theory association, Writing midpoint and evidence-led Matthew response mapping with separate current-preview/editorial/review/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-5.json](.github/acceptance/issue-5.json) | Issue5 controller prerequisite mapping; original feature criteria remain manual pending until PR79 restores its full policy. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-54.json](.github/acceptance/issue-54.json) | Issue54 audit, guide, enforced subset, RI routing and Sol plan acceptance mapping. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-56.json](.github/acceptance/issue-56.json) | Issue56 AC01–AC06 source-bound R1 extraction/tool coverage policy with independent/live delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-58.json](.github/acceptance/issue-58.json) | Shared issue58 AC01–AC10 mapping: frozen R2 checkpoint and current content/CSS/cohesion/resource contracts with final review/live/merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -750,6 +752,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-48/2026-10-08-handoff.md](review/issue-48/2026-10-08-handoff.md) | Issue48 versioned source/impact intake, narrow implementation tasks, independent review and exact-source acceptance handoff. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-48/content-amendment.json](review/issue-48/content-amendment.json) | Issue48 exact hashed theory order/association and Matthew Home/Research deltas, reversed before the immutable issue41 amendment. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 | [review/issue-48/source-inventory.json](review/issue-48/source-inventory.json) | Verified Matthew Skelton public reshare identity, bounded guest-source acquisition metadata/hash, Michael Risch attribution and older encouragement provenance. | history | [guides/SITE-SOURCE-AUDIT.md](guides/SITE-SOURCE-AUDIT.md) |
+
+## review/issue-5/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-5/2026-10-20-controller-bootstrap.md](review/issue-5/2026-10-20-controller-bootstrap.md) | Author-approved minimal trusted controller prerequisite, frozen provenance, self-review and delivery evidence. | guide | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 
 ## review/issue-54/
 
@@ -1903,6 +1911,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/publication-records.test.cjs](tests/publication-records.test.cjs) | Mandatory exact licensed-family records, frozen substitutions, Pages receipt/extraction and actual pinned-main legacy byte regressions. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/quality-sources.test.cjs](tests/quality-sources.test.cjs) | Active offline Color security import closure, exact Bandit scope/expiry/source/coverage negatives and verified RI/coupling checksum-only admission tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/quality.test.cjs](tests/quality.test.cjs) | Behavioral/adversarial tests and fixtures for quality. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [tests/reader-controller.test.cjs](tests/reader-controller.test.cjs) | Article-aware trusted controller package, rights, bounded size, source evidence and stable HTTP rejection contracts. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/refactor-metrics.test.cjs](tests/refactor-metrics.test.cjs) | Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/release-archive.test.cjs](tests/release-archive.test.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/release-controller.test.cjs](tests/release-controller.test.cjs) | Failure-oriented immutable archive, live identity/label/rollback, production control and passive-scan fixtures. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
@@ -1934,6 +1943,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tests/test_issue48_acceptance.py](tests/test_issue48_acceptance.py) | Issue48 strict exact selections of maintained theory association, formula midpoint/cache, response reconciliation and canonical generation checks. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue56_acceptance.py](tests/test_issue56_acceptance.py) | Owning issue56 frozen baseline parity and canonical R1 source/tool coverage acceptance; excluded from generic future regression. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue58_acceptance.py](tests/test_issue58_acceptance.py) | Issue58 phase-specific R2 exact formatter/semantic/source/serialization evidence; selected by the shared owning policy only. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [tests/test_issue5_acceptance.py](tests/test_issue5_acceptance.py) | Task-only owning issue5 controller acceptance wrapper; retained feature acceptance stays in PR79. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue61_acceptance.py](tests/test_issue61_acceptance.py) | Issue61 mapping of existing active Color absence/navigation contracts; task-owned selection, no duplicate browser matrix. | source | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue65_acceptance.py](tests/test_issue65_acceptance.py) | Owning issue65 assertions for reading, disposition topology, preserved sources and pinned overhead. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [tests/test_issue69_acceptance.py](tests/test_issue69_acceptance.py) | Issue69 named selections of maintained entry behavior and shared delivery; independent/browser/device gates remain external. | test | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -1962,6 +1972,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | --- | --- | --- | --- |
 | [tests/fixtures/delivery.cjs](tests/fixtures/delivery.cjs) | Meaningful admission, Pages preservation/recovery and durable archive regressions. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [tests/fixtures/publication-records.cjs](tests/fixtures/publication-records.cjs) | Explicit synthetic licensed runtime and bounded legal-copy fixtures for consumer failures; never actual edition rights acceptance. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tests/fixtures/reader-staging-gate.json.gz](tests/fixtures/reader-staging-gate.json.gz) | Frozen 1d2d195 staging-regression report for validator tests only; not fresh admission evidence. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tests/fixtures/reader-staging-package.json.gz](tests/fixtures/reader-staging-package.json.gz) | Frozen e24168e real reader package metadata for runtime/rights tests only; not live approval. | test | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tests/fixtures/staging-evidence.cjs](tests/fixtures/staging-evidence.cjs) | Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests. | test | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 
 ## tools/
@@ -2141,6 +2153,8 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [tools/staging/edition.cjs](tools/staging/edition.cjs) | Pre-test staging badge/indexing/analytics edition and snapshot identities. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/hosted.cjs](tools/staging/hosted.cjs) | Exact hosted bytes/root/runtime/media/redirects/404 and alias convergence checks. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/package.cjs](tools/staging/package.cjs) | Verified public artifact packaging and staging-only headers/noindex additions. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/reader-index.cjs](tools/staging/reader-index.cjs) | Finite data-only publication index validator for the controller prerequisite; no DOM runtime or publication generation. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
+| [tools/staging/reader-snapshot.cjs](tools/staging/reader-snapshot.cjs) | Finite trusted-main article artifact validator used until PR79 installs its canonical producer contract; never changes public output. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/review-flow.cjs](tools/staging/review-flow.cjs) | Issue/PR preview and owner-stage command routing with exact source/controller trust. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/selftest.cjs](tools/staging/selftest.cjs) | Controller/package/trust self-test entry point. | validator | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |
 | [tools/staging/state.cjs](tools/staging/state.cjs) | Retained staging/promotion/recovery state tied to exact identities. | source | [guides/SITE-STAGING.md](guides/SITE-STAGING.md) |

@@ -165,6 +165,8 @@ test('historical edition verification survives changed or absent authored portra
   for (const name of [
     'tools/release/edition-archive.cjs',
     'tools/quality/artifact.cjs',
+    'tools/staging/reader-snapshot.cjs',
+    'tools/staging/reader-index.cjs',
     'tools/quality/budgets.json',
     'tools/site/snapshot.cjs',
   ]) {

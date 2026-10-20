@@ -123,7 +123,10 @@
         ".github/acceptance/issue-108.json",
         "tests/test_issue108_acceptance.py",
         "review/issue-108/2026-10-19-site-delivery.md",
-        "review/issue-108/content-amendment.json"
+        "review/issue-108/content-amendment.json",
+        ".github/acceptance/issue-5.json",
+        "tests/test_issue5_acceptance.py",
+        "review/issue-5/2026-10-20-controller-bootstrap.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -193,7 +196,12 @@
         "tests/publication-records.test.cjs",
         "tests/fixtures/publication-records.cjs",
         "tools/quality/prepublication.cjs",
-        "tests/prepublication-reuse.test.cjs"
+        "tests/prepublication-reuse.test.cjs",
+        "tests/reader-controller.test.cjs",
+        "tests/fixtures/reader-staging-gate.json.gz",
+        "tests/fixtures/reader-staging-package.json.gz",
+        "tools/staging/reader-snapshot.cjs",
+        "tools/staging/reader-index.cjs"
       ],
       "checks": [
         "acceptance-policy",
@@ -539,7 +547,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "89f89f874d42e9fef64cd5589e12917c71ee5bbe3329d8a4fed74b4543e461eb",
+    "digest": "f610d12f3bbcdaac79dead20f55d2c56ed32c39b4db6b6797131d2c1c408eb33",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -598,6 +606,10 @@
         "sha256": "396f294f03202b08853cb1257aaab5a33e98595a110476512b72abef023936d8"
       },
       {
+        "path": ".github/acceptance/issue-5.json",
+        "sha256": "6fe5deba811714ddd6dcb6f4d5d64bcdecb19bf5764d62e93b8f1e64964871d0"
+      },
+      {
         "path": ".github/acceptance/issue-54.json",
         "sha256": "6ec95ade7f45bda419f06bf7bb102ee0128982d965901060a8850462e6e6d541"
       },
@@ -651,7 +663,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "d1a51882f9ccf06450cebe3bac64ed36a2584b0f6afb6662b78f7b74713ed031"
+        "sha256": "c39be9fe19675becba932c5e1ac4b866e526923d5aff5db744e24138a1009262"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -683,7 +695,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "a67cc536ac2a3e4cdb69c00606fbb8a285ddaf11d5db8b5ee29f46da5507fe31"
+        "sha256": "4e8095716bd36799ffdb16c9e25ace5fd8b105b34e7b8dd87ad6878d215d717d"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -754,6 +766,10 @@
         "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
       },
       {
+        "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
+        "sha256": "fdf2fbcaae383cac0bb8426224085ca71303d82b8d80d41e490209b1b93371fe"
+      },
+      {
         "path": "tests/fixtures/staging-evidence.cjs",
         "sha256": "be5498c726acec8304fb24df0cd3ff093e9946e111925da6a6d4d88c8e67a438"
       },
@@ -822,6 +838,10 @@
         "sha256": "b971868d02730e3ddf4f3371114e4541c3558f084b4587aab84cb24806ff44b8"
       },
       {
+        "path": "tests/test_issue5_acceptance.py",
+        "sha256": "bce92eb8d3b95ce403c5c6ae8c4963b16902c31181696c3ac25039cfdbd9703d"
+      },
+      {
         "path": "tests/test_issue61_acceptance.py",
         "sha256": "23da1dc4b786b62b720b01f7f11dbdb782cc460223c02e5e621ab8a9a45260b7"
       },
@@ -883,7 +903,7 @@
       },
       {
         "path": "tools/quality/staging-gate.cjs",
-        "sha256": "f0b96f1d31db95bad070d285384200700feaaa54c47a44848941c8f1257a2ce5"
+        "sha256": "c4141fb731dd76636ed5d7349718c389e31f712f4d33ec3d4bee7458ff29b54e"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
@@ -891,7 +911,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "8db675be9b355c9d4aa853ab3e40994416a47fca4b7b2402172f88f3f6984993"
+        "sha256": "d61112aaadf505a65ccced741715942aee21b72b18cb6d54bcf9c71a4e379c08"
       },
       {
         "path": "tools/repository_intelligence.py",
