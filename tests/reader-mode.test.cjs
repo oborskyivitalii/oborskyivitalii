@@ -266,15 +266,26 @@ function runtimeHarness() {
   }
   const main = new Surface(),
     toc = new Surface(),
+    currentLabel = new Surface(),
     credit = new Surface(),
     appendix = new Surface(),
     media = new Surface();
   media.matches = false;
   appendix.tagName = 'DETAILS';
   appendix.parentElement = main;
-  const heading = (id) => ({ id, parentElement: main });
-  const first = heading('перший'),
-    second = heading('second'),
+  const heading = (id, offset, tagName) => ({
+    id,
+    offset,
+    tagName,
+    textContent: id + ' title',
+    parentElement: main,
+    getBoundingClientRect() {
+      return { top: this.offset - window.scrollY };
+    },
+  });
+  const first = heading('перший', 600, 'H2'),
+    second = heading('second', 700, 'H3'),
+    third = heading('third', 2000, 'H2'),
     note = { id: 'reader-note-1', parentElement: appendix };
   const link = (hash, inContents = true) => {
     const element = new Surface();
@@ -284,20 +295,23 @@ function runtimeHarness() {
       selector === 'a[href]' ? element : selector === '.article-toc' && inContents ? toc : null;
     return element;
   };
-  const links = [link('#перший'), link('#second')],
+  const links = [link('#перший'), link('#second'), link('#third')],
     citation = link('#reader-note-1', false);
   const details = [toc, credit, appendix];
   main.querySelectorAll = (selector) =>
     ({ '.article-toc a': links, details, '.reader-appendix': [appendix] })[selector] || [];
-  main.querySelector = (selector) => (selector === '.reader-contents' ? toc : null);
-  main.contains = (node) => [first, second, note].includes(node);
+  main.querySelector = (selector) =>
+    ({ '.reader-contents': toc, '[data-reader-current]': currentLabel })[selector] || null;
+  main.contains = (node) => [first, second, third, note].includes(node);
   const document = {
     querySelector: () => main,
-    getElementById: (id) => [first, second, note].find((node) => node.id === id),
+    getElementById: (id) => [first, second, third, note].find((node) => node.id === id),
   };
   const observers = [];
   const window = Object.assign(new Surface(), {
     location: new URL('https://example.com/article'),
+    scrollY: 0,
+    innerHeight: 1000,
     matchMedia: () => media,
     Event: class {
       constructor(type) {
@@ -325,10 +339,12 @@ function runtimeHarness() {
     main,
     details,
     toc,
+    currentLabel,
     credit,
     appendix,
     first,
     second,
+    third,
     citation,
     links,
     window,
@@ -386,19 +402,52 @@ test('reader restores all disclosure geometry before scroll, reveals references 
     assert.ok([...target.listeners.values()].every((set) => set.size === 0));
 });
 
-test('current-section observation retains headings from earlier callbacks and handles leaving entries', () => {
+test('current topic follows the visible reading band and large forward and backward jumps', () => {
   const h = runtimeHarness();
   h.reader.mount();
-  const observe = (target, isIntersecting) => h.observers[0].callback([{ target, isIntersecting }]);
-  observe(h.first, true);
-  observe(h.second, true);
+  const jump = (position) => {
+    h.window.scrollY = position;
+    h.window.emit('scroll');
+  };
+  jump(400);
   assert.equal(
     h.links[0].attributes.get('aria-current'),
     'location',
-    'a later callback is a delta, not a complete visible set'
+    'the first heading in the reading band wins when several are visible'
   );
+  assert.equal(h.currentLabel.textContent, h.first.textContent);
   assert.equal(h.links[1].attributes.has('aria-current'), false);
-  observe(h.first, false);
+  jump(650);
+  assert.equal(h.links[1].attributes.get('aria-current'), 'location');
+  assert.equal(h.currentLabel.textContent, h.second.textContent, 'H3 topics remain current');
+  jump(4000);
+  assert.equal(h.links[2].attributes.get('aria-current'), 'location');
+  assert.equal(h.currentLabel.textContent, h.third.textContent);
+  jump(400);
+  assert.equal(h.links[0].attributes.get('aria-current'), 'location');
+  assert.equal(h.links[2].attributes.has('aria-current'), false);
+  jump(0);
+  assert.equal(h.currentLabel.textContent, '', 'introduction does not inherit a distant topic');
+  assert.ok(h.links.every((link) => !link.attributes.has('aria-current')));
+  h.reader.destroy();
+  jump(4000);
+  assert.equal(h.currentLabel.textContent, '', 'destroy removes the scroll updater');
+});
+
+test('current topic reconciles layout changes and scrolls without IntersectionObserver', () => {
+  const h = runtimeHarness();
+  h.window.scrollY = 400;
+  h.reader.mount();
+  h.first.offset = 400;
+  h.observers[0].callback([{ target: h.first, isIntersecting: false }]);
+  assert.equal(h.links[1].attributes.get('aria-current'), 'location');
+  h.reader.destroy();
+  delete h.window.IntersectionObserver;
+  h.window.scrollY = 1730;
+  h.reader.mount();
+  assert.equal(h.links[2].attributes.get('aria-current'), 'location', 'anchor landing at 270px');
+  h.window.scrollY = 400;
+  h.window.emit('scroll');
   assert.equal(h.links[1].attributes.get('aria-current'), 'location');
   h.reader.destroy();
 });

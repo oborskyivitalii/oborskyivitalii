@@ -10,6 +10,7 @@ const {
   articleHistoryCheckpoint,
   articleAnchorCount,
   validateReaderInteractions,
+  waitForReaderAnchor,
 } = require('../tools/quality/article-browser.cjs');
 const stage = require('../tools/quality/staging-regression.cjs');
 const fixture = require('./fixtures/staging-evidence.cjs');
@@ -328,6 +329,50 @@ test('reader interaction evidence covers native fallbacks and measured dialog us
   const native = readerObserved('no-js');
   native.native.hidden = false;
   assert.throws(() => validateReaderInteractions(native, 'no-js'));
+});
+
+test('native anchor stabilization uses host time without relaxing its deadline or sample count', async () => {
+  const run = (observe) => {
+    let elapsed = 0,
+      reads = 0;
+    const page = {
+      async evaluate() {
+        return observe(reads++);
+      },
+      waitForFunction() {
+        throw Error('Page timers are disabled');
+      },
+    };
+    return {
+      wait: () =>
+        waitForReaderAnchor(page, '#source', {
+          now: () => elapsed,
+          pause: async (duration) => {
+            elapsed += duration;
+          },
+        }),
+      state: () => ({ elapsed, reads }),
+    };
+  };
+  const settled = run((index) => ({ hash: '#source', scroll: index === 0 ? 100 : 200 }));
+  await settled.wait();
+  assert.deepEqual(
+    settled.state(),
+    { elapsed: 200, reads: 5 },
+    'scroll movement resets the three stable sample requirement'
+  );
+  for (const observe of [
+    () => ({ hash: '#wrong', scroll: 200 }),
+    (index) => ({ hash: '#source', scroll: index * 10 }),
+  ]) {
+    const blocked = run(observe);
+    await assert.rejects(blocked.wait(), /did not settle within 2000 ms.*"fragment":"#source"/);
+    assert.deepEqual(
+      blocked.state(),
+      { elapsed: 2000, reads: 40 },
+      'wrong anchors and ongoing motion fail inside the original deadline'
+    );
+  }
 });
 
 test('article anchor lookup accepts numeric HTML IDs and literal CSS punctuation', async () => {

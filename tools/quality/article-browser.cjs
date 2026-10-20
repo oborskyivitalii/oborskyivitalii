@@ -475,22 +475,39 @@ async function imageJourney(page, inventory) {
   return { before, opened, zoomed, escape, close };
 }
 
-async function fragmentState(page, fragment) {
-  await page.evaluate(() => {
-    window.__readerAnchorSample = { scroll: null, stable: 0 };
-  });
-  await page.waitForFunction(
-    (hash) => {
-      const sample = window.__readerAnchorSample;
-      sample.stable = Math.abs(scrollY - sample.scroll) < 0.5 ? sample.stable + 1 : 0;
-      sample.scroll = scrollY;
-      return location.hash === hash && sample.stable >= 3;
-    },
-    fragment,
-    { polling: 50, timeout: 2000 }
+async function waitForReaderAnchor(
+  page,
+  fragment,
+  {
+    now = () => performance.now(),
+    pause = (duration) => new Promise((resolve) => setTimeout(resolve, duration)),
+  } = {}
+) {
+  // Page timers are disabled in the admitted no-JS case. Sample from the host
+  // with the same 50 ms interval, three stable readings and 2 s deadline.
+  const start = now(),
+    samples = [];
+  let previous = null,
+    stable = 0;
+  while (now() - start < 2000) {
+    const sample = await page.evaluate(() => ({ hash: location.hash, scroll: scrollY }));
+    assert.ok(Number.isFinite(sample.scroll), 'native anchor has a measurable scroll position');
+    stable = previous !== null && Math.abs(sample.scroll - previous) < 0.5 ? stable + 1 : 0;
+    previous = sample.scroll;
+    samples.push({ ...sample, elapsedMs: now() - start });
+    if (samples.length > 4) samples.shift();
+    if (sample.hash === fragment && stable >= 3 && now() - start < 2000) return;
+    const remaining = 2000 - (now() - start);
+    if (remaining > 0) await pause(Math.min(50, remaining));
+  }
+  assert.fail(
+    'native anchor did not settle within 2000 ms: ' + JSON.stringify({ fragment, samples })
   );
+}
+
+async function fragmentState(page, fragment) {
+  await waitForReaderAnchor(page, fragment);
   return page.evaluate((hash) => {
-    delete window.__readerAnchorSample;
     const target = document.getElementById(decodeURIComponent(hash.slice(1)));
     const rect = target?.getBoundingClientRect();
     const header = document.querySelector('header')?.getBoundingClientRect();
@@ -516,7 +533,7 @@ function validateVisibleFragment(state, fragment) {
   assert.equal(state.hash, fragment, 'native fragment address retained');
   assert.ok(
     state.top >= state.occlusion - 1 && state.top < state.height,
-    'fragment target is visible below navigation'
+    'fragment target is visible below navigation: ' + JSON.stringify({ fragment, ...state })
   );
   assert.ok(state.bottom > state.top, 'fragment target is painted');
 }
@@ -1778,6 +1795,7 @@ module.exports = {
   validateArticleFlight,
   validateArticleBlocks,
   validateReaderInteractions,
+  waitForReaderAnchor,
   articleJourney,
   validateArticleJourney,
 };

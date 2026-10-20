@@ -1205,9 +1205,9 @@ window.SiteReader=(function readerMode() {
     const listeners = [],
       printState = new Map();
     const details = [...main.querySelectorAll('details')];
-    const listen = (target, event, handler) => {
-      target.addEventListener(event, handler);
-      listeners.push(() => target.removeEventListener(event, handler));
+    const listen = (target, event, handler, options) => {
+      target.addEventListener(event, handler, options);
+      listeners.push(() => target.removeEventListener(event, handler, options));
     };
     const fragmentId = (hash) => {
       try {
@@ -1404,28 +1404,44 @@ window.SiteReader=(function readerMode() {
       reveal(url.hash);
       if (anchor.closest('.article-toc') && contents) contents.open = false;
     });
+    let currentId = null;
     const current = (id) => {
+      if (id === currentId) return;
+      currentId = id;
       for (const link of links) {
         if (fragmentId(link.hash) === id) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       }
       if (currentLabel) currentLabel.textContent = document.getElementById(id)?.textContent || '';
     };
-    const visible = new Set();
+    const updateCurrent = () => {
+      if (printState.size) return;
+      // Intersection callbacks can skip a whole chapter on PageDown, End or history jumps.
+      // Search the ordered heading positions, retaining the first heading in the reading band.
+      let lower = 0,
+        upper = headings.length;
+      while (lower < upper) {
+        const middle = (lower + upper) >>> 1;
+        if (headings[middle].getBoundingClientRect().top < 110) lower = middle + 1;
+        else upper = middle;
+      }
+      const next = headings[lower];
+      const active =
+        next && next.getBoundingClientRect().top <= Math.max(110, window.innerHeight * 0.4)
+          ? next
+          : headings[lower - 1];
+      current(active?.id || '');
+    };
     const observer = window.IntersectionObserver
-      ? new window.IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) visible.add(entry.target);
-              else visible.delete(entry.target);
-            }
-            const active = headings.find((heading) => visible.has(heading));
-            if (active) current(active.id);
-          },
-          { rootMargin: '-110px 0px -60% 0px', threshold: 0 }
-        )
+      ? new window.IntersectionObserver(updateCurrent, {
+          rootMargin: '-110px 0px -60% 0px',
+          threshold: 0,
+        })
       : null;
     for (const heading of headings) observer?.observe(heading);
+    listen(window, 'scroll', updateCurrent, { passive: true });
+    listen(window, 'resize', updateCurrent);
+    updateCurrent();
     listen(window, 'beforeprint', () => {
       closeDialog(false);
       for (const detail of main.querySelectorAll('details')) {

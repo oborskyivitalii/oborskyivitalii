@@ -19,15 +19,15 @@ and rights acceptance; no merge, stable staging or production action is included
 
 ## Findings and decisions
 
-| ID | Evidence / implication | Treatment | Acceptance |
-| --- | --- | --- | --- |
-| F01 | Full-size images previously navigated away from the reading passage | Shared native dialog with fitted/actual-size view, Escape, focus restoration and ordinary image URL fallback | AC08/11 |
-| F02 | Citations interrupted reading with a long bibliography jump | Shared compact source dialog retains full source prose and links; native full-source action and returns remain | AC08/11 |
-| F03 | Four chapter links could not reach H3 topics from deep reading | Native H2/H3 Contents, progressive sticky control, current-topic label, close on selection | AC08/11 |
-| F04 | H4 resembled bold body text; metadata competed with byline | Shared H4 spacing/type and subdued date/read-time metadata | AC08/11 |
-| F05 | Continuous background motion distracted during long-form reading | Preserve last scene paint on settled articles, dim outside the opaque paper, retain requested orbit and principal-page motion | AC08/11 |
-| F06 | Prior hosted smoke missed in-flight response checks before navigation | Register verification at request start and drain late checks before actual document/history navigation; preserve all HTTP/body/byte failures | AC11/12 |
-| F07 | Independent review found open Contents could jump out of view if made static | Default normal flow without JS; mounted enhancement marker keeps both open/closed Contents sticky | AC08/11 |
+| ID  | Evidence / implication                                                       | Treatment                                                                                                                                    | Acceptance |
+| --- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| F01 | Full-size images previously navigated away from the reading passage          | Shared native dialog with fitted/actual-size view, Escape, focus restoration and ordinary image URL fallback                                 | AC08/11    |
+| F02 | Citations interrupted reading with a long bibliography jump                  | Shared compact source dialog retains full source prose and links; native full-source action and returns remain                               | AC08/11    |
+| F03 | Four chapter links could not reach H3 topics from deep reading               | Native H2/H3 Contents, progressive sticky control, current-topic label, close on selection                                                   | AC08/11    |
+| F04 | H4 resembled bold body text; metadata competed with byline                   | Shared H4 spacing/type and subdued date/read-time metadata                                                                                   | AC08/11    |
+| F05 | Continuous background motion distracted during long-form reading             | Preserve last scene paint on settled articles, dim outside the opaque paper, retain requested orbit and principal-page motion                | AC08/11    |
+| F06 | Prior hosted smoke missed in-flight response checks before navigation        | Register verification at request start and drain late checks before actual document/history navigation; preserve all HTTP/body/byte failures | AC11/12    |
+| F07 | Independent review found open Contents could jump out of view if made static | Default normal flow without JS; mounted enhancement marker keeps both open/closed Contents sticky                                            | AC08/11    |
 
 ## Implementation owners
 
@@ -107,8 +107,18 @@ also includes measured before/after geometry in any subsequent failure.
 
 Native inspection of b839e3bd localized the remaining trigger: the sticky summary
 started at82px while the document's scroll-padding began at97px. Focusing that
-partly excluded control repeatedly moved scrollY by408px; excluding scroll
-anchoring alone did not help. The shared sticky top now uses the same header
+partly excluded control moved scrollY by15px in the native CI collector;
+excluding scroll anchoring alone did not help. Cloud locator clicks also center
+the sticky target, so their larger scroll deltas were not product evidence. The shared sticky top now uses the same header
 clearance as the document, keeping the entire control inside the focus viewport.
 This is consistent with the [CSSWG sticky-focus discussion](https://github.com/w3c/csswg-drafts/issues/7930);
 actual final browser evidence remains required rather than inferred from that source.
+
+Sourcef319f563 passed its clean11/11 policy and exact-source lint. CI39404713837
+progressed beyond Contents, then failed no-JS fragment stabilization. Inspection
+confirmed the server already emits open appendices; the collector's page-side
+timer polling was incompatible with disabled JavaScript. Sampling now runs in the
+host with the same50ms interval,2s deadline,3 stable observations and strict target
+visibility. Negative cases retain wrong-fragment and moving-target rejection.
+Current390px captures also exposed a stale topic label after jumping past headings;
+the shared reader now derives it from heading positions on scroll and layout events.
