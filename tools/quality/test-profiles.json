@@ -2018,6 +2018,58 @@
         "review/issue-108/2026-10-19-public-checksum-proof.json.gz",
         "tools/quality/secrets-publication.json"
       ]
+    },
+    {
+      "path": "tests/reader-controller.test.cjs",
+      "language": "javascript",
+      "purpose": "Complete article packages and frozen real runtime/rights/receipt contracts reject corrupt closure, unsafe index, false budgets, weak source/job/coverage and stable HTTP body/MIME/cache drift.",
+      "owner": "guides/SITE-STAGING.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Retain behavioral negatives; when PR79 restores canonical owners update imports and retire only bootstrap-specific adapters. Frozen receipts never grant live admission.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/reader-controller.test.cjs",
+        "tests/fixtures/reader-staging-gate.json.gz",
+        "tests/fixtures/reader-staging-package.json.gz",
+        "tools/staging/reader-snapshot.cjs",
+        "tools/staging/reader-index.cjs",
+        "tools/staging/package.cjs",
+        "tools/staging/review-flow.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/serve.cjs",
+        "tools/release/rights-record.cjs",
+        "docs/**"
+      ]
+    },
+    {
+      "path": "tests/test_issue5_acceptance.py",
+      "language": "python",
+      "purpose": "Issue5 prerequisite selects maintained controller contracts and verifies its explicit unchanged principal-site checkpoint.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Controller prerequisite policy only; retire the unchanged-site checkpoint when PR79 restores its complete feature policy.",
+      "surviving_route": ".github/acceptance/issue-5.json",
+      "inputs": [
+        "tests/test_issue5_acceptance.py",
+        ".github/acceptance/issue-5.json",
+        "tests/reader-controller.test.cjs",
+        "tests/fixtures/reader-staging-gate.json.gz",
+        "tests/fixtures/reader-staging-package.json.gz",
+        "tools/staging/reader-snapshot.cjs",
+        "tools/staging/reader-index.cjs",
+        "tools/staging/package.cjs",
+        "tools/staging/review-flow.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/serve.cjs",
+        "tools/release/rights-record.cjs",
+        "docs/**"
+      ]
     }
   ]
 }

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "6436b0f54af160df1eb494ac3b020d998ec5f4dd7bbaf4f8116439dec10877f1",
+    "digest": "556eb4bf08145f29c56ab7fcbf2cf5f640044ab3a4d82cd1a41ac88234a40ebe",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -95,6 +95,11 @@
         "sha256": "396f294f03202b08853cb1257aaab5a33e98595a110476512b72abef023936d8"
       },
       {
+        "path": ".github/acceptance/issue-5.json",
+        "identity_mode": "content",
+        "sha256": "6fe5deba811714ddd6dcb6f4d5d64bcdecb19bf5764d62e93b8f1e64964871d0"
+      },
+      {
         "path": ".github/acceptance/issue-54.json",
         "identity_mode": "content",
         "sha256": "6ec95ade7f45bda419f06bf7bb102ee0128982d965901060a8850462e6e6d541"
@@ -166,12 +171,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "d1a51882f9ccf06450cebe3bac64ed36a2584b0f6afb6662b78f7b74713ed031"
+        "sha256": "c39be9fe19675becba932c5e1ac4b866e526923d5aff5db744e24138a1009262"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5fe0e27c28cf5eff539ce2048635c773561184f04d4cde2ee17fbc156224a546"
+        "sha256": "dd34c2a22cb5ba77c9036c6727ff38bfb42d16ba53651163d61bc3498ef3a052"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -211,7 +216,7 @@
       {
         "path": ".github/workflows/site-color-review.yml",
         "identity_mode": "content",
-        "sha256": "a67cc536ac2a3e4cdb69c00606fbb8a285ddaf11d5db8b5ee29f46da5507fe31"
+        "sha256": "4e8095716bd36799ffdb16c9e25ace5fd8b105b34e7b8dd87ad6878d215d717d"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -301,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "730ad359e82a6efff72f938fc9e7763c1ea6bc95015c96fc19508281719d2b67"
+        "sha256": "d719da9a46fc2832b525b939f9506b51af94930d1a91f8d30261baf9ed3d8d25"
       },
       {
         "path": "NOTICE.md",
@@ -1061,6 +1066,11 @@
         "path": "review/issue-48/source-inventory.json",
         "identity_mode": "content",
         "sha256": "630a783e1f6baae1b3ebbf3d3878c9cd48fa58841059cc4b1bb26a68ca481de4"
+      },
+      {
+        "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
+        "identity_mode": "content",
+        "sha256": "fdf2fbcaae383cac0bb8426224085ca71303d82b8d80d41e490209b1b93371fe"
       },
       {
         "path": "review/issue-54/2026-10-08-analysis.md",
@@ -5663,6 +5673,16 @@
         "sha256": "b8bf29022b8e5295deab65ebb52c9613608498e50f20edf8d5207505acda8bed"
       },
       {
+        "path": "tests/fixtures/reader-staging-gate.json.gz",
+        "identity_mode": "content",
+        "sha256": "988c2b998133e91f508b44f984d51482692586a844df41439b644dbf3f29bf7f"
+      },
+      {
+        "path": "tests/fixtures/reader-staging-package.json.gz",
+        "identity_mode": "content",
+        "sha256": "c2b8833d5b145b9a173762de0af6b5541f6f989705e1fb532686799d1cc56f74"
+      },
+      {
         "path": "tests/fixtures/staging-evidence.cjs",
         "identity_mode": "content",
         "sha256": "be5498c726acec8304fb24df0cd3ff093e9946e111925da6a6d4d88c8e67a438"
@@ -5768,6 +5788,11 @@
         "sha256": "0603330a86a9a4966d212e074d40d817f626ac7992c4c66965c65d581e3e054e"
       },
       {
+        "path": "tests/reader-controller.test.cjs",
+        "identity_mode": "content",
+        "sha256": "011a91ac882adb53103a6f4106330ac78daa91ff1282e101d2baee9910e65ea3"
+      },
+      {
         "path": "tests/refactor-metrics.test.cjs",
         "identity_mode": "content",
         "sha256": "a5254266149d49de4bab02dc161a1857de498dcc92400af1791226000b99b3be"
@@ -5775,7 +5800,7 @@
       {
         "path": "tests/release-archive.test.cjs",
         "identity_mode": "content",
-        "sha256": "4abc9565fb8d37cf2ffeed7d297a9dc4e984173b70c092c0138d315ac14c98ea"
+        "sha256": "2dca5eeed49aea8930064acd6da6f82c3dfebd2481d2235d3fe4d66aebad7a23"
       },
       {
         "path": "tests/release-controller.test.cjs",
@@ -5785,7 +5810,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "cf246e9026b0e9ef526e8f7ae5883b18313d6d2f0ff002179c0aa79b15acbced"
+        "sha256": "84412d5eeeab9ed1079146c23c64084b191639518665f49b803bbece6df559b2"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -5921,6 +5946,11 @@
         "path": "tests/test_issue58_acceptance.py",
         "identity_mode": "content",
         "sha256": "b971868d02730e3ddf4f3371114e4541c3558f084b4587aab84cb24806ff44b8"
+      },
+      {
+        "path": "tests/test_issue5_acceptance.py",
+        "identity_mode": "content",
+        "sha256": "bce92eb8d3b95ce403c5c6ae8c4963b16902c31181696c3ac25039cfdbd9703d"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -6145,7 +6175,7 @@
       {
         "path": "tools/quality/artifact.cjs",
         "identity_mode": "content",
-        "sha256": "cbaecf80e783a0dd7bf4aec3ef6695e03f00bc409c349dec37ff5fcbcb887978"
+        "sha256": "a4bd118fb2e27d83c83c0ceae8e9eb6d11bfd079c4dd75f8d1fff88fcd15e6e6"
       },
       {
         "path": "tools/quality/bandit-policy.json",
@@ -6205,7 +6235,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "954492bd151cab0772f1e5e0617210ee9cc04fd2c144f3cfec7e295572aee4a0"
+        "sha256": "7729a0a4bc964a027d7ca1fc11a2ac7f6bc3f33e8b1d2da31cacd7e6ab42da88"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6400,7 +6430,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "b77de9bfc06a7adb607eaa67d337dba4ce722da65786a1b2fabd3df87a21e1eb"
+        "sha256": "7aae3dee30b21344f950096044b5bf72280aba051ae08b2e43b56639bc80f37e"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6425,7 +6455,7 @@
       {
         "path": "tools/quality/serve.cjs",
         "identity_mode": "content",
-        "sha256": "1b4c5276ff8287565a200b0fdeaaf6f7e548e84961550267ff9daf69a0723eca"
+        "sha256": "2a0a7b7226ba82141d5d5c83c28c3a4c3f92257273f70a06f0f67752eaeef29d"
       },
       {
         "path": "tools/quality/source-test-worker.cjs",
@@ -6440,7 +6470,7 @@
       {
         "path": "tools/quality/staging-gate.cjs",
         "identity_mode": "content",
-        "sha256": "f0b96f1d31db95bad070d285384200700feaaa54c47a44848941c8f1257a2ce5"
+        "sha256": "c4141fb731dd76636ed5d7349718c389e31f712f4d33ec3d4bee7458ff29b54e"
       },
       {
         "path": "tools/quality/staging-regression.cjs",
@@ -6460,7 +6490,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "8db675be9b355c9d4aa853ab3e40994416a47fca4b7b2402172f88f3f6984993"
+        "sha256": "d61112aaadf505a65ccced741715942aee21b72b18cb6d54bcf9c71a4e379c08"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6600,7 +6630,7 @@
       {
         "path": "tools/release/rights-record.cjs",
         "identity_mode": "content",
-        "sha256": "a75627387167bfc822f78b2cfaae6fdeecbbc970621dcfcecca7c435b6b10ca8"
+        "sha256": "ba8614fd16fef93ad5db4dcb86fb95825da2bcb1b163e6ef13b6b3a94b61d200"
       },
       {
         "path": "tools/release/rights.cjs",
@@ -6740,12 +6770,22 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "bacc9444d5a17f3655eaa99cbf0a949e6660c1365d8a1b6185975f31bfba5968"
+        "sha256": "e90cfeba5a73aa0a486d3f0759f5699d94f98d90ad693302aafff07beef1e72e"
+      },
+      {
+        "path": "tools/staging/reader-index.cjs",
+        "identity_mode": "content",
+        "sha256": "d695121ca18316f704cd29900898e61aa99fc849e5861cd4d11ea4a88b8e601c"
+      },
+      {
+        "path": "tools/staging/reader-snapshot.cjs",
+        "identity_mode": "content",
+        "sha256": "5d70466688e75fe9b54ff17cfc00af07f9c5876ea019ccfa7f885a0dcc99aaa8"
       },
       {
         "path": "tools/staging/review-flow.cjs",
         "identity_mode": "content",
-        "sha256": "4f3358c70f56b6d855e5843db238e30dfd9a05fc03c7ed620cac01db2b8f3dca"
+        "sha256": "f4a03133bcf5ccf53c9f2b212ef227cd9e01962d4b990ad3e44e3a2af22ab70c"
       },
       {
         "path": "tools/staging/selftest.cjs",
@@ -7214,6 +7254,17 @@
         "AGENTS.md"
       ],
       "title": "issue-48.json"
+    },
+    {
+      "path": ".github/acceptance/issue-5.json",
+      "kind": "file",
+      "purpose": "Issue5 controller prerequisite mapping; original feature criteria remain manual pending until PR79 restores its full policy.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-5.json"
     },
     {
       "path": ".github/acceptance/issue-54.json",
@@ -9348,6 +9399,17 @@
         "AGENTS.md"
       ],
       "title": "source-inventory.json"
+    },
+    {
+      "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
+      "kind": "file",
+      "purpose": "Author-approved minimal trusted controller prerequisite, frozen provenance, self-review and delivery evidence.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 5 — 20 October 2026 trusted-controller prerequisite"
     },
     {
       "path": "review/issue-54/2026-10-08-analysis.md",
@@ -19470,6 +19532,28 @@
       "title": "publication-records.cjs"
     },
     {
+      "path": "tests/fixtures/reader-staging-gate.json.gz",
+      "kind": "file",
+      "purpose": "Frozen 1d2d195 staging-regression report for validator tests only; not fresh admission evidence.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-staging-gate.json.gz"
+    },
+    {
+      "path": "tests/fixtures/reader-staging-package.json.gz",
+      "kind": "file",
+      "purpose": "Frozen e24168e real reader package metadata for runtime/rights tests only; not live approval.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-staging-package.json.gz"
+    },
+    {
       "path": "tests/fixtures/staging-evidence.cjs",
       "kind": "file",
       "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
@@ -19699,6 +19783,17 @@
         "AGENTS.md"
       ],
       "title": "quality.test.cjs"
+    },
+    {
+      "path": "tests/reader-controller.test.cjs",
+      "kind": "file",
+      "purpose": "Article-aware trusted controller package, rights, bounded size, source evidence and stable HTTP rejection contracts.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-controller.test.cjs"
     },
     {
       "path": "tests/refactor-metrics.test.cjs",
@@ -20040,6 +20135,17 @@
         "AGENTS.md"
       ],
       "title": "test_issue58_acceptance.py"
+    },
+    {
+      "path": "tests/test_issue5_acceptance.py",
+      "kind": "file",
+      "purpose": "Task-only owning issue5 controller acceptance wrapper; retained feature acceptance stays in PR79.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "test_issue5_acceptance.py"
     },
     {
       "path": "tests/test_issue61_acceptance.py",
@@ -21846,6 +21952,28 @@
       "title": "package.cjs"
     },
     {
+      "path": "tools/staging/reader-index.cjs",
+      "kind": "file",
+      "purpose": "Finite data-only publication index validator for the controller prerequisite; no DOM runtime or publication generation.",
+      "role": "source",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-index.cjs"
+    },
+    {
+      "path": "tools/staging/reader-snapshot.cjs",
+      "kind": "file",
+      "purpose": "Finite trusted-main article artifact validator used until PR79 installs its canonical producer contract; never changes public output.",
+      "role": "source",
+      "owner": "guides/SITE-STAGING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-snapshot.cjs"
+    },
+    {
       "path": "tools/staging/review-flow.cjs",
       "kind": "file",
       "purpose": "Issue/PR preview and owner-stage command routing with exact source/controller trust.",
@@ -22327,6 +22455,16 @@
       "purpose": "Issue48 bounded source intake, exact content amendment and dated implementation/review handoff.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-5",
+      "kind": "directory",
+      "purpose": "Issue5 versioned publisher/reader and trusted-controller decision and verification evidence.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md",
       "instructions": [
         "AGENTS.md"
       ]

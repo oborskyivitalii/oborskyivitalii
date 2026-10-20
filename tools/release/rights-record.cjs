@@ -76,16 +76,54 @@ function publication(record, report, expectedEdition = record.edition?.id) {
       'excluded material cannot inherit a blanket license'
     );
   }
+  const articles = record.components.articles || {};
+  const hosted = report.materials?.hostedEditions;
+  assert.ok(Array.isArray(hosted) && hosted.length <= 50, 'finite hosted edition notices required');
   assert.equal(
-    report.materials?.scope,
-    'linked-metadata-only',
+    report.materials.scope,
+    Object.keys(articles).length ? 'exact-hosted-editions' : 'linked-metadata-only',
     'unsupported publication material scope'
   );
   assert.deepEqual(
-    report.materials.hostedEditions,
-    [],
+    hosted.map((item) => item.key).sort(),
+    Object.keys(articles).sort(),
     'hosted article editions require their own reviewed notices'
   );
+  for (const item of hosted) {
+    const descriptor = articles[item.key];
+    for (const key of ['articleId', 'contentEdition', 'sourceSha256', 'semanticSha256'])
+      assert.equal(item[key], descriptor[key], 'hosted edition identity differs');
+    assert.deepEqual(
+      item.documents,
+      [descriptor.alias, descriptor.url],
+      'hosted notice documents differ'
+    );
+    assert.deepEqual(item.assets, descriptor.assets, 'hosted notice resources differ');
+    assert.match(item.noticeDigest, sha256, 'hosted notice digest required');
+    assert.ok(['accepted', 'review-pending'].includes(item.status), 'hosted rights state required');
+    assert.ok(
+      expectedEdition !== 'production' || (item.status === 'accepted' && !descriptor.candidate),
+      'hosted production rights remain pending'
+    );
+    const data = { ...item },
+      { noticeDigest, inputs } = item;
+    for (const field of ['key', 'noticeDigest', 'documents', 'assets', 'inputs'])
+      delete data[field];
+    assert.equal(
+      artifact.digest(JSON.stringify(data)),
+      noticeDigest,
+      'hosted exact notice changed'
+    );
+    assert.ok(
+      typeof item.notice === 'string' && item.notice.trim(),
+      'hosted rights notice required'
+    );
+    assert.ok(inputs && Object.keys(inputs).length > 0, 'hosted source inventory required');
+    for (const hash of Object.values(inputs))
+      assert.match(hash, sha256, 'hosted input digest required');
+    for (const name of [...item.documents, ...item.assets])
+      assert.ok(Object.hasOwn(report.files, name), 'hosted rights file missing');
+  }
   assert.equal(
     report.materials.linkedEditionCount,
     Object.values(report.linkedPublications).reduce((count, item) => count + item.urls.length, 0),
@@ -170,6 +208,16 @@ function verify(publicDirectory, record, report, trustedInventoryDigest) {
 }
 
 function copies(publicDirectory, record, report) {
+  for (const item of report.materials?.hostedEditions || []) {
+    for (const name of item.documents) {
+      const html = noticeHTML(fs.readFileSync(path.join(publicDirectory, name), 'utf8'));
+      assert.equal(
+        html.split('data-article-rights="' + item.noticeDigest + '"').length,
+        2,
+        'frozen hosted rights notice missing or hidden'
+      );
+    }
+  }
   assert.ok(
     Array.isArray(report.publicNotices) && report.publicNotices.length === 2,
     'frozen public legal notice inventory required'
