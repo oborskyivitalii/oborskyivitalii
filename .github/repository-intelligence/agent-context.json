@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "c132f312e294244065acb923ccd6c23e4afd19036f3f58d5a2f03c2a72a7673b",
+    "digest": "2f6c93f46515f6144010c932106d8f2ab0571bdecf12d25866ad62c40cf7ab75",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -176,12 +176,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "742f8a4d69faf5d8955a3922c5d1b559fd8af6514abd9c2ccdae9a23642ad3a4"
+        "sha256": "bea29ce21220ef4b473483b9435e69a0504c76d5cc6341dc8509396dfebed061"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1e20d3538e9566af325d9f6477c8c982ee4c7ece1fc3c8b14a40bc5132d63d75"
+        "sha256": "1411b0cf1206aec292f8b5ecf11f8a9cffcc4c0a827c307cad787939939b36e7"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -311,7 +311,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ebd148bc73dd85510a1a030ec4e3fe01bf1430d6a5cf1389c6ebd2305ae8a1d0"
+        "sha256": "d51665d8146fb5b9e2cfbd53d77152ff77e272accffd75b6114edbeb917cc557"
       },
       {
         "path": "NOTICE.md",
@@ -1461,6 +1461,26 @@
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
         "sha256": "545f4f089b969e2ed7e985142fb956f5c53852acd471c335aeb54c94502d8c82"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-performance-evidence/locator.json",
+        "identity_mode": "content",
+        "sha256": "420462f156418a3aef73fe4c00d04e641ef2e75b63ba1a1e52240d7116d6f7b0"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-performance-evidence/manifest.json",
+        "identity_mode": "content",
+        "sha256": "ef2171514708627733b18eeb83c62058472903122235e0a30a94673294670b28"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-performance-evidence/summary.json",
+        "identity_mode": "content",
+        "sha256": "36961407befb7769ab906dd9c7f6e11b947d931316986d655c9215f591b5c205"
+      },
+      {
+        "path": "review/issue-5/2026-10-21-performance-review.md",
+        "identity_mode": "content",
+        "sha256": "21ef66c9de7761fef070c278262e940e0c35a4c1762cdc7836f24fcb1bef562f"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6773,6 +6793,11 @@
         "sha256": "5b968519903066c2f9a84c4d26613b53ec4dfeedba6b10b510e3344ec44ecc67"
       },
       {
+        "path": "tests/performance-suite.test.cjs",
+        "identity_mode": "content",
+        "sha256": "227fb6472428f07484c9f1ee092760a74b2645cb2361993b0ad7ed336b9e22d3"
+      },
+      {
         "path": "tests/phase-checkpoint.test.cjs",
         "identity_mode": "content",
         "sha256": "5f097aab452cf06e7455addd68ff05aecb8523a5b111fd9a8b291b869716d87c"
@@ -7330,7 +7355,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "894f9c0713039e36e3672dd62531ae2375000b93f6c6e58354efed24b6b93d4c"
+        "sha256": "0be442900a10dbed60ba8d92048c0c5095bb7cd2f2fdfc55d5ae55e9a090e9d6"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -7588,6 +7613,11 @@
         "sha256": "3d7fda5680822f5d0d890b8e115d09506719229417630d0f990eaedbdc665bab"
       },
       {
+        "path": "tools/quality/performance.cjs",
+        "identity_mode": "content",
+        "sha256": "5b9f198fd9da5eaa2043cf031b3c68a4ea62f368d6c8d0f7fbc88d1e21fa9de1"
+      },
+      {
         "path": "tools/quality/phase-checkpoint.cjs",
         "identity_mode": "content",
         "sha256": "07c5fb1cf3e59983e613879b629756f373b8107a0918d5f6b7a8e71a3d8a8bc0"
@@ -7616,6 +7646,11 @@
         "path": "tools/quality/python_toolchain.py",
         "identity_mode": "content",
         "sha256": "c837dae35711237dc7a87d68b0bcefba2256c4dca148a1789de378e37252916f"
+      },
+      {
+        "path": "tools/quality/reader-performance.cjs",
+        "identity_mode": "content",
+        "sha256": "1a1d9d238270b159681d269b5e71f2f2f669d40c6d89b8d5b0249f7d1ddeae10"
       },
       {
         "path": "tools/quality/reading-clarity.cjs",
@@ -7715,7 +7750,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "6bcd90729beb6be46db6faf14d03ae807ef04631ddfd07658a0bb17522e35db2"
+        "sha256": "dc52efed0c73b8abe0beba7bffa017cc6935545730a08c2773f68b018545421f"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7755,7 +7790,7 @@
       {
         "path": "tools/quality/validate.cjs",
         "identity_mode": "content",
-        "sha256": "855393e09e1cd1b777b5eee5602a083246aaca08185ec7469e3438191391cc26"
+        "sha256": "1bb6fc30a52cfc37ae05872a1a14e4467e6c68efd1dac0985a115d64da2c45e3"
       },
       {
         "path": "tools/quality/workflow-artifacts.cjs",
@@ -11542,6 +11577,50 @@
         "AGENTS.md"
       ],
       "title": "Issue 5 — reusable reader interactions"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/locator.json",
+      "kind": "file",
+      "purpose": "Immutable same-repository external raw-evidence commit/tree and remote verified Git blob/byte hashes, preserving active RI bounds.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "locator.json"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/manifest.json",
+      "kind": "file",
+      "purpose": "Complete raw performance evidence archive and per-member source/byte identities.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "manifest.json"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence/summary.json",
+      "kind": "file",
+      "purpose": "Computed strict performance outcome and median metrics.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "summary.json"
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-review.md",
+      "kind": "file",
+      "purpose": "Issue5 assembled strict performance matrix, exact staged-artifact results, limitations and independent review evidence.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 5 — 2026-10-21 performance suite and findings"
     },
     {
       "path": "review/issue-5/pmday-candidate/README.md",
@@ -23226,6 +23305,17 @@
       "title": "pages-migration.test.cjs"
     },
     {
+      "path": "tests/performance-suite.test.cjs",
+      "kind": "file",
+      "purpose": "Performance diagnostic failure propagation, reader inventory/profile completeness and positive/zero motion regressions.",
+      "role": "test",
+      "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "performance-suite.test.cjs"
+    },
+    {
       "path": "tests/phase-checkpoint.test.cjs",
       "kind": "file",
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
@@ -25019,6 +25109,17 @@
       "title": "navigation.cjs"
     },
     {
+      "path": "tools/quality/performance.cjs",
+      "kind": "file",
+      "purpose": "Explicit sequential full performance diagnostic; retains independent Lighthouse, motion and reader failures without release activation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "performance.cjs"
+    },
+    {
       "path": "tools/quality/phase-checkpoint.cjs",
       "kind": "file",
       "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
@@ -25083,6 +25184,17 @@
         "AGENTS.md"
       ],
       "title": "python_toolchain.py"
+    },
+    {
+      "path": "tools/quality/reader-performance.cjs",
+      "kind": "file",
+      "purpose": "Artifact-driven supplemental reader Lighthouse and raw motion measurements with unchanged metric budgets.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "reader-performance.cjs"
     },
     {
       "path": "tools/quality/reading-clarity.cjs",
@@ -26594,6 +26706,16 @@
       "purpose": "Original browser captures supporting the 19 October reader UX/UI review.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-5/2026-10-21-performance-evidence",
+      "kind": "directory",
+      "purpose": "Exact frozen-site performance reports, traces, collector source bundle and independent audit evidence; not runtime source.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md",
       "instructions": [
         "AGENTS.md"
       ]

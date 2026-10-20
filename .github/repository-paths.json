@@ -10674,6 +10674,54 @@
       "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "tests/performance-suite.test.cjs": {
+      "kind": "file",
+      "purpose": "Performance diagnostic failure propagation, reader inventory/profile completeness and positive/zero motion regressions.",
+      "role": "test",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/performance.cjs": {
+      "kind": "file",
+      "purpose": "Explicit sequential full performance diagnostic; retains independent Lighthouse, motion and reader failures without release activation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tools/quality/reader-performance.cjs": {
+      "kind": "file",
+      "purpose": "Artifact-driven supplemental reader Lighthouse and raw motion measurements with unchanged metric budgets.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-5/2026-10-21-performance-review.md": {
+      "kind": "file",
+      "purpose": "Issue5 assembled strict performance matrix, exact staged-artifact results, limitations and independent review evidence.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence": {
+      "kind": "directory",
+      "purpose": "Exact frozen-site performance reports, traces, collector source bundle and independent audit evidence; not runtime source.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence/manifest.json": {
+      "kind": "file",
+      "purpose": "Complete raw performance evidence archive and per-member source/byte identities.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence/summary.json": {
+      "kind": "file",
+      "purpose": "Computed strict performance outcome and median metrics.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence/locator.json": {
+      "kind": "file",
+      "purpose": "Immutable same-repository external raw-evidence commit/tree and remote verified Git blob/byte hashes, preserving active RI bounds.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
     }
   }
 }

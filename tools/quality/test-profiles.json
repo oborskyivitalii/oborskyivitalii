@@ -2607,6 +2607,26 @@
         "tools/site/snapshot.cjs",
         "site/engine/article-tags.cjs"
       ]
+    },
+    {
+      "path": "tests/performance-suite.test.cjs",
+      "language": "javascript",
+      "purpose": "Sequential strict performance diagnostics preserve independent failures and original budgets; actual artifact-driven readers cannot substitute for the five-route matrix.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "retain failure propagation and reader completeness negatives without running browsers in source profiles",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/performance-suite.test.cjs",
+        "tools/quality/performance.cjs",
+        "tools/quality/reader-performance.cjs",
+        "tools/quality/validate.cjs",
+        "tools/quality/lighthouse.cjs",
+        "tools/quality/motion.cjs",
+        "tools/quality/budgets.json",
+        "tests/fixtures/staging-evidence.cjs"
+      ]
     }
   ]
 }

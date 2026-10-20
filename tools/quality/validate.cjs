@@ -12,22 +12,28 @@ class PerformanceBudgetError extends Error {
 }
 function performanceBudgetFailure(error) {
   return error instanceof PerformanceBudgetError
-    ? { kind: 'performance-budget', violations: structuredClone(error.violations) }
+    ? {
+        kind: 'performance-budget',
+        violations: structuredClone(error.violations),
+      }
     : null;
 }
 function unique(rows, key) {
   const ids = rows.map(key);
   assert.equal(new Set(ids).size, ids.length, 'duplicate evidence');
 }
-function lighthouse(r) {
+function lighthouse(r, routes = budgets.routes) {
+  assert.ok(Array.isArray(routes) && routes.length > 0, 'missing Lighthouse route inventory');
+  assert.ok(routes.every((route) => typeof route === 'string' && route.length > 0));
+  unique(routes, (route) => route);
   assert.equal(
     r.rows.length,
-    budgets.routes.length * 2 * budgets.lighthouse.runs,
+    routes.length * 2 * budgets.lighthouse.runs,
     'missing Lighthouse runs'
   );
   unique(r.rows, (x) => `${x.route}/${x.formFactor}/${x.run}`);
   const medians = [];
-  for (const route of budgets.routes)
+  for (const route of routes)
     for (const profile of ['mobile', 'desktop']) {
       const rows = r.rows.filter((x) => x.route === route && x.formFactor === profile);
       assert.equal(rows.length, budgets.lighthouse.runs);
@@ -809,7 +815,10 @@ function aggregate({
     false
   );
   if (require('./common.cjs').variant(m).id === 'color')
-    colorReports(reports, { ...m, variant: require('./common.cjs').variant(m) });
+    colorReports(reports, {
+      ...m,
+      variant: require('./common.cjs').variant(m),
+    });
   if (automatedOnly)
     assert.ok(full && hostedURL, 'automated hosted checks cannot replace release acceptance');
   if (hostedURL) {
@@ -849,7 +858,10 @@ function aggregate({
     pass: true,
     ...m,
     jobs,
-    checkedReports: reports.map((x) => ({ kind: x.kind, platform: x.environment?.platform })),
+    checkedReports: reports.map((x) => ({
+      kind: x.kind,
+      platform: x.environment?.platform,
+    })),
     checkedAt: new Date().toISOString(),
     hostedOrigin: hostedURL || 'pending #8',
     deploymentAuthorized: false,
@@ -1050,6 +1062,7 @@ if (require.main === module) {
 }
 module.exports = {
   lighthouse,
+  measure,
   motion,
   transition,
   performanceBudgetFailure,
