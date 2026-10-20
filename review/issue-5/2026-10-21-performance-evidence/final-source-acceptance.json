@@ -1,0 +1,781 @@
+{
+  "automation_pass": true,
+  "checks": {
+    "BASIC": {
+      "command": [
+        "node",
+        "tools/quality/local.cjs"
+      ],
+      "failure_detail": null,
+      "kind": "node-basic",
+      "result": {
+        "checks": [
+          "generated source",
+          "finite geometry",
+          "script syntax",
+          "single main heading",
+          "footer links",
+          "artifact snapshot integrity",
+          "size budgets"
+        ],
+        "deploymentAuthorized": false,
+        "extensions": {
+          "color": {
+            "focusedTests": {
+              "failed": 0,
+              "files": [
+                "tests/flight.test.cjs"
+              ],
+              "passed": 10,
+              "skipped": 0,
+              "total": 10
+            },
+            "status": "checked"
+          },
+          "sharedMotifs": {
+            "status": "checked",
+            "symbols": [
+              "brain",
+              "line-chart",
+              "bar-chart",
+              "scatter-chart",
+              "attention",
+              "softmax",
+              "entropy"
+            ]
+          }
+        },
+        "focusedTests": {
+          "failed": 0,
+          "files": [
+            "tests/theme.test.cjs",
+            "tests/archive.test.cjs"
+          ],
+          "passed": 16,
+          "skipped": 0,
+          "total": 16
+        },
+        "geometry": [
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 7344,
+            "finite": true,
+            "lines": 4735,
+            "modelBytes": 4851263,
+            "objects": 252,
+            "route": "index",
+            "vertices": 14070
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 5488,
+            "finite": true,
+            "lines": 3167,
+            "modelBytes": 4094842,
+            "objects": 252,
+            "route": "index",
+            "vertices": 10650
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 7842,
+            "finite": true,
+            "lines": 6145,
+            "modelBytes": 5360200,
+            "objects": 252,
+            "route": "research",
+            "vertices": 14644
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 5590,
+            "finite": true,
+            "lines": 3777,
+            "modelBytes": 4242120,
+            "objects": 252,
+            "route": "research",
+            "vertices": 10488
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 4798,
+            "finite": true,
+            "lines": 5057,
+            "modelBytes": 3875380,
+            "objects": 252,
+            "route": "writing",
+            "vertices": 11422
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 3890,
+            "finite": true,
+            "lines": 3549,
+            "modelBytes": 3447366,
+            "objects": 252,
+            "route": "writing",
+            "vertices": 9398
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 6460,
+            "finite": true,
+            "lines": 5039,
+            "modelBytes": 4612956,
+            "objects": 252,
+            "route": "talks",
+            "vertices": 13288
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 5474,
+            "finite": true,
+            "lines": 3535,
+            "modelBytes": 4306367,
+            "objects": 252,
+            "route": "talks",
+            "vertices": 11196
+          },
+          {
+            "budget": "configured",
+            "compact": false,
+            "faces": 5998,
+            "finite": true,
+            "lines": 4311,
+            "modelBytes": 4162788,
+            "objects": 252,
+            "route": "credits",
+            "vertices": 11424
+          },
+          {
+            "budget": "configured",
+            "compact": true,
+            "faces": 4928,
+            "finite": true,
+            "lines": 3311,
+            "modelBytes": 3938047,
+            "objects": 252,
+            "route": "credits",
+            "vertices": 9648
+          }
+        ],
+        "maxHtmlBytes": 94744,
+        "pass": true,
+        "profile": "local",
+        "routes": 5,
+        "uniqueScripts": 9,
+        "workflow": {
+          "idConsumption": true,
+          "unique": true,
+          "uploads": 90
+        }
+      },
+      "returncode": 0,
+      "status": "passed",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "f203e7202b6d2249affff6cefed9342ecf52ea0ddc1e8a4e85a043b7d96f507a"
+    },
+    "CONTENT-CI": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_check_selection",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "CONTENT-LANES": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_independent_delivery_lanes",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "CONTENT-RELEASE": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_content_release_contracts",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "CONTROLLER": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_controller_contracts",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "CURRENT-RI": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views",
+      "test_file_sha256": "aee20aab4fc11eb662f0cd5fe904634a2f629b3e4886c22a647d58628211de7a",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "DELIVERY": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_delivery",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "PUBLISHER": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_publisher_contracts",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "READER": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_reader_and_generation",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "RI-CI": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes",
+      "test_file_sha256": "b2e9b67e7a4f0f97809e7a32b6e754c440fe10b8d7d411566a1208eff12c446d",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "STYLE-GUARD": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard",
+      "test_file_sha256": "6928de833df06bfaf092442c719db0919bd936d3cd19c33d8c04006f29c8ab1c",
+      "tests_run": 1,
+      "unexpected_successes": []
+    },
+    "WRITING-CATALOG": {
+      "captured_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_failures": [],
+      "failures": [],
+      "kind": "unittest",
+      "skipped": [],
+      "status": "passed",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_writing_catalog_contracts",
+      "test_file_sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae",
+      "tests_run": 1,
+      "unexpected_successes": []
+    }
+  },
+  "criteria": [
+    {
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Complete current catalog and regenerated navigation views. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER",
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "INVENTORY"
+      ],
+      "gates_status": "pending",
+      "id": "AC01",
+      "intent": "Inventory pinned migration components, provenance, licenses and reviewed upgrade procedure.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Owner decision 15 October: real PMDay authoring and visuals resume as pmday-ai-both-sides; pmday-two-shifts remains a frozen technical fixture. Prepared real editions do not establish editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER",
+        "READER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "ARTICLE"
+      ],
+      "gates_status": "pending",
+      "id": "AC02",
+      "intent": "Build the real PMDay article into full site HTML and visually reviewed article PDF with source/artifact manifests.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER",
+        "READER"
+      ],
+      "gates": [
+        "ISOLATION"
+      ],
+      "gates_status": "pending",
+      "id": "AC03",
+      "intent": "Exclude drafts and review bundles from default public output; reject unsupported features and unsafe resources.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. Current source-qualified RI/CI coupling and declared selectors. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER",
+        "DELIVERY",
+        "RI-CI"
+      ],
+      "gates": [
+        "DEPENDENCIES"
+      ],
+      "gates_status": "pending",
+      "id": "AC04",
+      "intent": "Use a minimal pinned dependency closure, bounded selected CI and two distinct profile/upgrade cases.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Complete current catalog and regenerated navigation views. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "CURRENT-RI"
+      ],
+      "gates": [
+        "CROSS-REPO"
+      ],
+      "gates_status": "pending",
+      "id": "AC05",
+      "intent": "Reconcile site/UA/Subprime ownership, compatibility gaps and separate upstream/deck decisions.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Owner decision 15 October: real PMDay authoring and visuals resume as pmday-ai-both-sides; pmday-two-shifts remains a frozen technical fixture. Prepared real editions do not establish editorial acceptance. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER"
+      ],
+      "gates": [
+        "EDITORIAL"
+      ],
+      "gates_status": "pending",
+      "id": "AC06",
+      "intent": "Demonstrate blueprint, whole-text review, manuscript/adaptation and feedback workflow on PMDay.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER",
+        "READER"
+      ],
+      "gates": [
+        "IDENTITIES"
+      ],
+      "gates_status": "pending",
+      "id": "AC07",
+      "intent": "Preserve legacy catalog records and distinct article/content-edition/render-artifact/event/adaptation identities.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required. Reader document travel uses one router/history owner and the existing fixed camera clock: source checks cover centered full horizontal orbits of the same Writing scene, all principal destinations, repeat/retarget, native fallbacks and related-block ownership. Browser admission requires successful raw paints with matching navigation/document identities, actual circular winding/radius/target and unchanged scene, corridor depth/direction for principal routes, three stages and complete final pose; Off also observes reduced motion against saved On. Hosted observations remain a distinct gate.",
+      "checks": [
+        "BASIC",
+        "READER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "READER"
+      ],
+      "gates_status": "pending",
+      "id": "AC08",
+      "intent": "Deliver complete article documents inside the five-scene coherent artifact with persistent reader, native fallback and retained immutable closure.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER"
+      ],
+      "gates": [
+        "PLATFORMS"
+      ],
+      "gates_status": "pending",
+      "id": "AC09",
+      "intent": "Verify profile-driven LinkedIn/Medium HTML/MD/TXT/copy-ready/upload kits on two profiles and inspect actual candidates.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "PUBLISHER",
+        "READER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "PUBLICATION"
+      ],
+      "gates_status": "pending",
+      "id": "AC10",
+      "intent": "Preserve observed publication history and enable site-first canonical only for an exact production-served accepted edition.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "The documented bounded CS01/CS03 source and agent routing subset. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required.",
+      "checks": [
+        "STYLE-GUARD",
+        "CURRENT-RI",
+        "RI-CI",
+        "PUBLISHER",
+        "READER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "INDEPENDENT"
+      ],
+      "gates_status": "pending",
+      "id": "AC11",
+      "intent": "Map CS01\u2013CS10, maintain RI/CI/test inventories and obtain independent implementation/export review.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Existing economical five-room, generated artifact, syntax and size checks. Complete current catalog and regenerated navigation views. Current source-qualified RI/CI coupling and declared selectors. Bounded AST roundtrips, declared profile/adaptation and semantic edition identity, source/provenance/events, local print resources and complete installation/rollback failure suites. Real static documents, explicit draft selection, catalog dates, UTF8 boundaries, language/translation descriptors, rename/delete/cold equality, retained immutable closure and router history tests. Article byte/transfer completeness, staging/Color/Pages/production package identities, MIME and old-resource retention negatives; hosted/browser observations remain a separate required gate. These checks cannot approve editorial meaning, rights, device behavior, observed release or merge; the named gate remains required. Reader document travel uses one router/history owner and the existing fixed camera clock: source checks cover centered full horizontal orbits of the same Writing scene, all principal destinations, repeat/retarget, native fallbacks and related-block ownership. Browser admission requires successful raw paints with matching navigation/document identities, actual circular winding/radius/target and unchanged scene, corridor depth/direction for principal routes, three stages and complete final pose; Off also observes reduced motion against saved On. Hosted observations remain a distinct gate.",
+      "checks": [
+        "BASIC",
+        "CURRENT-RI",
+        "RI-CI",
+        "PUBLISHER",
+        "READER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "DELIVERY"
+      ],
+      "gates_status": "pending",
+      "id": "AC12",
+      "intent": "Keep one #5 execution PR, exact-source evidence and accepted changed-surface staging; reconcile original intent and remaining decisions.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Catalog add/remove, new-year, local undated and alternate-platform cases compare rendered cards, controls, count and ItemList. Archive filters/history/print and exact producer-bound SEO amendment reject mismatches. Hosted reader acceptance remains separately mapped in AC08/AC12.",
+      "checks": [
+        "WRITING-CATALOG",
+        "READER"
+      ],
+      "gates": [],
+      "gates_status": "none",
+      "id": "AC13",
+      "intent": "One displayed Writing collection drives automatic cards, groups, filters, JSON-LD and simple article count; alternate platform links count once and drafts stay separate.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Trusted baseline lock/inventory/platform, source-qualified live generation, independent article route identities, old decorated immutable closure and tampered/missing/incompatible baseline rejection. Raw content changes affect only dependent documents; existing edition source binding may rewrite final aliases without recompiling platform. Hosted staging acceptance remains separately mapped in AC08/AC12.",
+      "checks": [
+        "CONTENT-RELEASE",
+        "READER",
+        "DELIVERY"
+      ],
+      "gates": [],
+      "gates_status": "none",
+      "id": "AC14",
+      "intent": "Release article/catalog content independently using a verified unchanged platform and a coherent complete package.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Exact ancestor/source/run/tree/archive admission, Draft-only negative, content versus unknown/runtime/template/policy cases, permanent mandatory content suites and ordinary workflow routes. Current runtime PR retains applicable platform regression. No successful packaging is relabeled source, staging, publication or production acceptance.",
+      "checks": [
+        "CONTENT-CI",
+        "RI-CI",
+        "CURRENT-RI"
+      ],
+      "gates": [],
+      "gates_status": "none",
+      "id": "AC15",
+      "intent": "Formally classify content versus platform changes and preserve required source/hosted/release gates and original budgets.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Event collection/schema, trusted generation/byte equality, stable route/article IDs and native fallback.",
+      "checks": [
+        "CONTENT-LANES",
+        "CONTENT-RELEASE",
+        "READER"
+      ],
+      "gates": [
+        "INDEPENDENT"
+      ],
+      "gates_status": "pending",
+      "id": "AC16",
+      "intent": "Explicit canonical component boundaries and compatibility preserve native URLs/output.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Distinct accepted-baseline policy, affected-document desktop/mobile/no-JS/reader proof and explicit full fallback. Real accepted article and live protected publication remain separate.",
+      "checks": [
+        "CONTENT-LANES",
+        "CONTENT-CI",
+        "CONTENT-RELEASE"
+      ],
+      "gates": [
+        "ARTICLE",
+        "INDEPENDENT",
+        "DELIVERY",
+        "PUBLICATION"
+      ],
+      "gates_status": "pending",
+      "id": "AC17",
+      "intent": "Content-only protected admission on an accepted platform; incompatible or unknown source selects platform.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Canonical article-media hashes and edition semantics; changed compiler/global media selects platform; actual served image decoding is mandatory in content gate.",
+      "checks": [
+        "CONTENT-LANES",
+        "PUBLISHER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "ARTICLE",
+        "INDEPENDENT",
+        "PUBLICATION"
+      ],
+      "gates_status": "pending",
+      "id": "AC18",
+      "intent": "Immutable local media has checked identity, dimensions, decoding, budgets, rights and honest semantic impact.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Immutable generation/rendition identity, inherited staging proof, rights and source binding through existing candidate/archive/Pages controller.",
+      "checks": [
+        "CONTENT-LANES",
+        "DELIVERY",
+        "CONTENT-RELEASE"
+      ],
+      "gates": [
+        "INDEPENDENT",
+        "DELIVERY",
+        "PUBLICATION"
+      ],
+      "gates_status": "pending",
+      "id": "AC19",
+      "intent": "Independent lanes reuse one protected exact-source composition and publication mechanism.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Exact-main and predecessor leases, missing/tampered baseline negatives, current-source component rollback preserves unrelated editions; existing whole-release recovery stays explicit.",
+      "checks": [
+        "CONTENT-LANES",
+        "CONTENT-RELEASE",
+        "DELIVERY"
+      ],
+      "gates": [
+        "INDEPENDENT",
+        "DELIVERY"
+      ],
+      "gates_status": "pending",
+      "id": "AC20",
+      "intent": "Concurrent updates, corrupt inputs and rollback preserve a coherent accepted composition.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Shared vocabulary/index coverage, missing/unknown/duplicate tags and unsafe/duplicate links, archive URL/history/reset/print, bounded decoding/abort/file negatives; semantic archive-tag review and current browser/source admission remain separate.",
+      "checks": [
+        "READER",
+        "WRITING-CATALOG",
+        "CONTENT-CI",
+        "STYLE-GUARD"
+      ],
+      "gates": [
+        "READER",
+        "EDITORIAL"
+      ],
+      "gates_status": "pending",
+      "id": "AC21",
+      "intent": "One validated canonical tag store covers all published archive and local articles; optional runtime tag display/filter preserves native/offline reading.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Deterministic overlap/ranking/self/duplicate/no-match bounds, old reader/room/runtime byte equality on tag-only content generation, source/index/rights/resource validation and current classifier. Actual browser fallback/filter observations and production lane acceptance remain separate.",
+      "checks": [
+        "READER",
+        "DELIVERY",
+        "CONTENT-RELEASE",
+        "CONTENT-CI",
+        "RI-CI"
+      ],
+      "gates": [
+        "READER",
+        "DELIVERY"
+      ],
+      "gates_status": "pending",
+      "id": "AC22",
+      "intent": "One reusable runtime component selects relevant published works from a separately updated index, preserving old HTML and engine on tag-only releases.",
+      "status": "automated-pass"
+    },
+    {
+      "automated_scope": "Canonical article contract owners replace the finite bootstrap adapters; all original feature checks are restored. Complete package, size, rights, source/job/coverage and stable HTTP positive/adversarial tests include the frozen real reader contracts. Frozen receipts remain fixtures, not current admission. Actual accepted bootstrap/main linkage, current-source CI and fresh actual owner staging plus exact stable/native inspection remain separate required gates.",
+      "checks": [
+        "BASIC",
+        "STYLE-GUARD",
+        "CURRENT-RI",
+        "RI-CI",
+        "CONTROLLER",
+        "DELIVERY"
+      ],
+      "gates": [
+        "CONTROLLER-DELIVERY"
+      ],
+      "gates_status": "pending",
+      "id": "AC23",
+      "intent": "Trusted controller admits the article contract without weakening authority.",
+      "status": "automated-pass"
+    }
+  ],
+  "errors": [],
+  "evidence_valid": true,
+  "gates": {
+    "ARTICLE": {
+      "description": "Inspect #2:AC01\u2013AC03 blueprint/manuscript/deck/source consistency, complete native HTML, all article PDF pages and figures and manifest identities. Article PDF and deck PDF stay separate candidates.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "CONTROLLER-DELIVERY": {
+      "description": "Observe this bootstrap through the existing protected-main /stage controller before merge. After protected merge, integrate the baseline into open PR79, retire finite adapters and its old-main bridge, and obtain a fresh actual owner staging admission and exact stable article/media verification. Original AC01\u2013AC22, independent/human gates and production remain separate.",
+      "evidence": null,
+      "kind": "merge",
+      "status": "pending"
+    },
+    "CROSS-REPO": {
+      "description": "Record the common ownership/upgrade decision in #2 and linked Subprime48/PR46, actual independent pins/gaps and UA133/deck disposition. No sibling merge/closure is implied.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "DELIVERY": {
+      "description": "Inspect exact PR/head/tree/CI/hosted staging and AC reconciliation before delivery. Merge and public activation require their applicable owner decision; green checks do not authorize them.",
+      "evidence": null,
+      "kind": "merge",
+      "status": "pending"
+    },
+    "DEPENDENCIES": {
+      "description": "Review exact lock/graph, install/render costs, two different profiles and old/new behavior; no weakened resource budgets or hidden install.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "EDITORIAL": {
+      "description": "Review the complete PMDay text and authored platform adaptation against blueprint, exact sources, attribution/rights and feedback classification. Source protocols are separate from reader prose.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "IDENTITIES": {
+      "description": "Inspect source-qualified meaningful tests and current legacy records, stable identities, independent adaptation revision and same-edition rerender.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "INDEPENDENT": {
+      "description": "Independent architecture/export review of exact implementation and applicable CS01\u2013CS10 plus RI/CI/source-profile dispositions. Bounded guard success alone is insufficient.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "INVENTORY": {
+      "description": "Inspect immutable source/path/blob/hash/license, selected/extracted/reimplemented/deferred components, dependency closure and local delta/upgrade records.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "ISOLATION": {
+      "description": "Inspect preview-only selection versus production allowlist, actionable feature errors, real article figures and negative leak evidence.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "PLATFORMS": {
+      "description": "Inspect authored furniture, actual heading-link/caption/alt/asset behavior, Medium ordered upload fallback and two profile candidates; native-editor acceptance remains external.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "PUBLICATION": {
+      "description": "Verify append-only observed events, preservation of historical originals and absence of fabricated live canonical/date/state. Actual #2:AC04\u2013AC06 publication/rights/upstream decisions remain pending until separately observed.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    },
+    "READER": {
+      "description": "Inspect actual browser reader/navigation/head/history/anchors/focus/scroll/cache/cancellation, Off/reduced/no-Canvas/no-JS/print, nested Pages base, archives/served bytes and unchanged five-room budgets.",
+      "evidence": null,
+      "kind": "human",
+      "status": "pending"
+    }
+  },
+  "github": {
+    "GITHUB_EVENT_NAME": null,
+    "GITHUB_REPOSITORY": null,
+    "GITHUB_RUN_ATTEMPT": null,
+    "GITHUB_RUN_ID": null
+  },
+  "issue": 5,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
+  "limitations": [
+    "Repository-owned developer tests; not a target-owned untrusted-candidate validator.",
+    "Policy is an issue mapping, not proof it reproduces live issue intent.",
+    "Manual gates remain pending; this runner does not review, merge, deploy or close issues."
+  ],
+  "policy_path": ".github/acceptance/issue-5.json",
+  "policy_sha256": "0767ce03f4d6138e0345208b0bc4a998852808800a030675aedec3568df2e6d2",
+  "producer_sha256": "c4d98db96844f19d73e4f66d389d3c54b5f0eead60029395d77d970c18950a97",
+  "ready_for_issue_closure": false,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "schema_version": 1,
+  "source": {
+    "commit_sha": "92b671f9d94b1be2e7ab9735e6fe267deb6c4aff",
+    "ri_source_digest": "2f6c93f46515f6144010c932106d8f2ab0571bdecf12d25866ad62c40cf7ab75",
+    "ri_surface_sha256": "00c50aff8840902a22505a08665cdd29591d5db62abfe5215a156b50a6a21cf5",
+    "source_dirty": false,
+    "tree_sha": "8e5a1e432e14d5f65e8edb7e64e0d006ae981c92",
+    "working_tree_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

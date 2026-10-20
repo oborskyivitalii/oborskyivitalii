@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "role": "Final local source receipts for an unchanged clean harness/report source; not a new performance measurement or hosted/CI admission",
+  "sourceCommit": "92b671f9d94b1be2e7ab9735e6fe267deb6c4aff",
+  "sourceTree": "8e5a1e432e14d5f65e8edb7e64e0d006ae981c92",
+  "measuredSiteCommit": "283b32f65f0589e85c0aa914d0990704dcf8ac38",
+  "sourceCleanBeforeAndAfter": true,
+  "performanceOutcome": "FAIL: reader mobile LCP median4202.636ms exceeds2500ms; original measurements unchanged, none repeated",
+  "sourceChecksPass": true,
+  "owningAcceptance": {
+    "finalReport": "final-source-acceptance.json",
+    "passedChecks": 12,
+    "totalChecks": 12,
+    "automatedPassCriteria": 23,
+    "evidenceValid": true,
+    "automationPass": true,
+    "readyForIssueClosure": false,
+    "errors": [],
+    "checks": {
+      "BASIC": "passed",
+      "CONTENT-CI": "passed",
+      "CONTENT-LANES": "passed",
+      "CONTENT-RELEASE": "passed",
+      "CONTROLLER": "passed",
+      "CURRENT-RI": "passed",
+      "DELIVERY": "passed",
+      "PUBLISHER": "passed",
+      "READER": "passed",
+      "RI-CI": "passed",
+      "STYLE-GUARD": "passed",
+      "WRITING-CATALOG": "passed"
+    }
+  },
+  "preservedAttempts": [
+    {
+      "number": 1,
+      "passedChecks": 11,
+      "totalChecks": 12,
+      "exitCode": 1,
+      "failure": "READER: one of251cases failed because JPEG equivalence fixture hardcodes checkout-local tools/quality/toolchain/venv/bin/python; absent path returned ENOENT/status:null. Other250cases passed.",
+      "reports": [
+        "issue-5-acceptance-attempt1.json",
+        "execution-attempt1.json",
+        "owning-acceptance-attempt1.log",
+        "reader-source-failure.txt"
+      ]
+    },
+    {
+      "number": 2,
+      "passedChecks": 12,
+      "totalChecks": 12,
+      "exitCode": 0,
+      "correction": "Materialized identical full89-pin Python environment at ignored expected local path; no source/test/budget change. Targeted fixture passed1of1; whole owning policy repeated once.",
+      "elapsedSeconds": 225.632,
+      "startedAt": "2026-10-20T23:13:09.250642+00:00",
+      "finishedAt": "2026-10-20T23:16:54.882884+00:00",
+      "reports": [
+        "issue-5-acceptance.json",
+        "execution-attempt2.json",
+        "owning-acceptance-attempt2.log",
+        "environment-correction.json",
+        "venv-path-targeted.log"
+      ]
+    }
+  ],
+  "otherExactSourceChecks": {
+    "focused": "81of81 PASS",
+    "styleTests": "15of15 PASS",
+    "repositoryIntelligenceTests": "28of28 PASS",
+    "riCiTests": "20of20 PASS",
+    "fullLint": "PASS",
+    "defaultArtifactBuild": "PASS"
+  },
+  "unchangedScope": "No site/docs/tools-site/tools-publishing delta; no threshold change, runtime optimization, deployment, Ready transition, feature merge or production activation.",
+  "acceptanceDisposition": "No new whole AC ticks. AC08/AC12 and named whole-feature human/editorial/rights/device/export/publication gates remain open. Existing AC13/AC15 source checks and historical283 staging AC23 are preserved only within their proven scope.",
+  "originalEvidenceCommit": "9147ecccc96247ee6a1ec40c786cb99db211ad1a",
+  "originalRawArchivesUnchanged": "15ZIP /96members; final source receipts are additional, separately manifested evidence",
+  "createdAt": "2026-10-20T23:16:59.414652+00:00"
+}
