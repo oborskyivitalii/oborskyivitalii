@@ -2021,7 +2021,10 @@
         "tests/release-controller.test.cjs",
         "tests/article-candidate-source.test.cjs",
         "tests/article-media.test.cjs",
-        "tests/article-tags.test.cjs"
+        "tests/article-tags.test.cjs",
+        "tests/reader-controller.test.cjs",
+        "tests/fixtures/reader-staging-gate.json.gz",
+        "tests/fixtures/reader-staging-package.json.gz"
       ]
     },
     {
@@ -2578,6 +2581,31 @@
         "site/engine/reading-surfaces.css",
         "site/templates/pages/article.html",
         "site/templates/components/reader-contents.html"
+      ]
+    },
+    {
+      "path": "tests/reader-controller.test.cjs",
+      "language": "javascript",
+      "purpose": "Complete article packages and frozen real runtime/rights/receipt contracts reject corrupt closure, unsafe index, false budgets, weak source/job/coverage and stable HTTP body/MIME/cache drift.",
+      "owner": "guides/SITE-STAGING.md",
+      "lifecycle": "permanent",
+      "profiles": ["pr-targeted", "staging", "production"],
+      "disposition": "Retain canonical controller behavior and adversarial negatives; finite prerequisite adapters and old-main build bridge retired. Frozen receipts never grant live admission.",
+      "surviving_route": "node tools/quality/source-tests.cjs --profile production",
+      "inputs": [
+        "tests/reader-controller.test.cjs",
+        "tests/fixtures/reader-staging-gate.json.gz",
+        "tests/fixtures/reader-staging-package.json.gz",
+        "tools/staging/package.cjs",
+        "tools/staging/review-flow.cjs",
+        "tools/quality/artifact.cjs",
+        "tools/quality/color-motion-contract.cjs",
+        "tools/quality/staging-gate.cjs",
+        "tools/quality/serve.cjs",
+        "tools/release/rights-record.cjs",
+        "docs/**",
+        "tools/site/snapshot.cjs",
+        "site/engine/article-tags.cjs"
       ]
     }
   ]

@@ -190,7 +190,7 @@ jobs:
         id: source_identity
         run: test "$(git rev-parse HEAD)" = "$SITE_CANDIDATE_SHA"
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
-        if: env.SITE_ARTICLE_PREVIEW != 'false' || needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
+        if: hashFiles('tools/publishing/toolchain/package-lock.json') != '' || needs.target.outputs.mode == 'staging' || needs.target.outputs.evidence == 'true'
         with:
           python-version: 3.12.14
       - name: Install locked prepublication tools for an explicit staging attempt
@@ -200,12 +200,16 @@ jobs:
           python3 -m venv tools/quality/toolchain/venv
           tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
           tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
-      - name: Install the locked article parser for admitted article previews
-        if: env.SITE_ARTICLE_PREVIEW != 'false'
+      - name: Install declared locked publication tools when available
+        if: hashFiles('tools/publishing/toolchain/package-lock.json') != ''
         run: |
           npm ci --prefix tools/publishing/toolchain --ignore-scripts
-          python3 -m venv tools/quality/toolchain/venv
-          tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+          if [ -f tools/publishing/web-media.py ]; then
+            if [ ! -x tools/quality/toolchain/venv/bin/python ]; then
+              python3 -m venv tools/quality/toolchain/venv
+            fi
+            tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps "$(python3 tools/publishing/web-media.py --requirement)"
+          fi
       - id: content_baseline
         name: Select a trusted earlier generation for authored content updates
         if: needs.target.outputs.prototype != 'true'

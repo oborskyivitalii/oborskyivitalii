@@ -249,6 +249,11 @@ async function quickHttp(base, record, fetcher = fetch, observation) {
     ...(record.hostPolicy === pkg.hostPolicies.snapshotProxy
       ? Object.keys(record.source.files).filter((file) => file.startsWith('snapshots/'))
       : []),
+    ...Object.keys(record.source.files).filter(
+      (file) =>
+        /^(?:articles|article-media|article-snapshots)\//.test(file) ||
+        file === 'publication-index.json'
+    ),
   ];
   const work = names.map(async (file) => {
     try {

@@ -1999,6 +1999,18 @@
       "role": "history",
       "owner": "guides/SITE-CONTENT-RELEASE.md"
     },
+    "review/issue-5/2026-10-20-controller-bootstrap.md": {
+      "kind": "file",
+      "purpose": "Author-approved minimal trusted controller prerequisite, frozen provenance, self-review and delivery evidence.",
+      "role": "guide",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-5/2026-10-20-controller-ledger-merge.json.gz": {
+      "kind": "file",
+      "purpose": "Lossless same-disposition predecessor ledger reason variants from the controller prerequisite merge; public fingerprints only.",
+      "role": "history",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     "review/issue-5/2026-10-20-reader-interactions.md": {
       "kind": "file",
       "purpose": "Issue5 reusable reader interaction iteration, independent findings, shared ownership and bounded acceptance evidence.",
@@ -8929,6 +8941,18 @@
       "role": "test",
       "owner": "guides/SITE-STAGING.md"
     },
+    "tests/fixtures/reader-staging-gate.json.gz": {
+      "kind": "file",
+      "purpose": "Frozen 1d2d195 staging-regression report for validator tests only; not fresh admission evidence.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md"
+    },
+    "tests/fixtures/reader-staging-package.json.gz": {
+      "kind": "file",
+      "purpose": "Frozen e24168e real reader package metadata for runtime/rights tests only; not live approval.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md"
+    },
     "tests/fixtures/staging-evidence.cjs": {
       "kind": "file",
       "purpose": "Honest controlled manifest/report fixtures shared by stage matrix/gate/consumer negative tests.",
@@ -9090,6 +9114,12 @@
       "purpose": "Behavioral/adversarial tests and fixtures for quality.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/reader-controller.test.cjs": {
+      "kind": "file",
+      "purpose": "Article-aware trusted controller package, rights, bounded size, source evidence and stable HTTP rejection contracts.",
+      "role": "test",
+      "owner": "guides/SITE-STAGING.md"
     },
     "tests/reader-mode.test.cjs": {
       "kind": "file",

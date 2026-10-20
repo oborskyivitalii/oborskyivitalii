@@ -460,62 +460,15 @@ function verify(dir, record, expectedDigest = process.env.SITE_EXPECTED_PUBLIC_D
   require('../site/snapshot.cjs').verify(dir, record);
   return true;
 }
-function legacyStagingOptions(out, environment = process.env) {
-  // A bounded bridge for the trusted pre-publisher main controller. Its source,
-  // command and workspace are fixed; updated workflows supply their own mode.
-  // Admission and publication authority remain in the existing controller.
-  const expected = {
-    CI: 'true',
-    GITHUB_REPOSITORY: 'oborskyivitalii/oborskyivitalii',
-    GITHUB_SHA: '82b57b8948c6c30143213b846ee2848d06f8d200',
-    GITHUB_WORKFLOW_REF:
-      'oborskyivitalii/oborskyivitalii/.github/workflows/site-color-review.yml@refs/heads/main',
-    GITHUB_REF: 'refs/heads/main',
-    GITHUB_WORKSPACE: root,
-  };
-  if (
-    Object.entries(expected).some(([key, value]) => environment[key] !== value) ||
-    !['issue_comment', 'workflow_dispatch'].includes(environment.GITHUB_EVENT_NAME) ||
-    environment.SITE_ARTICLE_PREVIEW !== undefined ||
-    environment.SITE_VALIDATION_LEVEL ||
-    environment.SITE_ARTIFACT_MANIFEST ||
-    path.resolve(out) !== path.join(root, 'color-artifact')
-  )
-    return {};
-  return { articlePreviewMode: 'true' };
-}
-function prepareLegacyStaging(out, environment = process.env, execute = cp.spawnSync) {
-  const options = legacyStagingOptions(out, environment);
-  if (!options.articlePreviewMode) return options;
-  if (environment.SITE_CANDIDATE_SHA !== git(['rev-parse', 'HEAD']))
-    throw Error('Legacy staging candidate differs from the checked-out source');
-  previewSelection(options.articlePreviewMode);
-  console.error(
-    'Preparing the exact locked publisher and explicit article preview for the legacy trusted staging controller.'
-  );
-  const result = execute(
-    'npm',
-    ['ci', '--prefix', 'tools/publishing/toolchain', '--ignore-scripts'],
-    {
-      cwd: root,
-      stdio: 'inherit',
-      timeout: 180000,
-    }
-  );
-  if (result.status !== 0 || result.error) throw Error('Locked publisher preparation failed');
-  return options;
-}
 if (require.main === module) {
   const mode = process.argv[2],
     dir = process.argv[3];
   if (mode === 'build') {
-    const preparation = prepareLegacyStaging(path.resolve(dir));
     const extra = process.argv.slice(4);
     if (extra[0] === '--accepted-generation') {
       if (extra.length !== 2) throw Error('Accepted generation requires one explicit directory');
       console.log(
         build(path.resolve(dir), {
-          ...preparation,
           acceptedGeneration: path.resolve(extra[1]),
         })
       );
@@ -535,9 +488,7 @@ if (require.main === module) {
       }
       if (extra.length && Object.keys(contentBaseline).length !== 3)
         throw Error('Content artifact requires baseline, generation SHA256 and artifact digest');
-      console.log(
-        build(path.resolve(dir), { ...preparation, ...(extra.length ? { contentBaseline } : {}) })
-      );
+      console.log(build(path.resolve(dir), extra.length ? { contentBaseline } : {}));
     }
   } else if (mode === 'sizes') console.log(checkSize(path.resolve(dir)));
   else if (mode === 'verify')
@@ -549,8 +500,6 @@ module.exports = {
   checkSize,
   validateArticleSizes,
   previewSelection,
-  legacyStagingOptions,
-  prepareLegacyStaging,
   build,
   verify,
   digest,

@@ -150,7 +150,9 @@
         "tests/test_issue108_acceptance.py",
         "review/issue-108/2026-10-19-site-delivery.md",
         "review/issue-108/content-amendment.json",
-        "review/issue-5/2026-10-20-reader-interactions.md"
+        "review/issue-5/2026-10-20-reader-interactions.md",
+        "review/issue-5/2026-10-20-controller-bootstrap.md",
+        "review/issue-5/2026-10-20-controller-ledger-merge.json.gz"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -244,7 +246,10 @@
         "tools/quality/source-test-worker.cjs",
         "tools/quality/prepublication.cjs",
         "tests/prepublication-reuse.test.cjs",
-        "tools/quality/prepublication-runner.cjs"
+        "tools/quality/prepublication-runner.cjs",
+        "tests/reader-controller.test.cjs",
+        "tests/fixtures/reader-staging-gate.json.gz",
+        "tests/fixtures/reader-staging-package.json.gz"
       ],
       "checks": [
         "acceptance-policy",
@@ -634,7 +639,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "671dcda5d3dfa0b143cffe25a7be15d42ff45302169cd731711c902fe7e5b708",
+    "digest": "103b1fc900fd21a72e1563f77df19b1b01277d14d628ba65ca1db0304b1b3df6",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -694,7 +699,7 @@
       },
       {
         "path": ".github/acceptance/issue-5.json",
-        "sha256": "347359497fb88e49b6e7b2aa2e04a1aa5a4b5ff63f1a2ff2aafa2f474c170a5f"
+        "sha256": "0767ce03f4d6138e0345208b0bc4a998852808800a030675aedec3568df2e6d2"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -750,7 +755,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "f17e98e469c5640d5645a72d11498f5031d3c5468412ea5ef59142cc4f1e9894"
+        "sha256": "40503c227519f4581201c016d90fd95e15e55333967aa1e65028eb95801103ee"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -782,7 +787,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "6f481f3c77464a1e653c14f141d9eb6d90387f1c42f196c0d5d284ad118ea35e"
+        "sha256": "3fb5020bc90c7e9e5386e62113dfd7fff79a9e4183b7e70bc43ce9cf0d47c59d"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -851,6 +856,10 @@
       {
         "path": "review/REVIEW-TEMPLATE.md",
         "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
+      },
+      {
+        "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
+        "sha256": "f2277b31a85d1f4752543d907a9dbd66375c5aff6560e2cd2694f8aed9ef9c0d"
       },
       {
         "path": "tests/fixtures/staging-evidence.cjs",
@@ -922,7 +931,7 @@
       },
       {
         "path": "tests/test_issue5_acceptance.py",
-        "sha256": "1c5fcf31c661e02bcd8f2783863ad21ac94fdec7f0ce6e971e52d633fb4e57f6"
+        "sha256": "60305565f93ec694f1945c67dc63cc1e085f2d3ae3c13fcebdc80bf35e082aae"
       },
       {
         "path": "tests/test_issue61_acceptance.py",
@@ -994,7 +1003,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "e2bd7c6a3e93d4adccbaa6e918ab16ca46cc349cc29f782240056c219dc038c6"
+        "sha256": "6bcd90729beb6be46db6faf14d03ae807ef04631ddfd07658a0bb17522e35db2"
       },
       {
         "path": "tools/repository_intelligence.py",

@@ -157,6 +157,13 @@
       "automated_scope": "Deterministic overlap/ranking/self/duplicate/no-match bounds, old reader/room/runtime byte equality on tag-only content generation, source/index/rights/resource validation and current classifier. Actual browser fallback/filter observations and production lane acceptance remain separate.",
       "checks": ["READER", "DELIVERY", "CONTENT-RELEASE", "CONTENT-CI", "RI-CI"],
       "gates": ["READER", "DELIVERY"]
+    },
+    {
+      "id": "AC23",
+      "intent": "Trusted controller admits the article contract without weakening authority.",
+      "automated_scope": "Canonical article contract owners replace the finite bootstrap adapters; all original feature checks are restored. Complete package, size, rights, source/job/coverage and stable HTTP positive/adversarial tests include the frozen real reader contracts. Frozen receipts remain fixtures, not current admission. Actual accepted bootstrap/main linkage, current-source CI and fresh actual owner staging plus exact stable/native inspection remain separate required gates.",
+      "checks": ["BASIC", "STYLE-GUARD", "CURRENT-RI", "RI-CI", "CONTROLLER", "DELIVERY"],
+      "gates": ["CONTROLLER-DELIVERY"]
     }
   ],
   "checks": {
@@ -202,6 +209,10 @@
     "CONTENT-LANES": {
       "kind": "unittest",
       "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_independent_delivery_lanes"
+    },
+    "CONTROLLER": {
+      "kind": "unittest",
+      "test": "test_issue5_acceptance.Issue5AcceptanceTests.test_article_controller_contracts"
     }
   },
   "gates": {
@@ -252,6 +263,10 @@
     "DELIVERY": {
       "kind": "merge",
       "description": "Inspect exact PR/head/tree/CI/hosted staging and AC reconciliation before delivery. Merge and public activation require their applicable owner decision; green checks do not authorize them."
+    },
+    "CONTROLLER-DELIVERY": {
+      "kind": "merge",
+      "description": "Observe this bootstrap through the existing protected-main /stage controller before merge. After protected merge, integrate the baseline into open PR79, retire finite adapters and its old-main bridge, and obtain a fresh actual owner staging admission and exact stable article/media verification. Original AC01–AC22, independent/human gates and production remain separate."
     }
   }
 }

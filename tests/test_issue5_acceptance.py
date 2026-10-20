@@ -31,6 +31,9 @@ class Issue5AcceptanceTests(unittest.TestCase):
         for key in ["fail", "skipped", "cancelled", "todo"]:
             self.assertEqual(counts.get(key), 0, result.stdout)
 
+    def test_article_controller_contracts(self):
+        self.run_node_contracts(["tests/reader-controller.test.cjs"], 7)
+
     def test_publisher_contracts(self):
         self.run_node_contracts(
             [
