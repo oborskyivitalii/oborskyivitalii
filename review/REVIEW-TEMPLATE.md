@@ -3,8 +3,12 @@
 Owning issue and dated anchor:
 Owning PR and exact artifact/section permalink:
 Reviewer/model role; independent review or self-analysis:
+Iteration/checkpoint and separate reviewer subagent identity (not its implementer):
 Inspected commit/tree or explicitly dirty prepared state:
+Base/candidate diff identity and final re-reviewed identity:
 Materials read, checks actually executed and access limits:
+
+Apply [the mandatory per-iteration review protocol](../CONTRIBUTING.md#independent-review-after-every-iteration).
 
 ## Intent and acceptance
 
@@ -13,9 +17,12 @@ its dated decision link. Recommendations do not silently redefine acceptance.
 
 ## Findings
 
-| ID | Evidence/path | Finding and implication | Affected AC | Disposition |
-| --- | --- | --- | --- | --- |
-| F01 | | | | open |
+| ID | Severity | Evidence/path | Finding and implication | Affected AC | Disposition |
+| --- | --- | --- | --- | --- | --- |
+| F01 | | | | | open |
+
+For no findings, record examined risks and limits. After corrections, record the
+reviewer's re-review of updated source and dispositions, including remaining blockers.
 
 ## Decisions
 

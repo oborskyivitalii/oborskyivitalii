@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/108",
-    "date": "2026-10-19",
-    "summary": "Issue108 existing Talks component and exact PMDay naming. New exact content amendment and owning issue-only adapter mapped; permanent content/SEO profiles, runtime and budgets retained. Source self-review; actual release and independent gates remain separate."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/114",
+    "date": "2026-10-20",
+    "summary": "Issue114 mandatory per-iteration independent subagent review through the existing protocol owner/templates. Existing bounded check selectors and unchanged CI routes; semantic review and merge gates remain external."
   },
   "layers": [
     {
@@ -126,7 +126,9 @@
         "review/issue-108/content-amendment.json",
         ".github/acceptance/issue-5.json",
         "tests/test_issue5_acceptance.py",
-        "review/issue-5/2026-10-20-controller-bootstrap.md"
+        "review/issue-5/2026-10-20-controller-bootstrap.md",
+        ".github/acceptance/issue-114.json",
+        "review/issue-114/2026-10-20-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -547,11 +549,11 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "f610d12f3bbcdaac79dead20f55d2c56ed32c39b4db6b6797131d2c1c408eb33",
+    "digest": "1794e5fee700d9ded556d51f8d0f841df55d30cb0227410d95d6723646a34771",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
-        "sha256": "c13f1e51d3055a02741798fadb06b023764116e6348c4b620f68625d13c2f991"
+        "sha256": "d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
@@ -559,7 +561,7 @@
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
-        "sha256": "c9b6d6a36ed145002834952eff069e2a7fbfd179a7cff7d5425421881655fa24"
+        "sha256": "29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
@@ -572,6 +574,10 @@
       {
         "path": ".github/acceptance/issue-108.json",
         "sha256": "f1bf79f1c88fec50208ccbebf70cd1c7dedd7c99ba499b1d62351ce5863416fa"
+      },
+      {
+        "path": ".github/acceptance/issue-114.json",
+        "sha256": "c2a95c3e751d2a5eb776337840da62e4cefa89de4596a294dceb6e78d69d0d0a"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -651,11 +657,11 @@
       },
       {
         "path": ".github/pull_request_template.md",
-        "sha256": "c8c3d6209a86c42842c5f649a8f0837de4ff5af955b8c27769eabf7763c9a28f"
+        "sha256": "99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1"
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "521cdb4abc1b98545b38b11713fda826b2d892325362eba166e064f64eb97144"
+        "sha256": "d51caecd3b0baf95b67922fd269ddc1d68b22c1bcaf468cb212cf5c7d0369b9d"
       },
       {
         "path": ".github/repository-layout.json",
@@ -663,7 +669,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "c39be9fe19675becba932c5e1ac4b866e526923d5aff5db744e24138a1009262"
+        "sha256": "7bb4c7bfc357242be96e8f8ff1afa206c4976869f96527ed7d75c9a1327e6337"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -743,11 +749,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "60e88a430d100d72926bfea030495353f92085fe073e95cc9d0405d0f70d78cc"
+        "sha256": "d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "663a9d493914270419d3aedd0f27e7dfcae00b5816028c3deb05159935a744d5"
+        "sha256": "f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -763,7 +769,7 @@
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
-        "sha256": "fcaa167cfc290547a3a6ffb2d5b31296cc4dd2f67db025110789f7ed1b38afe0"
+        "sha256": "b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d"
       },
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",

@@ -41,8 +41,10 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
    checks, and review unautomated rules. Legacy debt cannot authorize new debt.
 9. Preserve issue intent; append dated scope decisions. Link PRs and every
    implementation commit using `Refs #N`; refresh exact links after rebase/squash.
-   Keep substantive PRs Draft during iteration and preserve required independent,
-   editorial, rights and device review. Label self-review and independent review honestly.
+   Keep substantive PRs Draft during iteration. After every completed work iteration,
+   require substantive independent review by a separate reviewer subagent before
+   advancing; follow [the iteration protocol](CONTRIBUTING.md#independent-review-after-every-iteration).
+   Preserve editorial, rights and device review; self-review is not independent review.
 10. Keep analysis/review/model tasks in the owning PR's versioned
     `review/issue-N/YYYY-MM-DD-kind.md`, using [REVIEW-TEMPLATE](review/REVIEW-TEMPLATE.md).
     Give the issue a dated anchor, short outcome and exact file/section link;

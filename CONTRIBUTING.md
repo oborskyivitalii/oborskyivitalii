@@ -70,8 +70,8 @@ Guard success does not establish full architecture, formatting or performance co
    references while review/deployment/publication/sibling work remains; merging code alone
    does not justify `Closes`/`Fixes`.
 2. Follow accepted scope and existing review, synchronization, validation and source/research
-   procedures. Keep substantive PRs Draft during iteration; independently check where
-   required, return corrections through the owning flow and record disagreement/missing review.
+   procedures. Keep substantive PRs Draft during iteration; apply the mandatory
+   [independent subagent review after every iteration](#independent-review-after-every-iteration).
 3. Run the mapped checks and reconcile human/live gates through
    [ACCEPTANCE.md](.github/ACCEPTANCE.md), including session-end issue checkbox updates.
 4. Before readiness fetch current issue/PR/commits/reviews/CI and match evidence to the exact
@@ -101,6 +101,41 @@ only. Missing/partial/skipped/failed/unmapped/stale/wrong-source/pending is neve
 Update actual issue checkboxes alongside evidence; tables alone are insufficient.
 
 ## Review, analysis and model handoff
+
+### Independent review after every iteration
+
+After **every completed work iteration**, obtain substantive independent review by a
+**separate reviewer subagent** before advancing to the next implementation iteration,
+declaring the iteration complete, marking ready or merging/promoting its result. This
+applies to all T0–T4 work, including follow-up corrections and rebases/integration that
+change the candidate. An iteration is a coherent proposed result/checkpoint, not each
+command or keystroke. Read-only inspection/status with no changed candidate needs no
+new review; retain the applicable prior review and identify its exact scope.
+
+The reviewer must not have authored or implemented the changes under review. Give it
+the original issue/ACs, applicable instructions, base/candidate identities and actual
+diff/source/check evidence. It must inspect those materials independently, challenge
+correctness, completeness, regressions and relevant architecture/evidence gaps, and
+assess the result against intent. An implementer summary, green tests, a different
+role/model name or a ceremonial approval does not establish independent review.
+
+Record the iteration, subagent identity/role, inspected commit/tree or prepared-diff
+identity, materials/checks and limits in the existing versioned review artifact. Each
+finding needs severity, source evidence/location, implication, affected AC and an
+action/disposition. A no-findings result still names the risks examined and limits.
+The implementer resolves findings with evidenced fixes or reasoned dispositions;
+unresolved blocking findings prevent advancement. The reviewer rechecks corrections
+and materially disputed findings on the updated candidate, including affected
+integration. Reuse unaffected reviewed scope rather than repeat the whole audit.
+
+Record the re-review outcome and final reviewed identity before advancing. Verbatim
+review receipts and deterministic RI/metadata refreshes do not recursively require
+review of their own receipt: verify their provenance/byte identity and unchanged
+meaning. Any substantive correction or changed meaning requires renewed independent
+review. If a reviewer subagent is unavailable, record the missing gate and limits;
+read-only triage/preparation may continue, but self-review cannot satisfy it or justify
+readiness/completion. This rule adds no per-iteration maintainer approval; existing
+human, editorial, rights, device, merge and release decisions remain separate.
 
 Keep model work in the owning issue/PR; names are roles, not tasks/proof of independence.
 Use `review/issue-N/YYYY-MM-DD-kind.md` (`analysis`, `review`, `handoff`) with

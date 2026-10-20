@@ -4,41 +4,37 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 
 ## Snapshot
 
-- Verified main: 82b57b8948c6c30143213b846ee2848d06f8d200.
-- PR79 reader: 1d2d195f354d67ba4a7a72f5f31a468ac2d11123, Ready/open.
-- User accepted preview and authorized permanent staging and its necessary
-  trusted-controller prerequisite under existing issue5, prospective AC23.
-- See review/issue-5/2026-10-20-controller-bootstrap.md for exact contracts,
-  frozen evidence, verification and remaining delivery. No production change.
+- Verified main: c4ed3dad7197bef2f9638c9500d66c12606f6eff, PR113 merged.
+- Current task: issue114, mandatory substantive independent subagent review
+  after every completed work iteration; branch work/issue-114-iteration-review.
+- Canonical rule: CONTRIBUTING, routed from AGENTS and existing review templates.
+- Evidence: review/issue-114/2026-10-20-review.md. Verify its current candidate,
+  actual independent review, checks and PR/merge status before continuation.
 
 ## Decisions
 
-- Bootstrap from main preserves site/, docs/ and tools/site/ exactly.
-- Preserve existing protected-main publisher authority, leases and all budgets.
-- Private finite staging validators bridge the article format without changing
-  old producer identity; retire them when integrating main into PR79.
-- PR79 remains open until its own new actual staging admission. Its original
-  AC01–AC22, independent/human gates and editorial work stay distinct.
+- A completed coherent candidate is an iteration; individual commands are not.
+- A distinct non-implementing reviewer subagent inspects actual source/intent;
+  corrections need re-review, and self-review cannot supply independence.
+- Existing human/merge/release decisions remain separate; no site/docs change.
+- Verbatim review receipts and deterministic derived refreshes do not recurse.
 
 ## Open work
 
-- Complete bootstrap CI, actual /stage and stable verification, then merge it
-  under the author's prerequisite authorization.
-- Integrate new main into PR79; restore full feature policy and canonical
-  imports, retire bootstrap adapters and old-main toolchain bridge.
-- Obtain fresh current-source checks and actual owner /stage for PR79; inspect
-  exact stable article/media plus native Writing-reader transitions.
-- Retained label run39457580370/1 is successful evidence only; it did not promote.
-- Prior analytics/Search Console follow-up remains owned by issues102/103/8;
-  do not infer account/provider state or changes from this reader task.
+- Complete issue114 independent review and exact clean-source checks, link the
+  PR and reconcile live acceptance. Normal merge verification precedes closure.
+- PR79's article/stable-staging continuation stays with issue5/PR79. PR113's
+  bootstrap is merged; revalidate that branch and retire bridge adapters under
+  its own accepted route. This instruction change does not execute that work.
+- Analytics/Search Console follow-up stays owned by issues102/103/8.
 
 ## Next session
 
-1. Revalidate bootstrap PR/head/main/checks and issue5 before continuing.
-2. Follow current delivery phase; do not rerun old failed sources as fresh proof.
-3. Report deployed/staged/merged separately and reconcile whole criteria only.
+1. Revalidate main, issue114/PR/checks and the exact reviewed candidate.
+2. Continue its existing review route; never infer missing review or merge.
+3. For PR79, separately fetch current source, staging and issue5 acceptance.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; rebuild RI after indexed changes.
+- Keep five sections and 120-line cap; rebuild RI after indexed changes.
 - Git-backed website code is not duplicated into file storage.

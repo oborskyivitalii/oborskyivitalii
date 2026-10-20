@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 114,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/114",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Mandatory substantive independent subagent review after each work iteration",
+      "automated_scope": "Existing guide/style routing and bounds checks establish mechanical structure only. Independent semantic review must inspect the actual rule, independence and iteration/correction/unavailable-review cases.",
+      "checks": [
+        "ROUTES",
+        "BOUNDS"
+      ],
+      "gates": [
+        "REVIEW"
+      ]
+    },
+    {
+      "id": "AC02",
+      "intent": "Recoverable iteration and correction review evidence without recursive paperwork",
+      "automated_scope": "Existing catalog/freshness and route checks establish navigation and source identities only. They cannot establish that a subagent performed a substantive review or accepted dispositions.",
+      "checks": [
+        "CURRENT-RI",
+        "ROUTES"
+      ],
+      "gates": [
+        "REVIEW"
+      ]
+    },
+    {
+      "id": "AC03",
+      "intent": "Focused current-source integration, bounded checks, independent review and normal merge",
+      "automated_scope": "Basic, style, current navigation and RI/CI checks cover their existing mechanical subsets. Independent review must inspect the complete diff, unchanged site/docs and CS applicability; actual GitHub linkage, merge decision and merged-source verification remain external.",
+      "checks": [
+        "BASIC",
+        "STYLE",
+        "CURRENT-RI",
+        "RI-CI"
+      ],
+      "gates": [
+        "REVIEW",
+        "LIVE",
+        "MERGED"
+      ]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "ROUTES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_mandatory_agent_contributor_and_acceptance_routes"
+    },
+    "BOUNDS": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "REVIEW": {
+      "kind": "human",
+      "description": "Actual independent non-implementing reviewer subagent examines current instructions/templates/config/policy and original ACs, challenges representative iteration/correction/rebase/status/unavailable-review cases, records identity/source/findings/dispositions and rechecks any substantive corrections. Inspect unchanged public/runtime scope and applicable CS01/CS04/CS05/CS08/CS09/CS10; no automatic semantic approval."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Fetch exact issue/PR/Refs commits/checks and review evidence; reconcile actual issue checkboxes, reviewed source identity and current CI. Local results do not supply a remote CI pass."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Applicable maintainer merge decision, actual protected-main merge and accepted-source/tree verification before issue closure. This documentation change grants no deployment/publication authority."
+    }
+  }
+}
