@@ -1,8 +1,9 @@
 # Issue 112 — 21 October 2026 diagnostic implementation
 
 Owner: https://github.com/oborskyivitalii/oborskyivitalii/issues/112.
-Execution: one Draft PR on `work/issue-112-lcp-diagnostics-20261021`.
-Role: Sol implementation/self-analysis; separate iteration review pending.
+Execution: Draft [PR117](https://github.com/oborskyivitalii/oborskyivitalii/pull/117)
+on `work/issue-112-lcp-diagnostics-20261021`.
+Role: Sol implementation/self-analysis; separate I1 and I2 independent reviews completed (receipts below).
 Base: `ca70a66f340a8e804e4263c02aa9abe79a062765`.
 Production: `prod-2026-10-19.2`, source
 `82b57b8948c6c30143213b846ee2848d06f8d200`, tree
@@ -94,8 +95,10 @@ The initial direct SDK retrieval returned HTTP403/error1010; real-SDK execution
 is pending and no stub is substituted. Headless tab switching actually left
 visibilityState=visible, so a visibility-triggered vendor flush is not assumed.
 
-I1 independent review and current-source verification are pending; route probes
-follow its correction review. No historical root cause is established.
+I1 independent review and correction re-review completed before route probes.
+The twelve cold entries below completed on a clean source. No historical root
+cause is established; current final acceptance and I2 interpretation review
+remain separate gates.
 
 ## I1 independent review and correction candidate
 
@@ -126,7 +129,8 @@ warm HTTP cache and same-session navigation comparisons remain unexecuted; do
 not declare the entire broader T02 design complete. No fake visibility event is
 used to manufacture a vendor flush. SDK acquisition via the actual headless
 browser also failed with ERR_EMPTY_RESPONSE; T03 remains blocked, not passed.
-Correction re-review is pending before route measurements.
+The final correction re-review cleared the runner before route measurements
+(see its verbatim receipt below).
 
 The first correction re-review verified the exact prepared diff
 `55cddac00e81f0ed414581ca193287b122abda2fa8e8bb77f27e5c10ef505d08`,
@@ -136,20 +140,81 @@ disposal could overlap the next trial. The current correction stops the whole
 series on any failed row, saves all unexecuted scenarios, and immediately enters
 owned-browser teardown. Its negative covers both a late-created context and a
 context that cannot close; neither permits a second observation. Re-review of
-this last correction is pending.
+this last correction completed successfully (verbatim receipt below).
+
+## I2 route observations and interpretation
+
+The 12 predefined cold initial documents ran sequentially, balanced order,
+1440×900/DPR1/light/visible, no CPU/network throttling, 10s per document.
+Chromium153.0.8010.0 and Playwright1.63.0; SDK intentionally blocked. Every row
+is instrumentation-valid, with no browser/collector errors, unknown requests,
+beacons or cleanup failures. All remaining-scenario lists are empty. The exact
+44-file production archive passed admission again after execution. All three
+Home traces are retained privately with verified hashes.
+
+| Initial document | Trial1 / Trial2 / Trial3 LCP (ms) | Final LCP element |
+| --- | --- | --- |
+| `/` | 344 / 256 / 260 | `img.portrait-media` |
+| `/index.html` | 256 / 256 / 244 | `img.portrait-media` |
+| `/research.html` | 248 / 288 / 240 | `span.reading-title-ink` |
+| `/writing.html` | 248 / 292 / 324 | `span.reading-title-ink` |
+
+Home root image response duration was18.6–54.1ms and its render-delay component
+219.6–267.4ms. Long tasks of117–142ms occurred before Home LCP. These are measured
+local critical-path observations, not a decomposition of every render-delay
+millisecond into CPU work. They do not identify the cause of historical Poor
+sessions. No>4000ms LCP occurred, and three trials per route cannot establish a
+population regression or a meaningful root-versus-index difference.
+
+Clean local producer commit: `67addc0732da818cc050b7e0b8b724c7ac77a012`.
+Tree: `08595249021dfef485d9074d2ac9137b10832ee5`.
+Collector SHA256: `f344e9010c6c0df73eed3cbf29f6bf719d60250691d04ff2f86882445d99ea7b`.
+Runner SHA256: `0baa2a39c79121e9a56dcd68e4036855871ab8feaa99f8a5b594c1ff1c2be8e9`.
+Raw route report SHA256:
+`383660873ec182a1e94a0d0bd68d8bbd2dadfe03b64a2d03fab45fa55f9119f7`.
+
+Local Git had no push credentials. The authorized GitHub connection published
+exactly the same tree as commit
+[`935327d775569894ef480a103834061373500196`](https://github.com/oborskyivitalii/oborskyivitalii/commit/935327d775569894ef480a103834061373500196).
+Both tree identities were verified. The original measurement report stays
+unchanged; this is equivalent source bytes, not a claim of identical commit IDs.
+Later report/memory edits do not relabel the measured source.
+
+| Scenario | Observation | Disposition |
+| --- | --- | --- |
+| T00 calibration | 12/12 discriminate healthy/resource/stall/missing timing | Synthetic instrumentation evidence only; original dirty producer and corrected5s header recorded |
+| T01 native Windows/macOS | No available native host | Pending, Linux is not a substitute |
+| T02 cold initial documents | 3×4 entries, LCP240–344ms, no Poor reproduction | Cold subset complete; reload/reopen/warm/soft navigation pending |
+| T03 real SDK and SPA beacons | SDK retrieval HTTP403/error1010 and browser ERR_EMPTY_RESPONSE | Blocked/inconclusive; no stub-based vendor pass |
+| T04–T09 | No new execution | Unexecuted; select only to resolve a concrete hypothesis |
+
+Recommendation: retain this opt-in harness and capture one actual slow desktop
+Chrome Home session with a same-navigation trace, all LCP candidates,
+Navigation/Resource Timing, lifecycle/visibility and the real SDK beacon. Until
+that evidence exists, no site/runtime, fractal, analytics or transport fix is
+supported. Repeat lab audits alone would not resolve this remaining boundary.
 
 ## Acceptance evidence
 
-| AC | Check | Current result | Remaining gate |
+| AC | Check / source | Current result | Remaining gate |
 | --- | --- | --- | --- |
-| AC01 | Historical source/privacy plus unchanged-source guard | Prior evidence preserved; new archive verified | Private historical window receipt remains separate |
-| AC02 | Collector behavior/negative controls | Source checks pass | Current browser/SDK observation |
-| AC03 | Predefined calibration/route cases | Runner prepared | Actual sequential execution and limits |
-| AC04 | Evidence-based recommendation | Pending final report | Independent review and interpretation |
-| AC05 | Unchanged runtime/production/budgets, private raw data | Prepared scoped guard | Final exact-source/privacy review |
-| AC06 | Diagnostic source and calibrated browser collector | 11/11 source cases; calibration12/12 | Independent current-source review |
-| AC07 | Bounded first-wave runs, exact archive and honest unsupported cases | Archive44/44 | Actual browser/SDK/native evidence |
-| AC08 | Style, Basic, RI/CI, targeted registry, independent review | Pending final candidate | Current-source checks, review and merge decision |
+| AC01–AC05 | Dated20October issue receipts, unchanged-production guard | Historical evidence preserved; this continuation has separate immutable inputs | Do not relabel historical observations as new runs |
+| AC06 | DIAGNOSTIC19cases; T00 original report and revalidation | Calibrated resource/stall/missing timing; I1 findings resolved | Actual real-SDK identity/beacon remains unavailable; whole criterion open |
+| AC07 | T00 and T02 clean producer67addc0/tree0859524 | Calibration12/12 and cold12/12, all outcomes retained | Native T01, real-SDK/T03 and broader T02 incomplete; whole criterion open |
+| AC08 | CS01/04/05/07/08/09/10; existing Basic/style/format/RI/CI and registry | I1 independent review complete, scoped source checks pass | Final exact-head policy, I2 review/live verification and maintainer merge; whole criterion open |
+
+PR117 remains Draft. Hosted navigation, Basic and owning-issue workflows defer
+execution for Drafts; a skipped/deferred job is not a passing check. Local exact
+clean-head policy and final workflow disposition will be linked in the PR/issue
+without making this Ready, merged, accepted stable staging or production
+publication. The repository controller automatically published an isolated
+Draft prototype for935327d at
+[314a108d](https://314a108d.oborskyi-author-ci-staging.pages.dev),
+[run39514170246](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39514170246).
+Its source/browser and stable-staging admission are deferred; a prototype is not
+performance evidence. Final-head preview status is tracked separately in the PR.
+Existing hosted profiles/budgets and production/site/docs source bytes remain
+unchanged.
 
 ## Reproduce
 
@@ -188,3 +253,25 @@ The orchestration now saves the failed row and remaining scenarios, stops before
 F01–F06 are resolved, reusing the unaffected prior review. Historical calibration remains admissible with its original identities and five-second metadata correction. Broader T02, native T01, real-SDK/T03 and performance acceptance remain pending.
 
 No files were modified and no browser measurements were run during this review.
+
+## I2 final independent receipt
+
+Reviewer: `/root/review_lcp_implementation`. Verbatim final response:
+
+**I2 has no blocking findings.**
+
+Reviewed diff SHA256 `0abddb45223e684040f0ee26532821f875e10ee67bcc491270172846162391c7` against published base `935327d775569894ef480a103834061373500196`. All manifest hashes match; diagnostic code remains unchanged from cleared I1.
+
+I independently verified:
+
+- All twelve analyses, reported values/elements and root component ranges.
+- Twenty-four error-free snapshots, balanced trial order and nonoverlapping document windows.
+- Served artifact hashes, 44-file admission, raw report identity and three trace hashes.
+- Tree equivalence between local `67addc0…` and published `935327d…`.
+- Fresh RI, passing 15-check coupling verification, unchanged production paths, and live Draft/unmerged PR117 status.
+
+The conclusions, privacy treatment, recommendation and handoff accurately preserve the evidence limits. The cold subset did not reproduce Poor LCP. Native T01, real-SDK/T03, broader T02, final exact-head acceptance and merge remain pending; AC06–AC08 should remain unchecked.
+
+Hosted source checks were skipped, and the prototype’s deferred browser/stable-staging gates are described correctly.
+
+No files were modified or browser measurements run during this review.
