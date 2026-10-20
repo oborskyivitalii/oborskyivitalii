@@ -5,9 +5,9 @@ Dated continuity, not live authority. Last verified: **2026-10-20**.
 ## Snapshot
 
 - 20 October #5/PR79: author accepts reader preview and authorizes permanent staging.
-  Ready3a0b20b passes1017/1017; staging39447032022 hit per-process CPU limits.
-  Isolate heavy guards; lossless method4 keeps all7 R18 slide bytes, ~10x faster.
-  Bounded compatibility correction preserves R18 media/PDF; final evidence in PR/issue:
+  Readye24168e passes1018/1018; staging39453642484 passes all26 preflight guards.
+  Its protected-main publisher rejects article-media; stable staging is unchanged.
+  Regression39455417483 exposed inherited preview mode in four fixtures; fixes/evidence:
   review/issue-5/2026-10-20-reader-interactions.md#permanent-staging-admission.
 
 - 20 October #2/PR79: author requests R18 PDF/native preview and official event name

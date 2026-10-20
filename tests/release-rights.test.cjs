@@ -777,7 +777,9 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
     fs.copyFileSync(path.join(root, name), target);
   }
   fs.writeFileSync(path.join(checkout, '.gitignore'), '.site-cache/\n.fixture-output/\n');
-  const environment = { ...process.env };
+  // This CLI fixture exercises principal-page rights in both editions.
+  // Hosted article rights are exercised separately above.
+  const environment = { ...process.env, SITE_ARTICLE_PREVIEW: 'false' };
   for (const key of [
     'SITE_CANDIDATE_SHA',
     'SITE_EXPECTED_PUBLIC_DIGEST',

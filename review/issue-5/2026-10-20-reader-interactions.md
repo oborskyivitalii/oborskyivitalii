@@ -331,3 +331,40 @@ Prepared full real-article staging build completes in5390ms and retains all seve
 Final prepared owning selection153/153 passes, including media determinism/independent pixel decode, exact runtime families/rights, reader evidence, controller, scanner and preflight/exclusive cases. Four new exact registry fingerprints are individually reproduced and triaged under the original ledger bound. Maintained Python, canonical formatting/RI and clean-source CI are rechecked below; whole review/release approval is not inferred.
 
 Final prepared checks:153/153 owning JS cases,115/115 maintained Python cases, Basic16+Color10, canonical formatting, ESLint and RI/coupling verify pass. The full existing pinned scanner toolchain is prepared locally for a clean-source preflight timing check in parallel with required hosted CI. Its result remains a local measurement, not controller promotion evidence.
+
+### Protected-controller format dependency
+
+Clean source e24168ea5b9fb854d190560cbe8d9a22cbb66dec / tree
+b41fceda1afaab3404ab0cb223d231da8b5ca6d0 passes Ready source1018/1018,
+navigation and the11/11 owning policy. Actual owner staging39453642484/1
+passes all26 preflight guards, including staging source981/981, Python115,
+lint/security/advisories, exact rights and package verification. Build finishes
+within the unchanged10-minute job limit. Preflight artifact12280540721 has ZIP
+SHA256211a4f7b0b299a9a49dd780e8fabb47f42afb224d6af3bc600c281d55b11f181;
+its report SHA256 is c849c1eeead00646da2393aaba7bd4d42be5ba7ebedccf0674f73d2715824c15.
+
+The following trusted-main publish job rejects the first article-media path
+because protected controller82b57b89 predates article inventory support. No
+candidate upload or stable promotion occurs. The exact retained package
+12280465855 / ZIP SHA256e1a5578bc9c38480b2c901798a0c80d97a2375a48f5293240e59882999fd147d
+passes the current verifier and reproduces the same rejection with an isolated
+unchanged82b57b89 checkout. This is a format dependency, not authority to switch
+credentialed jobs to unchecked candidate code or bypass inventory validation.
+Integrating the article-aware controller into protected main needs its own
+reviewed bootstrap decision; PR79 must remain open until actual staging passes.
+
+Owner label regression39455417483/1 is also failed evidence. Its preview build
+sets SITE_ARTICLE_PREVIEW=true, unlike the old-main source command. Three
+temporary baseline repositories had no matching empty preview selection, and
+the principal-page rights CLI fixture inherited the real article selection and
+requested Pillow from its intentionally incomplete checkout. All four original
+assertions remain: give baseline generations explicit empty real/template
+selections before building and give only that principal-page child CLI an
+explicit false mode. Production selection and hosted article-rights fixtures
+are unchanged. Recheck both modules with the real outer true mode, then fresh
+clean-source and hosted evidence. Earlier successful e241 checks do not admit
+the corrected source. Stable staging, full regression and merge remain pending.
+
+Prepared fixture verification passes31/31 with outer preview=true and31/31 with
+preview=false. Maintained Python115, Basic16+Color10, focused ESLint, canonical
+formatting, style and RI/coupling checks pass; no runtime/edition bytes change.

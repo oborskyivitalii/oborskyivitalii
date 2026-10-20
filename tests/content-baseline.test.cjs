@@ -170,13 +170,17 @@ function repositoryFixture(t, { realSources = false } = {}) {
       path.join(directory, 'site/content/catalog.json'),
       JSON.stringify(require('./fixtures/catalog.cjs').legacyCatalog(root), null, 2) + '\n'
     );
-    require('../tools/site/build.cjs').build({ root: directory, all: true });
   }
   const write = (file, bytes = '// controlled fixture\n') => {
     const target = path.join(directory, file);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, bytes);
   };
+  // These generations contain no preview candidates, including when the
+  // surrounding staging command explicitly selects the real review article.
+  for (const file of ['site/article-preview.json', 'site/article-template-preview.json'])
+    write(file, JSON.stringify({ schema: 1, candidates: [] }) + '\n');
+  if (realSources) require('../tools/site/build.cjs').build({ root: directory, all: true });
   for (const row of registry.tests) {
     write(row.path);
     write(row.owner);

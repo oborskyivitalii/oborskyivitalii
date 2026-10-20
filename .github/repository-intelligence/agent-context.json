@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "aa626ff92b79b5888dbb0ba3d14fd69f9aab1d27a5effd1bd0fef1d7674b6491",
+    "digest": "cb54618eff30e47e85de9fdd44f1dadd7fd5bafb6a5ab17b258a370ffb7962d1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -306,7 +306,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "c8c4b347f5f42412b90e0b1bc475e98fc2ac10ff2e9a9b55a20d6a9f8967a0ac"
+        "sha256": "8f7eccfa0ad7abc25caf523f7ad57ef7f2913c27981c3826ca7391866624d9ee"
       },
       {
         "path": "NOTICE.md",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "1c46267c0b7479e44328287d79ace5c4af7ccaf55135c0ab17a79c36241a9f95"
+        "sha256": "545f4f089b969e2ed7e985142fb956f5c53852acd471c335aeb54c94502d8c82"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6590,7 +6590,7 @@
       {
         "path": "tests/content-baseline.test.cjs",
         "identity_mode": "content",
-        "sha256": "56897ead6be1362e17fd33531d1c78eb926854a696c97bc8c9db0f2c18c0b866"
+        "sha256": "a2ee4be170b7051fb377db90074c78f5bd324650d0ea6ef5e118097668b0a805"
       },
       {
         "path": "tests/content-delivery.test.cjs",
@@ -6830,7 +6830,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "80f2e43ad79d18aa3e37d75962f61fb4439b68a1e709d73f054f2b97d4fa8e14"
+        "sha256": "32ae6b9af9996957d432eeea9aa8521a493804d8276e0b9d3f383d5ab8c268bd"
       },
       {
         "path": "tests/renderer.test.cjs",
