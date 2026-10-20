@@ -566,6 +566,48 @@ function executeSource(root, argv) {
     timeout: executionLimits.timeoutMs,
   });
 }
+function executeBatch(root, modules, execute) {
+  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...modules],
+    started = Date.now(),
+    result = execute(argv);
+  const output = result.stdout || '',
+    failures = output
+      .split(/(?=^# Subtest:)/m)
+      .filter((block) => /^not ok /m.test(block))
+      .join('\n')
+      .slice(0, 8000);
+  assert.equal(
+    result.status,
+    0,
+    'selected source test process failed: ' +
+      [result.error?.message, result.stderr, failures || output.slice(-4000), result.status]
+        .filter((value) => value !== undefined && value !== null && value !== '')
+        .join('\n')
+  );
+  return {
+    modules,
+    ...accounting(output, { modules, root }),
+    elapsedMs: Date.now() - started,
+    argv,
+  };
+}
+function executeBatches(root, modules, execute) {
+  const scene = 'tests/space.test.cjs';
+  const batches =
+    modules.includes(scene) && modules.length > 1
+      ? [[scene], modules.filter((file) => file !== scene)]
+      : [modules];
+  const outcomes = batches.map((selected) => {
+    try {
+      return { result: executeBatch(root, selected, execute) };
+    } catch (error) {
+      return { error };
+    }
+  });
+  const failed = outcomes.find((outcome) => outcome.error);
+  if (failed) throw failed.error;
+  return outcomes.map((outcome) => outcome.result);
+}
 function executePlan(root, plan, options = {}) {
   assert.ok(Array.isArray(plan.modules), 'missing selected modules');
   assert.equal(new Set(plan.modules).size, plan.modules.length, 'duplicate selected source module');
@@ -592,24 +634,14 @@ function executePlan(root, plan, options = {}) {
     };
   }
   const execute = options.execute || ((argv) => executeSource(root, argv));
-  const argv = [path.join(__dirname, 'source-test-worker.cjs'), ...plan.modules],
-    started = Date.now(),
-    result = execute(argv);
-  const output = result.stdout || '',
-    failures = output
-      .split(/(?=^# Subtest:)/m)
-      .filter((block) => /^not ok /m.test(block))
-      .join('\n')
-      .slice(0, 8000);
-  assert.equal(
-    result.status,
-    0,
-    'selected source test process failed: ' +
-      [result.error?.message, result.stderr, failures || output.slice(-4000), result.status]
-        .filter((value) => value !== undefined && value !== null && value !== '')
-        .join('\n')
-  );
-  const counts = accounting(result.stdout || '', { modules: plan.modules, root });
+  const started = Date.now(),
+    batches = executeBatches(root, plan.modules, execute),
+    counts = Object.fromEntries(
+      ['total', 'passed', 'failed', 'cancelled', 'skipped', 'todo'].map((key) => [
+        key,
+        batches.reduce((sum, batch) => sum + batch[key], 0),
+      ])
+    );
   if (options.requireClean) requireClean(root);
   return {
     ...plan,
@@ -617,7 +649,7 @@ function executePlan(root, plan, options = {}) {
     pass: true,
     ...counts,
     elapsedMs: Date.now() - started,
-    argv,
+    ...(batches.length === 1 ? { argv: batches[0].argv } : { batches }),
   };
 }
 function sourceIdentity(root) {
@@ -656,10 +688,11 @@ function run(root, plan, options = {}) {
       files,
     };
   let result, failure;
-  const writeRaw = (child = {}) => {
+  const children = [];
+  const writeRaw = () => {
     fs.mkdirSync(path.dirname(files.json), { recursive: true });
-    fs.writeFileSync(files.tap, child.stdout || '');
-    fs.writeFileSync(files.stderr, child.stderr || '');
+    fs.writeFileSync(files.tap, children.map((entry) => entry.child.stdout || '').join(''));
+    fs.writeFileSync(files.stderr, children.map((entry) => entry.child.stderr || '').join(''));
   };
   try {
     report.source = sourceIdentity(root);
@@ -687,8 +720,13 @@ function run(root, plan, options = {}) {
             ),
           ])
         );
+        children.push({
+          child,
+          execution: report.execution,
+          accounting: report.observedAccounting,
+        });
         // Persist complete bounded child streams before status/accounting can throw.
-        writeRaw(child);
+        writeRaw();
         return child;
       },
     });
@@ -699,11 +737,18 @@ function run(root, plan, options = {}) {
     report.sourceAfter = sourceIdentity(root);
     if (!failure)
       assert.deepEqual(report.sourceAfter, report.source, 'source changed during tests');
-    if (!report.execution) writeRaw();
+    if (!children.length) writeRaw();
   } catch (error) {
     failure ||= error;
   }
   if (result) report.result = result;
+  if (children.length > 1) {
+    report.rawFormat = 'concatenated-native-tap-batches';
+    report.executions = children.map((entry) => entry.execution);
+    report.observedAccountingByBatch = children.map((entry) => entry.accounting);
+    delete report.execution;
+    delete report.observedAccounting;
+  }
   if (!failure) {
     report.status = result.status;
     report.pass = result.pass;

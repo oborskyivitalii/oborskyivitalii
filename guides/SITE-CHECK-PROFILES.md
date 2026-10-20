@@ -301,7 +301,16 @@ The source runner delegates execution to
 the measured long `space`, `executive`, `article-media` and `release-rights` modules first, then
 the remaining selected files lexically, retaining the same selected set, Node
 process isolation, a maximum of four workers, native TAP and strict accounting.
-The fixed 180-second child bound and 16MiB output bound remain; SIGTERM/SIGINT
+When Space is selected alongside other modules, run it alone before the remaining
+selected files. This keeps its measured two-minute renderer workload from
+competing with image encoding and source fixtures. Both native processes retain
+the fixed180-second/16MiB bounds and remain within the existing10-minute job.
+Each batch must have complete zero-skip accounting; sum only successful native
+counts. Reports identify each actual argv/result and concatenate original raw
+streams without relabelling them as one TAP run. A failed batch keeps the whole
+gate failed while the independent remaining batch still records its result.
+Content-only plans retain their existing single-process evidence and reuse.
+SIGTERM/SIGINT
 abort the owned runner and reap its children before timeout evidence is retained.
 
 At every issue's completion, review its tests against PR smoke, bounded staging

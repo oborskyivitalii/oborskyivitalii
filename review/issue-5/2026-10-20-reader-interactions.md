@@ -236,3 +236,15 @@ also rejected the expanded material test's cognitive complexity. Include the
 existing guide in the authoritative inventory and extract the material decision
 into a named helper; preserve its assertions and the25-complexity limit. Prepared
 root-layout, paint negatives and focused ESLint pass before the next source.
+
+Source dc2b5479 passed lint/navigation/owning policy but its shared source worker
+timed out before buffered Space output completed (CI39428464799). An isolated
+native run passes all68 scene tests in119296.6ms. Space now runs alone before the
+remaining exact selected inventory; each process retains180s/16MiB and the job
+retains10minutes. Maximum four concurrent file workers, no overlap between batches,
+unchanged tests, strict per-batch leaf accounting and combined exact counts.
+Original streams and actual command/status/byte bounds remain separately described;
+failed/unavailable/empty groups cannot borrow success from another group, and
+later independent evidence survives a first failure. Content-only reuse remains
+the existing single-process format. This is workload isolation, not new release
+acceptance. Current-source Ready/staging measurements remain required.

@@ -1161,6 +1161,58 @@ test('report write errors cannot become green and clean source failures still le
   );
 });
 
+test('scene isolation retains every selected native case and rejects unavailable or empty batches', (t) => {
+  const f = executionFixture(t, "require('node:test')('remaining coverage',()=>{});\n"),
+    scene = 'tests/space.test.cjs',
+    sceneBody = "require('node:test')('scene coverage',()=>{});\n",
+    plan = { profile: 'production', modules: [f.file, scene] };
+  f.write(scene, sceneBody);
+  const execute = () => runner.run(f.directory, plan, { report: f.report });
+  const result = execute(),
+    report = JSON.parse(fs.readFileSync(f.report));
+  assert.equal(result.passed, 2);
+  assert.deepEqual(
+    result.batches.map((batch) => batch.modules),
+    [[scene], [f.file]]
+  );
+  assert.deepEqual(result.modules, plan.modules, 'original selected inventory stays intact');
+  assert.equal(report.rawFormat, 'concatenated-native-tap-batches');
+  assert.equal(report.execution, undefined, 'two native processes cannot masquerade as one');
+  const raw = fs.readFileSync(report.files.tap);
+  let offset = 0;
+  for (const [index, execution] of report.executions.entries()) {
+    assert.equal(execution.status, 0);
+    assert.equal(execution.timeoutMs, 180000);
+    assert.equal(execution.maxBufferBytes, 16 * 1024 * 1024);
+    const tapBytes = raw.subarray(offset, offset + execution.stdoutBytes);
+    assert.equal(
+      runner.accounting(tapBytes.toString(), {
+        modules: result.batches[index].modules,
+        root: f.directory,
+      }).passed,
+      1
+    );
+    offset += execution.stdoutBytes;
+  }
+  assert.equal(offset, raw.length, 'all unmodified native TAP bytes are retained');
+  for (const body of [
+    "require('node:test').skip('unavailable scene',()=>{});\n",
+    "require('node:test')('failed scene',()=>{throw Error('original scene failure')});\n",
+  ]) {
+    f.write(scene, body);
+    assert.throws(execute, /selected source test process failed|not all selected|skipped/);
+    const failed = JSON.parse(fs.readFileSync(f.report));
+    assert.equal(failed.pass, false);
+    assert.equal(failed.executions.length, 2, 'the independent remaining batch still runs');
+    assert.equal(failed.executions[1].status, 0);
+    assert.match(fs.readFileSync(failed.files.tap, 'utf8'), /remaining coverage/);
+  }
+  f.write(scene, sceneBody);
+  f.write(f.file, '');
+  assert.throws(execute, /empty selected test module/);
+  assert.equal(JSON.parse(fs.readFileSync(f.report)).pass, false);
+});
+
 test('optional successful source reports keep the default API and CLI result shapes', (t) => {
   const f = executionFixture(t, "require('node:test')('available',()=>{});\n"),
     result = runner.run(f.directory, f.plan, { requireClean: true, report: f.report }),

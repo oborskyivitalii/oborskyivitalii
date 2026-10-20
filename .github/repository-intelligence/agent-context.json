@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "adfd68cbaac79ac917e7db77b0c97d08f9a1ba737431ab7f27b54db00cae141a",
+    "digest": "4e29750ec314f2389bc99a71573d4b2fdb61bf6bd14be85a622cd832de9ccb01",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -176,7 +176,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "20f198effb20088b20b4858097f294e555113bf0d268f08201af1a26bb54b8e8"
+        "sha256": "eb8bc9206e80fad1535784f09eecbdb902857526e9760755898f01233fcfe903"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -580,7 +580,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "0b64d0877177f8612854c2140fbe54b4a516a5a8e5652b9b1cfe88ac95ac6072"
+        "sha256": "e519a77511ce62028ce30390a4c87fcc51c6d379a4fcea5fc94093fb043b0690"
       },
       {
         "path": "guides/SITE-CONTENT-RELEASE.md",
@@ -1440,7 +1440,7 @@
       {
         "path": "review/issue-5/2026-10-20-reader-interactions.md",
         "identity_mode": "content",
-        "sha256": "6b505e25f8166f13d68722efdceecabaa1c3e350c1acb99a4780ee7c82b34e94"
+        "sha256": "6c35baa8a5712cda52e1c747471b7303e3e1737f356a721d867c834a1dda0a76"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6910,7 +6910,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "78ae019ad11e4bcb128406760261a7988cc2e43867d070a50062fac93806bf9c"
+        "sha256": "20dc319536bfb64d12cf1f76271f0914f545e9d5a914d298b2073c879e9006ec"
       },
       {
         "path": "tests/test_code_style.py",
@@ -7650,7 +7650,7 @@
       {
         "path": "tools/quality/source-tests.cjs",
         "identity_mode": "content",
-        "sha256": "c64add23f9673bde3e3f5d3092f1da0a651a8826f850df6a6ffea065cbdd777a"
+        "sha256": "92c094bfc7436bbea6ed536d96ef1e00fc246f65fb27006c5ed1ecd6c006fcb7"
       },
       {
         "path": "tools/quality/staging-gate.cjs",
