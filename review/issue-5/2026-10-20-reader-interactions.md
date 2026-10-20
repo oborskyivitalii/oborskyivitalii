@@ -86,3 +86,14 @@ camera journey construction, content directions and collector assertions into
 named helpers. The existing conditions/order/budgets are preserved; no rule or
 complexity allowance was weakened. Focused profile/build37, navigation/reader55
 and scene10 tests passed after these extractions.
+
+## Hosted follow-up
+
+The first exact source b21a4d7 passed its owning11/11 automated policy, with
+evidence_valid:true and no errors. CI39400815917 built and published the preview;
+1440/390 normal principal-page smoke passed, but the workflow failed on no-Canvas
+pending index requests and opening Contents changing document height/scroll.
+The enhanced Contents list is now an opaque absolute dropdown below the sticky
+control, preserving both document geometry and native no-JS flow. The collector's
+strict reading-position assertion remains unchanged. This failed run is historical
+diagnosis, not final hosted acceptance; the final source/run belongs to PR79.

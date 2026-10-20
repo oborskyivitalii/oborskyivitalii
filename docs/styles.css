@@ -1838,6 +1838,7 @@ body[data-page='writing'] #archive-results {
 /* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
 .reader-mode,
 .reader-mode .article-toc,
+.reader-mode .reader-contents[data-reader-enhanced] > ol,
 .reader-dialog {
   background: var(--paper);
   border-radius: var(--reading-surface-radius);
@@ -1912,6 +1913,12 @@ body[data-article] .space-scene[data-travel='settled'] {
   position: sticky;
   top: calc(var(--header-clearance, 110px) - 16px);
   z-index: 3;
+}
+.article-toc .reader-contents[data-reader-enhanced] > ol {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  border: 1px solid var(--line);
 }
 .reader-mode summary {
   cursor: pointer;

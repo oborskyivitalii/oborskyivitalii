@@ -263,9 +263,13 @@ async function discussionAnchor(page) {
   );
 }
 async function documentNavigation(page, url, responseChecks) {
-  // A new document discards CDP response bodies owned by the departing page.
+  return navigationAction(responseChecks, () => page.goto(url, { waitUntil: 'load' }));
+}
+async function navigationAction(responseChecks, navigate) {
+  // Document replacement discards CDP bodies; an in-shell route change can
+  // also abort the departing archive's still-pending publication-index fetch.
   await drainResponses(responseChecks);
-  await page.goto(url, { waitUntil: 'load' });
+  return navigate();
 }
 async function drainResponses(responseChecks) {
   let checked = 0;
@@ -276,31 +280,35 @@ async function drainResponses(responseChecks) {
   }
 }
 async function discussionNavigation(page, url, responseChecks) {
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
     cta = page.locator('#acknowledgements > a.text-link');
   assert.equal(await cta.getAttribute('href'), 'research.html#acknowledgements');
   assert.equal(await cta.textContent(), 'Full discussion & source context ↗');
-  await cta.evaluate((el) => el.click());
+  await navigationAction(responseChecks, () => cta.evaluate((el) => el.click()));
   await ready(page, 'research');
   await discussionAnchor(page);
   const research = await responseNames(page, 'research');
-  await drainResponses(responseChecks);
-  await page.goBack();
+  await navigationAction(responseChecks, () => page.goBack());
   await ready(page, 'index');
   await responseNames(page, 'index');
-  await drainResponses(responseChecks);
-  await page.goForward();
+  await navigationAction(responseChecks, () => page.goForward());
   await ready(page, 'research');
   await discussionAnchor(page);
   const nav = page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
   assert.equal(await nav.textContent(), 'Advisors & responses');
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
-  await page
-    .locator('#acknowledgements a[href="research.html#ua-advisors"]')
-    .evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page
+      .locator('#acknowledgements a[href="research.html#ua-advisors"]')
+      .evaluate((el) => el.click())
+  );
   await ready(page, 'research');
   assert.equal(new URL(page.url()).hash, '#ua-advisors');
   await page.waitForFunction(
@@ -456,7 +464,9 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       const checkDetail = mode === 'normal' && id === 'writing';
       if (checkDetail) await flightDetail.begin(page);
       if (id !== 'index') {
-        await page.locator(routeSelector(id)).evaluate((el) => el.click());
+        await navigationAction(responseChecks, () =>
+          page.locator(routeSelector(id)).evaluate((el) => el.click())
+        );
         await ready(page, id);
       }
       const detail = checkDetail ? await flightDetail.finish(page) : null;
@@ -517,11 +527,9 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         ],
       });
     }
-    await drainResponses(responseChecks);
-    await page.goBack();
+    await navigationAction(responseChecks, () => page.goBack());
     await ready(page, 'talks');
-    await drainResponses(responseChecks);
-    await page.goForward();
+    await navigationAction(responseChecks, () => page.goForward());
     await ready(page, 'credits');
     const discussion = await discussionNavigation(page, url, responseChecks);
     await drainResponses(responseChecks);
@@ -666,6 +674,7 @@ module.exports = {
   verifyResponse,
   verifyRequest,
   documentNavigation,
+  navigationAction,
   contentDocuments,
   contentJourney,
   writingControls,

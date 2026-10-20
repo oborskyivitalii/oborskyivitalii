@@ -297,6 +297,12 @@ test('reader interaction evidence covers native fallbacks and measured dialog us
       row.topic.menu.opened.bottom = 1000;
     },
     (row) => {
+      row.topic.menu.opened.top = -1;
+    },
+    (row) => {
+      row.topic.menu.opened.bottom = row.topic.menu.opened.top;
+    },
+    (row) => {
       row.cleanup.open = true;
     },
     (row) => {

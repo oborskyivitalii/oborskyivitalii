@@ -402,6 +402,14 @@ function validateReaderInteractions(reader, mode) {
   if (inventory.topics.length && mode !== 'no-js') {
     assert.ok(reader.topic.menu.before.top >= 0, 'Contents is reachable while reading');
     assert.ok(
+      reader.topic.menu.opened.top >= 0,
+      'open Contents panel stays below the viewport top'
+    );
+    assert.ok(
+      reader.topic.menu.opened.bottom > reader.topic.menu.opened.top,
+      'open Contents panel is painted'
+    );
+    assert.ok(
       reader.topic.menu.opened.bottom <= reader.topic.height + 1,
       'open Contents remains in the viewport'
     );
@@ -577,7 +585,7 @@ async function sourceAndTopicsJourney(page, inventory, native = false) {
     if ((await disclosure.getAttribute('open')) === null)
       await disclosure.locator(':scope > summary').click();
     if (!native) {
-      menu.opened = await page.locator('.article-toc').evaluate((element) => {
+      menu.opened = await page.locator('.reader-contents > ol').evaluate((element) => {
         const rect = element.getBoundingClientRect();
         return { top: rect.top, bottom: rect.bottom, scroll: scrollY };
       });
@@ -586,7 +594,9 @@ async function sourceAndTopicsJourney(page, inventory, native = false) {
         'opening topic navigation retains reading position'
       );
       assert.ok(
-        menu.opened.top >= 0 && menu.opened.bottom <= page.viewportSize().height + 1,
+        menu.opened.top >= 0 &&
+          menu.opened.bottom > menu.opened.top &&
+          menu.opened.bottom <= page.viewportSize().height + 1,
         'open topic navigation remains in the viewport'
       );
     }

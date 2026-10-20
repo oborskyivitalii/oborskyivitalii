@@ -311,7 +311,8 @@ page-edge scene gestures are disabled while reading an article.
 
 The optional `engine/reader.cjs` lifecycle adds hierarchical H2/H3 Contents,
 current-topic tracking, image zoom, compact reference previews and print expansion.
-The enhanced Contents control stays reachable while reading and closes on selection;
+The enhanced Contents control stays reachable while reading, opens its list above
+the reading surface without changing document height, and closes on selection;
 without JavaScript, native Contents scrolls with the page so it cannot cover anchor destinations.
 `templates/components/reader-tools.html` owns the progressively enhanced native
 dialogs. Image and citation anchors remain usable in ordinary HTML; supported

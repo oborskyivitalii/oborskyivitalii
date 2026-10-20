@@ -10,6 +10,7 @@ const {
   verifyRuntimeIdentity,
   analyticsRequest,
   documentNavigation,
+  navigationAction,
 } = require('../tools/quality/local-browser.cjs');
 const { validate } = require('../tools/quality/flight-detail.cjs');
 test('native document navigation waits for owned byte reads and preserves their failures', async () => {
@@ -118,6 +119,51 @@ test('the byte collector owns requests before headers and retains body-read and 
     ),
     /unavailable response body/
   );
+});
+test('instant in-shell navigation verifies the outgoing publication index before unmount can abort it', async () => {
+  const base = 'https://example.test',
+    bytes = Buffer.from('{"articles":[]}'),
+    file = 'publication-index.json',
+    manifest = {
+      files: { [file]: { sha256: crypto.createHash('sha256').update(bytes).digest('hex') } },
+    },
+    controller = new AbortController(),
+    checked = new Set(),
+    errors = [];
+  let headers, body;
+  const request = {
+    url: () => base + '/' + file,
+    response: () =>
+      new Promise((resolve) => {
+        headers = resolve;
+        controller.signal.addEventListener('abort', () => resolve(null), { once: true });
+      }),
+  };
+  const verification = verifyRequest(request, base, manifest, checked).catch((error) => {
+      errors.push(error.message);
+    }),
+    navigation = navigationAction([verification], () => controller.abort());
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(controller.signal.aborted, false, 'instant route mount waits for response headers');
+  headers({
+    url: request.url,
+    status: () => 200,
+    body: () =>
+      new Promise((resolve) => {
+        body = resolve;
+      }),
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(
+    controller.signal.aborted,
+    false,
+    'the departing fetch remains owned through hashing'
+  );
+  body(bytes);
+  await navigation;
+  assert.equal(controller.signal.aborted, true, 'ordinary route cleanup still runs');
+  assert.deepEqual([...checked], [file]);
+  assert.deepEqual(errors, []);
 });
 test('content smoke requires every rebuilt article descriptor and retains explicit no-article catalog cases', () => {
   const { contentDocuments } = require('../tools/quality/local-browser.cjs');
