@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "issue": 112,
+  "pr": 117,
+  "label": "lcp-capture-112-20261021",
+  "releaseURL": "https://github.com/oborskyivitalii/oborskyivitalii/releases/download/prod-2026-10-19.2",
+  "productionCommit": "82b57b8948c6c30143213b846ee2848d06f8d200",
+  "productionTree": "493117e64bf4e16333d99c8ac1504dba3ab39283",
+  "publicDigest": "cd0fd21fd7676d581840f3264658dc88cd9f6cdf5c07b4c254edf9df1db32c1b",
+  "releaseFiles": {
+    "archive.json": "6b7d808de22c42c5910773608574b8bbf162609393541a04776e97c7e63a7f4a",
+    "public.tar.gz": "302690ddd3da93d21b5738c327be52047dfe97e5577053938da432d1df490911"
+  },
+  "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA17VgI+3e1P1pRV/zuFVm\nzC7zEx5DFLQn7aGxLWxXpyvq5HJSbUv7nIKOvbGHAz5PI4TEz1FeVHagr79dwWjA\n6pT626LFCwrjAQA+tePN5AVZfXqstbluDP1Aq3KihrKA+BdMyc464eZfbPLQgajd\nr0HRUO4lfO1d0VUN/YvnCV2Nq4uxdgPDyOgcVb5qYJ1m0gwSBijyHTJlT4Uz80Bc\ni7fSg+bPPkizrOIxNrVSVh5/C1+NPplDInE4nG7lfzgaH+Gp4HDoZjdb6oSXp+5h\nQDUnseSY+rkvXcwUWcMnLuUtb8UBqmj+1x4LII3/2TFhOPPRs7TDuPwR2mdnIv12\nTlD9XBa4FVm3iTJU+q9Iyt37u/8lX32Tf2ZjxxToFKMh0Xf8yGaUdPqsGQB8GGKv\nhAgvsej/Sas/oRH7CH80a71vhTdHwdexWax8QRtSjWO6NUondoDWNNr/Zu3tOn5u\nJaj2XxkxBtKnf2gJqKOUkfd9kJuL0pfvaBVbLu0CV1d1AgMBAAE=\n-----END PUBLIC KEY-----\n",
+  "recipientSHA256": "ec9e4020be164c6e8b0b40e20ecfbf35a7d7214e7fbea707a3f44ff6ed2a0e30"
+}

@@ -2070,6 +2070,61 @@
         "tools/release/rights-record.cjs",
         "docs/**"
       ]
+    },
+    {
+      "path": "tests/lcp-diagnostic.test.cjs",
+      "language": "javascript",
+      "purpose": "Opt-in Home LCP collector, incomplete-timing, per-document attribution, telemetry admission, exact archive and calibration negative controls; not a hosted matrix. Includes CPU/DPR configuration, serialized Canvas observation and verified cache/304 negatives.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "diagnostic",
+      "profiles": ["diagnostic", "pr-targeted"],
+      "disposition": "Retain targeted source checks on helper changes; browser calibration/route/real-SDK execution remains manual and private. No routine staging/production expansion.",
+      "surviving_route": "node --test tests/lcp-diagnostic.test.cjs",
+      "inputs": [
+        "tests/lcp-diagnostic.test.cjs",
+        "tools/quality/lcp-diagnostic.cjs",
+        "tools/quality/lcp-browser.cjs",
+        "tools/quality/lcp-cache.cjs",
+        "docs/writing.html"
+      ]
+    },
+    {
+      "path": "tests/test_issue112_acceptance.py",
+      "language": "python",
+      "purpose": "Issue112 targeted diagnostic behavior, unchanged production scope and opt-in scheduling; actual browser/SDK and historical/private interpretation remain external gates. Includes CPU/DPR configuration, serialized Canvas observation and verified cache/304 negatives.",
+      "owner": ".github/ACCEPTANCE.md",
+      "lifecycle": "task-snapshot",
+      "profiles": ["issue-policy"],
+      "disposition": "Issue112 policy only; fixed no-production-change diagnostic continuation, not future runtime acceptance.",
+      "surviving_route": ".github/acceptance/issue-112.json",
+      "inputs": [
+        "tests/test_issue112_acceptance.py",
+        ".github/acceptance/issue-112.json",
+        "tools/quality/lcp-diagnostic.cjs",
+        "tools/quality/lcp-browser.cjs",
+        "tests/lcp-diagnostic.test.cjs",
+        "tools/quality/lcp-cache.cjs",
+        "tools/quality/lcp-remote.cjs",
+        "tools/quality/lcp-remote.json",
+        "tests/lcp-remote.test.cjs",
+        ".github/workflows/home-lcp-remote.yml"
+      ]
+    },
+    {
+      "path": "tests/lcp-remote.test.cjs",
+      "language": "javascript",
+      "purpose": "Canonical one-attempt SDK input rejection, bounded streaming, authenticated evidence encryption and private-path negatives; no browser/native claim.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "diagnostic",
+      "profiles": ["diagnostic", "pr-targeted"],
+      "disposition": "Dated remote SDK diagnostic source checks only; capture activates by dedicated label on same-repository Draft PR117. No routine matrix expansion.",
+      "surviving_route": "node --test tests/lcp-remote.test.cjs",
+      "inputs": [
+        "tests/lcp-remote.test.cjs",
+        "tools/quality/lcp-remote.cjs",
+        "tools/quality/lcp-remote.json",
+        ".github/workflows/home-lcp-remote.yml"
+      ]
     }
   ]
 }

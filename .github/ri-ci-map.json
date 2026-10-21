@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/114",
-    "date": "2026-10-20",
-    "summary": "Issue114 mandatory per-iteration independent subagent review through the existing protocol owner/templates. Existing bounded check selectors and unchanged CI routes; semantic review and merge gates remain external."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/112",
+    "date": "2026-10-21",
+    "summary": "Issue112 remote SDK acquisition/private replay extends the existing opt-in diagnostic/acceptance route. One new PR117 label workflow is separate from every unchanged prior pipeline, production owner, matrix and budget; native/SDK/session/private/independent/merge gates remain external."
   },
   "layers": [
     {
@@ -128,7 +128,9 @@
         "tests/test_issue5_acceptance.py",
         "review/issue-5/2026-10-20-controller-bootstrap.md",
         ".github/acceptance/issue-114.json",
-        "review/issue-114/2026-10-20-review.md"
+        "review/issue-114/2026-10-20-review.md",
+        ".github/acceptance/issue-112.json",
+        "tests/test_issue112_acceptance.py"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -306,7 +308,8 @@
         "tools/release/rights-record.cjs",
         "tools/quality/analytics-browser.cjs",
         "tests/analytics.test.cjs",
-        "tools/release/staging-policy.cjs"
+        "tools/release/staging-policy.cjs",
+        ".github/workflows/home-lcp-remote.yml"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
     },
@@ -549,7 +552,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c37805665f4855ad93558015b60c67b9a5042e2b1fb8764944745c3fbcdaf2a6",
+    "digest": "ac4e9f27358f1451f4c3bfd93f4606f6c8370711be42d1956d269b4b6e9d54f1",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -574,6 +577,10 @@
       {
         "path": ".github/acceptance/issue-108.json",
         "sha256": "f1bf79f1c88fec50208ccbebf70cd1c7dedd7c99ba499b1d62351ce5863416fa"
+      },
+      {
+        "path": ".github/acceptance/issue-112.json",
+        "sha256": "87a02343d8a6758f76c3d8463376d99a1f3c22b56460318fad374fef876d948f"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -669,7 +676,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "7bb4c7bfc357242be96e8f8ff1afa206c4976869f96527ed7d75c9a1327e6337"
+        "sha256": "380cf790cd66d98fd9e796aa64d98fe2d9544234a02f2705aa57fa1143c9769a"
+      },
+      {
+        "path": ".github/workflows/home-lcp-remote.yml",
+        "sha256": "c6cdafbf7d2ee15f1772cc96eb4691503a599d24d411a8e882ae56540632b2e5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -765,7 +776,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "e16aff8ea47271f8bf7c69e2a182f71c864ff0313fafdc0e76b06a842faa7d7e"
+        "sha256": "72f8d988f9d46ae5098c82ead0ce19b79870a49f778d2736f7f9e3c839b1bf32"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -802,6 +813,10 @@
       {
         "path": "tests/test_issue108_acceptance.py",
         "sha256": "dc62f5c1d2f4402ade4c7d4403455eb696c2d649b44223f59f703dfadec8e24a"
+      },
+      {
+        "path": "tests/test_issue112_acceptance.py",
+        "sha256": "a6b1496ad3082e0c5a30e1c5776f606c193cceb4a89845d654dd047eca55a626"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -917,7 +932,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "d61112aaadf505a65ccced741715942aee21b72b18cb6d54bcf9c71a4e379c08"
+        "sha256": "fd0ab4e079e5ebf6aa12b092d94885a8f71ee6661d72d68b60f0302f082d01b3"
       },
       {
         "path": "tools/repository_intelligence.py",

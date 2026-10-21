@@ -67,6 +67,18 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-112.json": {
+      "kind": "file",
+      "purpose": "Issue112 original and diagnostic-continuation AC mapping with exact source checks and private/browser/review/merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    ".github/acceptance/issue-114.json": {
+      "kind": "file",
+      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -226,6 +238,12 @@
     ".github/workflows": {
       "kind": "directory",
       "purpose": "Pinned CI workflows for navigation, site checks, hosted staging and manual diagnostics.",
+      "role": "workflow",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    ".github/workflows/home-lcp-remote.yml": {
+      "kind": "file",
+      "purpose": "Separate PR117 label-triggered one-shot remote SDK diagnostic; encrypted artifacts only, no existing pipeline changes.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -793,6 +811,12 @@
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
     },
+    "guides/HOME-LCP-NATIVE-CAPTURE.md": {
+      "kind": "file",
+      "purpose": "One owner-operated native Home trace/HAR/late-Timing capture with local RUM blocking, exact-session checks and explicit missing startup evidence.",
+      "role": "guide",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "guides/README.md": {
       "kind": "file",
       "purpose": "Topic guide index with one current owner for each concern; live issue status is retrieved separately.",
@@ -1056,6 +1080,30 @@
       "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
       "role": "history",
       "owner": "site/README.md"
+    },
+    "review/issue-112": {
+      "kind": "directory",
+      "purpose": "Dated sanitized Home LCP diagnostic implementation/review and execution evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-112/2026-10-21-lcp-diagnostics.md": {
+      "kind": "file",
+      "purpose": "Issue112 authorized diagnostic continuation, exact frozen inputs, code-style mapping, review and bounded execution handoff.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-114": {
+      "kind": "directory",
+      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-114/2026-10-20-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-31": {
       "kind": "directory",
@@ -7627,6 +7675,18 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/lcp-diagnostic.test.cjs": {
+      "kind": "file",
+      "purpose": "Meaningful LCP attribution, missing timing, telemetry interception, artifact mutation and calibration-completeness negative controls.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "tests/lcp-remote.test.cjs": {
+      "kind": "file",
+      "purpose": "Reject blocked SDK input, excess acquisition, damaged evidence, wrong recipients and in-checkout private outputs.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/native-display.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for native display.",
@@ -7840,6 +7900,12 @@
     "tests/test_issue108_acceptance.py": {
       "kind": "file",
       "purpose": "Issue108 task-only adapter selecting maintained content and adversarial SEO cases.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "tests/test_issue112_acceptance.py": {
+      "kind": "file",
+      "purpose": "Issue112 source behavior, unchanged public/runtime/budgets and targeted diagnostic allocation checks.",
       "role": "test",
       "owner": ".github/ACCEPTANCE.md"
     },
@@ -8388,6 +8454,36 @@
       "purpose": "Maintained quality/check helper for hosted; applicable profiles are selected by SITE-CHECK-PROFILES.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/lcp-browser.cjs": {
+      "kind": "file",
+      "purpose": "Bounded sequential Home LCP calibration, origin-preserving route/SDK replay and private raw-evidence collection.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/lcp-cache.cjs": {
+      "kind": "file",
+      "purpose": "Exact-byte loopback cache fixture, bounded CDP cache observations and critical-resource cache admission for issue112.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/lcp-diagnostic.cjs": {
+      "kind": "file",
+      "purpose": "Opt-in source-bound Home LCP collector/admission and per-document timing analysis, with no production admission claim.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/lcp-remote.cjs": {
+      "kind": "file",
+      "purpose": "Canonical bounded SDK acquisition, exact release admission, existing replay orchestration and authenticated private evidence encryption.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/lcp-remote.json": {
+      "kind": "file",
+      "purpose": "Dated issue112 frozen release inputs and public encryption recipient for the remote diagnostic; contains no private key.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md"
     },
     "tools/quality/lighthouse.cjs": {
       "kind": "file",
@@ -8970,24 +9066,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    ".github/acceptance/issue-114.json": {
-      "kind": "file",
-      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-114": {
-      "kind": "directory",
-      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-114/2026-10-20-review.md": {
-      "kind": "file",
-      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
     }
   }
 }
