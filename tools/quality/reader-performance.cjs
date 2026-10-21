@@ -158,6 +158,7 @@ async function main() {
             reader: reader.key,
             ...profile,
             error: error.message,
+            failedSample: error.motionSample || null,
           });
         }
         record();

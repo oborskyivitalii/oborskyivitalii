@@ -473,6 +473,40 @@ test('reader-mode evidence requires stationary paragraphs while preserving legac
   assert.doesNotThrow(() => validateArticleJourney(observed(), descriptors, { engine, baseURL }));
 });
 
+function assertDeferredRequestNegatives(make, current) {
+  const missing = make(current);
+  delete missing.observations[0].reader.requestDeferral;
+  assert.throws(
+    () => validateArticleJourney(missing, descriptors, { engine: current, baseURL }),
+    /resource request evidence/
+  );
+  assert.throws(() => validateArticleJourney(missing, descriptors), /resource request evidence/);
+  for (const phase of ['native', 'back', 'spa']) {
+    const empty = make(current);
+    empty.observations[0].reader.requestDeferral[phase].images = [];
+    assert.throws(
+      () => validateArticleJourney(empty, descriptors, { engine: current, baseURL }),
+      /complete reader image inventory/
+    );
+    const omitted = make(current);
+    omitted.observations[0].reader.inventory.images.push(
+      structuredClone(omitted.observations[0].reader.inventory.images[0])
+    );
+    assert.throws(
+      () => validateArticleJourney(omitted, descriptors, { engine: current, baseURL }),
+      /complete reader image inventory/
+    );
+  }
+  const leaked = make(current);
+  leaked.observations[0].reader.requestDeferral.native.requested.push(
+    leaked.observations[0].reader.inventory.images[0].src
+  );
+  assert.throws(
+    () => validateArticleJourney(leaked, descriptors, { engine: current, baseURL }),
+    /detached cache fetched/
+  );
+}
+
 test('reader-block evidence is required for every current identity while historical reports remain valid', () => {
   const motion = require('../tools/quality/color-motion-contract.cjs');
   const identities = [
@@ -485,6 +519,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-reader-staging',
     'issue5-reader-fast-media',
     'issue5-reader-loading',
+    'issue5-reader-deferred-media',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
@@ -496,6 +531,23 @@ test('reader-block evidence is required for every current identity while histori
       row.head.engine = selectedEngine;
       if (motion.readerInteractionsRequired(selectedEngine)) row.reader = readerObserved(row.mode);
       if (row.mode !== 'normal') continue;
+      if (motion.readerDeferredMediaRequired(selectedEngine))
+        row.reader.requestDeferral = Object.fromEntries(
+          ['native', 'back', 'spa'].map((phase) => [
+            phase,
+            {
+              kind: 'reader-deferred-image-requests',
+              margin: 6000,
+              viewportHeight: 844,
+              images: row.reader.inventory.images.map((image) => ({
+                url: image.src,
+                top: 14000,
+                loading: 'lazy',
+              })),
+              requested: [],
+            },
+          ])
+        );
       row.reading.entered = [];
       row.reading.maxEntering = 0;
       for (const item of [...row.flights, ...row.nativeHistory])
@@ -561,6 +613,9 @@ test('reader-block evidence is required for every current identity while histori
         observations: 5,
       }
     );
+    if (motion.readerDeferredMediaRequired(current)) {
+      assertDeferredRequestNegatives(make, current);
+    }
     for (const inventory of ['flights', 'nativeHistory']) {
       const absent = make(current);
       delete absent.observations[0][inventory][0].blocks;
@@ -1171,4 +1226,23 @@ test('article flight admission rejects axial excursions, reversed orbits, scene 
     assert.throws(() => validateArticleFlight(bad.events, bad.from, bad.to, bad.direction));
   }
   assert.throws(() => validateArticleFlight([good.events[0]], good.from, good.to, good.direction));
+});
+
+test('resource deferral rejects detached-clone downloads while retaining near or reused images', () => {
+  const { validateDeferredRequests } = require('../tools/quality/article-browser.cjs');
+  const detail = {
+    kind: 'reader-deferred-image-requests',
+    margin: 6000,
+    viewportHeight: 844,
+    images: [
+      { url: 'https://site.test/cover.jpg', top: 600, loading: 'eager' },
+      { url: 'https://site.test/late.webp', top: 14000, loading: 'lazy' },
+      { url: 'https://site.test/cover.jpg', top: 18000, loading: 'lazy' },
+    ],
+    requested: ['https://site.test/cover.jpg'],
+  };
+  assert.deepEqual(validateDeferredRequests(detail), { images: 3, far: 1, requested: 1 });
+  const leaked = structuredClone(detail);
+  leaked.requested.push('https://site.test/late.webp');
+  assert.throws(() => validateDeferredRequests(leaked), /detached cache fetched/);
 });

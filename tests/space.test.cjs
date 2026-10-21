@@ -599,6 +599,30 @@ test('reduced overrides saved On; Off persists; hidden and print pause without e
   p.settle();
   assert.equal(p.pending.size, 0);
 });
+test('a reduced preference stops the next frame before a delayed change event and preserves saved On', () => {
+  const p = visit({ saved: 'on' });
+  p.frame(80);
+  p.frame(80);
+  const phase = p.phase();
+  p.media.matches = true;
+  p.frame(80);
+  p.settle();
+  assert.equal(p.phase(), phase, 'queued media notification cannot advance ambient time');
+  assert.equal(p.button.disabled, true);
+  assert.equal(p.button.textContent, 'Motion: reduced');
+  assert.equal(p.pending.size, 0);
+  assert.equal(p.stored(), 'on');
+  const draws = p.draws();
+  p.media.change();
+  assert.equal(p.pending.size, 0, 'late duplicate reduced notification schedules no work');
+  p.frame(80);
+  assert.equal(p.draws(), draws);
+  p.media.matches = false;
+  p.media.change();
+  p.frame(80);
+  p.frame(80);
+  assert.ok(p.phase() > phase, 'saved On resumes when the system preference permits it');
+});
 test('cheap ambient paints reach 30Hz at both 60/120Hz RAF; a stall never causes a paint burst', () => {
   for (const narrow of [false, true])
     for (const fps of [60, 120]) {

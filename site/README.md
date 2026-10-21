@@ -378,6 +378,15 @@ including every below-fold slide, still count toward the unchanged 800000-byte
 required reading transfer. Source reconstruction verifies this classification;
 neither mode establishes editorial, rights or release acceptance.
 
+Reader route-cache snapshots and prepared clones use one inert HTMLDocument until
+native mount adoption. URL rebasing uses the explicit source URL. This prevents
+snapshot cloning from requesting distant lazy figures. Current reader browser
+observations retain actual image requests at native entry, Back and SPA mount;
+complete image decoding, dialogs, fragments and print remain separate checks.
+The scene frame reconciles a reduced preference before drawing even when the
+browser has not delivered its media-query change event. Late duplicate disabled
+notifications schedule no further RAF; saved On remains available on resumption.
+
 Prior published versions must be imported explicitly from their verified artifact:
 
 ```sh

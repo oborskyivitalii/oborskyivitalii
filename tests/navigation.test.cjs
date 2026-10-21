@@ -17,6 +17,7 @@ const extractSource = source.slice(
   source.indexOf('  function extract('),
   source.indexOf('  cache.set(page, extract(document));')
 );
+const cacheDocumentSource = source.match(/^ {2}const cacheDocument = .+$/m)[0];
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
 
 test('embedded resources preserve image and PDF URL contexts and reject conflicting identities', () => {
@@ -1140,6 +1141,14 @@ function routeHeadHarness(candidate = source) {
   document.head.append(new Node('style', { 'data-unrelated': '' }, '.persistent{}'));
   document.querySelectorAll = () => [];
   document.importNode = (node) => node.cloneNode(true);
+  const inertDocument = {
+    importNode(node) {
+      const copy = node.cloneNode(true);
+      copy.ownerDocument = inertDocument;
+      return copy;
+    },
+  };
+  document.implementation = { createHTMLDocument: () => inertDocument };
   const declaration = candidate.match(/ {2}const metadata =\n[\s\S]*?;/)[0];
   const context = {
     document,
@@ -1158,13 +1167,15 @@ function routeHeadHarness(candidate = source) {
     source.indexOf('  async function navigate(')
   );
   vm.runInNewContext(
-    `let page='research',serial=0;${declaration}${extractSource}${section('mountNative', 'prepare')}${prepare}
+    `let page='research',serial=0;${declaration}${cacheDocumentSource}${extractSource}${section('mountNative', 'prepare')}${prepare}
     globalThis.api={extract,prepare,mountNative};`,
     context
   );
   return {
     css,
     document,
+    inertDocument,
+    prepare: (data) => context.api.prepare(data),
     read: (route, critical) => context.api.extract(routeDocument(route, critical)),
     mount: (data) =>
       context.api.mountNative(context.api.prepare(data), new URL('https://site.test/'), null),
@@ -1188,6 +1199,34 @@ test('verified Home critical media head is cloned on mount and Back, and removed
       );
     }
   }
+});
+test('route cache snapshots import independent nodes into an inert owner before live mounting', () => {
+  const h = routeHeadHarness();
+  const first = h.read('index');
+  const second = h.read('index');
+  for (const field of ['main', 'footer', 'fallback']) {
+    assert.equal(first[field].ownerDocument, h.inertDocument);
+    assert.notEqual(first[field], second[field]);
+  }
+  for (const node of first.metadata) assert.equal(node.ownerDocument, h.inertDocument);
+  const prepared = h.prepare(first);
+  for (const field of ['main', 'footer', 'fallback']) {
+    assert.equal(
+      prepared[field].ownerDocument,
+      h.inertDocument,
+      'URL rebasing stays inert until mount'
+    );
+    assert.notEqual(prepared[field], first[field]);
+  }
+  for (const node of prepared.metadata) assert.equal(node.ownerDocument, h.inertDocument);
+  assert.equal(
+    first.sourceURL,
+    'https://site.test/research.html',
+    'routing source remains explicit'
+  );
+  h.mount(first);
+  h.mount(second);
+  assert.deepEqual(h.blocks(), [h.css]);
 });
 test('route-head preservation contract rejects missing, duplicate or changed Home rules and a block on Research', () => {
   const h = routeHeadHarness();

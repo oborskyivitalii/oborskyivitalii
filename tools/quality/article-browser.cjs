@@ -71,6 +71,53 @@ async function settled(page, key, timeout) {
   );
 }
 
+function validateDeferredRequests(detail) {
+  assert.equal(detail.kind, 'reader-deferred-image-requests');
+  assert.equal(detail.margin, 6000, 'conservative far-image distance remains fixed');
+  assert.ok(Number.isFinite(detail.viewportHeight) && detail.viewportHeight > 0);
+  assert.ok(Array.isArray(detail.images) && Array.isArray(detail.requested));
+  assert.ok(detail.requested.every((url) => typeof url === 'string' && url.length > 0));
+  assert.equal(new Set(detail.requested).size, detail.requested.length);
+  for (const image of detail.images) {
+    assert.ok(typeof image.url === 'string' && image.url.length > 0);
+    assert.ok(Number.isFinite(image.top));
+    assert.ok(['eager', 'lazy', 'auto'].includes(image.loading));
+  }
+  const near = (image) =>
+    image.loading !== 'lazy' || image.top < detail.viewportHeight + detail.margin;
+  const far = detail.images.filter(
+    (image) =>
+      !near(image) && !detail.images.some((other) => other.url === image.url && near(other))
+  );
+  for (const image of far)
+    assert.equal(
+      detail.requested.includes(image.url),
+      false,
+      'detached cache fetched a distant image'
+    );
+  return { images: detail.images.length, far: far.length, requested: detail.requested.length };
+}
+async function deferredRequests(page, requested) {
+  const detail = await page.evaluate(() => ({
+    kind: 'reader-deferred-image-requests',
+    margin: 6000,
+    viewportHeight: innerHeight,
+    images: [...document.querySelectorAll('.article-body img')].map((image) => ({
+      url: image.src,
+      top: image.getBoundingClientRect().top,
+      loading: image.loading,
+    })),
+  }));
+  detail.requested = [...new Set(requested)];
+  try {
+    validateDeferredRequests(detail);
+  } catch (error) {
+    error.readerRequestDeferral = detail;
+    throw error;
+  }
+  return detail;
+}
+
 async function articleHead(page, key, descriptor, descriptors, timeout) {
   const head = await inspectHead(page);
   const language = key.split(':').at(-1);
@@ -1280,6 +1327,30 @@ function principalDestinationLink(page, destination) {
   });
 }
 
+async function requestEntryJourney(page, urls, key, writingURL, imageRequests, engine, timeout) {
+  if (!require('./color-motion-contract.cjs').readerDeferredMediaRequired(engine)) return null;
+  const requestDeferral = {};
+  await page.goto(urls.alias, { waitUntil: 'networkidle' });
+  await settled(page, 'article:' + key, timeout);
+  requestDeferral.native = await deferredRequests(page, imageRequests);
+  await page.locator('.reader-back').click();
+  await settled(page, 'writing', timeout);
+  await page.goBack();
+  await settled(page, 'article:' + key, timeout);
+  await page.waitForLoadState('networkidle', { timeout });
+  requestDeferral.back = await deferredRequests(page, imageRequests);
+  imageRequests.length = 0;
+  await page.goto(writingURL);
+  await settled(page, 'writing', timeout);
+  return requestDeferral;
+}
+
+async function failedArticleCheckpoint(page, requestDeferral) {
+  const checkpoint = await page.evaluate(articleHistoryCheckpoint).catch(() => null);
+  if (checkpoint) checkpoint.requestDeferral = requestDeferral;
+  return checkpoint;
+}
+
 async function normalJourney(browser, baseURL, key, descriptor, descriptors, width, timeout) {
   const urls = articleURLs(baseURL, descriptor);
   const context = await browser.newContext({
@@ -1287,14 +1358,29 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
   });
   await context.addInitScript(installArticleFlightDiagnostics);
   const page = await context.newPage();
+  const imageRequests = [];
+  page.on('request', (request) => {
+    if (request.resourceType() === 'image') imageRequests.push(request.url());
+  });
   const flights = [];
   const nativeHistory = [];
   let relatedDeparture = { present: false, departed: false };
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   try {
-    await page.goto(urls.writing + '?topic=systems&language=' + key.split(':').at(-1));
+    const writingURL = urls.writing + '?topic=systems&language=' + key.split(':').at(-1);
+    await page.goto(writingURL);
     await settled(page, 'writing', timeout);
+    const engine = await page.locator('meta[name="site-engine"]').getAttribute('content');
+    const requestDeferral = await requestEntryJourney(
+      page,
+      urls,
+      key,
+      writingURL,
+      imageRequests,
+      engine,
+      timeout
+    );
     await page.waitForFunction(
       () => document.querySelector('.space-scene')?.dataset.ready === 'true',
       null,
@@ -1326,9 +1412,10 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
     await settled(page, 'article:' + key, timeout);
     flights.push(await takeArticleFlight(page, 'writing', 'article:' + key, 1));
     await preserveShell(page);
+    if (requestDeferral) requestDeferral.spa = await deferredRequests(page, imageRequests);
     const head = await articleHead(page, key, descriptor, descriptors, timeout);
     await captureReader(page, key);
-    const reader = { inventory: await readerInventory(page) };
+    const reader = { inventory: await readerInventory(page), requestDeferral };
     reader.image = await imageJourney(page, reader.inventory);
     const slideURL = await presentationJourney(page);
     const dialogAtDeparture = await retainOpenReaderDialog(page, reader.inventory);
@@ -1546,7 +1633,7 @@ async function normalJourney(browser, baseURL, key, descriptor, descriptors, wid
       },
     };
   } catch (error) {
-    error.articleCheckpoint = await page.evaluate(articleHistoryCheckpoint).catch(() => null);
+    error.articleCheckpoint = await failedArticleCheckpoint(page, error.readerRequestDeferral);
     throw error;
   } finally {
     await page.evaluate(() => window.__articleHistoryCleanup?.()).catch(() => null);
@@ -1788,6 +1875,24 @@ function validateRelatedDeparture(row, key) {
   );
 }
 
+function validateReaderRequests(row, engine) {
+  if (
+    require('./color-motion-contract.cjs').readerDeferredMediaRequired(engine || row.head.engine)
+  ) {
+    const requests = row.reader?.requestDeferral;
+    assert.ok(requests, 'current reader requires actual resource request evidence');
+    const expectedImages = row.reader.inventory.images.map((image) => image.src).sort();
+    for (const phase of ['native', 'back', 'spa']) {
+      validateDeferredRequests(requests[phase]);
+      assert.deepEqual(
+        requests[phase].images.map((image) => image.url).sort(),
+        expectedImages,
+        'resource request evidence covers the complete reader image inventory'
+      );
+    }
+  }
+}
+
 function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
   const keys = Object.keys(descriptors || {});
   if (!keys.length) {
@@ -1870,6 +1975,7 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
     }
     validateReaderCapability(row, detail, keys[0], engine);
     if (row.mode !== 'normal') continue;
+    validateReaderRequests(row, engine);
     validateRelatedDeparture(row, keys[0]);
     assert.deepEqual(
       row.flights?.map((flight) => [flight.from, flight.to, flight.direction]),
@@ -1904,6 +2010,7 @@ function validateArticleJourney(detail, descriptors, { engine, baseURL } = {}) {
 }
 
 module.exports = {
+  validateDeferredRequests,
   articleURLs,
   inspectHead,
   installArticleHistoryDiagnostics,

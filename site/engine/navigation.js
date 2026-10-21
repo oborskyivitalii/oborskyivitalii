@@ -65,6 +65,8 @@
   )
     return;
   const cache = new Map();
+  // Cache snapshots have no browsing context; cloning must not fetch deferred media.
+  const cacheDocument = document.implementation.createHTMLDocument('');
   const content = document.createElement('div');
   content.id = 'site-content';
   const effects = window.SiteEffects;
@@ -148,10 +150,12 @@
       sourceURL: sourceURL || window.location.href,
       title: doc.title,
       lang: doc.documentElement.lang,
-      main: main.cloneNode(true),
-      footer: footer.cloneNode(true),
-      fallback: fallback.cloneNode(true),
-      metadata: [...doc.head.querySelectorAll(metadata)].map((node) => node.cloneNode(true)),
+      main: cacheDocument.importNode(main, true),
+      footer: cacheDocument.importNode(footer, true),
+      fallback: cacheDocument.importNode(fallback, true),
+      metadata: [...doc.head.querySelectorAll(metadata)].map((node) =>
+        cacheDocument.importNode(node, true)
+      ),
     };
     if (immutable) resolveResources(data, sourceURL);
     return data;
@@ -999,7 +1003,7 @@
   }
   function prepare(data) {
     const start = window.SiteEngineProbe ? performance.now() : 0;
-    const clone = (node) => document.importNode(node, true);
+    const clone = (node) => cacheDocument.importNode(node, true);
     const result = {
       ...data,
       main: clone(data.main),

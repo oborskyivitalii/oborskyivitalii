@@ -5,6 +5,20 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Inert route snapshots and immediate reduced preference reconciliation.
+  issue5ReaderDeferredMedia: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    readerDeferredMedia: true,
+    baseEngine: 'd69a96a542eb40eb8d61b03f083c6c108ee25e2632e0be415196a49767aa1764',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: 'fc83d10942db803777271def1034cacfb332ebf4848016f8e0021f4b203e35ff',
+    navigation: '92472210d3b6cc8689392237f084dd168a03e8d0647d693c502a7446c1eeb761',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Native lazy figure scheduling changes build identity; all runtime bytes stay unchanged.
   issue5ReaderLoading: {
     behavior: 'fixed-blocks',
@@ -379,6 +393,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-deferred-media-production',
+    family: 'issue5ReaderDeferredMedia',
+    edition: 'production',
+    fingerprint: 'ab314d676baa2a5457065ea122605db5cdb26103449a470117f3f72f15764185',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-deferred-media-plain',
+    family: 'issue5ReaderDeferredMedia',
+    edition: 'plain',
+    fingerprint: '0b6fbd4132f9b8a53cccecfbfeb81688ce0e296b17f3d9f44724057e62508b73',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-deferred-media-staging',
+    family: 'issue5ReaderDeferredMedia',
+    edition: 'staging',
+    fingerprint: 'bd7be6807f5af1b55242d40ab6205aa853463652810404dd7fef8a7993311dcd',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
   {
     id: 'issue5-reader-loading-production',
     family: 'issue5ReaderLoading',
@@ -1263,6 +1298,9 @@ function readerWholeBlocksRequired(engine) {
 function readerPaperRequired(engine) {
   return readerFamily(engine)?.readerPaper === true;
 }
+function readerDeferredMediaRequired(engine) {
+  return readerFamily(engine)?.readerDeferredMedia === true;
+}
 function readerInteractionsRequired(engine) {
   return readerFamily(engine)?.readerInteractions === true;
 }
@@ -1328,6 +1366,7 @@ module.exports = {
   readerInteractionsRequired,
   readerWholeBlocksRequired,
   readerPaperRequired,
+  readerDeferredMediaRequired,
   validateFlight,
   contract,
   rowPlan,

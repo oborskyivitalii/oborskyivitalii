@@ -245,6 +245,7 @@ test('only reviewed historical and current launch plain/staging tuples select a 
     'issue5-reader-staging',
     'issue5-reader-fast-media',
     'issue5-reader-loading',
+    'issue5-reader-deferred-media',
   ])
     for (const edition of ['plain', 'staging']) {
       const id = family + '-' + edition,
@@ -295,6 +296,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue5-reader-staging',
     'issue5-reader-fast-media',
     'issue5-reader-loading',
+    'issue5-reader-deferred-media',
   ]) {
     const plain = motion.reviewedRuntime(family + '-plain'),
       production = motion.reviewedRuntime(family + '-production');
@@ -784,15 +786,15 @@ test('reader-link runtime tuples reproduce the complete current plain, staging a
     };
     fs.writeFileSync(path.join(plainDirectory, 'artifact.json'), JSON.stringify(source));
     const plain = colorBuild.build(plainDirectory);
-    assert.equal(motion.select(plain).id, 'issue5-reader-loading-plain');
+    assert.equal(motion.select(plain).id, 'issue5-reader-deferred-media-plain');
     const stagingDirectory = path.join(directory, 'staging');
     fs.cpSync(plainDirectory, stagingDirectory, { recursive: true });
     const staged = stagingBuild.build(stagingDirectory);
-    assert.equal(motion.select(staged).id, 'issue5-reader-loading-staging');
+    assert.equal(motion.select(staged).id, 'issue5-reader-deferred-media-staging');
     const productionDirectory = path.join(directory, 'production');
     fs.cpSync(plainDirectory, productionDirectory, { recursive: true });
     const production = require('../tools/release/edition.cjs').build(productionDirectory, 'color');
-    assert.equal(motion.select(production).id, 'issue5-reader-loading-production');
+    assert.equal(motion.select(production).id, 'issue5-reader-deferred-media-production');
     assert.equal(
       new Set([plain, staged, production].map((record) => record.variant.fingerprint)).size,
       3
@@ -801,7 +803,7 @@ test('reader-link runtime tuples reproduce the complete current plain, staging a
       assert.deepEqual(record.components.navigation, { contract: 1, articleRenderer: 1 });
       assert.equal(
         record.variant.baseEngine,
-        motion.reviewedRuntime('issue5-reader-loading-plain').variant.baseEngine
+        motion.reviewedRuntime('issue5-reader-deferred-media-plain').variant.baseEngine
       );
     }
   } finally {
@@ -971,5 +973,30 @@ test('reader-loading identities preserve every runtime byte and mandatory rights
     wrongEdition.edition =
       edition === 'staging' ? undefined : { id: 'staging', indexable: false, analytics: false };
     assert.throws(() => motion.select(wrongEdition), /edition differs/);
+  }
+});
+
+test('deferred-media runtime retains byte, edition and mandatory rights admission', () => {
+  const delivery = require('../tools/staging/package.cjs');
+  for (const edition of ['plain', 'staging', 'production']) {
+    const id = 'issue5-reader-deferred-media-' + edition;
+    const current = motion.reviewedRuntime(id);
+    const previous = motion.reviewedRuntime('issue5-reader-loading-' + edition);
+    assert.equal(motion.readerDeferredMediaRequired(current.variant.fingerprint), true);
+    for (const file of ['styles.css', 'theme.js', 'archive.js'])
+      assert.equal(current.files[file], previous.files[file]);
+    for (const file of ['space.js', 'navigation.js'])
+      assert.notEqual(current.files[file], previous.files[file]);
+    const selected = manifest(id);
+    assert.equal(delivery.publicationRequired(selected, selected.components), true);
+    assert.throws(
+      () => delivery.publicationRights('/no-file-access', selected, undefined, selected.components),
+      /licensed publication rights record required/
+    );
+    for (const file of Object.keys(current.files)) {
+      const changed = manifest(id);
+      changed.files['runtime/' + current.variant.fingerprint + '/' + file].sha256 = '0'.repeat(64);
+      assert.throws(() => motion.select(changed), /conflicting immutable Color bytes/);
+    }
   }
 });

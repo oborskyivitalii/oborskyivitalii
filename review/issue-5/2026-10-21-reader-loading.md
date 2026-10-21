@@ -19,7 +19,7 @@ when seven distant slide requests were deferred. The cover still loaded; the LCP
 element stayed the same paragraph. Observed loopback LCP198→181ms is a different
 quantity. This did not establish a working fix or actual-host/field acceptance.
 
-## Implementation and invariants
+## Initial image-policy implementation and invariants
 
 `tools/site/reader.cjs` owns the shared policy: keep the first rendered image and
 declared cover eager, mark subsequent figures loading=lazy. State is scoped to one
@@ -27,7 +27,8 @@ reader rendition and independent of asset inventory order or publication IDs.
 Declared dimensions, admitted image/original URLs, source AST, alternative text,
 credits, source/semantic editions and print/platform producers are unchanged.
 Current article/reference render fields are identical after stripping only the
-new loading attributes. Engine, scene, effect and publication sources are unchanged.
+new loading attributes. At that initial stage engine, scene, effect and publication sources were unchanged;
+the superseding runtime correction below changes only the cache/lifecycle owners.
 Regenerated current runtime/snapshot identities are derived, not editing owners;
 previously retained history stays unchanged. Existing complete reading-transfer
 budgets still count all images, including deferred slides.
@@ -186,6 +187,122 @@ Metadata review receipt, verbatim from `/root/reader_loading_review`:
 > PASS488files, changed[]. No blocking finding; may append this receipt/refresh RI
 > and freeze Q3, then final exact-source checks. No browser, benchmark or scanner
 > by reviewer.
+
+## Superseding runtime correction after the measured failure
+
+The first declared complete wrapper ran clean source1940cf4442a82a55c31a04d32d73c4e4c3faa596,
+tree6ffc7865f7a38683e488b53d3b07badcc50e636f, Color/staging public
+d0b19516ba44b9c0e3597ff1a979e0aaf1265f6ff37b2976ea70c7add1d6ce79.
+Its outcome is FAIL and all original reports remain retained. Primary30 Lighthouse
+trials/10 median groups passed. Primary motion stopped after7 complete profiles
+at the unchanged2s Reduced Motion setup deadline; CPU×4 profiles,24 flights,
+120 retention cycles and soak were not collected. Reader6 Lighthouse trials and
+3 motion profiles completed: mobile LCP3389.2675/3376.625/3376.6775ms fails2500;
+desktop median661.773ms and all reader motion observations pass. This is a real
+failed candidate, not a complete matrix PASS or an unchanged-source retry.
+
+RF03 High (AC08/AC11/AC12, CS01/CS07): initial route-cache extraction cloned a live
+main into the active ownerDocument. The7 nominally lazy slides were requested by
+navigation.js extract() while original img.complete stayed false. Thus the prior
+cold decoded-image proof did not establish request suppression. The LHR retains
+8 image requests and746104bytes. Nine cover-only controls rejected cover loading
+or priority as sufficient: medians baseline3376.625, lazy-cover3226.596 and
+low-priority eager-cover3151.938ms, all8 image requests in every trial.
+
+A separate counterbalanced9-trial comparison held eager cover+7lazy unchanged:
+baseline3377.345ms; moving loading before src2401.645ms; importing cache snapshots
+into one inert HTMLDocument2401.136ms. Each correction requests only the cover.
+Inert extraction also removes the detached SVG fallback request:227589 versus
+746104bytes; attribute ordering alone gives245070bytes. Every trial retains the
+same introductory paragraph LCP/bounds and CLS0. These are controlled diagnostics,
+not acceptance of the final combined candidate; the~99ms margin needs its full run.
+
+The source correction keeps both extraction and prepared clones in one inert
+cache document until native mount adoption. Explicit sourceURL/getAttribute URL
+rebasing stays authoritative. An initial new SPA request regression caught the
+remaining active prepared clone; that dirty preflight failure remains retained.
+After extending inert ownership through prepare, the prepared390px normal journey
+passes: native entry, Back and SPA each observe8 images,6 conservatively distant
+lazy images and only1 actual image request. Existing decode/viewer/history/print
+checks remain complete. The new source family requires these raw request phases;
+older runtime families preserve their existing observation contract. The6000px
+margin scopes this functional far-image assertion; it changes no performance limit.
+Repeated images already needed nearby remain legitimate requests.
+
+RF04 High (AC08/AC11/AC12, CS07): one of5 fixed Writing390/CPU1 diagnostic samples
+reproduced the original2s timeout. Captured and fresh media queries were true,
+page visible/focused, control still Motion:on and Canvas active with61 further
+paints. No media-query change event or page error occurred. The existing frame
+loop trusted its stale enabled flag. A frame-before-layout guard now reconciles
+the actual reduced preference through the existing preference handler. Conditional
+scheduling retains the one static settlement on true→false, while a late duplicate
+already-disabled event schedules no RAF. Saved On, ordinary native events,
+Off/hidden/print behavior and camera clocks remain owned by the same lifecycle.
+No timer, synthetic preference event or timeout extension was introduced.
+
+The permanent delayed-event regression fails against exact Q3 space.js (phase880
+versus80) and passes with the correction. Five fixed real-browser prepared samples
+then pass the original2s setup and zero-work observations. Navigation unit coverage
+asserts inert independent cache/prepared ownership and explicit URL authority;
+existing immutable/subpath/embedded resource, history, eviction and camera cases
+remain. New browser evidence negatives reject missing request phases and a detached
+far-image request. Prepared focused suites66/66 and request evidence13/13 pass;
+the earlier103-case prepared run had102 passes/one incomplete VM fixture after
+moving the new document initializer, which is corrected and its failure retained.
+
+The explicit new plain/staging/production family pins the new navigation/space
+bytes, retains exact styles/theme/archive bytes and every historical descriptor,
+and keeps mandatory publication rights. Failed motion samples now retain partial
+measurements and query/control/scene/frame state before teardown; no failed sample
+becomes a pass. Independent source re-review, final clean checks and one newly
+declared complete matrix on the corrected candidate are required next. Results
+and immutable raw links still belong to the two scope anchors, without changing
+the candidate merely to append final receipts. No whole-feature, staging or
+publication acceptance is inferred from this correction.
+
+RF05 Medium (AC11/AC12, CS07), separate reviewer finding: the initial request
+validator admitted an empty or incomplete image list and skipped the new family
+when its optional engine argument was omitted. Each required native/Back/SPA
+phase now matches the reader inventory URL multiset, preserving repeated URLs;
+capability selection falls back to the recorded head engine. Negatives cover
+empty phases, omitted repeated occurrences and omitted engine options. Short or
+image-free documents need no artificial distant-image minimum. Historical
+families retain their prior contract.
+
+## Integration with the concurrent R19 head
+
+A fresh native PR79 read found that the maintainer had advanced its source from
+92b671f9 to7f64b948c1d60395d6e5a2356906485b1c437325 during this investigation.
+The final candidate preserves all13 R19 changed paths, including manuscript,
+blueprint, publication/profile, new edition record, article-media regression,
+dated editorial review and historical draft marker. Its8 nonmetadata changed files
+are byte-identical to that head; RI/catalog/MEMORY
+are combined and regenerated. The final native commit has both Q3 and R19 as
+parents; PR update will lease the observed R19 head and remain a fast-forward.
+
+R19 intentionally selects Cover02 plus3 original slides instead of R18's7. That
+is the pre-existing author decision, not an optimization or budget exception.
+The acceptance matrix measures the final R19 input; earlier paired R18 causal
+trials remain source-qualified, and cross-edition totals are not causal evidence.
+The supplemental browser/print recipe derives all admitted images from the
+current publication declaration, preserving the complete-inventory assertion
+rather than retaining the stale R18 count8. Its native-print PDF is raw diagnostic
+browser evidence, not a requested/editorially approved R19 export or replacement
+for the historical R18 article PDF. No article/editorial gate is inferred.
+
+The pre-freeze lint caught cognitive complexity27/25 in the expanded evidence
+test and28/25 in its validator. Request-specific negatives and inventory admission
+were moved into coherent helpers without
+changing cases or thresholds; failed and corrected scanner outcomes are retained.
+
+## Independent runtime and R19 integration receipt
+
+Separate non-implementing reviewer `/root/reader_loading_review`, 21 October 2026,
+reviewed the combined prepared result, source diff, issue/ACs and retained checks.
+Its following receipt is copied verbatim; only deterministic RI and this receipt
+are added afterward, as permitted by CONTRIBUTING's iteration protocol.
+
+> R19 integration/refactor review PASS at staged treeaf05d941866dcbd4294a761dc032bbc2a949afba; all17 manifest rows match index and unstaged diff is empty. Independently verified all8 nonmetadata R19 files byte-identical to7f64b948…; existing RF03/RF04 runtime bytes and remaining reviewed owners are unchanged. requestEntryJourney, validateReaderRequests, failedArticleCheckpoint and test-helper extraction preserve all phases, RF05 multiset/engine-fallback requirements, failures and historical contracts. Retained evidence13/13 and lintPASS(allengines,warnings[]) support the refactor. R19 smoke/print recipes require all4 source-declared bodyimages (cover1280×398;03/09/12 each1921×1080), preserve5custom checks and distinguish diagnostic print from editorial export. Report/MEMORY correctly qualify R18 diagnostics versus finalR19 input and pending gates. No remaining blocking finding; may append receipt/refresh RI and freeze with stated parentsQ3+7f, then fresh owning/functions/full matrix. Reviewed article-browser SHAef4ecdfc89208d5d8f3fca7b22f54745870b480046b5ca01e07d417d1aa4d839; evidence-test18289884986736cb5ecec2121f67d7d144eaed92486fb1f26d9403549d6e64cf. No browser, benchmark, scanner or test run by reviewer for this integration.
 
 ## Verification and acceptance map
 

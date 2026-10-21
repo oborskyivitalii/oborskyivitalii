@@ -306,7 +306,7 @@ test('existing JPEG rendition preserves canonical edition and rejects altered eq
   }
 });
 
-test('real R18 preview retains full edition and PDF closure inside unchanged reading budget', (t) => {
+test('real R19 preview retains full edition and PDF closure inside unchanged reading budget', (t) => {
   const root = fixture(t),
     output = path.join(root, 'public');
   assert.deepEqual(artifact.previewSelection('true', root), ['pmday-ai-both-sides']);
@@ -341,13 +341,13 @@ test('real R18 preview retains full edition and PDF closure inside unchanged rea
   assert.equal(rights.approvalPass, false);
   assert.ok(row.totalGzipBytes < 800000);
   assert.ok(row.downloadGzipBytes > 500000);
-  assert.equal(descriptor.assets.filter((name) => name.endsWith('.webp')).length, 8);
+  assert.equal(descriptor.assets.filter((name) => name.endsWith('.webp')).length, 4);
   assert.equal(descriptor.assets.filter((name) => name.endsWith('.jpg')).length, 1);
   assert.equal(
     descriptor.sourceSha256,
-    '34c0795691712308ccdc925046ed7a811ee15291b2d9518b52dd01797f6a23a3'
+    '80dcb838e1bb482bbf37a7151900c4ac4950975e9516b9009c962bd06e064226'
   );
-  assert.equal(descriptor.contentEdition, 'pmday-ai-both-sides-en-review-20261020-r18-cover02');
+  assert.equal(descriptor.contentEdition, 'pmday-ai-both-sides-en-review-20261021-r19-cover02');
   assert.equal(descriptor.downloads.length, 1);
   // This increment delivers hosted/native reading. The existing standalone
   // codec deliberately rejects JPEG rather than emitting an invalid payload.

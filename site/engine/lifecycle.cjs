@@ -543,6 +543,11 @@ module.exports = function (api) {
   function frame(time) {
     pending = null;
     if (document.hidden || printing || !initialized || failed) return;
+    // The query can change before its queued notification reaches the listener.
+    if (enabled && reduced.matches) {
+      preferenceChanged();
+      return;
+    }
     try {
       flushLayout();
     } catch {
@@ -626,7 +631,7 @@ module.exports = function (api) {
       if (was) cancel();
     }
     updateControl();
-    schedule();
+    if (enabled || was) schedule();
     if (window.dispatchEvent) window.dispatchEvent(new CustomEvent('site:motion-preference'));
   }
   control.addEventListener('click', () => {
