@@ -128,7 +128,9 @@
         "tests/test_issue5_acceptance.py",
         "review/issue-5/2026-10-20-controller-bootstrap.md",
         ".github/acceptance/issue-114.json",
-        "review/issue-114/2026-10-20-review.md"
+        "review/issue-114/2026-10-20-review.md",
+        ".github/acceptance/issue-118.json",
+        "review/issue-118/2026-10-21-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -549,7 +551,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c37805665f4855ad93558015b60c67b9a5042e2b1fb8764944745c3fbcdaf2a6",
+    "digest": "270f7c98fe08d12d3d73735042fa5adf14fcfed327d09397e17958707d3748e0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -578,6 +580,10 @@
       {
         "path": ".github/acceptance/issue-114.json",
         "sha256": "0db03f6fd2d0408fc259110512646e0f27d663b76c0d2e9d6b21aea3e1e17f36"
+      },
+      {
+        "path": ".github/acceptance/issue-118.json",
+        "sha256": "4ee32bc6112e29bf52ad186c88d0ca8cd3f317efa6633c80a0e34cbc90b26152"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -669,7 +675,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "7bb4c7bfc357242be96e8f8ff1afa206c4976869f96527ed7d75c9a1327e6337"
+        "sha256": "47bbdc01fe91aea40bbbbebc62bbbe405188f5b7981128ca9927ac3590664b1b"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
