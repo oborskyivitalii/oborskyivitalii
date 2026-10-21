@@ -22,7 +22,11 @@ class Issue112AcceptanceTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         counts = dict(
-            re.findall(r"^# (tests|pass|fail|cancelled|skipped|todo) (\d+)$", result.stdout, re.M)
+            re.findall(
+                r"^# (tests|pass|fail|cancelled|skipped|todo) (\d+)$",
+                result.stdout,
+                re.M,
+            )
         )
         self.assertGreater(int(counts["tests"]), 0)
         self.assertEqual(counts["tests"], counts["pass"])
@@ -36,7 +40,6 @@ class Issue112AcceptanceTests(unittest.TestCase):
             "tools/site",
             "tools/staging",
             "tools/release",
-            ".github/workflows",
             "tools/quality/budgets.json",
         ]
         changed = subprocess.check_output(
@@ -49,6 +52,52 @@ class Issue112AcceptanceTests(unittest.TestCase):
         )
         self.assertEqual(changed, "", "no production/runtime/pipeline or budget edits")
         self.assertEqual(added, "", "no untracked public/runtime additions")
+        # The21October iPad alternative permits one new opt-in workflow only.
+        workflows = subprocess.check_output(
+            ["git", "diff", "--name-status", BASE, "--", ".github/workflows"],
+            cwd=ROOT,
+            text=True,
+        ).splitlines()
+        self.assertEqual(
+            workflows,
+            ["A\t.github/workflows/home-lcp-remote.yml"],
+            "all pre-existing workflows stay byte-frozen; one separate diagnostic only",
+        )
+        untracked_workflows = subprocess.check_output(
+            [
+                "git",
+                "ls-files",
+                "--others",
+                "--exclude-standard",
+                "--",
+                ".github/workflows",
+            ],
+            cwd=ROOT,
+            text=True,
+        )
+        self.assertEqual(untracked_workflows, "", "no additional workflow may escape the freeze")
+
+    def test_remote_acquisition_and_private_evidence(self):
+        result = subprocess.run(
+            ["node", "--test", "--test-reporter=tap", "tests/lcp-remote.test.cjs"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=30,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        counts = dict(
+            re.findall(
+                r"^# (tests|pass|fail|cancelled|skipped|todo) (\d+)$",
+                result.stdout,
+                re.M,
+            )
+        )
+        self.assertGreater(int(counts["tests"]), 0)
+        self.assertEqual(counts["tests"], counts["pass"])
+        for name in ["fail", "cancelled", "skipped", "todo"]:
+            self.assertEqual(counts[name], "0")
 
     def test_opt_in_test_disposition(self):
         registry = json.loads((ROOT / "tools/quality/test-profiles.json").read_text())

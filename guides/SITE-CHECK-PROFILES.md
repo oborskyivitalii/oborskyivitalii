@@ -195,6 +195,19 @@ capture handoff, not another CI/browser matrix. It preserves genuine SDK bytes
 and attempted payload with local RUM delivery blocked. Its late Timing export
 cannot reconstruct missing startup lifecycle or replace pre-script observations.
 
+For the owner's iPad-only session, the separate `home-lcp-remote.yml` workflow
+can acquire the canonical SDK once on GitHub, then use the same reviewed
+`--suite sdk`: nine balanced normal/delayed/blocked observations, headless Linux,
+30-second initial windows, SPA/history journeys and traces for normal mode only.
+It makes no production browser visit and exports no HAR. It runs only when the
+repository owner adds `lcp-capture-112-20261021` to same-repository Draft PR117
+on its bound branch; ordinary pushes do not run it. Every prior workflow and
+matrix stays byte-frozen. Blocked acquisition stops without retries or mirrors.
+All raw output is encrypted to the dated public recipient before artifact upload;
+the private key stays with the investigator. Generic beacon presence or
+`sdkExecution.confirmed` does not prove a parsed, same-document CWV payload.
+Native platforms, production transport and historical cause remain separate gates.
+
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered
 source suites instead of a wildcard that revives every historical snapshot.

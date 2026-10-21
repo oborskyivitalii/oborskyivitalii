@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/112",
     "date": "2026-10-21",
-    "summary": "Issue112 second-wave CPU/DPR/cache helper and AC09/AC10 extend the existing opt-in diagnostic/acceptance route only. No hosted matrix, source-controller, production owner or budget changes; browser/private/independent/merge gates remain external."
+    "summary": "Issue112 remote SDK acquisition/private replay extends the existing opt-in diagnostic/acceptance route. One new PR117 label workflow is separate from every unchanged prior pipeline, production owner, matrix and budget; native/SDK/session/private/independent/merge gates remain external."
   },
   "layers": [
     {
@@ -308,7 +308,8 @@
         "tools/release/rights-record.cjs",
         "tools/quality/analytics-browser.cjs",
         "tests/analytics.test.cjs",
-        "tools/release/staging-policy.cjs"
+        "tools/release/staging-policy.cjs",
+        ".github/workflows/home-lcp-remote.yml"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-map", "site-basic"]
     },
@@ -551,7 +552,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5351f9b13fa01909724ea3fe3cc735a49728a4606031099011962ac4fcd687f0",
+    "digest": "4b5f62572c60b3870ebcf5e194cd08d464f4bc231cb327fc2192de4ecf4fb02c",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -579,7 +580,7 @@
       },
       {
         "path": ".github/acceptance/issue-112.json",
-        "sha256": "640867824affdd994ce97c5c2e9df7a59aa5233570e4866f4f4dd6a993a56f28"
+        "sha256": "87a02343d8a6758f76c3d8463376d99a1f3c22b56460318fad374fef876d948f"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -675,7 +676,11 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "0805377b37368439804b58a1bf10f7f4d358acc546245c9a3fd03edd0c30dc7a"
+        "sha256": "380cf790cd66d98fd9e796aa64d98fe2d9544234a02f2705aa57fa1143c9769a"
+      },
+      {
+        "path": ".github/workflows/home-lcp-remote.yml",
+        "sha256": "c6cdafbf7d2ee15f1772cc96eb4691503a599d24d411a8e882ae56540632b2e5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -771,7 +776,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "d04f4d05e3580efb5972114534d7d59a46a3de8446412849e05587a2fbaae3cd"
+        "sha256": "72f8d988f9d46ae5098c82ead0ce19b79870a49f778d2736f7f9e3c839b1bf32"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -811,7 +816,7 @@
       },
       {
         "path": "tests/test_issue112_acceptance.py",
-        "sha256": "36c86b1376805f6a4a520015751bae733d674e5d5e389b70e179e78b3d9974c5"
+        "sha256": "a6b1496ad3082e0c5a30e1c5776f606c193cceb4a89845d654dd047eca55a626"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -927,7 +932,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "844c98d9afc02ed190298ab1de0197f42e290065f53a7d1beac7672fbfda0c00"
+        "sha256": "5f603429055647c16b9e817fa243299d0859f9006efe7b6774a6bb49fa8aa7d1"
       },
       {
         "path": "tools/repository_intelligence.py",

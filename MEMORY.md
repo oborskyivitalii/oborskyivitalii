@@ -52,6 +52,14 @@ Dated continuity, not live authority. Last verified: **2026-10-21** (Warsaw).
   local RUM blocking. Late export never establishes missing startup lifecycle.
   I5 correction review passed F09/F10; AC11 preparation supported, with final
   checks/live links in issue/PR. Actual SDK/native/slow evidence remains open.
+- Owner is on iPad and cannot perform desktop capture; “Шукай інший шлях”
+  authorizes the AC12 remote alternative in the same issue/PR. Prepare one new
+  opt-in workflow, canonical SDK acquisition then existing9 SDK replay trials;
+  preserve every prior workflow and encrypt raw artifacts. No owner-device step.
+  I6 correction review resolved F11/F12/F13; Node37/37 and prepared policy8/8 pass.
+  One remote attempt follows publication/exact-head checks; AC12 remains pending
+  actual evidence and independent interpretation. This is Linux origin replay,
+  not live transport/native/historical RCA.
 - PR79/issue5 owns article/stable staging; last observed staging source283b32f,
   deployment8c65adfd. Revalidate before its independent continuation. No staging
   or controller operation is part of112. Analytics/SEO owners102/103/8 stay separate.

@@ -1,0 +1,68 @@
+name: Opt-in Home LCP SDK diagnostic
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+concurrency:
+  group: home-lcp-remote-112
+  cancel-in-progress: false
+jobs:
+  capture:
+    if: >-
+      github.event.pull_request.number == 117 &&
+      github.repository == 'oborskyivitalii/oborskyivitalii' &&
+      github.event.sender.login == github.repository_owner &&
+      github.event.pull_request.draft == true &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'work/issue-112-lcp-diagnostics-20261021' &&
+      github.event.label.name == 'lcp-capture-112-20261021' &&
+      github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      SITE_CANDIDATE_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.19.0'
+      - name: Install the locked diagnostic tools
+        run: npm ci --prefix tools/quality/toolchain --ignore-scripts
+      - name: Check acquisition, privacy and existing diagnostic controls
+        run: node --test tests/lcp-remote.test.cjs tests/lcp-diagnostic.test.cjs
+      - name: Install only the locked Chromium
+        run: tools/quality/toolchain/node_modules/.bin/playwright install --with-deps chromium
+      - name: Acquire genuine SDK once and retain every planned observation
+        id: observe
+        timeout-minutes: 12
+        continue-on-error: true
+        run: |
+          mkdir -p "$RUNNER_TEMP/home-lcp-private"
+          node tools/quality/lcp-remote.cjs capture "$RUNNER_TEMP/home-lcp-private" >"$RUNNER_TEMP/home-lcp-private/runner.stdout.txt" 2>"$RUNNER_TEMP/home-lcp-private/runner.stderr.txt"
+      - name: Encrypt raw evidence before upload
+        id: encrypt
+        if: >-
+          always() && (steps.observe.outcome == 'success' ||
+          steps.observe.outcome == 'failure' || steps.observe.outcome == 'cancelled')
+        timeout-minutes: 2
+        env:
+          LCP_OBSERVATION_OUTCOME: ${{ steps.observe.outcome }}
+        run: |
+          test -d "$RUNNER_TEMP/home-lcp-private"
+          node tools/quality/lcp-remote.cjs seal "$RUNNER_TEMP/home-lcp-private" "$RUNNER_TEMP/home-lcp-sealed"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always() && steps.encrypt.outcome == 'success'
+        timeout-minutes: 3
+        with:
+          name: home-lcp-encrypted-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/home-lcp-sealed/capture.sealed.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Preserve failed or blocked observation disposition
+        if: always() && (steps.observe.outcome == 'failure' || steps.observe.outcome == 'cancelled')
+        run: exit 1

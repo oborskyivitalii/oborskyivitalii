@@ -5,6 +5,11 @@ Owner: issue112 / Draft PR117. Capture one real desktop opening of
 native/slow/SDK session has occurred. Do not repeat opens until a slow number
 appears. Retain a fast or failed first capture as its actual outcome.
 
+The owner is currently on iPad. This desktop procedure is optional pending work,
+not a required owner action. The bounded remote SDK alternative is documented in
+[check profiles](SITE-CHECK-PROFILES.md#registry-and-issue-completion); it can
+investigate vendor execution in replay without supplying native-device evidence.
+
 Use your normal desktop Chrome and network, with the existing extensions and
 preferences recorded. Do not use mobile emulation, CPU/network throttling,
 Lighthouse, hard reload, cache clearing, a private window or a new profile.

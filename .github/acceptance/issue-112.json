@@ -80,6 +80,13 @@
       "automated_scope": "Unchanged production, existing opt-in disposition and fresh catalog only; no automatic proof of manual runbook fidelity, native execution, SDK availability or an actual slow session.",
       "checks": ["UNCHANGED", "DISPOSITION", "CURRENT-RI"],
       "gates": ["NATIVE-HANDOFF", "REVIEW"]
+    },
+    {
+      "id": "AC12",
+      "intent": "One bounded remote canonical SDK acquisition and existing replay suite or honest blockage, with encrypted private evidence and no owner-device step",
+      "automated_scope": "Acquisition failure controls and authenticated encryption behavior only; cannot establish hosted execution, actual CWV payload/session attribution, native device or historical cause.",
+      "checks": ["REMOTE", "UNCHANGED", "DISPOSITION", "STYLE", "CURRENT-RI"],
+      "gates": ["REMOTE-EVIDENCE", "REVIEW", "LIVE"]
     }
   ],
   "checks": {
@@ -109,6 +116,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "REMOTE": {
+      "kind": "unittest",
+      "test": "test_issue112_acceptance.Issue112AcceptanceTests.test_remote_acquisition_and_private_evidence"
     }
   },
   "gates": {
@@ -139,6 +150,10 @@
     "NATIVE-HANDOFF": {
       "kind": "human",
       "description": "Independently inspect ordinary access failure/source receipts, actual Chrome recording/HAR/blocking instructions and post-load export behavior, exact-session/source checks, zero forwarded test telemetry and honest missing startup/native/SDK limits. Preparation can complete AC11; actual native slow-session/SDK evidence remains separately pending under AC06/AC07."
+    },
+    "REMOTE-EVIDENCE": {
+      "kind": "human",
+      "description": "Separate non-author reviews source/workflow/privacy before execution, then all hosted acquisition outcomes, exact input/source/workflow/browser/run identities, every SDK replay observation or blockage, authenticated private decryption and actual parsed CWV/timeOrigin/route/trace bindings. Mere script MIME/syntax, sdkExecution.confirmed or generic beacon presence do not prove CWV. Remote replay cannot supply native Windows/macOS, production transport or historical cause."
     }
   }
 }

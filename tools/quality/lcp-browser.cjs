@@ -84,7 +84,16 @@ async function installRoutes(context, artifact, sdk, mode, control, observed, wa
       } else {
         if (mode === 'delayed') await wait(5000);
         observed.sdkRequests.push({ action: 'fulfilled', sha256: digest(sdk.body) });
-        await route.fulfill({ contentType: 'text/javascript', body: sdk.body });
+        // A cross-origin module still needs the vendor's captured CORS response.
+        // Preserve only its CORS policy, not stale compressed lengths/encodings.
+        const headers = Object.fromEntries(
+          Object.entries(sdk.headers || {}).filter(([name]) =>
+            ['access-control-allow-origin', 'access-control-allow-credentials'].includes(
+              name.toLowerCase()
+            )
+          )
+        );
+        await route.fulfill({ contentType: 'text/javascript', headers, body: sdk.body });
       }
       return;
     }

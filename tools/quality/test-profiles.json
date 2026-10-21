@@ -2102,7 +2102,27 @@
         "tools/quality/lcp-diagnostic.cjs",
         "tools/quality/lcp-browser.cjs",
         "tests/lcp-diagnostic.test.cjs",
-        "tools/quality/lcp-cache.cjs"
+        "tools/quality/lcp-cache.cjs",
+        "tools/quality/lcp-remote.cjs",
+        "tools/quality/lcp-remote.json",
+        "tests/lcp-remote.test.cjs",
+        ".github/workflows/home-lcp-remote.yml"
+      ]
+    },
+    {
+      "path": "tests/lcp-remote.test.cjs",
+      "language": "javascript",
+      "purpose": "Canonical one-attempt SDK input rejection, bounded streaming, authenticated evidence encryption and private-path negatives; no browser/native claim.",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "lifecycle": "diagnostic",
+      "profiles": ["diagnostic", "pr-targeted"],
+      "disposition": "Dated remote SDK diagnostic source checks only; capture activates by dedicated label on same-repository Draft PR117. No routine matrix expansion.",
+      "surviving_route": "node --test tests/lcp-remote.test.cjs",
+      "inputs": [
+        "tests/lcp-remote.test.cjs",
+        "tools/quality/lcp-remote.cjs",
+        "tools/quality/lcp-remote.json",
+        ".github/workflows/home-lcp-remote.yml"
       ]
     }
   ]

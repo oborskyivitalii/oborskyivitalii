@@ -282,6 +282,11 @@ test('normal and delayed SDK handlers fulfill the exact captured Buffer after th
       url: 'https://static.cloudflareinsights.com/beacon.min.js',
       sha256: digest(body),
       bytes: body.length,
+      headers: {
+        'access-control-allow-origin': '*',
+        'content-encoding': 'gzip',
+        'content-length': '123',
+      },
     })
   );
   const sdk = browser.loadSDK(file, metadata);
@@ -310,6 +315,7 @@ test('normal and delayed SDK handlers fulfill the exact captured Buffer after th
       fulfill: async (response) => {
         assert.ok(Buffer.isBuffer(response.body));
         assert.deepEqual(response.body, body);
+        assert.deepEqual(response.headers, { 'access-control-allow-origin': '*' });
         order.push('fulfill');
       },
     });

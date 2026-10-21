@@ -7,6 +7,23 @@ changed-path inputs, dispositions and owners. Optimization is owned by #35;
 remain evidence of their inspected source. These pinned tools are development/CI
 only; production runtime has no package graph.
 
+The opt-in issue112 remote diagnostic uses `lcp-remote.cjs` with the dated
+`lcp-remote.json` release/recipient pins. It makes one ordinary canonical SDK
+request, rejects blocks/redirects/non-JavaScript input, then delegates to the
+existing exact-byte SDK replay suite. Acquisition MIME/syntax is input admission,
+not proof of vendor CWV execution. The workflow's label, PR/branch/sender and
+read-only permission gates are specified in
+[SITE-CHECK-PROFILES](../../guides/SITE-CHECK-PROFILES.md#registry-and-issue-completion).
+Runner logs, SDK bodies, traces and payloads are private. `seal RAW SEALED`
+packages raw observations with AES-256-GCM and an RSA-OAEP-SHA256 wrapped key;
+only `capture.sealed.json` is uploaded. `unseal INPUT PRIVATE_KEY OUTPUT`
+authenticates before writing the recovered archive and refuses to overwrite it.
+The decryption key is never a GitHub secret, repository file or runner input.
+The observation step has a12-minute timeout inside the18-minute job. Best-effort
+`always()` encryption/upload includes cancelled observations with an existing raw
+directory. Force termination, job deadline or runner loss can still prevent
+retention; missing final reports/disposal receipts remain unknown, never clean.
+
 ## Small PR source check and targeted acceptance
 
 R2 under issue58 adds exact Prettier 3.6.2 and the existing Ruff 0.16.10 formatter.

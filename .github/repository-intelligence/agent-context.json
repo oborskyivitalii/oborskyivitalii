@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5f606338f50a81f155c55b476e49b5727f4030d32a1d77953b596b81bce9595b",
+    "digest": "373efa6bcda05ed0849d749c98482ab890c9f115ac4ef3e988efb0ca65a4cee5",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-112.json",
         "identity_mode": "content",
-        "sha256": "640867824affdd994ce97c5c2e9df7a59aa5233570e4866f4f4dd6a993a56f28"
+        "sha256": "87a02343d8a6758f76c3d8463376d99a1f3c22b56460318fad374fef876d948f"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -181,12 +181,17 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "0805377b37368439804b58a1bf10f7f4d358acc546245c9a3fd03edd0c30dc7a"
+        "sha256": "380cf790cd66d98fd9e796aa64d98fe2d9544234a02f2705aa57fa1143c9769a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "02de21c76240eb6a16818df676ded7e2e5444a704c6dcabbec307629b643b054"
+        "sha256": "c247be88d11496205ffb50646b7e2881397a21587e8bd1308ef5fd5129094e02"
+      },
+      {
+        "path": ".github/workflows/home-lcp-remote.yml",
+        "identity_mode": "content",
+        "sha256": "c6cdafbf7d2ee15f1772cc96eb4691503a599d24d411a8e882ae56540632b2e5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -316,7 +321,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "ee69cd7ec72d1f34085c435b03ca6795dfda09d23feeae2acadef9f9b1637fc9"
+        "sha256": "e1fee75c2c69f25dcdac5545a490ec4fe124f6ed1dd15561b647106fea7539cf"
       },
       {
         "path": "NOTICE.md",
@@ -555,7 +560,7 @@
       {
         "path": "guides/HOME-LCP-NATIVE-CAPTURE.md",
         "identity_mode": "content",
-        "sha256": "fde6df0ae6a406c7fd40504159834e444b9901d971112e798d210e692eca2f08"
+        "sha256": "adfd00742e3c2de3a63c1f82dfff06af751e80ef0fc105bad3a4a98f3cfce451"
       },
       {
         "path": "guides/README.md",
@@ -575,7 +580,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "d04f4d05e3580efb5972114534d7d59a46a3de8446412849e05587a2fbaae3cd"
+        "sha256": "72f8d988f9d46ae5098c82ead0ce19b79870a49f778d2736f7f9e3c839b1bf32"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -735,7 +740,7 @@
       {
         "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "c3ba7a4c7c03b177c323dc24329b3cb127b5bbb298554cdbab86e4f9068a7e51"
+        "sha256": "e7c8c390bc9b00e12f76d2440a73493625559f6c22da9847eaa2f739e456a2ad"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -5745,7 +5750,12 @@
       {
         "path": "tests/lcp-diagnostic.test.cjs",
         "identity_mode": "content",
-        "sha256": "6fbd1f3fa7b90027edfec4dec0ac7b91fae0ff6a7dd2ead308a4d257aa521170"
+        "sha256": "04851db7a168d63eaa3dd0807b075abf5dff9a2d02d2dfd8418df89312ba578d"
+      },
+      {
+        "path": "tests/lcp-remote.test.cjs",
+        "identity_mode": "content",
+        "sha256": "96d9744dffac9eca7dcb6dd31ff9a6fce2575726dfa05c0ae77bde3512db192a"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -5930,7 +5940,7 @@
       {
         "path": "tests/test_issue112_acceptance.py",
         "identity_mode": "content",
-        "sha256": "36c86b1376805f6a4a520015751bae733d674e5d5e389b70e179e78b3d9974c5"
+        "sha256": "a6b1496ad3082e0c5a30e1c5776f606c193cceb4a89845d654dd047eca55a626"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -6190,7 +6200,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "894f9c0713039e36e3672dd62531ae2375000b93f6c6e58354efed24b6b93d4c"
+        "sha256": "81328c64dc2420ed8ff9058b1d3287a741f0d2b87522e4518fbf8ff06cf827ee"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -6375,7 +6385,7 @@
       {
         "path": "tools/quality/lcp-browser.cjs",
         "identity_mode": "content",
-        "sha256": "d3831f6ae0645ed9e1d0265e81a0a31b51f619cb85fdfd9d356c47387268a51a"
+        "sha256": "8f5b3e3c3991da475f82868182852f6b734b5a0b3f1424f157c09dfe48517dce"
       },
       {
         "path": "tools/quality/lcp-cache.cjs",
@@ -6386,6 +6396,16 @@
         "path": "tools/quality/lcp-diagnostic.cjs",
         "identity_mode": "content",
         "sha256": "260de55a6799efff641a0aa6664833ee55bf7b5eb982db7747c7cb905bb764cd"
+      },
+      {
+        "path": "tools/quality/lcp-remote.cjs",
+        "identity_mode": "content",
+        "sha256": "3fc0ab64613d297b786c44f716badd85640f1a42a6390f3195f0a95e9cc4db3c"
+      },
+      {
+        "path": "tools/quality/lcp-remote.json",
+        "identity_mode": "content",
+        "sha256": "eac5b3120eb6e490cfbc15db4d0b2b9e1d32faa6de43f8e994d81955de1b0fad"
       },
       {
         "path": "tools/quality/lighthouse.cjs",
@@ -6540,7 +6560,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "844c98d9afc02ed190298ab1de0197f42e290065f53a7d1beac7672fbfda0c00"
+        "sha256": "5f603429055647c16b9e817fa243299d0859f9006efe7b6774a6bb49fa8aa7d1"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7516,6 +7536,17 @@
         "AGENTS.md"
       ],
       "title": "ri-ci-map.json"
+    },
+    {
+      "path": ".github/workflows/home-lcp-remote.yml",
+      "kind": "file",
+      "purpose": "Separate PR117 label-triggered one-shot remote SDK diagnostic; encrypted artifacts only, no existing pipeline changes.",
+      "role": "workflow",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "home-lcp-remote.yml"
     },
     {
       "path": ".github/workflows/issue-acceptance.yml",
@@ -19750,6 +19781,17 @@
       "title": "lcp-diagnostic.test.cjs"
     },
     {
+      "path": "tests/lcp-remote.test.cjs",
+      "kind": "file",
+      "purpose": "Reject blocked SDK input, excess acquisition, damaged evidence, wrong recipients and in-checkout private outputs.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-remote.test.cjs"
+    },
+    {
       "path": "tests/native-display.test.cjs",
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for native display.",
@@ -21156,6 +21198,28 @@
         "AGENTS.md"
       ],
       "title": "lcp-diagnostic.cjs"
+    },
+    {
+      "path": "tools/quality/lcp-remote.cjs",
+      "kind": "file",
+      "purpose": "Canonical bounded SDK acquisition, exact release admission, existing replay orchestration and authenticated private evidence encryption.",
+      "role": "validator",
+      "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-remote.cjs"
+    },
+    {
+      "path": "tools/quality/lcp-remote.json",
+      "kind": "file",
+      "purpose": "Dated issue112 frozen release inputs and public encryption recipient for the remote diagnostic; contains no private key.",
+      "role": "configuration",
+      "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-remote.json"
     },
     {
       "path": "tools/quality/lighthouse.cjs",

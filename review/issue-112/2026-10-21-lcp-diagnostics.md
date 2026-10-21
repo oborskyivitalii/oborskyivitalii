@@ -604,3 +604,107 @@ behavior check; no native or performance observation is claimed.
 > RI freshness, all15 coupling checks and staged whitespace validation pass. Production, diagnostic code/tests and budgets remain unchanged. Unaffected I5 review scope is retained.
 >
 > **AC11’s preparation requirements are substantively supported and may be completed after final-head checks and live-link verification.** Actual owner-device capture, genuine SDK payload and slow-session evidence remain pending under AC06/AC07. No files were modified or browser/network probes performed.
+
+## I6 — Remote SDK alternative for the iPad-only owner
+
+The owner cannot perform desktop capture and instructed “Шукай інший шлях”.
+The dated issue112 AC12 scope permits one separate opt-in diagnostic workflow;
+every pre-existing workflow, production/runtime/docs owner, matrix and budget
+remains byte-frozen. Native desktop, real transport and historical-cause gates
+are retained. The native guide is now optional pending work, with no required
+owner-device action.
+
+Preparation uses base82c6236458c9316feebe8a54facaabde3c8b0ba5. Cloudflare
+search/execute/whoami each returned internal errors during alternative discovery;
+no account configuration was changed. The new GitHub route makes one ordinary
+canonical SDK GET with verified TLS, no custom headers, redirect following or
+retry. It retains blocks/errors;200 plus JavaScript MIME/size/syntax checks admit
+input, never vendor CWV execution. Frozen archive metadata and package hashes,
+all44 body identities and expected release/source/tree/public digest are checked
+before use. Remote SDK acquisition is a separate observation from earlier403
+and ERR_EMPTY_RESPONSE receipts; no earlier result is overwritten.
+
+The existing reviewed SDK suite plans9 balanced normal/delayed/blocked trials,
+headless Linux,30-second initial windows with SPA/history journeys. Only normal
+mode records traces; no HAR, true pagehide or native-device result is promised.
+All site/SDK browser requests are fulfilled from admitted exact bytes; RUM is
+intercepted locally and unknown requests are denied. No production browser visit
+is needed. Captured vendor CORS response policy is preserved for the cross-origin
+module without replaying compressed lengths/encodings or inventing allow headers.
+Existing route tests cover that behavior. Collection success and the old
+`sdkExecution.confirmed` convenience flag cannot establish a parsed same-document
+CWV payload. Actual startTime/timeOrigin, route/pageload, timing validity and
+trace/source binding require independent evidence review. Missing/blocked/unparsed
+payloads remain inconclusive; there is no repeat-until-Poor loop.
+
+The new workflow activates only for the repository owner adding the dated label
+to the exact same-repository Draft PR117/branch, attempt1. It checks out and
+verifies the raw event head with read-only permission, no persisted credentials,
+secrets, deployment or existing-controller changes. The separate workflow/merge
+identities are retained. Raw runner stdout/stderr, SDK, traces and payloads stay
+outside git and are AES-256-GCM encrypted before upload using a public recipient
+and RSA-OAEP-SHA256 key wrapping. The private key was persisted privately before
+publication; it never enters GitHub or the runner. Only the exact sealed JSON
+artifact is selected. Encryption/upload failures cannot publish plaintext.
+
+Meaningful source negatives cover403/redirect/wrong origin/HTML/empty/invalid or
+oversized SDK input, one-attempt network failure, stream overflow, binary/randomized
+round-trip evidence, ciphertext/tag/IV/wrapped-key/domain/recipient tampering and
+private-path/symlink rejection. Prepared Node34/34 passes; those fixtures never
+substitute a fake SDK into any browser measurement. AC12 and actual remote/SDK
+execution remain pending until the independently reviewed source is published
+and the one authorized capture is observed. CS01/04/05/07/08/09/10 apply; current
+Basic/style/format/RI/CI/policy and reviewer receipts are retained privately and
+linked in the dated issue/PR outcome.
+
+### I6 initial independent implementation review
+
+Reviewer `/root/review_lcp_implementation`, separate non-author, inspected the
+frozen prepared source and retained receipts. Verbatim outcome:
+
+> **Request corrections; remote execution is not yet cleared.**
+>
+> Reviewed base `82c6236458c9316feebe8a54facaabde3c8b0ba5`, prepared tree `ad0c9e9dca16a84c49870e88f8affb27fcc3f469`, diff SHA256 `150cbb362aa063ee219d4b7519018a0ea38edc5ee8aa9ba591647f8a9de3921a`. All18 source and seven evidence hashes match.
+>
+> - **F11 — Medium, AC12; `tools/quality/lcp-remote.cjs`, `unseal()`.** Authentication-tag length is unrestricted. On the pinned Node24.19.0, truncating the generated16-byte tag to4,8,12 or15 bytes still permits decryption. Require exactly16-byte tags and12-byte IVs, set `authTagLength:16`, and add truncation negatives. This prevents an envelope from downgrading the intended authentication strength.
+> - **F12 — Medium, AC12; `admitSDK()`.** `vm.Script` validates classic-script grammar, while the frozen integration loads the SDK as a module. I reproduced rejection of a valid200 JavaScript module containing `export {};`. Use bounded module-grammar validation without execution. Test valid module acceptance, invalid syntax rejection and absence of Node-side effects.
+> - **F13 — Medium, AC12; `.github/workflows/home-lcp-remote.yml`, evidence-retention conditions.** Seal/upload explicitly exclude an observation outcome of `cancelled`, discarding already-written evidence from interrupted attempts. Retain available interrupted output through the encrypted-only path, allocate cleanup time within the job deadline, and document unavoidable runner-loss/force-termination limits.
+>
+> Otherwise, the narrowed implementation matches current AC12. The fixed workflow gates, explicit head checkout, read-only permissions, existing-workflow freeze, pinned archive admission, redirected raw logs and exact encrypted upload path are appropriate. The CORS change preserves captured policy and exact SDK body bytes; its expanded handler test passes. Generic beacon presence remains explicitly insufficient for CWV admission.
+>
+> Independent verification passed all34 Node fixtures, RI freshness,15 coupling checks and whitespace validation. The public recipient fingerprint matches configuration and the bound round-trip receipt. I did not read private PEM contents.
+>
+> No additional blocking finding emerged. Native platforms, production transport, actual SDK/payload evidence and historical cause remain unresolved. Correction re-review is required before the one remote attempt. No source edits or provider/browser probes were performed.
+
+### I6 correction checkpoint
+
+F11 now fixes AES-GCM authentication at16-byte tags and12-byte IVs; altered or
+truncated lengths are rejected before authenticated plaintext can be returned.
+F12 uses a bounded `node --check --input-type=module` subprocess, never evaluation;
+a valid module containing an import, file-writing side effect and `export {}`
+is accepted without creating its marker, while invalid module syntax is rejected.
+F13 includes cancelled observations with an existing raw directory, a12-minute
+observation bound within the18-minute job, explicit unknown-cleanup metadata,
+and encrypted-only upload conditional on successful sealing. A partial cancelled
+fixture survives authenticated packaging and recovery. Force termination, job
+deadline or runner loss can still prevent final retention; absence is not clean
+completion. Prepared Node37/37 passes. These corrections await independent
+re-review; remote execution remains unperformed.
+
+### I6 correction independent review
+
+Same separate reviewer, verbatim outcome:
+
+> **I6 correction approved; no remaining blocking findings.**
+>
+> Reviewed base `82c6236458c9316feebe8a54facaabde3c8b0ba5`, prepared tree `f43448bada69016901dd3f6a8ca9aa173aacac17`, diff SHA256 `36a6ea9013fab2b15da540490d1dd1c2bf0ce92dc2bce9c8bcb8050bc74cad7f`. All18 source and eight evidence hashes match.
+>
+> - **F11 resolved:** encryption/decryption fixes authentication at16-byte tags and12-byte IVs. Truncated, extended and malformed lengths are rejected.
+> - **F12 resolved:** bounded module syntax checking accepts imports/exports without evaluating vendor code. The side-effect fixture leaves its marker absent; invalid syntax is rejected.
+> - **F13 resolved as documented best-effort retention:** cancelled observations enter sealing, partial rows survive authenticated recovery, cleanup remains explicitly unknown, and upload requires successful encryption. Force termination, job deadline and runner loss remain stated retention limits.
+>
+> I independently ran all37 Node fixtures successfully, verified RI freshness,15 coupling checks and whitespace validation. The prepared policy receipt correctly reports8/8 automated checks against dirty, diff-bound source and leaves closure false. Unaffected initial I6 review scope is retained.
+>
+> **The source/privacy scope is cleared for one authorized remote attempt after publication and final-head verification.** AC12 remains pending actual acquisition/replay or blockage evidence, private decryption and independent interpretation. Native platforms, production transport, genuine CWV attribution and historical cause remain separate unresolved gates.
+>
+> No files were modified, private PEM contents read, or provider/browser probes performed.

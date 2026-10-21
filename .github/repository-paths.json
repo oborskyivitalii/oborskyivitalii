@@ -241,6 +241,12 @@
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    ".github/workflows/home-lcp-remote.yml": {
+      "kind": "file",
+      "purpose": "Separate PR117 label-triggered one-shot remote SDK diagnostic; encrypted artifacts only, no existing pipeline changes.",
+      "role": "workflow",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     ".github/workflows/issue-acceptance.yml": {
       "kind": "file",
       "purpose": "Run the owning issue acceptance policy on the exact PR source and retain the per-criterion CI report.",
@@ -7675,6 +7681,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/lcp-remote.test.cjs": {
+      "kind": "file",
+      "purpose": "Reject blocked SDK input, excess acquisition, damaged evidence, wrong recipients and in-checkout private outputs.",
+      "role": "test",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tests/native-display.test.cjs": {
       "kind": "file",
       "purpose": "Behavioral/adversarial tests and fixtures for native display.",
@@ -8459,6 +8471,18 @@
       "kind": "file",
       "purpose": "Opt-in source-bound Home LCP collector/admission and per-document timing analysis, with no production admission claim.",
       "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/lcp-remote.cjs": {
+      "kind": "file",
+      "purpose": "Canonical bounded SDK acquisition, exact release admission, existing replay orchestration and authenticated private evidence encryption.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
+    "tools/quality/lcp-remote.json": {
+      "kind": "file",
+      "purpose": "Dated issue112 frozen release inputs and public encryption recipient for the remote diagnostic; contains no private key.",
+      "role": "configuration",
       "owner": "tools/quality/README.md"
     },
     "tools/quality/lighthouse.cjs": {
