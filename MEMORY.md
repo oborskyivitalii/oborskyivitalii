@@ -4,81 +4,67 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Snapshot
 
-- Live PR79 advanced to editorial R19 at7f64b948c1d60395d6e5a2356906485b1c437325
-  during optimization. Its manuscript/profile/publication/blueprint/media tests,
-  review/issue-2/2026-10-21-r19-review.md and new edition notice are preserved.
-  Final candidate incorporates that head; prior R18 diagnostics stay source-qualified.
-
-- Active owner is issue5 / DraftPR79; implementation began from
-  92b671f9d94b1be2e7ab9735e6fe267deb6c4aff. PR113 merged as c4ed3dad.
-- Actual permanent staging remains source283b32f/tree643304fa, R18/Cover02,
-  publicedb8d183; successful controller39490652746/1 and recovery remain historical.
-  Its22m15s duration missed the15-minute operational target; no new stage claimed.
-- Original full primary performance passed, actual reader failed mobile LCP
-  4202.636/2500ms. Raw commit9147ecccc96247ee6a1ec40c786cb99db211ad1a.
-- Causal diagnostic aade77a24d60987d272a2d8f46118d14b3b04c9b retained12trials:
-  deferred7slides gave simulated4202.360→2027.178ms and746085→245062bytes.
-  Actual observed loopback198→181ms is separate; cover/LCPparagraph stayed the same.
-- The shared reader keeps first image/declared cover eager and later figures lazy.
-  First combined source1940cf4 failed mobile reader LCP3376.6775/2500 and stopped
-  primary motion after7profiles on a2s Reduced Motion setup timeout.
-- Controlled follow-up traced7 image requests to active cache clones. Inert
-  extraction gives2401.136ms/1image versus3377.345ms/8images in paired diagnostics.
-  Current correction keeps cache/prepared clones inert until native adoption.
-- A missed media event left actual Reduced true with Canvas stillOn. The frame
-  now reconciles before drawing; duplicate disabled events schedule no RAF.
-  Source AST, original URLs/dimensions, scene geometry/effects and print stay intact.
-- Implementation/review record: review/issue-5/2026-10-21-reader-loading.md.
-  Issue5 scope comment6308024785 and PR79 scope6308025083 own the final frozen
-  source/run/raw receipts recorded after freeze; fetch them before next decisions.
+- Active owner is issue5 / Draft PR79; main ca70a66f includes PR113 controller
+  prerequisite c4ed3dad. Live PR79 advanced independently to R20 f2dfe2c8 while
+  the performance work was being finalized. Revalidate its live head before push.
+- Canonical R20 is site/publications/pmday-ai-both-sides/manuscript.en.md;
+  review/issue-2/2026-10-21-r20-review.md and its portable Markdown/image ZIP
+  retain editorial evidence. R13 draft and R18 compact PDF remain historical.
+- Q4 optimization commit7fbb0bc2320b2758f70c806057275878cb263c54 / tree086932a6
+  integrates R19. Its one full strict local matrix passed:36 Lighthouse,
+  72 motion windows,24 flights,120 retention cycles and300.083s soak.
+  Reader mobile LCP median2400.942ms, all3 below2500; max single TBT172.5ms.
+  This exact-source R19 result does not automatically admit R20 integration.
+- Raw Q4 and failed Q3 evidence: evidence-only commit
+  4c021989b43a9c748f6c29fcb34c1e713abd3557,52 ZIP/753 members/2212 logical files.
+  Independent native readback/CRC/restore now passes all58 uploaded paths and
+  all2212 logical files;39 prior evidence paths are preserved exactly.
+  Scope anchors: issue5 comment6308024785 / PR79 comment6308025083.
+- Shared reader defers later figures; navigation cache/prepared snapshots remain
+  inert until adoption. Canvas reconciles actual Reduced Motion before drawing.
+  Original AST/media/dimensions, scene geometry and transitions remain intact.
+- Actual permanent staging remains R18 source283b32f/tree643304fa,
+  publicedb8d183; controller39490652746/1 and recovery are historical.
+  Its22m15s duration missed the15-minute operational target; no newer stage claimed.
 
 ## Decisions
 
-- Existing R19 author decision keeps three original slides plus Cover02, all deck
-  assets intact; no editorial rewrite belongs to this performance correction.
-  Native-print PDF is disposable browser regression evidence, not an R19 editorial
-  export, publication or replacement for the historical R18 compact PDF.
-
-- Owner said Роби for the diagnosed optimization in the same issue5/PR79.
-  First address image scheduling; responsive renditions and CPU changes depend
-  on actual results. No unproved scene/router removal or threshold change.
-- Independent reader_loading_review found/rechecked RF01: endnote rendering
-  must precede appendices to match DOM/loading order. Regression failed before
-  correction, then passed; authored review found no remaining blocker.
-- Initial image policy78/78 and clean1940cf4 source12/12 passed, but actual full
-  performance failed. All failed/partial results and subsequent causal trials stay.
-- Corrected prepared request proof passes native/Back/SPA (6farimages,1request each);
-  five fixed Reduced samples pass. Independent runtime re-review/final clean checks
-  and the newly declared full matrix are required before final acceptance.
-- Native print26pages contains all8 source-sized images; auxiliary malformed PNG
-  was retained and replaced by verified JPEG contact from the unchanged PDF.
-- Final source checks and the single complete performance matrix use one frozen
-  clean Color/staging-edition artifact, with source/collector identity and all
-  outcomes retained. Their actual verdict lives in issue/PR final receipts.
-- Raw archives remain on the existing evidence-only branch, immutable commit
-  links in the same issue/PR. Never merge that standalone evidence tree or relax
-  the250MB RI bound to carry raw traces in the active source candidate.
+- Owner authorized the diagnosed optimization in the same issue5/PR79. Preserve
+  concurrent R20 byte-for-byte; no manuscript rewrite belongs to this correction.
+- R18 same-content diagnostics separate causality from editorial changes:
+  lazy figures4202.360→2027.178ms; actual active-clone issue3377.345→2401.136ms
+  with inert cache. Those are diagnostics, not final R20 acceptance.
+- First runtime Q3 source1940cf4 failed reader LCP3376.6775ms and motion setup
+  after7 profiles. All failures, partial runs and control trials stay retained.
+- Prior independent reviewer reader_loading_review closed RF01–RF05, checked Q4
+  integration and raw matrix/archive. Resume reviewer perf_resume_review completed
+  native remote readback; actual PR-head publication is still pending.
+- R20 integration is a new bounded iteration requiring independent source review,
+  fresh exact-source mapped checks and browser/performance evidence before its
+  own acceptance. Original budgets and all samples remain unchanged.
+- Keep raw archives on the existing evidence branch, never merge that tree or
+  relax250MB RI bounds. Browser-print PDFs are regression evidence, not article
+  exports or replacement of the historical R18 compact PDF.
 
 ## Open work
 
-- Reconcile the exact current final-run verdict before any additional optimization,
-  staging or readiness decision; earlier diagnostic is not an accepted runtime fix.
-- Preserve Home/Writing/reader TBT tail observations and original median policy.
-  Investigate specific cold JS/layout tasks only with source-bound attribution.
-- Soak heap growth is supporting evidence, not a proved leak. Reader-specific
-  retention, fieldINP/RUM and physical-device observations remain separate.
-- Whole issue5 AC08/AC11/AC12, independent content/media release, editorial,
-  rights/device/export/merge/publication gates remain separately owned.
-  Existing AC13/15 ticks need current mapped checks; historical AC23 is source283.
-- Publication issue2 owns editorial acceptance; current R19/Cover02 source and
-  historical R18 compact article PDF are preserved. No merge, production or new stage is claimed.
+- Publish exact immutable report/raw and completed independent native readback
+  links in the existing issue/PR anchors; reconcile the actual PR head.
+- Integrate Q4 with R20 f2dfe2c8 without losing editorial files; regenerate RI and
+  verify metadata. Record independent review and fresh results for that identity.
+- AC08/AC11/AC12 and whole reader/editorial/rights/device/export/publication,
+  actual independent content/media release and merge gates remain open.
+  AC13/15 retain only their verified mapped scope; AC23 is historical source283.
+- Q4 mobile LCP has only99ms median margin. Local explicit Chromium153.0.8010.0
+  override is not managed CI, physical-device, CDN or field INP/RUM evidence.
+- Soak heap+859700B is a bounded observation, not proof of a leak or its absence.
 
 ## Next session
 
-1. Fetch live issue5/PR79 refs, final scope/result receipts and immutable raw links.
-   Review R19 canonical Markdown/dated receipt with the author before editorial exports.
-2. Match measured source/tree/public/variant/browser and outcome before reusing it.
-3. Continue the next authorized phase; preserve staging/recovery and original limits.
+1. Fetch live issue5/PR79, scope/result anchors, refs and immutable raw links.
+2. Match exact measured source/tree/artifact/variant/browser before reusing PASS.
+3. Review canonical R20 and dated editorial receipt before author export decisions.
+4. Continue the authorized phase; keep staging/recovery and original limits intact.
 
 ## Maintenance
 

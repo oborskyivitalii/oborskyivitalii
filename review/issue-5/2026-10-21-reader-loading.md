@@ -331,3 +331,76 @@ rights, device, export, independent-content-release and publication gates separa
 No merge, re-stage or production activation is part of this checkpoint.
 
 Refs #5
+
+
+## Interrupted Q4 completion and concurrent R20 integration
+
+The final Q4 source is `7fbb0bc2320b2758f70c806057275878cb263c54`,
+tree `086932a657ab56725fd4d7dcd5fdd70d312b30eb`. Its one sequential full
+`node tools/quality/performance.cjs` run on21October06:16:30.909–06:31:57.400UTC
+passed all3 stages:36 Lighthouse,72 short motion windows,24 flights,
+120 retention cycles and300.083s soak. Artifact digest
+`5f9df1b196fb6fd8ecc1dced2c99ac1c25e78a2c75c081e988967bd7c6e55d09`, Color variant
+`bd7be6807f5af1b55242d40ab6205aa853463652810404dd7fef8a7993311dcd`.
+Reader mobile median LCP2400.942ms (all3 below2500), desktop521.110ms;
+maximum individual TBT172.5ms. All36 Off/Reduced windows have zero callbacks
+and paints; CPU×4 maximum paint p9525.2/33ms. Flight equivalent maximum
+3020.7/3200ms; actual readiness maximum4264.9ms is separately retained.
+Nodes/listeners do not grow in the declared retention cases; soak forced-GC
+heap+859700B remains a bounded observation, not a leak verdict.
+
+The separate previous reviewer `/root/reader_loading_review` independently
+revalidated the full raw matrix, all36 LHRs and24 trace/network digests and
+checked all52 ZIP CRCs,753 unique members and2212 logical aliases. Complete
+Q3 failures, causal controls, source/browser preparation and Q4 evidence are
+stored at immutable evidence-only commit
+[`4c021989b43a9c748f6c29fcb34c1e713abd3557`](https://github.com/oborskyivitalii/oborskyivitalii/tree/4c021989b43a9c748f6c29fcb34c1e713abd3557/review/issue-5/performance-fixes-evidence-20261021).
+Its full report and manifest retain exact source/profile/browser and
+R18-versus-R19 limits. At interruption, upload was complete but native remote
+readback and active PR79 head promotion were pending. A pending readback is not
+remote PASS.
+
+Fresh live inspection found PR79 at editorial R20
+`f2dfe2c87bc5e136eecc2da6e74df389d490fa10`, independently advanced from R19.
+It does not yet include Q4. This continuation integrates Q4 with that exact
+R20 head, preserving every nonmetadata R20 source/review/edition/test byte and
+the reviewed Q4 runtime, producer and collector bytes. Only catalog/derived RI
+and MEMORY need conflict reconciliation; no performance threshold or editorial
+meaning changes. The Q4 PASS remains bound to R19. The new integration needs
+its own non-authoring review and fresh source/browser/performance receipts;
+none are claimed by this preparation record. No staging/production/merge action
+is part of this continuation.
+
+
+### Independent Q4 native remote readback completed
+
+Separate non-authoring reviewer `/root/perf_resume_review` recovered the
+interrupted readback against live evidence head4c021989/tree40319ba9. All58
+paths match native Git blob OIDs, lengths and SHA256s. All52 ZIP CRCs,
+753 members and2212 aliases match; a fresh restoration independently contains
+exactly2212 files with no extras. All39 prior evidence paths remain unchanged.
+Machine receipt SHA256
+`d97df800bf7a6b096942e20b62a24124642b49a07ea43e436c671a376a531691`.
+This closes the Q4 remote-readback gap; current R20 integration performance
+and actual PR-head update remain separate pending observations.
+
+
+### Independent R20 integration source receipt
+
+Separate non-authoring reviewer `/root/perf_resume_review`; exact prepared identity
+and scope follow. This verbatim receipt and deterministic RI refresh are the only
+changes after its review. Fresh exact-source results belong to the existing issue5
+and PR79 scope anchors, preserving the frozen measurement candidate.
+
+> Independent R20 integration review PASS to freeze/test at prepared tree
+> 49c8e6a7fea02bbdf21251aa0c22ca77d24e9b25, parents Q4 7fbb0bc and R20 f2dfe2c.
+> All9 nonmetadata R20 files are byte-identical; all other Q4 paths remain
+> unchanged except catalog/derived metadata, MEMORY and the appended issue5
+> receipt. All Q4 runtime/producer/collector/validator/budget bytes are preserved.
+> Catalog is exactly Q4 plus3 R20 entries;16 removed older R20 entries are
+> nonexistent obsolete generated paths. RI freshness, RI/CI15 checks, bounded
+> style and whitespace pass. Q4/native-readback claims are exact-source qualified;
+> R20 source/browser/performance and actual PR-head publication stay pending.
+> No blocking finding. May freeze successor after verbatim receipt/RI refresh,
+> then execute fresh mapped checks and the declared strict suite once. No
+> benchmark, browser or scanner was run by this independent reviewer.

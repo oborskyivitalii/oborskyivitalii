@@ -10740,6 +10740,24 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "review/issue-2/2026-10-21-r20-review.md": {
+      "kind": "file",
+      "purpose": "R20 source-treatment decisions, independent editorial review and exact validation evidence.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r20-cover02.json": {
+      "kind": "file",
+      "purpose": "Source and semantic identity of the R20 review edition; earlier editions remain historical.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/r20-review-markdown.zip": {
+      "kind": "file",
+      "purpose": "R20 generated UTF-8 Markdown review copy, four resolved local PNG figures and exact provenance; not an editing owner or published edition.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-21-r20-review.md"
     }
   }
 }

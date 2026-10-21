@@ -2,7 +2,26 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R19 scope — 21 October 2026
+## Current R20 scope — 21 October 2026
+
+The author accepted the analysis and implementation plan for three R19 model
+reviews. The canonical manuscript now owns R20; the dated [R20 review](../../../review/issue-2/2026-10-21-r20-review.md)
+records treatment, checks and independent review. R19 remains a historical edition.
+
+Preserve the three-part architecture, six runtime assumptions, account-recovery
+thread and authorial voice. Add METR's likely bias direction; use NBER's weak-link
+interpretation with its model/observational limits and neutral author disclosures;
+correct Parikh's attribution and quote context. Balance the Anthropic case with
+bounded self-reported code share, concrete approval/ownership practices and credit
+for disclosed gaps. Clarify statistical evidence versus enforced limits in the
+pilot table. Keep valid NBER shares and pooled Wilson detail in the source notes.
+
+Compress repeated explanations without a fixed percentage requirement. Keep Cover02
+and slides 3/9/12. Check UTF-8 and image resolution in a generated review kit; preserve
+canonical `asset:` identifiers. No new article PDF, hosted deployment, platform post
+or publication acceptance is part of this revision. Prior editions/media stay intact.
+
+## Historical R19 scope — 21 October 2026
 
 The author requested the next Markdown revision after supplying three R18 model
 reviews. The canonical manuscript owns R19; `drafts/` remains an explicitly
