@@ -400,3 +400,66 @@ The exact correction manifest is
 and deterministic RI refresh may follow; any material source/claim change needs
 affected re-review. This receipt does not replace fresh source/artifact/browser/
 strict-matrix evidence or whole AC08/AC11/AC12 and original owner gates.
+
+## Lint correction before performance freeze
+
+The corrected f040e678 clean-source policy passed12/12 checks, with valid evidence,
+no errors and closure false. Formatter passed; full lint rejected the R21 equivalent
+producer negative callback at line945, cognitive complexity28/25. No exception or
+limit was changed. Registering each equivalent producer family as its own test
+preserves every edition/byte/rights assertion and removes the extra nesting. An
+initial diagnostic rearranged the CPU/deferred family loop instead; the unchanged
+warning identified the actual callback, and that unrelated rearrangement was
+reverted. Failed lint/preparation attempts and all exact-source receipts survive.
+Remaining preflight checks and independent review precede the next source freeze.
+
+## Verbatim final lint correction review
+
+## Bounded lint-correction review receipt
+
+Independent non-implementing reviewer `/root/reader_cpu_review` inspected the
+test-only restructure relative to `f040e678a573d92695305455fce02bb0246a0dcf`.
+The prior lint report `pr79-cpu-complexity-lint-final/lint.json` correctly remains
+`pass:false`: the R21 equivalent-producer callback at raw ESLint line 945 exceeded
+the unchanged cognitive complexity limit, 28 versus 25. The initial diagnostic
+mistakenly rearranged the separate CPU/deferred callback, left the warning intact
+and was reverted. The actual raw location and final diff were independently
+rechecked; this receipt supersedes review of that abandoned arrangement. Failed
+attempts, including preparation without an artifact manifest, remain retained.
+No exception, scanner scope or limit changed.
+
+Registering two distinctly named tests from the top-level `const` family loop
+preserves the same loading/fast-media and review-markdown/deferred-media producer
+pairs, all three editions, exact runtime-byte equality, distinct fingerprint,
+mandatory publication-rights failure, every canonical/immutable/both-byte tamper
+rejection, foreign base-engine rejection and wrong-edition rejection. The entire
+edition/assertion body is byte-identical to `f040e678`, SHA256
+`0b7ae24db822f7533f8cb6ef5cf7ddb5f9687acf14a79e702f45507212118f46`.
+Each callback receives correct per-iteration lexical bindings; `require` returns
+the same cached delivery module and introduces no shared mutation. Separate
+registration also lets one family's test run if the other fails. The CPU/deferred
+tail is byte-identical to `f040e678`. No assertion was removed or weakened and no
+extra policy owner was introduced.
+
+Parent-executed renderer/navigation/Color log
+`pr79-cpu-complexity-corrected-targeted.log` confirms 72/72 pass with zero
+failures/skips. The reviewer inspected
+`pr79-cpu-complexity-corrected-lint/lint.json`: `pass:true` and ESLint, Stylelint,
+Ruff all pass. Parent reports RI 28/28, RI/CI 20/20 and the 89-package/143-dependency
+toolchain check passing; no new reviewer execution is claimed for these checks.
+The reviewer inspected the retained fresh `f040e678` owning-policy report:
+12/12 checks pass, `automation_pass:true`, `evidence_valid:true`, `errors:[]`,
+`ready_for_issue_closure:false`; this report does not admit a later source.
+No test, scanner or browser was run by this reviewer for this bounded change.
+
+The reviewed `tests/color-motion-contract.test.cjs` SHA256 is
+`2892e8017445b6f9c7e083c127d73b0af766894b4dfabb72b31ffebe906934e9`;
+its parent-relative `git diff --binary` SHA256 is
+`147098975f0cd6670bdddd3feb0a815e20b471007797cea8eb70e6466d97a6b2`.
+Runtime, generated/publishing/content owners, policies, rights/tuple registry,
+catalog and previous corrective test owners remain byte-identical to `f040e678`.
+There is no new blocking source finding in this iteration. A fresh published-source
+policy run, browser observations and the strict performance matrix remain required;
+all previous failures survive.
+Review-only receipt append and deterministic RI refresh may follow without
+changing this substantive identity.

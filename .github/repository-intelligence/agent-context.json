@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "3aec0459d80adad4300035496bc7f981a2c0046e32dc56b1a0c923d1dc090ea6",
+    "digest": "f6adc705c7eacb069cb3a196d093cd84c846fd5abf248c7630b92f4deb7f0dca",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -1515,7 +1515,7 @@
       {
         "path": "review/issue-5/2026-10-21-reader-cpu.md",
         "identity_mode": "content",
-        "sha256": "3464b6df2a80a1b465e256a0d161faa1d208f645ce7b54992790dcf2b46dd3f1"
+        "sha256": "d74065371d43fbe9f6c6ea8926c76b35f65495bfbe2ffc709fbb7bf8fe938956"
       },
       {
         "path": "review/issue-5/2026-10-21-reader-loading.md",
@@ -6680,7 +6680,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "bad867fb2dc71836e1b6e3b80d36ae76a9cef967f6f624ac3fd0270cafb1c11b"
+        "sha256": "2892e8017445b6f9c7e083c127d73b0af766894b4dfabb72b31ffebe906934e9"
       },
       {
         "path": "tests/content-baseline.test.cjs",

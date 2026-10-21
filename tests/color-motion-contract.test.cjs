@@ -942,12 +942,12 @@ test('issue106 correction lineage retains exact bytes and mandatory rights admis
   }
 });
 
-test('equivalent reader producer identities preserve every runtime byte and mandatory rights before file access', () => {
-  const delivery = require('../tools/staging/package.cjs');
-  for (const [family, previousFamily] of [
-    ['issue5-reader-loading', 'issue5-reader-fast-media'],
-    ['issue5-review-markdown', 'issue5-reader-deferred-media'],
-  ])
+for (const [family, previousFamily] of [
+  ['issue5-reader-loading', 'issue5-reader-fast-media'],
+  ['issue5-review-markdown', 'issue5-reader-deferred-media'],
+])
+  test(family + ' preserves every runtime byte and mandatory rights before file access', () => {
+    const delivery = require('../tools/staging/package.cjs');
     for (const edition of ['plain', 'staging', 'production']) {
       const id = family + '-' + edition;
       const current = motion.reviewedRuntime(id);
@@ -984,7 +984,7 @@ test('equivalent reader producer identities preserve every runtime byte and mand
         edition === 'staging' ? undefined : { id: 'staging', indexable: false, analytics: false };
       assert.throws(() => motion.select(wrongEdition), /edition differs/);
     }
-});
+  });
 
 test('deferred-media and CPU runtimes retain byte, edition and mandatory rights admission', () => {
   const delivery = require('../tools/staging/package.cjs');
