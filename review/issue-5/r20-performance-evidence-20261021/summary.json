@@ -1,0 +1,352 @@
+{
+  "sourceCommit": "3e12e47953bc8c81316544b1da206a956a337307",
+  "sourceTree": "728b7aee4dcdc3627b1327f90d8df64971d2d816",
+  "artifactDigest": "aa6490f76bcd05a9e55d42db8ddf97d2bf1e9064618be5c89b4c99e698e99009",
+  "completedStagesPass": false,
+  "originalWrapperComplete": false,
+  "strictSingleUninterruptedRunPass": false,
+  "counts": {
+    "lighthouse": 36,
+    "motionWindows": 72,
+    "flights": 24,
+    "retentionCycles": 120,
+    "zeroWorkWindows": 36,
+    "soakObservedSeconds": 300.0729999999851
+  },
+  "medians": [
+    {
+      "route": "index",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1956.842,
+        "total-blocking-time": 89,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1963.973,
+      "maxTbtMs": 108.5
+    },
+    {
+      "route": "index",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 478.66499999999996,
+        "total-blocking-time": 3.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 510.726,
+      "maxTbtMs": 7
+    },
+    {
+      "route": "research",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1665.502,
+        "total-blocking-time": 170.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.98,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1771.852,
+      "maxTbtMs": 193.9999999999999
+    },
+    {
+      "route": "research",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 411.929,
+        "total-blocking-time": 2,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 418.239,
+      "maxTbtMs": 3
+    },
+    {
+      "route": "writing",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1683.0075000000002,
+        "total-blocking-time": 178.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.97,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1684.7125,
+      "maxTbtMs": 235
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 421.48749999999995,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0.0006962609193683607
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 423.39250000000004,
+      "maxTbtMs": 1
+    },
+    {
+      "route": "talks",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1611.759,
+        "total-blocking-time": 88.50000000000011,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1636.903,
+      "maxTbtMs": 149.5000000000001
+    },
+    {
+      "route": "talks",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 401.06,
+        "total-blocking-time": 8,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 408.28,
+      "maxTbtMs": 90
+    },
+    {
+      "route": "credits",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1603.678,
+        "total-blocking-time": 51,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1605.229,
+      "maxTbtMs": 58
+    },
+    {
+      "route": "credits",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 398.165,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 401.09,
+      "maxTbtMs": 22
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 2253.114,
+        "total-blocking-time": 204,
+        "cumulative-layout-shift": 0
+      },
+      "maxLcpMs": 2408.5480000000002,
+      "maxTbtMs": 225.5
+    },
+    {
+      "route": "reader-1",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 521.2180000000001,
+        "total-blocking-time": 16.5,
+        "cumulative-layout-shift": 0
+      },
+      "maxLcpMs": 523.61,
+      "maxTbtMs": 24.5
+    }
+  ],
+  "readerViolations": [
+    {
+      "check": "lighthouse",
+      "error": "reader-1/mobile total-blocking-time: 204 > 200"
+    }
+  ],
+  "maxCpu4PaintP95Ms": 26.799999997019768,
+  "zeroCallbacks": 0,
+  "zeroPaints": 0,
+  "maxEquivalentReadyMs": 2994.5999999940395,
+  "maxActualReadyMs": 4121.100000008941,
+  "retention": [
+    {
+      "width": 1440,
+      "rate": 1,
+      "before": {
+        "documents": 2,
+        "nodes": 3270,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 2,
+        "nodes": 3270,
+        "jsEventListeners": 98
+      }
+    },
+    {
+      "width": 390,
+      "rate": 1,
+      "before": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      }
+    },
+    {
+      "width": 390,
+      "rate": 4,
+      "before": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      }
+    }
+  ],
+  "soakHeapDeltaBytes": 862012,
+  "priorMotionBudgetMisses": [
+    {
+      "route": "index",
+      "width": 390,
+      "rate": 4,
+      "kind": "idle",
+      "p95Ms": 45.599999994039536,
+      "busyPercent": 21.65257091848951
+    },
+    {
+      "route": "index",
+      "width": 390,
+      "rate": 4,
+      "kind": "scroll",
+      "p95Ms": 38.80000001192093,
+      "busyPercent": 28.83495145920411
+    }
+  ],
+  "singleTbtBudgetExceedances": [
+    {
+      "route": "writing",
+      "profile": "mobile",
+      "run": 1,
+      "tbtMs": 235
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "run": 2,
+      "tbtMs": 225.5
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "run": 3,
+      "tbtMs": 204
+    }
+  ],
+  "readerNetwork": [
+    {
+      "file": "lighthouse-reader-1-desktop-1.json",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226755,
+      "warnings": []
+    },
+    {
+      "file": "lighthouse-reader-1-desktop-2.json",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226755,
+      "warnings": []
+    },
+    {
+      "file": "lighthouse-reader-1-desktop-3.json",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226755,
+      "warnings": []
+    },
+    {
+      "file": "lighthouse-reader-1-mobile-1.json",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226755,
+      "warnings": []
+    },
+    {
+      "file": "lighthouse-reader-1-mobile-2.json",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226755,
+      "warnings": []
+    },
+    {
+      "file": "lighthouse-reader-1-mobile-3.json",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226755,
+      "warnings": []
+    }
+  ],
+  "execution": {
+    "sourceCommit": "3e12e47953bc8c81316544b1da206a956a337307",
+    "sourceTree": "728b7aee4dcdc3627b1327f90d8df64971d2d816",
+    "artifactDigest": "aa6490f76bcd05a9e55d42db8ddf97d2bf1e9064618be5c89b4c99e698e99009",
+    "sourceDirtyBefore": false,
+    "startedAt": "2026-10-21T07:37:02.392901+00:00",
+    "priorAttempt": "/workspace/scratch/38e8b0c92238/pr79-opt-r20-performance",
+    "reason": "Prior process disappeared without completion receipt after 30 Lighthouse trials, 15 motion samples and one flight profile. Preserve all prior files; reuse only completed Lighthouse. Restart incomplete motion stage once, then execute reader stage sequentially.",
+    "priorWrapperComplete": false,
+    "rows": [
+      {
+        "check": "motion",
+        "startedAt": "2026-10-21T07:37:02.585327+00:00",
+        "command": [
+          "node",
+          "tools/quality/motion.cjs"
+        ],
+        "exitCode": 0,
+        "finishedAt": "2026-10-21T07:46:58.577219+00:00"
+      },
+      {
+        "check": "reader-performance",
+        "startedAt": "2026-10-21T07:46:58.577920+00:00",
+        "command": [
+          "node",
+          "tools/quality/reader-performance.cjs"
+        ],
+        "exitCode": 1,
+        "finishedAt": "2026-10-21T07:48:38.069586+00:00"
+      }
+    ],
+    "environment": {
+      "SITE_PUBLIC_DIR": "/workspace/scratch/38e8b0c92238/pr79-opt-r20-artifact/public",
+      "SITE_ARTIFACT_MANIFEST": "/workspace/scratch/38e8b0c92238/pr79-opt-r20-artifact/artifact.json",
+      "SITE_REPORT_DIR": "/workspace/scratch/38e8b0c92238/pr79-opt-r20-performance",
+      "SITE_AUDIT_TOOLS": "/workspace/scratch/38e8b0c92238/pr79-opt/tools/quality/toolchain",
+      "SITE_AUDIT_CHROME": "/tmp/chromium"
+    },
+    "artifactVerifiedBefore": true,
+    "artifactVerifiedAfter": true,
+    "sourceDirtyAfter": false,
+    "finishedAt": "2026-10-21T07:48:38.215074+00:00",
+    "allStagesExitZero": false
+  }
+}
