@@ -1,8 +1,15 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-20**.
+Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Snapshot
+
+- Current session: issue118, tiny Home/Research first-name hotfix; branch
+  hotfix/issue-118-arkadiy-name from verified main ca70a66f.
+- Maintainer authorises issue/PR and production through normal gates.
+- Evidence: review/issue-118/2026-10-21-review.md; inspect current review/checks.
+- PR79/issue5 and PR117/issue112 remain separate active work; preserve them.
+- Older issue114 handoff below is historical; ca70a66f already contains its rules.
 
 - Verified main: c4ed3dad7197bef2f9638c9500d66c12606f6eff, PR113 merged.
 - Current task: issue114, mandatory substantive independent subagent review

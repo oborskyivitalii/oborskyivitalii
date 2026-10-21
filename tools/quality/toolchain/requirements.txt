@@ -6,7 +6,7 @@ boltons==21.0.0
 boolean.py==5.0
 bracex==3.0.1
 CacheControl==0.14.4
-certifi==2026.7.22
+certifi==2026.10.19
 cffi==2.1.1
 charset-normalizer==3.5.2
 click==8.4.2
@@ -47,7 +47,7 @@ opentelemetry-util-http==0.58b0
 packageurl-python==0.17.6
 packaging==26.3
 peewee==3.19.0
-pillow==12.3.0
+pillow==13.0.0
 pip==26.2.1
 pip-requirements-parser==32.0.1
 pip_api==0.0.35

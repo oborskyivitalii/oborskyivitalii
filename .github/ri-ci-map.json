@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/114",
-    "date": "2026-10-20",
-    "summary": "Issue114 mandatory per-iteration independent subagent review through the existing protocol owner/templates. Existing bounded check selectors and unchanged CI routes; semantic review and merge gates remain external."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/118",
+    "date": "2026-10-21",
+    "summary": "Register exact editorial amendment, owning policy/review and scanner proof; existing checks and CI routes remain unchanged."
   },
   "layers": [
     {
@@ -128,7 +128,11 @@
         "tests/test_issue5_acceptance.py",
         "review/issue-5/2026-10-20-controller-bootstrap.md",
         ".github/acceptance/issue-114.json",
-        "review/issue-114/2026-10-20-review.md"
+        "review/issue-114/2026-10-20-review.md",
+        ".github/acceptance/issue-118.json",
+        "review/issue-118/2026-10-21-review.md",
+        "review/issue-118/content-amendment.json",
+        "review/issue-118/2026-10-21-public-checksum-proof.json.gz"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -549,7 +553,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "c37805665f4855ad93558015b60c67b9a5042e2b1fb8764944745c3fbcdaf2a6",
+    "digest": "ebcc45283fe857d7aec5ef70f410d0c8b64a7c93e27dae0a4408fd19be608853",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -578,6 +582,10 @@
       {
         "path": ".github/acceptance/issue-114.json",
         "sha256": "0db03f6fd2d0408fc259110512646e0f27d663b76c0d2e9d6b21aea3e1e17f36"
+      },
+      {
+        "path": ".github/acceptance/issue-118.json",
+        "sha256": "4ee32bc6112e29bf52ad186c88d0ca8cd3f317efa6633c80a0e34cbc90b26152"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -669,7 +677,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "7bb4c7bfc357242be96e8f8ff1afa206c4976869f96527ed7d75c9a1327e6337"
+        "sha256": "1084f30b93cc8aa5c0b278d89f93fa665a2afa60938b883506ec2b16ad25045c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -765,7 +773,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "e16aff8ea47271f8bf7c69e2a182f71c864ff0313fafdc0e76b06a842faa7d7e"
+        "sha256": "c569ef675528f8808a7e56e5e367b9c9fc0d03891ecb368a7db7fea060d53a24"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
@@ -789,7 +797,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "f38697930a14dacfda0dec0ec97470fdb5a54216131bcdb3fcc5aecc28e5b4d4"
+        "sha256": "8228fbf71963d411f9fb9ebccd131113b9c437dc319151401cf3767ba6bad273"
       },
       {
         "path": "tests/test_code_style.py",

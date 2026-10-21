@@ -15,17 +15,17 @@
     "vitalii-oborskyi-cutout.webp",
     "writing-paradigm.svg"
   ],
-  "content": "e2909d451946f102dd262e64cf1c9ab7c52573113935717fe4d9d18a11583c31",
+  "content": "3e55b0276f0362545d42a59ce2fd557c40eca6d4b88bc4f470429e5c235f66dc",
   "routes": {
     "index": {
-      "version": "7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281",
-      "url": "snapshots/7e3a71185cf3b9bf8b73a542db0cf20fd0b3797bd824c3c3ab7bb193480bf281/index.html",
-      "sha256": "847fe81bf8f8a535a7f41ca20f0344df1d101cdd47c39734691d1bd05241c4f5"
+      "version": "5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6",
+      "url": "snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6/index.html",
+      "sha256": "4ea1840e3a4d60b3ff29b191b803b2d842fc5c2f6329d7c7869d0418aa9d9b29"
     },
     "research": {
-      "version": "b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba",
-      "url": "snapshots/b51c0119a60e3aa3cb57f226389df98d2b501064d5a6a5217215c134dc313eba/research.html",
-      "sha256": "64d5f09ebb71d7ad9c00ee30abd6e26558f14bf5ec276ce43d9d23a25a216de6"
+      "version": "759a672c82ef8c659b92d66843e8a8f5dfff286b535e0733e3441c02d219ffa1",
+      "url": "snapshots/759a672c82ef8c659b92d66843e8a8f5dfff286b535e0733e3441c02d219ffa1/research.html",
+      "sha256": "39afb91f0b2af032acaaf4a5e713845f53b62558ed9663451d3eb3031473d631"
     },
     "writing": {
       "version": "00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c",
