@@ -17,7 +17,7 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261021-r20-cover02",
+  "edition": "pmday-ai-both-sides-en-review-20261021-r21-cover02",
   "rights": {
     "status": "review-pending",
     "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and three original full-page UA Online PMDay 2026 Autumn v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
@@ -204,8 +204,9 @@
       "width": 1280,
       "height": 398,
       "alt": "A solitary person stands before a narrow opening of light between monumental dark walls.",
-      "caption": "We can delegate more work. We still have to own the consequences.",
-      "credit": "Author-selected AI-generated Cover 02, prepared 18 October 2026. Title-free detail is a lossless PNG encoding of the approved JPEG pixels. Four originals and six channel-image variants are retained in cover02/manifest.json. Publication and rights acceptance remain separate."
+      "caption": "The Sum of Our Technology — cover illustration.",
+      "credit": "AI-generated illustration selected by Vitalii Oborskyi (18 October 2026).",
+      "reviewNote": "Author-selected AI-generated Cover 02, prepared 18 October 2026. Title-free detail is a lossless PNG encoding of the approved JPEG pixels. Four originals and six channel-image variants are retained in cover02/manifest.json. Publication and rights acceptance remain separate."
     },
     {
       "id": "presentation-cover",
@@ -224,8 +225,9 @@
       "width": 1921,
       "height": 1080,
       "alt": "Synthetic capacities: generation rises from eight to one hundred changes per week while review and integration remain at eight; the queue grows by ninety-two if every change is admitted.",
-      "caption": "Synthetic fixed-capacity illustration. Uncontrolled intake accumulates work; controlled intake bounds the queue without proportionally increasing delivery. Both regimes are explained in the text. UA Online PMDay 2026 Autumn · slide 3 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 3 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Fixed-capacity illustration: uncontrolled intake grows the queue; controlled intake caps it. Spare downstream capacity would change the result.",
+      "credit": "Vitalii Oborskyi, UA Online PMDay 2026 Autumn, slide 3 (v35). [1]",
+      "reviewNote": "Full-page slide 3 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-09",
@@ -233,9 +235,10 @@
       "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
       "width": 1921,
       "height": 1080,
-      "alt": "Acceptable answers, clarification and escalation occupy a bounded response space; unauthorised disclosure is outside it.",
-      "caption": "The drawing is schematic, not a probability map. Answering, clarifying or escalating can all be correct; unauthorised disclosure remains outside the boundary. UA Online PMDay 2026 Autumn · slide 9 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 9 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
+      "alt": "A specified transition is contrasted with a bounded response space: answer, clarify or escalate; unauthorised disclosure lies outside it.",
+      "caption": "Schematic comparison of a specified transition and an admissible response space, not a probability map.",
+      "credit": "Vitalii Oborskyi, UA Online PMDay 2026 Autumn, slide 9 (v35). [1]",
+      "reviewNote": "Full-page slide 9 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
       "id": "pmday-slide-12",
@@ -244,8 +247,9 @@
       "width": 1921,
       "height": 1080,
       "alt": "Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.",
-      "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Real human capacity and response time must be supplied and tested. UA Online PMDay 2026 Autumn · slide 12 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 12 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
+      "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Real human capacity and response time must be supplied and tested.",
+      "credit": "Vitalii Oborskyi, UA Online PMDay 2026 Autumn, slide 12 (v35). [1]",
+      "reviewNote": "Full-page slide 12 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     }
   ],
   "platforms": {

@@ -258,12 +258,12 @@ function textRendition(model, assets) {
   return nodeText(model.tree);
 }
 
-function markdownRendition(model, assets) {
+function markdownRendition(model, assets, { preserveTables = false } = {}) {
   const assetMap = new Map(assets.map((asset) => [asset.id, asset]));
   const paragraph = (children) => ({ type: 'paragraph', children });
   const text = (value) => ({ type: 'text', value });
   function transform(node) {
-    if (node.type === 'table') {
+    if (node.type === 'table' && !preserveTables) {
       const [head, ...rows] = node.children;
       return rows.flatMap((row, index) => [
         { type: 'heading', depth: 3, children: [text(`Table row ${index + 1}`)] },
@@ -346,7 +346,9 @@ try {
       platformBodyHtml: titleSources + render(bodyModel, input.assets || [], true),
       titleId: titleNode?.id || null,
       titleText: titleNode ? plain(titleNode) : null,
-      markdown: markdownRendition(model, input.assets || []),
+      markdown: markdownRendition(model, input.assets || [], {
+        preserveTables: input.preserveTables === true,
+      }),
       text: textRendition(model, input.assets || []),
     })
   );

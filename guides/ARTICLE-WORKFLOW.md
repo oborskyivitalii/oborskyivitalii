@@ -98,6 +98,16 @@ literal punctuation, embedded backticks, nested lists and hard breaks. Authored
 JSON/Markdown decoding rejects invalid UTF-8 rather than replace source characters.
 Header-only tables, task controls and inline figures have named rejection messages.
 
+Kits retain the byte-exact authoring source in `article.md`. The separate
+`review.md` is a full-article reading rendition: GFM tables remain tables, local
+image paths replace asset tokens, and authored captions/credits follow figures.
+Keep its `images/` directory when sharing it. LinkedIn/Medium renditions retain
+their existing labelled-row fallback; do not substitute them for the review copy.
+Optional asset `reviewNote` text holds administrative context in `INSTRUCTIONS.md`,
+outside reader captions and credits. It cannot replace required attribution or a
+rights decision. Notes are bounded, input-hashed render metadata; they do not
+change the semantic edition, whose public captions/credits remain pinned.
+
 Each article declares `profile.json`: exact platform formats and relationships,
 authored launch source/digest, SEO title/summary, cover and hero asset roles or
 authored omission reasons, and optional authored review character bounds. These

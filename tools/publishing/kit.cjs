@@ -245,12 +245,14 @@ async function renderKit(
     }
     const full = compile(decodeUtf8(fullSource.bytes, article.source.path), assets, {
       title: article.metadata.title,
+      preserveTables: true,
     });
     await fs.writeFile(
       path.join(staging, 'article.html'),
       documentHtml(article, full.bodyHtml, 'article-print.css', printTemplate)
     );
     await fs.writeFile(path.join(staging, 'article.md'), fullSource.bytes);
+    await fs.writeFile(path.join(staging, 'review.md'), full.markdown);
     await fs.writeFile(path.join(staging, 'article.txt'), full.text);
     await fs.writeFile(
       path.join(staging, 'print.html'),
@@ -345,6 +347,10 @@ async function renderKit(
       `Source provenance: ${article.source.state}`,
       `Canonical: ${canonical}`,
       '',
+      'For full-article reading, open review.md in a GFM viewer and keep images/ beside it.',
+      'This rendition preserves tables, resolves local figures and retains captions/credits.',
+      'article.md is the byte-exact authoring source; platform files retain their declared fallbacks.',
+      '',
       'Review wording, heading sources, table row labels, captions and credits against the manuscript.',
       'Open <platform>-copy-ready.html, select the article body, and paste into the native editor.',
       'Copy-ready images preserve reviewer bytes; native-editor image transfer must be checked.',
@@ -358,6 +364,10 @@ async function renderKit(
       ...uploadAssets.map((asset) => `${asset.uploadPath} — ${asset.caption} (${asset.credit})`),
       '',
       `Rights: ${article.metadata.rights.notice}`,
+      '',
+      ...assets
+        .filter((asset) => asset.reviewNote)
+        .map((asset) => `${asset.id}: ${asset.reviewNote}`),
       '',
     ].join('\n');
     await fs.writeFile(path.join(staging, 'INSTRUCTIONS.md'), instructions);
@@ -432,6 +442,13 @@ async function renderKit(
       inputHashes,
       assets: assets.map((asset) => ({ id: asset.id, path: asset.url, sha256: asset.sha256 })),
       transformations,
+      review: {
+        path: 'review.md',
+        relationship: 'equivalent-rendition',
+        transforms: ['local figure paths', 'declared figure captions and credits'],
+        preserved: ['GFM tables'],
+        administrativeNotes: 'INSTRUCTIONS.md',
+      },
       profile: {
         id: article.profile.id,
         selection: article.profile,

@@ -207,7 +207,11 @@ function validateMetadata(metadata, articleId) {
 }
 
 function validateAsset(root, asset, articleId, assetUrl) {
-  object(asset, ['id', 'path', 'sha256', 'width', 'height', 'alt', 'caption', 'credit'], 'asset');
+  object(
+    asset,
+    ['id', 'path', 'sha256', 'width', 'height', 'alt', 'caption', 'credit', 'reviewNote'],
+    'asset'
+  );
   id(asset.id, 'asset id');
   if (!SHA.test(asset.sha256)) {
     throw new Error('Asset requires its exact SHA256');
@@ -231,6 +235,9 @@ function validateAsset(root, asset, articleId, assetUrl) {
   string(asset.alt, 'image alt', 1000);
   string(asset.caption, 'figure caption', 2000);
   string(asset.credit, 'figure credit', 2000);
+  if (asset.reviewNote !== undefined) {
+    string(asset.reviewNote, 'asset review note', 3000);
+  }
   const input = readSource(root, asset.path, { maxBytes: 5_000_000 });
   const png = input.bytes;
   if (
@@ -329,7 +336,7 @@ function loadEdition(root, directory, editionId, metadata, kind, expectedSource,
   return { edition, source, input: relative };
 }
 
-function compile(markdown, assets, { title } = {}) {
+function compile(markdown, assets, { title, preserveTables = false } = {}) {
   const toolchain = path.join(__dirname, 'toolchain');
   const declaration = JSON.parse(fs.readFileSync(path.join(toolchain, 'package.json'), 'utf8'));
   for (const name of ['unified', 'remark-parse', 'remark-gfm', 'remark-stringify']) {
@@ -348,6 +355,7 @@ function compile(markdown, assets, { title } = {}) {
     input: JSON.stringify({
       markdown,
       title,
+      preserveTables,
       assets: assets.map((asset) => ({
         id: asset.id,
         url: asset.url,

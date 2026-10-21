@@ -2,7 +2,33 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R20 scope — 21 October 2026
+## Current R21 scope — 21 October 2026
+
+The author requested the next version after the R20 review analysis. The canonical
+manuscript owns R21; the dated [R21 review](../../../review/issue-2/2026-10-21-r21-review.md)
+records source verification, decisions and delivered-artifact checks. R20 and its
+review ZIP remain historical.
+
+Name both NBER marketplace explanations and acknowledge filtered experiments;
+correct the confidential Copilot data provenance. Add bounded corporate PR-duration
+evidence from Chen and Stratton as [36]. Preserve the measured Android trend,
+the conditional queue illustration, METR context and Anthropic counterevidence.
+Predeclare pilot improvement/deterioration margins and sample requirements, with
+uncertain evidence blocking expansion. Keep prohibited-event rules strict.
+
+Join the explanation/rewrite discussion while retaining their distinct failure
+mechanisms, explain both halves of slide 9 and shorten the close. Keep three parts,
+six runtime assumptions and the account-recovery thread. Wilson detail belongs in
+note [24]; the zero-failure example remains in prose. No arbitrary cut quota.
+
+The dedicated review Markdown must preserve GFM tables, resolve four local images
+and retain concise captions/attribution. Administrative asset notes move into
+metadata and review instructions, never into reader prose or rights acceptance.
+Existing platform fallbacks remain separate. Inspect the actual delivered ZIP.
+Keep all prior editions/media; no new article PDF, merge, permanent staging
+promotion or platform posting is part of this revision.
+
+## Historical R20 scope — 21 October 2026
 
 The author accepted the analysis and implementation plan for three R19 model
 reviews. The canonical manuscript now owns R20; the dated [R20 review](../../../review/issue-2/2026-10-21-r20-review.md)

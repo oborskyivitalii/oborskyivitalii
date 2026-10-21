@@ -46,6 +46,7 @@ function fixture(root, id = 'first-profile', { adaptation = false, figure = true
           alt: 'One pixel',
           caption: 'Original test figure.',
           credit: 'Test author.',
+          reviewNote: 'Administrative test note; rights decision pending.',
         },
       ]
     : [];
@@ -201,11 +202,28 @@ test('bounded GFM AST preserves escaped pipes, code fences and heading source li
   assert.match(result.platformHtml, /<strong>Detail:<\/strong> b \| c/);
   assert.match(result.html, /<pre><code>\| fake \| table \|/);
   assert.equal(result.model.tree.children.filter((node) => node.type === 'table').length, 1);
+  const reviewMarkdown = compile(markdown, [], { preserveTables: true }).markdown;
+  const review = compile(reviewMarkdown, []);
+  assert.equal(review.model.tree.children.filter((node) => node.type === 'table').length, 1);
+  assert.match(review.html, /<td>b \| c<\/td>/);
+  assert.match(review.html, /<pre><code>\| fake \| table \|/);
+  assert.doesNotMatch(reviewMarkdown, /### Table row/);
+  assert.match(result.markdown, /### Table row 1/);
   assert.match(
     result.platformHtml,
     /Heading sources: <a href="https:\/\/example.com\/source">source/
   );
   assert.equal(result.text.match(/https:\/\/example.com\/source/g).length, 1);
+});
+
+test('both Markdown modes retain the admitted one-megabyte manuscript boundary', () => {
+  const source = 'x'.repeat(1_000_000);
+  for (const preserveTables of [false, true]) {
+    const result = compile(source, [], { preserveTables });
+    assert.equal(result.markdown, source + '\n');
+    assert.equal(result.model.tree.children[0].children[0].value, source);
+  }
+  assert.throws(() => compile(source + 'x', []), /1 MB/);
 });
 
 test('AST rejects unsafe/raw/undeclared content and unknown anchors', () => {
@@ -292,6 +310,12 @@ test('strict source selection rejects unknown fields, dishonest accepted edition
     });
     assert.throws(() => loadArticle(root, 'first-profile'), /committed source and edition rights/);
     json(root, `${directory}/publication.json`, metadata);
+    json(root, `${directory}/publication.json`, {
+      ...metadata,
+      assets: metadata.assets.map((asset) => ({ ...asset, reviewNote: '' })),
+    });
+    assert.throws(() => loadArticle(root, 'first-profile'), /Invalid asset review note/);
+    json(root, `${directory}/publication.json`, metadata);
     const altered = Buffer.from(png);
     altered[altered.length - 1] ^= 1;
     write(root, metadata.assets[0].path, altered);
@@ -344,6 +368,22 @@ test('kit installs coherent source-bound HTML/MD/TXT/copy candidates and rejects
     const manifest = await verifyKit(first.directory);
     assert.equal(manifest.contentEdition, 'first-edition');
     assert.equal(manifest.transformations[0].contentEdition, 'linkedin-first');
+    assert.equal(manifest.review.path, 'review.md');
+    const review = await fsp.readFile(path.join(first.directory, 'review.md'), 'utf8');
+    assert.match(review, /Whole article\./);
+    assert.doesNotMatch(review, /shorter adaptation|### Table row|asset:|Administrative test note/);
+    assert.match(review, /\| Parameter\s+\| Value/);
+    assert.match(review, /images\/01-example\.png/);
+    assert.match(review, /Original test figure\./);
+    assert.match(review, /Test author\./);
+    assert.match(
+      await fsp.readFile(path.join(first.directory, 'medium.md'), 'utf8'),
+      /### Table row 1/
+    );
+    assert.deepEqual(
+      fs.readFileSync(path.join(first.directory, 'article.md')),
+      fs.readFileSync(path.join(root, 'site/publications/second-profile/manuscript.en.md'))
+    );
     assert.deepEqual(
       fs.readFileSync(path.join(first.directory, 'launch-post.md')),
       fs.readFileSync(path.join(root, 'site/publications/second-profile/launch-post.en.md'))
@@ -353,6 +393,10 @@ test('kit installs coherent source-bound HTML/MD/TXT/copy candidates and rejects
     assert.match(
       await fsp.readFile(path.join(first.directory, 'INSTRUCTIONS.md'), 'utf8'),
       /upload each ordered image.*manually/
+    );
+    assert.match(
+      await fsp.readFile(path.join(first.directory, 'INSTRUCTIONS.md'), 'utf8'),
+      /Administrative test note; rights decision pending/
     );
     const copy = await fsp.readFile(path.join(first.directory, 'medium-copy-ready.html'), 'utf8');
     assert.match(copy, /data:image\/png;base64,/);
