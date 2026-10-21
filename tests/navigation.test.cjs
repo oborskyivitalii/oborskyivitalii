@@ -20,6 +20,122 @@ const extractSource = source.slice(
 const cacheDocumentSource = source.match(/^ {2}const cacheDocument = .+$/m)[0];
 const finishSource = source.match(/^ {2}function finishText\s*\(\s*\)\s*\{[\s\S]*?^ {2}\}/m)[0];
 
+for (const admission of [
+  'router',
+  'no-fetch',
+  'no-parser',
+  'no-history',
+  'too-many-articles',
+  'invalid-descriptor',
+  'conflicting-resources',
+  'missing-footer',
+])
+  test('native reader initializes once with ' + admission, () => {
+    const calls = [];
+    class Element {
+      constructor(id = '') {
+        this.id = id;
+        this.children = [];
+        this.dataset = {};
+        this.attributes = new Map();
+      }
+      append(...nodes) {
+        for (const node of nodes) {
+          if (node.parent)
+            node.parent.children = node.parent.children.filter((child) => child !== node);
+          node.parent = this;
+          this.children.push(node);
+        }
+      }
+      before(node) {
+        node.parent = this.parent;
+        this.parent.children.splice(this.parent.children.indexOf(this), 0, node);
+      }
+      querySelector(selector) {
+        return selector === 'main' ? this.children.find((node) => node.id === 'main') : null;
+      }
+      querySelectorAll() {
+        return [];
+      }
+      getAttribute(name) {
+        return this.attributes.get(name) ?? null;
+      }
+      setAttribute(name, value) {
+        this.attributes.set(name, value);
+      }
+      addEventListener() {}
+    }
+    const body = new Element('body'),
+      main = new Element('main'),
+      footer = new Element('footer'),
+      fallback = new Element('fallback');
+    body.dataset = { page: 'writing', article: 'fixture:en' };
+    body.append(main, footer, fallback);
+    const saved = [false, true];
+    const history = {
+      state: { site: { reader: saved } },
+      pushState: admission === 'no-history' ? undefined : () => {},
+      replaceState(state) {
+        assert.deepEqual(state.site.reader, saved);
+        calls.push('history');
+      },
+    };
+    const document = {
+      body,
+      head: new Element(),
+      documentElement: { lang: 'en' },
+      activeElement: body,
+      implementation: {
+        createHTMLDocument: () => ({ importNode: () => new Element() }),
+      },
+      createElement: () => new Element(),
+      addEventListener() {},
+      querySelector(selector) {
+        if (selector === 'main') return main;
+        if (selector === 'footer') return admission === 'missing-footer' ? null : footer;
+        if (selector === '.space-fallback') return fallback;
+        return {
+          content: selector.includes('site-base') ? '../' : 'a'.repeat(64),
+        };
+      },
+      querySelectorAll: () =>
+        admission === 'conflicting-resources'
+          ? ['one', 'two'].map((url) => ({
+              tagName: 'IMG',
+              getAttribute: (name) => (name === 'data-offline-resource' ? 'fixture' : url),
+            }))
+          : [],
+      getElementById(id) {
+        if (id === 'site-pages' && admission === 'conflicting-resources')
+          return { textContent: '{"assets":{}}' };
+        if (id !== 'site-documents') return null;
+        const articles = { 'fixture:en': { url: 'articles/fixture.html' } };
+        if (admission === 'invalid-descriptor') articles['fixture:en'].url = '../invalid';
+        if (admission === 'too-many-articles')
+          for (let index = 0; index < 50; index++) articles['extra' + index] = {};
+        return { textContent: JSON.stringify(articles) };
+      },
+    };
+    const window = {
+      location: { href: 'https://fixture.test/articles/fixture.html' },
+      fetch: admission === 'no-fetch' ? undefined : () => {},
+      DOMParser: admission === 'no-parser' ? undefined : class {},
+      history,
+      addEventListener() {},
+      SiteReader: {
+        mount({ state }) {
+          assert.deepEqual(state, saved);
+          assert.equal(main.parent.id, admission === 'router' ? 'site-content' : 'body');
+          if (admission === 'router') assert.equal(main.parent.parent.id, 'site-content-frame');
+          calls.push('reader');
+        },
+        snapshot: () => saved,
+      },
+    };
+    vm.runInNewContext(source, { window, document, history, URL });
+    assert.deepEqual(calls, admission === 'router' ? ['reader', 'history'] : ['reader']);
+  });
+
 test('embedded resources preserve image and PDF URL contexts and reject conflicting identities', () => {
   const start = source.indexOf('  function embeddedResources(');
   const end = source.indexOf('  const embeddedAssetURLs =', start);

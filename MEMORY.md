@@ -11,16 +11,17 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
   review/issue-2/2026-10-21-r21-review.md and r21-review-markdown.zip own its
   editorial/export receipt. Source8f5b878c7d37; ZIPfe1393f0de20. Independent
   review passed after three corrections. R20/R13/R18 artifacts stay historical.
-- Q4 optimization commit7fbb0bc2320b2758f70c806057275878cb263c54 / tree086932a6
-  integrates R19. Its one full strict local matrix passed:36 Lighthouse,
-  72 motion windows,24 flights,120 retention cycles and300.083s soak.
-  Reader mobile LCP median2400.942ms, all3 below2500; max single TBT172.5ms.
-  This exact-source R19 result does not automatically admit R20 or R21 integration.
-- Raw Q4 and failed Q3 evidence: evidence-only commit
-  4c021989b43a9c748f6c29fcb34c1e713abd3557,52 ZIP/753 members/2212 logical files.
-  Independent native readback/CRC/restore now passes all58 uploaded paths and
-  all2212 logical files;39 prior evidence paths are preserved exactly.
-  Scope anchors: issue5 comment6308024785 / PR79 comment6308025083.
+- Completed R20 source3e12e479 matrix FAIL: reader mobile TBT median204/200ms;
+  LCP2253.114/2500ms passes. Coverage36LH/72motion/24flights/120cycles/300.073ssoak.
+  Original interrupted attempts and every budget miss remain retained.
+- Immutable R20 report/raw is evidence8c5d6f1723b02bbf1d4692288558816eb08afa8a;
+  native readback/ZIP CRC/SHA receipt5d63724011cfa49c572f6e40a56e6dca17e30ec0.
+  Scope anchors remain issue5 comment6308024785 / PR79 comment6308025083.
+- Current CPU correction integrates concurrent R21 tip e8c388773ec81d8f3a727b6177cb4ceacff82d5b.
+  Four native Canvas setters and synchronous reader mount after frame assembly,
+  with independent native fallback on all admission returns, retain original limits.
+  Exact route: review/issue-5/2026-10-21-reader-cpu.md. Final results belong to the
+  existing anchors and immutable evidence; source tests alone do not admit performance.
 - Shared reader defers later figures; navigation cache/prepared snapshots remain
   inert until adoption. Canvas reconciles actual Reduced Motion before drawing.
   Original AST/media/dimensions, scene geometry and transitions remain intact.
@@ -44,7 +45,7 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
   after7 profiles. All failures, partial runs and control trials stay retained.
 - Prior independent reviewer reader_loading_review closed RF01–RF05, checked Q4
   integration and raw matrix/archive. Resume reviewer perf_resume_review completed
-  native remote readback; actual PR-head publication is still pending.
+  native remote readback; R20 report/readback publication is complete.
 - R21 editorial/export work requires independent review of the actual ZIP and
   exact-source mapped checks. Wider reader/performance acceptance still needs
   matching browser evidence; original budgets and all samples remain unchanged.
@@ -54,8 +55,11 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Open work
 
-- Publish exact immutable report/raw and completed independent native readback
-  links in the existing issue/PR anchors; reconcile the actual PR head.
+- Complete reviewed CPU candidate, exact-source checks, browser lifecycle/pixel parity
+  and one full strict performance matrix. Preserve every preparation failure/sample.
+  Independent reviewer reader_cpu_review found the early-return boot regression;
+  corrected native fallback cases pass. Final R21 source/identity review passed,
+  with71/71 tests and60/60 native Canvas parity; receipt is on the CPU review route.
 - R21 editorial/export checks passed249/249; compatibility32/32 and final
   fixture/preview checks85/85 passed. Raw outcomes are in r21-validation-evidence.zip. Broad
   mapped source runs hit their unchanged timeout; retain failed/partial evidence
@@ -66,8 +70,8 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 - AC08/AC11/AC12 and whole reader/editorial/rights/device/export/publication,
   actual independent content/media release and merge gates remain open.
   AC13/15 retain only their verified mapped scope; AC23 is historical source283.
-- Q4 mobile LCP has only99ms median margin. Local explicit Chromium153.0.8010.0
-  override is not managed CI, physical-device, CDN or field INP/RUM evidence.
+- Local explicit Chromium153.0.8010.0 override is not managed CI,
+  physical-device, CDN or field INP/RUM evidence.
 - Soak heap+859700B is a bounded observation, not proof of a leak or its absence.
 
 ## Next session

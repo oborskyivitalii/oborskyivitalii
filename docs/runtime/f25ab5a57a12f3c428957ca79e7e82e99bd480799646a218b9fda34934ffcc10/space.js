@@ -2786,10 +2786,25 @@ const renderer=(function (artwork = null, createSurface = null) {
     ctx.moveTo(points[0][0], points[0][1]);
     for (let i = 1; i < points.length; i++) ctx.lineTo(points[i][0], points[i][1]);
   }
-  function setPaintState(ctx, state, property, value) {
-    if (state[property] === value) return;
-    ctx[property] = value;
-    state[property] = value;
+  function setLineWidth(ctx, state, value) {
+    if (state.lineWidth === value) return;
+    ctx.lineWidth = value;
+    state.lineWidth = value;
+  }
+  function setStrokeStyle(ctx, state, value) {
+    if (state.strokeStyle === value) return;
+    ctx.strokeStyle = value;
+    state.strokeStyle = value;
+  }
+  function setFillStyle(ctx, state, value) {
+    if (state.fillStyle === value) return;
+    ctx.fillStyle = value;
+    state.fillStyle = value;
+  }
+  function setAlpha(ctx, state, value) {
+    if (state.globalAlpha === value) return;
+    ctx.globalAlpha = value;
+    state.globalAlpha = value;
   }
   function invalidatePaintState(state) {
     state.fillStyle = state.strokeStyle = state.lineWidth = state.globalAlpha = undefined;
@@ -2798,9 +2813,9 @@ const renderer=(function (artwork = null, createSurface = null) {
     const first = shapes[index],
       alpha = first.alpha;
     ctx.beginPath();
-    setPaintState(ctx, state, 'lineWidth', first.lineWidth);
-    setPaintState(ctx, state, 'strokeStyle', colors[first.color]);
-    setPaintState(ctx, state, 'globalAlpha', alpha);
+    setLineWidth(ctx, state, first.lineWidth);
+    setStrokeStyle(ctx, state, colors[first.color]);
+    setAlpha(ctx, state, alpha);
     let end = index;
     while (end < shapes.length) {
       const shape = shapes[end];
@@ -2851,26 +2866,26 @@ const renderer=(function (artwork = null, createSurface = null) {
       if (shape.kind === 'face') {
         const fill = shape.room.faceColors[shape.material];
         ctx.closePath();
-        setPaintState(ctx, state, 'fillStyle', fill);
-        setPaintState(ctx, state, 'globalAlpha', shape.alpha);
+        setFillStyle(ctx, state, fill);
+        setAlpha(ctx, state, shape.alpha);
         ctx.fill();
         if (shape.edgeAlpha === 0) {
-          setPaintState(ctx, state, 'strokeStyle', fill);
-          setPaintState(ctx, state, 'lineWidth', 0.65);
+          setStrokeStyle(ctx, state, fill);
+          setLineWidth(ctx, state, 0.65);
           ctx.stroke();
         }
         // Explicit silhouettes survive; faint internal mesh edges are omitted
         // on desktop as on mobile. Thousands of invisible strokes cost time.
         else if (shape.room.world.faces[shape.material].edgeAlpha > 0.12) {
-          setPaintState(ctx, state, 'lineWidth', shape.lineWidth);
-          setPaintState(ctx, state, 'strokeStyle', colors[shape.color]);
-          setPaintState(ctx, state, 'globalAlpha', shape.edgeAlpha);
+          setLineWidth(ctx, state, shape.lineWidth);
+          setStrokeStyle(ctx, state, colors[shape.color]);
+          setAlpha(ctx, state, shape.edgeAlpha);
           ctx.stroke();
         }
       } else {
-        setPaintState(ctx, state, 'lineWidth', shape.lineWidth);
-        setPaintState(ctx, state, 'strokeStyle', colors[shape.color]);
-        setPaintState(ctx, state, 'globalAlpha', shape.alpha);
+        setLineWidth(ctx, state, shape.lineWidth);
+        setStrokeStyle(ctx, state, colors[shape.color]);
+        setAlpha(ctx, state, shape.alpha);
         ctx.stroke();
       }
       if (shape.arrow) {
@@ -2888,7 +2903,7 @@ const renderer=(function (artwork = null, createSurface = null) {
         ctx.stroke();
       }
     }
-    setPaintState(ctx, state, 'globalAlpha', 1);
+    setAlpha(ctx, state, 1);
   }
   return {
     paintShapes,

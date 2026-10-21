@@ -5,6 +5,20 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Native Canvas field dispatch and reader measurements after initial DOM assembly.
+  issue5ReaderCpu: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    readerDeferredMedia: true,
+    baseEngine: 'f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '16edd5e5d9ad2eb7b3a61deef2aa1feb1cfc287ce85eeaf42e2a174f30aec361',
+    navigation: 'ae5de1cdfe8c7d0c609ddddf28250acad7aa65b0be9b9a85c0a14e2d10add79d',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Review-export producer inputs change identity; verified browser bytes are unchanged.
   issue5ReviewMarkdown: {
     behavior: 'fixed-blocks',
@@ -407,6 +421,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-cpu-production',
+    family: 'issue5ReaderCpu',
+    edition: 'production',
+    fingerprint: '16c8fa33fa98fdd1a07df1d664fc674ecac1d2dc049c480378e9d92b94986ceb',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-cpu-plain',
+    family: 'issue5ReaderCpu',
+    edition: 'plain',
+    fingerprint: '65251b15f2901166c8ad14076130e5e4a699dce776b896576999db17aa674f93',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-cpu-staging',
+    family: 'issue5ReaderCpu',
+    edition: 'staging',
+    fingerprint: '970dbe51c3f4b3e04f36d1be6c492888cf915141f8e4ac0f05f73fbc9beaabfc',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
   {
     id: 'issue5-review-markdown-production',
     family: 'issue5ReviewMarkdown',

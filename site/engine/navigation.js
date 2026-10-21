@@ -3,7 +3,9 @@
   'use strict';
   const scrollEntry = window.SiteScrollEntry;
   scrollEntry?.boot();
-  window.SiteReader?.mount({ state: history.state?.site?.reader });
+  function mountInitialReader() {
+    window.SiteReader?.mount({ state: history.state?.site?.reader });
+  }
   const routes = ['index', 'research', 'writing', 'talks', 'credits'];
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
@@ -26,9 +28,9 @@
     return urls;
   }
   const embeddedAssetURLs = embeddedResources(document, embedded?.assets);
-  if (!embeddedAssetURLs) return;
+  if (!embeddedAssetURLs) return mountInitialReader();
   let embeddedAssetsReady = null;
-  if (Object.keys(articles).length > 50) return;
+  if (Object.keys(articles).length > 50) return mountInitialReader();
   for (const [key, article] of Object.entries(articles)) {
     if (
       !/^[a-z][a-z0-9-]{0,79}:(?:en|uk)$/.test(key) ||
@@ -36,7 +38,7 @@
       (article.snapshot &&
         !/^article-snapshots\/[a-f0-9]{64}\/[a-z][a-z0-9-]{0,79}\.html$/.test(article.snapshot))
     )
-      return;
+      return mountInitialReader();
   }
   const shellEngine = document.querySelector('meta[name="site-engine"]')?.content;
   const initialVersion = document.querySelector('meta[name="site-route"]')?.content;
@@ -63,7 +65,7 @@
     !window.DOMParser ||
     !window.history.pushState
   )
-    return;
+    return mountInitialReader();
   const cache = new Map();
   // Cache snapshots have no browsing context; cloning must not fetch deferred media.
   const cacheDocument = document.implementation.createHTMLDocument('');
@@ -74,7 +76,7 @@
   const presentation = effects?.navigation?.(content);
   const main = document.querySelector('main'),
     footer = document.querySelector('footer');
-  if (!main || !footer) return;
+  if (!main || !footer) return mountInitialReader();
   // History changes the document's base URL. Preserve each persistent header
   // destination, then keep its native relative link correct for every mount.
   const headerURLs = new Map(
@@ -1317,6 +1319,8 @@
       return true;
     },
   };
+  // Measure the admitted reader after its persistent content frame is mounted.
+  mountInitialReader();
   const first = embedded ? routeFor(new URL(window.location.href)) : page;
   if (first !== page) navigate(new URL(window.location.href), { initial: true });
   else save();
