@@ -708,3 +708,84 @@ Same separate reviewer, verbatim outcome:
 > **The source/privacy scope is cleared for one authorized remote attempt after publication and final-head verification.** AC12 remains pending actual acquisition/replay or blockage evidence, private decryption and independent interpretation. Native platforms, production transport, genuine CWV attribution and historical cause remain separate unresolved gates.
 >
 > No files were modified, private PEM contents read, or provider/browser probes performed.
+
+## I7 — Genuine remote SDK and a retained harness failure
+
+Run[39561854955](https://github.com/oborskyivitalii/oborskyivitalii/actions/runs/39561854955),
+attempt1, raw producer `c44a94e953c6a3e8e014fb40e263abf2dfd6e0e7`, tree
+`a5bcaa05ce45a4cc6192bfa4ae1ef3ad2e5333d4`; workflow/merge identity
+`2d23fb88cdb9b917cda1ce5072b40799abd3a3a0`. The canonical SDK request at
+21October09:27:24Warsaw succeeded200,31,853bytes, SHA256
+`637381256384554e1cc3309a62fb238a51b83e7f10b2a56d8ba15dbc73ca762e`.
+The captured vendor reports2026.10.1; actual response has wildcard CORS.
+This independently hosted acquisition solves the local SDK-access blocker
+without a new request from the owner's device. It does not establish the SDK
+hash used by any historical individual visitor.
+
+The encrypted-only artifact12328870017, ZIP SHA256
+`6c601c63bb28beab8d75f9ec80016f9b81300c358ac2e846e7a8f4dd069b0a37`,
+was retrieved and authenticated with the private key. All captured plaintext
+stayed private. Node24.19.0/PW1.63.0/Chromium153.0.8010.12 ran on headless
+Ubuntu24.04. There is one failed normal-mode observation and8 unexecuted
+cases. The job's final failure correctly preserves that disposition; a
+continue-on-error step's displayed conclusion is not a successful suite.
+No remote rerun, alternate endpoint or SDK refetch occurred.
+
+The failure is diagnostic navigation, not an observed production failure:
+`locator.click` times out looking for `.site-header a[href="index.html"]`.
+The frozen rendition's Main navigation uses `href="./"` for Home. The first
+30-second Home snapshot, Research and Writing snapshots, five real payloads
+and one trace were retained before stopping. No unknown request, page error,
+trace failure or context/browser cleanup error was recorded. The suite's
+`artifactUnchangedAfter` remains false because its normal final admission was
+not reached; a separate recovered-input44-file admission passed and does not
+rewrite that failed report.
+
+Actual initial-document evidence is useful despite the incomplete journey:
+portrait LCP204ms in the observer and genuine eventType3 vendor payload;
+observer TTFB10.9ms versus rounded vendor11ms. The initial load and CWV
+pageload IDs match privately, and vendor startTime differs from observed
+performance.timeOrigin by0.4ms of rounding. The trace's canonical main-frame
+navigation/CommitLoad/LCP IDs and performance navigation ID agree; its final
+candidate is about202.6ms, within normal timestamp precision of DOM204ms.
+An additional empty-loader navigationStart is not substituted for the
+canonical navigation. The actual vendor also emits `nt:"routing-apis"` for
+SPA Research/Writing entries, using new route startTimes. These are distinct
+from initial-document CWV, not additional hard navigations. This supports the
+current SDK meaning of that field; it does not reclassify historical traffic
+or explain the historical Poor/missing-TTFB tail.
+
+A bounded source correction now follows the actual Main navigation Home anchor
+and retains the original Research→Writing→Home→back→forward phases and waits.
+A regression resolves real generated Main-navigation links/history, while a
+missing Home link visibly fails instead of dropping planned cases. Node39/39
+passes. The captured SDK can now be reused with its original retrieval receipt
+in the available local Linux browser, without another SDK network request or
+remote attempt. This will be a separately labeled cohort with the custom
+Chromium153.0.8010.0 mismatch explicit. The failed hosted cohort remains
+immutable. Independent source/evidence review and clean published producer
+verification precede that one corrected9-trial cohort. Production, workflows,
+budgets, matrices and historical/native/transport boundaries are unchanged.
+
+### I7 independent source and evidence review
+
+Reviewer `/root/review_lcp_implementation`, separate non-author, verbatim:
+
+> **I7 approved; no blocking findings.**
+>
+> Reviewed base `c44a94e953c6a3e8e014fb40e263abf2dfd6e0e7`, prepared tree `ef893bf04170ea9ec871c6b9a0069246e1078a05`, diff SHA256 `e5e4be0cdef7713bad3f23679ea0d3d10ca6d2740aca8237eb67d3c6eaace782`. All seven source, nine evidence and55 recovered-file hashes match.
+>
+> Independent checks confirm:
+>
+> - GitHub run39561854955 failed; artifact12328870017 matches GitHub’s digest and contains only the encrypted envelope. Recovered tar contents match the55-file manifest.
+> - The canonical SDK body is31,853 bytes, SHA256 `637381256384554e1cc3309a62fb238a51b83e7f10b2a56d8ba15dbc73ca762e`. Acquisition metadata, fulfilled bytes and reported version agree.
+> - Genuine initial Home CWV reports LCP204ms and TTFB11ms, matching collector204/10.9ms. Pageload identity and timeOrigin rounding agree. Canonical navigation/frame/CommitLoad/performance-navigation IDs bind the trace; its separate202.577ms candidate timing is retained.
+> - SPA `routing-apis` records remain distinct from initial-document CWV.
+> - The hosted cohort remains **one failed row plus eight unexecuted cases**. Its false final-admission flag is preserved; separate44-file recovered-input admission passes.
+> - The corrected Home selector matches both generated and frozen navigation. Original phases/waits remain intact; missing Home fails visibly.
+>
+> All39 Node fixtures, RI freshness,15 coupling checks and whitespace validation pass. The prepared8/8 policy receipt remains honestly diff-bound, with closure false.
+>
+> **One corrected local nine-trial SDK cohort is cleared after clean publication and producer verification**, using these captured SDK/archive bytes without refetch or remote rerun. Preserve the hosted failure separately and record the local browser mismatch. AC12 and broader native/transport/historical acceptance remain pending subsequent evidence review.
+>
+> No files were modified, private PEM contents read, or browser/provider probes performed. I will remain idle during measurement.

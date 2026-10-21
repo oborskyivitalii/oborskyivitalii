@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "373efa6bcda05ed0849d749c98482ab890c9f115ac4ef3e988efb0ca65a4cee5",
+    "digest": "d7cbfd8b442797f30170ab9be83ee14e121964c32e390eee5d7587d633c4d3f1",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -186,7 +186,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c247be88d11496205ffb50646b7e2881397a21587e8bd1308ef5fd5129094e02"
+        "sha256": "968c9bcd16280618173bcf844461811260a25a076faa281f49e38df5f262a23f"
       },
       {
         "path": ".github/workflows/home-lcp-remote.yml",
@@ -321,7 +321,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "e1fee75c2c69f25dcdac5545a490ec4fe124f6ed1dd15561b647106fea7539cf"
+        "sha256": "c47c095d6105da5ef6322192d4d5868703e32a4b6dccb1bf4bfb0f912f54134f"
       },
       {
         "path": "NOTICE.md",
@@ -740,7 +740,7 @@
       {
         "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "e7c8c390bc9b00e12f76d2440a73493625559f6c22da9847eaa2f739e456a2ad"
+        "sha256": "e190969c3d63b608f95d74bf084ace7593e73a001a07f778624bf8c8ba36bb57"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -5750,7 +5750,7 @@
       {
         "path": "tests/lcp-diagnostic.test.cjs",
         "identity_mode": "content",
-        "sha256": "04851db7a168d63eaa3dd0807b075abf5dff9a2d02d2dfd8418df89312ba578d"
+        "sha256": "73ce973fb6d66251ccabe461c34a2697bcd25b8a7bf7df4da3a7eaabe059bd6a"
       },
       {
         "path": "tests/lcp-remote.test.cjs",
@@ -6385,7 +6385,7 @@
       {
         "path": "tools/quality/lcp-browser.cjs",
         "identity_mode": "content",
-        "sha256": "8f5b3e3c3991da475f82868182852f6b734b5a0b3f1424f157c09dfe48517dce"
+        "sha256": "a80631a6a9f1392ccc7e634f1a14ae4e06a0702e319afdfed1ffc2dea6c29336"
       },
       {
         "path": "tools/quality/lcp-cache.cjs",
@@ -6560,7 +6560,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "5f603429055647c16b9e817fa243299d0859f9006efe7b6774a6bb49fa8aa7d1"
+        "sha256": "fd0ab4e079e5ebf6aa12b092d94885a8f71ee6661d72d68b60f0302f082d01b3"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",

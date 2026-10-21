@@ -57,9 +57,14 @@ Dated continuity, not live authority. Last verified: **2026-10-21** (Warsaw).
   opt-in workflow, canonical SDK acquisition then existing9 SDK replay trials;
   preserve every prior workflow and encrypt raw artifacts. No owner-device step.
   I6 correction review resolved F11/F12/F13; Node37/37 and prepared policy8/8 pass.
-  One remote attempt follows publication/exact-head checks; AC12 remains pending
-  actual evidence and independent interpretation. This is Linux origin replay,
-  not live transport/native/historical RCA.
+  Remote run39561854955 at clean c44a94e acquired real SDK200/hash6373812
+  (31,853bytes,2026.10.1). One normal trial failed on the diagnostic Home
+  selector;8 unexecuted remain. Private encrypted evidence recovered: real
+  root CWV LCP204/TTFB11 and SPA routing-apis, no historical cause proved.
+  I7 source/evidence review approved Home href./ and39 source fixtures;
+  clean publication/producer checks precede the one local SDK cohort
+  using the same captured bytes, no SDK refetch/remote rerun. Linux custom
+  browser mismatch stays explicit; AC12/06/07 await independent interpretation.
 - PR79/issue5 owns article/stable staging; last observed staging source283b32f,
   deployment8c65adfd. Revalidate before its independent continuation. No staging
   or controller operation is part of112. Analytics/SEO owners102/103/8 stay separate.

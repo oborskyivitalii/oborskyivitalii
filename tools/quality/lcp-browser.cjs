@@ -177,6 +177,27 @@ function profile(options) {
   return { width: 1440, height: 900, cpuRate, dpr };
 }
 
+async function followJourney(page, take, wait = pause) {
+  for (const destination of ['research', 'writing', 'index']) {
+    const href = destination === 'index' ? './' : destination + '.html';
+    await page.locator('.site-header nav a[href="' + href + '"]').click();
+    await page.waitForFunction(
+      (route) =>
+        document.body.dataset.page === route &&
+        document.querySelector('.space-scene')?.dataset.travel !== 'flying',
+      destination
+    );
+    await wait(1300);
+    await take(destination);
+  }
+  await page.goBack({ waitUntil: 'domcontentloaded' });
+  await wait(4500);
+  await take('back');
+  await page.goForward({ waitUntil: 'domcontentloaded' });
+  await wait(4500);
+  await take('forward');
+}
+
 async function observe(browser, artifact, sdk, options) {
   let context;
   const row = {
@@ -255,25 +276,7 @@ async function observe(browser, artifact, sdk, options) {
           row.snapshots.push({ phase, snapshot, analysis: diagnostic.analyze(snapshot) });
         };
         await take('initial');
-        if (options.journey) {
-          for (const destination of ['research', 'writing', 'index']) {
-            await page.locator('.site-header a[href="' + destination + '.html"]').click();
-            await page.waitForFunction(
-              (route) =>
-                document.body.dataset.page === route &&
-                document.querySelector('.space-scene')?.dataset.travel !== 'flying',
-              destination
-            );
-            await pause(1300);
-            await take(destination);
-          }
-          await page.goBack({ waitUntil: 'domcontentloaded' });
-          await pause(4500);
-          await take('back');
-          await page.goForward({ waitUntil: 'domcontentloaded' });
-          await pause(4500);
-          await take('forward');
-        }
+        if (options.journey) await followJourney(page, take);
         // Attempt real tab hiding; headless may stay visible. Record the observed
         // state instead of dispatching a synthetic visibility event or assuming flush.
         if (!options.cacheFixture) {
@@ -644,6 +647,7 @@ if (require.main === module)
 module.exports = {
   fixture,
   profile,
+  followJourney,
   loadSDK,
   installRoutes,
   finishTrace,

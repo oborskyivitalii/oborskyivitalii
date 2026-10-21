@@ -9,6 +9,7 @@ const { EventEmitter } = require('node:events');
 const d = require('../tools/quality/lcp-diagnostic.cjs');
 const browser = require('../tools/quality/lcp-browser.cjs');
 const { digest } = require('../tools/quality/artifact.cjs');
+const vm = require('node:vm');
 
 function snapshot(overrides = {}) {
   return {
@@ -1008,4 +1009,84 @@ test('cache observations reuse only their owned session, preserve init script on
     { contexts, initializers, routes, disposals, detaches, previousPages },
     { contexts: 3, initializers: 3, routes: 0, disposals: 3, detaches: 9, previousPages: 3 }
   );
+});
+
+function journeyPage(withHome = true) {
+  const html = fs.readFileSync(path.join(__dirname, '../docs/writing.html'), 'utf8');
+  const navigation = html.match(
+    /<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/
+  )[1];
+  const hrefs = [...navigation.matchAll(/<a\s[^>]*href="([^"]+)"/g)].map((match) => match[1]);
+  const history = ['https://vitaliioborskyi.ai/'];
+  let index = 0;
+  const location = () => new URL(history[index]);
+  const page = {
+    locator(selector) {
+      const href = selector.match(/\.site-header nav a\[href="([^"]+)"\]/)?.[1];
+      return {
+        async click() {
+          assert.ok(
+            hrefs.includes(href) && (withHome || href !== './'),
+            'Matching navigation anchor required'
+          );
+          history.splice(index + 1);
+          history.push(new URL(href, location()).href);
+          index++;
+        },
+      };
+    },
+    async waitForFunction(predicate, route) {
+      const current = location().pathname;
+      const document = {
+        body: { dataset: { page: current === '/' ? 'index' : path.basename(current, '.html') } },
+        querySelector: () => ({ dataset: { travel: 'settled' } }),
+      };
+      assert.equal(
+        vm.runInNewContext('(' + predicate.toString() + ')(' + JSON.stringify(route) + ')', {
+          document,
+        }),
+        true
+      );
+    },
+    async goBack() {
+      assert.ok(index > 0);
+      index--;
+    },
+    async goForward() {
+      assert.ok(index + 1 < history.length);
+      index++;
+    },
+  };
+  return { page, location };
+}
+
+test('SDK journey follows the actual Home anchor and keeps back/forward route identity', async () => {
+  const fixture = journeyPage();
+  const captured = [];
+  await browser.followJourney(
+    fixture.page,
+    async (phase) => captured.push([phase, fixture.location().pathname]),
+    async () => {}
+  );
+  assert.deepEqual(captured, [
+    ['research', '/research.html'],
+    ['writing', '/writing.html'],
+    ['index', '/'],
+    ['back', '/writing.html'],
+    ['forward', '/'],
+  ]);
+});
+
+test('SDK journey fails visibly when Home is missing instead of omitting planned history cases', async () => {
+  const fixture = journeyPage(false);
+  const captured = [];
+  await assert.rejects(
+    browser.followJourney(
+      fixture.page,
+      async (phase) => captured.push(phase),
+      async () => {}
+    ),
+    /Matching navigation anchor/
+  );
+  assert.deepEqual(captured, ['research', 'writing']);
 });

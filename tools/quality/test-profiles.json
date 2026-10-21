@@ -2084,7 +2084,8 @@
         "tests/lcp-diagnostic.test.cjs",
         "tools/quality/lcp-diagnostic.cjs",
         "tools/quality/lcp-browser.cjs",
-        "tools/quality/lcp-cache.cjs"
+        "tools/quality/lcp-cache.cjs",
+        "docs/writing.html"
       ]
     },
     {
