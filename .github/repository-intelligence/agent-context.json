@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b6e3c8309218ced74956ff77e0aed6616898c27eeb00debe175030a8121f250c",
+    "digest": "22d3e4d5b15b0846c4198a3482ae9b8aa7c7eed5be23ef61bac0073ee924b044",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-112.json",
         "identity_mode": "content",
-        "sha256": "b97d27b4269b939ab671ee5f69a5778a572a3d3bef558b74bb68f7c5b1b97c2c"
+        "sha256": "ef3754b33b700536dccae762484a21d7cf21ab27fef92c75bb00ceba24291cfb"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -181,12 +181,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "8a70a858cd2a18af1a61cd11c8a328274b4d7aa39ed190a36519d99143978f5a"
+        "sha256": "9e7c89853e2260007892d6db446102e94839cacc056d086f2963a5170545d6f0"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4c1ffe542cf2cc25720edd830230e3a442d5e098661fa7c734b78807bc461251"
+        "sha256": "80af33eb560f11c5b043a08bb54891df6ea7a53c609d842e688aeeb2aaa4a9d3"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -570,7 +570,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "9d83d44b9ae8491e66137c6fd2df74ef9153069f0c00b668b0f64a6cb9a0131d"
+        "sha256": "3747721c40fba67d1b47ca2a35dac5a207d6e186fffaaab50ebda1c48b046c30"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -730,7 +730,7 @@
       {
         "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "1ab8f96c4e0fac662239092b9ae5de6be7f5570c46063bf0523eafef1771f937"
+        "sha256": "34391ba5c82b2908e36d7c0824f04d5c1084726e61533dce85a884fc26b1e7d3"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -5740,7 +5740,7 @@
       {
         "path": "tests/lcp-diagnostic.test.cjs",
         "identity_mode": "content",
-        "sha256": "25bf0c9e7cca1c551aba089eba8654df45633a6a6bf5322b56e851818aede5cb"
+        "sha256": "6fbd1f3fa7b90027edfec4dec0ac7b91fae0ff6a7dd2ead308a4d257aa521170"
       },
       {
         "path": "tests/native-display.test.cjs",
@@ -6370,12 +6370,17 @@
       {
         "path": "tools/quality/lcp-browser.cjs",
         "identity_mode": "content",
-        "sha256": "0baa2a39c79121e9a56dcd68e4036855871ab8feaa99f8a5b594c1ff1c2be8e9"
+        "sha256": "d3831f6ae0645ed9e1d0265e81a0a31b51f619cb85fdfd9d356c47387268a51a"
+      },
+      {
+        "path": "tools/quality/lcp-cache.cjs",
+        "identity_mode": "content",
+        "sha256": "50830974ec6c92d233339fffb1f578f98975f17d9f27c14fe53ca5bc0bf0f478"
       },
       {
         "path": "tools/quality/lcp-diagnostic.cjs",
         "identity_mode": "content",
-        "sha256": "f344e9010c6c0df73eed3cbf29f6bf719d60250691d04ff2f86882445d99ea7b"
+        "sha256": "260de55a6799efff641a0aa6664833ee55bf7b5eb982db7747c7cb905bb764cd"
       },
       {
         "path": "tools/quality/lighthouse.cjs",
@@ -6530,7 +6535,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "fec6bbc105a8c030bbca9403dc89cd9023acfeed7615e35c2ac502e0c1a92ec9"
+        "sha256": "844c98d9afc02ed190298ab1de0197f42e290065f53a7d1beac7672fbfda0c00"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -21113,6 +21118,17 @@
         "AGENTS.md"
       ],
       "title": "lcp-browser.cjs"
+    },
+    {
+      "path": "tools/quality/lcp-cache.cjs",
+      "kind": "file",
+      "purpose": "Exact-byte loopback cache fixture, bounded CDP cache observations and critical-resource cache admission for issue112.",
+      "role": "validator",
+      "owner": "tools/quality/README.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "lcp-cache.cjs"
     },
     {
       "path": "tools/quality/lcp-diagnostic.cjs",

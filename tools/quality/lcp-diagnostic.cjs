@@ -94,12 +94,32 @@ function observeDocument() {
       for (const entry of list.getEntries())
         append(name, {
           ...entry.toJSON(),
-          ...(type === 'largest-contentful-paint' ? { selector: selector(entry.element) } : {}),
+          ...(type === 'largest-contentful-paint'
+            ? { selector: selector(entry.element), runtimeAtObservation: runtime() }
+            : {}),
           observedAtMs: performance.now(),
           observedPath: location.pathname,
         });
     });
     observer.observe({ type, buffered: true });
+  }
+  function runtime() {
+    const canvas = document.getElementById('space-canvas');
+    return {
+      dpr: devicePixelRatio,
+      viewport: { width: innerWidth, height: innerHeight },
+      theme: document.documentElement.dataset.theme || null,
+      reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      canvas: canvas
+        ? {
+            width: canvas.width,
+            height: canvas.height,
+            cssWidth: canvas.clientWidth,
+            cssHeight: canvas.clientHeight,
+          }
+        : null,
+      scene: { ...document.querySelector('.space-scene')?.dataset },
+    };
   }
   function event(value) {
     append('events', {
@@ -130,6 +150,7 @@ function observeDocument() {
       const probe = () => {
         if (scene.dataset.ready === 'true') {
           state.sceneReadyMs = performance.now();
+          state.runtimeAtSceneReady = runtime();
           observer.disconnect();
         }
       };
@@ -145,6 +166,7 @@ function observeDocument() {
     ...state,
     path: location.pathname,
     capturedAtMs: performance.now(),
+    runtime: runtime(),
     navigation: performance.getEntriesByType('navigation')[0]?.toJSON() || null,
     resources: performance.getEntriesByType('resource').map((entry) => entry.toJSON()),
     scene: { ...document.querySelector('.space-scene')?.dataset },
@@ -275,6 +297,42 @@ function validateCalibration(rows) {
   };
 }
 
+function validateCPU(rows) {
+  assert.equal(rows.length, 9, 'all9 CPU/DPR trials');
+  for (const [cpuRate, dpr] of [
+    [1, 1],
+    [4, 1],
+    [4, 2],
+  ]) {
+    const group = rows.filter(
+      (row) => row.profile?.cpuRate === cpuRate && row.profile?.dpr === dpr
+    );
+    assert.deepEqual(group.map((row) => row.trial).sort(), [1, 2, 3], 'unique profile trials');
+    for (const row of group) {
+      assert.ok(!row.error && !row.unexpectedRequests.length && !row.consoleErrors.length);
+      assert.equal(analyze(row.snapshot).status, 'instrumentation-valid');
+      assert.equal(row.profile.cpuCommandAcknowledged, true);
+      assert.equal(row.snapshot.runtime.dpr, dpr, 'actual DPR');
+      for (const runtime of [row.snapshot.runtime, row.snapshot.runtimeAtSceneReady]) {
+        assert.ok(
+          runtime?.canvas?.width > 0 &&
+            runtime.canvas.height > 0 &&
+            runtime.canvas.cssWidth > 0 &&
+            runtime.canvas.cssHeight > 0,
+          'actual Canvas dimensions'
+        );
+        assert.equal(runtime.scene.ready, 'true');
+      }
+      assert.ok(row.snapshots.every((item) => !item.snapshot.errors.length));
+    }
+  }
+  return {
+    pass: true,
+    trials: rows.length,
+    scope: 'simulated CPU and actual DPR/Canvas observations, not native devices or historical RCA',
+  };
+}
+
 function sdkPayloads(beacons) {
   return beacons.flatMap((row) => {
     try {
@@ -291,5 +349,6 @@ module.exports = {
   observeDocument,
   analyze,
   validateCalibration,
+  validateCPU,
   sdkPayloads,
 };

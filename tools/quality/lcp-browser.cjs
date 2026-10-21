@@ -11,6 +11,7 @@ const diagnostic = require('./lcp-diagnostic.cjs');
 const { digest } = require('./artifact.cjs');
 const { canonicalType } = require('./serve.cjs');
 const common = require('./common.cjs');
+const cache = require('./lcp-cache.cjs');
 
 const SDK = 'https://static.cloudflareinsights.com/beacon.min.js';
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -160,6 +161,13 @@ async function finishTrace(cdp, file, budgetMs = 15000) {
   }
 }
 
+function profile(options) {
+  const cpuRate = options.cpuRate ?? 1,
+    dpr = options.dpr ?? 1;
+  assertInput([1, 4].includes(cpuRate) && [1, 2].includes(dpr), 'unsupported CPU/DPR profile');
+  return { width: 1440, height: 900, cpuRate, dpr };
+}
+
 async function observe(browser, artifact, sdk, options) {
   let context;
   const row = {
@@ -176,41 +184,62 @@ async function observe(browser, artifact, sdk, options) {
     cache: 'disabled by routing; not warm',
     telemetryForwarded: false,
     initialWindowMs: options.windowMs,
+    profile: null,
+    cacheMode: options.cacheMode || null,
+    network: [],
   };
   let cdp;
   let tracing = false;
   try {
-    context = await deadline(
-      () =>
-        browser.newContext({
-          viewport: { width: 1440, height: 900 },
-          deviceScaleFactor: 1,
-          colorScheme: 'light',
-          serviceWorkers: 'block',
-        }),
-      options.observationBudgetMs || 15000,
-      'Context creation'
-    );
+    row.profile = profile(options);
+    context =
+      options.session?.context ||
+      (await deadline(
+        () =>
+          browser.newContext({
+            viewport: { width: 1440, height: 900 },
+            deviceScaleFactor: row.profile.dpr,
+            colorScheme: 'light',
+            serviceWorkers: 'block',
+          }),
+        options.observationBudgetMs || 15000,
+        'Context creation'
+      ));
     await deadline(
       async () => {
-        await installRoutes(context, artifact, sdk, row.mode, row.control, row);
-        await context.addInitScript(diagnostic.observeDocument);
-        const page = await context.newPage();
+        if (options.session) options.session.context = context;
+        if (!options.cacheFixture)
+          await installRoutes(context, artifact, sdk, row.mode, row.control, row);
+        if (!options.session?.initialized) {
+          await context.addInitScript(diagnostic.observeDocument);
+          if (options.session) options.session.initialized = true;
+        }
+        if (options.cacheMode === 'reopen')
+          await deadline(() => options.session.page.close(), 5000, 'Previous page cleanup');
+        const page =
+          options.cacheMode === 'reload' ? options.session.page : await context.newPage();
+        if (options.session) options.session.page = page;
         page.setDefaultTimeout(12000);
         page.on('pageerror', (error) => row.consoleErrors.push(error.message));
         cdp = await context.newCDPSession(page);
         await cdp.send('Network.enable');
-        await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
-        await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 });
+        if (options.cacheFixture) cache.monitor(cdp, row, options.cacheFixture.origin);
+        await cdp.send('Network.setCacheDisabled', { cacheDisabled: !options.cacheFixture });
+        await cdp.send('Emulation.setCPUThrottlingRate', { rate: row.profile.cpuRate });
+        row.profile.cpuCommandAcknowledged = true;
         if (options.trace) {
           await startTrace(cdp);
           tracing = true;
         }
+        const requestOffset = options.cacheFixture?.requests.length || 0;
         const begun = Date.now();
-        await page.goto(artifact.origin + options.entry, {
-          waitUntil: 'domcontentloaded',
-          timeout: 30000,
-        });
+        const navigation = { waitUntil: 'domcontentloaded', timeout: 30000 };
+        if (options.cacheMode === 'reload') await page.reload(navigation);
+        else
+          await page.goto(
+            (options.cacheFixture?.origin || artifact.origin) + options.entry,
+            navigation
+          );
         await pause(Math.max(0, options.windowMs - (Date.now() - begun)));
         const take = async (phase) => {
           const snapshot = await page.evaluate(() => window.__siteLCPDiagnostic());
@@ -238,9 +267,11 @@ async function observe(browser, artifact, sdk, options) {
         }
         // Attempt real tab hiding; headless may stay visible. Record the observed
         // state instead of dispatching a synthetic visibility event or assuming flush.
-        const second = await context.newPage();
-        await second.bringToFront();
-        await pause(800);
+        if (!options.cacheFixture) {
+          const second = await context.newPage();
+          await second.bringToFront();
+          await pause(800);
+        }
         row.finalVisibility = await page.evaluate(() => document.visibilityState);
         await take('final');
         row.snapshot = row.snapshots[0].snapshot;
@@ -255,6 +286,14 @@ async function observe(browser, artifact, sdk, options) {
         }
         row.analysis = diagnostic.analyze(row.snapshot);
         row.sdkPayloads = diagnostic.sdkPayloads(row.beacons);
+        if (options.cacheFixture) {
+          row.cache = 'enabled; fixture max-age600/ETag, no Playwright routing';
+          row.serverRequests = options.cacheFixture.requests.slice(requestOffset);
+          row.serverTruncated = options.cacheFixture.truncated;
+          row.cacheEvidence = cache.evidence(row);
+        }
+        if (row.snapshot.runtime.dpr !== row.profile.dpr)
+          throw Error('actual DPR differs from requested profile');
       },
       options.observationBudgetMs || options.windowMs + 30000 + (options.journey ? 60000 : 0),
       'Observation'
@@ -274,7 +313,9 @@ async function observe(browser, artifact, sdk, options) {
       row.traceError = error.message;
     } finally {
       try {
-        if (context)
+        if (options.session && cdp)
+          await deadline(() => cdp.detach(), options.cleanupBudgetMs || 5000, 'CDP cleanup');
+        if (context && (!options.session || options.cacheMode === 'reopen'))
           await deadline(() => context.close(), options.cleanupBudgetMs || 5000, 'Context cleanup');
       } catch (error) {
         row.error ||= error.stack;
@@ -299,16 +340,19 @@ function summarize(rows) {
     finalVisibility: row.finalVisibility,
     consoleErrors: row.consoleErrors,
     initialWindowMs: row.initialWindowMs,
+    profile: row.profile,
+    cacheMode: row.cacheMode,
+    cacheEvidence: row.cacheEvidence || null,
     trace: row.trace || null,
     traceError: row.traceError || null,
     cleanupError: row.cleanupError || null,
   }));
 }
 
-async function collectTrials(scenarios, observeTrial, retain) {
+async function collectTrials(scenarios, observeTrial, retain, balanced = true) {
   const planned = [];
   for (let trial = 1; trial <= 3; trial++)
-    for (const scenario of trial === 2 ? [...scenarios].reverse() : scenarios)
+    for (const scenario of balanced && trial === 2 ? [...scenarios].reverse() : scenarios)
       planned.push({ ...scenario, trial });
   for (const [index, scenario] of planned.entries()) {
     const row = await observeTrial(scenario);
@@ -322,11 +366,15 @@ async function collectTrials(scenarios, observeTrial, retain) {
 async function run(options) {
   const artifact = diagnostic.loadArtifact(options.public, options.archive, options.package);
   const sdk = loadSDK(options.sdk, options['sdk-metadata']);
-  assertInput(['calibration', 'routes', 'sdk'].includes(options.suite), 'unknown diagnostic suite');
+  assertInput(
+    ['calibration', 'routes', 'sdk', 'cpu', 'cache'].includes(options.suite),
+    'unknown diagnostic suite'
+  );
   assertInput(
     options.suite !== 'sdk' || sdk,
     'Real SDK bytes required; do not replace them with a stub'
   );
+  assertInput(options.suite !== 'cache' || !sdk, 'Cache fixture excludes real SDK execution');
   const output = path.resolve(options.output);
   const root = path.resolve(__dirname, '../..');
   assertInput(
@@ -365,6 +413,7 @@ async function run(options) {
     publicDigest: artifact.archive.publicDigest,
     collectorSHA256: digest(fs.readFileSync(require.resolve('./lcp-diagnostic.cjs'))),
     runnerSHA256: digest(fs.readFileSync(__filename)),
+    cacheHelperSHA256: digest(fs.readFileSync(require.resolve('./lcp-cache.cjs'))),
     diagnosticCommit: cp
       .execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' })
       .trim(),
@@ -383,10 +432,13 @@ async function run(options) {
     profile: {
       width: 1440,
       height: 900,
-      dpr: 1,
-      cpuRate: 1,
-      network: 'production-origin replay; no real CDN',
-      cache: 'disabled by routing',
+      dpr: options.suite === 'cpu' ? 'per-row' : 1,
+      cpuRate: options.suite === 'cpu' ? 'per-row' : 1,
+      network:
+        options.suite === 'cache'
+          ? 'cache-capable loopback fixture; SDK origin guard ineligible'
+          : 'production-origin replay; no real CDN',
+      cache: options.suite === 'cache' ? 'enabled, fixture headers' : 'disabled by routing',
       initialWindowMs: options.suite === 'calibration' ? 5000 : options.windowMs,
       requestedWindowMs: options.windowMs,
       trials: 3,
@@ -402,7 +454,10 @@ async function run(options) {
   };
   const save = () =>
     fs.writeFileSync(path.join(output, 'report.json'), JSON.stringify(report, null, 2) + '\n');
+  let cacheFixture;
+  const sessions = new Map();
   try {
+    if (options.suite === 'cache') cacheFixture = await cache.start(artifact);
     let scenarios;
     if (options.suite === 'calibration')
       scenarios = ['baseline', 'resource-delay', 'main-thread-stall', 'missing-timing'].map(
@@ -421,6 +476,27 @@ async function run(options) {
         windowMs: options.windowMs,
         trace: entry === '/',
       }));
+    if (options.suite === 'cpu')
+      scenarios = [
+        [1, 1],
+        [4, 1],
+        [4, 2],
+      ].map(([cpuRate, dpr]) => ({
+        scenario: 'cpu' + cpuRate + '-dpr' + dpr,
+        cpuRate,
+        dpr,
+        entry: '/',
+        windowMs: options.windowMs,
+        trace: true,
+      }));
+    if (options.suite === 'cache')
+      scenarios = ['cold', 'reload', 'reopen'].map((cacheMode) => ({
+        scenario: 'cache-' + cacheMode,
+        cacheMode,
+        entry: '/',
+        windowMs: options.windowMs,
+        trace: true,
+      }));
     if (options.suite === 'sdk')
       scenarios = ['normal', 'delayed', 'blocked'].map((mode) => ({
         scenario: 'sdk-' + mode,
@@ -433,19 +509,33 @@ async function run(options) {
     // Balanced order; never parallelize benchmarks or discard a failed trial.
     await collectTrials(
       scenarios,
-      (scenario) => observe(browser, artifact, sdk, { ...scenario, output }),
+      (scenario) => {
+        if (cacheFixture && !sessions.has(scenario.trial)) sessions.set(scenario.trial, {});
+        return observe(browser, artifact, sdk, {
+          ...scenario,
+          output,
+          cacheFixture,
+          session: sessions.get(scenario.trial),
+        });
+      },
       async (row, remaining) => {
         report.rows.push(row);
         report.unexecuted = remaining;
         save();
         process.stdout.write(JSON.stringify(summarize([row])[0]) + '\n');
-      }
+      },
+      options.suite !== 'cache'
     );
     if (options.suite === 'calibration')
       report.calibration = diagnostic.validateCalibration(report.rows);
     report.collectionComplete =
       report.rows.length === scenarios.length * 3 &&
       report.rows.every((row) => !row.error && !row.unexpectedRequests.length);
+    if (options.suite === 'cpu') report.cpuTest = diagnostic.validateCPU(report.rows);
+    if (options.suite === 'cache') {
+      report.cacheTest = cache.validate(report.rows);
+      report.collectionComplete &&= report.cacheTest.pass;
+    }
     if (options.suite === 'sdk')
       report.sdkExecution = report.rows.map((row) => ({
         scenario: row.scenario,
@@ -473,6 +563,12 @@ async function run(options) {
     } catch (error) {
       report.collectionComplete = false;
       report.cleanupError = error.message;
+    }
+    try {
+      if (cacheFixture) await deadline(() => cacheFixture.close(), 5000, 'Cache fixture cleanup');
+    } catch (error) {
+      report.collectionComplete = false;
+      report.cleanupError ||= error.message;
     }
     save();
   }
@@ -538,6 +634,7 @@ if (require.main === module)
   });
 module.exports = {
   fixture,
+  profile,
   loadSDK,
   installRoutes,
   finishTrace,

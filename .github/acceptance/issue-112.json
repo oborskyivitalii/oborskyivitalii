@@ -59,6 +59,20 @@
       "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
       "checks": ["BASIC", "STYLE", "CURRENT-RI", "RI-CI", "DISPOSITION", "UNCHANGED"],
       "gates": ["REVIEW", "LIVE", "MERGED"]
+    },
+    {
+      "id": "AC09",
+      "intent": "Bounded CPU/DPR execution with actual Canvas/adaptive-state evidence and honest simulated-device limits",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC", "UNCHANGED", "DISPOSITION"],
+      "gates": ["SECOND-WAVE", "REVIEW"]
+    },
+    {
+      "id": "AC10",
+      "intent": "Dependent cold/reload/reopen execution with independently corroborated critical-resource cache use",
+      "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
+      "checks": ["DIAGNOSTIC", "UNCHANGED", "DISPOSITION"],
+      "gates": ["SECOND-WAVE", "REVIEW"]
     }
   ],
   "checks": {
@@ -110,6 +124,10 @@
     "MERGED": {
       "kind": "merge",
       "description": "Maintainer merge decision and accepted-source/main verification before closing tooling delivery. Investigation issue can remain open while real-session cause is unresolved."
+    },
+    "SECOND-WAVE": {
+      "kind": "human",
+      "description": "Inspect all9 CPU/DPR trials and3 cold/reload/reopen sessions, immutable inputs, recorded CPU command and actual Canvas/DPR/adaptive state, fresh documents, critical portrait/CSS/engine cache evidence corroborated by Timing/CDP/server ledger, all failed/unexecuted cases and trace identities. Loopback headers/SDK-ineligible behavior, simulation and historical-cause limits must remain explicit; no source test substitutes for these observations."
     }
   }
 }

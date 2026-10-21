@@ -1273,7 +1273,7 @@
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
-      "disposition": "owning issue41 policy only; AC01\u2013AC06 and manual gates preserved, AC07\u2013AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17\u2013AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
+      "disposition": "owning issue41 policy only; AC01–AC06 and manual gates preserved, AC07–AC16 append positioning checks; current permanent content/executive and ordinary PR smoke own enduring failure surfaces; AC17–AC26 add one bounded fragment/hash/link check and reuse existing gates/checks; no new staging/performance infrastructure",
       "surviving_route": ".github/acceptance/issue-41.json",
       "inputs": [
         "tests/test_issue41_acceptance.py",
@@ -2074,7 +2074,7 @@
     {
       "path": "tests/lcp-diagnostic.test.cjs",
       "language": "javascript",
-      "purpose": "Opt-in Home LCP collector, incomplete-timing, per-document attribution, telemetry admission, exact archive and calibration negative controls; not a hosted matrix.",
+      "purpose": "Opt-in Home LCP collector, incomplete-timing, per-document attribution, telemetry admission, exact archive and calibration negative controls; not a hosted matrix. Includes CPU/DPR configuration, serialized Canvas observation and verified cache/304 negatives.",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "lifecycle": "diagnostic",
       "profiles": ["diagnostic", "pr-targeted"],
@@ -2083,13 +2083,14 @@
       "inputs": [
         "tests/lcp-diagnostic.test.cjs",
         "tools/quality/lcp-diagnostic.cjs",
-        "tools/quality/lcp-browser.cjs"
+        "tools/quality/lcp-browser.cjs",
+        "tools/quality/lcp-cache.cjs"
       ]
     },
     {
       "path": "tests/test_issue112_acceptance.py",
       "language": "python",
-      "purpose": "Issue112 targeted diagnostic behavior, unchanged production scope and opt-in scheduling; actual browser/SDK and historical/private interpretation remain external gates.",
+      "purpose": "Issue112 targeted diagnostic behavior, unchanged production scope and opt-in scheduling; actual browser/SDK and historical/private interpretation remain external gates. Includes CPU/DPR configuration, serialized Canvas observation and verified cache/304 negatives.",
       "owner": ".github/ACCEPTANCE.md",
       "lifecycle": "task-snapshot",
       "profiles": ["issue-policy"],
@@ -2100,7 +2101,8 @@
         ".github/acceptance/issue-112.json",
         "tools/quality/lcp-diagnostic.cjs",
         "tools/quality/lcp-browser.cjs",
-        "tests/lcp-diagnostic.test.cjs"
+        "tests/lcp-diagnostic.test.cjs",
+        "tools/quality/lcp-cache.cjs"
       ]
     }
   ]

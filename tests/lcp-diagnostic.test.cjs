@@ -586,3 +586,420 @@ test('calibration requires every predefined trial, real injected delay/stall and
     assert.throws(() => d.validateCalibration(rows));
   }
 });
+
+const cache = require('../tools/quality/lcp-cache.cjs');
+
+test('CPU and DPR settings reach the browser before navigation; invalid profiles cannot launch contexts', async () => {
+  const calls = [];
+  const context = {
+    route: async () => {},
+    addInitScript: async () => {},
+    newPage: async () => ({
+      setDefaultTimeout() {},
+      on() {},
+      goto: async () => {
+        calls.push('navigate');
+        throw Error('controlled stop');
+      },
+    }),
+    newCDPSession: async () => ({
+      send: async (command, options) => {
+        calls.push({ command, options });
+      },
+    }),
+    close: async () => {},
+  };
+  const row = await browser.observe(
+    {
+      newContext: async (options) => {
+        assert.equal(options.deviceScaleFactor, 2);
+        return context;
+      },
+    },
+    { origin: 'https://vitaliioborskyi.ai' },
+    null,
+    {
+      scenario: 'cpu4-dpr2',
+      trial: 1,
+      cpuRate: 4,
+      dpr: 2,
+      windowMs: 5000,
+      entry: '/',
+    }
+  );
+  assert.equal(row.profile.cpuCommandAcknowledged, true);
+  assert.equal(row.profile.dpr, 2);
+  const index = calls.findIndex((item) => item.command === 'Emulation.setCPUThrottlingRate');
+  assert.deepEqual(calls[index].options, { rate: 4 });
+  assert.ok(index >= 0 && index < calls.indexOf('navigate'));
+  for (const options of [{ cpuRate: 0 }, { dpr: 0 }, { cpuRate: NaN }, { dpr: 3 }])
+    assert.throws(() => browser.profile(options), /unsupported/);
+});
+
+test('serialized observer captures actual Canvas clamp and adaptive state at readiness and LCP', () => {
+  const vm = require('node:vm'),
+    observers = [],
+    events = {};
+  const canvas = { width: 2160, height: 1350, clientWidth: 1440, clientHeight: 900 };
+  const scene = { dataset: { ready: 'true', quality: '0' } };
+  class Observer {
+    static supportedEntryTypes = ['largest-contentful-paint', 'longtask', 'paint'];
+    constructor(callback) {
+      this.callback = callback;
+      observers.push(this);
+    }
+    observe(options) {
+      this.type = options.type;
+    }
+  }
+  const context = {
+    PerformanceObserver: Observer,
+    devicePixelRatio: 2,
+    innerWidth: 1440,
+    innerHeight: 900,
+    performance: { timeOrigin: 1000, now: () => 500, getEntriesByType: () => [] },
+    location: { pathname: '/' },
+    matchMedia: () => ({ matches: false }),
+    addEventListener() {},
+    MutationObserver: class {
+      observe() {}
+      disconnect() {}
+    },
+    document: {
+      visibilityState: 'visible',
+      documentElement: { dataset: { theme: 'light' } },
+      getElementById: (id) => (id === 'space-canvas' ? canvas : null),
+      querySelector: () => scene,
+      addEventListener: (name, callback) => {
+        events[name] = callback;
+      },
+    },
+  };
+  context.window = context;
+  vm.runInNewContext('(' + d.observeDocument.toString() + ')()', context);
+  events.DOMContentLoaded({ type: 'DOMContentLoaded' });
+  canvas.width = 1800;
+  scene.dataset.quality = '1';
+  observers
+    .find((item) => item.type === 'largest-contentful-paint')
+    .callback({
+      getEntries: () => [
+        {
+          toJSON: () => ({ startTime: 500 }),
+          element: { tagName: 'IMG', classList: [] },
+        },
+      ],
+    });
+  const captured = context.__siteLCPDiagnostic();
+  assert.equal(captured.runtimeAtSceneReady.canvas.width, 2160);
+  assert.equal(captured.runtimeAtSceneReady.dpr, 2);
+  assert.equal(captured.lcp[0].runtimeAtObservation.canvas.width, 1800);
+  assert.equal(captured.lcp[0].runtimeAtObservation.scene.quality, '1');
+});
+
+test('cache fixture serves exact bytes, strong ETag/304 and outbound-blocking headers', async (t) => {
+  const artifact = artifactFixture(t).load();
+  const fixture = await cache.start(artifact);
+  t.after(() => fixture.close());
+  const response = await fetch(fixture.origin + '/');
+  assert.deepEqual(Buffer.from(await response.arrayBuffer()), artifact.files['index.html']);
+  assert.equal(response.headers.get('cache-control'), 'public, max-age=600');
+  assert.match(response.headers.get('content-security-policy'), /connect-src 'none'/);
+  const unchanged = await fetch(fixture.origin + '/', {
+    headers: { 'If-None-Match': response.headers.get('etag') },
+  });
+  assert.equal(unchanged.status, 304);
+  assert.equal(await unchanged.text(), '');
+  assert.equal(fixture.requests[0].sha256, digest(artifact.files['index.html']));
+  assert.equal(fixture.requests[1].status, 304);
+  assert.equal((await fetch(fixture.origin + '/unknown')).status, 403);
+  assert.equal((await fetch(fixture.origin + '/', { method: 'POST' })).status, 403);
+});
+
+function cacheRows() {
+  const leaves = ['vitalii-oborskyi-cutout.webp', 'styles.css', 'space.js'];
+  return [1, 2, 3].flatMap((trial) =>
+    ['cold', 'reload', 'reopen'].map((mode, index) => {
+      const resources = leaves.map((leaf) => ({
+        name: 'http://127.0.0.1/' + leaf,
+        requestStart: 150,
+        responseEnd: 400,
+        transferSize: mode === 'cold' ? 100 : 0,
+        encodedBodySize: 50,
+        decodedBodySize: 50,
+      }));
+      const row = {
+        trial,
+        scenario: 'cache-' + mode,
+        cacheMode: mode,
+        consoleErrors: [],
+        unexpectedRequests: [],
+        snapshot: snapshot({
+          timeOrigin: trial * 1000 + index,
+          navigation: { responseStart: 100, type: mode === 'reload' ? 'reload' : 'navigate' },
+          resources,
+          lcp: [{ startTime: 500, url: resources[0].name }],
+          errors: [],
+          sdkState: null,
+        }),
+        analysis: { status: 'instrumentation-valid' },
+        serverRequests: mode === 'cold' ? leaves.map((file) => ({ file, status: 200 })) : [],
+        network: resources.map((item) => ({
+          url: item.name,
+          method: 'GET',
+          status: 200,
+          fromServiceWorker: false,
+          servedFromCache: mode !== 'cold',
+        })),
+      };
+      row.cacheEvidence = cache.evidence(row);
+      return row;
+    })
+  );
+}
+
+test('warm-cache admission rejects zero-only timing, missing body sizes, reused documents and lost modes', () => {
+  assert.equal(cache.validate(cacheRows()).pass, true);
+  for (const mutate of [
+    (row) => {
+      row.network = [];
+    },
+    (row) => {
+      row.snapshot.resources.forEach((item) => {
+        item.encodedBodySize = 0;
+      });
+    },
+  ]) {
+    const row = cacheRows()[1];
+    mutate(row);
+    assert.equal(
+      cache.evidence(row).every((item) => item.confirmed),
+      false
+    );
+  }
+  const revalidated = cacheRows()[1];
+  revalidated.network.forEach((item) => {
+    item.servedFromCache = false;
+  });
+  revalidated.serverRequests = ['vitalii-oborskyi-cutout.webp', 'styles.css', 'space.js'].map(
+    (file) => ({ file, status: 304, ifNoneMatch: '"known"' })
+  );
+  assert.equal(
+    cache.evidence(revalidated).every((item) => item.mechanism === '304-revalidation'),
+    true
+  );
+  for (const mutate of [
+    (row) => {
+      row.network = [];
+    },
+    (row) => {
+      row.network[0].fromServiceWorker = true;
+    },
+    (row) => {
+      row.network[0].status = 500;
+    },
+    (row) => {
+      delete row.network[0].status;
+    },
+    (row) => {
+      row.network[0].method = 'POST';
+    },
+    (row) => {
+      row.serverRequests.push({ file: 'space.js', status: 200 });
+    },
+  ]) {
+    const row = structuredClone(revalidated);
+    mutate(row);
+    assert.equal(
+      cache.evidence(row).every((item) => item.confirmed),
+      false
+    );
+  }
+  for (const mutate of [
+    (rows) => {
+      rows[1].snapshot.timeOrigin = rows[0].snapshot.timeOrigin;
+    },
+    (rows) => {
+      rows[1].snapshot.navigation.type = 'navigate';
+    },
+    (rows) => {
+      rows[1].serverTruncated = true;
+    },
+    (rows) => {
+      rows[1].cacheEvidence[0].confirmed = false;
+    },
+    (rows) => {
+      rows.pop();
+    },
+  ]) {
+    const rows = cacheRows();
+    mutate(rows);
+    assert.equal(cache.validate(rows).pass, false);
+  }
+});
+
+test('cache validation recomputes timing and cache proof instead of trusting stored results', () => {
+  for (const mutate of [
+    (row) => {
+      row.snapshot.navigation.responseStart = 0;
+    },
+    (row) => {
+      row.network = [];
+      row.serverRequests = [];
+    },
+    (row) => {
+      row.snapshot.resources[0].encodedBodySize = 0;
+    },
+    (row) => {
+      delete row.snapshot.resources;
+    },
+  ]) {
+    const rows = cacheRows();
+    assert.equal(rows[1].analysis.status, 'instrumentation-valid');
+    assert.equal(
+      rows[1].cacheEvidence.every((item) => item.confirmed),
+      true
+    );
+    mutate(rows[1]);
+    assert.equal(cache.validate(rows).pass, false);
+  }
+});
+
+test('dependent cache sessions keep cold-reload-reopen order in every trial', async () => {
+  const observed = [];
+  await browser.collectTrials(
+    ['cold', 'reload', 'reopen'].map((scenario) => ({ scenario })),
+    async (scenario) => {
+      observed.push(scenario);
+      return { ...scenario, error: null };
+    },
+    async () => {},
+    false
+  );
+  for (let trial = 1; trial <= 3; trial++)
+    assert.deepEqual(
+      observed.filter((item) => item.trial === trial).map((item) => item.scenario),
+      ['cold', 'reload', 'reopen']
+    );
+});
+
+test('CPU admission requires all profiles, real Canvas/DPR, scene readiness and clean snapshots', () => {
+  const rows = [
+    [1, 1],
+    [4, 1],
+    [4, 2],
+  ].flatMap(([cpuRate, dpr]) =>
+    [1, 2, 3].map((trial) => {
+      const runtime = {
+        dpr,
+        canvas: { width: 1440, height: 900, cssWidth: 1440, cssHeight: 900 },
+        scene: { ready: 'true' },
+      };
+      const sample = snapshot({ runtime, runtimeAtSceneReady: runtime, errors: [] });
+      return {
+        trial,
+        profile: { cpuRate, dpr, cpuCommandAcknowledged: true },
+        snapshot: sample,
+        snapshots: [{ snapshot: sample }],
+        unexpectedRequests: [],
+        consoleErrors: [],
+      };
+    })
+  );
+  assert.equal(d.validateCPU(rows).trials, 9);
+  for (const mutate of [
+    (data) => {
+      data[0].snapshot.runtime.dpr = 2;
+    },
+    (data) => {
+      data[0].snapshot.runtime.canvas.width = 0;
+    },
+    (data) => {
+      data[0].profile.cpuCommandAcknowledged = false;
+    },
+    (data) => {
+      data[0].snapshot.errors.push('actual failure');
+    },
+    (data) => {
+      data[0].trial = 2;
+    },
+    (data) => {
+      data.pop();
+    },
+  ]) {
+    const data = structuredClone(rows);
+    mutate(data);
+    assert.throws(() => d.validateCPU(data));
+  }
+});
+
+test('cache observations reuse only their owned session, preserve init script once and dispose before a new trial', async () => {
+  let contexts = 0,
+    initializers = 0,
+    routes = 0,
+    disposals = 0,
+    detaches = 0,
+    previousPages = 0;
+  const sessions = new Map();
+  const fakeBrowser = {
+    newContext: async () => {
+      contexts++;
+      return {
+        route: async () => {
+          routes++;
+          throw Error('routing must remain absent');
+        },
+        addInitScript: async () => {
+          initializers++;
+        },
+        newPage: async () => ({
+          setDefaultTimeout() {},
+          on() {},
+          goto: async () => {},
+          reload: async () => {},
+          close: async () => {
+            previousPages++;
+          },
+          evaluate: async (fn) =>
+            fn.toString().includes('visibilityState')
+              ? 'visible'
+              : snapshot({ runtime: { dpr: 1 } }),
+        }),
+        newCDPSession: async () => {
+          const cdp = new EventEmitter();
+          cdp.send = async (command, options) => {
+            if (command === 'Network.setCacheDisabled') assert.equal(options.cacheDisabled, false);
+          };
+          cdp.detach = async () => {
+            detaches++;
+          };
+          return cdp;
+        },
+        close: async () => {
+          disposals++;
+        },
+      };
+    },
+  };
+  await browser.collectTrials(
+    ['cold', 'reload', 'reopen'].map((cacheMode) => ({ scenario: cacheMode, cacheMode })),
+    async (options) => {
+      if (!sessions.has(options.trial)) sessions.set(options.trial, {});
+      return browser.observe(fakeBrowser, { origin: 'https://vitaliioborskyi.ai' }, null, {
+        ...options,
+        session: sessions.get(options.trial),
+        cacheFixture: { origin: 'http://127.0.0.1', requests: [] },
+        windowMs: 0,
+        entry: '/',
+      });
+    },
+    async (row) => {
+      assert.equal(row.error, undefined);
+    },
+    false
+  );
+  assert.deepEqual(
+    { contexts, initializers, routes, disposals, detaches, previousPages },
+    { contexts: 3, initializers: 3, routes: 0, disposals: 3, detaches: 9, previousPages: 3 }
+  );
+});

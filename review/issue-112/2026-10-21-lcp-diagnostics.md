@@ -275,3 +275,104 @@ The conclusions, privacy treatment, recommendation and handoff accurately preser
 Hosted source checks were skipped, and the prototype’s deferred browser/stable-staging gates are described correctly.
 
 No files were modified or browser measurements run during this review.
+
+## I3 second-wave implementation candidate
+
+User authorization: after the proposed CPU/DPR, reload/cache and conditional
+state/single-factor sequence, “Роби”. AC09/AC10 were appended to the existing
+live issue before implementation; AC08's CS01/04/05/07/08/09/10 still applies.
+Base: `aa056db116d842c0b196176d04021a6eb14b7b55`.
+
+Workspace maintenance removed the previous scratch checkout/toolchain. Source
+was restored from PR117, prior private evidence from its persisted ZIP, verified
+SHA256 `ec6ba181037659a9316915b140792f22cad909beae9cfa62a000468448659444`,
+and the immutable release package was independently downloaded and verified
+against its original SHA256.44 files pass admission. No historical observation
+was repeated or relabeled. Existing baseline source tests19/19 pass after restore.
+
+The collector now records runtime state at first scene readiness, each LCP
+observer callback and final snapshot: actual DPR/viewport, Canvas CSS/bitmap
+size, theme/reduced-motion and existing scene quality/detail attributes. No
+engine hook, per-frame loop or production script change is introduced. Snapshot
+reads have diagnostic overhead; observed state is timestamped callback state,
+not a claim of exact state at the earlier paint. The production runtime clamps
+Canvas ratio to1.5 initially and can adapt it further; requested DPR2 is not a
+promise of twice the bitmap dimensions.
+
+`--suite cpu`: CPU1/DPR1, CPU4/DPR1, CPU4/DPR2; three trials each in balanced
+order,1440×900/light,30s windows. This covers the historical approximately28s
+horizon without changing the collector's existing30s maximum. CDP CPU command is acknowledged before
+navigation; actual DPR and Canvas/scene readiness are admitted, not inferred.
+All9 traces are retained. CPU throttling is simulation, not native hardware.
+
+`--suite cache`: three fresh contexts, each cold → native reload → close/reopen,
+10s per document, CPU1/DPR1. `lcp-cache.cjs` owns the exact-byte HTTP fixture,
+explicit600s freshness/strong ETags, CSP self/connect-none restrictions, bounded
+CDP network observations and portrait/CSS/engine cache evidence. No Playwright
+routing disables cache here. It checks fresh timeOrigin, native navigation type,
+Timing body/transfer sizes, matching CDP GET/response observations and either
+CDP cache flags or actual server304 records. Service-worker, contradictory or
+missing corroboration remains incomplete. Validation recomputes analysis and
+cache proof from current raw fields and rejects stale derived results.
+A fast load or zero transfer alone cannot pass. The production-only SDK origin
+guard skips itself on this loopback fixture; no real-SDK/CDN claim follows.
+Cache header behavior is a counterfactual, not a copy of production headers.
+
+Ownership: existing observer/analyzer, bounded runner and test registry are
+extended; the cache concern has one helper. Dependency direction stays tooling
+→ frozen artifact; site/docs/workflows/budgets are unchanged. All outcomes and
+remaining scenarios are retained. Shared cache contexts are disposed after the
+third document; any earlier failure aborts the whole series and owned browser.
+No benchmark/scanner concurrency. Conditional appearance/single-factor probes
+will be selected only if this wave supports a concrete hypothesis.
+
+Source verification and independent I3 review precede actual measurements.
+Native T01 and real-SDK/T03 remain pending, with earlier failure receipts kept
+separate. This addition does not claim new performance or historical RCA.
+
+Prepared I3 checks: source26/26 and issue wrappers3/3 pass; Basic, bounded style
+guard94files, RI regressions28/28, coupling regressions20/20, map15checks and
+fresh derived views pass. Chromium153.0.8010.0 / Playwright1.63.0 blank-page
+capability preflight acknowledged CPU4, returned actual DPR2 and Canvas2D. This
+is capability evidence only. The same custom-browser/native limits apply as I1.
+Initial independent I3 review required the corrections below; no new Home
+measurements have started. Correction re-review is required before execution.
+
+### I3 independent review receipt
+
+> **I3 requires corrections before measurements.**
+>
+> Reviewed diff SHA256 `2e45d2c6261a9631fb8df43bc4487be2607179f65a16faa03dfe381ee513b79c` against base `aa056db116d842c0b196176d04021a6eb14b7b55`. All manifest hashes match.
+>
+> - **F07 — Medium; AC10/AC08; `lcp-cache.cjs:143–171`.** Validation trusts stored analysis and cache-confirmation booleans. Independent probes changed navigation timing to zero or removed warm-cache network/ledger evidence; validation still passed. Recompute from current raw fields and add stale-result negatives.
+> - **F08 — Medium; AC10/AC08; `lcp-cache.cjs:116–123`.** The 304 branch confirms cache use with no CDP evidence. Require matching CDP request/response corroboration and reject service-worker or contradictory evidence. Missing corroboration must remain incomplete.
+>
+> The CPU implementation has no separate blocking finding. Extending its nine observation windows to **30 seconds** reasonably covers the historical approximately 28-second horizon; update the protocol before execution. Cache windows can remain ten seconds.
+>
+> The readiness assumption holds for the admitted frozen runtime: its engine explicitly waits for DOMContentLoaded, and the collector registers first.
+>
+> I independently verified **26/26 Node tests**, **3/3 Python checks**, fresh RI, **15 coupling checks**, unchanged production paths, and **44-file archive admission** with the original package hash. Session ownership, sequential disposal, cache routing absence, fixture limits, and opt-in registry mapping were examined.
+>
+> No files were modified or browser benchmarks run. Correction re-review remains required.
+
+F07/F08 corrections: the validator now recomputes Navigation/Resource analysis
+and cache proof from raw row fields; stale status/proof is rejected. Cache proof
+requires matching GET responses with no service worker, rejects contradictory
+responses and distinguishes full-response, browser-cache and server-confirmed
+304. Negatives cover stale valid analysis, stale cache booleans, missing body/CDP,
+service worker, bad method/status and conflicting server responses. The actual
+HTTP fixture's exact-body/ETag/304 test remains separate from admission mocks.
+
+### I3 correction re-review receipt
+
+> **F07 and F08 are resolved. I3 is cleared for the bounded 9 CPU trials and 9 cache document observations.**
+>
+> Reviewed diff SHA256 `d6204ffb866764865b3418dfac26911bb4667d408331f4a079d995469f094844` against base `aa056db116d842c0b196176d04021a6eb14b7b55`. All manifest hashes match.
+>
+> The validator now recomputes admission from raw evidence, rejects stale validity/cache proof, and requires matching CDP GET/response corroboration. Missing, service-worker and contradictory evidence remain incomplete.
+>
+> I independently verified **27/27 Node tests**, **3/3 Python checks**, fresh RI, **15 coupling checks**, and unchanged production paths. Unaffected prior review remains applicable.
+>
+> The live protocol specifies **30-second CPU windows** and **10-second cache windows**. Use explicit `--window-ms 30000` for CPU execution.
+>
+> Actual evidence review and AC09/AC10 acceptance remain pending, alongside native/SDK and merge gates. No files were modified or browser measurements run during this re-review.

@@ -180,6 +180,14 @@ cache-disabled and does not prove real CDN/warm/native behavior. The companion
 source negatives are diagnostic/changed-helper tests, not an added staging or
 production browser matrix. Missing SDK execution, timing or native platforms
 remain incomplete observations; collector success is not a performance pass.
+`--suite cpu` adds three balanced CPU/DPR profiles with real Canvas/adaptive-state
+snapshots. `--suite cache` uses three dependent cold/reload/reopen sessions on a
+loopback cache-capable fixture, no Playwright routing, strong ETag/max-age and
+CSP outbound restrictions. It retains Timing/CDP/server-ledger proof for portrait,
+CSS and engine cache hits or304 revalidation. Its headers are fixture metadata;
+the production-only SDK is ineligible there. Neither arm establishes actual
+production transport, native hardware or historical cause. A failed observation
+stops before the next trial; incomplete cache proof is retained as incomplete.
 The dated [execution record](../review/issue-112/2026-10-21-lcp-diagnostics.md)
 owns actual source, calibration and report identities.
 

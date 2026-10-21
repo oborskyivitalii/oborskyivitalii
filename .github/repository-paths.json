@@ -9030,6 +9030,12 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
+    },
+    "tools/quality/lcp-cache.cjs": {
+      "kind": "file",
+      "purpose": "Exact-byte loopback cache fixture, bounded CDP cache observations and critical-resource cache admission for issue112.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
     }
   }
 }
