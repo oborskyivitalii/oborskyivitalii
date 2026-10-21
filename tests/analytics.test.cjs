@@ -48,6 +48,10 @@ function configure(dir, value) {
 function publicFiles(dir) {
   return artifact.manifest(path.join(dir, 'docs'));
 }
+function retainedAnalytics(dir) {
+  const retained = JSON.parse(fs.readFileSync(path.join(dir, 'site/retained/manifest.json')));
+  return Object.keys(retained.files).filter((name) => name.endsWith('/analytics.js'));
+}
 function browser(bytes, url, appendThrows = false) {
   const elements = [],
     location = new URL(url),
@@ -149,9 +153,16 @@ test('activation validates finite fields and rejects incomplete, noncanonical or
     fs.readFileSync(path.join(dir, 'docs/index.html'), 'utf8'),
     /google-site-verification/
   );
-  assert.equal(
-    b.files(path.join(dir, 'docs')).filter((name) => name.endsWith('/analytics.js')).length,
-    0
+  assert.deepEqual(
+    b
+      .files(path.join(dir, 'docs'))
+      .filter((name) => name.endsWith('/analytics.js'))
+      .sort(),
+    retainedAnalytics(dir).sort()
+  );
+  assert.doesNotMatch(
+    fs.readFileSync(path.join(dir, 'docs/index.html'), 'utf8'),
+    /data-site-analytics=/
   );
 });
 test('source checks reject missing or duplicate loaders, missing verification, asset loss and unexpected disabled tracking', (t) => {
@@ -206,8 +217,19 @@ test('one shared immutable adapter covers all five routes and changes metadata w
   ])
     assert.equal(after.files[name], before.files[name], name);
   assert.equal(b.runtimeVersion(after.components), b.runtimeVersion(before.components));
-  const names = Object.keys(after.files).filter((name) => name.endsWith('/analytics.js'));
+  const names = Object.keys(
+    analytics.compile(
+      dir,
+      snapshot.routes.map((id) => id + '.html')
+    ).assets
+  );
   assert.equal(names.length, 1);
+  assert.deepEqual(
+    Object.keys(after.files)
+      .filter((name) => name.endsWith('/analytics.js'))
+      .sort(),
+    [...new Set([...retainedAnalytics(dir), ...names])].sort()
+  );
   assert.equal(names[0].split('/')[1], b.sha(fs.readFileSync(path.join(dir, 'docs', names[0]))));
   for (const id of snapshot.routes) {
     const html = fs.readFileSync(path.join(dir, 'docs', id + '.html'), 'utf8');
@@ -323,7 +345,16 @@ test('old analytics bytes and route dependencies survive a token rotation; forge
   ))
     assert.deepEqual(after.files[name], info, name);
   const loaders = Object.keys(after.files).filter((name) => name.endsWith('/analytics.js'));
-  assert.equal(loaders.length, 2);
+  const oldLoaders = Object.keys(before.files).filter((name) => name.endsWith('/analytics.js'));
+  const currentLoaders = Object.keys(
+    analytics.compile(
+      dir,
+      snapshot.routes.map((id) => id + '.html')
+    ).assets
+  );
+  assert.equal(currentLoaders.length, 1);
+  assert.equal(loaders.length, oldLoaders.length + 1);
+  assert.deepEqual(loaders.sort(), [...new Set([...oldLoaders, ...currentLoaders])].sort());
   fs.appendFileSync(path.join(publicDir, loaders[0]), '\n// forged');
   assert.throws(() => snapshot.verify(publicDir, after), /immutable analytics digest/);
 });

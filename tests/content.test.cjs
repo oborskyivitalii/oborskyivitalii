@@ -206,7 +206,7 @@ test('canonical topic-first public records preserve bounded copy, source bylines
   }
   assert.ok(
     sections.index.includes(
-      'In his public response to <em>Thinking Systems</em>, Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.'
+      'In his public response to <em>Thinking Systems</em>, Arkadiy recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.'
     )
   );
   const [advisors, responses] = sections.research.split(
@@ -218,12 +218,12 @@ test('canonical topic-first public records preserve bounded copy, source bylines
   assert.ok(responses.includes('Public response by <a'));
   assert.ok(
     responses.includes(
-      'In a public LinkedIn post about <em>Thinking Systems</em>, Dobkin recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.'
+      'In a public LinkedIn post about <em>Thinking Systems</em>, Arkadiy recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.'
     )
   );
   assert.ok(
     responses.includes(
-      'The published article separately credits an earlier exchange with Dobkin for helping shape the <em>Thinking Systems</em> formulation.'
+      'The published article separately credits an earlier exchange with Arkadiy for helping shape the <em>Thinking Systems</em> formulation.'
     )
   );
 });
