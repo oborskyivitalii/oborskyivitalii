@@ -1,4 +1,5 @@
-> **Editorial R13 — chapter-6 transition, 19 October 2026. Review source, not a public edition.**
+> **Historical R13 checkpoint — 19 October 2026. Not the current editing source.**
+> The current R19 review manuscript is [the canonical article Markdown](../site/publications/pmday-ai-both-sides/manuscript.en.md). The R13 text and assembly notes below are retained as history; they must not overwrite the current manuscript.
 > Author-requested correction: replace only the standalone rhetorical prompt inside chapter 6 with **The two shifts fail differently** The following paragraph, chapter title, final acceptance-criterion sentence, other refrains, sources and media remain. Revision labels advance to R13.
 > Canonical reader SHA-256: `c9760da3dcc5003011777b7250d064a4232a0abea27505d3cedc057abf569d3f`. R12 and its exact PDF remain historical; the R13 review PDF preserves its layout with a bounded text correction.
 > Article owner #2; execution PR79 / publisher #5. Reader design recommendations remain review proposals.

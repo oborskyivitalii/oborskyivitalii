@@ -4,6 +4,10 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Snapshot
 
+- R19 Markdown prepared in the same PR79 from source92b671f9. Canonical owner:
+  site/publications/pmday-ai-both-sides/manuscript.en.md. Source treatment and
+  review/check receipt: review/issue-2/2026-10-21-r19-review.md. No R19 PDF or
+  deployment; the R13 drafts file and R18 PDF remain historical checkpoints.
 - Issue5 prerequisite PR113 merged as c4ed3dad7197bef2f9638c9500d66c12606f6eff.
   Main remains ca70a66f340a8e804e4263c02aa9abe79a062765 with PR115 review rules.
 - PR79 source283b32f65f0589e85c0aa914d0990704dcf8ac38 / tree643304fa
@@ -25,6 +29,11 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Decisions
 
+- Author requested R19 after three supplied model reviews. Preserve the three-part
+  argument, six runtime assumptions and authorial voice; qualify metric comparisons,
+  add dated METR evidence, classify recovery failures by consequence and use concrete
+  illustrative pilot decisions. Keep three original slides in the article, all deck
+  assets intact. Author/editorial/rights/publication gates remain separate.
 - Owner requested suite assembly, strictest existing performance execution, all
   results in the same issue5/PR79 and a findings report. This is an audit phase;
   no runtime fix, source re-stage, feature merge or production activation occurred.
@@ -58,6 +67,8 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Next session
 
+0. Review R19's canonical Markdown and dated receipt with the author before any
+   PDF/render/publication work. Revalidate PR79 head; do not substitute stale R13.
 1. Read the performance report and current issue5/PR79 receipts; fetch live refs.
 2. Match exact staged source283b32f, collector/source-check identity and immutable
    evidence hashes. Preserve current deployment/recovery and editorial sources.

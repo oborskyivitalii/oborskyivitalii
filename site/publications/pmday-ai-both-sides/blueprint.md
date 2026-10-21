@@ -1,6 +1,29 @@
-# The Sum of Our Technology — R12 source review
+# The Sum of Our Technology — editorial blueprint
 
 Article owner #2; publisher/execution #5 / PR79.
+
+## Current R19 scope — 21 October 2026
+
+The author requested the next Markdown revision after supplying three R18 model
+reviews. The canonical manuscript owns R19; `drafts/` remains an explicitly
+historical R13 checkpoint. The dated [R19 review](../../../review/issue-2/2026-10-21-r19-review.md)
+records source treatment, independent review and acceptance limits.
+
+Retain the three parts (How We Build / What We Build / What If Not?), six runtime
+assumptions, authorial voice and conditional engineering argument. Bring the
+bottleneck/function distinction forward; clarify understanding, evidence scope,
+queue slack and consequence-based evaluation. Add the METR 2025 trial together
+with its qualified February 2026 follow-up. Carry account recovery through the
+delivery, runtime and final pilot-decision sections. Example limits are authored
+hypothetical choices, not validated safety thresholds.
+
+R19 uses Cover02 plus original slides 3/9/12 and a native evaluation table.
+Slides 5/7/10/14 remain in the original deck and asset history but leave the
+article flow. No redraw, new PDF, hosted review or publication is part of this
+Markdown iteration. Preserve every old edition/PDF and keep rights/release open.
+The historical instructions below apply only to their named revisions.
+
+## Historical R12 source review
 
 Use the supplied R12, retaining six chapters, evidence-first flow, real-baseline comparison, adversarial-retrieval case, finite human capacity, both Lem placements, 31 numbered references and the systemic-engineering conclusion. No further rewriting was requested.
 

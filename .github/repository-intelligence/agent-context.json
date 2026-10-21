@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "2f6c93f46515f6144010c932106d8f2ab0571bdecf12d25866ad62c40cf7ab75",
+    "digest": "72449bbd906333e45efa1c98cf3b38f4b536000f44b14d5346a2441cb348b943",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -176,12 +176,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "bea29ce21220ef4b473483b9435e69a0504c76d5cc6341dc8509396dfebed061"
+        "sha256": "356ebf487ef6c69b96bcb7a42ffcc59916fda3d76ff8ad64c2fcf413d57213eb"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "1411b0cf1206aec292f8b5ecf11f8a9cffcc4c0a827c307cad787939939b36e7"
+        "sha256": "b75a4927f1564ce4a9cda8a7ae6414a6e37b913e04d8a252ccb074018e4ab7cb"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -311,7 +311,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "d51665d8146fb5b9e2cfbd53d77152ff77e272accffd75b6114edbeb917cc557"
+        "sha256": "12aa7d8e7be834f5779c77348b25e5f843858ab62bd53871e516c27e3d7ca64c"
       },
       {
         "path": "NOTICE.md",
@@ -550,7 +550,7 @@
       {
         "path": "drafts/pmday-article-draft.en.md",
         "identity_mode": "content",
-        "sha256": "3aec728c88b3b27a29b281499ad0c4741d5b8f8694d4ecd5e93bf454677b8bb1"
+        "sha256": "f357e95a522347e0540ea9e235ab2b154486699169de6e80c58674796a27033c"
       },
       {
         "path": "guides/ARTICLE-MATERIALS.md",
@@ -776,6 +776,11 @@
         "path": "review/issue-2/2026-10-15-editorial-draft.md",
         "identity_mode": "content",
         "sha256": "cfba82fce991fb63d7b8ffbdc71e236874f98730fde62e5ca54e3fb6958f63f5"
+      },
+      {
+        "path": "review/issue-2/2026-10-21-r19-review.md",
+        "identity_mode": "content",
+        "sha256": "e53893375b2a1e0859d2d05ea30723ec179e392258f89a9dbf44069933934f33"
       },
       {
         "path": "review/issue-2/pmday-candidate-20261015/README.md",
@@ -6005,7 +6010,7 @@
       {
         "path": "site/publications/pmday-ai-both-sides/blueprint.md",
         "identity_mode": "content",
-        "sha256": "eb787400230fc3dee3d3598a37f685c81a5f11af0aff5cf45757b359d10eb401"
+        "sha256": "12b0f700d0337894848b159abd578bf136705d0cb11b91d3f94c5e71353a8330"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -6058,6 +6063,11 @@
         "sha256": "a4651172f784f65f77283502fdcc4661d6ac9f4f7c53fa1088b27586781221cb"
       },
       {
+        "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r19-cover02.json",
+        "identity_mode": "content",
+        "sha256": "fcf75957ce47d3a923484e75f0215d25281c17d0ea280e8c06393d7ddf477f9d"
+      },
+      {
         "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",
         "identity_mode": "content",
         "sha256": "5262c2436db2542db68b96cc1f5cf485431b510dede2bf8301c94cddbf344b05"
@@ -6065,17 +6075,17 @@
       {
         "path": "site/publications/pmday-ai-both-sides/manuscript.en.md",
         "identity_mode": "content",
-        "sha256": "34c0795691712308ccdc925046ed7a811ee15291b2d9518b52dd01797f6a23a3"
+        "sha256": "80dcb838e1bb482bbf37a7151900c4ac4950975e9516b9009c962bd06e064226"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/profile.json",
         "identity_mode": "content",
-        "sha256": "ec04861752467b6b90288e69aafe558606a403a749ab052704136dc717dcd01b"
+        "sha256": "e28d52f893c2d1bcaec62957dfcc5cb2a01bac01ee72869d50301f52af98a4ef"
       },
       {
         "path": "site/publications/pmday-ai-both-sides/publication.json",
         "identity_mode": "content",
-        "sha256": "514ddeca34eb43e148fdd41fb9333e6e19c4a4b67316245463c6b85e6e7b4a6d"
+        "sha256": "5834b71ab58bd3fbc34275e9714037ebba6bce87ef369e5419d5fe89c65143b3"
       },
       {
         "path": "site/publications/pmday-two-shifts/adaptations/linkedin.en.md",
@@ -6565,7 +6575,7 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "8290b6db0dd9658aaf925fe43d385a0153331f7b9107cebf73d2938451b5acb8"
+        "sha256": "507aeb0d7971a12c3d5aac4b08567bbc32b590fbc2ec8a4c6af88b360d60a7fe"
       },
       {
         "path": "tests/article-offline.test.cjs",
@@ -10072,6 +10082,17 @@
       "title": "Issue 2 — 2026-10-15 first real PMDay editorial draft"
     },
     {
+      "path": "review/issue-2/2026-10-21-r19-review.md",
+      "kind": "file",
+      "purpose": "R19 Markdown editorial revision: source treatment, independent review, checks and unclosed publication gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 2 — R19 editorial revision, 21 October 2026"
+    },
+    {
       "path": "review/issue-2/pmday-candidate-20261015/README.md",
       "kind": "file",
       "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
@@ -10107,7 +10128,7 @@
     {
       "path": "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf",
       "kind": "file",
-      "purpose": "R18 compact review PDF, 18 pages, derived from the current canonical manuscript and original media.",
+      "purpose": "Historical R18 compact review PDF, 18 pages, derived from its pinned manuscript and original media; not the R19 rendition.",
       "role": "history",
       "owner": "guides/ARTICLE-WORKFLOW.md",
       "instructions": [
@@ -21575,7 +21596,7 @@
       "instructions": [
         "AGENTS.md"
       ],
-      "title": "The Sum of Our Technology — R12 source review"
+      "title": "The Sum of Our Technology — editorial blueprint"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261015-r2.json",
@@ -21686,6 +21707,17 @@
         "AGENTS.md"
       ],
       "title": "pmday-ai-both-sides-en-review-20261020-r18-cover02.json"
+    },
+    {
+      "path": "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r19-cover02.json",
+      "kind": "file",
+      "purpose": "Source and semantic identity of the R19 review-only article; earlier editions are preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "pmday-ai-both-sides-en-review-20261021-r19-cover02.json"
     },
     {
       "path": "site/publications/pmday-ai-both-sides/launch-post.en.md",

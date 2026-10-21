@@ -1129,6 +1129,12 @@
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
+    "review/issue-2/2026-10-21-r19-review.md": {
+      "kind": "file",
+      "purpose": "R19 Markdown editorial revision: source treatment, independent review, checks and unclosed publication gates.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
     "review/issue-2/pmday-candidate-20261015": {
       "kind": "directory",
       "purpose": "PR79 PMDay review candidate, independent findings and source-qualified export evidence.",
@@ -1155,7 +1161,7 @@
     },
     "review/issue-2/pmday-candidate-20261015/The_Sum_of_Our_Technology_R18_Cover02_Compact.pdf": {
       "kind": "file",
-      "purpose": "R18 compact review PDF, 18 pages, derived from the current canonical manuscript and original media.",
+      "purpose": "Historical R18 compact review PDF, 18 pages, derived from its pinned manuscript and original media; not the R19 rendition.",
       "role": "history",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },
@@ -7966,6 +7972,12 @@
     "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261020-r18-cover02.json": {
       "kind": "file",
       "purpose": "R18 author-review semantic edition after the official event-name correction; earlier editions preserved.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r19-cover02.json": {
+      "kind": "file",
+      "purpose": "Source and semantic identity of the R19 review-only article; earlier editions are preserved.",
       "role": "source",
       "owner": "guides/ARTICLE-WORKFLOW.md"
     },

@@ -17,10 +17,10 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261020-r18-cover02",
+  "edition": "pmday-ai-both-sides-en-review-20261021-r19-cover02",
   "rights": {
     "status": "review-pending",
-    "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and seven original full-page UA Online PMDay 2026 Autumn v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
+    "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and three original full-page UA Online PMDay 2026 Autumn v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
     "references": [
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/2",
       "https://github.com/oborskyivitalii/oborskyivitalii/issues/7"
@@ -186,6 +186,14 @@
     {
       "id": "source-41",
       "url": "https://doi.org/10.1145/3382494.3410636"
+    },
+    {
+      "id": "source-42",
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"
+    },
+    {
+      "id": "source-43",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/"
     }
   ],
   "assets": [
@@ -220,26 +228,6 @@
       "credit": "Full-page slide 3 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
-      "id": "pmday-slide-05",
-      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-05.png",
-      "sha256": "cba5ac410a432ea89ba7e44936e730a314c6d2e2495d5a8ecaeed976bc6675e3",
-      "width": 1921,
-      "height": 1080,
-      "alt": "Illustrative generation and comprehension curves diverge, showing a possible overload scenario rather than a measured human limit.",
-      "caption": "An illustrative overload hypothesis, not a measured limit on cognition. Tools and learning can change the team’s comprehension capacity. UA Online PMDay 2026 Autumn · slide 5 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 5 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
-    },
-    {
-      "id": "pmday-slide-07",
-      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-07.png",
-      "sha256": "7f77b967c8222feefbe6af7a5423cb1833839f6f80b0615a4cbede2005fd864d",
-      "width": 1921,
-      "height": 1080,
-      "alt": "Measurement and candidate countermeasures for finding a sustainable AI-assisted SDLC equilibrium.",
-      "caption": "Measures and candidate responses, not universally validated remedies. Faster generation alone does not establish a sustainable new equilibrium. UA Online PMDay 2026 Autumn · slide 7 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 7 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
-    },
-    {
       "id": "pmday-slide-09",
       "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-09.png",
       "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
@@ -250,16 +238,6 @@
       "credit": "Full-page slide 9 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
     {
-      "id": "pmday-slide-10",
-      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-10.png",
-      "sha256": "75e49a1521426c85be099bdd2bb7be7e939c03f02304da2472c8c9a5fae5978b",
-      "width": 1921,
-      "height": 1080,
-      "alt": "Synthetic evaluation: 196 acceptable responses, three incorrect recovery instructions and one unauthorised disclosure.",
-      "caption": "Synthetic 196 / 3 / 1 outcomes. The slide’s four-failure interval concerns all failures; the article separately calculates uncertainty for the one critical disclosure. UA Online PMDay 2026 Autumn · slide 10 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 10 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
-    },
-    {
       "id": "pmday-slide-12",
       "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-12.png",
       "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
@@ -268,16 +246,6 @@
       "alt": "Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.",
       "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Real human capacity and response time must be supplied and tested. UA Online PMDay 2026 Autumn · slide 12 · Vitalii Oborskyi. [1]",
       "credit": "Full-page slide 12 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
-    },
-    {
-      "id": "pmday-slide-14",
-      "path": "site/assets/publications/pmday-ai-both-sides/pmday-slide-14.png",
-      "sha256": "25e2fdbd8d0fa2660db10191564d1a5628a04addbcf606bb16c6bbcfb9ace8bd",
-      "width": 1921,
-      "height": 1080,
-      "alt": "Delivery commitments continue alongside an experiment-and-reassessment loop informed by production outcomes and incidents.",
-      "caption": "Production observations and incidents update assumptions and controls. Learning does not suspend delivery or service obligations.  UA Online PMDay 2026 Autumn · slide 14 · Vitalii Oborskyi. [1]",
-      "credit": "Full-page slide 14 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     }
   ],
   "platforms": {
