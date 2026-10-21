@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/114",
-    "date": "2026-10-20",
-    "summary": "Issue114 mandatory per-iteration independent subagent review through the existing protocol owner/templates. Existing bounded check selectors and unchanged CI routes; semantic review and merge gates remain external."
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/118",
+    "date": "2026-10-21",
+    "summary": "Register exact editorial amendment, owning policy/review and scanner proof; existing checks and CI routes remain unchanged."
   },
   "layers": [
     {
@@ -130,7 +130,9 @@
         ".github/acceptance/issue-114.json",
         "review/issue-114/2026-10-20-review.md",
         ".github/acceptance/issue-118.json",
-        "review/issue-118/2026-10-21-review.md"
+        "review/issue-118/2026-10-21-review.md",
+        "review/issue-118/content-amendment.json",
+        "review/issue-118/2026-10-21-public-checksum-proof.json.gz"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -551,7 +553,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "270f7c98fe08d12d3d73735042fa5adf14fcfed327d09397e17958707d3748e0",
+    "digest": "e3b6ce39e740ad2fb4acc4b26fcbec51bed7419bf95b1711c396f73a7a819586",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -675,7 +677,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "47bbdc01fe91aea40bbbbebc62bbbe405188f5b7981128ca9927ac3590664b1b"
+        "sha256": "1084f30b93cc8aa5c0b278d89f93fa665a2afa60938b883506ec2b16ad25045c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",

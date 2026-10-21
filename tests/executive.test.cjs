@@ -978,3 +978,25 @@ test('reading surfaces have one shared CSS authority across base and Color rendi
     'theme changes cannot select opaque paint'
   );
 });
+
+test('first-name amendment reverses exactly three authorised prose fragments', () => {
+  const record = require('../review/issue-118/content-amendment.json');
+  const { restoreContentAmendment } = require('../tools/check_site_seo.cjs');
+  assert.equal(record.changes.length, 3);
+  for (const change of record.changes) {
+    assert.equal(change.after, change.before.replace('Dobkin', 'Arkadiy'));
+    const fragment = '<p>' + change.after + '</p>';
+    assert.equal(
+      restoreContentAmendment(fragment, change.page, record),
+      '<p>' + change.before + '</p>'
+    );
+    const unrelated = fragment.replace('Arkadiy', 'Someone else');
+    assert.equal(restoreContentAmendment(unrelated, change.page, record), unrelated);
+    const tampered = structuredClone(record);
+    tampered.changes.find((row) => row.id === change.id).after += 'changed';
+    assert.throws(
+      () => restoreContentAmendment(fragment, change.page, tampered),
+      /snapshot integrity/
+    );
+  }
+});

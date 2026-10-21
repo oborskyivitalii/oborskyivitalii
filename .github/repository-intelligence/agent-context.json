@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "1f1754a2c499696c02e50a54370861fd0545dc190f2e0ec1e3a20797b4e9ddda",
+    "digest": "3077a53f02c750e491a2fbe26dc56aaf0fa95a01338b1247f3ee1a86144239eb",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -181,12 +181,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "47bbdc01fe91aea40bbbbebc62bbbe405188f5b7981128ca9927ac3590664b1b"
+        "sha256": "1084f30b93cc8aa5c0b278d89f93fa665a2afa60938b883506ec2b16ad25045c"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7c28dd70057da5d12ec19827402df31ffb778c2f095de9ca07cee125e68d35d4"
+        "sha256": "371662f3f2591ba44fc0700070c0e6cdbb6ddd3a5d64b6b8b2bc466d9798d004"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -783,9 +783,19 @@
         "sha256": "0707e0ee47a5d89ff141f87befcc2dc1722ae20f752458ebe229d86391e37c81"
       },
       {
+        "path": "review/issue-118/2026-10-21-public-checksum-proof.json.gz",
+        "identity_mode": "content",
+        "sha256": "ebbb03a7c08dbccfc21989cc24e50fca11ab141b3ecf648baf368857a35bb5d5"
+      },
+      {
         "path": "review/issue-118/2026-10-21-review.md",
         "identity_mode": "content",
-        "sha256": "12211781854c0371d271b502de7d5dce1e78ff1bf6c34c7192852fbd61e473d1"
+        "sha256": "6003efbbfd4e97c0a165d2a38c9200d4b68ef8157c97beca0c11c1568ed5f743"
+      },
+      {
+        "path": "review/issue-118/content-amendment.json",
+        "identity_mode": "content",
+        "sha256": "1b728073d551af7682c5c404324cd07a30809c8e641c8d4d897a014a1b5dd0ac"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -5785,7 +5795,7 @@
       {
         "path": "tests/executive.test.cjs",
         "identity_mode": "content",
-        "sha256": "769738e20449bf21922a883044805950545de6cf0b9eb4cfbaf0d7872a6e08f5"
+        "sha256": "5a055654b3bdf45173b96427be8a871869275378ca4e2d0a62b0bbc24071d544"
       },
       {
         "path": "tests/fixtures/delivery.cjs",
@@ -5935,7 +5945,7 @@
       {
         "path": "tests/release-rights.test.cjs",
         "identity_mode": "content",
-        "sha256": "84412d5eeeab9ed1079146c23c64084b191639518665f49b803bbece6df559b2"
+        "sha256": "8541ec0627a79c3b5294fd0c53a792e084a8ee84358e9682197b903d1c2eb3a8"
       },
       {
         "path": "tests/renderer.test.cjs",
@@ -6240,7 +6250,7 @@
       {
         "path": "tools/check_site_seo.cjs",
         "identity_mode": "content",
-        "sha256": "8144a3069bc8703966f41d839226674292bd4f699cee32a3add31eb1a0b9150f"
+        "sha256": "3ab802ffa8a5323e47da464be81d8e866e811c0c2466d3c2b3c64b39b673ab9c"
       },
       {
         "path": "tools/compact_site_recordings.cjs",
@@ -6555,7 +6565,7 @@
       {
         "path": "tools/quality/secrets-publication.json",
         "identity_mode": "content",
-        "sha256": "7aae3dee30b21344f950096044b5bf72280aba051ae08b2e43b56639bc80f37e"
+        "sha256": "357dcd5ca93335d99eac34e6e01078d39a98f2867a9740558d01f01aad4eae56"
       },
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
@@ -6630,7 +6640,7 @@
       {
         "path": "tools/quality/toolchain/requirements.txt",
         "identity_mode": "content",
-        "sha256": "c36b786b3326c92db028a3a993298534d659b6a825dd2d171dfc95a054ea134e"
+        "sha256": "2bb7a26a983fa4c247acbab0ea3f7eb6c278785cdbaaaf95771e037efedfacd3"
       },
       {
         "path": "tools/quality/transition-pacing.cjs",
@@ -8902,6 +8912,17 @@
       "title": "Issue114 — 2026-10-20 iteration review"
     },
     {
+      "path": "review/issue-118/2026-10-21-public-checksum-proof.json.gz",
+      "kind": "file",
+      "purpose": "Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "2026-10-21-public-checksum-proof.json.gz"
+    },
+    {
       "path": "review/issue-118/2026-10-21-review.md",
       "kind": "file",
       "purpose": "Issue118 exact editorial scope, independent iteration review and delivery evidence.",
@@ -8911,6 +8932,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 118 — 2026-10-21 hotfix review"
+    },
+    {
+      "path": "review/issue-118/content-amendment.json",
+      "kind": "file",
+      "purpose": "Exact hash-bound three-fragment first-name amendment for frozen SEO reconciliation.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "content-amendment.json"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",

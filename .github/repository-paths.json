@@ -9210,6 +9210,18 @@
       "purpose": "Verified previous production immutable rendition retained byte-for-byte.",
       "role": "history",
       "owner": "site/README.md"
+    },
+    "review/issue-118/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Exact hash-bound three-fragment first-name amendment for frozen SEO reconciliation.",
+      "role": "history",
+      "owner": "guides/SITE-SEO.md"
+    },
+    "review/issue-118/2026-10-21-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions.",
+      "role": "history",
+      "owner": "guides/SITE-RELEASE-GATES.md"
     }
   }
 }

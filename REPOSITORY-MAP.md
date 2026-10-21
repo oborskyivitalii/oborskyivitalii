@@ -710,7 +710,9 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
+| [review/issue-118/2026-10-21-public-checksum-proof.json.gz](review/issue-118/2026-10-21-public-checksum-proof.json.gz) | Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions. | history | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [review/issue-118/2026-10-21-review.md](review/issue-118/2026-10-21-review.md) | Issue118 exact editorial scope, independent iteration review and delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-118/content-amendment.json](review/issue-118/content-amendment.json) | Exact hash-bound three-fragment first-name amendment for frozen SEO reconciliation. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
 
 ## review/issue-31/
 

@@ -90,7 +90,12 @@ test('rights inventory covers actual current and retained bytes without granting
   )[1];
   assert.deepEqual(retainedRuntime.bases, ['retained-edition']);
   assert.deepEqual(Object.keys(report.files), Object.keys(source.record().files));
-  assert.equal(Object.values(report.files).filter((file) => file.retained).length, 14);
+  assert.deepEqual(
+    Object.keys(report.files)
+      .filter((name) => report.files[name].retained)
+      .sort(),
+    Object.keys(source.manifest.retained).sort()
+  );
   assert.equal(Object.keys(report.linkedPublications).length, 29);
   assert.equal(Object.keys(report.linkedDiscussions).length, 3);
   assert.deepEqual(report.bases['advisor-consent'].people, ['Markus Kopko', 'Otman Basir']);
@@ -332,9 +337,17 @@ test('publication records bind staging and production editions without granting 
     assert.equal(report.materials.hostedEditions.length, 0);
     assert.equal(report.materials.linkedEditionCount, 46);
     assert.equal(Object.keys(report.linkedPublications).length, 29);
-    assert.equal(
-      Object.values(report.files).filter((file) => file.retained).length,
-      source.record.edition.id === 'staging' ? 4 : 14
+    const retained = JSON.parse(
+      fs.readFileSync(path.join(source.directory + '-rights-source', 'site/retained/manifest.json'))
+    );
+    const expectedRetained = Object.keys(retained.files).filter(
+      (name) => source.record.edition.id !== 'staging' || name.startsWith('media/')
+    );
+    assert.deepEqual(
+      Object.keys(report.files)
+        .filter((name) => report.files[name].retained)
+        .sort(),
+      expectedRetained.sort()
     );
     assert.deepEqual(report.edition, source.record.edition);
     assert.throws(() => rights.acceptance(source.record, report, {}), /acceptance remains pending/);
