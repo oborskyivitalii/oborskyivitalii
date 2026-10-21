@@ -14,6 +14,8 @@ Dated continuity, not live authority. Last verified: **2026-10-21** (Warsaw).
 
 - User “Сол приступай” authorized the reviewed first diagnostic wave under112;
  113 is the already merged controller PR and is not the Home LCP issue.
+- User “Роби” then authorized CPU/DPR and verified cache/reload/reopen; persisted
+  state and single-factor follow-ups remain conditional on a concrete hypothesis.
 - CONTRIBUTING mandates separate independent subagent review each iteration;
   correction re-review is mandatory. Receipts/derived metadata do not recurse.
 - Harness is opt-in diagnostic/pr-targeted; matrices, budgets and site unchanged.
@@ -26,6 +28,17 @@ Dated continuity, not live authority. Last verified: **2026-10-21** (Warsaw).
  935327d775569894ef480a103834061373500196. Home256–344ms; no Poor reproduction.
 - I2 interpretation/memory review passed at diff0abddb4. Final exact-head
   acceptance and live dispositions belong to PR/issue; revalidate current links.
+- I3 source/correction review resolved F07/F08: recompute cache admission from
+  raw fields and require CDP corroboration. Node27/27, wrappers3/3 pass.
+- Measured clean published815d62d/treec685ff4: CPU9/9 (30s), cache9/9 (10s),
+  all18 traces and unchanged44-file archive. CPU LCP240–888ms, cache232–348ms;
+  all portrait, no Poor. Warm critical cache proved by Timing/CDP/server ledger.
+  Adaptive DPR2 bitmap2160→1800/1440; no observed startup fault. I4 evidence and
+  interpretation review passed at diff0a9b924. AC09/10 supported; final-head
+  checks/disposition belong to live PR/issue. Keep producer/raw hashes immutable.
+- Browser preference light did not pin auto theme: initial CPU dark, last end
+  light, cache light. Clock/timezone unpinned; no cross-suite causal comparison.
+- Conditional state/one-factor runs deferred without a concrete slow phenotype.
 - AC06–AC08 stay open: real-SDK/native/broader T02 evidence and merge incomplete.
   Draft source/browser CI is deferred; skipped checks are not a hosted pass.
   Controller auto-published isolated prototype314a108d for935327d; no stable

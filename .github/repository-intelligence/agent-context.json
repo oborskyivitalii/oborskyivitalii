@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "22d3e4d5b15b0846c4198a3482ae9b8aa7c7eed5be23ef61bac0073ee924b044",
+    "digest": "cc22348d85452f18dabd8e3d6f0d006f6adfa423113a149ac784fcd4c0d9686c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -316,7 +316,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "f47e93546b7368457779e2be201d1a64b9774f28e3317f59fcbc4b0ff69edcef"
+        "sha256": "1e52c5570b28fd116a28e1c85cd5340086cedb9d1cc6b86659d0d1a047305746"
       },
       {
         "path": "NOTICE.md",
@@ -730,7 +730,7 @@
       {
         "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "34391ba5c82b2908e36d7c0824f04d5c1084726e61533dce85a884fc26b1e7d3"
+        "sha256": "f9fc1b9c7522c615141b1cc5e822fb8b5cb43268aaf49ec9a3086a0293b2ad8b"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",

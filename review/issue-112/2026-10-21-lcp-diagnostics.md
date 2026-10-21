@@ -278,6 +278,9 @@ No files were modified or browser measurements run during this review.
 
 ## I3 second-wave implementation candidate
 
+Reviewer for I3, its correction and I4: `/root/review_lcp_implementation`,
+separate non-author reviewer; read-only inspection, no benchmark execution.
+
 User authorization: after the proposed CPU/DPR, reload/cache and conditional
 state/single-factor sequence, “Роби”. AC09/AC10 were appended to the existing
 live issue before implementation; AC08's CS01/04/05/07/08/09/10 still applies.
@@ -376,3 +379,134 @@ HTTP fixture's exact-body/ETag/304 test remains separate from admission mocks.
 > The live protocol specifies **30-second CPU windows** and **10-second cache windows**. Use explicit `--window-ms 30000` for CPU execution.
 >
 > Actual evidence review and AC09/AC10 acceptance remain pending, alongside native/SDK and merge gates. No files were modified or browser measurements run during this re-review.
+
+## I4 CPU/DPR and cache observations
+
+Both suites executed sequentially from clean published diagnostic source
+`815d62d5b1350c7f8a1be357d46bc744b272a060`, tree
+`c685ff4552554d70dfe4c065098b0824890be225`. This is the I3 correction-reviewed
+code plus its verbatim receipt and deterministic RI refresh. Production input
+remains source82b57b8, package SHA256302690dd…490911, public digestcd0fd21f…32c1b;
+all44 files were admitted before and after both suites. No source changed during
+either measurement. Linux headless Chromium153.0.8010.0 / Playwright1.63.0,
+1440×900, no network throttling; no benchmark/scanner ran concurrently.
+The custom Chromium build differs from pinned CFT153.0.8010.12. This is neither
+native Windows/macOS evidence nor a pinned hosted browser-gate pass.
+
+Private raw report identities:
+
+| Suite | Navigation starts, UTC21October | Window/document | Rows | Report SHA256 |
+| --- | --- | --- | --- | --- |
+| CPU/DPR | 04:55:22.805–04:59:35.896 | 30000ms | 9/9 | `c29a2e07ec5b5e19935b310317df88a1bc4bf26ecc4e8e3e76a8129d70f8c185` |
+| Cache | 05:00:20.126–05:01:43.205 | 10000ms | 9/9 | `32f46649dc128cbdb293f7c72ccd87b3a435f6f11d51bb99a491f7ad5b5ff21e` |
+
+Both validations pass with zero failed/unexecuted rows, collector/page errors,
+unexpected requests, trace/cleanup errors or emitted telemetry. All18 compressed
+traces have verified size/SHA bindings. All final LCP elements are
+`img.portrait-media`; no final LCP exceeds4000ms in either observation horizon.
+This is bounded non-reproduction, not a historical RCA.
+
+### CPU/DPR results and observed adaptation
+
+Cold production-origin replay, HTTP cache disabled by routing, SDK blocked.
+Trials were balanced1/2/3 rather than parallel. CPU command acknowledgement and
+actual DPR were retained for every row.
+
+| Profile | LCP trials1/2/3 (ms) | First new-document frame duration1/2/3 (ms) | Canvas bitmap at scene ready →30s |
+| --- | --- | --- | --- |
+| CPU1 / DPR1 | 288 /240 /260 | 112.0 /76.2 /90.8 | 1440×900 →1440×900, all3 |
+| CPU4 / DPR1 | 752 /348 /312 | 219.7 /179.3 /205.0 | 1440×900 →1440×900, all3 |
+| CPU4 / DPR2 | 888 /804 /320 | 237.4 /205.0 /212.3 | 2160×1350 →1800×1125 /1440×900 /1800×1125 |
+
+CSS Canvas size is1440×900 throughout. At first scene readiness all9 have
+detail0/full geometry; the quality attribute is absent then, not an observed
+quality0. At30s CPU1 has quality0/full geometry, CPU4/DPR1 quality1/compact,
+CPU4/DPR2 quality1/2/1 and compact geometry. Runtime clamping/adaptation actually
+occurred; requested DPR2 never means a2880×1800 bitmap here. LCP callback state
+is retained separately from first readiness and30s state, with its own timestamp.
+
+The requested browser `colorScheme: light` did not pin the site's theme. Its
+frozen theme.js uses the device clock in auto mode. All initial CPU readiness
+and LCP observations were dark; the last CPU document was light at30s, and all
+cache documents were light. This incidental auto transition is not a controlled
+appearance experiment. Clock/timezone were not pinned. I3's shorthand “light”
+describes the browser preference only; actual runtime observations govern the
+result. No cross-suite difference is attributed solely to CPU/cache or theme.
+
+CPU portrait resource loading was13.6–36.7ms; the calculated post-resource
+render component was215.4–830.8ms. The first engine frame was76.2–112.0ms at
+CPU1 and179.3–237.4ms at CPU4. Trace inspection confirms startup main-thread
+work, but the render component also includes style/layout/paint/presentation
+scheduling. It is not100% fractal mathematics or engine CPU. Some portrait LCPs
+precede scene readiness, consistent with the prior absence of a mandatory gate.
+Three trials per profile do not establish a field distribution or device parity.
+
+### Cache results and corroboration
+
+Each trial owns a fresh context and follows cold →native reload →close/reopen;
+timeOrigin is distinct for all9 documents. Native navigation types are
+navigate/reload/navigate. The fixture uses exact archived body bytes with
+max-age600, strong ETag and outbound-blocking CSP; no Playwright route is
+installed. Header behavior is explicitly a loopback counterfactual.
+
+| Mode | LCP trials1/2/3 (ms) | Portrait/CSS/engine proof, every trial |
+| --- | --- | --- |
+| Cold | 288 /256 /348 | Positive transfer/body sizes, matching CDP GET/200, server200 |
+| Reload | 280 /264 /328 | Positive body sizes, transfer0, CDP requestServedFromCache; no critical-resource server request |
+| Reopen | 232 /308 /260 | Positive body sizes, transfer0, CDP fromDiskCache; no server request |
+
+All18 warm critical-resource proofs confirm browser-cache use. Reload revalidates
+the HTML document with an actual server304; it does not revalidate the three
+critical assets. Reopen has no server request at all. Cold trials each have8
+server200s. Bodies are55458/39711/127014 bytes for portrait/CSS/engine, matching
+the admitted artifact. No service-worker response, rejected request or ledger
+truncation occurred. A zero measured reload resource-load interval is supported
+by cache evidence; missing timing alone would fail admission.
+
+New-document first-frame analysis requires the matching main-frame
+navigationStart, CommitLoad and subsequent space.js EvaluateScript before the
+frame() event. This excludes old-page animation during reload; navigationStart
+alone would misattribute a7.816ms old-document frame in reload1. The actual new
+frame there is27.665ms. Actual new frames span27.7–110.1ms in this suite.
+Trace LCP events match navigation identities and differ from DOM LCP by under4ms
+of event/presentation reporting precision; exact timestamp equality is not claimed.
+
+The production-only SDK is ineligible on HTTP loopback and sdkState isnull for
+all9 cache documents. CPU replay also has no vendor execution. Neither arm
+establishes Cloudflare beacon, production headers, real CDN or network behavior.
+Earlier ordinary SDK retrieval failures remain pending; no substitute was used.
+
+### Disposition and next diagnostic
+
+The CPU/DPR and cache hypotheses did not reproduce Poor LCP in this environment.
+Adaptive geometry and verified warm cache showed no observed startup fault.
+Conditional persisted-state and single-factor follow-ups are deferred: these
+rows identify no concrete slow phenotype to isolate, and the earlier engine-delay
+control already exists. An incidental auto-theme transition does not justify a
+broad appearance matrix. No runtime fix follows from these observations.
+
+One next diagnostic remains a private actual slow desktop Chrome Home session
+with same-navigation trace, LCP candidates, Navigation/Resource Timing,
+visibility/pageshow and real SDK beacon fields. Native Windows/macOS and real
+SDK remain unavailable; historical cause remains unproved. Raw observations,
+server/CDP ledgers and traces stay private. Independent I4 evidence/interpretation
+review was required before marking AC09/AC10 complete; its receipt follows.
+AC06–AC08, merge and live admission remain separate and open; PR117 remains Draft.
+
+### I4 independent evidence/interpretation review receipt
+
+> **I4 has no blocking findings. AC09 and AC10 are substantively supported and can be marked complete after final-head checks and evidence links are reconciled.**
+>
+> Reviewed diff SHA256 `0a9b924fccd46c24d848771c9ea4af63aa609e79d97c13938f50e256e95db4a0` against measured source `815d62d5b1350c7f8a1be357d46bc744b272a060`, tree `c685ff4552554d70dfe4c065098b0824890be225`. All staged-file and 22 raw/analysis hashes match.
+>
+> I independently verified:
+>
+> - All eighteen analyses, observation windows, fresh document identities, nonoverlapping execution and 36 clean snapshots.
+> - Every trace’s size/hash, navigation binding and new-document first-frame selection, including reload1’s **27.665ms** frame.
+> - CPU/DPR, bitmap adaptation, theme observations and all reported numeric ranges.
+> - All eighteen warm critical-resource proofs through Timing, CDP and server ledgers; HTML-only reload revalidation is correctly distinguished.
+> - Archive admission, producer code hashes, clean measured-source policy **7/7**, fresh RI/coupling and live Draft/unmerged PR status.
+>
+> The conclusions and conditional deferrals are justified. Clock/theme differences prevent a controlled cross-suite causal comparison; the report preserves that limit. Native hardware, real SDK, production transport and historical cause remain unproved. AC06–AC08 and merge remain open.
+>
+> No files were modified or browser measurements run during this review.
