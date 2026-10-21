@@ -465,6 +465,9 @@ test('source scheduling starts expensive files early with isolated processes and
   const f = fixture(t),
     files = [
       'tests/aaa.test.cjs',
+      'tests/staging.test.cjs',
+      'tests/pages-migration.test.cjs',
+      'tests/release-controller.test.cjs',
       'tests/release-rights.test.cjs',
       'tests/executive.test.cjs',
       'tests/space.test.cjs',
@@ -502,9 +505,15 @@ test('source scheduling starts expensive files early with isolated processes and
     'tests/space.test.cjs',
     'tests/executive.test.cjs',
     'tests/release-rights.test.cjs',
+    'tests/release-controller.test.cjs',
+    'tests/pages-migration.test.cjs',
+    'tests/staging.test.cjs',
     'tests/aaa.test.cjs',
   ]);
-  assert.equal(runner.accounting(child.stdout, { modules: files, root: f.directory }).passed, 4);
+  assert.equal(
+    runner.accounting(child.stdout, { modules: files, root: f.directory }).passed,
+    files.length
+  );
   const file = files[0],
     plan = { profile: 'production', modules: [file] };
   for (const body of [

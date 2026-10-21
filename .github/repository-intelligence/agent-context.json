@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "de6e394d68b6eb02a706746b0424d688a6fac4c27ec4291de196f38fd92c6b14",
+    "digest": "cf8f1340d483964c05725d04d86b0131620dfa96f4aef572d0d8fbc67136c44c",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -186,7 +186,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "371662f3f2591ba44fc0700070c0e6cdbb6ddd3a5d64b6b8b2bc466d9798d004"
+        "sha256": "b46be3715618d4bcbce46e0fec79f8583effa8c6a0bc7e9fd11d70010cd988af"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -620,7 +620,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "e16aff8ea47271f8bf7c69e2a182f71c864ff0313fafdc0e76b06a842faa7d7e"
+        "sha256": "c569ef675528f8808a7e56e5e367b9c9fc0d03891ecb368a7db7fea060d53a24"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -790,7 +790,7 @@
       {
         "path": "review/issue-118/2026-10-21-review.md",
         "identity_mode": "content",
-        "sha256": "5850a8f7fbf020b8d0774f237e297137f3136f735d3e1269089eb1fc077169f2"
+        "sha256": "8b747a100314f86cb12867275f324409a0452617ac63d586d032220a388cf7fd"
       },
       {
         "path": "review/issue-118/content-amendment.json",
@@ -6015,7 +6015,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "f38697930a14dacfda0dec0ec97470fdb5a54216131bcdb3fcc5aecc28e5b4d4"
+        "sha256": "8228fbf71963d411f9fb9ebccd131113b9c437dc319151401cf3767ba6bad273"
       },
       {
         "path": "tests/test_code_style.py",
@@ -6595,7 +6595,7 @@
       {
         "path": "tools/quality/source-test-worker.cjs",
         "identity_mode": "content",
-        "sha256": "cb93e4b237616b8951a6ec420cd20b052fa3f03a0cc991baedfa580cff2c9386"
+        "sha256": "3a54b3ec067f807833f8bbfde8601750a6cf4fd3a09768d52d068938d2cadd66"
       },
       {
         "path": "tools/quality/source-tests.cjs",
@@ -6640,7 +6640,7 @@
       {
         "path": "tools/quality/toolchain/requirements.txt",
         "identity_mode": "content",
-        "sha256": "2bb7a26a983fa4c247acbab0ea3f7eb6c278785cdbaaaf95771e037efedfacd3"
+        "sha256": "8aaa4328023936b35e9bdf73ad7618f52143c19ca7c51ee13295818bf3d2f68f"
       },
       {
         "path": "tools/quality/transition-pacing.cjs",
