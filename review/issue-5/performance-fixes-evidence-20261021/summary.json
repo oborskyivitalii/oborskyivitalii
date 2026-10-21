@@ -1,0 +1,375 @@
+{
+  "sourceCommit": "7fbb0bc2320b2758f70c806057275878cb263c54",
+  "sourceTree": "086932a657ab56725fd4d7dcd5fdd70d312b30eb",
+  "artifactDigest": "5f9df1b196fb6fd8ecc1dced2c99ac1c25e78a2c75c081e988967bd7c6e55d09",
+  "variant": {
+    "id": "color",
+    "contract": 1,
+    "fingerprint": "bd7be6807f5af1b55242d40ab6205aa853463652810404dd7fef8a7993311dcd",
+    "baseEngine": "d69a96a542eb40eb8d61b03f083c6c108ee25e2632e0be415196a49767aa1764",
+    "effects": [
+      "travel"
+    ]
+  },
+  "pass": true,
+  "execution": {
+    "sourceCommit": "7fbb0bc2320b2758f70c806057275878cb263c54",
+    "sourceTree": "086932a657ab56725fd4d7dcd5fdd70d312b30eb",
+    "sourceDirtyBefore": false,
+    "artifactDigest": "5f9df1b196fb6fd8ecc1dced2c99ac1c25e78a2c75c081e988967bd7c6e55d09",
+    "artifactManifestSha256": "2207acf9b7a4cda753976febdfb26ad06e4b0c6b301bc1ff181372c953a2092b",
+    "command": [
+      "node",
+      "tools/quality/performance.cjs"
+    ],
+    "environment": {
+      "SITE_PUBLIC_DIR": "/workspace/scratch/38e8b0c92238/pr79-opt-final-artifact/public",
+      "SITE_ARTIFACT_MANIFEST": "/workspace/scratch/38e8b0c92238/pr79-opt-final-artifact/artifact.json",
+      "SITE_REPORT_DIR": "/workspace/scratch/38e8b0c92238/pr79-opt-final-performance",
+      "SITE_AUDIT_TOOLS": "/workspace/scratch/38e8b0c92238/pr79-opt/tools/quality/toolchain",
+      "SITE_AUDIT_CHROME": "/tmp/chromium"
+    },
+    "browserSha256": "53a15d6c3a3d27dfb54c4ba60278b1683136f70cf1e67e989da7dfbd3d451ef0",
+    "scriptSha256": "25fc922fd8e9b8235f8a40a56d8881f70a8e78d5033eda28a158d9f6b7f00688",
+    "startedAt": "2026-10-21T06:16:30.909493+00:00",
+    "exitCode": 0,
+    "finishedAt": "2026-10-21T06:31:57.400222+00:00",
+    "sourceDirtyAfter": false
+  },
+  "counts": {
+    "lighthouse": 36,
+    "shortMotionWindows": 72,
+    "flights": 24,
+    "retentionCycles": 120,
+    "zeroWorkWindows": 36
+  },
+  "medians": [
+    {
+      "route": "index",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1959.0390000000002,
+        "total-blocking-time": 58.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1975.397,
+      "maxTbtMs": 68.5
+    },
+    {
+      "route": "index",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 457.16,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 468.299,
+      "maxTbtMs": 0.5
+    },
+    {
+      "route": "research",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1646.908,
+        "total-blocking-time": 108,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1766.116,
+      "maxTbtMs": 128.5
+    },
+    {
+      "route": "research",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 412.483,
+        "total-blocking-time": 2,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 416.608,
+      "maxTbtMs": 49.99999999999994
+    },
+    {
+      "route": "writing",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1661.9299999999998,
+        "total-blocking-time": 105.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.99,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1691.3075,
+      "maxTbtMs": 172.5
+    },
+    {
+      "route": "writing",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 431.72249999999997,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0.0006962609193683607
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 442.5925,
+      "maxTbtMs": 1
+    },
+    {
+      "route": "talks",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1598.045,
+        "total-blocking-time": 61.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1694.04,
+      "maxTbtMs": 171
+    },
+    {
+      "route": "talks",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 404.185,
+        "total-blocking-time": 58,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 414.6,
+      "maxTbtMs": 69.99999999999994
+    },
+    {
+      "route": "credits",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 1594.512,
+        "total-blocking-time": 37.5,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 1610.778,
+      "maxTbtMs": 49.5
+    },
+    {
+      "route": "credits",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 404.821,
+        "total-blocking-time": 12,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 409.051,
+      "maxTbtMs": 34
+    },
+    {
+      "route": "reader-1",
+      "profile": "mobile",
+      "metrics": {
+        "largest-contentful-paint": 2400.942,
+        "total-blocking-time": 113,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 0.97,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 2411.16,
+      "maxTbtMs": 118
+    },
+    {
+      "route": "reader-1",
+      "profile": "desktop",
+      "metrics": {
+        "largest-contentful-paint": 521.11,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0
+      },
+      "performance": 1,
+      "secondaryTargetMet": true,
+      "maxLcpMs": 521.8720000000001,
+      "maxTbtMs": 2
+    }
+  ],
+  "motionProfiles": [
+    {
+      "width": 1440,
+      "rate": 1,
+      "samples": 6,
+      "maxPaintP95Ms": 21.299999997019768,
+      "maxIdleBusyPercent": 23.566259042875174,
+      "zeroCallbacks": 0,
+      "zeroPaints": 0
+    },
+    {
+      "width": 390,
+      "rate": 1,
+      "samples": 6,
+      "maxPaintP95Ms": 5,
+      "maxIdleBusyPercent": 10.013737977183803,
+      "zeroCallbacks": 0,
+      "zeroPaints": 0
+    },
+    {
+      "width": 390,
+      "rate": 4,
+      "samples": 6,
+      "maxPaintP95Ms": 25.200000002980232,
+      "maxIdleBusyPercent": 13.19186119101137,
+      "zeroCallbacks": 0,
+      "zeroPaints": 0
+    }
+  ],
+  "flights": [
+    {
+      "width": 1440,
+      "rate": 1,
+      "flights": 8,
+      "paintP95MaxMs": 23.5,
+      "paintMaxMs": 58.599999994039536,
+      "preparationMaxMs": 18.5,
+      "paintGapMaxMs": 78.40000000596046,
+      "readyMaxMs": 3888.7999999970198,
+      "equivalentReadyMaxMs": 3020.699999988079,
+      "cycles": 40,
+      "before": {
+        "documents": 2,
+        "nodes": 3270,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 2,
+        "nodes": 3270,
+        "jsEventListeners": 98
+      }
+    },
+    {
+      "width": 390,
+      "rate": 1,
+      "flights": 8,
+      "paintP95MaxMs": 7.299999997019768,
+      "paintMaxMs": 17.099999994039536,
+      "preparationMaxMs": 17.400000005960464,
+      "paintGapMaxMs": 45.5,
+      "readyMaxMs": 3834.2999999970198,
+      "equivalentReadyMaxMs": 2763.4000000059605,
+      "cycles": 40,
+      "before": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      }
+    },
+    {
+      "width": 390,
+      "rate": 4,
+      "flights": 8,
+      "paintP95MaxMs": 33.900000005960464,
+      "paintMaxMs": 41.70000000298023,
+      "preparationMaxMs": 63.80000001192093,
+      "paintGapMaxMs": 196.79999999701977,
+      "readyMaxMs": 4264.899999991059,
+      "equivalentReadyMaxMs": 3000.5999999940395,
+      "cycles": 40,
+      "before": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      },
+      "after": {
+        "documents": 2,
+        "nodes": 3274,
+        "jsEventListeners": 98
+      }
+    }
+  ],
+  "soak": {
+    "route": "index",
+    "width": 390,
+    "rate": 1,
+    "durationSeconds": 300,
+    "startHeapBytes": 3945556,
+    "endHeapBytes": 4805256,
+    "deltaBytes": 859700,
+    "errors": [],
+    "limit": "Synthetic lab soak and forced-GC heap samples detect obvious growth; no universal leak or physical-device claim.",
+    "chunks": 10,
+    "observedSeconds": 300.08330000001195,
+    "off": {
+      "callbacks": 0,
+      "paints": 0,
+      "elapsedMs": 1002.2000000029802
+    }
+  },
+  "readerNetwork": [
+    {
+      "path": "lighthouse-reader-1-desktop-1.json",
+      "sha256": "1447fbc82607c0c3f7d85207b2056382b6991a3bdc3e7fe365061518b9d3b00c",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226363,
+      "warnings": []
+    },
+    {
+      "path": "lighthouse-reader-1-desktop-2.json",
+      "sha256": "4bc72f8cefb7d2314278ed345b667e55dfde13dc5c572c5e3286062c9a2b4761",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226363,
+      "warnings": []
+    },
+    {
+      "path": "lighthouse-reader-1-desktop-3.json",
+      "sha256": "01ccccefa661724d54934f1b32e9fe62801ca8ac224ef2e892a83dc353d709db",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226363,
+      "warnings": []
+    },
+    {
+      "path": "lighthouse-reader-1-mobile-1.json",
+      "sha256": "3eb22b47e36ecb1203a342bb47d0491320c68b8af5de333ce3644464b84fb10f",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226363,
+      "warnings": []
+    },
+    {
+      "path": "lighthouse-reader-1-mobile-2.json",
+      "sha256": "2939fd67ed6b421bda9ea927f8c90e268fe54cdf2ecf5b72a0ba147b9c25b98a",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226363,
+      "warnings": []
+    },
+    {
+      "path": "lighthouse-reader-1-mobile-3.json",
+      "sha256": "efb61072849a9aecda5383d122d58b0745d47b7ca4720fcba8163f719e8b680a",
+      "images": 1,
+      "imageTransferBytes": 95670,
+      "totalTransferBytes": 226363,
+      "warnings": []
+    }
+  ],
+  "readerMobileLcpValues": [
+    2411.16,
+    2400.924,
+    2400.942
+  ],
+  "singleTbtBudgetExceedances": []
+}
