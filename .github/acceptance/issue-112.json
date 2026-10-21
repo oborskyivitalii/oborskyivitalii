@@ -73,6 +73,13 @@
       "automated_scope": "Bounded source behavior/negative controls and unchanged diagnostic ownership only. Automated evidence cannot establish provider counts, historical cause, actual native execution or a current browser result.",
       "checks": ["DIAGNOSTIC", "UNCHANGED", "DISPOSITION"],
       "gates": ["SECOND-WAVE", "REVIEW"]
+    },
+    {
+      "id": "AC11",
+      "intent": "Reviewed one-session native Chrome capture handoff with truthful live access and late-export limitations",
+      "automated_scope": "Unchanged production, existing opt-in disposition and fresh catalog only; no automatic proof of manual runbook fidelity, native execution, SDK availability or an actual slow session.",
+      "checks": ["UNCHANGED", "DISPOSITION", "CURRENT-RI"],
+      "gates": ["NATIVE-HANDOFF", "REVIEW"]
     }
   ],
   "checks": {
@@ -128,6 +135,10 @@
     "SECOND-WAVE": {
       "kind": "human",
       "description": "Inspect all9 CPU/DPR trials and3 cold/reload/reopen sessions, immutable inputs, recorded CPU command and actual Canvas/DPR/adaptive state, fresh documents, critical portrait/CSS/engine cache evidence corroborated by Timing/CDP/server ledger, all failed/unexecuted cases and trace identities. Loopback headers/SDK-ineligible behavior, simulation and historical-cause limits must remain explicit; no source test substitutes for these observations."
+    },
+    "NATIVE-HANDOFF": {
+      "kind": "human",
+      "description": "Independently inspect ordinary access failure/source receipts, actual Chrome recording/HAR/blocking instructions and post-load export behavior, exact-session/source checks, zero forwarded test telemetry and honest missing startup/native/SDK limits. Preparation can complete AC11; actual native slow-session/SDK evidence remains separately pending under AC06/AC07."
     }
   }
 }

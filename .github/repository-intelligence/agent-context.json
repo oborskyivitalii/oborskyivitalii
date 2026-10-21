@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "cc22348d85452f18dabd8e3d6f0d006f6adfa423113a149ac784fcd4c0d9686c",
+    "digest": "5f606338f50a81f155c55b476e49b5727f4030d32a1d77953b596b81bce9595b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -57,7 +57,7 @@
       {
         "path": ".github/acceptance/issue-112.json",
         "identity_mode": "content",
-        "sha256": "ef3754b33b700536dccae762484a21d7cf21ab27fef92c75bb00ceba24291cfb"
+        "sha256": "640867824affdd994ce97c5c2e9df7a59aa5233570e4866f4f4dd6a993a56f28"
       },
       {
         "path": ".github/acceptance/issue-114.json",
@@ -181,12 +181,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "9e7c89853e2260007892d6db446102e94839cacc056d086f2963a5170545d6f0"
+        "sha256": "0805377b37368439804b58a1bf10f7f4d358acc546245c9a3fd03edd0c30dc7a"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "80af33eb560f11c5b043a08bb54891df6ea7a53c609d842e688aeeb2aaa4a9d3"
+        "sha256": "02de21c76240eb6a16818df676ded7e2e5444a704c6dcabbec307629b643b054"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -316,7 +316,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "1e52c5570b28fd116a28e1c85cd5340086cedb9d1cc6b86659d0d1a047305746"
+        "sha256": "ee69cd7ec72d1f34085c435b03ca6795dfda09d23feeae2acadef9f9b1637fc9"
       },
       {
         "path": "NOTICE.md",
@@ -553,9 +553,14 @@
         "sha256": "41e3a04a7150cc982db9a4f5f0dd80096ffeda552638023be67d37927d986d6f"
       },
       {
+        "path": "guides/HOME-LCP-NATIVE-CAPTURE.md",
+        "identity_mode": "content",
+        "sha256": "fde6df0ae6a406c7fd40504159834e444b9901d971112e798d210e692eca2f08"
+      },
+      {
         "path": "guides/README.md",
         "identity_mode": "content",
-        "sha256": "05dc46d5147c8dfac709700ff1c5a86b954c47896477c5026662a0279642631f"
+        "sha256": "60524033d7eb3064591f5438560de0457c741364618a5db7eda451771ba00efb"
       },
       {
         "path": "guides/REPOSITORIES.md",
@@ -570,7 +575,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "3747721c40fba67d1b47ca2a35dac5a207d6e186fffaaab50ebda1c48b046c30"
+        "sha256": "d04f4d05e3580efb5972114534d7d59a46a3de8446412849e05587a2fbaae3cd"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -730,7 +735,7 @@
       {
         "path": "review/issue-112/2026-10-21-lcp-diagnostics.md",
         "identity_mode": "content",
-        "sha256": "f9fc1b9c7522c615141b1cc5e822fb8b5cb43268aaf49ec9a3086a0293b2ad8b"
+        "sha256": "c3ba7a4c7c03b177c323dc24329b3cb127b5bbb298554cdbab86e4f9068a7e51"
       },
       {
         "path": "review/issue-114/2026-10-20-review.md",
@@ -8314,6 +8319,17 @@
         "AGENTS.md"
       ],
       "title": "Code style and source architecture"
+    },
+    {
+      "path": "guides/HOME-LCP-NATIVE-CAPTURE.md",
+      "kind": "file",
+      "purpose": "One owner-operated native Home trace/HAR/late-Timing capture with local RUM blocking, exact-session checks and explicit missing startup evidence.",
+      "role": "guide",
+      "owner": "guides/SITE-CHECK-PROFILES.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "One native Chrome Home capture"
     },
     {
       "path": "guides/README.md",

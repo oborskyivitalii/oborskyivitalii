@@ -190,6 +190,10 @@ production transport, native hardware or historical cause. A failed observation
 stops before the next trial; incomplete cache proof is retained as incomplete.
 The dated [execution record](../review/issue-112/2026-10-21-lcp-diagnostics.md)
 owns actual source, calibration and report identities.
+The [native one-session runbook](HOME-LCP-NATIVE-CAPTURE.md) is an owner-operated
+capture handoff, not another CI/browser matrix. It preserves genuine SDK bytes
+and attempted payload with local RUM delivery blocked. Its late Timing export
+cannot reconstruct missing startup lifecycle or replace pre-script observations.
 
 The registry inventories current suites, scheduled profiles, changed-path targets
 and retained diagnostics. Use `tools/quality/source-tests.cjs` to select registered

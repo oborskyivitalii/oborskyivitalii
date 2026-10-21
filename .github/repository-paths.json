@@ -805,6 +805,12 @@
       "role": "guide",
       "owner": "guides/CODE-STYLE.md"
     },
+    "guides/HOME-LCP-NATIVE-CAPTURE.md": {
+      "kind": "file",
+      "purpose": "One owner-operated native Home trace/HAR/late-Timing capture with local RUM blocking, exact-session checks and explicit missing startup evidence.",
+      "role": "guide",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "guides/README.md": {
       "kind": "file",
       "purpose": "Topic guide index with one current owner for each concern; live issue status is retrieved separately.",
@@ -8443,6 +8449,12 @@
       "role": "validator",
       "owner": "tools/quality/README.md"
     },
+    "tools/quality/lcp-cache.cjs": {
+      "kind": "file",
+      "purpose": "Exact-byte loopback cache fixture, bounded CDP cache observations and critical-resource cache admission for issue112.",
+      "role": "validator",
+      "owner": "tools/quality/README.md"
+    },
     "tools/quality/lcp-diagnostic.cjs": {
       "kind": "file",
       "purpose": "Opt-in source-bound Home LCP collector/admission and per-document timing analysis, with no production admission claim.",
@@ -9030,12 +9042,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    "tools/quality/lcp-cache.cjs": {
-      "kind": "file",
-      "purpose": "Exact-byte loopback cache fixture, bounded CDP cache observations and critical-resource cache admission for issue112.",
-      "role": "validator",
-      "owner": "tools/quality/README.md"
     }
   }
 }

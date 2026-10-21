@@ -41,10 +41,17 @@ Dated continuity, not live authority. Last verified: **2026-10-21** (Warsaw).
 - Conditional state/one-factor runs deferred without a concrete slow phenotype.
 - AC06–AC08 stay open: real-SDK/native/broader T02 evidence and merge incomplete.
   Draft source/browser CI is deferred; skipped checks are not a hosted pass.
-  Controller auto-published isolated prototype314a108d for935327d; no stable
-  staging or production activation. Verify final-head status independently.
+  Latest observed isolated prototype for db8eb795 succeeded (run39548251547);
+  stable admission/full/promote/merge skipped. Revalidate the current final head.
 - Next diagnostic: one actual slow Chrome Home session with same-navigation
   trace/candidates/timing/lifecycle/real beacon. Raw evidence remains private.
+- Latest “Роби” accepts that diagnostic. Fresh ordinary HTTP SDK403/error1010
+  and browser ERR_EMPTY_RESPONSE persist; Home/revision200, Home matches archive.
+  Zero browser Home loads/forwarded telemetry. Native owner-device access absent.
+  guides/HOME-LCP-NATIVE-CAPTURE.md prepares one trace/HAR/late-Timing capture with
+  local RUM blocking. Late export never establishes missing startup lifecycle.
+  I5 correction review passed F09/F10; AC11 preparation supported, with final
+  checks/live links in issue/PR. Actual SDK/native/slow evidence remains open.
 - PR79/issue5 owns article/stable staging; last observed staging source283b32f,
   deployment8c65adfd. Revalidate before its independent continuation. No staging
   or controller operation is part of112. Analytics/SEO owners102/103/8 stay separate.

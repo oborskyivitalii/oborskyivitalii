@@ -510,3 +510,97 @@ AC06–AC08, merge and live admission remain separate and open; PR117 remains Dr
 > The conclusions and conditional deferrals are justified. Clock/theme differences prevent a controlled cross-suite causal comparison; the report preserves that limit. Native hardware, real SDK, production transport and historical cause remain unproved. AC06–AC08 and merge remain open.
 >
 > No files were modified or browser measurements run during this review.
+
+## I5 native slow-session acquisition and handoff
+
+Latest owner “Роби” accepts the next proposed actual slow desktop Chrome Home
+capture. Existing issue112 / Draft PR117 remains the owner. AC11 records the
+reviewed handoff separately from actual SDK/native/slow evidence in AC06/AC07.
+Base `db8eb795c2e75c7a4342f3555e46b3a61a63aebf`.
+
+At08:08:58–08:09:02 Europe/Warsaw, ordinary GETs returned Home/revision200;
+Home53659 bytes/SHA25696cbc523…d9a799 matches the frozen public artifact exactly.
+SDK returned403 with17-byte `error code: 1010` body. One ordinary browser SDK
+request at08:10:39–08:10:40 failed ERR_EMPTY_RESPONSE on Linux headless
+Chromium153.0.8010.0. Private receipts retain exact URLs/headers/body hashes,
+timestamps and observed request failure. No browser Home visit or telemetry forwarding
+occurred. Earlier failed acquisitions remain separate, not relabeled.
+
+This environment has neither native-owner-device control nor Chrome DevTools
+MCP. The web-perf MCP workflow was therefore unavailable; the existing bounded
+Playwright/CDP path supplied only a normal SDK access probe. No bypass, stub,
+synthetic Poor run or another replay matrix was used. A blocked environment
+does not prove ordinary visitors cannot execute the SDK.
+
+The new [native runbook](../../guides/HOME-LCP-NATIVE-CAPTURE.md) uses Chrome's
+own recording/export controls for one owner-operated session. It starts before
+Home navigation and locally blocks RUM delivery while allowing genuine SDK
+execution. It retains trace, sanitized HAR, real SDK/payload bodies when present,
+late Navigation/Resource Timing and current runtime state. The export snippet
+performs no network or storage access and explicitly marks unobserved startup
+visibility/pageshow/readiness/LCP/tasks as unknown. Same-navigation/source checks
+and missing-body handling are explicit. DevTools overhead, normal-profile state
+and lack of ingestion proof remain limits. Navigate to about:blank with blocking
+still active before closing/disabling; no provider or production code changes.
+
+CS01/04/05/08/09/10 apply: guide owns this manual procedure; existing diagnostic
+code/test ownership and all budgets/matrices stay unchanged. Catalog/acceptance
+mapping and RI expose the runbook. Source checks cannot prove native execution.
+Independent I5 review and final-head checks are pending. The one remaining action
+requires the owner's Chrome: record and privately return the three same-document
+exports. Fast/failed capture is retained honestly; no repeat-until-Poor loop.
+
+Prepared checks pass: Basic; bounded style guard94files/zero legacy occurrences;
+RI28/28 and coupling20/20 regressions; map15checks; pinned formatting. Four
+private export-fixture cases verify download/cleanup, preserved unknown/zero
+fields, wrong-origin rejection and missing Navigation Timing rejection. These
+are documentation behavior checks, not browser/native/performance observations.
+Existing diagnostic code and test registry are byte-unchanged from db8eb795.
+
+### I5 initial independent review and corrections
+
+Reviewer `/root/review_lcp_implementation` inspected base db8eb795, prepared diff
+`42dc77403cba1ac52009fe65b87588f856797c553ab328864440d17dd9a62a26`,
+all10 source/10 evidence hashes, live AC11, full diff, actual access receipts and
+snippet behavior. No browser/network probes or file edits were performed.
+
+- F09, Medium/AC11: first-match Request conditions could let a prior throttling
+  rule override RUM blocking and alter the scenario. Correction records/restores
+  prior settings, temporarily disables other rules, puts the two RUM blocks
+  first and restores only after about:blank with final attempts settled blocked.
+- F10, Medium/AC11: suppressed download lost the Timing result because the IIFE
+  returned undefined. Correction returns the original snapshot even if download
+  throws, schedules URL cleanup and gives the immediate Console copy($_) fallback.
+  Relevant suppressed/thrown download cases must preserve identical raw values.
+- Correct the SDK body UI path to request Name →right-click →Copy →Copy response.
+  Remove the unsupported retained-disposal-outcome wording; the receipt contains
+  request failure/finished timestamp only. No new probe supplies missing proof.
+
+The initial review otherwise confirmed startup-evidence limits, normal export,
+zero/unknown preservation, rejection controls and absence of network/storage
+access. Production, diagnostic code/tests and budgets remain unchanged. Correction
+re-review and final-head/live-link checks are required before completing AC11.
+
+Correction fixtures6/6 pass: normal download, silent suppression, thrown click,
+failed object URL, origin rejection and missing Navigation Timing. Console copy
+returns byte-identical JSON to the original serialization in all export/recovery
+cases, preserving startup unknowns and raw zeros; network/storage access count0.
+Snippet SHA256 `8b195b2c256470b23ed1f7528588aac3d5e0c577f86a529e06952d61d5121d7f`
+(first JS fenced block plus final newline). This remains a VM/documentation
+behavior check; no native or performance observation is claimed.
+
+### I5 correction re-review receipt
+
+> **I5 correction approved; no remaining blocking findings.**
+>
+> Reviewed base `db8eb795c2e75c7a4342f3555e46b3a61a63aebf`, staged diff SHA256 `2daaaf73f70a9e0ce5cb6dc5c12ce8b76d7047fcf5ed67d1d1167d6a884726ce`. All10 source and13 evidence hashes match the correction manifest. Inspected snippet SHA256 `8b195b2c256470b23ed1f7528588aac3d5e0c577f86a529e06952d61d5121d7f`.
+>
+> - **F09 resolved:** the guide controls rule precedence, disables other Request conditions, records prior settings and restores them only after navigation to `about:blank` and settled blocked attempts.
+> - **F10 resolved:** download failures preserve the original returned snapshot. The immediate Console fallback exports identical JSON without recollection.
+> - The SDK Copy response path and unsupported disposal-evidence claim are corrected.
+>
+> I independently exercised normal download, silent suppression, thrown click, failed object URL, failed Blob creation, wrong-origin rejection and missing Navigation Timing rejection. Recovery preserved the original JSON despite subsequent simulated runtime changes; startup unknowns/raw zeros remained intact, with zero network/storage access. These are VM behavior checks, not native execution.
+>
+> RI freshness, all15 coupling checks and staged whitespace validation pass. Production, diagnostic code/tests and budgets remain unchanged. Unaffected I5 review scope is retained.
+>
+> **AC11’s preparation requirements are substantively supported and may be completed after final-head checks and live-link verification.** Actual owner-device capture, genuine SDK payload and slow-session evidence remain pending under AC06/AC07. No files were modified or browser/network probes performed.
