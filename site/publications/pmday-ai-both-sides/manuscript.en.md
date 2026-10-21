@@ -2,7 +2,7 @@
 
 *AI Changes Both Sides of Software Engineering*
 
-Vitalii Oborskyi · Editorial draft R19 · 21 October 2026
+Vitalii Oborskyi · Editorial draft R20 · 21 October 2026
 
 ![A solitary person stands before a narrow opening of light between monumental dark walls.](asset:cover)
 
@@ -22,7 +22,7 @@ My talk at UA Online PMDay 2026 Autumn connects two shifts: AI changes **how we 
 
 ## When ideas outlive their authors
 
-Writing let ideas survive their authors. Printing let them cross borders and centuries. [Research on printing and the Reformation](https://digitalcommons.chapman.edu/economics_articles/99/) [3] connects that circulation with consequences beyond book production. Technology changes collective capability, not just task speed.
+Writing let ideas survive their authors; printing carried them across borders and centuries. [Research on printing and the Reformation](https://digitalcommons.chapman.edu/economics_articles/99/) [3] connects that circulation with consequences beyond book production. Technology changes collective capability, not just task speed.
 
 The title echoes Lem's *Summa Technologiae* [31]: the subject is not one machine, but what living with our technology requires.
 
@@ -42,7 +42,7 @@ A demonstration shows that a capability can work. Engineering asks what its use 
 
 ### We accelerated a step. What did the system gain?
 
-The early story was spectacular. [Cognition introduced Devin](https://cognition.com/blog/introducing-devin) [5] in 2024 as the “first AI software engineer”. In March 2025, [Dario Amodei forecast AI writing 90% of code within three to six months](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic) [6], potentially essentially all within a year. Those horizons have passed; this is a forecast, not a verified share. Both accounts retained human responsibilities. Generated code does not measure the whole engineering activity.
+The early story was spectacular. [Cognition introduced Devin](https://cognition.com/blog/introducing-devin) [5] in 2024 as the “first AI software engineer”. In March 2025, [Dario Amodei forecast AI writing 90% of code within three to six months](https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic) [6], potentially essentially all within a year. Those horizons have passed. [The Claude Code team now reports about 90% of its own code is Claude-written](https://claude.dev/blog/solving-code-review-at-anthropic/) [12]—one team's self-report, not a verified industry share. Both early accounts retained human responsibilities. Generated code does not measure the whole engineering activity.
 
 The first readily accelerated activity in many deployments was **code generation**. Delivery requires a chain:
 
@@ -50,13 +50,15 @@ The first readily accelerated activity in many deployments was **code generation
 
 The September revision of [*Writing Code vs. Shipping Code*](https://www.nber.org/papers/w35275) [7], covering more than 500,000 GitHub developers, summarises cumulative estimates as **25.5× changed lines, 3.4× commits and 1.3× releases**. These observational, outcome-specific estimates are not a conversion funnel. Changed lines include additions and deletions; asynchronous-agent releases were not separately estimated.
 
-A roughly 30% release gain matters. But these are different measures, not a price list: changed lines are neither retained code size nor human reading time. **Would you buy faster delivery if the additional review, maintenance and recovery work cost more than the gain?** The study raises that question; it does not answer it for your team.
+A roughly 30% release gain matters. Changed lines measure neither retained code nor human reading time. **Would you buy faster delivery if the additional review, maintenance and recovery work cost more than the gain?** The multipliers cannot answer that for your team.
 
-The bill can arrive later. Unnecessary dependencies, duplication and deferred cleanup can make diagnosis and recovery harder—a plausible risk, not a cost measured by those multipliers. [DORA](https://dora.dev/insights/balancing-ai-tensions/) [8] associates adoption with higher throughput—and greater instability. Assess the gain over the system's life.
+The bill can arrive later. Dependencies, duplication and deferred cleanup can make recovery harder—a plausible risk, not a cost measured here. [DORA](https://dora.dev/insights/balancing-ai-tensions/) [8] associates adoption with higher throughput—and greater instability. Assess gains over the system's life.
 
-Those findings identify no single bottleneck. Suppose a team generates, reviews and integrates eight comparable changes a week. Raise generation capacity to one hundred; keep the others fixed.
+The NBER authors explain the attenuation through a weak-link model: upstream output and downstream human effort are strong complements. This supports examining the whole chain, not identifying review as every team's constraint. Agents reaching later stages may narrow the gap. [7]
 
-Admit every change: delivery stays at eight; unfinished work grows by ninety-two a week. **We become dramatically better at producing unfinished work.** Control intake: the queue need not grow, but delivery remains capped at eight. Faster generation can save effort without proportional throughput gains.
+Suppose a team generates, reviews and integrates eight comparable changes a week. Raise generation capacity to one hundred; keep the others fixed.
+
+Admit every change: delivery stays at eight; unfinished work grows by ninety-two a week. **We become dramatically better at producing unfinished work.** Control intake: the queue need not grow, but delivery stays capped. Faster generation can save effort without proportional throughput gains.
 
 ![Synthetic capacities: generation rises from eight to one hundred changes per week while review and integration remain at eight; the queue grows by ninety-two if every change is admitted.](asset:pmday-slide-03)
 
@@ -64,19 +66,19 @@ This is a Theory of Constraints illustration, not a reproduction of the studies'
 
 [The Subprime Code Crisis](https://github.com/UncertaintyArchitectureGroup/The-Subprime-Code-Crisis) [9] is my synthesis of costs shifted into review, QA, architecture, maintenance and production. The danger is booking local gains before accounting for displaced work and risk.
 
-The narrative now follows the next bottleneck. [Anthropic's Code Review announcement](https://claude.com/resources/articles/code-review) [10] addresses review pressure. [Microsoft's Jay Parikh](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) [11] makes it an instruction:
+The narrative follows the next bottleneck. [Anthropic's Code Review announcement](https://claude.com/resources/articles/code-review) [10] addresses review pressure while explicitly leaving PR approval to people. [Microsoft's Jay Parikh](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) [11] makes it an instruction:
 
 > **“Don’t let code review become a bottleneck”**
 
-His wider call is **“Throw out the old playbook.”** First-pass review moves to agents; people retain architectural oversight. Elsewhere: **“Execution runs on autopilot.”** This redesign must preserve defect detection and understanding while people inspect less implementation detail.
+His wider call is **“Throw out the old playbook.”** First-pass review moves to agents; people retain architectural oversight. He presents provisional rules and warns that shorter shipping cycles leave less time to uncover bugs. The redesign must preserve defect detection and understanding while people inspect less implementation detail.
 
 **What if not?**
 
 Suppose defect detection improves, but incident investigation becomes harder. The approval button survives; the knowledge that gave approval meaning does not. **The queue has cleared. The ownership gap has not.**
 
-Changing the method may preserve those functions—or improve them. [Anthropic reports](https://claude.dev/blog/solving-code-review-at-anthropic/) [12] that merged Claude Code PRs more than doubled while the reverted share fell over 40% between June and September 2026. The team describes layered checks, risk-based approvals and staged release alongside these encouraging internal results.
+Changing the method may preserve those functions—or improve them. [Anthropic reports](https://claude.dev/blog/solving-code-review-at-anthropic/) [12] that merged Claude Code PRs more than doubled while the reverted share fell over 40% between June and September 2026. Approvals bind to a specific commit; an agent cannot fill a required human approval slot. The person landing a small or medium change usually fixes it if it breaks.
 
-They establish neither causality nor portability. A lower reverted share need not mean fewer absolute reversions; neither measure captures shared understanding or every latent defect. The team describes explainers and open working channels, but no formal shared-understanding process or automatic tightening of approvals when incidents or reversions rise.
+These internal results establish neither causality nor portability; a lower reverted share need not mean fewer reversions. Explainers and open channels support knowledge sharing. The team candidly identifies missing formal processes for shared understanding and automatic tightening of approvals—a useful disclosure of limits, not a measurement of every latent defect.
 
 A new equilibrium is possible. Which checks, ownership, knowledge-sharing and recovery practices made it possible—and can we sustain them?
 
@@ -86,9 +88,9 @@ Understanding is not one quantity. Maintainers need context to change code and d
 
 The burden may be more than volume. In a longitudinal matched-control study, [Agarwal, He and Vasilescu](https://arxiv.org/html/2601.13597v2) [13] estimate increases in SonarQube's Cognitive Complexity of **34.85% for agent-first repositories and 42.87% for those with prior AI-IDE exposure**. Their model controls for lines of code; this is neither per-line complexity nor measured human comprehension. [GitClear](https://www.gitclear.com/the_ai_code_quality_maintainability_gap) [14] reports an **81% increase in its normalised duplicated-block measure from the 2023 baseline**—an observational vendor signal, not proof of AI causation.
 
-Complexity bears on the work of understanding. [An empirical validation of Cognitive Complexity](https://arxiv.org/html/2007.12520v1) [32] found associations with comprehension time and perceived difficulty. Interacting conditions and dependencies can make a small change disproportionately harder to reason about; that is an engineering explanation of a risk, not a measured scaling law.
+Complexity bears on understanding. [An empirical validation of Cognitive Complexity](https://arxiv.org/html/2007.12520v1) [32] found associations with comprehension time and perceived difficulty. Interacting conditions and dependencies can make a small change disproportionately hard to reason about; this explains a risk, not a measured scaling law.
 
-There is no universal curve from a static score to human effort. A [smaller study](https://link.springer.com/article/10.1007/s10664-023-10396-7) [33]—three master's students, 32 methods, two applications—found limited prediction accuracy from code measures. That is a bounded counterpoint, not a general disproof. Complexity is a warning, not a direct measure of ownership effort.
+There is no universal curve from a score to human effort. A [smaller study](https://link.springer.com/article/10.1007/s10664-023-10396-7) [33]—three master's students, 32 methods, two applications—found limited prediction accuracy from code measures. This bounded counterpoint reinforces the distinction: complexity warns of difficulty; it does not directly measure ownership effort.
 
 Tools, abstractions and learning can raise comprehension capacity. The operating limit is reached when the team can no longer explain critical behaviour or diagnose and contain failures in time.
 
@@ -100,55 +102,55 @@ Bainbridge's [*Ironies of Automation*](https://doi.org/10.1016/0005-1098(83)9004
 
 #### The explanation will give us the understanding
 
-Ask an LLM to explain the code. Now we trust an implementation and a story that can inherit its mistake. Specifications, code and tests can share a wrong assumption. Agreement is not independent verification; a faithful description does not establish that behaviour meets the business need.
+Ask an LLM to explain the code. Its story can inherit the implementation's mistake. Specifications, code and tests can share a wrong assumption. Agreement is not independent verification; accurate description does not establish that behaviour meets the business need.
 
-Consider a team building an account-recovery assistant. Can a maintainer trace a proposed change from identity policy through permissions and fallback, then diagnose a failed recovery using the actual tools? Connect explanations to exact revisions, observed traces and independent requirements. Record where missing context blocks the exercise. Understanding is a demonstrated capability, not a quantity of Markdown.
+Follow a team building an account-recovery assistant through delivery and operation. Can a maintainer trace a change from identity policy through permissions and fallback, then diagnose a failed recovery? Ground explanations in exact revisions, observed traces and independent requirements. Understanding is a demonstrated capability, not a quantity of Markdown.
 
 #### We can always regenerate the code
 
-Parikh's other blunt heading is **“Code is disposable”**. For a [well-bounded feature](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) [11], replacement may be cheaper than repair and the specification more durable.
+Parikh's **“Code is disposable”** encourages rewriting; for [well-bounded features](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/) [11], he suggests the specification might become the durable artefact.
 
-Now customers cannot recover their accounts. The agent proposes two fixes; neither restores service. A rewrite looks tempting, but existing data and integrations cannot be discarded. Who stops the retries, contains damage and establishes that recovery worked?
+Now customers cannot recover their accounts. Two agent-proposed fixes fail. A rewrite looks tempting, but data and integrations cannot be discarded. Who stops retries, contains damage and verifies recovery?
 
 **Code may be disposable. Your customers' data, obligations and consequences are not.**
 
-Ownership is the ability to investigate, challenge and change the system when abstractions fail—not memorising every line. Rehearse recovery when the preferred agent cannot help: limit retries, preserve diagnostics and name an authorised owner. Measure containment, restoration and data integrity, not merely a successful restart.
+Ownership means being able to investigate, challenge and change the system when abstractions fail—not memorising every line. Rehearse recovery without the preferred agent: limit retries, preserve diagnostics and name an authorised owner. Measure containment, restoration and data integrity.
 
 #### A new equilibrium has to be demonstrated
 
-The baseline deserves the same scrutiny. Human approval alone does not establish understanding. Compare with the workflow you actually operate, including its failures—not an idealised old equilibrium. Improvement over that baseline and compliance with necessary limits are separate requirements.
+Human approval alone does not establish understanding. Compare with the workflow you actually operate, including its failures. Improvement over that baseline and compliance with necessary limits are separate requirements.
 
-Try smaller changes, work-in-progress limits, specifications, AI-assisted review and clearer ownership. Compare review age, rework, stability, demonstrated understanding, recovery and full operating cost. These are candidate interventions, not universal remedies. A faster queue with slower recovery means the cost has changed address.
+Try smaller changes, work-in-progress limits, specifications, AI-assisted review and clearer ownership. Compare review age, rework, stability, understanding, recovery and full operating cost. These are candidate interventions. A faster queue with slower recovery means the cost has changed address.
 
 ### More software is not more value
 
-Suppose the redesigned workflow ships faster and downstream work keeps up. Features can still multiply while the customer's problem remains. Faster implementation does not establish that the assumption behind it was right.
+Suppose delivery now keeps up. Features can still multiply while the customer's problem remains. Faster implementation does not establish that its underlying assumption was right.
 
 Cheap experiments should help us reject weak ideas, not skip that decision. [Kohavi and colleagues](https://www.microsoft.com/en-us/research/publication/online-experimentation-at-microsoft/) [17] report that only about one-third of well-designed Microsoft experiments improved their intended metric—a finding from their setting, not a universal success rate. Deciding not to ship can be a successful outcome.
 
-[NBER](https://www.nber.org/papers/w35275) [7] reports low-usage shares rising from **78% to 87%** for new iOS apps with fewer than ten ratings, and **19% to 33%** for Chrome extensions with fewer than ten downloads. These observational, first-three-month usage proxies measure neither welfare nor AI's causal effect.
+[NBER](https://www.nber.org/papers/w35275) [7] finds more new apps without commensurate growth in their use. The first-three-month cohort proxies differ by platform: iOS ratings stay roughly flat, Android downloads rise modestly and Chrome downloads fall. These observations do not directly measure welfare or establish AI causation.
 
 [METR's 349-person survey](https://metr.org/blog/2026-05-11-ai-usage-survey/) [18] reports median self-assessed speed gains of **3×** and **1.4–2× work-value gains**, depending on wording. Perceived gains matter; they are not direct measurements of either outcome.
 
-The distinction is consequential. In [METR's early-2025 randomised trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) [34], 16 experienced developers completing 246 tasks on familiar repositories took **19% longer** with AI, yet afterwards believed it had made them **20% faster**. That does not describe every developer—or today's tools. A [February 2026 follow-up](https://metr.org/blog/2026-02-24-uplift-update/) [35] suggested speedups, but selection effects and time-accounting problems made their magnitude unreliable. Measure the proposed workflow; neither enthusiasm nor an older negative result settles its value.
+In [METR's early-2025 randomised trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) [34], 16 experienced developers completing 246 tasks on familiar repositories took **19% longer** with AI, yet afterwards believed it had made them **20% faster**. That is not a verdict on today's tools. The [February 2026 update](https://metr.org/blog/2026-02-24-uplift-update/) [35] says selection likely **underestimates speedup**: developers increasingly declined participation or withheld tasks they expected AI to accelerate. METR believes acceleration likely increased, but selection and time-accounting problems leave its magnitude poorly established. Measure the proposed workflow; neither enthusiasm nor an older negative result settles its value.
 
 #### The user's capacity is part of the product
 
-Grant the stronger case: every feature is useful and delivery keeps up. This thought experiment still leaves the customer's capacity to absorb change.
+Grant that every feature is useful. Can the customer absorb the change?
 
 A customer uses the reporting tool monthly; its workflow changes weekly. Each improvement makes sense. Each visit still requires relearning the job. Delivery has accelerated. Attention and learning time have not.
 
-Useful capability is not yet realised value. It must be discovered, understood and incorporated into work. **The comprehension problem has crossed the product boundary—from builders to users.**
+Capability becomes value when people discover, understand and use it. **The comprehension problem has crossed the product boundary—from builders to users.**
 
-AI did not create this burden, but can increase the arrival rate of changes people must learn. [Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related problem: capabilities attractive before use can undermine usability afterwards. It establishes no universal learning rate; daily experts and occasional users face different adjustment costs.
+AI can accelerate changes people must learn. [Feature-fatigue research](https://journals.sagepub.com/doi/abs/10.1509/jmkr.2005.42.4.431) [19] examines a related problem: capabilities attractive before use can undermine usability afterwards. It establishes no universal learning rate; daily experts and occasional users face different costs.
 
-Not every improvement requires learning: better defaults and repaired defects can remove work. Measure task completion, adoption, time to benefit and support burden. Sequence changes people must learn; invest in accessibility, reliability and fewer steps.
+Better defaults and repaired defects can remove work. Measure task completion, adoption, time to benefit and support burden. Sequence changes people must learn; invest in accessibility, reliability and fewer steps.
 
 **Competitive advantage is not how much change we deliver. It is how much better customers can work because of it.**
 
 ### Rebalancing around human capability
 
-The chain reaches into maintenance, incident response and the customer's working day. Sustainable gains require access to consequential decisions and dependencies, diagnostic practice and time to use both. Otherwise, we build a system we can change faster than we can responsibly operate.
+Sustainable gains require access to consequential decisions and dependencies, diagnostic practice and time to use both. Otherwise, we build a system we can change faster than we can responsibly operate.
 
 ## II. What We Build
 
@@ -160,13 +162,13 @@ Return to the account-recovery assistant, now interpreting requests, retrieving 
 
 In my [Uncertainty Architecture](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture) [20] framework, this is a [*Thinking System*](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/uncertainty-in-the-controlled-object.md) [21]: at least one consequential runtime responsibility depends partly on probabilistic model judgment. The name describes implementation, not consciousness or safety.
 
-Consider six assumptions a design may rely on. Each must become a condition we can test and sustain, not a promise we stop examining after release.
+Consider six assumptions a design may rely on. Each needs testing and continued justification after release.
 
 ### We will tell the model what it must not do
 
-Supply approved guidance and prohibit invented steps, restricted disclosure and bypassed authorisation. Those instructions should bound the assistant's judgment.
+Supply approved guidance; prohibit invented steps, restricted disclosure and bypassed authorisation. The instructions should bound the assistant's judgment.
 
-Conflicting documents can lead it to the wrong guidance. An attacker can make the conflict deliberate: plant instructions in retrieved material, posing as recovery policy and urging it to skip identity checks. The assistant treats source content as authority. This hypothetical attack follows the indirect prompt-injection mechanism demonstrated by [Greshake and colleagues](https://arxiv.org/abs/2302.12173v2) [22].
+An attacker plants instructions in retrieved material, posing as recovery policy and urging the assistant to skip identity checks. It treats source content as authority. This hypothetical attack follows the indirect prompt-injection mechanism demonstrated by [Greshake and colleagues](https://arxiv.org/abs/2302.12173v2) [22].
 
 A prompt prohibition is not an enforced boundary. Specify when to answer, clarify or escalate. Restrict retrieval, enforce permissions outside model judgment and test hostile inputs. Retrieved text cannot grant itself policy status or expand permissions. [OWASP's guidance](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) [23] likewise emphasises trust boundaries and least privilege; no single layer guarantees immunity.
 
@@ -188,9 +190,9 @@ Ninety-eight percent acceptable. The tempting conclusion: ready to take responsi
 
 The percentage is correct; the release decision is wrong. Under a rule prohibiting that disclosure, the candidate fails. The other responses cannot cancel the consequence.
 
-The **disclosure class** is **1/200: 0.5% observed, with an approximate 95% Wilson interval of 0.09%–2.78%**. [24] It is not necessarily the only critical failure: an incorrect recovery instruction can also enable harm. All four unacceptable responses give 2%, with an interval of about 0.8%–5.0%; pooling them does not make their consequences equivalent.
+The **disclosure class** is **1/200: 0.5% observed, with an approximate 95% Wilson interval of 0.09%–2.78%**. [24] Incorrect instructions can also cause critical harm. Pooling all four unacceptable responses as 2% does not make their consequences equivalent.
 
-Those intervals assume independent, representative sampling, reliable classification and stable conditions. They quantify uncertainty, not permission. A curated *Golden Set* tests known requirements and difficult cases; it need not represent production.
+The interval assumes independent, representative sampling, reliable classification and stable conditions. It quantifies uncertainty, not permission. A curated *Golden Set* tests requirements and difficult cases; it need not represent production.
 
 Even 3,000 failure-free trials give only a one-sided 95% upper bound near 0.1% under those assumptions. [24] Rates from ordinary traffic do not establish resistance to an attacker choosing and adapting inputs. Test those threats separately.
 
@@ -198,17 +200,17 @@ Evaluation supplies evidence. Severity, coverage, uncertainty and enforceable li
 
 ### Another model will check the first one
 
-A second model may catch errors the generator misses—or accept the same misleading document and unsupported premise. Another invocation supplies a verdict, not independent evidence.
+A second model may catch an error—or accept the same misleading document. Another invocation supplies a verdict, not independent evidence.
 
 [Knight and Leveson](https://doi.org/10.1109/TSE.1986.6312924) [25] found more coincident failures in independently implemented programs than independence predicted. This historical warning is not a measurement of modern LLM error correlation.
 
-Test the checker against verified failures, valid outputs and shared-error cases. Measure missed errors and unnecessary blocks. Enforce permissions separately. Timeout or uncertainty must trigger a defined wait, denial or fallback—not become authorisation.
+Test verified failures, valid outputs and shared-error cases. Measure missed errors and unnecessary blocks; enforce permissions separately. Timeout or uncertainty must trigger a defined wait, denial or fallback—not become authorisation.
 
 ### We will monitor it and roll back
 
 The alert may arrive after disclosure or after an employee follows unsafe instructions. Reverting the model erases neither. **Recovery worked; the assumption that it could contain this harm did not.**
 
-Enforce critical limits before action. Observe outputs, denials, fallbacks, reviewer queues and control health. An authorised owner needs a tested way to narrow or stop operation and verify the intervention. [NIST's AI RMF](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) [28] treats monitoring, response and recovery as operational responsibilities.
+Enforce critical limits before action. Observe outputs, denials, fallbacks, reviewer queues and control health. An authorised owner must be able to narrow or stop operation and verify the result. [NIST's AI RMF](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) [28] treats these as operational responsibilities.
 
 If intervention cannot beat the consequence, restrict authority, redesign or reject the path. Monitoring cannot prevent harm it only reports afterwards.
 
@@ -218,31 +220,31 @@ If intervention cannot beat the consequence, restrict authority, redesign or rej
 
 **What if not?**
 
-The escalation queue is unattended at night. At peak load, reviewers cannot keep up. A tired reviewer approves a polished summary without seeing the evidence. The path exists. The capacity to operate it does not.
+The queue is unattended at night. At peak load, reviewers cannot keep up. A tired reviewer approves a polished summary without seeing the evidence. The path exists. The capacity does not.
 
 [Parasuraman and Manzey](https://doi.org/10.1177/0018720810376055) [26] connect automation complacency to attention and competing tasks, and document bias in novices and experts. Experience and instructions are insufficient guarantees. Bainbridge's trap returns: difficult exceptions reach someone with diminished practice. [16]
 
 **If safe operation depends on human judgment, human capability is an architectural dependency.**
 
-Account for staffed availability, competence, queue capacity, cognitive load, evidence and the power to refuse. Measure queue wait plus decision time under normal and peak demand against the intervention window. People are not interchangeable APIs; agency and time to rebuild context belong in the design.
+Account for staffing, competence, queue capacity, cognitive load, evidence and the power to refuse. Measure queue wait plus decision time against the intervention window, including peak demand. People need agency and time to rebuild context.
 
 An escalation policy cannot staff a queue. Human response capacity is an operating cost and release condition—not a free resource supplied by the organisation chart.
 
-Human-factors research grounds the problem. [Uncertainty Architecture's control-loop anatomy](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md) [27] supplies my architectural framing of human response time, capacity and decision quality. We are engineering a **socio-technical stack**, not software plus an oversight footnote.
+[Uncertainty Architecture's control-loop anatomy](https://github.com/UncertaintyArchitectureGroup/uncertainty-architecture/blob/22639d311d5fb46a23f3d5cdd819800dbe1169d9/00-doctrine/control-loop-anatomy.md) [27] supplies my architectural framing of these human-factors concerns. We are engineering a **socio-technical stack**, not software plus an oversight footnote.
 
-Make it concrete: the application denies the assistant any account-access change unless a qualified person has approved that specific action. The model cannot grant or bypass that authorisation. An unavailable reviewer must never turn waiting into approval.
+The application denies any account-access change until a qualified person approves that specific action. The model cannot bypass authorisation. An unavailable reviewer must never turn waiting into approval.
 
-That still leaves the danger of someone following unsafe advice. When no qualified reviewer is available, the application suppresses model-generated recovery advice and displays a fixed, preapproved message directing the requester to the verified recovery channel. The model cannot select another procedure, add steps or expose account-specific information. Case-specific recovery waits for the staffed process.
+Unsafe advice remains a danger. Without a qualified reviewer, the application suppresses model-generated recovery advice and displays a fixed, preapproved message directing the requester to the verified recovery channel. The model cannot change the procedure, add steps or expose account-specific information. Case-specific recovery waits for the staffed process.
 
-A bounded release can provide verified routing while withholding account-specific recovery. Test the fixed output path, isolation from account data and the receiving process's capacity. Broader advice or action needs separate evidence and approval.
+A bounded release can provide routing while withholding account-specific recovery. Test the fixed output, isolation from account data and receiving process's capacity. Broader advice or action needs separate evidence and approval.
 
 ### The conditions will remain valid after release
 
 “It passed before release.” Then the model or provider routing changes, retrieval acquires conflicting material, or demand overwhelms reviewers. No application commit is required for yesterday's evidence to stop describing today's system.
 
-Record the model, data, permissions, workload and human coverage the evidence supports, with reassessment triggers. Turn incidents into regression cases; retest controls and capacity; revisit authority when its justification changes.
+Record supported model, data, permissions, workload and staffing conditions, with reassessment triggers. Turn incidents into regression cases; retest controls and capacity; revisit authority when its justification changes.
 
-**Release authorises operation under particular conditions. It cannot make those conditions permanent.** Sustain both the grounds for delegated authority and the human capability to judge when they no longer hold. The context, time and power to restrict, repair or stop the system are part of what we build.
+**Release authorises operation under particular conditions. It cannot make those conditions permanent.** Sustain the evidence for delegation and people's ability to judge when it no longer holds. The context, time and power to intervene are part of what we build.
 
 ![Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.](asset:pmday-slide-12)
 
@@ -252,15 +254,15 @@ The person handling the next incident needs more than a green dashboard: what ch
 
 In delivery, we delegate work that changes the system; in the product, judgments within its operation. Either can leave people unable to explain a failure or create irreversible harm. The distinction locates delegated authority, not exclusive consequences.
 
-**A working recovery mechanism is not the same as a recoverable consequence.** Reverting software cannot retrieve disclosed information or erase an action someone took on its advice.
+**A working recovery mechanism is not the same as a recoverable consequence.**
 
 Small releases and rapid learning remain valuable. [Canary releases](https://sre.google/workbook/canarying-releases/) [29] make exposure, evaluation and the decision to expand explicit. The same discipline asks whether we can detect trouble and intervene before the unacceptable consequence.
 
-Agile's [principles](https://agilemanifesto.org/principles.html) [30] connect agility with technical excellence, good design and a sustainable pace. A release cadence cannot explain interacting dependencies, accumulating maintenance costs or whether intervention will work after the original team moves on. **“We will iterate” is not an answer to a consequence we cannot reverse.**
+Agile's [principles](https://agilemanifesto.org/principles.html) [30] connect agility with technical excellence, good design and a sustainable pace. Cadence alone cannot establish maintainability or recovery after the original team moves on. **“We will iterate” is not an answer to a consequence we cannot reverse.**
 
 When adoption outpaces verification, containment and recovery, the cost of learning leaves the experiment. The people and organisations exposed to it pay.
 
-Vendors owe adopters usable evidence, clear limits and visibility into consequential changes. Their specialists do not staff your incident response. Different commitments, resources and exposure can make their tolerable experiment unacceptable for your customers. **Their confidence is not your risk acceptance.**
+Vendors owe adopters usable evidence, clear limits and visibility into consequential changes. Different resources, commitments and exposure can make their tolerable experiment unacceptable for your customers. **Their confidence is not your risk acceptance.**
 
 Lem's warning applies across that chain:
 
@@ -270,17 +272,17 @@ Lem's warning applies across that chain:
 
 **The more power we delegate, the more rigour we owe the systems that will bear its consequences.** That obligation includes funding the human capability on which control depends.
 
-I want this to work. Less drudgery, better verification and previously unaffordable software are worth pursuing. For the account-recovery team, make the next decision explicit. These are **illustrative pilot limits**, not measured results or universal safety thresholds.
+I want this to work. Less drudgery, better verification and previously unaffordable software are worth pursuing. For the recovery team, these **illustrative pilot limits** make the next decision explicit; they are not measured results or universal safety thresholds.
 
 | Decision | Evidence and limit | Action if the limit fails |
 | --- | --- | --- |
 | Increase AI-assisted implementation | Improve median change-to-release time against a four-week baseline; no increase in p90 review age or escaped defects per comparable change; maintainer passes recovery rehearsal. | Cap intake and investigate. Generated lines do not justify expansion. |
-| Permit account-specific advice/action | No prohibited disclosure, identity-check bypass or unapproved access change in required ordinary/adversarial tests. Classify incorrect advice by consequence. | Reject the broader path. Test success alone does not authorise it. |
+| Permit account-specific advice/action | Verify enforced access boundaries and approval before advice/action. Define populations, failure classes and justified risk limits before testing. Report trial/failure counts; require one-sided 95% upper bounds to meet those limits where sampling assumptions hold. Check adversarial coverage separately. | Any prohibited disclosure, bypass or unapproved change rejects the candidate. Missing or insufficient evidence keeps routing only; 0/3,000 is not a release rule. |
 | Rely on a reviewer | Approval must precede case-specific advice/action. Exercise a ten-minute timeout at peak load; this is a service deadline, never permission for unsafe output. | Fixed, preapproved routing only; no account-specific information. |
 | Recover control | Rehearse stopping, diagnostics and data-integrity checks. Any observed prohibited disclosure or access change stops the broader path immediately. | Contain the incident; rollback cannot undo disclosure. |
 | Expand the pilot | After four weeks, review useful recovery completions, support load, full cost, defects and control tests. Reassess after model, retrieval, permission or staffing changes. | Extend observation, narrow or redesign. An uneventful month cannot establish rare-event safety. |
 
-Faster implementation does not authorise broader runtime judgment. The two decisions require different evidence. Rehearse both an agent unable to repair its error and an absent human controller; where intervention would arrive too late, constrain the system before exposure.
+Faster implementation does not authorise broader runtime judgment. Rehearse an agent unable to repair its error and an absent human controller; where intervention would arrive too late, constrain the system before exposure.
 
 Evidence should change the adoption decision—including mine. A warning that refuses to change with evidence is not engineering either. Expand what works. Restrict or redesign what does not.
 
@@ -322,7 +324,9 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 7. [Mert Demirer, Leon Musolff and Liyuan Yang. “Writing Code vs. Shipping Code: Productivity Effects Across Generations of AI Coding Tools.” NBER Working Paper 35275 (2026; September revision).](https://www.nber.org/papers/w35275) · [Author-hosted full text](https://www.mertdemirer.com/Papers/Demirer_Writing_vs_shipping_code.pdf)
 
-    Table 6, printed p. 33: weeks 21–30, pre-period-normalised, winsorised event-study estimates. Cumulative multipliers: lines 1 + (234.3 + 957.5 + 1254.9)/100 = 25.467; commits 3.441; releases 1.288 (no separate async estimate). Outcome samples differ. Figure 1 rounds these to 25.5, 3.4 and 1.3. Marketplace figures: §7.2.3, January 2025–April 2026 cohorts. Observational working paper, not peer-reviewed.
+    Table 6, printed p. 33: weeks 21–30, pre-period-normalised, winsorised event-study estimates. Cumulative multipliers: lines 1 + (234.3 + 957.5 + 1254.9)/100 = 25.467; commits 3.441; releases 1.288 (no separate async estimate). Outcome samples differ. Figure 1 rounds these to 25.5, 3.4 and 1.3. Section 6.3 calibrates the weak-link model to the autocomplete pattern, giving substitution elasticity about 0.23; this is a model-dependent estimate, not a measured universal review constraint. Agents can intervene at later layers, so the gap may narrow.
+
+    Marketplace §7.2.3, pp. 45–46: first-three-month usage proxies for new cohorts, not all installed software or welfare. From January 2025 to April 2026, shares below ten ratings rise from about 78% to 87% for iOS apps; shares below ten downloads rise from 19% to 33% for Chrome extensions. Platform usage trends differ, and slow adoption or scarce attention are possible explanations. Observational working paper, not peer-reviewed. On the NBER page, Demirer and Musolff disclose previous Microsoft postdoctoral positions and current paid research consulting for Microsoft; developer-level data concern GitHub users.
 
 8. [Jessica Baolin and Nathen Harvey / DORA. “Balancing AI Tensions: Moving from AI Adoption to Effective SDLC Use” (10 March 2026; analyses the 2025 report).](https://dora.dev/insights/balancing-ai-tensions/)
 
@@ -334,13 +338,15 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 10. [Anthropic. “Bringing Code Review to Claude Code” (9 March 2026).](https://claude.com/resources/articles/code-review)
 
+    First-party product announcement and internal usage claims, not independent effectiveness evidence. It explicitly leaves PR approval to humans. Its March product description is distinct from the October team's risk-tiered workflow in [12].
+
 11. [Jay Parikh / Microsoft. “Introducing Command Line, and the new rules for builders” (2 June 2026).](https://commandline.microsoft.com/new-rules-for-builders-agentic-ai-development-jay-parikh-build-2026/)
 
-    The opening supplies the old-playbook instruction; sections 8 and 10 supply the review and disposability headings, and section 3 the autopilot phrase. These passages are quoted separately, not combined into a statement that review itself is just an obsolete habit. First-pass review moves to agents, human architectural oversight remains, and the disposability argument is limited to well-bounded features. These are not a blanket claim that all code review is unnecessary.
+    First-party engineering guidance, explicitly provisional. The opening supplies the old-playbook instruction; sections 8–10 cover first-pass agent review with human architectural oversight, shorter bug-detection buffers and rewriting bounded features whose specifications may endure. The opening also discusses post-deployment learning, which is related to but not identical with consequential runtime judgment.
 
 12. [Addy Osmani, Morgan Westlee Lunt and Qing Wang / Anthropic. “How the Claude Code team does code review” (15 October 2026).](https://claude.dev/blog/solving-code-review-at-anthropic/)
 
-    Internal June–September 2026 comparison, not an external causal or portability study. Reverted share and absolute reverted volume are different measures.
+    First-party team account: about 90% Claude-authored code and the June–September comparison are self-reported, not an industry share or an external causal/portability study. Reverted share and absolute volume differ. Described practices include layered checks, risk-tiered approvals, staged release, approval bound to a commit and no substitution of an agent for a required human reviewer. Fixing one's own small/medium change is usually a team norm. The authors explicitly acknowledge gaps in formal shared-understanding processes and automatic tightening of approvals.
 
 13. [Shyam Agarwal, Hao He and Bogdan Vasilescu. “AI IDEs or Autonomous Agents? Measuring the Impact of Coding Agents on Software Development.” arXiv:2601.13597v2 (27 January 2026).](https://arxiv.org/html/2601.13597v2)
 
@@ -430,21 +436,21 @@ Numbers beside named links connect claims to these sources. Source notes disting
 
 35. [Joel Becker, Nate Rush, Tom Cunningham, David Rein and Khalid Mahamud / METR. “We are Changing our Developer Productivity Experiment Design” (24 February 2026).](https://metr.org/blog/2026-02-24-uplift-update/)
 
-    Later point estimates suggested shorter task times, but confidence intervals included no improvement. Participant/task selection, changed compensation and concurrent-agent time accounting limit interpretation. METR considers these data only weak evidence of the size of the change.
+    Later point estimates suggested shorter task times, but confidence intervals included no improvement. METR says refusal to work without AI and selective task submission likely bias the speedup estimate downwards, and believes acceleration likely increased by early 2026. Changed compensation and concurrent-agent time accounting add uncertainty. These data remain weak evidence of the increase's magnitude; the direction of likely selection bias is not a proven current effect size.
 
 ## How to cite this draft
 
-Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R19, 21 October 2026.
+Oborskyi, V. (2026). *The Sum of Our Technology: AI Changes Both Sides of Software Engineering*. Editorial draft R20, 21 October 2026.
 
 Unpublished author-review edition. Cite the revision; no DOI or final publication URL has been assigned.
 
 ```bibtex
-@misc{oborskyi2026sumR19,
+@misc{oborskyi2026sumR20,
   author = {Oborskyi, Vitalii},
   year = {2026},
   title = {The Sum of Our Technology:
            AI Changes Both Sides of Software Engineering},
-  note = {Editorial draft R19, 21 October 2026; unpublished}
+  note = {Editorial draft R20, 21 October 2026; unpublished}
 }
 ```
 
