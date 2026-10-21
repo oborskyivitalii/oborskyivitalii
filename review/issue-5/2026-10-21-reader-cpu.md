@@ -266,3 +266,137 @@ establish native reader lifecycle, performance, physical-device or hosted proof.
 No new-runtime performance acceptance, merge or publication approval is provided
 by this source review. AC08/AC11/AC12 whole-feature and original gates remain
 open pending their actual evidence.
+
+## Exact-source verification correction
+
+The first clean current-source run on7f554d5b built Color/staging and passed Basic.
+Owning policy returned10/12 PASS: DELIVERY and CONTENT-LANES each surfaced the
+same missed current-runtime assertion in release-controller.test.cjs, expecting
+the prior R21 producer-only tuple. This failed attempt remains intact. Runtime
+behavior and original limits are unchanged. The current production assertion,
+staging regression fixture and complete reader evidence-family inventory now
+include CPU tuples while historical R21 coverage stays. A corrected source
+receives independent focused review and a fresh exact-source policy run.
+
+Independent correction review also caught the active `modern=true` publication
+rights fixture still asserting the earlier deferred-media tuple (RF03). Its one
+current expectation now binds CPU plain/staging, preserving the historical()
+branch and every frozen historical rights case. Required publication-records
+coverage is executed before final freeze.
+
+## Verbatim source transport and corrective review
+
+## Published-source transport receipt
+
+Independently verified fetched published source
+`7f554d5bf71130a442cc76dfbb76c1edcb203b6f`, tree
+`029d72cbbfaf48bfa11c0fae8d25bffbee3fb1f9`, parent
+`e8c388773ec81d8f3a727b6177cb4ceacff82d5b`.
+Local transport commit `b93a5929e515f49342cf7a820e3b56db994a8667` has the
+identical tree and parent, matching `pr79-cpu-source-transport.json`; the current
+checkout is the published commit and its working tree is clean.
+
+Compared with reviewed prepared tree `c6e9e42f41da40d6bd3ee9dad6cb27c29914fdb1`,
+the only three changed files are the review route, MEMORY and generated RI context.
+The complete prior scratch report is present verbatim in the published route.
+The additional 60-frame parity paragraph matches the retained raw scope and
+explicitly disclaims performance acceptance. MEMORY records the reviewed result;
+RI changes only its corresponding two input hashes and aggregate digest. Both
+published input hashes independently match their source bytes. Runtime, tests,
+tuple/rights owners, output lock, catalog, RI/CI map and generated HTML/runtime
+remain byte-identical to the reviewed substantive source. All ten explicitly
+rechecked source/integration SHA256 values match the final identity manifest.
+
+No new blocking source finding or substantive identity change was found.
+The earlier independent source review applies to this exact published commit.
+No reviewer browser/scanner was run and no runtime performance result is inferred;
+parent-owned current-source/artifact/browser/strict-matrix evidence remains a
+separate gate.
+
+## Corrective test-identity iteration
+
+The first exact-source owning-policy run on `7f554d5bf71130a442cc76dfbb76c1edcb203b6f`
+is retained at `pr79-opt-cpu-r21-source-checks/issue-5-acceptance.json` and reports
+10/12 checks passing. Independent inspection confirms DELIVERY and CONTENT-LANES
+both failed the same release-controller assertion: an actual freshly derived
+`issue5-reader-cpu-production` tuple was compared with the previous
+`issue5-review-markdown-production` expectation. The other ten checks, including
+Basic, PUBLISHER, READER, CURRENT-RI, RI-CI and STYLE-GUARD, passed. This failed
+attempt is not relabeled successful, and its source result does not establish
+whole acceptance.
+
+The three proposed test corrections are appropriate by independent source review:
+the production release test builds current `docs` through `delivery.source`
+and still checks runtime/body/analytics parity and all wrong-variant negatives;
+only its exact current-family expectation changes. The staging regression reads
+the actual current `docs/site-revision.json` and derives current authored Color,
+so its reviewed tuple must likewise be CPU; wrong runtime/variant/engine and
+descriptor conflicts are still rejected. Adding CPU to the complete browser
+evidence-family table expands valid/negative interaction, paper, whole-block,
+deferred-resource and history evidence coverage for base and all edition
+fingerprints while retaining every prior family. No validator, budget, schema,
+right or behavior was weakened. Parent's full three-file log
+`pr79-cpu-final-fixtures.log` reports 64/64 pass, zero failures/skips; reviewer
+inspected that result and did not duplicate these runs.
+
+Further independent consumer search found another active current-fixture
+assertion. Its original evidence and corrected disposition are retained below:
+
+| ID | Severity | Evidence and implication | AC / style | Disposition |
+| --- | --- | --- | --- | --- |
+| RF03 | Medium, initially blocking | `tests/fixtures/publication-records.cjs:117–126` modern branch built current docs through `delivery.source`/`staging` but asserted `issue5-reader-deferred-media-(plain|staging)`. `tests/publication-records.test.cjs` invokes that branch in current licensed-family/records/Pages cases. The maintained registry marks this suite permanent and selected for PR-targeted/staging/production; its source depends on changed Color admission. The frozen historical branch is separate and must retain its pinned baseline. | AC11, AC12; CS08, CS10 | Resolved on independent re-review: only the modern current expectation now names CPU. Frozen historical branch/identity and assertions remain unchanged. Parent full publication-records suite 25/25 passes, zero failures/skips; original three-file and owning-policy failures/results remain retained. |
+
+Parent was notified promptly. No additional browser, performance matrix or heavy
+scanner was run by the reviewer.
+
+## Final corrective-iteration receipt
+
+Independent non-implementing reviewer `/root/reader_cpu_review` re-read the four
+corrected test owners and their callers/fixtures. RF03 is resolved and no new
+blocking source finding remains in this corrective iteration. The only four
+substantive changes are two current-derived tuple expectations, the CPU family
+added to existing browser evidence coverage, and the modern current publication
+fixture expectation. This corrects integration coverage without loosening any
+runtime, validation, admission, edition, rights or performance condition.
+
+The bounded current-consumer audit searched active `site/`, `tools/` and `tests/`
+for the prior review-markdown/deferred-media families and the new CPU family,
+then inspected direct `reviewedRuntime`/selection assertions and maintained
+fixture/test dispositions. Remaining old-family IDs are historical registry,
+rights or positive/negative lineage matrices. In particular,
+`reader-controller.test.cjs:210` reads the retained
+`reader-staging-package.json.gz` and correctly retains its frozen fast-media
+expectation. No additional stale current-family assertion was identified in
+this scope; this is not a claim about arbitrary computed consumers.
+
+Parent-executed complete suites were inspected: three fixture/controller/evidence
+files 64/64 pass (`pr79-cpu-final-fixtures.log`), and publication records 25/25
+pass (`pr79-cpu-final-publication-records.log`), all with zero failures/skips.
+The latter took 136.3s because pinned historical Git blobs needed fetching;
+the read-only prefetch did not alter source. No duplicate heavy run was performed
+by this reviewer. The original 10/12 owning-policy report on `7f554d5b` remains
+a failure; a fresh exact-source policy run is still required.
+
+Reviewed corrective patch identity, relative to published parent
+`7f554d5bf71130a442cc76dfbb76c1edcb203b6f`: SHA256
+`1b6dc7e568365306f4b35747aac66b44f4b555e87a1d13fdf6dddfac0e62814d`
+for `git diff --binary` restricted to these four owners. Exact byte identities:
+
+| Owner | SHA256 |
+| --- | --- |
+| `tests/release-controller.test.cjs` | `4e2d0c4c9abe42692a213d2951902395ab15ec4627253d96d7a2fe0ce1b16461` |
+| `tests/staging-regression.test.cjs` | `e177b2066ae96bf89a595dd95128f8b9b6f5e220d6a4ce62b0d60423f4f8c880` |
+| `tests/article-browser-evidence.test.cjs` | `5d8dbcaefed41799f8d6dba3e3901245dccfb5fd2940cfaaf9cbfb17ff7ae2e7` |
+| `tests/fixtures/publication-records.cjs` | `6b1357eed9f2e2ebaef000c7d73ff74dd057eafa3320018ef31b2c22259195f2` |
+
+The current dirty prepared candidate contains exactly these test changes, retained
+failure/review documentation and derived RI metadata. Runtime, generated output,
+publishing/content owners, output lock, catalog, MEMORY and repository map remain
+byte-identical to `7f554d5b`; existing runtime review and native pixel evidence
+retain their exact byte scope. RI/CI source digest is
+`5038abb38496603c7c1e477480951df89a4f2e09e164f0eaae20e8dfed991b5f`.
+The exact correction manifest is
+`pr79-cpu-independent-test-correction-identity.json`. Review-only receipt append
+and deterministic RI refresh may follow; any material source/claim change needs
+affected re-review. This receipt does not replace fresh source/artifact/browser/
+strict-matrix evidence or whole AC08/AC11/AC12 and original owner gates.

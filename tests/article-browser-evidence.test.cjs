@@ -520,6 +520,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-reader-fast-media',
     'issue5-reader-loading',
     'issue5-reader-deferred-media',
+    'issue5-reader-cpu',
     'issue5-review-markdown',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(

@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "b627392f0f8b1b03d692ab113afd03d7507a38af8f5147168349213b750fff5a",
+    "digest": "3aec0459d80adad4300035496bc7f981a2c0046e32dc56b1a0c923d1dc090ea6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -181,7 +181,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "dce07d05e12f73e23ca8795bbcaf6922e942e80d8b4b7ff49121554f98042717"
+        "sha256": "5ca2af29c3aeb357e9c082135a7a9922cda51dafc61c73ee625c8a423a2248e6"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1515,7 +1515,7 @@
       {
         "path": "review/issue-5/2026-10-21-reader-cpu.md",
         "identity_mode": "content",
-        "sha256": "c20dfcd21e7f708e8e697ceb8d30937d5223091229bbb5429680fad2cb8e69b5"
+        "sha256": "3464b6df2a80a1b465e256a0d161faa1d208f645ce7b54992790dcf2b46dd3f1"
       },
       {
         "path": "review/issue-5/2026-10-21-reader-loading.md",
@@ -6595,7 +6595,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "5bd0f097f3c42f7868dfa0fe8d704dec3f9ee59df2c59546c000732a73266f97"
+        "sha256": "5d8dbcaefed41799f8d6dba3e3901245dccfb5fd2940cfaaf9cbfb17ff7ae2e7"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -6765,7 +6765,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "6ba64f591bcacded0f8e70c01ddcfe46a952871e0fae903e35a24a79ccdb4511"
+        "sha256": "6b1357eed9f2e2ebaef000c7d73ff74dd057eafa3320018ef31b2c22259195f2"
       },
       {
         "path": "tests/fixtures/reader-staging-gate.json.gz",
@@ -6940,7 +6940,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "e549ebfb0d7dcfe2bf1ace49c61f5718329f30f8cb01c6369a682a460bb819e3"
+        "sha256": "4e2d0c4c9abe42692a213d2951902395ab15ec4627253d96d7a2fe0ce1b16461"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -7005,7 +7005,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "c78b98ae25baf3e8e70a159d3c113393dafae28e80d575fbf3c8bbc0901b336c"
+        "sha256": "e177b2066ae96bf89a595dd95128f8b9b6f5e220d6a4ce62b0d60423f4f8c880"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
