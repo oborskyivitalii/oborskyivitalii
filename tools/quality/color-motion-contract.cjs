@@ -5,6 +5,19 @@
 const assert = require('node:assert/strict');
 const common = require('./common.cjs');
 const families = {
+  // Native lazy figure scheduling changes build identity; all runtime bytes stay unchanged.
+  issue5ReaderLoading: {
+    behavior: 'fixed-blocks',
+    articleReading: 'stationary',
+    readerInteractions: true,
+    readerWholeBlocks: true,
+    readerPaper: true,
+    baseEngine: '8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079',
+    theme: '6500c6baeb508580d979b799fe8f2db5a031bc8cec6461da6c5598d28275de5a',
+    space: '470e7ee294aa005ae84e71e5d2087eea0e07f289ab86d357823be94f291f6e8e',
+    navigation: 'def30421363bb90dd537cccf4f0c734d281c61050067d3f1fa434c9a01a7f4a1',
+    archive: '24691f49c8c0b458958de6422396af4a6ea73f2d6bffa610e4f0ca788b04f383',
+  },
   // Build-time reader correction; browser scripts and paper paint are unchanged.
   issue5ReaderFastMedia: {
     behavior: 'fixed-blocks',
@@ -366,6 +379,27 @@ const families = {
   },
 };
 const runtimes = [
+  {
+    id: 'issue5-reader-loading-production',
+    family: 'issue5ReaderLoading',
+    edition: 'production',
+    fingerprint: '57d1253ed040753d3aca8995288e44e2ed9652a4090677eeaeeab8b619619749',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-loading-plain',
+    family: 'issue5ReaderLoading',
+    edition: 'plain',
+    fingerprint: 'bc1db661894c706dee0482d7d367dbb66dc2c8c4d25630e114f6a3781c1fbd1b',
+    styles: 'feec1cfd6dc5c920f2a2cbfd8a0f7b4b97b273315aa8b57d6591e65aff4aea20',
+  },
+  {
+    id: 'issue5-reader-loading-staging',
+    family: 'issue5ReaderLoading',
+    edition: 'staging',
+    fingerprint: 'fd838abc67a14285ffc66d7177db752884cf67c20a3a8938f6a6c5caa7df0ef9',
+    styles: 'f742ff9a2e9e0bf2d1f3a8662f3c3080b77fed8c35cf746a8be90ccc8f2b9379',
+  },
   {
     id: 'issue5-reader-fast-media-production',
     family: 'issue5ReaderFastMedia',

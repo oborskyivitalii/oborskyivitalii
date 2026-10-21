@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "204893c7f0acb56602a3942b205ff6f090c6937f5fa60e383f688a5f6fd99811",
+    "digest": "156462f62889799ec368e348f70d58c1ae08ec74315ce21577e1b058637d730d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -181,7 +181,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c6e0e1f9c903d5cbdf90a12916b39c39c64ce50940a01aca8b2ebbf13d53261c"
+        "sha256": "a3d53c362a37288bc4892a96930fbf2c8411b9d91d2f5bc65945b6690da3d9a8"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1485,7 +1485,7 @@
       {
         "path": "review/issue-5/2026-10-21-reader-loading.md",
         "identity_mode": "content",
-        "sha256": "63643112a89382ab23885032e9641267e8ef22ca78a898a29f02f5a7a5cac24e"
+        "sha256": "ef12bf6e1d24e754dfa7d68e744cd6723fce66e8cc57c38daef1a640c36b74b4"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6545,7 +6545,7 @@
       {
         "path": "tests/article-browser-evidence.test.cjs",
         "identity_mode": "content",
-        "sha256": "9f1b77bc22b9366895b1a48c91c67869db33e75a99633b5b2a770043f7e44d14"
+        "sha256": "173efea7b91b295f0ccce142e6ad01440e6bd547c18765d33b605ea0f47a1f4c"
       },
       {
         "path": "tests/article-budgets.test.cjs",
@@ -6630,7 +6630,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "0b815858f7746ed65ad92d52bf3ca21f2d8dc64650404fa3681c61e8ad599cef"
+        "sha256": "7dcc4c002f72fd310e43a33d304e663e8b03bbf3a5bc89db3ab9f2191221d7ab"
       },
       {
         "path": "tests/content-baseline.test.cjs",
@@ -6715,7 +6715,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "f0348f9a635f82af8f7d6e6336dcae553b3c0af4105d5d3079d41037a02295a0"
+        "sha256": "19a455c62a23f2ae95a4e51da6654bf1cf4b4a2ee019e2b01862f4557139436d"
       },
       {
         "path": "tests/fixtures/reader-staging-gate.json.gz",
@@ -6890,7 +6890,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "890cb072842d742a81357c240c15fa85e6db405e7a628d0b981e7e8238bab331"
+        "sha256": "c5bb6156e1bdb8fc0028435d1dd2a918f071bf17506bf9f8866b2165a60aa7ab"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6955,7 +6955,7 @@
       {
         "path": "tests/staging-regression.test.cjs",
         "identity_mode": "content",
-        "sha256": "c5cef63d18b1857ba01ac6ef2a9b4802e6007e3a32c9792c9249910cd2aa4346"
+        "sha256": "65f5e3145630ae9682e47012d2a9a57172ae447c69625759fac182b85568761e"
       },
       {
         "path": "tests/staging-reporting.test.cjs",
@@ -7460,7 +7460,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "fb5c86e9a5d39da6156417c7948a4bd160afb1401e5a25258582e1cddd02f185"
+        "sha256": "f01f602968567deeba6742eedd2ad95bd620a249057942300174d4260ec4642a"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -8095,7 +8095,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "e3c05bef1401b0e0927d946ab8e814b27d8449bbef09e760621fbb14f85eb305"
+        "sha256": "aee873cbada59df7e9b5a1c372431ee3b580894c9d6a683aabe0157a45c2d9b7"
       },
       {
         "path": "tools/staging/review-flow.cjs",

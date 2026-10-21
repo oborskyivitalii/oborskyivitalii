@@ -120,6 +120,54 @@ tools/quality/article-browser.cjs and tools/site/reader.cjs, with byte counts
 `{path,bytes,sha256}`, without a terminal newline. This receipt and deterministic
 RI refresh preserve the independently reviewed meaning and authored bytes.
 
+## Exact-source integration correction
+
+First clean frozen candidate57d1cb22a2e01a9ae59d5d2337f3b92d94b97919
+(tree f7729757534d26d6b670afeb3586c95356efced3) ran the complete owning policy:
+6/12 checks passed. Evidence was source-valid and the checkout stayed clean.
+The failed report is retained in full. No performance measurement had started.
+
+Two distinct causes were resolved. The partial clone lacked the historical
+catalog blob at e830752f58535c9e2226550a9661ee51c745bdb3 used by existing
+fixtures with GIT_NO_LAZY_FETCH=1. Fetching its exact Git object restores the
+fixture input without changing source or tests. RF02 Medium (AC11/CS04/CS07):
+the build producer changed the engine identity while all five runtime bytes
+stayed identical, so the existing explicit Color compatibility registry correctly
+rejected the new identity. The correction adds one named reader-loading family
+and exact plain/staging/production descriptors, preserving every previous entry,
+validator and budget. The current-build regression now reproduces all three
+editions and checks distinct fingerprints. Existing negative admission tests
+also exercise the new family. The mandatory publication-rights discriminator
+retains all three new identities, current fixtures/assertions follow the new
+family, and historical retained receipts keep their original identity. A dedicated
+regression rejects substituted identity or runtime bytes and requires
+rights before file access for every edition. These descriptors establish compatibility of the
+verified bytes; they do not supply deployment or production authorization.
+
+The first new negative test correctly observed immutable-byte rejection but
+expected the canonical-byte error wording; its assertion now distinguishes the
+two existing errors. The initial29/30 log is retained.
+
+Independent re-review of this integration correction is recorded below before
+freezing its successor. Complete mapped checks then run on that clean successor;
+only afterward does the single declared full performance matrix begin.
+
+RF02 final receipt, verbatim from `/root/reader_loading_review`:
+
+> RF02 closed after independent re-review at tree
+> 027077f97a31488f1cc02e57473a6f510c37db10. Exact three-edition registry,
+> mandatory rights checks, current fixtures and historical boundaries are correct.
+> Independent targeted regression: 1/1 PASS. Original implementation/runtime
+> bytes remain unchanged; no blocking findings. May freeze successor, run
+> complete owning checks, then the single declared full performance matrix.
+> No browser, benchmark or scanner run by this reviewer.
+
+Reviewed SHA256: registry
+f01f602968567deeba6742eedd2ad95bd620a249057942300174d4260ec4642a;
+package aee873cbada59df7e9b5a1c372431ee3b580894c9d6a683aabe0157a45c2d9b7;
+contract tests 7dcc4c002f72fd310e43a33d304e663e8b03bbf3a5bc89db3ab9f2191221d7ab.
+The corrected contract/browser evidence suites pass30/30 with no skips.
+
 ## Verification and acceptance map
 
 | AC / style | Check and expected observable result |

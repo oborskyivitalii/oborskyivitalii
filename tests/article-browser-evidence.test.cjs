@@ -484,6 +484,7 @@ test('reader-block evidence is required for every current identity while histori
     'issue5-reader-paper',
     'issue5-reader-staging',
     'issue5-reader-fast-media',
+    'issue5-reader-loading',
   ].flatMap((family) =>
     ['plain', 'staging', 'production'].map(
       (edition) => motion.reviewedRuntime(family + '-' + edition).variant
