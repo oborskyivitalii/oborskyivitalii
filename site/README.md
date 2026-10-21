@@ -367,7 +367,13 @@ large decks and images still count against the existing complete transfer budget
 The explicit `download` mode instead permits exactly one user-activated PDF anchor,
 without embed, preload or automatic loading. The PDF stays in the full immutable,
 rights, source and offline inventory under the unchanged 2000000-byte asset cap.
-Size evidence reports its download transfer separately. All displayed images,
+Size evidence reports its download transfer separately.
+The shared reader keeps its first rendered image and declared cover eager, and
+uses native lazy loading for later figures. Intrinsic dimensions and admitted
+image/original URLs remain unchanged; this schedules requests without changing
+the publication AST or print/platform renderers. Functional browser journeys
+visit deferred figures before requiring every image to decode; cold performance
+collection remains separate. All displayed images,
 including every below-fold slide, still count toward the unchanged 800000-byte
 required reading transfer. Source reconstruction verifies this classification;
 neither mode establishes editorial, rights or release acceptance.

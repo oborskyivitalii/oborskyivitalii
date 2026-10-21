@@ -4,67 +4,62 @@ Dated continuity, not live authority. Last verified: **2026-10-21**.
 
 ## Snapshot
 
-- Issue5 prerequisite PR113 merged as c4ed3dad7197bef2f9638c9500d66c12606f6eff.
-  Main remains ca70a66f340a8e804e4263c02aa9abe79a062765 with PR115 review rules.
-- PR79 source283b32f65f0589e85c0aa914d0990704dcf8ac38 / tree643304fa
-  completed actual owner staging39490652746/1. Permanent staging still serves
-  R18/Cover02; publicedb8d18387d65ef2c6d67e109f93b95ed6f2fa859dd5afc0c4d87b2e5e14f406.
-  All26 guards/source admission/stable HTTP/recovery passed. Original22m15s
-  staging duration missed the15-minute operational target; retained as history.
-- New strict performance audit: original30 Lighthouse/60 motion windows/24flights/
-  120 retention cycles/300.076s soak PASS. Actual reader supplement6 Lighthouse/
-  12 motion windows FAILS mobile LCP:4202.636ms median against2500ms, all3 over.
-  Desktop/reader motion pass. No runtime change, discarded trial or performance retry.
-- Versioned outcome: review/issue-5/2026-10-21-performance-review.md; small summary,
-  raw manifest and immutable external locator in its performance-evidence directory.
-  Raw evidence commit9147ecccc96247ee6a1ec40c786cb99db211ad1a, tree8c4d4dc2:
-  15ZIP/96members, all remote Git bytes/digests verified; evidence-only, never merge.
-- Clean supplemental collector f65f8629f2dac810d2e50739515f9da1c3d5477e/treeb6f06780
-  is preserved by its Git delta bundle inside raw evidence. Live PR/issue receipts
-  own final report head and final source-check results; revalidate them next session.
+- Active owner is issue5 / DraftPR79; implementation began from
+  92b671f9d94b1be2e7ab9735e6fe267deb6c4aff. PR113 merged as c4ed3dad.
+- Actual permanent staging remains source283b32f/tree643304fa, R18/Cover02,
+  publicedb8d183; successful controller39490652746/1 and recovery remain historical.
+  Its22m15s duration missed the15-minute operational target; no new stage claimed.
+- Original full primary performance passed, actual reader failed mobile LCP
+  4202.636/2500ms. Raw commit9147ecccc96247ee6a1ec40c786cb99db211ad1a.
+- Causal diagnostic aade77a24d60987d272a2d8f46118d14b3b04c9b retained12trials:
+  deferred7slides gave simulated4202.360→2027.178ms and746085→245062bytes.
+  Actual observed loopback198→181ms is separate; cover/LCPparagraph stayed the same.
+- The shared reader now keeps first image/declared cover eager, later figures lazy.
+  Source AST, editions, URLs, dimensions, engine/scene/effects and print/platform
+  producers stay unchanged. Functional image checks still verify every image.
+- Implementation/review record: review/issue-5/2026-10-21-reader-loading.md.
+  Issue5 scope comment6308024785 and PR79 scope6308025083 own the final frozen
+  source/run/raw receipts recorded after freeze; fetch them before next decisions.
 
 ## Decisions
 
-- Owner requested suite assembly, strictest existing performance execution, all
-  results in the same issue5/PR79 and a findings report. This is an audit phase;
-  no runtime fix, source re-stage, feature merge or production activation occurred.
-- Reusable diagnostic composes existing Lighthouse/motion plus artifact-driven
-  actual reader measurements. Existing budgets and five-route defaults remain.
-- Separate reviewer pr79_perf_review found/re-reviewed three collector defects
-  before reader measurement; reviewed all36 LHRs/24 trace-log digests and findings.
-- Keep raw archives external to the active candidate to preserve the existing
-  250MB RI hash bound and all history. Same repository, immutable commit/tree
-  links from the original issue/PR; no competing implementation PR.
-- Frozen source283b32f delivery and new collector/report head are distinct.
-  PR79 remains Draft with mobile reader performance and whole-feature gates open.
+- Owner said Роби for the diagnosed optimization in the same issue5/PR79.
+  First address image scheduling; responsive renditions and CPU changes depend
+  on actual results. No unproved scene/router removal or threshold change.
+- Independent reader_loading_review found/rechecked RF01: endnote rendering
+  must precede appendices to match DOM/loading order. Regression failed before
+  correction, then passed; authored review found no remaining blocker.
+- Prepared checks78/78 passed. Cold reader/late viewer/fragments/history/noJS
+  and native print passed;26-page print embeds all8 source-sized images.
+  Preparation failures and their corrections are retained, not acceptance evidence.
+- Final source checks and the single complete performance matrix use one frozen
+  clean Color/staging-edition artifact, with source/collector identity and all
+  outcomes retained. Their actual verdict lives in issue/PR final receipts.
+- Raw archives remain on the existing evidence-only branch, immutable commit
+  links in the same issue/PR. Never merge that standalone evidence tree or relax
+  the250MB RI bound to carry raw traces in the active source candidate.
 
 ## Open work
 
-- Prioritize controlled reader-load optimization. Eight eager images transfer
-  ~80% of the measured729KiB, with no lazy/responsive attributes; the selected
-  LCP element is an introduction paragraph. Image/renderblocking estimates are
-  optimization candidates, not proof of the complete1.70s simulated-LCP cause.
-- Preserve Home/Writing/reader TBT outliers511/256.5/264ms, accepted three-run
-  medians and Research CPUx4 p9529.9/33ms headroom; no threshold adjustment.
-- Soak heap+869984bytes is supporting growth, not proved leak. Primary route
-  DOM/listener retention stays flat. Reader retention, field INP/RUM and physical
-  device observations remain separate; publication/editorial acceptance is issue2.
-- Extra source-style checks encountered provisional unclassified evidence paths;
-  both preparation failures are retained. Final catalogue/RI and exact-source
-  checks/owning acceptance are recorded externally in the final issue/PR receipt.
-- Reconcile original whole issue5 criteria and actual independent content/media
-  release separately. Existing AC13/15 and historical controller AC23 ticks stay;
-  no new whole criterion is closed by this performance audit.
+- Reconcile the exact current final-run verdict before any additional optimization,
+  staging or readiness decision; earlier diagnostic is not an accepted runtime fix.
+- Preserve Home/Writing/reader TBT tail observations and original median policy.
+  Investigate specific cold JS/layout tasks only with source-bound attribution.
+- Soak heap growth is supporting evidence, not a proved leak. Reader-specific
+  retention, fieldINP/RUM and physical-device observations remain separate.
+- Whole issue5 AC08/AC11/AC12, independent content/media release, editorial,
+  rights/device/export/merge/publication gates remain separately owned.
+  Existing AC13/15 ticks need current mapped checks; historical AC23 is source283.
+- Publication issue2 owns editorial acceptance; current R18/Cover02 sources and
+  compact article PDF are preserved. No merge, production or new stage is claimed.
 
 ## Next session
 
-1. Read the performance report and current issue5/PR79 receipts; fetch live refs.
-2. Match exact staged source283b32f, collector/source-check identity and immutable
-   evidence hashes. Preserve current deployment/recovery and editorial sources.
-3. Follow the authorized next phase; keep an optimization comparison source-bound
-   and retain every result. Do not merge the standalone evidence tree.
+1. Fetch live issue5/PR79 refs, final scope/result receipts and immutable raw links.
+2. Match measured source/tree/public/variant/browser and outcome before reusing it.
+3. Continue the next authorized phase; preserve staging/recovery and original limits.
 
 ## Maintenance
 
-- Keep these five sections and120-line cap; rebuild RI after indexed edits.
-- Git-backed code/reports remain in the same repository.
+- Retain these five sections and120-line cap; rebuild RI after indexed edits.
+- Git-backed source and evidence stay in the same repository, not parallel copies.

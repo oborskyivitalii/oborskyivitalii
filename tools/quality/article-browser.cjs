@@ -127,12 +127,20 @@ async function articleHead(page, key, descriptor, descriptors, timeout) {
     false,
     'article horizontal overflow'
   );
-  // Router readiness precedes image loading on a real hosted origin.
-  await page.waitForFunction(
-    () => [...document.querySelectorAll('.article-body img')].every((image) => image.complete),
-    null,
-    { timeout }
-  );
+  // Visit deferred figures before requiring complete decoding. This journey
+  // verifies every asset; initial-load performance uses its separate cold fixture.
+  const position = await page.evaluate(() => ({ left: scrollX, top: scrollY }));
+  try {
+    for (const image of await page.locator('.article-body img').all())
+      await image.scrollIntoViewIfNeeded({ timeout });
+    await page.waitForFunction(
+      () => [...document.querySelectorAll('.article-body img')].every((image) => image.complete),
+      null,
+      { timeout }
+    );
+  } finally {
+    await page.evaluate((saved) => scrollTo({ ...saved, behavior: 'instant' }), position);
+  }
   for (const image of await page.locator('.article-body img').evaluateAll((images) =>
     images.map((image) => ({
       complete: image.complete,

@@ -127,6 +127,7 @@ function components(article, layout) {
   }
   let linkDepth = 0,
     noteDepth = 0;
+  let renderedImages = 0;
   const hooks = {
     // A native rule needs a semantic shell so the common child-ink wave moves its border.
     thematicBreak: () => '<div class="reader-divider"><hr></div>\n',
@@ -190,8 +191,12 @@ function components(article, layout) {
     image: (node) => {
       const asset = article.assets.find((entry) => entry.id === node.assetId);
       const url = escapeHtml(asset.url);
+      // Preserve a potentially visible first figure and the declared cover.
+      // Later article figures must not compete with the initial reading text.
+      const loading =
+        renderedImages++ === 0 || asset.id === article.furniture?.cover?.id ? 'eager' : 'lazy';
       return (
-        `<figure id="figure-${asset.id}"><a class="reader-image-open" href="${url}" aria-label="Enlarge image: ${escapeHtml(asset.alt)}"><img src="${url}" alt="${escapeHtml(asset.alt)}" width="${asset.width}" height="${asset.height}"></a>` +
+        `<figure id="figure-${asset.id}"><a class="reader-image-open" href="${url}" aria-label="Enlarge image: ${escapeHtml(asset.alt)}"><img src="${url}" alt="${escapeHtml(asset.alt)}" width="${asset.width}" height="${asset.height}" loading="${loading}"></a>` +
         `<figcaption><p>${citationText(asset.caption)}</p><details class="reader-figure-credit"><summary>Source and image details</summary><p>${escapeHtml(asset.credit)}</p></details></figcaption>` +
         `<a class="article-figure-original" href="${url}">Open full-size image</a></figure>\n`
       );
@@ -303,6 +308,7 @@ function prepare(article) {
           (chapter.endnote && chapter.endnote !== finalEndnote ? endnote(chapter.endnote) : '')
       )
       .join('');
+  const furtherReading = finalEndnote ? endnote(finalEndnote, relatedSlot) : relatedSlot;
   const appendices = layout.appendices
     .map(
       (chapter) =>
@@ -310,7 +316,6 @@ function prepare(article) {
     )
     .join('');
   // All citations are known before reference return links are materialised.
-  const furtherReading = finalEndnote ? endnote(finalEndnote, relatedSlot) : relatedSlot;
   const combined = finish(
     body + '<!--reader-ending-->' + furtherReading + '<!--reader-appendices-->' + appendices
   );

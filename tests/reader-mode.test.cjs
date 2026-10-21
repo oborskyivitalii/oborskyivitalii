@@ -55,6 +55,84 @@ test('reader reuses the admitted AST without changing source or other renditions
   validateFragment(output.body + output.subtitle + output.toc, 'reader test');
 });
 
+test('reader defers later figures in rendered order while preserving the first image and cover', () => {
+  const assets = ['later', 'cover', 'first'].map((id, index) => ({
+    id,
+    url: `article-media/${String(index + 1).repeat(64)}/${id}.png`,
+    width: 640,
+    height: 320,
+    alt: `${id} image`,
+    caption: `${id} limitation`,
+    credit: 'Author and source credits.',
+  }));
+  const input = article(
+    '# A different article\n\n![cover image](asset:cover)\n\nThe hook stays first.\n\n![first image](asset:first)\n\n## A chapter\n\n![later image](asset:later)',
+    assets
+  );
+  input.furniture.cover = { id: 'cover' };
+  const before = JSON.stringify(input);
+  const output = prepare(input);
+  const images = [...output.body.matchAll(/<img\b[^>]*>/g)].map(([tag]) => tag);
+  assert.equal(images.length, 3);
+  for (const [index, id] of ['first', 'cover', 'later'].entries()) {
+    const asset = assets.find((entry) => entry.id === id);
+    assert.ok(images[index].includes(`src="${asset.url}"`));
+    assert.ok(images[index].includes('width="640" height="320"'));
+    assert.ok(images[index].includes(`loading="${index === 2 ? 'lazy' : 'eager'}"`));
+    assert.ok(output.body.includes(`class="article-figure-original" href="${asset.url}"`));
+    assert.ok(output.body.includes(`${id} limitation`));
+  }
+  assert.equal(JSON.stringify(input), before, 'AST, source URLs and other editions stay unchanged');
+  assert.equal(prepare(input).body, output.body, 'loading state is scoped to one rendition');
+  assert.ok(!input.platformBodyHtml.includes('loading='), 'platform/print input is unchanged');
+  validateFragment(output.body, 'scheduled figures');
+});
+
+test('an article without cover furniture keeps its first displayed image eager', () => {
+  const assets = ['second', 'first'].map((id) => ({
+    id,
+    url: `article-media/${'b'.repeat(64)}/${id}.png`,
+    width: 320,
+    height: 160,
+    alt: id,
+    caption: 'A preserved limitation.',
+    credit: 'Author.',
+  }));
+  const input = article(
+    '# A different article\n\n![first](asset:first)\n\n## Below\n\n![second](asset:second)',
+    assets
+  );
+  const images = [...prepare(input).body.matchAll(/<img\b[^>]*>/g)].map(([tag]) => tag);
+  assert.equal(images.length, 2);
+  assert.match(images[0], /first\.png"[^>]*loading="eager"/);
+  assert.match(images[1], /second\.png"[^>]*loading="lazy"/);
+});
+
+test('a final endnote image keeps loading priority before a later appendix image', () => {
+  const { blockDigest } = require('../tools/publishing/semantic.cjs');
+  const assets = ['appendix', 'ending'].map((id) => ({
+    id,
+    url: `article-media/${'c'.repeat(64)}/${id}.png`,
+    width: 320,
+    height: 160,
+    alt: id,
+    caption: 'A preserved limitation.',
+    credit: 'Author.',
+  }));
+  const input = article(
+    '# A different article\n\n## Essay\n\nThe argument.\n\n### Ending\n\n![ending](asset:ending)\n\n## Apparatus\n\n![appendix](asset:appendix)',
+    assets
+  );
+  const ending = input.model.tree.children.find((node) => node.id === 'ending');
+  input.profile.reader = {
+    sections: { appendices: ['apparatus'] },
+    elements: [{ sha256: blockDigest(ending), role: 'endnote' }],
+  };
+  const output = prepare(input);
+  assert.match(output.furtherReading, /ending\.png"[^>]*loading="eager"/);
+  assert.match(output.appendices, /appendix\.png"[^>]*loading="lazy"/);
+});
+
 test('tables keep semantic columns, numeric alignment and all short and long cells', () => {
   const output = prepare(
     article(

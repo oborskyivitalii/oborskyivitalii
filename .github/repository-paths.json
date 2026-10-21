@@ -67,6 +67,12 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
+    ".github/acceptance/issue-114.json": {
+      "kind": "file",
+      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
     ".github/acceptance/issue-31.json": {
       "kind": "file",
       "purpose": "Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates.",
@@ -529,42 +535,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac": {
-      "kind": "directory",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac/archive.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac/navigation.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac/space.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac/styles.css": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/465c7fdee2b899e612605bad26cb211e9089be51903d18e66fad8a64ade8c4ac/theme.js": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -574,6 +544,42 @@
     "docs/runtime/7ebed494340d081e3c5be942074182f97c9b93f3a887af88d36023e26db146ff/analytics.js": {
       "kind": "file",
       "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079": {
+      "kind": "directory",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079/archive.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079/navigation.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079/space.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079/styles.css": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/8b1ed9dac9df54ed1c31e39dd2038eefa9bd9b97ba907e9b002ed3d543bed079/theme.js": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -625,6 +631,18 @@
       "role": "generated",
       "owner": "site/README.md"
     },
+    "docs/snapshots/1b359f6510a4486753ded63790e0ebe8c6cc9756df65fe1545ab5388065fefe3": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/1b359f6510a4486753ded63790e0ebe8c6cc9756df65fe1545ab5388065fefe3/index.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -634,6 +652,18 @@
     "docs/snapshots/57179b91a59043729d486683b5ed8678759da1f707987bea9aeda00fceee3347/writing.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/682ded0dbc61eef6b52d1b15eb678103b5c22d9e1e72189cb47b7bda65f989d7": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/682ded0dbc61eef6b52d1b15eb678103b5c22d9e1e72189cb47b7bda65f989d7/credits.html": {
+      "kind": "file",
+      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -649,18 +679,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/88f49549f38b10f31401ae2efa04d2db09cc309dce3c471b625365ceb26a07c0": {
-      "kind": "directory",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/88f49549f38b10f31401ae2efa04d2db09cc309dce3c471b625365ceb26a07c0/credits.html": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -670,18 +688,6 @@
     "docs/snapshots/89a8dd05a74c78cef5eeeb4b79e4c4527399847e9008eae1004ed49b4b436d68/credits.html": {
       "kind": "file",
       "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8da8c8df9e1b17695ef10ed00f8c61f2f44d409a4c2eead8d678ad97beafa40b": {
-      "kind": "directory",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/8da8c8df9e1b17695ef10ed00f8c61f2f44d409a4c2eead8d678ad97beafa40b/talks.html": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -697,18 +703,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/a32851fb2eebd81fd053e4c43dbfdf40d00bffd7ff4622d8016db0f6abd1ba46": {
-      "kind": "directory",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/a32851fb2eebd81fd053e4c43dbfdf40d00bffd7ff4622d8016db0f6abd1ba46/research.html": {
-      "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/af4d9f01ceda0959bc230c5c958d2b4eb0726ff326cbf011c9f3a59a91b395d7": {
       "kind": "directory",
       "purpose": "Generated immutable runtime or route snapshot directory.",
@@ -721,27 +715,39 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d6d32c60af2c787e7a9c171e71f854ebf11c67a5d56a8ab73a58f721fdea3059": {
+    "docs/snapshots/b776022c3db7dc8a4ab8e5e7f5edc260b8d92ebd53077b3b3d014f26fbddbe15": {
       "kind": "directory",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/d6d32c60af2c787e7a9c171e71f854ebf11c67a5d56a8ab73a58f721fdea3059/index.html": {
+    "docs/snapshots/b776022c3db7dc8a4ab8e5e7f5edc260b8d92ebd53077b3b3d014f26fbddbe15/writing.html": {
       "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ff66e4c07ffdfac571e7044c7a178d6d35841a6437b42e4d1513c044099f95f1": {
+    "docs/snapshots/d32ba50da6beed0e163fe91f8852f2df0c124b921fc085ad3abc3a3a32ca42b1": {
       "kind": "directory",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/ff66e4c07ffdfac571e7044c7a178d6d35841a6437b42e4d1513c044099f95f1/writing.html": {
+    "docs/snapshots/d32ba50da6beed0e163fe91f8852f2df0c124b921fc085ad3abc3a3a32ca42b1/talks.html": {
       "kind": "file",
-      "purpose": "Immutable generated runtime or route snapshot from canonical site producers.",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d93af74d32ff239315acb8ac185e1e1d1b27159c8d8313ed11856267f8040c8d": {
+      "kind": "directory",
+      "purpose": "Generated immutable runtime or route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/d93af74d32ff239315acb8ac185e1e1d1b27159c8d8313ed11856267f8040c8d/research.html": {
+      "kind": "file",
+      "purpose": "Generated immutable runtime or route snapshot; exact bytes owned by the authored site builder.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -1116,6 +1122,18 @@
       "purpose": "Issue108 exact PMDay event content amendment and source/delivery self-review.",
       "role": "history",
       "owner": "site/README.md"
+    },
+    "review/issue-114": {
+      "kind": "directory",
+      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-114/2026-10-20-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     },
     "review/issue-2": {
       "kind": "directory",
@@ -2014,6 +2032,42 @@
     "review/issue-5/2026-10-20-reader-interactions.md": {
       "kind": "file",
       "purpose": "Issue5 reusable reader interaction iteration, independent findings, shared ownership and bounded acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence": {
+      "kind": "directory",
+      "purpose": "Exact frozen-site performance reports, traces, collector source bundle and independent audit evidence; not runtime source.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence/locator.json": {
+      "kind": "file",
+      "purpose": "Immutable same-repository external raw-evidence commit/tree and remote verified Git blob/byte hashes, preserving active RI bounds.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence/manifest.json": {
+      "kind": "file",
+      "purpose": "Complete raw performance evidence archive and per-member source/byte identities.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-evidence/summary.json": {
+      "kind": "file",
+      "purpose": "Computed strict performance outcome and median metrics.",
+      "role": "history",
+      "owner": "review/issue-5/2026-10-21-performance-review.md"
+    },
+    "review/issue-5/2026-10-21-performance-review.md": {
+      "kind": "file",
+      "purpose": "Issue5 assembled strict performance matrix, exact staged-artifact results, limitations and independent review evidence.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-5/2026-10-21-reader-loading.md": {
+      "kind": "file",
+      "purpose": "Issue5 selective reader image loading implementation, regression, independent review and exact-source result route.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },
@@ -9037,6 +9091,12 @@
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
+    "tests/performance-suite.test.cjs": {
+      "kind": "file",
+      "purpose": "Performance diagnostic failure propagation, reader inventory/profile completeness and positive/zero motion regressions.",
+      "role": "test",
+      "owner": "tools/quality/README.md"
+    },
     "tests/phase-checkpoint.test.cjs": {
       "kind": "file",
       "purpose": "Issue58 meaningful refactoring contracts and negative cases; registry declares permanent or task-only scope.",
@@ -10045,6 +10105,12 @@
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
+    "tools/quality/performance.cjs": {
+      "kind": "file",
+      "purpose": "Explicit sequential full performance diagnostic; retains independent Lighthouse, motion and reader failures without release activation.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
     "tools/quality/phase-checkpoint.cjs": {
       "kind": "file",
       "purpose": "Issue58 checkpoint, authored architecture or bounded comparable resource evidence control.",
@@ -10080,6 +10146,12 @@
       "purpose": "Verify the installed exact Python audit graph and sole reviewed patched MCP compatibility constraint.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    "tools/quality/reader-performance.cjs": {
+      "kind": "file",
+      "purpose": "Artifact-driven supplemental reader Lighthouse and raw motion measurements with unchanged metric budgets.",
+      "role": "validator",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     },
     "tools/quality/reading-clarity.cjs": {
       "kind": "file",
@@ -10656,72 +10728,6 @@
       "purpose": "Protected source/artifact/controller/PR lease validation before hosted action.",
       "role": "source",
       "owner": "guides/SITE-STAGING.md"
-    },
-    ".github/acceptance/issue-114.json": {
-      "kind": "file",
-      "purpose": "Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates.",
-      "role": "configuration",
-      "owner": ".github/ACCEPTANCE.md"
-    },
-    "review/issue-114": {
-      "kind": "directory",
-      "purpose": "Issue114 independent iteration-review rule implementation and source-bound review evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "review/issue-114/2026-10-20-review.md": {
-      "kind": "file",
-      "purpose": "Dated issue114 intent, exact reviewed candidate, independent reviewer findings and integration evidence.",
-      "role": "history",
-      "owner": "CONTRIBUTING.md"
-    },
-    "tests/performance-suite.test.cjs": {
-      "kind": "file",
-      "purpose": "Performance diagnostic failure propagation, reader inventory/profile completeness and positive/zero motion regressions.",
-      "role": "test",
-      "owner": "tools/quality/README.md"
-    },
-    "tools/quality/performance.cjs": {
-      "kind": "file",
-      "purpose": "Explicit sequential full performance diagnostic; retains independent Lighthouse, motion and reader failures without release activation.",
-      "role": "validator",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
-    },
-    "tools/quality/reader-performance.cjs": {
-      "kind": "file",
-      "purpose": "Artifact-driven supplemental reader Lighthouse and raw motion measurements with unchanged metric budgets.",
-      "role": "validator",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
-    },
-    "review/issue-5/2026-10-21-performance-review.md": {
-      "kind": "file",
-      "purpose": "Issue5 assembled strict performance matrix, exact staged-artifact results, limitations and independent review evidence.",
-      "role": "history",
-      "owner": "guides/SITE-CHECK-PROFILES.md"
-    },
-    "review/issue-5/2026-10-21-performance-evidence": {
-      "kind": "directory",
-      "purpose": "Exact frozen-site performance reports, traces, collector source bundle and independent audit evidence; not runtime source.",
-      "role": "history",
-      "owner": "review/issue-5/2026-10-21-performance-review.md"
-    },
-    "review/issue-5/2026-10-21-performance-evidence/manifest.json": {
-      "kind": "file",
-      "purpose": "Complete raw performance evidence archive and per-member source/byte identities.",
-      "role": "history",
-      "owner": "review/issue-5/2026-10-21-performance-review.md"
-    },
-    "review/issue-5/2026-10-21-performance-evidence/summary.json": {
-      "kind": "file",
-      "purpose": "Computed strict performance outcome and median metrics.",
-      "role": "history",
-      "owner": "review/issue-5/2026-10-21-performance-review.md"
-    },
-    "review/issue-5/2026-10-21-performance-evidence/locator.json": {
-      "kind": "file",
-      "purpose": "Immutable same-repository external raw-evidence commit/tree and remote verified Git blob/byte hashes, preserving active RI bounds.",
-      "role": "history",
-      "owner": "review/issue-5/2026-10-21-performance-review.md"
     }
   }
 }
