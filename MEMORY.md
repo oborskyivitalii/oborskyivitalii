@@ -4,78 +4,68 @@ Dated continuity, not live authority. Last verified: **2026-10-21** (Warsaw).
 
 ## Snapshot
 
-- Main: ca70a66f340a8e804e4263c02aa9abe79a062765; PR115/issue114 merged.
-- Active task: issue112 Home LCP diagnostics, Draft PR117 on
+- Main last observedca70a66f340a8e804e4263c02aa9abe79a062765; revalidate live.
+- Active issue112 Home LCP diagnostics / Draft PR117 on
   work/issue-112-lcp-diagnostics-20261021. No runtime fix/merge/release authorized.
-- Evidence: review/issue-112/2026-10-21-lcp-diagnostics.md, private raw reports.
-- Production input: prod-2026-10-19.2, source82b57b8,44-file immutable archive.
+- Canonical report: review/issue-112/2026-10-21-lcp-diagnostics.md, I1–I8.
+- Production input: prod-2026-10-19.2, source82b57b8/tree493117e,44-file archive.
+  Current final source/check/live links belong to the issue/PR; revalidate them.
 
 ## Decisions
 
-- User “Сол приступай” authorized the reviewed first diagnostic wave under112;
- 113 is the already merged controller PR and is not the Home LCP issue.
-- User “Роби” then authorized CPU/DPR and verified cache/reload/reopen; persisted
-  state and single-factor follow-ups remain conditional on a concrete hypothesis.
-- CONTRIBUTING mandates separate independent subagent review each iteration;
-  correction re-review is mandatory. Receipts/derived metadata do not recurse.
-- Harness is opt-in diagnostic/pr-targeted; matrices, budgets and site unchanged.
-- Local measurements do not prove historical cause or real SDK/native behavior.
+- 113 is the merged controller PR; Home LCP remains owned by112/PR117.
+- User “Сол приступай” and “Роби” authorize opt-in diagnostics, CPU/DPR/cache,
+  then real-SDK capture. No runtime/configuration/budget/release changes.
+- Owner is on iPad and cannot do desktop capture: “Шукай інший шлях” authorizes
+  the AC12 remote alternative; no required owner-device action remains.
+- CONTRIBUTING requires separate non-author subagent review each iteration,
+  including corrections. Verbatim receipts/derived metadata do not recurse.
+- One new PR117 label diagnostic workflow is the dated exception; every prior
+  workflow, matrix, budget and production owner stays byte-frozen.
+- Captured SDK replay can prove lab vendor behavior; native/real transport and
+  historical cause require separate evidence. Raw data/keys remain private.
 
 ## Open work
 
-- I1 review resolved F01–F06; source19/19, Python3/3, retained calibration12/12.
-- T02 cold subset12/12 at clean local67addc0/tree0859524; same tree published as
- 935327d775569894ef480a103834061373500196. Home256–344ms; no Poor reproduction.
-- I2 interpretation/memory review passed at diff0abddb4. Final exact-head
-  acceptance and live dispositions belong to PR/issue; revalidate current links.
-- I3 source/correction review resolved F07/F08: recompute cache admission from
-  raw fields and require CDP corroboration. Node27/27, wrappers3/3 pass.
-- Measured clean published815d62d/treec685ff4: CPU9/9 (30s), cache9/9 (10s),
-  all18 traces and unchanged44-file archive. CPU LCP240–888ms, cache232–348ms;
-  all portrait, no Poor. Warm critical cache proved by Timing/CDP/server ledger.
-  Adaptive DPR2 bitmap2160→1800/1440; no observed startup fault. I4 evidence and
-  interpretation review passed at diff0a9b924. AC09/10 supported; final-head
-  checks/disposition belong to live PR/issue. Keep producer/raw hashes immutable.
-- Browser preference light did not pin auto theme: initial CPU dark, last end
-  light, cache light. Clock/timezone unpinned; no cross-suite causal comparison.
-- Conditional state/one-factor runs deferred without a concrete slow phenotype.
-- AC06–AC08 stay open: real-SDK/native/broader T02 evidence and merge incomplete.
-  Draft source/browser CI is deferred; skipped checks are not a hosted pass.
-  Latest observed isolated prototype for db8eb795 succeeded (run39548251547);
-  stable admission/full/promote/merge skipped. Revalidate the current final head.
-- Next diagnostic: one actual slow Chrome Home session with same-navigation
-  trace/candidates/timing/lifecycle/real beacon. Raw evidence remains private.
-- Latest “Роби” accepts that diagnostic. Fresh ordinary HTTP SDK403/error1010
-  and browser ERR_EMPTY_RESPONSE persist; Home/revision200, Home matches archive.
-  Zero browser Home loads/forwarded telemetry. Native owner-device access absent.
-  guides/HOME-LCP-NATIVE-CAPTURE.md prepares one trace/HAR/late-Timing capture with
-  local RUM blocking. Late export never establishes missing startup lifecycle.
-  I5 correction review passed F09/F10; AC11 preparation supported, with final
-  checks/live links in issue/PR. Actual SDK/native/slow evidence remains open.
-- Owner is on iPad and cannot perform desktop capture; “Шукай інший шлях”
-  authorizes the AC12 remote alternative in the same issue/PR. Prepare one new
-  opt-in workflow, canonical SDK acquisition then existing9 SDK replay trials;
-  preserve every prior workflow and encrypt raw artifacts. No owner-device step.
-  I6 correction review resolved F11/F12/F13; Node37/37 and prepared policy8/8 pass.
-  Remote run39561854955 at clean c44a94e acquired real SDK200/hash6373812
-  (31,853bytes,2026.10.1). One normal trial failed on the diagnostic Home
-  selector;8 unexecuted remain. Private encrypted evidence recovered: real
-  root CWV LCP204/TTFB11 and SPA routing-apis, no historical cause proved.
-  I7 source/evidence review approved Home href./ and39 source fixtures;
-  clean publication/producer checks precede the one local SDK cohort
-  using the same captured bytes, no SDK refetch/remote rerun. Linux custom
-  browser mismatch stays explicit; AC12/06/07 await independent interpretation.
-- PR79/issue5 owns article/stable staging; last observed staging source283b32f,
-  deployment8c65adfd. Revalidate before its independent continuation. No staging
-  or controller operation is part of112. Analytics/SEO owners102/103/8 stay separate.
+- I1/I2 calibration12/12 and cold routes12/12 retained; F01–F06 resolved.
+- I3/I4 F07/F08 resolved; clean producer815d62d measured CPU9/cache9, all18
+  traces and44-file admission. CPU LCP240–888ms; cache232–348ms. Warm critical
+  resources proved by Timing/CDP/server ledger. AC09/AC10 supported.
+- Clock-based themes differed across earlier suites; do not infer a controlled
+  cross-suite comparison. Conditional state/one-factor work stays deferred.
+- I5 native guide is optional pending evidence; local HTTP SDK403/error1010 and
+  browser ERR_EMPTY_RESPONSE were honest failed access observations. AC11 only
+  establishes reviewed preparation, not a native capture.
+- I6 remote helper/workflow/privacy corrections F11/F12/F13 reviewed. Producer
+  c44a94e/treea5bcaa0, run39561854955, canonical SDK200/31,853bytes/hash6373812,
+  version2026.10.1. Encrypted-only artifact12328870017 verified/recovered.
+- Hosted attempt remains1failed normal plus8unexecuted: diagnostic selector
+  index.html was absent; actual Homehref./. Its genuine root CWV204/TTFB11 and
+  trace/source identity were independently reviewed; original flags preserved.
+- I7 reviewed the actual evidence/Home fix and39 source fixtures. Clean producer
+  eb96743e7de190e321565eb0d22e2ac7b0466881/tree7e354e7 then measured the corrected
+  local9 SDK observations without refetch/remote rerun. Custom153.0.8010.0 differs
+  from hosted153.0.8010.12; neither supplies native desktop acceptance.
+- I8 local LCP: normal340/268/288; delayed312/236/320; blocked320/268/280ms.
+  All63 snapshots valid,3 bound traces,44-file post-admission, no errors,
+  unexecuted cases, unexpected requests or forwarded telemetry. Six genuine
+  initial CWV match LCP/TTFB/timeOrigin;66 payloads include54 separate SPA records.
+  Five-second SDK delay does not gate initial paint here. No historical Poor
+  or missing TTFB reproduced. No native/transport/background/restore proof.
+- I8 independent review approved all raw/source bindings and bounded conclusions.
+  AC06/AC12 are supported subject to final published-head/live reconciliation;
+  AC07/AC08 retain native/device/hosted/merge limitations.
+- PR79/issue5 owns article/stable staging separately. Last observed staging
+  283b32f/deployment8c65adfd; revalidate before its own continuation. No stage or
+  controller operation is part of112; analytics/SEO owners102/103/8 stay separate.
 
 ## Next session
 
-1. Revalidate main, issue112/PR117 and exact head/check/review identities.
-2. Read the versioned report and preserve pending SDK/native/cause boundaries.
-3. Continue only the existing authorized route; never infer merge or release.
+1. Revalidate main, production, issue112/PR117 and exact head/check identities.
+2. Use the versioned report/private evidence; preserve separate cohort producers.
+3. Continue only authorized diagnostics; never infer merge, native or release.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; rebuild RI after indexed changes.
+- Retain five sections and120-line cap; rebuild RI after indexed changes.
 - Git-backed code is not duplicated into file storage.

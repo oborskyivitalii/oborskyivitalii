@@ -789,3 +789,93 @@ Reviewer `/root/review_lcp_implementation`, separate non-author, verbatim:
 > **One corrected local nine-trial SDK cohort is cleared after clean publication and producer verification**, using these captured SDK/archive bytes without refetch or remote rerun. Preserve the hosted failure separately and record the local browser mismatch. AC12 and broader native/transport/historical acceptance remain pending subsequent evidence review.
 >
 > No files were modified, private PEM contents read, or browser/provider probes performed. I will remain idle during measurement.
+
+## I8 — Corrected captured-SDK cohort and bounded conclusion
+
+The corrected cohort used clean published producer
+`eb96743e7de190e321565eb0d22e2ac7b0466881`, tree
+`7e354e743f5da99c2d6702aa98e76091e802b392`, the unchanged44-file frozen
+production archive and the exact remotely acquired SDK hash637381256384554e1cc3309a62fb238a51b83e7f10b2a56d8ba15dbc73ca762e.
+There was no SDK refetch or remote rerun. The earlier hosted failure remains
+one failed plus8 unexecuted, separately retained. Local execution used
+PW1.63.0/custom Linux headless Chromium153.0.8010.0; the hosted producer had
+153.0.8010.12. This cohort is origin replay, not production transport, a
+pinned-browser gate or native Windows/macOS evidence.
+
+All9 predefined balanced observations completed, with30-second initial windows
+and the original Research→Writing→Home→back→forward journey. All63 snapshots
+are instrumentation-valid and preserve their own original document timeOrigin.
+Every final initial-document LCP is the portrait. All captured themes are light;
+this is observed state, not a newly pinned clock or a cross-cohort comparison.
+The full44-file archive passed admission again afterward; every recorded served
+body/hash matches the admitted source. There are no failed/unexecuted cases,
+unknown requests, page/trace/cleanup errors or collector truncation in this
+cohort. The blocked SDK is an intentional negative control. No production browser
+visit or forwarded test telemetry occurred.
+
+| SDK mode | Initial Home LCP trials1/2/3, ms | Real initial CWV |
+| --- | --- | --- |
+| Normal | 340 /268 /288 | 3/3 LCP matches; TTFB12/8/8ms |
+| Delayed5000ms | 312 /236 /320 | 3/3 LCP matches; TTFB11/5/12ms |
+| Blocked | 320 /268 /280 | Intentionally absent3/3; loader records blocked |
+
+The actual SDK Resource Timing durations in the delayed arm are5030.0,
+5067.3 and5078.8ms. Its late arrival did not gate these initial paints or lose
+the initial LCP/TTFB values. Normal durations are52.8–67.2ms. A failed SDK
+request can still have a Resource Timing entry; execution is established through
+captured fulfilled bytes, loader state and genuine payload identity, not timing
+entry presence alone.
+
+All six enabled-SDK documents emitted genuine initial eventType3 CWV. Their
+LCP values equal the observer values, TTFB is positive5–12ms and agrees within
+rounding, and initial load/CWV pageload IDs match privately. SDK startTime agrees
+with each observed performance.timeOrigin within0.1–0.9ms. Three normal-mode
+traces are hash/source/main-frame/navigation/CommitLoad/performance-ID bound;
+trace candidate times339.115/264.915/286.258ms are separately retained beside
+DOM340/268/288ms, with timestamp precision differences below4ms.
+
+There are66 captured vendor payloads: six initial page loads, six genuine
+initial CWV and54 SPA records with `nt:"routing-apis"`. The SPA records have
+route-specific IDs/startTimes and do not reset the browser's initial document
+LCP. All headless final visibility observations stayed visible; no synthetic
+visibility event, native hide/pagehide or BFCache acceptance is inferred.
+Blocked mode emits zero payloads. All payloads are locally intercepted; provider
+ingestion remains untested.
+
+The owner-device-free path is now concrete: acquire SDK on the independent
+hosted runner, retain encrypted raw evidence, then reuse those exact bytes in
+the corrected available-browser cohort. These observations refute SDK fetch
+latency as a mandatory initial-paint gate under the tested conditions. They
+confirm valid real-SDK/collector timing and the current vendor's SPA field
+meaning. No Poor LCP or missing initial TTFB was reproduced. The historical
+Poor/missing-TTFB cause, actual production transport, native desktop and
+background/restore behavior remain unresolved. No runtime remediation follows.
+
+Independent I8 review confirms bounded collector/SDK evidence for AC06 and the
+amended alternative route under AC12. Complete their issue checkboxes only after
+final published-head checks and live-link reconciliation. AC07's unavailable
+native/broader-device gates and AC08's Draft/merge gates remain open.
+
+### I8 independent evidence and interpretation review
+
+Reviewer `/root/review_lcp_implementation`, separate non-author, verbatim:
+
+> **I8 approved; no blocking findings.**
+>
+> Reviewed producer `eb96743e7de190e321565eb0d22e2ac7b0466881`, prepared tree `e6c6227fb8c705824a35132fae7de7320d07758d`, diff SHA256 `14eff8eb66f2ca0bb92726713f264a08250ed768eeee7025f5182fe300f04756`. All three source,13 evidence and four local-raw hashes match. Code behavior is unchanged from approved I7.
+>
+> Independent recomputation confirms:
+>
+> - Nine balanced observations,63 valid snapshots and nine distinct documents/navigation IDs; correct journey paths, no observation overlap, errors, truncation, unexpected requests or unexecuted cases.
+> - Reported LCP values: normal340/268/288, delayed312/236/320, blocked320/268/280ms.
+> - Six genuine initial CWV payloads match collector LCP, portrait identity, positive TTFB, pageload identity and timeOrigin rounding. All66 payloads parse;54 are separate SPA records and omit initial TTFB.
+> - All three raw traces match their hashes, canonical navigation/frame/CommitLoad/performance IDs and reported candidate timings.
+> - Exact SDK/source identities, served-body hashes and44-file archive admission agree. The earlier hosted failure remains immutable: one failed row plus eight unexecuted cases.
+>
+> The bounded causal conclusion is justified: delayed documents painted before the withheld SDK arrived, so SDK fetch latency was not a mandatory initial-paint gate **under these tested conditions**. This does not establish zero SDK overhead, production transport behavior or the historical cause. Visible headless state supplies no native hide/pagehide/BFCache acceptance.
+>
+> RI freshness,15 coupling checks and whitespace validation pass. Prepared policy8/8 remains honestly diff-bound; the measured producer’s clean8/8 receipt is preserved.
+>
+> **AC06 and the amended AC12 are substantively satisfied.** Their checkboxes may be completed after publishing the reviewed report/receipt and reconciling final-head checks and live links. **AC07 and AC08 remain open** for their native/device and delivery/merge gates.
+>
+> No files were modified, private PEM contents read, or new provider/browser measurements performed.
