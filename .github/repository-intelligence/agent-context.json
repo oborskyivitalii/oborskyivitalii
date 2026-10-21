@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "156462f62889799ec368e348f70d58c1ae08ec74315ce21577e1b058637d730d",
+    "digest": "d72230e75fa534913ae941e8b4a85901b7d3a93ccdfae108a483dcf11d37829b",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -181,7 +181,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "a3d53c362a37288bc4892a96930fbf2c8411b9d91d2f5bc65945b6690da3d9a8"
+        "sha256": "f7cd2bde4590c839984ee912b302b9318b7f5b7dfdc3e33364173f1a5a87563c"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -1485,7 +1485,7 @@
       {
         "path": "review/issue-5/2026-10-21-reader-loading.md",
         "identity_mode": "content",
-        "sha256": "ef12bf6e1d24e754dfa7d68e744cd6723fce66e8cc57c38daef1a640c36b74b4"
+        "sha256": "0b18288bf01e7c34500e2ce1520e2ddf6902ec9126af29c222f3b0f9399f6002"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
