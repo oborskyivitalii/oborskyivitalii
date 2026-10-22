@@ -1,50 +1,40 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-21**.
+Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 ## Snapshot
 
-- Current session: issue118, tiny Home/Research first-name hotfix; branch
-  hotfix/issue-118-arkadiy-name from verified main ca70a66f.
-- Maintainer authorises issue/PR and production through normal gates.
-- Evidence: review/issue-118/2026-10-21-review.md; inspect current review/checks.
-- PR79/issue5 and PR117/issue112 remain separate active work; preserve them.
-- Older issue114 handoff below is historical; ca70a66f already contains its rules.
-
-- Verified main: c4ed3dad7197bef2f9638c9500d66c12606f6eff, PR113 merged.
-- Current task: issue114, mandatory substantive independent subagent review
-  after every completed work iteration; PR115/work/issue-114-iteration-review.
-- Canonical rule: CONTRIBUTING, routed from AGENTS and existing review templates.
-- Evidence: review/issue-114/2026-10-20-review.md. Verify its current candidate,
-  actual independent review, checks and PR/merge status before continuation.
+- Current task: issue120, independent requirements/code/white-box/exploratory roles.
+- Branch: work/issue-120-independent-qa from verified main44aef6e4d0f0cbc063a5269fa01a039c4979422e.
+- Main and production both pointed to that commit at intake; PR119 is merged.
+- Canonical protocol: CONTRIBUTING, independent-quality-agents; AGENTS routes it.
+- Evidence: review/issue-120/2026-10-22-review.md; inspect live issue/PR/checks.
+- PR79/issue5, PR117/issue112, PR110 and PR107 remain separate active work.
 
 ## Decisions
 
-- A completed coherent candidate is an iteration; individual commands are not.
-- A distinct non-implementing reviewer subagent inspects actual source/intent;
-  corrections need re-review, and self-review cannot supply independence.
-- Existing human/merge/release decisions remain separate; no site/docs change.
-- Verbatim review receipts and deterministic derived refreshes do not recurse.
+- Maintainer requires actual separate independent executions for all four roles.
+- Requirements review precedes dependent implementation and checks final AC evidence.
+- Each role returns its own completed source-bound result; waves preserve separation.
+- A launched role may justify absent scope; missing access is not non-applicability.
+- QA findings feed existing suites/profiles; no new LLM CI service or blanket matrix.
+- Current task changes repository rules/RI, not website content or production.
+- Existing human, staging, merge and release decisions remain distinct.
 
 ## Open work
 
-- Issue114 I1 independent review and local exact-source acceptance passed.
-  GitHub navigation/acceptance pass; Basic39482689723 failed only policy JSON
-  formatting. I2 applies pinned formatting without changing the policy value.
-- Finish I2 independent correction review, current-source CI and required
-  staging/normal merge. User explicitly authorized publication and incorporation.
-- Other active owner staging was PR79 run39480944615; revalidate before staging
-  PR115, preserving serialization and recovery/lease checks.
-- PR79's article/stable-staging continuation stays with issue5/PR79. PR113's
-  bootstrap is merged; revalidate that branch and retire bridge adapters under
-  its own accepted route. This instruction change does not execute that work.
-- Analytics/Search Console follow-up stays owned by issues102/103/8.
+- Requirements preflight RQ01/RQ02 clarified in issue120; no preimplementation blockers.
+- RI aliases/context regression and protocol/templates/policy are being integrated.
+- Final four-role reviews, current-source checks, PR/CI and normal main admission pending.
+- Record actual test/results and update issue120 checkboxes before handoff/closure.
+- Do not reinterpret older memory snapshots as current production/PR79 evidence.
 
 ## Next session
 
-1. Revalidate main, issue114/PR/checks and the exact reviewed candidate.
-2. Continue its existing review route; never infer missing review or merge.
-3. For PR79, separately fetch current source, staging and issue5 acceptance.
+1. Revalidate main, issue120/PR, branch status, actual role receipts and CI.
+2. Follow its existing review artifact and unresolved findings; preserve role independence.
+3. Complete authorized main delivery through current admission without production release.
+4. Resume other active owners only through their own current issue/PR state.
 
 ## Maintenance
 

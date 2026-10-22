@@ -65,9 +65,61 @@
         "independent subagent review",
         "iteration review",
         "незалежне ревю субагентом",
+        "independent quality agents",
+        "separate agent launches",
+        "незалежний запуск агентів",
+        "окремі запуски агентів",
         "backlog",
         "\u0456\u0448\u044c\u044e",
         "\u0431\u0435\u043a\u043b\u043e\u0433"
+      ]
+    },
+    {
+      "concern": "independent requirements and acceptance-quality review",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "requirements reviewer",
+        "requirements review",
+        "requirements quality",
+        "acceptance quality",
+        "якість вимог",
+        "перевірка вимог",
+        "якість критеріїв приймання"
+      ]
+    },
+    {
+      "concern": "independent code review and correction acceptance",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "code reviewer",
+        "independent code review",
+        "ревʼю коду",
+        "код ревью",
+        "незалежне ревю коду"
+      ]
+    },
+    {
+      "concern": "independent white-box QA and structural test design",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "white-box QA",
+        "white-box testing",
+        "whitebox testing",
+        "вайтбокс тестування",
+        "тестування білої скриньки"
+      ]
+    },
+    {
+      "concern": "independent exploratory and interaction QA",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "exploratory testing",
+        "exploratory QA",
+        "interaction QA",
+        "manual testing",
+        "дослідницьке тестування",
+        "ручне тестування",
+        "тестування взаємодії"
       ]
     },
     {
@@ -347,6 +399,35 @@
       "workflow": ".github/workflows/navigation.yml"
     },
     {
+      "concern": "independent quality-agent protocol and risk-to-test handoff",
+      "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        ".github/ACCEPTANCE.md",
+        ".github/ISSUE_TEMPLATE/",
+        ".github/pull_request_template.md",
+        "review/REVIEW-TEMPLATE.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/test-profiles.json",
+        "tools/quality/source-tests.cjs",
+        "tests/test_repository_intelligence.py"
+      ],
+      "commands": [
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
+        "python3 tools/check_ri_ci.py verify"
+      ],
+      "read": [
+        "CONTRIBUTING.md",
+        ".github/ACCEPTANCE.md",
+        "review/REVIEW-TEMPLATE.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/test-profiles.json",
+        ".github/workflows/issue-acceptance.yml"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Follow CONTRIBUTING.md#independent-quality-agents for separately launched Requirements/Acceptance Reviewer, Code Reviewer, White-box QA and Exploratory/Interaction QA. These commands verify navigation and CI coupling, not agent execution or acceptance. Map findings and test dispositions to the live owning issue, existing profile registry and its acceptance policy; retain actual role results and manual limits in the review artifact."
+    },
+    {
       "concern": "entry points, maintained guides and preserved root history",
       "paths": [
         "PROJECT-BOOTSTRAP.md",
@@ -394,6 +475,8 @@
     {
       "concern": "issue acceptance and anchored analysis/review handoff",
       "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
         ".github/ACCEPTANCE.md",
         ".github/acceptance/",
         ".github/workflows/issue-acceptance.yml",
@@ -407,11 +490,10 @@
         "tests/test_issue35_acceptance.py",
         "tests/test_issue36_acceptance.py"
       ],
-      "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json --report /tmp/issue-36-acceptance.json"
-      ],
+      "commands": ["python3 tools/issue_acceptance.py --help"],
+      "read": [".github/ACCEPTANCE.md", "review/REVIEW-TEMPLATE.md"],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy. Current #36 Writing integration uses scoped source/browser/performance mappings; completed #35 test allocation and #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
+      "note": "Help only describes invocation; it is not an acceptance check. Revalidate the live owning issue and select its policy from the PR's single Refs line or explicit dispatch issue, following ACCEPTANCE.md for exact-source execution. Historical policies do not select current work. Automated assertions cannot supply independent role execution/review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
     },
     {
       "concern": "canonical test inventory, changed-source selection and selected staging evidence",

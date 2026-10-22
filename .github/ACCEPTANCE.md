@@ -7,6 +7,17 @@ or merge decisions. Preserve IDs when adding scope; append dated decisions in
 the issue. A test chosen after implementation must still test the original goal,
 including meaningful failure cases, rather than merely describe current code.
 
+Apply [independent quality agents](../CONTRIBUTING.md#independent-quality-agents):
+the Requirements & Acceptance Reviewer examines requirement/AC quality before
+dependent implementation, after material changes and on the completed candidate.
+The code reviewer, white-box QA and exploratory/interaction QA each launch and
+inspect independently. Record four completed role results with exact scope/source,
+findings, test dispositions and limitations in the existing review artifact.
+Map their semantic obligations to explicit external gates in the owning policy;
+never use a keyword/checkbox test to claim an agent ran or a requirement was accepted.
+Every role launches; only that role's evidenced scope assessment can establish
+non-applicability. Missing access/execution remains pending or blocked.
+
 For every code/template/style/config change, apply [CODE-STYLE](../guides/CODE-STYLE.md).
 Add a code-style AC or an explicit subcondition in an existing AC before editing.
 Record rule IDs, affected canonical owners, named check selectors and review
@@ -31,7 +42,8 @@ At the end of implementation/session work:
 Apply [independent subagent review after every iteration](../CONTRIBUTING.md#independent-review-after-every-iteration)
 before advancing the candidate. Record current reviewed identity, finding dispositions
 and correction re-review in the owning review artifact. This is a mandatory external
-review gate; deterministic checks and implementer self-review cannot supply it.
+review gate alongside the other three independently executed quality roles;
+deterministic checks and implementer self-review cannot supply those results.
 
 1. Complete or update the criterion mapping and deterministic checks, plus the
    applicable GitHub Actions workflow/policy. A session ending early records

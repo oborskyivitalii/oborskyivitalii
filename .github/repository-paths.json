@@ -357,7 +357,7 @@
     },
     "CONTRIBUTING.md": {
       "kind": "file",
-      "purpose": "Issue intent, PR/commit linkage, research intake, review, closure and memory procedure.",
+      "purpose": "Canonical issue-to-PR protocol, four independently executed quality-agent roles, requirements quality, test-design handoff, source evidence and closure.",
       "role": "guide",
       "owner": "CONTRIBUTING.md"
     },
@@ -789,7 +789,7 @@
     },
     "guides/SITE-CHECK-PROFILES.md": {
       "kind": "file",
-      "purpose": "Current Basic, Preview, Full staging and Full production validation profiles.",
+      "purpose": "Canonical test allocation and QA-finding-to-CI handoff across existing source, hosted, staging, production and diagnostic profiles.",
       "role": "guide",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -855,7 +855,7 @@
     },
     "review/REVIEW-TEMPLATE.md": {
       "kind": "file",
-      "purpose": "One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence.",
+      "purpose": "Single versioned review format for independent role executions, requirements quality, QA scenarios/oracles, findings and acceptance evidence.",
       "role": "guide",
       "owner": "CONTRIBUTING.md"
     },
@@ -9222,6 +9222,24 @@
       "purpose": "Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions.",
       "role": "history",
       "owner": "guides/SITE-RELEASE-GATES.md"
+    },
+    ".github/acceptance/issue-120.json": {
+      "kind": "file",
+      "purpose": "Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-120": {
+      "kind": "directory",
+      "purpose": "Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-120/2026-10-22-review.md": {
+      "kind": "file",
+      "purpose": "Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

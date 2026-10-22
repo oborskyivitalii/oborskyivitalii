@@ -17,6 +17,39 @@ its dated decision link. Recommendations do not silently redefine acceptance.
 
 ## Findings
 
+### Independent role executions and requirements quality
+
+Apply [the four-role protocol](../CONTRIBUTING.md#independent-quality-agents).
+Keep each role's independent conclusion and actual source/limits; the orchestrator
+reconciles them without replacing them with its own approval. One agent per role;
+reuse a role-specific agent only through an actual correction/delta execution.
+
+| Role | Separate agent/execution | Inspected source and scope | Completed result / own finding link | Limit or affected recheck |
+| --- | --- | --- | --- | --- |
+| Requirements & Acceptance Reviewer | | | pending | |
+| Code Reviewer | | | pending | |
+| White-box QA | | | pending | |
+| Exploratory / Interaction QA | | | pending | |
+
+Requirements preflight: clarity, singularity, necessity, consistency/completeness,
+feasibility, verifiability/traceability; ambiguous ACs, assumptions and decisions.
+Final reconciliation: original intent → requirement/AC → check/external gate → evidence.
+No role independently accepts its own implementation. Missing capability is not
+non-applicability; record not observed/blocked and the actual remaining gate.
+
+### QA test design and exploration
+
+| Risk / AC | Branch/state/boundary or user scenario | Expected result and independent oracle | Existing/proposed test | Suite/profile/workflow/job or manual disposition | Actual result/source |
+| --- | --- | --- | --- | --- | --- |
+| | | | | | designed, not executed |
+
+Exploratory charter, candidate/artifact/origin, environment and bounded scenarios:
+Actual actions, expected/observed outcomes and evidence:
+Proposed regressions, reused coverage, duplicates and manual/deferred dispositions:
+Failure mechanism and invariant explained for maintainer understanding:
+
+### Findings and dispositions
+
 | ID | Severity | Evidence/path | Finding and implication | Affected AC | Disposition |
 | --- | --- | --- | --- | --- | --- |
 | F01 | | | | | open |
