@@ -1964,7 +1964,7 @@
     {
       "path": "tests/test_python_toolchain.py",
       "language": "python",
-      "purpose": "Installed pinned audit graph and exact Semgrep/MCP constraint override; missing, changed, incompatible and broadened declarations fail.",
+      "purpose": "Complete installed audit graph and exact four-record Semgrep compatibility set for patched MCP/OpenTelemetry; missing, duplicate, changed, foreign and incompatible declarations fail.",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "lifecycle": "permanent",
       "profiles": ["pr-targeted", "staging", "production"],

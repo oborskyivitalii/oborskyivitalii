@@ -206,13 +206,25 @@ this policy PR does not itself activate production.
 The Python lock includes its installer and every installed audit dependency. Full
 installers use `--no-deps` only with that complete lock, immediately followed by
 `python tools/quality/python_toolchain.py`. The verifier rejects missing, changed,
-duplicate, unfrozen or incompatible packages. Its single reviewed constraint
-override keeps unmodified Semgrep CE1.179.0 with patched MCP1.30.0, replacing the
-upstream exact1.29.0 declaration. Only the existing CE scan route is supported;
-this is not an MCP service deployment or a dependency-advisory exception. The
-advisory engine repeats installed-graph verification and audits every locked
-package, including the patched SDK and installer. Any future version/constraint
-change needs a new compatibility review; the exact override otherwise fails.
+duplicate, unfrozen or incompatible packages. For unmodified Semgrep CE1.179.0,
+the verifier requires each of these four reviewed compatibility records exactly once:
+
+| Exact upstream declaration | Exact installed dependency |
+| --- | --- |
+| `mcp==1.29.0` | `mcp==1.30.0` |
+| `opentelemetry-api~=1.37.0` | `opentelemetry-api==1.45.1` |
+| `opentelemetry-sdk~=1.37.0` | `opentelemetry-sdk==1.45.1` |
+| `opentelemetry-exporter-otlp-proto-http~=1.37.0` | `opentelemetry-exporter-otlp-proto-http==1.45.1` |
+
+The coherent OpenTelemetry family is pinned in the existing lock. These records
+deliberately exceed Semgrep's declared version constraints; acceptance requires
+actual installation and the existing CE scanning route, including positive/negative
+controls and complete source coverage. They do not establish support for an MCP
+service or exempt a dependency advisory. Distribution metadata stays unchanged.
+The advisory engine repeats full installed-graph verification and audits every
+locked package, including the patched SDK and installer. A missing, duplicate,
+changed or foreign compatibility record fails; future version/constraint changes
+need another compatibility review under the same gate.
 
 New untriaged findings fail the relevant check until classified. A real release
 blocker must be fixed or carry an explicit, scoped and expiring reviewed exception.

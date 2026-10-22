@@ -65,7 +65,8 @@ Install Node 24.19.0 and Python 3.12.14, then:
 ```sh
 npm ci --prefix tools/quality/toolchain --ignore-scripts
 python -m venv tools/quality/toolchain/venv
-tools/quality/toolchain/venv/bin/pip install -r tools/quality/toolchain/requirements.txt
+tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
 tools/quality/toolchain/node_modules/.bin/playwright install --with-deps
 node tools/quality/artifact.cjs build /tmp/site-check
 export SITE_PUBLIC_DIR=/tmp/site-check/public

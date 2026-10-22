@@ -8427,7 +8427,7 @@
     },
     "tools/quality/python_toolchain.py": {
       "kind": "file",
-      "purpose": "Verify the installed exact Python audit graph and sole reviewed patched MCP compatibility constraint.",
+      "purpose": "Verify the complete installed Python audit graph and exactly four reviewed Semgrep constraints for patched MCP and OpenTelemetry.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md"
     },
@@ -9256,6 +9256,12 @@
     "review/issue-122/2026-10-22-t01-review.md": {
       "kind": "file",
       "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t02p-review.md": {
+      "kind": "file",
+      "purpose": "Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }

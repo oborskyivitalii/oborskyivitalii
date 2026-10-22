@@ -513,11 +513,11 @@
     {
       "path": "tools/quality/python_toolchain.py",
       "rule": "B105",
-      "line": 111,
+      "line": 124,
       "test_name": "hardcoded_password_string",
       "severity": "LOW",
       "confidence": "MEDIUM",
-      "source_sha256": "c837dae35711237dc7a87d68b0bcefba2256c4dca148a1789de378e37252916f",
+      "source_sha256": "0bc77dbfb3763758b06f0c46d62b9778a70b988593a3f0a3687fce2b3e508905",
       "line_sha256": "9ba2e45538911f514e1bb21783cfefb750fb8af8d9ae9b6976780a6597e8974e",
       "owner": ".github/ACCEPTANCE.md",
       "issue": 35,
