@@ -28,8 +28,10 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 - Requirements preimplementation review completed without blocker on the unchanged approved scope.
 - Independent white-box preparation inspected actual dependencies and thirteen existing selection plans.
-- Four candidate reviews and applicable correction checks remain pending at this checkpoint.
-- Run current mechanical checks and the exact clean owning policy; complete current remote delivery gates.
+- All four candidate roles completed; nested-interface and digest findings received a bounded correction.
+- Actual correction reviews remain pending; the original failed receipts are retained in the review artifact.
+- Initial clean Basic/style/RI/RI-CI/layout/owning checks passed; source-plan results alone are not test passes.
+- Verify the final corrected source and complete current remote delivery gates.
 - The source registry/selector, workflows, budgets and protection remain unchanged.
 - All whole AC01–AC08 remain open; T01.1–T01.5 are complete in the issue.
 - T02.1–T02.5 remain pending until actual review, checks and delivery reconciliation.
