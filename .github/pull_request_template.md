@@ -25,6 +25,21 @@ Review of applicable rules outside the automatic guard (or reason not applicable
 
 ## Review and rights
 
+Four actual separate [quality-agent executions](../CONTRIBUTING.md#independent-quality-agents):
+
+| Role | Agent/execution identity | Source, scope and independent result link | Remaining finding/limit |
+| --- | --- | --- | --- |
+| Requirements & Acceptance Reviewer | | pending | |
+| Code Reviewer | | pending | |
+| White-box QA | | pending | |
+| Exploratory / Interaction QA | | pending | |
+
+Requirements preflight/final reconciliation; affected correction rechecks:
+Risk/AC → scenario/oracle → reused/new test → suite/profile/workflow/job → actual evidence:
+Exploration charter/environment/actions/observations; automation/manual/deferred dispositions:
+Only the independently launched role can justify non-applicability after inspection.
+Pending/unavailable execution is not a pass; an agent cannot accept its own authored work.
+
 Per-iteration [independent subagent review](../CONTRIBUTING.md#independent-review-after-every-iteration):
 Iteration / separate reviewer identity / inspected source/diff / materials and limits:
 Findings with AC impact / dispositions / correction re-review and final reviewed identity:

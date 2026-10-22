@@ -3,12 +3,12 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/5",
     "date": "2026-10-22",
-    "summary": "Integrate accepted main44aef6e hotfix, exact issue118 policy/proof and measured scheduling with PR79 reader/publisher; preserve existing selectors, budgets and review gates."
+    "summary": "Integrate accepted main de785e8 PR121 four-role quality protocol into PR79; preserve its full owning policy, selectors and budgets, and route actual independent role evidence through the existing INDEPENDENT gate."
   },
   "layers": [
     {
       "id": "authority-instructions",
-      "purpose": "Enduring agent rules, source authority and entry routes; history cannot supply current instructions.",
+      "purpose": "Enduring agent rules, source authority and four-role independent execution protocol; history and generated views cannot supply current instructions or approvals.",
       "paths": [
         "AGENTS.md",
         "CONTRIBUTING.md",
@@ -22,7 +22,7 @@
     },
     {
       "id": "intent-acceptance",
-      "purpose": "Owning issue intent and measurable criteria; execution and model reviews are linked PR artifacts. Automated and manual criteria stay distinct.",
+      "purpose": "Owning issue intent and observable criteria; independently launched requirements/code/QA role evidence and test design remain versioned PR artifacts. Mechanical checks cannot supply semantic review or manual decisions.",
       "paths": [
         ".github/ACCEPTANCE.md",
         ".github/ISSUE_TEMPLATE/research-input.md",
@@ -166,7 +166,9 @@
         ".github/acceptance/issue-118.json",
         "review/issue-118/2026-10-21-review.md",
         "review/issue-118/content-amendment.json",
-        "review/issue-118/2026-10-21-public-checksum-proof.json.gz"
+        "review/issue-118/2026-10-21-public-checksum-proof.json.gz",
+        ".github/acceptance/issue-120.json",
+        "review/issue-120/2026-10-22-review.md"
       ],
       "checks": [
         "acceptance-policy",
@@ -749,23 +751,23 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "e477a8c93400f352d7e6638a78b4ea2e32268aef37fe47422dd87baad5450e12",
+    "digest": "200395b8eda97bd9b4a02f76b836126f455d49a63cd0d3d8322beed08966cc64",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
-        "sha256": "d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b"
+        "sha256": "6469a66a36171404ce8448d75c3c5d96dc43563c76af41d4d2367598836fcaa8"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
-        "sha256": "6b069202635c47073c37fbe4444b2ffe9741a3ed794a68a20c291943075b71a9"
+        "sha256": "0f2031307cf04c89f9588fd5c455d1cf03003bfed886a88359b256d499ca542e"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
-        "sha256": "29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9"
+        "sha256": "f77e11c6e8cc1d323ebec943df2bebe3a0a4250e3f0b922b7fa79242732b4b04"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
-        "sha256": "46fdeee6ed0bad0d3c1fa2b4ab3d82e9bc8ca55975bbbcf50a2f7626008ba45b"
+        "sha256": "d5e0d1402980115fb4fdae1544ac4bf5237d7ea9b9e3c411fe4b99d7284d608b"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -782,6 +784,10 @@
       {
         "path": ".github/acceptance/issue-118.json",
         "sha256": "4ee32bc6112e29bf52ad186c88d0ca8cd3f317efa6633c80a0e34cbc90b26152"
+      },
+      {
+        "path": ".github/acceptance/issue-120.json",
+        "sha256": "9c51e1b93e3495e8074ad5ed501247e2bf6d439a12240f23b22d6da9081d484f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -817,7 +823,7 @@
       },
       {
         "path": ".github/acceptance/issue-5.json",
-        "sha256": "0767ce03f4d6138e0345208b0bc4a998852808800a030675aedec3568df2e6d2"
+        "sha256": "27ad8e1dd6f328c5cfeebd48b572abc365e9fdd9c3296be06ea6bd0f4c451429"
       },
       {
         "path": ".github/acceptance/issue-54.json",
@@ -861,11 +867,11 @@
       },
       {
         "path": ".github/pull_request_template.md",
-        "sha256": "99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1"
+        "sha256": "87a1617019e822d161e9b7b6764a08d9c9ab1fe128d8490f2439a06b34b5fba0"
       },
       {
         "path": ".github/repository-intelligence-config.json",
-        "sha256": "00be6d8e4762095c3b3455b9fb02133e559ed7421421dbc4b540f808e50f2da5"
+        "sha256": "d487510d0f012a633bffe16decfb2d009747dc5eeb30d7d27db465660ec1ed59"
       },
       {
         "path": ".github/repository-layout.json",
@@ -873,7 +879,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "041a0184518f3b2565671d23a0d9daaa8e8d1b22c10c425ce03170fae27dc8ec"
+        "sha256": "7980c239a2368aafa1010fc4e8c355f6a07b5ec136e428c3504878165ee5fac2"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -953,11 +959,11 @@
       },
       {
         "path": "AGENTS.md",
-        "sha256": "d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0"
+        "sha256": "30bed0a6d332da8b737ff532b2a000848558e4288194ae1d92fa40d1e57a978f"
       },
       {
         "path": "CONTRIBUTING.md",
-        "sha256": "f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5"
+        "sha256": "9c928c0aa362a6707b5d33fba456bf95fa4cfe37fa2bc6324f4d14136f30a2a2"
       },
       {
         "path": "PROJECT-BOOTSTRAP.md",
@@ -969,11 +975,11 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "81fa10fade7c25df94ec75f5fe6c7e29abdf13f98050ede24c14e85aa683a75c"
+        "sha256": "f6d4d8e3408f9918144d10b8fecc4adf321d7ce3a30855439f82f9a1b9dd3fac"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",
-        "sha256": "b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d"
+        "sha256": "d3a89e6f6252f264121009c75a4b8b2125b94046ae6c07597d244cdbb92c7907"
       },
       {
         "path": "review/issue-5/2026-10-20-controller-bootstrap.md",
@@ -1073,7 +1079,7 @@
       },
       {
         "path": "tests/test_repository_intelligence.py",
-        "sha256": "0990ed9c23f6b9955148941b3b4fbf9ef2bbda99f63c32a020540fdc0944ccc7"
+        "sha256": "28a928725ad9a6f63228b7ad37b71f084566fec1c15391c6ed020457eff6df5a"
       },
       {
         "path": "tests/test_repository_test_selection.py",

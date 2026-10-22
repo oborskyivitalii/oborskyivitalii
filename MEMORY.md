@@ -6,11 +6,16 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 - Execution owner issue 5 / Draft PR79; editorial/publication owner issue 2.
   Current route: review/issue-5/2026-10-22-r23-continuation.md.
-- Local integration 64cc91539196d4431cad833b9fe5252c97c29416 combines remote
-  PR79 head 36b9dec722cdcc080e02110d1cda1147fe0643cc and accepted main
-  44aef6e4d0f0cbc063a5269fa01a039c4979422e. This versioned checkpoint records
-  prepared R23 identities. Exact final commit/tree and post-commit check/preview
-  outcomes are pending here; check PR79 for the subsequent execution receipt.
+- Preceding verified PR79 source affb39fab20afe0b255dd7977bfe9a774bbab775,
+  tree d702194d0e62def229ead3147185c9c80b3a7165, includes accepted main
+  44aef6e4d0f0cbc063a5269fa01a039c4979422e. Its clean owning policy is 12/12 PASS.
+- Hosted preview 39756115291 on affb: attempt 1 CANCELLED at the fixed 10-minute
+  bound; the single scoped retry, attempt 2, SUCCESS in 9m12s, managed Chromium
+  153.0.8010.12. Exact preview: https://7f40ed31.oborskyi-author-ci-staging.pages.dev.
+  These receipts belong to the preceding source, not the new combined candidate.
+- Prepared integration adds accepted main de785e8ac34be36edb1140041e589ad441cb8f1f
+  / PR121 independent quality-agent protocol. Combined-source four-role reviews,
+  exact commit/tree and clean policy/hosted admission remain pending here.
 - Exact R23 PDF imported: 14 pages, 1,021,286 bytes, SHA256 dc617861409a8d22947ed0cd98ccfc20f97424a271a147b665e4c943bc8f8d0c.
   Supplied snapshot remains SHA256 cb94c4638ad905544c34986e4c3f4cbd81886b2e39a9d31ec67d87811f4f0200.
 - Canonical R23: site/publications/pmday-ai-both-sides/manuscript.en.md;
@@ -21,8 +26,8 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
   /root/pr79_recovery_review inspected all 14 PDF pages and 227 normalized source
   lines, with no blocking import/sync findings. Independent integration review
   also confirms ledger/retained-byte union and unchanged canonical PR79 runtime.
-- Prepared Basic, 28 RI + 20 RI/CI tests, 2 affected SEO checks and local browser
-  smoke pass. Four site rows and five reader observations include Off/no-canvas/
+- Earlier R23 preparation: Basic, 28 RI + 20 RI/CI tests, 2 affected SEO checks
+  and local browser smoke pass. Four site rows and five reader observations include Off/no-canvas/
   no-JS. Review Chromium 153.0.8010.0 is not the managed hosted/performance gate.
   Raw receipts: review/issue-5/2026-10-22-r23-prepared-evidence.json.gz.
 
@@ -39,6 +44,10 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 - Main integration preserves PR119 first-name copy, retained publication bytes,
   Pillow 13 and source scheduling. Ledger union preserves 13,386 unique rows,
   all 140 new-main rows and 9 same-disposition reason variants; no wildcard added.
+- PR121 integration is procedural only. Requirements preflight accepted the scope;
+  four distinct roles must review the combined candidate. The existing issue5
+  INDEPENDENT human gate now explicitly requires their source-bound receipts;
+  its 12 automated checks, all AC mappings and prior review obligations remain.
 - Article remains review, rights review-pending, canonical null and source pins null.
   No PR79 merge into main, production activation or platform posting is authorized
   by this source-preparation checkpoint. Existing public site remains separate.
@@ -50,10 +59,10 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
   binding is now corrected in three literals; targeted case 1/1 PASS and
   independent review approved. The final policy repeat has its separate receipt.
   Original failed receipt is retained in the prepared evidence packet.
-- Check PR79 for the subsequent execution receipt covering the final clean-source
-  policy and hosted preview. Independent source/doc/browser review has no blocking
-  findings. This pre-commit handoff cannot
-  assert its own future Git commit or workflow outcome. Revalidate live state.
+- Combined-source requirements/code/white-box/exploratory role results and final
+  current-source checks must be recorded in the existing issue5 review artifact.
+  Prior affb checks and preview remain preceding evidence, not new-source admission.
+  This pre-commit handoff cannot assert its own future Git commit or outcome.
 - Keep whole issue acceptance distinct from source/import/preview checks;
   update actual checkbox dispositions only for fully demonstrated criteria.
 - Historical R20 source 3e12e479 full matrix FAIL: reader mobile TBT 204/200 ms;
@@ -62,8 +71,9 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 - Existing CPU correction route: review/issue-5/2026-10-21-reader-cpu.md.
   No new post-CPU full performance matrix has run in this R23 increment.
   Source checks and import review do not accept current runtime performance.
-- Last recorded permanent article staging is R18/source 283b32f65f0589e85c0aa914d0990704dcf8ac38,
-  controller 39490652746/1. No current R23 stable promotion is claimed.
+- Last PR79-owned permanent article stage was R18/source 283b32f65f0589e85c0aa914d0990704dcf8ac38,
+  controller 39490652746/1. Shared stable staging subsequently advanced for PR121;
+  revalidate its live source before promotion. No R23 stable promotion is claimed.
 - Original whole editorial/evidence/rights/device/export/independent release/
   merge/publication gates remain open. Do not infer new whole AC ticks.
 
@@ -72,8 +82,8 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 1. Fetch live PR79, issues 5/2, refs, checks and deployment identities.
 2. Read the dated R23 continuation and artifact-directory README; verify exact
    candidate/input hashes and distinguish pending from completed receipts.
-3. Finish the authorized remaining step with existing checks/controller and
-   substantive separate-subagent review; preserve all failed/historical evidence.
+3. Finish the authorized remaining step with existing checks/controller and all
+   four independent quality roles; preserve all failed/historical evidence.
 4. Keep performance correction and publication decisions explicit and separate.
 
 ## Maintenance

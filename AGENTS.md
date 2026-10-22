@@ -19,6 +19,8 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
    does not establish absence; inspect relevant inventories before creating an owner.
 5. Add the applicable routes below to the common reading above. For mixed work,
    use their union; uncertain classification requires owner/source inspection.
+   Launch the separate Requirements & Acceptance Reviewer before dependent
+   implementation under [independent quality agents](CONTRIBUTING.md#independent-quality-agents).
 
 | Type | Additional reading |
 | --- | --- |
@@ -44,6 +46,11 @@ Enduring rules and task routing. Issues own intent; PRs own execution;
    Keep substantive PRs Draft during iteration. After every completed work iteration,
    require substantive independent review by a separate reviewer subagent before
    advancing; follow [the iteration protocol](CONTRIBUTING.md#independent-review-after-every-iteration).
+   Actually launch four distinct quality agents: requirements/acceptance, code review,
+   white-box QA and exploratory/interaction QA. Each inspects sources and returns its
+   own result; use waves when capacity is limited, never combine or impersonate roles.
+   Follow the quality-agent protocol for test design, applicability, correction checks
+   and completed source-bound evidence; a launch or another agent's summary is no pass.
    Preserve editorial, rights and device review; self-review is not independent review.
 10. Keep analysis/review/model tasks in the owning PR's versioned
     `review/issue-N/YYYY-MM-DD-kind.md`, using [REVIEW-TEMPLATE](review/REVIEW-TEMPLATE.md).

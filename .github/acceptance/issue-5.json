@@ -258,7 +258,7 @@
     },
     "INDEPENDENT": {
       "kind": "human",
-      "description": "Independent architecture/export review of exact implementation and applicable CS01–CS10 plus RI/CI/source-profile dispositions. Bounded guard success alone is insufficient."
+      "description": "Independent architecture/export review of exact implementation and applicable CS01–CS10 plus RI/CI/source-profile dispositions. Require completed, source-bound receipts from four distinct independently executed roles: Requirements & Acceptance Reviewer, Code Reviewer, White-box QA, and Exploratory / Interaction QA, following CONTRIBUTING.md#independent-quality-agents. Requirements review precedes dependent implementation and inspects the completed candidate; each applicable role rechecks substantive corrections. Record inspected scope, results, findings, dispositions and limits in the existing versioned issue review artifact; only a role's evidenced assessment may mark its genuinely absent surface not applicable. Bounded guard success alone is insufficient."
     },
     "DELIVERY": {
       "kind": "merge",

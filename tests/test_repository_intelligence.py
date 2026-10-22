@@ -428,6 +428,67 @@ class NavigationSafetyTests(unittest.TestCase):
                 ri.lookup(surface, "pmday")["owner_candidates"][0]["path"], "guides/SITE-ROADMAP.md"
             )
 
+    def test_quality_agent_queries_and_context_route_to_existing_checks(self):
+        config = ".github/repository-intelligence-config.json"
+        surface = ri.build(REPO, config)
+        for query in [
+            "requirements quality",
+            "якість вимог",
+            "independent code review",
+            "ревʼю коду",
+            "white-box testing",
+            "white box testing",
+            "вайтбокс тестування",
+            "exploratory testing",
+            "ручне тестування",
+            "separate agent launches",
+            "independent agents",
+            "окремі запуски агентів",
+        ]:
+            with self.subTest(query=query):
+                result = ri.lookup(surface, query)
+                self.assertIn(
+                    "CONTRIBUTING.md", {owner["path"] for owner in result["owner_candidates"]}
+                )
+                self.assertEqual(result["status"], "candidates-read-sources")
+
+        command = ["python3", "tools/repository_intelligence.py", "--config", config]
+        required_reads = {
+            "CONTRIBUTING.md",
+            ".github/ACCEPTANCE.md",
+            "review/REVIEW-TEMPLATE.md",
+            "guides/SITE-CHECK-PROFILES.md",
+            "tools/quality/test-profiles.json",
+            ".github/workflows/issue-acceptance.yml",
+        }
+        for query in [
+            "requirements quality",
+            "ручне тестування",
+            "tools/quality/source-tests.cjs",
+        ]:
+            with self.subTest(context=query):
+                result = json.loads(
+                    subprocess.check_output(
+                        command + ["context-for-task", query], cwd=REPO, text=True
+                    )
+                )
+                self.assertIn("AGENTS.md", result["instructions"])
+                self.assertTrue(
+                    any(
+                        required_reads <= set(route.get("read", []))
+                        and route.get("workflow") == ".github/workflows/navigation.yml"
+                        and "python3 tools/check_ri_ci.py verify" in route["commands"]
+                        for route in result["validation_routes"]
+                    )
+                )
+                if query != "tools/quality/source-tests.cjs":
+                    self.assertTrue(
+                        any(
+                            route.get("workflow") == ".github/workflows/issue-acceptance.yml"
+                            for route in result["validation_routes"]
+                        )
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()

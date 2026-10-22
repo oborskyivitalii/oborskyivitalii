@@ -143,6 +143,21 @@ configured; it does not invent local copies of UA/Subprime research status.
 
 ## Agent route
 
+The canonical [independent quality-agent protocol](../CONTRIBUTING.md#independent-quality-agents)
+defines separately launched requirements/acceptance, code review, white-box QA and
+exploratory/interaction QA. Bilingual owner aliases and validation companions route
+each role to that protocol, acceptance, the review template and the existing test
+allocation owner. Role executions and original conclusions belong to the owning
+issue's review artifact; this derived projection cannot launch an agent or establish
+that it ran. Test design follows risk/AC → scenario/oracle → suite/profile/workflow
+→ source-bound result, with explicit manual/unobserved dispositions.
+
+The permanent RI regression exercises actual role lookups and context routes in
+the existing navigation job. Coupling checks bind the protocol/config/test bytes
+and existing workflow invocation. These prove discoverability and mechanical
+freshness, not requirement quality, substantive QA, reviewer independence or
+acceptance. Each of those remains an actual separately recorded role execution.
+
 Use the T0–T4 routes in [AGENTS](../AGENTS.md) after its common intake. Mixed
 work uses the union of applicable owners; missing or uncertain classifications
 require source inspection. Routing reduces repeated reading, never source identity,

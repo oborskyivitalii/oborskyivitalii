@@ -287,6 +287,40 @@ See [SITE-RELEASE-GATES](SITE-RELEASE-GATES.md) for unchanged release budgets an
 [SITE-STAGING](SITE-STAGING.md) for controller, source leases, promotion and
 retained recovery. Production activation remains outside routine staging.
 
+## QA findings to GitHub Actions
+
+The [independent quality-agent protocol](../CONTRIBUTING.md#independent-quality-agents)
+owns four separate role executions. Requirements review checks intent/AC quality;
+both QA roles propose test cases; code review examines the resulting code and tests.
+They execute during development/review. The existing Actions jobs run selected
+tests, not LLM reviewers, and cannot prove that independent agent work occurred.
+
+For each material QA finding record in the owning review artifact:
+
+| Link | Required decision/evidence |
+| --- | --- |
+| Intent and risk | Stable AC, affected behavior/invariant and meaningful failure to detect |
+| Scenario and oracle | Preconditions/data/action, expected observable result and its contract source |
+| Test disposition | Reuse an adequate test, extend an existing suite, add a justified regression, retain manual evidence, or defer with owner/reason and its unresolved acceptance effect |
+| Execution route | Exact selector/command, suite owner, lifecycle and profile, workflow/job and trigger/changed-path selection; a file's existence alone is insufficient |
+| Result and limits | Actual tested source/environment/run, pass/fail/not observed, original failed evidence and remaining manual decision |
+
+Prefer the smallest deterministic level that detects the failure. Reproduced
+exploration defects should become regression cases where useful; visual judgment,
+physical-device behavior and inaccessible conditions remain explicitly bounded.
+Reuse the current unit/integration/browser/CLI owners. Register real new suites or
+changed inputs/lifecycles/profiles in `tools/quality/test-profiles.json`; an added
+test in an already-discovered Python suite can use its existing workflow route.
+Do not edit the registry merely to name a new agent, create duplicate full matrices,
+raise budgets, broaden scheduled diagnostics or retry until green. A manual workflow
+trigger is not manual QA. Design/coverage plans do not establish executed coverage.
+
+Review both positive behavior and meaningful negative cases, deduplicate the same
+failure assertion while retaining distinct failure surfaces, and preserve test
+selection/failure propagation in the existing RI/CI map. Any new or changed gate
+must retain its approved semantics. Existing staging/production/device decisions
+and the optional full-regression policy are unchanged by these agent roles.
+
 ## Registry and issue completion
 
 The registry inventories current suites, scheduled profiles, changed-path targets
