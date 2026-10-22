@@ -28,9 +28,9 @@
     {
       "id": "AC04",
       "intent": "Preserve applicable website and control coverage, budgets, profiles and source architecture",
-      "automated_scope": "Existing selection regressions and the bounded style guard retain their mechanical preservation scope. T02 changes documentation and necessary acceptance/RI companions only; actual CI, unchanged profile/budget/control behavior and semantic CS01/CS04/CS05/CS09/CS10 review remain separate.",
+      "automated_scope": "Existing selection regressions and the bounded style guard retain their mechanical preservation scope. T02 changes documentation and necessary acceptance/RI companions relative to delivered T02-P, without changing executable routing. The nine inherited toolchain methods run through the existing locked-venv permanent Python route, explicitly required by COVERAGE; they are not invoked by this standard-library owning-policy job. They cover the exact four-record compatibility set and version/metadata/inventory/extras boundaries. Actual complete91-package installed verification, advisory clearance and Semgrep execution remain source-bound external evidence. Semantic contract completeness, unchanged profile/budget/control behavior and applicable CS01/CS04/CS05/CS08/CS09/CS10 review remain separate.",
       "checks": ["SELECTION", "STYLE"],
-      "gates": ["COVERAGE", "REVIEW"]
+      "gates": ["COVERAGE", "REVIEW", "REQUIREMENTS", "WHITEBOX", "EXPLORATORY"]
     },
     {
       "id": "AC05",
@@ -94,7 +94,7 @@
     },
     "COVERAGE": {
       "kind": "human",
-      "description": "Inspect actual owners, dependency closure and required CI to confirm baseline, permanent source, repository, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and applicable unautomated style rules. T02 documents existing versus proposed routes without changing behavior; whole future lane-level preservation remains pending."
+      "description": "Inspect actual owners, dependency closure and required CI to confirm baseline, permanent source, repository, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and applicable unautomated style rules. T02 documents existing versus proposed routes without changing behavior; whole future lane-level preservation remains pending. Resumed T02 preserves delivered T02-P obligations: source-bound execution of all nine unchanged test_python_toolchain.py methods by the existing tools/run_repository_tests.py runner under the complete locked venv in owner-stage prepublication, with complete module/test accounting and no failures or skips. Four owning-policy checks alone do not establish that execution. Also require actual complete91-package installed-graph verification with exactly four individually required Semgrep compatibility records, unchanged metadata, complete current Python advisory coverage without waivers, real CE positive/negative controls and full expected source scan coverage. Preserve the delivered91-pin lock, existing npm disposition, workflows, budgets and failure boundaries."
     },
     "TRUST": {
       "kind": "human",
@@ -122,7 +122,7 @@
     },
     "DELIVERY": {
       "kind": "human",
-      "description": "Fetch current owning issue/PR, exact source CI including Basic and required selection, four actual independent-role results and all applicable external gates. Reconcile actual task/issue checkboxes and the one canonical documentation/RI contract. T01/T02 supply bounded increments; real lane outcomes and queue/setup/execution comparisons remain pending without fabricated speed claims."
+      "description": "Fetch current owning issue/PR, exact source CI including Basic and required selection, four actual independent-role results and all applicable external gates. Reconcile actual task/issue checkboxes and the one canonical documentation/RI contract. T02-P was delivered in PR125 to protected main4c9c27aab641fc57a4c975a78db9fdf3899b9b25 with completed owner staging, eligible admission and postmerge; live issue122 and PR125 retain the exact evidence. Resume the same PR124 with actual integration review in four distinct roles and fresh current-source CI, preview, required owner staging/admission, protected merge and postmerge. Preserve the repaired owners and both original review histories; prior results retain their original source identities. T02-P.5 and T02.1 through T02.5 remain live issue conditions until complete evidence reconciliation. T01, T02-P and T02 supply bounded increments only; whole lane outcomes and queue/setup/execution comparisons remain pending without fabricated speed claims."
     },
     "MERGED": {
       "kind": "merge",
