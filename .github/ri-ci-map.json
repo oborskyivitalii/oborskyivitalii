@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "review": {
-    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/120",
+    "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-22",
-    "summary": "Route independently executed requirements, code-review and QA roles through existing protocol, acceptance and CI owners; verify actual bilingual lookup/context behavior without new workflow or profile."
+    "summary": "T01 assigns exact review-template selection ownership, protects unknown/mixed/shared-control coverage in the existing suite, and maps all issue122 ACs without changing workflow or admission profiles."
   },
   "layers": [
     {
@@ -134,7 +134,9 @@
         "review/issue-118/content-amendment.json",
         "review/issue-118/2026-10-21-public-checksum-proof.json.gz",
         ".github/acceptance/issue-120.json",
-        "review/issue-120/2026-10-22-review.md"
+        "review/issue-120/2026-10-22-review.md",
+        ".github/acceptance/issue-122.json",
+        "review/issue-122/2026-10-22-t01-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -555,7 +557,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "8cd5efc21a3b16c254bb75f5c8ffd400e77c209bcdbaa4101665150491cc6cda",
+    "digest": "e0409feab3389d846729c375bf891efb2e96c47c0bd86cc1821becfd990fccb2",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -592,6 +594,10 @@
       {
         "path": ".github/acceptance/issue-120.json",
         "sha256": "9c51e1b93e3495e8074ad5ed501247e2bf6d439a12240f23b22d6da9081d484f"
+      },
+      {
+        "path": ".github/acceptance/issue-122.json",
+        "sha256": "caf1012e2d8b79fdae13b0b715f9dd1e01b4005b032eab6a12f2e5f5cf2ddcbd"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -683,7 +689,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "2ba2d49f032cf45267c0ba627eee1107355cda430fefa581d7d6976f30d2d4c5"
+        "sha256": "6333df0fb58636e476079ee0972a40cfe7ae8810443871063eab4822ff869ede"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -803,7 +809,7 @@
       },
       {
         "path": "tests/test-profile-selection.test.cjs",
-        "sha256": "8228fbf71963d411f9fb9ebccd131113b9c437dc319151401cf3767ba6bad273"
+        "sha256": "7bae4412f520b97371afd1b4dba6811ee047e10c5c1e09c3eed41f286ad21320"
       },
       {
         "path": "tests/test_code_style.py",
@@ -931,7 +937,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "d61112aaadf505a65ccced741715942aee21b72b18cb6d54bcf9c71a4e379c08"
+        "sha256": "473f9e4e8f8530712788c307a2421f27e6afba44740dde5f503200916a07ca10"
       },
       {
         "path": "tools/repository_intelligence.py",

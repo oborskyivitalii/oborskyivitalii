@@ -9240,6 +9240,24 @@
       "purpose": "Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-122.json": {
+      "kind": "file",
+      "purpose": "Issue122 delivery-lane AC mapping: bounded T01 selection checks with explicit pending lane, trust, independent-review and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-122": {
+      "kind": "directory",
+      "purpose": "Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t01-review.md": {
+      "kind": "file",
+      "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
     }
   }
 }

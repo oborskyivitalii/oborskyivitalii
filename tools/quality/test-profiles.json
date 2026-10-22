@@ -38,6 +38,7 @@
         "tools/check_ri_ci.py",
         "tools/issue_acceptance.py",
         "tools/run_repository_tests.py",
+        "review/REVIEW-TEMPLATE.md",
         "review/issue-*/**.md",
         "review/issue-*/**.json"
       ],
