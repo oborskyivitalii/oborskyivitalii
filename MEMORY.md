@@ -28,8 +28,8 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 - Requirements preimplementation review completed without blocker on the unchanged approved scope.
 - Independent white-box preparation inspected actual dependencies and thirteen existing selection plans.
-- All four candidate roles completed; nested-interface and digest findings received a bounded correction.
-- Actual correction reviews remain pending; the original failed receipts are retained in the review artifact.
+- All four actual correction reviews accepted87ef2a6/tree4373b44; interface/digest findings are resolved.
+- Original unsuccessful and subsequent correction receipts are retained verbatim in the review artifact.
 - Initial clean Basic/style/RI/RI-CI/layout/owning checks passed; source-plan results alone are not test passes.
 - Verify the final corrected source and complete current remote delivery gates.
 - The source registry/selector, workflows, budgets and protection remain unchanged.
@@ -40,7 +40,7 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 ## Next session
 
 1. Revalidate main, issue122/active PR, exact source, role receipts and actual checks/staging state.
-2. Complete authorized T02 candidate review and main delivery; never infer completion from this memory.
+2. Verify retained review provenance and complete authorized T02 main delivery; never infer completion from this memory.
 3. Reconcile verified task subconditions, report and reassess observer versus admission prerequisite.
 4. Present the next bounded step for separate approval; PR79 and sibling work retain their owners.
 
