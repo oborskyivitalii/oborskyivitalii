@@ -5,10 +5,11 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 ## Snapshot
 
 - Current task: issue120, independent requirements/code/white-box/exploratory roles.
-- Branch: work/issue-120-independent-qa from verified main44aef6e4d0f0cbc063a5269fa01a039c4979422e.
+- Branch: work/issue-120-independent-qa; reviewed candidate b17c9ff0680cc527399d77d51267b52f8741d9b5.
 - Main and production both pointed to that commit at intake; PR119 is merged.
 - Canonical protocol: CONTRIBUTING, independent-quality-agents; AGENTS routes it.
-- Evidence: review/issue-120/2026-10-22-review.md; inspect live issue/PR/checks.
+- Four original role receipts and four correction receipts: review/issue-120/2026-10-22-review.md.
+- This is the prepublication checkpoint; live issue120 owns subsequent PR/CI/staging/main evidence.
 - PR79/issue5, PR117/issue112, PR110 and PR107 remain separate active work.
 
 ## Decisions
@@ -23,10 +24,11 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 ## Open work
 
-- Requirements preflight RQ01/RQ02 clarified in issue120; no preimplementation blockers.
-- RI aliases/context regression and protocol/templates/policy are being integrated.
-- Final four-role reviews, current-source checks, PR/CI and normal main admission pending.
-- Record actual test/results and update issue120 checkboxes before handoff/closure.
+- Four distinct roles completed original and bounded correction reviews without remaining blockers.
+- Requirements RQ01–RQ04 clarified; exploratory EXP01 corrected with two aliases and regression inputs.
+- Initial local policy7/7, RI29/29, coupling20/20, layout15/15 and style15/15 passed; see exact-source receipts.
+- Final receipt source, remote CI and normal staging/main admission require their own live evidence.
+- Reconcile actual issue120 checkboxes against those results; local review alone does not close it.
 - Do not reinterpret older memory snapshots as current production/PR79 evidence.
 
 ## Next session
