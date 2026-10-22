@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d76b2b4ace220c7aaa3b1b5eefb3fdaf7d387d4a746d16142769136f24b74363",
+    "digest": "d61c62a59806e027beacfd75610c8bf8f9ae6c0f23576a9194d95d3172bbb9e7",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "caf1012e2d8b79fdae13b0b715f9dd1e01b4005b032eab6a12f2e5f5cf2ddcbd"
+        "sha256": "dae23d8d5303d34838337a45264b906bee1985b59f9bfbe074fe1e936dd27843"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -191,12 +191,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "6333df0fb58636e476079ee0972a40cfe7ae8810443871063eab4822ff869ede"
+        "sha256": "a3c9dfce4f8f3669a8261830cb79c1a3158569708c4a540f3b3a83903005d1f8"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "5ea624d9d3ab21b3899a5911ef198bf9e82f2ef33f41ccdbb6f0d28502a97b22"
+        "sha256": "c12c3810967adf1c7e6a4802fa034fdbecac9be6b716a4668ef248356ce8b63f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -326,7 +326,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "19fa850abe2f6bd923d82da792752c501a89807fd8403207dffb8c6e50c6e395"
+        "sha256": "bfa14e16f58092f5da01325cdc188791ae024a9d53b1882037d9e27f5d74a76f"
       },
       {
         "path": "NOTICE.md",
@@ -645,7 +645,7 @@
       {
         "path": "guides/SITE-RELEASE-GATES.md",
         "identity_mode": "content",
-        "sha256": "d1a5b67ecf8f31a37425bfdc0cf74628a3094781f92fee4b0b1e1fa94316c4e8"
+        "sha256": "80e3893557584c46713a2055b6bd747f73d167352da013339ed64c538a5ce3ce"
       },
       {
         "path": "guides/SITE-RIGHTS.md",
@@ -816,6 +816,11 @@
         "path": "review/issue-122/2026-10-22-t01-review.md",
         "identity_mode": "content",
         "sha256": "4d24561faa712af42c427e874e96b21ecdce33e5956097bf62863bd8add84821"
+      },
+      {
+        "path": "review/issue-122/2026-10-22-t02p-review.md",
+        "identity_mode": "content",
+        "sha256": "ca69001e14f6b3b563e17f7b57f424bd9a75f05104352a16144041bb2ef490de"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6140,7 +6145,7 @@
       {
         "path": "tests/test_python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "7a9d5d3ce027ebf9d10b34eff3dfea69e5a737fc18687acdbb604b8a12d96a20"
+        "sha256": "8d724059ffdcc9f94153899881458b40008db64b7cdd8de4d075da25b77cda3b"
       },
       {
         "path": "tests/test_repository_intelligence.py",
@@ -6310,7 +6315,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "894f9c0713039e36e3672dd62531ae2375000b93f6c6e58354efed24b6b93d4c"
+        "sha256": "938d7fe0df3281c59d23ffd49f61886395c1a27e91418701bdf3ced23a646b16"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -6335,7 +6340,7 @@
       {
         "path": "tools/quality/bandit-policy.json",
         "identity_mode": "content",
-        "sha256": "95e7c2c0e6a873c813a23dc5ce5c2276519aa461d7bf8e163d248683e100fdc4"
+        "sha256": "fdaf92541b379fc3cb1dece5a79e2aeab8d9acabcedefb1a7e0e6f7346f0ba16"
       },
       {
         "path": "tools/quality/bandit-triage.cjs",
@@ -6545,7 +6550,7 @@
       {
         "path": "tools/quality/python_toolchain.py",
         "identity_mode": "content",
-        "sha256": "c837dae35711237dc7a87d68b0bcefba2256c4dca148a1789de378e37252916f"
+        "sha256": "0bc77dbfb3763758b06f0c46d62b9778a70b988593a3f0a3687fce2b3e508905"
       },
       {
         "path": "tools/quality/reading-clarity.cjs",
@@ -6590,7 +6595,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d055adbff04d1f9ffb915c97436f5681fe29a77837f52b648f1169775e0a1d77"
+        "sha256": "f945ebfd211605dac8ae05e47f9f481f496d458d3e04cb185c140750060ee572"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
@@ -6645,7 +6650,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "473f9e4e8f8530712788c307a2421f27e6afba44740dde5f503200916a07ca10"
+        "sha256": "6bafef55c91a9a94f320d0b54ee5fc7f6d4f359f7b0b5dca59f971a020c5ecc2"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -6660,7 +6665,7 @@
       {
         "path": "tools/quality/toolchain/requirements.txt",
         "identity_mode": "content",
-        "sha256": "8aaa4328023936b35e9bdf73ad7618f52143c19ca7c51ee13295818bf3d2f68f"
+        "sha256": "2cb439a81bc20808faba28bf9551535df6b136929acccec0e4b2f52e4f62c901"
       },
       {
         "path": "tools/quality/transition-pacing.cjs",
@@ -9061,6 +9066,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 122 — 22 October 2026 — T01 review-template selection"
+    },
+    {
+      "path": "review/issue-122/2026-10-22-t02p-review.md",
+      "kind": "file",
+      "purpose": "Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue122 — 2026-10-22 T02-P dependency repair"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -21660,7 +21676,7 @@
     {
       "path": "tools/quality/python_toolchain.py",
       "kind": "file",
-      "purpose": "Verify the installed exact Python audit graph and sole reviewed patched MCP compatibility constraint.",
+      "purpose": "Verify the complete installed Python audit graph and exactly four reviewed Semgrep constraints for patched MCP and OpenTelemetry.",
       "role": "validator",
       "owner": "guides/SITE-RELEASE-GATES.md",
       "instructions": [

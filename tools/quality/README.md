@@ -46,7 +46,7 @@ avoids replaying that baseline; unknown changed source selects all permanent
 JavaScript conservatively. Changes to a diagnostic helper select its relevant
 retained diagnostic tests. PR smoke also has RI/CI and maintained repository
 checks, plus the owning issue's selected deterministic AC policy. Routine
-Python regression uses `python3 tools/run_repository_tests.py`, which excludes
+Python regression uses `tools/quality/toolchain/venv/bin/python tools/run_repository_tests.py`, which excludes
 numeric task snapshots. `issue-31`, `issue-33` and subsequent task policies run
 only for their owning issue; they do not freeze later publication changes.
 
@@ -65,7 +65,8 @@ Install Node 24.19.0 and Python 3.12.14, then:
 ```sh
 npm ci --prefix tools/quality/toolchain --ignore-scripts
 python -m venv tools/quality/toolchain/venv
-tools/quality/toolchain/venv/bin/pip install -r tools/quality/toolchain/requirements.txt
+tools/quality/toolchain/venv/bin/pip install --disable-pip-version-check --no-deps -r tools/quality/toolchain/requirements.txt
+tools/quality/toolchain/venv/bin/python tools/quality/python_toolchain.py
 tools/quality/toolchain/node_modules/.bin/playwright install --with-deps
 node tools/quality/artifact.cjs build /tmp/site-check
 export SITE_PUBLIC_DIR=/tmp/site-check/public
@@ -165,11 +166,12 @@ actual production origin must pass `profile: production` checks. Color remains
 staging-only. Running a full validation does not activate publication.
 
 Local full-suite reproductions, after installing the toolchain and preparing the
-same artifact:
+same artifact (use the corresponding `SITE_AUDIT_TOOLS` venv interpreter for
+shared installations, as above):
 
 ```sh
 node tools/quality/source-tests.cjs --profile production
-python3 tools/run_repository_tests.py
+tools/quality/toolchain/venv/bin/python tools/run_repository_tests.py
 node tools/quality/scanners.cjs lint
 node tools/quality/scanners.cjs security
 node tools/quality/scanners.cjs advisories

@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-22",
-    "summary": "T01 assigns exact review-template selection ownership, protects unknown/mixed/shared-control coverage in the existing suite, and maps all issue122 ACs without changing workflow or admission profiles."
+    "summary": "Issue122 T02-P preserves current workflow/source/profile ownership while mapping exact patched toolchain verifier regressions to the same acceptance policy and retaining four independent review plus real installed/scanner/advisory delivery gates."
   },
   "layers": [
     {
@@ -136,7 +136,8 @@
         ".github/acceptance/issue-120.json",
         "review/issue-120/2026-10-22-review.md",
         ".github/acceptance/issue-122.json",
-        "review/issue-122/2026-10-22-t01-review.md"
+        "review/issue-122/2026-10-22-t01-review.md",
+        "review/issue-122/2026-10-22-t02p-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
     },
@@ -557,7 +558,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "e0409feab3389d846729c375bf891efb2e96c47c0bd86cc1821becfd990fccb2",
+    "digest": "5c517ace9a3ae32c78db8428372887c54e052f956397afc5136d89c1112ef1cf",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -597,7 +598,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "caf1012e2d8b79fdae13b0b715f9dd1e01b4005b032eab6a12f2e5f5cf2ddcbd"
+        "sha256": "dae23d8d5303d34838337a45264b906bee1985b59f9bfbe074fe1e936dd27843"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -689,7 +690,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "6333df0fb58636e476079ee0972a40cfe7ae8810443871063eab4822ff869ede"
+        "sha256": "a3c9dfce4f8f3669a8261830cb79c1a3158569708c4a540f3b3a83903005d1f8"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -937,7 +938,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "473f9e4e8f8530712788c307a2421f27e6afba44740dde5f503200916a07ca10"
+        "sha256": "6bafef55c91a9a94f320d0b54ee5fc7f6d4f359f7b0b5dca59f971a020c5ecc2"
       },
       {
         "path": "tools/repository_intelligence.py",

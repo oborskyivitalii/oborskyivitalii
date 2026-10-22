@@ -4,42 +4,47 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 ## Snapshot
 
-- Current task: issue122 T01, exact review-template test-selection ownership.
-- Branch: work/issue-122-t01-review-template; base main de785e8ac34be36edb1140041e589ad441cb8f1f.
-- PR121 is merged and issue120 completed; its four-role protocol remains in CONTRIBUTING.
-- Canonical task, approval and current delivery evidence: live issue122 and its active PR.
-- Versioned implementation review: review/issue-122/2026-10-22-t01-review.md.
-- This is the prepublication handoff; later CI/staging/merge results require live revalidation.
-- PR79/issue5, PR117/issue112, PR110 and PR107 remain separate active work.
+- Active task: issue122 T02-P, approved audit dependency repair before T02 delivery.
+- Branch: work/issue-122-t02p-otel-repair; base main223ddc0c578c1ae357dc3c057cc8b4fa5a531caa.
+- T01 delivered in merged PR123; main tree84aa1e581ead80796fb39b11c5a36f32fc613857.
+- PR124/T02 is parked Draft at e8a8c54000fd4cca5cd17ab52eb63e6daf97df30.
+- Failed T02 stage39819597415/1 found vulnerable OpenTelemetry API1.37.0 before upload.
+- Canonical approval, task conditions and live delivery status: issue122.
+- Versioned repair review: review/issue-122/2026-10-22-t02p-review.md.
+- This is a correction checkpoint; live review/CI/merge must be revalidated.
 
 ## Decisions
 
-- Maintainer approved T01 through current staging/admission, protected merge and postmerge checks.
-- One independently mergeable implementation PR at a time; complete main delivery before the next step.
-- Report, reconcile actual ACs, reassess remaining work, then propose the next task for separate approval.
-- All four roles execute independently on each coherent candidate and affected correction.
-- T01 uses the exact maintained template path; unknown/mixed/shared controls retain broad coverage.
-- The registry-changing T01 PR itself still requires current broad source coverage and staging.
-- Future lane/trust/content work remains in issue122 and issue5/PR79; production is outside T01.
+- Maintainer explicitly approved T02-P after the proposal and dependency explanation.
+- One active delivery: repair through current independent review/CI/staging/main/postmerge.
+- Report the repair, then resume already approved T02 on updated main with fresh evidence.
+- Keep Semgrep1.179.0/MCP1.30.0; update ten OTEL pins and add two required packages.
+- Require exactly four reviewed compatibility records; preserve full graph and advisory checks.
+- Scope permits a narrowly verified existing Bandit signature rebind if reproduced.
+- All four distinct quality roles run on the candidate and affected corrections.
+- No workflow, profile-selection, budget, protection, npm exception or publisher change.
+- T03/production are outside approval; issue5/PR79 retains content-delivery work.
 
 ## Open work
 
-- Core registry correction and two selection regression groups prepared; normal isolated suite passed 26/26.
-- Original mapping fails the new cases; local sandbox subprocess EPERM is separate from source behavior.
-- All four actual implementation roles completed at dcc07d3; receipts are in the versioned review.
-- CR01 is closed by actual code follow-up at d02a91b; requirements follow-up confirms unchanged acceptance scope.
-- Final receipt incorporation retains unchanged behavioral evidence and refreshes RI; published-source validation follows.
-- Normal remote CI/staging/admission, merge and postmerge remain pending at this checkpoint.
-- The issue122 policy maps all eight original ACs; future obligations remain explicit pending gates.
-- All parent AC01–AC08 stay open after T01; only verified T01 subconditions may be checked.
-- Do not reinterpret this checkpoint or older snapshots as current production/PR79 evidence.
+- Requirements preflight accepted the task and necessary README command correction.
+- Verifier/tests and exact91-package lock prepared; actual local graph91/147 passed.
+- Nine focused unit methods and existing scanner positive selftest passed on prepared source.
+- Independent code review verified the one unchanged Bandit boolean finding; binding updated.
+- Four initial candidate reviews completed on69bbf8e; graph/audit/CE controls passed locally.
+- Review found unprovisioned owning calls; keep four checks and require all nine via COVERAGE/locked-venv staging.
+- Correct two remaining README interpreter examples and append one independently proved checksum ledger record.
+- Exact-source security failed on that checksum; corrected-source rerun/delta review and delivery remain pending.
+- Whole AC01–AC08 remain open; T01.1–T01.5 are complete in the issue.
+- T02-P.1–T02-P.5 and T02.1–T02.5 remain open until complete evidence is reconciled.
+- Retain failed runs; do not retry unchanged vulnerable dependencies.
 
 ## Next session
 
-1. Revalidate main, issue122/active PR, branch status, role receipts and actual CI/staging state.
-2. Retain the completed four-role/CR01 receipts and verify published tree/source reconciliation.
-3. Complete the authorized main delivery, reconcile T01, and report before proposing the next step.
-4. Wait for that next step's approval; sibling content/performance work retains its own owner.
+1. Revalidate main, issue122, active repair PR, parked PR124 and exact review/check evidence.
+2. Finish approved T02-P through current gates and protected-main postmerge; reconcile/report.
+3. Resume T02 from updated main with integration review and fresh delivery checks.
+4. After T02 delivery report and propose the next bounded step for separate approval.
 
 ## Maintenance
 

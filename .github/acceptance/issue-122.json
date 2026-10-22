@@ -28,9 +28,9 @@
     {
       "id": "AC04",
       "intent": "Preserve applicable website and control coverage, budgets, profiles and source architecture",
-      "automated_scope": "Selection regressions verify the bounded T01 preservation cases. The style guard proves only its existing enforced subset; actual CI, full lane obligations and unautomated CS01/CS04/CS05/CS08/CS09/CS10 review remain separate.",
+      "automated_scope": "Existing owning selection regressions preserve their coverage subset. The nine maintained T02-P synthetic installed-graph methods run through the existing locked-venv permanent Python route, explicitly required by COVERAGE; they are not invoked by this standard-library owning-policy job. They cover the exact four-record compatibility set and version/metadata/inventory/extras boundaries. Actual installed91-package verification, advisory clearance and Semgrep execution remain source-bound external evidence. The style guard proves only its enforced subset; applicable CS01/CS04/CS05/CS08/CS09/CS10 review remains separate.",
       "checks": ["SELECTION", "STYLE"],
-      "gates": ["COVERAGE", "REVIEW"]
+      "gates": ["COVERAGE", "REVIEW", "REQUIREMENTS", "WHITEBOX", "EXPLORATORY"]
     },
     {
       "id": "AC05",
@@ -94,7 +94,7 @@
     },
     "COVERAGE": {
       "kind": "human",
-      "description": "Inspect changed owners and actual required CI to confirm baseline, permanent source, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and review applicable unautomated style rules. T01 requires the existing broad shared-control coverage; future lane-level preservation remains pending."
+      "description": "Inspect changed owners and actual required CI to confirm baseline, permanent source, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and review applicable unautomated style rules. T01 requires the existing broad shared-control coverage; future lane-level preservation remains pending. Approved T02-P requires source-bound execution of all nine unchanged test_python_toolchain.py methods by the existing tools/run_repository_tests.py runner under the complete locked venv in owner-stage prepublication, with complete module/test accounting and no failures or skips. Four owning-policy checks alone do not establish that execution. Also require actual complete91-package installed-graph verification with exactly four individually required Semgrep compatibility records, unchanged metadata, complete current Python advisory coverage without waivers, real CE positive/negative controls and full expected source scan coverage. Preserve every other existing pin, npm disposition, workflow, budget and failure boundary."
     },
     "TRUST": {
       "kind": "human",
@@ -122,7 +122,7 @@
     },
     "DELIVERY": {
       "kind": "human",
-      "description": "Fetch current owning issue/PR, exact source CI including Basic and required selection, independent-role results and all applicable external gates. Reconcile actual issue checkboxes and one documentation/RI contract. T01 supplies only its increment; real lane outcomes and queue/setup/execution timing comparisons remain pending without fabricated speed claims."
+      "description": "Fetch current owning issue/PR, exact source CI including Basic and required selection, independent-role results and all applicable external gates. Reconcile actual issue checkboxes and one documentation/RI contract. T01 supplies only its increment; real lane outcomes and queue/setup/execution timing comparisons remain pending without fabricated speed claims. T02-P is the approved prerequisite: park PR124, deliver one bounded repair from protected main through current gates, report/reconcile, then resume already approved T02 with integration review and fresh exact-source evidence. T02-P.1 through T02-P.5 are tracked in the live issue; no whole parent criterion is established by this repair."
     },
     "MERGED": {
       "kind": "merge",
