@@ -26,7 +26,9 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 - Core registry correction and two selection regression groups prepared; normal isolated suite passed 26/26.
 - Original mapping fails the new cases; local sandbox subprocess EPERM is separate from source behavior.
-- Four-role implementation review, final clean-source CI and normal main delivery need their own evidence.
+- All four actual implementation roles completed at dcc07d3; receipts are in the versioned review.
+- CR01 is a mechanical RI/CI-map formatting correction; bounded recheck and final clean-source evidence follow.
+- Normal remote CI/staging/admission, merge and postmerge remain pending at this checkpoint.
 - The issue122 policy maps all eight original ACs; future obligations remain explicit pending gates.
 - All parent AC01–AC08 stay open after T01; only verified T01 subconditions may be checked.
 - Do not reinterpret this checkpoint or older snapshots as current production/PR79 evidence.
@@ -34,7 +36,7 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 ## Next session
 
 1. Revalidate main, issue122/active PR, branch status, role receipts and actual CI/staging state.
-2. Follow the T01 review record and unresolved findings; complete all four actual roles.
+2. Follow the T01 review record and CR01 disposition; retain source-bound receipts and correction follow-up.
 3. Complete the authorized main delivery, reconcile T01, and report before proposing the next step.
 4. Wait for that next step's approval; sibling content/performance work retains its own owner.
 
