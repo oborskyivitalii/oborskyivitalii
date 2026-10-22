@@ -35,6 +35,15 @@ exceptions/removal tasks. For prose-only work state the reason for non-applicabi
 
 Next step and related issue/PR links. Preserve initial intent; append approved changes.
 
+Apply [independent quality agents](../../CONTRIBUTING.md#independent-quality-agents).
+Requirements-review identity/result before dependent implementation:
+Original intent → requirement/AC → observable outcome/oracle → test or external gate:
+Requirement ambiguity, assumptions, dependencies and remaining owner decisions:
+White-box risks and existing test owners; exploratory user/operator surfaces:
+Plan four distinct role launches (requirements, code review, white-box, exploratory).
+Each role returns its own completed result, including evidenced non-applicability
+where appropriate; no unlaunched pass or shared-role reviewer. Use waves if needed.
+
 ### Review / analysis / model handoff — YYYY-MM-DD
 
 Apply [independent subagent review after every iteration](../../CONTRIBUTING.md#independent-review-after-every-iteration).

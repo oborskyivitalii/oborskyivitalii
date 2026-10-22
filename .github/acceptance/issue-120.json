@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "repository": "oborskyivitalii/oborskyivitalii",
+  "issue": 120,
+  "issue_url": "https://github.com/oborskyivitalii/oborskyivitalii/issues/120",
+  "criteria": [
+    {
+      "id": "AC01",
+      "intent": "Defined independent testing roles with bounded applicable execution",
+      "automated_scope": "Guide bounds, existing mandatory routes and actual RI lookups establish mechanical discoverability only. Role semantics, risk selection, authorship independence and genuine non-applicability need independent inspection.",
+      "checks": ["BOUNDS", "ROUTES", "QUALITY-ROUTES"],
+      "gates": ["REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
+    },
+    {
+      "id": "AC02",
+      "intent": "Existing issue-to-PR flow consumes QA evidence and actionable GitHub Actions test design",
+      "automated_scope": "Current catalog and CI coupling verify path/command integrity. They do not prove that scenario oracles reflect user intent or that actual QA work occurred.",
+      "checks": ["CURRENT-RI", "RI-CI", "QUALITY-ROUTES"],
+      "gates": ["REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
+    },
+    {
+      "id": "AC03",
+      "intent": "Discoverable bounded bilingual quality-agent routes with meaningful routing verification",
+      "automated_scope": "Actual owner lookups and context CLI output exercise declared English/Ukrainian role and launch queries, instruction scope and existing check companions. No arbitrary-language or semantic-acceptance claim.",
+      "checks": ["QUALITY-ROUTES", "CURRENT-RI", "RI-CI"],
+      "gates": ["REVIEW", "WHITEBOX", "EXPLORATORY"]
+    },
+    {
+      "id": "AC04",
+      "intent": "Current-source checked, independently reviewed and normally incorporated bounded change",
+      "automated_scope": "Basic, style, current navigation and coupling checks cover their existing subsets. Semantic style/scope review, unchanged runtime/public inspection, actual GitHub CI and main incorporation remain separate.",
+      "checks": ["BASIC", "STYLE", "ROUTES", "BOUNDS", "QUALITY-ROUTES", "CURRENT-RI", "RI-CI"],
+      "gates": ["REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY", "LIVE", "MERGED"]
+    },
+    {
+      "id": "AC05",
+      "intent": "Independent review of requirements and acceptance quality before implementation and at completion",
+      "automated_scope": "Actual RI routes expose the requirements-quality owner. Mechanical checks cannot establish requirement necessity, clarity, completeness, consistency, feasibility, verifiability or traceability.",
+      "checks": ["QUALITY-ROUTES"],
+      "gates": ["REQUIREMENTS", "REVIEW"]
+    },
+    {
+      "id": "AC06",
+      "intent": "Four actual separate completed source-bound agent executions for each coherent candidate",
+      "automated_scope": "Navigation and bounds establish instruction access only. Distinct launches, independent source inspection, completion, nonauthorship, capability limitations and affected correction execution require actual external evidence.",
+      "checks": ["QUALITY-ROUTES", "BOUNDS"],
+      "gates": ["REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
+    }
+  ],
+  "checks": {
+    "BASIC": {
+      "kind": "node-basic"
+    },
+    "STYLE": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_current_repository_guard"
+    },
+    "ROUTES": {
+      "kind": "unittest",
+      "test": "test_code_style.CodeStyleRepositoryTests.test_mandatory_agent_contributor_and_acceptance_routes"
+    },
+    "BOUNDS": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_memory_and_agent_bounds_and_required_sections_fail"
+    },
+    "QUALITY-ROUTES": {
+      "kind": "unittest",
+      "test": "test_repository_intelligence.NavigationSafetyTests.test_quality_agent_queries_and_context_route_to_existing_checks"
+    },
+    "CURRENT-RI": {
+      "kind": "unittest",
+      "test": "test_issue31_acceptance.Issue31AcceptanceTests.test_complete_catalog_and_fresh_generated_views"
+    },
+    "RI-CI": {
+      "kind": "unittest",
+      "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    }
+  },
+  "gates": {
+    "REQUIREMENTS": {
+      "kind": "human",
+      "description": "Actual distinct nonauthoring Requirements & Acceptance Reviewer independently checks original issue/AC quality before dependent implementation, material requirement changes and completed candidate. Retain source-bound findings and intent-to-AC-to-check/evidence reconciliation; no invented maintainer decisions."
+    },
+    "REVIEW": {
+      "kind": "human",
+      "description": "Actual separate nonimplementing Code Reviewer inspects the complete candidate/diff including tests, templates, policy and RI integration under each-iteration protocol. Recheck substantive corrections; inspect applicable CS01/04/05/08/09/10, unchanged runtime/public scope and role independence."
+    },
+    "WHITEBOX": {
+      "kind": "human",
+      "description": "Actual distinct White-box QA independently inspects changed routing/design and tests, meaningful failure surfaces and oracle adequacy; records bounded test matrix, actual checks, source identity, findings and corrections. Cannot independently accept its own authored artifacts."
+    },
+    "EXPLORATORY": {
+      "kind": "human",
+      "description": "Actual distinct Exploratory/Interaction QA independently exercises the changed RI/CLI surface from a bounded intent-based charter, recording candidate/environment/actions/observations and regression/manual dispositions. Missing evidence is not non-applicability or a physical-device claim."
+    },
+    "LIVE": {
+      "kind": "human",
+      "description": "Fetch actual issue/PR/Refs commits, four independent role results and current-source CI; reconcile original ACs and actual issue checkboxes. Skipped Draft jobs or local reports do not establish remote admission."
+    },
+    "MERGED": {
+      "kind": "merge",
+      "description": "Applicable maintainer main-incorporation decision, successful existing staging/admission route and actual protected-main merge with source/tree identity verified before closure. No production publication requested."
+    }
+  }
+}

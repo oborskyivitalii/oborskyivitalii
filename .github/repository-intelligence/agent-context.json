@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "cf8f1340d483964c05725d04d86b0131620dfa96f4aef572d0d8fbc67136c44c",
+    "digest": "bcb21dfac4cea803398607c2cf71a2326b4ef5abeb59897e35418d2d84274ccc",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -27,22 +27,22 @@
       {
         "path": ".github/ACCEPTANCE.md",
         "identity_mode": "content",
-        "sha256": "d54e0207d2f1858289a1fb008f315bcda6db13beb9ca4f5a901a8218654a699b"
+        "sha256": "6469a66a36171404ce8448d75c3c5d96dc43563c76af41d4d2367598836fcaa8"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/research-input.md",
         "identity_mode": "content",
-        "sha256": "6b069202635c47073c37fbe4444b2ffe9741a3ed794a68a20c291943075b71a9"
+        "sha256": "0f2031307cf04c89f9588fd5c455d1cf03003bfed886a88359b256d499ca542e"
       },
       {
         "path": ".github/ISSUE_TEMPLATE/work-item.md",
         "identity_mode": "content",
-        "sha256": "29f49b60befc62900b7baec954f38f16e9af2536a491f2f91d6d8add15c968f9"
+        "sha256": "f77e11c6e8cc1d323ebec943df2bebe3a0a4250e3f0b922b7fa79242732b4b04"
       },
       {
         "path": ".github/REPOSITORY-INTELLIGENCE.md",
         "identity_mode": "content",
-        "sha256": "46fdeee6ed0bad0d3c1fa2b4ab3d82e9bc8ca55975bbbcf50a2f7626008ba45b"
+        "sha256": "d5e0d1402980115fb4fdae1544ac4bf5237d7ea9b9e3c411fe4b99d7284d608b"
       },
       {
         "path": ".github/acceptance/issue-102.json",
@@ -63,6 +63,11 @@
         "path": ".github/acceptance/issue-118.json",
         "identity_mode": "content",
         "sha256": "4ee32bc6112e29bf52ad186c88d0ca8cd3f317efa6633c80a0e34cbc90b26152"
+      },
+      {
+        "path": ".github/acceptance/issue-120.json",
+        "identity_mode": "content",
+        "sha256": "9c51e1b93e3495e8074ad5ed501247e2bf6d439a12240f23b22d6da9081d484f"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -162,12 +167,12 @@
       {
         "path": ".github/pull_request_template.md",
         "identity_mode": "content",
-        "sha256": "99e03cdd84823a63a7a355756316f36c2a8e52804d549b84e39d4825b60575a1"
+        "sha256": "87a1617019e822d161e9b7b6764a08d9c9ab1fe128d8490f2439a06b34b5fba0"
       },
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "d51caecd3b0baf95b67922fd269ddc1d68b22c1bcaf468cb212cf5c7d0369b9d"
+        "sha256": "fc793067f4a0ba18688c203b3c77708f324888465ecbd07e33ddfcc7fb1ac271"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -181,12 +186,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "1084f30b93cc8aa5c0b278d89f93fa665a2afa60938b883506ec2b16ad25045c"
+        "sha256": "2ba2d49f032cf45267c0ba627eee1107355cda430fefa581d7d6976f30d2d4c5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "b46be3715618d4bcbce46e0fec79f8583effa8c6a0bc7e9fd11d70010cd988af"
+        "sha256": "032cc3a09f7dbe7a04036e8c4137c49c1045dc0b4acf761c3d5561601e4f52f9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -291,12 +296,12 @@
       {
         "path": "AGENTS.md",
         "identity_mode": "content",
-        "sha256": "d59db1058f8bfbfc27ce5030c152c74fab3dfc18a012d998799fce1ecedb55e0"
+        "sha256": "30bed0a6d332da8b737ff532b2a000848558e4288194ae1d92fa40d1e57a978f"
       },
       {
         "path": "CONTRIBUTING.md",
         "identity_mode": "content",
-        "sha256": "f777b734784522acbbc8f97026436b085741830305b8efc20435a765f6f3e2c5"
+        "sha256": "9c928c0aa362a6707b5d33fba456bf95fa4cfe37fa2bc6324f4d14136f30a2a2"
       },
       {
         "path": "LICENSE-CODE.md",
@@ -316,7 +321,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "6fd860be6443fad9d7c640e90f6394585de8081d4fe548ed93f2b8c7f4af5cda"
+        "sha256": "9818363c28de117e198e8cca8012b8912cdbf196f43207fbbe644240062f444b"
       },
       {
         "path": "NOTICE.md",
@@ -620,7 +625,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "c569ef675528f8808a7e56e5e367b9c9fc0d03891ecb368a7db7fea060d53a24"
+        "sha256": "a43595b0601df7f94150a2a95954a2c19a506ff8778457f27544666296c45516"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -670,7 +675,7 @@
       {
         "path": "review/REVIEW-TEMPLATE.md",
         "identity_mode": "content",
-        "sha256": "b29c24c656b6eb8cf561d2d9906c4e95781cf63ea68cba1c5320b0171141112d"
+        "sha256": "d3a89e6f6252f264121009c75a4b8b2125b94046ae6c07597d244cdbb92c7907"
       },
       {
         "path": "review/assets/site-day-night-concept-20261002.png",
@@ -796,6 +801,11 @@
         "path": "review/issue-118/content-amendment.json",
         "identity_mode": "content",
         "sha256": "1b728073d551af7682c5c404324cd07a30809c8e641c8d4d897a014a1b5dd0ac"
+      },
+      {
+        "path": "review/issue-120/2026-10-22-review.md",
+        "identity_mode": "content",
+        "sha256": "70ee3b02b77fa6dc918dbc2c1b9ffca455154313144fea48976b474e56f859fe"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6125,7 +6135,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "0990ed9c23f6b9955148941b3b4fbf9ef2bbda99f63c32a020540fdc0944ccc7"
+        "sha256": "28a928725ad9a6f63228b7ad37b71f084566fec1c15391c6ed020457eff6df5a"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -6943,7 +6953,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "d51caecd3b0baf95b67922fd269ddc1d68b22c1bcaf468cb212cf5c7d0369b9d"
+    "config_sha256": "fc793067f4a0ba18688c203b3c77708f324888465ecbd07e33ddfcc7fb1ac271"
   },
   "owners": [
     {
@@ -6997,9 +7007,63 @@
         "independent subagent review",
         "iteration review",
         "незалежне ревю субагентом",
+        "independent quality agents",
+        "independent agents",
+        "separate agent launches",
+        "незалежний запуск агентів",
+        "окремі запуски агентів",
         "backlog",
         "ішью",
         "беклог"
+      ]
+    },
+    {
+      "concern": "independent requirements and acceptance-quality review",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "requirements reviewer",
+        "requirements review",
+        "requirements quality",
+        "acceptance quality",
+        "якість вимог",
+        "перевірка вимог",
+        "якість критеріїв приймання"
+      ]
+    },
+    {
+      "concern": "independent code review and correction acceptance",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "code reviewer",
+        "independent code review",
+        "ревʼю коду",
+        "код ревью",
+        "незалежне ревю коду"
+      ]
+    },
+    {
+      "concern": "independent white-box QA and structural test design",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "white-box QA",
+        "white-box testing",
+        "white box testing",
+        "whitebox testing",
+        "вайтбокс тестування",
+        "тестування білої скриньки"
+      ]
+    },
+    {
+      "concern": "independent exploratory and interaction QA",
+      "path": "CONTRIBUTING.md",
+      "queries": [
+        "exploratory testing",
+        "exploratory QA",
+        "interaction QA",
+        "manual testing",
+        "дослідницьке тестування",
+        "ручне тестування",
+        "тестування взаємодії"
       ]
     },
     {
@@ -7326,6 +7390,17 @@
         "AGENTS.md"
       ],
       "title": "issue-118.json"
+    },
+    {
+      "path": ".github/acceptance/issue-120.json",
+      "kind": "file",
+      "purpose": "Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-120.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -7836,7 +7911,7 @@
     {
       "path": "CONTRIBUTING.md",
       "kind": "file",
-      "purpose": "Issue intent, PR/commit linkage, research intake, review, closure and memory procedure.",
+      "purpose": "Canonical issue-to-PR protocol, four independently executed quality-agent roles, requirements quality, test-design handoff, source evidence and closure.",
       "role": "guide",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -8551,7 +8626,7 @@
     {
       "path": "guides/SITE-CHECK-PROFILES.md",
       "kind": "file",
-      "purpose": "Current Basic, Preview, Full staging and Full production validation profiles.",
+      "purpose": "Canonical test allocation and QA-finding-to-CI handoff across existing source, hosted, staging, production and diagnostic profiles.",
       "role": "guide",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -8661,7 +8736,7 @@
     {
       "path": "review/REVIEW-TEMPLATE.md",
       "kind": "file",
-      "purpose": "One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence.",
+      "purpose": "Single versioned review format for independent role executions, requirements quality, QA scenarios/oracles, findings and acceptance evidence.",
       "role": "guide",
       "owner": "CONTRIBUTING.md",
       "instructions": [
@@ -8943,6 +9018,17 @@
         "AGENTS.md"
       ],
       "title": "content-amendment.json"
+    },
+    {
+      "path": "review/issue-120/2026-10-22-review.md",
+      "kind": "file",
+      "purpose": "Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 120 — 2026-10-22 independent quality-agent integration"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -22895,6 +22981,16 @@
       ]
     },
     {
+      "path": "review/issue-120",
+      "kind": "directory",
+      "purpose": "Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
       "path": "review/issue-31",
       "kind": "directory",
       "purpose": "Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR.",
@@ -24016,6 +24112,35 @@
       "workflow": ".github/workflows/navigation.yml"
     },
     {
+      "concern": "independent quality-agent protocol and risk-to-test handoff",
+      "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        ".github/ACCEPTANCE.md",
+        ".github/ISSUE_TEMPLATE/",
+        ".github/pull_request_template.md",
+        "review/REVIEW-TEMPLATE.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/test-profiles.json",
+        "tools/quality/source-tests.cjs",
+        "tests/test_repository_intelligence.py"
+      ],
+      "commands": [
+        "python3 -m unittest discover -s tests -p 'test_repository_intelligence.py'",
+        "python3 tools/check_ri_ci.py verify"
+      ],
+      "read": [
+        "CONTRIBUTING.md",
+        ".github/ACCEPTANCE.md",
+        "review/REVIEW-TEMPLATE.md",
+        "guides/SITE-CHECK-PROFILES.md",
+        "tools/quality/test-profiles.json",
+        ".github/workflows/issue-acceptance.yml"
+      ],
+      "workflow": ".github/workflows/navigation.yml",
+      "note": "Follow CONTRIBUTING.md#independent-quality-agents for separately launched Requirements/Acceptance Reviewer, Code Reviewer, White-box QA and Exploratory/Interaction QA. These commands verify navigation and CI coupling, not agent execution or acceptance. Map findings and test dispositions to the live owning issue, existing profile registry and its acceptance policy; retain actual role results and manual limits in the review artifact."
+    },
+    {
       "concern": "entry points, maintained guides and preserved root history",
       "paths": [
         "PROJECT-BOOTSTRAP.md",
@@ -24071,6 +24196,8 @@
     {
       "concern": "issue acceptance and anchored analysis/review handoff",
       "paths": [
+        "AGENTS.md",
+        "CONTRIBUTING.md",
         ".github/ACCEPTANCE.md",
         ".github/acceptance/",
         ".github/workflows/issue-acceptance.yml",
@@ -24085,10 +24212,14 @@
         "tests/test_issue36_acceptance.py"
       ],
       "commands": [
-        "python3 tools/issue_acceptance.py run --policy .github/acceptance/issue-36.json --report /tmp/issue-36-acceptance.json"
+        "python3 tools/issue_acceptance.py --help"
+      ],
+      "read": [
+        ".github/ACCEPTANCE.md",
+        "review/REVIEW-TEMPLATE.md"
       ],
       "workflow": ".github/workflows/issue-acceptance.yml",
-      "note": "Choose the owning issue policy. Current #36 Writing integration uses scoped source/browser/performance mappings; completed #35 test allocation and #31/#33 snapshots remain pinned to their original sources. Automated assertions cannot supply independent review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
+      "note": "Help only describes invocation; it is not an acceptance check. Revalidate the live owning issue and select its policy from the PR's single Refs line or explicit dispatch issue, following ACCEPTANCE.md for exact-source execution. Historical policies do not select current work. Automated assertions cannot supply independent role execution/review, observed hosted timing, owner/device acceptance, merge or live GitHub linkage."
     },
     {
       "concern": "canonical test inventory, changed-source selection and selected staging evidence",

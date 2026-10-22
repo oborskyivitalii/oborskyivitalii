@@ -17,7 +17,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.gitattributes](.gitattributes) | Cross-platform LF normalization and binary-file exceptions. | configuration | [site/README.md](site/README.md) |
 | [.gitignore](.gitignore) | Local dependency, build, cache and staging package exclusions. | configuration | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [AGENTS.md](AGENTS.md) | Compact agent bootstrap, authority routes, issue-first work and completion rules. | guide | [AGENTS.md](AGENTS.md) |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Issue intent, PR/commit linkage, research intake, review, closure and memory procedure. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Canonical issue-to-PR protocol, four independently executed quality-agent roles, requirements quality, test-design handoff, source evidence and closure. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [LICENSE-CODE.md](LICENSE-CODE.md) | Apache-2.0 license for original personal-site code within the explicit LICENSING scope; upstream terms remain separate. | license | [LICENSING.md](LICENSING.md) |
 | [LICENSE-CONTENT.md](LICENSE-CONTENT.md) | CC BY 4.0 terms for original personal-site content within the explicit LICENSING scope and exclusions. | license | [LICENSING.md](LICENSING.md) |
 | [LICENSING.md](LICENSING.md) | Maintainer-approved personal-site code/content licensing boundary, media exclusions and upstream attribution policy. | guide | [LICENSING.md](LICENSING.md) |
@@ -75,6 +75,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-108](review/issue-108) | Issue108 exact PMDay event content amendment and source/delivery self-review. | history | [site/README.md](site/README.md) |
 | [review/issue-114](review/issue-114) | Issue114 independent iteration-review rule implementation and source-bound review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-118](review/issue-118) | Issue118 first-name editorial hotfix review and source-bound evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-120](review/issue-120) | Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -213,6 +214,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-108.json](.github/acceptance/issue-108.json) | Issue108 stable AC mapping for current PMDay facts, naming and standard delivery; human gates remain separate. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-114.json](.github/acceptance/issue-114.json) | Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-118.json](.github/acceptance/issue-118.json) | Issue118 bounded editorial hotfix acceptance and explicit delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-120.json](.github/acceptance/issue-120.json) | Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -437,7 +439,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [guides/README.md](guides/README.md) | Topic guide index with one current owner for each concern; live issue status is retrieved separately. | guide | [guides/README.md](guides/README.md) |
 | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) | Canonical boundaries and coordinated work routes across site, UA and Subprime. | guide | [guides/REPOSITORIES.md](guides/REPOSITORIES.md) |
 | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) | Disabled-by-default production analytics adapter contract and measurement limitations. | guide | [guides/SITE-ANALYTICS.md](guides/SITE-ANALYTICS.md) |
-| [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) | Current Basic, Preview, Full staging and Full production validation profiles. | guide | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
+| [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) | Canonical test allocation and QA-finding-to-CI handoff across existing source, hosted, staging, production and diagnostic profiles. | guide | [guides/SITE-CHECK-PROFILES.md](guides/SITE-CHECK-PROFILES.md) |
 | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) | Maintained exact-edition editorial, source and rights review protocol; past inventory decisions remain archived. | guide | [guides/SITE-CONTENT-REVIEW.md](guides/SITE-CONTENT-REVIEW.md) |
 | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) | Custom-domain production plan, provider boundaries, owner settings and phased GitHub Pages release instructions. | guide | [guides/SITE-PRODUCTION.md](guides/SITE-PRODUCTION.md) |
 | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) | Exact-artifact security, quality, performance, browser/device and release requirements. | guide | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
@@ -452,7 +454,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
-| [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) | One issue/PR review and model-handoff artifact template with inspected source, findings, ACs, tasks and evidence. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/REVIEW-TEMPLATE.md](review/REVIEW-TEMPLATE.md) | Single versioned review format for independent role executions, requirements quality, QA scenarios/oracles, findings and acceptance evidence. | guide | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/build_visual_proposal.cjs](review/build_visual_proposal.cjs) | Historical retained diagnostic/export script: build_visual_proposal.cjs. Dated build_visual_proposal.cjs iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261001-credits-day.html](review/site-v1-20261001-credits-day.html) | Historical reference/preview HTML: site-v1-20261001-credits-day.html. Dated site v1 20261001 credits day.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/site-v1-20261001-credits-night.html](review/site-v1-20261001-credits-night.html) | Historical reference/preview HTML: site-v1-20261001-credits-night.html. Dated site v1 20261001 credits night.html iteration material. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -713,6 +715,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-118/2026-10-21-public-checksum-proof.json.gz](review/issue-118/2026-10-21-public-checksum-proof.json.gz) | Exact path/type/value public checksum and verified predecessor-byte proof for bounded secret dispositions. | history | [guides/SITE-RELEASE-GATES.md](guides/SITE-RELEASE-GATES.md) |
 | [review/issue-118/2026-10-21-review.md](review/issue-118/2026-10-21-review.md) | Issue118 exact editorial scope, independent iteration review and delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-118/content-amendment.json](review/issue-118/content-amendment.json) | Exact hash-bound three-fragment first-name amendment for frozen SEO reconciliation. | history | [guides/SITE-SEO.md](guides/SITE-SEO.md) |
+
+## review/issue-120/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-120/2026-10-22-review.md](review/issue-120/2026-10-22-review.md) | Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
 
