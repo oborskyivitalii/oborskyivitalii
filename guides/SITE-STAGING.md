@@ -26,6 +26,117 @@ Read [MEMORY](../MEMORY.md), the live owning issue/PR and current run/deployment
 records for the latest candidate, source and acceptance. This runbook defines
 mechanics; a historical accepted run does not admit a later candidate.
 
+## Observation does not admit delivery
+
+The canonical [issue122 decision matrix and observation interface](SITE-CHECK-PROFILES.md#delivery-routing-and-observation-contract)
+define proposed repository/content/website routing. This section owns its
+operational interpretation. The interface is design only: current CI/controller
+behavior, profile budgets, required contexts and publication authority are
+unchanged. No new executable observer or content publisher is installed.
+
+Under the current route, a repository proposal still follows Ready source/RI/
+owning checks, preview, owner staging, stable verification and admission before
+protected merge. A Draft remains deferred. An observer may explain a proposed
+cheaper route, but cannot skip those actions, approve rights, publish, merge or
+reuse an earlier site's evidence. PR79/issue5 owns the unfinished content route.
+
+### Honest obligation states and next actions
+
+These states belong to each obligation, not merely to report generation. The
+report's analysis status separately describes complete/conservative/invalid/
+no-change input analysis. A successful analysis is never a test result.
+
+| State | Required observation | Supported next action |
+| --- | --- | --- |
+| `planned` | Required check/gate identified; no matching completed result. | `run-current-checks`: execute its existing route or obtain its external decision. |
+| `Draft-deferred` | Current workflow deliberately defers admission for a Draft; keep required obligations visible. | `finish-draft`: finish review/visual approval where applicable, then mark Ready through the existing process. A skipped deferred job is not a pass. |
+| `running` | Actual matching current run/attempt has started and has no terminal result. | `wait`: inspect that run; do not launch duplicate work merely because it is slow. |
+| `passed` | Actual complete successful evidence matches source/tree, policy/producer, profile/origin and run/attempt. | `continue-current-process`: proceed only to the next existing authorized action, such as owner staging after source admission. An observation grants no authority itself. |
+| `failed` | Matching required execution failed, was incomplete, or was skipped without valid inapplicability. | `repair`: inspect retained failure, correct the owner or use the existing bounded retry rule when justified. Never select an older green attempt as current. |
+| `cancelled` | Matching attempt was cancelled; preserve its partial evidence as incomplete. | `inspect-retry`: determine cause and use the current supported retry route; cancellation cannot inherit a pass. |
+| `stale` | Earlier evidence no longer matches current head/base, policy/producer, applicable profile/origin or selected attempt. | `revalidate`: collect current identities, reassess affected review/checks and follow the existing fresh admission route. Keep original evidence attributed to its original source. |
+| `inapplicable` | The actual owner establishes a bounded reason that this obligation does not apply; report that reason and evidence. | `continue-current-process` for remaining obligations. A proposed repository lane cannot establish current hosted inapplicability. |
+
+Missing or incomplete collector/ref/policy inputs use `collect-inputs`; complete
+unknown dependencies/types use `inspect-owner`. A verified complete empty
+diff uses `no-change`, with no delivery permission; existing open-PR requirements
+remain owned by the current controller. These action literals, together with the
+table, are the complete observation `nextAction.action` vocabulary. An action is
+advice, not a command dispatcher. List every blocking obligation; an unresolved
+required gate prevents a completed-delivery claim even if some checks passed.
+
+Recompute the observation when base/head, policy/producer or relevant capability
+changes. Before side effects, the trusted controller must freshly authenticate
+protected main, PR head and predecessor leases. A newer failed, cancelled or
+running applicable staging attempt prevents using an older green attempt for
+admission. For owner staging, the existing full-attempt retry rule below remains:
+new owner `/stage` or Re-run all jobs, never mixed-attempt partial recovery.
+
+### Repository identity and accepted website identity
+
+The current repository/controller revision, tested candidate/tree, accepted
+website source/tree, platform/content identity, public/package digests and actual
+merged commit are separate records. A source-only repository merge cannot relabel
+the old site's public bytes or test results at the new Git commit. The current
+postmerge observer proves identical complete tested/merged trees; that is narrower
+than future compatibility across different repository trees.
+
+For proposed accepted site S → repository merge M → content C reuse, authenticate
+S's original evidence and the complete intervening commit/parent history with
+base-side dependencies, not only a final net diff. Any uninspected, reverted
+intermediate, control, rights or website change prevents an unproved reuse claim.
+Keep missing platform/content identities explicit. Use fresh applicable website
+validation when compatibility is absent or unproved. The future compatible-history
+implementation and real content release remain issue122 and issue5/PR79 work.
+
+### Trusted producer prerequisite
+
+Capability observation on **22 October 2026**: the repository API identifies
+`oborskyivitalii/oborskyivitalii` as public and user-owned. Active
+[ruleset 24568553](https://github.com/oborskyivitalii/oborskyivitalii/rules/24568553)
+requires an up-to-date branch and the contexts `checks`, `Local navigation and RI
+freshness`, `Staging admission`, each bound to GitHub Actions app ID `15368`;
+there are no bypass actors. Revalidate the live API before a later migration.
+
+GitHub documents [expected-app status binding](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets#require-status-checks-to-pass-before-merging),
+but [status-check matching excludes workflow, matrix and event identity](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/troubleshooting-rules#troubleshooting-required-status-checks).
+The documented stronger [ruleset-workflow mechanism](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/troubleshooting-rules#troubleshooting-ruleset-workflows)
+is configured at organization/enterprise level. Repository admin permission does
+not establish that capability for this user-owned repository.
+
+**Disposition: the future AC05 protection-bound producer proof is unresolved.**
+The current app/name binding does not itself prove that a same-name result from
+another candidate workflow is rejected. This is a capability/design inference
+from the inspected configuration and documentation, not a performed exploit.
+Current internal source/workflow/actor/attempt/lease checks remain valuable and
+unchanged; they cannot substitute for proof at the protection boundary.
+
+Before W3 or any cheaper authoritative admission is activated, its separately
+approved implementation must demonstrate all of the following against the
+actual protection configuration:
+
+1. A trusted evaluator and pre-change policy outside candidate control; changed
+   policy/wrapper inputs preserve their previous obligations and control override.
+2. A separately trusted issuer/controller, whose credentials and authoritative
+   check production are inaccessible to executed candidate code. Pinning an
+   evaluator checkout alone does not isolate its producer.
+3. The required check actually consumes that issuer identity. Reject a same-name
+   result from a wrong workflow/producer/event and wrong source/run/attempt at
+   the protected merge boundary, not only inside a unit fixture or JSON report.
+4. Supported Draft/Ready/update/refresh/merge lifecycle, complete selected-job
+   accounting and explicit valid inapplicability. Missing, failed, skipped,
+   cancelled, stale or mixed-attempt required evidence blocks; no Pending deadlock
+   or skipped-success bypass is accepted.
+5. A protected migration and recovery sequence that preserves current required
+   checks until the replacement is proven. Current head/main/predecessor leases
+   remain fresh before side effects, and accepted-site identity survives repo merges.
+
+T02 may finish with this evidenced unresolved disposition. It does not complete
+AC05 or authorize a new service, credential, organization move, settings change
+or alternate release mechanism. A revised design needs separate maintainer
+approval **and still needs the actual AC05 proof**; approval does not waive it.
+The existing delivery process remains in force while that requirement is open.
+
 ## Deployment flow
 
 Custom-domain production planning is in [SITE-PRODUCTION](SITE-PRODUCTION.md).

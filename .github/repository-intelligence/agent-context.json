@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "d61c62a59806e027beacfd75610c8bf8f9ae6c0f23576a9194d95d3172bbb9e7",
+    "digest": "ae0eea6e79a990afa641c85fe7972b6705dd861184716243e9ff5fd172a59ee6",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "dae23d8d5303d34838337a45264b906bee1985b59f9bfbe074fe1e936dd27843"
+        "sha256": "2c9c4d532ff1cab58c84b7e69fbe4fa380db2e463132f65150c84edc4c9b45c9"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -191,12 +191,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "a3c9dfce4f8f3669a8261830cb79c1a3158569708c4a540f3b3a83903005d1f8"
+        "sha256": "174baba15a72ea21c41c76d7dec89af9a934c2f7d3a91d520314715442c4e7f5"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "c12c3810967adf1c7e6a4802fa034fdbecac9be6b716a4668ef248356ce8b63f"
+        "sha256": "73e1e73bb87cf7b4ad30a02b614a481d5db5368781768e76966a435f9c06662a"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -326,7 +326,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "bfa14e16f58092f5da01325cdc188791ae024a9d53b1882037d9e27f5d74a76f"
+        "sha256": "4867bb0603288299fcca779a005029e1412337b71623a1afa051008747a4c9b8"
       },
       {
         "path": "NOTICE.md",
@@ -630,7 +630,7 @@
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
         "identity_mode": "content",
-        "sha256": "a43595b0601df7f94150a2a95954a2c19a506ff8778457f27544666296c45516"
+        "sha256": "52a1d0445cf02b59a68a8ed2e61c932ee2053bc940ac9a2b97525b65d928f6ed"
       },
       {
         "path": "guides/SITE-CONTENT-REVIEW.md",
@@ -670,7 +670,7 @@
       {
         "path": "guides/SITE-STAGING.md",
         "identity_mode": "content",
-        "sha256": "574d6133589413768dc77b7dd102933b8fb04a68fd6d6f02e373b8915e21cf14"
+        "sha256": "225b4a94a08ff36ed438f6999d19901965827ea33dfeb0f5aa45dc26a5d0bbe9"
       },
       {
         "path": "guides/github-pages-domains.json",
@@ -816,6 +816,11 @@
         "path": "review/issue-122/2026-10-22-t01-review.md",
         "identity_mode": "content",
         "sha256": "4d24561faa712af42c427e874e96b21ecdce33e5956097bf62863bd8add84821"
+      },
+      {
+        "path": "review/issue-122/2026-10-22-t02-review.md",
+        "identity_mode": "content",
+        "sha256": "2b7992016d9a2b3f5e82a55f28aa88ef2b6573ceed41c9ae7310358b8c5ef14e"
       },
       {
         "path": "review/issue-122/2026-10-22-t02p-review.md",
@@ -7420,7 +7425,7 @@
     {
       "path": ".github/acceptance/issue-122.json",
       "kind": "file",
-      "purpose": "Issue122 delivery-lane AC mapping: bounded T01 selection checks with explicit pending lane, trust, independent-review and delivery gates.",
+      "purpose": "Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md",
       "instructions": [
@@ -8652,7 +8657,7 @@
     {
       "path": "guides/SITE-CHECK-PROFILES.md",
       "kind": "file",
-      "purpose": "Canonical test allocation and QA-finding-to-CI handoff across existing source, hosted, staging, production and diagnostic profiles.",
+      "purpose": "Canonical current test allocation, QA-to-CI handoff, and proposed delivery decision matrix/observation interface; no admission authority.",
       "role": "guide",
       "owner": "guides/SITE-CHECK-PROFILES.md",
       "instructions": [
@@ -8740,7 +8745,7 @@
     {
       "path": "guides/SITE-STAGING.md",
       "kind": "file",
-      "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
+      "purpose": "Current preview/staging controller and recovery runbook; proposed observation lifecycle, accepted-site identity and trusted-producer activation boundary.",
       "role": "guide",
       "owner": "guides/SITE-STAGING.md",
       "instructions": [
@@ -9066,6 +9071,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 122 — 22 October 2026 — T01 review-template selection"
+    },
+    {
+      "path": "review/issue-122/2026-10-22-t02-review.md",
+      "kind": "file",
+      "purpose": "T02 routing/observation contract, live capability disposition, independent role receipts and source-bound delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue122 T02 — routing and observation contract"
     },
     {
       "path": "review/issue-122/2026-10-22-t02p-review.md",

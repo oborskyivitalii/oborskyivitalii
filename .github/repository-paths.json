@@ -789,7 +789,7 @@
     },
     "guides/SITE-CHECK-PROFILES.md": {
       "kind": "file",
-      "purpose": "Canonical test allocation and QA-finding-to-CI handoff across existing source, hosted, staging, production and diagnostic profiles.",
+      "purpose": "Canonical current test allocation, QA-to-CI handoff, and proposed delivery decision matrix/observation interface; no admission authority.",
       "role": "guide",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -837,7 +837,7 @@
     },
     "guides/SITE-STAGING.md": {
       "kind": "file",
-      "purpose": "Existing CI preview/staging controller, source leases, exact hosted verification and recovery runbook.",
+      "purpose": "Current preview/staging controller and recovery runbook; proposed observation lifecycle, accepted-site identity and trusted-producer activation boundary.",
       "role": "guide",
       "owner": "guides/SITE-STAGING.md"
     },
@@ -9243,13 +9243,19 @@
     },
     ".github/acceptance/issue-122.json": {
       "kind": "file",
-      "purpose": "Issue122 delivery-lane AC mapping: bounded T01 selection checks with explicit pending lane, trust, independent-review and delivery gates.",
+      "purpose": "Issue122 delivery-lane AC mapping: retained selection checks, T02 semantic contract review and pending lane, trust, independent-review and delivery gates.",
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
     "review/issue-122": {
       "kind": "directory",
       "purpose": "Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-122/2026-10-22-t02-review.md": {
+      "kind": "file",
+      "purpose": "T02 routing/observation contract, live capability disposition, independent role receipts and source-bound delivery evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     },

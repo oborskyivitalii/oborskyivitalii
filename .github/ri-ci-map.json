@@ -3,7 +3,7 @@
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
     "date": "2026-10-22",
-    "summary": "Issue122 T02-P preserves current workflow/source/profile ownership while mapping exact patched toolchain verifier regressions to the same acceptance policy and retaining four independent review plus real installed/scanner/advisory delivery gates."
+    "summary": "Issue122 resumes contract-only T02 on delivered T02-P while preserving current workflow/source/profile ownership, all nine inherited toolchain methods through the locked-venv route, four independent integration roles and fresh exact-source delivery gates. Both original review histories retain their identities."
   },
   "layers": [
     {
@@ -137,6 +137,7 @@
         "review/issue-120/2026-10-22-review.md",
         ".github/acceptance/issue-122.json",
         "review/issue-122/2026-10-22-t01-review.md",
+        "review/issue-122/2026-10-22-t02-review.md",
         "review/issue-122/2026-10-22-t02p-review.md"
       ],
       "checks": ["acceptance-policy", "acceptance-policy-selection", "ri-ci-regressions"]
@@ -558,7 +559,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "5c517ace9a3ae32c78db8428372887c54e052f956397afc5136d89c1112ef1cf",
+    "digest": "1e87ddfb6fba5cc6097bbdc1c7e9d435d64938693b20687022af76d31740e6e0",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -598,7 +599,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "dae23d8d5303d34838337a45264b906bee1985b59f9bfbe074fe1e936dd27843"
+        "sha256": "2c9c4d532ff1cab58c84b7e69fbe4fa380db2e463132f65150c84edc4c9b45c9"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -690,7 +691,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "a3c9dfce4f8f3669a8261830cb79c1a3158569708c4a540f3b3a83903005d1f8"
+        "sha256": "174baba15a72ea21c41c76d7dec89af9a934c2f7d3a91d520314715442c4e7f5"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -786,7 +787,7 @@
       },
       {
         "path": "guides/SITE-CHECK-PROFILES.md",
-        "sha256": "a43595b0601df7f94150a2a95954a2c19a506ff8778457f27544666296c45516"
+        "sha256": "52a1d0445cf02b59a68a8ed2e61c932ee2053bc940ac9a2b97525b65d928f6ed"
       },
       {
         "path": "review/REVIEW-TEMPLATE.md",

@@ -9,6 +9,11 @@ belong to source-bound results in the live issue/PR, not the profile name.
 Issue [#72](https://github.com/oborskyivitalii/oborskyivitalii/issues/72) changes
 Draft iteration scheduling while preserving admission and later budgets.
 
+Issue [#122](https://github.com/oborskyivitalii/oborskyivitalii/issues/122) adds the
+[delivery routing and observation contract](#delivery-routing-and-observation-contract).
+It defines proposed lanes and a future observer interface; the current profiles
+and required staging/admission below remain operative.
+
 | Profile | Trigger | Required coverage |
 | --- | --- | --- |
 | Draft prototype | Same-repository Draft updates | Generated/package/snapshot/size checks, public script syntax and bounded HTTP identity; no toolchain installation or browser/source/governance suites. Deferred admission is explicit. |
@@ -233,3 +238,234 @@ tooling findings to exact source/line bytes, rules, owners and a review deadline
 Raw findings remain in the report; new/source-changed/expired findings fail.
 Secrets admission for generated RI/coupling checksum fields requires actual
 verification; other public metadata hashes use exact reviewed baseline entries.
+
+## Delivery routing and observation contract
+
+Contract version: **1, observation design only**. This is the canonical decision
+matrix and report interface for issue122. [SITE-STAGING](SITE-STAGING.md#observation-does-not-admit-delivery)
+owns operational interpretation and the producer activation prerequisite. No
+classifier, new report producer, cheaper merge route or content publisher is
+activated by this contract. Issue5/PR79 retains the unfinished content route.
+
+Four dimensions remain separate:
+
+| Dimension | Meaning and existing owner |
+| --- | --- |
+| Proposed delivery lane | `repository`, `content` or `website`, derived from the dependency matrix below; a suggestion with no admission authority. |
+| Source-test profile | `pr`, `staging`, `production` or explicit `diagnostic`, owned by `test-profiles.json` and `source-tests.cjs`. Baseline and additional suites are separate. |
+| Hosted-origin policy | `staging` or `production`, owned by the existing hosted runners; determines indexing/origin rules. A source-only obligation has no hosted origin. |
+| Validation level | The existing bounded `staging` or optional full `production` coverage in `site-release-checks.yml`; it does not identify the hosted origin or authorize production. |
+
+### Decision matrix and current obligations
+
+Read each row with its actual dependency closure, including base-side owners.
+Rows describe representative paths, not a new glob allowlist. `repository`
+means no identified website/content dependency after inspection, not simply a
+Markdown extension or RI catalog role. Catalog/generated files cannot redefine
+their own authority. The existing `known_non_node_paths` suppresses only unknown
+Node fallback; directly affected suites and separate Python routes still apply.
+
+Every valid current PR retains **B + R + O + H** below. A proposed lane cannot
+remove any of them. Test sets come from the current registry and actual commands,
+not fixed module counts; a directly matched diagnostic can join permanent suites.
+
+| Route key | Existing command and CI owner |
+| --- | --- |
+| B — Basic/source | `node tools/quality/local.cjs`, then `node tools/quality/source-tests.cjs --profile pr --base BASE --head HEAD`; `site-checks.yml`, job `checks`. The three baseline suites remain separate from additional selected modules. |
+| R — Repository | `navigation.yml`, job `navigation`: style, RI/CI, layout, enduring-test selection and RI regressions/verification, plus its explicitly named profile/staging/source fixtures. `tools/run_repository_tests.py` owns enduring Python preflight; numeric task snapshots stay owning-policy-only. |
+| O — Owning acceptance | `issue-acceptance.yml`, job `acceptance`, selecting the issue's policy through the complete `Refs #N` line. Semantic review, rights and other nonautomated gates remain explicit. |
+| H — Current hosted delivery | Ready preview smoke, owner staging/preflight and bounded regression, stable verification and PR-eligible admission through `site-color-review.yml` / `site-release-checks.yml`. Draft deferral does not satisfy these obligations. Production has its separate approved route. |
+
+`control` is independent of lane and source allocation. It is true for inputs
+that define executable selection/admission/protection or this proposed decision
+policy; it is not synonymous with the registry's narrower `shared_inputs` list.
+A control change preserves trusted pre-change obligations and proposes the
+website route until separately proven safe. A known ordinary instruction/review
+edit can remain a repository proposal; it cannot change executable authority.
+
+| ID | Representative input | Actual owner/dependency | Proposed impact; control | Current checks in addition to the common route | Future eligibility boundary |
+| --- | --- | --- | --- | --- | --- |
+| D01 | `AGENTS.md`, `review/REVIEW-TEMPLATE.md`, dated review Markdown, `MEMORY.md` | CONTRIBUTING/acceptance protocol and RI inventory/continuity | repository; false | R includes `test_repository_intelligence.py`, `test_root_layout.py`; exact template boundary is in `test-profile-selection.test.cjs`. | Inspect dependencies and retain all four role executions; a repository proposal does not yet waive H. |
+| D02 | `.github/repository-paths.json`, `.github/repository-intelligence-config.json`, `REPOSITORY-MAP.md`, derived agent context | `repository_intelligence.py` and RI/CI coupling; generated views are not editing sources | repository; false | R: `test_repository_intelligence.py`, `test_ri_ci.py`, RI and coupling verification. | Regenerate and verify actual owners; neither a catalog label nor a fresh view establishes delivery eligibility. |
+| D03 | `tools/repository_intelligence.py` | Executable RI behavior, safe inventory, source identity and navigation | repository; false | R executes RI behavior/negative tests even when additional Node selection is empty. | A real failed-RI admission rejection remains AC02 work; Python purpose is no exemption. |
+| D04 | `site/content/pages/writing/main.json`, other page/catalog content | `tools/site/content.cjs`, render/validation owners, declared templates and rights | content; false | Registry-selected `content`, `content-rendering`, `site-engine`, `publication-records`, `release-rights` and other matching suites; B/R/O/H remain. | Authenticate accepted platform/schema, validate all references/media and complete intervening history; issue5/PR79 must deliver the real publisher. |
+| D05 | `site/templates/pages/writing/main.html`, `site/engine/**`, scenes/effects/assets, `tools/site/**` | Authored website implementation and `tools/site/build.cjs` dependency closure | website; false unless also a control | Exact affected registry suites, build/snapshot/rights checks and H. Build, snapshot, edition and evidence-policy controls also match the control row. | Full applicable current website validation; no content-only shortcut for layout/runtime/build changes. |
+| D06 | `LICENSING.md`, `LICENSE-CODE.md`, `LICENSE-CONTENT.md`, `NOTICE.md` | `tools/site/legal.cjs` reads full text into Credits through `legal-notices.html`; rights/publication consumers also read it | website; false | Selected `site-engine`, `release-rights`, `publication-records` and other matching suites; generated output must follow authored owners. | Changed rendered/legal bytes and frozen rights records need new applicable evidence. Root Markdown is not inert. |
+| D07 | `guides/SITE-SOURCE-AUDIT.md`, `guides/SITE-CONTENT-REVIEW.md`, `tools/RI-LICENSE.md`, `tools/RI-NOTICE.md` | Paths explicitly referenced by `site/rights.json`; `tools/release/rights.cjs::validateManifest` hashes provenance bytes | website/publication dependency; false | Registry selects `release-rights.test.cjs` and `publication-records.test.cjs` despite known non-Node matches; retain R. | No unproved accepted-artifact reuse after provenance changes, even if rendered pages happen to be identical. |
+| D08 | `site/rights.json`, release edition/publication records, any other referenced provenance input | Rights/edition/record producers in `tools/release/`; exact source and artifact identity | website/publication dependency; control when it changes acceptance policy | Rights/publication and actual matching release/staging suites, plus exact-edition external rights decisions. | Inspect the real consumer, including records under `review/`; location never removes publishing obligations. |
+| D09 | `tools/quality/test-profiles.json`, selector/worker/budgets, `.github/workflows/**`, `tools/staging/admission.cjs`, `tools/run_repository_tests.py`, issue acceptance policy/runner, `.github/ri-ci-map.json`, these two delivery-contract guides | Selection, evidence, admission and policy consumers; candidate rules cannot redefine their own requirements | repository and/or website; true | Preserve B/R/O/H and actual registry/CI mapping. Shared registry inputs select all permanent additional JS; an admission-controller path can instead select its existing targeted suites. | Trusted pre-change union, candidate isolation and actual protected-producer proof before any authoritative migration. |
+| D10 | Unknown path or unsupported symlink/gitlink/type | No proven complete owner/dependency disposition | website conservatively; control unresolved unless known true | Preserve all identifiable obligations and conservative coverage; inspect owners and input safety before continuing delivery. | Never cheap eligibility. Unknown is not silently assigned the nearest directory's role. |
+
+For a complete valid diff, combine every matching row and dependency; retain
+all reasons and the union of checks. A true control flag or website impact makes
+the proposed lane `website`; otherwise content plus repository proposes
+`content`, and repository-only proposes `repository`. Unknown valid inputs add
+conservative website impact and an unresolved reason. `control: false` requires
+all inputs to be resolved; use `null` when unknowns could conceal a control, unless
+a known control already makes it true. No-change and invalid inputs have a null
+proposed lane. An invalid input is not a conservative successful classification.
+
+### Observation report fields
+
+This defines a future JSON interface, not an emitted artifact or installed JSON
+schema. The existing source selector only collects `git diff --name-only -z`;
+its plan is not this status/mode-aware report. The advisory
+`tools/site/evidence-policy.cjs` also grants no scheduling or evidence-reuse power.
+
+All fields below are required unless explicitly conditional. JSON `null` means
+unavailable/not applicable only with its stated status/reason; it never equals a
+verified identity. `ObjectId` is a full 40-character lowercase Git object
+ID for this repository, resolved to the required commit/tree/blob type; `Digest` is 64 lowercase SHA-256 hex characters. Paths
+are exact repository-relative POSIX UTF-8 strings: no absolute path, traversal,
+backslash, NUL/CR/LF or normalization that silently changes Git's path. Preserve
+case. Unsupported encoding/path inputs make collection invalid.
+
+| Field and type | Value source, presence and meaning |
+| --- | --- |
+| `kind: string`, `version: integer`, `mode: string` | Exact literals `delivery-observation`, `1`, `observation`. Unsupported versions are invalid, not guessed. |
+| `authority: object` | Exactly `merge: false`, `deploy: false`, `reuseEvidence: false` in every outcome. No report status can change them. |
+| `repository: string`, `observedAt: string` | Exact owner/name and UTC RFC3339 collection time; time alone establishes neither freshness nor trust. |
+| `base: object` | `commit: ObjectId\|null`, `tree: ObjectId\|null`, `status: resolved\|unavailable`, `authority: local-input\|github-protected`, `reason: string\|null`. Resolve both objects from inspected Git; a supplied SHA stays `local-input`. |
+| `base.protection: object\|null` | Required nonnull only for `github-protected`: `ref: string`, `tip: ObjectId`, `rulesetIds: positive integer[]`, `digest: Digest`, `observedAt: RFC3339 string`, `evidence: string` locating the retained authenticated response. The trusted controller must recheck current main before side effects. Local plans set null and cannot claim current protected-main identity. |
+| `candidate: object` | `commit`, `tree`, `status`, `reason` use the base identity types; `clean: boolean\|null` comes from actual checkout/index inspection. Missing objects or a dirty/unverified checkout invalidate execution-bound evidence. |
+| `prospectiveMerge: object` | `status: resolved\|conflict\|unavailable`, `tree: ObjectId\|null`, `reason: string\|null`, tied to the exact base/candidate. Only resolved has a tree. Conflict/unavailable remains explicit and cannot establish compatibility. |
+| `producer: object` | Actual executing `revision: ObjectId\|null`, `context: local\|github-actions`, and `reason: string\|null` when unavailable. For Actions also require `workflowPath: string`, `event: string`, `runId: positive integer`, `attempt: positive integer`; local values are null. A candidate-supplied claim is not authenticated producer proof. |
+| `policy: object` | `version: 1`, `revision: ObjectId\|null`, `files: array`, `digest: Digest\|null`, `reason: string\|null`. Each file has `path` and exact byte `sha256`; include both contract guides, registry and every implementation/config input actually consulted. Pin the policy revision independently of candidate. |
+| `changes: object` | `status: complete\|invalid`, `records: array`, `errors: string[]`, `collector: object`. Collector identifies Git command/options, exact compared endpoints, rename/copy policy and completeness evidence. No pagination/truncation/bound/error may be hidden. |
+| `analysis: object` | `status: complete\|conservative\|invalid\|no-change`, `impacts: array` containing distinct `repository`, `content`, `website`, `control: boolean\|null`, `proposedLane: repository\|content\|website\|null`, `reasons: array`, `unresolved: array`. Derived from the matrix and complete changes, never from a suite count. |
+| `obligations: array` | Current baseline/additional source, repository, owning-policy, external review/rights and hosted/admission obligations, as defined below. Future proposals cannot remove current mandatory rows. |
+| `acceptedSite: object\|null` | Conditional when discussing prior-artifact reuse: `source: ObjectId`, `tree: ObjectId`, `platformDigest: Digest\|null`, `contentDigest: Digest\|null`, `publicDigest: Digest`, `packageDigest: Digest`, `evidence: string`, `unavailable: string[]`. Values come from original authenticated acceptance records. Missing component identities need reasons and cannot prove compatibility. Null if reuse is not evaluated; never relabel S at current main. |
+| `history: object\|null` | Required when `acceptedSite` is nonnull: `status: verified\|unavailable`, `from: ObjectId`, `to: ObjectId`, `edges: array`, `evidence: string\|null`, `unresolved: string[]`. Each edge has `parent: ObjectId`, `child: ObjectId`, `changeRecords: array` in the same format below, and `dependencyReasons: array` in the reason format below. Authenticated complete ancestry, including all merge-parent sides, supplies verified status. A net diff cannot prove an uninspected interval. |
+| `nextAction: object` | `action` from the operational actions below, nonempty `reason`, and IDs of `blockingObligations`. It describes the current supported process; it is not an authorization token. |
+
+Both policy and protection digests use **SHA-256 of RFC8785 JCS bytes**
+([canonicalization definition](https://www.rfc-editor.org/rfc/rfc8785.html#section-3)).
+Apply its string/number serialization, recursive property ordering and UTF-8
+encoding, without a trailing newline or Unicode normalization. Reject duplicate
+JSON keys, invalid Unicode and values outside its supported numeric domain.
+Every explicitly sorted path/URL list in this contract uses ascending unsigned
+UTF-16 code-unit order, independent of locale; preserve other array order.
+
+For `policy.digest`, sort files by exact path and canonicalize the array of
+`[path, sha256]` pairs. Duplicate paths, unresolved bytes or omitted consulted
+inputs invalidate the identity. For `base.protection.digest`, canonicalize the
+`ProtectionSnapshot` defined below, retaining its original authenticated API
+response bodies. These digests identify inspected inputs; they do not establish
+producer trust or protection enforcement.
+
+`changes.records[]` contains `status` (`A`, `M`, `D`, `R`, `C`, `T`) and
+`oldPath`, `newPath`, `oldMode`, `newMode`, `oldObject`, `newObject`. Modes are
+six-character Git mode strings and objects are full Git blob/gitlink IDs.
+An addition has all old-side fields null; a deletion has all new-side fields
+null. M/T requires the same path on both sides, and R/C requires both paths and
+objects. Absent sides cannot be filled from the candidate. Record mode-only
+changes. With rename/copy detection disabled, complete A/D records are valid
+and still retain both ownership sides; declared detection must never lose a
+side. Compare every present side with its exact tree. Conflicting/duplicate
+destination records, invalid status/side combinations or mismatched objects
+make collection invalid. Sort records by old path then new path (null as empty)
+for deterministic presentation; do not deduplicate away different ownership.
+
+Regular file modes `100644`/`100755` need their actual content/executable owner.
+Symlink `120000`, gitlink `160000` and otherwise well-formed unsupported types
+receive explicit conservative/unresolved treatment; never follow or execute
+them during collection. Malformed modes/records, missing refs, dirty inputs,
+collector failure, truncation or incomplete enumeration make `analysis.status: invalid`.
+Only a successful complete empty diff yields `no-change`, with empty impacts
+and no proposed lane. It grants no merge/deploy/reuse permission and does not
+silently satisfy any existing PR requirement.
+
+#### Nested records and consistency
+
+`Path` means the exact safe path defined above; `Time` is a UTC RFC3339 string.
+`Id` is a nonempty case-sensitive string, unique within its record collection.
+Obligation IDs identify the owner's logical command/gate across observations,
+not an array position, commit or run. Reason/unresolved IDs are deterministic
+within the report. Every referenced ID must resolve, without duplicate references.
+`MatrixId` is `D01`–`D10` above; `common` names the unconditional B/R/O/H rule.
+All listed members are required, including nullable members. Other object members
+are invalid for version1; GitHub response `body` is the explicit opaque exception.
+All unqualified string values are nonempty. Empty arrays mean observed absence
+only where the surrounding status permits it.
+
+| Record | Exact fields and value sources |
+| --- | --- |
+| `Command` | `argv: string[]` is the nonempty exact argument vector including executable, with resolved values rather than BASE/HEAD placeholders; `cwd: Path\|"."` is repository-relative. This describes the existing command, never authorizes a dispatcher or shell interpolation. |
+| `RetainedRecord` | `location: string` locates the retained log/report/artifact; `sha256: Digest` hashes its exact bytes. A URL/path without retained bytes and digest is not this record. |
+| `ProtectionSnapshot` | `responses: array` of `{url: string, body: JSON value}` contains every applicable authenticated GitHub protection/ruleset response used for this observation, sorted by distinct exact request URL. `body` is the original complete parsed API response, not a selected-field summary. `base.protection.evidence` locates this retained snapshot; unavailable relevant responses prevent a protected-base claim. |
+| `changes.collector` | `command: Command\|null`, `gitVersion: string\|null`, `fromCommit: ObjectId\|null`, `fromTree: ObjectId\|null`, `toCommit: ObjectId\|null`, `toTree: ObjectId\|null`, `renameDetection: boolean`, `copyDetection: boolean`, `exitCode: integer\|null`, `complete: boolean`, `truncated: boolean`, `recordLimit: positive integer\|null`, `recordCount: nonnegative integer`, `output: RetainedRecord\|null`. Values come from actual invocation, endpoint resolution and retained complete stdout/stderr capture; detection thresholds/options are the exact `argv`. Null command/exit means not started/no observed exit; null limit means no configured record cap. |
+| `analysis.reasons[]` | `id: Id`, `ruleId: MatrixId\|common`, `path: Path\|null`, `side: base\|candidate\|both\|none`, `owner: Path\|null`, `dependencyPaths: Path[]`, `obligationIds: Id[]`, `detail: string`. Name the matched row and actual consumer file; dependency paths are inspected inputs/consumers that establish the match. Only `common` has null path and side `none`; only unresolved D10 may have null owner, with an explicit unresolved record. |
+| `analysis.unresolved[]` | `id: Id`, `path: Path\|null`, `side: base\|candidate\|both\|none`, `baseObject: ObjectId\|null`, `candidateObject: ObjectId\|null`, `ruleId: MatrixId\|common\|null`, `reason: string`, `action: collect-inputs\|inspect-owner\|revalidate`, `obligationIds: Id[]`. Preserve every known side's identity, never an unverified supplied ID. Path-null identity failures use side `none` and known commit IDs; path-bearing records use known file-side IDs. Null rule means no established match. |
+| `obligations[]` | `id: Id`, `category: baseline\|source\|repository\|owning\|external\|hosted\|admission`, `required: boolean`, `owner: Path`, `execution: Execution`, `workflow: Workflow\|null`, `triggerReasonIds: Id[]`, `sourceProfile: pr\|staging\|production\|diagnostic\|null`, `hostedOriginPolicy: staging\|production\|null`, `validationLevel: staging\|production\|null`, `state: State`, `evidence: Evidence\|null`, `reason: string\|null`. The existing owner supplies the execution and applicability; all triggering reason IDs are retained. `State` is exactly the eight literals in SITE-STAGING. |
+| `Execution` | `kind: command\|external-gate`, `command: Command\|null`, `gate: string\|null`. A command kind has only nonnull command; an external-gate kind has only nonnull gate naming the exact existing policy gate/required decision. No empty or simultaneous branches. |
+| `Workflow` | `path: Path`, `job: string` identify the existing workflow file and YAML job ID, not the display/check name. Set null only when the obligation has no existing Actions owner; a locally observed check can still have this CI mapping. |
+| `Evidence` | `source: ObjectId`, `tree: ObjectId`, `baseCommit: ObjectId`, `baseTree: ObjectId`, `prospectiveMergeTree: ObjectId\|null`, `policyDigest: Digest`, `producer: object` with exactly the producer fields above, `sourceProfile`, `hostedOriginPolicy`, `validationLevel` with the obligation's enum/null types, `result: running\|passed\|failed\|cancelled\|skipped\|inapplicable`, `observedAt: Time`, `records: RetainedRecord[]`, `decisionBy: string\|null`, `reason: string\|null`. Inspect actual source objects, original run/attempt, outputs and decisions; never substitute current IDs into older evidence. `decisionBy` names the actual external decision owner and is null for command execution; a name alone is not authenticated approval. |
+
+A complete collector has a nonnull command/version/output, exit0, `complete: true`,
+`truncated: false`, no `changes.errors`, all four endpoints equal the resolved
+base/candidate commit/tree, and `recordCount` equal to records length. If a bound
+was reached, prove enumeration finished; reaching a cap cannot imply completion.
+Every failed condition sets `changes.status: invalid`, `analysis.status: invalid`
+and a nonempty error. Preserve partial records as diagnostics; never infer absence
+or an empty-success plan. A not-started collector has null command/exit/output,
+complete false and an explanatory error; known endpoint identities stay explicit.
+
+Resolved base/candidate identities have both commit and tree and null reason;
+unavailable identities retain only actually resolved objects with a nonempty reason.
+Only resolved prospective merge has a tree and null reason. A clean candidate must
+be observed, not assumed. Missing policy revision/bytes/digest needs a reason and
+invalidates analysis. Complete analysis has a nonempty diff and no unresolved
+entries; conservative analysis retains them and the website proposal. A complete
+empty diff alone permits no-change. Invalid/no-change has no proposed lane;
+invalid inputs retain every already-known obligation without claiming completeness.
+
+`policy.files[]` is exactly `{path: Path, sha256: Digest}` in the stated order.
+`nextAction` is exactly `{action: string, reason: string, blockingObligations: Id[]}`;
+action uses only the operational vocabulary. Blocking IDs are all required
+obligations not passed or validly inapplicable. Input faults/unknown ownership
+take the documented collect/inspect action even when no obligation can yet be
+identified. Reason-to-obligation references and `triggerReasonIds` must agree.
+Deduplicate the same owner/command-or-gate and applicable dimensions while keeping
+the union of reasons; distinct profile/origin obligations cannot collapse.
+
+Evidence's source commit resolves to its tree; its base and optional prospective
+tree describe the original observation. A passed state requires current matching
+identities, dimensions, policy and producer plus successful complete evidence and
+at least one retained record. An unavailable producer revision cannot supply a
+pass. Actions evidence requires the original workflow/event/run/attempt fields;
+local evidence has those fields null. External decisions require nonnull
+`decisionBy` and retained original decision evidence, not the collector's opinion.
+Inapplicable requires retained owner evidence and a nonempty reason. Evidence is
+null for planned/Draft-deferred; running/failed/cancelled/stale/inapplicable retain
+the actual observed Evidence and a nonempty reason. Running may have no output
+record yet. Failed can retain failed/skipped/incomplete observations; stale keeps
+its original result and mismatched identities. Neither required skips nor old
+green evidence can supply passed. Lifecycle interpretation and permitted next
+actions remain owned by
+[SITE-STAGING](SITE-STAGING.md#observation-does-not-admit-delivery).
+
+### Worked decisions and future test oracles
+
+These are semantic walkthroughs for independent review and the next approved
+implementation, not executed classifier tests. Route keys and owners refer to
+the matrix above; every applicable current B/R/O/H obligation stays visible.
+
+| Case | Required report/decision | Existing coverage and remaining proof |
+| --- | --- | --- |
+| Exact template or AGENTS edit | repository proposal, control false; baseline/R/O/H preserved. | Existing exact-template/mixed selector tests and RI instruction routes; no current repository-only delivery. |
+| RI Python executable edit | repository proposal plus actual executable RI checks, regardless of zero additional JS. | RI behavioral/negative suites in navigation; later real failed-RI admission experiment remains AC02. |
+| Rendered legal or publication input | website dependency and new matching rights/output obligations. | `site-engine`, `release-rights`, `publication-records`; `.md` or `review/` cannot erase the dependency. |
+| Guide named by rights provenance | website/publication dependency; stale provenance evidence cannot be reused. | Two existing rights/publication suites and R; guide location is insufficient. |
+| Writing content plus its template | impacts include content and website, proposed website lane; union keeps both reasons. | Existing content/render/engine/rights suites; overlapping selections do not collapse ownership. |
+| RI configuration plus Writing content | repository + content, proposed content lane, control false for this RI-only config; R and all content obligations survive. | RI and existing content suites; conditional content eligibility still depends on issue5/PR79. |
+| Registry, selector, workflow or admission policy/controller | control true, proposed website route and trusted pre-change obligations. | Existing selection/coupling/admission negatives prove their subsets; actual AC05 producer/protection proof is separate. |
+| Runtime renamed under `review/`, or runtime/control deleted | Include base-side runtime/control and candidate-side ownership; retain website/control obligations even if the candidate no longer has the old file. | Existing selector is name-only; full status/mode/rename/deletion interface needs future independent negative tests. |
+| Unknown path, unsupported type, missing ref or truncated diff | Complete unknown/type inputs are conservative; missing/malformed/incomplete input is invalid; neither is cheap eligibility. Complete empty diff is separately no-change. | Existing safe-path/fallback/RI-type tests cover their current subsets; richer collector negatives remain future work. |
+| New failed/cancelled attempt or moved head/base after green | Preserve earlier evidence historically; current obligation is failed/cancelled/stale and the next action follows the current retry/revalidation rule. | Existing `prototype-admission`/staging-trust lease and attempt negatives; no reuse across identities or attempts. |
+| Accepted site S, repository merge M, then content C | Keep S's source/tree/public/package identity; inspect the complete S-to-C history, including all merge-parent sides and intermediate control/rights/site changes. Missing history or incompatible inputs require fresh website validation. | Current merge observer proves identical complete trees only. Compatible-history reuse/content release is not implemented by this contract. |
+
+Semantic review of these cases is T02 evidence. Mechanical RI/style checks prove
+only their stated subsets; keyword tests do not establish contract completeness.
+QA findings feed the existing test-allocation route above. Implementing the
+observer, proving protected admission and measuring real lane savings require
+separately approved increments; all whole issue122 ACs remain open.
