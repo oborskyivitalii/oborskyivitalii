@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "bcb21dfac4cea803398607c2cf71a2326b4ef5abeb59897e35418d2d84274ccc",
+    "digest": "d9e4d184b98ebae97aa1c0fe6bc804d5994fb9615aba2aff18d52da0ea1ae9ad",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -68,6 +68,11 @@
         "path": ".github/acceptance/issue-120.json",
         "identity_mode": "content",
         "sha256": "9c51e1b93e3495e8074ad5ed501247e2bf6d439a12240f23b22d6da9081d484f"
+      },
+      {
+        "path": ".github/acceptance/issue-122.json",
+        "identity_mode": "content",
+        "sha256": "caf1012e2d8b79fdae13b0b715f9dd1e01b4005b032eab6a12f2e5f5cf2ddcbd"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -186,12 +191,12 @@
       {
         "path": ".github/repository-paths.json",
         "identity_mode": "content",
-        "sha256": "2ba2d49f032cf45267c0ba627eee1107355cda430fefa581d7d6976f30d2d4c5"
+        "sha256": "6333df0fb58636e476079ee0972a40cfe7ae8810443871063eab4822ff869ede"
       },
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "032cc3a09f7dbe7a04036e8c4137c49c1045dc0b4acf761c3d5561601e4f52f9"
+        "sha256": "f9fbb5984eeca46dd82c0426943195b4eade3165229ba057e82a002807160180"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -321,7 +326,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "9818363c28de117e198e8cca8012b8912cdbf196f43207fbbe644240062f444b"
+        "sha256": "5e651035f2c15fa39215583ef85e641d1b14ee42e73c98533f759e9e8b051053"
       },
       {
         "path": "NOTICE.md",
@@ -806,6 +811,11 @@
         "path": "review/issue-120/2026-10-22-review.md",
         "identity_mode": "content",
         "sha256": "70ee3b02b77fa6dc918dbc2c1b9ffca455154313144fea48976b474e56f859fe"
+      },
+      {
+        "path": "review/issue-122/2026-10-22-t01-review.md",
+        "identity_mode": "content",
+        "sha256": "4f474d9a9f6cc4a0d31e52ecdf7a2718c0171bde2ea75c6b75ef90fda1c6bd15"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6025,7 +6035,7 @@
       {
         "path": "tests/test-profile-selection.test.cjs",
         "identity_mode": "content",
-        "sha256": "8228fbf71963d411f9fb9ebccd131113b9c437dc319151401cf3767ba6bad273"
+        "sha256": "7bae4412f520b97371afd1b4dba6811ee047e10c5c1e09c3eed41f286ad21320"
       },
       {
         "path": "tests/test_code_style.py",
@@ -6635,7 +6645,7 @@
       {
         "path": "tools/quality/test-profiles.json",
         "identity_mode": "content",
-        "sha256": "d61112aaadf505a65ccced741715942aee21b72b18cb6d54bcf9c71a4e379c08"
+        "sha256": "473f9e4e8f8530712788c307a2421f27e6afba44740dde5f503200916a07ca10"
       },
       {
         "path": "tools/quality/toolchain/package-lock.json",
@@ -7401,6 +7411,17 @@
         "AGENTS.md"
       ],
       "title": "issue-120.json"
+    },
+    {
+      "path": ".github/acceptance/issue-122.json",
+      "kind": "file",
+      "purpose": "Issue122 delivery-lane AC mapping: bounded T01 selection checks with explicit pending lane, trust, independent-review and delivery gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "issue-122.json"
     },
     {
       "path": ".github/acceptance/issue-31.json",
@@ -9029,6 +9050,17 @@
         "AGENTS.md"
       ],
       "title": "Issue 120 — 2026-10-22 independent quality-agent integration"
+    },
+    {
+      "path": "review/issue-122/2026-10-22-t01-review.md",
+      "kind": "file",
+      "purpose": "T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ],
+      "title": "Issue 122 — 22 October 2026 — T01 review-template selection"
     },
     {
       "path": "review/issue-31/2026-10-07-analysis.md",
@@ -22984,6 +23016,16 @@
       "path": "review/issue-120",
       "kind": "directory",
       "purpose": "Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md",
+      "instructions": [
+        "AGENTS.md"
+      ]
+    },
+    {
+      "path": "review/issue-122",
+      "kind": "directory",
+      "purpose": "Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md",
       "instructions": [

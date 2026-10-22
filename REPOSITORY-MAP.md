@@ -76,6 +76,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-114](review/issue-114) | Issue114 independent iteration-review rule implementation and source-bound review evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-118](review/issue-118) | Issue118 first-name editorial hotfix review and source-bound evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-120](review/issue-120) | Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-122](review/issue-122) | Issue122 atomic delivery-lane increments, independent quality-agent reviews and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -215,6 +216,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [.github/acceptance/issue-114.json](.github/acceptance/issue-114.json) | Issue114 bounded check mapping and separate per-iteration independent review, live linkage and merge gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-118.json](.github/acceptance/issue-118.json) | Issue118 bounded editorial hotfix acceptance and explicit delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-120.json](.github/acceptance/issue-120.json) | Issue120 requirements, code-review and QA protocol acceptance: real routing checks with separate independent-role and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
+| [.github/acceptance/issue-122.json](.github/acceptance/issue-122.json) | Issue122 delivery-lane AC mapping: bounded T01 selection checks with explicit pending lane, trust, independent-review and delivery gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-31.json](.github/acceptance/issue-31.json) | Cleanup AC01–AC11 mapped to source-bound deterministic tests and separate readiness gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-33.json](.github/acceptance/issue-33.json) | Bootstrap/root optimization AC01–AC06 mapped to source-bound assertions and separate review, merge and linkage gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
 | [.github/acceptance/issue-35.json](.github/acceptance/issue-35.json) | Test optimization AC01–AC07 mapped to shared exact-source checks and distinct independent/CI/merge/live reconciliation gates. | configuration | [.github/ACCEPTANCE.md](.github/ACCEPTANCE.md) |
@@ -721,6 +723,12 @@ A role or index entry does not grant research, merge, publication or deployment 
 | Path | Purpose | Role | Owner / editing route |
 | --- | --- | --- | --- |
 | [review/issue-120/2026-10-22-review.md](review/issue-120/2026-10-22-review.md) | Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-122/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-122/2026-10-22-t01-review.md](review/issue-122/2026-10-22-t01-review.md) | T01 exact review-template selection correction, independent test oracles, role receipts and normal main-delivery evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## review/issue-31/
 

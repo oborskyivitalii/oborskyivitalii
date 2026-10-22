@@ -230,6 +230,78 @@ test('PR selection targets affected current contracts, diagnostic helper changes
   assert.equal(result.status, 'not-applicable');
   assert.equal(result.total, 0);
 });
+test('review template ownership preserves baseline and separate non-Node routes', () => {
+  const registry = runner.loadRegistry(root),
+    plan = runner.select(root, 'pr', { changedPaths: ['review/REVIEW-TEMPLATE.md'] });
+  assert.deepEqual(plan.modules, []);
+  assert.deepEqual(plan.conservativeFallback, []);
+  assert.deepEqual(plan.reasons, {});
+  assert.deepEqual(plan.baselineFiles, registry.source_profiles.pr.baseline_files);
+  assert.equal(plan.baselineCommand, 'node tools/quality/local.cjs');
+  assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');
+  assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
+});
+test('review template mixtures retain unknown, shared-control and known-input coverage', () => {
+  const template = 'review/REVIEW-TEMPLATE.md',
+    registry = runner.loadRegistry(root),
+    baseline = registry.source_profiles.pr.baseline_files,
+    broad = registry.tests
+      .filter(
+        (row) =>
+          row.language === 'javascript' &&
+          row.lifecycle === 'permanent' &&
+          !baseline.includes(row.path)
+      )
+      .map((row) => row.path)
+      .sort();
+  for (const unknown of [
+    'review/REVIEW-TEMPLATE-extra.md',
+    'review/templates/REVIEW-TEMPLATE.md',
+  ]) {
+    for (const changedPaths of [[unknown], [template, unknown]]) {
+      const plan = runner.select(root, 'pr', { changedPaths });
+      assert.deepEqual(plan.modules, broad, changedPaths.join(', '));
+      assert.deepEqual(plan.conservativeFallback, [unknown]);
+      for (const file of broad)
+        assert.ok(plan.reasons[file].includes('unknown changed source ' + unknown), file);
+    }
+  }
+  const control = 'tools/quality/test-profiles.json';
+  for (const changedPaths of [[control], [template, control]]) {
+    const plan = runner.select(root, 'pr', { changedPaths });
+    assert.deepEqual(plan.modules, broad, changedPaths.join(', '));
+    assert.deepEqual(plan.conservativeFallback, []);
+    for (const file of broad)
+      assert.ok(plan.reasons[file].includes('shared source control ' + control), file);
+  }
+  for (const { changedPaths, required } of [
+    {
+      changedPaths: ['site/content/pages/index/about.html'],
+      required: ['content', 'executive', 'site-engine', 'analytics'],
+    },
+    {
+      changedPaths: ['AGENTS.md', 'CONTRIBUTING.md'],
+      required: ['release-rights', 'publication-records'],
+    },
+    { changedPaths: ['NOTICE.md'], required: ['publication-records'] },
+  ]) {
+    const original = runner.select(root, 'pr', { changedPaths }),
+      mixed = runner.select(root, 'pr', { changedPaths: [template, ...changedPaths] });
+    for (const name of required)
+      assert.ok(original.modules.includes('tests/' + name + '.test.cjs'), name);
+    assert.deepEqual(original.conservativeFallback, []);
+    for (const field of [
+      'modules',
+      'conservativeFallback',
+      'reasons',
+      'baselineFiles',
+      'baselineCommand',
+      'pythonRoute',
+      'taskSnapshots',
+    ])
+      assert.deepEqual(mixed[field], original[field], changedPaths.join(', ') + ': ' + field);
+  }
+});
 test('authored legal and edition changes directly select publication record coverage', () => {
   for (const changed of [
     'LICENSING.md',
