@@ -15,7 +15,7 @@ const {
 const flightDetail = require('./flight-detail.cjs');
 const routes = ['index', 'research', 'writing', 'talks', 'credits'];
 const catalog = require('../../site/content/catalog.json'),
-  primaryCount = Object.keys(catalog.records).length;
+  primaryCount = require('../site/validate-catalog.cjs').writingEntries(catalog).length;
 const selectedResponses = ['Arkadiy Dobkin', 'Matthew Skelton', 'Markus Kopko'];
 const completeResponses = [
   'Markus Kopko',
@@ -83,6 +83,13 @@ async function verifyResponse(response, base, manifest, checkedFiles) {
   assert.equal(digest, manifest.files[file].sha256, 'served bytes ' + file);
   checkedFiles.add(file);
   return { observed: true, file, status, sha256: digest };
+}
+async function verifyRequest(request, base, manifest, checkedFiles) {
+  // Register ownership before response headers arrive. A pending request must
+  // not become invisible to the document-navigation body-read barrier.
+  const response = await request.response();
+  assert.ok(response, 'request failed before response ' + request.url());
+  return verifyResponse(response, base, manifest, checkedFiles);
 }
 function identity(manifest) {
   if (process.env.SITE_EXPECTED_PUBLIC_DIGEST)
@@ -153,6 +160,66 @@ async function routeBytes(context, url, manifest) {
     })
   );
 }
+function contentDocuments(manifest) {
+  if (!manifest.contentRelease) return null;
+  assert.equal(manifest.contentRelease.kind, 'content-release');
+  const changed = manifest.contentRelease.builtArticles;
+  assert.ok(Array.isArray(changed) && changed.length <= 50, 'bounded changed article inventory');
+  assert.equal(new Set(changed).size, changed.length, 'duplicate changed article smoke target');
+  for (const key of changed)
+    assert.ok(
+      Object.hasOwn(manifest.components.articles || {}, key),
+      'missing changed article descriptor'
+    );
+  return changed;
+}
+
+async function contentJourney(browser, baseURL, manifest) {
+  const documents = contentDocuments(manifest);
+  assert.ok(documents, 'content journey needs explicit content release');
+  const writing = [];
+  for (const width of [1440, 390]) {
+    const context = await browser.newContext({
+      viewport: { width, height: 900 },
+      javaScriptEnabled: false,
+    });
+    try {
+      const page = await context.newPage();
+      const response = await page.goto(baseURL.replace(/\/$/, '') + '/writing.html');
+      await verifyResponse(response, baseURL, manifest, new Set());
+      assert.equal(await page.locator('h1').count(), 1, 'no-JS Writing main heading');
+      const count = await page.locator('#archive-results li.publication').count();
+      assert.equal(count, primaryCount, 'no-JS Writing complete catalog rows');
+      const label = (await page.locator('#archive-count').textContent()).trim();
+      assert.equal(Number(label.match(/^\d+/)?.[0]), count, 'no-JS count matches actual cards');
+      assert.equal(
+        await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
+        false,
+        'no-JS Writing overflow'
+      );
+      writing.push({ width, mode: 'no-js', count, label, completeCatalog: true });
+    } finally {
+      await context.close();
+    }
+  }
+  const articles = [];
+  const descriptors = manifest.components.articles || {};
+  for (const key of documents) {
+    const ordered = Object.fromEntries([
+      [key, descriptors[key]],
+      ...Object.entries(descriptors).filter(([other]) => other !== key),
+    ]);
+    const observation = await require('./article-browser.cjs').articleJourney(baseURL, ordered, {
+      browser,
+    });
+    require('./article-browser.cjs').validateArticleJourney(observation, ordered, {
+      engine: manifest.components.engine,
+      baseURL,
+    });
+    articles.push(observation);
+  }
+  return { kind: 'content-smoke', writing, documents, articles, fullGate: false };
+}
 async function responseNames(page, route) {
   assert.ok(['index', 'research'].includes(route), 'known response route');
   const selector =
@@ -195,30 +262,53 @@ async function discussionAnchor(page) {
     { polling: 40, timeout: 3000 }
   );
 }
-async function discussionNavigation(page, url) {
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+async function documentNavigation(page, url, responseChecks) {
+  return navigationAction(responseChecks, () => page.goto(url, { waitUntil: 'load' }));
+}
+async function navigationAction(responseChecks, navigate) {
+  // Document replacement discards CDP bodies; an in-shell route change can
+  // also abort the departing archive's still-pending publication-index fetch.
+  await drainResponses(responseChecks);
+  return navigate();
+}
+async function drainResponses(responseChecks) {
+  let checked = 0;
+  while (checked < responseChecks.length) {
+    const batch = responseChecks.slice(checked);
+    checked = responseChecks.length;
+    await Promise.all(batch);
+  }
+}
+async function discussionNavigation(page, url, responseChecks) {
+  await navigationAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
   const home = await responseNames(page, 'index'),
     cta = page.locator('#acknowledgements > a.text-link');
   assert.equal(await cta.getAttribute('href'), 'research.html#acknowledgements');
   assert.equal(await cta.textContent(), 'Full discussion & source context ↗');
-  await cta.evaluate((el) => el.click());
+  await navigationAction(responseChecks, () => cta.evaluate((el) => el.click()));
   await ready(page, 'research');
   await discussionAnchor(page);
   const research = await responseNames(page, 'research');
-  await page.goBack();
+  await navigationAction(responseChecks, () => page.goBack());
   await ready(page, 'index');
   await responseNames(page, 'index');
-  await page.goForward();
+  await navigationAction(responseChecks, () => page.goForward());
   await ready(page, 'research');
   await discussionAnchor(page);
   const nav = page.locator('nav[aria-label="Research sections"] a[href="#acknowledgements"]');
   assert.equal(await nav.textContent(), 'Advisors & responses');
-  await page.locator(routeSelector('index')).evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page.locator(routeSelector('index')).evaluate((el) => el.click())
+  );
   await ready(page, 'index');
-  await page
-    .locator('#acknowledgements a[href="research.html#ua-advisors"]')
-    .evaluate((el) => el.click());
+  await navigationAction(responseChecks, () =>
+    page
+      .locator('#acknowledgements a[href="research.html#ua-advisors"]')
+      .evaluate((el) => el.click())
+  );
   await ready(page, 'research');
   assert.equal(new URL(page.url()).hash, '#ua-advisors');
   await page.waitForFunction(
@@ -232,34 +322,46 @@ async function discussionNavigation(page, url) {
   await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
   await nav.click();
   await discussionAnchor(page);
-  await page.goto(url + '/research.html#acknowledgements', { waitUntil: 'load' });
+  await documentNavigation(page, url + '/research.html#acknowledgements', responseChecks);
   await ready(page, 'research');
   await discussionAnchor(page);
   await responseNames(page, 'research');
   return { home, research, cta: true, localNavigation: true, history: true, directAnchor: true };
 }
-async function writingControls(page) {
+async function writingControls(page, publicationIndex = false) {
+  if (publicationIndex)
+    await page.waitForFunction(() => document.body.dataset.tagsState === 'ready', null, {
+      timeout: 10000,
+    });
   await page.locator('#archive-topic').selectOption('systems');
   assert.ok(
-    (await page.locator('li.publication:visible').count()) > 0,
+    (await page.locator('#archive-results li.publication:visible').count()) > 0,
     'Writing filter has results'
   );
   await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
   await page.emulateMedia({ media: 'print' });
+  const printedCount = await page.locator('#archive-results li.publication:visible').count();
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    printedCount,
     primaryCount,
     'print shows all primary records and their edition links'
   );
-  assert.match(
-    await page.locator('#archive-count').textContent(),
-    /their linked platform editions shown for printing/
+  const printLabel = await page.locator('#archive-count').evaluate((element) => ({
+    actual: element.textContent.trim(),
+    template: element.dataset.print,
+  }));
+  assert.equal(
+    printLabel.actual,
+    printLabel.template
+      .replaceAll('{count}', String(printedCount))
+      .replaceAll('{total}', String(primaryCount)),
+    'Writing print count matches its current authored label and displayed rows'
   );
   await page.emulateMedia({ media: 'screen' });
   await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
   await page.locator('.filter-reset').evaluate((el) => el.click());
   assert.equal(
-    await page.locator('li.publication:visible').count(),
+    await page.locator('#archive-results li.publication:visible').count(),
     primaryCount,
     'Writing Reset retains every primary record'
   );
@@ -331,20 +433,20 @@ async function scenario(browser, url, manifest, variant, width, mode) {
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('request', (request) => {
     const value = request.url();
-    if (value.startsWith(url + '/')) return;
+    if (value.startsWith(url + '/')) {
+      responseChecks.push(
+        verifyRequest(request, url, manifest, checkedFiles).catch((error) => {
+          errors.push(error.message);
+        })
+      );
+      return;
+    }
     if (analyticsRequest(value, url, manifest)) analytics.push(value);
     else external.push(value);
   });
-  page.on('response', (response) => {
-    responseChecks.push(
-      verifyResponse(response, url, manifest, checkedFiles).catch((error) => {
-        errors.push(error.message);
-      })
-    );
-  });
   try {
     const served = await routeBytes(context, url, manifest);
-    await page.goto(url + '/index.html', { waitUntil: 'load' });
+    await documentNavigation(page, url + '/index.html', responseChecks);
     await ready(page, 'index');
     if (mode === 'normal')
       await page.waitForFunction(
@@ -362,7 +464,9 @@ async function scenario(browser, url, manifest, variant, width, mode) {
       const checkDetail = mode === 'normal' && id === 'writing';
       if (checkDetail) await flightDetail.begin(page);
       if (id !== 'index') {
-        await page.locator(routeSelector(id)).evaluate((el) => el.click());
+        await navigationAction(responseChecks, () =>
+          page.locator(routeSelector(id)).evaluate((el) => el.click())
+        );
         await ready(page, id);
       }
       const detail = checkDetail ? await flightDetail.finish(page) : null;
@@ -402,7 +506,10 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         await page.locator('#space-motion').click();
       }
       await page.locator('.appearance summary').click();
-      if (id === 'writing') await writingControls(page);
+      if (id === 'writing') {
+        await writingControls(page, Boolean(manifest.files['publication-index.json']));
+        await drainResponses(responseChecks);
+      }
       if (id === 'research') await researchControls(page, mode, width);
       if (id === 'index' || id === 'research') await responseNames(page, id);
       rows.push({
@@ -420,12 +527,12 @@ async function scenario(browser, url, manifest, variant, width, mode) {
         ],
       });
     }
-    await page.goBack();
+    await navigationAction(responseChecks, () => page.goBack());
     await ready(page, 'talks');
-    await page.goForward();
+    await navigationAction(responseChecks, () => page.goForward());
     await ready(page, 'credits');
-    const discussion = await discussionNavigation(page, url);
-    await Promise.all(responseChecks);
+    const discussion = await discussionNavigation(page, url, responseChecks);
+    await drainResponses(responseChecks);
     assert.deepEqual(errors, [], 'runtime and served-byte errors');
     assert.deepEqual(external, [], 'unexpected external requests');
     return {
@@ -447,7 +554,7 @@ async function scenario(browser, url, manifest, variant, width, mode) {
     await page
       .screenshot({ path: path.join(out, 'preview-' + width + '-' + mode + '.png') })
       .catch(() => {});
-    await Promise.all(responseChecks);
+    await drainResponses(responseChecks);
     return {
       width,
       mode,
@@ -474,15 +581,39 @@ async function main() {
     { server, url } = await start();
   const rows = [],
     pw = toolRequire('playwright');
-  let browser, pass;
+  let browser, pass, articles, content, publicationTags;
   try {
     browser = await pw.chromium.launch(launchOptions('chromium'));
+    if (manifest.files['publication-index.json']) {
+      const index = JSON.parse(
+        fs.readFileSync(path.join(process.env.SITE_PUBLIC_DIR, 'publication-index.json'))
+      );
+      publicationTags = await require('./article-tags-browser.cjs').journey(
+        browser,
+        url,
+        index,
+        manifest.components.articles || {}
+      );
+    }
     for (const width of [1440, 390])
       for (const mode of ['normal', 'no-canvas']) {
         const row = await scenario(browser, url, manifest, variant, width, mode);
         rows.push(row);
         console.log('Preview smoke:', width, mode, row.pass ? 'pass' : row.error);
       }
+    if (Object.keys(manifest.components.articles || {}).length) {
+      articles = await require('./article-browser.cjs').articleJourney(
+        url,
+        manifest.components.articles,
+        { browser }
+      );
+      require('./article-browser.cjs').validateArticleJourney(
+        articles,
+        manifest.components.articles,
+        { engine: manifest.components.engine, baseURL: url }
+      );
+    }
+    if (contentDocuments(manifest)) content = await contentJourney(browser, url, manifest);
     pass = rows.length === 4 && rows.every((row) => row.pass);
     report(
       'preview-smoke',
@@ -495,6 +626,9 @@ async function main() {
         widths: [1440, 390],
         modes: ['normal', 'no-canvas'],
         rows,
+        ...(articles ? { articles } : {}),
+        ...(content ? { content } : {}),
+        ...(publicationTags ? { publicationTags } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },
@@ -509,6 +643,8 @@ async function main() {
         variant,
         rows,
         error: error.message,
+        ...(error.articleCheckpoint ? { articleCheckpoint: error.articleCheckpoint } : {}),
+        ...(error.articleObservations ? { articles: error.articleObservations } : {}),
         fullGate: false,
         deploymentAuthorized: false,
       },
@@ -536,5 +672,11 @@ module.exports = {
   state,
   artifactFile,
   verifyResponse,
+  verifyRequest,
+  documentNavigation,
+  navigationAction,
+  contentDocuments,
+  contentJourney,
+  writingControls,
   analyticsRequest,
 };

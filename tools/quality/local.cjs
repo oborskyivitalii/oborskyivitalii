@@ -163,6 +163,132 @@ function check() {
   console.log(JSON.stringify(result));
   return result;
 }
+
+function checkContent({ out, contentBaseline, base }) {
+  const sourceTests = require('./source-tests.cjs');
+  sourceTests.requireClean(root);
+  const head = cp
+    .execFileSync('git', ['rev-parse', 'HEAD'], {
+      cwd: root,
+      encoding: 'utf8',
+    })
+    .trim();
+  const trusted = artifact.trustedContentBaseline(contentBaseline);
+  assert.equal(trusted.record.sourceCommit, base, 'content diff must start at trusted baseline');
+  const plan = sourceTests.select(root, 'content', { base, head });
+  const source = sourceTests.run(root, plan, {
+    requireClean: true,
+    report: path.join(root, 'quality-reports/source-tests.json'),
+  });
+  assert.equal(source.pass, true, 'mandatory content source checks must pass');
+  const record = artifact.build(out, { contentBaseline });
+  require('./candidate-source.cjs').verifyCandidateSource(path.join(out, 'public'), record);
+  const config = require('../site/build.cjs').configuration(root).config;
+  const uniqueScripts = checkPublicScripts(path.join(out, 'public'), config);
+  const sizes = artifact.checkSize(path.join(out, 'public'));
+  const catalog = require('../site/build.cjs').catalog(root);
+  const total = require('../site/validate-catalog.cjs').catalogCounts(catalog).primary.total;
+  const writing = fs.readFileSync(path.join(out, 'public/writing.html'), 'utf8');
+  assert.equal(
+    [...writing.matchAll(/<li class="publication"/g)].length,
+    total,
+    'Writing displayed entries equal the catalog count'
+  );
+  const result = {
+    profile: 'content',
+    pass: true,
+    sourceTests: source,
+    platform: {
+      status: 'reused',
+      engine: record.contentRelease.engine,
+      baselineArtifactDigest: contentBaseline.expectedArtifactDigest,
+      baselineGenerationSha256: contentBaseline.expectedGenerationSha256,
+    },
+    checks: [
+      'exact current content source',
+      'trusted unchanged platform',
+      'complete current and retained snapshot closure',
+      'public script syntax',
+      'Writing entries and count',
+      'size budgets',
+    ],
+    uniqueScripts,
+    maxHtmlBytes: Math.max(...sizes.rows.map((row) => row.raw)),
+    deploymentAuthorized: false,
+  };
+  fs.writeFileSync(
+    path.join(out, 'artifact.json'),
+    JSON.stringify({ ...record, contentChecks: result }, null, 2) + '\n'
+  );
+  console.log(JSON.stringify(result));
+  return result;
+}
+
+function contentArguments(argv) {
+  const names = {
+    '--content-baseline': 'directory',
+    '--generation-sha256': 'expectedGenerationSha256',
+    '--baseline-digest': 'expectedArtifactDigest',
+  };
+  const options = { out: path.resolve(argv[0]), contentBaseline: {} };
+  for (let index = 1; index < argv.length; index += 2) {
+    const option = argv[index];
+    const value = argv[index + 1];
+    if (!value || value.startsWith('--')) throw Error('Missing content Basic argument ' + option);
+    if (option === '--content-base' && !options.base) options.base = value;
+    else if (!names[option] || Object.hasOwn(options.contentBaseline, names[option]))
+      throw Error('Unknown or duplicate content Basic argument ' + option);
+    else options.contentBaseline[names[option]] = value;
+  }
+  if (!options.base || Object.keys(options.contentBaseline).length !== 3)
+    throw Error('Content Basic requires an exact source base and trusted artifact baseline');
+  return options;
+}
+
+function ciPackage(
+  out,
+  {
+    environment = process.env,
+    contentCheck = checkContent,
+    platformCheck = check,
+    artifactBuild = artifact.build,
+  } = {}
+) {
+  assert.ok(typeof out === 'string' && out.length > 0, 'CI Basic requires an output directory');
+  const mode = environment.CONTENT_MODE || 'platform';
+  assert.ok(['content', 'platform'].includes(mode), 'unknown CI Basic content mode');
+  if (mode === 'content') {
+    const options = {
+      out,
+      base: environment.CONTENT_BASE_SHA,
+      contentBaseline: {
+        directory: environment.CONTENT_BASELINE,
+        expectedGenerationSha256: environment.CONTENT_GENERATION_SHA256,
+        expectedArtifactDigest: environment.CONTENT_BASELINE_DIGEST,
+      },
+    };
+    assert.ok(
+      typeof options.contentBaseline.directory === 'string' &&
+        options.contentBaseline.directory.length > 0,
+      'content CI Basic requires its trusted baseline directory'
+    );
+    assert.match(
+      options.base || '',
+      /^[a-f0-9]{40}$/,
+      'content CI Basic requires an exact source base'
+    );
+    for (const field of ['expectedGenerationSha256', 'expectedArtifactDigest'])
+      assert.match(
+        options.contentBaseline[field] || '',
+        /^[a-f0-9]{64}$/,
+        'content CI Basic requires trusted baseline digests'
+      );
+    return contentCheck(options);
+  }
+  platformCheck();
+  return artifactBuild(out);
+}
+
 function gate(directory, { profile = 'local' } = {}) {
   const manifest = JSON.parse(fs.readFileSync(path.join(directory, 'artifact.json')));
   artifact.verify(path.join(directory, 'public'), manifest);
@@ -179,7 +305,7 @@ function gate(directory, { profile = 'local' } = {}) {
       '',
       'package proof requires clean source'
     );
-    run('tools/site/build.cjs', ['--check']);
+    if (!manifest.contentRelease) run('tools/site/build.cjs', ['--check']);
     assert.equal(
       manifest.sourceCommit,
       cp.execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
@@ -190,6 +316,10 @@ function gate(directory, { profile = 'local' } = {}) {
     );
     assert.equal(manifest.candidateCommit, manifest.sourceCommit);
     artifact.checkSize(path.join(directory, 'public'));
+    require('./candidate-source.cjs').verifyCandidateSource(
+      path.join(directory, 'public'),
+      manifest
+    );
     checkPublicScripts(path.join(directory, 'public'), {
       routes: require('../site/snapshot.cjs').routes.map((id) => ({ id, url: id + '.html' })),
     });
@@ -210,7 +340,11 @@ function gate(directory, { profile = 'local' } = {}) {
   };
   if (profile === 'package')
     Object.assign(result, {
-      checks: ['generated source', 'artifact snapshot integrity', 'size budgets'],
+      checks: [
+        manifest.contentRelease ? 'verified current content source' : 'generated source',
+        'artifact snapshot integrity',
+        'size budgets',
+      ],
       sourceTestsRun: false,
       fullGate: false,
       productionEligible: false,
@@ -230,10 +364,10 @@ function sourceIdentity() {
   };
 }
 
-function prepublication(level, directory, options = {}) {
+function preparePrepublication(level, directory, options = {}) {
   assert.ok(['staging', 'production'].includes(level), 'unknown prepublication level');
   const input = path.resolve(directory),
-    sourceLimits = require('./source-tests.cjs').executionLimits;
+    sourceTests = require('./source-tests.cjs');
   const reportFile = path.resolve(
     options.report ||
       path.join(
@@ -271,54 +405,17 @@ function prepublication(level, directory, options = {}) {
     SITE_REPORT_DIR: reportDirectory,
     SITE_VALIDATION_LEVEL: level,
   };
-  const execute =
-    options.execute || ((command, args, execution) => cp.spawnSync(command, args, execution));
   const checks = [];
-  function check(id, command, args, dependencies = []) {
-    const blocked = dependencies.filter(
-      (name) => !checks.some((row) => row.id === name && row.pass)
-    );
-    if (blocked.length) {
-      checks.push({ id, pass: false, status: 'blocked', blockedBy: blocked });
-      return;
-    }
-    const started = Date.now();
-    // The reporting wrapper must outlive its own bounded test child so timeout
-    // cleanup and original TAP/stderr can finish before the outer deadline.
-    const timeoutMs =
-      id === 'source-tests' ? sourceLimits.timeoutMs + sourceLimits.reportGraceMs : 180000;
-    let result;
-    try {
-      result = execute(command, args, {
-        cwd: root,
-        env: environment,
-        encoding: 'utf8',
-        timeout: timeoutMs,
-        maxBuffer: 16 * 1024 * 1024,
-      });
-    } catch (error) {
-      result = { status: null, error, stdout: '', stderr: error.message };
-    }
-    const stdout = path.join(reportDirectory, reportStem + '-' + id + '.stdout');
-    const stderr = path.join(reportDirectory, reportStem + '-' + id + '.stderr');
-    fs.writeFileSync(stdout, String(result.stdout || ''));
-    fs.writeFileSync(stderr, String(result.stderr || result.error?.message || ''));
-    checks.push({
+  const tasks = [];
+  const check = (id, command, args, dependencies = []) =>
+    tasks.push({
       id,
-      command: [command, ...args],
-      pass: result.status === 0 && !result.error,
-      status: result.status === 0 && !result.error ? 'passed' : 'failed',
-      exitCode: result.status ?? null,
-      signal: result.signal || null,
-      error: result.error
-        ? { name: result.error.name, message: result.error.message, code: result.error.code }
-        : null,
-      timeoutMs,
-      elapsedMs: Date.now() - started,
-      stdout,
-      stderr,
+      command,
+      args,
+      dependencies,
+      barrier: ['package-proof', 'artifact-unchanged'].includes(id),
+      exclusive: ['source-tests', 'security'].includes(id),
     });
-  }
   const node = (id, file, args = [], dependencies = []) =>
     check(id, process.execPath, [file, ...args], dependencies);
   const python = (id, file, args = []) => check(id, 'python3', [file, ...args]);
@@ -337,9 +434,14 @@ function prepublication(level, directory, options = {}) {
   });
   // Independent source guards still run when another source guard fails.
   if (level === 'staging') node('basic', 'tools/quality/local.cjs');
+  const contentAdmission = artifactRecord?.contentRelease?.admission;
+  const contentSourceArgs = contentAdmission
+    ? ['--base', contentAdmission.mergedSource, '--head', identity.sourceCommit]
+    : [];
   node('source-tests', 'tools/quality/source-tests.cjs', [
     '--profile',
-    level,
+    contentAdmission ? 'content' : level,
+    ...contentSourceArgs,
     '--require-clean',
     '--report',
     path.join(reportDirectory, reportStem + '-source-tests-runner.json'),
@@ -405,22 +507,18 @@ function prepublication(level, directory, options = {}) {
     node(kind, 'tools/quality/scanners.cjs', [kind], ['artifact-source']);
   node('selftest', 'tools/quality/selftest.cjs');
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'site-prepublication-'));
-  try {
-    node(
-      'package-proof',
-      'tools/quality/local.cjs',
-      ['--package-gate', input],
-      ['artifact-source', 'edition-rights']
-    );
-    node(
-      'package',
-      'tools/staging/package.cjs',
-      ['build', input, path.join(temporary, 'package')],
-      ['package-proof']
-    );
-  } finally {
-    fs.rmSync(temporary, { recursive: true, force: true });
-  }
+  node(
+    'package-proof',
+    'tools/quality/local.cjs',
+    ['--package-gate', input],
+    ['artifact-source', 'edition-rights']
+  );
+  node(
+    'package',
+    'tools/staging/package.cjs',
+    ['build', input, path.join(temporary, 'package')],
+    ['package-proof']
+  );
   node(
     'artifact-unchanged',
     '-e',
@@ -432,39 +530,81 @@ function prepublication(level, directory, options = {}) {
     ],
     ['artifact-source']
   );
-  const finalIdentity = identify();
-  checks.push({
-    id: 'unchanged-source',
-    pass: JSON.stringify(identity) === JSON.stringify(finalIdentity),
-    status: JSON.stringify(identity) === JSON.stringify(finalIdentity) ? 'passed' : 'failed',
-  });
-  const result = {
-    schema: 1,
-    kind: 'prepublication-preflight',
-    execution: {
-      runId: process.env.GITHUB_RUN_ID || null,
-      attempt: process.env.GITHUB_RUN_ATTEMPT || null,
-    },
-    ...identity,
-    candidateCommit: environment.SITE_CANDIDATE_SHA,
-    validationLevel: level,
-    artifactManifest: path.join(input, 'artifact.json'),
+  return {
+    tasks,
     checks,
-    artifactDigest: artifactRecord?.artifactDigest || null,
-    artifactManifestDigest,
-    edition: artifactRecord?.edition || null,
-    pass: checks.every((row) => row.pass),
-    fullGate: false,
-    productionEligible: false,
-    deploymentAuthorized: false,
+    execution: {
+      root,
+      environment,
+      reportDirectory,
+      reportStem,
+      timeout: (task) =>
+        task.id === 'source-tests'
+          ? sourceTests.wrapperTimeout(root, task.args[task.args.indexOf('--profile') + 1])
+          : 180000,
+    },
+    dispose: () => fs.rmSync(temporary, { recursive: true, force: true }),
+    finish: () => {
+      checks.sort(
+        (left, right) =>
+          require('./prepublication.cjs').checkIds(level).indexOf(left.id) -
+          require('./prepublication.cjs').checkIds(level).indexOf(right.id)
+      );
+      const finalIdentity = identify();
+      checks.push({
+        id: 'unchanged-source',
+        pass: JSON.stringify(identity) === JSON.stringify(finalIdentity),
+        status: JSON.stringify(identity) === JSON.stringify(finalIdentity) ? 'passed' : 'failed',
+      });
+      const result = {
+        schema: 1,
+        kind: 'prepublication-preflight',
+        execution: {
+          runId: process.env.GITHUB_RUN_ID || null,
+          attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+        },
+        ...identity,
+        candidateCommit: environment.SITE_CANDIDATE_SHA,
+        validationLevel: level,
+        artifactManifest: path.join(input, 'artifact.json'),
+        checks,
+        artifactDigest: artifactRecord?.artifactDigest || null,
+        artifactManifestDigest,
+        edition: artifactRecord?.edition || null,
+        pass: checks.every((row) => row.pass),
+        fullGate: false,
+        productionEligible: false,
+        deploymentAuthorized: false,
+      };
+      assert.deepEqual(
+        checks.map((row) => row.id),
+        require('./prepublication.cjs').checkIds(level)
+      );
+      result.files = require('./prepublication.cjs').capture(reportDirectory, reportFile);
+      fs.writeFileSync(reportFile, JSON.stringify(result, null, 2) + '\n');
+      return result;
+    },
   };
-  assert.deepEqual(
-    checks.map((row) => row.id),
-    require('./prepublication.cjs').checkIds(level)
-  );
-  result.files = require('./prepublication.cjs').capture(reportDirectory, reportFile);
-  fs.writeFileSync(reportFile, JSON.stringify(result, null, 2) + '\n');
-  return result;
+}
+
+function prepublication(level, directory, options = {}) {
+  const prepared = preparePrepublication(level, directory, options);
+  try {
+    require('./prepublication-runner.cjs').runSync(prepared, options.execute);
+    return prepared.finish();
+  } finally {
+    prepared.dispose();
+  }
+}
+
+async function prepublicationParallel(level, directory, options = {}) {
+  const prepared = preparePrepublication(level, directory, options);
+  try {
+    await require('./prepublication-runner.cjs').runParallel(prepared, options);
+    return prepared.finish();
+  } finally {
+    prepared.dispose();
+  }
 }
 
 if (require.main === module) {
@@ -475,10 +615,20 @@ if (require.main === module) {
         level && directory && !extra.length && (!flag || (flag === '--report' && report)),
         'Usage: local.cjs --prepublication staging|production DIRECTORY [--report FILE]'
       );
-      const result = prepublication(level, directory, { report });
-      console.log(JSON.stringify(result));
-      if (!result.pass) process.exitCode = 1;
-    } else if (process.argv[2] === '--gate' || process.argv[2] === '--package-gate')
+      prepublicationParallel(level, directory, { report }).then(
+        (result) => {
+          console.log(JSON.stringify(result));
+          if (!result.pass) process.exitCode = 1;
+        },
+        (error) => {
+          console.error(error.message);
+          process.exitCode = 1;
+        }
+      );
+    } else if (process.argv[2] === '--ci-package') ciPackage(path.resolve(process.argv[3]));
+    else if (process.argv[2] === '--content-package')
+      checkContent(contentArguments(process.argv.slice(3)));
+    else if (process.argv[2] === '--gate' || process.argv[2] === '--package-gate')
       gate(path.resolve(process.argv[3]), {
         profile: process.argv[2] === '--package-gate' ? 'package' : 'local',
       });
@@ -493,4 +643,14 @@ if (require.main === module) {
     process.exitCode = 1;
   }
 }
-module.exports = { check, gate, finiteGeometry, tests, prepublication };
+module.exports = {
+  check,
+  checkContent,
+  contentArguments,
+  ciPackage,
+  gate,
+  finiteGeometry,
+  tests,
+  prepublication,
+  prepublicationParallel,
+};

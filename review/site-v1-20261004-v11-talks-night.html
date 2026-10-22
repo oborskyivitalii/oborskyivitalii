@@ -26,9 +26,10 @@
 
 
 
-  <meta name="site-engine" content="d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb">
-  <meta name="site-route" content="13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb">
+  <meta name="site-engine" content="f25ab5a57a12f3c428957ca79e7e82e99bd480799646a218b9fda34934ffcc10">
+  <meta name="site-route" content="ce539676b32897560dea6d657eb558bb2e27be5d5e289a6ce2113ad66765295b">
   <meta name="site-contract" content="1">
+  <meta name="site-article-renderer" content="1">
   <meta name="site-variant" content="base">
 <meta name="robots" content="noindex, nofollow">
 <style>
@@ -1570,11 +1571,70 @@ body[data-page='writing'] #archive-results {
   }
 }
 
+/* Shared article component layout is authored in reader.css. */
+.article-list {
+  padding: clamp(1rem, 4vw, 2.5rem);
+  margin-block: 2rem;
+}
+.article-list li + li {
+  margin-top: 1.5rem;
+}
+.article-presentation {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-block: 2rem;
+}
+.article-presentation figure {
+  margin-block: 1rem;
+}
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.presentation-viewer iframe {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 65vh, 760px);
+  border: 0;
+  background: #fff;
+}
+.presentation-help {
+  font-size: 0.85rem;
+}
+@media print {
+  .presentation-toggle,
+  .presentation-viewer {
+    display: none;
+  }
+}
 /* Full legal copies remain readable when expanded on narrow screens. */
 .legal-notices pre {
   max-inline-size: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+/* Optional tags and related reading share the native publication surface. */
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.publication-tags a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.article-related {
+  margin-block: 40px;
+}
+.article-related li {
+  margin-block: 12px;
 }
 
 /* Canonical reading backdrop paint for every route and base/Color rendition.
@@ -1634,7 +1694,8 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 ) {
   position: relative;
   isolation: isolate;
@@ -1675,7 +1736,8 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 )::before {
   content: '';
   position: absolute;
@@ -1721,7 +1783,8 @@ body[data-page='writing'] #archive-results {
   .section-nav > a,
   .topic-nav > a,
   .site-footer > p,
-  .site-footer > a
+  .site-footer > a,
+  .article-list
 )::before,
 .hero :is(h1, .hero-lead, .hero-description, .audience, .eyebrow)::before,
 .reading-title,
@@ -1804,6 +1867,695 @@ body[data-page='writing'] #archive-results {
   .reading-title {
     background: transparent;
     box-shadow: none;
+  }
+}
+
+/* Reader mode owns one opaque paper surface; child components never paint negative-inset patches. */
+.reader-mode,
+.reader-mode .article-toc,
+.reader-mode .reader-contents[data-reader-enhanced] > ol,
+.reader-dialog {
+  background: var(--paper);
+  border-radius: var(--reading-surface-radius);
+}
+.reader-mode[data-route-paper] {
+  background: transparent;
+}
+[data-route-paper]::before {
+  background: var(--paper);
+  border-radius: var(--route-paper-top-radius) var(--route-paper-top-radius)
+    var(--route-paper-bottom-radius) var(--route-paper-bottom-radius);
+}
+@media print {
+  .reader-mode {
+    background: transparent;
+  }
+}
+
+/* Reader mode: shared long-form layout and components. Paint/palette retain their owners. */
+.article-reader.wrap {
+  width: min(820px, calc(100% - 48px));
+  max-width: none;
+  padding-block: 2.5rem 4rem;
+}
+.reader-mode {
+  isolation: isolate;
+  padding: clamp(24px, 4vw, 48px);
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.article-intro {
+  margin-bottom: 1.5rem;
+}
+.reader-back {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: 1.75rem;
+}
+.article-intro h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 2.85rem);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.article-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  margin-block: 1rem 0;
+  color: var(--muted);
+}
+.article-subtitle em {
+  font-style: normal;
+}
+.article-authors {
+  font-size: 0.875rem;
+  margin-block: 1.25rem 0;
+}
+.reader-metadata {
+  margin-block: 0.25rem 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.reader-status {
+  color: var(--muted);
+}
+.reader-content {
+  min-width: 0;
+}
+.article-toc {
+  border-block: 1px solid var(--line);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.article-toc:has(.reader-contents[data-reader-enhanced]) {
+  position: sticky;
+  top: var(--header-clearance, 110px);
+  z-index: 3;
+  overflow-anchor: none;
+}
+.article-toc .reader-contents[data-reader-enhanced] > ol {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  border: 1px solid var(--line);
+}
+.reader-mode summary {
+  cursor: pointer;
+}
+.reader-mode summary:focus-visible,
+.reader-table:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.article-toc summary {
+  font-weight: 500;
+  padding-block: 0.875rem;
+}
+.reader-contents > summary {
+  min-height: 52px;
+  padding-inline: 0.75rem;
+}
+[data-reader-current] {
+  float: right;
+  max-width: 65%;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.article-toc .reader-contents > ol {
+  max-height: calc(100dvh - var(--header-clearance, 110px) - 100px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-inline: 0.75rem;
+}
+.article-toc .reader-subcontents {
+  margin: 0 0 0.5rem 1rem;
+}
+.article-toc .reader-subcontents summary {
+  min-height: 44px;
+  padding-block: 0.625rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.article-toc .reader-subcontents ol {
+  border-left: 1px solid var(--line);
+  padding: 0 0 0 1rem;
+}
+.article-toc .reader-subcontents a {
+  min-height: 44px;
+}
+.article-toc ol {
+  padding: 0 0 0.5rem;
+  margin: 0;
+  list-style: none;
+}
+.article-toc a {
+  display: block;
+  padding-block: 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.article-toc a:hover,
+.article-toc a[aria-current='location'] {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.article-body strong {
+  font-weight: 600;
+}
+.article-body a:not(.reader-citation) {
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--muted);
+  text-underline-offset: 0.15em;
+}
+.article-body a:hover,
+.article-body a:focus-visible {
+  text-decoration-color: currentColor;
+}
+.reader-mode .reader-process {
+  margin-block: 2rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--line);
+}
+.reader-mode .reader-process figcaption {
+  margin: 0 0 0.875rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.article-body .reader-process ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.reader-process li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+.article-body .reader-process li + li {
+  margin-top: 0;
+}
+.reader-process li:not(:last-child)::after {
+  content: '→';
+  color: var(--muted);
+}
+.article-body p {
+  margin-block: 0 1.25em;
+}
+.reader-chapter + .reader-chapter,
+.reader-endnote + .reader-chapter {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.article-body :is(h2, h3, h4),
+.reader-endnote h3,
+.reader-appendices [id],
+.reader-citation {
+  scroll-margin-top: calc(var(--header-clearance, 110px) + 76px);
+}
+.article-body h2 {
+  font-size: 1.9375rem;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  margin-block: 0 1.25rem;
+  text-wrap: balance;
+  break-after: avoid;
+}
+.article-body h3 {
+  font-size: 1.4375rem;
+  line-height: 1.35;
+  margin-block: 2.25rem 0.875rem;
+  text-wrap: pretty;
+  break-after: avoid;
+}
+.article-body h4 {
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-block: 2.5rem 0.625rem;
+  text-wrap: pretty;
+  break-after: avoid;
+}
+.article-body :is(ul, ol) {
+  padding-left: 1.5em;
+  margin-block: 0 1.5em;
+}
+.article-body li + li {
+  margin-top: 0.5em;
+}
+.article-body .reader-quotation {
+  margin-block: 2rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  break-inside: avoid;
+}
+.reader-quotation blockquote {
+  margin: 0;
+  font-size: 1.3125rem;
+  line-height: 1.6;
+}
+.article-body .reader-quotation blockquote > :last-child {
+  margin-bottom: 0;
+}
+.reader-mode .reader-quotation figcaption {
+  margin-top: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.reader-quotation figcaption em {
+  font-style: normal;
+}
+.article-body .reader-prompt {
+  margin-block: 1.75rem 0.5rem;
+  font-size: 0.875em;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.reader-prompt strong {
+  font-weight: 600;
+}
+.reader-endnote {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.reader-endnote h3 {
+  margin-top: 0;
+  font-size: 1.1875rem;
+}
+.reader-mode figure {
+  margin: 2rem 0;
+}
+.reader-mode img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.reader-mode figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.reader-mode figcaption p {
+  margin-bottom: 0.5rem;
+}
+.reader-figure-credit {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.reader-figure-credit p {
+  margin-top: 0.5rem;
+}
+.article-figure-original {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.reader-image-open {
+  display: block;
+  cursor: zoom-in;
+}
+.reader-image-open:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+/* Modal controls share the article's theme and keep the reading position intact. */
+body:has(.reader-dialog[open]) {
+  overflow: hidden;
+}
+.reader-dialog {
+  box-sizing: border-box;
+  width: min(1100px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font: 1rem/1.6 var(--sans);
+  overflow-wrap: anywhere;
+}
+.reader-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.reader-dialog::backdrop {
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+}
+.reader-dialog-header,
+.reader-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  flex: none;
+}
+.reader-dialog-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.reader-dialog button,
+.reader-dialog-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--control-line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+.reader-dialog button:hover,
+.reader-dialog-actions a:hover {
+  background: var(--tint);
+}
+.reader-dialog :is(button, a):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.reader-image-stage {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-image-stage img {
+  display: block;
+  flex: none;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 65dvh;
+  object-fit: contain;
+}
+.reader-zoomed .reader-image-stage {
+  display: block;
+}
+.reader-zoomed .reader-image-stage img {
+  max-width: none;
+  max-height: none;
+}
+.reader-image-caption {
+  max-height: 5em;
+  overflow: auto;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.reader-note-dialog {
+  width: min(640px, calc(100% - 32px));
+}
+.reader-note-body {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.reader-note-body > :first-child {
+  margin-top: 0;
+}
+.reader-note-body > :last-child {
+  margin-bottom: 0;
+}
+.reader-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.reader-table table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-wrap: normal;
+  font-size: 0.925em;
+  line-height: 1.55;
+}
+.reader-table :is(th, td) {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.reader-table th {
+  background: var(--tint);
+  font-weight: 650;
+}
+.reader-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.reader-table .reader-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.reader-code {
+  margin-block: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--tint);
+}
+.reader-code pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.reader-citation {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+.reader-citation:target {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.reader-note-returns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.reader-note-returns a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.5rem;
+}
+.reader-closing {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+}
+body[data-article] .site-footer a[href='#main'] {
+  display: none;
+}
+.reader-closing .reader-endnote {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.reader-tags-slot .publication-tags {
+  margin: 0 0 2rem;
+  font-size: 0.8125rem;
+  gap: 0.5rem 1rem;
+}
+.reader-end {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+.reader-mode .article-related {
+  margin-block: 1.5rem 2rem;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+.reader-mode .article-related li + li {
+  margin-top: 0.875rem;
+}
+.reader-mode .article-related h2 {
+  font-size: 1.2rem;
+}
+.reader-mode .article-related ul {
+  list-style: none;
+  padding: 0;
+}
+.reader-language {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.reader-appendices {
+  border-top: 1px solid var(--line);
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.reader-appendices :is(.reader-appendix, .article-sources, .article-materials) {
+  margin-block: 1rem;
+}
+.reader-appendix summary h2 {
+  display: inline;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.reader-appendix > :not(summary) {
+  margin-top: 1.25rem;
+}
+.reader-appendix ol {
+  padding-left: 1.5rem;
+}
+.reader-appendix li {
+  padding-left: 0.25rem;
+}
+.reader-mode :target {
+  outline-offset: 4px;
+}
+@media (max-width: 640px) {
+  .article-reader.wrap {
+    width: calc(100% - 20px);
+    padding-block: 1rem 2rem;
+  }
+  .reader-mode {
+    padding: 24px 18px;
+    font-size: 1.125rem;
+  }
+  .reader-back {
+    margin-bottom: 0.875rem;
+  }
+  .article-intro {
+    margin-bottom: 1.25rem;
+  }
+  .article-authors {
+    margin-top: 0.875rem;
+  }
+  .article-toc {
+    margin-bottom: 1.5rem;
+  }
+  .article-body .reader-process ol {
+    display: block;
+  }
+  .reader-process li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .article-body .reader-process li + li {
+    margin-top: 0.5rem;
+  }
+  .reader-process li:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+  }
+  .article-intro h1 {
+    font-size: 2rem;
+  }
+  .article-subtitle {
+    font-size: 1.15rem;
+  }
+  .article-body h2 {
+    font-size: 1.625rem;
+  }
+  .article-body h3 {
+    font-size: 1.3125rem;
+  }
+  .article-body h4 {
+    font-size: 1.1875rem;
+    margin-top: 2rem;
+  }
+  .reader-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 1rem;
+  }
+  .reader-note-dialog {
+    margin: auto 8px 8px;
+  }
+  .reader-quotation blockquote {
+    font-size: 1.1875rem;
+  }
+  .article-body .reader-quotation {
+    padding-left: 1rem;
+  }
+  .reader-endnote h3 {
+    font-size: 1.1875rem;
+  }
+  .reader-chapter + .reader-chapter,
+  .reader-endnote + .reader-chapter {
+    margin-top: 2.75rem;
+    padding-top: 1.5rem;
+  }
+  .reader-table :is(th, td) {
+    padding: 0.6rem;
+  }
+}
+@media print {
+  .article-reader.wrap {
+    width: 100%;
+    padding: 0;
+  }
+  .reader-mode,
+  .reader-layout {
+    display: block;
+    max-width: none;
+    padding: 0;
+    font-size: 11pt;
+  }
+  .reader-back,
+  .article-toc,
+  .reader-end,
+  .reader-note-returns,
+  .article-figure-original {
+    display: none;
+  }
+  .reader-dialog,
+  .reader-dialog[open] {
+    display: none;
+  }
+  .reader-mode details::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+  .reader-mode details > :not(summary) {
+    display: block !important;
+  }
+  .reader-table,
+  .reader-code pre {
+    overflow: visible;
+  }
+  .reader-code pre {
+    white-space: pre-wrap;
+  }
+  .article-body figure,
+  .reader-table tr {
+    break-inside: avoid;
+  }
+  .article-body :is(h2, h3) {
+    break-after: avoid;
   }
 }
 
@@ -1916,13 +2668,39 @@ body[data-page] [data-entry-border-source] {
   --route-block-delay: 0ms;
   --route-block-duration: var(--block-motion-duration);
 }
-[data-route-block='departing'] > *,
-[data-route-block='departing']::before {
+/* Only the paper currently inside the viewport travels. The complete article
+   keeps its native multi-page geometry and its ordinary paper at rest. */
+.reader-mode[data-route-paper]::before {
+  content: '';
+  position: fixed;
+  left: var(--route-paper-left);
+  top: var(--route-paper-top);
+  width: var(--route-paper-width);
+  height: var(--route-paper-height);
+  z-index: -1;
+  pointer-events: none;
+  visibility: hidden;
+  --route-block-distance: var(--route-paper-distance);
+}
+[data-route-blocks='departing'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-depart var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-blocks='arriving'] .reader-mode[data-route-paper]::before {
+  visibility: visible;
+  animation: route-block-arrive var(--route-paper-duration) var(--block-motion-easing)
+    var(--route-paper-delay) both;
+}
+[data-route-block='departing'][data-route-layer='self'],
+[data-route-block='departing']:not([data-route-layer='self']) > *,
+[data-route-block='departing']:not([data-route-layer='self'])::before {
   animation: route-block-depart var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
-[data-route-block='arriving'] > *,
-[data-route-block='arriving']::before {
+[data-route-block='arriving'][data-route-layer='self'],
+[data-route-block='arriving']:not([data-route-layer='self']) > *,
+[data-route-block='arriving']:not([data-route-layer='self'])::before {
   animation: route-block-arrive var(--route-block-duration) var(--block-motion-easing)
     var(--route-block-delay) both;
 }
@@ -1954,6 +2732,8 @@ body[data-page] [data-entry-border-source] {
   }
   [data-scroll-entry] > *,
   [data-scroll-entry]::before,
+  [data-route-layer='self'],
+  .reader-mode[data-route-paper]::before,
   [data-route-block] > *,
   [data-route-block]::before {
     animation: none;
@@ -1961,6 +2741,9 @@ body[data-page] [data-entry-border-source] {
   }
 }
 @media print {
+  .reader-mode[data-route-paper]::before {
+    display: none;
+  }
   #site-content-frame {
     overflow: visible;
   }
@@ -1984,62 +2767,68 @@ body[data-page] [data-entry-border-source] {
     <a href="#upcoming-talks">Upcoming</a><a href="#ukrainian-talks">UA · Ukrainian</a><a href="#other-talks">Other talks &amp; workshops</a>
   </nav>
   <h3 id="upcoming-talks" class="writing-topic">Upcoming conferences</h3>
-  <article class="publication" id="pmday-winter-2027">
-    <div class="publication-meta">
-      <span>Upcoming</span><span>Online conference</span><span><time datetime="2027-01-30">30 January 2027</time></span>
-    </div>
-    <div>
-      <h3 class="talk-title">UA Online PMDay 2027 Winter</h3>
-      <p>I’ll be speaking at UA Online PMDay 2027 Winter, an online conference for the project management community. Explore the programme and registration details on the organiser’s website.</p>
-      <a class="text-link" href="https://pmday.org/online">Programme &amp; registration <span aria-hidden="true">↗</span></a>
-    </div>
-  </article>
-  <h3 id="ukrainian-talks" class="writing-topic">Ukrainian-language talks</h3>
-  <article class="publication" data-language="uk">
-    <div class="publication-meta">
-      <span>UA Online PMDay 2026 Autumn · Recording in Ukrainian</span><span class="language-badge" lang="uk">UA · Українська</span><span>Conference talk · <time datetime="2026-09-26">26 September 2026</time></span>
-    </div>
-    <div>
-      <h3 class="talk-title">AI Changes the Delivery System and the Product Itself</h3>
-      <p>A talk on two connected shifts: how AI changes software delivery, and how model judgment
+<article class="publication" id="pmday-winter-2027">
+  <div class="publication-meta">
+<span>Upcoming</span><span>Online conference</span><span><time datetime="2027-01-30">30 January 2027</time></span>
+</div>
+  <div>
+    <h3 class="talk-title">UA Online PMDay 2027 Winter</h3>
+    <p>I’ll be speaking at UA Online PMDay 2027 Winter, an online conference for the project management community. Explore the programme and registration details on the organiser’s website.</p>
+    <a class="text-link" href="https://pmday.org/online">Programme &amp; registration <span aria-hidden="true">↗</span></a>
+  </div>
+</article>
+<h3 id="ukrainian-talks" class="writing-topic">Ukrainian-language talks</h3>
+<article class="publication" data-language="uk">
+  <div class="publication-meta">
+<span>UA Online PMDay 2026 Autumn · Recording in Ukrainian</span><span class="language-badge" lang="uk">UA · Українська</span><span>Conference talk · <time datetime="2026-09-26">26 September 2026</time></span>
+</div>
+  <div>
+    <h3 class="talk-title">AI Changes the Delivery System and the Product Itself</h3>
+    <p>A talk on two connected shifts: how AI changes software delivery, and how model judgment
         changes the products we build. It explores the implications for requirements, verification,
         release readiness, operational control, and shared responsibility across the team.</p>
-      <a class="text-link" href="https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE">Watch the recording <span aria-hidden="true">↗</span></a>
-      <p class="edition-link"><a href="https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od">Speaker announcement ↗</a></p>
-      <p class="edition-link"><a href="https://www.linkedin.com/posts/vitaliioborskyi_thank-you-to-the-ua-project-management-day-activity-7510403699689771008-L6yl">Read the talk summary ↗</a></p>
-    </div>
-  </article>
-  <h3 id="other-talks" class="writing-topic">Other talks &amp; workshops</h3>
-  <article class="publication" id="corning">
-    <div class="publication-meta"> <span>Corning · Learn-AI-Palooza</span><span>Technical workshop</span> </div>
-    <div>
-      <h3 class="talk-title">Designing Non-Deterministic Systems</h3>
-      <p>Invited speaker at Corning’s internal technical AI workshop. Discussed how model-driven
+    <a class="text-link" href="https://youtu.be/xSgWjuGqC9I?is=Rf9XOk8qrTw8I9aE">Watch the recording <span aria-hidden="true">↗</span></a>
+<p class="edition-link"><a href="https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od">Speaker announcement ↗</a></p>
+<p class="edition-link"><a href="https://www.linkedin.com/posts/vitaliioborskyi_thank-you-to-the-ua-project-management-day-activity-7510403699689771008-L6yl">Read the talk summary ↗</a></p>
+  </div>
+</article>
+<h3 id="other-talks" class="writing-topic">Other talks &amp; workshops</h3>
+<article class="publication" id="corning">
+  <div class="publication-meta">
+<span>Corning · Learn-AI-Palooza</span><span>Technical workshop</span>
+</div>
+  <div>
+    <h3 class="talk-title">Designing Non-Deterministic Systems</h3>
+    <p>Invited speaker at Corning’s internal technical AI workshop. Discussed how model-driven
         systems change architecture, operating models and accountability with the company’s
         technology community.</p>
-      <a class="text-link" href="https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4">Host’s public reflection <span aria-hidden="true">↗</span></a>
-    </div>
-  </article>
-  <article class="publication">
-    <div class="publication-meta"> <span>Betelgeuse · QA Україна</span><span>Community talk</span> </div>
-    <div>
-      <h3 class="talk-title">Uncertainty Architecture &amp; software delivery</h3>
-      <p>A community discussion on AI engineering and QA, connecting practical testing with trust,
+    <a class="text-link" href="https://www.linkedin.com/posts/roderickm_one-of-the-highlights-of-our-recent-learn-al-palooza-activity-7480960628980072448-FBm4">Host’s public reflection <span aria-hidden="true">↗</span></a>
+  </div>
+</article>
+<article class="publication">
+  <div class="publication-meta">
+<span>Betelgeuse · QA Україна</span><span>Community talk</span>
+</div>
+  <div>
+    <h3 class="talk-title">Uncertainty Architecture &amp; software delivery</h3>
+    <p>A community discussion on AI engineering and QA, connecting practical testing with trust,
         control, nondeterministic behavior and engineering responsibility.</p>
-      <a class="text-link" href="https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/">Read the public follow-up <span aria-hidden="true">↗</span></a>
-      <p class="edition-link"><a href="https://ua.linkedin.com/posts/vitaliioborskyi_%D0%B2%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%B4%D1%8F%D0%BA%D1%83%D1%8E-%D0%B7%D0%B0-%D0%BF%D0%BE%D1%81%D1%82-%D0%B2%D1%96%D0%BD-%D1%83%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D0%B2-%D1%83-activity-7479802249829928961-PmrF">Read the discussion reflection ↗</a></p>
-    </div>
-  </article>
-  <article class="publication">
-    <div class="publication-meta"> <span>swarchua · Ukrainian architects community</span><span>Community discussion</span> </div>
-    <div>
-      <h3 class="talk-title">Discussion: Operating AI systems</h3>
-      <p>A discussion with the swarchua architects community on operationalizing AI, runtime
+    <a class="text-link" href="https://www.linkedin.com/posts/vitaliioborskyi_github-uncertaintyarchitecturegroupuncertainty-architecture-activity-7477275989761384448-k8J9/">Read the public follow-up <span aria-hidden="true">↗</span></a>
+<p class="edition-link"><a href="https://ua.linkedin.com/posts/vitaliioborskyi_%D0%B2%D0%BE%D0%BB%D0%BE%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%B4%D1%8F%D0%BA%D1%83%D1%8E-%D0%B7%D0%B0-%D0%BF%D0%BE%D1%81%D1%82-%D0%B2%D1%96%D0%BD-%D1%83%D0%B2%D1%96%D0%BC%D0%BA%D0%BD%D1%83%D0%B2-%D1%83-activity-7479802249829928961-PmrF">Read the discussion reflection ↗</a></p>
+  </div>
+</article>
+<article class="publication">
+  <div class="publication-meta">
+<span>swarchua · Ukrainian architects community</span><span>Community discussion</span>
+</div>
+  <div>
+    <h3 class="talk-title">Discussion: Operating AI systems</h3>
+    <p>A discussion with the swarchua architects community on operationalizing AI, runtime
         uncertainty and the control responsibilities of LLM-based systems.</p>
-      <a class="text-link" href="https://www.youtube.com/watch?v=1MPsDi3wuF4">Watch the recording · AI discussion <span aria-hidden="true">↗</span></a>
-      <p class="edition-link"><a href="https://ua.linkedin.com/posts/vitaliioborskyi_software-architecture-activity-7477274339411693569-dJhu">Read the discussion context ↗</a></p>
-    </div>
-  </article>
+    <a class="text-link" href="https://www.youtube.com/watch?v=1MPsDi3wuF4">Watch the recording · AI discussion <span aria-hidden="true">↗</span></a>
+<p class="edition-link"><a href="https://ua.linkedin.com/posts/vitaliioborskyi_software-architecture-activity-7477274339411693569-dJhu">Read the discussion context ↗</a></p>
+  </div>
+</article>
   <p class="section-note">
     <a class="text-link" href="site-v1-20261004-v11-night.html#contact">Invite me to speak</a>
   </p>

@@ -37,6 +37,15 @@ window.SiteScrollEntry=(function () {
     '.section-note',
     '.next-route > p',
     '.next-route > a',
+    '.article-intro > *',
+    '.article-toc',
+    '.reader-introduction > *',
+    '.reader-chapter > *',
+    '.article-body > .reader-endnote > *',
+    '.reader-closing > *',
+    '.article-sources',
+    '.article-related',
+    '.article-list',
   ].join(',');
   const routeTargets = `${targets},.archive-filters,.section-nav,.topic-nav`;
   const separatorTargets = [
@@ -54,6 +63,10 @@ window.SiteScrollEntry=(function () {
     '.next-route',
     '.discussion-row',
     '.empty-state',
+    '.reader-closing',
+    '.reader-chapter',
+    '.article-toc',
+    '.reader-appendices',
   ].join(',');
   const records = new Map();
   const routeUnits = new Map();
@@ -76,6 +89,7 @@ window.SiteScrollEntry=(function () {
   let routeGeneration = 0;
   let routePhase = null;
   let routePrepared = null;
+  let routePaper = null;
   let holdTask = null;
   let nextUnitId = 0;
   let readingDistance = 0;
@@ -181,7 +195,8 @@ window.SiteScrollEntry=(function () {
     return allowed() && window.CSS?.supports?.('overflow', 'clip');
   }
   function refreshInventory() {
-    const candidates = [...root.querySelectorAll(targets)];
+    // Sustained reading stays stationary; document-to-document waves retain their units.
+    const candidates = root.matches('.article-reader') ? [] : [...root.querySelectorAll(targets)];
     const units = [...root.querySelectorAll(routeTargets)];
     if (footer) units.push(...footer.querySelectorAll(':scope > p,:scope > a'));
     // A display:contents group has no movable paper or native box. Its visible
@@ -238,7 +253,7 @@ window.SiteScrollEntry=(function () {
   }
   function wrapInk(element, record) {
     // Inline text needs one movable layer; publication/grid children stay intact.
-    if (!element.matches('p,h1,h2,h3,a')) return;
+    if (!element.matches('p,h1,h2,h3,h4,h5,h6,a')) return;
     const ink = document.createElement('span');
     ink.setAttribute('data-scroll-ink', '');
     ink.append(...element.childNodes);
@@ -472,6 +487,7 @@ window.SiteScrollEntry=(function () {
   function clearRouteUnit(element) {
     clearSeparators('route', element);
     element.removeAttribute('data-route-block');
+    element.removeAttribute('data-route-layer');
     element.removeAttribute('data-route-direction');
     element.removeAttribute('data-route-delay');
     element.removeAttribute('data-route-row');
@@ -484,6 +500,7 @@ window.SiteScrollEntry=(function () {
     holdTask = null;
     for (const element of routeUnits.keys()) clearRouteUnit(element);
     routeActive.clear();
+    clearRoutePaper();
     routePrepared = null;
     routeState(null);
   }
@@ -521,11 +538,15 @@ window.SiteScrollEntry=(function () {
   function measureRoute() {
     // One native read batch per phase, including footer leaves. Header and
     // appearance controls belong to the persistent shell, never this inventory.
+    clearRoutePaper();
     clearSeparators('route');
     refreshInventory();
     const measured = [...routeUnits].map(([element, record]) => {
       const rect = element.getBoundingClientRect();
-      const children = [...(element.children || [])].map((child) => child.getBoundingClientRect());
+      const children = [...(element.children || [])]
+        .map((child) => child.getBoundingClientRect())
+        .filter((child) => child.width > 0 && child.height > 0);
+      const painted = (rect.width > 0 && rect.height > 0) || children.length > 0;
       // Media may intentionally extend beyond its semantic shell (Home's
       // facets do). Move the complete native visual envelope past the edge.
       return {
@@ -536,7 +557,7 @@ window.SiteScrollEntry=(function () {
           top: Math.min(rect.top, ...children.map((child) => child.top)),
           bottom: Math.max(rect.bottom, ...children.map((child) => child.bottom)),
         },
-        visible: element.getClientRects().length > 0,
+        visible: element.getClientRects().length > 0 && painted,
       };
     });
     const visible = measured.filter(
@@ -548,11 +569,70 @@ window.SiteScrollEntry=(function () {
         Number.isFinite(unit.rect.bottom)
     );
     measured.separators = measureSeparators(visible, true);
+    measured.paper = measureRoutePaper();
     materializeSeparators(measured.separators, measured);
     const style = window.getComputedStyle(document.documentElement);
     measured.duration = Number.parseFloat(style.getPropertyValue('--block-motion-duration'));
     measured.phase = Number.parseFloat(style.getPropertyValue('--block-motion-phase'));
     return measured;
+  }
+  function clearRoutePaper() {
+    if (!routePaper) return;
+    routePaper.removeAttribute('data-route-paper');
+    for (const name of [
+      'left',
+      'top',
+      'width',
+      'height',
+      'top-radius',
+      'bottom-radius',
+      'distance',
+      'duration',
+      'delay',
+    ])
+      routePaper.style.removeProperty('--route-paper-' + name);
+    routePaper = null;
+  }
+  function measureRoutePaper() {
+    if (!root.matches('.article-reader')) return null;
+    const element = root.querySelector?.('.reader-mode');
+    if (!element?.getClientRects().length) return null;
+    const rect = element.getBoundingClientRect();
+    const top = Math.max(0, rect.top),
+      bottom = Math.min(window.innerHeight, rect.bottom);
+    if (
+      ![rect.left, rect.width, top, bottom].every(Number.isFinite) ||
+      rect.width <= 0 ||
+      bottom <= top
+    )
+      return null;
+    const style = window.getComputedStyle(element);
+    const radius = Number.parseFloat(style.getPropertyValue('border-top-left-radius')) || 0;
+    return {
+      element,
+      left: rect.left,
+      top,
+      width: rect.width,
+      height: bottom - top,
+      'top-radius': top === rect.top ? radius : 0,
+      'bottom-radius': bottom === rect.bottom ? radius : 0,
+    };
+  }
+  function prepareRoutePaper(model, timing, upward, state) {
+    if (!model) return;
+    routePaper = model.element;
+    for (const name of ['left', 'top', 'width', 'height', 'top-radius', 'bottom-radius'])
+      routePaper.style.setProperty('--route-paper-' + name, model[name] + 'px');
+    const distance = upward
+      ? -(model.top + model.height + 32)
+      : window.innerHeight - model.top + 32;
+    routePaper.style.setProperty('--route-paper-distance', distance + 'px');
+    // Paper arrives with the first row and leaves with the last, keeping opaque
+    // paint behind the readable blocks throughout the existing wave.
+    routePaper.style.setProperty('--route-paper-duration', timing.rowDurationMs + 'ms');
+    const delay = state === 'departing' ? timing.plannedDurationMs - timing.rowDurationMs : 0;
+    routePaper.style.setProperty('--route-paper-delay', delay + 'ms');
+    routePaper.setAttribute('data-route-paper', '');
   }
   function routeTiming(rows, measured, state, navigationId) {
     const specified = measured.duration;
@@ -601,15 +681,23 @@ window.SiteScrollEntry=(function () {
       row.bottom = Math.max(row.bottom, unit.native.bottom);
       row.units.push(unit);
     }
-    const timing = routeTiming(rows.length, measured, state, navigationId);
+    const timing = routeTiming(
+      Math.max(rows.length, measured.paper ? 1 : 0),
+      measured,
+      state,
+      navigationId
+    );
     const duration = timing.rowDurationMs;
     // Exceptional geometry falls back to fully native content. Admitted rows
     // keep their identity and share a fixed-duration directional wave.
     if (!timing.bounded) return timing;
     const upward = state === 'departing' ? travelDirection > 0 : travelDirection < 0;
     for (const { element } of measured) clearRouteUnit(element);
-    for (const { element, record } of selected) if (!record.ink) wrapInk(element, record);
+    const wholeBlocks = root.matches('.article-reader');
+    for (const { element, record } of selected)
+      if (!wholeBlocks && !record.ink) wrapInk(element, record);
     attachSeparators(measured.separators, 'route');
+    prepareRoutePaper(measured.paper, timing, upward, state);
     for (const [index, row] of rows.entries()) {
       // Wave rows only travel far enough to clear their own complete paint.
       // Native peers share this envelope so ink, paper and dividers stay aligned.
@@ -617,6 +705,9 @@ window.SiteScrollEntry=(function () {
         ? -(Math.max(...row.units.map((unit) => unit.rect.bottom)) + 32)
         : window.innerHeight - Math.min(...row.units.map((unit) => unit.rect.top)) + 32;
       for (const { element } of row.units) {
+        // Reader components own their background, borders and native markers.
+        // Move the complete box once instead of leaving shell paint behind.
+        if (wholeBlocks) element.setAttribute('data-route-layer', 'self');
         const order = travelDirection > 0 ? index : rows.length - 1 - index;
         element.style.setProperty('--route-block-distance', `${Math.round(distance)}px`);
         element.style.setProperty('--route-block-delay', `${order * timing.rowStepMs}ms`);
@@ -697,13 +788,19 @@ window.SiteScrollEntry=(function () {
         resolve,
         timer: null,
       };
+      if (routePaper)
+        routePhase.pending.set(
+          routePaper,
+          Number.parseFloat(routePaper.style.getPropertyValue('--route-paper-duration')) +
+            Number.parseFloat(routePaper.style.getPropertyValue('--route-paper-delay'))
+        );
       // Missing/cancelled events receive the same finite slack after the fixed
       // wave envelope; page density cannot extend the planned transition.
       routePhase.timer = window.setTimeout(
         guarded(() => completeRoute(own, 'watchdog')),
         timing.plannedDurationMs + 1000
       );
-      if (!routeActive.size) completeRoute(own, 'empty');
+      if (!routePhase.pending.size) completeRoute(own, 'empty');
     });
   }
   function depart(travelDirection = 1, navigationId = null) {
@@ -742,13 +839,13 @@ window.SiteScrollEntry=(function () {
     cancelRoute();
     settle();
   }
-  function armReading(unit, borders, pageBottom) {
+  function armReading(unit, borders, pageBottom, viewport) {
     const { element, record, native, visible } = unit;
     if (
       !visible ||
       readingDistance <= 0 ||
-      native.top < window.innerHeight ||
-      native.bottom + window.scrollY + readingDistance + 32 >= pageBottom ||
+      native.top < viewport.height ||
+      native.bottom + viewport.scrollY + readingDistance + 32 >= pageBottom ||
       (document.activeElement && element.contains(document.activeElement))
     ) {
       finish(element);
@@ -803,13 +900,14 @@ window.SiteScrollEntry=(function () {
   function enter(entries, own) {
     if (own !== generation || suspended || !allowed()) return;
     const pageBottom = document.documentElement.scrollHeight;
+    const viewport = { scrollY: window.scrollY, height: window.innerHeight };
     const siblings = new Map();
     for (const entry of entries) {
       const element = entry.target;
       const record = records.get(element);
       if (!record) continue;
       if (!entry.isIntersecting) {
-        if (entry.boundingClientRect.top >= window.innerHeight && direction < 0) {
+        if (entry.boundingClientRect.top >= viewport.height && direction < 0) {
           clearState(element);
           const rect = entry.boundingClientRect;
           armReading(
@@ -821,7 +919,8 @@ window.SiteScrollEntry=(function () {
               visible: element.getClientRects().length > 0,
             },
             readingBorders,
-            pageBottom
+            pageBottom,
+            viewport
           );
         } else if (active.has(element) || pendingReading.has(element)) finish(element);
         continue;
@@ -866,10 +965,10 @@ window.SiteScrollEntry=(function () {
     readingDuration =
       Number.isFinite(duration) && duration >= 450 && duration <= 700 ? duration : 700;
     readingStagger = Number.isFinite(stagger) && stagger >= 0 && stagger <= 120 ? stagger : 80;
-    const scrollY = window.scrollY;
     // Batch native reads before any transient layer/state writes. The last
     // block stays steady when its moving ink/paper would grow scroll overflow.
     releaseReadingStates();
+    const viewport = { scrollY: window.scrollY, height: window.innerHeight };
     const pageBottom = document.documentElement.scrollHeight;
     const measured = [...records].map(([element, record]) => {
       const rect = element.getBoundingClientRect();
@@ -906,10 +1005,10 @@ window.SiteScrollEntry=(function () {
         clearState(element);
         continue;
       }
-      armReading({ element, record, native, rect, visible }, borders, pageBottom);
+      armReading({ element, record, native, rect, visible }, borders, pageBottom, viewport);
       observer.observe(element);
     }
-    previousY = scrollY;
+    previousY = viewport.scrollY;
   }
   function deferReconcile() {
     window.clearTimeout(reconcileTask);
@@ -973,7 +1072,10 @@ window.SiteScrollEntry=(function () {
       ) {
         const expected =
           routePhase?.state === 'departing' ? 'route-block-depart' : 'route-block-arrive';
-        const element = event.target.closest('[data-route-block]');
+        const element =
+          event.target === routePaper && event.pseudoElement === '::before'
+            ? routePaper
+            : event.target.closest('[data-route-block]');
         if (event.animationName !== expected || !routePhase?.pending.has(element)) return;
         // A queued event from a cancelled animation on this retained node
         // cannot consume its new row before the new planned end has elapsed.
@@ -1169,21 +1271,338 @@ window.SiteScrollEntry=(function () {
     }),
   };
 })();
+window.SiteReader=(function readerMode() {
+  let dispose = () => {};
+  let snapshot = () => null;
+  let restore = () => {};
+  function destroy() {
+    dispose();
+    dispose = () => {};
+    snapshot = () => null;
+    restore = () => {};
+  }
+  function mount({ state = null } = {}) {
+    destroy();
+    const main = document.querySelector('main.article-reader');
+    if (!main) return;
+    const listeners = [],
+      printState = new Map();
+    const details = [...main.querySelectorAll('details')];
+    const listen = (target, event, handler, options) => {
+      target.addEventListener(event, handler, options);
+      listeners.push(() => target.removeEventListener(event, handler, options));
+    };
+    const fragmentId = (hash) => {
+      try {
+        return decodeURIComponent(hash.slice(1));
+      } catch {
+        return '';
+      }
+    };
+    const links = [...main.querySelectorAll('.article-toc a')];
+    const headings = links
+      .map((link) => document.getElementById(fragmentId(link.hash)))
+      .filter(Boolean);
+    const contents = main.querySelector('.reader-contents');
+    const currentLabel = main.querySelector('[data-reader-current]');
+    if (contents) {
+      contents.open = false;
+      contents.setAttribute('data-reader-enhanced', '');
+    }
+    let activeDialog = null;
+    const finishDialog = (record, returnFocus) => {
+      if (!record) return;
+      if (activeDialog === record) activeDialog = null;
+      const trigger = record.trigger;
+      record.trigger = null;
+      record.reset();
+      if (returnFocus && trigger?.isConnected) trigger.focus({ preventScroll: true });
+    };
+    const closeDialog = (returnFocus = true) => {
+      const record = activeDialog;
+      if (!record) return;
+      activeDialog = null;
+      if (record.element.open) record.element.close();
+      finishDialog(record, returnFocus);
+    };
+    const dialog = (selector, reset) => {
+      const element = main.querySelector(selector);
+      if (
+        !element ||
+        typeof element.showModal !== 'function' ||
+        typeof element.close !== 'function'
+      )
+        return null;
+      const close = element.querySelector('[data-reader-close]');
+      if (!close) return null;
+      const record = { element, close, reset, trigger: null };
+      element.hidden = false;
+      listen(close, 'click', () => closeDialog());
+      listen(element, 'cancel', (event) => {
+        event.preventDefault();
+        closeDialog();
+      });
+      listen(element, 'click', (event) => {
+        if (event.target === element) closeDialog();
+      });
+      listen(element, 'close', () => {
+        if (!element.open && activeDialog === record) finishDialog(record, true);
+      });
+      return record;
+    };
+    const openDialog = (record, trigger) => {
+      if (!record) return false;
+      closeDialog(false);
+      record.trigger = trigger;
+      try {
+        record.element.showModal();
+      } catch {
+        finishDialog(record, false);
+        return false;
+      }
+      activeDialog = record;
+      record.close.focus({ preventScroll: true });
+      return true;
+    };
+    const imageStage = main.querySelector('[data-reader-image]');
+    const imageCaption = main.querySelector('[data-reader-image-caption]');
+    const imageOriginal = main.querySelector('[data-reader-image-original]');
+    const zoom = main.querySelector('[data-reader-zoom]');
+    const imageDialog =
+      imageStage && imageCaption && imageOriginal && zoom
+        ? dialog('.reader-image-dialog', () => {
+            imageStage.replaceChildren();
+            imageCaption.textContent = '';
+            imageDialog.element.classList.remove('reader-zoomed');
+            zoom.setAttribute('aria-pressed', 'false');
+          })
+        : null;
+    if (imageDialog)
+      listen(zoom, 'click', () => {
+        const enlarged = imageDialog.element.classList.toggle('reader-zoomed');
+        zoom.setAttribute('aria-pressed', String(enlarged));
+      });
+    const noteBody = main.querySelector('[data-reader-note-body]');
+    const noteTitle = main.querySelector('[data-reader-note-title]');
+    const noteFull = main.querySelector('[data-reader-note-full]');
+    const noteDialog =
+      noteBody && noteTitle && noteFull
+        ? dialog('.reader-note-dialog', () => noteBody.replaceChildren())
+        : null;
+    const enhancedLinks = [...main.querySelectorAll('.reader-citation, .reader-image-open')].filter(
+      (anchor) => (anchor.classList.contains('reader-citation') ? noteDialog : imageDialog)
+    );
+    for (const anchor of enhancedLinks) anchor.setAttribute('aria-haspopup', 'dialog');
+    const showImage = (anchor) => {
+      const image = anchor.querySelector('img');
+      if (!imageDialog || !image) return false;
+      const copy = image.cloneNode(false);
+      copy.removeAttribute('id');
+      const caption = anchor.closest('figure')?.querySelector('figcaption > p');
+      if (!openDialog(imageDialog, anchor)) return false;
+      imageStage.replaceChildren(copy);
+      imageCaption.textContent = caption?.textContent || image.alt;
+      imageOriginal.href = anchor.href;
+      return true;
+    };
+    const showNote = (anchor, url) => {
+      const note = document.getElementById(fragmentId(url.hash));
+      if (!noteDialog || !note || !main.contains(note) || !note.closest('.reader-appendix'))
+        return false;
+      const copy = note.cloneNode(true);
+      // Cloned source text retains links and caveats, never duplicate anchors or return controls.
+      for (const child of copy.querySelectorAll('.reader-note-returns, [role="doc-backlink"]'))
+        child.remove();
+      for (const child of copy.querySelectorAll('[id], [aria-labelledby], [aria-describedby]')) {
+        child.removeAttribute('id');
+        child.removeAttribute('aria-labelledby');
+        child.removeAttribute('aria-describedby');
+      }
+      if (!openDialog(noteDialog, anchor)) return false;
+      noteTitle.textContent = anchor.getAttribute('aria-label') || 'Reference';
+      noteDialog.element.setAttribute('aria-label', noteTitle.textContent);
+      noteBody.replaceChildren(...copy.childNodes);
+      noteFull.setAttribute('href', url.hash);
+      return true;
+    };
+    const reveal = (hash) => {
+      let target;
+      try {
+        target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      } catch {
+        return;
+      }
+      if (!target || !main.contains(target)) return;
+      for (let node = target.parentElement; node && node !== main; node = node.parentElement)
+        if (node.tagName === 'DETAILS') node.open = true;
+    };
+    for (const appendix of main.querySelectorAll('.reader-appendix')) appendix.open = false;
+    restore = (saved) => {
+      if (
+        Array.isArray(saved) &&
+        saved.length === details.length &&
+        saved.length <= 256 &&
+        saved.every((open) => typeof open === 'boolean')
+      )
+        details.forEach((detail, index) => {
+          detail.open = saved[index];
+        });
+      reveal(window.location.hash);
+    };
+    snapshot = () => details.map((detail) => printState.get(detail) ?? detail.open);
+    restore(state);
+    listen(window, 'hashchange', () => {
+      closeDialog(false);
+      reveal(window.location.hash);
+    });
+    listen(main, 'click', (event) => {
+      if (
+        event.defaultPrevented ||
+        (event.button !== undefined && event.button !== 0) ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      const anchor = event.target.closest?.('a[href]');
+      if (!anchor) return;
+      if (anchor.hasAttribute?.('download') || anchor.getAttribute?.('target')) return;
+      if (anchor.classList?.contains('reader-image-open') && showImage(anchor)) {
+        event.preventDefault();
+        return;
+      }
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.origin !== window.location.origin ||
+        url.pathname !== window.location.pathname ||
+        url.search !== window.location.search
+      )
+        return;
+      if (anchor.classList?.contains('reader-citation') && showNote(anchor, url)) {
+        event.preventDefault();
+        return;
+      }
+      if (anchor === noteFull) closeDialog(false);
+      reveal(url.hash);
+      if (anchor.closest('.article-toc') && contents) contents.open = false;
+    });
+    let currentId = null;
+    const current = (id) => {
+      if (id === currentId) return;
+      currentId = id;
+      for (const link of links) {
+        if (fragmentId(link.hash) === id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+      if (currentLabel) currentLabel.textContent = document.getElementById(id)?.textContent || '';
+    };
+    const updateCurrent = () => {
+      if (printState.size) return;
+      // Intersection callbacks can skip a whole chapter on PageDown, End or history jumps.
+      // Search the ordered heading positions, retaining the first heading in the reading band.
+      let lower = 0,
+        upper = headings.length;
+      while (lower < upper) {
+        const middle = (lower + upper) >>> 1;
+        if (headings[middle].getBoundingClientRect().top < 110) lower = middle + 1;
+        else upper = middle;
+      }
+      const next = headings[lower];
+      const active =
+        next && next.getBoundingClientRect().top <= Math.max(110, window.innerHeight * 0.4)
+          ? next
+          : headings[lower - 1];
+      current(active?.id || '');
+    };
+    const observer = window.IntersectionObserver
+      ? new window.IntersectionObserver(updateCurrent, {
+          rootMargin: '-110px 0px -60% 0px',
+          threshold: 0,
+        })
+      : null;
+    for (const heading of headings) observer?.observe(heading);
+    listen(window, 'scroll', updateCurrent, { passive: true });
+    listen(window, 'resize', updateCurrent);
+    updateCurrent();
+    listen(window, 'beforeprint', () => {
+      closeDialog(false);
+      for (const detail of main.querySelectorAll('details')) {
+        printState.set(detail, detail.open);
+        detail.open = true;
+      }
+    });
+    const restorePrint = () => {
+      for (const [detail, open] of printState) detail.open = open;
+      printState.clear();
+    };
+    listen(window, 'afterprint', restorePrint);
+    listen(window, 'pagehide', () => closeDialog(false));
+    for (const detail of details)
+      listen(detail, 'toggle', () => {
+        if (!printState.size) window.dispatchEvent(new window.Event('site:reader-state'));
+      });
+    dispose = () => {
+      closeDialog(false);
+      contents?.removeAttribute('data-reader-enhanced');
+      for (const anchor of enhancedLinks) anchor.removeAttribute('aria-haspopup');
+      observer?.disconnect();
+      for (const remove of listeners) remove();
+      restorePrint();
+    };
+  }
+  return { mount, destroy, snapshot: () => snapshot(), restore: (state) => restore(state) };
+})();
 /* One document, one header and one canvas. Every route remains ordinary HTML. */
 (() => {
   'use strict';
   const scrollEntry = window.SiteScrollEntry;
   scrollEntry?.boot();
+  function mountInitialReader() {
+    window.SiteReader?.mount({ state: history.state?.site?.reader });
+  }
   const routes = ['index', 'research', 'writing', 'talks', 'credits'];
   const bundle = document.getElementById('site-pages');
   const embedded = bundle ? JSON.parse(bundle.textContent) : null;
   const entry = new URL(window.location.href);
-  const directory = new URL('.', entry);
+  const directory = new URL(
+    document.querySelector('meta[name="site-base"]')?.content || '.',
+    entry
+  );
+  const documentIndex = document.getElementById('site-documents');
+  const articles = documentIndex ? JSON.parse(documentIndex.textContent) : {};
+  function embeddedResources(doc, declared) {
+    const urls = new Map();
+    if (!declared) return urls;
+    for (const element of doc.querySelectorAll('[data-offline-resource]')) {
+      const name = element.getAttribute('data-offline-resource');
+      const value = element.getAttribute(element.tagName === 'IMG' ? 'src' : 'href');
+      if (urls.has(name) && urls.get(name) !== value) return null;
+      urls.set(name, value);
+    }
+    return urls;
+  }
+  const embeddedAssetURLs = embeddedResources(document, embedded?.assets);
+  if (!embeddedAssetURLs) return mountInitialReader();
+  let embeddedAssetsReady = null;
+  if (Object.keys(articles).length > 50) return mountInitialReader();
+  for (const [key, article] of Object.entries(articles)) {
+    if (
+      !/^[a-z][a-z0-9-]{0,79}:(?:en|uk)$/.test(key) ||
+      !/^articles\/[a-z][a-z0-9-]{0,79}\.html$/.test(article.url) ||
+      (article.snapshot &&
+        !/^article-snapshots\/[a-f0-9]{64}\/[a-z][a-z0-9-]{0,79}\.html$/.test(article.snapshot))
+    )
+      return mountInitialReader();
+  }
   const shellEngine = document.querySelector('meta[name="site-engine"]')?.content;
   const initialVersion = document.querySelector('meta[name="site-route"]')?.content;
-  const initialPage = document.body.dataset.page;
+  const initialPage = document.body.dataset.article
+    ? 'article:' + document.body.dataset.article
+    : document.body.dataset.page;
   let pinned = null;
-  let page = document.body.dataset.page,
+  let page = initialPage,
+    historyIndex = Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : 0,
     serial = 0,
     request = null,
     transition = null,
@@ -1195,9 +1614,16 @@ window.SiteScrollEntry=(function () {
     lastWheel = -Infinity,
     lastWheelDirection = 0,
     lastKey = null;
-  if (!routes.includes(page) || !window.fetch || !window.DOMParser || !window.history.pushState)
-    return;
+  if (
+    !(routes.includes(page) || articles[page.slice(8)]) ||
+    !window.fetch ||
+    !window.DOMParser ||
+    !window.history.pushState
+  )
+    return mountInitialReader();
   const cache = new Map();
+  // Cache snapshots have no browsing context; cloning must not fetch deferred media.
+  const cacheDocument = document.implementation.createHTMLDocument('');
   const content = document.createElement('div');
   content.id = 'site-content';
   const effects = window.SiteEffects;
@@ -1205,7 +1631,15 @@ window.SiteScrollEntry=(function () {
   const presentation = effects?.navigation?.(content);
   const main = document.querySelector('main'),
     footer = document.querySelector('footer');
-  if (!main || !footer) return;
+  if (!main || !footer) return mountInitialReader();
+  // History changes the document's base URL. Preserve each persistent header
+  // destination, then keep its native relative link correct for every mount.
+  const headerURLs = new Map(
+    [...document.querySelectorAll('.site-header a[href]')].map((link) => [
+      link,
+      new URL(link.getAttribute('href'), entry),
+    ])
+  );
   main.before(content);
   content.append(main, footer);
   const frame = document.createElement('div');
@@ -1221,49 +1655,203 @@ window.SiteScrollEntry=(function () {
   // The exact Home media fallback travels with the verified route head, including
   // CSS-unavailable navigation. Other routes remove it with their prior metadata.
   const metadata =
-    'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"],link[rel="canonical"],script[type="application/ld+json"],style[data-critical-media]';
-  function extract(doc, immutable = false) {
-    const next = doc.body.dataset.page;
+    'meta[name="description"],meta[property^="og:"],meta[name^="twitter:"],meta[name="robots"],meta[name="site-article"],meta[name="site-route"],link[rel="canonical"],link[rel="alternate"],script[type="application/ld+json"],style[data-critical-media]';
+  function resolveResources(data, sourceURL) {
+    for (const root of [data.main, data.footer, data.fallback, ...data.metadata])
+      for (const element of [root, ...root.querySelectorAll('[href],[src]')])
+        for (const attribute of ['href', 'src']) {
+          const value = element.getAttribute(attribute);
+          if (value && !/^(?:https:|mailto:|#|data:)/.test(value))
+            element.setAttribute(attribute, new URL(value, sourceURL).href);
+        }
+  }
+  function rebaseResources(data, url) {
+    if (embedded) return;
+    const depth = url.pathname.slice(directory.pathname.length).split('/').length - 1;
+    for (const root of [data.main, data.footer, data.fallback])
+      for (const element of [root, ...root.querySelectorAll('[href],[src]')])
+        for (const attribute of ['href', 'src']) {
+          const value = element.getAttribute(attribute);
+          if (!value || /^(?:mailto:|#|data:)/.test(value)) continue;
+          const target = new URL(value, data.sourceURL || entry);
+          if (target.origin !== entry.origin || !target.pathname.startsWith(directory.pathname))
+            continue;
+          const relative =
+            '../'.repeat(Math.max(0, depth)) + target.pathname.slice(directory.pathname.length);
+          element.setAttribute(attribute, (relative || './') + target.search + target.hash);
+        }
+  }
+  function extract(doc, immutable = false, sourceURL = null) {
+    const scene = doc.body.dataset.page;
+    const article = doc.body.dataset.article;
+    const next = article ? 'article:' + article : scene;
     const main = doc.querySelector('main'),
       footer = doc.querySelector('footer'),
       fallback = doc.querySelector('.space-fallback');
-    if (!routes.includes(next) || !main || !footer || !fallback)
+    if (
+      !routes.includes(scene) ||
+      (article && (!articles[article] || scene !== 'writing')) ||
+      !main ||
+      !footer ||
+      !fallback
+    )
       throw Error('Incomplete site route');
     const version = doc.querySelector('meta[name="site-route"]')?.content,
       engine = doc.querySelector('meta[name="site-engine"]')?.content;
     const data = {
       page: next,
+      scene,
+      article,
       version,
       engine,
+      sourceURL: sourceURL || window.location.href,
       title: doc.title,
       lang: doc.documentElement.lang,
-      main: main.cloneNode(true),
-      footer: footer.cloneNode(true),
-      fallback: fallback.cloneNode(true),
-      metadata: [...doc.head.querySelectorAll(metadata)].map((node) => node.cloneNode(true)),
+      main: cacheDocument.importNode(main, true),
+      footer: cacheDocument.importNode(footer, true),
+      fallback: cacheDocument.importNode(fallback, true),
+      metadata: [...doc.head.querySelectorAll(metadata)].map((node) =>
+        cacheDocument.importNode(node, true)
+      ),
     };
-    if (immutable)
-      for (const root of [data.main, data.footer, data.fallback])
-        for (const el of root.querySelectorAll('[href],[src]'))
-          for (const attribute of ['href', 'src']) {
-            const value = el.getAttribute(attribute);
-            if (value?.startsWith('../../')) el.setAttribute(attribute, value.slice(6));
-          }
+    if (immutable) resolveResources(data, sourceURL);
     return data;
   }
   cache.set(page, extract(document));
+  let slideSession = null;
+  function closeSlides() {
+    if (!slideSession) return;
+    const { control, host, controller, url } = slideSession;
+    slideSession = null;
+    controller.abort();
+    if (url) URL.revokeObjectURL(url);
+    host.replaceChildren();
+    host.hidden = true;
+    control.removeAttribute('aria-busy');
+    control.setAttribute('aria-expanded', 'false');
+    control.textContent = 'View slides here';
+  }
+  async function slideBytes(source, signal) {
+    const response = await fetch(source, {
+      signal,
+      credentials: 'same-origin',
+      redirect: 'error',
+    });
+    if (!response.ok || !response.headers.get('content-type')?.includes('application/pdf')) {
+      throw Error('Presentation PDF unavailable');
+    }
+    const reader = response.body.getReader();
+    const chunks = [];
+    let size = 0;
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        size += value.length;
+        if (size > 2000000) throw Error('Presentation PDF exceeds its byte budget');
+        chunks.push(value);
+      }
+    } finally {
+      await reader.cancel();
+    }
+    return new Uint8Array(await new Blob(chunks).arrayBuffer());
+  }
+  document.addEventListener('click', async (event) => {
+    const control = event.target.closest?.('.article-presentation .presentation-toggle');
+    if (
+      !control ||
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
+    const section = control.closest('.article-presentation');
+    const host = section.querySelector('.presentation-viewer');
+    if (!host || !page.startsWith('article:')) return;
+    event.preventDefault();
+    const closing = slideSession?.control === control;
+    closeSlides();
+    if (closing) return;
+    const session = {
+      control,
+      host,
+      controller: new AbortController(),
+      url: null,
+    };
+    slideSession = session;
+    control.setAttribute('aria-busy', 'true');
+    control.textContent = 'Loading slides…';
+    const timeout = window.setTimeout(() => session.controller.abort(), 8000);
+    try {
+      await pin(session.controller.signal);
+      if (embedded) await verifyEmbeddedAssets();
+      const source = new URL(control.href);
+      const descriptor = pinned.articles[page.slice(8)];
+      const name = embedded
+        ? control.getAttribute('data-offline-resource')
+        : source.pathname.slice(directory.pathname.length);
+      if (
+        !descriptor.assets.includes(name) ||
+        !name.endsWith('.pdf') ||
+        (!embedded &&
+          (source.origin !== entry.origin ||
+            !source.pathname.startsWith(directory.pathname) ||
+            source.search ||
+            source.hash))
+      )
+        throw Error('Undeclared presentation resource');
+      const bytes = await slideBytes(source.href, session.controller.signal);
+      const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+      const hash = [...new Uint8Array(digest)].map((x) => x.toString(16).padStart(2, '0')).join('');
+      if (hash !== name.split('/')[1]) throw Error('Presentation PDF identity changed');
+      if (slideSession !== session || !control.isConnected) return;
+      // A verified local Blob retains the host's frame-denial policy for site pages.
+      session.url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+      const viewer = document.createElement('iframe');
+      viewer.title = section.querySelector('strong')?.textContent || 'Presentation PDF';
+      viewer.src = session.url;
+      host.replaceChildren(viewer);
+      host.hidden = false;
+      control.setAttribute('aria-expanded', 'true');
+      control.textContent = 'Close slide viewer';
+    } catch {
+      if (slideSession === session) {
+        closeSlides();
+        control.textContent = 'Use Open PDF below';
+      }
+    } finally {
+      window.clearTimeout(timeout);
+      if (slideSession === session) control.removeAttribute('aria-busy');
+    }
+  });
   function routeFor(url) {
     if (url.origin !== entry.origin) return null;
     if (embedded) {
       if (url.pathname === entry.pathname)
-        return routes.includes(url.searchParams.get('view'))
+        return routes.includes(url.searchParams.get('view')) ||
+          (url.searchParams.get('view')?.startsWith('article:') &&
+            Object.hasOwn(embedded.pages, url.searchParams.get('view')))
           ? url.searchParams.get('view')
           : document.body.dataset.entryPage;
       return (
-        routes.find((name) => new URL(embedded.files[name], directory).pathname === url.pathname) ||
-        null
+        Object.keys(embedded.files).find(
+          (name) => new URL(embedded.files[name], directory).pathname === url.pathname
+        ) || null
       );
     }
+    const article = Object.entries(articles).find(([, descriptor]) =>
+      [descriptor.url, descriptor.snapshot].filter(Boolean).some((file) => {
+        const path = new URL(file, directory).pathname;
+        return (
+          path === url.pathname ||
+          (file === descriptor.url && path.endsWith('.html') && path.slice(0, -5) === url.pathname)
+        );
+      })
+    );
+    if (article) return 'article:' + article[0];
     return (
       routes.find((name) =>
         [name, name + '.html', ...(name === 'index' ? ['./'] : [])].some(
@@ -1273,7 +1861,13 @@ window.SiteScrollEntry=(function () {
     );
   }
   function address(url, next) {
-    if (!embedded) return url;
+    if (!embedded) {
+      if (!next.startsWith('article:')) return url;
+      const result = new URL(articles[next.slice(8)].url, directory);
+      result.search = url.search;
+      result.hash = url.hash;
+      return result;
+    }
     const result = new URL(entry);
     result.search = url.search;
     result.hash = url.hash;
@@ -1286,11 +1880,24 @@ window.SiteScrollEntry=(function () {
       .map((link) => routeFor(new URL(link.href, entry)))
       .filter((route, index, list) => route && list.indexOf(route) === index)
   );
-  function save() {
-    if (routeFor(new URL(window.location.href)) !== page) return;
+  function save(fallbackFocus = null) {
+    if (departureUnavailable() || routeFor(new URL(window.location.href)) !== page) return;
     try {
       history.replaceState(
-        { ...history.state, site: { page, scroll: [window.scrollX, window.scrollY] } },
+        {
+          ...history.state,
+          site: {
+            page,
+            index: historyIndex,
+            scroll: [window.scrollX, window.scrollY],
+            ...(window.SiteReader?.snapshot?.() ? { reader: window.SiteReader.snapshot() } : {}),
+            focus:
+              document.activeElement?.id ||
+              document.activeElement?.getAttribute?.('href') ||
+              fallbackFocus ||
+              null,
+          },
+        },
         '',
         window.location.href
       );
@@ -1298,14 +1905,52 @@ window.SiteScrollEntry=(function () {
       /* Native navigation still works. */
     }
   }
+  function departureUnavailable() {
+    return (
+      content.inert ||
+      content.querySelector('main')?.getAttribute('data-route-blocks') === 'departing'
+    );
+  }
+  function departureFocus() {
+    // Retargeting an unmounted flight can leave its departure link blurred by
+    // visibility or inert. Keep captured focus unless the reader focused a control.
+    return departureUnavailable() &&
+      history.state?.site?.page === page &&
+      (!document.activeElement || document.activeElement === document.body)
+      ? history.state.site.focus
+      : undefined;
+  }
+  function departurePosition() {
+    const saved =
+      departureUnavailable() && history.state?.site?.page === page
+        ? history.state.site.scroll
+        : null;
+    return [saved?.[0] ?? window.scrollX, saved?.[1] ?? window.scrollY];
+  }
+  function saveDeparture(destination, pop, initial, fallbackFocus) {
+    if (!pop && !initial && destination.href !== window.location.href) save(fallbackFocus);
+  }
   function push(url) {
     save();
-    history.pushState({ site: { page, scroll: [window.scrollX, window.scrollY] } }, '', url);
+    history.pushState(
+      {
+        site: {
+          page,
+          index: ++historyIndex,
+          scroll: [window.scrollX, window.scrollY],
+        },
+      },
+      '',
+      url
+    );
   }
   function revisionValid(revision) {
     if (
       revision?.schema !== 1 ||
       revision.contract !== 1 ||
+      revision.navigation?.contract !== 1 ||
+      revision.navigation?.articleRenderer !== 1 ||
+      Object.keys(revision.navigation).length !== 2 ||
       revision.engine !== shellEngine ||
       Object.keys(revision.routes || {}).length !== routes.length
     )
@@ -1320,7 +1965,43 @@ window.SiteScrollEntry=(function () {
       )
         return false;
     }
-    return revision.routes[initialPage].version === initialVersion;
+    const articleRows = revision.articles || {};
+    if (Object.keys(articleRows).length > 50) return false;
+    const aliases = new Set();
+    for (const [key, data] of Object.entries(articleRows)) {
+      if (
+        !/^[a-z][a-z0-9-]{0,79}:(?:en|uk)$/.test(key) ||
+        !data ||
+        data.scene !== 'writing' ||
+        !/^articles\/[a-z][a-z0-9-]{0,79}\.html$/.test(data.alias) ||
+        aliases.has(data.alias) ||
+        data.articleId !== key.split(':')[0] ||
+        !/^[a-z][a-z0-9-]{0,79}$/.test(data.contentEdition) ||
+        !/^[a-f0-9]{64}$/.test(data.sourceSha256) ||
+        !/^[a-f0-9]{64}$/.test(data.semanticSha256) ||
+        !/^[a-f0-9]{64}$/.test(data.version) ||
+        !/^[a-f0-9]{64}$/.test(data.sha256) ||
+        data.url !== `article-snapshots/${data.version}/${data.alias.split('/').pop()}` ||
+        !Array.isArray(data.assets) ||
+        data.assets.length > 50 ||
+        new Set(data.assets).size !== data.assets.length ||
+        data.assets.some(
+          (name) => !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*$/.test(name)
+        ) ||
+        (data.candidate === true && revision.preview !== true)
+      )
+        return false;
+      aliases.add(data.alias);
+    }
+    if (embedded) {
+      if (Object.keys(articleRows).length !== Object.keys(articles).length) return false;
+      for (const [key, data] of Object.entries(articleRows))
+        if (articles[key]?.url !== data.alias || articles[key]?.snapshot !== data.url) return false;
+    }
+    const initial = initialPage.startsWith('article:')
+      ? articleRows[initialPage.slice(8)]
+      : revision.routes[initialPage];
+    return initial?.version === initialVersion;
   }
   async function pin(signal) {
     if (pinned) return;
@@ -1338,11 +2019,28 @@ window.SiteScrollEntry=(function () {
       )
         throw Error('Revision unavailable');
       const bytes = await response.text();
-      if (bytes.length > 32000) throw Error('Revision too large');
+      if (new TextEncoder().encode(bytes).byteLength > 32000) throw Error('Revision too large');
       revision = JSON.parse(bytes);
     }
+    if (signal?.aborted) throw Error('Revision request cancelled');
+    // A completed first gesture owns one immutable registry for this session.
+    // A concurrent cancelled request cannot replace a newer pinned revision.
+    if (pinned) return;
     if (!revisionValid(revision)) throw Error('Site snapshot changed');
+    if (!embedded)
+      for (const [key, data] of Object.entries(revision.articles || {}))
+        articles[key] = { url: data.alias, snapshot: data.url };
     pinned = revision;
+  }
+  function articleTarget(url) {
+    return (
+      !embedded &&
+      url.origin === entry.origin &&
+      url.pathname.startsWith(directory.pathname) &&
+      /^articles\/[a-z][a-z0-9-]{0,79}(?:\.html)?$/.test(
+        url.pathname.slice(directory.pathname.length)
+      )
+    );
   }
   async function matchesBytes(html, hash) {
     if (!window.crypto?.subtle || !window.TextEncoder)
@@ -1352,13 +2050,83 @@ window.SiteScrollEntry=(function () {
       [...new Uint8Array(digest)].map((x) => x.toString(16).padStart(2, '0')).join('') === hash
     );
   }
+  async function verifyEmbeddedAssets() {
+    if (!embedded?.assets) return;
+    if (!embeddedAssetsReady)
+      embeddedAssetsReady = (async () => {
+        const entries = Object.entries(embedded.assets);
+        if (entries.length > 50 || entries.length !== embeddedAssetURLs.size)
+          throw Error('Embedded asset inventory differs');
+        for (const [name, asset] of entries) {
+          const value = embeddedAssetURLs.get(name);
+          const mime = name.endsWith('.pdf')
+            ? 'application/pdf'
+            : name.endsWith('.webp')
+              ? 'image/webp'
+              : 'image/png';
+          const prefix = 'data:' + mime + ';base64,';
+          if (
+            !/^article-media\/[a-f0-9]{64}\/[a-z0-9][a-z0-9._-]*\.(?:png|webp|pdf)$/.test(name) ||
+            asset.mime !== mime ||
+            asset.sha256 !== name.split('/')[1] ||
+            !Number.isSafeInteger(asset.bytes) ||
+            asset.bytes < 1 ||
+            asset.bytes > 2000000 ||
+            typeof value !== 'string' ||
+            !value.startsWith(prefix) ||
+            !/^[A-Za-z0-9+/]*={0,2}$/.test(value.slice(prefix.length)) ||
+            value.length > 4 * Math.ceil(asset.bytes / 3) + prefix.length
+          )
+            throw Error('Invalid embedded article resource');
+          const raw = window.atob(value.slice(prefix.length));
+          if (raw.length !== asset.bytes) throw Error('Embedded asset byte length differs');
+          const bytes = Uint8Array.from(raw, (character) => character.charCodeAt(0));
+          const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+          const hash = [...new Uint8Array(digest)]
+            .map((byte) => byte.toString(16).padStart(2, '0'))
+            .join('');
+          if (hash !== asset.sha256) throw Error('Embedded article asset bytes changed');
+        }
+      })();
+    await embeddedAssetsReady;
+  }
+  function hydrateEmbeddedImages(result, descriptor) {
+    const used = new Set();
+    for (const image of result.main.querySelectorAll(
+      'img[src],.reader-image-open[href],.article-presentation a[href],#article-materials a[href]'
+    )) {
+      const attribute = image.tagName === 'IMG' ? 'src' : 'href';
+      const name = image.getAttribute(attribute);
+      if (!name.startsWith('article-media/')) continue;
+      if (!descriptor.assets.includes(name) || !embeddedAssetURLs.has(name))
+        throw Error('Unknown embedded article image');
+      image.setAttribute(attribute, embeddedAssetURLs.get(name));
+      image.setAttribute('data-offline-resource', name);
+      used.add(name);
+    }
+    if (used.size !== descriptor.assets.length)
+      throw Error('Embedded article image closure differs');
+  }
   async function read(next, signal) {
     await pin(signal);
+    if (embedded && next.startsWith('article:')) await verifyEmbeddedAssets();
     if (cache.has(next)) return cache.get(next);
     let html;
-    if (embedded) html = embedded.pages[next];
-    else {
-      const response = await fetch(new URL(pinned.routes[next].url, directory), {
+    const descriptor = next.startsWith('article:')
+      ? pinned.articles[next.slice(8)]
+      : pinned.routes[next];
+    const sourceURL = new URL(descriptor.url, directory);
+    if (embedded) {
+      html = embedded.pages[next];
+      if (
+        typeof html !== 'string' ||
+        (next.startsWith('article:') &&
+          (new TextEncoder().encode(html).byteLength > 100000 ||
+            !(await matchesBytes(html, descriptor.sha256))))
+      )
+        throw Error('Embedded document bytes changed');
+    } else {
+      const response = await fetch(sourceURL, {
         signal,
         credentials: 'same-origin',
       });
@@ -1369,17 +2137,27 @@ window.SiteScrollEntry=(function () {
       )
         throw Error('Route unavailable');
       html = await response.text();
-      if (html.length > 100000 || !(await matchesBytes(html, pinned.routes[next].sha256)))
+      if (
+        new TextEncoder().encode(html).byteLength > 100000 ||
+        !(await matchesBytes(html, descriptor.sha256))
+      )
         throw Error('Snapshot bytes changed');
     }
-    const result = extract(new DOMParser().parseFromString(html, 'text/html'), !embedded);
+    const result = extract(
+      new DOMParser().parseFromString(html, 'text/html'),
+      !embedded,
+      sourceURL
+    );
+    if (embedded && next.startsWith('article:')) hydrateEmbeddedImages(result, descriptor);
     if (
       result.page !== next ||
       result.engine !== shellEngine ||
-      result.version !== pinned.routes[next].version
+      result.version !== descriptor.version
     )
       throw Error('Unexpected route/version');
     cache.set(next, result);
+    const cachedArticles = [...cache.keys()].filter((key) => key.startsWith('article:'));
+    if (cachedArticles.length > 10) cache.delete(cachedArticles[0]);
     return result;
   }
   function clearText() {
@@ -1389,6 +2167,7 @@ window.SiteScrollEntry=(function () {
     content.inert = false;
   }
   function interrupt() {
+    closeSlides();
     scrollEntry?.cancelRoute?.();
     scrollEntry?.suspend();
     const travelling = transition !== null;
@@ -1580,7 +2359,7 @@ window.SiteScrollEntry=(function () {
   document.fonts?.addEventListener?.('loadingdone', () => {
     if (!window.SiteScene?.managesLayout) reconcileEndpoint();
   });
-  function flight(next, animate, commit, own, departure, landing = null) {
+  function flight(next, animate, commit, own, departure, landing = null, documentTravel = null) {
     return new Promise((resolve, reject) => {
       let mounted = false,
         mountTimer = null,
@@ -1687,7 +2466,10 @@ window.SiteScrollEntry=(function () {
       transition = update;
       content.inert = true;
       if (window.SiteScene)
-        window.SiteScene.navigate(next, animate, transition, landing, { navigationId: own });
+        window.SiteScene.navigate(next, animate, transition, landing, {
+          navigationId: own,
+          ...documentTravel,
+        });
       else transition(1);
     });
   }
@@ -1718,14 +2500,18 @@ window.SiteScrollEntry=(function () {
       }
     };
     window.SiteArchive?.destroy();
+    window.SiteReader?.destroy();
     scrollEntry?.destroy();
     span('mount-unmount');
     if (blockDirection) {
       data.main.setAttribute('data-route-blocks', 'holding');
       data.footer.setAttribute('data-route-blocks', 'holding');
     }
+    rebaseResources(data, url);
     content.replaceChildren(data.main, data.footer);
-    document.body.dataset.page = data.page;
+    document.body.dataset.page = data.scene || data.page;
+    if (data.article) document.body.dataset.article = data.article;
+    else delete document.body.dataset.article;
     page = data.page;
     if (document.documentElement.lang !== data.lang) document.documentElement.lang = data.lang;
     document.title = data.title;
@@ -1734,8 +2520,14 @@ window.SiteScrollEntry=(function () {
     const fallback = document.querySelector('.space-fallback');
     if (fallback) fallback.replaceWith(data.fallback);
     for (const link of document.querySelectorAll('.site-header a')) {
-      const target = new URL(link.href, window.location.href);
-      if (routeFor(target) === page) link.setAttribute('aria-current', 'page');
+      const target = headerURLs.get(link) || new URL(link.href, window.location.href);
+      if (target.origin === entry.origin && target.pathname.startsWith(directory.pathname)) {
+        const depth = url.pathname.slice(directory.pathname.length).split('/').length - 1;
+        const relative =
+          '../'.repeat(Math.max(0, depth)) + target.pathname.slice(directory.pathname.length);
+        link.setAttribute('href', (relative || './') + target.search + target.hash);
+      }
+      if (routeFor(target) === (data.scene || page)) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     }
     span('mount-dom');
@@ -1743,6 +2535,7 @@ window.SiteScrollEntry=(function () {
     // Apply filters before the native scroll/style flush, so Writing does not
     // lay out the complete archive and immediately lay it out a second time.
     window.SiteArchive?.mount();
+    window.SiteReader?.mount({ state: history.state?.site?.reader });
     span('mount-archive');
     if (position === 'end') mountEndpoint();
     if (position === 'end')
@@ -1767,7 +2560,7 @@ window.SiteScrollEntry=(function () {
   }
   function prepare(data) {
     const start = window.SiteEngineProbe ? performance.now() : 0;
-    const clone = (node) => document.importNode(node, true);
+    const clone = (node) => cacheDocument.importNode(node, true);
     const result = {
       ...data,
       main: clone(data.main),
@@ -1785,13 +2578,46 @@ window.SiteScrollEntry=(function () {
       });
     return result;
   }
+  function documentDirection(next, nextScene, currentScene, pop, targetIndex) {
+    if (nextScene !== currentScene)
+      return routes.indexOf(nextScene) > routes.indexOf(currentScene) ? 1 : -1;
+    if (pop && targetIndex !== null && targetIndex !== historyIndex)
+      return Math.sign(targetIndex - historyIndex);
+    return next === 'writing' ? -1 : 1;
+  }
+  function contentDirections(fromDocument, next, direction) {
+    // Hierarchy controls the block wave independently of camera/history travel.
+    return {
+      departureDirection: fromDocument.startsWith('article:') ? 1 : direction,
+      arrivalDirection: next.startsWith('article:') ? 1 : direction,
+    };
+  }
+  function restoreReadingFocus(pop) {
+    const savedFocus = pop ? history.state?.site?.focus : null;
+    const focused = savedFocus
+      ? document.getElementById(savedFocus) ||
+        [...content.querySelectorAll('a[href]')].find(
+          (link) => link.getAttribute('href') === savedFocus || link.href === savedFocus
+        )
+      : null;
+    (focused || content.querySelector('main')).focus({
+      preventScroll: true,
+    });
+  }
   async function navigate(
     url,
     { pop = false, position = null, initial = false, input = null } = {}
   ) {
-    const next = routeFor(url);
-    if (!next) return;
-    const direction = routes.indexOf(next) >= routes.indexOf(page) ? 1 : -1;
+    let next = routeFor(url);
+    if (!navigableDestination(url, next)) return;
+    const nextScene = routes.includes(next) ? next : 'writing';
+    const currentScene = routes.includes(page) ? page : 'writing';
+    const targetIndex =
+      pop && Number.isSafeInteger(history.state?.site?.index) ? history.state.site.index : null;
+    const direction = documentDirection(next, nextScene, currentScene, pop, targetIndex);
+    const fromDocument = page;
+    const interruptedFocus = departureFocus();
+    const interruptedPosition = departurePosition();
     const own = ++serial;
     interrupt();
     if (position === 'end') endpoint = { own, page: next, mounted: false, arrived: false };
@@ -1810,28 +2636,49 @@ window.SiteScrollEntry=(function () {
     const timeout = window.setTimeout(() => controller.abort(), 8000);
     content.setAttribute('aria-busy', 'true');
     try {
+      // Stop a native smooth focus/anchor scroll inherited from activation.
+      // Fresh reading input during the asynchronous read still reaches saveDeparture.
+      restoreScroll(interruptedPosition[0], interruptedPosition[1]);
+      next = await admittedDestination(url, next, controller.signal);
+      // Admission resolves article aliases absent from a principal page's boot registry.
+      const { departureDirection, arrivalDirection } = contentDirections(
+        fromDocument,
+        next,
+        direction
+      );
       const data = await read(next, controller.signal);
       if (own !== serial) return;
       const prepared = prepare(data);
+      const destination = address(url, next);
+      // Departure visibility and inert can both blur native links. Capture
+      // reading state before either owner makes the outgoing content inaccessible.
+      saveDeparture(destination, pop, initial, interruptedFocus);
       let animate = !initial && next !== page && motionAllowed();
       let blocks = animate && (presentation?.contentFlight?.() ?? true);
       if (blocks) {
-        const result = await scrollEntry?.depart?.(direction, own);
+        const result = await scrollEntry?.depart?.(departureDirection, own);
         blocks = result?.completed === true;
       }
       animate = animate && motionAllowed();
       if (own !== serial) return;
       await flight(
-        next,
+        nextScene,
         animate,
         () => {
           const start = window.SiteEngineStages ? performance.now() : 0;
-          const destination = address(url, next);
           if (!pop && !initial && destination.href !== window.location.href) {
-            save();
-            history.pushState({ site: { page: next, scroll: [0, 0] } }, '', destination);
+            history.pushState(
+              { site: { page: next, index: ++historyIndex, scroll: [0, 0] } },
+              '',
+              destination
+            );
           } else if (initial)
-            history.replaceState({ site: { page: next, scroll: [0, 0] } }, '', destination);
+            history.replaceState(
+              { site: { page: next, index: historyIndex, scroll: [0, 0] } },
+              '',
+              destination
+            );
+          else if (pop && targetIndex !== null) historyIndex = targetIndex;
           if (start) {
             const time = performance.now();
             window.SiteEngineProbe?.({
@@ -1843,19 +2690,26 @@ window.SiteScrollEntry=(function () {
               page: next,
             });
           }
-          mount(prepared, destination, position, blocks ? direction : null, own);
+          mount(prepared, destination, position, blocks ? arrivalDirection : null, own);
         },
         own,
         null,
-        { position, hash: url.hash, search: url.search }
+        { position, hash: url.hash, search: url.search },
+        {
+          documentChange: next !== fromDocument,
+          sameSceneDocument: nextScene === currentScene && nextScene === 'writing',
+          fromDocument,
+          toDocument: next,
+          direction,
+        }
       );
       if (own !== serial) return;
       if (blocks && motionAllowed() && (presentation?.contentFlight?.() ?? true))
-        await scrollEntry?.arrive?.(direction, own);
+        await scrollEntry?.arrive?.(arrivalDirection, own);
       else scrollEntry?.cancelRoute?.();
       if (own === serial) {
         arriveEndpoint();
-        content.querySelector('main').focus({ preventScroll: true });
+        restoreReadingFocus(pop);
         scrollEntry?.resume();
         announcement.textContent = data.title;
         save();
@@ -1872,7 +2726,7 @@ window.SiteScrollEntry=(function () {
         scrollEntry?.cancelRoute?.();
         scrollEntry?.settle();
         releaseTail();
-        window.location.assign(address(url, next).href);
+        window.location.assign(nativeDestination(url, next));
       }
     } finally {
       window.clearTimeout(timeout);
@@ -1883,6 +2737,19 @@ window.SiteScrollEntry=(function () {
         clearText();
       }
     }
+  }
+  function navigableDestination(url, next) {
+    return next || articleTarget(url);
+  }
+  async function admittedDestination(url, next, signal) {
+    if (next) return next;
+    await pin(signal);
+    const admitted = routeFor(url);
+    if (!admitted) throw Error('Article is absent from the pinned revision');
+    return admitted;
+  }
+  function nativeDestination(url, next) {
+    return next ? address(url, next).href : url.href;
   }
   document.body.dataset.entryPage = page;
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -1902,7 +2769,7 @@ window.SiteScrollEntry=(function () {
       return;
     const url = new URL(link.href, window.location.href),
       next = routeFor(url);
-    if (!next) return;
+    if (!navigableDestination(url, next)) return;
     if (next === page && request) {
       event.preventDefault();
       navigate(url);
@@ -1934,13 +2801,16 @@ window.SiteScrollEntry=(function () {
     if (next && (next !== page || request))
       navigate(url, { pop: true, position: event.state?.site?.scroll || null });
     else {
+      if (Number.isSafeInteger(event.state?.site?.index)) historyIndex = event.state.site.index;
       ++serial;
       if (interrupt()) window.SiteScene?.navigate(page, motionAllowed());
+      window.SiteReader?.restore(event.state?.site?.reader);
       if (event.state?.site?.scroll)
         restoreScroll(event.state.site.scroll[0], event.state.site.scroll[1]);
       scrollEntry?.resume();
     }
   });
+  window.addEventListener('site:reader-state', () => save());
   function finishText() {
     scrollEntry?.cancelRoute?.();
     window.SiteScene?.detachTravel();
@@ -1958,6 +2828,7 @@ window.SiteScrollEntry=(function () {
     window.SiteArchive?.print();
   });
   window.addEventListener('pagehide', () => {
+    closeSlides();
     save();
     releaseEndpoint('leave');
     releaseTail();
@@ -2003,6 +2874,8 @@ window.SiteScrollEntry=(function () {
       return true;
     },
   };
+  // Measure the admitted reader after its persistent content frame is mounted.
+  mountInitialReader();
   const first = embedded ? routeFor(new URL(window.location.href)) : page;
   if (first !== page) navigate(new URL(window.location.href), { initial: true });
   else save();

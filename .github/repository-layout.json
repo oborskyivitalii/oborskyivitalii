@@ -116,10 +116,6 @@
     ".github/pull_request_template.md",
     "AGENTS.md",
     "CONTRIBUTING.md",
-    "LICENSING.md",
-    "LICENSE-CODE.md",
-    "LICENSE-CONTENT.md",
-    "NOTICE.md",
     "MEMORY.md",
     "PROJECT-BOOTSTRAP.md",
     "README.md",
@@ -129,7 +125,6 @@
     "guides/SITE-ANALYTICS.md",
     "guides/SITE-CHECK-PROFILES.md",
     "guides/SITE-CONTENT-REVIEW.md",
-    "guides/SITE-RIGHTS.md",
     "guides/SITE-RELEASE-GATES.md",
     "guides/SITE-ROADMAP.md",
     "guides/SITE-SEO.md",
@@ -141,6 +136,14 @@
     "tools/quality/README.md",
     "review/root-history-20261007/README.md",
     "guides/CODE-STYLE.md",
+    "guides/ARTICLE-WORKFLOW.md",
+    "guides/ARTICLE-MATERIALS.md",
+    "guides/SITE-CONTENT-RELEASE.md",
+    "LICENSING.md",
+    "LICENSE-CODE.md",
+    "LICENSE-CONTENT.md",
+    "NOTICE.md",
+    "guides/SITE-RIGHTS.md",
     "guides/SITE-PRODUCTION.md"
   ]
 }

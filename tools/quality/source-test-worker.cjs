@@ -8,6 +8,7 @@ const assert = require('node:assert/strict'),
 const priority = [
   'tests/space.test.cjs',
   'tests/executive.test.cjs',
+  'tests/article-media.test.cjs',
   'tests/release-rights.test.cjs',
   'tests/release-controller.test.cjs',
   'tests/pages-migration.test.cjs',
@@ -49,7 +50,7 @@ function runFiles(files, { parallelism = os.availableParallelism() } = {}) {
   process.once('SIGINT', cancel);
   const stream = run({
     files: ordered,
-    concurrency: Math.max(parallelism - 1, 1),
+    concurrency: Math.min(parallelism, 4),
     isolation: 'process',
     cwd: process.cwd(),
     signal: controller.signal,

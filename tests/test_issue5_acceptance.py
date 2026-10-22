@@ -1,4 +1,4 @@
-"""Issue5 controller prerequisite only; PR79 retains the feature acceptance policy."""
+"""Issue5 executes maintained publisher/reader/delivery behavior; human gates stay distinct."""
 
 import re
 import subprocess
@@ -8,47 +8,119 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class Issue5ControllerAcceptanceTests(unittest.TestCase):
-    def test_article_controller_contracts(self):
+class Issue5AcceptanceTests(unittest.TestCase):
+    def run_node_contracts(self, modules, minimum):
         result = subprocess.run(
-            ["node", "--test", "--test-reporter=tap", "tests/reader-controller.test.cjs"],
+            ["node", "--test", "--test-reporter=tap", *modules],
             cwd=ROOT,
             text=True,
             capture_output=True,
             check=False,
-            timeout=60,
+            timeout=180,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         rows = re.findall(
-            r"^# (tests|pass|fail|skipped|cancelled|todo) (\d+)$", result.stdout, re.M
+            r"^# (tests|pass|fail|skipped|cancelled|todo) (\d+)$",
+            result.stdout,
+            re.M,
         )
         self.assertEqual(len(rows), 6, result.stdout)
         counts = {key: int(value) for key, value in rows}
-        self.assertGreaterEqual(counts.get("tests", 0), 7, result.stdout)
+        self.assertGreaterEqual(counts.get("tests", 0), minimum, result.stdout)
         self.assertEqual(counts.get("pass"), counts.get("tests"), result.stdout)
         for key in ["fail", "skipped", "cancelled", "todo"]:
             self.assertEqual(counts.get(key), 0, result.stdout)
 
-    def test_bootstrap_preserves_site_producers_and_public_bytes(self):
-        # This task-only checkpoint retires when PR79 restores its feature policy.
-        result = subprocess.run(
+    def test_article_controller_contracts(self):
+        self.run_node_contracts(["tests/reader-controller.test.cjs"], 7)
+
+    def test_publisher_contracts(self):
+        self.run_node_contracts(
             [
-                "git",
-                "diff",
-                "--exit-code",
-                "82b57b8948c6c30143213b846ee2848d06f8d200",
-                "--",
-                "docs",
-                "site",
-                "tools/site",
+                "tests/publishing.test.cjs",
+                "tests/publishing-history.test.cjs",
+                "tests/publishing-profile.test.cjs",
+                "tests/publishing-safety.test.cjs",
+                "tests/publishing-print.test.cjs",
             ],
-            cwd=ROOT,
-            text=True,
-            capture_output=True,
-            check=False,
-            timeout=30,
+            32,
         )
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_article_reader_and_generation(self):
+        self.run_node_contracts(
+            [
+                "tests/site-articles.test.cjs",
+                "tests/reader-mode.test.cjs",
+                "tests/site-transaction.test.cjs",
+                "tests/article-offline.test.cjs",
+                "tests/article-media.test.cjs",
+                "tests/article-tags.test.cjs",
+                "tests/local-catalog-relationships.test.cjs",
+                "tests/navigation.test.cjs",
+                "tests/scroll-entry.test.cjs",
+                "tests/space.test.cjs",
+            ],
+            40,
+        )
+
+    def test_article_delivery(self):
+        self.run_node_contracts(
+            [
+                "tests/article-delivery.test.cjs",
+                "tests/article-budgets.test.cjs",
+                "tests/article-browser-evidence.test.cjs",
+                "tests/article-candidate-source.test.cjs",
+                "tests/pages-delivery.test.cjs",
+                "tests/color-build.test.cjs",
+                "tests/release-controller.test.cjs",
+                "tests/release-rights.test.cjs",
+            ],
+            10,
+        )
+
+    def test_writing_catalog_contracts(self):
+        self.run_node_contracts(
+            [
+                "tests/content-rendering.test.cjs",
+                "tests/content.test.cjs",
+                "tests/archive.test.cjs",
+                "tests/local-catalog-relationships.test.cjs",
+            ],
+            30,
+        )
+
+    def test_content_release_contracts(self):
+        self.run_node_contracts(
+            [
+                "tests/content-release.test.cjs",
+                "tests/article-candidate-source.test.cjs",
+                "tests/site-articles.test.cjs",
+            ],
+            20,
+        )
+
+    def test_content_check_selection(self):
+        self.run_node_contracts(
+            [
+                "tests/content-baseline.test.cjs",
+                "tests/content-fixture.test.cjs",
+                "tests/test-profile-selection.test.cjs",
+            ],
+            10,
+        )
+
+    def test_independent_delivery_lanes(self):
+        self.run_node_contracts(
+            [
+                "tests/content-delivery.test.cjs",
+                "tests/architecture.test.cjs",
+                "tests/events.test.cjs",
+                "tests/content-release.test.cjs",
+                "tests/staging-gate.test.cjs",
+                "tests/release-controller.test.cjs",
+            ],
+            40,
+        )
 
 
 if __name__ == "__main__":

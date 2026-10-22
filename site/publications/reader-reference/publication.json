@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "id": "reader-reference",
+  "slug": "reader-template-reference",
+  "title": "Article reader reference",
+  "summary": "Synthetic reference for the shared reader: contents, figures, sources, code and native navigation.",
+  "authors": [
+    {
+      "name": "Vitalii Oborskyi"
+    }
+  ],
+  "language": "en",
+  "topic": "Reader template validation",
+  "owner": {
+    "repository": "oborskyivitalii/oborskyivitalii",
+    "path": "site/publications/reader-reference"
+  },
+  "status": "draft",
+  "source": "manuscript.en.md",
+  "edition": "reader-reference-v1",
+  "rights": {
+    "status": "review-pending",
+    "notice": "Synthetic technical reference for template review only. No editorial acceptance or publication is supplied. The original test diagram retains the site licensing scope.",
+    "references": ["https://github.com/oborskyivitalii/oborskyivitalii/issues/5"]
+  },
+  "references": [
+    {
+      "id": "formats",
+      "url": "https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html"
+    },
+    {
+      "id": "pdf-example",
+      "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+    }
+  ],
+  "assets": [
+    {
+      "id": "diagram",
+      "path": "site/assets/publications/reader-reference/diagram.png",
+      "sha256": "6a9867902510d7aea88f650b068c9592b598dc6dbcfdc4044bc99e1f176f82f7",
+      "width": 640,
+      "height": 360,
+      "alt": "Two intersecting lines on a synthetic grid.",
+      "caption": "Synthetic diagram used to verify reader layout and lossless media preparation.",
+      "credit": "Original technical test figure generated for the reader reference. No measured data."
+    }
+  ],
+  "platforms": {
+    "linkedin": {
+      "mode": "equivalent-rendition"
+    },
+    "medium": {
+      "mode": "equivalent-rendition"
+    }
+  },
+  "canonical": null,
+  "profile": "profile.json"
+}

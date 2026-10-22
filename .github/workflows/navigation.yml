@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: 24.19.0
+      - name: Install the locked publisher parser for checksum regressions
+        run: npm ci --prefix tools/publishing/toolchain --ignore-scripts
       # site-checks.yml owns Basic and changed-source tests. Only cheap RI,
       # style and profile/gate fixtures run here; hosted matrices have separate triggers.
       - name: Check bounded source architecture and CSS ownership

@@ -70,6 +70,12 @@
       "owner": "tools/quality/README.md",
       "reason": "Append-only reviewed fingerprints retain their original records.",
       "reviewCondition": "Append only independently proved exact dispositions under the owning issue."
+    },
+    {
+      "path": "tools/publishing/toolchain/package-lock.json",
+      "owner": "guides/ARTICLE-WORKFLOW.md",
+      "reason": "Package-manager lock bytes bind the exact build-only article dependency graph.",
+      "reviewCondition": "Update through the pinned package manager and review old/new article behavior in the owning publisher issue."
     }
   ],
   "nonSourceDirectories": [

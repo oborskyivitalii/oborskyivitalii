@@ -32,6 +32,7 @@ function fixture(t) {
     'guides/SITE-SOURCE-AUDIT.md',
     'guides/SITE-CONTENT-REVIEW.md',
     'tools/site',
+    'tools/publishing',
     'tools/build_scene_fallbacks.cjs',
     'tools/release/edition.cjs',
     'tools/RI-LICENSE.md',
@@ -41,6 +42,7 @@ function fixture(t) {
   ]) {
     fs.mkdirSync(path.dirname(path.join(sourceRoot, name)), {
       recursive: true,
+      filter: (file) => !file.split(path.sep).includes('node_modules'),
     });
     fs.cpSync(path.join(root, name), path.join(sourceRoot, name), {
       recursive: true,
@@ -66,6 +68,70 @@ function fixture(t) {
     compile,
   };
 }
+
+test('hosted review editions carry exact visible notices and cannot acquire production clearance', (t) => {
+  const source = fixture(t);
+  builder.build({
+    root: source.sourceRoot,
+    output: source.publicDirectory,
+    candidateArticles: ['pmday-two-shifts'],
+    all: true,
+  });
+  let record = { ...source.record(), sourceDirty: false };
+  record.components = require('../tools/site/snapshot.cjs').verify(source.publicDirectory, record);
+  const raw = rights.compile(source.publicDirectory, record, { sourceRoot: source.sourceRoot });
+  assert.equal(raw.materials.scope, 'exact-hosted-editions');
+  const item = raw.materials.hostedEditions[0];
+  assert.equal(item.status, 'review-pending');
+  assert.equal(raw.approvalPass, false);
+  assert.deepEqual(item.assets, record.components.articles[item.key].assets);
+  assert.ok(Object.values(raw.files).some((entry) => entry.bases.includes('article-review-input')));
+  const directory = path.dirname(source.publicDirectory);
+  fs.writeFileSync(path.join(directory, 'artifact.json'), JSON.stringify(record));
+  assert.throws(
+    () => require('../tools/release/edition.cjs').build(directory),
+    /candidate article preview/
+  );
+  const stagedRecord = require('../tools/staging/edition.cjs').build(directory);
+  const staged = rights.compile(source.publicDirectory, stagedRecord, {
+    sourceRoot: source.sourceRoot,
+  });
+  assert.equal(frozen.publication(stagedRecord, staged), true);
+  assert.equal(
+    frozen.verify(source.publicDirectory, stagedRecord, staged, staged.inventoryDigest),
+    true
+  );
+  const changed = structuredClone(staged);
+  changed.materials.hostedEditions[0].notice = 'Substituted clearance';
+  rehash(changed);
+  assert.throws(() => frozen.publication(stagedRecord, changed), /exact notice changed/);
+  const production = {
+    ...stagedRecord,
+    edition: { id: 'production', indexable: true, origin: 'https://vitaliioborskyi.ai' },
+  };
+  const productionReport = { ...staged, edition: production.edition };
+  rehash(productionReport);
+  assert.throws(
+    () => frozen.publication(production, productionReport),
+    /production rights remain pending/
+  );
+  for (const name of staged.materials.hostedEditions[0].documents) {
+    const file = path.join(source.publicDirectory, name);
+    const html = fs.readFileSync(file, 'utf8');
+    fs.writeFileSync(file, html.replace('data-article-rights="', 'hidden data-article-rights="'));
+  }
+  const revisionFile = path.join(source.publicDirectory, 'site-revision.json');
+  const revision = JSON.parse(fs.readFileSync(revisionFile));
+  const article = revision.articles[item.key];
+  article.sha256 = artifact.digest(fs.readFileSync(path.join(source.publicDirectory, article.url)));
+  fs.writeFileSync(revisionFile, JSON.stringify(revision));
+  record = { ...stagedRecord, ...artifact.manifest(source.publicDirectory) };
+  record.components = require('../tools/site/snapshot.cjs').verify(source.publicDirectory, record);
+  assert.throws(
+    () => rights.compile(source.publicDirectory, record, { sourceRoot: source.sourceRoot }),
+    /rights notice|exact-edition notice/
+  );
+});
 
 test('rights inventory covers actual current and retained bytes without granting approval', (t) => {
   const source = fixture(t);
@@ -713,19 +779,20 @@ test('publication actual edition and package CLIs freeze exact sidecars before a
     'tools/release/rights.cjs',
     'tools/release/rights-record.cjs',
     'tools/quality/artifact.cjs',
-    'tools/staging/reader-snapshot.cjs',
-    'tools/staging/reader-index.cjs',
     'tools/quality/budgets.json',
     'tools/quality/common.cjs',
     'tools/quality/color-motion-contract.cjs',
     'tools/quality/local.cjs',
+    'tools/quality/candidate-source.cjs',
   ]) {
     const target = path.join(checkout, name);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.copyFileSync(path.join(root, name), target);
   }
   fs.writeFileSync(path.join(checkout, '.gitignore'), '.site-cache/\n.fixture-output/\n');
-  const environment = { ...process.env };
+  // This CLI fixture exercises principal-page rights in both editions.
+  // Hosted article rights are exercised separately above.
+  const environment = { ...process.env, SITE_ARTICLE_PREVIEW: 'false' };
   for (const key of [
     'SITE_CANDIDATE_SHA',
     'SITE_EXPECTED_PUBLIC_DIGEST',

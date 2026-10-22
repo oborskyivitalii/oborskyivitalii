@@ -265,6 +265,11 @@ function validateAnalytics(row) {
 }
 function validateFunctional(report, manifest) {
   stageReport(report, 'stage-functional');
+  const articleEvidence = require('./article-browser.cjs').validateArticleJourney(
+    report.articles,
+    manifest.components?.articles || {},
+    { engine: manifest.components?.engine, baseURL: report.target }
+  );
   assert.deepEqual(report.startupFailures, [], 'browser startup or collection failed');
   assert.deepEqual(report.selection, contract());
   exactRows(
@@ -293,6 +298,7 @@ function validateFunctional(report, manifest) {
     normalRouteObservations: 20,
     noCanvasJourneys: 2,
     noCanvasRouteObservations: 10,
+    ...(articleEvidence.observations ? { articleObservations: articleEvidence.observations } : {}),
     navigation: 2,
     failures: 10,
     analytics: analyticsCases().length,
@@ -587,6 +593,8 @@ async function collectFunctionalEngine(api, engine, url, manifest, variant) {
       for (const selected of failureCases())
         detail.failures.push(await api.failure(browser, url, selected));
       detail.analytics.push(...(await api.analytics(browser, engine, analyticsCases())));
+      if (Object.keys(manifest.components?.articles || {}).length)
+        detail.articles = await api.article(browser, url, manifest);
     }
   } catch (error) {
     detail.startupFailures.push({ engine, error: error.message });
@@ -610,6 +618,10 @@ async function collectFunctional(url, manifest, helpers = {}) {
     nav: require('./navigation.cjs').scenario,
     failure: require('./functional.cjs').scenario,
     analytics: require('./analytics-browser.cjs').run,
+    article: (browser, url, manifest) =>
+      require('./article-browser.cjs').articleJourney(url, manifest.components.articles, {
+        browser,
+      }),
   });
   const api = { ...(!helpers.launch ? live() : {}), ...helpers },
     variant = common.variant(manifest),
@@ -648,6 +660,9 @@ async function collectFunctional(url, manifest, helpers = {}) {
       detail[key].push(...group.value[key]);
   }
   detail.elapsedMs = performance.now() - started;
+  const chromium = groups[0];
+  if (chromium.status === 'fulfilled' && chromium.value.articles)
+    detail.articles = chromium.value.articles;
   if (groups.some((group) => group.status === 'fulfilled' && group.value.cleanupFailed)) {
     const error = Error('functional browser cleanup failed');
     error.detail = detail;

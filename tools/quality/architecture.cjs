@@ -10,6 +10,7 @@ const sourceRoots = [
   'site/effects',
   'site/integrations',
   'tools/site',
+  'tools/publishing',
 ];
 const pureOwners = new Set([
   'site/engine/math.cjs',
@@ -19,16 +20,36 @@ const pureOwners = new Set([
   'tools/site/render-page.cjs',
   'tools/site/render-content.cjs',
   'tools/site/render-records.cjs',
+  'tools/site/events.cjs',
   'tools/site/validate-catalog.cjs',
   'tools/site/fallback.cjs',
 ]);
-function walk(node, visit) {
+function walk(node, visit, parent, grandparent) {
   if (!node || typeof node !== 'object') return;
-  if (node.type) visit(node);
+  if (node.type) visit(node, parent, grandparent);
   for (const value of Object.values(node)) {
-    if (Array.isArray(value)) value.forEach((child) => walk(child, visit));
-    else if (value && typeof value === 'object') walk(value, visit);
+    if (Array.isArray(value)) value.forEach((child) => walk(child, visit, node, parent));
+    else if (value && typeof value === 'object') walk(value, visit, node, parent);
   }
+}
+function deterministicHash(node, parent, grandparent, name) {
+  return (
+    name === 'tools/site/fallback.cjs' &&
+    node.type === 'CallExpression' &&
+    node.callee.type === 'Identifier' &&
+    node.callee.name === 'require' &&
+    node.arguments.length === 1 &&
+    node.arguments[0].type === 'Literal' &&
+    node.arguments[0].value === 'node:crypto' &&
+    parent?.type === 'MemberExpression' &&
+    !parent.computed &&
+    parent.property.name === 'createHash' &&
+    grandparent?.type === 'CallExpression' &&
+    grandparent.callee === parent &&
+    grandparent.arguments.length === 1 &&
+    grandparent.arguments[0].type === 'Literal' &&
+    grandparent.arguments[0].value === 'sha256'
+  );
 }
 function imports(source, name) {
   if (name.endsWith('.json')) {
@@ -39,7 +60,7 @@ function imports(source, name) {
   const edges = [],
     computed = [],
     ambient = [];
-  walk(ast, (node) => {
+  walk(ast, (node, parent, grandparent) => {
     let target;
     if (['ImportDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration'].includes(node.type))
       target = node.source;
@@ -51,8 +72,15 @@ function imports(source, name) {
     )
       target = node.arguments[0];
     if (target) {
-      if (target.type === 'Literal' && typeof target.value === 'string') edges.push(target.value);
-      else computed.push({ path: name, line: node.loc.start.line });
+      if (target.type === 'Literal' && typeof target.value === 'string') {
+        if (
+          pureOwners.has(name) &&
+          target.value === 'node:crypto' &&
+          !deterministicHash(node, parent, grandparent, name)
+        )
+          throw Error('Non-deterministic crypto dependency in pure owner: ' + name);
+        edges.push(target.value);
+      } else computed.push({ path: name, line: node.loc.start.line });
     }
     if (
       pureOwners.has(name) &&
@@ -124,7 +152,13 @@ function dependency(name, edge, sources) {
   if (path.posix.isAbsolute(edge))
     throw Error('Absolute authored dependency: ' + name + ' -> ' + edge);
   if (!edge.startsWith('.')) {
-    if (pureOwners.has(name)) throw Error('I/O dependency in pure owner: ' + name + ' -> ' + edge);
+    // Strict assertions inspect values without introducing ambient state or I/O.
+    if (
+      pureOwners.has(name) &&
+      edge !== 'node:assert/strict' &&
+      !(name === 'tools/site/fallback.cjs' && edge === 'node:crypto')
+    )
+      throw Error('I/O dependency in pure owner: ' + name + ' -> ' + edge);
     if (name.startsWith('site/') && edge !== 'node:assert/strict')
       throw Error('Runtime dependency: ' + name + ' -> ' + edge);
     return null;
@@ -167,7 +201,7 @@ function readSources(root = repositoryRoot) {
     for (const entry of fs.readdirSync(path.join(root, name), { withFileTypes: true })) {
       const child = name + '/' + entry.name;
       if (entry.isSymbolicLink()) throw Error('Symlink authored source: ' + child);
-      if (entry.isDirectory()) directory(child);
+      if (entry.isDirectory() && entry.name !== 'node_modules') directory(child);
       else if (/\.(?:cjs|mjs|js)$/.test(child))
         sources[child] = fs.readFileSync(path.join(root, child), 'utf8');
     }
