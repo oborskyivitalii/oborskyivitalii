@@ -13,9 +13,12 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
   bound; the single scoped retry, attempt 2, SUCCESS in 9m12s, managed Chromium
   153.0.8010.12. Exact preview: https://7f40ed31.oborskyi-author-ci-staging.pages.dev.
   These receipts belong to the preceding source, not the new combined candidate.
-- Prepared integration adds accepted main de785e8ac34be36edb1140041e589ad441cb8f1f
-  / PR121 independent quality-agent protocol. Combined-source four-role reviews,
-  exact commit/tree and clean policy/hosted admission remain pending here.
+- Accepted-main PR121 integration: de785e8ac34be36edb1140041e589ad441cb8f1f.
+  Prepared tree 174b05d5f4d71686ce749a3b639c58616e675c0a is preserved by merge
+  object ad00834a359f311720bbb5f85c2a8cf87b8f8bef. Four distinct independent
+  reviews completed with no blocker; verbatim receipts are in the current review.
+  Final receipt-bearing commit, clean policy and fresh hosted outcome belong to
+  the subsequent PR79 execution receipt; this checkpoint does not assert them.
 - Exact R23 PDF imported: 14 pages, 1,021,286 bytes, SHA256 dc617861409a8d22947ed0cd98ccfc20f97424a271a147b665e4c943bc8f8d0c.
   Supplied snapshot remains SHA256 cb94c4638ad905544c34986e4c3f4cbd81886b2e39a9d31ec67d87811f4f0200.
 - Canonical R23: site/publications/pmday-ai-both-sides/manuscript.en.md;
@@ -44,8 +47,9 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 - Main integration preserves PR119 first-name copy, retained publication bytes,
   Pillow 13 and source scheduling. Ledger union preserves 13,386 unique rows,
   all 140 new-main rows and 9 same-disposition reason variants; no wildcard added.
-- PR121 integration is procedural only. Requirements preflight accepted the scope;
-  four distinct roles must review the combined candidate. The existing issue5
+- PR121 integrates protocol/RI routing and its existing behavioral test; runtime
+  and public source are unchanged. Requirements preflight preceded implementation;
+  all four independent prepared-source reviews completed. The existing issue5
   INDEPENDENT human gate now explicitly requires their source-bound receipts;
   its 12 automated checks, all AC mappings and prior review obligations remain.
 - Article remains review, rights review-pending, canonical null and source pins null.
@@ -59,10 +63,12 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
   binding is now corrected in three literals; targeted case 1/1 PASS and
   independent review approved. The final policy repeat has its separate receipt.
   Original failed receipt is retained in the prepared evidence packet.
-- Combined-source requirements/code/white-box/exploratory role results and final
-  current-source checks must be recorded in the existing issue5 review artifact.
-  Prior affb checks and preview remain preceding evidence, not new-source admission.
-  This pre-commit handoff cannot assert its own future Git commit or outcome.
+- Prepared integration reviews are complete: requirements preflight/final, code
+  review, White-box RI 29/29 plus two fault controls, Exploratory 17/17 and root
+  RI/CI 20/20. Existing issue5 review preserves the original role receipts.
+  Consult the subsequent PR79 execution receipt for final-source policy/preview.
+  Prior affb checks remain preceding evidence, not new-source admission; this
+  receipt-only precommit handoff cannot assert its future final source or outcome.
 - Keep whole issue acceptance distinct from source/import/preview checks;
   update actual checkbox dispositions only for fully demonstrated criteria.
 - Historical R20 source 3e12e479 full matrix FAIL: reader mobile TBT 204/200 ms;

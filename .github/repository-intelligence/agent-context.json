@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "764f83412f930b0953c9c0621d72cf981358db200787cde8f8a0eb9c93e0a2f9",
+    "digest": "ada330a13a2479ad8720b7ed06c45cede60f39ffe1daf1cdcd0772efba18ff07",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -321,7 +321,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "5b6f5e72c79b179344b326df59c12cc9e124cea401a93ebd24efa4f18b1e010a"
+        "sha256": "b0c9758a2b8a1d2bdd45fb8fad7ae1d6d54acca35966b1dbc2f9cdbb7d0af789"
       },
       {
         "path": "NOTICE.md",
@@ -1615,7 +1615,7 @@
       {
         "path": "review/issue-5/2026-10-22-r23-continuation.md",
         "identity_mode": "content",
-        "sha256": "58f58cb6fc9051dd54c5b07275865983efc4b24051b6b619b231d79965f782c0"
+        "sha256": "eadc414b002c308e751c2ff8645b72c1c7c3153745efff02318ac5cae27b53e5"
       },
       {
         "path": "review/issue-5/2026-10-22-r23-prepared-evidence.json.gz",
