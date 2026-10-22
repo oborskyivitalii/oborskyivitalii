@@ -11,7 +11,7 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 - Failed T02 stage39819597415/1 found vulnerable OpenTelemetry API1.37.0 before upload.
 - Canonical approval, task conditions and live delivery status: issue122.
 - Versioned repair review: review/issue-122/2026-10-22-t02p-review.md.
-- This is candidate preparation; live review/CI/merge must be revalidated.
+- This is a correction checkpoint; live review/CI/merge must be revalidated.
 
 ## Decisions
 
@@ -31,7 +31,10 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 - Verifier/tests and exact91-package lock prepared; actual local graph91/147 passed.
 - Nine focused unit methods and existing scanner positive selftest passed on prepared source.
 - Independent code review verified the one unchanged Bandit boolean finding; binding updated.
-- Candidate review, exact-source full audit/scans and required delivery remain pending.
+- Four initial candidate reviews completed on69bbf8e; graph/audit/CE controls passed locally.
+- Review found unprovisioned owning calls; keep four checks and require all nine via COVERAGE/locked-venv staging.
+- Correct two remaining README interpreter examples and append one independently proved checksum ledger record.
+- Exact-source security failed on that checksum; corrected-source rerun/delta review and delivery remain pending.
 - Whole AC01–AC08 remain open; T01.1–T01.5 are complete in the issue.
 - T02-P.1–T02-P.5 and T02.1–T02.5 remain open until complete evidence is reconciled.
 - Retain failed runs; do not retry unchanged vulnerable dependencies.

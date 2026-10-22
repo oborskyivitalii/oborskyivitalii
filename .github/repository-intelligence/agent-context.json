@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "5d888cc550277a487c0667b7955bf2887c5fe7be45f967cea98a420a49fa775a",
+    "digest": "25376f942558508b00a8796e1838370dd801a8a139307e5b41f3e38aa053624d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "3506768d73d57a4e7d07892bdb7b705b303bf0565c9d568d8d13700f7288d2b1"
+        "sha256": "dae23d8d5303d34838337a45264b906bee1985b59f9bfbe074fe1e936dd27843"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -196,7 +196,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "4cba914c2a52184c5bf8a6df1645fb52fb74de4ad5f7b912e979ef10013306da"
+        "sha256": "c12c3810967adf1c7e6a4802fa034fdbecac9be6b716a4668ef248356ce8b63f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -326,7 +326,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "a5bfa1bdc5b978b0436e75e3acacd7172dfd7d0a34c6878fb75e2bf8c537abca"
+        "sha256": "bfa14e16f58092f5da01325cdc188791ae024a9d53b1882037d9e27f5d74a76f"
       },
       {
         "path": "NOTICE.md",
@@ -820,7 +820,7 @@
       {
         "path": "review/issue-122/2026-10-22-t02p-review.md",
         "identity_mode": "content",
-        "sha256": "df26abe570f98d983a388376c308bc6d7082bb76c2068c4ca092e79f6d0d4a1f"
+        "sha256": "395927007d1ae19c4527608db9f1df32f87fea29126fa82bf7c366a8ea815903"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6315,7 +6315,7 @@
       {
         "path": "tools/quality/README.md",
         "identity_mode": "content",
-        "sha256": "26ff84308a53d972413abca52395b7c6276bbefb594aa421eda17e01cc018a65"
+        "sha256": "938d7fe0df3281c59d23ffd49f61886395c1a27e91418701bdf3ced23a646b16"
       },
       {
         "path": "tools/quality/advisory-exceptions.json",
@@ -6595,7 +6595,7 @@
       {
         "path": "tools/quality/secrets-reviewed-checksums.json",
         "identity_mode": "content",
-        "sha256": "d055adbff04d1f9ffb915c97436f5681fe29a77837f52b648f1169775e0a1d77"
+        "sha256": "f945ebfd211605dac8ae05e47f9f481f496d458d3e04cb185c140750060ee572"
       },
       {
         "path": "tools/quality/secrets-reviewed.json",
