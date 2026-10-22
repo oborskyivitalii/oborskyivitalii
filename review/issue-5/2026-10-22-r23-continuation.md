@@ -138,6 +138,7 @@ artifact disposition, not a blanket whitespace exception for authored code.
 | R23-02 | Compatibility blocker before adaptation | Supplied HTML figures/table and duplicate deck link | Directly copying the supplied snapshot violates the existing bounded parser/profile contract. | #5 AC02/AC03/AC07 | Presentation-only normalization above; parser/profile checks pass without widening the contract. |
 | R23-03 | Known supplied-artifact difference | PDF 43 unique HTTPS targets; Markdown 42 | The exact PDF includes an organizer link absent from supplied Markdown. | #2 AC02/AC03 | Preserve both original artifacts and disclose the difference; no false byte/content-equivalence claim. |
 | R23-05 | Low: review wording | Independent PDF name-tree recount | An initial draft described 36 named destinations as the total; the PDF has 58 total, including 36 numbered references. | #5 AC11 | Corrected the report wording; original artifact unchanged. |
+| R23-06 | Active-edition test binding | First clean policy on `2b35dd8`; `tests/article-media.test.cjs` | READER has 263/264 tests pass; its real-article case still expects the R21 source SHA and edition, while the declared active source is R23. | #5 AC02/AC03/AC11 | Exactly three identity literals updated; all assertions/negatives unchanged; focused case 1/1 PASS and independent review approved. Full corrected-source policy outcome remains in the subsequent PR receipt. |
 | R23-04 | Open performance evidence | Historical R20 report and existing CPU review | R20 reader mobile median TBT was 204 ms against 200 ms; later CPU changes lack a new completed full matrix. | #5 AC08/AC11/AC12 | Historical failure remains failed. This editorial intake supplies no new performance acceptance. |
 
 `/root/pr79_recovery_review` independently inspected all 14 PDF page renders.
@@ -210,9 +211,10 @@ owner and #2 retains editorial/publication decisions.
 actual browser receipt and artifact manifest, source-file identities, Basic,
 pinned-toolchain, focused publisher/SEO/RI test logs and integration proofs, plus
 the separate two-table interaction probe. The earlier 45/46 integration-focused
-run and missing-venv SEO failure logs are also preserved without relabeling.
-It is 66,838 bytes, SHA256
-`e27ca8374bedb65e4793bbd1f9fc47d6bff6b083079f294c2bfee4967a9bb86e`.
+run, missing-venv SEO failure logs and the first clean 11/12 policy attempt are
+also preserved without relabeling, alongside the targeted R23 test correction.
+It is 87,627 bytes, SHA256
+`a6611e6e1ce2a86965f1b9403fb08b74b3ffb46d187b6fe6f87938cafa5d9a97`.
 Its explicit scope is the prepared R23 source, not a clean final-head run.
 
 The existing smoke runner completed with `pass: true`, `fullGate: false` and
@@ -249,6 +251,30 @@ staging/source results do not admit this changed R23 candidate. The post-CPU ful
 performance matrix has not run in this increment. Last recorded permanent article
 staging remains R18/source `283b32f65f0589e85c0aa914d0990704dcf8ac38`;
 this document does not claim a current R23 stable deployment.
+
+### First clean policy attempt and bounded test correction
+
+On clean commit `2b35dd862113a47358028fedd15396c97c51b98a`, tree
+`bb751c06b1c5be6482b88c68c8a27a5f7eca7be9`, the complete owning policy returned
+11/12 named checks PASS with valid source evidence. READER was the sole failed
+check: 263/264 internal tests passed, with zero skipped/cancelled/todo. The existing
+real-article media case still asserted the R21 source hash and content-edition ID.
+The observed source hash was the already reviewed R23 `c72b6466…` value.
+
+This failed run is preserved in the evidence packet, original receipt SHA256
+`245aa39b6303696f56474f5994ab702d9dcde1ec18ebacd76dd59c7688a1f812`.
+The correction is confined to exactly three literals: the case label and explicit
+source/edition identities. The selected existing case passes 1/1 with zero failures,
+skips or cancellations (4.557 s). `/root/pr79_recovery_review` independently verified
+the entire diff and receipt: every other byte is unchanged, including media counts,
+full download closure, rights state, 800,000-byte reading ceiling, native-link
+assertions and every corruption/budget negative. It does not change article prose, assets, runtime or performance limits.
+Corrected test SHA256 is
+`afd9cb69439949ba887d1d81de9e8ca714126ebdbc3b980d1b86e48839fced87`;
+targeted TAP SHA256 is
+`257dc45f1e44b8e5e44a30b57394f3919f5381b84448be618c0d58e5e666f8e9`.
+Both are preserved in the evidence packet. The final corrected source-policy
+result remains for the subsequent PR receipt.
 
 ## Issue synopsis
 

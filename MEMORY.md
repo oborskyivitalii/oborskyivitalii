@@ -45,6 +45,11 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 ## Open work
 
+- First clean policy on 2b35dd862113a47358028fedd15396c97c51b98a was 11/12:
+  READER 263/264; the real-article fixture still pinned R21. Its exact R23
+  binding is now corrected in three literals; targeted case 1/1 PASS and
+  independent review approved. The final policy repeat has its separate receipt.
+  Original failed receipt is retained in the prepared evidence packet.
 - Check PR79 for the subsequent execution receipt covering the final clean-source
   policy and hosted preview. Independent source/doc/browser review has no blocking
   findings. This pre-commit handoff cannot

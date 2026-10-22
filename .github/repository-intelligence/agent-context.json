@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "ef3c9ec8a19325c8ae67e83565e20157a059d0b9129b28f1bd7aa1b98cc43392",
+    "digest": "fff2505548629fff90b12499d6aa9416bc4350c96abbaf6e8ac348d07ceda02e",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -316,7 +316,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "153c0e3e27952f4306de482d2befcd3916c042e008a2cd07b59f056dbe615dac"
+        "sha256": "8fcfa75f6fc8c5f820e361d2df03ecfd5bc68de6eb100fd29f20d55f93c43feb"
       },
       {
         "path": "NOTICE.md",
@@ -1605,12 +1605,12 @@
       {
         "path": "review/issue-5/2026-10-22-r23-continuation.md",
         "identity_mode": "content",
-        "sha256": "59dd4e5a9976d0d0f6fb2994f1f4fe5af97a66b3573528e1fc4662136d24c154"
+        "sha256": "58f58cb6fc9051dd54c5b07275865983efc4b24051b6b619b231d79965f782c0"
       },
       {
         "path": "review/issue-5/2026-10-22-r23-prepared-evidence.json.gz",
         "identity_mode": "content",
-        "sha256": "e27ca8374bedb65e4793bbd1f9fc47d6bff6b083079f294c2bfee4967a9bb86e"
+        "sha256": "a6611e6e1ce2a86965f1b9403fb08b74b3ffb46d187b6fe6f87938cafa5d9a97"
       },
       {
         "path": "review/issue-5/pmday-candidate/README.md",
@@ -6770,7 +6770,7 @@
       {
         "path": "tests/article-media.test.cjs",
         "identity_mode": "content",
-        "sha256": "27a39db9de6bb9e764b437135f0ea618f51bf2701b1fe1a32e14ca1760c6913f"
+        "sha256": "afd9cb69439949ba887d1d81de9e8ca714126ebdbc3b980d1b86e48839fced87"
       },
       {
         "path": "tests/article-offline.test.cjs",
