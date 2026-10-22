@@ -4,42 +4,43 @@ Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 ## Snapshot
 
-- Current task: issue122 T01, exact review-template test-selection ownership.
-- Branch: work/issue-122-t01-review-template; base main de785e8ac34be36edb1140041e589ad441cb8f1f.
-- PR121 is merged and issue120 completed; its four-role protocol remains in CONTRIBUTING.
-- Canonical task, approval and current delivery evidence: live issue122 and its active PR.
-- Versioned implementation review: review/issue-122/2026-10-22-t01-review.md.
-- This is the prepublication handoff; later CI/staging/merge results require live revalidation.
-- PR79/issue5, PR117/issue112, PR110 and PR107 remain separate active work.
+- Current task: issue122 T02, canonical routing and observation contract.
+- Branch: work/issue-122-t02-routing-contract; base main223ddc0c578c1ae357dc3c057cc8b4fa5a531caa.
+- T01 delivered in merged PR123; exact main tree84aa1e581ead80796fb39b11c5a36f32fc613857.
+- T01 actual merge identity and main RI passed; live issue122 owns its reconciled evidence.
+- Canonical T02 scope, approval and current delivery evidence: live issue122 and its active PR.
+- Versioned T02 review: review/issue-122/2026-10-22-t02-review.md.
+- This is a prepublication checkpoint; later reviews/CI/staging/merge require live verification.
+- PR79 remains Draft at0717bd4ad2d27786a068c2046b775691cc452acd; issue5 retains content delivery.
 
 ## Decisions
 
-- Maintainer approved T01 through current staging/admission, protected merge and postmerge checks.
-- One independently mergeable implementation PR at a time; complete main delivery before the next step.
-- Report, reconcile actual ACs, reassess remaining work, then propose the next task for separate approval.
-- All four roles execute independently on each coherent candidate and affected correction.
-- T01 uses the exact maintained template path; unknown/mixed/shared controls retain broad coverage.
-- The registry-changing T01 PR itself still requires current broad source coverage and staging.
-- Future lane/trust/content work remains in issue122 and issue5/PR79; production is outside T01.
+- Maintainer approved T02 after the completed T01 report, through current staging/admission and main/postmerge.
+- One independently mergeable implementation PR at a time; report before seeking the next step's approval.
+- All four independent roles execute on each coherent candidate and affected correction.
+- SITE-CHECK-PROFILES owns the single proposed decision matrix and observation interface.
+- SITE-STAGING owns operator interpretation, accepted-site identity and producer activation prerequisite.
+- T02 changes contracts and necessary acceptance/RI companions; no executable lane or protection change.
+- Actual AC05 producer/protection proof remains required before W3; design approval cannot waive it.
+- No production activation, new publisher/service/credential or T03 implementation is authorized by T02.
 
 ## Open work
 
-- Core registry correction and two selection regression groups prepared; normal isolated suite passed 26/26.
-- Original mapping fails the new cases; local sandbox subprocess EPERM is separate from source behavior.
-- All four actual implementation roles completed at dcc07d3; receipts are in the versioned review.
-- CR01 is closed by actual code follow-up at d02a91b; requirements follow-up confirms unchanged acceptance scope.
-- Final receipt incorporation retains unchanged behavioral evidence and refreshes RI; published-source validation follows.
-- Normal remote CI/staging/admission, merge and postmerge remain pending at this checkpoint.
-- The issue122 policy maps all eight original ACs; future obligations remain explicit pending gates.
-- All parent AC01–AC08 stay open after T01; only verified T01 subconditions may be checked.
-- Do not reinterpret this checkpoint or older snapshots as current production/PR79 evidence.
+- Requirements preimplementation review completed without blocker on the unchanged approved scope.
+- Independent white-box preparation inspected actual dependencies and thirteen existing selection plans.
+- Four candidate reviews and applicable correction checks remain pending at this checkpoint.
+- Run current mechanical checks and the exact clean owning policy; complete current remote delivery gates.
+- The source registry/selector, workflows, budgets and protection remain unchanged.
+- All whole AC01–AC08 remain open; T01.1–T01.5 are complete in the issue.
+- T02.1–T02.5 remain pending until actual review, checks and delivery reconciliation.
+- T01's near-deadline source run is a reliability observation, not T02 timeout-tuning scope.
 
 ## Next session
 
-1. Revalidate main, issue122/active PR, branch status, role receipts and actual CI/staging state.
-2. Retain the completed four-role/CR01 receipts and verify published tree/source reconciliation.
-3. Complete the authorized main delivery, reconcile T01, and report before proposing the next step.
-4. Wait for that next step's approval; sibling content/performance work retains its own owner.
+1. Revalidate main, issue122/active PR, exact source, role receipts and actual checks/staging state.
+2. Complete authorized T02 candidate review and main delivery; never infer completion from this memory.
+3. Reconcile verified task subconditions, report and reassess observer versus admission prerequisite.
+4. Present the next bounded step for separate approval; PR79 and sibling work retain their owners.
 
 ## Maintenance
 

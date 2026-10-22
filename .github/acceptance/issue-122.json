@@ -7,42 +7,42 @@
     {
       "id": "AC01",
       "intent": "Correct and explainable repository, content, website and control routing",
-      "automated_scope": "T01 reuses the maintained selection suite through its existing named bridge. It verifies exact review-template ownership, mixed/unknown/control coverage and existing profile accounting. It does not implement or verify the future three-lane classifier, complete diff semantics or source-bound lane reports.",
+      "automated_scope": "Retained T01 selection regressions verify exact review-template ownership and existing mixed/unknown/control source allocation. T02 adds a reviewed decision matrix and future observation interface; these mechanical checks do not establish their semantic completeness or execute the future classifier.",
       "checks": ["SELECTION"],
       "gates": ["ROUTING", "REQUIREMENTS", "REVIEW", "WHITEBOX", "EXPLORATORY"]
     },
     {
       "id": "AC02",
       "intent": "A genuine protected repository-only merge without website deployment work",
-      "automated_scope": "No deterministic check in T01 establishes the future repository-only admission outcome. Its own shared-control PR still requires the current staging route.",
+      "automated_scope": "Neither T01 nor contract-only T02 establishes the future repository-only admission outcome. T02 retains the current required staging route and relevant repository checks.",
       "checks": [],
       "gates": ["REPOSITORY-LANE"]
     },
     {
       "id": "AC03",
       "intent": "Integrate the existing content lane with accepted platform and complete intervening-history evidence",
-      "automated_scope": "T01 provides no content release, accepted-engine compatibility or recovery evidence. The existing issue5 and PR79 retain this work.",
+      "automated_scope": "T01/T02 provide no actual content release, accepted-engine compatibility or recovery evidence. T02 documents dependencies and complete-history obligations; issue5 and PR79 retain implementation and release ownership.",
       "checks": [],
       "gates": ["CONTENT-LANE"]
     },
     {
       "id": "AC04",
       "intent": "Preserve applicable website and control coverage, budgets, profiles and source architecture",
-      "automated_scope": "Selection regressions verify the bounded T01 preservation cases. The style guard proves only its existing enforced subset; actual CI, full lane obligations and unautomated CS01/CS04/CS05/CS08/CS09/CS10 review remain separate.",
+      "automated_scope": "Existing selection regressions and the bounded style guard retain their mechanical preservation scope. T02 changes documentation and necessary acceptance/RI companions only; actual CI, unchanged profile/budget/control behavior and semantic CS01/CS04/CS05/CS09/CS10 review remain separate.",
       "checks": ["SELECTION", "STYLE"],
       "gates": ["COVERAGE", "REVIEW"]
     },
     {
       "id": "AC05",
       "intent": "Admission cannot exempt itself or accept an impersonated or invalid result",
-      "automated_scope": "T01 changes no admission producer, workflow or protection. Existing selector tests do not establish trusted-producer enforcement or protected-check transition.",
+      "automated_scope": "T02 records the live ruleset and official platform capability disposition, without changing an admission producer, workflow or protection. No automated check here proves same-name wrong-producer rejection at the protected merge boundary; AC05 remains unresolved.",
       "checks": [],
       "gates": ["TRUST"]
     },
     {
       "id": "AC06",
       "intent": "Preserve accepted-site provenance and concurrency after repository-only merges",
-      "automated_scope": "T01 supplies no new publication-baseline, intervening-history, lease or recovery evidence.",
+      "automated_scope": "T02 defines distinct repository/accepted-site identities and future complete intervening-history obligations. It implements no new publication baseline, compatibility, lease or recovery behavior.",
       "checks": [],
       "gates": ["PROVENANCE"]
     },
@@ -56,7 +56,7 @@
     {
       "id": "AC08",
       "intent": "Source-bound delivery, complete lane outcomes, documentation and measured result",
-      "automated_scope": "Current catalog/RI freshness and CI coupling checks establish their mechanical subsets only. Actual CI, staging, merge, postmerge, real lane outcomes and eventual timing evidence remain external obligations.",
+      "automated_scope": "Current catalog/RI freshness and CI coupling checks establish their mechanical subsets only. T02 contract usefulness, actual CI/staging/merge/postmerge and all future real lane outcomes and timing evidence remain external obligations.",
       "checks": ["CURRENT-RI", "RI-CI"],
       "gates": ["DELIVERY", "MERGED"]
     }
@@ -82,27 +82,27 @@
   "gates": {
     "ROUTING": {
       "kind": "human",
-      "description": "Complete AC01's maintained lane/control decision table, additions/deletions/renames/type-change and mixed/unknown/incomplete-ref evidence, plus exact source/base/policy reports. T01 establishes only the exact review-template subcondition; the whole criterion remains pending."
+      "description": "Complete AC01's maintained lane/control table, actual additions/deletions/renames/type-change and mixed/unknown/incomplete-ref behavior, plus exact source/base/policy reports. T01 supplies the exact review-template correction; T02 supplies semantic contract review only. Independently review the table, field-level interface and eleven walkthroughs; executable classifier and whole-criterion evidence remain pending."
     },
     "REPOSITORY-LANE": {
       "kind": "human",
-      "description": "Observe a real protected repository-only merge after applicable source/RI/acceptance and independent-role checks, without hosted preview, website staging, alias or publisher actions. Demonstrate a changed RI executable failure blocks admission. Not delivered by T01."
+      "description": "Observe a real protected repository-only merge after applicable source/RI/acceptance and independent-role checks, without hosted preview, website staging, alias or publisher actions. Demonstrate a changed RI executable failure blocks admission. Not delivered by T01 or T02."
     },
     "CONTENT-LANE": {
       "kind": "human",
-      "description": "Reconcile issue5/PR79's actual independent content release and recovery. Authenticate accepted engine/schema and complete accepted-site S through repository-only M to content C history; invalid content/media/references, incompatible or unknown intervening inputs must fail or require fresh website validation. Not delivered by T01."
+      "description": "Reconcile issue5/PR79's actual independent content release and recovery. Authenticate accepted engine/schema and complete accepted-site S through repository-only M to content C history; invalid content/media/references, incompatible or unknown intervening inputs must fail or require fresh website validation. T02 defines the contract, not the executed outcome."
     },
     "COVERAGE": {
       "kind": "human",
-      "description": "Inspect changed owners and actual required CI to confirm baseline, permanent source, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and review applicable unautomated style rules. T01 requires the existing broad shared-control coverage; future lane-level preservation remains pending."
+      "description": "Inspect actual owners, dependency closure and required CI to confirm baseline, permanent source, repository, website/control, staging and production obligations, budgets, failure propagation and provenance. Preserve optional diagnostics and applicable unautomated style rules. T02 documents existing versus proposed routes without changing behavior; whole future lane-level preservation remains pending."
     },
     "TRUST": {
       "kind": "human",
-      "description": "Demonstrate trusted evaluator and workflow/check-producer identity against the actual ruleset before migration. Candidate policy/wrapper changes cannot exempt or impersonate admission. Reject same-name foreign producers, wrong source/run/attempt and missing/failed/skipped/cancelled/stale required evidence; distinguish explicit inapplicability without Pending deadlocks. Not delivered by T01."
+      "description": "Revalidate and source the actual ruleset/producer capability. T02 may document unresolved enforcement, but W3 activation requires actual trusted evaluator and producer identity at the protection boundary: candidate policy/wrapper changes cannot exempt or impersonate admission; reject same-name foreign producers, wrong source/run/attempt and missing/failed/skipped/cancelled/stale required evidence, with explicit inapplicability and no Pending deadlock. Revised-design approval cannot waive AC05 proof."
     },
     "PROVENANCE": {
       "kind": "human",
-      "description": "Verify repository/controller and accepted site/platform/content/artifact identities independently after repository-only merge. Prove complete intervening compatibility or use fresh staging, without relabeling old artifacts. Exercise fresh-base decisions, source/predecessor leases and timing/recovery cases that preserve newer accepted content. Not delivered by T01."
+      "description": "Verify repository/controller and accepted site/platform/content/artifact identities independently after repository-only merge. Prove complete intervening compatibility or use fresh staging, without relabeling old artifacts. Exercise fresh-base decisions, source/predecessor leases and timing/recovery cases preserving newer accepted content. T02 specifies these requirements without executing the future scenario."
     },
     "REQUIREMENTS": {
       "kind": "human",
@@ -118,15 +118,15 @@
     },
     "EXPLORATORY": {
       "kind": "human",
-      "description": "Actual distinct Exploratory/Interaction QA executes a bounded intent-derived charter on the changed selector/CLI or later applicable surface. Record environment, actions, expected/observed outcomes and regression/manual dispositions. Selection plans are not test passes; unavailable access is not non-applicability."
+      "description": "Actual distinct Exploratory/Interaction QA executes an intent-derived charter on the changed surface. For T02, independently walk the maintained contract and operator actions against actual source/CLI/RI evidence; a prose walkthrough is not execution of the future classifier. Record environment, actions, expected/observed outcomes and regression/manual dispositions. Unavailable access is not non-applicability."
     },
     "DELIVERY": {
       "kind": "human",
-      "description": "Fetch current owning issue/PR, exact source CI including Basic and required selection, independent-role results and all applicable external gates. Reconcile actual issue checkboxes and one documentation/RI contract. T01 supplies only its increment; real lane outcomes and queue/setup/execution timing comparisons remain pending without fabricated speed claims."
+      "description": "Fetch current owning issue/PR, exact source CI including Basic and required selection, four actual independent-role results and all applicable external gates. Reconcile actual task/issue checkboxes and the one canonical documentation/RI contract. T01/T02 supply bounded increments; real lane outcomes and queue/setup/execution comparisons remain pending without fabricated speed claims."
     },
     "MERGED": {
       "kind": "merge",
-      "description": "Use the maintainer-approved step scope to complete current staging/admission, protected-main merge and postmerge verification. Record tested source separately from merged commit/tree, then report and propose the next step for separate approval. All whole ACs remain open after T01; no production activation is requested."
+      "description": "Use the maintainer-approved step scope to complete current staging/admission, protected-main merge and postmerge verification. Record tested source separately from merged commit/tree, then report and propose the next step for separate approval. All whole ACs remain open after T02; no production activation is requested."
     }
   }
 }
