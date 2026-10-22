@@ -437,10 +437,12 @@ class NavigationSafetyTests(unittest.TestCase):
             "independent code review",
             "ревʼю коду",
             "white-box testing",
+            "white box testing",
             "вайтбокс тестування",
             "exploratory testing",
             "ручне тестування",
             "separate agent launches",
+            "independent agents",
             "окремі запуски агентів",
         ]:
             with self.subTest(query=query):

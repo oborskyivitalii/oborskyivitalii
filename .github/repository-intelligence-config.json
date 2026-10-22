@@ -66,6 +66,7 @@
         "iteration review",
         "незалежне ревю субагентом",
         "independent quality agents",
+        "independent agents",
         "separate agent launches",
         "незалежний запуск агентів",
         "окремі запуски агентів",
@@ -104,6 +105,7 @@
       "queries": [
         "white-box QA",
         "white-box testing",
+        "white box testing",
         "whitebox testing",
         "вайтбокс тестування",
         "тестування білої скриньки"

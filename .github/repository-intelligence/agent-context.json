@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "32b7727af76899961253945348bfc5b86214ae1a0111b786c9c8de05aec0df12",
+    "digest": "3a27058ee1525122a8eabd623527defe2039e2adbd294abdbee8b3bca5bb1407",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -172,7 +172,7 @@
       {
         "path": ".github/repository-intelligence-config.json",
         "identity_mode": "content",
-        "sha256": "08110b27ab479386c834f34e0c219f65c09a2e592855fde0e261372072814b48"
+        "sha256": "fc793067f4a0ba18688c203b3c77708f324888465ecbd07e33ddfcc7fb1ac271"
       },
       {
         "path": ".github/repository-intelligence/agent-context.json",
@@ -191,7 +191,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "de44af33c00d880e8f35c63ac7f522d89ed578f28c690ee1597da9db7b69ddfe"
+        "sha256": "032cc3a09f7dbe7a04036e8c4137c49c1045dc0b4acf761c3d5561601e4f52f9"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -805,7 +805,7 @@
       {
         "path": "review/issue-120/2026-10-22-review.md",
         "identity_mode": "content",
-        "sha256": "99cb2aaad815aacb52856d5d161bbe87e9fb4421597ab2e4fcaaf6a1c503a1a9"
+        "sha256": "4d991ad750887be71d218d7089939833cebb67b9db607c677d41de03eb925440"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
@@ -6135,7 +6135,7 @@
       {
         "path": "tests/test_repository_intelligence.py",
         "identity_mode": "content",
-        "sha256": "71c89f09dd369840c98891209fc7b9ca0a5c750a7bddd749edc8765a40fd890b"
+        "sha256": "28a928725ad9a6f63228b7ad37b71f084566fec1c15391c6ed020457eff6df5a"
       },
       {
         "path": "tests/test_repository_test_selection.py",
@@ -6953,7 +6953,7 @@
     "path": "tools/repository_intelligence.py",
     "sha256": "dad68d88d241c2cd223081d6a28961c1aa7abc19c0f4c223c9c3382c562aa792",
     "config_path": ".github/repository-intelligence-config.json",
-    "config_sha256": "08110b27ab479386c834f34e0c219f65c09a2e592855fde0e261372072814b48"
+    "config_sha256": "fc793067f4a0ba18688c203b3c77708f324888465ecbd07e33ddfcc7fb1ac271"
   },
   "owners": [
     {
@@ -7008,6 +7008,7 @@
         "iteration review",
         "незалежне ревю субагентом",
         "independent quality agents",
+        "independent agents",
         "separate agent launches",
         "незалежний запуск агентів",
         "окремі запуски агентів",
@@ -7046,6 +7047,7 @@
       "queries": [
         "white-box QA",
         "white-box testing",
+        "white box testing",
         "whitebox testing",
         "вайтбокс тестування",
         "тестування білої скриньки"
