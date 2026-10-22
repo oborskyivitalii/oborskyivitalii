@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "id": "pmday-ai-both-sides-review-20261021-r21-cover02",
+  "id": "pmday-ai-both-sides-review-20261021-r23-cover02",
   "platforms": {
     "linkedin": {
       "formats": ["html", "md", "txt", "copy-ready"],
@@ -53,12 +53,12 @@
       {
         "role": "quotation",
         "sha256": "264b4acdfaf886788b2a002e6b8143c109f1db17052dfcfa2a22129bf92ee8a1",
-        "attribution": "940675e280a6f71e0a5e53760b50808a0da21961b157e209809248b631884d79"
+        "attribution": "b01bbf511e3f7ca64e91538ca159c6b27e1cd25dcf2196b532b0109ec6bbc380"
       },
       {
         "role": "quotation",
         "sha256": "b81f3755f09ff2ec9eebd88c95a100085c4bea800f7657934ba8a2a92444760c",
-        "attribution": "1e57907c66d2bcc2e17469b51a5bbba9a734d2af7e9f54cf7ada8d48ed356065"
+        "attribution": "92d7f6694d6837f8ef8a892cfbe6c0815ab1a2925fdaabbf584629d23476a3bf"
       },
       {
         "role": "endnote",

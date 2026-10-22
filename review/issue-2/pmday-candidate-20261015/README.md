@@ -1,3 +1,50 @@
+# Current R23 — original PDF recovered and canonical source synchronized
+
+22 October 2026. The author-requested R23 intake continues in
+[Draft PR79](https://github.com/oborskyivitalii/oborskyivitalii/pull/79), execution
+[#5](https://github.com/oborskyivitalii/oborskyivitalii/issues/5), editorial owner
+[#2](https://github.com/oborskyivitalii/oborskyivitalii/issues/2).
+
+- [Original R23 compact review PDF](The_Sum_of_Our_Technology_R23_Cover02_Compact_Preview.pdf):
+  14 pages, 1,021,286 bytes; SHA256
+  `dc617861409a8d22947ed0cd98ccfc20f97424a271a147b665e4c943bc8f8d0c`.
+  Recovered and imported byte-for-byte; not regenerated.
+- [Supplied R23 Markdown snapshot](The_Sum_of_Our_Technology_R23_Manuscript.md):
+  43,918 bytes; SHA256
+  `cb94c4638ad905544c34986e4c3f4cbd81886b2e39a9d31ec67d87811f4f0200`.
+- [Canonical article](../../../site/publications/pmday-ai-both-sides/manuscript.en.md):
+  SHA256 `c72b646667bcd9f4cce4892522b9643485e6f0bac3a4624d7c93f545551ceeb8`;
+  edition `pmday-ai-both-sides-en-review-20261021-r23-cover02`;
+  semantic SHA256 `afe70ea6ff2cea032fdf65386dc1fd65df31aeabca74b1f59c15078a01f71ce0`.
+
+The source retains R23 prose and order, 12 explicit “What if not?” prompts,
+36 numbered source notes and two tables. Its actual figures are Cover02 plus
+slides 03/09/12. Raw HTML figures and the pilot table use the existing declared
+asset/GFM contract; subtitle and note indentation use the shared reader format.
+The repeated deck hyperlink in bibliography 1 becomes plain text while its wording
+and opening Slides link remain. All 42 unique Markdown source URLs survive.
+The original PDF retains 43 unique HTTPS targets, including the extra organizer
+link absent from supplied Markdown; both originals remain unchanged.
+
+Publisher validation and 26 existing publisher/profile tests pass. Separate
+reviewer `/root/pr79_recovery_review` inspected all 14 PDF pages and independently
+matched 227 normalized non-empty source lines, with no blocking import/sync findings.
+These are bounded checks of the prepared candidate, not publication acceptance.
+Independent main-integration review, Basic, 48 RI/CI regression tests, two affected
+SEO checks and the local desktop/mobile reader smoke pass. The versioned report
+retains their prepared-source scope and raw diagnostic evidence. Final-head policy and
+hosted PR preview are pending at this pre-commit checkpoint; consult the subsequent
+PR79 execution receipt for their actual outcomes.
+The prior R20 mobile TBT 204/200 ms failure remains failed; this intake does not
+supply a new post-CPU performance matrix.
+
+[Continuation, exact identities, findings and acceptance limits](../../issue-5/2026-10-22-r23-continuation.md)
+own the current handoff. Rights remain review-pending, canonical URL is null,
+PR79 stays Draft, and no PR79 merge or production publication is claimed.
+All earlier content below is retained history and must not overwrite R23.
+
+---
+
 # R18 — corrected event name, PDF and native article preview
 
 20 October 2026, author-requested rendition update in Draft PR79; editorial owner #2,

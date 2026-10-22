@@ -186,6 +186,9 @@ const issue48 = JSON.parse(
 const issue61 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-61/content-amendment.json'), 'utf8')
 );
+const issue118 = JSON.parse(
+  fs.readFileSync(path.join(root, 'review/issue-118/content-amendment.json'), 'utf8')
+);
 const issue108 = JSON.parse(
   fs.readFileSync(path.join(root, 'review/issue-108/content-amendment.json'), 'utf8')
 );
@@ -792,6 +795,7 @@ function restoreResearchNavigation(html, page) {
   return html.replace(researchNavigation.separated, () => researchNavigation.original);
 }
 function restoreApprovedContent(html, page) {
+  html = restoreContentAmendment(html, page, issue118);
   html = restoreResearchNavigation(normalizeHTML(html), page);
   html = normalizeHTML(html);
   if (page === 'talks') html = restoreEventsCatalog(html);
@@ -939,6 +943,7 @@ function verify() {
           ...issue48.changes,
           ...issue61.changes,
           ...issue108.changes,
+          ...issue118.changes,
           ...positioning.changes,
           ...sitecase.changes,
           ...arkadiy.changes,

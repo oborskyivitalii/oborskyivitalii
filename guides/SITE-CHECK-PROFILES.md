@@ -298,7 +298,9 @@ not counted as an automatic speed improvement.
 
 The source runner delegates execution to
 [`source-test-worker.cjs`](../tools/quality/source-test-worker.cjs). It starts
-the measured long `space`, `executive`, `article-media` and `release-rights` modules first, then
+the measured long `space`, `executive`, `article-media` and `release-rights` modules first,
+followed by measured `release-controller`, `pages-migration`, `site-engine`,
+`pages-delivery`, `publication-records` and `staging` modules, then
 the remaining selected files lexically, retaining the same selected set, Node
 process isolation, a maximum of four workers, native TAP and strict accounting.
 When Space is selected alongside other modules, run it alone before the remaining

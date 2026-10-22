@@ -17,7 +17,7 @@
   },
   "status": "review",
   "source": "manuscript.en.md",
-  "edition": "pmday-ai-both-sides-en-review-20261021-r21-cover02",
+  "edition": "pmday-ai-both-sides-en-review-20261021-r23-cover02",
   "rights": {
     "status": "review-pending",
     "notice": "Article by Vitalii Oborskyi; author-selected AI-generated Cover 02 and three original full-page UA Online PMDay 2026 Autumn v35 slide screenshots. Original source-deck and third-party credits remain applicable. Per-item publication clearance remains pending.",
@@ -180,10 +180,6 @@
       "url": "https://link.springer.com/article/10.1007/s10664-023-10396-7"
     },
     {
-      "id": "source-40",
-      "url": "https://ua.linkedin.com/posts/pmday_we-are-glad-to-introduce-new-speaker-of-activity-7493632835547889664-67od"
-    },
-    {
       "id": "source-41",
       "url": "https://doi.org/10.1145/3382494.3410636"
     },
@@ -194,6 +190,10 @@
     {
       "id": "source-43",
       "url": "https://metr.org/blog/2026-02-24-uplift-update/"
+    },
+    {
+      "id": "source-44",
+      "url": "https://fion.ac/jellyfish.pdf"
     }
   ],
   "assets": [
@@ -224,8 +224,8 @@
       "sha256": "1ae890f9c23827a42e7e068327c6a6ff8738c0194cab97584fd535a6b473ef42",
       "width": 1921,
       "height": 1080,
-      "alt": "Synthetic capacities: generation rises from eight to one hundred changes per week while review and integration remain at eight; the queue grows by ninety-two if every change is admitted.",
-      "caption": "Fixed-capacity illustration: uncontrolled intake grows the queue; controlled intake caps it. Spare downstream capacity would change the result.",
+      "alt": "Fixed-capacity delivery illustration: generation rises from eight to one hundred changes per week while review and integration remain at eight.",
+      "caption": "Fixed-capacity illustration, not a reproduction of the studies’ outcomes. Uncontrolled intake grows the queue; controlled intake caps it.",
       "credit": "Vitalii Oborskyi, UA Online PMDay 2026 Autumn, slide 3 (v35). [1]",
       "reviewNote": "Full-page slide 3 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
@@ -235,8 +235,8 @@
       "sha256": "ad1479a5366464b0f5f71f863700bb1071867d6ef5f90111d0f64a46e3b807ab",
       "width": 1921,
       "height": 1080,
-      "alt": "A specified transition is contrasted with a bounded response space: answer, clarify or escalate; unauthorised disclosure lies outside it.",
-      "caption": "Schematic comparison of a specified transition and an admissible response space, not a probability map.",
+      "alt": "Requirements as boundaries: a specified transition compared with a space of admissible answers, clarifications and escalations.",
+      "caption": "A specified transition and an admissible response space—not a probability map. Conventional software also has semantic requirements; model judgment makes unforeseen inputs especially important.",
       "credit": "Vitalii Oborskyi, UA Online PMDay 2026 Autumn, slide 9 (v35). [1]",
       "reviewNote": "Full-page slide 9 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     },
@@ -246,8 +246,8 @@
       "sha256": "2f13e3eabd00a27460a83169d296cfc2a8cf4b33e068d1ee22079479028c0d18",
       "width": 1921,
       "height": 1080,
-      "alt": "Model proposals pass fallible semantic checks and enforced permissions; denials, fallback, observation and authorised intervention form a control loop.",
-      "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Real human capacity and response time must be supplied and tested.",
+      "alt": "Production control loop: proposal, semantic checks, permissions, delivery, observation, intervention and safe fallback, with human authority and capacity.",
+      "caption": "Permissions, evidence, fallible semantic checks and verified intervention form one operating path. Human capacity and response time must be supplied and tested.",
       "credit": "Vitalii Oborskyi, UA Online PMDay 2026 Autumn, slide 12 (v35). [1]",
       "reviewNote": "Full-page slide 12 from Vitalii Oborskyi's v35 review deck. Source-deck and third-party credits preserved; publication rights pending."
     }

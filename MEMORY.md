@@ -1,87 +1,78 @@
 # Session memory
 
-Dated continuity, not live authority. Last verified: **2026-10-21**.
+Dated continuity, not live authority. Last verified: **2026-10-22**.
 
 ## Snapshot
 
-- R21 editorial owner is issue2, execution issue5 / Draft PR79. Base3e12e479
-  includes R20 f2dfe2c8 and concurrent performance work; main ca70a66f includes
-  PR113 controller prerequisite c4ed3dad. Revalidate live refs before further work.
-- Canonical R21 is site/publications/pmday-ai-both-sides/manuscript.en.md;
-  review/issue-2/2026-10-21-r21-review.md and r21-review-markdown.zip own its
-  editorial/export receipt. Source8f5b878c7d37; ZIPfe1393f0de20. Independent
-  review passed after three corrections. R20/R13/R18 artifacts stay historical.
-- Completed R20 source3e12e479 matrix FAIL: reader mobile TBT median204/200ms;
-  LCP2253.114/2500ms passes. Coverage36LH/72motion/24flights/120cycles/300.073ssoak.
-  Original interrupted attempts and every budget miss remain retained.
-- Immutable R20 report/raw is evidence8c5d6f1723b02bbf1d4692288558816eb08afa8a;
-  native readback/ZIP CRC/SHA receipt5d63724011cfa49c572f6e40a56e6dca17e30ec0.
-  Scope anchors remain issue5 comment6308024785 / PR79 comment6308025083.
-- Current CPU correction integrates concurrent R21 tip e8c388773ec81d8f3a727b6177cb4ceacff82d5b.
-  Four native Canvas setters and synchronous reader mount after frame assembly,
-  with independent native fallback on all admission returns, retain original limits.
-  Exact route: review/issue-5/2026-10-21-reader-cpu.md. Final results belong to the
-  existing anchors and immutable evidence; source tests alone do not admit performance.
-- Shared reader defers later figures; navigation cache/prepared snapshots remain
-  inert until adoption. Canvas reconciles actual Reduced Motion before drawing.
-  Original AST/media/dimensions, scene geometry and transitions remain intact.
-- Actual permanent staging remains R18 source283b32f/tree643304fa,
-  publicedb8d183; controller39490652746/1 and recovery are historical.
-  Its22m15s duration missed the15-minute operational target; no newer stage claimed.
+- Execution owner issue 5 / Draft PR79; editorial/publication owner issue 2.
+  Current route: review/issue-5/2026-10-22-r23-continuation.md.
+- Local integration 64cc91539196d4431cad833b9fe5252c97c29416 combines remote
+  PR79 head 36b9dec722cdcc080e02110d1cda1147fe0643cc and accepted main
+  44aef6e4d0f0cbc063a5269fa01a039c4979422e. This versioned checkpoint records
+  prepared R23 identities. Exact final commit/tree and post-commit check/preview
+  outcomes are pending here; check PR79 for the subsequent execution receipt.
+- Exact R23 PDF imported: 14 pages, 1,021,286 bytes, SHA256 dc617861409a8d22947ed0cd98ccfc20f97424a271a147b665e4c943bc8f8d0c.
+  Supplied snapshot remains SHA256 cb94c4638ad905544c34986e4c3f4cbd81886b2e39a9d31ec67d87811f4f0200.
+- Canonical R23: site/publications/pmday-ai-both-sides/manuscript.en.md;
+  SHA256 c72b646667bcd9f4cce4892522b9643485e6f0bac3a4624d7c93f545551ceeb8.
+  Edition pmday-ai-both-sides-en-review-20261021-r23-cover02;
+  semantic SHA256 afe70ea6ff2cea032fdf65386dc1fd65df31aeabca74b1f59c15078a01f71ce0.
+- Publisher validation and 26/26 focused tests pass. Separate non-implementing
+  /root/pr79_recovery_review inspected all 14 PDF pages and 227 normalized source
+  lines, with no blocking import/sync findings. Independent integration review
+  also confirms ledger/retained-byte union and unchanged canonical PR79 runtime.
+- Prepared Basic, 28 RI + 20 RI/CI tests, 2 affected SEO checks and local browser
+  smoke pass. Four site rows and five reader observations include Off/no-canvas/
+  no-JS. Review Chromium 153.0.8010.0 is not the managed hosted/performance gate.
+  Raw receipts: review/issue-5/2026-10-22-r23-prepared-evidence.json.gz.
 
 ## Decisions
 
-- Owner separately authorized R21 after the R20 review analysis. Preserve Q4
-  runtime work, historical editions and source-bound performance limits. R21
-  corrects evidence scope, pilot criteria and a dedicated GFM review rendition;
-  asset administration belongs in metadata/instructions, not reader captions.
-- Producer-input changes use explicit equivalent-byte Color bindings; browser
-  bytes/behaviour and mandatory rights checks remain unchanged. This earns no
-  new hosted performance or publication acceptance.
-- R18 same-content diagnostics separate causality from editorial changes:
-  lazy figures4202.360→2027.178ms; actual active-clone issue3377.345→2401.136ms
-  with inert cache. Those are diagnostics, not final R20 acceptance.
-- First runtime Q3 source1940cf4 failed reader LCP3376.6775ms and motion setup
-  after7 profiles. All failures, partial runs and control trials stay retained.
-- Prior independent reviewer reader_loading_review closed RF01–RF05, checked Q4
-  integration and raw matrix/archive. Resume reviewer perf_resume_review completed
-  native remote readback; R20 report/readback publication is complete.
-- R21 editorial/export work requires independent review of the actual ZIP and
-  exact-source mapped checks. Wider reader/performance acceptance still needs
-  matching browser evidence; original budgets and all samples remain unchanged.
-- Keep raw archives on the existing evidence branch, never merge that tree or
-  relax250MB RI bounds. Browser-print PDFs are regression evidence, not article
-  exports or replacement of the historical R18 compact PDF.
+- Finish the author's supplied R23 PDF/Markdown intake; do not rewrite prose or
+  regenerate an approximation of the supplied PDF. Source snapshot stays exact.
+- Canonical adaptation preserves 12 prompts, 2 tables, 36 source notes and 4 figures
+  (Cover02 and slides 03/09/12). Raw HTML becomes declared assets/GFM; subtitle
+  and note indentation normalize. One duplicate deck hyperlink becomes plain
+  text; its full wording and opening link remain. All 42 unique source URLs remain.
+- PDF has 43 unique HTTPS targets, including an organizer link absent from supplied
+  Markdown. Preserve the known artifact difference and exact originals.
+- Main integration preserves PR119 first-name copy, retained publication bytes,
+  Pillow 13 and source scheduling. Ledger union preserves 13,386 unique rows,
+  all 140 new-main rows and 9 same-disposition reason variants; no wildcard added.
+- Article remains review, rights review-pending, canonical null and source pins null.
+  No PR79 merge into main, production activation or platform posting is authorized
+  by this source-preparation checkpoint. Existing public site remains separate.
 
 ## Open work
 
-- Complete reviewed CPU candidate, exact-source checks, browser lifecycle/pixel parity
-  and one full strict performance matrix. Preserve every preparation failure/sample.
-  Independent reviewer reader_cpu_review found the early-return boot regression;
-  corrected native fallback cases pass. Final R21 source/identity review passed,
-  with71/71 tests and60/60 native Canvas parity; receipt is on the CPU review route.
-- R21 editorial/export checks passed249/249; compatibility32/32 and final
-  fixture/preview checks85/85 passed. Raw outcomes are in r21-validation-evidence.zip. Broad
-  mapped source runs hit their unchanged timeout; retain failed/partial evidence
-  and separate later bounded outcomes. No whole-profile green claim. The dated
-  R21 receipt and owner comments hold final delivery/automatic-preview results.
-- No merge, permanent staging promotion, new article PDF or platform posting is
-  authorised by this editorial revision.
-- AC08/AC11/AC12 and whole reader/editorial/rights/device/export/publication,
-  actual independent content/media release and merge gates remain open.
-  AC13/15 retain only their verified mapped scope; AC23 is historical source283.
-- Local explicit Chromium153.0.8010.0 override is not managed CI,
-  physical-device, CDN or field INP/RUM evidence.
-- Soak heap+859700B is a bounded observation, not proof of a leak or its absence.
+- Check PR79 for the subsequent execution receipt covering the final clean-source
+  policy and hosted preview. Independent source/doc/browser review has no blocking
+  findings. This pre-commit handoff cannot
+  assert its own future Git commit or workflow outcome. Revalidate live state.
+- Keep whole issue acceptance distinct from source/import/preview checks;
+  update actual checkbox dispositions only for fully demonstrated criteria.
+- Historical R20 source 3e12e479 full matrix FAIL: reader mobile TBT 204/200 ms;
+  LCP 2253.114/2500 ms PASS. Raw/report evidence 8c5d6f1723b02bbf1d4692288558816eb08afa8a
+  and readback 5d63724011cfa49c572f6e40a56e6dca17e30ec0 stay historical.
+- Existing CPU correction route: review/issue-5/2026-10-21-reader-cpu.md.
+  No new post-CPU full performance matrix has run in this R23 increment.
+  Source checks and import review do not accept current runtime performance.
+- Last recorded permanent article staging is R18/source 283b32f65f0589e85c0aa914d0990704dcf8ac38,
+  controller 39490652746/1. No current R23 stable promotion is claimed.
+- Original whole editorial/evidence/rights/device/export/independent release/
+  merge/publication gates remain open. Do not infer new whole AC ticks.
 
 ## Next session
 
-1. Fetch live issue5/PR79, scope/result anchors, refs and immutable raw links.
-2. Match exact measured source/tree/artifact/variant/browser before reusing PASS.
-3. Review canonical R21 and dated editorial/export receipt before release decisions.
-4. Continue the authorized phase; keep staging/recovery and original limits intact.
+1. Fetch live PR79, issues 5/2, refs, checks and deployment identities.
+2. Read the dated R23 continuation and artifact-directory README; verify exact
+   candidate/input hashes and distinguish pending from completed receipts.
+3. Finish the authorized remaining step with existing checks/controller and
+   substantive separate-subagent review; preserve all failed/historical evidence.
+4. Keep performance correction and publication decisions explicit and separate.
 
 ## Maintenance
 
-- Retain these five sections and120-line cap; rebuild RI after indexed edits.
-- Git-backed source and evidence stay in the same repository, not parallel copies.
+- Retain these five sections and 120-line cap; rebuild RI after indexed changes.
+- Git-backed source/evidence stay in this repository, not parallel saved copies.
+- Update this handoff with final verified source and receipts before session end.

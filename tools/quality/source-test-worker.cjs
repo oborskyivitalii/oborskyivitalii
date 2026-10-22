@@ -10,6 +10,12 @@ const priority = [
   'tests/executive.test.cjs',
   'tests/article-media.test.cjs',
   'tests/release-rights.test.cjs',
+  'tests/release-controller.test.cjs',
+  'tests/pages-migration.test.cjs',
+  'tests/site-engine.test.cjs',
+  'tests/pages-delivery.test.cjs',
+  'tests/publication-records.test.cjs',
+  'tests/staging.test.cjs',
 ];
 function runFiles(files, { parallelism = os.availableParallelism() } = {}) {
   assert.ok(Array.isArray(files) && files.length, 'selected source files required');

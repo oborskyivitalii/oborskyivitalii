@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "issue": 118,
+  "date": "2026-10-21",
+  "authorization": "Maintainer explicitly requested this exact first-name hotfix and production delivery on 21 October.",
+  "baseline": "ca70a66f340a8e804e4263c02aa9abe79a062765",
+  "scope": "Three prose fragments on Home/Research; full names, all links/claims and unrelated frozen SEO remain unchanged.",
+  "changes": [
+    {
+      "page": "index",
+      "id": "T022",
+      "intent": "Full identification stays unchanged; use Arkadiy in interaction prose",
+      "before": ", Dobkin recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.",
+      "after": ", Arkadiy recommended reading the article and added two propositions: a broader market for model-mediated software and differentiation through domain-specific runtime control architectures.",
+      "beforeSHA256": "1a777aa51c200ef49c991d322decab0f4f854b3a304e1f9d87c5fafd7fac951f",
+      "afterSHA256": "155dea89c060296624c6bfd4a6921894ff746ecbf6660329b5402a5cd71a102d"
+    },
+    {
+      "page": "research",
+      "id": "T060",
+      "intent": "Full identification stays unchanged; use Arkadiy in interaction prose",
+      "before": ", Dobkin recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.",
+      "after": ", Arkadiy recommended the article to readers building systems where model judgment has consequential effects. He emphasized runtime control and outlined two possibilities: model-mediated software could address problems previously impractical to automate, while domain- and client-specific control architectures could remain differentiating as models and generic infrastructure commoditize.",
+      "beforeSHA256": "14a7fcad9b3a9e244719d266cfd7253658dd60f09280c8b143e46197dc62d173",
+      "afterSHA256": "f1293b682066d5b04c63e8770d0e2eff95c04f729609db28c7a393e271ad21e3"
+    },
+    {
+      "page": "research",
+      "id": "T061",
+      "intent": "Full identification stays unchanged; use Arkadiy in interaction prose",
+      "before": "The published article separately credits an earlier exchange with Dobkin for helping shape the ",
+      "after": "The published article separately credits an earlier exchange with Arkadiy for helping shape the ",
+      "beforeSHA256": "56612338a1635b84255c75f4dad59a39b9e65c4eb1a1055bc9cf2e8859387b3a",
+      "afterSHA256": "38b76b2fadd00bff63f07924d05829d3039f36cadc4a851482df1b569efe3826"
+    }
+  ]
+}
