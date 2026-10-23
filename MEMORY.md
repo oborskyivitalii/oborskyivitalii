@@ -4,9 +4,9 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Active issue122: authorized finite controller bootstrap, separate PR pending; runtime PR128 remains Draft0d4fb5a.
+- Active issue122: authorized finite controller bootstrap PR130; runtime PR128 remains Draft0d4fb5a.
 - Latest measured protectedbase676e3ab6c51f2290df4c44c7d5eac49a508d02fc includes PR127 announcement and PR129 previous-production retention/rights/registry/checksum closure. Preserve them.
-- Proposal005f018e/tree8d6868, parentf02, has4technical ACCEPT receipts. Fresh676 integration and current candidate checks/reviews now required.
+- Fresh676 bootstrap77e28b2/tree04ad equals publishedf7be981d; four actual candidate roles ACCEPT, frozenlocalformat/style/lint/RI/policy PASS; code reviewer79/79 PASS. NativeCI/stage/merge pending.
 - Runtime measured3d914c6/tree350b passed nativeBasic39945405418:50modules673/673139187ms; Navigation/own and previewbuild/publish/smoke passed. Wholepreviewadmission failed unstaged.
 - Nativepackage12498540152 passes candidate but main rejects unknown family; this is a confirmed pre-upload controller dependency, not a new staging result.
 
