@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "711ed4cd692a8629df550cefca6a8bbe3a076b4c19b70d724ffe497c0b5a1dae",
+    "digest": "02dd038ac4e72e3f9be4a55ec9a93a419a22aab825d123f0c27caaa1cc6a87f3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -835,7 +835,7 @@
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
         "identity_mode": "content",
-        "sha256": "27ca320b9f959ce4ecfddb0450918f7434e8c4b1e99c6663ce20f94527ee6087"
+        "sha256": "cf41ba966f9560063b1611547f4fc9279b772b95945bdf7786364032646ae88b"
       },
       {
         "path": "review/issue-126/content-amendment.json",
@@ -6030,7 +6030,7 @@
       {
         "path": "tests/space.test.cjs",
         "identity_mode": "content",
-        "sha256": "3b8b4a8b00247a533ce82624cb1261472ff42119ac5947df7ba5fc7359ca8fbc"
+        "sha256": "9735c09de2970382de5cc9cede59b9edc53f90dbf2452a3ce5dc9df378aa82cb"
       },
       {
         "path": "tests/staging-gate.test.cjs",
