@@ -2089,7 +2089,8 @@
         "tests/content.test.cjs",
         "tests/executive.test.cjs",
         "tools/check_site_seo.cjs",
-        "review/issue-126/content-amendment.json"
+        "review/issue-126/content-amendment.json",
+        "tools/quality/secrets-reviewed-checksums.json"
       ]
     }
   ]
