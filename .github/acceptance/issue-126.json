@@ -28,8 +28,8 @@
     {
       "id": "AC04",
       "intent": "Isolated production delivery",
-      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
-      "checks": ["EVENTS"],
+      "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates. RETENTION verifies the frozen previous-release reference and maintained/generated immutable bytes, not future hosted or legal acceptance.",
+      "checks": ["EVENTS", "RETENTION"],
       "gates": ["DELIVERY"]
     },
     {
@@ -63,6 +63,10 @@
     "PUBLIC-CHECKSUMS": {
       "kind": "unittest",
       "test": "test_issue126_acceptance.Issue126AcceptanceTests.test_exact_public_checksums_and_predecessor"
+    },
+    "RETENTION": {
+      "kind": "unittest",
+      "test": "test_issue126_acceptance.Issue126AcceptanceTests.test_previous_production_retention_and_checksum_provenance"
     }
   },
   "gates": {
