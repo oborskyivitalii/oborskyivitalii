@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "02dd038ac4e72e3f9be4a55ec9a93a419a22aab825d123f0c27caaa1cc6a87f3",
+    "digest": "391e6a71640445d74f83c0ec38d2aef0e1d6eb18988972ef19c2848730e43428",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -5800,7 +5800,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "e792f71273a05af9325f42a4ee86ac45a04c9f0b5f0c608b338b5e8fc013bcd3"
+        "sha256": "badf7de480fa7c7a5a9e6124244accd80f3cbd6b7166eaf3ae85fdac57f2d748"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -6420,7 +6420,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "7729a0a4bc964a027d7ca1fc11a2ac7f6bc3f33e8b1d2da31cacd7e6ab42da88"
+        "sha256": "a221a9d6d46cc8f0bb22cad81fcac86e6a866f06e23bacfc07ccefd5a9f12a4c"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6955,7 +6955,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "e90cfeba5a73aa0a486d3f0759f5699d94f98d90ad693302aafff07beef1e72e"
+        "sha256": "cea212e08462eeb06f996d0d5a4106e4c3aac76dbeed6343be63ad9bc8675c6e"
       },
       {
         "path": "tools/staging/reader-index.cjs",
