@@ -1084,18 +1084,44 @@ test('Python advisory reports require every unique exact pin and reject skipped 
 });
 test('npm advisory policy rejects feed failures and every stale or expanded exact reachability exception', (t) => {
   const { admitNpmAdvisories } = require('../tools/quality/scanners.cjs');
-  const exceptions = JSON.parse(
-    fs.readFileSync(path.join(root, 'tools/quality/advisory-exceptions.json'))
-  );
+  const { digest } = require('../tools/quality/artifact.cjs');
+  const fixturePackage = 'reviewed-fixture',
+    fixtureVersion = '1.2.3',
+    fixtureAdvisory = 'https://example.invalid/advisory-fixture',
+    reviewedSource = 'tools/reviewed-tool.cjs';
+  // Own the reviewed bytes: real repository policy may legitimately become stale
+  // after a dependency update or be renewed by a separate reachability review.
+  const materials = {
+    [reviewedSource]: "'use strict';\nmodule.exports = {};\n",
+    'tools/reviewed-config.json': '{"fixture":true}\n',
+    'tools/quality/toolchain/package-lock.json':
+      JSON.stringify({
+        lockfileVersion: 3,
+        packages: { ['node_modules/' + fixturePackage]: { version: fixtureVersion } },
+      }) + '\n',
+  };
+  const exceptions = [
+    {
+      package: fixturePackage,
+      version: fixtureVersion,
+      url: fixtureAdvisory,
+      reviewedSource,
+      reviewedSourceSha256: digest(materials[reviewedSource]),
+      reviewedMaterials: Object.fromEntries(
+        Object.entries(materials)
+          .filter(([file]) => file !== reviewedSource)
+          .map(([file, bytes]) => [file, digest(bytes)])
+      ),
+      expires: '2026-11-03',
+    },
+  ];
   const exception = exceptions[0];
   const directory = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'advisory-policy-'));
   t.after(() => fs.rmSync(directory, { recursive: true, force: true }));
-  const files = [
-    ...new Set([exception.reviewedSource, ...Object.keys(exception.reviewedMaterials)]),
-  ];
+  const files = Object.keys(materials);
   for (const file of files) {
     fs.mkdirSync(path.dirname(path.join(directory, file)), { recursive: true });
-    fs.copyFileSync(path.join(root, file), path.join(directory, file));
+    fs.writeFileSync(path.join(directory, file), materials[file]);
   }
   const options = {
     projectRoot: directory,
@@ -1106,7 +1132,7 @@ test('npm advisory policy rejects feed failures and every stale or expanded exac
   const report = {
     metadata: { dependencies: { total: 1 }, vulnerabilities: { total: 1 } },
     vulnerabilities: {
-      braces: { via: [{ name: exception.package, url: exception.url }] },
+      [fixturePackage]: { via: [{ name: exception.package, url: exception.url }] },
     },
   };
   assert.equal(admitNpmAdvisories(report, options).findings, 1);
@@ -1137,10 +1163,10 @@ test('npm advisory policy rejects feed failures and every stale or expanded exac
       value.metadata.vulnerabilities.total = -1;
     },
     (value) => {
-      value.vulnerabilities.braces.via[0].url = 'https://example.invalid/new-advisory';
+      value.vulnerabilities[fixturePackage].via[0].url = 'https://example.invalid/new-advisory';
     },
     (value) => {
-      value.vulnerabilities.braces.via = ['unresolved-chain'];
+      value.vulnerabilities[fixturePackage].via = ['unresolved-chain'];
     },
   ]) {
     const changed = structuredClone(report);

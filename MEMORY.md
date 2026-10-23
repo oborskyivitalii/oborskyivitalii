@@ -17,7 +17,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Open work
 
-- T05 PR133 delivery is in progress on work/issue-122-t05-admission. It was returned to Draft for dependency correction; all four roles ACCEPT corrected ab1870a/tree d4ebe48. The live PR owns latest head/state/native delivery; review/issue-122/2026-10-23-t05-review.md records exact source acceptance and historical c3a evidence.
+- T05 PR133 delivery continues on work/issue-122-t05-admission. Four roles ACCEPT fixture correction143746a/tree80c2183, reusing accepted admission/dependency scope. Exact clean selected696/696 PASS153788ms; module28, RI Node87, format/lint/RI/coupling/owning PASS. PR was returned Draft during correction; live PR owns latest head/state/native evidence and review/issue-122/2026-10-23-t05-review.md preserves exact history.
 - Corrected clean-source selected696/696 PASS159517ms within180000ms; focused16/16, Basic24, full lint/format, RI20/20, coupling17 and owning5/5 PASS. Original374 reproduced exactly3/3 new fault failures; current corrections pass. Factual receipt/derived RI refresh preserves reviewed executable bytes.
 - First owner40035143008/1 FAILED advisories only (25/26guardsPASS). Compatible Puppeteer25.16/Bidi157/Zod4.6.7 closure plus filelock4.2.1 is reviewed; fresh install, complete npm/Python graphs91/147/four records, toolchain9/9 and exact-source full audit/security/lint PASS. Raw audits zero; ledgers unchanged. Fresh native Lighthouse/full staging/admission/merge/postmerge are required and tracked in PR133; no App setup or whole AC completed.
 
