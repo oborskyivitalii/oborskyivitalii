@@ -15,7 +15,7 @@
       "id": "AC02",
       "intent": "Existing presentation and source ownership",
       "automated_scope": "Bounded source tests verify DevCon public facts, exact prior inventory, generated identity and named source guards only. They do not establish editorial, visual, independent, hosted, publication or chat delivery gates.",
-      "checks": ["EVENTS", "BASIC", "STYLE", "CURRENT-RI", "RI-CI"],
+      "checks": ["EVENTS", "BASIC", "STYLE", "CURRENT-RI", "RI-CI", "PUBLIC-CHECKSUMS"],
       "gates": ["VISUAL"]
     },
     {
@@ -59,6 +59,10 @@
     "RI-CI": {
       "kind": "unittest",
       "test": "test_ri_ci.RICICouplingTests.test_current_repository_map_and_ci_routes"
+    },
+    "PUBLIC-CHECKSUMS": {
+      "kind": "unittest",
+      "test": "test_issue126_acceptance.Issue126AcceptanceTests.test_exact_public_checksums_and_predecessor"
     }
   },
   "gates": {
