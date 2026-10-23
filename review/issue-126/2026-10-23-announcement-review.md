@@ -88,3 +88,20 @@ All four roles independently inspected9d0caafc32ca2c7bd5ab545955d8abd6aa066bd8/t
 requirements PASS (same intent/AST/routes); code PASS (same AST, canonical format and actual isolated Ruff passed); white-box PASS (exact scanner-style Ruff, map verification and RI freshness passed); exploratory confirmed no workflow/site/docs delta and unchanged browser fingerprint, retaining previous actual observations and limits. No blocking findings.
 
 Full actual local lint on this exact clean correction passed: ESLint, Stylelint and Ruff;250 scanned files; no warning or engine failure. Receipt-only source refresh retains that unchanged executable scope. Hosted final Basic/source/smoke/staging and release remain required; do not use earlier failed runs as acceptance.
+
+## Bounded source-worker experiment after actual timeout
+
+Actual Basic39921899883 failed ETIMEDOUT at the unchanged180000ms limit. Artifact12488200888 retains47 selected modules,511 completed observations and no final accounting. No assertion failure was observed in that incomplete prefix; it is not a complete pass. Summed case durations516s are wall durations, not CPU work. Space alone has55 observed cases summing172.885s, so increased contention can offset throughput gains; hosted performance remains a hypothesis.
+
+Preimplementation /root/requirements and /root/whitebox independently reviewed the actual worker, raw artifact and scope. The dated issue amendment authorizes only an execution-efficiency correction withinAC02/AC03: identical selected module set, assertions, process isolation, strict final accounting/failures,180s/16MiB limits and signal cleanup. No coverage removal or timeout increase.
+
+Candidatebce9d9c8d421ca93bab33dd431f27cbcdfa4a4e4/treee1f4906591c091c8983a441a6c24b3059fad532a uses configured parallelism instead of reserving one slot for the reporting parent. Priority testing explicitly injects one worker. A separate six-module fixture requires four overlapping active children, caps observed count at four, accounts all six once and leaves no markers.
+
+Completed independent receipts:
+
+- Requirements PASS: actual delta matches dated scope, five scheduling/failure/signal/capacity cases passed; actual hosted performance remains required.
+- Code PASS: independent7/7 including timeout/source-mutation and termination subcases; canonical format/diff whitespace passed; isolation, selected set and limits unchanged.
+- White-box PASS:5/5 cases; the new capacity fixture run against actual old allocation correctly failed the four-slot barrier. New allocation reaches four and never exceeds four; abort/accounting unchanged.
+- Exploratory PASS: independently executed7/7 operator cases with no skips,4.32s; actual CLI plan retains47 modules and180s/16MiB plus existing report grace. No site/docs delta, prior browser observations/fingerprint remain applicable. Plan is not execution evidence.
+
+Actual complete local lint passed on this correction:250 files, ESLint/Stylelint/Ruff successful. Current earlier preview39921899885 hosted smoke passed at1440/390 with unchanged public bytes. The new worker source still needs its own exact-head CI and staging execution. It must not be merged or described as a demonstrated performance fix until complete current-source accounting fits the original elapsed bound.
