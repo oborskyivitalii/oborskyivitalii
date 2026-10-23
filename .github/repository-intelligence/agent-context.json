@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "851c3f84bbd336180d99321ec2b3b198766fb0ca068d5ba33da0eee28d8bea32",
+    "digest": "a17ebe840114cb48a249000fb9159caa532a5e6d5a4a5ff086ead719ab8c2a9d",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -72,7 +72,7 @@
       {
         "path": ".github/acceptance/issue-122.json",
         "identity_mode": "content",
-        "sha256": "121692ef8e7009608ee30ec6542fcf8fc0f12df9bbb90ac9f7a20f5a574cf37f"
+        "sha256": "c6dea7c0e908d2a10a0cb640e7935aeb6f24c2f693d678fc0121a5b24bfd34d8"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -201,7 +201,7 @@
       {
         "path": ".github/ri-ci-map.json",
         "identity_mode": "content",
-        "sha256": "7377372e1505d08e114d8ee1ee48fc60def0580cf3e58f984ed1d51c250a24ab"
+        "sha256": "08e6fbff513c1d7326e83908368cb4c2d857c3bb936b7b5e2e80eed06b60b948"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -331,7 +331,7 @@
       {
         "path": "MEMORY.md",
         "identity_mode": "content",
-        "sha256": "cfb3cde3c048d1a98324eb899e0c452e8f033faaa4a90342106296c653d4b1b3"
+        "sha256": "04b77ff02d24fd1a36155c95c144d1846d71151c38ee1096baa03c9070f67b0c"
       },
       {
         "path": "NOTICE.md",
@@ -835,7 +835,7 @@
       {
         "path": "review/issue-122/2026-10-23-t03-review.md",
         "identity_mode": "content",
-        "sha256": "b8c06c7f651ae3d5a579f123c27cafa357ec6b633f026abdf611354728703996"
+        "sha256": "a74dfd7081f860c9e644765f500129338df23e5d032f2fe55b9bef6ddd236214"
       },
       {
         "path": "review/issue-126/2026-10-23-announcement-review.md",
@@ -5805,7 +5805,7 @@
       {
         "path": "tests/color-motion-contract.test.cjs",
         "identity_mode": "content",
-        "sha256": "4cb9dbaac9fa37a258d3242ceacaaa09946362f4aba65f2e6bbce6bd4d545b05"
+        "sha256": "b0b7a7117625b66d0214e7ffa06c9a2e2648e45e588639a142eabcd559c5ac95"
       },
       {
         "path": "tests/content-migration.test.cjs",
@@ -5855,7 +5855,7 @@
       {
         "path": "tests/fixtures/publication-records.cjs",
         "identity_mode": "content",
-        "sha256": "b8bf29022b8e5295deab65ebb52c9613608498e50f20edf8d5207505acda8bed"
+        "sha256": "0385c899290281b7b4ed759f06ed71e523eaea682304b2f4b2dd5382019a759f"
       },
       {
         "path": "tests/fixtures/reader-staging-gate.json.gz",
@@ -5990,7 +5990,7 @@
       {
         "path": "tests/release-controller.test.cjs",
         "identity_mode": "content",
-        "sha256": "352732763e82805883ef14b901d93c24d8a8a67f2e6f070bcc9c0f1a1e5629d2"
+        "sha256": "6289750b976fe0d9eb906dd38f65ee141b8dc0074a865a0d4452323f68b61c7c"
       },
       {
         "path": "tests/release-rights.test.cjs",
@@ -6425,7 +6425,7 @@
       {
         "path": "tools/quality/color-motion-contract.cjs",
         "identity_mode": "content",
-        "sha256": "ed38db539b5ba7bee5fdadec7b380f07736fd000fb98e15b23824d1b353c1424"
+        "sha256": "a221a9d6d46cc8f0bb22cad81fcac86e6a866f06e23bacfc07ccefd5a9f12a4c"
       },
       {
         "path": "tools/quality/common.cjs",
@@ -6960,7 +6960,7 @@
       {
         "path": "tools/staging/package.cjs",
         "identity_mode": "content",
-        "sha256": "e90cfeba5a73aa0a486d3f0759f5699d94f98d90ad693302aafff07beef1e72e"
+        "sha256": "cea212e08462eeb06f996d0d5a4106e4c3aac76dbeed6343be63ad9bc8675c6e"
       },
       {
         "path": "tools/staging/reader-index.cjs",

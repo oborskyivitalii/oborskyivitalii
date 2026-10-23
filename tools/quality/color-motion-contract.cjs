@@ -272,6 +272,13 @@ const runtimes = [
     fingerprint: 'b5574a8dfb5c2c08eca0ed253aeda05e8d0fd3b2cbd69360fcf880436a0c6803',
     styles: 'b1806c4d615b073dab84b07c2e216da08a017c3c3fc645b155cf16756bc00a91',
   },
+  {
+    id: 'issue122-reading-batch-production',
+    family: 'issue122ReadingBatch',
+    edition: 'production',
+    fingerprint: '3434d837588d950585ae419c407f95043a6a6920eaf9ebec9b08873ad8c6228a',
+    styles: 'ecb7d4f77389e55b23c4fe63ed91258428fb8b28a895068c210cfba99ca1ba8c',
+  },
 ];
 function reviewedRuntime(id) {
   const runtime = runtimes.find((item) => item.id === id);

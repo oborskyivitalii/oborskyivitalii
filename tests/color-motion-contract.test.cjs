@@ -22,21 +22,27 @@ function manifest(id) {
       value.files[file] = { raw: 5000, gzip: 1000, sha256 };
   return value;
 }
-test('reading batch records bind actual generated plain/staging bytes and reject tampering', () => {
+test('reading batch records bind actual generated edition bytes and reject tampering', () => {
   const fs = require('node:fs'),
     os = require('node:os'),
     path = require('node:path'),
     crypto = require('node:crypto'),
     artifact = require('../tools/quality/artifact.cjs'),
     authoredColor = require('../tools/staging/color.cjs'),
-    edition = require('../tools/staging/edition.cjs');
+    edition = require('../tools/staging/edition.cjs'),
+    productionEdition = require('../tools/release/edition.cjs'),
+    pkg = require('../tools/staging/package.cjs');
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'reading-contract-'));
   try {
     artifact.build(path.join(directory, 'plain'));
     authoredColor.build(path.join(directory, 'plain'));
     fs.cpSync(path.join(directory, 'plain'), path.join(directory, 'staging'), { recursive: true });
     edition.build(path.join(directory, 'staging'));
-    for (const name of ['plain', 'staging']) {
+    fs.cpSync(path.join(directory, 'plain'), path.join(directory, 'production'), {
+      recursive: true,
+    });
+    productionEdition.build(path.join(directory, 'production'), 'color');
+    for (const name of ['plain', 'staging', 'production']) {
       const root = path.join(directory, name),
         publicDir = path.join(root, 'public'),
         actual = JSON.parse(fs.readFileSync(path.join(root, 'artifact.json'))),
@@ -54,6 +60,12 @@ test('reading batch records bind actual generated plain/staging bytes and reject
       }
       assert.equal(motion.select(actual).id, reviewed.id);
       assert.equal(motion.flightCheck(actual), 'blockFlight');
+      assert.equal(pkg.publicationRequired(actual, actual.components), true);
+      assert.throws(
+        () => pkg.publicationRights(publicDir, actual),
+        /licensed publication rights record required/
+      );
+      if (name === 'production') assert.equal(productionEdition.verify(root, actual), true);
       for (const alias of [
         'navigation.js',
         'runtime/' + actual.variant.fingerprint + '/navigation.js',
@@ -71,9 +83,10 @@ test('reading batch records bind actual generated plain/staging bytes and reject
         indexable: true,
         origin: 'https://vitaliioborskyi.ai',
       };
+      if (name === 'production') production.edition.origin = 'https://unreviewed.invalid';
       assert.throws(() => motion.select(production), /edition differs/);
     }
-    assert.throws(() => motion.reviewedRuntime('issue122-reading-batch-production'));
+    assert.throws(() => motion.reviewedRuntime('issue122-reading-batch-unknown'));
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
@@ -281,6 +294,7 @@ test('production Color has a separate exact edition identity with unchanged appr
     'issue39-licensed-compact',
     'issue39-writing-tbt',
     'issue39-css-clock',
+    'issue122-reading-batch',
   ]) {
     const plain = motion.reviewedRuntime(family + '-plain'),
       production = motion.reviewedRuntime(family + '-production');
@@ -340,6 +354,7 @@ test('unknown, conflicting, mixed or merely marked runtime identities fail befor
     'issue39-licensed-compact-production',
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
+    'issue122-reading-batch-production',
   ]) {
     for (const mutate of mutations) {
       const value = manifest(id);
@@ -403,6 +418,7 @@ test('reviewed fixed-block tuples reject mixed bytes and editions in canonical a
     'issue39-licensed-compact-production',
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
+    'issue122-reading-batch-production',
   ]) {
     for (const name of ['theme.js', 'space.js', 'navigation.js', 'styles.css']) {
       const previous = motion.reviewedRuntime(
@@ -447,6 +463,7 @@ test('licensed contracts reject every missing or substituted canonical and immut
     'issue39-licensed-compact-production',
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
+    'issue122-reading-batch-production',
   ]) {
     const runtime = motion.reviewedRuntime(id);
     for (const name of Object.keys(runtime.files))
@@ -476,6 +493,7 @@ test('full Color aggregation preserves all twelve engine, viewport and theme cel
     'issue39-licensed-compact-production',
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
+    'issue122-reading-batch-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1),
@@ -547,6 +565,7 @@ test('reviewed report guard branches reject wrong planes, moving reading cameras
     'issue39-licensed-compact-production',
     'issue39-writing-tbt-production',
     'issue39-css-clock-production',
+    'issue122-reading-batch-production',
   ]) {
     const value = evidence(id),
       report = value.reports.at(-1);

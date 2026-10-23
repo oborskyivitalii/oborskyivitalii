@@ -24,7 +24,7 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 - R01-R04 actual checkboxes pending whole evidence; T03.3/.5 and all wholeAC01-AC08 remain open. AC05 producer enforcement remains unresolved beforeW3.
 - Current tests observe post-cleanup values, no geometry reads after per-unit writes, fresh second events, exact fold/bottom/focus/hidden outcomes and preserved forward six-slot queue.
-- Final helper extraction preserves cleanup/order and removes new complexity debt without waiver. Exact generated Color plain/staging records and real artifact/tamper tests require four new delta reviews and fresh CI before one owner stage.
+- Integrated4e306/5181 source route completed673:661pass/12fail (no timeout), exposing production tuple and default licensed-rights inventory omissions. Necessary exact3-edition/3licensed-ID closure is approved by independent preflight; corrected four-role reviews, full source/native CI and stage remain.
 - T03-D is complete historical diagnosis: run39936698976/1 atclean a7cb083/f904, artifact12493464462 SHA840715314523c2a3506d8de546051c187aee65018aae60b424683570c4d82f17.
 - Ordinary diagnostic TBT123/245/123/100/97.5ms; separate sampled330.5ms. FullGate/performanceAcceptance false; no gate cleared.
 - All6 and failed hosted traces showed82 style+82 layout passes at canonical armReading viewport read. Correction sufficiency is not established until actual changed-source validation.
