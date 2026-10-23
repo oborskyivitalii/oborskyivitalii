@@ -631,18 +631,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb": {
-      "kind": "directory",
-      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/13609512e7913f036f6181d4109cd767349c90f05721e99182a67be58ec1d8cb/talks.html": {
-      "kind": "file",
-      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60": {
       "kind": "directory",
       "purpose": "Generated public output identity directory; owned by the site producer.",
@@ -9268,6 +9256,48 @@
     "review/issue-122/2026-10-22-t02p-review.md": {
       "kind": "file",
       "purpose": "Issue122 approved T02-P dependency repair, exact compatibility evidence, independent quality-role reviews and delivery boundaries.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    ".github/acceptance/issue-126.json": {
+      "kind": "file",
+      "purpose": "Issue126 observable announcement acceptance with separate independent, hosted and release gates.",
+      "role": "configuration",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f/talks.html": {
+      "kind": "file",
+      "purpose": "Generated DevCon Talks snapshot; regenerate from canonical content/template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-126/content-amendment.json": {
+      "kind": "file",
+      "purpose": "Issue126 source-bound DevCon announcement review, factual provenance and exact reversible content delta.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "tests/test_issue126_acceptance.py": {
+      "kind": "file",
+      "purpose": "Owning issue126 adapter for DevCon public facts, prior-event preservation and bounded source checks.",
+      "role": "test",
+      "owner": ".github/ACCEPTANCE.md"
+    },
+    "review/issue-126": {
+      "kind": "directory",
+      "purpose": "DevCon announcement source and review evidence.",
+      "role": "history",
+      "owner": "CONTRIBUTING.md"
+    },
+    "docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f": {
+      "kind": "directory",
+      "purpose": "Generated DevCon Talks source snapshot.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-126/2026-10-23-announcement-review.md": {
+      "kind": "file",
+      "purpose": "DevCon announcement source-bound independent review, findings, QA cases and delivery status.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
     }
