@@ -139,6 +139,123 @@ or alternate release mechanism. A revised design needs separate maintainer
 approval **and still needs the actual AC05 proof**; approval does not waive it.
 The existing delivery process remains in force while that requirement is open.
 
+### T05 preparation: isolated issuer and full-route snapshots
+
+Issue122 T05 prepares `delivery-admission.cjs`, its separate App issuer adapter
+and `change-admission.yml`. They do not replace any current required check or
+activate repository/content lanes. The report always retains false merge/deploy/
+reuse authority. A configured dedicated App may issue a **snapshot** result;
+the Actions jobs have different names and cannot substitute for that App.
+
+The trusted-main collector keeps controller, protected policy and candidate
+commit/tree identities separate. It reads candidate Git objects as data, without
+checking out or executing them. A closed execution inventory covers tools,
+tests, workflow/local-action/acceptance definitions and declared root execution
+configuration. Any addition/deletion/mode/content change in that inventory
+blocks this initial implementation. In particular, a correct-named successful
+no-op CI wrapper cannot authorize itself. Unsupported control changes still use
+the existing full delivery process; this prepared check is not yet required.
+It must not become required before a trusted control-repair route is proved.
+
+For unchanged execution definitions, all four current PR admission jobs and the
+complete applicable owner staging jobs remain required. The existing full source
+profile is a conservative superset of the proposed routing obligations; changed
+registry/wrapper inputs cannot erase it because they block the new snapshot.
+Source evidence uses the exact workflow ID/path, repository, PR/head, event,
+latest run and attempt-specific complete job inventory. Duplicate, missing,
+failed, neutral, skipped, cancelled, running or mixed required evidence blocks.
+This does not automate independent agent, editorial or owner decisions.
+
+The latest genuine globally serialized owner-stage execution must match the
+requested source; a newer real failed/running stage blocks an older pass.
+Only successful/skipped ordinary-comment executions whose entire trusted job
+inventory was skipped are inapplicable. A cancelled/failed or ambiguous execution,
+including a dispatch with skipped target, blocks older green. A stage
+for another PR cannot supply this PR's receipt. Optional exhaustive native/
+performance/capture branches and nonblocking status comments retain their
+existing dispositions; no extra hosted matrix or budget is introduced.
+
+The final `change-admission-receipt` job waits for candidate-executing work to
+finish, checks out only protected-main code and uploads one immutable native
+receipt. Its artifact name binds PR, source, controller, run and attempt. The
+collector requires the exact receipt job/upload step to pass, unique nonexpired
+artifact metadata and its native digest/run/controller. Artifact metadata alone
+does not identify an uploading job: the unchanged trusted workflow, successful
+mandatory upload, no overwrite and completion ordering establish that link.
+A candidate-created colliding artifact makes the real upload fail; it cannot
+supply acceptance. The bootstrap PR cannot supply this new receipt until the
+controller is on main; actual native acceptance remains a separate open proof.
+
+Freshness means the observed head/base/policy/evidence vector agrees across
+collection and the final snapshot. Publication is globally serialized and never
+cancels a running issuer. `workflow_run.in_progress` and `completed` refresh
+source/owner outcomes; `requested` alone would miss reruns. Main pushes refresh
+open PRs; the owner can post exactly `/admit` or dispatch a PR number from main.
+An older evaluation cannot overwrite a newer observed result in that serialized
+route. **Asynchronous delivery does not prove synchronous revocation:** a prior
+green can remain before an event is handled, or when App authentication is
+unavailable. This is an unresolved AC05/06 activation condition, not a guarantee
+of a zero stale merge window. The original three requirements remain mandatory.
+
+#### Exact proposed App setup and bounded proof
+
+Do not apply this credential/configuration proposal without its explicit owner
+decision. T05 approval already permits reversible code/test preparation.
+
+1. Register a private App, suggested name `oborskyi-change-admission` (availability
+   unverified), with this repository as homepage and no webhook receiver. Grant
+   only repository Checks:write, Commit statuses:write and implicit Metadata:read;
+   install it only into this repository. No content, PR, deployment or admin
+   write permission and no paid/external controller service is needed.
+2. Create environment `change-admission` with selected **branch** exactly `main`,
+   no tag rule and administrator bypass disabled. Read back those restrictions.
+   A ref filter is not a workflow allowlist: all secret-consuming code still
+   needs review. Never execute candidate code, local actions, dependency hooks
+   or candidate caches in that job.
+3. Put the private key only in environment secret
+   `CHANGE_ADMISSION_APP_PRIVATE_KEY`; put numeric nonsecret App/installation IDs
+   in environment variables `CHANGE_ADMISSION_APP_ID` and
+   `CHANGE_ADMISSION_INSTALLATION_ID`. Never put the key in chat or an ordinary
+   repository secret. Verify the installation and distinct numeric App identity.
+4. Set repository variable `CHANGE_ADMISSION_ENABLED=true` **last**, after the
+   reviewed controller reaches main and setup is verified. Until then, the
+   configuration observation explicitly says not configured; no App result is
+   issued and the environment/credential job is not requested.
+5. Separately approve an isolated `probe/issue-122-change-admission` target and
+   exact temporary rule requiring `Change admission` from that numeric App,
+   strict up-to-date comparison and no bypass. The collector and staging still
+   accept **main-target PRs only**. For an executable SHA-binding proof, create
+   two harmless verification PRs sharing exactly the same head SHA: one targets
+   main and follows the complete existing source/preview/owner-stage/admission
+   route; the other targets the isolated branch initially at the same main SHA.
+   Put `Refs #122` in both bodies. No merge into main occurs during this proof.
+   The genuine App result is produced for the main-target PR; GitHub consumes
+   that same SHA-bound check at the isolated target. Satisfy other applicable
+   rules and retain native denial for missing check/same-name Actions green,
+   then genuine acceptance/merge into the isolated branch. Wrong-evidence,
+   cancellation/attempt/head/main probes must still return blocking results.
+6. Record exact refs/rules/native outcomes, final staging identity and recovery
+   artifacts before closing the main-target verification PR unmerged. Remove
+   only the temporary isolated rule/ref; retain the tested source and receipts.
+   Do not relabel the accepted staging source or claim rollback without a real
+   CI recovery. Main's original three requirements stay intact throughout.
+
+That isolated proof establishes App/SHA binding at the tested target, not
+per-PR policy enforcement or synchronous freshness on main. It does not prove
+that the collector accepts a probe-base PR; that path deliberately rejects.
+Unsupported control changes, asynchronous freshness and a protected migration/
+recovery route must be resolved before the later authoritative lane transition.
+App registration, setup and native proof are not established by unit fixtures.
+
+If source work is running, wait for it. Correct failed work and use the existing
+full staging retry route, then owner `/admit`; never mix attempts. If issuance is
+interrupted, restore the environment-only key/installation or event route and
+repeat `/admit` from current main. Inspect the named controller run and retained
+blocking diagnostics. The adapter uses a repository-scoped short-lived token,
+revokes it after use and never falls back to the Actions identity. Missing or
+failed setup is not an authoritative pass. This preparation does not authorize
+changing protection as a recovery shortcut.
+
 ## Deployment flow
 
 Custom-domain production planning is in [SITE-PRODUCTION](SITE-PRODUCTION.md).

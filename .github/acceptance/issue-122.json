@@ -35,7 +35,7 @@
     {
       "id": "AC05",
       "intent": "Admission cannot exempt itself or accept an impersonated or invalid result",
-      "automated_scope": "T02 records the live ruleset and official platform capability disposition, without changing an admission producer, workflow or protection. No automated check here proves same-name wrong-producer rejection at the protected merge boundary; AC05 remains unresolved.",
+      "automated_scope": "T05 prepares a disabled dedicated App issuer and trusted-main full-route snapshot. Permanent selected Node regressions exercise execution-definition no-op rejection, attempt-specific API accounting, independent staging receipt/collision and snapshot/issuer failures. No fixture proves actual App installation, protected source binding, native receipt execution or synchronous freshness. Whole AC05 remains unresolved; original three required checks stay mandatory.",
       "checks": [],
       "gates": ["TRUST"]
     },
@@ -56,7 +56,7 @@
     {
       "id": "AC08",
       "intent": "Source-bound delivery, complete lane outcomes, documentation and measured result",
-      "automated_scope": "Current catalog/RI freshness and coupling checks establish their mechanical subsets. T03 delivery is recorded at main e6ee496 with actual tested/merged complete-tree proof. T04 current-source observation/CI/staging/eligible admission/protected merge/postmerge and four independent roles remain external evidence. Whole real cheaper-lane outcomes and queue/setup/execution savings remain pending. T04-P PR132 merged asbab166e with exact reviewed treea35 under the explicitly approved one-off Staging-only exception; complete original strict protection was immediately restored. Separate manual infrastructure identity matched prior accepted staging, while ordinary postmerge staging identity remained failed. PR131 now integrates that main and requires fresh original T04 delivery evidence.",
+      "automated_scope": "Delivered T04/PR131 actual main a585c74/treefd6 and final source-bound receipts are recorded in issue122. T05 currently prepares a disabled full-route snapshot and isolated issuer under existing source/profile/style/RI checks. Current-source independent reviews, normal full delivery, actual new native receipt, App setup and protected probe remain external evidence. No cheaper lane or measured savings is established.",
       "checks": ["CURRENT-RI", "RI-CI"],
       "gates": ["DELIVERY", "MERGED"]
     }
@@ -102,7 +102,7 @@
     },
     "TRUST": {
       "kind": "human",
-      "description": "Revalidate and source the actual ruleset/producer capability. T02 may document unresolved enforcement, but W3 activation requires actual trusted evaluator and producer identity at the protection boundary: candidate policy/wrapper changes cannot exempt or impersonate admission; reject same-name foreign producers, wrong source/run/attempt and missing/failed/skipped/cancelled/stale required evidence, with explicit inapplicability and no Pending deadlock. Revised-design approval cannot waive AC05 proof."
+      "description": "T05 unit/API/real-Git preparation is not actual protection proof. Independently authenticate installed dedicated App, environment-only credential isolation, unchanged trusted execution definitions, complete current run/attempt evidence, independent same-attempt native staging receipt, exact protected wrong-App rejection, lifecycle/recovery and the unresolved asynchronous freshness boundary. Preserve current3checks and no bypass; cheap lanes and main transition stay inactive."
     },
     "PROVENANCE": {
       "kind": "human",
