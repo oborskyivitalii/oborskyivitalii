@@ -79,3 +79,12 @@ Four-role correction source3f8f1f37fb402d5b07128b52fc22d33697932ea8, treeb65d9e2
 - /root/exploratory: independently inspected actual delta; no docs/site change and same Talks fingerprint, so previous actual browser observations remain applicable. Corrected hosted execution remains not observed until new CI runs.
 
 Full maintained formatter passed with changed:[]; no budget, source test, scanner, review or staging gate was weakened. Final corrected CI/staging/production evidence belongs to the PR/issue conversation after this immutable source, rather than self-referential source updates during deployment.
+
+### Final isolated-Ruff spacing receipt
+
+Corrected hosted acceptance39921480344/39921552855 and navigation39921480342 passed. Basic39921480479 reached lint and found isolated Ruff I001 on one extra blank import separator in the new test adapter. Applied the exact single-line removal; no AST, oracle, policy, workflow or public change.
+
+All four roles independently inspected9d0caafc32ca2c7bd5ab545955d8abd6aa066bd8/tree147477a2b11395b6893b09847940a0f484933f83:
+requirements PASS (same intent/AST/routes); code PASS (same AST, canonical format and actual isolated Ruff passed); white-box PASS (exact scanner-style Ruff, map verification and RI freshness passed); exploratory confirmed no workflow/site/docs delta and unchanged browser fingerprint, retaining previous actual observations and limits. No blocking findings.
+
+Full actual local lint on this exact clean correction passed: ESLint, Stylelint and Ruff;250 scanned files; no warning or engine failure. Receipt-only source refresh retains that unchanged executable scope. Hosted final Basic/source/smoke/staging and release remain required; do not use earlier failed runs as acceptance.
