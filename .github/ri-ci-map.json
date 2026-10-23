@@ -2,8 +2,8 @@
   "schema_version": 1,
   "review": {
     "issue": "https://github.com/oborskyivitalii/oborskyivitalii/issues/122",
-    "date": "2026-10-22",
-    "summary": "Issue122 resumes contract-only T02 on delivered T02-P while preserving current workflow/source/profile ownership, all nine inherited toolchain methods through the locked-venv route, four independent integration roles and fresh exact-source delivery gates. Both original review histories retain their identities."
+    "date": "2026-10-23",
+    "summary": "Approved T04-P routes signed-source and fail-visible Ubuntu setup fixtures through existing navigation and enduring Python suites, preserving original hosted source/profile budgets and controller authority."
   },
   "layers": [
     {
@@ -351,14 +351,17 @@
         "tests/format-parity.test.cjs",
         "tests/test_issue58_acceptance.py",
         "tools/quality/phase-checkpoint.cjs",
-        "tests/phase-checkpoint.test.cjs"
+        "tests/phase-checkpoint.test.cjs",
+        "tools/quality/ubuntu_downloads.py",
+        "tests/test_ubuntu_downloads.py"
       ],
       "checks": [
         "maintained-format-check",
         "maintained-source-lint",
         "acceptance-policy",
         "ri-freshness",
-        "ri-ci-regressions"
+        "ri-ci-regressions",
+        "ubuntu-setup-regressions"
       ]
     },
     {
@@ -560,11 +563,36 @@
       "job": "checks",
       "argv": ["node", "tools/quality/architecture.cjs"],
       "event_scope": "ready-pr"
+    },
+    {
+      "id": "ubuntu-setup-regressions",
+      "workflow": ".github/workflows/navigation.yml",
+      "job": "navigation",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_ubuntu_downloads.py"
+      ],
+      "event_scope": "ready-pr",
+      "test_selectors": [
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_sources_and_mirror_lists_preserve_signed_metadata",
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_unrelated_and_lookalike_hosts_are_preserved",
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_invalid_later_reference_does_not_modify_valid_sources",
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_symlinks_and_invalid_output_fail_before_writes",
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_production_cli_cannot_take_an_alternate_root",
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_workflow_installer_order_and_preserved_commands",
+        "test_ubuntu_downloads.UbuntuDownloadsTests.test_workflow_oracle_detects_missing_skipped_and_late_helper"
+      ]
     }
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "a8ce132d2585307ae2f4c4aa9b493fffb69df3bf8e79ce7f5c48e14e0006fe77",
+    "digest": "f050258e435fb4e7610eefa5332f4b101fd526e7466e561d11fba7b893f38f0f",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -604,7 +632,7 @@
       },
       {
         "path": ".github/acceptance/issue-122.json",
-        "sha256": "0ccc71dde9745aa3a5325bcf380be79f280dde6cee6799fbf07c82b14d7c5ec5"
+        "sha256": "0acf30f7fb34d5b3e6a27dd9add71da0fb407bf7a931c7b74875b9f240755a83"
       },
       {
         "path": ".github/acceptance/issue-126.json",
@@ -700,7 +728,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "c54b1490043414db30d5768adb771165a34ffbf80b0ac02b7d038a3fbd12a9a5"
+        "sha256": "bd10a43b24438ed7f33aa92934b536849d6328aecd3ea4e03cb0ec2d1b4ebc7f"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -708,7 +736,7 @@
       },
       {
         "path": ".github/workflows/navigation.yml",
-        "sha256": "7483e65af4d73989ca47f924ac39f4391f101ecc4e70ee6e0e0ac2893031a675"
+        "sha256": "e238caaf512fb363d9412f298c2c86b6ecb4d06919d70dbd4758fc1f8aa1212e"
       },
       {
         "path": ".github/workflows/site-browser-gate-probe.yml",
@@ -732,7 +760,7 @@
       },
       {
         "path": ".github/workflows/site-color-review.yml",
-        "sha256": "4e8095716bd36799ffdb16c9e25ace5fd8b105b34e7b8dd87ad6878d215d717d"
+        "sha256": "2f8a3b09e87436d738347e1f6a63948dc66d85f1663164abe6ea9a6dd7df2a77"
       },
       {
         "path": ".github/workflows/site-gtk-native-probe.yml",
@@ -760,7 +788,7 @@
       },
       {
         "path": ".github/workflows/site-release-checks.yml",
-        "sha256": "3430cc4a28d676ecb7f4fca843e1f0bb0a30f6d03f1cf384b9be9cb4265e9d00"
+        "sha256": "babf291d2dbabc27022e0329ef3effaf969d28de2f1ea0e3919c330ca6df9277"
       },
       {
         "path": ".github/workflows/site-runtime-checks.yml",
@@ -952,7 +980,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "ed564a56556aab9e39d9e14bf5c42487b8c44b97ebc3bc5c2b913a8f9eb88115"
+        "sha256": "6d036dc15b0f0906e95e09ffbc2143820c8339652d15ac9cb0b4d79f6f25e90c"
       },
       {
         "path": "tools/repository_intelligence.py",
