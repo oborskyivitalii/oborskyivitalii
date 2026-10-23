@@ -561,7 +561,7 @@
   ],
   "reviewed_source_identity": {
     "algorithm": "sha256-path-content-map-v1",
-    "digest": "7bf483605f27aa47d820f9d3dd6fa55d0e477230a0717f8a332d5926fdf1a7cf",
+    "digest": "deb50d2b54b826d55cc618c393bd6ca8815da54f14df9896a74f5092ea7cf8f5",
     "inputs": [
       {
         "path": ".github/ACCEPTANCE.md",
@@ -605,7 +605,7 @@
       },
       {
         "path": ".github/acceptance/issue-126.json",
-        "sha256": "fcce066ef201cdb6c922d8778dc14c090ee87209de5c27b3104ecdb8ec0b2e89"
+        "sha256": "5ecebd805ad73203e5dd387f40cd72554efc09eb09b4ce002b99ca979016f34e"
       },
       {
         "path": ".github/acceptance/issue-31.json",
@@ -697,7 +697,7 @@
       },
       {
         "path": ".github/repository-paths.json",
-        "sha256": "9f9408e48f527b3316fe71d71c79067639e5981fa1b16173d52abff27bef01b1"
+        "sha256": "fdf9a12b8f36e4739e27ff824adbdb6c50c6a58050f0247bdbec72ccbd6b0370"
       },
       {
         "path": ".github/workflows/issue-acceptance.yml",
@@ -833,7 +833,7 @@
       },
       {
         "path": "tests/test_issue126_acceptance.py",
-        "sha256": "873f261acb2f040bf97f697e8b21582c57d58c10d2749c7358d1d9003635f20b"
+        "sha256": "dbe06bd5f970e48a531889ba0da3572a3b282452ba78fe5c7c3872dba24c4efc"
       },
       {
         "path": "tests/test_issue31_acceptance.py",
@@ -949,7 +949,7 @@
       },
       {
         "path": "tools/quality/test-profiles.json",
-        "sha256": "59e006e3cfd7c2c657dffe29434d466c083c79b1cc8d71853aa5e4bb24eb565a"
+        "sha256": "ed564a56556aab9e39d9e14bf5c42487b8c44b97ebc3bc5c2b913a8f9eb88115"
       },
       {
         "path": "tools/repository_intelligence.py",
