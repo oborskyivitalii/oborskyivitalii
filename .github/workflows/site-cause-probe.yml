@@ -91,7 +91,13 @@ jobs:
           if-no-files-found: error
           retention-days: 90
   writing-current:
-    if: github.event_name == 'pull_request' && github.event.label.name == 'site-writing-current-evidence' && github.event.pull_request.number == 40 && github.event.pull_request.head.repo.full_name == github.repository
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.label.name == 'site-writing-current-evidence' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (github.event.pull_request.number == 40 ||
+       (github.event.pull_request.number == 128 &&
+        github.event.sender.login == github.repository_owner && github.actor == github.repository_owner))
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     env:

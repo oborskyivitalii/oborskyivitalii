@@ -743,14 +743,21 @@ module.exports = function () {
     cancelRoute();
     settle();
   }
-  function armReading(unit, borders, pageBottom) {
+  function readingViewport() {
+    return {
+      height: window.innerHeight,
+      scrollY: window.scrollY,
+      focus: document.activeElement,
+    };
+  }
+  function armReading(unit, borders, pageBottom, viewport) {
     const { element, record, native, visible } = unit;
     if (
       !visible ||
       readingDistance <= 0 ||
-      native.top < window.innerHeight ||
-      native.bottom + window.scrollY + readingDistance + 32 >= pageBottom ||
-      (document.activeElement && element.contains(document.activeElement))
+      native.top < viewport.height ||
+      native.bottom + viewport.scrollY + readingDistance + 32 >= pageBottom ||
+      (viewport.focus && element.contains(viewport.focus))
     ) {
       finish(element);
       return;
@@ -801,30 +808,40 @@ module.exports = function () {
       startReading(element, index, own);
     }
   }
+  function releaseUpwardEntries(entries, height) {
+    const rearming = new Map();
+    for (const entry of entries) {
+      const element = entry.target;
+      const record = records.get(element);
+      if (!record || entry.isIntersecting) continue;
+      if (entry.boundingClientRect.top >= height) {
+        clearState(element);
+        rearming.set(element, { element, record });
+      } else if (active.has(element) || pendingReading.has(element)) finish(element);
+    }
+    return rearming;
+  }
   function enter(entries, own) {
     if (own !== generation || suspended || !allowed()) return;
+    const height = window.innerHeight;
+    // Release exited states together: separator removal can change native
+    // layout/scroll anchoring before this batch measures and rearms its units.
+    const rearming = direction < 0 ? releaseUpwardEntries(entries, height) : new Map();
+    const viewport = readingViewport();
     const pageBottom = document.documentElement.scrollHeight;
+    for (const unit of rearming.values()) {
+      unit.native = unit.element.getBoundingClientRect();
+      unit.visible = unit.element.getClientRects().length > 0;
+    }
     const siblings = new Map();
     for (const entry of entries) {
       const element = entry.target;
       const record = records.get(element);
       if (!record) continue;
       if (!entry.isIntersecting) {
-        if (entry.boundingClientRect.top >= window.innerHeight && direction < 0) {
-          clearState(element);
-          const rect = entry.boundingClientRect;
-          armReading(
-            {
-              element,
-              record,
-              native: rect,
-              rect: { top: rect.top, bottom: rect.bottom },
-              visible: element.getClientRects().length > 0,
-            },
-            readingBorders,
-            pageBottom
-          );
-        } else if (active.has(element) || pendingReading.has(element)) finish(element);
+        const unit = rearming.get(element);
+        if (unit) armReading(unit, readingBorders, pageBottom, viewport);
+        else if (active.has(element) || pendingReading.has(element)) finish(element);
         continue;
       }
       if (record.done || active.has(element) || pendingReading.has(element)) continue;
@@ -867,10 +884,10 @@ module.exports = function () {
     readingDuration =
       Number.isFinite(duration) && duration >= 450 && duration <= 700 ? duration : 700;
     readingStagger = Number.isFinite(stagger) && stagger >= 0 && stagger <= 120 ? stagger : 80;
-    const scrollY = window.scrollY;
     // Batch native reads before any transient layer/state writes. The last
     // block stays steady when its moving ink/paper would grow scroll overflow.
     releaseReadingStates();
+    const viewport = readingViewport();
     const pageBottom = document.documentElement.scrollHeight;
     const measured = [...records].map(([element, record]) => {
       const rect = element.getBoundingClientRect();
@@ -907,10 +924,10 @@ module.exports = function () {
         clearState(element);
         continue;
       }
-      armReading({ element, record, native, rect, visible }, borders, pageBottom);
+      armReading({ element, record, native, rect, visible }, borders, pageBottom, viewport);
       observer.observe(element);
     }
-    previousY = scrollY;
+    previousY = viewport.scrollY;
   }
   function deferReconcile() {
     window.clearTimeout(reconcileTask);

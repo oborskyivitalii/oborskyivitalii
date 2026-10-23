@@ -465,6 +465,163 @@ test('exact Git refs must match real checkout and contain no shell-like or symbo
   f.write('unknown-extension.js', 'changed\n');
   assert.throws(() => runner.requireClean(f.directory), /clean checkout/);
 });
+function gitChangeFixture(t) {
+  const f = fixture(t);
+  const git = (...args) =>
+    cp.execFileSync('git', args, { cwd: f.directory, encoding: 'utf8' }).trim();
+  git('init', '--quiet');
+  git('config', 'user.name', 'Fixture');
+  git('config', 'user.email', 'fixture@example.invalid');
+  const commit = () => {
+    git('add', '.');
+    git('commit', '--quiet', '-m', 'controlled change');
+    return git('rev-parse', 'HEAD');
+  };
+  return { ...f, git, commit };
+}
+test('real Git renames retain both endpoint owners regardless of ambient rename policy', (t) => {
+  const f = gitChangeFixture(t),
+    control = 'tools/quality/budgets.json',
+    destination = 'review/issue-122/renamed.json',
+    oldHelper = 'tools/quality/writing-geometry.cjs',
+    newHelper = 'tools/quality/writing-layout.cjs',
+    baseline = new Set(f.registry.source_profiles.pr.baseline_files),
+    broad = f.registry.tests
+      .filter((row) => row.language === 'javascript' && row.lifecycle === 'permanent')
+      .map((row) => row.path)
+      .filter((file) => !baseline.has(file))
+      .sort();
+  // Compare each move independently so shared coverage cannot hide a lost owner.
+  f.write(control, '{"controlled":"shared-budget"}\n');
+  f.write(oldHelper, '// distinct targeted helper\n');
+  f.write(
+    'tools/quality/source-tests.cjs',
+    fs.readFileSync(path.join(root, 'tools/quality/source-tests.cjs'))
+  );
+  const base = f.commit();
+  fs.mkdirSync(path.dirname(path.join(f.directory, destination)), { recursive: true });
+  fs.renameSync(path.join(f.directory, control), path.join(f.directory, destination));
+  const head = f.commit(),
+    expectedPaths = [control, destination].sort();
+  for (const policy of ['true', 'false', 'copies']) {
+    f.git('config', 'diff.renames', policy);
+    const selected = f.select('pr', { base, head });
+    assert.deepEqual(selected.changedPaths, expectedPaths, policy);
+    assert.deepEqual(selected.modules, broad, policy);
+    assert.deepEqual(selected.conservativeFallback, []);
+    assert.deepEqual(selected.baselineFiles, [...baseline]);
+    assert.ok(selected.modules.every((file) => !file.endsWith('.py')));
+    assert.ok(
+      selected.modules.every(
+        (file) => f.registry.tests.find((row) => row.path === file).lifecycle !== 'task-snapshot'
+      )
+    );
+    for (const file of broad)
+      assert.ok(selected.reasons[file].includes('shared source control ' + control), file);
+  }
+  // A second comparison excludes the shared control: broad coverage cannot mask a lost owner.
+  f.git('checkout', base, '--', control);
+  fs.unlinkSync(path.join(f.directory, destination));
+  fs.renameSync(path.join(f.directory, oldHelper), path.join(f.directory, newHelper));
+  const targetedHead = f.commit(),
+    expectedModules = f.registry.tests
+      .filter((row) => row.language === 'javascript' && row.lifecycle !== 'task-snapshot')
+      .filter((row) => row.inputs.includes(oldHelper) || row.inputs.includes(newHelper))
+      .map((row) => row.path)
+      .filter((file) => !baseline.has(file))
+      .sort();
+  assert.ok(expectedModules.length > 1 && expectedModules.length < broad.length);
+  for (const policy of ['true', 'false', 'copies']) {
+    f.git('config', 'diff.renames', policy);
+    const selected = f.select('pr', { base, head: targetedHead });
+    assert.deepEqual(selected.changedPaths, [oldHelper, newHelper].sort());
+    assert.deepEqual(selected.modules, expectedModules);
+    assert.deepEqual(selected.conservativeFallback, []);
+    for (const input of [oldHelper, newHelper])
+      for (const row of f.registry.tests.filter(
+        (row) => expectedModules.includes(row.path) && row.inputs.includes(input)
+      ))
+        assert.ok(selected.reasons[row.path].includes('changed ' + input));
+  }
+  const cli = cp.spawnSync(
+    process.execPath,
+    [
+      path.join(f.directory, 'tools/quality/source-tests.cjs'),
+      '--profile',
+      'pr',
+      '--base',
+      base,
+      '--head',
+      targetedHead,
+      '--require-clean',
+      '--plan',
+    ],
+    { cwd: f.directory, encoding: 'utf8', timeout: 20000 }
+  );
+  assert.equal(cli.status, 0, cli.stderr);
+  const plan = JSON.parse(cli.stdout);
+  assert.deepEqual(
+    Object.keys(plan).sort(),
+    [
+      'profile',
+      'registry',
+      'modules',
+      'baselineFiles',
+      'baselineCommand',
+      'changedPaths',
+      'conservativeFallback',
+      'reasons',
+      'pythonRoute',
+      'taskSnapshots',
+      'status',
+      'pass',
+    ].sort()
+  );
+  assert.deepEqual(plan.changedPaths, [oldHelper, newHelper].sort());
+  assert.deepEqual(plan.modules, expectedModules);
+  assert.deepEqual(plan.reasons, f.select('pr', { base, head: targetedHead }).reasons);
+  assert.deepEqual(plan.baselineFiles, [...baseline]);
+  assert.equal(plan.pythonRoute, 'python3 tools/run_repository_tests.py');
+  assert.equal(plan.taskSnapshots, 'selected owning issue policy only');
+  assert.equal(plan.status, 'planned');
+  assert.equal(plan.pass, null);
+});
+test('real Git ordinary changes, unchanged-source copy and empty diff retain selection boundaries', (t) => {
+  const f = gitChangeFixture(t),
+    original = 'review/issue-122/original.json',
+    copied = 'review/issue-122/copied.json',
+    modified = 'review/REVIEW-TEMPLATE.md',
+    deleted = 'tools/quality/writing-geometry.cjs',
+    added = 'tools/quality/writing-layout.cjs';
+  f.write(original, '{"copy":"source remains"}\n');
+  f.write(modified, 'original template\n');
+  f.write(deleted, '// removed helper\n');
+  const base = f.commit();
+  f.write(copied, fs.readFileSync(path.join(f.directory, original)));
+  f.write(modified, 'updated template\n');
+  fs.unlinkSync(path.join(f.directory, deleted));
+  f.write(added, '// added helper, distinct contents\n');
+  const head = f.commit(),
+    expectedPaths = [added, copied, deleted, modified].sort(),
+    expectedModules = f.registry.tests
+      .filter((row) => row.language === 'javascript' && row.lifecycle !== 'task-snapshot')
+      .filter((row) => row.inputs.includes(deleted) || row.inputs.includes(added))
+      .map((row) => row.path)
+      .filter((file) => !f.registry.source_profiles.pr.baseline_files.includes(file))
+      .sort();
+  f.git('config', 'diff.renames', 'copies');
+  const selected = f.select('pr', { base, head });
+  assert.deepEqual(selected.changedPaths, expectedPaths);
+  assert.ok(!selected.changedPaths.includes(original), 'unchanged copy source is not deleted');
+  assert.deepEqual(selected.modules, expectedModules);
+  assert.deepEqual(selected.conservativeFallback, []);
+  const empty = f.select('pr', { base: head, head });
+  assert.deepEqual(empty.changedPaths, []);
+  assert.deepEqual(empty.modules, []);
+  assert.deepEqual(empty.baselineFiles, f.registry.source_profiles.pr.baseline_files);
+  assert.equal(empty.pythonRoute, 'python3 tools/run_repository_tests.py');
+  assert.equal(empty.taskSnapshots, 'selected owning issue policy only');
+});
 test('TAP accounting rejects skips, TODOs, missing, empty, duplicate, cancelled and partial successes', () => {
   assert.deepEqual(runner.accounting(tap()), {
     total: 2,

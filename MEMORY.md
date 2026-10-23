@@ -4,33 +4,33 @@ Dated continuity, not live authority. Last verified: **2026-10-23**.
 
 ## Snapshot
 
-- Active issue122: authorized finite controller bootstrap PR130; runtime PR128 remains Draft0d4fb5a.
-- Latest measured protectedbase676e3ab6c51f2290df4c44c7d5eac49a508d02fc includes PR127 announcement and PR129 previous-production retention/rights/registry/checksum closure. Preserve them.
-- Bootstrap99ac/treef42 nativeBasic220/220 and previewsmoke PASS. Stage39949313525 admission Draft-event race failed; Readyrefresh39949570573 passed. Whole39950013688 prepublication SECURITY failed on five public contract hashes beforeupload; otherguards PASS (source641/641, Python121/121, complete91pins). Exact five-row scanner correction f58e802/tree082d: four actual roles ACCEPT; localformat/style/RI/policy and maintained guards pass. Current-source nativeCI/security/newwhole stage pending; issue6364509014.
-- Runtime measured3d914c6/tree350b passed nativeBasic39945405418:50modules673/673139187ms; Navigation/own and previewbuild/publish/smoke passed. Wholepreviewadmission failed unstaged.
-- Nativepackage12498540152 passes candidate but main rejects unknown family; this is a confirmed pre-upload controller dependency, not a new staging result.
+- Issue122/PR128 originalR04 ownerstage39962246236/1 whole SUCCESS13:51:43Z. Measured cleanb467e151b6a2f9ee2d0fd7176d832c461cd5aa6f/tree8ca5855f0f0ac0d52d1dbc6696908202ed4191ff; protectedmain/controllercc67a209 unchanged.
+- Research single mobile1907.2965msLCP/40msTBT/0CLS; Writing1668.312ms/118.5ms/0 PASS original2500/200/.1. Raw2mobile JSON/traces authenticated. armReading0/0, readingViewport1/1 in both; old failed+6diagnostic armReading82/82 historical. No general performance guarantee.
+- Native26/26prepub,47modules647/647147517ms,Python121incl9,91pins/147deps/4overrides/security/advisories PASS. All7report hashes authenticated;6journeys/2navigation/10failure/7analytics/8windows/4flights/2mobile/2Color complete.
+- Stable exactb467/publicd8914729/package1480562b verified1readiness attempt; promote120450639520/controlleradmission120451235386 SUCCESS. Whole17m55s includesqueue/setup, not15min.
+- BootstrapPR130 delivered protectedmaincc67,tested8c3fa30b/treed559,stage39952774218,eligible39955383275,postmerge39955744615. PR129retained30/rights/checksum/registry closure preserved.
 
 ## Decisions
 
-- User explicitly approved separate bootstrap PR, required CI/staging/protectedmain merge, then PR128 freshbase/currentchecks/originalR04stage. Approval6364038870.
-- Finite family/3tuples/3licensedIDs/inherited guards and necessary companions. Scanner correction permits only five exact public-hash dispositions in existing secrets-publication; preserve1496priorrows and three other ledgers/PR129 closure. No runtime/content/workflow/threshold/permissions change.
-- Bootstrap owner-stage is separate from original R04 changed-runtime stage. Preserve original gates and failed evidence; no blind unchanged retry.
-- No PR128 runtime merge or production activation authorized. Issue5/PR79 remains separate.
+- Approval6364038870 permits prerequisite delivery then PR128 integration/currentchecks and its originalR04/report; no PR128 merge/production. Sole originalR04 is spent; no green-seeking retry.
+- Actual824scan5062 left180generatedpublicchecksums across29paths, source-proved into publication1681 preserving1501orderedrows/all3otherledgers. Clean finalb467 native5063candidates allreviewed; no scanner/input/limit/profile/case/budget waiver.
+- Four actual integration/correction roles plus publishedb467 metadata-delta assessments accepted. AC04 scope4344 exceeded unchanged4000 bound; approved equivalent3977 validates. Failed history retained.
+- AGENTS15 requires this postrun report/MEMORY/RI handoff. Its later report head is different from stagedb467; unchanged code cannot transfer strict admission to that new head.
 
 ## Open work
 
-- Complete exact scanner correction freshnativeCI/security then changed-source bootstrapownerstage/admission/merge/postmerge. Four actual correction roles/localchecks completed. Retain both failed attempts; no blindretry.
-- Review owner:review/issue-122/2026-10-23-t03-controller-bootstrap-review.md; runtime history remains in PR128's existing T03 review.
-- R01/R02 complete; R03/R04 and T03.3/.5/allwholeAC01–AC08 remain open. AC05 producer enforcement unresolved beforeW3.
-- Original runtime stage39923213843 failed Writing213.5/200ms; nongating T03Dordinary123/245/123/100/97.5 and sampled330.5 remain historical. No new runtime performance pass claimed.
+- Four actual independent R04 report reviews ACCEPT on2cdd/tree89aa; verbatim receipts retained. Current2cdd mapped4checks/style/format/RI/map PASS. Final report-only source/nativeCI and issue reconciliation are in livePR128/issue122; do not assume their state from this dated checkpoint. Report head remains unstaged.
+- R01–R04 scoped implementation/validation/report supported by measuredb467 and four actual report reviews; final checkbox/CI state must be read live. T03.3 current-head delivery controls,T03.5 merge/postmerge and wholeAC01–AC08 stayopen. AC05 enforcement unresolved beforeW3.
+- Canonical owner:review/issue-122/2026-10-23-t03-review.md. Authenticated originalR04 artifacts12504778622/12505461914/12506775371/12506057631/12505444643 recorded there.
+- Old Writing213.5/200ms failure and ordinary123/245/123/100/97.5 plus separate330.5 remain historical, not a pooled baseline.
 
 ## Next session
 
-1. Revalidate live issue/PR/refs/checks, no reliance on this dated memory.
-2. Finish explicitly approved bootstrap delivery without another permission request for already authorized steps.
-3. Integrate resulting freshmain in PR128, actualfour-role/currentchecks, then sole originalR04stage/report. Stop before PR128merge/production.
+1. Revalidate live main/PR/source/tree/checks/stage/reviews; this dated handoff is not authority.
+2. Verify final authorized report/check/reconciliation in liveissue/PR, distinguishing measured/report identities.
+3. Propose boundedT03.5 separately: later report head needs current stage/admission before protected merge/postmerge. No new stage,merge or production authorized here.
 
 ## Maintenance
 
-- Keep five sections and120-line cap; canonical generation only and rebuild/verify RI after indexed changes.
-- Git-backed code is not duplicated into file storage.
+- Preserve5sections/120lines and canonical RI/map freshness. Report-only iteration changes no runtime/public/test/ledger.
+- Automated maintenance removed original workspace; recoveredGit/tmp/t03r-recovered-repo,active/tmp/t03r-runtime. Pinned Node24.19/Python3.12.14/91packages in ignored paths; rawnativeZIPs/tmp/r04-*.

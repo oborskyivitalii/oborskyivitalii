@@ -142,9 +142,12 @@ reports keep `fullGate: false` and `performanceAcceptance: false`. This does not
 change ordinary staging trials, settings, cases or admission budgets. Historical
 Research/WebKit cause-probe replay stays manual and retains its original count.
 
-Issue #39 uses the separate PR #40-only `site-writing-current-evidence` label
-job in that same workflow: five ordinary fresh-process mobile/simulated Writing
-trials on one exact unchanged Color artifact, followed by one separately sampled
+Issue #39 retains PR #40's `site-writing-current-evidence` label job. The
+maintainer-approved issue #122 T03-D amendment also permits that exact opt-in
+label on same-repository PR #128 when event sender and actor are the repository
+owner. Ordinary updates and other PRs do not activate it. The job runs five
+ordinary fresh-process mobile/simulated Writing trials on one exact unchanged
+Color artifact, followed by one separately sampled
 CPU attribution. Every result, trace and network log survives; no retry or
 best-run selection. The original200ms individual budget remains; collection
 success is not performance acceptance or full/staging admission. Cleanup failure
@@ -308,8 +311,10 @@ proposed lane. An invalid input is not a conservative successful classification.
 ### Observation report fields
 
 This defines a future JSON interface, not an emitted artifact or installed JSON
-schema. The existing source selector only collects `git diff --name-only -z`;
-its plan is not this status/mode-aware report. The advisory
+schema. The existing source selector collects `git diff --no-renames --name-only -z`:
+a move retains both deleted and added paths, independent of `diff.renames` settings,
+while a copy with its source unchanged adds only the destination. It unions their
+registry-owned obligations; its plan is not this status/mode-aware report. The advisory
 `tools/site/evidence-policy.cjs` also grants no scheduling or evidence-reuse power.
 
 All fields below are required unless explicitly conditional. JSON `null` means

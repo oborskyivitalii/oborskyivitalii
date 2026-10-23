@@ -261,7 +261,7 @@
     },
     ".github/workflows/site-cause-probe.yml": {
       "kind": "file",
-      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
+      "purpose": "Explicit historical cause replay plus issue45 same-repository PR47 Writing label attribution; four source-bound private inputs, never stage or release admission. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged.",
       "role": "workflow",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -571,42 +571,6 @@
       "role": "generated",
       "owner": "site/README.md"
     },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb": {
-      "kind": "directory",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/archive.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/navigation.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/space.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/styles.css": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/runtime/d698a6c7db0821170873540183fb4443e3c84a65b1daee7f5368add4d2d7a9cb/theme.js": {
-      "kind": "file",
-      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "docs/site-revision.json": {
       "kind": "file",
       "purpose": "Generated public rendition: site-revision.json; regenerate from site sources with tools/site/build.cjs.",
@@ -616,30 +580,6 @@
     "docs/snapshots": {
       "kind": "directory",
       "purpose": "Generated exact-route HTML snapshots.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/00e9983902da0753636080176e9160e00c10db2fe9701d24d3f43b0658809d4c/writing.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60": {
-      "kind": "directory",
-      "purpose": "Generated public output identity directory; owned by the site producer.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/20770049df1b80e9ae9d71fa06268905068742dfd58f8b2dc81460013f504e60/credits.html": {
-      "kind": "file",
-      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
       "role": "generated",
       "owner": "site/README.md"
     },
@@ -6897,7 +6837,7 @@
     },
     "site/engine/scroll-entry.cjs": {
       "kind": "file",
-      "purpose": "Bounded native reading and route-block controller with one global effect control, stable shells, CSS layers, cancellation and visible fallback.",
+      "purpose": "Bounded native reading and route-block controller with one global effect control, stable shells, CSS layers, cancellation and visible fallback. Issue122 T03-R uses post-cleanup per-batch geometry/focus and behavioral read/write-order, fresh-event and forward-queue regressions.",
       "role": "source",
       "owner": "site/README.md"
     },
@@ -7455,7 +7395,7 @@
     },
     "tests/cause-probe.test.cjs": {
       "kind": "file",
-      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission.",
+      "purpose": "Adversarial cause-input, CPU evidence and four-input Writing count/identity/failure retention contracts. Issue39 PR40 current-runtime evidence: five ordinary trials plus one separate CPU sample; no admission. Issue122 T03-D adds owner-controlled exact PR128 opt-in routing with actual-expression event-boundary tests; protocol and admission remain unchanged.",
       "role": "test",
       "owner": "guides/SITE-CHECK-PROFILES.md"
     },
@@ -7725,7 +7665,7 @@
     },
     "tests/scroll-entry.test.cjs": {
       "kind": "file",
-      "purpose": "Serialized native reading-entry lifecycle, one-shot/jump/tall/cap/stagger and readable fallback behavioral contracts.",
+      "purpose": "Serialized native reading-entry lifecycle, one-shot/jump/tall/cap/stagger and readable fallback behavioral contracts. Issue122 T03-R uses post-cleanup per-batch geometry/focus and behavioral read/write-order, fresh-event and forward-queue regressions.",
       "role": "test",
       "owner": "site/README.md"
     },
@@ -8959,30 +8899,6 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
-    "docs/snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6": {
-      "kind": "directory",
-      "purpose": "Generated immutable public route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/5dd746e6ccc007fa2464072118285d240a10465eaff83b54161f49cf06a039c6/index.html": {
-      "kind": "file",
-      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/759a672c82ef8c659b92d66843e8a8f5dfff286b535e0733e3441c02d219ffa1": {
-      "kind": "directory",
-      "purpose": "Generated immutable public route snapshot directory.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
-    "docs/snapshots/759a672c82ef8c659b92d66843e8a8f5dfff286b535e0733e3441c02d219ffa1/research.html": {
-      "kind": "file",
-      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-118": {
       "kind": "directory",
       "purpose": "Issue118 first-name editorial hotfix review and source-bound evidence.",
@@ -9265,12 +9181,6 @@
       "role": "configuration",
       "owner": ".github/ACCEPTANCE.md"
     },
-    "docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f/talks.html": {
-      "kind": "file",
-      "purpose": "Generated DevCon Talks snapshot; regenerate from canonical content/template owners.",
-      "role": "generated",
-      "owner": "site/README.md"
-    },
     "review/issue-126/content-amendment.json": {
       "kind": "file",
       "purpose": "Issue126 source-bound DevCon announcement review, factual provenance and exact reversible content delta.",
@@ -9288,12 +9198,6 @@
       "purpose": "DevCon announcement source and review evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
-    },
-    "docs/snapshots/4d2f2f71a0778fab22ccf2e40c2d512126969d3d1853399a7e34c5b4120f402f": {
-      "kind": "directory",
-      "purpose": "Generated DevCon Talks source snapshot.",
-      "role": "generated",
-      "owner": "site/README.md"
     },
     "review/issue-126/2026-10-23-announcement-review.md": {
       "kind": "file",
@@ -9438,6 +9342,114 @@
       "purpose": "Issue122 T03 controller bootstrap authorization, exact finite compatibility review and source-bound staging/merge evidence.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "docs/runtime/c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7": {
+      "kind": "directory",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7/archive.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7/navigation.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7/space.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7/styles.css": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/runtime/c9d33c990c64a1559211a0dcdf4ce9d1262a4e561489e4aedb74d897623220b7/theme.js": {
+      "kind": "file",
+      "purpose": "Generated immutable current runtime or route snapshot; authored engine and compiler own its bytes.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/026421f9554e7318c8c1135a149ccdada2d8aadb0b17edf5aaf6e40711e80617": {
+      "kind": "directory",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/026421f9554e7318c8c1135a149ccdada2d8aadb0b17edf5aaf6e40711e80617/talks.html": {
+      "kind": "file",
+      "purpose": "Generated current Talks source snapshot; regenerated from canonical content and template owners.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/439b487a6327319451f5a97f15ae63b89c8c788c860276f97c52b0cbb9a0b646": {
+      "kind": "directory",
+      "purpose": "Generated immutable public route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/439b487a6327319451f5a97f15ae63b89c8c788c860276f97c52b0cbb9a0b646/research.html": {
+      "kind": "file",
+      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5b4dc2bdf512d08ca0ed3a0e6542e1f89bd76e6893ff7afc6ece0a8e8852b26d": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/5b4dc2bdf512d08ca0ed3a0e6542e1f89bd76e6893ff7afc6ece0a8e8852b26d/writing.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7d512bf35d268a7cbca084d42f8de01ed76da5e1d363c3a7905fc18bfaf6942e": {
+      "kind": "directory",
+      "purpose": "Generated immutable public route snapshot directory.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/7d512bf35d268a7cbca084d42f8de01ed76da5e1d363c3a7905fc18bfaf6942e/index.html": {
+      "kind": "file",
+      "purpose": "Generated exact-route HTML snapshot; regenerate from canonical content.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/946184a8f18584a1607d1784cb7fcb1b2f412e7e764aa3e3ede62299f77a6c21": {
+      "kind": "directory",
+      "purpose": "Generated public output identity directory; owned by the site producer.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "docs/snapshots/946184a8f18584a1607d1784cb7fcb1b2f412e7e764aa3e3ede62299f77a6c21/credits.html": {
+      "kind": "file",
+      "purpose": "Generated public route/runtime output; edit canonical site owners and regenerate.",
+      "role": "generated",
+      "owner": "site/README.md"
+    },
+    "review/issue-122/2026-10-23-t03-review.md": {
+      "kind": "file",
+      "purpose": "Source-bound T03 rename-selection requirements, four-role review, regression and delivery evidence under issue122.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
+    },
+    "review/issue-122/2026-10-23-t03r-public-checksum-proof.json.gz": {
+      "kind": "file",
+      "purpose": "Inert compressed source-bound proof of180 exact public generated checksum findings, canonical producer checks and full hashed-only detector replay input for issue122 T03-R integration.",
+      "role": "history",
+      "owner": "guides/SITE-CHECK-PROFILES.md"
     }
   }
 }

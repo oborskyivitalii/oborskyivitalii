@@ -98,6 +98,10 @@ reading-depth anchors to full visibility at its own anchor, in either direction.
 Geometry is prepared before the first flight paint; pair and restoration switches
 remove only zero-weight rooms, without exposing a room beyond the destination.
 
+Reading entry snapshots viewport geometry and focus after native-state cleanup,
+before per-unit preparation writes. Each reconciliation/upward-rearm batch uses
+fresh native measurements; no geometry or focus cache spans events.
+
 Reading entry observes existing stable semantic component shells and moves their
 direct ink children and existing paper pseudo-element with the same finite CSS
 animation. Publication rows retain their grid/filter/measurement identity; no
