@@ -9,7 +9,6 @@ from pathlib import Path
 
 from test_issue48_acceptance import node_checks
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
