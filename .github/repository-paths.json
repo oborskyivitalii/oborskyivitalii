@@ -11070,6 +11070,54 @@
       "purpose": "Dated issue120 requirements preflight, independent code/QA role evidence, test-design mapping and delivery status.",
       "role": "history",
       "owner": "CONTRIBUTING.md"
+    },
+    "review/issue-2/2026-10-23-r26-integration.md": {
+      "kind": "file",
+      "purpose": "R26 exact-source integration, independent four-role review, native artifact evidence, bounded corrections and remaining acceptance gates.",
+      "role": "history",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
+    },
+    "review/issue-2/r26-20261023": {
+      "kind": "directory",
+      "purpose": "Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "review/issue-2/r26-20261023/README.md": {
+      "kind": "file",
+      "purpose": "R26 public native-package reading instructions, figure inventory and explicit review limitations.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.md": {
+      "kind": "file",
+      "purpose": "Exact approved R26 manuscript snapshot.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.pdf": {
+      "kind": "file",
+      "purpose": "Selected R26 native review PDF generated through the repository publisher.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23_Native_Review_Kit.zip": {
+      "kind": "file",
+      "purpose": "Complete freshly generated R26 native review kit; excludes private recovery records.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "review/issue-2/r26-20261023/artifact-evidence.json": {
+      "kind": "file",
+      "purpose": "R26 native source, semantic, PDF, ZIP and complete member/producer hash evidence.",
+      "role": "history",
+      "owner": "review/issue-2/2026-10-23-r26-integration.md"
+    },
+    "site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261023-r26.json": {
+      "kind": "file",
+      "purpose": "R26 review edition binding exact approved manuscript and semantic identity, with accepted-source pins and publication rights still pending.",
+      "role": "source",
+      "owner": "guides/ARTICLE-WORKFLOW.md"
     }
   }
 }

@@ -2,7 +2,39 @@
 
 Article owner #2; publisher/execution #5 / PR79.
 
-## Current R21 scope — 21 October 2026
+## Current R26 repository integration — 23 October 2026
+
+The author requested that the approved R24–R26 work continue in existing PR79.
+The recovered R26 manuscript is the exact canonical source; preserve its argument,
+12 standalone prompts, 36 bibliography entries and qualification notes, two tables,
+four figures and 49 linked source markers. The two source31 links intentionally
+point to the book for the title discussion and the translation for the quotation.
+
+R24 clarifies how one hypothetical policy mistake propagates into implementation,
+tests and production controls, and compares AI with a simpler alternative under
+the same safety requirements. R25 incorporates selected suggestions on reader
+orientation, navigation and practical responses. R26 makes numeric references
+clickable and shortens contribution provenance and revision history.
+
+Provenance records the contributions of Maximiliano Armesto and Pasquale Langella
+and the revisions that incorporated them. It does not infer the exact version
+read, coauthorship, validation or endorsement. Retain these concise contributions
+in all equivalent LinkedIn/Medium renditions and any later shortened adaptation.
+The authored launch source is separate and carries both contributions; refresh
+its profile digest and show the final launch wording before actual posting.
+
+Build through the existing canonical Markdown compiler, publisher and print
+component. Record the actual browser/producer in the manifest, inspect the full
+PDF and platform outputs, and preserve prior R23 originals and frozen editions.
+The private review archive and correspondence are not repository inputs. Keep
+public evidence limited to this authorized contribution summary and technical
+source/build/review results. Review status, pending rights and canonical null
+remain; source preparation does not grant publication or release acceptance.
+
+Current evidence route: [R26 integration](../../../review/issue-2/2026-10-23-r26-integration.md).
+The earlier revision notes below are historical, not restrictions on this scope.
+
+## Historical R21 scope — 21 October 2026
 
 The author requested the next version after the R20 review analysis. The canonical
 manuscript owns R21; the dated [R21 review](../../../review/issue-2/2026-10-21-r21-review.md)

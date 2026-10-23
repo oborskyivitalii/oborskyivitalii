@@ -60,7 +60,9 @@ h4,
 h5,
 h6 {
   line-height: 1.2;
+  white-space: pre-wrap;
   break-after: avoid-page;
+  break-inside: avoid-page;
 }
 
 h1 {
@@ -169,7 +171,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 9.5pt;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 thead {

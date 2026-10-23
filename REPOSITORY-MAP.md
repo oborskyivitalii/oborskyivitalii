@@ -79,6 +79,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-120](review/issue-120) | Issue120 independent quality-agent integration, role receipts and source-bound acceptance evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2](review/issue-2) | Dated editorial, source and publication review evidence for the PMDay article owner. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015](review/issue-2/pmday-candidate-20261015) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| [review/issue-2/r26-20261023](review/issue-2/r26-20261023) | Public-safe R26 native review deliverables with exact manuscript, PDF, kit and source/producer inventory. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
 | [review/issue-31](review/issue-31) | Dated issue 31 implementation analysis and review evidence linked from its owning issue and PR. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-33](review/issue-33) | Versioned analysis and independent review evidence for short bootstrap and root organization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-35](review/issue-35) | Dated exact-base test/runtime/CI audits, original #13 reconciliation, analysis and independent review for test optimization. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
@@ -773,6 +774,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-2/2026-10-21-r19-review.md](review/issue-2/2026-10-21-r19-review.md) | R19 Markdown editorial revision: source treatment, independent review, checks and unclosed publication gates. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/2026-10-21-r20-review.md](review/issue-2/2026-10-21-r20-review.md) | R20 source-treatment decisions, independent editorial review and exact validation evidence. | history | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [review/issue-2/2026-10-21-r21-review.md](review/issue-2/2026-10-21-r21-review.md) | R21 source-treatment decisions, independent editorial/export review and exact validation evidence. | history | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) | R26 exact-source integration, independent four-role review, native artifact evidence, bounded corrections and remaining acceptance gates. | history | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [review/issue-2/r20-review-markdown.zip](review/issue-2/r20-review-markdown.zip) | R20 generated UTF-8 Markdown review copy, four resolved local PNG figures and exact provenance; not an editing owner or published edition. | history | [review/issue-2/2026-10-21-r20-review.md](review/issue-2/2026-10-21-r20-review.md) |
 | [review/issue-2/r21-review-markdown.zip](review/issue-2/r21-review-markdown.zip) | R21 GFM review copy preserving two tables, four local PNG figures and exact provenance; not an editing owner or published edition. | history | [review/issue-2/2026-10-21-r21-review.md](review/issue-2/2026-10-21-r21-review.md) |
 | [review/issue-2/r21-validation-evidence.zip](review/issue-2/r21-validation-evidence.zip) | R21 exact local validation receipts, partial and failed broad runs, final focused results and portable-reading screenshots; not whole-profile or deployment acceptance. | history | [review/issue-2/2026-10-21-r21-review.md](review/issue-2/2026-10-21-r21-review.md) |
@@ -797,6 +799,16 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [review/issue-2/pmday-candidate-20261015/reader-links-observations.json](review/issue-2/pmday-candidate-20261015/reader-links-observations.json) | Current r2 local review-browser observations: one native verified PDF link, no inline viewer or source-ID bibliography, two widths with and without JavaScript. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015/social-covers.zip](review/issue-2/pmday-candidate-20261015/social-covers.zip) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | [review/issue-2/pmday-candidate-20261015/viewer-observations.json](review/issue-2/pmday-candidate-20261015/viewer-observations.json) | PR79 PMDay review candidate, independent findings and source-qualified export evidence. | history | [CONTRIBUTING.md](CONTRIBUTING.md) |
+
+## review/issue-2/r26-20261023/
+
+| Path | Purpose | Role | Owner / editing route |
+| --- | --- | --- | --- |
+| [review/issue-2/r26-20261023/README.md](review/issue-2/r26-20261023/README.md) | R26 public native-package reading instructions, figure inventory and explicit review limitations. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
+| [review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.md](review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.md) | Exact approved R26 manuscript snapshot. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
+| [review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.pdf](review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23.pdf) | Selected R26 native review PDF generated through the repository publisher. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
+| [review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23_Native_Review_Kit.zip](review/issue-2/r26-20261023/The_Sum_of_Our_Technology_R26_2026-10-23_Native_Review_Kit.zip) | Complete freshly generated R26 native review kit; excludes private recovery records. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
+| [review/issue-2/r26-20261023/artifact-evidence.json](review/issue-2/r26-20261023/artifact-evidence.json) | R26 native source, semantic, PDF, ZIP and complete member/producer hash evidence. | history | [review/issue-2/2026-10-23-r26-integration.md](review/issue-2/2026-10-23-r26-integration.md) |
 
 ## review/issue-31/
 
@@ -2099,6 +2111,7 @@ A role or index entry does not grant research, merge, publication or deployment 
 | [site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r20-cover02.json](site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r20-cover02.json) | Source and semantic identity of the R20 review edition; earlier editions remain historical. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r21-cover02.json](site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r21-cover02.json) | Source and semantic identity of the R21 review edition; earlier editions remain historical. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 | [site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r23-cover02.json](site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261021-r23-cover02.json) | R23 Cover02 review edition: canonical manuscript and semantic identity with pending rights and publication decisions. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
+| [site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261023-r26.json](site/publications/pmday-ai-both-sides/editions/pmday-ai-both-sides-en-review-20261023-r26.json) | R26 review edition binding exact approved manuscript and semantic identity, with accepted-source pins and publication rights still pending. | source | [guides/ARTICLE-WORKFLOW.md](guides/ARTICLE-WORKFLOW.md) |
 
 ## site/publications/pmday-two-shifts/
 
