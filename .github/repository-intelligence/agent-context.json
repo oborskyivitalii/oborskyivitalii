@@ -17,7 +17,7 @@
   ],
   "source_identity": {
     "algorithm": "sha256-path-content-v2",
-    "digest": "9254eb7f3fd499b33274fb4bad7756269ddeeb6c3d6432874c39b35410435b06",
+    "digest": "6bafb36881fa52c28d567b8e566e5573554bfe24121de4d3c7f197df6497dfa3",
     "inputs": [
       {
         "path": ".gitattributes",
@@ -830,7 +830,7 @@
       {
         "path": "review/issue-122/2026-10-23-t03-review.md",
         "identity_mode": "content",
-        "sha256": "6dbe3b64652470ebf308d4ac39e38327637271ff64124cff2393816d13e74214"
+        "sha256": "116a7a7c300e64d3942681a414d3f0db51bf26553e251d11a4d9f7eabe64b4d9"
       },
       {
         "path": "review/issue-31/2026-10-07-analysis.md",
